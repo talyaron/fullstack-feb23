@@ -1,0 +1,47 @@
+.main {
+    width: 100px;
+    height: 100px ;
+}
+
+.red {
+    position: relative;
+    top: 20px;
+    left: 20px;
+    background-color: red;
+}
+
+.green {
+    position: absolute;
+    top: 28px;
+    left: 140px;
+    background-color:green;
+}
+
+.blue {
+    position:relative;
+    background-color: aqua;
+    top: 30px;
+    left: 20px;
+}
+
+.orange {
+    position: absolute;
+    top: 138px;
+    left: 140px;
+    background-color: orange;
+}
+
+.big {
+    background-color: blue;
+    position: absolute;
+    width: 210px;
+    height: 210px;
+    border-radius: 10%;
+    top: 28px;
+    left: 270px;
+    color: white;
+    text-align: center;
+    font-size: 90px;
+    line-height: 5px;
+
+}
