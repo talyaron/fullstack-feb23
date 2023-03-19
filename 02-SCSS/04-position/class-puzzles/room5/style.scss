@@ -1,0 +1,48 @@
+$red: red;
+$orange: orange;
+$blue: blue;
+$green: green;
+$move: 60px;
+
+.main{
+    width: 50px;
+    height: 50px;
+    background-color: aqua;
+    border: 1px solid white;
+    position: relative;
+
+}
+
+.red{
+    background-color: red;
+    position: absolute;
+
+}
+.orange{
+    background-color: orange;
+    position: absolute;
+    top: $move;
+    left: $move;
+
+    
+}
+.blue{
+    background-color: blue;
+    position: absolute;
+    top: $move;
+
+
+}
+.green{
+    background-color: green;
+    position: absolute;
+    left: $move;
+}
+
+.linkdin{
+    position: relative;
+    img{
+        position: absolute;
+        right: $move;
+    }
+}
