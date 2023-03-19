@@ -1,0 +1,43 @@
+body {
+  margin: 0 auto;
+  width: 100%;
+}
+
+.box1 {
+  position: absolute;
+  width: 1500px;
+  height: 1000px;
+  background: whitesmoke;
+}
+
+.baloon-red img {
+  top: 201px;
+  left: 376px;
+  position: absolute;
+  height: 241px;
+  width: 170px;
+  transform: rotate(1deg);
+  mix-blend-mode: multiply;
+}
+
+.baloon-pink img {
+  top: 235px;
+  left: 463px;
+  position: absolute;
+  background-image: none;
+  height: 186px;
+  width: 72px;
+  transform: rotate(9deg);
+  mix-blend-mode: multiply;
+}
+
+.baloon-blue img {
+  top: 167px;
+  left: 312px;
+  position: absolute;
+  background-image: none;
+  height: 297px;
+  width: 203px;
+  transform: rotate(3deg);
+  mix-blend-mode: multiply;
+}
