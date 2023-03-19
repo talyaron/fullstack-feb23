@@ -1,0 +1,38 @@
+$radius:50px;
+
+body {
+  direction: rtl;
+  background-color: beige;
+}
+.wrapper {
+  width: 600px;
+  margin: auto;
+  border: 1px dashed black;
+}
+
+.articleMain {
+  margin: 2px;
+  background-color: red;
+  border: 1px solid gray;
+  height: 200px;
+  border-radius: $radius;
+
+  img {
+    float: right;
+    height: 100%;
+    border-radius: $radius;
+  }
+}
+
+.blue {
+  background-color: blue;
+  color: white;
+}
+.red {
+  background-color: red;
+  color: black;
+}
+.black {
+  background-color: black;
+  color: white;
+}
