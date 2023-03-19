@@ -1,0 +1,39 @@
+.main {
+  width: 50px;
+  height: 50px;
+  background-color: aqua;
+  border: 1px solid white;
+  position: relative;
+}
+
+.red {
+  background-color: red;
+  position: absolute;
+}
+
+.orange {
+  background-color: orange;
+  position: absolute;
+  top: 60px;
+  left: 60px;
+}
+
+.blue {
+  background-color: blue;
+  position: absolute;
+  top: 60px;
+}
+
+.green {
+  background-color: green;
+  position: absolute;
+  left: 60px;
+}
+
+.linkdin {
+  position: relative;
+}
+.linkdin img {
+  position: absolute;
+  right: 60px;
+}
