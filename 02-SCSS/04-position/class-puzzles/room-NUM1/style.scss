@@ -1,0 +1,39 @@
+* {
+  box-sizing: border-box;
+}
+.wrapper {
+  background-color: white;
+  width: 1000px;
+  height: 800px;
+  margin: auto;
+}
+.squares-wrapper {
+  width: 40%;
+  display: inline-block;
+  display: inline-block;
+}
+.square {
+  width: 200px;
+  height: 200px;
+  display: inline-block;
+}
+.orange {
+  background-color: orange;
+}
+.green {
+  background-color: green;
+}
+.light-blue {
+  background-color: rgb(50, 137, 237);
+}
+.gold {
+  background-color: gold;
+}
+.linkdin {
+  width: 40%;
+  display: inline-block;
+}
+img {
+  width: 400px;
+  height: 400px;
+}
