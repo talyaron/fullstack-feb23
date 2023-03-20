@@ -6,19 +6,22 @@
 }
 
 .confetty {
-  position: absolute;
+  position: relative;
   top: 130px;
-  left: 850px;
+  left: 100px;
   z-index: 2;
 }
 .confetty img {
-  width: 250px;
+  width: 280px;
   height: 250px;
+  margin: auto;
+  top: auto;
+  border-radius: 40%;
 }
 
 .right {
   position: relative;
-  top: 180px;
+  top: -55px;
   left: 160px;
   transform: rotate(20deg);
 }
@@ -28,7 +31,7 @@
 
 .midel {
   position: relative;
-  top: -150px;
+  top: -400px;
   left: 120px;
   z-index: 1;
 }
@@ -38,9 +41,9 @@
 
 .left {
   position: relative;
-  top: -380px;
+  top: -600px;
   left: 70px;
-  transform: rotate(-20deg);
+  transform: rotate(-10deg);
 }
 .left img {
   width: 250px;
@@ -48,9 +51,9 @@
 
 .blorright {
   position: relative;
-  top: -600px;
-  left: 300px;
-  transform: rotate(20deg);
+  top: -880px;
+  left: 280px;
+  transform: rotate(10deg);
 }
 .blorright img {
   width: 100px;
@@ -60,8 +63,8 @@
 
 .blorleft {
   position: relative;
-  top: -800px;
-  left: 90px;
+  top: -1040px;
+  left: 80px;
   transform: rotate(-20deg);
 }
 .blorleft img {
@@ -72,19 +75,19 @@
 
 .dawnblorright {
   position: relative;
-  top: -730px;
-  left: 200px;
+  top: -970px;
+  left: 190px;
   transform: rotate(10deg);
 }
 .dawnblorright img {
-  width: 150px;
+  width: 160px;
   opacity: 0.8;
   filter: blur(6px);
 }
 
 .dawnblorleft {
   position: relative;
-  top: -970px;
+  top: -1220px;
   left: 100px;
   transform: rotate(-20deg);
 }
