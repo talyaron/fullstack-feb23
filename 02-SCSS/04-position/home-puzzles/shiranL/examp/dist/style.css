@@ -1,0 +1,113 @@
+.wrapper {
+  background-color: aliceblue;
+  margin: auto;
+}
+
+.main {
+  width: 100px;
+  height: 100px;
+}
+
+.moved {
+  position: relative;
+  bottom: 40px;
+  right: 40px;
+}
+
+.fixed {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  background-color: tomato;
+}
+
+.absolute {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  background-color: navy;
+}
+
+.greenfixed {
+  background-color: green;
+  position: fixed;
+  top: 0px;
+  left: 200px;
+}
+
+.redfixed {
+  background-color: red;
+  position: fixed;
+  top: 0px;
+  left: 400px;
+}
+
+.yellowfixed {
+  background-color: yellow;
+  position: fixed;
+  top: 0px;
+  left: 600px;
+}
+
+.bluefixed {
+  background-color: blue;
+  position: fixed;
+  top: 0px;
+  left: 800px;
+}
+
+.greenmoved {
+  background-color: green;
+  position: relative;
+  bottom: -23px;
+  right: -498px;
+}
+
+.redmoved {
+  background-color: red;
+  position: relative;
+  bottom: -123px;
+  right: -289px;
+}
+
+.yellowmoved {
+  background-color: yellow;
+  position: relative;
+  bottom: 178px;
+  right: -888px;
+}
+
+.bluemoved {
+  background-color: blue;
+  position: relative;
+  bottom: 78px;
+  right: -693px;
+}
+
+.greenabsolute {
+  background-color: #599759;
+  position: absolute;
+  top: 251px;
+  left: 797px;
+}
+
+.redabsolute {
+  background-color: #8b3939;
+  position: absolute;
+  top: 251px;
+  left: 399px;
+}
+
+.blueabsolute {
+  background-color: #6464f1;
+  position: absolute;
+  top: 251px;
+  left: 192px;
+}
+
+.yellowabsolute {
+  background-color: #fdfd96;
+  position: absolute;
+  top: 251px;
+  left: 597px;
+}
