@@ -1,0 +1,95 @@
+.wrappwr {
+  width: 500px;
+  height: 500px;
+  margin: auto;
+  border: 1px solid black;
+}
+
+.confetty {
+  position: absolute;
+  top: 130px;
+  left: 850px;
+  z-index: 2;
+}
+.confetty img {
+  width: 250px;
+  height: 250px;
+}
+
+.right {
+  position: relative;
+  top: 180px;
+  left: 160px;
+  transform: rotate(20deg);
+}
+.right img {
+  width: 250px;
+}
+
+.midel {
+  position: relative;
+  top: -150px;
+  left: 120px;
+  z-index: 1;
+}
+.midel img {
+  width: 250px;
+}
+
+.left {
+  position: relative;
+  top: -380px;
+  left: 70px;
+  transform: rotate(-20deg);
+}
+.left img {
+  width: 250px;
+}
+
+.blorright {
+  position: relative;
+  top: -600px;
+  left: 300px;
+  transform: rotate(20deg);
+}
+.blorright img {
+  width: 100px;
+  opacity: 0.8;
+  filter: blur(5px);
+}
+
+.blorleft {
+  position: relative;
+  top: -800px;
+  left: 90px;
+  transform: rotate(-20deg);
+}
+.blorleft img {
+  width: 150px;
+  opacity: 0.6;
+  filter: blur(5px);
+}
+
+.dawnblorright {
+  position: relative;
+  top: -730px;
+  left: 200px;
+  transform: rotate(10deg);
+}
+.dawnblorright img {
+  width: 150px;
+  opacity: 0.8;
+  filter: blur(6px);
+}
+
+.dawnblorleft {
+  position: relative;
+  top: -970px;
+  left: 100px;
+  transform: rotate(-20deg);
+}
+.dawnblorleft img {
+  width: 100px;
+  opacity: 0.8;
+  filter: blur(5px);
+}
