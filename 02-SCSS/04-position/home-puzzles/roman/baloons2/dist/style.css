@@ -71,7 +71,7 @@
 .baloon7 {
   position: absolute;
   top: 90px;
-  left: 330px;
+  left: 320px;
   transform: rotate(30deg);
   z-index: 3;
   filter: blur(2px);
