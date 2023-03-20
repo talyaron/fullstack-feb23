@@ -1,0 +1,31 @@
+.contaner {
+  width: 1000px;
+  height: 800px;
+  margin: auto;
+  border: 1px solid black;
+}
+
+.main {
+  width: 109px;
+  height: 340px;
+}
+
+.blue {
+  background-image: url(https://happyballoon.co.il/wp-content/uploads/2019/11/blue-balloon.png);
+  position: relative;
+  left: 190px;
+  bottom: -360px;
+  background-size: cover;
+  background-position: center;
+  transform: rotate(-25deg);
+}
+
+.pink {
+  background-image: url("./img/Artboard 12.png");
+  position: relative;
+  left: 235px;
+  bottom: 3px;
+  background-size: cover;
+  background-position: center;
+  transform: rotate(-10deg);
+}
