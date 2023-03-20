@@ -1,31 +1,109 @@
+body {
+  background-image: url(https://www.dacia.co.il/CountriesData/Israel/images/magazine/2019/04/altocumulus-clouds_ig_w600_h337.jpg);
+  background-size: cover;
+}
+
 .contaner {
   width: 1000px;
-  height: 800px;
+  height: 700px;
   margin: auto;
-  border: 1px solid black;
+  border-radius: 10%;
 }
 
 .main {
-  width: 109px;
-  height: 340px;
+  width: 50px;
+  height: 150px;
 }
 
 .blue {
-  background-image: url(https://happyballoon.co.il/wp-content/uploads/2019/11/blue-balloon.png);
   position: relative;
-  left: 190px;
-  bottom: -360px;
-  background-size: cover;
-  background-position: center;
-  transform: rotate(-25deg);
+  left: 139px;
+  bottom: -175px;
+  transform: rotate(-10deg);
 }
 
 .pink {
-  background-image: url("./img/Artboard 12.png");
   position: relative;
-  left: 235px;
-  bottom: 3px;
-  background-size: cover;
-  background-position: center;
+  left: 234px;
+  bottom: 155px;
   transform: rotate(-10deg);
+}
+
+.orange {
+  position: relative;
+  left: 317px;
+  bottom: 18px;
+  transform: rotate(-15deg);
+}
+
+.blue2 {
+  position: relative;
+  left: 471px;
+  bottom: 196px;
+  transform: rotate(18deg);
+}
+
+.green {
+  position: relative;
+  left: 386px;
+  bottom: 500px;
+}
+
+.green2 {
+  position: relative;
+  left: 168px;
+  bottom: 423px;
+  transform: rotate(-5deg);
+}
+
+.yellow {
+  position: relative;
+  left: 288px;
+  bottom: 742px;
+}
+
+.purp {
+  position: relative;
+  left: 734px;
+  bottom: 916px;
+  transform: rotate(50deg);
+}
+
+.child {
+  position: relative;
+  left: 373px;
+  bottom: 1099px;
+}
+
+.green2Sec {
+  position: relative;
+  left: 758px;
+  bottom: 883px;
+  transform: rotate(70deg);
+}
+
+.yellowsec {
+  position: relative;
+  left: 9px;
+  bottom: 985px;
+  transform: rotate(-35deg);
+}
+
+.redsec {
+  position: relative;
+  left: 248px;
+  bottom: 1386px;
+}
+
+.red {
+  position: relative;
+  left: 41px;
+  bottom: 1012px;
+  transform: rotate(-35deg);
+}
+
+.sun {
+  position: absolute;
+  top: 0px;
+  right: 0px;
 }
