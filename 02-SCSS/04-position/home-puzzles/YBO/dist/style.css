@@ -1,0 +1,42 @@
+body {
+  direction: ltr;
+}
+
+.wrapper {
+  width: 600px;
+  margin: auto;
+  border: 1px;
+}
+
+.task1 {
+  border: 2px solid black;
+}
+.task1 .row {
+  display: flex;
+}
+.task1 .column {
+  flex: 25%;
+  padding: 5px;
+}
+
+.task2 {
+  border: 2px solid black;
+  /* Three image containers (use 25% for four, and 50% for two, etc) */
+}
+
+.task3 {
+  border: 2px solid black;
+}
+
+.main {
+  width: 100px;
+  height: 100px;
+  background-color: beige;
+  border: 1px dashed gray;
+}
+
+.moved {
+  position: relative;
+  top: 40px;
+  left: 40px;
+}
