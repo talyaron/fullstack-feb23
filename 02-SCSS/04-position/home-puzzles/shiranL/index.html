@@ -7,53 +7,39 @@
     <title>Document</title>
     <link rel="stylesheet" href="./dist/style.css">
 </head>
-<body>
-    <div class="contaner">
-
-        <div class="main blue">
-            <img onclick="this.style.display='none'"; src="img/blue.png" alt="blue">
-        </div>
-        <div class="main pink">
-            <img onclick="this.style.display='none'"; src="img/pink.png" alt="pink">
-        </div>
-        <div class="main orange">
-            <img onclick="this.style.display='none'"; src="img/orange.png" alt="orange">
-        </div>
-        <div class="main blue2">
-            <img onclick="this.style.display='none'"; src="img/blue2.png" alt="blue2">
-        </div>
-        <div class="main green">
-            <img onclick="this.style.display='none'"; src="img/green.png" alt="green">
-        </div>
-        <div class="main green2">
-            <img onclick="this.style.display='none'"; src="img/green2.png" alt="green2">
-        </div>
-        <div class="main yellow">
-            <img  onclick="this.style.display='none'"; src="img/yellow.png" alt="yellow">
-        </div>
-        <div class="main purp">
-            <img onclick="this.style.display='none'"; src="img/purp.png" alt="purp">
-        </div>
-        <div class="main green2Sec">
-            <img onclick="this.style.display='none'"; src="img/green2.png" alt="green2">
-        </div>
-        <div class="main yellowsec ">
-            <img  onclick="this.style.display='none'"; src="img/yellow.png" alt="yellow">
-        </div>
-        <div class="main red ">
-            <img onclick="this.style.display='none'"; src="img/red.png" alt="red">
-        </div>
-        <div class="main redsec ">
-            <img onclick="this.style.display='none'"; src="img/red.png" alt="red">
-        </div>
-        <div class="child">
-            <img onclick="this.style.display='none'"; src="img/child.png" alt="child">
-        </div>
-    </div>
-    <div class="sun">
-        <img src="img/sun-removebg-preview.png" alt="child">
-    </div>
+<body scroll="no" style="overflow: hidden>
   
+    <div class="contianer">
+        <div class="AbsolutImg">
+            <img src="https://img.freepik.com/free-vector/ocean-sea-beach-nature-tranquil-landscape_33099-2248.jpg?w=1380&t=st=1679379796~exp=1679380396~hmac=22d67d148a8ad7ee0c00888e529faf8921d09741c86b908cbdd84e2315514fdb" alt="orange">
 
+        </div>
+            
+         <div class="main">
+            <img class="blue" src="img/blue.png" alt="blue">
+            <img class="orange" src="img/orange.png" alt="orange">
+            <img class="pink" src="img/pink.png" alt="pink">
+            <img  class="blue2" src="img/blue2.png" alt="blue2">
+            <img class="yellow"  src="img/yellow.png" alt="yellow">
+            <img class="purp" src="img/purp.png" alt="purp">
+            <img class="red" src="img/red.png" alt="red">
+            <img class="green2" src="img/green2.png" alt="green2">
+            <img class="green" src="img/green.png" alt="green">
+            <img id="img" onclick="KillImg()" class="child" src="img/child2.png" alt="child">
+         </div>
+           
+        </div>
+            
+        </div>
+        <script>
+            function KillImg() {
+              var x = document.getElementById("img");
+              if (x.style.display === "none") {
+                x.style.display = "block";
+              } else {
+                x.style.display = "none";
+              }
+            }
+            </script>  
 </body>
 </html>
