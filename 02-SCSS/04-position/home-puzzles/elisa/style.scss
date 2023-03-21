@@ -1,0 +1,83 @@
+.balloon-container {
+  position: relative;
+  width: 400px;
+  height: 400px;
+  margin: 0 auto;
+}
+img {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin: 10px;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+}
+.balloon1 {
+  top: 0;
+  left: 0;
+}
+.balloon2 {
+  left: 90px;
+}
+.balloon3 {
+  top: 0;
+  left: 180px;
+}
+.balloon4 {
+  top: 0;
+  left: 270px;
+}
+.balloon5 {
+  top: 90px;
+  left: 0;
+}
+.balloon6 {
+  top: 90px;
+  left: 90px;
+}
+.balloon7 {
+  top: 90px;
+  left: 180px;
+}
+.balloon8 {
+  top: 90px;
+  left: 270px;
+}
+.balloon9 {
+  top: 180px;
+  left: 0;
+}
+.balloon10 {
+  top: 180px;
+  left: 90px;
+}
+
+.balloon11 {
+  top: 180px;
+  left: 180px;
+}
+
+.balloon12 {
+  top: 180px;
+  left: 270px;
+}
+
+.balloon13 {
+  top: 270px;
+  left: 100px;
+}
+
+.balloon14 {
+  top: 270px;
+  left: 220px;
+}
+
+// .balloon15 {
+//   top: 270px;
+//   left: 180px;
+// }
+
+// .balloon16 {
+//   top: 270px;
+//   left: 270px;
+// }

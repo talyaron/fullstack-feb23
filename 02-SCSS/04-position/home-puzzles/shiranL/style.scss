@@ -1,100 +1,99 @@
 body{
-    background-image: url(https://www.dacia.co.il/CountriesData/Israel/images/magazine/2019/04/altocumulus-clouds_ig_w600_h337.jpg);
-    background-size: cover;
-    
+ 
 }
-.contaner{
-    width: 1000px;
-    height: 700px;
+
+.AbsolutImg{
+    img{
+        background-size: cover;
+        border-radius: 20%;
+        position: fixed;
+        height: 850px;
+        top: 10px;
+        left: 5px;
+       }
+}
+.contianer{
     margin: auto;
-    // border: 2px dashed pink;
-    border-radius: 10%;
+    width: 80%;
+    position: relative;
+    top: 0px;
+    left: 0px;
+  
 }
 .main{
-    width: 50px;
-    height: 150px;
+     height: 100%;
+     cursor: url(https://cur.cursors-4u.net/mechanics/mec-2/mec110.cur), auto
 }
-
 .blue{
-    position: relative;
-    left: 139px;
-    bottom: -175px;
-    transform: rotate(-10deg);
-}
-
-.pink{
-    position: relative;
-    left: 234px;
-    bottom: 155px;
-    transform: rotate(-10deg);
+    position: absolute;
+    left: 693px;
+    bottom: 70px;
+    transform: rotate(-20deg);
 }
 .orange{
-    position: relative;
-    left: 317px;
-    bottom: 18px;
+    position: absolute;
+    left: 917px;
+    bottom: 120px;
     transform: rotate(-15deg);
 }
+.pink{
+    
+        position: absolute;
+        left: 907px;
+        bottom: 63px;
+    
+}
 .blue2{
-    position: relative;
-    left: 471px;
-    bottom: 196px;
-    transform: rotate(18deg);
-}
-.green{
-    position: relative;
-    left: 386px;
-    bottom: 500px;
-}
-.green2{
-    position: relative;
-    left: 168px;
-    bottom: 423px;
-    transform: rotate(-5deg);
+    position: absolute;
+    left: 978px;
+    bottom: 77px;
+    transform: rotate(25deg);
 }
 .yellow{
-    position: relative;
-    left: 288px;
-    bottom: 742px;
+    position: absolute;
+    left: 771px;
+    bottom: 84px;
+    transform: rotate(-15deg);
 }
 .purp{
-    position: relative;
-    left: 734px;
-    bottom: 916px;
-    transform: rotate(50deg);
-}
-.child{
-    position: relative;
-    left: 373px;
-    bottom: 1099px;
-
-}
-.green2Sec{
-    position: relative;
-    left: 758px;
-    bottom: 883px;
-    transform: rotate(70deg);
-
-}
-.yellowsec{
-    position: relative;
-    left: 9px;
-    bottom: 985px;
-    transform: rotate(-35deg);
-}
-.redsec{
-    position: relative;
-    left: 248px;
-    bottom: 1386px;
+    position: absolute;
+    left: 938px;
+    bottom: 88px;
+    transform: rotate(35deg);
 }
 .red{
-    position: relative;
-    left: 41px;
-    bottom: 1012px;
-    transform: rotate(-35deg);
+    position: absolute;
+    left: 803px;
+    bottom: 95px;
+       
 }
+.green{
+    position: absolute;
+    left: 1011px;
+    bottom: 68px;
+    transform: rotate(15deg);
+       }
+
+.green2{
+        position: absolute;
+        left: 530px;
+    bottom: 4850px;
+        transform: rotate(37deg);
+        
+}
+
+.child{
+    position: absolute;
+    left: 1425px;
+    bottom: 75px;
+    width: 220px;
+    height: 200px;
+    cursor: url(https://cur.cursors-4u.net/mechanics/mec-2/mec110.cur), auto
+ } 
+
+
 .sun{
     position: absolute; // relative to the first positioned parent
     top:0px;
     right:0px;
-
 }
