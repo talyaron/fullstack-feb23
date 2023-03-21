@@ -1,43 +1,68 @@
 body{
     background-color: antiquewhite;
-    text-align: center;    
+    filter: contrast(150%);  
 }
 
 .main{
     height: 300px;
-    position: relative;
 
 }
 
 .bm{
     position: fixed;
-    transform: rotate(20deg);
+    transform: rotate(5deg);
+    left: 600px;
+    top: 250px;
 }
 
 .bl{
+    position: fixed;
     transform: rotate(-20deg);
+    left: 560px;
+    top: 280px;
 }
 
 .br{
-    transform: rotate(40deg);
+    transform: rotate(25deg);
+    position: fixed;
+    left: 640px;
+    top: 275px;
 }
 
 .bleyr{
     opacity: 0.5;
+    filter: blur(4px);
 }
 
 .b1{
     height: 100px;
+    position: relative;
+    left: 710px;
+    top: 150px;
+    transform: rotate(3deg);      
 }
 
 .b2{
     height: 130px;
+    position: relative;
+    left: 480px;
+    top: 330px;
+    transform: rotate(-10deg);    
 }
 
 .b3{
+    position: relative;
     height: 150px;
+    left: 425px;
+    top: 220px;
+    transform: rotate(-10deg);
 }
 
 .b4{
+    position: relative;
     height: 170px;
+    left: 460px;
+    top: 360px;
+    transform: rotate(17deg);
+
 }
