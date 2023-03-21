@@ -1,0 +1,13 @@
+.balloon {
+  position: relative;
+}
+.balloon .one img {
+  position: absolute;
+  top: 3px;
+  left: 4px;
+}
+.balloon .two img {
+  position: absolute;
+  top: 3px;
+  left: 6px;
+}
