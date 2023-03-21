@@ -5,27 +5,47 @@ body {
 .wrapper {
     width: 600px;
     margin: auto;
-    border: 1px;
+    border: 1px solid black;
 }
 
 .task1 {
     border: 2px solid black;
+
     .row {
         display: flex;
     }
+
     .column {
         flex: 25%;
         padding: 5px;
     }
-
 }
 
 .task2 {
     border: 2px solid black;
-    /* Three image containers (use 25% for four, and 50% for two, etc) */
+    display: flex;
+    position: relative;
+    .one {
+        position: absolute;
+        left: 300px;
+        top: 10px;
+    }
 
+    .two {
+        position: absolute;
+        left: 320px;
+        top: 30px;
+    }
 
+    .ybo {
+        position: absolute;
+        left: 280px;
+        top: 30px;
+    }
 
+    .end{
+        height: 200px;
+    }
 
 }
 
@@ -33,12 +53,6 @@ body {
     border: 2px solid black;
 }
 
-.main {
-    width: 100px;
-    height: 100px;
-    background-color: beige;
-    border: 1px dashed gray;
-}
 
 .moved {
     position: relative;
