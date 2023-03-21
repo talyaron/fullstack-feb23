@@ -4,10 +4,6 @@ body {
   background-color: rgba(0, 0, 255, 0.775);
 }
 
-img {
-  height: 150px;
-}
-
 .b1 {
   position: fixed;
   left: 734px;
@@ -32,48 +28,48 @@ img {
 .b4 {
   position: fixed;
   left: 454px;
-  top: 288px;
+  top: 279px;
   transform: rotate(4deg);
 }
 
 .b5 {
   position: fixed;
-  left: 341px;
-  top: 262px;
+  left: 348px;
+  top: 259px;
   transform: rotate(295deg);
 }
 
 .b6 {
   position: fixed;
-  left: 727px;
-  top: 72px;
-  transform: rotate(11deg);
+  left: 648px;
+  top: 98px;
+  transform: rotate(20deg);
 }
 
 .b7 {
   position: fixed;
-  left: 597px;
-  top: 126px;
-  transform: rotate(354deg);
+  left: 539px;
+  top: 134px;
+  transform: rotate(355deg);
 }
 
 .b8 {
   position: fixed;
-  left: 485px;
+  left: 448px;
   top: 104px;
-  transform: rotate(344deg);
+  transform: rotate(327deg);
 }
 
 .b9 {
   position: fixed;
-  left: 389px;
-  top: 199px;
-  transform: rotate(4deg);
+  left: 371px;
+  top: 141px;
+  transform: rotate(348deg);
 }
 
 .b10 {
   position: fixed;
-  left: 584px;
-  top: 49px;
-  transform: rotate(348deg);
+  left: 629px;
+  top: -21px;
+  transform: rotate(359deg);
 }
