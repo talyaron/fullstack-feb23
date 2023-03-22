@@ -19,11 +19,11 @@ body {
 }
 .wrapper .cards {
   background-color: white;
-  width: 270px;
-  height: 215px;
+  max-width: 270px;
+  height: auto;
 }
 .wrapper .cards img {
-  width: 270px;
+  max-width: 270px;
   height: auto;
 }
 .wrapper .cards .title-wrapper {
