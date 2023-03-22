@@ -1,100 +1,139 @@
-body{
-    background-image: url(https://www.dacia.co.il/CountriesData/Israel/images/magazine/2019/04/altocumulus-clouds_ig_w600_h337.jpg);
-    background-size: cover;
-    
+
+.fixedImg{
+    img{
+        background-size: cover;
+        border-radius: 20%;
+        position: fixed;
+        height: 850px;
+        top: 10px;
+        left: 5px;
+       }
 }
-.contaner{
-    width: 1000px;
-    height: 700px;
+.contianer{
     margin: auto;
-    // border: 2px dashed pink;
-    border-radius: 10%;
+    width: 80%;
+    position: relative;
+    top: 0px;
+    left: 0px;
 }
-.main{
-    width: 50px;
-    height: 150px;
+.ballons{
+    cursor: url(https://cur.cursors-4u.net/mechanics/mec-2/mec110.cur), auto
 }
-
 .blue{
-    position: relative;
-    left: 139px;
-    bottom: -175px;
-    transform: rotate(-10deg);
-}
-
-.pink{
-    position: relative;
-    left: 234px;
-    bottom: 155px;
-    transform: rotate(-10deg);
+    position: absolute;
+    left: 295px;
+    bottom: -859px;
+    transform: rotate(-20deg);
 }
 .orange{
-    position: relative;
-    left: 317px;
-    bottom: 18px;
+    position: absolute;
+    left: 519px;
+    bottom: -774px;
     transform: rotate(-15deg);
 }
+.pink{
+    position: absolute;
+    left: 510px;
+    bottom: -806px;
+}
 .blue2{
-    position: relative;
-    left: 471px;
-    bottom: 196px;
-    transform: rotate(18deg);
-}
-.green{
-    position: relative;
-    left: 386px;
-    bottom: 500px;
-}
-.green2{
-    position: relative;
-    left: 168px;
-    bottom: 423px;
-    transform: rotate(-5deg);
+    position: absolute;
+    left: 581px;
+    bottom: -859px;
+    transform: rotate(25deg);
 }
 .yellow{
-    position: relative;
-    left: 288px;
-    bottom: 742px;
+    position: absolute;
+    left: 376px;
+    bottom: -849px;
+    transform: rotate(-15deg);
 }
 .purp{
-    position: relative;
-    left: 734px;
-    bottom: 916px;
-    transform: rotate(50deg);
-}
-.child{
-    position: relative;
-    left: 373px;
-    bottom: 1099px;
-
-}
-.green2Sec{
-    position: relative;
-    left: 758px;
-    bottom: 883px;
-    transform: rotate(70deg);
-
-}
-.yellowsec{
-    position: relative;
-    left: 9px;
-    bottom: 985px;
-    transform: rotate(-35deg);
-}
-.redsec{
-    position: relative;
-    left: 248px;
-    bottom: 1386px;
+    position: absolute;
+    left: 543px;
+    bottom: -837px;
+    transform: rotate(35deg);
 }
 .red{
-    position: relative;
-    left: 41px;
-    bottom: 1012px;
-    transform: rotate(-35deg);
+    position: absolute;
+    left: 406px;
+    bottom: -810px;  
 }
+.green{
+    position: absolute;
+    left: 415px;
+    bottom: -818px;
+    transform: rotate(-23deg);
+       }
+.green2{
+    position: absolute;
+    left: 499px;
+    bottom: -838px;
+    transform: rotate(37deg);
+        
+}
+.child{
+    position: absolute;
+    left: 873px;
+    bottom: -836px;
+    width: 214px;
+    height: 200px;
+    cursor: url(https://cur.cursors-4u.net/mechanics/mec-2/mec110.cur), auto
+ } 
 .sun{
     position: absolute; // relative to the first positioned parent
     top:0px;
-    right:0px;
-
+    left:0px;
+    width: 150px;
+    height: 150px;
+}
+.pinkLove{
+    position: absolute;
+    top: 180px;
+    left: 194px;
+    width: 200px;
+    height: 180px;
+    filter: blur(1px);
+    transform: rotate(-26deg);
+}
+.goldblur{
+    position: absolute;
+    top: 114px;
+    left: 981px;
+    width: 160px;
+    height: 145px;
+    filter: blur(2px);
+    transform: rotate(-11deg);
+}
+.goldblur1{
+    position: absolute;
+    top: 129px;
+    left: 914px;
+    width: 131px;
+    height: 122px;
+    filter: blur(2px);
+    transform: rotate(-32deg);
+}
+.gold1{
+    position: absolute;
+    top: 250px;
+    left: 981px;
+    width: 200px;
+    height: 180px;
+}
+.gold2{
+    position: absolute;
+    top: 269px;
+    left: 934px;
+    width: 200px;
+    height: 180px;
+    transform: rotate(-36deg);
+}
+.gold3{
+    position: absolute;
+    top: 261px;
+    left: 1035px;
+    width: 200px;
+    height: 180px;
+    transform: rotate(35deg);
 }

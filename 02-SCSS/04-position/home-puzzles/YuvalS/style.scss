@@ -1,0 +1,114 @@
+body{
+    img{
+        width: 150px;
+        height: 300px;
+
+    }
+}
+
+
+.wrapper{
+    position: relative;
+    left: 300px;
+    top: 300px;
+
+    .green{
+        width: 300px;
+        transform: rotate(320deg);
+        position: relative;
+        left: 270px;
+    }
+    .pink{
+        width: 350px;
+        transform: rotate(45deg);
+        position: relative;
+        right: 185px;
+        top: 20px;
+    }
+
+    .yellow{
+        position: relative;
+        width: 220px;
+
+    }
+
+    .blue{
+        position: relative;
+        left: 750px;
+        bottom: 50px;
+        transform: rotate(30deg);
+
+    }
+
+    .red{
+        position: relative;
+        left: 110px;
+        bottom: 30px;
+        transform: rotate(333deg);
+
+    }
+
+
+
+
+}
+
+.wrapper2{
+    position: relative;
+    left: 300px;
+    top: 300px;
+
+    .green{
+        width: 300px;
+        transform: rotate(47deg);
+        position: relative;
+        left: 480px;
+        bottom: 280px;
+    }
+    .pink{
+        width: 350px;
+        transform: rotate(320deg);
+        position: relative;
+        right: 335px;
+        bottom: 240px;
+    }
+
+    .yellow{
+        position: relative;
+        width: 220px;
+        left: 200px;
+        bottom: 300px;
+        transform: rotate(45deg);
+
+    }
+
+    .blue{
+        position: relative;
+        left: 610px;
+        bottom: 290px;
+        transform: rotate(340deg);
+
+    }
+
+    .red{
+        position: relative;
+        left: 250px;
+        bottom: 340px;
+        transform: rotate(23deg);
+        width: 130px;
+
+    }
+
+}
+
+#gift{
+
+    img{
+        width: 300px;
+    }
+    position: relative;
+    left: 876px;
+    bottom: 95px;
+
+
+}

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> YBO - H.W - week 4 </title>
+    <!-- <link rel="stylesheet" href="/02-SCSS/04-position/home-puzzles/YBO/dist/style.css"> -->
+
+</head>
+<style>
+    body {
+        direction: ltr;
+    }
+
+    .wrapper {
+        width: 600px;
+        margin: auto;
+        border: 1px solid black;
+    }
+
+    .task1 {
+        border: 2px solid black;
+    }
+
+    .task1 .row {
+        display: flex;
+    }
+
+    .task1 .column {
+        flex: 25%;
+        padding: 5px;
+    }
+
+    .task2 {
+        border: 2px solid black;
+        display: flex;
+        position: relative;
+    }
+
+    .task2 .one {
+        position: absolute;
+        left: 300px;
+        top: 10px;
+    }
+
+    .task2 .two {
+        position: absolute;
+        left: 320px;
+        top: 30px;
+    }
+
+    .task2 .ybo {
+        position: absolute;
+        left: 280px;
+        top: 30px;
+    }
+
+    .task2 .end {
+        height: 200px;
+    }
+
+    .task3 {
+        border: 2px solid black;
+    }
+
+    .moved {
+        position: relative;
+        top: 40px;
+        left: 40px;
+    }
+</style>
+
+
+<body>
+
+    <div class="wrapper">
+
+        <h1> 1. crate "balloons 1" out of images of single balloon.</h1>
+        <div class="task1">
+
+            <div class="row">
+                <div class="column">
+                    <img src="https://cdn-icons-png.flaticon.com/512/657/657570.png" alt="1" style="width: 100%;">
+                    <img src="https://cdn-icons-png.flaticon.com/512/657/657469.png" alt="2" style="width:100%">
+                    <img src="https://cdn-icons-png.flaticon.com/512/657/657267.png" alt="3" style="width:100%">
+                    <img src="https://cdn-icons-png.flaticon.com/512/657/657166.png" alt="4" style="width: 100%;">
+                </div>
+                <div class="column">
+                    <img src="https://cdn-icons-png.flaticon.com/512/657/657166.png" alt="4" style="width: 100%;">
+                    <img src="https://cdn-icons-png.flaticon.com/512/657/657570.png" alt="1" style="width: 100%;">
+                    <img src="https://cdn-icons-png.flaticon.com/512/657/657469.png" alt="2" style="width:100%">
+                    <img src="https://cdn-icons-png.flaticon.com/512/657/657267.png" alt="3" style="width:100%">
+
+                </div>
+                <div class="column">
+                    <img src="https://cdn-icons-png.flaticon.com/512/657/657267.png" alt="3" style="width:100%">
+                    <img src="https://cdn-icons-png.flaticon.com/512/657/657166.png" alt="4" style="width: 100%;">
+                    <img src="https://cdn-icons-png.flaticon.com/512/657/657570.png" alt="1" style="width: 100%;">
+                    <img src="https://cdn-icons-png.flaticon.com/512/657/657469.png" alt="2" style="width:100%">
+                </div>
+            </div>
+
+        </div>
+
+        <h1> 2. crate "balloons 2" out of one image of single balloon.</h1>
+
+        <div class="task2">
+            <img class="one" src="https://cdn-icons-png.flaticon.com/512/657/657267.png" alt="3" style="width:10%">
+            <img class="two" src="https://cdn-icons-png.flaticon.com/512/657/657267.png" alt="3" style="width:10%">
+            <img class="ybo" src="https://cdn-icons-png.flaticon.com/512/657/657267.png" alt="3" style="width:10%">
+            <img class="end" src="https://cdn-icons-png.flaticon.com/512/657/657267.png" alt="3" style="width:10%">
+
+        </div>
+
+
+        <h1> 3. crate "balloons 3" out of images of single balloon with cords.</h1>
+        <div class="task3">
+            <div class="main moved"> </div>
+            <div class="main"> </div>
+            <div class="main"> </div>
+            <div class="main"> </div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
