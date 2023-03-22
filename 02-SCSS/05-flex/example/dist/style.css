@@ -1,0 +1,15 @@
+.wrapper {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  height: 100vh;
+  background-color: #c2eeee;
+}
+.wrapper .box {
+  background-color: teal;
+  height: 100px;
+  width: 100px;
+  color: white;
+}
