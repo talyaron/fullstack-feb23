@@ -40,7 +40,7 @@ body{
         height: 120px;
         width: 90px;
         left: $left;
-        top: $top+40;
+        top: calc( 50vw + 40px);
         transform: rotate(-17deg);
 }
 }

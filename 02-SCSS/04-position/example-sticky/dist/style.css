@@ -23,3 +23,8 @@
 .wrapper .wide {
   width: 300px;
 }
+.wrapper .sticky {
+  position: sticky;
+  bottom: 100px;
+  top: 10px;
+}
