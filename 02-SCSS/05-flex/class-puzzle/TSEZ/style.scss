@@ -20,11 +20,11 @@ body {
     url(./p0836dcl.jpg);
   .cards {
     background-color: white;
-    width: 270px;
-    height: 215px;
+    max-width: 270px;
+    height: auto;
 
     img {
-      width: 270px;
+      max-width: 270px;
       height: auto;
     }
     .title-wrapper {
@@ -34,7 +34,6 @@ body {
       height: 60px;
       h2 {
         margin: 0;
-        // text-align: center;
         margin: 0 10px;
         font-size: 18px;
       }
