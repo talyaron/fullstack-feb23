@@ -1,0 +1,126 @@
+.wrapper {
+    position: relative;
+
+    .balloon{
+        img {
+            position: absolute;
+        }
+    }
+
+    .one { 
+        img{
+            top: 3px;
+            left: 100px;
+        }
+    }
+    
+    .ten {
+        img {
+            top: 3px;
+            left:360px;
+            width: 230px;
+        }
+    }
+    
+    .two {
+        img {
+            top: 3px;
+            left: 660px;
+            width: 160px;
+        }
+    }
+    
+    .eleven{
+        img{
+            top: 3px;
+            left:930px;
+            width: 220px;
+        }
+    }
+    .three {
+        img {
+            top: 3px;
+            left: 1200px;
+            width: 230px;
+        }
+    }
+
+    .twelve{
+        img{
+            top: 250px;
+            width: 190px;
+            left: 380px;
+        }
+    }
+    
+    .four {
+        img{
+            top: 240px;
+            width: 170px;
+            left: 120px;
+        }
+    }
+    
+    .five {
+        img {
+            top: 260px;
+            width: 250px;
+            left: 620px;
+        }
+    }
+
+    .thirteen{
+        img{
+            top: 260px;
+            width: 200px;
+            left: 940px;
+        }
+    }
+
+    .six {
+        img {
+            top: 270px;
+            left: 1240px;
+            width: 150px;
+        }
+    }
+
+    .seven {
+        img{
+            top: 470px;
+            left: 100px;
+        }
+    }
+
+    .fourteen{
+        img{
+            top: 480px;
+            left: 370px;
+            width: 210px;
+        }
+    }
+
+    .eight {
+        img{
+            top: 470px;
+            left: 650px;
+            width: 190px;
+        }
+    }
+
+    .fifteen{
+        img{
+            top: 470px;
+            left: 930px;
+        }
+    }
+
+    .nine{
+        img{
+            top: 470px;
+            left: 1200px;
+        }
+    }
+
+
+}
