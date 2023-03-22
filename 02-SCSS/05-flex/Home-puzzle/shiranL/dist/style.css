@@ -4,11 +4,103 @@
 }
 
 .titel {
+  position: fixed;
   background-color: white;
   border: 1px solid darkblue;
+  display: flex;
+  height: 8vh;
+  width: 100%;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: center;
+}
+.titel .redIcon {
+  width: 35px;
+  height: 35px;
+}
+.titel .home {
+  width: 110px;
+  height: 46px;
+  white-space: nowrap;
+  border-radius: 24px;
+  font-size: 25px;
+  font-family: var(--font-family-default-latin);
+  background-color: black;
+  color: white;
+  text-align: center;
+  padding-top: 8px;
+}
+.titel .contact {
+  display: flex;
+  flex-direction: row-reverse;
+  text-align: center;
+}
+.titel .contact .arrow {
+  border: solid black;
+  border-width: 0 2px 2px 0;
+  display: inline-block;
+  padding: 3px;
+  margin: 12px;
+}
+.titel .contact .down {
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+}
+.titel .search {
+  display: flex;
+  flex-direction: row-reverse;
+  text-align: center;
+  justify-content: space-around;
+  width: 770px;
+  height: 35px;
+  border: 1px solid #a7a4a4;
+  background-color: gray;
+  border-radius: 13px;
+}
+.titel .search .logo {
+  padding: 10px;
+}
+.titel .search input {
+  width: 740px;
+  border: none;
+  background-color: gray;
+  border-radius: 13px;
+}
+.titel .smallIcons {
+  display: flex;
+  flex-direction: row-reverse;
+  text-align: center;
+  justify-content: space-around;
+  width: 550px;
+}
+.titel .smallIcons .arrow {
+  border: solid black;
+  border-width: 0 2px 2px 0;
+  display: inline-block;
+  padding: 4px;
+  margin: 2px;
+}
+.titel .smallIcons .down {
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
 }
 
-.redIcon {
-  width: 24px;
-  height: 24px;
+.column {
+  position: relative;
+  top: 110px;
+  columns: 150px 8;
+  display: flex;
+  align-items: flex-start;
+  align-self: flex-start;
+  justify-content: space-around;
+  gap: 25px;
+  flex-wrap: wrap;
+}
+.column img {
+  max-width: 150px;
+  min-width: 70px;
+  border-radius: 2px;
+  flex: 2px;
+  border: 1px solid white;
 }
