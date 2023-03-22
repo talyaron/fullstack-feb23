@@ -15,6 +15,10 @@
   left: 0px;
 }
 
+.ballons {
+  cursor: url(https://cur.cursors-4u.net/mechanics/mec-2/mec110.cur), auto;
+}
+
 .blue {
   position: absolute;
   left: 295px;
@@ -91,4 +95,60 @@
   left: 0px;
   width: 150px;
   height: 150px;
+}
+
+.pinkLove {
+  position: absolute;
+  top: 180px;
+  left: 194px;
+  width: 200px;
+  height: 180px;
+  filter: blur(1px);
+  transform: rotate(-26deg);
+}
+
+.goldblur {
+  position: absolute;
+  top: 114px;
+  left: 981px;
+  width: 160px;
+  height: 145px;
+  filter: blur(2px);
+  transform: rotate(-11deg);
+}
+
+.goldblur1 {
+  position: absolute;
+  top: 129px;
+  left: 914px;
+  width: 131px;
+  height: 122px;
+  filter: blur(2px);
+  transform: rotate(-32deg);
+}
+
+.gold1 {
+  position: absolute;
+  top: 250px;
+  left: 981px;
+  width: 200px;
+  height: 180px;
+}
+
+.gold2 {
+  position: absolute;
+  top: 269px;
+  left: 934px;
+  width: 200px;
+  height: 180px;
+  transform: rotate(-36deg);
+}
+
+.gold3 {
+  position: absolute;
+  top: 261px;
+  left: 1035px;
+  width: 200px;
+  height: 180px;
+  transform: rotate(35deg);
 }
