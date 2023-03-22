@@ -1,11 +1,11 @@
 html {
-  width: auto;
+  width: 1280px;
   height: 720px;
   background-color: beige;
 }
 
 .container {
-  width: auto;
+  width: 1280px;
   height: 720px;
   border: 2px black solid;
   position: absolute;
