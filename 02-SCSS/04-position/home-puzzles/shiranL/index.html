@@ -6,30 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="./dist/style.css">
+    
 </head>
-<body scroll="no" style="overflow: hidden>
+<body style="overflow:hidden">
   
     <div class="contianer">
-        <div class="AbsolutImg">
+        <div class="fixedImg">
             <img src="https://img.freepik.com/free-vector/ocean-sea-beach-nature-tranquil-landscape_33099-2248.jpg?w=1380&t=st=1679379796~exp=1679380396~hmac=22d67d148a8ad7ee0c00888e529faf8921d09741c86b908cbdd84e2315514fdb" alt="orange">
-
         </div>
-            
-         <div class="main">
-            <img class="blue" src="img/blue.png" alt="blue">
-            <img class="orange" src="img/orange.png" alt="orange">
-            <img class="pink" src="img/pink.png" alt="pink">
-            <img  class="blue2" src="img/blue2.png" alt="blue2">
-            <img class="yellow"  src="img/yellow.png" alt="yellow">
-            <img class="purp" src="img/purp.png" alt="purp">
-            <img class="red" src="img/red.png" alt="red">
-            <img class="green2" src="img/green2.png" alt="green2">
-            <img class="green" src="img/green.png" alt="green">
+          <div id="ballons" class="ballons" onclick="Killballons()">
+            <img id="blue" class="blue" src="img/blue.png" alt="blue">
+            <img id="orange" class="orange" src="img/orange.png" alt="orange">
+            <img id="pink" class="pink" src="img/pink.png" alt="pink">
+            <img id="blue2" class="blue2" src="img/blue2.png" alt="blue2">
+            <img id="yellow" class="yellow"  src="img/yellow.png" alt="yellow">
+            <img id="purp" class="purp" src="img/purp.png" alt="purp">
+            <img id="red" class="red" src="img/red.png" alt="red">
+            <img id="green2" class="green2" src="img/green2.png" alt="green2">
+            <img id="green" class="green" src="img/green.png" alt="green">
+          </div>
             <img id="img" onclick="KillImg()" class="child" src="img/child2.png" alt="child">
-         </div>
-           
-        </div>
-            
+            <img id="sun" class="sun" onclick="undo()" src="img/sunny (1).png" alt="sun"> 
         </div>
         <script>
             function KillImg() {
@@ -40,6 +37,22 @@
                 x.style.display = "none";
               }
             }
-            </script>  
+          </script> 
+          <script> 
+            function undo() {
+              document.getElementById("ballons").style.display = "block";
+              document.getElementById("img").style.display = "block";
+}
+              </script> 
+              <script>
+                function Killballons() {
+                  var x = document.getElementById("ballons");
+                  if (x.style.display === "none") {
+                    x.style.display = "block";
+                  } else {
+                    x.style.display = "none";
+                  }
+                }
+                </script>
 </body>
 </html>

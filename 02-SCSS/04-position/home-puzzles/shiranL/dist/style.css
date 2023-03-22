@@ -1,4 +1,4 @@
-.AbsolutImg img {
+.fixedImg img {
   background-size: cover;
   border-radius: 20%;
   position: fixed;
@@ -15,77 +15,72 @@
   left: 0px;
 }
 
-.main {
-  height: 100%;
-  cursor: url(https://cur.cursors-4u.net/mechanics/mec-2/mec110.cur), auto;
-}
-
 .blue {
   position: absolute;
-  left: 693px;
-  bottom: 70px;
+  left: 295px;
+  bottom: -859px;
   transform: rotate(-20deg);
 }
 
 .orange {
   position: absolute;
-  left: 917px;
-  bottom: 120px;
+  left: 519px;
+  bottom: -774px;
   transform: rotate(-15deg);
 }
 
 .pink {
   position: absolute;
-  left: 907px;
-  bottom: 63px;
+  left: 510px;
+  bottom: -806px;
 }
 
 .blue2 {
   position: absolute;
-  left: 978px;
-  bottom: 77px;
+  left: 581px;
+  bottom: -859px;
   transform: rotate(25deg);
 }
 
 .yellow {
   position: absolute;
-  left: 771px;
-  bottom: 84px;
+  left: 376px;
+  bottom: -849px;
   transform: rotate(-15deg);
 }
 
 .purp {
   position: absolute;
-  left: 938px;
-  bottom: 88px;
+  left: 543px;
+  bottom: -837px;
   transform: rotate(35deg);
 }
 
 .red {
   position: absolute;
-  left: 803px;
-  bottom: 95px;
+  left: 406px;
+  bottom: -810px;
 }
 
 .green {
   position: absolute;
-  left: 1011px;
-  bottom: 68px;
-  transform: rotate(15deg);
+  left: 415px;
+  bottom: -818px;
+  transform: rotate(-23deg);
 }
 
 .green2 {
   position: absolute;
-  left: 530px;
-  bottom: 4850px;
+  left: 499px;
+  bottom: -838px;
   transform: rotate(37deg);
 }
 
 .child {
   position: absolute;
-  left: 1425px;
-  bottom: 75px;
-  width: 220px;
+  left: 873px;
+  bottom: -836px;
+  width: 214px;
   height: 200px;
   cursor: url(https://cur.cursors-4u.net/mechanics/mec-2/mec110.cur), auto;
 }
@@ -93,5 +88,7 @@
 .sun {
   position: absolute;
   top: 0px;
-  right: 0px;
+  left: 0px;
+  width: 150px;
+  height: 150px;
 }
