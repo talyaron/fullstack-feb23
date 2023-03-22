@@ -1,3 +1,7 @@
+body {
+  height: 100vh;
+}
+
 .top {
   display: flex;
   flex-direction: row;
@@ -59,11 +63,11 @@
 .bell h3 {
   font-size: 10px;
   background-color: red;
-  border-radius: 7px;
+  border-radius: 9px;
   color: white;
-  padding: 2px;
+  padding: 1px 3px;
   position: relative;
-  left: 32px;
+  left: 35px;
   top: -5px;
 }
 
@@ -80,7 +84,7 @@
   background-color: red;
   border-radius: 50%;
   color: white;
-  padding: 2px 5px;
+  padding: 1px 5px;
   position: relative;
   left: 35px;
   top: -7px;
