@@ -1,16 +1,14 @@
-$w: 1280px;
-$h: 720px;
+$w: 100%;
+$h: 100%;
 html{
     width: $w;
     height: $h;
     background-color: beige;
+    border: 1px solid black;
 }
 
 .container{
-    width: $w;
-    height: $h;
-    border: 2px black solid;
-    position: absolute;
+    position: fixed;
     justify-content: center;
     align-items: center;
     display: flex;
@@ -20,7 +18,10 @@ html{
     .con{
         position: relative;
         left: 150px;
+        display:block;
         z-index: 2;
+        bottom: 1000px;
+        transform: rotate(180deg);
     }
 
     .ballons{
