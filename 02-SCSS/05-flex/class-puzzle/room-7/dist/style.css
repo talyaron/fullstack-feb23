@@ -1,0 +1,36 @@
+.container {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  background-image: url("https://api.time.com/wp-content/uploads/2018/05/forest-bathing.jpg");
+  height: 120px;
+  justify-content: center;
+  align-items: center;
+}
+.container .box {
+  display: flex;
+  flex: 1;
+  gap: 10px;
+  height: 100px;
+  background-color: white;
+  color: black;
+  flex-direction: column-reverse;
+  margin: 5px;
+}
+.container .box:hover {
+  opacity: 0.92;
+}
+.container img {
+  display: flex;
+  height: 50px;
+  width: auto;
+  height: 4.5rem;
+}
+.container .text {
+  display: flex;
+  align-items: center;
+  height: 20px;
+  padding-bottom: 5px;
+  text-align: center;
+  justify-content: center;
+}
