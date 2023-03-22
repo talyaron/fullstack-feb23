@@ -122,5 +122,71 @@
         }
     }
 
+}
+
+.task-two{
+    
+    .behind{
+        position:relative;
+        img{
+            filter: blur(5px);
+        }
+        
+    }
+    .one{
+        img{ 
+            position: relative;
+            top: 870px;
+            left:930px;
+            width: 70px;
+        }
+    }
+
+    .two{
+        img{
+            position: relative;
+            left: 440px;
+            top: 800px;
+            width: 130px;
+        }
+    }
+
+    .three{
+        img{
+            position: relative;
+            width: 100px;
+            top: 900px;
+            left: 440px;
+        }
+    }
+
+    .four{
+        img{
+            position: relative;
+            width: 200px;
+            top: 800px;
+            left: 800px;
+        }
+    }
+
+    
+    .between{
+        position: relative;
+        width: 19px;
+    }
+    
+}
+.left{
+    position: relative;
+    left: 500px;
+    top: 340px;
+    width: 270px;
+}
+
+.between{
+    position: relative;
+    left: 600px;
+    top: 50px;
+    width: 100px;
 
 }
