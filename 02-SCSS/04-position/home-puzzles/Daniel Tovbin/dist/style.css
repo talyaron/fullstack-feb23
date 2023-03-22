@@ -75,3 +75,52 @@
   top: 470px;
   left: 1200px;
 }
+
+.task-two .behind {
+  position: relative;
+}
+.task-two .behind img {
+  filter: blur(5px);
+}
+.task-two .one img {
+  position: relative;
+  top: 870px;
+  left: 930px;
+  width: 70px;
+}
+.task-two .two img {
+  position: relative;
+  left: 440px;
+  top: 800px;
+  width: 130px;
+}
+.task-two .three img {
+  position: relative;
+  width: 100px;
+  top: 900px;
+  left: 440px;
+}
+.task-two .four img {
+  position: relative;
+  width: 200px;
+  top: 800px;
+  left: 800px;
+}
+.task-two .between {
+  position: relative;
+  width: 19px;
+}
+
+.left {
+  position: relative;
+  left: 500px;
+  top: 340px;
+  width: 270px;
+}
+
+.between {
+  position: relative;
+  left: 600px;
+  top: 50px;
+  width: 100px;
+}
