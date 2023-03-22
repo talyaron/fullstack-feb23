@@ -1,0 +1,108 @@
+$w: 1280px;
+$h: 720px;
+html{
+    width: $w;
+    height: $h;
+    background-color: beige;
+}
+
+.container{
+    width: $w;
+    height: $h;
+    border: 2px black solid;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    margin: auto;
+    padding: 10px;
+
+    .con{
+        position: relative;
+        left: 150px;
+        z-index: 2;
+    }
+
+    .ballons{
+        width: 60%;
+        height: 100%;
+        position: relative;
+    
+        .leftBallon{
+            position: relative;
+            margin: auto;
+            padding: 10px;
+            z-index: 1;
+            top: 180px;
+            right: 530px;
+            transform: rotate(-10deg);
+        }
+    
+        .middleBallon{
+            position: relative;
+            margin: auto;
+            padding: 10px;
+            z-index: 3;
+            right:400px;
+            bottom: 430px;
+        }
+    
+        .rightBallon{
+            position: relative;
+            margin: auto;
+            padding: 10px;
+            z-index: 1;
+            bottom: 850px;
+            right: 300px;
+            transform: rotate(20deg);
+        }
+
+
+        //blur imgs
+        .topLeft img{
+            filter: blur(8px);
+            -webkit-filter: blur(8px);
+            width: 350px;
+            height: 350px;
+            position: relative;
+            bottom: 1500px;
+            right: 500px;
+            z-index:0;
+            transform: rotate(-20deg);
+        }
+        .bottomLeft img{
+            filter: blur(8px);
+            -webkit-filter: blur(8px);
+            width: 250px;
+            height: 250px;
+            position: relative;
+            bottom: 1520px;
+            right: 450px;
+            z-index:0;
+            transform: rotate(-20deg);
+        }
+        .topRight img{
+            filter: blur(8px);
+            -webkit-filter: blur(8px);
+            width: 200px;
+            height: 200px;
+            position: relative;
+            bottom: 2100px;
+            left: -100px;
+            z-index:0;
+            transform: rotate(20deg);
+        }
+        .bottomRight img{
+            filter: blur(8px);
+            -webkit-filter: blur(8px);
+            width: 350px;
+            height: 350px;
+            position: relative;
+            bottom: 2000px;
+            left: -300px;
+            z-index:0;
+            transform: rotate(20deg);
+        }
+    }
+}
+
