@@ -1,0 +1,90 @@
+body {
+    margin: 0;
+
+    .container {
+        font-family: sans-serif;
+
+        header {
+            padding-left: 50px;
+            background: black;
+            color: white;
+            height: 60px;
+            width: 100%;
+            display: flex;
+
+
+            .logo {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-left: 40px;
+
+                div {
+                    background: white;
+                    color: black;
+                    margin: 2px;
+                    height: 30px;
+                    width: 30px;
+                    font-size: 25px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+            }
+
+            .user {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-left: 40px;
+
+
+                i {
+                    font-size: 30px;
+                }
+            }
+
+            ul {
+                margin-left: 40px;
+                justify-content: space-between;
+                list-style: none;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                a {
+                    text-decoration: none;
+                    color: white;
+                    margin: 0 10px;
+                    font-weight: bold;
+                }
+
+                li:last-child {
+                    font-size: 35px;
+                    padding-top: 3px;
+                    height: 60px;
+                }
+
+                li:first-child {
+                    color: silver;
+                    font-size: 25px;
+                    font-weight: 10px;
+                }
+            }
+
+            .Search {
+                display: flex;
+                background: #5E5E62;
+                padding-top: 8px;
+                height: 20px;
+                width: 250px;
+
+                i {
+                    padding-left: 4px;
+                }
+            }
+        }
+
+
+    }
+}
