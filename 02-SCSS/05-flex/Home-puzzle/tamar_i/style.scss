@@ -1,0 +1,42 @@
+body{
+    position: absolute;
+}
+.header{
+    position: sticky;
+    top: 1px;
+    color: blue;
+    background-color: brown;
+    text-align: center;
+}
+
+.wapper{
+    display: flex;
+    background-color: green;
+    gap: 35px;
+
+
+    .column{
+        display: flex;
+        flex-direction: column;
+        background-color: aqua;
+        gap: 25px;
+        height: 1600px;
+
+        .item1{
+            background-image: url("dog.jfif");
+            background-size: cover;
+            background-repeat: no-repeat;
+            height: 300px;
+            width: 200px;
+            border-radius: 15px;
+        }
+
+        // .item2{
+        //     height: 150px;
+        //     width: 200px;
+        // }
+    }
+}
+
+
+        
