@@ -1,30 +1,82 @@
 .ruler {
   display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  margin-top: 20px;
+  justify-content: space-between;
+  align-items: center;
 }
 .ruler img {
   width: 20px;
   height: auto;
 }
-
-.search {
-  width: 800px;
+.ruler .search {
+  width: 1250px;
   text-align: end;
   border-radius: 20px;
   border: white;
+  color: gray;
+  height: 30px;
 }
-
-.create {
+.ruler .create {
   border-radius: 20px;
   border: white;
   background-color: white;
 }
-
-.home {
+.ruler .home {
   border-radius: 20px;
   background-color: black;
   color: white;
   font-weight: bold;
+}
+
+.ruler2 {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+.ruler2 .divtext {
+  width: 1070px;
+}
+.ruler2 .divtext .pmain {
+  font-weight: bold;
+  font-size: 15px;
+}
+.ruler2 .divtext p {
+  font-size: 10px;
+}
+.ruler2 .settings {
+  border-radius: 20px;
+  border: red;
+  background-color: red;
+  color: white;
+  font-weight: bold;
+  height: 35px;
+  width: 130px;
+  margin-bottom: 20px;
+}
+.ruler2 .notnow {
+  border-radius: 20px;
+  border: grey;
+  font-weight: bold;
+  height: 35px;
+  width: 70px;
+  margin-bottom: 20px;
+  margin-right: 50px;
+}
+
+.imgs {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin: auto;
+  width: 1300px;
+}
+.imgs .img1 {
+  border-radius: 10px;
+  width: 155px;
+}
+.imgs .img2 {
+  border-radius: 10px;
+  width: 155px;
+  height: 200px;
 }
