@@ -1,0 +1,74 @@
+body {
+  margin: 0;
+}
+body .container {
+  font-family: sans-serif;
+}
+body .container header {
+  padding-left: 50px;
+  background: black;
+  color: white;
+  height: 60px;
+  width: 100%;
+  display: flex;
+}
+body .container header .logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 40px;
+}
+body .container header .logo div {
+  background: white;
+  color: black;
+  margin: 2px;
+  height: 30px;
+  width: 30px;
+  font-size: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+body .container header .user {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 40px;
+}
+body .container header .user i {
+  font-size: 30px;
+}
+body .container header ul {
+  margin-left: 40px;
+  justify-content: space-between;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+body .container header ul a {
+  text-decoration: none;
+  color: white;
+  margin: 0 10px;
+  font-weight: bold;
+}
+body .container header ul li:last-child {
+  font-size: 35px;
+  padding-top: 3px;
+  height: 60px;
+}
+body .container header ul li:first-child {
+  color: silver;
+  font-size: 25px;
+  font-weight: 10px;
+}
+body .container header .Search {
+  display: flex;
+  background: #5E5E62;
+  padding-top: 8px;
+  height: 20px;
+  width: 250px;
+}
+body .container header .Search i {
+  padding-left: 4px;
+}

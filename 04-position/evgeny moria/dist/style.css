@@ -1,0 +1,44 @@
+body {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+body .wrapper {
+  position: relative;
+  height: 100vh;
+  width: 100vh;
+}
+body .wrapper .square {
+  position: absolute;
+  width: 5em;
+  height: 5em;
+  border: 1px solid black;
+}
+body .wrapper .box1 {
+  top: 150px;
+  left: 95px;
+}
+body .wrapper .box2 {
+  top: 55px;
+}
+body .wrapper .box3 {
+  top: 150px;
+}
+body .wrapper .box4 {
+  top: 55px;
+  left: 95px;
+}
+body .wrapper .color1 {
+  background-color: red;
+}
+body .wrapper .color2 {
+  background-color: aqua;
+}
+body .wrapper .color3 {
+  background-color: purple;
+}
+body .wrapper .color4 {
+  background-color: blanchedalmond;
+}
