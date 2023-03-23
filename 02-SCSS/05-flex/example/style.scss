@@ -1,24 +1,20 @@
 .wrapper {
   display: flex;
-  gap: 5px;
-  flex-wrap:wrap;
-  justify-content:space-between;
-  align-items: center;
-  height: 100vh;
-  background-color: rgb(194, 238, 238);
-//   text-align: center;
+  background-color: beige;
+  gap: 60px;
+
+  height: 600px;
+
 
   .box {
     background-color: teal;
     height: 100px;
-    width: 100px;
+    // width: 100px;
     color: white;
-    // display: flex;
-    // justify-content: center;
-    // align-items: center;
+    flex: 1;
   }
 
   .wide {
-    // flex: 5;
+    flex: 2;
   }
 }

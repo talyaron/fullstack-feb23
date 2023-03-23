@@ -1,0 +1,62 @@
+.wrapper {
+  background-color: rgba(0, 255, 255, 0);
+  height: 80vh;
+  font-family: "Open Sans", sans-serif;
+}
+.wrapper .titlesport {
+  border-left: 3px solid #ecec1c;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  margin: 10px 35px;
+  padding: 0px 6px;
+  font-size: 18px;
+}
+.wrapper .wrappimgsport {
+  background-color: rgba(11, 223, 152, 0);
+  height: 60vh;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+}
+.wrapper .wrappimgsport .imgsport {
+  background-color: white;
+  height: 550px;
+  width: 580px;
+}
+.wrapper .wrappimgsport .imgsport img {
+  width: 580px;
+  height: 350px;
+}
+.wrapper .wrappimgsport .imgsport .liteltitle {
+  height: 20px;
+  padding: 0px 3px;
+  color: rgba(0, 0, 0, 0.313);
+  border-left: 2px solid #ecec1c;
+  font-size: medium;
+}
+.wrapper .londonweather {
+  display: flex;
+  margin: 40px 40px 10px;
+  color: rgba(0, 0, 0, 0.684);
+  justify-content: space-between;
+  width: 280px;
+}
+.wrapper .londonweather p {
+  font-size: 12px;
+  padding: 4px 6px;
+  margin: auto;
+  color: rgba(0, 0, 0, 0.264);
+  background-color: rgba(0, 0, 0, 0.081);
+  border-radius: 2px;
+}
+.wrapper .wrappweather {
+  justify-content: space-evenly;
+  display: flex;
+  width: 600px;
+  margin: 0px 20px;
+}
+.wrapper .wrappweather img {
+  width: 130px;
+}
