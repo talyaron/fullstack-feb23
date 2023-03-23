@@ -1,0 +1,31 @@
+.ruler{
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    margin-top: 20px;
+    img{
+        width: 20px;
+    height: auto;
+    }
+    
+}
+
+.search{
+    width: 800px;
+    text-align: end;
+    border-radius: 20px; 
+    border: white;
+}
+
+.create{
+    border-radius: 20px;
+    border: white;
+    background-color: white;
+}
+
+.home{
+    border-radius: 20px;
+    background-color: black;
+    color: white;
+    font-weight: bold;
+}
