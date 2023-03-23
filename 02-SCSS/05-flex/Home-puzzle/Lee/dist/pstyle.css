@@ -1,0 +1,41 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+.wrapper img {
+  width: 200px;
+  height: auto;
+  margin: 20px;
+  border-radius: 7%;
+}
+.wrapper .container2 {
+  position: relative;
+  left: 200px;
+  top: -1682px;
+  margin-left: 40px;
+}
+.wrapper .container3 {
+  position: relative;
+  left: 440px;
+  top: -3850px;
+  margin-left: 40px;
+}
+.wrapper .container4 {
+  position: relative;
+  left: 670px;
+  top: -5737px;
+  margin-left: 40px;
+}
+.wrapper .container5 {
+  position: relative;
+  left: 910px;
+  top: -7685px;
+  margin-left: 40px;
+}
+.wrapper .container6 {
+  position: relative;
+  left: 1150px;
+  top: -9817px;
+  margin-left: 40px;
+}
