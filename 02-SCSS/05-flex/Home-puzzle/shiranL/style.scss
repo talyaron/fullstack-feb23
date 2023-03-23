@@ -96,11 +96,11 @@
               .user1{
                 width: 30px;
                 height: 30px;
-                border-radius: 100%;
+                border-radius: 50%;
                 background-color: gray;
-                display: flex;
-                align-items: center;
-                text-align: center;
+                display: flex; /* or inline-flex */
+                align-items: center; 
+                justify-content: center;
                 p{
                     text-align: center;
                     text-align: center;
