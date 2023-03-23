@@ -1,0 +1,154 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+
+    h2 {
+        width: 100%;
+        font-family: sans-serif;
+        color: #414141;
+        line-height: 24px;
+        flex-wrap: nowrap;
+    }
+
+    h2,
+    .category {
+        border-left: 3px solid yellow;
+        padding-left: 5px;
+
+
+    }
+
+    .items {
+        display: flex;
+        gap: 15px;
+        flex-wrap: wrap;
+        // flex-direction: row;
+
+
+        .item-box {
+            width: 400px;
+
+
+            .pic {
+                background-size: cover;
+                height: 250px;
+                width: auto;
+            }
+
+            .pic1 {
+                background-image: url(../img/img1.png);
+            }
+
+            .pic2 {
+                background-image: url(../img/img2.png);
+            }
+
+            .pic3 {
+                background-image: url(../img/img3.png);
+            }
+
+
+
+            .title {
+                font-size: 20px;
+                font-weight: 770;
+                font-family: sans-serif;
+                color: #1e1e1e;
+                padding-top: 10px;
+
+            }
+
+            .text {
+                color: #414141;
+                padding: 10px 0;
+
+            }
+        }
+    }
+
+    .category {
+        text-transform: uppercase;
+        color: gray;
+
+    }
+
+    .weather {
+
+        h2 {
+
+            font-size: 20px;
+            display: flex;
+            border: none;
+            margin: 40px 0px;
+
+
+        }
+
+        h2:after {
+
+            content: 'EDIT';
+            font-size: 13px;
+            line-height: 13px;
+            align-content: center;
+            background-color: lightgray;
+            color: gray;
+            padding: 5px;
+            margin-left: 10px;
+
+        }
+
+        .weather-forecast {
+            display: flex;
+            flex-direction: column;
+
+            .forecast-list {
+                display: flex;
+
+
+
+
+                .forecast {
+                    flex-direction: row;
+                    display: inline-flex;
+                    margin-right: 25px;
+
+                    .forecast-text {
+                        display: flex;
+                        flex-direction: column;
+                    }
+
+            
+
+                    h3,
+                    p {
+                        // display: inline-flex;
+                        margin: 0;
+
+                    }
+
+                    .day {
+                        text-transform: uppercase;
+                        font-size: 12px;
+                    }
+
+                    .high {
+                        font-size: 20px;
+                        font-weight: bold;
+                    }
+
+                    .low {
+                        font-size: 14px;
+                        color: gray;
+
+                    }
+
+
+
+                }
+
+            }
+
+        }
+
+    }
+}
