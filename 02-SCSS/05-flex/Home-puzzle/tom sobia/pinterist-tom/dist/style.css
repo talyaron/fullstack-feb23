@@ -1,0 +1,149 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Open Sans", sans-serif;
+  direction: rtl;
+  height: 100px;
+  overflow-y: scroll;
+  position: relative;
+  background-color: whitesmoke;
+}
+
+.box {
+  display: flex;
+  height: 700px;
+  margin: 0 auto;
+  background-color: white;
+}
+
+.p1 {
+  font-weight: 300;
+  text-align: right;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  background-color: black;
+  color: white;
+  align-items: center;
+  justify-content: right;
+}
+
+.but-p1 {
+  font-family: "Open Sans", sans-serif;
+  font-size: var(--font-size-300);
+  font-weight: 900;
+  width: 80px;
+  left: 20px;
+  position: absolute;
+  border-radius: 50px;
+  padding: 9px;
+  border: 2px black solid;
+}
+
+.box-nav {
+  display: flex;
+  background-color: white;
+  height: 70px;
+  align-items: center;
+}
+
+.nav {
+  background-color: white;
+}
+
+.a-1 {
+  text-decoration: none;
+  display: inline;
+}
+
+.img-icon {
+  top: 80px;
+  right: 20px;
+  position: absolute;
+  width: 25px;
+}
+
+.but-p2 {
+  font-family: "Open Sans", sans-serif;
+  font-size: var(--font-size-300);
+  font-weight: 900;
+  width: 80px;
+  left: 20px;
+  border-radius: 50px;
+  padding: 9px;
+  border: 2px black solid;
+  margin-right: 60px;
+  background-color: black;
+  color: white;
+}
+
+.but-p3 {
+  font-family: "Open Sans", sans-serif;
+  font-size: var(--font-size-300);
+  font-weight: 900;
+  width: 80px;
+  border-radius: 50px;
+  padding: 9px;
+  border: 2px rgba(255, 255, 255, 0.853);
+  color: black;
+}
+
+.input-1 {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 600;
+  border-radius: 30px;
+  padding: 18px;
+  width: 952px;
+  height: 30px;
+  background-color: rgba(161, 161, 161, 0.62);
+}
+
+.material-symbols-outlined {
+  color: #333333;
+  margin-top: 5px;
+  width: 37px;
+  font-variation-settings: "FILL" 1, "wght" 500, "GRAD" 200, "opsz" 48;
+}
+
+.material-symbols-outlined:hover {
+  color: gold;
+}
+
+.img-1 {
+  margin-right: 25px;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: stretch;
+  gap: 30px;
+}
+
+.img-1 img {
+  border-radius: 20px;
+  width: 200px;
+}
+
+.small-1 {
+  height: 284px;
+}
+
+.big-1 {
+  height: 381px;
+  margin-top: -112px;
+}
+
+.small-2 {
+  height: 366px;
+}
+
+.big-2 {
+  margin-top: -26px;
+}
+
+.img-1 img:hover {
+  transform: scale(1.3);
+  cursor: zoom-in;
+}
