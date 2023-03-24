@@ -1,0 +1,139 @@
+.header {
+  position: relative;
+  top: -8px;
+  margin-left: -8px;
+  margin-right: -8px;
+  display: flex;
+  color: white;
+  background-color: black;
+  justify-content: center;
+  height: 67;
+  margin-bottom: 10px;
+  padding: 0px 20px;
+}
+.header .nav {
+  display: flex;
+  gap: 3px;
+  align-items: center;
+}
+.header .nav .left {
+  display: flex;
+  gap: 3px;
+}
+.header .nav .left .bbc {
+  display: flex;
+  gap: 8px;
+}
+.header .nav .left .bbc .letter {
+  border: 2px solid white;
+  background-color: white;
+  color: black;
+  margin: 11px 0px;
+  width: 26px;
+  font-size: 25px;
+  display: flex;
+  justify-content: center;
+  padding: 2px 2px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+.header .nav .left .sign-in {
+  display: flex;
+  gap: 2px;
+  align-items: center;
+  position: relative;
+  left: 20px;
+  font-size: small;
+}
+.header .nav .left .sign-in img {
+  position: relative;
+  height: 30px;
+}
+.header .nav .right {
+  display: flex;
+  margin-left: 70px;
+}
+.header .nav .right ul {
+  display: flex;
+  list-style: none;
+  gap: 40px;
+  font-size: small;
+  align-items: center;
+}
+.header .nav .right .dots {
+  padding: 10px 25px;
+}
+.header .nav .search {
+  display: flex;
+  border: 0px solid gray;
+  background-color: #28292b;
+  padding: 4px 45px;
+  height: 27px;
+  margin-top: 8px;
+  font-size: small;
+  padding-left: 9px;
+  padding-right: 95px;
+  align-items: center;
+}
+.header .nav .search img {
+  height: 25px;
+}
+
+.media.media .media-image {
+  position: relative;
+}
+.media.media .media-content {
+  position: absolute;
+  width: 30px;
+}
+.media.media .media-content h3 {
+  position: absolute;
+}
+.media.media .media-content p {
+  position: absolute;
+}
+
+.main {
+  padding: 0px 135px;
+}
+.main .module-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.main .module-header h3 {
+  color: gray;
+  font-weight: 100;
+}
+.main .module-content {
+  display: flex;
+  border: 1px solid yellow;
+  height: 55vh;
+  width: 100%;
+}
+.main .module-content .left {
+  display: flex;
+  border: 1px solid green;
+  box-sizing: border-box;
+  width: 50%;
+}
+.main .module-content .left .media-image {
+  width: 100%;
+  position: relative;
+  background-image: url("https://www.redmention.com/storage/2023/03/Is-TikTok-Facing-A-US-Ban-800x600.png");
+  background-size: 625px;
+  filter: blur(2px);
+}
+.main .module-content .left .media-content {
+  position: absolute;
+  color: #f8f5f5;
+  top: 327px;
+  padding: 0px 19px;
+  font-weight: 900;
+}
+.main .module-content .left .media-content h1 {
+  width: 50%;
+}
+.main .module-content .left .media-content p {
+  width: 70%;
+}
