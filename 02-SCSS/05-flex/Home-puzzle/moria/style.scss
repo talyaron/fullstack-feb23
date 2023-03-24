@@ -1,6 +1,7 @@
 body {
     margin: 0;
 
+
     .container {
         font-family: sans-serif;
 
@@ -98,7 +99,10 @@ body {
                 justify-content: space-between;
                 display: flex;
                 font-size: 20px;
+                height: 60px;
+                display: flex;
 
+                align-items: center;
 
                 .bold {
                     font-weight: bold;
@@ -107,17 +111,116 @@ body {
 
             .images {
                 width: 100%;
-                height: 80vh;
+                height: 45vh;
+                color: white;
+                display: flex;
 
-                // div:first-child {}
-                div {
+
+
+
+                .image {
                     width: 50%;
-                    height: 300px;
-                    // background: url(dist/images/fire.jpg) no-repeat center center/ cover;
-                    background: red;
+                    height: 310px;
+                    background: url(images/fire.jpg) no-repeat center center/ cover;
+                    font-size: x-large;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: flex-end;
+                    margin-right: 15px;
+                    padding-left: 2px;
+
+                    span:first-child {
+                        font-size: 40px;
+                    }
+
+                    span:last-child {
+                        font-size: 14px;
+                    }
+
+                }
+
+                .four {
+
+                    flex-wrap: wrap;
+                    display: flex;
+                    width: 50%;
+
+                    .back1 {
+                        background: url(images/explosion.jpg) no-repeat center center/cover;
+                        margin: 5px;
+                        margin-left: 15px;
+                        padding-left: 2px;
+                        width: 40%;
+                        height: 140px;
+                        font-size: 13px;
+                        justify-content: flex-end;
+                        display: flex;
+                        flex-direction: column;
+
+
+                        span {
+                            font-size: 22px;
+                        }
+                    }
+
+                    .back2 {
+                        background: url(images/soldiers.jpg) no-repeat center center/cover;
+                        margin: 5px;
+                        padding-left: 2px;
+                        width: 40%;
+                        height: 140px;
+                        font-size: 13px;
+                        justify-content: flex-end;
+                        display: flex;
+                        flex-direction: column;
+
+
+                        span {
+                            font-size: 22px;
+                        }
+                    }
+
+                    .back3 {
+                        background: url(images/ball.jpg) no-repeat center center/cover;
+                        margin: 5px;
+                        margin-left: 15px;
+                        padding-left: 2px;
+                        width: 40%;
+                        height: 140px;
+                        font-size: 13px;
+                        justify-content: flex-end;
+                        display: flex;
+                        flex-direction: column;
+
+
+                        span {
+                            font-size: 22px;
+                        }
+                    }
+
+                    .back4 {
+                        background: url(images/bi.jpg) no-repeat center center/cover;
+                        margin: 5px;
+                        padding-left: 2px;
+                        width: 40%;
+                        height: 140px;
+                        font-size: 13px;
+                        justify-content: flex-end;
+                        display: flex;
+                        flex-direction: column;
+
+
+                        span {
+                            font-size: 22px;
+                        }
+                    }
+
+
                 }
             }
 
 
+
         }
     }
+}
