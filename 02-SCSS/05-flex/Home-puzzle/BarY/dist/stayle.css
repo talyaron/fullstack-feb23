@@ -1,10 +1,13 @@
 .wrapper {
   background-color: rgba(0, 255, 255, 0);
-  height: 80vh;
+  height: 3000px;
+  width: 1600px;
+  margin: auto;
   font-family: "Open Sans", sans-serif;
 }
 .wrapper .titlesport {
   border-left: 3px solid #ecec1c;
+  color: rgba(0, 0, 0, 0.684);
   height: 30px;
   display: flex;
   align-items: center;
@@ -14,7 +17,7 @@
 }
 .wrapper .wrappimgsport {
   background-color: rgba(11, 223, 152, 0);
-  height: 60vh;
+  height: 43vh;
   display: flex;
   gap: 20px;
   align-items: center;
@@ -23,11 +26,11 @@
 .wrapper .wrappimgsport .imgsport {
   background-color: white;
   height: 550px;
-  width: 580px;
+  width: 500px;
 }
 .wrapper .wrappimgsport .imgsport img {
-  width: 580px;
-  height: 350px;
+  width: 500px;
+  height: 280px;
 }
 .wrapper .wrappimgsport .imgsport .liteltitle {
   height: 20px;
@@ -59,4 +62,42 @@
 }
 .wrapper .wrappweather img {
   width: 130px;
+}
+.wrapper .wrappreel {
+  background-image: url("https://w0.peakpx.com/wallpaper/187/823/HD-wallpaper-far-cry-5-nature-view.jpg");
+  height: 500px;
+  color: white;
+  padding: 5px 40px 10px;
+}
+.wrapper .wrappreel .visitreel {
+  float: right;
+  width: 125px;
+  height: 23px;
+  border: 2px solid white;
+  margin: 39px 10px;
+  border-radius: 50px;
+}
+.wrapper .wrappreel .visitreel h3 {
+  margin: 0px 15px;
+}
+.wrapper .wrappreel .wrappimgreel {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  color: #2982d0;
+}
+.wrapper .wrappreel .wrappimgreel .imgreel {
+  width: 500px;
+  height: 340px;
+  background-color: white;
+  color: black;
+  font-size: small;
+}
+.wrapper .wrappreel .wrappimgreel .imgreel h2 {
+  margin: 0px 5px;
+}
+.wrapper .wrappreel .wrappimgreel .imgreel img {
+  width: 500px;
+  height: 280px;
 }
