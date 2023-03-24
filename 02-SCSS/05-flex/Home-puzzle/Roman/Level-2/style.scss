@@ -1,0 +1,107 @@
+.wrapper {
+    width: 900px;
+    font-family: sans-serif;
+
+    h1 {
+        color: #414141;
+        border-left: 3px solid blue;
+        line-height: 22px;
+        padding-left: 5px;
+
+    }
+
+    .main-content {
+        display: flex;
+
+        .left-col {
+            width: 65%;
+
+            .main-item {
+                height: 350px;
+                background-image: url(../img/img1.jpg);
+                background-size: cover;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-end;
+
+                .title,
+                .text,
+                .category {
+                    // font-size: 30px;
+                    color: #fff;
+                    padding-left: 15px;
+                    padding-bottom: 5px;
+                }
+
+                .title {
+                    font-size: 30px;
+                    font-weight: bold;
+                }
+
+                .text {
+                    font-size: 15px;
+                }
+
+                .category {
+                    text-transform: uppercase;
+                    padding: 10px 15px 10px;
+                    font-size: 11px;
+                }
+            }
+        }
+
+        .right-col {
+            width: 35%;
+            padding-left: 10px;
+
+            .title {
+                font-size: 12px;
+                color: #fff;
+                padding: 10px;
+                text-transform: uppercase;
+                background-color: red;
+            }
+
+            .right-list {
+                list-style-type: lower-latinS;
+                counter-reset: item;
+                padding: 0;
+                margin: 0;
+
+                li {
+                    display: inline-flex;
+                    color: #fff;
+                    
+                    line-height: 13px;
+                    padding: 20px 15px;   
+                    font-size: 13px;
+                    align-items: center;
+                }
+                li:nth-child(odd) {
+                    background: #414141;
+                  }
+                  
+                  li:nth-child(even) {
+                    background: gray;
+                  }
+
+                li:before {
+                    font-style: italic;
+                    background: red;
+                    margin: 10px;
+                    display: inline-flex;
+                    padding: 10px;
+                    align-items: center;
+                    width: 12px;
+                    height: 12px;
+                    border-radius: 100px;
+                    content: counter(item) "  ";
+                    counter-increment: item
+                }
+            }
+        }
+    }
+
+
+}
+

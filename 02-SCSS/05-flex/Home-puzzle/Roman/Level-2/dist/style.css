@@ -1,0 +1,87 @@
+.wrapper {
+  width: 900px;
+  font-family: sans-serif;
+}
+.wrapper h1 {
+  color: #414141;
+  border-left: 3px solid blue;
+  line-height: 22px;
+  padding-left: 5px;
+}
+.wrapper .main-content {
+  display: flex;
+}
+.wrapper .main-content .left-col {
+  width: 65%;
+}
+.wrapper .main-content .left-col .main-item {
+  height: 350px;
+  background-image: url(../img/img1.jpg);
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+.wrapper .main-content .left-col .main-item .title,
+.wrapper .main-content .left-col .main-item .text,
+.wrapper .main-content .left-col .main-item .category {
+  color: #fff;
+  padding-left: 15px;
+  padding-bottom: 5px;
+}
+.wrapper .main-content .left-col .main-item .title {
+  font-size: 30px;
+  font-weight: bold;
+}
+.wrapper .main-content .left-col .main-item .text {
+  font-size: 15px;
+}
+.wrapper .main-content .left-col .main-item .category {
+  text-transform: uppercase;
+  padding: 10px 15px 10px;
+  font-size: 11px;
+}
+.wrapper .main-content .right-col {
+  width: 35%;
+  padding-left: 10px;
+}
+.wrapper .main-content .right-col .title {
+  font-size: 12px;
+  color: #fff;
+  padding: 10px;
+  text-transform: uppercase;
+  background-color: red;
+}
+.wrapper .main-content .right-col .right-list {
+  list-style-type: lower-latinS;
+  counter-reset: item;
+  padding: 0;
+  margin: 0;
+}
+.wrapper .main-content .right-col .right-list li {
+  display: inline-flex;
+  color: #fff;
+  line-height: 13px;
+  padding: 20px 15px;
+  font-size: 13px;
+  align-items: center;
+}
+.wrapper .main-content .right-col .right-list li:nth-child(odd) {
+  background: #414141;
+}
+.wrapper .main-content .right-col .right-list li:nth-child(even) {
+  background: gray;
+}
+.wrapper .main-content .right-col .right-list li:before {
+  font-style: italic;
+  background: red;
+  margin: 10px;
+  display: inline-flex;
+  padding: 10px;
+  align-items: center;
+  width: 12px;
+  height: 12px;
+  border-radius: 100px;
+  content: counter(item) "  ";
+  counter-increment: item;
+}
