@@ -16,7 +16,6 @@ body {
 .box {
     display: flex;
     height: 700px;
-    width: 900px;
     margin: 0 auto;
     background-color: white;
 }
@@ -52,7 +51,6 @@ body {
     display: flex;
     background-color: white;
     height: 70px;
-    width: 1421px;
     align-items: center;
 }
 
@@ -106,7 +104,7 @@ body {
     font-weight: 600;
     border-radius: 30px;
     padding: 18px;
-    width: 1000px;
+    width: 952px;
     height: 30px;
     background-color: rgba(161, 161, 161, 0.62);
 }
@@ -128,18 +126,16 @@ body {
 }
 
 .img-1 {
-    margin-bottom: 21px;
-    margin-right: 60px;
+    margin-right: 25px;
     display: flex;
     flex-wrap: wrap;
     align-content: stretch;
-    gap: 17px;
+    gap: 30px;
 }
 
 
 
 .img-1 {
-
     img {
         border-radius: 20px;
         width: 200px;
@@ -147,65 +143,26 @@ body {
 
 }
 
-
-.img-2 {
-    margin-bottom: 21px;
-    margin-right: 60px;
-    display: flex;
-    flex-wrap: wrap;
-    align-content: stretch;
-    gap: 17px;
-
+.small-1 {
+    height: 284px;
 }
 
-.img-2 {
-    img {
-        border-radius: 20px;
-        width: 200px;
-    }
-
-}
-
-.small {
-    height: 240px;
-}
-
-.big {
+.big-1 {
     height: 381px;
-    margin-top: -150px;
+    margin-top: -112px;
 }
 
+.small-2 {
+    height: 366px;
 
-.img-3 {
-    margin-right: 60px;
-    display: flex;
-    flex-wrap: wrap;
-    align-content: stretch;
-    gap: 17px;
 }
 
-.img-3 {
-    img {
-        border-radius: 20px;
-        width: 200px;
-    }
-
+.big-2{
+    margin-top: -26px;
 }
 
 
 .img-1 img:hover {
-    transform: scale(1.3);
-    cursor: zoom-in;
-
-}
-
-.img-2 img:hover {
-    transform: scale(1.3);
-    cursor: zoom-in;
-
-}
-
-.img-3 img:hover {
     transform: scale(1.3);
     cursor: zoom-in;
 
