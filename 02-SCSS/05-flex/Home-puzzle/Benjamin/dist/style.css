@@ -1,0 +1,272 @@
+.wrapper {
+  display: flex;
+  flex-direction: row;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  width: 80%;
+  height: 4vh;
+  background-color: black;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+#bbclogo {
+  height: 3vh;
+  width: 5vw;
+  cursor: pointer;
+  margin-right: 2vh;
+}
+
+.signin {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5vw;
+  width: 10vw;
+  justify-content: flex-start;
+  height: 2vh;
+  position: relative;
+  right: 3vw;
+  cursor: pointer;
+  transition: text-decoration 150ms ease-in-out;
+}
+.signin:hover {
+  text-decoration: underline #0f2dda 3px;
+}
+
+#signinimg {
+  height: 2vh;
+  width: 1vw;
+  position: relative;
+  left: 2vw;
+}
+
+#signtxt {
+  color: white;
+  position: relative;
+  left: 2vw;
+}
+
+.headers {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  gap: 3vw;
+  height: 2vh;
+  color: white;
+  align-items: center;
+  position: relative;
+  right: 3vw;
+  border-left: 1px solid grey;
+  padding-left: 1vw;
+  cursor: pointer;
+}
+.headers .green {
+  transition: text-decoration 150ms ease-in-out;
+}
+.headers .green:hover {
+  text-decoration: underline #08b808 2px;
+}
+.headers .red {
+  transition: text-decoration 150ms ease-in-out;
+}
+.headers .red:hover {
+  text-decoration: underline #dd0505 2px;
+}
+.headers .yellow {
+  transition: text-decoration 150ms ease-in-out;
+}
+.headers .yellow:hover {
+  text-decoration: underline #ecd611 2px;
+}
+.headers .purple {
+  transition: text-decoration 150ms ease-in-out;
+}
+.headers .purple:hover {
+  text-decoration: underline #8a0fd1 2px;
+}
+.headers .pink {
+  transition: text-decoration 150ms ease-in-out;
+}
+.headers .pink:hover {
+  text-decoration: underline #a01556 2px;
+}
+.headers .blue {
+  transition: text-decoration 150ms ease-in-out;
+}
+.headers .blue:hover {
+  text-decoration: underline #1b08be 2px;
+}
+.headers .grey {
+  transition: text-decoration 150ms ease-in-out;
+}
+.headers .grey:hover {
+  text-decoration: underline #53535a 2px;
+}
+.headers .brown {
+  transition: text-decoration 150ms ease-in-out;
+}
+.headers .brown:hover {
+  text-decoration: underline #53412a 2px;
+}
+
+#dots {
+  height: 3vh;
+  width: 6vw;
+  cursor: pointer;
+  transition: text-decoration 150ms ease-in-out;
+}
+#dots:hover {
+  text-decoration: underline #c22323 2px;
+}
+
+.search {
+  height: 70%;
+  width: 8vw;
+  background-color: rgba(159, 169, 173, 0.295);
+  border-radius: 3px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 200ms ease-in-out;
+}
+.search:hover {
+  background-color: #404949;
+}
+
+#headerback {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  background-color: black;
+  justify-content: center;
+}
+
+.genwrapper {
+  width: 60%;
+  height: 100%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.images {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 40vh;
+  align-items: center;
+  margin-top: 2vh;
+  gap: 1%;
+  margin-bottom: 4vh;
+}
+
+.lilimg {
+  height: 40vh;
+  display: flex;
+  flex-direction: column;
+  gap: 1%;
+}
+
+.welcome {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.bigimg {
+  height: 100%;
+  cursor: pointer;
+  transition: opacity 4ms ease-in-out;
+}
+.bigimg:hover {
+  opacity: 0.8;
+}
+
+.lilimgi {
+  cursor: pointer;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  transition: opacity 4ms ease-in-out;
+}
+.lilimgi:hover {
+  opacity: 0.8;
+}
+
+.head {
+  display: flex;
+  flex-direction: row;
+  height: 3vh;
+  align-items: center;
+  margin-top: 2vh;
+  font-size: larger;
+  padding: 2px;
+}
+
+.threeimg {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  height: 40vh;
+  justify-content: space-between;
+  margin-top: 3vh;
+}
+
+.imgpara {
+  display: flex;
+  flex-direction: column;
+  height: 40vh;
+  width: 32%;
+  gap: 0;
+  transition: opacity 4ms ease-in-out;
+  cursor: pointer;
+}
+.imgpara:hover {
+  opacity: 0.8;
+}
+
+.imgparara {
+  height: 20vh;
+  width: 100%;
+}
+
+.bigpara {
+  font-size: 18px;
+  margin: 2%;
+}
+
+.smallpara {
+  font-size: 14px;
+  margin: 2%;
+}
+
+.smallparacountryred {
+  font-size: 14px;
+  border-left: 2px solid red;
+  margin: 2%;
+}
+
+.smallparacountryyellow {
+  font-size: 14px;
+  border-left: 2px solid #eeea10;
+  margin: 2%;
+}
+
+.bordercolorred {
+  border-left: 2px solid red;
+}
+
+.bordercoloryellow {
+  border-left: 2px solid #ccda0b;
+}

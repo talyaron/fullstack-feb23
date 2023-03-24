@@ -1,0 +1,238 @@
+//variables
+$fullwidth: 100%;
+$textcolor: white;
+$headerheight: 2vh;
+//mixins
+@mixin flex($direction){
+    display: flex;
+    flex-direction: $direction;
+}
+@mixin cursor{
+    cursor: pointer;
+}
+@mixin opacity-transition{
+    transition: opacity 4ms ease-in-out;
+    &:hover{opacity: 0.8;};
+}
+
+
+
+
+.wrapper{
+   @include flex(row);
+}
+.header{
+    @include flex(row);
+    width: 80%;
+    height: 4vh;
+    background-color: black;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-around;
+    
+    
+}
+#bbclogo{
+    height: 3vh;
+    width: 5vw;
+    @include cursor();
+    margin-right: 2vh;
+
+}
+.signin{
+    @include flex(row);
+    align-items: center;
+    gap: 0.5vw;
+    width: 10vw;
+    justify-content: flex-start;
+
+    height: $headerheight;
+    position: relative;
+    right: 3vw;
+    @include cursor();
+        transition: text-decoration 150ms ease-in-out;
+        &:hover {text-decoration: underline rgb(15, 45, 218) 3px;}
+    
+
+}
+#signinimg{
+    height: $headerheight;
+    width: 1vw;
+    position: relative;
+    left: 2vw;
+}
+#signtxt{
+    color: $textcolor;
+    position: relative;
+    left: 2vw;
+}
+.headers{
+    @include flex(row);
+    justify-content: space-around;
+    gap: 3vw;
+    height: $headerheight;
+    color: white;
+    align-items: center;
+    position: relative;
+    right: 3vw;
+    border-left: 1px solid grey;
+    padding-left: 1vw;
+    @include cursor();
+    
+    .green{
+        transition: text-decoration 150ms ease-in-out;
+        &:hover {text-decoration: underline rgb(8, 184, 8) 2px;}
+    }
+    .red{
+        transition: text-decoration 150ms ease-in-out;
+        &:hover {text-decoration: underline rgb(221, 5, 5) 2px;}
+    }
+    .yellow{
+        transition: text-decoration 150ms ease-in-out;
+        &:hover {text-decoration: underline rgb(236, 214, 17) 2px;}
+    }
+    .purple{
+        transition: text-decoration 150ms ease-in-out;
+        &:hover {text-decoration: underline rgb(138, 15, 209) 2px;}
+    }
+    .pink{
+        transition: text-decoration 150ms ease-in-out;
+        &:hover {text-decoration: underline rgb(160, 21, 86) 2px;}
+    }
+    .blue{
+        transition: text-decoration 150ms ease-in-out;
+        &:hover {text-decoration: underline rgb(27, 8, 190) 2px;}
+    }
+    .grey{
+        transition: text-decoration 150ms ease-in-out;
+        &:hover {text-decoration: underline rgb(83, 83, 90) 2px;}
+    }
+    .brown{
+        transition: text-decoration 150ms ease-in-out;
+        &:hover {text-decoration: underline rgb(83, 65, 42) 2px;}
+    }
+}
+#dots{
+height: 3vh;
+width: 6vw;
+@include cursor();
+transition: text-decoration 150ms ease-in-out;
+&:hover {text-decoration: underline rgb(194, 35, 35) 2px;}
+}
+.search{
+    height: 70%;
+    width: 8vw;
+    background-color: rgba(159, 169, 173, 0.295);
+    border-radius: 3px;
+    @include flex(row);
+    justify-content: flex-start;
+    align-items: center;
+    @include cursor();
+    transition: background-color 200ms ease-in-out;
+    &:hover {background-color: rgb(64, 73, 73);}
+}
+#headerback{
+    width: $fullwidth;
+    @include flex(row);
+    background-color: black;
+    justify-content: center;
+}
+.genwrapper{
+    width: 60%;
+    height: 100%;
+    margin: auto;
+    @include flex(column)
+  }
+.images{
+    @include flex(row);
+    width: 100%;
+    height: 40vh;
+    align-items: center;
+    margin-top: 2vh;
+    gap: 1%;
+    margin-bottom: 4vh;
+    
+}
+.lilimg{
+    height:40vh;
+    
+    @include flex(column);
+    gap: 1%;
+   
+}
+.welcome{
+    @include flex(row);
+    width: 100%;
+    justify-content: space-between;
+}
+.bigimg{
+    height: 100%;
+    @include cursor();
+    @include opacity-transition();
+}
+.lilimgi{
+    @include cursor();
+    height:100%;
+    width: 100%;
+    @include flex(column);
+    @include opacity-transition();
+}
+.head{
+    @include flex(row);
+    height: 3vh;
+    align-items: center;
+    margin-top: 2vh;
+    font-size: larger;
+    padding: 2px;
+    
+}
+.threeimg{
+    @include flex(row);
+    align-items: center;
+    width: 100%;
+    height: 40vh;
+    justify-content: space-between;
+    margin-top: 3vh;
+}
+.imgpara{
+    @include flex(column);
+    height: 40vh;
+    width: 32%;
+    gap: 0;
+    @include opacity-transition();
+    @include cursor();
+
+}
+.imgparara{
+    height: 20vh;
+    width: 100%;
+}
+.bigpara{
+    font-size: 18px;
+    margin: 2%;
+}
+.smallpara{
+    font-size: 14px;
+    margin: 2%;
+}
+.smallparacountryred{
+    font-size: 14px;
+    border-left: 2px solid red;
+    margin: 2%;
+
+}
+.smallparacountryyellow{
+    font-size: 14px;
+    border-left: 2px solid rgb(238, 234, 16);
+    margin: 2%;
+
+}
+.bordercolorred{
+        
+    border-left: 2px solid red;
+    
+}
+.bordercoloryellow{
+    border-left: 2px solid rgb(204, 218, 11);
+}
