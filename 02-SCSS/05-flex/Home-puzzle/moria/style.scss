@@ -1,0 +1,123 @@
+body {
+    margin: 0;
+
+    .container {
+        font-family: sans-serif;
+
+
+        header {
+            padding-left: 85px;
+            background: black;
+            color: white;
+            height: 60px;
+            width: 100%;
+            display: flex;
+            font-weight: bold;
+
+
+            .logo {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-left: 40px;
+
+                div {
+                    background: white;
+                    color: black;
+                    margin: 2px;
+                    height: 30px;
+                    width: 30px;
+                    font-size: 25px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+            }
+
+            .user {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-left: 40px;
+
+
+                i {
+                    font-size: 30px;
+                }
+            }
+
+            ul {
+                margin-left: 75px;
+                justify-content: space-between;
+                list-style: none;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                a {
+                    text-decoration: none;
+                    color: white;
+                    margin: 0 10px;
+                    font-weight: bold;
+                }
+
+                li:last-child {
+                    font-size: 30px;
+                    padding-top: 13px;
+                    height: 60px;
+                }
+
+                li:first-child {
+                    color: silver;
+                    font-size: 25px;
+                    font-weight: 10px;
+                }
+            }
+
+            .Search {
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                background: #5E5E62;
+                margin: 13px 60px;
+                height: 35px;
+                width: 230px;
+
+
+                i {
+                    padding: 0 6px;
+
+                }
+            }
+        }
+
+        .strip {
+            padding: 0 90px;
+
+            .Welcome {
+                justify-content: space-between;
+                display: flex;
+                font-size: 20px;
+
+
+                .bold {
+                    font-weight: bold;
+                }
+            }
+
+            .images {
+                width: 100%;
+                height: 80vh;
+
+                // div:first-child {}
+                div {
+                    width: 50%;
+                    height: 300px;
+                    // background: url(dist/images/fire.jpg) no-repeat center center/ cover;
+                    background: red;
+                }
+            }
+
+
+        }
+    }
