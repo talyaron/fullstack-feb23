@@ -147,6 +147,11 @@ body {
   height: 240px;
 }
 
+.big {
+  height: 381px;
+  margin-top: -150px;
+}
+
 .img-3 {
   margin-right: 60px;
   display: flex;
