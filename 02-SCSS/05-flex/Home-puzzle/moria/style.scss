@@ -4,13 +4,15 @@ body {
     .container {
         font-family: sans-serif;
 
+
         header {
-            padding-left: 50px;
+            padding-left: 85px;
             background: black;
             color: white;
             height: 60px;
             width: 100%;
             display: flex;
+            font-weight: bold;
 
 
             .logo {
@@ -45,7 +47,7 @@ body {
             }
 
             ul {
-                margin-left: 40px;
+                margin-left: 75px;
                 justify-content: space-between;
                 list-style: none;
                 display: flex;
@@ -60,8 +62,8 @@ body {
                 }
 
                 li:last-child {
-                    font-size: 35px;
-                    padding-top: 3px;
+                    font-size: 30px;
+                    padding-top: 13px;
                     height: 60px;
                 }
 
@@ -74,17 +76,48 @@ body {
 
             .Search {
                 display: flex;
+                justify-content: flex-start;
+                align-items: center;
                 background: #5E5E62;
-                padding-top: 8px;
-                height: 20px;
-                width: 250px;
+                margin: 13px 60px;
+                height: 35px;
+                width: 230px;
+
 
                 i {
-                    padding-left: 4px;
+                    padding: 0 6px;
+
                 }
             }
         }
 
+        .strip {
+            padding: 0 90px;
 
+            .Welcome {
+                justify-content: space-between;
+                display: flex;
+                font-size: 20px;
+
+
+                .bold {
+                    font-weight: bold;
+                }
+            }
+
+            .images {
+                width: 100%;
+                height: 80vh;
+
+                // div:first-child {}
+                div {
+                    width: 50%;
+                    height: 300px;
+                    // background: url(dist/images/fire.jpg) no-repeat center center/ cover;
+                    background: red;
+                }
+            }
+
+
+        }
     }
-}
