@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 .header {
   position: relative;
   top: -8px;
@@ -94,7 +98,7 @@
 }
 
 .main {
-  padding: 0px 135px;
+  padding: 0px 120px;
 }
 .main .module-header {
   display: flex;
@@ -104,36 +108,178 @@
 .main .module-header h3 {
   color: gray;
   font-weight: 100;
+  font-size: 24px;
 }
-.main .module-content {
+.main .module-promo .module-content {
   display: flex;
-  border: 1px solid yellow;
-  height: 55vh;
+  height: 52vh;
   width: 100%;
+  justify-content: space-between;
 }
-.main .module-content .left {
+.main .module-promo .source {
+  margin-left: 12px;
+  color: #cdcdcd;
+  font-size: 11px;
+  padding: 0px 6px;
+  font-weight: 900;
+  text-shadow: 1px 1px 2px black;
+  border-left: 2px solid red;
+}
+.main .module-promo .left {
   display: flex;
-  border: 1px solid green;
   box-sizing: border-box;
   width: 50%;
 }
-.main .module-content .left .media-image {
+.main .module-promo .left .media-image {
   width: 100%;
   position: relative;
-  background-image: url("https://www.redmention.com/storage/2023/03/Is-TikTok-Facing-A-US-Ban-800x600.png");
-  background-size: 625px;
-  filter: blur(2px);
+  background-image: url("https://ichef.bbc.co.uk/wwhp/624/cpsprodpb/97F8/production/_129140983_bakhmut.jpg");
+  background-size: 640px;
 }
-.main .module-content .left .media-content {
+.main .module-promo .left .media-content {
   position: absolute;
   color: #f8f5f5;
-  top: 327px;
+  top: 306px;
   padding: 0px 19px;
   font-weight: 900;
 }
-.main .module-content .left .media-content h1 {
-  width: 50%;
-}
-.main .module-content .left .media-content p {
+.main .module-promo .left .media-content h1 {
   width: 70%;
+  font-family: ReithSans, Arial, Helvetica, freesans, sans-serif;
+  font-weight: bold;
+  margin-bottom: -5px;
+  text-shadow: 1px 1px 2px black;
+  margin-top: 40px;
+}
+.main .module-promo .left .media-content p {
+  width: 70%;
+  color: #cdcdcd;
+  text-shadow: 1px 1px 2px black;
+}
+.main .module-promo .right {
+  height: 100%;
+  width: 50%;
+  position: relative;
+}
+.main .module-promo .right .media-media {
+  position: absolute;
+  box-sizing: border-box;
+  top: 0;
+  left: 0;
+  width: 640px;
+  height: 341px;
+  overflow: hidden;
+}
+.main .module-promo .right .media-media .title {
+  padding: 0px 17px;
+  font-size: 17px;
+  margin-top: 85px;
+  margin-bottom: -2px;
+  color: white;
+  font-weight: 900;
+  font-family: ReithSans, Arial, Helvetica, freesans, sans-serif;
+  text-shadow: 1px 1px 2px black;
+}
+.main .module-promo .right .media-media .image-article {
+  position: absolute;
+  background-size: cover;
+  box-sizing: border-box;
+}
+.main .module-promo .right .media-media .one {
+  width: 47%;
+  height: 49%;
+  left: 17px;
+  top: 0;
+  background-image: url("https://ichef.bbc.co.uk/wwhp/304/cpsprodpb/7A48/production/_129140313_gettyimages-1249286538.jpg");
+}
+.main .module-promo .right .media-media .two {
+  top: 0;
+  right: 0;
+  width: 48%;
+  height: 49%;
+  background-image: url("https://ichef.bbc.co.uk/wwhp/304/cpsprodpb/65F8/production/_129140162_gettyimages-1243370310.jpg");
+}
+.main .module-promo .right .media-media .two .top-right {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.main .module-promo .right .media-media .three {
+  bottom: 0;
+  left: 17px;
+  width: 47%;
+  height: 49%;
+  background-image: url("https://ichef.bbc.co.uk/wwhp/304/cpsprodpb/FC66/production/_129141646_38d285125f07513e5aca27c1bbcc798435bbee66371_143_2810_15821000x563.jpg");
+}
+.main .module-promo .right .media-media .four {
+  bottom: 0;
+  right: 0;
+  border: green;
+  width: 48%;
+  height: 49%;
+  background-image: url("https://ichef.bbc.co.uk/wwhp/304/cpsprodpb/8A4C/production/_129140453_antoinegriezmannandkylianmbappe.jpg");
+}
+.main .module-promo .right .text {
+  position: relative;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+}
+.main .module-promo .right .text .top-right {
+  position: absolute;
+  top: 13px;
+  width: 60%;
+  left: 75%;
+}
+.main .module-promo .right .text .top-left {
+  width: 46%;
+  position: absolute;
+  left: 4%;
+  top: 220px;
+  left: 27px;
+  top: 73px;
+}
+.main .module-column .title {
+  padding: 0px 5px;
+  border-left: 4px solid red;
+  padding: 0px 6px;
+  width: 7px;
+  height: 19px;
+  margin-top: 30px;
+  font-size: 17px;
+  display: flex;
+  align-items: center;
+}
+.main .module-column .media-image {
+  display: flex;
+  width: 50%;
+  height: 154px;
+  gap: 16px;
+  margin-top: 18px;
+}
+.main .module-column .world {
+  display: flex;
+  gap: 222px;
+}
+.main .module-column .source {
+  color: #7d7979;
+  font-size: 14px;
+  padding: 0px 6px;
+  text-transform: uppercase;
+  border-left: 2px solid red;
+  font-family: ReithSans, Arial, Helvetica, freesans, sans-serif;
+}
+.main .module-column .content {
+  display: flex;
+  width: 100%;
+  padding-right: 119px;
+}
+.main .module-column .content h1 {
+  font-size: 23px;
+  padding-right: 17px;
+  width: 267px;
+}
+.main .module-column .content p {
+  width: 289px;
+  padding-right: 17px;
 }
