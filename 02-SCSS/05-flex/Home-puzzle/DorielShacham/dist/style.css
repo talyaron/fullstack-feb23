@@ -1,0 +1,158 @@
+body {
+  width: 100%;
+  height: 100%;
+}
+
+h2 {
+  color: black;
+  font-weight: bolder;
+  border-left: 5px solid #ffc814;
+  padding: 10px;
+  height: 20px;
+  position: absolute;
+  left: 50px;
+}
+
+.container {
+  position: absolute;
+  width: 100%;
+  height: auto;
+  top: 80px;
+}
+.container ul {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+}
+.container ul li {
+  display: flex;
+  flex: 1;
+  justify-content: space-evenly;
+  padding-right: 20px;
+}
+.container ul li .leftBox {
+  height: 100%;
+  width: 100%;
+  background-color: white;
+  flex: auto;
+}
+.container ul li .leftBox .imgBox {
+  display: block;
+  box-sizing: inherit;
+}
+.container ul li .leftBox .imgBox .imgBoxSub {
+  height: 0;
+  overflow: hidden;
+  padding-bottom: 56.25%;
+  box-shadow: inset 0 0 80px rgba(0, 0, 0, 0.5);
+}
+.container ul li .leftBox .imgBox .imgBoxSub img {
+  display: block;
+  width: 100%;
+  box-sizing: inherit;
+}
+.container ul li .leftBox .imgBox .boxText h3 {
+  display: block;
+  font-size: 1.17em;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-weight: bold;
+}
+.container ul li .leftBox .imgBox .boxText p {
+  display: block;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+}
+.container ul li .middleBox {
+  height: 100%;
+  width: 100%;
+  background-color: white;
+  flex: auto;
+}
+.container ul li .middleBox .imgBox {
+  display: block;
+  box-sizing: inherit;
+}
+.container ul li .middleBox .imgBox .imgBoxSub {
+  height: 0;
+  overflow: hidden;
+  padding-bottom: 56.25%;
+  box-shadow: inset 0 0 80px rgba(0, 0, 0, 0.5);
+}
+.container ul li .middleBox .imgBox .imgBoxSub img {
+  display: block;
+  width: 100%;
+  box-sizing: inherit;
+}
+.container ul li .middleBox .imgBox .boxText h3 {
+  display: block;
+  font-size: 1.17em;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-weight: bold;
+}
+.container ul li .middleBox .imgBox .boxText p {
+  display: block;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+}
+.container ul li .rightBox {
+  height: 100%;
+  width: 100%;
+  background-color: white;
+  flex: auto;
+}
+.container ul li .rightBox .imgBox {
+  display: block;
+  box-sizing: inherit;
+}
+.container ul li .rightBox .imgBox .imgBoxSub {
+  height: 0;
+  overflow: hidden;
+  padding-bottom: 56.25%;
+  box-shadow: inset 0 0 80px rgba(0, 0, 0, 0.5);
+}
+.container ul li .rightBox .imgBox .imgBoxSub img {
+  display: block;
+  width: 100%;
+  box-sizing: inherit;
+}
+.container ul li .rightBox .imgBox .boxText h3 {
+  display: block;
+  font-size: 1.17em;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-weight: bold;
+}
+.container ul li .rightBox .imgBox .boxText p {
+  display: block;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+}
+
+.icons {
+  width: 500px;
+  height: 100px;
+  position: absolute;
+  top: 520px;
+  flex-wrap: wrap;
+}
+.icons div {
+  height: 70px;
+  width: auto;
+  padding: auto;
+  margin: 10px;
+  display: inline-flex;
+}

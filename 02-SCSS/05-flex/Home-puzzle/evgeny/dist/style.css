@@ -1,0 +1,70 @@
+body {
+  height: 100vh;
+  padding: 0;
+  margin: 0;
+}
+body header {
+  background-color: black;
+  height: 3.5rem;
+  margin-bottom: 0.75rem;
+  position: sticky;
+  z-index: 10;
+  top: 0;
+}
+body .flex-items {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  flex-direction: column;
+  height: 200vh;
+  width: 100%;
+  padding: 2rem;
+}
+body .flex-items .item {
+  width: 14rem;
+  height: 20rem;
+  background-color: aqua;
+  border-radius: 1rem;
+}
+body .flex-items .item__content {
+  height: 100%;
+  opacity: 0;
+  display: flex;
+  flex-direction: column;
+  transition: opacity 0.2s ease-in-out;
+  justify-content: space-between;
+  align-items: end;
+}
+body .flex-items .item__content .icons {
+  margin-bottom: 0.75rem;
+  margin-right: 0.75rem;
+}
+body .flex-items .item__content .icons .fa-solid {
+  padding: 0.1rem;
+  border-radius: 50%;
+  padding: 0.6rem;
+  background-color: #f3eded;
+}
+body .flex-items .item__content .saveBtn {
+  width: fit-content;
+  height: fit-content;
+  color: white;
+  background-color: red;
+  padding: 1rem;
+  border-radius: 2rem;
+  border: none;
+  margin-top: 0.75rem;
+  margin-right: 0.75rem;
+}
+body .flex-items .item__content:hover {
+  opacity: 1;
+}
+body .flex-items .height1 {
+  height: 10rem;
+}
+body .flex-items .height2 {
+  height: 15rem;
+}
+body .flex-items .height3 {
+  height: 25rem;
+}

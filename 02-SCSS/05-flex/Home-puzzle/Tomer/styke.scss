@@ -1,0 +1,56 @@
+ .container {
+          display: flex;
+        //   flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        }
+        
+        h1
+        {
+            border-left: 4px solid #FFD930;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 30px;
+            padding: 7px;
+        }
+        
+        .item {
+          margin: 10px;
+          padding-bottom: 20px;
+          text-align: center;
+        }
+        .img {
+            height: 270px;
+            width: 481px;
+
+            }
+       
+        .item h2 {
+          margin-top: 10px;
+          font-family: Arial, Helvetica, sans-serif;
+          text-align: left;
+          font-size: 25px;
+          font-weight: 700;
+        }
+        
+    .item p {
+          margin-bottom: 6px;
+          font-family: Arial, Helvetica, sans-serif;
+          font-size: 20px;
+          text-align: left;
+        
+    }
+    h3{
+        border-left: 2px solid #FFD930;
+        font-family: Arial, Helvetica, sans-serif;
+        text-align: left;
+        font-size: 17px;
+        font-weight: 400;
+        text-transform: uppercase;
+        padding: 7px;  
+    }
+    
+    
+    h2 {
+        display: flex;
+        margin: 40px 0px;
+    }

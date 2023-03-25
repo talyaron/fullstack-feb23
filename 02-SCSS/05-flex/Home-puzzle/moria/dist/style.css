@@ -1,0 +1,177 @@
+body {
+  margin: 0;
+}
+body .container {
+  font-family: sans-serif;
+}
+body .container header {
+  padding-left: 85px;
+  background: black;
+  color: white;
+  height: 60px;
+  width: 100%;
+  display: flex;
+  font-weight: bold;
+}
+body .container header .logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 40px;
+}
+body .container header .logo div {
+  background: white;
+  color: black;
+  margin: 2px;
+  height: 30px;
+  width: 30px;
+  font-size: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+body .container header .user {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 40px;
+}
+body .container header .user i {
+  font-size: 30px;
+}
+body .container header ul {
+  margin-left: 75px;
+  justify-content: space-between;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+body .container header ul a {
+  text-decoration: none;
+  color: white;
+  margin: 0 10px;
+  font-weight: bold;
+}
+body .container header ul li:last-child {
+  font-size: 30px;
+  padding-top: 13px;
+  height: 60px;
+}
+body .container header ul li:first-child {
+  color: silver;
+  font-size: 25px;
+  font-weight: 10px;
+}
+body .container header .Search {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  background: #5E5E62;
+  margin: 13px 60px;
+  height: 35px;
+  width: 230px;
+}
+body .container header .Search i {
+  padding: 0 6px;
+}
+body .container .strip {
+  padding: 0 90px;
+}
+body .container .strip .Welcome {
+  justify-content: space-between;
+  display: flex;
+  font-size: 20px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+}
+body .container .strip .Welcome .bold {
+  font-weight: bold;
+}
+body .container .strip .images {
+  width: 100%;
+  height: 45vh;
+  color: white;
+  display: flex;
+}
+body .container .strip .images .image {
+  width: 50%;
+  height: 310px;
+  background: url(images/fire.jpg) no-repeat center center/cover;
+  font-size: x-large;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  margin-right: 15px;
+  padding-left: 2px;
+}
+body .container .strip .images .image span:first-child {
+  font-size: 40px;
+}
+body .container .strip .images .image span:last-child {
+  font-size: 14px;
+}
+body .container .strip .images .four {
+  flex-wrap: wrap;
+  display: flex;
+  width: 50%;
+}
+body .container .strip .images .four .back1 {
+  background: url(images/explosion.jpg) no-repeat center center/cover;
+  margin: 5px;
+  margin-left: 15px;
+  padding-left: 2px;
+  width: 40%;
+  height: 140px;
+  font-size: 13px;
+  justify-content: flex-end;
+  display: flex;
+  flex-direction: column;
+}
+body .container .strip .images .four .back1 span {
+  font-size: 22px;
+}
+body .container .strip .images .four .back2 {
+  background: url(images/soldiers.jpg) no-repeat center center/cover;
+  margin: 5px;
+  padding-left: 2px;
+  width: 40%;
+  height: 140px;
+  font-size: 13px;
+  justify-content: flex-end;
+  display: flex;
+  flex-direction: column;
+}
+body .container .strip .images .four .back2 span {
+  font-size: 22px;
+}
+body .container .strip .images .four .back3 {
+  background: url(images/ball.jpg) no-repeat center center/cover;
+  margin: 5px;
+  margin-left: 15px;
+  padding-left: 2px;
+  width: 40%;
+  height: 140px;
+  font-size: 13px;
+  justify-content: flex-end;
+  display: flex;
+  flex-direction: column;
+}
+body .container .strip .images .four .back3 span {
+  font-size: 22px;
+}
+body .container .strip .images .four .back4 {
+  background: url(images/bi.jpg) no-repeat center center/cover;
+  margin: 5px;
+  padding-left: 2px;
+  width: 40%;
+  height: 140px;
+  font-size: 13px;
+  justify-content: flex-end;
+  display: flex;
+  flex-direction: column;
+}
+body .container .strip .images .four .back4 span {
+  font-size: 22px;
+}

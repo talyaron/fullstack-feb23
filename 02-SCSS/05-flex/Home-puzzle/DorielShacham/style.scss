@@ -1,0 +1,179 @@
+body{
+    width: 100%;
+    height: 100%;
+}
+
+h2{
+    color: black;
+    font-weight: bolder;
+    border-left: 5px solid rgb(255, 200, 20);
+    padding: 10px;
+    height: 20px;
+    position: absolute;
+    left: 50px;
+}
+
+.container{
+    position: absolute;
+    width: 100%;
+    height: auto;
+    top: 80px;
+
+    ul{
+        display: flex;
+        flex-wrap: wrap;
+        list-style: none;
+
+        li{
+            display: flex;
+            flex: 1;
+            justify-content: space-evenly;
+            padding-right: 20px;
+
+            .leftBox{
+                height: 100%;
+                width: 100%;
+                background-color: white;
+                flex: auto;
+
+                .imgBox{
+                    display:block;
+                    box-sizing: inherit;
+
+                    .imgBoxSub{
+                        height: 0;
+                        overflow: hidden;
+                        padding-bottom: 56.25%;
+                        box-shadow: inset 0 0 80px rgba(0,0,0,0.5);
+
+                        img{
+                            display: block;
+                            width: 100%;
+                            box-sizing: inherit;
+                        }
+                    }
+
+                    .boxText h3{
+                        display: block;
+                        font-size: 1.17em;
+                        margin-block-start: 1em;
+                        margin-block-end: 1em;
+                        margin-inline-start: 0px;
+                        margin-inline-end: 0px;
+                        font-weight: bold;
+                    }
+
+                    .boxText p{
+                        display: block;
+                        margin-block-start: 1em;
+                        margin-block-end: 1em;
+                        margin-inline-start: 0px;
+                        margin-inline-end: 0px;
+                    }
+                }
+            }
+
+            .middleBox{
+                height: 100%;
+                width: 100%;
+                background-color: white;
+                flex: auto;
+
+                .imgBox{
+                    display:block;
+                    box-sizing: inherit;
+
+                    .imgBoxSub{
+                        height: 0;
+                        overflow: hidden;
+                        padding-bottom: 56.25%;
+                        box-shadow: inset 0 0 80px rgba(0,0,0,0.5);
+
+                        img{
+                            display: block;
+                            width: 100%;
+                            box-sizing: inherit;
+                        }
+                    }
+
+                    .boxText h3{
+                        display: block;
+                        font-size: 1.17em;
+                        margin-block-start: 1em;
+                        margin-block-end: 1em;
+                        margin-inline-start: 0px;
+                        margin-inline-end: 0px;
+                        font-weight: bold;
+                    }
+
+                    .boxText p{
+                        display: block;
+                        margin-block-start: 1em;
+                        margin-block-end: 1em;
+                        margin-inline-start: 0px;
+                        margin-inline-end: 0px;
+                    }
+                }
+            }
+
+            .rightBox{
+                height: 100%;
+                width: 100%;
+                background-color:white;
+                flex: auto;
+
+                .imgBox{
+                    display:block;
+                    box-sizing: inherit;
+
+                    .imgBoxSub{
+                        height: 0;
+                        overflow: hidden;
+                        padding-bottom: 56.25%;
+                        box-shadow: inset 0 0 80px rgba(0,0,0,0.5);
+
+                        img{
+                            display: block;
+                            width: 100%;
+                            box-sizing: inherit;
+                        }
+                    }
+
+                    .boxText h3{
+                        display: block;
+                        font-size: 1.17em;
+                        margin-block-start: 1em;
+                        margin-block-end: 1em;
+                        margin-inline-start: 0px;
+                        margin-inline-end: 0px;
+                        font-weight: bold;
+                    }
+
+                    .boxText p{
+                        display: block;
+                        margin-block-start: 1em;
+                        margin-block-end: 1em;
+                        margin-inline-start: 0px;
+                        margin-inline-end: 0px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.icons{
+    width: 500px;
+    height: 100px;
+    position: absolute;
+    top: 520px;
+    flex-wrap: wrap;
+
+    div{
+        height: 70px;
+        width: auto;
+        padding: auto;
+        margin: 10px;
+        display:inline-flex;
+    }
+}

@@ -1,0 +1,132 @@
+$width: 500px;
+$height: 280px;
+
+.wrapper {
+    background-color: rgba(0, 255, 255, 0);
+    height: 3000px;
+    width: 1600px;
+    margin: auto;
+    font-family: 'Open Sans', sans-serif;
+
+
+
+    .titlesport {
+        border-left: 3px solid rgb(236, 236, 28);
+        color: rgba(0, 0, 0, 0.684);
+        height: 30px;
+        display: flex;
+        align-items: center;
+        margin: 10px 35px;
+        padding: 0px 6px;
+        font-size: 18px;
+    }
+
+    .wrappimgsport {
+        background-color: rgba(11, 223, 152, 0);
+        height: 43vh;
+        display: flex;
+        gap: 20px;
+        align-items: center;
+        justify-content: center;
+        // flex-wrap: wrap;
+
+
+        .imgsport {
+            background-color: rgb(255, 255, 255);
+            height: 550px;
+            width: $width;
+
+
+            img {
+                width: $width;
+                height: $height;
+            }
+
+            .liteltitle {
+                height: 20px;
+                padding: 0px 3px;
+                color: rgba(0, 0, 0, 0.313);
+                border-left: 2px solid rgb(236, 236, 28);
+                font-size: medium;
+            }
+        }
+    }
+
+    .londonweather {
+        display: flex;
+        margin: 40px 40px 10px;
+        color: rgba(0, 0, 0, 0.684);
+        justify-content: space-between;
+        width: 280px;
+
+        p {
+            font-size: 12px;
+            padding: 4px 6px;
+            margin: auto;
+            color: rgba(0, 0, 0, 0.264);
+            background-color: rgba(0, 0, 0, 0.081);
+            border-radius: 2px;
+        }
+    }
+
+    .wrappweather {
+        justify-content: space-evenly;
+        display: flex;
+        width: 600px;
+        margin: 0px 20px;
+
+        img {
+            width: 130px;
+        }
+    }
+
+    .wrappreel {
+        background-image: url("https://w0.peakpx.com/wallpaper/187/823/HD-wallpaper-far-cry-5-nature-view.jpg");
+        height: 500px;
+        color: rgb(255, 255, 255);
+        padding: 5px 40px 10px;
+        // opacity: 0.8;
+        // filter: blur(5px);
+
+        .visitreel{
+            float: right;
+            width: 125px;
+            height: 23px;
+            border: 2px solid rgb(255, 255, 255);
+            margin: 39px 10px;
+            border-radius: 50px;
+
+            h3{
+                margin: 0px 15px;
+            }
+        }
+
+        .wrappimgreel {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            justify-content: center;
+            color: rgb(41, 130, 208);
+
+            .imgreel {
+                width: $width;
+                height: $height+60px;
+                background-color: rgb(255, 255, 255);
+                color: black;
+                font-size: small;
+
+                h2 {
+                    margin: 0px 5px;
+                }
+
+                img {
+                    width: $width;
+                    height: $height;
+                }
+            }
+        }
+    }
+
+    
+
+}
