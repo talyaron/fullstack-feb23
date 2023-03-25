@@ -1,10 +1,10 @@
 
-.wrapper{
-}
+
 .ruler{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
     img{
         width: 20px;
     height: auto;
@@ -36,6 +36,7 @@
     display: flex;
     align-items: flex-end;
     justify-content: center;
+    width: 100%;
     
     
     
@@ -63,6 +64,7 @@
         height: 35px;
         width: 130px;
         margin-bottom: 20px;
+        margin-right: 5px;
         
         
     }
@@ -73,7 +75,7 @@
         height: 35px;
         width: 70px;
         margin-bottom: 20px;
-        margin-right: 50px;
+        margin-right: 135px;
     
     }  
 
@@ -82,19 +84,23 @@
 
 .imgs{
     display: flex;
-    align-items: flex-end;
+    align-items: flex-start;
     justify-content: center;
     justify-content: space-between;
-    align-items: flex-start;
     margin: auto;
-    width: 1300px;
-    .img1{
+    width: 1400px;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+    img{
         border-radius: 10px;
-        width: 155px;
-    }
-    .img2{
-        border-radius: 10px;
-        width: 155px;
+        width: 140px;
         height: 200px;
     }
+    img:hover{
+        transform: scale(0.9);
+
+    }
+
+    
+    
 }

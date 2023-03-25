@@ -1,0 +1,24 @@
+.wrapper {
+  display: flex;
+  border: 1px solid black;
+  background-image: url(./107108714-1661352927469-airseas.png);
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 50px;
+  height: 500px;
+}
+.wrapper .box {
+  flex: 1;
+  height: 300px;
+  width: 300px;
+}
+.wrapper .box .title {
+  color: white;
+  background-color: pink;
+  text-align: center;
+  padding: 15px;
+}
+.wrapper .box img {
+  width: 100%;
+}
