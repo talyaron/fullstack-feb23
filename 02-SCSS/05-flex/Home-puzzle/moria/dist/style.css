@@ -175,3 +175,27 @@ body .container .strip .images .four .back4 {
 body .container .strip .images .four .back4 span {
   font-size: 22px;
 }
+body .container .strip .row {
+  width: 92%;
+  height: 430px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+body .container .strip .row img {
+  min-width: 400px;
+  max-height: 250px;
+}
+body .container .strip .row .box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 30%;
+  height: 470px;
+  padding: 4px;
+}
+body .container .strip .row .box .text {
+  flex-wrap: wrap;
+  width: 350px;
+}
