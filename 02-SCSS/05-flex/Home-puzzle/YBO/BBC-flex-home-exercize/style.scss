@@ -1,0 +1,48 @@
+body {
+    background-color: aquamarine;
+}
+
+.header {
+    background-color: white;
+    border: solid 1px black;
+}
+
+.wrapper {
+    background-color: beige;
+    border: solid 2px gray;
+    width: 700px;
+    margin: auto;
+
+
+    img {
+        width: 680px;
+        margin: auto;
+    }
+
+    .mainIMG {
+        position: absolute;
+        top: 400px;
+        left: 530px;
+        
+    }
+
+    .articles {
+        height: 500px;
+        width: 500px;
+        display: inline-flex;
+
+        display: flex;
+        gap: 20px;
+
+
+        .article {
+            border: solid 2px black;
+        }
+
+        img {
+            height: 150px;
+            width: 200px;
+        }
+    }
+
+}
