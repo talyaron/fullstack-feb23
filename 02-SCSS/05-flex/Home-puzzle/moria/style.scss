@@ -219,6 +219,50 @@ body {
                 }
             }
 
+            .row {
+
+                width: 92%;
+                height: 450px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                img {
+                    min-width: 400px;
+                    max-height: 250px;
+                }
+
+                .box {
+
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    width: 30%;
+                    height: 470px;
+                    padding: 4px;
+
+                    .text {
+                        flex-wrap: wrap;
+                        width: 350px;
+                    }
+
+                }
+            }
+
+            .taital {
+                display: flex;
+
+                p {
+                    background: #E5E5E5;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    margin-left: 10px;
+                    font-size: 13px;
+                }
+            }
+
 
 
         }
