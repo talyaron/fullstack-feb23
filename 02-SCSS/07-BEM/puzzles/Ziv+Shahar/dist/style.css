@@ -1,3 +1,7 @@
+body {
+  direction: rtl;
+}
+
 header {
   background-color: red;
 }
