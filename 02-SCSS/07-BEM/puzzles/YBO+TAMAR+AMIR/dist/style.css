@@ -4,6 +4,7 @@
   height: 200px;
   display: flex;
   gap: 10px;
+  direction: rtl;
 }
 .brief__article {
   flex: 1;
@@ -12,6 +13,36 @@
 }
 .brief__article__nadlan {
   background-image: url("https://www.yad2.co.il/home/_next/image?url=https%3A%2F%2Fassets.yad2.co.il%2Fhomepage%2Fleading-category-real-estate.png&w=256&q=75");
+  background-size: cover;
+  height: 100%;
+}
+.brief__article__car {
+  background-image: url("https://www.yad2.co.il/home/_next/image?url=https%3A%2F%2Fassets.yad2.co.il%2Fhomepage%2Fleading-category-vehicles.png&w=256&q=75");
+  background-size: cover;
+  height: 100%;
+}
+.brief__article__yad2 {
+  background-image: url("https://www.yad2.co.il/home/_next/image?url=https%3A%2F%2Fassets.yad2.co.il%2Fhomepage%2Fleading-category-second-hand.png&w=256&q=75");
+  background-size: cover;
+  height: 100%;
+}
+.brief__article__jobs {
+  background-image: url("https://www.yad2.co.il/home/_next/image?url=https%3A%2F%2Fassets.yad2.co.il%2Fhomepage%2Fleading-category-drushim.png&w=256&q=75");
+  background-size: cover;
+  height: 100%;
+}
+.brief__article__pet {
+  background-image: url("https://www.yad2.co.il/home/_next/image?url=https%3A%2F%2Fassets.yad2.co.il%2Fhomepage%2Fleading-category-pets.png&w=256&q=75");
+  background-size: cover;
+  height: 100%;
+}
+.brief__article__hands {
+  background-image: url("https://www.yad2.co.il/home/_next/image?url=https%3A%2F%2Fassets.yad2.co.il%2Fhomepage%2Fleading-category-professional.png&w=256&q=75");
+  background-size: cover;
+  height: 100%;
+}
+.brief__article__bsn {
+  background-image: url("https://www.yad2.co.il/home/_next/image?url=https%3A%2F%2Fassets.yad2.co.il%2Fhomepage%2Fleading-category-business.png&w=256&q=75");
   background-size: cover;
   height: 100%;
 }
@@ -26,25 +57,32 @@
   text-align: center;
   padding: 4px;
 }
-
-.btns {
+.brief__search {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 10px;
+  width: 10px;
+  background-color: aqua;
+}
+.brief .btns {
   width: 100ch;
   margin: auto;
   display: flex;
   justify-content: center;
   padding: 1rem;
 }
-.btns__btn {
+.brief .btns__btn {
   border: none;
   margin: 5px;
   padding: 10px;
 }
-.btns__btn--ok {
+.brief .btns__btn--ok {
   background-color: green;
 }
-.btns__btn--cancel {
+.brief .btns__btn--cancel {
   background-color: orange;
 }
-.btns__btn--delete {
+.brief .btns__btn--delete {
   background-color: red;
 }
