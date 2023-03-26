@@ -7,14 +7,13 @@ body {
 }
 body .row {
   width: 92%;
-  height: 450px;
+  height: 75%;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 body .row img {
-  min-width: 400px;
-  max-height: 250px;
+  min-width: 100%;
 }
 body .row .box {
   display: flex;
@@ -22,12 +21,12 @@ body .row .box {
   justify-content: center;
   align-items: center;
   width: 30%;
-  height: 470px;
+  height: 80%;
   padding: 4px;
 }
 body .row .box .text {
   flex-wrap: wrap;
-  width: 350px;
+  width: 100%;
 }
 body .container {
   font-family: sans-serif;
@@ -205,14 +204,18 @@ body .container .strip .images .four .back4 span {
 }
 body .container .strip .taital {
   display: flex;
+  justify-content: flex-start;
+  align-items: center;
 }
 body .container .strip .taital p {
   background: #E5E5E5;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-left: 10px;
+  margin-left: 15px;
   font-size: 13px;
+  height: 20px;
+  display: flex;
 }
 body .container main .Photos {
   width: 100%;
@@ -232,7 +235,7 @@ body .container main .Photos .taitel_box h1 {
   margin-bottom: 0;
 }
 body .container main .Photos .taitel_box h2 {
-  border: solid 2px green;
+  border: solid 4px green;
   padding: 15px;
   width: 195px;
 }
@@ -242,10 +245,14 @@ body .container main .Photos .taitel_box .button {
   border: 2px white solid;
   border-radius: 20px;
   height: 33px;
-  width: 130px;
+  max-width: fit-content;
   align-items: center;
   justify-content: space-around;
   display: flex;
+  padding: 7px;
+}
+body .container main .Photos .taitel_box .button i {
+  margin-left: 4px;
 }
 body .container main .Photos .boxes {
   display: flex;
@@ -267,12 +274,19 @@ body .container main .Photos .boxes .box_Photos h2 {
   margin-top: 0;
   padding-top: 0;
 }
-body .container main .pag2 .box_derk {
-  width: 320px;
+body .container main .pag2 {
+  display: flex;
+  padding: 50px;
+  margin-left: 50px;
+  height: 1450px;
+}
+body .container main .pag2 .box_dark {
+  width: 330px;
   background: #262626;
   color: white;
+  height: 650px;
 }
-body .container main .pag2 .box_derk p {
+body .container main .pag2 .box_dark p {
   padding: 50px;
   height: 65px;
   display: flex;
@@ -280,7 +294,7 @@ body .container main .pag2 .box_derk p {
   justify-content: center;
   font-size: 20px;
 }
-body .container main .pag2 .box_derk p span {
+body .container main .pag2 .box_dark p span {
   background: red;
   border-radius: 100%;
   width: 125px;
@@ -292,10 +306,42 @@ body .container main .pag2 .box_derk p span {
   justify-content: center;
   margin-left: 0;
 }
-body .container main .pag2 .box_derk h3 {
+body .container main .pag2 .box_dark h3 {
   background: red;
   color: white;
+  height: 30px;
+  margin-top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-body .container main .pag2 .box_derk p:nth-of-type(2n) {
+body .container main .pag2 .box_dark p:nth-of-type(2n) {
   background-color: #191919;
+}
+body .container main .pag2 .rows {
+  width: 70%;
+  height: 400px;
+  margin-right: 20px;
+}
+body .container main .pag2 .rows .img {
+  width: 885px;
+  height: 400px;
+  color: white;
+  padding: 10px;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  justify-content: flex-end;
+  background: url(images/house3.jpg) no-repeat center center/cover;
+  font-size: 20;
+  margin: 60px;
+  margin-top: 10px;
+}
+body .container main .pag2 .rows .img span {
+  font-size: 40px;
+  font-weight: 40px;
+}
+body .container main .pag2 .rows .row {
+  margin-top: 105px;
+  margin-left: 50px;
 }
