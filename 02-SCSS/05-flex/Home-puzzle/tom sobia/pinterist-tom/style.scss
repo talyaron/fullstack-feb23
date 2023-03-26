@@ -122,21 +122,22 @@ body {
     display: flex;
     flex-wrap: wrap;
     gap: 17px;
-}
 
-
-
-.img-1 {
     img {
         border-radius: 20px;
         width: 200px;
     }
 
+    .small-1 {
+        height: 333px;
+    }
+
 }
 
-.small-1 {
-    height: 333px;
-}
+
+
+
+
 
 .big-1 {
     height: 448px;
