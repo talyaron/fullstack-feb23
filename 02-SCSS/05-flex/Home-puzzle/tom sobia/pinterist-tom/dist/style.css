@@ -114,12 +114,11 @@ body {
 }
 
 .img-1 {
-  margin-top: 20px;
-  margin-right: 35px;
+  margin-right: 25px;
   display: flex;
   flex-wrap: wrap;
   align-content: stretch;
-  gap: 17px;
+  gap: 30px;
 }
 
 .img-1 img {
@@ -132,8 +131,8 @@ body {
 }
 
 .big-1 {
-  height: 472px;
-  margin-top: -93px;
+  height: 381px;
+  margin-top: -112px;
 }
 
 .small-2 {
