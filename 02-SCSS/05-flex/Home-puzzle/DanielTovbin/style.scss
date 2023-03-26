@@ -1,0 +1,353 @@
+*{
+    box-sizing: border-box;
+}
+
+.header{
+    position: relative;
+    top: -8px;
+    margin-left: -8px;
+    margin-right: -8px;
+    display: flex;
+    color: white;
+    background-color: black;
+    justify-content: center;
+    height: 67;
+    margin-bottom: 10px;
+    padding: 0px 20px;
+
+
+
+    .nav {
+        display: flex;
+        gap: 3px;
+        align-items:center;
+
+        .left {
+            display: flex;
+            gap: 3px;
+
+            .bbc{
+                display: flex;
+                gap: 8px;
+                .letter{
+                    border: 2px solid white;
+                    background-color: white;
+                    color: black;
+                    margin: 11px 0px;
+                    width: 26px;
+                    font-size: 25px;
+                    display: flex;
+                    justify-content: center;
+                    padding: 2px 2px;
+                    font-weight: 900;
+                    text-transform: uppercase;
+                }
+            }
+            .sign-in {
+                display: flex;
+                gap: 2px;
+                align-items: center;
+                position: relative;
+                left: 20px;
+                font-size: small;
+
+                img{
+                    position: relative;
+                    height: 30px;
+                }
+            }
+        }
+
+
+        .right {
+            display: flex;
+            margin-left: 70px;
+            ul{
+                display: flex;
+                list-style: none;
+                gap: 40px;
+                font-size: small;
+                align-items: center;
+            }
+
+            .dots {
+                padding: 10px 25px;
+            }
+        }
+
+        .search {
+            display: flex;
+            border: 0px solid gray;
+            background-color: #28292b;
+            padding: 4px 45px;
+            height: 27px;
+            margin-top: 8px;
+            font-size: small;
+            padding-left: 9px;
+            padding-right: 95px;
+            align-items: center;
+
+            img{
+                height: 25px;
+            }
+            
+        }
+    }
+}
+
+
+
+.media.media {
+    .media-image{
+        position: relative;
+    }
+    .media-content{
+        position: absolute;
+        width: 30px;
+        h3{
+            position: absolute;
+        }
+        p{
+            position: absolute;
+        }
+
+    }
+}
+
+.main {
+    padding: 0px 120px;
+
+    .module-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        h3 {
+            color: gray;
+            font-weight: 100;
+            font-size: 24px;
+        }
+
+    }
+    .module-promo{
+
+
+    
+    
+            .module-content{
+                display: flex;
+                height: 52vh;
+                width: 100%;
+                justify-content: space-between;
+            }
+    
+                .source{
+                        margin-left: 12px;
+                        color: rgb(205, 205, 205);
+                        font-size:11px;
+                        padding: 0px 6px;
+                        font-weight: 900;
+                        text-shadow: 1px 1px 2px black;
+                        border-left: 2px solid red;
+                    }
+        
+                
+                
+                .left {
+                    display: flex;
+                    box-sizing: border-box;
+                    width: 50%;
+                    
+                    
+                    .media-image {
+                        width: 100%;
+                        position: relative;
+                        background-image: url("https://ichef.bbc.co.uk/wwhp/624/cpsprodpb/97F8/production/_129140983_bakhmut.jpg") ;
+                        background-size: 640px;
+                    }
+        
+                    .media-content{
+                        position: absolute;
+                        color: rgb(248, 245, 245);
+                        top: 306px;
+                        padding: 0px 19px;
+                        font-weight: 900;
+        
+                        h1{
+                            width: 70%;
+                            font-family: ReithSans,Arial,Helvetica,freesans,sans-serif;
+                            font-weight: bold;
+                            margin-bottom: -5px;
+                            text-shadow: 1px 1px 2px black;
+                            margin-top: 40px;
+                        }
+                        
+                        p{
+                            width: 70%;
+                            color: rgb(205, 205, 205);
+                            text-shadow: 1px 1px 2px black;
+                        }
+                    }
+                }
+    
+            .right {
+                
+                height: 100%;
+                width: 50%;
+                position: relative;
+        
+                .media-media{
+                    position: absolute;
+                    box-sizing: border-box;
+                    top: 0;
+                    left: 0;
+                    width: 640px;
+                    height: 341px;
+                    overflow: hidden;
+    
+                    .title{
+                        padding: 0px 17px;
+                        font-size: 17px;
+                        margin-top: 85px;
+                        margin-bottom: -2px;
+                        color: white;
+                        font-weight: 900;
+                        font-family: ReithSans,Arial,Helvetica,freesans,sans-serif;
+                        text-shadow: 1px 1px 2px black;
+                    }
+    
+                    
+                    
+                    .image-article {
+                        position: absolute;
+                        background-size: cover;
+                        box-sizing: border-box;
+                    }
+                    .one{
+                        
+                        width: 47%;
+                        height: 49%;
+                        left: 17px;
+                        top: 0;
+                        background-image: url("https://ichef.bbc.co.uk/wwhp/304/cpsprodpb/7A48/production/_129140313_gettyimages-1249286538.jpg");
+                    }
+                    
+                    .two{
+                        
+                        .top-right{
+                            top: 50%;
+                            left: 50%;
+                            transform: translate(-50%, -50%);
+                        }
+                        top: 0;
+                        right: 0;
+                        width: 48%;
+                        height: 49%;
+                        background-image: url("https://ichef.bbc.co.uk/wwhp/304/cpsprodpb/65F8/production/_129140162_gettyimages-1243370310.jpg");
+                    }
+                    
+                    .three {
+                        bottom: 0;
+                        left: 17px;
+                        width: 47%;
+                        height: 49%;
+                        background-image: url("https://ichef.bbc.co.uk/wwhp/304/cpsprodpb/FC66/production/_129141646_38d285125f07513e5aca27c1bbcc798435bbee66371_143_2810_15821000x563.jpg");
+                    }
+                    
+                    .four {
+                        bottom: 0;
+                        right: 0;
+                        border: green;
+                        width: 48%;
+                        height: 49%;
+                        background-image: url("https://ichef.bbc.co.uk/wwhp/304/cpsprodpb/8A4C/production/_129140453_antoinegriezmannandkylianmbappe.jpg");
+                    }
+                }
+                    
+                    .text {
+                        position: relative;
+                        color: white;
+                        font-size: 14px;
+                        font-weight: bold;
+                        
+                        
+                        
+                        .top-right{
+                            position: absolute;
+                            top: 13px;
+                            width: 60%;
+                            left: 75%;
+                        }
+                        
+                        .top-left{
+                            width: 46%;
+                            position: absolute;
+                            left: 4%;
+                            top: 220px;
+                            left: 27px;
+                            top: 73px;
+                        }
+                    }
+            }
+    }
+
+    .module-column {
+    
+
+        .title {
+            padding: 0px 5px;
+            border-left: 4px solid red;
+            padding: 0px 6px;
+            width: 7px;
+            height: 19px;
+            margin-top: 30px;
+            font-size: 17px;
+            display: flex;
+            align-items: center;
+
+        }
+
+        .media-image {
+            display: flex;
+            width: 50%;
+            height: 154px;
+            gap: 16px;
+            margin-top: 18px;
+        }
+
+        .world {
+            display: flex;
+            gap: 222px;
+        }
+
+        .source{
+                        color: rgb(125, 121, 121);
+                        font-size:14px;
+                        padding: 0px 6px;
+                        text-transform: uppercase;
+                        border-left: 2px solid red;
+                        font-family: ReithSans,Arial,Helvetica,freesans,sans-serif;
+                    }
+
+        .content {
+            display: flex;
+            width: 100%;
+            padding-right: 119px;
+            h1{
+
+                font-size: 23px;
+                padding-right: 17px;
+                width: 267px;
+            }
+            p{
+                width: 289px;
+                padding-right: 17px;
+            }
+
+            
+
+            
+        }
+    }
+}
+
