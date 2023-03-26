@@ -57,6 +57,10 @@
   display: flex;
   margin-left: 70px;
 }
+.header .nav .right .line {
+  border-left: 1px solid #444242;
+  padding-left: 27px;
+}
 .header .nav .right ul {
   display: flex;
   list-style: none;
@@ -73,7 +77,7 @@
   background-color: #28292b;
   padding: 4px 45px;
   height: 27px;
-  margin-top: 8px;
+  margin-top: 12px;
   font-size: small;
   padding-left: 9px;
   padding-right: 95px;
@@ -239,17 +243,6 @@
   left: 27px;
   top: 73px;
 }
-.main .module-column .title {
-  padding: 0px 5px;
-  border-left: 4px solid red;
-  padding: 0px 6px;
-  width: 7px;
-  height: 19px;
-  margin-top: 30px;
-  font-size: 17px;
-  display: flex;
-  align-items: center;
-}
 .main .module-column .media-image {
   display: flex;
   width: 50%;
@@ -259,15 +252,64 @@
 }
 .main .module-column .world {
   display: flex;
-  gap: 222px;
 }
 .main .module-column .source {
   color: #7d7979;
   font-size: 14px;
   padding: 0px 6px;
   text-transform: uppercase;
-  border-left: 2px solid red;
   font-family: ReithSans, Arial, Helvetica, freesans, sans-serif;
+}
+.main .module-column .module-news .title {
+  padding: 0px 6px;
+  width: 7px;
+  height: 19px;
+  margin-top: 30px;
+  font-size: 17px;
+  display: flex;
+  align-items: center;
+  border-left: 3.5px solid red;
+}
+.main .module-column .module-news .world {
+  gap: 222px;
+}
+.main .module-column .module-news .source {
+  border-left: 2px solid red;
+}
+.main .module-column .module-sport .title {
+  padding: 0px 6px;
+  width: 7px;
+  height: 19px;
+  margin-top: 30px;
+  font-size: 17px;
+  display: flex;
+  align-items: center;
+  border-left: 3.5px solid yellow;
+}
+.main .module-column .module-sport .world {
+  gap: 121px;
+}
+.main .module-column .module-sport .world :nth-child(2) {
+  margin-right: 80px;
+}
+.main .module-column .module-sport .source {
+  border-left: 2px solid yellow;
+}
+.main .module-column .module-weekend .title {
+  padding: 0px 6px;
+  width: 206px;
+  height: 19px;
+  margin-top: 30px;
+  font-size: 17px;
+  display: flex;
+  align-items: center;
+  border-left: 3.5px solid #5a5af1;
+}
+.main .module-column .module-weekend .world {
+  gap: 216px;
+}
+.main .module-column .module-weekend .source {
+  border-left: 2px solid #0404ad;
 }
 .main .module-column .content {
   display: flex;
@@ -282,4 +324,52 @@
 .main .module-column .content p {
   width: 289px;
   padding-right: 17px;
+}
+.main .weather {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding-top: 33px;
+}
+.main .weather h2 {
+  font-family: ReithSans, Arial, Helvetica, freesans, sans-serif;
+  font-size: 19px;
+  color: #4a4a4a;
+}
+.main .weather a {
+  border: 2px solid #e6e5e5;
+  font-style: none;
+  cursor: pointer;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 5px 7px;
+  font-size: 12px;
+  color: gray;
+  background-color: #e6e5e5;
+}
+.main .this-week {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-top: 15px;
+}
+.main .this-week img {
+  height: 50px;
+}
+.main .this-week .degrees {
+  line-height: 0px;
+  text-transform: uppercase;
+}
+.main .this-week .day {
+  font-size: 12px;
+}
+.main .this-week .high {
+  margin-top: 14px;
+  margin-bottom: 1px;
+  font-size: 19px;
+  font-weight: 900;
+}
+.main .this-week .low {
+  color: gray;
+  font-size: 13px;
 }
