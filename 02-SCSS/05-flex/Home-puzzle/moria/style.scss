@@ -183,8 +183,7 @@ body {
                     display: flex;
                     width: 50%;
 
-                    .back1 {
-                        background: url(images/explosion.jpg) no-repeat center center/cover;
+                    .back {
                         margin: 5px;
                         margin-left: 15px;
                         padding-left: 2px;
@@ -199,58 +198,26 @@ body {
                         span {
                             font-size: 22px;
                         }
+                    }
+
+                    .back1 {
+                        background: url(images/explosion.jpg) no-repeat center center/cover;
+
                     }
 
                     .back2 {
                         background: url(images/soldiers.jpg) no-repeat center center/cover;
-                        margin: 5px;
-                        padding-left: 2px;
-                        width: 40%;
-                        height: 140px;
-                        font-size: 13px;
-                        justify-content: flex-end;
-                        display: flex;
-                        flex-direction: column;
 
-
-                        span {
-                            font-size: 22px;
-                        }
                     }
 
                     .back3 {
                         background: url(images/ball.jpg) no-repeat center center/cover;
-                        margin: 5px;
-                        margin-left: 15px;
-                        padding-left: 2px;
-                        width: 40%;
-                        height: 140px;
-                        font-size: 13px;
-                        justify-content: flex-end;
-                        display: flex;
-                        flex-direction: column;
 
-
-                        span {
-                            font-size: 22px;
-                        }
                     }
 
                     .back4 {
                         background: url(images/bi.jpg) no-repeat center center/cover;
-                        margin: 5px;
-                        padding-left: 2px;
-                        width: 40%;
-                        height: 140px;
-                        font-size: 13px;
-                        justify-content: flex-end;
-                        display: flex;
-                        flex-direction: column;
 
-
-                        span {
-                            font-size: 22px;
-                        }
                     }
 
 

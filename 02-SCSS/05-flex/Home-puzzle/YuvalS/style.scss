@@ -6,6 +6,8 @@
    column-gap: 15px;
    
 
+   
+
    img{
     padding-bottom: 15px;
     border-radius: 20px;
@@ -30,7 +32,7 @@
 .column{
     display: flex;
     flex-direction: column-reverse;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     align-content: space-between;
     justify-content: space-between;
     align-items: stretch;
