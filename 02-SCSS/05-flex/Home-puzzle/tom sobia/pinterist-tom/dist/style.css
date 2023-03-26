@@ -114,13 +114,11 @@ body {
   flex-wrap: wrap;
   gap: 17px;
 }
-
 .img-1 img {
   border-radius: 20px;
   width: 200px;
 }
-
-.small-1 {
+.img-1 .small-1 {
   height: 333px;
 }
 
