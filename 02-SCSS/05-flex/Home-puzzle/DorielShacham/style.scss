@@ -1,10 +1,12 @@
 body{
     width: 100%;
     height: 100%;
+    position: absolute;
+    right: 10px;
 }
 
 h2{
-    color: black;
+    color: #4a4a4a;
     font-weight: bolder;
     border-left: 5px solid rgb(255, 200, 20);
     padding: 10px;
@@ -13,11 +15,14 @@ h2{
     left: 50px;
 }
 
+
+
 .container{
     position: absolute;
     width: 100%;
     height: auto;
     top: 80px;
+    
 
     ul{
         display: flex;
@@ -163,10 +168,10 @@ h2{
 }
 
 .icons{
-    width: 500px;
+    width: 600px;
     height: 100px;
-    position: absolute;
-    top: 520px;
+    position: flex;
+    top: 550px;
     flex-wrap: wrap;
 
     div{
@@ -175,5 +180,104 @@ h2{
         padding: auto;
         margin: 10px;
         display:inline-flex;
+        flex-wrap:wrap;
     }
 }
+
+.taskTwo{
+    width: 100%;
+    height: 50px;
+    position: absolute;
+    bottom: 150px;
+
+    h2{
+        color:#4a4a4a;
+        left: 50px;
+        border-left: 5px solid rgb(0, 222, 222);
+    }
+}
+
+.mainTwo{
+    width: 100%;
+    height: 800px;
+    position: absolute;
+    bottom: -700px;
+
+    .subTwo{
+    margin-left: -20px;
+    margin-right: -20px;
+    box-sizing: inherit;
+
+    .subRight{
+        width: 30%;
+        position: absolute;
+        left: 700px;
+        top: 20px;
+        background-color: red;
+        float:right;
+
+        ul{
+            list-style: none;
+            color: white;
+            padding: 10px;
+
+            li{
+
+                margin: -10px;
+                width: 100%;
+                height: 100%;
+            }
+        }
+    }
+
+        .subSubTwo{
+            float: left;
+            padding-left: 8px;
+            padding-right: 8px;
+
+            .listTaskTwo{
+                position: flex;
+                display: flex;
+                flex-wrap: wrap;
+                margin-top: 0;
+                margin-bottom: 0;
+                list-style: none;
+                padding: 0;
+
+                .listHeader{
+                    position: flex;
+                    flex-wrap: wrap;
+                    width: 70vw;
+                    padding: 10px;
+                    margin: 10px;
+                }
+
+                .fourList{
+                    position: flex;
+                    flex-wrap: wrap;
+                    margin: 10px;
+                    padding-bottom: 10px;
+                    justify-content: space-evenly;
+                    box-shadow: 3px 3px 3px #4a4a4a11;
+                    h3{
+                        padding-left: 10px;
+                    }
+                    p{
+                        width: 30vw;
+                        overflow: scroll;
+                        padding-left: 10px;
+                    }
+                    a{
+                        padding-left: 10px;
+                    }
+                    img{
+                        width: 300px;
+                        object-fit: cover;
+                        mask-repeat: no-repeat;
+                    }
+                }
+            }
+        }
+    }
+}
+
