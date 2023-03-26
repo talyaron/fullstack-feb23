@@ -1,19 +1,102 @@
 .wrapper {
   background-color: rgba(0, 255, 255, 0);
-  height: 4000px;
+  height: 5000px;
   width: 1340px;
   margin: auto;
   font-family: "Open Sans", sans-serif;
+}
+.wrapper .top {
+  width: 1340px;
+  height: 60px;
+  background-color: rgba(0, 0, 0, 0.897);
+  margin-top: 0px;
+}
+.wrapper .welcom {
+  margin: 0px 15px 10px;
+  color: rgba(0, 0, 0, 0.684);
+}
+.wrapper .bigimg {
+  background-image: url(https://ichef.bbci.co.uk/news/976/cpsprodpb/782C/production/_129146703_9c461ab121505eaf7a53bde19d631a4b53f71d250_105_3000_16881000x563.jpg.webp);
+  width: 700px;
+  height: 350px;
+  margin: 0px 0px 40px 12px;
+  float: left;
+}
+.wrapper .bigimg .text {
+  width: 600px;
+  color: white;
+  padding: 130px 0px 0px 10px;
+}
+.wrapper .bigimg .text .liteltitle {
+  border-left: 3px solid red;
+  height: 18px;
+}
+.wrapper .lteleimgs {
+  gap: 20px;
+}
+.wrapper .lteleimgs .line1 {
+  display: flex;
+  width: 600px;
+  gap: 20px;
+  justify-content: space-between;
+  margin: 0px 10px;
+  float: right;
+  margin-bottom: 10px;
+}
+.wrapper .lteleimgs .line1 .litelimg {
+  background-image: url(https://ynet-pic1.yit.co.il/picserver5/crop_images/2023/03/26/Hk0TPFTxh/Hk0TPFTxh_0_40_690_389_0_medium.jpg);
+  background-color: rgba(0, 255, 255, 0.897);
+  width: 300px;
+  height: 170px;
+  color: #ffffff;
+}
+.wrapper .lteleimgs .line1 .litelimg .text {
+  padding: 65px 0px 5px 5px;
+}
+.wrapper .lteleimgs .line1 .litelimg .text .liteltitle {
+  border-left: 3px solid red;
+  height: 18px;
+  font-size: 15px;
+  padding-left: 5px;
+  margin-top: -10px;
+}
+.wrapper .lteleimgs .line2 {
+  display: flex;
+  width: 600px;
+  gap: 20px;
+  justify-content: space-between;
+  margin: 0px 10px;
+  float: right;
+  margin-bottom: 10px;
+}
+.wrapper .lteleimgs .line2 .litelimg {
+  background-image: url(https://ynet-pic1.yit.co.il/picserver5/crop_images/2023/03/26/r1psuqpln/r1psuqpln_1_21_2699_1520_0_medium.jpg);
+  background-color: rgba(0, 255, 255, 0.897);
+  width: 300px;
+  height: 170px;
+  color: #ffffff;
+}
+.wrapper .lteleimgs .line2 .litelimg .text {
+  padding: 65px 0px 5px 5px;
+}
+.wrapper .lteleimgs .line2 .litelimg .text .liteltitle {
+  border-left: 3px solid red;
+  height: 18px;
+  font-size: 15px;
+  padding-left: 5px;
+  margin-top: -10px;
 }
 .wrapper .titlenews {
   border-left: 3px solid #d61d1d;
   color: rgba(0, 0, 0, 0.684);
   height: 20px;
+  width: 1000px;
   display: flex;
   align-items: center;
-  margin: 10px 15px;
+  margin: 0px 15px 10px;
   padding: 0px 6px;
   font-size: 18px;
+  float: left;
 }
 .wrapper .wrappimgnews {
   background-color: rgba(11, 223, 152, 0);
