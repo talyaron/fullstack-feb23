@@ -144,8 +144,7 @@ body .container .strip .images .four {
   display: flex;
   width: 50%;
 }
-body .container .strip .images .four .back1 {
-  background: url(images/explosion.jpg) no-repeat center center/cover;
+body .container .strip .images .four .back {
   margin: 5px;
   margin-left: 15px;
   padding-left: 2px;
@@ -156,51 +155,20 @@ body .container .strip .images .four .back1 {
   display: flex;
   flex-direction: column;
 }
-body .container .strip .images .four .back1 span {
+body .container .strip .images .four .back span {
   font-size: 22px;
+}
+body .container .strip .images .four .back1 {
+  background: url(images/explosion.jpg) no-repeat center center/cover;
 }
 body .container .strip .images .four .back2 {
   background: url(images/soldiers.jpg) no-repeat center center/cover;
-  margin: 5px;
-  padding-left: 2px;
-  width: 40%;
-  height: 140px;
-  font-size: 13px;
-  justify-content: flex-end;
-  display: flex;
-  flex-direction: column;
-}
-body .container .strip .images .four .back2 span {
-  font-size: 22px;
 }
 body .container .strip .images .four .back3 {
   background: url(images/ball.jpg) no-repeat center center/cover;
-  margin: 5px;
-  margin-left: 15px;
-  padding-left: 2px;
-  width: 40%;
-  height: 140px;
-  font-size: 13px;
-  justify-content: flex-end;
-  display: flex;
-  flex-direction: column;
-}
-body .container .strip .images .four .back3 span {
-  font-size: 22px;
 }
 body .container .strip .images .four .back4 {
   background: url(images/bi.jpg) no-repeat center center/cover;
-  margin: 5px;
-  padding-left: 2px;
-  width: 40%;
-  height: 140px;
-  font-size: 13px;
-  justify-content: flex-end;
-  display: flex;
-  flex-direction: column;
-}
-body .container .strip .images .four .back4 span {
-  font-size: 22px;
 }
 body .container .strip .taital {
   display: flex;
