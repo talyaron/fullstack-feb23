@@ -1,6 +1,44 @@
+* {
+    box-sizing: border-box;
+
+}
+
 body {
     margin: 0;
 
+    .row {
+
+        width: 92%;
+        height: 75%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+
+        img {
+            min-width: 100%;
+
+            // max-height: 50%;
+        }
+
+
+        .box {
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 30%;
+            height: 80%;
+            padding: 4px;
+
+            .text {
+                flex-wrap: wrap;
+                width: 100%;
+            }
+
+        }
+    }
 
     .container {
         font-family: sans-serif;
@@ -64,7 +102,7 @@ body {
 
                 li:last-child {
                     font-size: 30px;
-                    padding-top: 13px;
+                    padding-top: 6px;
                     height: 60px;
                 }
 
@@ -219,51 +257,194 @@ body {
                 }
             }
 
-            .row {
 
-                width: 92%;
-                height: 450px;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
 
-                img {
-                    min-width: 400px;
-                    max-height: 250px;
-                }
 
-                .box {
-
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: center;
-                    align-items: center;
-                    width: 30%;
-                    height: 470px;
-                    padding: 4px;
-
-                    .text {
-                        flex-wrap: wrap;
-                        width: 350px;
-                    }
-
-                }
-            }
 
             .taital {
                 display: flex;
+                justify-content: flex-start;
+                align-items: center;
 
                 p {
                     background: #E5E5E5;
                     display: flex;
                     justify-content: center;
                     align-items: center;
-                    margin-left: 10px;
+                    margin-left: 15px;
                     font-size: 13px;
+                    height: 20px;
+                    display: flex;
+
                 }
             }
 
 
+
+        }
+
+        main {
+            .Photos {
+                width: 100%;
+                height: 500px;
+                background: red;
+                padding: 0 120px;
+                background: url(images/View.jpg) no-repeat center center/cover;
+
+                .taitel_box {
+                    display: flex;
+                    justify-content: space-between;
+                    color: white;
+
+                    h1 {
+                        font-size: 50px;
+                        padding-bottom: 0;
+                        margin-bottom: 0;
+                    }
+
+                    h2 {
+                        border: solid 4px green;
+                        padding: 15px;
+                        width: 195px;
+                    }
+
+
+
+                    .button {
+                        font-size: 20px;
+                        margin-top: 25px;
+                        border: 2px white solid;
+                        border-radius: 20px;
+                        height: 33px;
+                        max-width: fit-content;
+                        align-items: center;
+                        justify-content: space-around;
+                        display: flex;
+                        padding: 7px;
+
+                        i {
+                            margin-left: 4px;
+                        }
+                    }
+                }
+
+                .boxes {
+                    display: flex;
+                    width: 100%;
+                    justify-content: space-between;
+
+                    .box_Photos {
+                        background: white;
+
+                        img {
+                            width: 410px;
+
+                        }
+
+                        h2 {
+                            padding: 4px;
+                            background: white;
+                            color: black;
+                            width: 410px;
+                            height: 40px;
+                            margin-top: 0;
+                            padding-top: 0;
+                        }
+                    }
+                }
+
+            }
+
+            .pag2 {
+                display: flex;
+                padding: 50px;
+                margin-left: 50px;
+                height: 1450px;
+
+                .box_dark {
+
+
+                    width: 330px;
+                    background: #262626;
+                    color: white;
+                    height: 650px;
+
+
+                    p {
+
+                        padding: 50px;
+                        height: 65px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        font-size: 20px;
+
+
+                        span {
+
+                            background: red;
+                            border-radius: 100%;
+                            width: 125px;
+                            height: 45px;
+                            margin: 0 20px;
+                            font-size: 20px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            margin-left: 0;
+                        }
+                    }
+
+                    h3 {
+                        background: red;
+                        color: white;
+                        height: 30px;
+                        margin-top: 0;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                    }
+
+                    p:nth-of-type(2n) {
+                        background-color: #191919;
+
+                    }
+                }
+
+                .rows {
+                    width: 70%;
+                    height: 400px;
+                    margin-right: 20px;
+
+
+
+                    .img {
+                        width: 885px;
+                        height: 400px;
+                        color: white;
+                        padding: 10px;
+                        display: flex;
+                        align-items: flex-start;
+                        flex-direction: column;
+                        justify-content: flex-end;
+                        background: url(images/house3.jpg) no-repeat center center/cover;
+                        font-size: 20;
+                        margin: 60px;
+                        margin-top: 10px;
+
+                        span {
+                            font-size: 40px;
+                            font-weight: 40px;
+                        }
+                    }
+
+                    .row {
+
+                        margin-top: 105px;
+                        margin-left: 50px;
+                    }
+                }
+            }
 
         }
     }

@@ -1,36 +1,76 @@
 .wrapper {
   background-color: rgba(0, 255, 255, 0);
-  height: 3000px;
-  width: 1600px;
+  height: 4000px;
+  width: 1340px;
   margin: auto;
   font-family: "Open Sans", sans-serif;
 }
-.wrapper .titlesport {
-  border-left: 3px solid #ecec1c;
+.wrapper .titlenews {
+  border-left: 3px solid #d61d1d;
   color: rgba(0, 0, 0, 0.684);
-  height: 30px;
+  height: 20px;
   display: flex;
   align-items: center;
-  margin: 10px 35px;
+  margin: 10px 15px;
+  padding: 0px 6px;
+  font-size: 18px;
+}
+.wrapper .wrappimgnews {
+  background-color: rgba(11, 223, 152, 0);
+  height: 500px;
+  width: 1340px;
+  display: flex;
+  gap: 25px;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 20px 0px 0px;
+}
+.wrapper .wrappimgnews .imgsport {
+  background-color: rgba(236, 18, 18, 0);
+  height: 500px;
+  width: 420px;
+}
+.wrapper .wrappimgnews .imgsport img {
+  width: 420px;
+  height: 220px;
+}
+.wrapper .wrappimgnews .imgsport .liteltitle {
+  height: 20px;
+  padding: 0px 3px;
+  color: rgba(0, 0, 0, 0.313);
+  border-left: 2px solid #d61d1d;
+  font-size: medium;
+}
+.wrapper .titlesport {
+  border-left: 3px solid #d6d61d;
+  color: rgba(0, 0, 0, 0.684);
+  height: 20px;
+  display: flex;
+  align-items: center;
+  margin: 0px 15px;
   padding: 0px 6px;
   font-size: 18px;
 }
 .wrapper .wrappimgsport {
   background-color: rgba(11, 223, 152, 0);
   height: 43vh;
+  width: 1340px;
   display: flex;
-  gap: 20px;
+  gap: 25px;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
+  margin: 20px 0px 100px;
 }
 .wrapper .wrappimgsport .imgsport {
   background-color: white;
   height: 550px;
-  width: 500px;
+  width: 420px;
 }
 .wrapper .wrappimgsport .imgsport img {
-  width: 500px;
-  height: 280px;
+  width: 420px;
+  height: 220px;
 }
 .wrapper .wrappimgsport .imgsport .liteltitle {
   height: 20px;
@@ -41,7 +81,7 @@
 }
 .wrapper .londonweather {
   display: flex;
-  margin: 40px 40px 10px;
+  margin: 40px 40px 10px 15px;
   color: rgba(0, 0, 0, 0.684);
   justify-content: space-between;
   width: 280px;
@@ -58,14 +98,15 @@
   justify-content: space-evenly;
   display: flex;
   width: 600px;
-  margin: 0px 20px;
+  margin: 0px 0px;
 }
 .wrapper .wrappweather img {
   width: 130px;
 }
 .wrapper .wrappreel {
   background-image: url("https://w0.peakpx.com/wallpaper/187/823/HD-wallpaper-far-cry-5-nature-view.jpg");
-  height: 500px;
+  height: 450px;
+  width: 1260px;
   color: white;
   padding: 5px 40px 10px;
 }
@@ -86,10 +127,11 @@
   align-items: center;
   justify-content: center;
   color: #2982d0;
+  height: 300px;
 }
 .wrapper .wrappreel .wrappimgreel .imgreel {
-  width: 500px;
-  height: 340px;
+  width: 420px;
+  height: 280px;
   background-color: white;
   color: black;
   font-size: small;
@@ -98,6 +140,162 @@
   margin: 0px 5px;
 }
 .wrapper .wrappreel .wrappimgreel .imgreel img {
-  width: 500px;
+  width: 420px;
+  height: 220px;
+}
+.wrapper .titleEditorsPicks {
+  border-left: 3px solid #231cec;
+  color: rgba(0, 0, 0, 0.684);
+  height: 30px;
+  display: flex;
+  align-items: center;
+  margin: 20px 5px;
+  padding: 0px 6px;
+  font-size: 18px;
+}
+.wrapper .bacraundimg {
+  background-image: url("https://www.healthifyme.com/blog/wp-content/uploads/2022/01/shutterstock_1015800871-1-750x375.jpg");
+  height: 500px;
+  width: 900px;
+  color: white;
+}
+.wrapper .bacraundimg .text {
+  padding: 340px 20px;
+}
+.wrapper .bacraundimg .text p {
+  color: rgba(255, 255, 255, 0.77);
+}
+.wrapper .sargel {
+  background-color: #322d2d;
+  float: right;
+  width: 400px;
+  height: 560px;
+  margin: -500px 0px;
+}
+.wrapper .sargel .headline {
+  color: rgba(255, 255, 255, 0.823);
+  padding: 5px 10px;
+  font-size: 14px;
+  background-color: red;
+  height: 40px;
+  display: flex;
+}
+.wrapper .sargel .headline h3 {
+  margin: 0px;
+  padding: 5px;
+}
+.wrapper .sargel .line1 {
+  background-color: #4a4a4a;
+  height: 140px;
+  width: 400px;
+  margin: -12px 0px;
+  color: #a7a7a7;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.wrapper .sargel .line1 .namber p {
+  font-size: 16px;
+  padding: 10px 15px;
+  margin: 20px 5px 20px 20px;
+  background-color: red;
+  border-radius: 50%;
+  color: white;
+}
+.wrapper .sargel .line2 {
+  background-color: #323232;
+  height: 140px;
+  width: 400px;
+  margin: -12px 0px;
+  color: #a7a7a7;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.wrapper .sargel .line2 .namber p {
+  font-size: 16px;
+  padding: 10px 15px;
+  margin: 20px 5px 20px 20px;
+  background-color: red;
+  border-radius: 50%;
+  color: white;
+}
+.wrapper .wrappimg2 {
+  background-color: rgba(11, 223, 152, 0);
+  height: 43vh;
+  width: 900px;
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 0px 0px -40px 0px;
+}
+.wrapper .wrappimg2 .imgwrapp {
+  background-color: white;
+  height: 360px;
+  width: 288px;
+  box-shadow: 5px 5px 5px rgba(174, 174, 174, 0.265);
+}
+.wrapper .wrappimg2 .imgwrapp img {
+  width: 288px;
+  height: 180px;
+  margin: 0px 0px -20px 0px;
+}
+.wrapper .wrappimg2 .imgwrapp p {
+  color: rgba(0, 0, 0, 0.437);
+}
+.wrapper .wrappimg2 .imgwrapp .liteltitle {
+  height: 20px;
+  padding: 0px 3px;
+  border-left: 2px solid #231cec;
+  font-size: medium;
+}
+.wrapper .wrappdawn {
+  background-image: url("https://www.arborday.org/images/hero/hero-sunlight-streaming-through-colorful-forest-ATCB-USE-ONLY.jpg");
+  height: 450px;
+  width: 1260px;
+  color: white;
+  padding: 5px 40px 10px;
+  margin: 40px 0px 0px;
+}
+.wrapper .wrappdawn h1 {
+  border: 2px solid #09df09;
+  width: 190px;
+  height: 38px;
+}
+.wrapper .wrappdawn .visitreel {
+  float: right;
+  width: 190px;
+  height: 23px;
+  border: 2px solid white;
+  margin: 39px 10px;
+  border-radius: 50px;
+}
+.wrapper .wrappdawn .visitreel h3 {
+  margin: 0px 15px;
+}
+.wrapper .wrappdawn .wrappimgreel {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  color: #2982d0;
+  height: 300px;
+}
+.wrapper .wrappdawn .wrappimgreel .imgreel {
+  width: 420px;
   height: 280px;
+  background-color: white;
+  color: black;
+  font-size: small;
+}
+.wrapper .wrappdawn .wrappimgreel .imgreel h2 {
+  margin: 0px 5px;
+}
+.wrapper .wrappdawn .wrappimgreel .imgreel img {
+  width: 420px;
+  height: 220px;
 }
