@@ -7,14 +7,10 @@
 body {
     font-family: 'Open Sans', sans-serif;
     direction: rtl;
-    height: 100px;
-    overflow-y: scroll;
-    position: relative;
     background-color: whitesmoke;
 }
 
 .box {
-    display: flex;
     height: 700px;
     margin: 0 auto;
     background-color: white;
@@ -25,14 +21,9 @@ body {
     text-align: right;
     padding: 20px;
     display: flex;
-    justify-content: space-between;
     background-color: black;
     color: white;
     align-items: center;
-    justify-content: right;
-
-
-
 }
 
 .but-p1 {
@@ -130,23 +121,23 @@ body {
     margin-right: 35px;
     display: flex;
     flex-wrap: wrap;
-    align-content: stretch;
     gap: 17px;
-}
 
-
-
-.img-1 {
     img {
         border-radius: 20px;
         width: 200px;
     }
 
+    .small-1 {
+        height: 333px;
+    }
+
 }
 
-.small-1 {
-    height: 333px;
-}
+
+
+
+
 
 .big-1 {
     height: 448px;

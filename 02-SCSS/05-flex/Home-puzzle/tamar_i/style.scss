@@ -1,147 +1,126 @@
-body{
-    position: absolute;
+body {
+  position: absolute;
 }
-.header{
-    position: sticky;
-    top: 1px;
-    color: blue;
-    background-color: brown;
-    text-align: center;
+.header {
+  position: sticky;
+  top: 1px;
+  color: blue;
+  background-color: brown;
+  text-align: center;
 }
 
-.wapper{
+.wapper {
+  display: flex;
+  column-gap: 35px;
+
+  .column {
     display: flex;
-    gap: 35px;
+    flex-direction: column;
+    gap: 25px;
+    height: 5600px;
+    flex-wrap: wrap;
 
-
-    .column{
-        display: flex;
-        flex-direction: column;
-        gap: 25px;
-        height: 5600px;
-        flex-wrap: wrap;
-
-        .item1{
-            background-image: url(dog.jfif);
-            background-size: cover;
-            background-repeat: no-repeat;
-            height: 300px;
-            width: 200px;
-            border-radius: 15px;
-            background-position: center;
-        }
-
-        .item2{
-            background-image: url(fox.jpg);
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-position: center;
-            height: 200px;
-            width: 200px;
-            border-radius: 15px;
-        }
-
-        .item3{
-            background-image: url(lion.jpg);
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-position: center;
-            height: 800px;
-            width: 200px;
-            border-radius: 15px;
-        }
-
-        .item4{
-            background-image: url(rabbit.jpg);
-            background-size: cover;
-            background-repeat: no-repeat;
-            height: 400px;
-            width: 200px;
-            border-radius: 15px;
-            background-position: center;
-        }
-
-        .item5{
-            background-image: url(cat.jpg);
-            background-size: cover;
-            background-repeat: no-repeat;
-            height: 500px;
-            width: 200px;
-            border-radius: 15px;
-            background-position: center;
-        }
-
-        .item6{
-            background-image: url(pingi.jpg);
-            background-size: cover;
-            background-repeat: no-repeat;
-            height: 100px;
-            width: 200px;
-            border-radius: 15px;
-            background-position: center;
-        }
-
-        .item7{
-            background-image: url(frog.jpg);
-            background-size: cover;
-            background-repeat: no-repeat;
-            height: 300px;
-            width: 200px;
-            border-radius: 15px;
-            background-position: center;            
-        }
-
-        .item8{
-            background-image: url(lazy.jpg);
-            background-size: cover;
-            background-repeat: no-repeat;
-            height: 400px;
-            width: 200px;
-            border-radius: 15px;
-            background-position: center;
-        }
-
-        .item9{
-            background-image: url(littelrabbit.jpg);
-            background-size: cover;
-            background-repeat: no-repeat;
-            height: 500px;
-            width: 200px;
-            border-radius: 15px;
-            background-position: center;
-        }
-
-        .item10{
-            background-image: url(lovecat.jpg);
-            background-size: cover;
-            background-repeat: no-repeat;
-            height: 600px;
-            width: 200px;
-            border-radius: 15px;
-            background-position: center;
-        }
-
-        .item11{
-            background-image: url(foxi.jpg);
-            background-size: cover;
-            background-repeat: no-repeat;
-            height: 700px;
-            width: 200px;
-            border-radius: 15px;
-            background-position: center;
-        }
-
-        .item12{
-            background-image: url(tortul.jpg);
-            background-size: cover;
-            background-repeat: no-repeat;
-            height: 800px;
-            width: 200px;
-            border-radius: 15px;
-            background-position: center;
-        }
+    .item {
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      border-radius: 3px;
+      width: 200px;
     }
+
+    .item1 {
+      background-image: url(dog.jfif);
+      height: 300px;
+    }
+
+    .item2 {
+      background-image: url(fox.jpg);
+      height: 200px;
+    }
+
+    .item3 {
+      background-image: url(lion.jpg);
+      width: 200px;
+    }
+
+    .item4 {
+      background-image: url(rabbit.jpg);
+
+      height: 400px;
+    }
+
+    .item5 {
+      background-image: url(cat.jpg);
+
+      height: 500px;
+    }
+
+    .item6 {
+      background-image: url(pingi.jpg);
+      background-size: cover;
+
+      height: 100px;
+    
+      border-radius: 15px;
+      background-position: center;
+    }
+
+    .item7 {
+      background-image: url(frog.jpg);
+      background-size: cover;
+
+      height: 300px;
+      
+     
+    }
+
+    .item8 {
+      background-image: url(lazy.jpg);
+      background-size: cover;
+
+      height: 400px;
+   
+      
+    }
+
+    .item9 {
+      background-image: url(littelrabbit.jpg);
+      background-size: cover;
+
+      height: 500px;
+      width: 200px;
+      border-radius: 15px;
+      background-position: center;
+    }
+
+    .item10 {
+      background-image: url(lovecat.jpg);
+      background-size: cover;
+
+      height: 600px;
+      width: 200px;
+      border-radius: 15px;
+      background-position: center;
+    }
+
+    .item11 {
+      background-image: url(foxi.jpg);
+      background-size: cover;
+
+      height: 700px;
+      width: 200px;
+      border-radius: 15px;
+      background-position: center;
+    }
+
+    .item12 {
+      background-image: url(tortul.jpg);
+      background-size: cover;
+
+      height: 800px;
+      width: 200px;
+      border-radius: 15px;
+      background-position: center;
+    }
+  }
 }
-
-
-        

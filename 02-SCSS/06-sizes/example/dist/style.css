@@ -1,0 +1,18 @@
+html {
+  font-size: 12px;
+}
+
+.wrapper {
+  margin: auto;
+  width: 75ch;
+  border: 1px dashed gray;
+  text-align: justify;
+}
+.wrapper .imgBox {
+  width: 100%;
+  margin: 2px;
+  font-size: 1.2rem;
+}
+.wrapper .imgBox img {
+  width: 0%;
+}

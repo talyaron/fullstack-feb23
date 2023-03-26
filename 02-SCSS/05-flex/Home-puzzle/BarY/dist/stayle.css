@@ -7,9 +7,63 @@
 }
 .wrapper .top {
   width: 1340px;
-  height: 60px;
-  background-color: rgba(0, 0, 0, 0.897);
+  height: 70px;
+  background-color: black;
   margin-top: 0px;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+.wrapper .top .left {
+  display: flex;
+  margin-left: 30px;
+  gap: 20px;
+}
+.wrapper .top .left .bbc {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 30px;
+  color: black;
+  margin-left: 15px;
+}
+.wrapper .top .left .bbc .bbcleters {
+  background-color: #ffffff;
+  width: 30px;
+  height: 30px;
+  padding: 0px 0px 8px 6px;
+}
+.wrapper .top .left .icon {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+.wrapper .top .left .icon img {
+  width: 40px;
+  height: 40px;
+  float: right;
+}
+.wrapper .top .ditels {
+  align-items: center;
+  display: flex;
+  gap: 28px;
+  margin-left: 100px;
+  border-left: 2px solid #3f3f3f;
+  height: 30px;
+  padding-left: 10px;
+}
+.wrapper .top .search {
+  background-color: #3f3f3f;
+  height: 35px;
+  width: 215px;
+  display: flex;
+  align-items: center;
+}
+.wrapper .top .search img {
+  opacity: 0.2;
+  width: 40px;
+  float: right;
 }
 .wrapper .welcom {
   margin: 0px 15px 10px;
