@@ -1,0 +1,160 @@
+body{
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+
+
+    header{
+        display: flex;
+        align-items: center;
+        background-color: rgb(253, 252, 252);
+        height: 3.5rem;
+        margin-bottom: .75rem;
+        position: sticky;
+        z-index: 10;
+        top:0;
+        img{
+            width: 2em;
+            height: 2em;
+            margin-left: 1em;
+        }
+        .homeBtn{
+            color: white;
+            background-color: black;
+            border-radius: 2rem;
+            border: none;
+            padding: 1em;
+            margin-left: 1em;
+        }
+        p{ 
+            font-weight: bolder;
+            font-family: 'Courier New', Courier, monospace;
+            margin-left: 1em;
+        }
+        .searchBar{
+            color: grey;
+            background-color: rgba(185, 182, 182, 0.39);
+            padding: 1em;
+            border: none;
+
+            border-radius: 3em;
+            width:100%;
+            margin-left: 1em;
+        }
+        .fa-solid{
+            color: grey;
+            margin-left: 1em;
+            
+        }
+    }
+    .wrapper{
+       
+        
+        .flex-items{
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            height: 200vh;
+            gap: 1em;
+            width: 90vh;
+            margin-left: 15em;
+            
+            
+            
+            .item {
+                width: 14rem;
+                height: 20rem;
+                background-color: aqua;
+                border-radius: 1rem;
+                display: flex;
+                
+                
+                
+            
+                &__content {
+                height: 100%;
+                width: 100%;
+                opacity: 0; 
+                display: flex;
+                flex-direction: column;
+                transition: opacity 0.2s ease-in-out; 
+                justify-content: space-between;
+                align-items: end;
+                .icons{
+
+                    margin-bottom: .75rem;
+                    margin-right: .75rem;
+                    .fa-solid{
+                        padding: .10rem;
+                        border-radius: 50%;
+                        padding: .60rem;
+                        background-color: rgb(243, 237, 237);
+                        }
+                    }
+                    .saveBtn{
+                        width: fit-content;
+                        height: fit-content;
+                        color: white;
+                        background-color: red;
+                        padding: 1rem;
+                        border-radius: 2rem;
+                        border: none;
+                        margin-top: .75rem;
+                        margin-right: .75rem;
+                        
+                    }
+                }
+                &__content:hover {
+                    
+                    opacity: 1 ; 
+                    box-shadow: inset 0 0 100px 100px rgba(0, 0, 0, 0.39);
+                }    
+            }
+            .height1{
+                height: 10rem;
+            }
+            .height2{
+                height: 15rem;
+            }
+            .height3{
+                height: 25rem;
+            }
+        
+        }
+    }
+
+    .bground{
+        background-repeat: no-repeat;
+        background-size: cover;
+        &__1{
+            background-image: url(https://i.pinimg.com/564x/c7/84/ba/c784ba94662383127cd055e8c6ed51d3.jpg);
+
+        }
+        &__2{
+            background-image: url(https://i.pinimg.com/564x/ba/e7/a4/bae7a4273a6784644072bd62956e6a09.jpg);
+        }
+        &__3{
+            background-image: url(https://i.pinimg.com/564x/ff/64/30/ff6430302555da6c4585989bc07b84d4.jpg);
+        }
+        &__4{
+            background-image: url(https://i.pinimg.com/736x/ba/63/fb/ba63fb6cc2b902bdd2ea70c66f69b129.jpg);
+        }
+        &__5{
+            background-image: url(https://i.pinimg.com/564x/99/4d/18/994d18d6530c965aa24149fe7d95632c.jpg);
+        }
+        &__6{
+            background-image: url(https://i.pinimg.com/236x/a6/83/8e/a6838e21cb4fb9c01f93b5d4c89526d0.jpg);
+        }
+        &__7{
+            background-image: url(https://i.pinimg.com/236x/9a/b0/0b/9ab00b4791b0611edefaea00c4b457e9.jpg);
+        }
+        &__8{
+            background-image: url(https://i.pinimg.com/236x/32/8b/a0/328ba068371786faa3077a4a52299897.jpg);
+        }
+        &__9{
+            background-image: url(https://i.pinimg.com/236x/9e/91/78/9e91789fde9c14ecc221ff2ece676439.jpg);
+        }
+    }
+
+
+}

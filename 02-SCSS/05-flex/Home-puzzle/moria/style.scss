@@ -1,16 +1,57 @@
+* {
+    box-sizing: border-box;
+
+}
+
 body {
     margin: 0;
+
+    .row {
+
+        width: 92%;
+        height: 75%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+
+        img {
+            min-width: 100%;
+
+            // max-height: 50%;
+        }
+
+
+        .box {
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 30%;
+            height: 80%;
+            padding: 4px;
+
+            .text {
+                flex-wrap: wrap;
+                width: 100%;
+            }
+
+        }
+    }
 
     .container {
         font-family: sans-serif;
 
+
         header {
-            padding-left: 50px;
+            padding-left: 85px;
             background: black;
             color: white;
             height: 60px;
             width: 100%;
             display: flex;
+            font-weight: bold;
 
 
             .logo {
@@ -45,7 +86,7 @@ body {
             }
 
             ul {
-                margin-left: 40px;
+                margin-left: 75px;
                 justify-content: space-between;
                 list-style: none;
                 display: flex;
@@ -60,8 +101,8 @@ body {
                 }
 
                 li:last-child {
-                    font-size: 35px;
-                    padding-top: 3px;
+                    font-size: 30px;
+                    padding-top: 6px;
                     height: 60px;
                 }
 
@@ -74,17 +115,304 @@ body {
 
             .Search {
                 display: flex;
+                justify-content: flex-start;
+                align-items: center;
                 background: #5E5E62;
-                padding-top: 8px;
-                height: 20px;
-                width: 250px;
+                margin: 13px 60px;
+                height: 35px;
+                width: 230px;
+
 
                 i {
-                    padding-left: 4px;
+                    padding: 0 6px;
+
                 }
             }
         }
 
+        .strip {
+            padding: 0 90px;
 
+            .Welcome {
+                justify-content: space-between;
+                display: flex;
+                font-size: 20px;
+                height: 60px;
+                display: flex;
+
+                align-items: center;
+
+                .bold {
+                    font-weight: bold;
+                }
+            }
+
+            .images {
+                width: 100%;
+                height: 45vh;
+                color: white;
+                display: flex;
+
+
+
+
+                .image {
+                    width: 50%;
+                    height: 310px;
+                    background: url(images/fire.jpg) no-repeat center center/ cover;
+                    font-size: x-large;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: flex-end;
+                    margin-right: 15px;
+                    padding-left: 2px;
+
+                    span:first-child {
+                        font-size: 40px;
+                    }
+
+                    span:last-child {
+                        font-size: 14px;
+                    }
+
+                }
+
+                .four {
+
+                    flex-wrap: wrap;
+                    display: flex;
+                    width: 50%;
+
+                    .back {
+                        margin: 5px;
+                        margin-left: 15px;
+                        padding-left: 2px;
+                        width: 40%;
+                        height: 140px;
+                        font-size: 13px;
+                        justify-content: flex-end;
+                        display: flex;
+                        flex-direction: column;
+
+
+                        span {
+                            font-size: 22px;
+                        }
+                    }
+
+                    .back1 {
+                        background: url(images/explosion.jpg) no-repeat center center/cover;
+
+                    }
+
+                    .back2 {
+                        background: url(images/soldiers.jpg) no-repeat center center/cover;
+
+                    }
+
+                    .back3 {
+                        background: url(images/ball.jpg) no-repeat center center/cover;
+
+                    }
+
+                    .back4 {
+                        background: url(images/bi.jpg) no-repeat center center/cover;
+
+                    }
+
+
+                }
+            }
+
+
+
+
+
+            .taital {
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+
+                p {
+                    background: #E5E5E5;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    margin-left: 15px;
+                    font-size: 13px;
+                    height: 20px;
+                    display: flex;
+
+                }
+            }
+
+
+
+        }
+
+        main {
+            .Photos {
+                width: 100%;
+                height: 500px;
+                background: red;
+                padding: 0 120px;
+                background: url(images/View.jpg) no-repeat center center/cover;
+
+                .taitel_box {
+                    display: flex;
+                    justify-content: space-between;
+                    color: white;
+
+                    h1 {
+                        font-size: 50px;
+                        padding-bottom: 0;
+                        margin-bottom: 0;
+                    }
+
+                    h2 {
+                        border: solid 4px green;
+                        padding: 15px;
+                        width: 195px;
+                    }
+
+
+
+                    .button {
+                        font-size: 20px;
+                        margin-top: 25px;
+                        border: 2px white solid;
+                        border-radius: 20px;
+                        height: 33px;
+                        max-width: fit-content;
+                        align-items: center;
+                        justify-content: space-around;
+                        display: flex;
+                        padding: 7px;
+
+                        i {
+                            margin-left: 4px;
+                        }
+                    }
+                }
+
+                .boxes {
+                    display: flex;
+                    width: 100%;
+                    justify-content: space-between;
+
+                    .box_Photos {
+                        background: white;
+
+                        img {
+                            width: 410px;
+
+                        }
+
+                        h2 {
+                            padding: 4px;
+                            background: white;
+                            color: black;
+                            width: 410px;
+                            height: 40px;
+                            margin-top: 0;
+                            padding-top: 0;
+                        }
+                    }
+                }
+
+            }
+
+            .pag2 {
+                display: flex;
+                padding: 50px;
+                margin-left: 50px;
+                height: 1450px;
+
+                .box_dark {
+
+
+                    width: 330px;
+                    background: #262626;
+                    color: white;
+                    height: 650px;
+
+
+                    p {
+
+                        padding: 50px;
+                        height: 65px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        font-size: 20px;
+
+
+                        span {
+
+                            background: red;
+                            border-radius: 100%;
+                            width: 125px;
+                            height: 45px;
+                            margin: 0 20px;
+                            font-size: 20px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            margin-left: 0;
+                        }
+                    }
+
+                    h3 {
+                        background: red;
+                        color: white;
+                        height: 30px;
+                        margin-top: 0;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                    }
+
+                    p:nth-of-type(2n) {
+                        background-color: #191919;
+
+                    }
+                }
+
+                .rows {
+                    width: 70%;
+                    height: 400px;
+                    margin-right: 20px;
+
+
+
+                    .img {
+                        width: 885px;
+                        height: 400px;
+                        color: white;
+                        padding: 10px;
+                        display: flex;
+                        align-items: flex-start;
+                        flex-direction: column;
+                        justify-content: flex-end;
+                        background: url(images/house3.jpg) no-repeat center center/cover;
+                        font-size: 20;
+                        margin: 60px;
+                        margin-top: 10px;
+
+                        span {
+                            font-size: 40px;
+                            font-weight: 40px;
+                        }
+                    }
+
+                    .row {
+
+                        margin-top: 105px;
+                        margin-left: 50px;
+                    }
+                }
+            }
+
+        }
     }
 }

@@ -1,0 +1,162 @@
+.wrapper {
+  margin: auto;
+  width: 3500px;
+  height: 2000px;
+}
+
+.Part1 {
+  width: 90%;
+  height: 40%;
+  background-image: url(https://www.misgeret.co.il/wht_Images/catalog/subject/image_content_369.jpg);
+  background-size: cover;
+}
+.Part1 h1 {
+  position: relative;
+  top: 30px;
+  left: 100px;
+  font-size: 90px;
+  color: white;
+}
+.Part1 h2 {
+  border: solid white;
+  width: 10%;
+  height: 5%;
+  border-radius: 30px;
+  position: relative;
+  left: 2200px;
+  bottom: 50px;
+  font-size: 30px;
+  text-align: center;
+  color: white;
+}
+.Part1 p {
+  position: relative;
+  top: -85px;
+  left: 110px;
+  font-size: 30px;
+  color: white;
+}
+
+.Photos {
+  display: flex;
+  gap: 30px;
+  margin-left: 100px;
+  margin-top: -80px;
+}
+
+.box {
+  display: inline;
+  background-color: white;
+}
+.box img {
+  width: 800px;
+  height: 350px;
+}
+.box p {
+  color: black;
+  font-size: 30px;
+  position: relative;
+  top: -25px;
+  font-size: 50px;
+}
+
+.Part2 {
+  width: 100%;
+}
+.Part2 h1 {
+  position: relative;
+  top: 60px;
+  left: 100px;
+  font-size: 90px;
+  color: black;
+  border-left: solid #1212a6;
+  padding-left: 10px;
+}
+
+.Part2 {
+  width: 3000px;
+  position: relative;
+  top: 5px;
+}
+
+.ImgPart2 img {
+  position: relative;
+  left: 100px;
+  top: 40px;
+  width: 1600px;
+}
+.ImgPart2 p {
+  position: relative;
+  top: -290px;
+  font-size: 80px;
+  font-weight: 600;
+  color: white;
+}
+
+.PartDown {
+  width: 70%;
+  display: flex;
+  gap: 15px;
+  position: relative;
+  left: 150px;
+  flex-wrap: wrap;
+}
+
+.box2 {
+  display: inline;
+  background-color: #e5e3e3;
+  height: 620px;
+  position: relative;
+  bottom: 180px;
+  right: 45px;
+}
+.box2 img {
+  width: 522px;
+  height: 290px;
+}
+.box2 h3 {
+  font-size: 60px;
+  position: relative;
+  bottom: 20px;
+}
+.box2 p {
+  margin-top: 50px;
+  color: gray;
+  position: relative;
+  left: 20px;
+}
+
+.column {
+  width: 1000px;
+  height: 1700px;
+  position: relative;
+  bottom: 2370px;
+  left: 1800px;
+}
+
+.Paragraph {
+  display: flex;
+  width: 1200px;
+  height: 350px;
+  background-color: #565656;
+}
+.Paragraph h1 {
+  width: 120px;
+  height: 110px;
+  text-align: center;
+  border-left: none;
+  background-color: red;
+  border-radius: 90px;
+  color: white;
+  font-size: 80px;
+}
+.Paragraph p {
+  position: relative;
+  top: 75px;
+  left: 130px;
+  font-size: 40px;
+}
+
+.black {
+  background-color: #3c3c3c;
+}
