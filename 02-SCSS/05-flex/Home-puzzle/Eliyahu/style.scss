@@ -51,6 +51,8 @@ body {
     height: 30px;
     border-radius: 14px;
     padding-right: 10px;
+    position: sticky;
+    top: 10px;
     
 
 }
@@ -102,4 +104,77 @@ body {
    
     font-size: 10px;
     color: rgb(88, 88, 88);
+}
+.middle {
+    position: relative;
+    right: 40px;
+    display: flex;
+    flex-direction: row;
+    height: 20px;
+    margin-left: 40px;
+    padding-top: 40px;
+    gap: 10px;
+    font-family: 'Comic Neue', cursive;
+    font-family: 'Heebo', sans-serif;
+    flex: 10;
+    h2 {
+        text-decoration:double;
+        margin-bottom: 0px;
+        font-size: 18px;
+    }
+    h3{
+        margin-top: 0px;
+        font-size: 12px;
+        padding-left: 70px;
+
+    }
+}
+.no{
+    flex: 8;
+    h2{
+        color:rgb(0, 0, 0);
+        border-radius: 14px;
+        background-color:lightgray;
+        width: 50px;
+        height: 30px;
+        font-size: 10px;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+}
+}
+.setting{
+    width: 150px;
+    h2{
+        color:rgb(255, 255, 255);
+        border-radius: 14px;
+        background-color:red;
+        
+        height: 30px;
+        font-size: 10px;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        flex: 7;
+        margin-left: 40px;
+}
+}
+
+.images {
+    height: 800px;
+    margin-top: 90px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 20px;
+    img{
+        width: 150px;
+        border-radius: 20px;
+    }
+}
+.img2 {
+    height: 300px;
+}
+.img1{
+    height: 200px;
 }
