@@ -1,0 +1,40 @@
+.wrapper{
+   margin-top: 50px;
+   margin-left: 50px;
+   margin-right: 50px;
+   column-count: 7;
+   column-gap: 15px;
+   
+
+   img{
+    padding-bottom: 15px;
+    border-radius: 20px;
+    height: 180%;
+    cursor: zoom-in;
+    transition: transform .2s;
+  
+    }
+    img:hover{
+        opacity: 0.8;
+        transform: scale(1.2);
+        
+    }
+   
+   
+   }
+
+.navbar{
+   position: sticky;
+   top: 0;
+}
+.column{
+    display: flex;
+    flex-direction: column-reverse;
+    flex-wrap: nowrap;
+    align-content: space-between;
+    justify-content: space-between;
+    align-items: stretch;
+    
+
+}
+
