@@ -1,0 +1,13 @@
+body {
+  background-color: antiquewhite;
+}
+body img {
+  max-width: 250px;
+  border-radius: 7%;
+  margin: 10px;
+}
+body .wrapper {
+  columns: 6 250px;
+  column-gap: 0.5em;
+  display: block;
+}
