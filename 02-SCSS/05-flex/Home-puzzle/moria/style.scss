@@ -1,6 +1,43 @@
+* {
+    box-sizing: border-box;
+
+}
+
 body {
     margin: 0;
 
+    .row {
+
+        width: 92%;
+        height: 450px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+
+        img {
+            min-width: 400px;
+            max-height: 250px;
+        }
+
+
+        .box {
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 30%;
+            height: 470px;
+            padding: 4px;
+
+            .text {
+                flex-wrap: wrap;
+                width: 350px;
+            }
+
+        }
+    }
 
     .container {
         font-family: sans-serif;
@@ -64,7 +101,7 @@ body {
 
                 li:last-child {
                     font-size: 30px;
-                    padding-top: 13px;
+                    padding-top: 6px;
                     height: 60px;
                 }
 
@@ -219,36 +256,9 @@ body {
                 }
             }
 
-            .row {
 
-                width: 92%;
-                height: 450px;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
 
-                img {
-                    min-width: 400px;
-                    max-height: 250px;
-                }
 
-                .box {
-
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: center;
-                    align-items: center;
-                    width: 30%;
-                    height: 470px;
-                    padding: 4px;
-
-                    .text {
-                        flex-wrap: wrap;
-                        width: 350px;
-                    }
-
-                }
-            }
 
             .taital {
                 display: flex;
@@ -264,6 +274,120 @@ body {
             }
 
 
+
+        }
+
+        main {
+            .Photos {
+                width: 100%;
+                height: 500px;
+                background: red;
+                padding: 0 120px;
+                background: url(images/View.jpg) no-repeat center center/cover;
+
+                .taitel_box {
+                    display: flex;
+                    justify-content: space-between;
+                    color: white;
+
+                    h1 {
+                        font-size: 50px;
+                        padding-bottom: 0;
+                        margin-bottom: 0;
+                    }
+
+                    h2 {
+                        border: solid 2px green;
+                        padding: 15px;
+                        width: 195px;
+                    }
+
+
+
+                    .button {
+                        font-size: 20px;
+                        margin-top: 25px;
+                        border: 2px white solid;
+                        border-radius: 20px;
+                        height: 33px;
+                        width: 130px;
+                        align-items: center;
+                        justify-content: space-around;
+                        display: flex;
+                    }
+                }
+
+                .boxes {
+                    display: flex;
+                    width: 100%;
+                    justify-content: space-between;
+
+                    .box_Photos {
+                        background: white;
+
+                        img {
+                            width: 410px;
+
+                        }
+
+                        h2 {
+                            padding: 4px;
+                            background: white;
+                            color: black;
+                            width: 410px;
+                            height: 40px;
+                            margin-top: 0;
+                            padding-top: 0;
+                        }
+                    }
+                }
+
+            }
+
+            .pag2 {
+                // display: flex;
+
+                .box_derk {
+
+
+                    width: 320px;
+                    background: #262626;
+                    color: white;
+
+
+                    p {
+
+                        padding: 50px;
+                        height: 65px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        font-size: 20px;
+
+                        span {
+                            background: red;
+                            border-radius: 100%;
+                            width: 125px;
+                            height: 45px;
+                            margin: 0 20px;
+                            font-size: 20px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            margin-left: 0;
+                        }
+                    }
+
+                    h3 {
+                        background: red;
+                        color: white;
+                    }
+
+                    p:nth-of-type(2n) {
+                        background-color: #191919;
+                    }
+                }
+            }
 
         }
     }
