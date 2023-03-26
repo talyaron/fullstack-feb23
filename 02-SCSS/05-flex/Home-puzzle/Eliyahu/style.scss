@@ -1,5 +1,6 @@
 body {
     height: 100vh;
+    width: 1250px;
 }
 .top {
     display: flex;
@@ -161,20 +162,27 @@ body {
 }
 
 .images {
-    height: 800px;
+    height: 1000px;
     margin-top: 90px;
     display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    gap: 20px;
+    flex-direction: row;
+        justify-content: space-around;
+
     img{
-        width: 150px;
+        width: 130px;
         border-radius: 20px;
     }
 }
-.img2 {
-    height: 300px;
-}
-.img1{
-    height: 200px;
+
+.column{
+    flex-direction: column;
+    justify-content: space-between;
+    .img2 {
+        height: 300px;
+
+    }
+    .img1{
+        height: 200px;
+    }
+
 }
