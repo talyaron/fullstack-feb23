@@ -4,12 +4,12 @@
   margin: auto;
 }
 .ad__ad1 {
-  background-image: url();
+  background-image: url("./img/small_ad.jpg");
 }
 .ad__ad2 {
-  background-image: url();
+  background-image: url(./img/big_ad.jpg);
 }
 
 .saied_ad {
-  background-image: url();
+  background-image: url(./img/saied_ad.jpg);
 }
