@@ -1,3 +1,7 @@
+body {
+  direction: rtl;
+}
+
 .wrapper .header__toolbar {
   background-color: #cd0007;
   color: white;
@@ -17,9 +21,13 @@
   align-items: center;
   justify-content: center;
 }
+.topnav a:hover {
+  text-decoration: underline;
+}
 
 .topnav a {
   color: #333538;
+  font-weight: 600;
   padding: 10px 23px;
   text-decoration: none;
   font-size: 15px;
