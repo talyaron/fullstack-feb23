@@ -15,9 +15,21 @@ body {
   margin: 0 auto;
   max-width: 100%;
 }
-.wrapper__main12 {
+.wrapper .header__main12 {
+  display: flex;
   background-color: red;
-  width: 100%;
+  align-items: center;
+}
+.wrapper .header__main12__img1 {
+  margin-right: 10%;
+  width: 18%;
+}
+.wrapper .header__main12__img2 {
+  width: 22px;
+  margin-right: 2px;
+}
+.wrapper .header__main12__weather {
+  font-size: 13px;
 }
 .wrapper span {
   margin-right: 15%;
@@ -56,58 +68,55 @@ body {
   margin-top: 0.1%;
   margin-right: 14%;
 }
-
-.mainads {
+.wrapper .mainads {
   display: flex;
   align-items: flex-end;
 }
-.mainads__img {
+.wrapper .mainads__img {
   margin: 0;
   margin-top: 1%;
   margin-left: 1%;
   margin-right: 7.5%;
   width: 4%;
 }
-.mainads__p {
+.wrapper .mainads__p {
   font-size: large;
   color: #959494;
   font-size: 15px;
 }
-.mainads__spam {
+.wrapper .mainads__spam {
   color: #959494;
 }
-
-.spam2 {
+.wrapper .spam2 {
   margin-right: 4%;
   font-size: 23px;
   color: red;
 }
-
-.wrapper__text img {
+.wrapper .wrapper__text img {
   margin-top: 2%;
   margin-right: 8%;
   width: 86%;
 }
-.wrapper__text .img-2 {
+.wrapper .wrapper__text .img-2 {
   float: right;
   width: 15%;
   margin-right: 14%;
 }
-.wrapper__text__p2 {
+.wrapper .wrapper__text__p2 {
   padding: 4px;
   margin-right: 14%;
   color: #959494;
   font-size: 75%;
 }
-.wrapper__text__p3 {
+.wrapper .wrapper__text__p3 {
   text-align: justify;
   margin-top: 2%;
   font-size: 1.125rem;
 }
-.wrapper__text__moreads {
+.wrapper .wrapper__text__moreads {
   display: flex;
   float: left;
 }
-.wrapper__text__moreads h2 {
+.wrapper .wrapper__text__moreads h2 {
   display: flex;
 }
