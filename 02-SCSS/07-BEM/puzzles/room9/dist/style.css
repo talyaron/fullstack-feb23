@@ -4,28 +4,36 @@ body {
   line-height: 1;
   direction: rtl;
   font-family: arial;
+  list-style: none;
 }
 
 /*@@@@@ - Neve Homework - @@@@@*/
 /*@@@@@ - Doriel Homework - @@@@@*/
+.blockBig {
+  width: 100%;
+  position: flex;
+  justify-self: center;
+  align-items: center;
+}
+
 .block .main {
   width: 100%;
   position: relative;
   left: 50%;
   right: 50%;
-  margin-left: -50vw;
-  margin-right: -50vw;
+  justify-content: center;
 }
 .block .main img {
   width: 100%;
-  display: block;
   max-height: 540px;
   direction: rtl;
   overflow: clip;
+  margin-left: -50vw;
+  margin-right: -50vw;
 }
 .block .main img h2 {
   position: absolute;
-  bottom: 10px;
+  bottom: 0;
   width: 100%;
 }
 /*@@@@@ - Tom Homework - @@@@@*/
