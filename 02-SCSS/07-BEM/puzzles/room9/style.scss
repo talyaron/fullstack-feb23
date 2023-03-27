@@ -1,3 +1,39 @@
-.header{
-    
+$bodyW: 100%;
+$bodyH: 100%;
+body{
+    width: $bodyW;
+    height: $bodyH;
+    line-height: 1;
+    direction: rtl;
+    font-family: arial;
+}
+
+
+
+/*@@@@@ - Doriel Homework - @@@@@*/   
+.block .main{
+    width: $bodyW;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+
+    img{
+        width: 100%;
+        display: block;
+        max-height: 540px;
+        direction: rtl;
+        overflow: clip;
+
+        h2{
+            position: absolute;
+            bottom: 10px;
+            width: 100%;
+        }
+
+        p{
+
+        }
+    }
 }
