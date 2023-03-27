@@ -291,3 +291,7 @@ body .wrapper .listTabs__tabList__item {
 body .wrapper .listTabs__tabList__item p {
   font-size: 0.8em;
 }
+body .wrapper .listTabs__tabList__item--Modifier {
+  color: white;
+  background-color: yellow;
+}
