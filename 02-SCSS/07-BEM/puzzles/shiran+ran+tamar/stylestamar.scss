@@ -1,0 +1,24 @@
+// ad block
+
+.ad{
+    display: flex;
+    gap: 10px;
+    margin: auto;
+    height: 300px;
+
+    &__ad1{
+        background-image: url(./img/small_ad.jpg);
+        flex: 1;
+    }
+           
+    &__ad2{
+        background-image: url(./img/big_ad.jpg);
+        flex: 2;
+    }
+}
+
+.saied_ad{
+    background-image: url(./img/saied_ad.jpg);
+    padding-right: 3px;
+    position: sticky;
+}
