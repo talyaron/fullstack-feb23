@@ -1,0 +1,15 @@
+.ad {
+  display: flex;
+  gap: 10px;
+  margin: auto;
+}
+.ad__ad1 {
+  background-image: url();
+}
+.ad__ad2 {
+  background-image: url();
+}
+
+.saied_ad {
+  background-image: url();
+}
