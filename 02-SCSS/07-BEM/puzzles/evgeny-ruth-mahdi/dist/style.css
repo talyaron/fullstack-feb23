@@ -1,8 +1,23 @@
+@import url("https://fonts.googleapis.com/css2?family=Butterfly+Kids&family=IBM+Plex+Sans+Hebrew&family=Open+Sans:wght@300;400&family=Oswald&family=Rubik:ital,wght@0,400;1,300;1,400&display=swap");
+* {
+  padding: 0%;
+  margin: 0;
+  font-family: Rubik;
+}
+
 body {
   height: 100vh;
 }
-body header {
-  background-color: rgba(0, 0, 0, 0.303);
-  height: 12em;
+body .header {
+  background-color: white;
+  box-shadow: 2px 2px 4px #dadada;
+  height: 70px;
   display: flex;
+}
+body .header__ctg ul {
+  display: flex;
+  list-style-type: none;
+}
+body .header__ctg ul li {
+  padding: 5px;
 }
