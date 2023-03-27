@@ -1,0 +1,56 @@
+.wrapper {
+  width: 755px;
+  height: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+  gap: 20px;
+}
+.wrapper .wrapper__box1 {
+  width: 755px;
+  height: 100%;
+  display: flex;
+  background-color: #0b0b3d;
+}
+.wrapper .wrapper__box1 img {
+  width: 500px;
+  height: 100%;
+}
+.wrapper .wrapper__box1 .text {
+  direction: rtl;
+  margin-top: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  color: white;
+}
+.wrapper .wrapper__box1 .wrapper__box1--text1 {
+  font-size: 30px;
+}
+.wrapper .wrapper__box1 .wrapper__box1--text2 {
+  font-size: 15px;
+  margin-left: 80px;
+}
+.wrapper .wrapper__box2 {
+  display: flex;
+  justify-content: center;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+.wrapper .wrapper__box2 img {
+  width: 170px;
+}
+.wrapper .wrapper__box2 .wrapper__box2__e {
+  width: 170px;
+  direction: rtl;
+}
+.wrapper .wrapper__box2 .wrapper__box2__e .wrapper__box2__e--p1 {
+  font-size: 17px;
+  margin: 0;
+  font-weight: bold;
+}
+.wrapper .wrapper__box2 .wrapper__box2__e .wrapper__box2__e--p2 {
+  font-size: 14px;
+  margin: 0;
+}
+.wrapper .wrapper__box2 .wrapper__box2__e .wrapper__box2__e--p3 {
+  font-size: 12px;
+  margin: 0;
+  color: #6c6e70;
+}
