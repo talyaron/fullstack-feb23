@@ -1,0 +1,308 @@
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+}
+
+header {
+  background-color: #000;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: bold;
+  font-size: 14px;
+}
+header .wrapper-header {
+  width: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+header .wrapper-header .wrapper-logo {
+  display: flex;
+  align-items: center;
+}
+header .wrapper-header .logo {
+  margin: 5px;
+  padding: 5px 8px;
+  text-transform: uppercase;
+  color: #000;
+  background-color: #fff;
+  font-weight: bold;
+  font-size: 20px;
+}
+header .wrapper-header .sign-in {
+  justify-content: flex-start;
+  width: 76rem;
+  height: 100%;
+  max-width: 176px;
+}
+header .wrapper-header .sign-in svg {
+  stroke: #fff;
+  fill: #fff;
+  width: 22px;
+}
+header nav {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+header .btn {
+  background-color: transparent;
+  border: none;
+  padding: 10px;
+  font-weight: bold;
+  color: #fff;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+header .underline-btn:hover {
+  border-bottom: 1px solid white;
+  cursor: pointer;
+}
+header .underline-red:hover {
+  border-bottom: 1px solid red;
+}
+header .underline-yellow:hover {
+  border-bottom: 1px solid yellow;
+}
+header .underline-blue:hover {
+  border-bottom: 1px solid blue;
+}
+header .underline-green:hover {
+  border-bottom: 1px solid green;
+}
+header .underline-darkblue:hover {
+  border-bottom: 1px solid darkblue;
+}
+header .underline-purple:hover {
+  border-bottom: 1px solid purple;
+}
+header .dots,
+header .svg-search-bar {
+  stroke: #fff;
+  width: 22px;
+}
+header .search-bar {
+  width: 23.5rem;
+  height: 100%;
+  max-width: 224px;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+header .search-bar:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+}
+
+.wrapper {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.welcome {
+  margin-bottom: 2rem;
+  color: #fff;
+}
+.welcome .image {
+  position: relative;
+  background-size: cover;
+}
+.welcome .image:hover {
+  filter: brightness(1.25);
+  cursor: pointer;
+}
+.welcome .welcome-title {
+  display: flex;
+  padding-bottom: 1rem;
+  justify-content: space-between;
+  align-items: center;
+}
+.welcome .welcome-title h2 {
+  color: #4a4a4a;
+  font-size: 22px;
+}
+.welcome .welcome-title p {
+  color: #8c8c8c;
+  font-size: 22px;
+}
+.welcome .welcome-articles {
+  display: flex;
+  gap: 16px;
+}
+.welcome .content-article {
+  padding: 1rem;
+  position: absolute;
+  bottom: 0;
+}
+.welcome .main-image {
+  background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.6)), url(https://ichef.bbc.co.uk/wwhp/624/cpsprodpb/E48D/production/_129090585_rahul3.jpg);
+  width: 616px;
+  height: 346px;
+}
+.welcome h3 {
+  color: #fff;
+}
+.welcome .title-img {
+  font-size: 2rem;
+}
+.welcome .desc-img {
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  color: #d3d3d3;
+}
+.welcome .tag-article {
+  font-size: 0.8rem;
+  margin-top: 1rem;
+  text-transform: uppercase;
+  border-left: 2px solid red;
+  padding-left: 5px;
+}
+.welcome .secondary-images {
+  display: flex;
+  flex-wrap: wrap;
+  width: 50%;
+  row-gap: 1rem;
+  justify-content: space-between;
+}
+.welcome .secondary-images h3 {
+  font-size: 20px;
+  font-weight: 400;
+}
+.welcome .secondary-images article {
+  width: 48%;
+}
+.welcome .secondary-images #first-article {
+  background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.6)), url(https://ichef.bbc.co.uk/wwhp/304/cpsprodpb/137AC/production/_129088797_gettyimages-1234404618-1.jpg);
+}
+.welcome .secondary-images #second-article {
+  background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.6)), url(https://ichef.bbc.co.uk/wwhp/304/cpsprodpb/37E5/production/_129090341_canadagetty.jpg);
+}
+.welcome .secondary-images #third-article {
+  background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.6)), url(https://ichef.bbc.co.uk/wwhp/304/ibroadcast/images/live/p0/fb/8h/p0fb8h8g.jpg);
+}
+.welcome .secondary-images #fourth-article {
+  background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.6)), url(https://ichef.bbc.co.uk/wwhp/304/ibroadcast/images/live/p0/fb/8j/p0fb8j2f.jpg);
+}
+
+img:hover {
+  filter: brightness(1.1);
+  cursor: pointer;
+}
+
+.article-component {
+  margin-bottom: 2rem;
+}
+.article-component h2 {
+  color: #4a4a4a;
+  font-size: 22px;
+  border-left: 3px solid red;
+  padding-left: 8px;
+  margin-bottom: 1rem;
+}
+.article-component h3 {
+  font-weight: bold;
+  color: #212121;
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+.article-component p {
+  color: #4a4a4a;
+  margin-bottom: 1rem;
+}
+.article-component .tag-article {
+  color: #767676;
+  border-left: 2px solid red;
+  padding-left: 8px;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+}
+
+.article-wrapper {
+  display: flex;
+  gap: 1rem;
+  width: 1268px;
+}
+.article-wrapper article {
+  width: 33%;
+}
+.article-wrapper article img {
+  width: 100%;
+}
+
+.cards-wrapper {
+  padding: 20px;
+  font-family: sans-serif;
+  color: #444444;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)), url(./p0836dcl.jpg);
+}
+.cards-wrapper .reel-wrapper {
+  max-width: 1300px;
+  margin: 0 auto;
+}
+.cards-wrapper .reel-wrapper .title {
+  color: #fff;
+  padding: 1rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.cards-wrapper .reel-wrapper h2 {
+  font-size: 3rem;
+}
+.cards-wrapper .reel-wrapper h3 {
+  font-size: 1rem;
+}
+.cards-wrapper .reel-wrapper button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  color: #fff;
+  background-color: transparent;
+  border-radius: 40px;
+  width: 150px;
+  border: 2px white solid;
+  height: 40px;
+}
+.cards-wrapper .reel-wrapper button svg {
+  fill: #fff;
+  stroke: #fff;
+  width: 22px;
+}
+.cards-wrapper .reel-wrapper button:hover {
+  cursor: pointer;
+}
+.cards-wrapper .flex-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+.cards-wrapper .cards {
+  background-color: white;
+  max-width: 400px;
+  height: auto;
+}
+.cards-wrapper .cards img {
+  max-width: 400px;
+  height: auto;
+}
+.cards-wrapper .cards .title-wrapper {
+  display: flex;
+  align-items: center;
+  height: 60px;
+}
+.cards-wrapper .cards .title-wrapper h2 {
+  margin: 0;
+  margin: 0 10px;
+  font-size: 18px;
+}

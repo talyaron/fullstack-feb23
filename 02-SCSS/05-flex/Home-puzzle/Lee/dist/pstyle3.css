@@ -1,0 +1,13 @@
+body {
+  background-color: antiquewhite;
+}
+body img {
+  width: 92%;
+  border-radius: 7%;
+  margin: 10px;
+}
+body .wrapper {
+  columns: 6 300px;
+  column-gap: 25px;
+  display: block;
+}
