@@ -1,0 +1,122 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  direction: rtl;
+  margin: 0 auto;
+  font-family: sans-serif;
+  background-color: whitesmoke;
+}
+
+.wrapper {
+  background-color: white;
+  margin: 0 auto;
+  max-width: 100%;
+}
+.wrapper .header__main12 {
+  display: flex;
+  background-color: red;
+  align-items: center;
+}
+.wrapper .header__main12__img1 {
+  margin-right: 10%;
+  width: 18%;
+}
+.wrapper .header__main12__img2 {
+  width: 22px;
+  margin-right: 2px;
+}
+.wrapper .header__main12__weather {
+  font-size: 13px;
+}
+.wrapper span {
+  margin-right: 15%;
+  font-weight: 700;
+  color: red;
+  font-size: 30px;
+}
+.wrapper__ads img {
+  margin-right: 13%;
+  max-width: 70%;
+  margin-bottom: 20px;
+}
+.wrapper__ads-1 img {
+  float: right;
+  margin-right: 1%;
+  max-width: 10%;
+}
+.wrapper__ads-2 img {
+  margin-left: 17%;
+  max-width: 20%;
+  float: left;
+}
+.wrapper__text {
+  background-color: white;
+  max-width: 50%;
+  margin-right: 8%;
+}
+.wrapper__text__h1 {
+  margin-top: 2%;
+  margin-right: 14%;
+  font-size: 40px;
+}
+.wrapper__text__h2 {
+  text-align: justify;
+  font-size: 20px;
+  margin-top: 0.1%;
+  margin-right: 14%;
+}
+.wrapper .mainads {
+  display: flex;
+  align-items: flex-end;
+}
+.wrapper .mainads__img {
+  margin: 0;
+  margin-top: 1%;
+  margin-left: 1%;
+  margin-right: 7.5%;
+  width: 4%;
+}
+.wrapper .mainads__p {
+  font-size: large;
+  color: #959494;
+  font-size: 15px;
+}
+.wrapper .mainads__spam {
+  color: #959494;
+}
+.wrapper .spam2 {
+  margin-right: 4%;
+  font-size: 23px;
+  color: red;
+}
+.wrapper .wrapper__text img {
+  margin-top: 2%;
+  margin-right: 8%;
+  width: 86%;
+}
+.wrapper .wrapper__text .img-2 {
+  float: right;
+  width: 15%;
+  margin-right: 14%;
+}
+.wrapper .wrapper__text__p2 {
+  padding: 4px;
+  margin-right: 14%;
+  color: #959494;
+  font-size: 75%;
+}
+.wrapper .wrapper__text__p3 {
+  text-align: justify;
+  margin-top: 2%;
+  font-size: 1.125rem;
+}
+.wrapper .wrapper__text__moreads {
+  display: flex;
+  float: left;
+}
+.wrapper .wrapper__text__moreads h2 {
+  display: flex;
+}
