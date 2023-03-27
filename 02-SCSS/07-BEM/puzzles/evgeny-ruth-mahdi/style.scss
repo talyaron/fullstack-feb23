@@ -319,11 +319,14 @@ body {
       &__tabs{
         background-color: white;
         box-shadow: 1px 1px 10px rgba(38, 38, 38, 0.172);
-        height: 2em;
+        height: 2.5em;
         flex: 1;
         margin: 1em;
         display: flex;
         align-items: center;
+        .fa-solid{
+          margin-left: 1em;
+        }
         &__text{
 
           text-align: end;
@@ -333,6 +336,7 @@ body {
           width: 2em;
           height: 2em;
           background-size: cover;
+          margin-right: 1em;
           &--logo1{
             background-image: url(/02-SCSS/07-BEM/puzzles/evgeny-ruth-mahdi/images/Screenshot_2023-03-27_at_19-48-43_YAD2-removebg-preview.png);
           }
@@ -353,33 +357,69 @@ body {
 
 
     }
-
-
+    
+    
     .listTabs {
-
+      display: flex;
+      background-color: rgba(201, 199, 199, 0.146);
+      flex-direction: column;
+      margin-top: 6em;
+      align-items: end;
+      &__title{
+       justify-self: end;
+       margin-top: 3em;
+       font-size: .8em;
+       font-weight: lighter;
+      }
       &__tabList{
         display: flex;
         
+        
         &__item{
-          border: 1px solid black;
+          border: 1px solid rgba(0, 0, 0, 0.101);
           display: flex;
           justify-content: center;
           align-items: center;
-          width: 5em;
+          width: 6em;
           height: 2em;
           border-radius: 1em;
           margin: 1em;
+          background-color: white;
           p{
             font-size: .8em;
           }
           &--Modifier{
             color: white;
-            background-color: yellow;
+            background-color: orange;
           }
         }
       }
+      
+      .listTabs__buttomCtg{
+        display: flex;
+        &__column{
+          margin: 2em 0 3em  8em;
+          
+          &__title{
+            text-align: end;
+            font-size: 1em;
+            margin: .5em;
+          }
+          &__text{
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap-reverse;
+            margin-left: 2em;
+            height: 8em;
+            text-align: end;
+            p{
+              font-size: .8em;
+              margin:.5em;
+            }
+          }
 
-
+        }
+      }
     }
 
 

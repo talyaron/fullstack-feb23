@@ -248,11 +248,14 @@ body .wrapper .yad2Bus {
 body .wrapper .yad2Bus__tabs {
   background-color: white;
   box-shadow: 1px 1px 10px rgba(38, 38, 38, 0.172);
-  height: 2em;
+  height: 2.5em;
   flex: 1;
   margin: 1em;
   display: flex;
   align-items: center;
+}
+body .wrapper .yad2Bus__tabs .fa-solid {
+  margin-left: 1em;
 }
 body .wrapper .yad2Bus__tabs__text {
   text-align: end;
@@ -262,6 +265,7 @@ body .wrapper .yad2Bus__tabs__logo {
   width: 2em;
   height: 2em;
   background-size: cover;
+  margin-right: 1em;
 }
 body .wrapper .yad2Bus__tabs__logo--logo1 {
   background-image: url(/02-SCSS/07-BEM/puzzles/evgeny-ruth-mahdi/images/Screenshot_2023-03-27_at_19-48-43_YAD2-removebg-preview.png);
@@ -275,23 +279,60 @@ body .wrapper .yad2Bus__tabs__logo--logo3 {
 body .wrapper .yad2Bus__title {
   margin-right: 1em;
 }
+body .wrapper .listTabs {
+  display: flex;
+  background-color: rgba(201, 199, 199, 0.146);
+  flex-direction: column;
+  margin-top: 6em;
+  align-items: end;
+}
+body .wrapper .listTabs__title {
+  justify-self: end;
+  margin-top: 3em;
+  font-size: 0.8em;
+  font-weight: lighter;
+}
 body .wrapper .listTabs__tabList {
   display: flex;
 }
 body .wrapper .listTabs__tabList__item {
-  border: 1px solid black;
+  border: 1px solid rgba(0, 0, 0, 0.101);
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 5em;
+  width: 6em;
   height: 2em;
   border-radius: 1em;
   margin: 1em;
+  background-color: white;
 }
 body .wrapper .listTabs__tabList__item p {
   font-size: 0.8em;
 }
 body .wrapper .listTabs__tabList__item--Modifier {
   color: white;
-  background-color: yellow;
+  background-color: orange;
+}
+body .wrapper .listTabs .listTabs__buttomCtg {
+  display: flex;
+}
+body .wrapper .listTabs .listTabs__buttomCtg__column {
+  margin: 2em 0 3em 8em;
+}
+body .wrapper .listTabs .listTabs__buttomCtg__column__title {
+  text-align: end;
+  font-size: 1em;
+  margin: 0.5em;
+}
+body .wrapper .listTabs .listTabs__buttomCtg__column__text {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap-reverse;
+  margin-left: 2em;
+  height: 8em;
+  text-align: end;
+}
+body .wrapper .listTabs .listTabs__buttomCtg__column__text p {
+  font-size: 0.8em;
+  margin: 0.5em;
 }
