@@ -1,7 +1,11 @@
+
+
 .categories {
   display: flex;
   gap: 30px;
   justify-content: center;
+  padding-bottom: 10px;
+  padding-top: 185px;
 
   &__option {
     display: flex;
@@ -54,4 +58,10 @@
     }
     }
 }
+}
+
+.title {
+    padding-top: 142px;
+    display:flex;
+    justify-content: flex-end;
 }

@@ -2,6 +2,8 @@
   display: flex;
   gap: 30px;
   justify-content: center;
+  padding-bottom: 10px;
+  padding-top: 185px;
 }
 .categories__option {
   display: flex;
@@ -43,4 +45,10 @@
 }
 .categories__option__img--real-estate {
   background-image: url("./real-estate.webp");
+}
+
+.title {
+  padding-top: 142px;
+  display: flex;
+  justify-content: flex-end;
 }
