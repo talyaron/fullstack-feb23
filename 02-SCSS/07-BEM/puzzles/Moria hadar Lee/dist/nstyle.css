@@ -1,0 +1,35 @@
+body {
+  direction: rtl;
+}
+
+.wrapper .header__toolbar {
+  background-color: #cd0007;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+  padding: 1%;
+}
+.wrapper .header__toolbar img {
+  right: 10px;
+}
+.topnav {
+  overflow: hidden;
+  background-color: #f2f2f2;
+  font-family: Arial, Helvetica, sans-serif;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.topnav a:hover {
+  text-decoration: underline;
+}
+
+.topnav a {
+  color: #333538;
+  font-weight: 600;
+  padding: 10px 23px;
+  text-decoration: none;
+  font-size: 15px;
+  font-family: Arial, Helvetica, sans-serif;
+}
