@@ -32,6 +32,7 @@
   margin: 0;
   font-family: Rubik;
 }
+
 body {
   height: 100vh;
   display: flex;
@@ -45,12 +46,15 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+
     &__ctg {
       ul {
         display: flex;
         list-style-type: none;
+
         li {
           padding: 26px 20px;
+
           &:hover {
             background-color: rgba(0, 0, 0, 0.05);
             cursor: pointer;
@@ -58,28 +62,35 @@ body {
         }
       }
     }
+
     &__Btns {
       display: flex;
       margin-right: 60px;
+
       &__btn {
         padding: 0px 20px;
+
         &:hover {
           cursor: pointer;
           background-color: rgba(0, 0, 0, 0.05);
         }
+
         &--userEnter {
           display: flex;
         }
+
         &--heartIcon {
           padding: 20px 10px;
           font-size: larger;
           font-weight: 50;
         }
+
         &--enter {
           padding: 18px 5px;
           font-size: 14px;
           margin-top: 5px;
         }
+
         &--userIcon {
           padding: 12px;
           margin: 10px 0px;
@@ -90,6 +101,7 @@ body {
           font-size: larger;
           background-color: rgba(0, 0, 0, 0.084);
         }
+
         &--addPost {
           all: unset;
           cursor: pointer;
@@ -100,6 +112,7 @@ body {
           border-radius: 30px;
           color: white;
           font-size: medium;
+
           &:hover {
             background-color: rgba(15, 202, 128);
           }
@@ -108,122 +121,132 @@ body {
     }
   }
 
-  .recoForU {
-  }
+  .recoForU {}
+
   // ruth
 
-    .wrapper{   
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        width: 65rem;
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 65rem;
 
-        .ad2{
-             background-color: orange;
-            //  top: 15em; //REMOVE AT THE END
-             height: 6em;
-             border-radius: 1em;
-             display: flex;
-             align-items: center;
-             z-index: 1;
-             position: relative;
-             &__phone{
-                 width: 10em;
-                 height: 20em;
-                 background-image: url(/02-SCSS/07-BEM/puzzles/evgeny-ruth-mahdi/images/photo-1598327105666-5b89351aff97-removebg-preview.png);
-                 background-repeat: no-repeat;
-                 position: absolute;
-                 background-size: cover;
-                 transform: rotate(-12deg);
-                 left: 53em;
-                 bottom: -8em;
-            }
-            h1{
-                color: white;
-                margin-left: 1em;
-            }
-            &__appStore{
-                background-image: url(/02-SCSS/07-BEM/puzzles/evgeny-ruth-mahdi/images/png-clipart-app-store-google-play-apple-apple-text-logo-removebg-preview.png);
-                background-size: cover;
-                width: 8.2rem;
-                height: 5.7rem;
-                margin-left: 1em;
-            }
-            &__QRcode{
-                background-image: url(https://cdn.britannica.com/17/155017-050-9AC96FC8/Example-QR-code.jpg?w=400&h=300&c=crop);
-                background-size: cover;
-                height: 5.2rem;
-                width: 5.2rem;
-                margin-left: 1em;
-                border-radius: .5em;
-            }
-     
-        }
-        .PopToilet{
-            background-color: rgb(255, 255, 255);
-            height: 9em;
-            z-index: 2;
-            text-align: end;
-            &__headLine{
-                margin-top: 1em;
-            }
-            &__items{
-                display: flex;
-                gap: 1rem;
-                margin-top: 1em;
-                &__item{
-                    display: flex;
-                    align-items: center;
-                    height: 4.8em;
-                    box-shadow: 1px 1px 10px rgba(38, 38, 38, 0.172);
-                    flex: 1;
-                    &__text{
-                        padding: 1em;
-                        h1{
-                            font-size: 1em;
-                            padding: .5em;
-                        }
-                        p{
-                            font-size: .7em;
-                            padding: .5em;
-                        }
+    .ad2 {
+      background-color: orange;
+      //  top: 15em; //REMOVE AT THE END
+      height: 6em;
+      border-radius: 1em;
+      display: flex;
+      align-items: center;
+      z-index: 1;
+      position: relative;
 
-                    }
-                    &__logo{
-                        height: 3em;
-                        width: 3em;
-                        padding-right: 1em;
-                        
-                        &--logo1{
-                            background-image: url(https://assets.yad2.co.il/homepage/dooron.svg);
-                            background-size: cover;
-                        }
-                        &--logo2{
-                            background-image: url(https://assets.yad2.co.il/homepage/priceList.svg);
-                            background-size: cover;
-                        }
-                        &--logo3{
-                            background-image: url(https://assets.yad2.co.il/homepage/calculator.svg);
-                            background-size: cover;
-                        }
-                        &--logo4{
-                            background-image: url(https://assets.yad2.co.il/homepage/yzer.svg);
-                            background-size: cover;
-                        }
-                    }
-                }
-            }
-        }
-     
-        .listTabs{
-     
-        }
-     
-     
-     }
-     // evgeny
+      &__phone {
+        width: 10em;
+        height: 20em;
+        background-image: url(/02-SCSS/07-BEM/puzzles/evgeny-ruth-mahdi/images/photo-1598327105666-5b89351aff97-removebg-preview.png);
+        background-repeat: no-repeat;
+        position: absolute;
+        background-size: cover;
+        transform: rotate(-12deg);
+        left: 53em;
+        bottom: -8em;
+      }
+
+      h1 {
+        color: white;
+        margin-left: 1em;
+      }
+
+      &__appStore {
+        background-image: url(/02-SCSS/07-BEM/puzzles/evgeny-ruth-mahdi/images/png-clipart-app-store-google-play-apple-apple-text-logo-removebg-preview.png);
+        background-size: cover;
+        width: 8.2rem;
+        height: 5.7rem;
+        margin-left: 1em;
+      }
+
+      &__QRcode {
+        background-image: url(https://cdn.britannica.com/17/155017-050-9AC96FC8/Example-QR-code.jpg?w=400&h=300&c=crop);
+        background-size: cover;
+        height: 5.2rem;
+        width: 5.2rem;
+        margin-left: 1em;
+        border-radius: .5em;
+      }
+
     }
-  
+
+    .PopToilet {
+      background-color: rgb(255, 255, 255);
+      height: 9em;
+      z-index: 2;
+      text-align: end;
+
+      &__headLine {
+        margin-top: 1em;
+      }
+
+      &__items {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1em;
+
+        &__item {
+          display: flex;
+          align-items: center;
+          height: 4.8em;
+          box-shadow: 1px 1px 10px rgba(38, 38, 38, 0.172);
+          flex: 1;
+
+          &__text {
+            padding: 1em;
+
+            h1 {
+              font-size: 1em;
+              padding: .5em;
+            }
+
+            p {
+              font-size: .7em;
+              padding: .5em;
+            }
+
+          }
+
+          &__logo {
+            height: 3em;
+            width: 3em;
+            padding-right: 1em;
+
+            &--logo1 {
+              background-image: url(https://assets.yad2.co.il/homepage/dooron.svg);
+              background-size: cover;
+            }
+
+            &--logo2 {
+              background-image: url(https://assets.yad2.co.il/homepage/priceList.svg);
+              background-size: cover;
+            }
+
+            &--logo3 {
+              background-image: url(https://assets.yad2.co.il/homepage/calculator.svg);
+              background-size: cover;
+            }
+
+            &--logo4 {
+              background-image: url(https://assets.yad2.co.il/homepage/yzer.svg);
+              background-size: cover;
+            }
+          }
+        }
+      }
+    }
+
+    .listTabs {}
 
 
+  }
 
+  // evgeny
+}
