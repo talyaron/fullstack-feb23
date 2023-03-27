@@ -32,20 +32,38 @@ body .wrapper {
 }
 body .wrapper .ad2 {
   background-color: orange;
-  height: 5em;
+  top: 15em;
+  height: 6em;
   border-radius: 1em;
   display: flex;
+  align-items: center;
   position: relative;
 }
 body .wrapper .ad2__phone {
   width: 10em;
-  display: flex;
   height: 20em;
   background-image: url(https://o.remove.bg/downloads/a17bd12d-a5b2-49ce-9f6b-2fa9705769d6/photo-1598327105666-5b89351aff97-removebg-preview.png);
   background-repeat: no-repeat;
-  position: relative;
+  position: absolute;
   background-size: cover;
-  transform: rotate(-18deg);
-  left: 50em;
-  bottom: -10em;
+  transform: rotate(-12deg);
+  left: 53em;
+  bottom: -8em;
+}
+body .wrapper .ad2 h1 {
+  color: white;
+}
+body .wrapper .ad2__appStore {
+  background-image: url(https://o.remove.bg/downloads/2de2a85b-ce66-4cad-80fd-c643f7fcb085/png-clipart-google-play-and-app-store-logos-app-store-google-play-apple-apple-text-logo-removebg-preview.png);
+  background-size: cover;
+  width: 9.2rem;
+  height: 5.2rem;
+}
+body .wrapper .ad2__QRcode {
+  background-image: url(https://cdn.britannica.com/17/155017-050-9AC96FC8/Example-QR-code.jpg?w=400&h=300&c=crop);
+  background-size: cover;
+  height: 5.2rem;
+  width: 5.2rem;
+  margin-left: 1em;
+  border-radius: 0.5em;
 }
