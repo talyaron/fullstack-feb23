@@ -16,6 +16,28 @@ body{
 // ruth
 
    .ad2{
+        background-color: orange;
+        width: 90%;
+        height: 5em;
+        border-radius: 1em;
+        display: flex;
+        
+        position: relative;
+        &__phone{
+            width: 10em;
+            display: flex;
+            height: 20em;
+            background-image: url(https://o.remove.bg/downloads/a17bd12d-a5b2-49ce-9f6b-2fa9705769d6/photo-1598327105666-5b89351aff97-removebg-preview.png);
+            background-repeat: no-repeat;
+            position: relative;
+            background-size: cover;
+            transform: rotate(-18deg);
+            left: 50em;
+            bottom: -10em;
+        }
+
+   }
+   .PopToilet{
 
    }
 
