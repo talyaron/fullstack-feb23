@@ -1,24 +1,49 @@
 // ad block
 
+.add_element{
+    background-size: cover;
+    align-items: center;
+}
+
 .ad{
     display: flex;
-    gap: 10px;
+    gap: 3px;
     margin: auto;
     height: 300px;
+    border: 1px solid rgb(231, 227, 227);
 
     &__ad1{
-        background-image: url(./img/small_ad.jpg);
-        flex: 1;
+        background-image: url(./img/big_ad.jpg);
+        flex: 2;
+        // background-size: cover;
+        // align-items: center;
     }
            
     &__ad2{
-        background-image: url(./img/big_ad.jpg);
-        flex: 2;
+        background-image: url(./img/small_ad.jpg);
+        flex: 1;
+        // background-size: cover;
+        // align-items: center;
     }
 }
 
-.saied_ad{
+.saied_ad{   //finished
     background-image: url(./img/saied_ad.jpg);
-    padding-right: 3px;
-    position: sticky;
+    height: 321px;
+    width: 200px;
+    // background-size: cover;
+    // align-items: center;
+
+    &__right{
+        display: block;
+        margin-left: auto;
+        margin-right: 0;
+    }
+    
+    &__sticky{
+        position: sticky;
+        top: 150px;
+    }
 }
+
+
