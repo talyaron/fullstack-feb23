@@ -1,25 +1,57 @@
 $wrapper: 100ch;
+* {
+  margin: 0;
+  padding: 0;
+  font-family: Arial;
+}
+
 .category {
   margin: auto;
   width: $wrapper;
   height: 200px;
   display: flex;
-  gap: 10px;
+  gap: 2rem;
+  direction: rtl;
+  text-align: center;
 
-  // &__article {
-  //   flex: 1;
-  //   display: flex;
-  //   flex-direction: column;
+  &__subcategory {
+    flex: 1;
+    gap: 2rem;
+
     &__img {
-      background-image: url("./soccer.png");
+      background-color: rgb(233, 228, 228);
       background-size: cover;
-      height: 100%;
+      border: 1px;
+      border-radius: 100px;
+      margin-bottom: 20px;
     }
-    &__text {
-      background-color: black;
-      color: white;
-      text-align: center;
-      padding: 4px;
+  }
+}
+
+.btns {
+  width: $wrapper;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+
+  //element
+  &__btn {
+    border: none;
+    margin: 5px;
+    padding: 10px;
+
+    // modifiers
+    &--ok {
+      background-color: green;
+    }
+
+    &--cancel {
+      background-color: orange;
+    }
+
+    &--delete {
+      background-color: red;
     }
   }
 }
