@@ -1,23 +1,48 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: Arial;
+}
+
 .category {
   margin: auto;
   width: 100ch;
   height: 200px;
   display: flex;
-  gap: 10px;
-}
-.category__article {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-.category__article__video {
-  background-image: url("./soccer.png");
-  background-size: cover;
-  height: 100%;
-}
-.category__article__text {
-  background-color: black;
-  color: white;
+  gap: 2rem;
+  direction: rtl;
   text-align: center;
-  padding: 4px;
+}
+.category__subcategory {
+  flex: 1;
+  gap: 2rem;
+}
+.category__subcategory__img {
+  background-color: #e9e4e4;
+  background-size: cover;
+  border: 1px;
+  border-radius: 100px;
+  margin-bottom: 20px;
+}
+
+.btns {
+  width: 100ch;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+}
+.btns__btn {
+  border: none;
+  margin: 5px;
+  padding: 10px;
+}
+.btns__btn--ok {
+  background-color: green;
+}
+.btns__btn--cancel {
+  background-color: orange;
+}
+.btns__btn--delete {
+  background-color: red;
 }
