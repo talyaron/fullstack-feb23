@@ -11,10 +11,10 @@
   margin: auto;
 }
 .wrapper .articles {
-  font-family: sans-serif;
+  font-family: "Montserrat", sans-serif;
   display: flex;
   flex-direction: row;
-  width: 75%;
+  width: 65%;
 }
 .wrapper .articles__news {
   align-content: space-between;
@@ -38,13 +38,13 @@
   border-color: blue;
 }
 .wrapper h3 {
-  font-size: bold;
   width: 95%;
   text-align: left;
 }
 .wrapper P {
-  color: #3f3e3e;
+  color: #3a3838;
   width: 95%;
+  height: 20%;
 }
 .wrapper a {
   padding-left: 5px;
@@ -52,4 +52,13 @@
   text-decoration: none;
   color: #858181;
   font-size: 14px;
+  border-color: black;
+}
+.wrapper h2 {
+  font-family: "Roboto", sans-serif;
+  color: #4c4a4a;
+}
+
+.webBody {
+  display: flex;
 }
