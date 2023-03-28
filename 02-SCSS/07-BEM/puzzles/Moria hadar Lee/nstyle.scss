@@ -1,54 +1,53 @@
 body {
   direction: rtl;
   margin: 0px;
-  
+
 
 }
 
 .wrapper {
- 
-  
-  
+
+
+
 
   .header__logo {
-  height: 80px;
-   background-color: #cd0007;
-   display: block;
-   color: white;
-   font-family: Arial, Helvetica, sans-serif;
-   
-   img {
-    display: sticky;
-    margin-right: 390px; 
-    width: 247px;
     height: 80px;
-    background-size: 100%;
-   }
-   
-  }
+    background-color: #cd0007;
+    display: block;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+
+    img {
+      display: sticky;
+      margin-right: 390px;
+      width: 247px;
+      height: 80px;
+      background-size: 100%;
+    }
 
   }
 
+}
 
- .header__weather
- {
+
+.header__weather {
   box-sizing: border-box;
   position: absolute;
   top: 10px;
   right: 1020px;
-  
-  
+
+
 
 
   img {
     width: 80px;
     height: 80px;
-   
+
   }
 
 
   p {
-    
+
     border-left: 2px solid white;
     position: relative;
     color: white;
@@ -56,44 +55,44 @@ body {
     font-size: 16px;
     top: -113px;
     right: 85px;
-    
+
 
   }
 
- }
+}
 
 .header {
- &__text {
-  color: white;
-  border-left: 2px solid white;
-  font-family: sans-serif;
-  box-sizing: border-box;
-  position: relative;
-  top: 70px;
-  right: 1020px;
-  margin: 0%;
+  &__text {
+    color: white;
+    border-left: 2px solid white;
+    font-family: sans-serif;
+    box-sizing: border-box;
+    position: relative;
+    top: 70px;
+    right: 1020px;
+    margin: 0%;
 
- }
+  }
 
- &__date {
+  &__date {
 
-  color: white;
-  border-left: 2px solid white;
-  font-family: sans-serif;
-  box-sizing: border-box;
-  position: relative;
-  top: 50px;
-  right: 1130px;
-  margin: 0%;
- }
+    color: white;
+    border-left: 2px solid white;
+    font-family: sans-serif;
+    box-sizing: border-box;
+    position: relative;
+    top: 50px;
+    right: 1130px;
+    margin: 0%;
+  }
 
- &__n12 {
-  position: sticky;
-  top: 100px;
-  
+  &__n12 {
+    position: sticky;
+    top: 100px;
 
-  
- }
+
+
+  }
 
 }
 
@@ -115,12 +114,13 @@ body {
 
   .topnav__link {
     padding-left: 10px;
-   
-   
+
+
 
   }
 
 }
+
 .floating-btn {
   width: 38px;
   height: 38px;
@@ -139,19 +139,19 @@ body {
   font-size: 18px;
   top: 50%;
   right: 97%;
- 
+
 
 }
 
 
 .topnav a {
- 
+
   color: #333538;
   font-weight: 600;
   padding: 10px 23px;
   text-decoration: none;
   font-size: 15px;
   font-family: Arial, Helvetica, sans-serif;
-  
-  
+
+
 }
