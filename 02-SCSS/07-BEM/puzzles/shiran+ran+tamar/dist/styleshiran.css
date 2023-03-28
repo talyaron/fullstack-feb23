@@ -1,12 +1,14 @@
 .articales {
   margin: auto;
-  height: 200px;
+  height: 300px;
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 10px;
 }
 .articales__article {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  width: 400px;
   height: 300px;
 }
 .articales__article__video {
@@ -14,7 +16,7 @@
   flex-direction: column;
   align-items: flex-end;
   background-image: url(./img/ValeriaMithatenet2.jpg);
-  width: 400px;
+  width: 532px;
   height: 300px;
   padding-top: 190px;
 }
@@ -32,6 +34,37 @@
   padding: 4px;
   width: fit-content;
 }
-.articales__article--big {
-  border: 2px dashed orange;
+.articales__smallContaner {
+  margin: auto;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.articales__smallContaner__article {
+  display: flex;
+  flex-direction: column;
+  height: 65px;
+}
+.articales__smallContaner__article__video {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  background-image: url(./img/ValeriaMithatenet2.jpg);
+  width: 260px;
+  height: 65px;
+}
+.articales__smallContaner__article__purpeleText {
+  background-color: #9e0d7f;
+  color: white;
+  text-align: center;
+  padding: 4px;
+  width: fit-content;
+}
+.articales__smallContaner__article__whiteText {
+  background-color: #64e011;
+  color: white;
+  text-align: center;
+  padding: 4px;
+  width: fit-content;
 }

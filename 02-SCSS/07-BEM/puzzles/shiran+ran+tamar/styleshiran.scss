@@ -1,15 +1,16 @@
 .articales{
     margin: auto;
-    height: 200px;
-    // display: flex;
-    // gap: 10px;
+    height: 300px;
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 10px;
 
     &__article{
         // flex: 1;
          display: flex;
         flex-direction: column;
         align-items: flex-end;
-        width: 400px;
+        //width: 400px;
         height: 300px;
         // position: relative;
         // top: 0px;
@@ -19,7 +20,7 @@
             flex-direction: column;
             align-items: flex-end;
             background-image: url(./img/ValeriaMithatenet2.jpg);
-            width: 400px;
+            width: 532px;
             height: 300px;
             padding-top: 190px;
            
@@ -45,13 +46,53 @@
             // left: 216px;
         }
         &--big{
-            border: 2px dashed orange;
-            
+          
         }
     }
 
+    &__smallContaner{
+        margin: auto;
+        height: 150px;
+        display: flex;
+        flex-direction: column;
+        flex: 1;
 
-    
-       
+        &__article{
+             display: flex;
+            flex-direction: column;
+            height: 65px;
+            &__video{
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end;
+                background-image: url(./img/ValeriaMithatenet2.jpg);
+                width: 260px;
+                height: 65px;
+                //padding-top: 30px;
+               
+            }
+            &__purpeleText {
+                background-color: rgb(158, 13, 127);
+                color: white;
+                text-align: center;
+                padding: 4px;
+                width: fit-content;
+                // position: absolute;
+                // top: 262px;
+                // left: 216px;
+            }
+            &__whiteText {
+                background-color: rgb(100, 224, 17);
+                color: white;
+                text-align: center;
+                padding: 4px;
+                width: fit-content;
+                // position: absolute;
+                // top: 262px;
+                // left: 216px;
+            } 
+        }
+
+    }
     }
 
