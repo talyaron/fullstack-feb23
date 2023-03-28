@@ -1,0 +1,65 @@
+.foryou {
+  margin: auto;
+  width: 100ch;
+  height: 200px;
+  display: flex;
+  gap: 10px;
+}
+.foryou__polo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.foryou__polo__photo {
+  background-image: url("./171838_volkswagen-polo70tsilife-variant-jun22-hqn.jpg");
+  background-size: cover;
+  height: 100%;
+}
+.foryou__polo__text {
+  background-color: black;
+  color: white;
+  text-align: center;
+  padding: 4px;
+}
+.foryou__i10 {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.foryou__i10__photo {
+  background-image: url("./Hyundai-Grand-i10-Nios-200120231541.jpg");
+}
+.foryou__i10__text {
+  background-color: black;
+  color: white;
+  text-align: center;
+  padding: 4px;
+}
+.foryou__seat {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.foryou__seat__photo {
+  background-image: url("./seat-ibiza-xcellence-colour-sapphire-blue.avif");
+}
+.foryou__seat__text {
+  background-color: black;
+  color: white;
+  text-align: center;
+  padding: 4px;
+}
+.foryou__chevi {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.foryou__chevi__photo {
+  background-image: url("./color-Mystic-Blue.jpg");
+}
+.foryou__chevi__text {
+  background-color: black;
+  color: white;
+  text-align: center;
+  padding: 4px;
+}
