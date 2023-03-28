@@ -60,6 +60,32 @@
 }
 }
 
+.container {
+    display: flex;
+    direction: rtl;
+    padding: 9px 149px;
+    gap: 14px;
+
+    &__item {
+        border: 0px solid rgb(215, 212, 212);
+        border-radius: 14px 14px 8px 8px;
+        box-shadow: 0px 2px 3px 0px rgb(228, 228, 228);
+
+        &__img {
+            cursor: pointer;
+            box-sizing: border-box;
+            border-radius: 8px 8px 0px 0px;
+        }
+
+        &__text {
+            font-family: Rubik,sans-serif;
+            padding: 0px 8px 0px 8px;
+
+        }
+    }
+
+}
+
 .topic {
     
     margin: auto;
@@ -71,6 +97,8 @@
     font-weight: 100;
     margin-bottom: 16px;
     box-sizing: border-box;
+    padding-top: 18px;
+    margin-top: 37px;
 
 }
 
