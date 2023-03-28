@@ -79,3 +79,9 @@
 .btns__btn--delete {
   background-color: red;
 }
+
+.link-tabs {
+  background-color: aquamarine;
+  height: 100px;
+  width: 200px;
+}
