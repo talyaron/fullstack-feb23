@@ -23,10 +23,10 @@ $fontSize: 14px;
     margin: auto;
 
     .articles{
-        font-family: sans-serif;
+        font-family: 'Montserrat', sans-serif;
         display: flex;
         flex-direction: row;
-        width: 75%;
+        width: 70%;
     
         &__news{
             align-content: space-between;
@@ -57,13 +57,16 @@ $fontSize: 14px;
         border-color: blue;
     }
     h3{
-        font-size: bold;
         width: 95%;
         text-align: left;
+        height: 15%;
     }
+    
     P{
-        color: rgb(63, 62, 62); 
+        color: rgb(58, 56, 56); 
         width: 95%;
+        height: 20%;
+        padding-bottom: 5%;
         
     }  
     
@@ -73,8 +76,18 @@ $fontSize: 14px;
         text-decoration: none;
         color: rgb(133, 129, 129);
         font-size: $fontSize;
+        border-color: black;
 
     }
+    h2{
+        font-family: 'Roboto', sans-serif;
+        color: rgb(76, 74, 74);
+    }
 }
+
+.webBody{
+    display: flex;
+}
+
 
 
