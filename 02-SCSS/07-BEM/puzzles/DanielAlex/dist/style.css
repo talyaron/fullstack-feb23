@@ -1,0 +1,54 @@
+.categories {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  padding-bottom: 10px;
+  padding-top: 185px;
+}
+.categories__option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.categories__option div[class^=categories__option__img] {
+  background-size: cover;
+  height: 140px;
+  width: 145px;
+  border: 0px solid gray;
+  border-radius: 90px;
+  background-color: #e7e6e6;
+}
+.categories__option__text {
+  font-size: 22px;
+  margin-top: 8px;
+}
+.categories__option__img {
+  display: flex;
+}
+.categories__option__img--business {
+  background-image: url("./business.webp");
+}
+.categories__option__img--profession {
+  background-image: url("./professional.webp");
+}
+.categories__option__img--pet {
+  background-image: url("./pets.webp");
+}
+.categories__option__img--required {
+  background-image: url("./required.webp");
+}
+.categories__option__img--yad2 {
+  background-image: url("./yad2.webp");
+}
+.categories__option__img--car {
+  background-image: url("./car.webp");
+}
+.categories__option__img--real-estate {
+  background-image: url("./real-estate.webp");
+}
+
+.title {
+  padding-top: 142px;
+  display: flex;
+  justify-content: flex-end;
+}

@@ -1,0 +1,83 @@
+body {
+    font-family: sans-serif;
+}
+
+.cntainer {
+    display: flex;
+
+    .political {
+        width: 40%;
+
+        &__taitel {
+            color: red;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        &__article {
+            font-weight: bold;
+            font-size: 50px;
+        }
+
+        &__text {
+            font-size: 25px;
+            margin: 20px 0;
+        }
+
+        &__Details {
+            font-size: 15px;
+
+            i {
+                color: red;
+                margin-right: 8px;
+                margin-bottom: 50px;
+            }
+        }
+
+    }
+
+    .image__article {
+
+        &__picture {
+            width: 700px;
+            height: 350px;
+            // background: url() no-repeat center center/ cover;
+            background: red;
+            margin-bottom: 20px;
+        }
+    }
+
+    .titles {
+        width: 700px;
+        height: 350px;
+        background: red;
+        display: flex;
+
+        &__article {
+            width: 25%;
+            height: 100%;
+            background: blue;
+            margin: 0 20px;
+        }
+
+        &__image {
+            height: 50%;
+            width: 100%;
+            background: black;
+        }
+
+        &__text {
+            height: 50%;
+            width: 100%;
+            background: black;
+        }
+    }
+
+    .rightside {
+        .titles {
+            flex-direction: column;
+            display: flex;
+        }
+
+    }
+}
