@@ -113,8 +113,21 @@ $wrapper: 100ch;
 
 .link-tabs {
     background-color: aquamarine;
-    height: 100px;
-    width: 200px;
+    margin: auto;
+    width: $wrapper;
+    height: 200px;
+    display: flex;
+    gap: 10px;
+    direction: rtl;
 }
 
-.fotter {}
+.footer {
+    background-color: yellowgreen;
+    margin: auto;
+    width: $wrapper;
+    height: 200px;
+    display: flex;
+    gap: 10px;
+    direction: rtl;
+
+}
