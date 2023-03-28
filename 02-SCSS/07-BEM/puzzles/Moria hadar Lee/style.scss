@@ -2,6 +2,40 @@ body {
     font-family: sans-serif;
 }
 
+.logo {
+    background: #A91000;
+    width: 100%;
+    height: 70px;
+    justify-content: space-around;
+    display: flex;
+    align-items: center;
+
+    &__n12 {
+        width: 15%;
+        height: 60%;
+        background: url(logo-removebg-preview.png) no-repeat center center/ cover;
+    }
+
+    &__links {
+        ul {
+            list-style: none;
+            // display: flex;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+
+
+            a {
+                text-decoration: none;
+                color: white;
+                margin: 0 5px;
+                font-size: 20px;
+            }
+        }
+    }
+}
+
 .cntainer {
     display: flex;
     width: 60%;
@@ -226,42 +260,5 @@ body {
         height: 10%;
         color: white;
         margin: 10px 30%;
-    }
-}
-
-
-
-
-.logo {
-    background: red;
-    width: 100%;
-    height: 300px;
-    justify-content: space-around;
-    display: flex;
-    align-items: center;
-
-    &__n12 {
-        width: 30%;
-        height: 50%;
-        background: url(logo-removebg-preview.png) no-repeat center center/ cover;
-    }
-
-    &__links {
-        ul {
-            list-style: none;
-            // display: flex;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-
-
-            a {
-                text-decoration: none;
-                color: white;
-                margin: 0 5px;
-                font-size: 20px;
-            }
-        }
     }
 }
