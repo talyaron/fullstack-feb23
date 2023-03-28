@@ -122,12 +122,14 @@ $wrapper: 100ch;
 }
 
 .footer {
-    background-color: yellowgreen;
+    background-color: gray;
     margin: auto;
     width: $wrapper;
     height: 200px;
     display: flex;
     gap: 10px;
     direction: rtl;
+
+    
 
 }

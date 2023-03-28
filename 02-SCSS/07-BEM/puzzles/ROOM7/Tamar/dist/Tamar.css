@@ -28,6 +28,8 @@
 }
 .foryou__i10__photo {
   background-image: url("./Hyundai-Grand-i10-Nios-200120231541.jpg");
+  background-size: cover;
+  height: 100%;
 }
 .foryou__i10__text {
   background-color: black;
@@ -42,6 +44,8 @@
 }
 .foryou__seat__photo {
   background-image: url("./seat-ibiza-xcellence-colour-sapphire-blue.avif");
+  background-size: cover;
+  height: 100%;
 }
 .foryou__seat__text {
   background-color: black;
@@ -56,6 +60,8 @@
 }
 .foryou__chevi__photo {
   background-image: url("./color-Mystic-Blue.jpg");
+  background-size: cover;
+  height: 100%;
 }
 .foryou__chevi__text {
   background-color: black;
