@@ -1,0 +1,46 @@
+.popularServices {
+  margin: auto;
+  width: 1000px;
+  height: 100px;
+  display: flex;
+  gap: 10px;
+  flex-direction: row;
+  direction: rtl;
+}
+.popularServices__service {
+  display: flex;
+  flex-direction: row;
+  width: 220px;
+  height: 65px;
+  border: 0.5px solid #e5dbdb;
+  border-radius: 8px;
+  font-family: "Arimo", sans-serif;
+  overflow: hidden;
+  padding: 8px 14px;
+  padding-right: 10px;
+  align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.06);
+}
+.popularServices__service__icon {
+  height: 57px;
+  width: 57px;
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  padding-right: 0;
+}
+.popularServices__service__title {
+  flex-direction: row;
+}
+.popularServices__service__title__header {
+  font-size: 14px;
+  box-sizing: border-box;
+  height: 19px;
+  margin-bottom: 0;
+  margin-top: auto;
+}
+.popularServices__service__title__paragraph {
+  font-size: 12px;
+  margin-bottom: auto;
+  margin-top: 0;
+}
