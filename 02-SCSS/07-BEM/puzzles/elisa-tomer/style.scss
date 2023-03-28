@@ -3,6 +3,7 @@ $wrapper: 100ch;
   margin: 0;
   padding: 0;
   font-family: Arial;
+  direction: rtl;
 }
 
 .category {
@@ -11,7 +12,6 @@ $wrapper: 100ch;
   height: 200px;
   display: flex;
   gap: 2rem;
-  direction: rtl;
   text-align: center;
 
   &__subcategory {
@@ -19,11 +19,45 @@ $wrapper: 100ch;
     gap: 2rem;
 
     &__img {
-      background-color: rgb(233, 228, 228);
+      background-color: rgb(243, 236, 236);
       background-size: cover;
       border: 1px;
       border-radius: 100px;
       margin-bottom: 20px;
+    }
+  }
+}
+
+.navigation {
+  display: flex;
+  background-color: rgb(var(--white));
+  box-shadow: var(--shadow-level-2);
+  justify-content: right;
+  padding: 20px 0;
+
+  &__list {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+
+    &__item {
+      display: inline-block;
+      margin-right: 20px;
+    }
+
+    &__link {
+      color: #555;
+      text-decoration: none;
+      padding: 10px 15px;
+    }
+    .navigation__link {
+      color: #555
+      text-decoration: none;
+      padding: 10px 15px;
+    }
+    .navigation__link:hover {
+      background-color: #555;
     }
   }
 }
