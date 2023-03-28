@@ -36,6 +36,7 @@
             display: flex;
             gap: 20px;
             align-items: center;
+            cursor: pointer;
 
             img {
                 width: 40px;
@@ -54,6 +55,10 @@
         border-left: 2px solid rgb(63, 63, 63);
         height: 30px;
         padding-left: 10px;
+
+        p{
+            cursor: pointer;
+        }
     }
 
     &__search {
@@ -62,6 +67,11 @@
         width: 215px;
         display: flex;
         align-items: center;
+
+        &:hover {
+            opacity: 0.8;
+            cursor: pointer;
+        }
 
         img {
             opacity: 0.2;
@@ -129,9 +139,10 @@
         padding-bottom: -30px;
 
 
-        :hover {
-            background-color: rgba(255, 255, 255, 0.535);
-            background-size: cover;
+
+        &:hover {
+            opacity: 0.5;
+            cursor: pointer;
         }
 
 
@@ -165,15 +176,15 @@
         background-color: rgba(245, 245, 220, 0);
         flex-wrap: wrap;
 
-        :hover {
-            background-color: rgba(255, 255, 255, 0.535);
-            background-size: cover;
-        }
-
         &--img1 {
             background-image: url(./img1.png);
             width: $width;
             height: $height;
+
+            &:hover {
+                opacity: 0.5;
+                cursor: pointer;
+            }
 
             &__text {
                 padding-top: 48px;
@@ -198,6 +209,11 @@
             background-image: url(https://ichef.bbci.co.uk/live-experience/cps/480/cpsprodpb/vivo/live/images/2023/3/27/65c6924b-e742-43d4-98d9-e83d0f4555ee.jpg);
             width: $width;
             height: $height;
+
+            &:hover {
+                opacity: 0.5;
+                cursor: pointer;
+            }
         }
 
         &__text {
@@ -220,6 +236,11 @@
             width: $width;
             height: $height;
 
+            &:hover {
+                opacity: 0.5;
+                cursor: pointer;
+            }
+
             &__text {
                 padding-top: 48px;
                 padding-left: 5px;
@@ -240,6 +261,11 @@
             background-image: url(https://ichef.bbci.co.uk/live-experience/cps/480/cpsprodpb/vivo/live/images/2023/3/27/c24476f2-5584-4843-a60d-ae35147ca518.jpg);
             width: $width;
             height: $height;
+
+            &:hover {
+                opacity: 0.5;
+                cursor: pointer;
+            }
 
             &__text {
                 padding-top: 48px;
