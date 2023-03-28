@@ -4,16 +4,16 @@ body {
 }
 
 .logo {
-  background: red;
+  background: #A91000;
   width: 100%;
-  height: 150px;
+  height: 70px;
   justify-content: space-around;
   display: flex;
   align-items: center;
 }
 .logo__n12 {
-  width: 30%;
-  height: 50%;
+  width: 15%;
+  height: 60%;
   background: url(logo-removebg-preview.png) no-repeat center center/cover;
 }
 .logo__links ul {
