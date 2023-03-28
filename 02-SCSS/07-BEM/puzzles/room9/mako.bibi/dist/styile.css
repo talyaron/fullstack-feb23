@@ -15,42 +15,36 @@ body {
   margin: 0 auto;
   max-width: 100%;
 }
-.wrapper .header__main12 {
+.wrapper__main12 {
+  background-color: #db000b;
+  width: 100%;
+}
+.wrapper__main12__mako {
+  margin-right: 12%;
+  height: 80px;
+}
+.wrapper .nav {
+  background-color: whitesmoke;
+}
+.wrapper .nav__menu {
   display: flex;
-  background-color: red;
-  align-items: center;
+  justify-content: center;
 }
-.wrapper .header__main12__img1 {
-  margin-right: 10%;
-  width: 18%;
+.wrapper .nav__menu a {
+  font-weight: 600;
+  margin: 12px;
+  text-decoration: none;
+  color: black;
 }
-.wrapper .header__main12__img2 {
-  color: white;
-  width: 22px;
-  margin-right: 2px;
+.wrapper .nav__menu a:hover {
+  cursor: pointer;
+  text-decoration: underline;
 }
-.wrapper .header__main12__weather {
-  color: white;
-  margin-right: 39%;
-  font-size: 16px;
-  font-weight: 500;
-  text-align: center;
+.wrapper .nav__menu .political {
+  color: red;
 }
-.wrapper .header__main12__date {
-  color: white;
-  font-size: 16px;
-  font-weight: 500;
-  text-align: center;
-}
-.wrapper .header__main12__news {
-  color: white;
-  font-size: 16px;
-  font-weight: 500;
-  text-align: center;
-}
-.wrapper .header__main12__line {
-  padding: 1px;
-  color: white;
+.wrapper .nav__menu .Search {
+  margin-right: 30px;
 }
 .wrapper span {
   margin-right: 15%;
@@ -64,6 +58,8 @@ body {
   margin-bottom: 20px;
 }
 .wrapper__ads-1 img {
+  position: -webkit-sticky;
+  top: 0;
   float: right;
   margin-right: 1%;
   max-width: 10%;
@@ -81,63 +77,66 @@ body {
 .wrapper__text__h1 {
   margin-top: 2%;
   margin-right: 14%;
-  font-size: 40px;
+  font-size: 46px;
 }
 .wrapper__text__h2 {
   text-align: justify;
   font-size: 20px;
-  margin-top: 0.1%;
+  margin-top: 1%;
   margin-right: 14%;
 }
-.wrapper .mainads {
+
+.mainads {
   display: flex;
   align-items: flex-end;
 }
-.wrapper .mainads__img {
+.mainads__img {
   margin: 0;
   margin-top: 1%;
   margin-left: 1%;
   margin-right: 7.5%;
   width: 4%;
 }
-.wrapper .mainads__p {
+.mainads__p {
   font-size: large;
   color: #959494;
   font-size: 15px;
 }
-.wrapper .mainads__spam {
+.mainads__spam {
   color: #959494;
 }
-.wrapper .spam2 {
+
+.spam2 {
   margin-right: 4%;
   font-size: 23px;
   color: red;
 }
-.wrapper .wrapper__text img {
+
+.wrapper__text img {
   margin-top: 2%;
   margin-right: 8%;
   width: 86%;
 }
-.wrapper .wrapper__text .img-2 {
+.wrapper__text .img-2 {
   float: right;
   width: 15%;
   margin-right: 14%;
 }
-.wrapper .wrapper__text__p2 {
+.wrapper__text__p2 {
   padding: 4px;
   margin-right: 14%;
   color: #959494;
   font-size: 75%;
 }
-.wrapper .wrapper__text__p3 {
+.wrapper__text__p3 {
   text-align: justify;
   margin-top: 2%;
   font-size: 1.125rem;
 }
-.wrapper .wrapper__text__moreads {
+.wrapper__text__moreads {
   display: flex;
   float: left;
 }
-.wrapper .wrapper__text__moreads h2 {
+.wrapper__text__moreads h2 {
   display: flex;
 }
