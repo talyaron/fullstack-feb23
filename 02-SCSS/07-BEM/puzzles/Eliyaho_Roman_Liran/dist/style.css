@@ -5,3 +5,51 @@
 .headder__logo img {
   width: 80px;
 }
+
+.wrapper {
+  width: 85%;
+  margin: auto;
+}
+.wrapper .articles {
+  font-family: sans-serif;
+  display: flex;
+  flex-direction: row;
+  width: 75%;
+}
+.wrapper .articles__news {
+  align-content: space-between;
+  width: 33%;
+  padding-bottom: 20px;
+}
+.wrapper .articles img {
+  margin-bottom: -12px;
+}
+.wrapper .section {
+  padding-left: 5px;
+  border-left: 4px solid;
+}
+.wrapper .red {
+  border-color: red;
+}
+.wrapper .yellow {
+  border-color: yellow;
+}
+.wrapper .blue {
+  border-color: blue;
+}
+.wrapper h3 {
+  font-size: bold;
+  width: 95%;
+  text-align: left;
+}
+.wrapper P {
+  color: #3f3e3e;
+  width: 95%;
+}
+.wrapper a {
+  padding-left: 5px;
+  border-left: 2px solid;
+  text-decoration: none;
+  color: #858181;
+  font-size: 14px;
+}
