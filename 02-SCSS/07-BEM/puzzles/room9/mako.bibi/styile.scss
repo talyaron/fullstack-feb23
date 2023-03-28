@@ -18,6 +18,8 @@ body {
     background-color: white;
     margin: 0 auto;
     max-width: 100%;
+    font-family: 'Assistant', sans-serif;
+
 
     &__main12 {
         background-color: #db000b;
@@ -27,6 +29,7 @@ body {
             margin-right: 12%;
             height: 70px;
         }
+
     }
 
     .nav {
@@ -35,6 +38,7 @@ body {
         &__menu {
             display: flex;
             justify-content: center;
+            font-family: 'Assistant', sans-serif;
 
             a {
                 font-weight: 600;
@@ -64,6 +68,8 @@ body {
         font-weight: 700;
         color: red;
         font-size: 30px;
+        font-family: 'Assistant', sans-serif;
+
     }
 
 
@@ -83,7 +89,9 @@ body {
             float: right;
             margin-right: 1%;
             max-width: 10%;
+
         }
+        
 
     }
 
@@ -104,7 +112,8 @@ body {
         &__h1 {
             margin-top: 2%;
             margin-right: 14%;
-            font-size: 46px;
+            font-size: 49px;
+            line-height: 1.1em;
         }
 
         &__h2 {
