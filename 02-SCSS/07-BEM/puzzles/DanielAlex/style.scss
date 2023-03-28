@@ -1,0 +1,67 @@
+
+
+.categories {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  padding-bottom: 10px;
+  padding-top: 185px;
+
+  &__option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    & div[class^="categories__option__img"] {
+        background-size: cover;
+        height: 140px;
+        width: 145px;
+        border: 0px solid gray;
+        border-radius: 90px;
+        background-color: rgb(231, 230, 230);
+    }
+    
+    &__text {
+    font-size: 22px;
+    margin-top: 8px;
+    }
+
+    &__img {
+    display: flex;
+
+    &--business {
+        background-image: url("./business.webp");
+    }
+
+    &--profession {
+        background-image: url("./professional.webp");
+    }
+
+    &--pet {
+        background-image: url("./pets.webp");
+    }
+
+    &--required {
+        background-image: url("./required.webp");
+    }
+
+    &--yad2 {
+        background-image: url("./yad2.webp");
+    }
+
+    &--car {
+        background-image: url("./car.webp");
+    }
+
+    &--real-estate {
+        background-image: url("./real-estate.webp");
+    }
+    }
+}
+}
+
+.title {
+    padding-top: 142px;
+    display:flex;
+    justify-content: flex-end;
+}

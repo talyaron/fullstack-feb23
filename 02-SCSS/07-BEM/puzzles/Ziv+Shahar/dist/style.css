@@ -1,0 +1,195 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  direction: rtl;
+  font-family: "Assistant", sans-serif;
+  font-family: "Golos Text", sans-serif;
+  font-family: "Inter", sans-serif;
+  font-family: "Rubik", sans-serif;
+}
+
+main {
+  width: 988px;
+  margin: 0 auto;
+  position: relative;
+  color: #0c0c0c;
+}
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  background-image: linear-gradient(268deg, #db000b, #ae0000);
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 500;
+  height: 57px;
+}
+header .header__wrapper {
+  height: 100%;
+  width: 988px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+header .header__wrapper__logo {
+  flex: 2;
+}
+header .header__wrapper__logo img {
+  width: 80%;
+}
+header .header__wrapper__menu {
+  display: flex;
+  gap: 0.6rem;
+}
+header .header__wrapper__menu a:link {
+  text-decoration: none;
+  color: #fff;
+}
+header .header__wrapper__menu a:hover {
+  text-decoration: underline;
+}
+header .header__wrapper__menu a svg {
+  width: 0.9rem;
+}
+header .header__wrapper__search__bar {
+  flex: 2;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
+header .header__wrapper__search__bar svg {
+  width: 20px;
+}
+
+.first {
+  height: 100vh;
+  gap: 20px;
+  display: flex;
+}
+.first .chat-wrapper {
+  flex: 1;
+  max-height: 893px;
+  height: calc(100vh - 55px);
+  padding-top: 20px;
+  position: sticky;
+  top: 55px;
+}
+.first .chat-wrapper__header {
+  display: flex;
+  align-items: center;
+  background-image: linear-gradient(268deg, #db000b, #ae0000);
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.75rem;
+  padding: 10px;
+}
+.first .chat-wrapper__header svg {
+  stroke: #fff;
+  width: 1.5rem;
+}
+.first .chat-wrapper__body {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding-top: 10px;
+  background-image: url(https://rcs.mako.co.il/images/writersChat/bg-pattern.jpg);
+  background-size: cover;
+}
+.first .chat-wrapper__body__announces {
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  overflow: hidden;
+}
+.first .chat-wrapper__body__announces__new-announce {
+  padding: 0 23px 0 9px;
+}
+.first .chat-wrapper__body__announces__new-announce img {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  right: 7px;
+}
+.first .chat-wrapper__body__announces__new-announce__text {
+  padding: 1px 18px 4px 9px;
+  border-top-left-radius: 9px;
+  border-bottom-left-radius: 9px;
+  background-color: #fff;
+  margin-bottom: 10px;
+}
+.first .chat-wrapper__body__announces__new-announce__text .writer {
+  color: #ae0000;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+.first .chat-wrapper__body__announces__new-announce__text p {
+  font-size: 0.9rem;
+  font-weight: 400;
+}
+.first .chat-wrapper__body__announces__new-announce__text .time {
+  color: #ae0000;
+  font-weight: 300;
+  font-size: 0.8rem;
+  display: flex;
+  justify-content: end;
+}
+.first .chat-wrapper__body__btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 15px;
+  padding-bottom: 18px;
+}
+.first .chat-wrapper__body__btn .btn {
+  background-image: linear-gradient(268deg, #db000b, #ae0000);
+  padding: 10px 15px;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.first .main-news {
+  color: #fff;
+  padding-top: 20px;
+  flex: 3;
+  float: right;
+}
+.first .main-news__live__desc {
+  padding: 10px;
+  background-image: linear-gradient(43deg, rgba(45, 60, 90, 0.99) -15%, #121214 74%);
+}
+.first .main-news__live__desc h3 {
+  font-size: 1.5rem;
+  margin: 10px 0;
+}
+.first .main-news__live__desc__title h2 {
+  font-size: 3rem;
+}
+.first .main-news__live__desc__p {
+  padding-top: 15px;
+  margin-top: 15px;
+  border-top: 3px solid rgba(255, 255, 255, 0.3);
+  display: flex;
+  gap: 10px;
+  font-size: 1.3rem;
+}
+.first .main-news__live__desc__p svg {
+  stroke: #ae0000;
+  width: 40px;
+}
+.first .main-news__live__desc__p__1p {
+  display: flex;
+  align-items: center;
+}
+.first .main-news__live__desc__p__2p {
+  display: flex;
+  align-items: center;
+}

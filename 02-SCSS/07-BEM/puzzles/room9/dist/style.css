@@ -1,0 +1,82 @@
+body {
+  width: 100%;
+  height: 100%;
+  line-height: 1;
+  direction: rtl;
+  font-family: arial;
+  list-style: none;
+}
+
+/*@@@@@ - Neve Homework - @@@@@*/
+/*@@@@@ - Doriel Homework - @@@@@*/
+.blockBig {
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  padding: auto;
+  margin: auto;
+  align-items: center;
+}
+
+.block .main {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+.block .main img {
+  width: 100%;
+  max-height: 540px;
+  direction: rtl;
+  overflow: clip;
+  margin-left: -100%;
+}
+.block .main h2 {
+  background-color: red;
+  color: white;
+  z-index: 2;
+  position: flex;
+  bottom: 10;
+  width: 250px;
+  border-radius: 3px;
+}
+.block .main h1 {
+  background-color: black;
+  color: white;
+  z-index: 1;
+  width: 100%;
+  border-radius: 3px;
+}
+.block .main p {
+  background-color: black;
+  color: white;
+  z-index: 1;
+  width: 100%;
+  border-radius: 3px;
+}
+
+.main__fourBox {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+.main__fourBox ul {
+  padding: 5px;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.main__fourBox ul li {
+  padding: 7px;
+  color: white;
+  display: absolute;
+}
+.main__fourBox ul li .main__fourBox__text {
+  position: relative;
+  bottom: 35px;
+  color: white;
+  background-color: black;
+  opacity: 0.5;
+}
+
+/*@@@@@ - Tom Homework - @@@@@*/

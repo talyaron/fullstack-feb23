@@ -1,0 +1,429 @@
+@import url("https://fonts.googleapis.com/css2?family=Butterfly+Kids&family=IBM+Plex+Sans+Hebrew&family=Open+Sans:wght@300;400&family=Oswald&family=Rubik:ital,wght@0,400;1,300;1,400&display=swap");
+
+// * {
+//   padding: 0%;
+//   margin: 0;
+//   font-family: Rubik;
+// }
+
+// body {
+//   height: 100vh;
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+
+//   .header {
+//     background-color: white;
+//     box-shadow: 2px 2px 4px rgb(218, 218, 218);
+//     height: 70px;
+//     display: flex;
+//     &__ctg {
+//       ul {
+//         display: flex;
+//         list-style-type: none;
+//         li {
+//           padding: 5px;
+//         }
+//       }
+//     }
+//   }
+* {
+  padding: 0%;
+  margin: 0;
+  font-family: Rubik;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .header {
+    background-color: white;
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.098);
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &__ctg {
+      ul {
+        display: flex;
+        list-style-type: none;
+
+        li {
+          padding: 26px 20px;
+
+          &:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+            cursor: pointer;
+          }
+        }
+      }
+    }
+
+    &__Btns {
+      display: flex;
+      margin-right: 60px;
+
+      &__btn {
+        padding: 0px 20px;
+
+        &:hover {
+          cursor: pointer;
+          background-color: rgba(0, 0, 0, 0.05);
+        }
+
+        &--userEnter {
+          display: flex;
+        }
+
+        &--heartIcon {
+          padding: 20px 10px;
+          font-size: larger;
+          font-weight: 50;
+        }
+
+        &--enter {
+          padding: 18px 5px;
+          font-size: 14px;
+          margin-top: 5px;
+        }
+
+        &--userIcon {
+          padding: 12px;
+          margin: 10px 0px;
+          height: 16px;
+          border: 1px solid rgb(202, 202, 202);
+          border-radius: 100px;
+          font-weight: 50;
+          font-size: larger;
+          background-color: rgba(0, 0, 0, 0.084);
+        }
+
+        &--addPost {
+          all: unset;
+          cursor: pointer;
+          background-color: rgba(15, 202, 128);
+          padding: 0px 20px;
+          margin: 15px 0px 0px 0px;
+          height: 35px;
+          border-radius: 30px;
+          color: white;
+          font-size: medium;
+
+          &:hover {
+            background-color: rgba(15, 202, 128);
+          }
+        }
+      }
+    }
+  }
+
+  .recoForU {}
+
+  // ruth
+
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 65rem;
+
+    .ad2 {
+      background-color: orange;
+       margin-top: 15em; //REMOVE AT THE END
+      height: 6em;
+      border-radius: 1em;
+      display: flex;
+      align-items: center;
+      z-index: 1;
+      position: relative;
+
+      &__phone {
+        width: 10em;
+        height: 20em;
+        background-image: url(/02-SCSS/07-BEM/puzzles/evgeny-ruth-mahdi/images/photo-1598327105666-5b89351aff97-removebg-preview.png);
+        background-repeat: no-repeat;
+        position: absolute;
+        background-size: cover;
+        transform: rotate(-12deg);
+        left: 53em;
+        bottom: -8em;
+      }
+
+      h1 {
+        color: white;
+        margin-left: 1em;
+      }
+
+      &__appStore {
+        background-image: url(/02-SCSS/07-BEM/puzzles/evgeny-ruth-mahdi/images/png-clipart-app-store-google-play-apple-apple-text-logo-removebg-preview.png);
+        background-size: cover;
+        width: 8.2rem;
+        height: 5.7rem;
+        margin-left: 1em;
+      }
+
+      &__QRcode {
+        background-image: url(https://cdn.britannica.com/17/155017-050-9AC96FC8/Example-QR-code.jpg?w=400&h=300&c=crop);
+        background-size: cover;
+        height: 5.2rem;
+        width: 5.2rem;
+        margin-left: 1em;
+        border-radius: .5em;
+      }
+
+    }
+
+    .PopToilet {
+      background-color: rgb(255, 255, 255);
+      height: 9em;
+      z-index: 2;
+      text-align: end;
+
+      &__headLine {
+        margin-top: 1em;
+      }
+
+      &__items {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1em;
+
+        &__item {
+          display: flex;
+          align-items: center;
+          height: 4.8em;
+          box-shadow: 1px 1px 10px rgba(38, 38, 38, 0.172);
+          flex: 1;
+
+          &__text {
+            padding: 1em;
+
+            h1 {
+              font-size: 1em;
+              padding: .5em;
+            }
+
+            p {
+              font-size: .7em;
+              padding: .5em;
+            }
+
+          }
+
+          &__logo {
+            height: 3em;
+            width: 3em;
+            padding-right: 1em;
+
+            &--logo1 {
+              background-image: url(https://assets.yad2.co.il/homepage/dooron.svg);
+              background-size: cover;
+            }
+
+            &--logo2 {
+              background-image: url(https://assets.yad2.co.il/homepage/priceList.svg);
+              background-size: cover;
+            }
+
+            &--logo3 {
+              background-image: url(https://assets.yad2.co.il/homepage/calculator.svg);
+              background-size: cover;
+            }
+
+            &--logo4 {
+              background-image: url(https://assets.yad2.co.il/homepage/yzer.svg);
+              background-size: cover;
+            }
+          }
+        }
+      }
+    }
+
+    .bottomCards{
+      width: 100%;
+      height: fit-content;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: end;
+      margin-top: 4em;
+      
+      justify-content: center;
+      gap: 2em;
+      &__firstRow{
+        display: flex;
+        gap: 1em;
+      }
+      &__secondRow{
+        display: flex;
+        gap: 1em;
+      }
+      &__card{
+        width: 13em;
+        height: 13em;
+        flex: 1;
+        
+        box-shadow: 1px 1px 10px rgba(38, 38, 38, 0.172);
+        border-radius: .5em;
+
+        &__image{
+          background-color: grey;
+          height: 9em;
+          border-radius: 0.5em 0.5em 0 0 ;
+          background-size: cover;
+
+          &--image1{
+            background-image: url(https://www.pyracantha.co.uk/wp-content/uploads/2021/06/Best-Wall-Mounted-Tool-Racks.jpg);
+          }
+          &--image2{
+            background-image: url(https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX1205341.jpg);
+          }
+          &--image3{
+            background-image: url(https://www.2n.com/documents/22902/2332596/residential-top-scenarios-apartment_building.jpg/c187a069-57c3-4953-a338-6fe3a4c637a5?t=1612948146923);
+          }
+          &--image4{
+            background-image: url(https://www.kbb.com/wp-content/uploads/2022/04/stock-kia-dealership.jpg?w=763);
+          }
+          &--image5{
+            background-image: url(https://thumbs.dreamstime.com/b/mockup-blank-screen-computer-laptop-desk-workspace-office-supplies-table-118042230.jpg);
+          }
+          &--image6{
+            background-image: url(https://thereadingschool.ca/wp-content/uploads/2022/01/4-2.png);
+          }
+          &--image7{
+            background-image: url(https://media.istockphoto.com/id/1251629816/photo/the-perfect-setting-to-complete-work.jpg?s=612x612&w=0&k=20&c=gH1kQhV4MdvrFnzto7YGEk-6Q1RDZ01w9-0NVTiGmT0=);
+          }
+          &--image8{
+            background-image: url(https://plus.unsplash.com/premium_photo-1661342512129-8902297fc4ac?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80);
+          }
+
+        }
+        &__text{
+          padding: .6em;
+          font-size: .9em;
+        }
+      }
+    }
+    .yad2Bus{
+      display: flex;
+      background-color: rgba(177, 174, 174, 0.093);
+      height: 6em;
+      align-items: center;
+      margin-top: 3em;
+
+      gap: 1em;
+      &__tabs{
+        background-color: white;
+        box-shadow: 1px 1px 10px rgba(38, 38, 38, 0.172);
+        height: 2.5em;
+        flex: 1;
+        margin: 1em;
+        display: flex;
+        align-items: center;
+        .fa-solid{
+          margin-left: 1em;
+        }
+        &__text{
+
+          text-align: end;
+          width: 100%;
+        }
+        &__logo{
+          width: 2em;
+          height: 2em;
+          background-size: cover;
+          margin-right: 1em;
+          &--logo1{
+            background-image: url(/02-SCSS/07-BEM/puzzles/evgeny-ruth-mahdi/images/Screenshot_2023-03-27_at_19-48-43_YAD2-removebg-preview.png);
+          }
+          &--logo2{
+            background-image: url(/02-SCSS/07-BEM/puzzles/evgeny-ruth-mahdi/images/Screenshot_2023-03-27_at_19-48-34_YAD2-removebg-preview.png);
+          }
+          &--logo3{
+            background-image: url(/02-SCSS/07-BEM/puzzles/evgeny-ruth-mahdi/images/Screenshot_2023-03-27_at_19-47-40_YAD2-removebg-preview.png);
+          }
+          
+        }
+      }
+      &__title{
+        margin-right: 1em;
+
+
+      }
+
+
+    }
+    
+    
+    .listTabs {
+      display: flex;
+      background-color: rgba(201, 199, 199, 0.146);
+      flex-direction: column;
+      margin-top: 6em;
+      align-items: end;
+      &__title{
+       justify-self: end;
+       margin-top: 3em;
+       font-size: .8em;
+       font-weight: lighter;
+      }
+      &__tabList{
+        display: flex;
+        
+        
+        &__item{
+          border: 1px solid rgba(0, 0, 0, 0.101);
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 6em;
+          height: 2em;
+          border-radius: 1em;
+          margin: 1em;
+          background-color: white;
+          p{
+            font-size: .8em;
+          }
+          &--Modifier{
+            color: white;
+            background-color: orange;
+          }
+        }
+      }
+      
+      .listTabs__buttomCtg{
+        display: flex;
+        &__column{
+          margin: 2em 0 3em  8em;
+          
+          &__title{
+            text-align: end;
+            font-size: 1em;
+            margin: .5em;
+          }
+          &__text{
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap-reverse;
+            margin-left: 2em;
+            height: 8em;
+            text-align: end;
+            p{
+              font-size: .8em;
+              margin:.5em;
+            }
+          }
+
+        }
+      }
+    }
+
+
+  }
+
+  // evgeny
+}

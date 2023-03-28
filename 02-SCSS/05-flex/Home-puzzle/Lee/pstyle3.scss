@@ -2,17 +2,18 @@ body {
 background-color: antiquewhite;
 
 
+
 img {
-    max-width: 250px;
+    width: 92%;
     border-radius: 7%;
     margin: 10px;
 }
 
 .wrapper {
-    columns: 6 250px;
-    column-gap: 0.5em;
+    columns: 6 300px; 
+    column-gap: 25px;
     display: block;
-    
+     
 }
 
 }
