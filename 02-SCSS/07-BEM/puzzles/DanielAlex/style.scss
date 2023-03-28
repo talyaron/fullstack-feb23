@@ -136,7 +136,7 @@
 .business{
     margin: auto;
     width: 1200px;
-    height: 50px;
+    height: 125px;
     align-items: center;
     text-align: center;
     display: flex;
@@ -144,13 +144,30 @@
     font-family:'Arimo', sans-serif;
     box-sizing: border-box;
     direction: rtl;
+    background-color: hsl(180, 17%, 95%);
     &__boxheader{
-        font-size: 20px;
-        font-weight: 500;
+        font-size: 30px;
+        font-weight: 600;
+        width: 200px;
     }
-    &__issue{
+    &__container{
         display: flex;
-
+        width: 1000px;
+        gap: 10px;
+        box-sizing: border-box;
+        &__issue{
+            display: flex;
+            text-align: center;
+            &__icon{
+            align-items: center;
+            margin: 0;
+            width: 50px;
+            }
+            &__topic{
+            font-size: 20px;
+            padding: 4px;
+            }
+        }
     }
 }
 
