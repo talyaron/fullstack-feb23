@@ -10,18 +10,25 @@ body {
 /*@@@@@ - Neve Homework - @@@@@*/
 /*@@@@@ - Doriel Homework - @@@@@*/
 .blockBig {
-  width: 80%;
-  display: flex;
-  justify-content: center;
-  padding: auto;
-  margin: auto;
-  align-items: center;
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  border-width: 0;
 }
 
 .block .main {
+  position: relative;
+  height: 100%;
+  width: 960px;
+  margin: 0 auto;
+}
+.block .main li {
   width: 100%;
-  display: flex;
-  align-items: center;
+  height: 540px;
+  margin-bottom: 13px;
 }
 .block .main img {
   width: 100%;
@@ -40,14 +47,14 @@ body {
   border-radius: 3px;
 }
 .block .main h1 {
-  background-color: black;
+  background-color: rgba(5, 21, 31, 0.8);
   color: white;
   z-index: 1;
   width: 100%;
   border-radius: 3px;
 }
 .block .main p {
-  background-color: black;
+  background-color: rgba(5, 21, 31, 0.8);
   color: white;
   z-index: 1;
   width: 100%;
@@ -55,9 +62,10 @@ body {
 }
 
 .main__fourBox {
-  width: 100%;
-  display: flex;
-  align-items: center;
+  position: relative;
+  height: 100%;
+  width: 960px;
+  margin: 0 auto;
 }
 .main__fourBox ul {
   padding: 5px;
@@ -75,8 +83,7 @@ body {
   position: relative;
   bottom: 35px;
   color: white;
-  background-color: black;
-  opacity: 0.5;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 /*@@@@@ - Tom Homework - @@@@@*/

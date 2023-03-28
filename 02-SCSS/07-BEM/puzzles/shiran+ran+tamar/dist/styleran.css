@@ -1,0 +1,59 @@
+.header {
+  width: 100%;
+  height: 90px;
+  border: 2px solid black;
+}
+.header__blackstick {
+  background-color: black;
+  width: 100%;
+  height: 45px;
+  position: sticky;
+  top: 0;
+  display: flex;
+}
+.header__blackstick__wallaDiv {
+  font-size: 30px;
+  font-family: "Rubik", sans-serif;
+  font-weight: 800;
+  color: white;
+  position: relative;
+  right: 200px;
+}
+.header__blackstick__wallaRec {
+  background-color: #1978bb;
+  width: 30px;
+  height: 30px;
+  position: relative;
+  right: 205px;
+  top: 5px;
+  border-radius: 5px;
+  font-size: 35px;
+  text-align: center;
+  justify-content: center;
+  font-family: "Rubik", sans-serif;
+  font-weight: bolder;
+  font-style: italic;
+  color: white;
+}
+.header__blackstick__smallItem {
+  color: white;
+  margin-left: 15px;
+  padding-left: 15px;
+  font-family: "Rubik", sans-serif;
+  border-left: 0.3px solid white;
+  height: 13px;
+  font-size: 13px;
+  font-weight: 700;
+  position: relative;
+  right: 241px;
+  top: 10px;
+}
+.header__blackstick__smallItem a {
+  font-size: 13px;
+  font-weight: 700;
+  color: white;
+  text-decoration: none;
+}
+.header__blackstick__smallItem a:hover {
+  color: #1978bb;
+}
