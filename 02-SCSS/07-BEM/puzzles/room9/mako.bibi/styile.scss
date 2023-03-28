@@ -19,54 +19,44 @@ body {
     margin: 0 auto;
     max-width: 100%;
 
-    .header {
+    &__main12 {
+        background-color: #db000b;
+        width: 100%;
 
-        &__main12 {
-            display: flex;
-            background-color: red;
-            align-items: center;
-
-            &__img1 {
-                margin-right: 10%;
-                width: 18%;
-            }
-
-            &__img2 {
-                color: white;
-                width: 22px;
-                margin-right: 2px;
-            }
-
-            &__weather {
-                color: white;
-                margin-right: 39%;
-                font-size: 16px;
-                font-weight: 500;
-                text-align: center;
-            }
-
-            &__date {
-                color: white;
-                font-size: 16px;
-                font-weight: 500;
-                text-align: center;
-            }
-
-            &__news {
-                color: white;
-                font-size: 16px;
-                font-weight: 500;
-                text-align: center;
-            }
-
-            &__line{
-                padding: 1px;
-                color: white;
-            }
+        &__mako {
+            margin-right: 12%;
+            height: 70px;
         }
-
     }
 
+    .nav {
+        background-color: whitesmoke;
+
+        &__menu {
+            display: flex;
+            justify-content: center;
+
+            a {
+                font-weight: 600;
+                margin: 12px;
+                text-decoration: none;
+                color: black;
+            }
+
+            a:hover {
+                cursor: pointer;
+                text-decoration: underline;
+            }
+
+            .political {
+                color: red;
+            }
+
+            .Search {
+                margin-right: 30px;
+            }
+        }
+    }
 
 
     span {
@@ -88,6 +78,8 @@ body {
     &__ads-1 {
 
         img {
+            position: -webkit-sticky;
+            top: 0;
             float: right;
             margin-right: 1%;
             max-width: 10%;
@@ -108,89 +100,89 @@ body {
         max-width: 50%;
         margin-right: 8%;
 
+
         &__h1 {
             margin-top: 2%;
             margin-right: 14%;
-            font-size: 40px;
+            font-size: 46px;
         }
 
         &__h2 {
             text-align: justify;
             font-size: 20px;
-            margin-top: 0.1%;
-            margin-right: 14%;
-
-        }
-
-    }
-
-
-
-    .mainads {
-        display: flex;
-        align-items: flex-end;
-
-        &__img {
-            margin: 0;
             margin-top: 1%;
-            margin-left: 1%;
-            margin-right: 7.5%;
-            width: 4%;
-        }
+            margin-right: 14%;
 
-        &__p {
-            font-size: large;
-            color: $color;
-            font-size: 15px;
-        }
-
-        &__spam {
-            color: $color
         }
 
     }
 
-    .spam2 {
-        margin-right: 4%;
-        font-size: 23px;
-        color: red;
+}
+
+.mainads {
+    display: flex;
+    align-items: flex-end;
+
+    &__img {
+        margin: 0;
+        margin-top: 1%;
+        margin-left: 1%;
+        margin-right: 7.5%;
+        width: 4%;
     }
 
-    .wrapper__text {
+    &__p {
+        font-size: large;
+        color: $color;
+        font-size: 15px;
+    }
 
-        img {
-            margin-top: 2%;
-            margin-right: 8%;
-            width: 86%;
-        }
+    &__spam {
+        color: $color
+    }
 
-        .img-2 {
-            float: right;
-            width: 15%;
-            margin-right: 14%;
-        }
+}
 
-        &__p2 {
-            padding: 4px;
-            margin-right: 14%;
-            color: $color;
-            font-size: 75%;
-        }
+.spam2 {
+    margin-right: 4%;
+    font-size: 23px;
+    color: red;
+}
 
-        &__p3 {
-            text-align: justify;
-            margin-top: 2%;
-            font-size: 1.125rem;
-        }
+.wrapper__text {
+
+    img {
+        margin-top: 2%;
+        margin-right: 8%;
+        width: 86%;
+    }
+
+    .img-2 {
+        float: right;
+        width: 15%;
+        margin-right: 14%;
+    }
+
+    &__p2 {
+        padding: 4px;
+        margin-right: 14%;
+        color: $color;
+        font-size: 75%;
+    }
+
+    &__p3 {
+        text-align: justify;
+        margin-top: 2%;
+        font-size: 1.125rem;
+    }
 
 
-        &__moreads {
+    &__moreads {
+        display: flex;
+        float: left;
+
+        h2 {
             display: flex;
-            float: left;
-
-            h2 {
-                display: flex;
-            }
         }
     }
 }
