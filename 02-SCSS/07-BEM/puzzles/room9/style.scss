@@ -1,5 +1,9 @@
 $bodyW: 100%;
 $bodyH: 100%;
+*{
+    margin: 0px;
+    padding: 0px;
+}
 
 body {
     width: $bodyW;
@@ -101,3 +105,81 @@ body {
 }
 
 /*@@@@@ - Tom Homework - @@@@@*/
+
+// nave Home - Work/
+
+.header{
+    display: flex;
+    height: 10vh;
+    background-color: #122536;
+    align-items: center;
+    width: 100%;
+
+    &__logo{
+        width: 120px;
+        height: 7.25vh;
+        padding-left: 34%;
+        padding-right: 19%;
+
+        
+    }
+    
+    &__icon{
+        width: 32px;
+        height: 4.9vh;
+        padding: 0em 0.3em;
+
+        &--search{
+            background-color: #20a3c5;
+            padding: 1.34em 1.25em;
+            height: 3.5vh;
+            width: 25px;
+
+
+
+
+        }
+    }
+    &__weather{
+        font-size: 15px;
+        color: white;
+        font-family: 'Assistant', sans-serif;
+        padding-left: 2%;
+        padding-right: 1.5%;
+
+
+
+
+    }
+ 
+
+}
+.nav{
+    background-color: #dce9ed;
+    padding: 1em 10em;
+    display: flex;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: 600;
+    color: white;
+    font-family: 'Assistant', sans-serif;
+}
+a{
+    color: #122536;
+    text-decoration: none;
+    border-left: 0.1em solid #122536;
+    line-height: 0.3em;
+    padding-left: 0.8em;
+    padding-right: 0.8em;
+
+}
+.ad{
+  display: flex;
+  width: 80%;
+  justify-content: flex-end;
+
+    &__img{
+        width: 75%;
+
+    }
+}

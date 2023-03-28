@@ -1,3 +1,74 @@
+.top {
+  font-family: "Open Sans", sans-serif;
+  width: 100%;
+  height: 70px;
+  background-color: black;
+  margin-top: 0px;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  margin: auto;
+}
+.top__left {
+  display: flex;
+  margin-left: 160px;
+  gap: 60px;
+}
+.top__left__bbc {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 30px;
+  color: black;
+  margin-left: 15px;
+}
+.top__left__bbc--bbcleters {
+  background-color: #ffffff;
+  width: 30px;
+  height: 30px;
+  padding: 0px 0px 8px 6px;
+}
+.top__left--icon {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  cursor: pointer;
+}
+.top__left--icon img {
+  width: 40px;
+  height: 40px;
+  float: right;
+}
+.top__ditels {
+  align-items: center;
+  display: flex;
+  gap: 28px;
+  margin-left: 250px;
+  border-left: 2px solid #3f3f3f;
+  height: 30px;
+  padding-left: 10px;
+}
+.top__ditels p {
+  cursor: pointer;
+}
+.top__search {
+  background-color: #3f3f3f;
+  height: 35px;
+  width: 215px;
+  display: flex;
+  align-items: center;
+}
+.top__search:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+.top__search img {
+  opacity: 0.2;
+  width: 40px;
+  float: right;
+}
+
 .welcome {
   font-family: "Open Sans", sans-serif;
   background-color: rgba(0, 255, 255, 0);
@@ -32,6 +103,10 @@
   float: left;
   padding-bottom: -30px;
 }
+.welcome__bigartical:hover {
+  opacity: 0.5;
+  cursor: pointer;
+}
 .welcome__bigartical__text {
   width: 600px;
   color: white;
@@ -61,6 +136,10 @@
   width: 290px;
   height: 170px;
 }
+.welcome__litelartical--img1:hover {
+  opacity: 0.5;
+  cursor: pointer;
+}
 .welcome__litelartical--img1__text {
   padding-top: 48px;
   padding-left: 5px;
@@ -78,6 +157,10 @@
   background-image: url(https://ichef.bbci.co.uk/live-experience/cps/480/cpsprodpb/vivo/live/images/2023/3/27/65c6924b-e742-43d4-98d9-e83d0f4555ee.jpg);
   width: 290px;
   height: 170px;
+}
+.welcome__litelartical--img2:hover {
+  opacity: 0.5;
+  cursor: pointer;
 }
 .welcome__litelartical__text {
   padding-top: 48px;
@@ -97,6 +180,10 @@
   width: 290px;
   height: 170px;
 }
+.welcome__litelartical--img3:hover {
+  opacity: 0.5;
+  cursor: pointer;
+}
 .welcome__litelartical--img3__text {
   padding-top: 48px;
   padding-left: 5px;
@@ -114,6 +201,10 @@
   background-image: url(https://ichef.bbci.co.uk/live-experience/cps/480/cpsprodpb/vivo/live/images/2023/3/27/c24476f2-5584-4843-a60d-ae35147ca518.jpg);
   width: 290px;
   height: 170px;
+}
+.welcome__litelartical--img4:hover {
+  opacity: 0.5;
+  cursor: pointer;
 }
 .welcome__litelartical--img4__text {
   padding-top: 48px;

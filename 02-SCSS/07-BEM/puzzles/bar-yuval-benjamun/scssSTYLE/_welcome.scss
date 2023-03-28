@@ -1,3 +1,88 @@
+.top {
+    font-family: 'Open Sans', sans-serif;
+    width: 100%;
+    height: 70px;
+    background-color: black;
+    margin-top: 0px;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin: auto;
+
+    &__left {
+        display: flex;
+        margin-left: 160px;
+        gap: 60px;
+
+        &__bbc {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 30px;
+            color: black;
+            margin-left: 15px;
+
+            &--bbcleters {
+                background-color: #ffffff;
+                width: 30px;
+                height: 30px;
+                padding: 0px 0px 8px 6px;
+
+            }
+        }
+
+        &--icon {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            cursor: pointer;
+
+            img {
+                width: 40px;
+                height: 40px;
+                float: right;
+            }
+        }
+
+    }
+
+    &__ditels {
+        align-items: center;
+        display: flex;
+        gap: 28px;
+        margin-left: 250px;
+        border-left: 2px solid rgb(63, 63, 63);
+        height: 30px;
+        padding-left: 10px;
+
+        p{
+            cursor: pointer;
+        }
+    }
+
+    &__search {
+        background-color: rgb(63, 63, 63);
+        height: 35px;
+        width: 215px;
+        display: flex;
+        align-items: center;
+
+        &:hover {
+            opacity: 0.8;
+            cursor: pointer;
+        }
+
+        img {
+            opacity: 0.2;
+            width: 40px;
+            float: right;
+
+        }
+    }
+}
+
+
 .welcome {
     $width: 290px;
     $height: 170px;
@@ -9,7 +94,7 @@
     height: 600px;
     margin: auto;
 
-    &__top{
+    &__top {
         width: 1340px;
         height: 50px;
         display: flex;
@@ -21,7 +106,7 @@
             color: rgba(0, 0, 0, 0.684);
             font-size: small;
         }
-    
+
         &__datetext {
             color: red;
             position: relative;
@@ -52,6 +137,15 @@
         margin-left: 12px;
         float: left;
         padding-bottom: -30px;
+
+
+
+        &:hover {
+            opacity: 0.5;
+            cursor: pointer;
+        }
+
+
 
         &__text {
             width: 600px;
@@ -87,11 +181,16 @@
             width: $width;
             height: $height;
 
+            &:hover {
+                opacity: 0.5;
+                cursor: pointer;
+            }
+
             &__text {
                 padding-top: 48px;
                 padding-left: 5px;
                 width: 270px;
-    
+
                 &--cantry {
                     border-left: 3px solid red;
                     height: 18px;
@@ -101,7 +200,7 @@
                     margin-top: -10px;
                 }
             }
-    
+
         }
 
 
@@ -110,6 +209,11 @@
             background-image: url(https://ichef.bbci.co.uk/live-experience/cps/480/cpsprodpb/vivo/live/images/2023/3/27/65c6924b-e742-43d4-98d9-e83d0f4555ee.jpg);
             width: $width;
             height: $height;
+
+            &:hover {
+                opacity: 0.5;
+                cursor: pointer;
+            }
         }
 
         &__text {
@@ -132,6 +236,11 @@
             width: $width;
             height: $height;
 
+            &:hover {
+                opacity: 0.5;
+                cursor: pointer;
+            }
+
             &__text {
                 padding-top: 48px;
                 padding-left: 5px;
@@ -152,6 +261,11 @@
             background-image: url(https://ichef.bbci.co.uk/live-experience/cps/480/cpsprodpb/vivo/live/images/2023/3/27/c24476f2-5584-4843-a60d-ae35147ca518.jpg);
             width: $width;
             height: $height;
+
+            &:hover {
+                opacity: 0.5;
+                cursor: pointer;
+            }
 
             &__text {
                 padding-top: 48px;
