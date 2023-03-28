@@ -48,9 +48,11 @@
 }
 
 .container {
+  margin: auto;
   display: flex;
   direction: rtl;
-  padding: 9px 149px;
+  box-sizing: border-box;
+  width: 1200px;
   gap: 14px;
 }
 .container__item {
@@ -160,12 +162,19 @@
 .business__container {
   display: flex;
   width: 1000px;
-  gap: 10px;
+  gap: 16px;
   box-sizing: border-box;
+  align-items: flex-start;
+  padding: 38px;
 }
 .business__container__issue {
   display: flex;
+  flex-direction: row;
   text-align: center;
+  box-sizing: border-box;
+  width: 300px;
+  border-radius: 8px;
+  background-color: azure;
 }
 .business__container__issue__icon {
   align-items: center;
@@ -175,4 +184,7 @@
 .business__container__issue__topic {
   font-size: 20px;
   padding: 4px;
+}
+.business__container__issue__forward {
+  direction: ltr;
 }
