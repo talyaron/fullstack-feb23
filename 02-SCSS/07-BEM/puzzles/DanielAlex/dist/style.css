@@ -47,6 +47,27 @@
   background-image: url("./real-estate.webp");
 }
 
+.container {
+  display: flex;
+  direction: rtl;
+  padding: 9px 149px;
+  gap: 14px;
+}
+.container__item {
+  border: 0px solid #d7d4d4;
+  border-radius: 14px 14px 8px 8px;
+  box-shadow: 0px 2px 3px 0px #e4e4e4;
+}
+.container__item__img {
+  cursor: pointer;
+  box-sizing: border-box;
+  border-radius: 8px 8px 0px 0px;
+}
+.container__item__text {
+  font-family: Rubik, sans-serif;
+  padding: 0px 8px 0px 8px;
+}
+
 .topic {
   margin: auto;
   width: 1200px;
@@ -57,6 +78,8 @@
   font-weight: 100;
   margin-bottom: 16px;
   box-sizing: border-box;
+  padding-top: 18px;
+  margin-top: 37px;
 }
 
 .popularServices {
