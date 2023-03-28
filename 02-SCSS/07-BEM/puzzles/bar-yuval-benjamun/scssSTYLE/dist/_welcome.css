@@ -1,3 +1,66 @@
+.top {
+  font-family: "Open Sans", sans-serif;
+  width: 100%;
+  height: 70px;
+  background-color: black;
+  margin-top: 0px;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  margin: auto;
+}
+.top__left {
+  display: flex;
+  margin-left: 160px;
+  gap: 60px;
+}
+.top__left__bbc {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 30px;
+  color: black;
+  margin-left: 15px;
+}
+.top__left__bbc--bbcleters {
+  background-color: #ffffff;
+  width: 30px;
+  height: 30px;
+  padding: 0px 0px 8px 6px;
+}
+.top__left--icon {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+.top__left--icon img {
+  width: 40px;
+  height: 40px;
+  float: right;
+}
+.top__ditels {
+  align-items: center;
+  display: flex;
+  gap: 28px;
+  margin-left: 250px;
+  border-left: 2px solid #3f3f3f;
+  height: 30px;
+  padding-left: 10px;
+}
+.top__search {
+  background-color: #3f3f3f;
+  height: 35px;
+  width: 215px;
+  display: flex;
+  align-items: center;
+}
+.top__search img {
+  opacity: 0.2;
+  width: 40px;
+  float: right;
+}
+
 .welcome {
   font-family: "Open Sans", sans-serif;
   background-color: rgba(0, 255, 255, 0);
@@ -32,6 +95,10 @@
   float: left;
   padding-bottom: -30px;
 }
+.welcome__bigartical :hover {
+  background-color: rgba(255, 255, 255, 0.535);
+  background-size: cover;
+}
 .welcome__bigartical__text {
   width: 600px;
   color: white;
@@ -55,6 +122,10 @@
   color: white;
   background-color: rgba(245, 245, 220, 0);
   flex-wrap: wrap;
+}
+.welcome__litelartical :hover {
+  background-color: rgba(255, 255, 255, 0.535);
+  background-size: cover;
 }
 .welcome__litelartical--img1 {
   background-image: url(./img1.png);

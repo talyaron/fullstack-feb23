@@ -1,3 +1,78 @@
+.top {
+    font-family: 'Open Sans', sans-serif;
+    width: 100%;
+    height: 70px;
+    background-color: black;
+    margin-top: 0px;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin: auto;
+
+    &__left {
+        display: flex;
+        margin-left: 160px;
+        gap: 60px;
+
+        &__bbc {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 30px;
+            color: black;
+            margin-left: 15px;
+
+            &--bbcleters {
+                background-color: #ffffff;
+                width: 30px;
+                height: 30px;
+                padding: 0px 0px 8px 6px;
+
+            }
+        }
+
+        &--icon {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+
+            img {
+                width: 40px;
+                height: 40px;
+                float: right;
+            }
+        }
+
+    }
+
+    &__ditels {
+        align-items: center;
+        display: flex;
+        gap: 28px;
+        margin-left: 250px;
+        border-left: 2px solid rgb(63, 63, 63);
+        height: 30px;
+        padding-left: 10px;
+    }
+
+    &__search {
+        background-color: rgb(63, 63, 63);
+        height: 35px;
+        width: 215px;
+        display: flex;
+        align-items: center;
+
+        img {
+            opacity: 0.2;
+            width: 40px;
+            float: right;
+
+        }
+    }
+}
+
+
 .welcome {
     $width: 290px;
     $height: 170px;
@@ -9,7 +84,7 @@
     height: 600px;
     margin: auto;
 
-    &__top{
+    &__top {
         width: 1340px;
         height: 50px;
         display: flex;
@@ -21,7 +96,7 @@
             color: rgba(0, 0, 0, 0.684);
             font-size: small;
         }
-    
+
         &__datetext {
             color: red;
             position: relative;
@@ -53,6 +128,14 @@
         float: left;
         padding-bottom: -30px;
 
+
+        :hover {
+            background-color: rgba(255, 255, 255, 0.535);
+            background-size: cover;
+        }
+
+
+
         &__text {
             width: 600px;
             color: white;
@@ -82,6 +165,11 @@
         background-color: rgba(245, 245, 220, 0);
         flex-wrap: wrap;
 
+        :hover {
+            background-color: rgba(255, 255, 255, 0.535);
+            background-size: cover;
+        }
+
         &--img1 {
             background-image: url(./img1.png);
             width: $width;
@@ -91,7 +179,7 @@
                 padding-top: 48px;
                 padding-left: 5px;
                 width: 270px;
-    
+
                 &--cantry {
                     border-left: 3px solid red;
                     height: 18px;
@@ -101,7 +189,7 @@
                     margin-top: -10px;
                 }
             }
-    
+
         }
 
 
