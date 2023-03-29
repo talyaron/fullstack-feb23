@@ -30,3 +30,7 @@ img {
   height: 20rem;
   object-fit: cover;
 }
+
+.back {
+  transform: rotateY(180deg);
+}
