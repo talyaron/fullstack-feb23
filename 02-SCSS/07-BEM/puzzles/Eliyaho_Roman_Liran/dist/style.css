@@ -3,12 +3,65 @@ body {
 }
 
 .headder {
+  font-family: "arial", sans-serif;
+  display: flex;
+  align-items: center;
   background-color: black;
   color: white;
   width: 100%;
+  height: 64px;
+}
+.headder__logo {
+  padding-left: 10px;
 }
 .headder__logo img {
-  width: 80px;
+  width: 120px;
+}
+.headder__signIn {
+  display: flex;
+  align-items: center;
+  height: 25px;
+}
+.headder__signIn--profileImg {
+  width: 40px;
+}
+.headder__signIn--profileImg img {
+  width: 36px;
+  height: 36px;
+  padding-left: 10px;
+}
+.headder__signIn--txt {
+  padding-right: 100px;
+  padding-left: 5px;
+  font-size: 15px;
+  padding-left: 8px;
+  border-right: 1.4px solid #262626;
+}
+.headder__navigation ul {
+  display: flex;
+  list-style: none;
+  justify-content: space-between;
+  width: 630px;
+}
+.headder__search {
+  padding-left: 35px;
+  display: flex;
+}
+.headder__search ::placeholder {
+  font-size: 12px;
+  padding-left: 20px;
+  height: 80px;
+  color: white;
+  background-color: #3d3c3c;
+}
+.headder__search h3 {
+  background-color: #2f2e2e;
+  height: 30px;
+  padding-top: 8px;
+  width: 200px;
+  font-size: 14px;
+  padding-left: 10px;
+  margin-right: 20px;
 }
 
 .wrapper {

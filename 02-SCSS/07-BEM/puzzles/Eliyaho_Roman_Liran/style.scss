@@ -10,15 +10,71 @@ $paddingLeft: 10%;
 //Eliyaho - headder
 
 .headder {
+    font-family: $fontA;
+    display: flex;
+    align-items: center;
     background-color: black;
     color: white;
     width: 100%;
+    height: 64px;
     &__logo {
+        padding-left: 10px;
         img {
-            width: 80px;
+            width: 120px;
         }
     }
-}  
+    &__signIn{
+        display: flex;
+        align-items: center;
+        height: 25px;
+        &--profileImg {
+            width: 40px;
+            img {
+                width: 36px;
+                height: 36px;
+                padding-left: 10px;
+            }
+        }    
+        &--txt {
+            padding-right: 100px;
+            padding-left: 5px;
+            font-size: 15px;
+            padding-left: 8px;
+            border-right: 1.4px solid rgb(38, 38, 38);
+        } 
+    }
+    &__navigation {
+        ul{
+            display: flex;
+            // gap: 8px;
+            list-style: none;
+            justify-content: space-between;
+            width: 630px;
+            
+        }
+
+    }
+    &__search {
+        padding-left: 35px;
+        display: flex;
+        ::placeholder {
+            font-size: 12px;
+            padding-left: 20px;
+            height: 80px;
+            color: white;
+            background-color: rgb(61, 60, 60);
+        }
+        h3 {
+            background-color:rgb(47, 46, 46);
+            height: 30px;
+            padding-top: 8px;
+           width: 200px;
+           font-size: 14px;
+           padding-left: 10px;
+           margin-right: 20px;
+        }
+        }
+    }
 
 //Roman - main
 
