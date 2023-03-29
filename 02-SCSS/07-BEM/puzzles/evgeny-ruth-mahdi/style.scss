@@ -1,32 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Butterfly+Kids&family=IBM+Plex+Sans+Hebrew&family=Open+Sans:wght@300;400&family=Oswald&family=Rubik:ital,wght@0,400;1,300;1,400&display=swap");
 
-// * {
-//   padding: 0%;
-//   margin: 0;
-//   font-family: Rubik;
-// }
-
-// body {
-//   height: 100vh;
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-
-//   .header {
-//     background-color: white;
-//     box-shadow: 2px 2px 4px rgb(218, 218, 218);
-//     height: 70px;
-//     display: flex;
-//     &__ctg {
-//       ul {
-//         display: flex;
-//         list-style-type: none;
-//         li {
-//           padding: 5px;
-//         }
-//       }
-//     }
-//   }
 * {
   padding: 0%;
   margin: 0;
@@ -41,19 +14,20 @@ body {
 
   .header {
     background-color: white;
-    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.098);
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.098);
     height: 70px;
     display: flex;
     justify-content: center;
     align-items: center;
-
+    
     &__ctg {
       ul {
         display: flex;
         list-style-type: none;
-
+        
         li {
           padding: 26px 20px;
+          transition: all 0.2s;
 
           &:hover {
             background-color: rgba(0, 0, 0, 0.05);
@@ -154,7 +128,6 @@ body {
         flex-direction: column;
 
         &__image {
-          // border: 1px solid gray;
           border-radius: 100%;
           max-width: 8rem;
           min-height: 8rem;
@@ -188,7 +161,7 @@ body {
         padding: 5px;
         width: 24%;
         height: 5.5rem;
-        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.091);
+        box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.091);
         direction: rtl;
         background-color: rgb(255, 255, 255);
         transition: all 0.1s;

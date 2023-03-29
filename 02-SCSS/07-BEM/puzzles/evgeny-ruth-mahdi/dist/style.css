@@ -13,7 +13,7 @@ body {
 }
 body .header {
   background-color: white;
-  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.098);
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.098);
   height: 70px;
   display: flex;
   justify-content: center;
@@ -25,6 +25,7 @@ body .header__ctg ul {
 }
 body .header__ctg ul li {
   padding: 26px 20px;
+  transition: all 0.2s;
 }
 body .header__ctg ul li:hover {
   background-color: rgba(0, 0, 0, 0.05);
@@ -137,7 +138,7 @@ body .wrapper .lastSearches__item {
   padding: 5px;
   width: 24%;
   height: 5.5rem;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.091);
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.091);
   direction: rtl;
   background-color: white;
   transition: all 0.1s;
