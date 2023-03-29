@@ -38,8 +38,12 @@
   flex-direction: row-reverse;
 }
 .articales__article__articleText {
+  padding: 2px;
+  display: flex;
+  align-items: flex-end;
   word-wrap: break-word;
   width: 586px;
+  font-size: 20px;
 }
 .articales__smallContaner {
   margin: auto;
@@ -111,4 +115,5 @@
   padding: 2px;
   display: flex;
   align-items: flex-end;
+  font-size: 18px;
 }
