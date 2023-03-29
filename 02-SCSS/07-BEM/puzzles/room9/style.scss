@@ -24,7 +24,6 @@ body {
     margin-left: -50vw;
     margin-right: -50vw;
     border-width: 0;
-    justify-content: ;
 }
 
 .main{
@@ -60,10 +59,12 @@ body {
         bottom: 10;
         width: 250px;
         border-radius: 3px;
+        position: absolute;
+        top: 80%;
     }
 
     h1 {
-        top:424px;
+        top:458px;
         position:absolute;
         background-color: rgba(5,21,31,.8);
         color: white;
@@ -74,7 +75,7 @@ body {
     }
 
     p {
-        top: 450px;
+        top: 491px;
         position: absolute;
         background-color: rgba(5,21,31,.8);
         color: white;
@@ -188,12 +189,8 @@ a{
 
 }
 .ad{
-    display: flex;
-    width: 100%;
-    justify-content: flex-end;
-
-    &__img{
-        width: 87.3%;
-        margin: 0 auto;
-    }
+display: flex;
+margin: auto;
+justify-content: center;
+height: 65vh;
 }
