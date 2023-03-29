@@ -38,21 +38,29 @@ body {
   right: 85px;
 }
 
-.header__date {
+.header__text {
+  color: white;
+  border-left: 2px solid white;
+  font-family: sans-serif;
   box-sizing: border-box;
   position: relative;
-  top: 15px;
+  top: 70px;
   right: 1020px;
   margin: 0%;
 }
-.header__date p {
-  border-left: 2px solid white;
-  position: relative;
+.header__date {
   color: white;
+  border-left: 2px solid white;
   font-family: sans-serif;
-  font-size: 16px;
-  top: -88px;
-  right: 210px;
+  box-sizing: border-box;
+  position: relative;
+  top: 50px;
+  right: 1130px;
+  margin: 0%;
+}
+.header__n12 {
+  position: sticky;
+  top: 100px;
 }
 
 .topnav {
@@ -90,8 +98,7 @@ body {
   padding-top: 10px;
   font-size: 18px;
   top: 50%;
-  right: 95%;
-  border-width: 0;
+  right: 97%;
 }
 
 .topnav a {

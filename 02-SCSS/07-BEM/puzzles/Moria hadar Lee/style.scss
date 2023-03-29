@@ -2,6 +2,40 @@ body {
     font-family: sans-serif;
 }
 
+.logo {
+    background: #A91000;
+    width: 100%;
+    height: 70px;
+    justify-content: space-around;
+    display: flex;
+    align-items: center;
+
+    &__n12 {
+        width: 15%;
+        height: 60%;
+        background: url(logo-removebg-preview.png) no-repeat center center/ cover;
+    }
+
+    &__links {
+        ul {
+            list-style: none;
+            // display: flex;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+
+
+            a {
+                text-decoration: none;
+                color: white;
+                margin: 0 5px;
+                font-size: 20px;
+            }
+        }
+    }
+}
+
 .cntainer {
     display: flex;
     width: 60%;
@@ -14,6 +48,7 @@ body {
             color: red;
             font-size: 20px;
             font-weight: bold;
+            margin-top: 20px;
         }
 
         &__article {
@@ -110,6 +145,7 @@ body {
             flex-direction: column;
             height: 550px;
             width: 350px;
+            margin-top: 20px;
 
 
 
@@ -145,5 +181,84 @@ body {
 
         }
 
+    }
+}
+
+
+.background {
+    background: url(images/רקע.png) repeat;
+}
+
+.chat {
+    width: 20%;
+    height: 70%;
+
+
+
+    &__box {
+        border-radius: 10px;
+        background: #F3FDFE;
+        margin: 8px 10px;
+        padding: 10px;
+        position: relative;
+    }
+
+    &__box__img {
+        background: url(images/משהו.jpg) no-repeat center center/ cover;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        // float: right;
+        position: absolute;
+        top: 1px;
+        right: 1px;
+    }
+
+    &__taital {
+        background: red;
+        color: white;
+        width: 100%;
+        height: 30%;
+        text-align: center;
+
+    }
+
+    &__box__taital {
+        margin-right: 25px;
+    }
+
+    &__box__taital--orange {
+        color: orange;
+    }
+
+    &__box__taital--blue {
+        color: blue;
+    }
+
+    &__box__taital--green {
+        color: green;
+    }
+
+    &__box__taital--Brown {
+        color: Brown;
+    }
+
+    &__box__taital--red {
+        color: red;
+    }
+
+    &__box__Clock {
+        color: Brown;
+        text-align: end;
+
+    }
+
+    &__bth {
+        background: red;
+        padding: 5px 8px;
+        width: 30%;
+        height: 10%;
+        color: white;
+        margin: 10px 30%;
     }
 }

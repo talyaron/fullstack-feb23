@@ -1,0 +1,33 @@
+// div > p {}
+
+// .root {
+//      p:nth-child(3) {
+//         color: red;
+//     }
+// }
+body { 
+    margin: 0;
+}
+
+.flex-show {
+    background-color: rgb(120, 120, 239);
+    display: flex;
+    height: 100vh; //vw, rem - root element, em - the closet parent
+    justify-content: space-evenly;
+    align-items: center;
+    font-size: 20px;
+
+    p {
+        background-color: rgb(193, 193, 193);
+        // width: 10%;
+        font-size: 2rem;
+    }
+
+    p:nth-child(odd) {
+        color: red;
+    }
+
+    p:nth-child(even) {
+        color: green;
+    }
+}
