@@ -41,7 +41,11 @@ body {
             font-family: 'Assistant', sans-serif;
 
             a:nth-last-child(-n+3) {
-                border: 3px solid lime;
+
+                img {display: flex;
+                    float: left;
+                    height: 23px;
+                }
             }
 
             a {

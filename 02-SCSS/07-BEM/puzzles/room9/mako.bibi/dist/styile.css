@@ -32,8 +32,10 @@ body {
   justify-content: center;
   font-family: "Assistant", sans-serif;
 }
-.wrapper .nav__menu a:nth-last-child(-n+3) {
-  border: 3px solid lime;
+.wrapper .nav__menu a:nth-last-child(-n+3) img {
+  display: flex;
+  float: left;
+  height: 23px;
 }
 .wrapper .nav__menu a {
   font-weight: 600;
