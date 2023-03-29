@@ -1,0 +1,2 @@
+1) choose one site with simple hover/active animations and recreate it. Do it on one of the site components. You don't have to recreate the whole site. Use import in the SCSS.
+3) Try to create the effect in the attached video.

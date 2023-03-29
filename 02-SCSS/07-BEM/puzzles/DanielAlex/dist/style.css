@@ -92,6 +92,7 @@
   gap: 13px;
   flex-direction: row;
   direction: rtl;
+  cursor: pointer;
 }
 .popularServices__service {
   display: flex;
@@ -144,6 +145,7 @@
 
 .business {
   margin: auto;
+  margin-top: 65px;
   width: 1200px;
   height: 125px;
   align-items: center;
@@ -178,6 +180,7 @@
   background-color: azure;
   padding-top: 3px;
   box-shadow: 0px 2px 3px 0px #e4e4e4;
+  cursor: pointer;
 }
 .business__container__issue__icon {
   align-items: center;

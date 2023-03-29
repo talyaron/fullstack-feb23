@@ -19,12 +19,12 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    
+
     &__ctg {
       ul {
         display: flex;
         list-style-type: none;
-        
+
         li {
           padding: 26px 20px;
           transition: all 0.2s;
@@ -102,18 +102,17 @@ body {
     width: 65rem;
 
     .ad {
-     
       img {
         box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.098);
         width: 100%;
         z-index: -3;
         margin-top: 2rem;
         border-radius: 20px;
-        transition: all .3s;
-        &:hover{
+        transition: all 0.3s;
+        justify-content: center;
+        &:hover {
           cursor: pointer;
           width: 98%;
-        
         }
       }
     }
@@ -157,7 +156,7 @@ body {
       display: flex;
       align-items: center;
       justify-content: space-around;
-      &__item{
+      &__item {
         padding: 5px;
         width: 24%;
         height: 5.5rem;
@@ -165,17 +164,17 @@ body {
         direction: rtl;
         background-color: rgb(255, 255, 255);
         transition: all 0.1s;
-        &:hover{
+        &:hover {
           cursor: pointer;
           width: 25%;
           height: 5.7rem;
         }
       }
-      .freetext{
+      .freetext {
         height: 6rem;
-        p{
+        p {
           color: orange;
-          &:hover{
+          &:hover {
             cursor: pointer;
           }
         }
@@ -188,7 +187,7 @@ body {
 
     .ad2 {
       background-color: orange;
-      margin-top: 6em; 
+      margin-top: 6em;
       height: 6em;
       border-radius: 1em;
       display: flex;
@@ -365,7 +364,7 @@ body {
     }
     .yad2Bus {
       display: flex;
-      background-color: rgba(177, 174, 174, 0.093);
+      background-color: rgba(177, 174, 174, 0.203);
       height: 6em;
       align-items: center;
       margin-top: 3em;
@@ -409,7 +408,7 @@ body {
 
     .listTabs {
       display: flex;
-      background-color: rgba(201, 199, 199, 0.146);
+      background-color: rgba(201, 199, 199, 0.29);
       flex-direction: column;
       margin-top: 6em;
       align-items: end;
@@ -423,7 +422,7 @@ body {
         display: flex;
 
         &__item {
-          border: 1px solid rgba(0, 0, 0, 0.101);
+          border: 1px solid rgba(0, 0, 0, 0.114);
           display: flex;
           justify-content: center;
           align-items: center;
