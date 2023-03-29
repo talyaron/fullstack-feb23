@@ -2,6 +2,7 @@ $fontSize: 14px;
 $fontA: 'arial', sans-serif;
 $fontR: 'Roboto', sans-serif;
 $paddingLeft: 10%;
+$fontGray: rgb(108, 107, 107);
 
  body{
     margin: 0;
@@ -131,7 +132,6 @@ $paddingLeft: 10%;
 
 .manu{
      display: flex;
-     
      gap: 300px;
      .bars{
         border-left: 1px solid;
@@ -140,6 +140,91 @@ $paddingLeft: 10%;
         padding-left: 10px;
         gap: 2px;
      }
+}
+
+.article{
+    display: flex;
+    flex-direction: column;
+    padding-left: $paddingLeft;
+    font-family: 'arial';
+    width: 65%;
+    color: black;
+
+    &__timeSignature{
+        display: flex;
+        gap: 4px;
+        font-size: small;
+        color: $fontGray;
+    }
+
+    &__subTitle{
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        justify-content: flex-start;
+        padding-bottom: 40px;
+        a{
+            text-decoration: none;
+            font-weight: bold;
+            color: black;
+            background-color: rgb(249, 247, 247);
+            padding: 8px 16px;
+        }
+        a:hover{
+            color: red;
+            text-decoration: underline;
+        }
+
+        i{
+            background-color: red;
+            color: white;
+            padding: 8px 10px;
+        }
+
+        
+    }
+
+    &__body{
+        width: 90%;
+        li{
+            text-decoration: underline;
+            font-weight: bold;
+        }
+        p{
+            font-size: smaller;
+            color: $fontGray;
+        }
+
+        img{
+            width: 800px;
+            height: 450px;
+        }
+
+        &--img{
+            p{
+                border-left: 1px solid;
+                padding-left: 10px;
+                margin-top: 7px;
+
+            }
+        }
+
+        &--text{
+            h6{
+                font-weight: bold;
+                margin-bottom: 0;
+            }
+
+            p{
+                color: black;
+                font-size: medium;
+                line-height: 1.2rem;
+                
+            }
+        }
+    }
+
+
 }
 
 
