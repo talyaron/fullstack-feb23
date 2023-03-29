@@ -1,18 +1,24 @@
 $fontSize: 14px;
+$fontA: 'arial', sans-serif;
+$fontR: 'Roboto', sans-serif;
+$paddingLeft: 10%;
+
+ body{
+    margin: 0;
+ }
+
+//Eliyaho - headder
 
 .headder {
     background-color: black;
     color: white;
-
+    width: 100%;
     &__logo {
         img {
             width: 80px;
         }
     }
-}
-
-//Eliyaho - headder
-
+}  
 
 //Roman - main
 
@@ -23,9 +29,8 @@ $fontSize: 14px;
     margin: auto;
 
     .articles{
-        font-family: 'Montserrat', sans-serif;
+        font-family: $fontA;
         display: flex;
-        flex-direction: row;
         width: 70%;
     
         &__news{
@@ -43,6 +48,8 @@ $fontSize: 14px;
     .section{
         padding-left: 5px;
         border-left: 4px solid;
+        font-family:$fontR;
+        color: rgb(76, 74, 74);
     }
 
     .red{
@@ -79,15 +86,60 @@ $fontSize: 14px;
         border-color: black;
 
     }
-    h2{
-        font-family: 'Roboto', sans-serif;
-        color: rgb(76, 74, 74);
-    }
 }
 
-.webBody{
+// second page
+.containe{
     display: flex;
+    flex-direction: column;
+    width: 100%;
+    .sectionHeadder{
+        background-color: rgb(201, 5, 5);
+        color: white;
+        font-family:'arial';
+        align-content: center;
+        h1{
+            font-family: $fontR;
+            padding: 5px 0 5px $paddingLeft;
+            border-bottom: 1px solid;
+            margin-top:0;
+            margin-bottom: 0;
+        }
+
+        ul{
+            padding-left: $paddingLeft;
+            display: flex;
+            gap: 5px;
+            list-style: none;
+            margin-right: 0;
+            width: 60%;
+            li{
+                border-right: 1px solid;
+                padding-right: 5px;
+            }
+        }
+
+        &__categories{
+            &--white{
+                background-color: white;
+                color: black;
+            }
+        }
+
+   }
 }
 
+.manu{
+     display: flex;
+     
+     gap: 300px;
+     .bars{
+        border-left: 1px solid;
+        display: flex;
+        justify-items: center;
+        padding-left: 10px;
+        gap: 2px;
+     }
+}
 
 
