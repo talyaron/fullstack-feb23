@@ -12,7 +12,6 @@ body {
   list-style: none;
 }
 
-/*@@@@@ - Neve Homework - @@@@@*/
 /*@@@@@ - Doriel Homework - @@@@@*/
 .blockBig {
   width: 100%;
@@ -40,6 +39,7 @@ body {
   height: auto;
   width: 960px;
   margin: 0 auto;
+  justify-content: center;
 }
 .block .main li {
   width: 100%;
@@ -47,7 +47,7 @@ body {
   margin-bottom: 13px;
 }
 .block .main h2 {
-  top: 400px;
+  margin-right: 14px;
   background-color: red;
   color: white;
   z-index: 2;
@@ -55,9 +55,11 @@ body {
   bottom: 10;
   width: 250px;
   border-radius: 3px;
+  position: absolute;
+  top: 80%;
 }
 .block .main h1 {
-  top: 424px;
+  top: 458px;
   position: absolute;
   background-color: rgba(5, 21, 31, 0.8);
   color: white;
@@ -67,18 +69,19 @@ body {
   border-radius: 3px;
 }
 .block .main p {
-  top: 450px;
+  top: 491px;
   position: absolute;
   background-color: rgba(5, 21, 31, 0.8);
   color: white;
   z-index: 1;
   width: 100%;
-  height: 90px;
+  margin-right: 14px;
   border-radius: 3px;
 }
 
 .main {
   width: 100%;
+  justify-content: center;
 }
 .main__fourBox {
   position: relative;
@@ -160,10 +163,7 @@ a {
 
 .ad {
   display: flex;
-  width: 100%;
-  justify-content: flex-end;
-}
-.ad__img {
-  width: 87.3%;
-  margin: 0 auto;
+  margin: auto;
+  justify-content: center;
+  height: 65vh;
 }
