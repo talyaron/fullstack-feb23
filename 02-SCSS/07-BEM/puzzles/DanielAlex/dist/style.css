@@ -104,6 +104,7 @@
   padding: 8px 14px;
   padding-right: 10px;
   align-items: center;
+  box-shadow: 0px 2px 3px 0px #e4e4e4;
 }
 .popularServices__service__icon {
   height: 57px;
@@ -170,21 +171,21 @@
 .business__container__issue {
   display: flex;
   flex-direction: row;
-  text-align: center;
+  text-align: start;
   box-sizing: border-box;
   width: 300px;
   border-radius: 8px;
   background-color: azure;
+  padding-top: 3px;
+  box-shadow: 0px 2px 3px 0px #e4e4e4;
 }
 .business__container__issue__icon {
   align-items: center;
-  margin: 0;
+  margin-right: 4px;
   width: 50px;
 }
 .business__container__issue__topic {
   font-size: 20px;
   padding: 4px;
-}
-.business__container__issue__forward {
-  direction: ltr;
+  width: 200px;
 }
