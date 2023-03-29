@@ -3,7 +3,7 @@
   height: 300px;
   display: flex;
   flex-direction: row-reverse;
-  gap: 10px;
+  gap: 8px;
 }
 .articales__article {
   display: flex;
@@ -16,9 +16,10 @@
   flex-direction: column;
   align-items: flex-end;
   background-image: url(./img/ValeriaMithatenet2.jpg);
-  width: 532px;
+  background-size: cover;
+  width: 535px;
   height: 300px;
-  padding-top: 190px;
+  padding-top: 203px;
 }
 .articales__article__purpeleText {
   background-color: #9e0d7f;
@@ -27,44 +28,81 @@
   padding: 4px;
   width: fit-content;
 }
-.articales__article__whiteText {
-  background-color: #64e011;
+.articales__article__greyText {
+  background-color: rgba(0, 0, 0, 0.25);
   color: white;
   text-align: center;
   padding: 4px;
-  width: fit-content;
+  width: 527px;
 }
 .articales__smallContaner {
   margin: auto;
-  height: 150px;
+  height: 300px;
   display: flex;
   flex-direction: column;
   flex: 1;
+  gap: 1px;
 }
 .articales__smallContaner__article {
   display: flex;
   flex-direction: column;
-  height: 65px;
+  justify-content: space-around;
 }
 .articales__smallContaner__article__video {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  background-image: url(./img/ValeriaMithatenet2.jpg);
-  width: 260px;
-  height: 65px;
+  background-image: url(./img/yuda.jpg);
+  background-position: right top;
+  background-size: cover;
+  width: 256px;
+  height: 120px;
 }
-.articales__smallContaner__article__purpeleText {
+.articales__smallContaner__article__video__purpeleText {
   background-color: #9e0d7f;
   color: white;
   text-align: center;
   padding: 4px;
   width: fit-content;
+  margin-top: 92px;
 }
-.articales__smallContaner__article__whiteText {
-  background-color: #64e011;
+.articales__smallContaner__article__first {
+  display: flex;
+  flex-direction: row;
+}
+.articales__smallContaner__article__split {
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 1px;
+  justify-content: space-around;
+}
+.articales__smallContaner__article__split__video {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.articales__smallContaner__article__split__video__purpeleText {
+  background-color: #9e0d7f;
   color: white;
   text-align: center;
   padding: 4px;
   width: fit-content;
+  margin-top: 92px;
+}
+.articales__smallContaner__article__split--first {
+  background-image: url(./img/yuda.jpg), url(./img/yuda.jpg);
+  background-position: right top;
+  background-size: cover;
+  width: 128px;
+}
+.articales__smallContaner__article__split--sec {
+  background-image: url(./img/yuda.jpg), url(./img/yuda.jpg);
+  background-position: right top;
+  background-size: cover;
+  width: 128px;
+}
+.articales__smallContaner__article__Text {
+  height: 25px;
+  text-align: center;
+  padding: 2px;
 }
