@@ -6,7 +6,7 @@
 * TAMAR - 5-8
 
 * YBO - 9-10
-
+Here some short [link](https://htmlpreview.github.io/?https://github.com/talyaron/fullstack-feb23/blob/main/02-SCSS/07-BEM/puzzles/ROOM7/index.html) to the mission.
 
 nav-header -1
 
