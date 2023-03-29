@@ -1,32 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Butterfly+Kids&family=IBM+Plex+Sans+Hebrew&family=Open+Sans:wght@300;400&family=Oswald&family=Rubik:ital,wght@0,400;1,300;1,400&display=swap");
 
-// * {
-//   padding: 0%;
-//   margin: 0;
-//   font-family: Rubik;
-// }
-
-// body {
-//   height: 100vh;
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-
-//   .header {
-//     background-color: white;
-//     box-shadow: 2px 2px 4px rgb(218, 218, 218);
-//     height: 70px;
-//     display: flex;
-//     &__ctg {
-//       ul {
-//         display: flex;
-//         list-style-type: none;
-//         li {
-//           padding: 5px;
-//         }
-//       }
-//     }
-//   }
 * {
   padding: 0%;
   margin: 0;
@@ -41,19 +14,20 @@ body {
 
   .header {
     background-color: white;
-    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.098);
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.098);
     height: 70px;
     display: flex;
     justify-content: center;
     align-items: center;
-
+    
     &__ctg {
       ul {
         display: flex;
         list-style-type: none;
-
+        
         li {
           padding: 26px 20px;
+          transition: all 0.2s;
 
           &:hover {
             background-color: rgba(0, 0, 0, 0.05);
@@ -128,63 +102,105 @@ body {
     width: 65rem;
 
     .ad {
+     
       img {
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.098);
         width: 100%;
         z-index: -3;
         margin-top: 2rem;
         border-radius: 20px;
+        transition: all .3s;
+        &:hover{
+          cursor: pointer;
+          width: 98%;
+        
+        }
       }
     }
 
-    .categories{
+    .categories {
       margin: 4rem 0rem;
       display: flex;
       justify-content: space-between;
       flex-direction: row-reverse;
-      &__item{
+      &__item {
         display: flex;
         flex-direction: column;
 
-        &__image{
-          // border: 1px solid gray;
+        &__image {
           border-radius: 100%;
-          max-width: 8rem ;
+          max-width: 8rem;
           min-height: 8rem;
           background-color: rgba(0, 0, 0, 0.08);
           transition: background-color 0.2s;
 
-          &:hover{
+          &:hover {
             outline: 1px solid lightgray;
             outline-offset: -2px;
-            border-inline:inherit;
+            border-inline: inherit;
             background-color: whitesmoke;
+            cursor: pointer;
           }
         }
-        &__name{
+        &__name {
           text-align: center;
           margin-top: 0.5rem;
-          font-size:larger;
+          font-size: larger;
         }
       }
     }
-    .recoForU {
+
+    .lastSearches {
+      background-color: rgba(0, 0, 0, 0.03);
+      width: 100%;
+      height: 8rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      &__item{
+        padding: 5px;
+        width: 24%;
+        height: 5.5rem;
+        box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.091);
+        direction: rtl;
+        background-color: rgb(255, 255, 255);
+        transition: all 0.1s;
+        &:hover{
+          cursor: pointer;
+          width: 25%;
+          height: 5.7rem;
+        }
+      }
+      .freetext{
+        height: 6rem;
+        p{
+          color: orange;
+          &:hover{
+            cursor: pointer;
+          }
+        }
+      }
     }
+
+    // .recoForU {
+    // }
     // ruth
 
     .ad2 {
       background-color: orange;
-      margin-top: 15em; //REMOVE AT THE END
+      margin-top: 6em; 
       height: 6em;
       border-radius: 1em;
       display: flex;
       align-items: center;
-      z-index: 1;
       position: relative;
-
+      
+      z-index: 1;
       &__phone {
         width: 10em;
         height: 20em;
         background-image: url(/02-SCSS/07-BEM/puzzles/evgeny-ruth-mahdi/images/photo-1598327105666-5b89351aff97-removebg-preview.png);
+        // background-image: url(https://app-download.yad2.co.il/_next/image?url=https%3A%2F%2Fdev-assets.yad2.co.il%2Fapp-download%2Fmockup.png&w=640&q=75);
         background-repeat: no-repeat;
         position: absolute;
         background-size: cover;
@@ -219,7 +235,9 @@ body {
     .PopToilet {
       background-color: rgb(255, 255, 255);
       height: 9em;
-      z-index: 2;
+      position: relative;
+      padding-top: 2em;
+      z-index: 3;
       text-align: end;
 
       &__headLine {
