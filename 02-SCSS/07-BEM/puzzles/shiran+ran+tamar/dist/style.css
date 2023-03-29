@@ -4,7 +4,8 @@
 }
 
 .container {
-  width: 800px;
-  border: 1px solid black;
+  width: 900px;
   margin: auto;
+  position: relative;
+  top: -118px;
 }

@@ -3,10 +3,10 @@
     height: 300px;
     display: flex;
     flex-direction: row-reverse;
-    gap: 8px;
+    gap: 3px;
 
     &__article{
-         display: flex;
+        display: flex;
         flex-direction: column;
         align-items: flex-end;
         height: 300px;
@@ -19,10 +19,8 @@
             align-items: flex-end;
             background-image: url(./img/ValeriaMithatenet2.jpg);
             background-size:cover;
-            width: 535px;
-            height: 300px;
             padding-top: 203px;
-        
+            width: 598px;
         }
         &__purpeleText {
             background-color: rgb(158, 13, 127);
@@ -34,14 +32,21 @@
         &__greyText {
             background-color: rgba(0, 0, 0, .25);
             color: white;
-            text-align: center;
-            padding: 4px;
-            width: 527px;
+            padding: 6px;
+            font-weight: bold;
+            font-size: 22px;
+            width:586px;
+            display: flex;
+            flex-direction: row-reverse;
+        }
+        &__articleText{
+            
+            word-wrap: break-word;
+            width:586px;
+
+
         }
     
-        // &--big{
-          
-        // }
     }
 
     &__smallContaner{
@@ -49,13 +54,12 @@
         height: 300px;
         display: flex;
         flex-direction: column;
-        flex: 1;
-          gap: 1px;
-
         &__article{
+
             display: flex;
             flex-direction: column;
-            justify-content: space-around;
+            align-items: flex-end;
+            height: 300px;
 
             &__video{
                 display: flex;
@@ -64,7 +68,7 @@
                 background-image: url(./img/yuda.jpg);
                 background-position: right top;
                 background-size:cover;
-                width: 256px;
+                width: 298px;
                 height: 120px;
               
                 &__purpeleText {
@@ -105,23 +109,25 @@
                     background-image: url(./img/yuda.jpg),url(./img/yuda.jpg);
                     background-position: right top;
                     background-size:cover;
-                    width: 128px;
+                    width: 148px;
     
                 }
                 &--sec{
                     background-image: url(./img/yuda.jpg),url(./img/yuda.jpg);
                     background-position: right top;
                     background-size:cover;
-                    width: 128px;
+                    width: 148px;
     
                 }
                 
                  
             }
             &__Text{
-                height: 25px;
-                text-align: center;
+                height: 26px;
+               // text-align: center;
                 padding: 2px;
+                display: flex;
+                align-items: flex-end;
 
             } 
           
