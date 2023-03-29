@@ -1,0 +1,37 @@
+body {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.h1 {
+  color: red;
+}
+
+.h1:hover {
+  color: yellow;
+}
+
+.box {
+  margin: 0 auto;
+  background-color: black;
+  height: 400px;
+  width: 400px;
+}
+
+.box:hover {
+  transition: 3s;
+}
+
+img {
+  width: 200px;
+}
+
+img:hover {
+  transition: 3s;
+  width: 400px;
+  transform: rotate(180deg);
+  box-shadow: 109px -101px 5px -18px #e01717;
+  -webkit-box-shadow: 109px -101px 5px -18px #e01717;
+  -moz-box-shadow: 109px -101px 5px -18px #e01717;
+  border-radius: 50%;
+}
