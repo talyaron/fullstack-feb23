@@ -112,6 +112,8 @@ body {
 
 .box {
   display: flex;
+  justify-content: center;
+  margin-top: 20px;
 }
 .box .chat {
   width: 20%;
