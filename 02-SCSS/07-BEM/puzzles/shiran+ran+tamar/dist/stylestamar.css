@@ -23,6 +23,7 @@
   background-image: url(./img/saied_ad.jpg);
   height: 321px;
   width: 200px;
+  margin-left: 0;
 }
 .saied_ad__right {
   display: block;
