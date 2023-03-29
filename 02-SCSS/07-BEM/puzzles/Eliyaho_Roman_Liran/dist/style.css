@@ -200,6 +200,14 @@ body {
   border-color: black;
 }
 
+.articleHeadder {
+  background-color: white;
+  color: black;
+}
+.articleHeadder .navigation ul {
+  list-style: none;
+}
+
 .containe {
   display: flex;
   flex-direction: column;
@@ -221,9 +229,9 @@ body {
 .containe .sectionHeadder ul {
   padding-left: 10%;
   display: flex;
+  margin: 5px;
   gap: 5px;
   list-style: none;
-  margin-right: 0;
   width: 60%;
 }
 .containe .sectionHeadder ul li {
@@ -245,6 +253,12 @@ body {
   justify-items: center;
   padding-left: 10px;
   gap: 2px;
+}
+.manu .bars i {
+  align-self: center;
+}
+.manu .bars p {
+  margin: auto;
 }
 
 .article {

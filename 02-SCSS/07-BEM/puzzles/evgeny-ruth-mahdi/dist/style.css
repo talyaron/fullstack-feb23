@@ -13,7 +13,7 @@ body {
 }
 body .header {
   background-color: white;
-  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.098);
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.098);
   height: 70px;
   display: flex;
   justify-content: center;
@@ -25,6 +25,7 @@ body .header__ctg ul {
 }
 body .header__ctg ul li {
   padding: 26px 20px;
+  transition: all 0.2s;
 }
 body .header__ctg ul li:hover {
   background-color: rgba(0, 0, 0, 0.05);
@@ -85,10 +86,16 @@ body .wrapper {
   width: 65rem;
 }
 body .wrapper .ad img {
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.098);
   width: 100%;
   z-index: -3;
   margin-top: 2rem;
   border-radius: 20px;
+  transition: all 0.3s;
+}
+body .wrapper .ad img:hover {
+  cursor: pointer;
+  width: 98%;
 }
 body .wrapper .categories {
   margin: 4rem 0rem;
@@ -112,21 +119,53 @@ body .wrapper .categories__item__image:hover {
   outline-offset: -2px;
   border-inline: inherit;
   background-color: whitesmoke;
+  cursor: pointer;
 }
 body .wrapper .categories__item__name {
   text-align: center;
   margin-top: 0.5rem;
   font-size: larger;
 }
+body .wrapper .lastSearches {
+  background-color: rgba(0, 0, 0, 0.03);
+  width: 100%;
+  height: 8rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+body .wrapper .lastSearches__item {
+  padding: 5px;
+  width: 24%;
+  height: 5.5rem;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.091);
+  direction: rtl;
+  background-color: white;
+  transition: all 0.1s;
+}
+body .wrapper .lastSearches__item:hover {
+  cursor: pointer;
+  width: 25%;
+  height: 5.7rem;
+}
+body .wrapper .lastSearches .freetext {
+  height: 6rem;
+}
+body .wrapper .lastSearches .freetext p {
+  color: orange;
+}
+body .wrapper .lastSearches .freetext p:hover {
+  cursor: pointer;
+}
 body .wrapper .ad2 {
   background-color: orange;
-  margin-top: 15em;
+  margin-top: 6em;
   height: 6em;
   border-radius: 1em;
   display: flex;
   align-items: center;
-  z-index: 1;
   position: relative;
+  z-index: 1;
 }
 body .wrapper .ad2__phone {
   width: 10em;
@@ -161,7 +200,9 @@ body .wrapper .ad2__QRcode {
 body .wrapper .PopToilet {
   background-color: white;
   height: 9em;
-  z-index: 2;
+  position: relative;
+  padding-top: 2em;
+  z-index: 3;
   text-align: end;
 }
 body .wrapper .PopToilet__headLine {
