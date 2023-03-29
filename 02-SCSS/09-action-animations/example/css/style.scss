@@ -1,0 +1,17 @@
+$grayBackground: #f2f2f3;
+$border-radius: 10px;
+
+$primeryColor: rgb(167, 117, 17);
+
+@import "buttons";
+@import "products";
+
+body {
+  background-color: $grayBackground;
+}
+
+h1,
+h2,
+h3 {
+  color: $primeryColor;
+}

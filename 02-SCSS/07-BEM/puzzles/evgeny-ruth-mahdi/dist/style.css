@@ -13,7 +13,7 @@ body {
 }
 body .header {
   background-color: white;
-  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.098);
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.098);
   height: 70px;
   display: flex;
   justify-content: center;
@@ -25,6 +25,7 @@ body .header__ctg ul {
 }
 body .header__ctg ul li {
   padding: 26px 20px;
+  transition: all 0.2s;
 }
 body .header__ctg ul li:hover {
   background-color: rgba(0, 0, 0, 0.05);
@@ -84,15 +85,88 @@ body .wrapper {
   justify-content: center;
   width: 65rem;
 }
+body .wrapper .ad img {
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.098);
+  width: 100%;
+  z-index: -3;
+  margin-top: 2rem;
+  border-radius: 20px;
+  transition: all 0.3s;
+  justify-content: center;
+}
+body .wrapper .ad img:hover {
+  cursor: pointer;
+  width: 98%;
+}
+body .wrapper .categories {
+  margin: 4rem 0rem;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row-reverse;
+}
+body .wrapper .categories__item {
+  display: flex;
+  flex-direction: column;
+}
+body .wrapper .categories__item__image {
+  border-radius: 100%;
+  max-width: 8rem;
+  min-height: 8rem;
+  background-color: rgba(0, 0, 0, 0.08);
+  transition: background-color 0.2s;
+}
+body .wrapper .categories__item__image:hover {
+  outline: 1px solid lightgray;
+  outline-offset: -2px;
+  border-inline: inherit;
+  background-color: whitesmoke;
+  cursor: pointer;
+}
+body .wrapper .categories__item__name {
+  text-align: center;
+  margin-top: 0.5rem;
+  font-size: larger;
+}
+body .wrapper .lastSearches {
+  background-color: rgba(0, 0, 0, 0.03);
+  width: 100%;
+  height: 8rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+body .wrapper .lastSearches__item {
+  padding: 5px;
+  width: 24%;
+  height: 5.5rem;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.091);
+  direction: rtl;
+  background-color: white;
+  transition: all 0.1s;
+}
+body .wrapper .lastSearches__item:hover {
+  cursor: pointer;
+  width: 25%;
+  height: 5.7rem;
+}
+body .wrapper .lastSearches .freetext {
+  height: 6rem;
+}
+body .wrapper .lastSearches .freetext p {
+  color: orange;
+}
+body .wrapper .lastSearches .freetext p:hover {
+  cursor: pointer;
+}
 body .wrapper .ad2 {
   background-color: orange;
-  margin-top: 15em;
+  margin-top: 6em;
   height: 6em;
   border-radius: 1em;
   display: flex;
   align-items: center;
-  z-index: 1;
   position: relative;
+  z-index: 1;
 }
 body .wrapper .ad2__phone {
   width: 10em;
@@ -127,7 +201,9 @@ body .wrapper .ad2__QRcode {
 body .wrapper .PopToilet {
   background-color: white;
   height: 9em;
-  z-index: 2;
+  position: relative;
+  padding-top: 2em;
+  z-index: 3;
   text-align: end;
 }
 body .wrapper .PopToilet__headLine {
@@ -239,7 +315,7 @@ body .wrapper .bottomCards__card__text {
 }
 body .wrapper .yad2Bus {
   display: flex;
-  background-color: rgba(177, 174, 174, 0.093);
+  background-color: rgba(177, 174, 174, 0.203);
   height: 6em;
   align-items: center;
   margin-top: 3em;
@@ -281,7 +357,7 @@ body .wrapper .yad2Bus__title {
 }
 body .wrapper .listTabs {
   display: flex;
-  background-color: rgba(201, 199, 199, 0.146);
+  background-color: rgba(201, 199, 199, 0.29);
   flex-direction: column;
   margin-top: 6em;
   align-items: end;
@@ -296,7 +372,7 @@ body .wrapper .listTabs__tabList {
   display: flex;
 }
 body .wrapper .listTabs__tabList__item {
-  border: 1px solid rgba(0, 0, 0, 0.101);
+  border: 1px solid rgba(0, 0, 0, 0.114);
   display: flex;
   justify-content: center;
   align-items: center;

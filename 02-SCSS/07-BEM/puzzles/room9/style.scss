@@ -14,14 +14,11 @@ body {
     list-style: none;
 }
 
-/*@@@@@ - Neve Homework - @@@@@*/
-
-
-
 /*@@@@@ - Doriel Homework - @@@@@*/
 .blockBig {
-    width: 100vw;
+    width: 100%;
     position: relative;
+    display: flex;
     left: 50%;
     right: 50%;
     margin-left: -50vw;
@@ -29,11 +26,22 @@ body {
     border-width: 0;
 }
 
+.main{
+    display: relative;
+    width: 100%;
+    justify-content: flex-end;
+        &__img{
+            width: 100%;
+            margin: auto ;
+    }
+}
+
 .block .main {
     position: relative;
-    height: 100%;
-    width: 960px;
+    height: auto;
+    width: 100%;
     margin: 0 auto;
+    justify-content: center;
 
     li{
         width: 100%;
@@ -41,42 +49,47 @@ body {
         margin-bottom: 13px;
     }
 
-    img {
-        width: 100%;
-        max-height: 540px;
-        direction: rtl;
-        overflow: clip;
-        margin-left: -100%;
-    }
-
     h2 {
+        margin-right: 14px;
         background-color: red;
         color: white;
         z-index: 2;
-        position: flex;
+        position: absolute;
         bottom: 10;
         width: 250px;
         border-radius: 3px;
+        position: absolute;
+        top: 80%;
     }
 
     h1 {
+        top:458px;
+        position:absolute;
         background-color: rgba(5,21,31,.8);
         color: white;
         z-index: 1;
         width: 100%;
+        margin-right: 14px;
         border-radius: 3px;
     }
 
     p {
+        top: 491px;
+        position: absolute;
         background-color: rgba(5,21,31,.8);
         color: white;
         z-index: 1;
         width: 100%;
+        margin-right: 14px;
         border-radius: 3px;
     }
 }
 
-.main__fourBox{
+.main{
+    width: 100%;
+    justify-content: center;
+
+    &__fourBox{
     position: relative;
     height: 100%;
     width: 960px;
@@ -103,6 +116,7 @@ body {
         }
     }
 }
+}
 
 /*@@@@@ - Tom Homework - @@@@@*/
 
@@ -110,7 +124,7 @@ body {
 
 .header{
     display: flex;
-    height: 10vh;
+    height: 9.4vh;
     background-color: #122536;
     align-items: center;
     width: 100%;
@@ -151,7 +165,7 @@ body {
 
 
     }
- 
+    
 
 }
 .nav{
@@ -174,12 +188,8 @@ a{
 
 }
 .ad{
-  display: flex;
-  width: 80%;
-  justify-content: flex-end;
-
-    &__img{
-        width: 75%;
-
-    }
+display: flex;
+margin: auto;
+justify-content: center;
+height: 55vh;
 }

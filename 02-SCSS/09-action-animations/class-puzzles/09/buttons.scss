@@ -1,0 +1,20 @@
+.button {
+  padding: 10px 15px;
+  width: fit-content;
+  background-color: rgb(112, 112, 205);
+  transition: all 0.2s;
+  color: white;
+  font-size: larger;
+  font-weight: bold;
+  border-radius: 40px;
+  &:hover {
+    background-color: darken($color: rgb(50, 50, 103), $amount: 15%);
+    transform: scale(1.2);
+    box-shadow: 2px 2px 6px rgb(52, 52, 93);
+  }
+  &:active {
+    background-color: rgb(31, 31, 77);
+    transform: scale(0.8);
+    border-radius: 70px;
+  }
+}
