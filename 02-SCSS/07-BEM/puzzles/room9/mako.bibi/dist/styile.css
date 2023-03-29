@@ -26,6 +26,12 @@ body {
 .wrapper .nav {
   background-color: whitesmoke;
 }
+.wrapper .nav :nth-last-child(-n+3) {
+  display: flex;
+}
+.wrapper .nav :nth-last-child(-n+3) img {
+  width: 20px;
+}
 .wrapper .nav__menu {
   display: flex;
   justify-content: center;
@@ -58,8 +64,6 @@ body {
   margin-bottom: 20px;
 }
 .wrapper__ads-1 img {
-  position: -webkit-sticky;
-  top: 0;
   float: right;
   margin-right: 1%;
   max-width: 10%;
