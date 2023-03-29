@@ -49,6 +49,7 @@ header .header__logo img {
 header .header__menu {
   display: flex;
   gap: 0.6rem;
+  align-items: baseline;
 }
 header .header__menu a:link {
   text-decoration: none;
