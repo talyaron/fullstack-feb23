@@ -147,6 +147,8 @@ body {
 }
 .box .chat__box__taital {
   margin-right: 25px;
+  display: flex;
+  justify-content: end;
 }
 .box .chat__box__taital--orange {
   color: orange;
@@ -166,6 +168,8 @@ body {
 .box .chat__box__Clock {
   color: Brown;
   text-align: end;
+  display: flex;
+  margin-top: 4px;
 }
 .box .chat__bth {
   background: red;

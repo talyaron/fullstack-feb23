@@ -178,6 +178,8 @@ body {
       position: relative;
     }
 
+
+
     &__box__img {
       background: url(images/משהו.jpg) no-repeat center center/ cover;
       width: 30px;
@@ -188,6 +190,8 @@ body {
       top: 1px;
       right: 1px;
     }
+
+
 
     &__taital {
       background: red;
@@ -200,6 +204,8 @@ body {
 
     &__box__taital {
       margin-right: 25px;
+      display: flex;
+      justify-content: end;
     }
 
     &__box__taital--orange {
@@ -226,6 +232,8 @@ body {
     &__box__Clock {
       color: Brown;
       text-align: end;
+      display: flex;
+      margin-top: 4px;
 
     }
 
@@ -236,6 +244,7 @@ body {
       height: 10%;
       color: white;
       margin: 10px 30%;
+
     }
   }
 
