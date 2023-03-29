@@ -68,14 +68,13 @@ header .header__search-bar svg {
 }
 
 .first {
-  height: 100vh;
   gap: 20px;
   display: flex;
 }
 .first .main-news {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(4, 1fr);
+  grid-template-rows: repeat(4, auto);
   color: #fff;
   padding-top: 20px;
   flex: 3;
@@ -150,7 +149,7 @@ header .header__search-bar svg {
 .first .chat-wrapper {
   flex: 1;
   max-height: 893px;
-  height: calc(100vh - 55px);
+  height: calc(100vh - 112px);
   padding-top: 20px;
   position: sticky;
   top: 55px;
@@ -171,7 +170,7 @@ header .header__search-bar svg {
 .first .chat-wrapper .chat-wrapper-body {
   display: flex;
   flex-direction: column;
-  height: 100%;
+  max-height: 100%;
   padding-top: 10px;
   background-image: url(https://rcs.mako.co.il/images/writersChat/bg-pattern.jpg);
   background-size: cover;
