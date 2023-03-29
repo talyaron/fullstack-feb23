@@ -47,6 +47,29 @@
   background-image: url("./real-estate.webp");
 }
 
+.container {
+  margin: auto;
+  display: flex;
+  direction: rtl;
+  box-sizing: border-box;
+  width: 1200px;
+  gap: 14px;
+}
+.container__item {
+  border: 0px solid #d7d4d4;
+  border-radius: 14px 14px 8px 8px;
+  box-shadow: 0px 2px 3px 0px #e4e4e4;
+}
+.container__item__img {
+  cursor: pointer;
+  box-sizing: border-box;
+  border-radius: 8px 8px 0px 0px;
+}
+.container__item__text {
+  font-family: Rubik, sans-serif;
+  padding: 0px 8px 0px 8px;
+}
+
 .topic {
   margin: auto;
   width: 1200px;
@@ -57,6 +80,8 @@
   font-weight: 100;
   margin-bottom: 16px;
   box-sizing: border-box;
+  padding-top: 18px;
+  margin-top: 37px;
 }
 
 .popularServices {
@@ -79,6 +104,7 @@
   padding: 8px 14px;
   padding-right: 10px;
   align-items: center;
+  box-shadow: 0px 2px 3px 0px #e4e4e4;
 }
 .popularServices__service__icon {
   height: 57px;
@@ -119,7 +145,7 @@
 .business {
   margin: auto;
   width: 1200px;
-  height: 50px;
+  height: 125px;
   align-items: center;
   text-align: center;
   display: flex;
@@ -127,11 +153,39 @@
   font-family: "Arimo", sans-serif;
   box-sizing: border-box;
   direction: rtl;
+  background-color: #f0f4f4;
 }
 .business__boxheader {
-  font-size: 20px;
-  font-weight: 500;
+  font-size: 30px;
+  font-weight: 600;
+  width: 200px;
 }
-.business__issue {
+.business__container {
   display: flex;
+  width: 1000px;
+  gap: 16px;
+  box-sizing: border-box;
+  align-items: flex-start;
+  padding: 38px;
+}
+.business__container__issue {
+  display: flex;
+  flex-direction: row;
+  text-align: start;
+  box-sizing: border-box;
+  width: 300px;
+  border-radius: 8px;
+  background-color: azure;
+  padding-top: 3px;
+  box-shadow: 0px 2px 3px 0px #e4e4e4;
+}
+.business__container__issue__icon {
+  align-items: center;
+  margin-right: 4px;
+  width: 50px;
+}
+.business__container__issue__topic {
+  font-size: 20px;
+  padding: 4px;
+  width: 200px;
 }

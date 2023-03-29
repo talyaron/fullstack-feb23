@@ -63,6 +63,7 @@ body {
   color: white;
   z-index: 1;
   width: 100%;
+  margin-right: 14px;
   border-radius: 3px;
 }
 .block .main p {
