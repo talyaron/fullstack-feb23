@@ -58,8 +58,6 @@ body {
   margin-bottom: 20px;
 }
 .wrapper__ads-1 img {
-  position: -webkit-sticky;
-  top: 0;
   float: right;
   margin-right: 1%;
   max-width: 10%;
