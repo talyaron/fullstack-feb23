@@ -5,9 +5,19 @@
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: flex-start;
+  align-items: flex-start;
   font-family: "Open Sans", sans-serif;
-  padding-bottom: 100px;
   gap: 10px;
+  position: relative;
+  bottom: 80px;
+  margin-bottom: -60px;
+}
+.news .com {
+  position: relative;
+  left: 2vw;
+}
+.news .com img {
+  width: 90%;
 }
 .news__header {
   height: 100%;
@@ -16,8 +26,14 @@
   font-size: 25px;
   position: relative;
   bottom: 7vh;
-  border-left: 4px solid red;
+  border-left: 4px solid;
   padding-left: 7px;
+}
+.news__header--news {
+  border-color: red;
+}
+.news__header--sport {
+  border-color: #ffd500;
 }
 .news__subheader {
   width: 300px;
@@ -34,25 +50,32 @@
   font-size: 10px;
   font-weight: 800;
 }
-.news__subheader img {
+.news__subheader__img img {
   width: 15vw;
   height: 100%;
 }
-.news__subheader img:hover {
+.news__subheader__img img:hover {
   opacity: 0.5;
   cursor: pointer;
 }
-.news__subheader p {
+.news__subheader__p {
   font-size: 14px;
   text-align: left;
   font-weight: 400;
   color: gray;
 }
-.news__subheader .subheader__country {
-  border-left: 0.8px solid red;
+.news__subheader__country {
+  border-left: 0.8px solid;
   border-width: 2px;
   padding-left: 10px;
   font-size: larger;
   font-weight: 600;
   color: gray;
+  margin-bottom: 50px;
+}
+.news__subheader__country--red {
+  border-color: red;
+}
+.news__subheader__country--yellow {
+  border-color: #ffd500;
 }
