@@ -150,6 +150,11 @@ body {
 .article__body {
   width: 90%;
 }
+.article__body .longText {
+  color: black;
+  font-size: medium;
+  line-height: 1.2rem;
+}
 .article__body li {
   text-decoration: underline;
   font-weight: bold;
@@ -170,9 +175,4 @@ body {
 .article__body--text h6 {
   font-weight: bold;
   margin-bottom: 0;
-}
-.article__body--text p {
-  color: black;
-  font-size: medium;
-  line-height: 1.2rem;
 }
