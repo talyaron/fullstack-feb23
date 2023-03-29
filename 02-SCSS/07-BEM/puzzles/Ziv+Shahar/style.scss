@@ -50,6 +50,7 @@ header {
     &__menu {
       display: flex;
       gap: 0.6rem;
+      align-items: baseline;
       a:link {
         text-decoration: none;
         color: #fff;
