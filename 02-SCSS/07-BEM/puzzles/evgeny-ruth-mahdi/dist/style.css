@@ -92,6 +92,7 @@ body .wrapper .ad img {
   margin-top: 2rem;
   border-radius: 20px;
   transition: all 0.3s;
+  justify-content: center;
 }
 body .wrapper .ad img:hover {
   cursor: pointer;
