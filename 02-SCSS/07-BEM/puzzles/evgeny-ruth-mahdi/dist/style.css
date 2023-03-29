@@ -165,8 +165,8 @@ body .wrapper .ad2 {
   border-radius: 1em;
   display: flex;
   align-items: center;
-  z-index: 1;
   position: relative;
+  z-index: 1;
 }
 body .wrapper .ad2__phone {
   width: 10em;
@@ -201,7 +201,9 @@ body .wrapper .ad2__QRcode {
 body .wrapper .PopToilet {
   background-color: white;
   height: 9em;
-  z-index: 2;
+  position: relative;
+  padding-top: 2em;
+  z-index: 3;
   text-align: end;
 }
 body .wrapper .PopToilet__headLine {
@@ -313,7 +315,7 @@ body .wrapper .bottomCards__card__text {
 }
 body .wrapper .yad2Bus {
   display: flex;
-  background-color: rgba(177, 174, 174, 0.093);
+  background-color: rgba(177, 174, 174, 0.203);
   height: 6em;
   align-items: center;
   margin-top: 3em;
@@ -355,7 +357,7 @@ body .wrapper .yad2Bus__title {
 }
 body .wrapper .listTabs {
   display: flex;
-  background-color: rgba(201, 199, 199, 0.146);
+  background-color: rgba(201, 199, 199, 0.29);
   flex-direction: column;
   margin-top: 6em;
   align-items: end;
@@ -370,7 +372,7 @@ body .wrapper .listTabs__tabList {
   display: flex;
 }
 body .wrapper .listTabs__tabList__item {
-  border: 1px solid rgba(0, 0, 0, 0.101);
+  border: 1px solid rgba(0, 0, 0, 0.114);
   display: flex;
   justify-content: center;
   align-items: center;

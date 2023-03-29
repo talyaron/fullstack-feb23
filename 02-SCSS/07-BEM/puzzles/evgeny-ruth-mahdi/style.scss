@@ -192,9 +192,9 @@ body {
       border-radius: 1em;
       display: flex;
       align-items: center;
-      z-index: 1;
       position: relative;
-
+      
+      z-index: 1;
       &__phone {
         width: 10em;
         height: 20em;
@@ -234,7 +234,9 @@ body {
     .PopToilet {
       background-color: rgb(255, 255, 255);
       height: 9em;
-      z-index: 2;
+      position: relative;
+      padding-top: 2em;
+      z-index: 3;
       text-align: end;
 
       &__headLine {
@@ -362,7 +364,7 @@ body {
     }
     .yad2Bus {
       display: flex;
-      background-color: rgba(177, 174, 174, 0.093);
+      background-color: rgba(177, 174, 174, 0.203);
       height: 6em;
       align-items: center;
       margin-top: 3em;
@@ -406,7 +408,7 @@ body {
 
     .listTabs {
       display: flex;
-      background-color: rgba(201, 199, 199, 0.146);
+      background-color: rgba(201, 199, 199, 0.29);
       flex-direction: column;
       margin-top: 6em;
       align-items: end;
@@ -420,7 +422,7 @@ body {
         display: flex;
 
         &__item {
-          border: 1px solid rgba(0, 0, 0, 0.101);
+          border: 1px solid rgba(0, 0, 0, 0.114);
           display: flex;
           justify-content: center;
           align-items: center;
