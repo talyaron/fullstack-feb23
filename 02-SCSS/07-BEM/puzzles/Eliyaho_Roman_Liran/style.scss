@@ -253,9 +253,9 @@ $fontGray: rgb(108, 107, 107);
         ul{
             padding-left: $paddingLeft;
             display: flex;
+            margin: 5px;
             gap: 5px;
             list-style: none;
-            margin-right: 0;
             width: 60%;
             li{
                 border-right: 1px solid;
@@ -281,6 +281,14 @@ $fontGray: rgb(108, 107, 107);
         display: flex;
         justify-items: center;
         padding-left: 10px;
+        i{
+            align-self: center;
+        }
+
+        p{
+            margin: auto;
+        }
+        
         gap: 2px;
      }
 }
@@ -370,4 +378,9 @@ $fontGray: rgb(108, 107, 107);
 
 }
 
+.headder__navigation{
+    ul{
+        
+    }
+}
 
