@@ -111,7 +111,7 @@ body {
 /*@@@@@ - Tom Homework - @@@@@*/
 .header {
   display: flex;
-  height: 10vh;
+  height: 9.4vh;
   background-color: #122536;
   align-items: center;
   width: 100%;
@@ -165,5 +165,5 @@ a {
   display: flex;
   margin: auto;
   justify-content: center;
-  height: 65vh;
+  height: 55vh;
 }

@@ -31,7 +31,6 @@ body {
     width: 100%;
     justify-content: flex-end;
         &__img{
-            
             width: 100%;
             margin: auto ;
     }
@@ -40,7 +39,7 @@ body {
 .block .main {
     position: relative;
     height: auto;
-    width: 960px;
+    width: 100%;
     margin: 0 auto;
     justify-content: center;
 
@@ -125,7 +124,7 @@ body {
 
 .header{
     display: flex;
-    height: 10vh;
+    height: 9.4vh;
     background-color: #122536;
     align-items: center;
     width: 100%;
@@ -192,5 +191,5 @@ a{
 display: flex;
 margin: auto;
 justify-content: center;
-height: 65vh;
+height: 55vh;
 }
