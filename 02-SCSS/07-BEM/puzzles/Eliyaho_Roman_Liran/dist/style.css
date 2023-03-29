@@ -147,6 +147,14 @@ body {
   border-color: black;
 }
 
+.articleHeadder {
+  background-color: white;
+  color: black;
+}
+.articleHeadder .navigation ul {
+  list-style: none;
+}
+
 .containe {
   display: flex;
   flex-direction: column;

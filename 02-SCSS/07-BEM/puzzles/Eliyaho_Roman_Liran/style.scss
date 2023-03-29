@@ -231,7 +231,16 @@ $fontGray: rgb(108, 107, 107);
 }
 
 // second page
+.articleHeadder{
+    background-color: white;
+    color: black;
 
+    .navigation{
+        ul{
+            list-style: none;
+        }
+    }
+}
 
 .containe{
     display: flex;
