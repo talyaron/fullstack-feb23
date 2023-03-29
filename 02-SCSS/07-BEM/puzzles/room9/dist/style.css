@@ -43,6 +43,7 @@ body {
   margin-left: -100%;
 }
 .block .main h2 {
+  margin-right: 14px;
   background-color: red;
   color: white;
   z-index: 2;
@@ -56,6 +57,7 @@ body {
   color: white;
   z-index: 1;
   width: 100%;
+  margin-right: 14px;
   border-radius: 3px;
 }
 .block .main p {
@@ -63,6 +65,7 @@ body {
   color: white;
   z-index: 1;
   width: 100%;
+  margin-right: 14px;
   border-radius: 3px;
 }
 
