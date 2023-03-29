@@ -114,10 +114,13 @@ body {
   display: flex;
   justify-content: center;
   margin-top: 20px;
+  flex-direction: row;
 }
 .box .chat {
   width: 20%;
   height: 70%;
+  margin-right: 20px;
+  background: url(רקע.jpg) repeat center center/cover;
 }
 .box .chat__box {
   border-radius: 10px;
