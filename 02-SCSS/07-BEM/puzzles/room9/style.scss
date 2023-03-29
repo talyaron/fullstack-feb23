@@ -31,7 +31,6 @@ body {
     width: 100%;
     justify-content: flex-end;
         &__img{
-            
             width: 100%;
             margin: auto ;
     }
@@ -40,7 +39,7 @@ body {
 .block .main {
     position: relative;
     height: auto;
-    width: 960px;
+    width: 100%;
     margin: 0 auto;
     justify-content: center;
 
@@ -59,10 +58,12 @@ body {
         bottom: 10;
         width: 250px;
         border-radius: 3px;
+        position: absolute;
+        top: 80%;
     }
 
     h1 {
-        top:424px;
+        top:458px;
         position:absolute;
         background-color: rgba(5,21,31,.8);
         color: white;
@@ -73,7 +74,7 @@ body {
     }
 
     p {
-        top: 450px;
+        top: 491px;
         position: absolute;
         background-color: rgba(5,21,31,.8);
         color: white;
