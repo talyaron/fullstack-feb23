@@ -64,10 +64,34 @@ body {
   margin-right: 1%;
   max-width: 10%;
 }
-.wrapper__ads-2 img {
-  margin-left: 17%;
-  max-width: 20%;
+.wrapper__ads-2 {
+  display: flex;
+  flex-direction: column;
   float: left;
+  align-items: center;
+}
+.wrapper__ads-2 img {
+  max-width: 44%;
+  float: left;
+  margin-left: 26%;
+}
+.wrapper__ads-2 h2 {
+  margin-left: 52%;
+}
+.wrapper__ads-2__more {
+  display: flex;
+  padding: 2px;
+}
+.wrapper__ads-2__more img {
+  width: 25%;
+  margin: 0;
+  margin-right: 6%;
+}
+.wrapper__ads-2__more p {
+  width: 248px;
+  margin: 6px;
+  font-weight: 700;
+  text-align: justify;
 }
 .wrapper__text {
   background-color: white;
@@ -115,7 +139,7 @@ body {
 .wrapper__text img {
   margin-top: 2%;
   margin-right: 8%;
-  width: 86%;
+  width: 84%;
 }
 .wrapper__text .img-2 {
   float: right;
