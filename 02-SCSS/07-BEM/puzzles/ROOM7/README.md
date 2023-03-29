@@ -1,5 +1,5 @@
 
-<!-- ## Mission team ##
+# Mission team
 
 * YBO - 9-10
 

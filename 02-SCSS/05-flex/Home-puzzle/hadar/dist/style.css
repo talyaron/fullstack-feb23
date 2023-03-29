@@ -65,20 +65,27 @@
   margin-right: 135px;
 }
 
+.main {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
 .imgs {
   display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  justify-content: space-between;
-  margin: auto;
-  width: 1400px;
-  flex-wrap: wrap;
-  margin-bottom: 10px;
+  flex-direction: column;
 }
-.imgs img {
+.imgs .imgsmall {
   border-radius: 10px;
   width: 140px;
-  height: 200px;
+  height: 140px;
+  margin-bottom: 10px;
+}
+.imgs .imgbig {
+  border-radius: 10px;
+  width: 140px;
+  height: 220px;
+  margin-bottom: 10px;
 }
 .imgs img:hover {
   transform: scale(0.9);
