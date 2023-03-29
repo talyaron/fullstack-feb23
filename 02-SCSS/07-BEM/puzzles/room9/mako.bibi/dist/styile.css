@@ -26,24 +26,30 @@ body {
 .wrapper .nav {
   background-color: whitesmoke;
 }
-nt .wrapper .nav__menu {
+.wrapper .nav :nth-last-child(-n+3) {
+  display: flex;
+}
+.wrapper .nav :nth-last-child(-n+3) img {
+  width: 20px;
+}
+.wrapper .nav__menu {
   display: flex;
   justify-content: center;
 }
-nt .wrapper .nav__menu a {
+.wrapper .nav__menu a {
   font-weight: 600;
   margin: 12px;
   text-decoration: none;
   color: black;
 }
-nt .wrapper .nav__menu a:hover {
+.wrapper .nav__menu a:hover {
   cursor: pointer;
   text-decoration: underline;
 }
-nt .wrapper .nav__menu .political {
+.wrapper .nav__menu .political {
   color: red;
 }
-nt .wrapper .nav__menu .Search {
+.wrapper .nav__menu .Search {
   margin-right: 30px;
 }
 .wrapper span {

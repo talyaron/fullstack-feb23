@@ -32,7 +32,13 @@ body {
     .nav {
         background-color: whitesmoke;
 
-        :nth-last-child()
+        :nth-last-child(-n+3) {
+            display: flex;
+
+            img {
+                width: 20px;
+            }
+        }
 
         &__menu {
             display: flex;
