@@ -113,6 +113,7 @@
     gap: 13px;
     flex-direction: row;
     direction: rtl;
+    cursor: pointer;
     &__service{
         display: flex;
         flex-direction: row;
@@ -200,6 +201,7 @@
             background-color: azure;
             padding-top: 3px;
             box-shadow:0px 2px 3px 0px rgb(228, 228, 228);
+            cursor: pointer;
             &__icon{
             align-items: center;
             margin-right: 4px;

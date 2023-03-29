@@ -1,0 +1,14 @@
+.glasses{
+width: 400px;
+height: 200px;
+// z-index: 1;
+
+
+
+    &:hover{
+        position: absolute;
+        bottom: 3px;
+        right: 10px;
+        transition: all 5s;
+    }
+}
