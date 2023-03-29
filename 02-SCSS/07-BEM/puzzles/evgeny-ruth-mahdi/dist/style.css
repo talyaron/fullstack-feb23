@@ -118,6 +118,11 @@ body .wrapper .categories__item__name {
   margin-top: 0.5rem;
   font-size: larger;
 }
+body .wrapper .lastSearches {
+  background-color: rgba(0, 0, 0, 0.094);
+  width: 100%;
+  height: 10rem;
+}
 body .wrapper .ad2 {
   background-color: orange;
   margin-top: 15em;
