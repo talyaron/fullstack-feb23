@@ -193,9 +193,9 @@ body {
       border-radius: 1em;
       display: flex;
       align-items: center;
-      z-index: 1;
       position: relative;
-
+      
+      z-index: 1;
       &__phone {
         width: 10em;
         height: 20em;
@@ -235,7 +235,9 @@ body {
     .PopToilet {
       background-color: rgb(255, 255, 255);
       height: 9em;
-      z-index: 2;
+      position: relative;
+      padding-top: 2em;
+      z-index: 3;
       text-align: end;
 
       &__headLine {

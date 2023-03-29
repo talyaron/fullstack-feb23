@@ -164,8 +164,8 @@ body .wrapper .ad2 {
   border-radius: 1em;
   display: flex;
   align-items: center;
-  z-index: 1;
   position: relative;
+  z-index: 1;
 }
 body .wrapper .ad2__phone {
   width: 10em;
@@ -200,7 +200,9 @@ body .wrapper .ad2__QRcode {
 body .wrapper .PopToilet {
   background-color: white;
   height: 9em;
-  z-index: 2;
+  position: relative;
+  padding-top: 2em;
+  z-index: 3;
   text-align: end;
 }
 body .wrapper .PopToilet__headLine {
