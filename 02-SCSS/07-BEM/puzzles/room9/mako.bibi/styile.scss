@@ -32,6 +32,8 @@ body {
     .nav {
         background-color: whitesmoke;
 
+        :nth-child()
+
         &__menu {
             display: flex;
             justify-content: center;

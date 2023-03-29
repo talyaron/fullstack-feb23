@@ -26,24 +26,24 @@ body {
 .wrapper .nav {
   background-color: whitesmoke;
 }
-.wrapper .nav__menu {
+:nth-child(n+3) .wrapper .nav__menu {
   display: flex;
   justify-content: center;
 }
-.wrapper .nav__menu a {
+:nth-child(n+3) .wrapper .nav__menu a {
   font-weight: 600;
   margin: 12px;
   text-decoration: none;
   color: black;
 }
-.wrapper .nav__menu a:hover {
+:nth-child(n+3) .wrapper .nav__menu a:hover {
   cursor: pointer;
   text-decoration: underline;
 }
-.wrapper .nav__menu .political {
+:nth-child(n+3) .wrapper .nav__menu .political {
   color: red;
 }
-.wrapper .nav__menu .Search {
+:nth-child(n+3) .wrapper .nav__menu .Search {
   margin-right: 30px;
 }
 .wrapper span {
