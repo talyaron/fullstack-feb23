@@ -1,0 +1,13 @@
+.wrapper__buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: 320px;
+  gap: 20px;
+}
+.wrapper__buttons button {
+  background-color: white;
+  border: none;
+}
+.wrapper__buttons button:active {
+  font-weight: bolder;
+}

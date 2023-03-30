@@ -1,0 +1,28 @@
+.wrapper .wrapper__imgs {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+.wrapper img {
+  width: 300px;
+  height: 200px;
+  position: absolute;
+  top: 100px;
+}
+
+.wrapper__buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: 320px;
+  gap: 20px;
+}
+.wrapper__buttons button {
+  background-color: white;
+  border: none;
+}
+.wrapper__buttons button:active {
+  font-weight: bolder;
+}
+.wrapper__buttons button:active img {
+  display: none;
+}
