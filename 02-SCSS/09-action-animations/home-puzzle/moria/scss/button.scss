@@ -1,0 +1,71 @@
+.buttons {
+    width: 100%;
+    background: blue;
+    height: 80px;
+    display: flex;
+    align-items: center;
+}
+
+.bth {
+    background: palegreen;
+    font-style: initial;
+    font-size: 25px;
+    width: 25%;
+    height: 40px;
+    margin: 0 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    // position: absolute;
+}
+
+.pink {
+    bottom: 0;
+    left: 0;
+    background: palevioletred;
+    // background: url(img/img1.jpg) no-repeat center center/ cover;
+}
+
+.yellow {
+    bottom: 0;
+    background: yellow;
+    // background: url(img/img2.jpg) no-repeat center center/ cover;
+}
+
+.blue {
+    bottom: 0;
+    background: blue;
+    // background: url(img/img3.jpg) no-repeat center center/ cover;
+}
+
+.red {
+    bottom: 0;
+    background: red;
+    // background: url(img/img4.jpg) no-repeat center
+}
+
+.pink:active {
+    background: url(img/img1.jpg) no-repeat center center/ cover;
+
+    z-index: 5;
+}
+
+.yellow:active {
+    background: url(img/img2.jpg) no-repeat center center/ cover;
+
+    z-index: 5;
+}
+
+.blue:active {
+    background: url(img/img3.jpg) no-repeat center center/ cover;
+
+    z-index: 5;
+}
+
+.img:active {
+    background: url(img/img4.jpg) no-repeat center center/ cover;
+    z-index: 5;
+
+
+}

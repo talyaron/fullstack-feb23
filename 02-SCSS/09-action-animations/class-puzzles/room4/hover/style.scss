@@ -1,0 +1,22 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.body {
+    width: 100px;
+    height: 100px;
+}
+
+.wrapper{
+    margin: 100px;
+    padding: 10px;
+    border: 10px;
+    background-color: aquamarine;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+@import "btn";

@@ -1,0 +1,61 @@
+.buttons {
+  width: 100%;
+  background: blue;
+  height: 80px;
+  display: flex;
+  align-items: center;
+}
+
+.bth {
+  background: palegreen;
+  font-style: initial;
+  font-size: 25px;
+  width: 25%;
+  height: 40px;
+  margin: 0 6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+}
+
+.pink {
+  bottom: 0;
+  left: 0;
+  background: palevioletred;
+}
+
+.yellow {
+  bottom: 0;
+  background: yellow;
+}
+
+.blue {
+  bottom: 0;
+  background: blue;
+}
+
+.red {
+  bottom: 0;
+  background: red;
+}
+
+.pink:active {
+  background: url(img/img1.jpg) no-repeat center center/cover;
+  z-index: 5;
+}
+
+.yellow:active {
+  background: url(img/img2.jpg) no-repeat center center/cover;
+  z-index: 5;
+}
+
+.blue:active {
+  background: url(img/img3.jpg) no-repeat center center/cover;
+  z-index: 5;
+}
+
+.img:active {
+  background: url(img/img4.jpg) no-repeat center center/cover;
+  z-index: 5;
+}

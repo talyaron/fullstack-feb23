@@ -1,0 +1,22 @@
+.swapImg{
+    &__photo{
+        width: 500px;
+        height: 500px;
+        border-radius: 20px 80px;
+        transition: all 600ms;
+        background-image: url("https://www.tapet3d.co.il/files/products/product23_image1_2021-03-29_11-25-56.jpg");
+        display: inline-block;
+
+        &:hover {
+            border-radius: 80px 20px;
+           
+          }
+          &:active {
+            background-color: black;
+              background-image:none;
+              background-image: url("https://cdn.cashcow.co.il/images/887369a4-5c9c-4679-82bb-d13f30139aa0.png");
+            }
+          
+        }
+
+}
