@@ -4,6 +4,7 @@
   top: 450px;
   left: 200px;
   gap: 50px;
+  transition: all 50ms;
 }
 .btn__textimg1:hover {
   font-style: oblique;

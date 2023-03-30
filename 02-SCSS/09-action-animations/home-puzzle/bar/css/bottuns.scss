@@ -4,7 +4,7 @@
     top: 450px;
     left: 200px;
     gap: 50px;
-
+    transition: all 50ms;
 
 
     &__textimg1 {
@@ -13,9 +13,11 @@
             font-style: oblique;
             font-weight: bold;
             cursor: pointer;
-        }
+        }   
+
 
         &:active {
+           
 
             .imgs {
                 background-image: url(https://gara-sea-view-klungkung.booked.net/data/Photos/OriginalPhoto/12566/1256619/1256619598/Gara-Gara-Sea-View-Hotel-Nusa-Penida-Exterior.JPEG);
@@ -27,9 +29,11 @@
                 left: -150px;
                 box-shadow: 4px 4px 12px rgba(36, 35, 35, 0.426);
                 background-size: cover;
+                
             }
 
         }
+
     }
 
     &__textimg2 {
@@ -108,4 +112,3 @@
     }
 
 }
-   
