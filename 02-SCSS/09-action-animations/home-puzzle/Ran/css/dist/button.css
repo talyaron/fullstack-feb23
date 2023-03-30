@@ -1,0 +1,34 @@
+.btn {
+  position: absolute;
+  top: 500px;
+  left: 280px;
+  display: flex;
+  gap: 90px;
+}
+.btn .underline {
+  position: relative;
+  text-decoration: none;
+  color: black;
+  font-size: 20px;
+  font-family: "Montserrat", sans-serif;
+}
+.btn .underline::after {
+  content: "";
+  display: block;
+  position: absolute;
+  height: 2px;
+  margin: 0 auto;
+  left: -8px;
+  right: 0;
+  top: 26px;
+  width: 0%;
+  transition: 0.45s;
+}
+.btn .underline:hover::after {
+  width: 80%;
+  background: orange;
+}
+.btn a:hover {
+  scale: 1.2;
+  transition: 0.45s;
+}
