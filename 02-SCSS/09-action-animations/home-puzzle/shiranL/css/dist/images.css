@@ -1,7 +1,9 @@
 .swapImg div {
+  transition: all 0.5s ease-out;
   display: none;
 }
 .swapImg div:target {
+  transition: all 0.5s ease-out;
   display: block;
 }
 .swapImg__photo img {
@@ -11,9 +13,12 @@
   transition: all 600ms;
   background-image: url("");
   display: inline-block;
+  object-fit: cover;
 }
 .swapImg__photo img:hover {
   border-radius: 80px 20px;
+  transform: rotate(45deg);
+  box-shadow: 0 0 1px 15px rgba(255, 64, 129, 0.04), 0 0 1px 30px rgba(255, 64, 129, 0.01), 0 0 1px 45px rgba(255, 64, 129, 0.01);
 }
 .swapImg__photo img:active {
   border-radius: 180px;
