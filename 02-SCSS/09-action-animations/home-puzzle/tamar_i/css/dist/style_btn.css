@@ -1,0 +1,9 @@
+.btn {
+  border: 1px solid green;
+}
+.btn:hover {
+  background-color: #188484;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.491);
+  cursor: pointer;
+  transform: scale(1.05);
+}
