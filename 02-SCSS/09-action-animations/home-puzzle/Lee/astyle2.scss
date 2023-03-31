@@ -1,0 +1,35 @@
+html {
+
+    height: 100%;
+    top: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    
+
+
+    .btn, button {
+
+        color: rgb(26, 25, 25);
+       
+        gap: 50px;
+        
+
+    }
+
+    button {
+        padding: 15px;
+        font-size: 15px;
+        font-weight: 600;
+        background-color: rgb(146, 181, 181);
+       
+        &:hover {
+
+            background-color: rgb(81, 121, 121);
+            cursor: grab;
+        }
+    }
+
+    
+}

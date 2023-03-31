@@ -1,0 +1,21 @@
+html {
+  height: 100%;
+  top: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+html .btn, html button {
+  color: #1a1919;
+  gap: 50px;
+}
+html button {
+  padding: 15px;
+  font-size: 15px;
+  font-weight: 600;
+  background-color: #92b5b5;
+}
+html button:hover {
+  background-color: #517979;
+  cursor: grab;
+}
