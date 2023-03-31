@@ -1,28 +1,40 @@
 html {
-
-    height: 100%;
-    top: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    
     
 
+    .wrapper {
 
-    .btn, button {
-
-        color: rgb(26, 25, 25);
+        img {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 500px;
+            height: 400px;
+           display: none;
+           &:target {
+            display: block;
+        }
+            
+        }
        
-        gap: 50px;
-        
 
     }
+    
+    
 
     button {
         padding: 15px;
         font-size: 15px;
         font-weight: 600;
         background-color: rgb(146, 181, 181);
+        margin-right: 10px;
+        margin-left: 18px;
+       
+
+        a {
+            text-decoration: none;
+            color: rgb(26, 25, 25);
+        }
+        
        
         &:hover {
 
@@ -31,5 +43,5 @@ html {
         }
     }
 
-    
+  
 }
