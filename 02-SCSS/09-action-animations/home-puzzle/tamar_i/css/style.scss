@@ -1,10 +1,10 @@
-@import "styleimg1";
-@import "styleimg2";
+@import "styleimg";
 @import "style_btn";
 
 .wapper{
-    width: 900px;
-    height: 450px;
+    position: relative;
+    width: 1000px;
+    height: 500px;
     display: block;
     margin: auto;
     margin-top: 100px;
@@ -12,16 +12,4 @@
     background-image: linear-gradient(red, yellow);
 }
 
-.imgbox{
-    margin-top: 70px;
-    margin-left: 150px;
-    width: 600px;
-    height: 300px;
-    border: 1px solid gray;
-    background-image: url("./img/see/jpg")
-}
 
-
-.btnline{
-    margin-left: 350px;
-}
