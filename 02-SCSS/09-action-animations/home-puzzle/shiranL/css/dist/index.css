@@ -8,7 +8,7 @@
   background-color: rgba(120, 9, 239, 0.685);
   color: white;
   border: none;
-  font-size: 25px;
+  font-size: 27px;
   font-weight: bold;
   padding: 20px;
   border-radius: 5px;
@@ -26,30 +26,36 @@
 .bottuns__btn:active {
   background-color: #10c419;
 }
-.bottuns__btn:active #testDiv {
-  background-image: none;
-  background-color: #22ea86;
+
+.swapImg div {
+  display: none;
 }
-.bottuns__btn #btn:active + #testDiv {
-  background-color: #22ea86;
-  border-radius: 180px 90px;
-  background-image: url("https://cdn.cashcow.co.il/images/887369a4-5c9c-4679-82bb-d13f30139aa0.png");
+.swapImg div:target {
+  display: block;
 }
-.swapImg__photo {
+.swapImg__photo img {
   width: 500px;
   height: 500px;
   border-radius: 20px 80px;
   transition: all 600ms;
-  background-image: url("https://www.tapet3d.co.il/files/products/product23_image1_2021-03-29_11-25-56.jpg");
+  background-image: url("");
   display: inline-block;
 }
-.swapImg__photo:hover {
+.swapImg__photo img:hover {
   border-radius: 80px 20px;
 }
-.swapImg__photo:active {
-  background-color: black;
-  background-image: none;
-  background-image: url("https://cdn.cashcow.co.il/images/887369a4-5c9c-4679-82bb-d13f30139aa0.png");
+.swapImg__photo img:active {
+  border-radius: 180px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  border-radius: 60px 50px 60px 50px;
+  text-align: center;
 }
 
 .wapper {
@@ -62,4 +68,25 @@
   align-items: center;
   gap: 21px;
   background-color: #b7da76;
+}
+
+.animation div {
+  height: 50px;
+  animation-name: my-animation;
+  animation-duration: 2s;
+  animation-direction: alternate;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+@keyframes my-animation {
+  from {
+    background-color: #ff7a59;
+    width: 200px;
+    top: 10px;
+  }
+  to {
+    background-color: #33475b;
+    width: 10px;
+    top: 100px;
+  }
 }

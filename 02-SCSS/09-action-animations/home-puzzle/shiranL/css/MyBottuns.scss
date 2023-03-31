@@ -3,18 +3,20 @@
     flex-direction: row;
     justify-content: space-around;
     width: 640px;
-
+ 
     &__btn {
         background-color: rgba(120, 9, 239, 0.685);
         color: white;
         border: none;
-        font-size: 25px;
+        font-size: 27px;
         font-weight: bold;
         padding: 20px;
         border-radius: 5px;
         width: fit-content;
         transition: all 600ms;
         user-select: none;
+
+
         &:hover {
           background-color: rgb(251, 10, 247);
           color: black;
@@ -24,22 +26,9 @@
         }
         &:active {
             background-color: rgb(16, 196, 25);
-            #testDiv{
-                background-image:none;
-                background-color: rgb(34, 234, 134);
-            }
+          
           }
-        #btn:active +  #testDiv {
-            background-color: rgb(34, 234, 134);
-            border-radius: 180px 90px;
-                     
-                       background-image: url("https://cdn.cashcow.co.il/images/887369a4-5c9c-4679-82bb-d13f30139aa0.png");
-            
-        }
-        
-        #testDiv {
-           
-        }
+       
       
     }
 }
