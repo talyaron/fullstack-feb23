@@ -6,8 +6,11 @@
     align-items: center;
 }
 
-.bth {
-    background: palegreen;
+.pink,
+.yellow,
+.blue,
+.red {
+
     font-style: initial;
     font-size: 25px;
     width: 25%;
@@ -21,8 +24,7 @@
 }
 
 .pink {
-    bottom: 0;
-    left: 0;
+
     background: palevioletred;
     // background: url(img/img1.jpg) no-repeat center center/ cover;
 }
@@ -34,7 +36,7 @@
 }
 
 .blue {
-    bottom: 0;
+
     background: blue;
     // background: url(img/img3.jpg) no-repeat center center/ cover;
 }
@@ -63,9 +65,10 @@
     z-index: 5;
 }
 
-.red:focus {
-    background: url(img/img4.jpg) no-repeat center center/ cover;
-    z-index: 5;
-
+.box4:active {
+    .red {
+        background: url(img/img4.jpg) no-repeat center center/ cover;
+        z-index: 5;
+    }
 
 }
