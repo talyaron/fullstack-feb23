@@ -6,8 +6,7 @@
   align-items: center;
 }
 
-.bth {
-  background: palegreen;
+.ing {
   font-style: initial;
   font-size: 25px;
   width: 25%;
@@ -20,8 +19,6 @@
 }
 
 .pink {
-  bottom: 0;
-  left: 0;
   background: palevioletred;
 }
 
@@ -31,7 +28,6 @@
 }
 
 .blue {
-  bottom: 0;
   background: blue;
 }
 
@@ -55,7 +51,7 @@
   z-index: 5;
 }
 
-.red:focus {
+.box4:active .red {
   background: url(img/img4.jpg) no-repeat center center/cover;
   z-index: 5;
 }
