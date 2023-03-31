@@ -1,55 +1,59 @@
 .btn {
   position: absolute;
   top: 500px;
-  left: 280px;
+  left: 100px;
   display: flex;
   gap: 90px;
 }
-.btn .underline {
-  position: relative;
+.btn a {
+  width: 120px;
+  height: 20px;
+  padding: 0.5rem;
+  background-color: #910569;
+  color: #fff;
+  text-align: center;
   text-decoration: none;
-  color: black;
-  font-size: 20px;
+  transition: all 0.45s ease-out;
+  font-size: 15px;
   font-family: "Montserrat", sans-serif;
 }
-.btn .underline:hover {
-  scale: 1.2;
-  transition: 0.45s;
-}
-.btn .underline:active {
-  scale: 1.2;
-  cursor: pointer;
-}
-.btn .underline::after {
-  content: "";
-  display: block;
-  position: absolute;
-  height: 2px;
-  margin: 0 auto;
-  left: -8px;
-  right: 0;
-  top: 26px;
-  width: 0%;
-  transition: 0.45s;
-}
-.btn .underline:hover::after {
-  width: 80%;
-  background: orange;
+.btn a:hover,
+.btn a:focus {
+  background-color: #fff;
+  color: #8a0176;
+  border: 0.5px solid #8a0176;
 }
 
-img {
+.Frames {
   position: absolute;
   left: 150px;
   top: 30px;
   display: block;
+}
+.Frames div {
+  display: none;
+}
+.Frames div:target {
+  display: block;
+}
+.Frames img {
   width: 700px;
   height: 360px;
 }
 
+a :active {
+  transform: all 0.3s ease-out;
+}
+
+body {
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(140deg, #C5CAE9, #92697e);
+}
+
 .wrapper {
   width: 1000px;
-  height: 700px;
-  border: 2px solid black;
+  height: 100%;
   margin: auto;
   position: relative;
 }
