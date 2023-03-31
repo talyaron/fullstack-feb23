@@ -1,0 +1,86 @@
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+.wrapper {
+  margin: auto;
+  width: 1000px;
+  height: 800px;
+  border: 1px solid black;
+}
+.wrapper__Q1 .wrapper__Q1__btn1:active .img1 {
+  opacity: 1;
+}
+.wrapper__Q1__btn1 button {
+  width: 80px;
+  height: 30px;
+  position: relative;
+  top: 100px;
+  left: 150px;
+}
+.wrapper__Q1 img {
+  width: 800px;
+  height: 100%;
+  padding-left: 15px;
+  padding-top: 20px;
+  opacity: 0;
+}
+.wrapper__Q2 .wrapper__Q2__btn2:active .img2 {
+  opacity: 1;
+}
+.wrapper__Q2__btn2 button {
+  width: 80px;
+  height: 30px;
+  position: relative;
+  bottom: 380px;
+  left: 350px;
+}
+.wrapper__Q2 img {
+  width: 800px;
+  height: 100%;
+  padding-left: 15px;
+  padding-top: 20px;
+  opacity: 0;
+  position: relative;
+  bottom: 500px;
+}
+.wrapper__Q3 .wrapper__Q3__btn3:active .img3 {
+  opacity: 1;
+}
+.wrapper__Q3__btn3 button {
+  width: 80px;
+  height: 30px;
+  position: relative;
+  bottom: 942px;
+  left: 550px;
+}
+.wrapper__Q3 img {
+  width: 850px;
+  height: 100%;
+  padding-left: 15px;
+  padding-top: 20px;
+  opacity: 0;
+  position: relative;
+  bottom: 1000px;
+}
+.wrapper__Q4 .wrapper__Q4__btn4:active .img4 {
+  opacity: 1;
+}
+.wrapper__Q4__btn4 button {
+  width: 80px;
+  height: 30px;
+  position: relative;
+  bottom: 1439px;
+  left: 750px;
+}
+.wrapper__Q4 img {
+  width: 700px;
+  height: 100%;
+  padding-left: 15px;
+  padding-top: 20px;
+  opacity: 0;
+  position: relative;
+  bottom: 1520px;
+  left: 40px;
+}
