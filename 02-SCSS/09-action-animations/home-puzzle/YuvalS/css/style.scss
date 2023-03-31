@@ -10,9 +10,17 @@
     width: 1000px;
     height: 800px;
     border: 1px solid black;
+    pointer-events: none;
+button:hover{
+    cursor: pointer;
+}
+
 
     &__Q1{
-        .wrapper__Q1__btn1:active .img1{opacity: 1;}
+        transition:0s 1s;
+        .wrapper__Q1__btn1:active .img1{opacity: 1;
+            transition-duration: 1s;}
+            
         
 
         &__btn1{ 
@@ -22,6 +30,8 @@
                 position: relative;
                 top: 100px;
                 left: 150px;
+                pointer-events: auto;
+                transition:0s 1s;
             }
 
         }
@@ -35,7 +45,8 @@
     }
 
     &__Q2{
-        .wrapper__Q2__btn2:active .img2{opacity: 1;}
+        .wrapper__Q2__btn2:active .img2{opacity: 1;
+            transition-duration: 1s;}
 
         &__btn2{ 
             button{
@@ -44,6 +55,7 @@
                 position: relative;
                 bottom: 380px;
                 left: 350px;
+                pointer-events: auto;
             }
 
         }
@@ -59,15 +71,17 @@
     }
 
     &__Q3{
-        .wrapper__Q3__btn3:active .img3{opacity: 1;}
+        .wrapper__Q3__btn3:active .img3{opacity: 1;
+            transition-duration: 1s;}
 
         &__btn3{ 
             button{
                 width: 80px;
                 height: 30px;
                 position: relative;
-                bottom: 942px;
+                bottom: 943px;
                 left: 550px;
+                pointer-events: auto;
             }
 
         }
@@ -83,15 +97,18 @@
     }
 
     &__Q4{
-        .wrapper__Q4__btn4:active .img4{opacity: 1;}
+        .wrapper__Q4__btn4:active .img4{opacity: 1;
+            transition-duration: 1s; }
 
         &__btn4{ 
             button{
                 width: 80px;
                 height: 30px;
                 position: relative;
-                bottom: 1439px;
-                left: 750px;
+                bottom: 1437.7px;
+                left: 747px;
+                pointer-events: auto;
+               
             }
 
         }
