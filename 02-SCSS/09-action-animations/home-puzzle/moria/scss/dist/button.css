@@ -6,7 +6,10 @@
   align-items: center;
 }
 
-.ing {
+.pink,
+.yellow,
+.blue,
+.red {
   font-style: initial;
   font-size: 25px;
   width: 25%;
