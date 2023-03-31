@@ -13,6 +13,8 @@ $fontGray: rgb(108, 107, 107);
 .headder, .articleHeadder {
     font-family: $fontA;
     display: flex;
+    position: sticky;
+    top: 1px;
     align-items: center;
     background-color: black;
     color: white;

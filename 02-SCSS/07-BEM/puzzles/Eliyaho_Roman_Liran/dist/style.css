@@ -5,6 +5,8 @@ body {
 .headder, .articleHeadder {
   font-family: "arial", sans-serif;
   display: flex;
+  position: sticky;
+  top: 1px;
   align-items: center;
   background-color: black;
   color: white;
