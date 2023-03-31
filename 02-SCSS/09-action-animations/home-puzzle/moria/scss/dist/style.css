@@ -3,9 +3,13 @@
   margin: 40px auto;
   background: olivedrab;
   height: 500px;
+  position: relative;
 }
-.container .img {
-  background: orange;
+.container .imgs {
   width: 500px;
   height: 350px;
+  position: absolute;
+  display: flex;
+  justify-content: space-around;
+  align-items: end;
 }

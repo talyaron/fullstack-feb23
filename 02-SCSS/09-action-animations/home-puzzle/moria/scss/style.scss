@@ -3,13 +3,17 @@
     margin: 40px auto;
     background: olivedrab;
     height: 500px;
-    // position: relative;
+    position: relative;
 
 
-    .img {
-        background: orange;
+    .imgs {
         width: 500px;
         height: 350px;
+        position: absolute;
+        display: flex;
+        justify-content: space-around;
+        align-items: end;
+
 
     }
 
