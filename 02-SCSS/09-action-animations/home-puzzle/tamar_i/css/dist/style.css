@@ -1,0 +1,40 @@
+.imgchang {
+  background-image: "./img/see.jpg";
+}
+
+.imgchang {
+  background-image: "./img/mountens";
+}
+
+.btn {
+  border: 1px solid green;
+}
+.btn:hover {
+  background-color: #188484;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.491);
+  cursor: pointer;
+  transform: scale(1.05);
+}
+
+.wapper {
+  width: 900px;
+  height: 450px;
+  display: block;
+  margin: auto;
+  margin-top: 100px;
+  border: 1px solid darkblue;
+  background-image: linear-gradient(red, yellow);
+}
+
+.imgbox {
+  margin-top: 70px;
+  margin-left: 150px;
+  width: 600px;
+  height: 300px;
+  border: 1px solid gray;
+  background-color: beige;
+}
+
+.btnline {
+  margin-left: 350px;
+}
