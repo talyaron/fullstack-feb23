@@ -4,33 +4,51 @@
   justify-content: space-around;
   width: 640px;
 }
-.bottuns__btn {
-  background-color: rgba(120, 9, 239, 0.685);
-  color: white;
+.bottuns__plus {
+  position: relative;
+  z-index: 1;
+  width: 80px;
+  height: 80px;
+  color: .bottuns__plus primeryPink;
+  background: lightPink;
+  border-radius: 50%;
   border: none;
-  font-size: 27px;
-  font-weight: bold;
-  padding: 20px;
-  border-radius: 5px;
-  width: fit-content;
-  transition: all 600ms;
-  user-select: none;
+  transition: box-shadow 400ms cubic-bezier(0.2, 0, 0.7, 1), transform 200ms cubic-bezier(0.2, 0, 0.7, 1);
 }
-.bottuns__btn:hover {
-  background-color: #fb0af7;
-  color: black;
-  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.491);
-  cursor: pointer;
-  transform: scale(1.05);
+.bottuns__plus:after {
+  font-size: 2.5em;
+  line-height: 1.1em;
 }
-.bottuns__btn:active {
-  background-color: #10c419;
+.bottuns__plus:hover {
+  content: none;
+  transform: rotate(45deg);
+  box-shadow: 0 0 1px 15px rgba(194, 24, 91, 0.4), 0 0 1px 30px rgba(255, 64, 129, 0.1), 0 0 1px 45px rgba(0, 150, 136, 0.1);
+}
+.bottuns__plus--1:after {
+  content: "1";
+}
+.bottuns__plus--2:after {
+  content: "2";
+}
+.bottuns__plus--3:after {
+  content: "3";
+}
+.bottuns__plus--4:after {
+  content: "4";
+}
+.bottuns__plus--5:after {
+  content: "5";
+}
+.bottuns__plus--6:after {
+  content: "6";
 }
 
 .swapImg div {
+  transition: all 0.5s ease-out;
   display: none;
 }
 .swapImg div:target {
+  transition: all 0.5s ease-out;
   display: block;
 }
 .swapImg__photo img {
@@ -40,9 +58,12 @@
   transition: all 600ms;
   background-image: url("");
   display: inline-block;
+  object-fit: cover;
 }
 .swapImg__photo img:hover {
   border-radius: 80px 20px;
+  transform: rotate(45deg);
+  box-shadow: 0 0 1px 15px rgba(255, 64, 129, 0.04), 0 0 1px 30px rgba(255, 64, 129, 0.01), 0 0 1px 45px rgba(255, 64, 129, 0.01);
 }
 .swapImg__photo img:active {
   border-radius: 180px;
@@ -53,40 +74,21 @@
   padding: 0;
 }
 
-a {
-  border-radius: 60px 50px 60px 50px;
-  text-align: center;
+body {
+  background-image: url("https://img.freepik.com/free-vector/hand-painted-watercolor-pastel-sky-background_23-2148902029.jpg?w=826&t=st=1680271989~exp=1680272589~hmac=d8a87fbbf1238154f21fa00c7f77d63b0074f6b5d79bddff3bf83935142f0077");
+  background-size: cover;
 }
 
 .wapper {
   padding-top: 50px;
   border-radius: 10px;
   width: 900px;
-  margin: auto;
+  margin: 100px auto;
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
   align-items: center;
   gap: 21px;
-  background-color: #b7da76;
-}
-
-.animation div {
-  height: 50px;
-  animation-name: my-animation;
-  animation-duration: 2s;
-  animation-direction: alternate;
-  animation-iteration-count: infinite;
-  animation-timing-function: linear;
-}
-@keyframes my-animation {
-  from {
-    background-color: #ff7a59;
-    width: 200px;
-    top: 10px;
-  }
-  to {
-    background-color: #33475b;
-    width: 10px;
-    top: 100px;
-  }
+  border-radius: 1px solid;
+  border: #C2185B;
 }
