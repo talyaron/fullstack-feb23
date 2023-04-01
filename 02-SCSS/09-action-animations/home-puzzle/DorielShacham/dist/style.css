@@ -1,21 +1,3 @@
-body {
-  padding: 0;
-  margin: 0;
-  height: 100vh;
-  justify-self: center;
-  align-items: center;
-  background-color: white;
-}
-
-.section {
-  margin: 0;
-  padding: 0;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .slider {
   width: 800px;
   height: 500px;
@@ -29,28 +11,6 @@ body {
 }
 .slider .slide input {
   display: none;
-}
-
-.st {
-  width: 20%;
-  height: 500px;
-  background-color: white;
-  border-radius: 10px;
-  margin: 0 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: all 1s ease-in-out;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-}
-.st:hover {
-  transform: scale(1.1);
-}
-.st img {
-  width: 800px;
-  height: 500px;
 }
 
 .nav-manual {
@@ -78,6 +38,46 @@ body {
 }
 .nav-manual .manual-btn .manual-btn:not(:last-child) {
   margin-right: 30px;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  height: 100vh;
+  justify-self: center;
+  align-items: center;
+  background-color: white;
+}
+
+.section {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.st {
+  width: 20%;
+  height: 500px;
+  background-color: white;
+  border-radius: 10px;
+  margin: 0 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 1s ease-in-out;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+.st:hover {
+  transform: scale(1.1);
+}
+.st img {
+  width: 800px;
+  height: 500px;
 }
 
 #radio1:checked ~ .nav-manual .manual-btn:nth-child(1) {
