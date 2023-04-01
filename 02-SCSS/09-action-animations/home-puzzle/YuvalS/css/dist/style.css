@@ -9,16 +9,19 @@
   height: 800px;
   border: 1px solid black;
   pointer-events: none;
+  user-select: none;
 }
 .wrapper button:hover {
   cursor: pointer;
+  opacity: 0.8;
+  box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.492);
 }
 .wrapper__Q1 {
   transition: 0s 1s;
 }
 .wrapper__Q1 .wrapper__Q1__btn1:active .img1 {
   opacity: 1;
-  transition-duration: 1s;
+  transition-duration: 0.3s;
 }
 .wrapper__Q1__btn1 button {
   width: 80px;
