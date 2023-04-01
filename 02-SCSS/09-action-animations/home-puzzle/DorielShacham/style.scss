@@ -1,0 +1,104 @@
+body{
+    padding: 0;
+    margin: 0;
+    height: 100vh;
+    justify-self: center;
+    align-items: center;
+    background-color: white;
+}
+
+.section{
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+}
+
+.slider{
+    width: 800px;
+    height: 500px;
+    border-radius: 10px;
+    overflow: hidden;
+
+    .slide{
+        width: 500%;
+        height: 500px;
+        display: flex;
+
+        input{
+            display: none;
+        }
+    }
+}
+
+.st{
+    width: 20%;
+    height: 500px;
+    background-color: white;
+    border-radius: 10px;
+    margin: 0 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 1s ease-in-out;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+
+    &:hover{
+        transform: scale(1.1);
+    }
+
+    img{
+        width: 800px;
+        height: 500px;
+    }
+}
+
+.nav-manual{
+    position: absolute;
+    width: 800px;
+    margin-top: -40px;
+    display:flex;
+    justify-content: center;
+    bottom: 10%;
+
+    .manual-btn{
+        width: 15px;
+        height: 15px;
+        border: 2px solid black;
+        padding: 5px;
+        border-radius: 10px;
+        background-color: darkorange;
+        margin: 0 5px;
+        cursor: pointer;
+        transition: all 0.5s ease-in-out;
+
+        &:hover{
+            transform: scale(1.2);
+            opacity: 0.5;
+        }
+
+        .manual-btn:not(:last-child){
+            margin-right: 30px;
+        }
+    }
+}
+
+#radio1:checked ~ .nav-manual .manual-btn:nth-child(1){
+    background-color: black;
+}
+
+#radio2:checked ~ .nav-manual .manual-btn:nth-child(2){
+    background-color: black;
+}
+
+#radio3:checked ~ .nav-manual .manual-btn:nth-child(3){
+    background-color: black;
+}
+
+#radio4:checked ~ .nav-manual .manual-btn:nth-child(4){
+    background-color: black;
+}

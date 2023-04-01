@@ -4,9 +4,39 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Image Slider</title>
+    <link rel="stylesheet" href="./dist/style.css">
 </head>
 <body>
-    
+    <section class="section">
+        <div class="slider">
+            <div class="slide">
+                <input type="radio" name="radio-btn" id="radio1" checked>
+                <input type="radio" name="radio-btn" id="radio2">
+                <input type="radio" name="radio-btn" id="radio3">
+                <input type="radio" name="radio-btn" id="radio4">
+
+                <div class="st first">
+                    <img src="https://nypost.com/wp-content/uploads/sites/2/2019/09/fat-cat.jpg?quality=75&strip=all" alt="fatCat">
+                </div>
+                <div class="st second">
+                    <img src="https://npr.brightspotcdn.com/dims4/default/aaa5662/2147483647/strip/true/crop/1200x900+0+0/resize/880x660!/quality/90/?url=http%3A%2F%2Fnpr-brightspot.s3.amazonaws.com%2Flegacy%2Fsites%2Fwual%2Ffiles%2F201806%2Fchubbs_-_pasadena_humane_society___spca_-_facebook.jpg" alt="fatCat">
+                </div>
+                <div class="st third">
+                    <img src="https://img.freepik.com/premium-photo/rest-leisure-well-fed-lazy-contented-fat-cat-gray-fluffy-cat-is-sitting-bed-showing-fat-belly_319110-2004.jpg" alt="fatCat">
+                </div>
+                <div class="st fourth">
+                    <img src="https://us.123rf.com/450wm/sergiophotone/sergiophotone2302/sergiophotone230201370/199343789-fat-cat-on-sofa-with-an-empty-bowl-lazy-pet-obese-overweight-pet-indoors-generative-ai.jpg?ver=6" alt="fatCat">
+                </div>
+
+                <div class="nav-manual">
+                    <label onclick="autoSlide()" for="radio1" class="manual-btn"></label>
+                    <label for="radio2" class="manual-btn"></label>
+                    <label for="radio3" class="manual-btn"></label>
+                    <label for="radio4" class="manual-btn"></label>
+                </div>
+            </div>
+        </div>
+    </section>
 </body>
 </html>
