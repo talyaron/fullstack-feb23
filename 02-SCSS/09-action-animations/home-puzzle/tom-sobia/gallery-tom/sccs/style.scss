@@ -1,5 +1,5 @@
 @import"buttom";
-@import"images";
+
 
 * {
     margin: 0;
@@ -8,7 +8,7 @@
 
 body {
     max-width: 100%;
-    background-color: rgba(55, 6, 101, 0.747);
+    background-color: rgba(55, 6, 101, 0.432);
 }
 
 .box {
@@ -16,7 +16,7 @@ body {
     border-top-left-radius: 10%;
     border-bottom-left-radius: 10%;
     border-bottom-right-radius: 10%;
-    background-image: url(https://images.pexels.com/photos/2387793/pexels-photo-2387793.jpeg?auto=compress&cs=tinysrgb&w=800);
+    background-color: #7e08b530;
     position: relative;
     top: 100px;
     margin: 0 auto;
