@@ -1,16 +1,25 @@
-.swapImg__photo {
+.swapImg div {
+  transition: all 0.5s ease-out;
+  display: none;
+}
+.swapImg div:target {
+  transition: all 0.5s ease-out;
+  display: block;
+}
+.swapImg__photo img {
   width: 500px;
   height: 500px;
   border-radius: 20px 80px;
   transition: all 600ms;
-  background-image: url("https://www.tapet3d.co.il/files/products/product23_image1_2021-03-29_11-25-56.jpg");
+  background-image: url("");
   display: inline-block;
+  object-fit: cover;
 }
-.swapImg__photo:hover {
+.swapImg__photo img:hover {
   border-radius: 80px 20px;
+  transform: rotate(45deg);
+  box-shadow: 0 0 1px 15px rgba(255, 64, 129, 0.04), 0 0 1px 30px rgba(255, 64, 129, 0.01), 0 0 1px 45px rgba(255, 64, 129, 0.01);
 }
-.swapImg__photo:active {
-  background-color: black;
-  background-image: none;
-  background-image: url("https://cdn.cashcow.co.il/images/887369a4-5c9c-4679-82bb-d13f30139aa0.png");
+.swapImg__photo img:active {
+  border-radius: 180px;
 }
