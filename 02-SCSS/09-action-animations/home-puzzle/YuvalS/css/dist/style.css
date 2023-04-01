@@ -16,12 +16,9 @@
   opacity: 0.8;
   box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.492);
 }
-.wrapper__Q1 {
-  transition: 0s 1s;
-}
-.wrapper__Q1 .wrapper__Q1__btn1:active .img1 {
+.wrapper__Q1 .wrapper__Q1__btn1:focus-within .img1 {
   opacity: 1;
-  transition-duration: 0.3s;
+  transition-duration: 1s;
 }
 .wrapper__Q1__btn1 button {
   width: 80px;
@@ -30,7 +27,6 @@
   top: 100px;
   left: 150px;
   pointer-events: auto;
-  transition: 0s 1s;
 }
 .wrapper__Q1 img {
   width: 800px;
@@ -39,7 +35,7 @@
   padding-top: 20px;
   opacity: 0;
 }
-.wrapper__Q2 .wrapper__Q2__btn2:active .img2 {
+.wrapper__Q2 .wrapper__Q2__btn2:focus-within .img2 {
   opacity: 1;
   transition-duration: 1s;
 }
@@ -60,7 +56,7 @@
   position: relative;
   bottom: 500px;
 }
-.wrapper__Q3 .wrapper__Q3__btn3:active .img3 {
+.wrapper__Q3 .wrapper__Q3__btn3:focus-within .img3 {
   opacity: 1;
   transition-duration: 1s;
 }
@@ -81,7 +77,7 @@
   position: relative;
   bottom: 1000px;
 }
-.wrapper__Q4 .wrapper__Q4__btn4:active .img4 {
+.wrapper__Q4 .wrapper__Q4__btn4:focus-within .img4 {
   opacity: 1;
   transition-duration: 1s;
 }
