@@ -44,6 +44,7 @@ body {
   padding: 0;
   margin: 0;
   height: 100vh;
+  width: 100vw;
   justify-self: center;
   align-items: center;
   background-color: white;
@@ -58,7 +59,7 @@ body {
   align-items: center;
 }
 
-.st {
+.pic {
   width: 20%;
   height: 500px;
   background-color: white;
@@ -67,15 +68,15 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: all 1s ease-in-out;
+  transition: all 0.5s ease-in-out;
   cursor: pointer;
   position: relative;
   overflow: hidden;
 }
-.st:hover {
+.pic:hover {
   transform: scale(1.1);
 }
-.st img {
+.pic img {
   width: 800px;
   height: 500px;
 }
@@ -94,4 +95,16 @@ body {
 
 #radio4:checked ~ .nav-manual .manual-btn:nth-child(4) {
   background-color: black;
+}
+
+#radio2:checked ~ .second {
+  transform: translateX(-104%);
+}
+
+#radio3:checked ~ .third {
+  transform: translateX(-205%);
+}
+
+#radio4:checked ~ .fourth {
+  transform: translateX(-308%);
 }
