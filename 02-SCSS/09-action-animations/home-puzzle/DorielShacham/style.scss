@@ -7,7 +7,7 @@ body{
     width: 100vw;
     justify-self: center;
     align-items: center;
-    background-color: white;
+    background-color: black;
 }
 
 .section{
@@ -42,6 +42,22 @@ body{
         width: 800px;
         height: 500px;
     }
+
+    // .first{
+    //     z-index: 1;
+    // }
+
+    // .second{
+    //     z-index: 2;
+    // }
+
+    // .third{
+    //     z-index: 3;
+    // }
+
+    // .fourth{
+    //     z-index: 4;
+    // }
 }
 
 #radio1:checked ~ .nav-manual .manual-btn:nth-child(1){
@@ -60,14 +76,14 @@ body{
     background-color: black;
 }
 
-#radio2:checked ~  .second{
+#radio2:checked ~ .second{
     transform: translateX(-104%);
 }
 
-#radio3:checked ~  .third{
+#radio3:checked ~ .third{
     transform: translateX(-205%);
 }
 
-#radio4:checked ~  .fourth{
+#radio4:checked ~ .fourth{
     transform: translateX(-308%);
 }

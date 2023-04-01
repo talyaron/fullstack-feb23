@@ -24,7 +24,7 @@
 .nav-manual .manual-btn {
   width: 15px;
   height: 15px;
-  border: 2px solid black;
+  border: 2px solid darkorange;
   padding: 5px;
   border-radius: 10px;
   background-color: darkorange;
@@ -47,7 +47,7 @@ body {
   width: 100vw;
   justify-self: center;
   align-items: center;
-  background-color: white;
+  background-color: black;
 }
 
 .section {
