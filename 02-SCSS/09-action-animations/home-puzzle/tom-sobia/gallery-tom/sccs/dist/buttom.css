@@ -13,6 +13,7 @@
   padding: 20px;
   background-color: #a19696;
   color: #3a0808;
+  cursor: pointer;
 }
 .box__btn button:hover {
   transition: 0.5s;
