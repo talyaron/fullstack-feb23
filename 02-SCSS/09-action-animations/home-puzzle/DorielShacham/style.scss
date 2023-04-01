@@ -17,6 +17,7 @@ body{
     display: flex;
     justify-content: center;
     align-items: center; 
+    box-shadow: inset 0 0 50px darkorange
 }
 
 .pic{
@@ -61,7 +62,6 @@ body{
 
 #radio2:checked ~  .second{
     transform: translateX(-104%);
-
 }
 
 #radio3:checked ~  .third{
