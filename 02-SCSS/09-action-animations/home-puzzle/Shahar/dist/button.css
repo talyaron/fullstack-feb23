@@ -12,4 +12,9 @@ button:hover {
   color: white;
   background-color: black;
   text-decoration: underline;
+  cursor: pointer;
+}
+button:focus {
+  font-weight: bold;
+  background-color: green;
 }
