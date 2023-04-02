@@ -1,24 +1,28 @@
-.container {
-    width: 500px;
-    margin: 40px auto;
-    background: olivedrab;
-    height: 500px;
-    position: relative;
+// .container {
+//     width: 1000px;
+//     // margin: 40px auto;
+//     background: olivedrab;
+//     height: 500px;
+//     // position: relative;
 
 
-    .imgs {
-        width: 500px;
-        height: 350px;
-        position: absolute;
-        display: flex;
-        justify-content: space-around;
-        align-items: end;
 
 
-    }
+//     img {
+//         display: none;
+//         width: 600px;
+//         height: 350px;
+
+//         &:target {
+//             display: block;
+//         }
 
 
-}
+//     }
+
+
+
+// }
 
 
 // @import "button";

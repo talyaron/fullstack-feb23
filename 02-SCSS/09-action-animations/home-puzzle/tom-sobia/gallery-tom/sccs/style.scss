@@ -1,0 +1,85 @@
+@import"buttom";
+
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    max-width: 100%;
+    background-color: rgba(55, 6, 101, 0.432);
+}
+
+.box {
+    border-top-right-radius: 10%;
+    border-top-left-radius: 10%;
+    border-bottom-left-radius: 10%;
+    border-bottom-right-radius: 10%;
+    background-color: #7e08b530;
+    position: relative;
+    top: 100px;
+    margin: 0 auto;
+    width: 700px;
+    height: 500px;
+    box-shadow: 0px 0px 56px 25px #430b99, -50px -50px 0px 0px #3b453b, -50px -50px 10px 0px #7e08b5;
+    box-shadow: 0px 0px 56px 25px #430b99, -50px -50px 0px 0px #3b453b, -50px -50px 10px 0px #7e08b5;
+    box-shadow: 0px 0px 56px 25px #430b99, -50px -50px 0px 0px #3b453b, -50px -50px 10px 0px #7e08b5;
+
+    .box__img {
+        display: flex;
+        justify-content: center;
+        position: relative;
+
+        .img1 {
+            position: absolute;
+            width: 700px;
+            height: 399px;
+            border-radius: 10%;
+            margin: 0 auto;
+            top: 1px;
+            filter: blur(7px);
+            -webkit-filter: blur(7px);
+            cursor: pointer;
+        }
+
+        .img2 {
+            position: absolute;
+            width: 700px;
+            height: 399px;
+            border-radius: 10%;
+            margin: 0 auto;
+            top: 1px;
+            display: none;
+            filter: blur(7px);
+            -webkit-filter: blur(7px);
+            cursor: pointer;
+
+        }
+
+        .img1:hover {
+            filter: blur(0px);
+            -webkit-filter: blur(0px);
+            transform: translateX(35px) rotate(0deg) translateY(30px);
+
+        }
+
+        .img2:hover {
+            filter: blur(0px);
+            -webkit-filter: blur(0px);
+            transform: translateX(35px) rotate(0deg) translateY(30px);
+        }
+
+
+        img:target {
+            position: absolute;
+            width: 700px;
+            height: 399px;
+            border-radius: 10%;
+            margin: 0 auto;
+            top: 1px;
+            display: block;
+        }
+
+    }
+}

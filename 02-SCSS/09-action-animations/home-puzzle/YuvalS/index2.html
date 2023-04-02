@@ -4,22 +4,29 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/dist/style.css">
     <title>Document</title>
+
+    
 </head>
 <body>
     <div class="wrapper">
-        <div class="wrapper__img">
-         <img class="wrapper__img--1" id="img1" src="https://jooinn.com/images/lake-view-65.jpg" alt="">
-         <img class="wrapper__img--2" src="https://cdn.pixabay.com/photo/2017/03/29/15/18/tianjin-2185510__480.jpg" alt="">
-         <img class="wrapper__img--3" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7_RbbstxfGpym9NkM_jps_JjJBfWTLcs_9h2s7e-dBQ&usqp=CAU&ec=48665701" alt="">
-         <img class="wrapper__img--4" id="img4" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSF9tioAy_2hj03_LX87wJ6tePJhFDm0hJWIFy4bD6OSg&usqp=CAU&ec=48665701" alt="">
-     
-         <div class="wrapper__btns">
-         <div class="wrapper__btns__btn wrapper__btns__btn--1"><button>img1</button></div>
-         <div class="wrapper__btns__btn wrapper__btns__btn--2"><button>img2</button></div>
-         <div class="wrapper__btns__btn wrapper__btns__btn--3"><button>img3</button></div>
-         <div class="wrapper__btns__btn wrapper__btns__btn--4"><button>img4</button></div>
-     </div>
+        <div class="wrapper__Q5">
+        <div class="wrapper__Q5__btn5"><button class="btn5">img1</button>
+        <img class="img5" src="https://jooinn.com/images/lake-view-65.jpg" alt="">
+    </div>
+</div>
+</div>
+
+<script>
+    $(".btn5").on("click", function () {
+
+$(".img5").removeClass("active");
+
+$(this).addClass("active");
+
+});
+</script>
 </body>
 </html>
 wrapper{

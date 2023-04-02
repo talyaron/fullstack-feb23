@@ -13,6 +13,3 @@
 .wrapper__buttons button:active {
   font-weight: 900;
 }
-.wrapper__buttons button:active img {
-  display: block;
-}
