@@ -1,0 +1,44 @@
+.bottuns {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 640px;
+}
+.bottuns__plus {
+  position: relative;
+  z-index: 1;
+  width: 80px;
+  height: 80px;
+  color: .bottuns__plus primeryPink;
+  background: lightPink;
+  border-radius: 50%;
+  border: none;
+  transition: box-shadow 400ms cubic-bezier(0.2, 0, 0.7, 1), transform 200ms cubic-bezier(0.2, 0, 0.7, 1);
+}
+.bottuns__plus:after {
+  font-size: 2.5em;
+  line-height: 1.1em;
+}
+.bottuns__plus:hover {
+  content: none;
+  transform: rotate(45deg);
+  box-shadow: 0 0 1px 15px rgba(194, 24, 91, 0.4), 0 0 1px 30px rgba(255, 64, 129, 0.1), 0 0 1px 45px rgba(0, 150, 136, 0.1);
+}
+.bottuns__plus--1:after {
+  content: "1";
+}
+.bottuns__plus--2:after {
+  content: "2";
+}
+.bottuns__plus--3:after {
+  content: "3";
+}
+.bottuns__plus--4:after {
+  content: "4";
+}
+.bottuns__plus--5:after {
+  content: "5";
+}
+.bottuns__plus--6:after {
+  content: "6";
+}

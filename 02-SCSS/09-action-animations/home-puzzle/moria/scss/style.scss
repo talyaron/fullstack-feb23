@@ -1,0 +1,77 @@
+// .container {
+//     width: 1000px;
+//     // margin: 40px auto;
+//     background: olivedrab;
+//     height: 500px;
+//     // position: relative;
+
+
+
+
+//     img {
+//         display: none;
+//         width: 600px;
+//         height: 350px;
+
+//         &:target {
+//             display: block;
+//         }
+
+
+//     }
+
+
+
+// }
+
+
+// @import "button";
+html {
+
+
+    .wrapper {
+
+        img {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 500px;
+            height: 400px;
+            display: none;
+
+            &:target {
+                display: block;
+            }
+        }
+
+
+
+
+    }
+
+
+
+    button {
+        padding: 15px;
+        font-size: 15px;
+        font-weight: 600;
+        background-color: rgb(146, 181, 181);
+        margin-right: 10px;
+        margin-left: 18px;
+
+
+        a {
+            text-decoration: none;
+            color: rgb(26, 25, 25);
+        }
+
+
+        &:hover {
+
+            background-color: rgb(81, 121, 121);
+            cursor: grab;
+        }
+    }
+
+
+}

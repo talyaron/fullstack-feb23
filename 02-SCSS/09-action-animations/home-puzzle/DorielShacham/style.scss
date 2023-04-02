@@ -1,0 +1,89 @@
+@import "slider.scss";
+@import "radioNav.scss";
+body{
+    padding: 0;
+    margin: 0;
+    height: 100vh;
+    width: 100vw;
+    justify-self: center;
+    align-items: center;
+    background-color: black;
+}
+
+.section{
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    box-shadow: inset 0 0 50px darkorange
+}
+
+.pic{
+    width: 20%;
+    height: 500px;
+    background-color: white;
+    border-radius: 10px;
+    margin: 0 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.5s ease-in-out;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+
+    &:hover{
+        transform: scale(1.1);
+    }
+
+    img{
+        width: 800px;
+        height: 500px;
+    }
+
+    // .first{
+    //     z-index: 1;
+    // }
+
+    // .second{
+    //     z-index: 2;
+    // }
+
+    // .third{
+    //     z-index: 3;
+    // }
+
+    // .fourth{
+    //     z-index: 4;
+    // }
+}
+
+#radio1:checked ~ .nav-manual .manual-btn:nth-child(1){
+    background-color: black;
+}
+
+#radio2:checked ~ .nav-manual .manual-btn:nth-child(2){
+    background-color: black;
+}
+
+#radio3:checked ~ .nav-manual .manual-btn:nth-child(3){
+    background-color: black;
+}
+
+#radio4:checked ~ .nav-manual .manual-btn:nth-child(4){
+    background-color: black;
+}
+
+#radio2:checked ~ .second{
+    transform: translateX(-104%);
+}
+
+#radio3:checked ~ .third{
+    transform: translateX(-205%);
+}
+
+#radio4:checked ~ .fourth{
+    transform: translateX(-308%);
+}

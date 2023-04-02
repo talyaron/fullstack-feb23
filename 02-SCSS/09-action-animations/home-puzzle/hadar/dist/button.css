@@ -1,0 +1,16 @@
+.wrapper__buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: 400px;
+  gap: 20px;
+}
+.wrapper__buttons button {
+  background-color: white;
+  border: none;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.wrapper__buttons button:active {
+  font-weight: 900;
+}

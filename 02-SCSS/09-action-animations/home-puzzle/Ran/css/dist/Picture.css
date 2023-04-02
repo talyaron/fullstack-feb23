@@ -1,0 +1,20 @@
+.Frames {
+  position: absolute;
+  left: 150px;
+  top: 30px;
+  display: block;
+}
+.Frames div {
+  display: none;
+}
+.Frames div:target {
+  display: block;
+}
+.Frames img {
+  width: 700px;
+  height: 360px;
+}
+
+a :active {
+  transform: all 0.3s ease-out;
+}
