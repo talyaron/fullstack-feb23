@@ -1,55 +1,29 @@
 .buttons {
     width: 100%;
-    background: blue;
+    background: orange;
     height: 80px;
     display: flex;
-    align-items: center;
-}
-
-// .bth__img4,
-// .bth__img3,
-// .bth__img2,
-// .bth__img1 {
-
-//     font-style: initial;
-//     font-size: 25px;
-//     width: 25%;
-//     height: 40px;
-//     margin: 0 6px;
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
-//     border-radius: 20px;
-//     position: absolute;
-
-// }
-
-.bth__img1:active {
-    background: url(img/img1.jpg) no-repeat center center/ cover;
-
-    z-index: 5;
-}
-
-.bth__img2:active {
-    background: url(img/img2.jpg) no-repeat center center/ cover;
-
-    z-index: 5;
-}
-
-.bth__img3:focus {
-    background: url(img/img3.jpg) no-repeat center center/ cover;
-
-    z-index: 5;
-}
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    gap: 10px;
 
 
-.bth__img4:active {
-    .red {
-        background: url(img/img4.jpg) no-repeat center center/ cover;
-        z-index: 5;
-        position: absolute;
+    a {
+        background: blue;
+        border-radius: 20px;
+        color: white;
+        justify-content: space-around;
         width: 100%;
-        height: 80%;
+        height: 100%;
+        text-decoration: none;
+
     }
 
+    a:hover,
+    a:focus {
+        background: #fff;
+        color: blue;
+        border: rgb(30, 113, 132);
+    }
 }
