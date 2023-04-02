@@ -1,0 +1,23 @@
+@import "styleimg";
+@import "style_btn";
+
+body{
+    padding: 0;
+    margin: 0;
+    height: 100vh;
+    width: 100vw;
+    justify-self: center;
+    align-items: center;
+    background-color: black;
+}
+
+.wapper{
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    box-shadow: inset 0 0 50px darkorange
+}
+
