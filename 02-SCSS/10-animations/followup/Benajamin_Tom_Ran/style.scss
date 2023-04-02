@@ -1,25 +1,26 @@
 body {
   border: 1px solid black;
   position: relative;
+  height: 800px;
 }
 .box {
   width: 80px;
   height: 80px;
   background-color: rgb(223, 141, 18);
   position: absolute;
- 
   animation-name: pos;
   animation-duration: 2s;
   border-radius: 50%;
   animation-fill-mode: forwards;
   animation-iteration-count: infinite;
+  bottom: 230px;
 }
 .basket {
   background-color: teal;
   width: fit-content;
   min-width: 200px;
   position: relative;
-  left:50vh;
+  left:80vh;
   top:10vh;
 
   &__board {
@@ -27,7 +28,6 @@ body {
     width: 10px;
     height: 120px;
     background-color: black;
-    
     right: 0px;
   }
   &__elipse {
@@ -36,27 +36,26 @@ body {
     border-radius: 50%;
     border: 3px solid rgb(19, 32, 227);
     position: absolute;
-
     top: 64px;
     right: 0px;
   }
 }
 
-@keyframes pos {
-  0% {
-    left: 0px;
-    top: 0px;
-  }
-  60% {
-    top: 100px;
-    left: 60px;
-  }
-  96% {
-    left: 40px;
-    top: 40px;
-  }
-  100% {
-    left: 20px;
-    top: 20px;
-  }
-}
+// @keyframes pos {
+//   0% {
+//     left: 0px;
+//     bottom:230px;
+//   }
+//   60% {
+//     top: 100px;
+//     bottom:280px;
+//   }
+//   96% {
+//     left: 40px;
+//     bottom:300px;
+//   }
+//   100% {
+//     left: 20px;
+//     bottom:380px;
+//   }
+// }

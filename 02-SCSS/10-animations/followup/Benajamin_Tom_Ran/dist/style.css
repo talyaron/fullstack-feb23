@@ -1,6 +1,7 @@
 body {
   border: 1px solid black;
   position: relative;
+  height: 800px;
 }
 
 .box {
@@ -13,6 +14,7 @@ body {
   border-radius: 50%;
   animation-fill-mode: forwards;
   animation-iteration-count: infinite;
+  bottom: 230px;
 }
 
 .basket {
@@ -20,7 +22,7 @@ body {
   width: fit-content;
   min-width: 200px;
   position: relative;
-  left: 50vh;
+  left: 80vh;
   top: 10vh;
 }
 .basket__board {
@@ -38,23 +40,4 @@ body {
   position: absolute;
   top: 64px;
   right: 0px;
-}
-
-@keyframes pos {
-  0% {
-    left: 0px;
-    top: 0px;
-  }
-  60% {
-    top: 100px;
-    left: 60px;
-  }
-  96% {
-    left: 40px;
-    top: 40px;
-  }
-  100% {
-    left: 20px;
-    top: 20px;
-  }
 }
