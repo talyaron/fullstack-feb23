@@ -2,23 +2,22 @@
   border: 1px solid green;
   position: absolute;
   display: flex;
-  top: 450px;
-  left: 200px;
+  top: 68px;
+  left: 179px;
   gap: 50px;
 
   &__img1 {
+
     &:hover {
       background-color: rgb(132, 24, 109);
       box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.491);
       cursor: pointer;
-      transform: scale(1.05);
+      // transform: scale(1.05);
     }
 
-    &:active {
-
+    &:focus {
       .img {
-        background-image: url("./img/see.jpg");
-
+        background-image: url(./img/see.jpg);
       }
     }
   }
@@ -28,15 +27,13 @@
       background-color: rgb(47, 24, 132);
       box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.491);
       cursor: pointer;
-      transform: scale(1.05);
+      // transform: scale(1.05);
     }
 
-    &:active {
-
+    &:focus {
       .img {
-        background-image: url("./dist/img/mountens.jpg");
+        background-image: url(./img/mountens.jpg);
       }
     }
   }
-
 }

@@ -38,4 +38,9 @@ body {
   font-size: 24px;
   border-radius: 40px;
   user-select: none;
+  cursor: pointer;
+}
+.images a:link,
+.images button:link {
+  cursor: pointer;
 }
