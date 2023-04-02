@@ -1,0 +1,26 @@
+@import "styleimg_new";
+@import "style_btn_new";
+
+.wapper{
+    position: relative;
+    border: 1px solid darkblue  ;    
+    width: 1000px;
+    height: 500px;
+    margin: auto;
+    background-image: linear-gradient(red, yellow);
+}
+
+.imgbox{
+    width: 700px;
+    height: 400px;
+    margin: auto;
+    position: absolute;
+    top: -420px;
+    left: -34px;
+    box-shadow: 4px 4px 12px rgba(36, 35, 35, 0.426);
+    background-size: cover;
+}
+
+
+
+
