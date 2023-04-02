@@ -1,0 +1,29 @@
+@import "/02-SCSS/09-action-animations/home-puzzle/Zivll/dist/style.css";
+.images {
+  position: relative;
+  div {
+    display: none;
+  }
+  // button {
+  //   display: block;
+  // }
+
+  a:link {
+    // bottom: 0;
+    display: inline-block;
+    border: 1px solid black;
+    padding: 15px 20px;
+  }
+  a:focus {
+    div {
+      display: block;
+    }
+  }
+  img {
+    width: fit-content;
+    position: absolute;
+    left: 50%;
+    bottom: 100px;
+    translate: calc(-50%);
+  }
+}
