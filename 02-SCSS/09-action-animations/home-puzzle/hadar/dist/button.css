@@ -9,6 +9,7 @@
   border: none;
   font-size: 20px;
   font-weight: bold;
+  cursor: pointer;
 }
 .wrapper__buttons button:active {
   font-weight: 900;

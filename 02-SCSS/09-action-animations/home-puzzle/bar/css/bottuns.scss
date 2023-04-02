@@ -10,8 +10,10 @@ button {
     top: 450px;
     left: 180px;
     gap: 50px;
-    transition: all 100ms;
+    transition: all 2000s;
+    margin: auto;
 
+    
     &__textimg1 {
      
         &:hover {
@@ -21,17 +23,17 @@ button {
         }
 
 
-        &:focus {
+        &:focus {  
 
             .imgs {
                 background-image: url(https://gara-sea-view-klungkung.booked.net/data/Photos/OriginalPhoto/12566/1256619/1256619598/Gara-Gara-Sea-View-Hotel-Nusa-Penida-Exterior.JPEG);
-                width: 700px;
-                height: 400px;
+                width: $width;
+                height: $height;
                 margin: auto;
                 position: absolute;
-                top: -420px;
-                left: -150px;
-                box-shadow: 5px 5px 15px rgba(36, 35, 35, 0.469);
+                top: $top;
+                left: $left;
+                box-shadow: $box-shadow;
                 background-size: cover;
             }
         }
@@ -52,13 +54,13 @@ button {
 
             .imgs {
                 background-image: url(https://sgp1.digitaloceanspaces.com/tz-mag-ph/wp-content/uploads/2023/01/010101012828/hills-view-mountainside-villa-davao.png);
-                width: 700px;
-                height: 400px;
+                width: $width;
+                height: $height;
                 margin: auto;
                 position: absolute;
-                top: -420px;
-                left: -150px;
-                box-shadow: 4px 4px 12px rgba(36, 35, 35, 0.426);
+                top: $top;
+                left: $left;
+                box-shadow: $box-shadow;
                 background-size: cover;
             }
         }
@@ -79,13 +81,13 @@ button {
 
             .imgs {
                 background-image: url(https://railaygardenview.com/wp-content/uploads/2020/09/Sea-View-view-resize-edited-scaled.jpg);
-                width: 700px;
-                height: 400px;
+                width: $width;
+                height: $height;
                 margin: auto;
                 position: absolute;
-                top: -420px;
-                left: -150px;
-                box-shadow: 4px 4px 12px rgba(36, 35, 35, 0.426);
+                top: $top;
+                left: $left;
+                box-shadow: $box-shadow;
                 background-size: cover;
             }
         }
@@ -106,13 +108,13 @@ button {
 
             .imgs {
                 background-image: url(https://media-cdn.tripadvisor.com/media/photo-s/0b/71/47/1b/dusk-harbour-view.jpg);
-                width: 700px;
-                height: 400px;
+                width: $width;
+                height: $height;
                 margin: auto;
                 position: absolute;
-                top: -420px;
-                left: -150px;
-                box-shadow: 4px 4px 12px rgba(36, 35, 35, 0.426);
+                top: $top;
+                left: $left;
+                box-shadow: $box-shadow;
                 background-size: cover;
             }
         }

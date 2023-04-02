@@ -1,15 +1,27 @@
-.container {
-  width: 500px;
-  margin: 40px auto;
-  background: olivedrab;
-  height: 500px;
-  position: relative;
-}
-.container .imgs {
-  width: 500px;
-  height: 350px;
-  position: absolute;
+html .wrapper img {
   display: flex;
-  justify-content: space-around;
-  align-items: end;
+  align-items: center;
+  justify-content: center;
+  width: 500px;
+  height: 400px;
+  display: none;
+}
+html .wrapper img:target {
+  display: block;
+}
+html button {
+  padding: 15px;
+  font-size: 15px;
+  font-weight: 600;
+  background-color: #92b5b5;
+  margin-right: 10px;
+  margin-left: 18px;
+}
+html button a {
+  text-decoration: none;
+  color: #1a1919;
+}
+html button:hover {
+  background-color: #517979;
+  cursor: grab;
 }

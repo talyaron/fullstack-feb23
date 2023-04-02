@@ -3,17 +3,16 @@
 
 .swapImg{
   div {
-    transition: all 0.5s ease-out;
     display: none;
     &:target {
-      transition: all 0.5s ease-out;
+      
       display: block;
     }
   }
     &__photo{
       img{
-        width: 500px;
-        height: 500px;
+        width: 600px;
+        height: 600px;
         border-radius: 20px 80px;
         transition: all 600ms;
         background-image: url("");
