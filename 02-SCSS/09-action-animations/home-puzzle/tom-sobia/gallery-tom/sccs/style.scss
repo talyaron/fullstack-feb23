@@ -38,8 +38,7 @@ body {
             border-radius: 10%;
             margin: 0 auto;
             top: 1px;
-            filter: blur(7px);
-            -webkit-filter: blur(7px);
+            -webkit-filter: blur(2px);
             cursor: pointer;
         }
 
@@ -51,22 +50,20 @@ body {
             margin: 0 auto;
             top: 1px;
             display: none;
-            filter: blur(7px);
-            -webkit-filter: blur(7px);
+            filter: grayscale(100%);
             cursor: pointer;
 
         }
 
         .img1:hover {
-            filter: blur(0px);
+            filter: grayscale(0%);
             -webkit-filter: blur(0px);
             transform: translateX(35px) rotate(0deg) translateY(30px);
 
         }
 
         .img2:hover {
-            filter: blur(0px);
-            -webkit-filter: blur(0px);
+            filter: grayscale(0%);
             transform: translateX(35px) rotate(0deg) translateY(30px);
         }
 
