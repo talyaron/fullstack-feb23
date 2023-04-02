@@ -1,4 +1,7 @@
 @import "/02-SCSS/09-action-animations/home-puzzle/Zivll/dist/style.css";
+body {
+  height: 125vh;
+}
 .images {
   position: relative;
   div {
@@ -20,7 +23,7 @@
     }
   }
   img {
-    width: fit-content;
+    // width: fit-content;
     position: absolute;
     left: 50%;
     bottom: 100px;
