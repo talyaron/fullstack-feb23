@@ -1,0 +1,14 @@
+.warpper{
+    display: flex;
+    flex: 1;
+    height: 25vh;
+    justify-content: center;
+    flex: 1;
+    column-gap: 10px;
+    width: 80%;
+    margin: auto;
+}
+.wrapper__img{
+    height: 25vh;
+    width: 100%;
+}
