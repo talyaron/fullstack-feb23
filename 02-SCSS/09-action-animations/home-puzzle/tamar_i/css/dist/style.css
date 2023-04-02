@@ -1,40 +1,50 @@
-.imgchang {
-  background-image: "./img/see.jpg";
+.img {
+  border: 3px solid gray;
+  display: block;
+  width: 600px;
+  height: 200px;
+  position: absolute;
+  box-shadow: 4px 4px 12px rgba(36, 35, 35, 0.426);
+  background-size: cover;
 }
 
-.imgchang {
-  background-image: "./img/mountens";
+.hidden {
+  display: none;
 }
 
 .btn {
   border: 1px solid green;
+  position: absolute;
+  display: flex;
+  top: 450px;
+  left: 200px;
+  gap: 50px;
 }
-.btn:hover {
-  background-color: #188484;
+.btn__img1:hover {
+  background-color: #84186d;
   box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.491);
   cursor: pointer;
   transform: scale(1.05);
 }
+.btn__img1:active .img {
+  background-image: url("./img/see.jpg");
+}
+.btn__img2:hover {
+  background-color: #2f1884;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.491);
+  cursor: pointer;
+  transform: scale(1.05);
+}
+.btn__img2:active .img {
+  background-image: url("./dist/img/mountens.jpg");
+}
 
 .wapper {
-  width: 900px;
-  height: 450px;
-  display: block;
+  position: relative;
+  width: 1000px;
+  height: 500px;
   margin: auto;
   margin-top: 100px;
   border: 1px solid darkblue;
   background-image: linear-gradient(red, yellow);
-}
-
-.imgbox {
-  margin-top: 70px;
-  margin-left: 150px;
-  width: 600px;
-  height: 300px;
-  border: 1px solid gray;
-  background-color: beige;
-}
-
-.btnline {
-  margin-left: 350px;
 }

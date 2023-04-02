@@ -1,0 +1,39 @@
+.btn {
+  border: 1px solid green;
+  position: absolute;
+  display: flex;
+  top: 68px;
+  left: 179px;
+  gap: 50px;
+
+  &__img1 {
+
+    &:hover {
+      background-color: rgb(132, 24, 109);
+      box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.491);
+      cursor: pointer;
+      // transform: scale(1.05);
+    }
+
+    &:focus {
+      .img {
+        background-image: url(./img/see.jpg);
+      }
+    }
+  }
+
+  &__img2 {
+    &:hover {
+      background-color: rgb(47, 24, 132);
+      box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.491);
+      cursor: pointer;
+      // transform: scale(1.05);
+    }
+
+    &:focus {
+      .img {
+        background-image: url(./img/mountens.jpg);
+      }
+    }
+  }
+}
