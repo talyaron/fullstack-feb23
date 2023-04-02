@@ -1,0 +1,17 @@
+.screenBackground {
+  position: relative;
+  margin: auto;
+  width: 450px;
+  height: 281px;
+  border: 1px solid gray;
+  box-sizing: border-box;
+}
+.screenBackground__screen {
+  position: absolute;
+  display: flex;
+  width: 450px;
+  height: 270px;
+  padding-top: 0;
+  align-items: center;
+  background-image: url(https://thumbs.dreamstime.com/b/underwater-coral-reef-landscape-wide-to-panorama-background-deep-blue-ocean-colorful-fish-sea-turtle-marine-wild-163275320.jpg);
+}
