@@ -4,12 +4,14 @@
   margin: auto;
   height: 500px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-content: center;
+  flex-wrap: wrap;
 }
 .aquarium__fishes {
   width: 100px;
   border: none;
+  flex: 1;
   margin: auto;
 }
 .aquarium__fishes button {
