@@ -66,8 +66,7 @@ body {
   border-radius: 10%;
   margin: 0 auto;
   top: 1px;
-  filter: blur(7px);
-  -webkit-filter: blur(7px);
+  -webkit-filter: blur(2px);
   cursor: pointer;
 }
 .box .box__img .img2 {
@@ -78,18 +77,16 @@ body {
   margin: 0 auto;
   top: 1px;
   display: none;
-  filter: blur(7px);
-  -webkit-filter: blur(7px);
+  filter: grayscale(100%);
   cursor: pointer;
 }
 .box .box__img .img1:hover {
-  filter: blur(0px);
+  filter: grayscale(0%);
   -webkit-filter: blur(0px);
   transform: translateX(35px) rotate(0deg) translateY(30px);
 }
 .box .box__img .img2:hover {
-  filter: blur(0px);
-  -webkit-filter: blur(0px);
+  filter: grayscale(0%);
   transform: translateX(35px) rotate(0deg) translateY(30px);
 }
 .box .box__img img:target {
