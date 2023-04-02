@@ -1,0 +1,53 @@
+body {
+  border: 1px solid black;
+}
+
+.box {
+  width: 80px;
+  height: 80px;
+  background-color: #df8d12;
+  position: absolute;
+  top: 60vh;
+  animation-name: pos;
+  animation-duration: 2s;
+  border-radius: 50%;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+}
+
+.basket {
+  width: 10px;
+  height: 120px;
+  background-color: black;
+  position: relative;
+  left: 80vw;
+}
+
+.elipse {
+  width: 110px;
+  height: 40px;
+  border-radius: 50%;
+  border: 3px solid #1320e3;
+  position: relative;
+  left: 62vw;
+  bottom: 64px;
+}
+
+@keyframes pos {
+  0% {
+    left: 0px;
+    bottom: 0px;
+  }
+  60% {
+    bottom: 100px;
+    left: 60px;
+  }
+  96% {
+    left: 40px;
+    bottom: 40px;
+  }
+  100% {
+    left: 20px;
+    bottom: 20px;
+  }
+}
