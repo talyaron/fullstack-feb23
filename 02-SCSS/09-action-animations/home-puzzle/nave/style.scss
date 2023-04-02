@@ -1,3 +1,4 @@
+
 .tab{
     display: flex;
     flex: 1;
@@ -7,6 +8,8 @@
     column-gap: 10px;
     width: 49.2%;
     margin: auto;
+    border: solid 1px #ccc;;
+
 }
 .tabcontent {
     animation: fadeEffect 1s; /* Fading effect takes 1 second */
@@ -19,8 +22,7 @@
   }
   .tab {
   overflow: hidden;
-  border: 1px solid #ccc;
-  background-color: #f1f1f1;
+  background-color: #ffffff;
 }
 
 /* Style the buttons inside the tab */
@@ -30,9 +32,9 @@
   border: none;
   outline: none;
   cursor: pointer;
-  padding: 14px 16px;
+  padding: 10px 16px;
   transition: 0.3s;
-  font-size: 17px;
+  font-size: 19px;
 }
 
 /* Change background color of buttons on hover */
@@ -58,4 +60,6 @@
     display: flex;
     justify-content: center;
     margin: auto;
+    box-shadow:#00000052 0px 5px 5px ;
+
 }
