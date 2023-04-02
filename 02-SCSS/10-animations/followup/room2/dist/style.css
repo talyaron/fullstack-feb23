@@ -1,0 +1,8 @@
+.wrapper {
+  width: 100px;
+  height: 100px;
+  position: relative;
+  box-sizing: border-box;
+  margin: auto;
+  left: 50%;
+}
