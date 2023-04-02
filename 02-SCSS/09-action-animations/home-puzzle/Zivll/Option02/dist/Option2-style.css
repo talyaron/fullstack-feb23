@@ -1,5 +1,6 @@
 @import "/02-SCSS/09-action-animations/home-puzzle/Zivll/dist/style.css";
 body {
+  font-family: Arial, Helvetica, sans-serif;
   height: 125vh;
 }
 
@@ -10,6 +11,7 @@ body {
   display: none;
 }
 .images a:link {
+  text-decoration: none;
   display: inline-block;
   border: 1px solid black;
   padding: 15px 20px;
