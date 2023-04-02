@@ -1,5 +1,5 @@
 .container {
-    width: 500px;
+    width: 1000px;
     margin: 40px auto;
     background: olivedrab;
     height: 500px;
@@ -10,11 +10,23 @@
         width: 500px;
         height: 350px;
         position: absolute;
-        display: flex;
-        justify-content: space-around;
-        align-items: end;
+        display: block;
+
+        div {
+            display: none;
 
 
+            &:target {
+                display: block;
+            }
+
+
+        }
+
+        img {
+            width: 600px;
+            height: 350px;
+        }
     }
 
 
