@@ -11,6 +11,7 @@ button {
   left: 180px;
   gap: 50px;
   transition: all 100ms;
+  margin: auto;
 }
 .btn__textimg1:hover {
   font-style: oblique;
@@ -24,8 +25,8 @@ button {
   margin: auto;
   position: absolute;
   top: -420px;
-  left: -150px;
-  box-shadow: 4px 4px 12px rgba(36, 35, 35, 0.426);
+  left: -135px;
+  box-shadow: 5px 5px 15px rgba(36, 35, 35, 0.469);
   background-size: cover;
 }
 .btn__textimg2 {

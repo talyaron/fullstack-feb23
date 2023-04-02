@@ -20,9 +20,10 @@ button:hover{
 
 
     &__Q1{
-        transition:0s 1s;
-        .wrapper__Q1__btn1:active .img1{opacity: 1;
-            transition-duration: 0.3s;}
+        
+        .wrapper__Q1__btn1:focus-within .img1{opacity: 1;
+            transition-duration: 1s;}
+            
             
         
 
@@ -34,7 +35,7 @@ button:hover{
                 top: 100px;
                 left: 150px;
                 pointer-events: auto;
-                transition:0s 1s;
+                
             }
 
         }
@@ -48,7 +49,7 @@ button:hover{
     }
 
     &__Q2{
-        .wrapper__Q2__btn2:active .img2{opacity: 1;
+        .wrapper__Q2__btn2:focus-within .img2{opacity: 1;
             transition-duration: 1s;}
 
         &__btn2{ 
@@ -74,7 +75,7 @@ button:hover{
     }
 
     &__Q3{
-        .wrapper__Q3__btn3:active .img3{opacity: 1;
+        .wrapper__Q3__btn3:focus-within .img3{opacity: 1;
             transition-duration: 1s;}
 
         &__btn3{ 
@@ -100,7 +101,7 @@ button:hover{
     }
 
     &__Q4{
-        .wrapper__Q4__btn4:active .img4{opacity: 1;
+        .wrapper__Q4__btn4:focus-within .img4{opacity: 1;
             transition-duration: 1s; }
 
         &__btn4{ 
@@ -126,4 +127,6 @@ button:hover{
                 left: 40px;
             }
     }
+
+    
 }

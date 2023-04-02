@@ -1,0 +1,24 @@
+* {
+  padding: 0%;
+  margin: 0;
+}
+
+.warraper {
+  display: flex;
+}
+
+h3 {
+  padding: 20px;
+}
+
+img {
+  position: absolute;
+  top: 6rem;
+  left: 1rem;
+  width: 20rem;
+  height: 15rem;
+}
+
+.gallery__box:hover {
+  z-index: 8;
+}
