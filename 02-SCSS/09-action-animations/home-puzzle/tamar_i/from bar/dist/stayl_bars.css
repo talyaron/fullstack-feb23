@@ -10,8 +10,7 @@ button {
   top: 450px;
   left: 180px;
   gap: 50px;
-  transition: all 2000s;
-  margin: auto;
+  transition: all 100ms;
 }
 .btn__textimg1:hover {
   font-style: oblique;
@@ -25,7 +24,7 @@ button {
   margin: auto;
   position: absolute;
   top: -420px;
-  left: -135px;
+  left: -150px;
   box-shadow: 4px 4px 12px rgba(36, 35, 35, 0.426);
   background-size: cover;
 }
@@ -45,7 +44,7 @@ button {
   margin: auto;
   position: absolute;
   top: -420px;
-  left: -135px;
+  left: -150px;
   box-shadow: 4px 4px 12px rgba(36, 35, 35, 0.426);
   background-size: cover;
 }
@@ -65,7 +64,7 @@ button {
   margin: auto;
   position: absolute;
   top: -420px;
-  left: -135px;
+  left: -150px;
   box-shadow: 4px 4px 12px rgba(36, 35, 35, 0.426);
   background-size: cover;
 }
@@ -85,7 +84,7 @@ button {
   margin: auto;
   position: absolute;
   top: -420px;
-  left: -135px;
+  left: -150px;
   box-shadow: 4px 4px 12px rgba(36, 35, 35, 0.426);
   background-size: cover;
 }
