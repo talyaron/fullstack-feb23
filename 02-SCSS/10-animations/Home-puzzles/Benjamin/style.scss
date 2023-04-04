@@ -14,69 +14,228 @@
 
 
 .genwrapper{
-    display: flex;
+    
     width: 100%;
     height: 100vh;
-    background-color: rgb(179, 201, 185);
+    background-color: rgb(209, 195, 195);
     border-radius: 2px;
-    &__baloon{
+    &__baloonred{
         width: 3vw;
         height: 8vh;
         border-radius: 50%;
-        .red{
-            background-color: red;
+        background-color: red;
+        border: 1px black solid;
+        position: relative;
+        left: 90vw;
+        top: 90vh;
+        animation-name: redb;
+        animation-duration: 10s;
+        animation-iteration-count: infinite;
+        cursor: pointer;
+        transition: background-color 500ms ease-in-out;
+        transition: width 500ms ease-in-out;
+        transition: height 500ms ease-in-out;
+        &:hover{
+            background-color: rgb(238, 98, 98);
+            width: 2.8vw;
+            height: 7vh;
         }
-        
+        &:focus{
+            background-color: rgb(209, 195, 195);
+            border-color:  rgb(209, 195, 195);
+            
+            
+        }
 
+        @keyframes redb{
+            from{
+                left: 90vw;
+                top: 90vh;
+                rotate: 0deg;
+              
+            }
+            to{
+                left: 85vw;
+                top: 10vh;
+                rotate: 180deg;
+          
+            }
+            }
+           
+            
+        }
+    
+    &__baloonyellow{
+        width: 3vw;
+        height: 8vh;
+        border-radius: 50%;
+        background-color: rgb(240, 226, 33);
+        position: relative;
+        left: 70vw;
+        top: 90vh;
+        animation-name: redb;
+        animation-duration: 10s;
+        animation-iteration-count: infinite;
+        cursor: pointer;
+        transition: background-color 500ms ease-in-out;
+        transition: width 500ms ease-in-out;
+        transition: height 500ms ease-in-out;
+        &:hover{
+            background-color: rgb(151, 196, 46);
+            width: 2.8vw;
+            height: 7vh;
+        }
+        &:focus{
+            background-color: rgb(209, 195, 195);
+            border-color:  rgb(209, 195, 195);
+            
+            
+        }
 
-
-
-
-
-
-
-
-
-
+        @keyframes redb{
+            from{
+                left: 70vw;
+                top: 90vh;
+                rotate: 0deg;
+              
+            }
+            to{
+                left: 65vw;
+                top: 10vh;
+                rotate: 180deg;
+          
+            }
+            }
+           
+            
+     
 
     }
+    &__baloongreen{
+        width: 3vw;
+        height: 8vh;
+        border-radius: 50%;
+        background-color: rgb(43, 214, 27);
+        position: relative;
+        left: 50vw;
+        top: 90vh;
+        animation-name: redb;
+        animation-duration: 10s;
+        animation-iteration-count: infinite;
+        cursor: pointer;
+        transition: background-color 500ms ease-in-out;
+        transition: width 500ms ease-in-out;
+        transition: height 500ms ease-in-out;
+        &:hover{
+            background-color: rgb(152, 241, 99);
+            width: 2.8vw;
+            height: 7vh;
+        }
+        &:focus{
+            background-color: rgb(209, 195, 195);
+            border-color:  rgb(209, 195, 195);
+            
+            
+        }
 
+        @keyframes redb{
+            from{
+                left: 50vw;
+                top: 90vh;
+                rotate: 0deg;
+              
+            }
+            to{
+                left: 55vw;
+                top: 10vh;
+                rotate: 180deg;
+          
+            }
+            }
+           
+            
+    }
+    &__baloonblue{
+        width: 3vw;
+        height: 8vh;
+        border-radius: 50%;
+        background-color: rgb(47, 25, 253);
+        position: relative;
+        left: 20vw;
+        top: 90vh;
+        animation-name: redb;
+        animation-duration: 10s;
+        animation-iteration-count: infinite;
+        cursor: pointer;
+        transition: background-color 500ms ease-in-out;
+        transition: width 500ms ease-in-out;
+        transition: height 500ms ease-in-out;
+        &:hover{
+            background-color: rgb(133, 132, 241);
+            width: 2.8vw;
+            height: 7vh;
+        }
+        &:focus{
+            background-color: rgb(209, 195, 195);
+            border-color:  rgb(209, 195, 195);
+            
+            
+        }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        @keyframes redb{
+            from{
+                left: 20vw;
+                top: 90vh;
+                rotate: 0deg;
+              
+            }
+            to{
+                left: 15vw;
+                top: 10vh;
+                rotate: 180deg;
+          
+            }
+            }
+           
+            
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
