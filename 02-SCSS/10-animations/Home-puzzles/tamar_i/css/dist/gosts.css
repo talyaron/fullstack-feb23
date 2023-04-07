@@ -17,16 +17,16 @@
 }
 
 .eye {
-  background: #fff;
+  background: white;
   border-radius: 100%;
   height: 60px;
   width: 30px;
 }
 
 .iris {
-  background: blue;
+  background: black;
   border-radius: 100%;
-  height: 40px;
+  height: 20px;
   position: absolute;
   width: 20px;
   top: 10px;
@@ -54,4 +54,9 @@
   height: 20px;
   position: absolute;
   width: 120px;
+}
+
+.red .ghostTail {
+  background: linear-gradient(-45deg, transparent 75%, red 75%) 0 50%, linear-gradient(45deg, transparent 75%, red 75%) 0 50%;
+  background-size: 20px 20px, 20px 20px;
 }
