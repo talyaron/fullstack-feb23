@@ -1,0 +1,57 @@
+.gost {
+  border-radius: 100% 100% 0 0;
+  display: inline-block;
+  height: 160px;
+  margin: 20px;
+  position: relative;
+  width: 120px;
+}
+
+.eyes {
+  height: 60px;
+  left: 50%;
+  margin-left: -45px;
+  position: absolute;
+  width: 90px;
+  top: 50px;
+}
+
+.eye {
+  background: #fff;
+  border-radius: 100%;
+  height: 60px;
+  width: 30px;
+}
+
+.iris {
+  background: blue;
+  border-radius: 100%;
+  height: 40px;
+  position: absolute;
+  width: 20px;
+  top: 10px;
+}
+
+.leftEye {
+  float: left;
+}
+
+.leftEye .iris {
+  left: 5px;
+}
+
+.rightEye {
+  float: right;
+}
+
+.rightEye .iris {
+  right: 5px;
+}
+
+.ghostTail {
+  background-repeat: repeat-x;
+  bottom: -20px;
+  height: 20px;
+  position: absolute;
+  width: 120px;
+}
