@@ -1,0 +1,187 @@
+body {
+  background-image: url(https://img.freepik.com/free-photo/white-cloud-blue-sky_74190-2381.jpg?w=900&t=st=1680871278~exp=1680871878~hmac=c346559f5601b9f90612b010cb3e3d6c4a0bac4131d0ec68434918f06eaafbe9);
+  background-size: cover;
+  // height: 100vh;
+}
+.wrapper {
+  height: 100vh;
+  display: flex;
+  align-items: end;
+  a {
+    cursor: url(./dist/gun.png) auto;
+  }
+
+  .ballon {
+    position: relative;
+    bottom: -150px;
+    animation-name: baloon-explode;
+    animation-duration: 10s;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+    &:hover {
+      transform: scale(1.5) rotate(10deg);
+    }
+    // &:focus {
+    //   opacity: 0;
+    // }
+    img {
+      width: 100px;
+      cursor: url(./dist/gun.png) auto;
+      transition: 0.5s;
+      opacity: 0;
+    }
+  }
+  .delay-1 {
+    animation-delay: 1s;
+  }
+  .delay-2 {
+    animation-delay: 2s;
+  }
+  .delay-3 {
+    animation-delay: 3s;
+  }
+  .delay-4 {
+    animation-delay: 4s;
+  }
+  .delay-5 {
+    animation-delay: 5s;
+  }
+  .delay-15 {
+    animation-delay: 1.5s;
+  }
+  .delay-25 {
+    animation-delay: 2.5s;
+  }
+  .delay-35 {
+    animation-delay: 3.5s;
+  }
+  .delay-45 {
+    animation-delay: 4.5s;
+  }
+  .delay-55 {
+    animation-delay: 5.5s;
+  }
+  @keyframes baloon-explode {
+    // 0% {
+    //   bottom: 0;
+
+    // }
+    // 25% {
+    //   bottom: 10vh;
+    //   // left: ;
+    // }
+    // 45% {
+    //   bottom: 25vh;
+    // }
+    // 60% {
+    //   bottom: 20vh;
+    // }
+    // 80% {
+    //   bottom: 55vh;
+    // }
+    // 90% {
+    //   bottom: 45vh;
+    // }
+    100% {
+      bottom: 80vh;
+    }
+  }
+
+  img {
+    &:target {
+      opacity: 1;
+    }
+  }
+  .first-ballon {
+    opacity: 1 !important;
+    &:target {
+      opacity: 0 !important;
+    }
+  }
+  // a {
+  //   &:target {
+  //     opacity: 1;
+  //   }
+  // }
+  // #num2 {
+  //   &:target {
+  //     display: none;
+  //   }
+  // }
+  // #num3 {
+  //   &:target {
+  //     display: none;
+  //   }
+  // }
+  // #num4 {
+  //   &:target {
+  //     display: none;
+  //   }
+  // }
+  // #num5 {
+  //   &:target {
+  //     display: none;
+  //   }
+  // }
+  // #num6 {
+  //   &:target {
+  //     display: none;
+  //   }
+  // }
+  // #num7 {
+  //   &:target {
+  //     display: none;
+  //   }
+  // }
+  // #num8 {
+  //   &:target {
+  //     display: none;
+  //   }
+  // }
+  // #num9 {
+  //   &:target {
+  //     display: none;
+  //   }
+  // }
+  // #num10 {
+  //   &:target {
+  //     display: none;
+  //   }
+  // }
+  // #num11 {
+  //   &:target {
+  //     display: none;
+  //   }
+  // }
+  // #num12 {
+  //   &:target {
+  //     display: none;
+  //   }
+  // }
+  // #num13 {
+  //   &:target {
+  //     display: none;
+  //   }
+  // }
+  // #num14 {
+  //   &:target {
+  //     display: none;
+  //   }
+  // }
+  // #num15 {
+  //   &:target {
+  //     display: none;
+  //   }
+  // }
+  // #num16 {
+  //   &:target {
+  //     display: none;
+  //   }
+  // }
+  // #num17 {
+  //   &:target {
+  //     display: none;
+  //   }
+  // }
+}
