@@ -1,0 +1,75 @@
+body {
+  background-image: url(https://img.freepik.com/free-photo/white-cloud-blue-sky_74190-2381.jpg?w=900&t=st=1680871278~exp=1680871878~hmac=c346559f5601b9f90612b010cb3e3d6c4a0bac4131d0ec68434918f06eaafbe9);
+  background-size: cover;
+}
+
+.wrapper {
+  height: 100vh;
+  display: flex;
+  align-items: end;
+}
+.wrapper a {
+  cursor: url(./dist/gun.png) auto;
+}
+.wrapper .ballon {
+  position: relative;
+  bottom: -150px;
+  animation-name: baloon-explode;
+  animation-duration: 10s;
+  animation-direction: alternate;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+.wrapper .ballon:hover {
+  transform: scale(1.5) rotate(10deg);
+}
+.wrapper .ballon img {
+  width: 100px;
+  cursor: url(./dist/gun.png) auto;
+  transition: 0.5s;
+  opacity: 0;
+}
+.wrapper .delay-1 {
+  animation-delay: 1s;
+}
+.wrapper .delay-2 {
+  animation-delay: 2s;
+}
+.wrapper .delay-3 {
+  animation-delay: 3s;
+}
+.wrapper .delay-4 {
+  animation-delay: 4s;
+}
+.wrapper .delay-5 {
+  animation-delay: 5s;
+}
+.wrapper .delay-15 {
+  animation-delay: 1.5s;
+}
+.wrapper .delay-25 {
+  animation-delay: 2.5s;
+}
+.wrapper .delay-35 {
+  animation-delay: 3.5s;
+}
+.wrapper .delay-45 {
+  animation-delay: 4.5s;
+}
+.wrapper .delay-55 {
+  animation-delay: 5.5s;
+}
+@keyframes baloon-explode {
+  100% {
+    bottom: 80vh;
+  }
+}
+.wrapper img:target {
+  opacity: 1;
+}
+.wrapper .first-ballon {
+  opacity: 1 !important;
+}
+.wrapper .first-ballon:target {
+  opacity: 0 !important;
+}

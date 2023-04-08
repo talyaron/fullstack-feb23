@@ -1,0 +1,24 @@
+.pakmen {
+  display: inline-block;
+  background-color: yellow;
+  border: 100px solid yellow;
+  border-right-color: black;
+  width: 0px;
+  height: 0px;
+  margin: 20px;
+  border-radius: 50%;
+  position: relative;
+}
+.pakmen .iris {
+  top: -62px;
+  left: 10px;
+}
+
+.mouth {
+  width: 0;
+  height: 0;
+  border: 70px solid black;
+  position: absolute;
+  bottom: -70px;
+  left: 72px;
+}
