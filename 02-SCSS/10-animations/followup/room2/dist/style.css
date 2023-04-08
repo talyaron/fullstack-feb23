@@ -10,19 +10,19 @@
   position: absolute;
   box-sizing: border-box;
 }
-.wrapper__sqr {
+.wrapper__sqr1 {
   position: absolute;
   top: 150px;
   width: 30px;
   height: 30px;
   transform: skew(25deg);
   background-color: gold;
-  animation-name: example;
-  animation-duration: 4s;
+  animation-name: example1;
+  animation-duration: 2s;
   animation-direction: alternate;
   animation-timing-function: linear;
 }
-@keyframes example {
+@keyframes example1 {
   from {
     background-color: gold;
     transform: rotate(0deg);
@@ -34,5 +34,83 @@
     transform: rotate(180deg);
     top: 350px;
     left: 200px;
+  }
+}
+.wrapper__sqr2 {
+  position: absolute;
+  top: 150px;
+  width: 30px;
+  height: 30px;
+  transform: skew(25deg);
+  background-color: gold;
+  animation-name: example2;
+  animation-duration: 5s;
+  animation-direction: alternate;
+  animation-timing-function: cubic-bezier();
+}
+@keyframes example2 {
+  from {
+    background-color: gold;
+    transform: rotate(0deg);
+    top: 150px;
+    left: 0px;
+  }
+  to {
+    background-color: #37ff00;
+    transform: rotate(180deg);
+    top: 350px;
+    left: 150px;
+  }
+}
+.wrapper__sqr3 {
+  position: absolute;
+  top: 150px;
+  width: 30px;
+  height: 30px;
+  transform: skew(25deg);
+  background-color: gold;
+  animation-name: example3;
+  animation-duration: 1s;
+  animation-direction: alternate;
+  animation-timing-function: linear;
+}
+@keyframes example3 {
+  from {
+    background-color: gold;
+    transform: rotate(0deg);
+    top: 150px;
+    left: 0px;
+  }
+  to {
+    background-color: #37ff00;
+    transform: rotate(180deg);
+    top: 350px;
+    left: 100px;
+  }
+}
+.wrapper__sqr4 {
+  position: absolute;
+  top: 150px;
+  width: 30px;
+  height: 30px;
+  transform: skew(25deg);
+  background-color: gold;
+  animation-name: example4;
+  animation-duration: 3s;
+  animation-direction: alternate;
+  animation-timing-function: linear;
+}
+@keyframes example4 {
+  from {
+    background-color: gold;
+    transform: rotate(0deg);
+    top: 150px;
+    left: 0px;
+  }
+  to {
+    background-color: #37ff00;
+    transform: rotate(180deg);
+    top: 350px;
+    left: 0px;
   }
 }
