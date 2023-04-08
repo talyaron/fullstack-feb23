@@ -66,4 +66,31 @@ body
 {transform: rotateX(-20deg) rotateY(390deg);}
 }
 
+@keyframes sideeven
+{
+    0% {
+        background-color: #ffdf2b;
+    }
 
+    50% {
+        background-color: #deb918;
+    }
+
+    100% {
+        background-color: #ffdf2b;
+    }
+} 
+@keyframes sideodd
+{
+    0% {
+        background-color: #deb918;
+    }
+
+    50% {
+        background-color: #ffdf2b;
+    }
+
+    100% {
+        background-color: #deb918;
+    }
+} 
