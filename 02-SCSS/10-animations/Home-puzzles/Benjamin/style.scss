@@ -1,442 +1,251 @@
-@mixin flex($dir){
-    display: flex;
-    flex-direction: $dir;
+@mixin animation{
+    animation-duration: 10s;
+    animation-iteration-count: infinite;
+    animation-direction: normal;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
 }
-@mixin transition($element,$time){
-    transition: $element $time ease-in-out;
+@mixin baloon($color){
+    width: 50px;
+    height: 80px;
+    border-radius: 50%;
+    position: absolute;
+    box-shadow: 5px 5px 8px grey;
+    background-color: $color;
+    cursor: pointer;
+}
+@mixin hover{
+    transition: scale 0.5s ease-in-out;
+    transition: background-color 50ms ease-in;
+    transition: border 50ms ease-in;
+    &:hover{
+        scale: 0.8;
+    }
+    &:focus{
+        display: none;
+    }
+  
 }
 
+body{
+    align-items: center;
+    background-color: rgb(218, 199, 177);
+    overflow: hidden;
+}
+
+.container{
+    width: 90%;
+    height: 90vh;
+    overflow: hidden;
 
 
 
 
 
-
-
-.genwrapper{
-    
-    width: 100%;
-    height: 100vh;
-    background-color: rgb(209, 195, 195);
-    border-radius: 2px;
-    &__baloonred{
-        width: 3vw;
-        height: 8vh;
-        border-radius: 50%;
-        background-color: red;
-        border: 1px black solid;
-        position: absolute;
-    
-        left: 90vw;
-        top: 90vh;
+    &__baloon1{
+       @include hover;
+        @include baloon(red);
+        bottom: -100px;
+        left: 6px;
         animation-name: redb;
-        animation-duration: 10s;
-        animation-iteration-count: infinite;
-        cursor: pointer;
-    
+        @include animation;
+
         @keyframes redb{
             from{
-                left: 90vw;
-                top: 120vh;
+                bottom: -100px;
+                left: 6px;
                 rotate: 0deg;
+
             }
             to{
-                left: 85vw;
-                top: 10vh;
-                rotate: 180deg;
+                bottom: 105vh;
+                left: 26px;
+                rotate: 360deg;
             }
-        }
-        
-        &:focus {
-            animation: explode 0.5s forwards;
-            animation-iteration-count: initial;
-            animation-fill-mode: forwards;
-            position: absolute;
-            left: 85vw;
-            top: 10vh;
-        }
-    
-        @keyframes explode {
-            0% {
-                width: 3vw;
-                height: 8vh;
-                opacity: 1;
-                border-radius: 50%;
-                
-            }
-            50% {
-                width: 3.6vw;
-                height: 9.6vh;
-                opacity: 0.5;
-                border-radius: 48%;
-           
-            }
-            100% {
-                width: 0;
-                height: 0;
-                opacity: 0;
-                border-radius: 0;
-            }
-        }
-    
-        &:focus::after{
-            display: none;
         }
     }
-    &__baloonyellow{
-        width: 3vw;
-        height: 8vh;
-        border-radius: 50%;
-        background-color: rgb(240, 226, 33);
-        position: absolute;
-        left: 70vw;
-        top: 90vh;
-        animation-name: yellowb;
-        animation-duration: 10s;
-        animation-iteration-count: infinite;
-        cursor: pointer;
 
-        @keyframes yellowb{
-            from{
-                left: 70vw;
-                top: 95vh;
-                rotate: 0deg;
-              
-            }
-            to{
-                left: 65vw;
-                top: 10vh;
-                rotate: 180deg;
-          
-            }
-            }
-            &:focus {
-                animation: explode 0.5s forwards;
-                animation-iteration-count: initial;
-                animation-fill-mode: forwards;
-                position: absolute;
-                left: 85vw;
-                top: 10vh;
-            }
-        
-            @keyframes explode {
-                0% {
-                    width: 3vw;
-                    height: 8vh;
-                    opacity: 1;
-                    border-radius: 50%;
-                    
-                }
-                50% {
-                    width: 3.6vw;
-                    height: 9.6vh;
-                    opacity: 0.5;
-                    border-radius: 48%;
-               
-                }
-                100% {
-                    width: 0;
-                    height: 0;
-                    opacity: 0;
-                    border-radius: 0;
-                }
-            }
-        
-            &:focus::after{
-                display: none;
-            }
-}
-    &__baloongreen{
-        width: 3vw;
-        height: 8vh;
-        border-radius: 50%;
-        background-color: rgb(43, 214, 27);
-        position: absolute;
-        left: 50vw;
-        top: 90vh;
+    &__baloon2{
+        @include hover;
+        @include baloon(rgb(12, 199, 37));
+        bottom: -100px;
+        left: 100px;
         animation-name: greenb;
-        animation-duration: 10s;
-        animation-iteration-count: infinite;
-        cursor: pointer;
-        
+        @include animation;
 
         @keyframes greenb{
             from{
-                left: 50vw;
-                top: 140vh;
+                bottom: -100px;
+                left: 200px;
                 rotate: 0deg;
-              
-            }
-            to{
-                left: 55vw;
-                top: 10vh;
-                rotate: 180deg;
-          
-            }
-            }
-            &:focus {
-                animation: explode 0.5s forwards;
-                animation-iteration-count: initial;
-                animation-fill-mode: forwards;
-                position: absolute;
-                left: 85vw;
-                top: 10vh;
-            }
-        
-            @keyframes explode {
-                0% {
-                    width: 3vw;
-                    height: 8vh;
-                    opacity: 1;
-                    border-radius: 50%;
-                    
-                }
-                50% {
-                    width: 3.6vw;
-                    height: 9.6vh;
-                    opacity: 0.5;
-                    border-radius: 48%;
-               
-                }
-                100% {
-                    width: 0;
-                    height: 0;
-                    opacity: 0;
-                    border-radius: 0;
-                }
-            }
-        
-            &:focus::after{
-                display: none;
-            }
-}
-    &__baloonblue{
-        width: 3vw;
-        height: 8vh;
-        border-radius: 50%;
-        background-color: rgb(47, 25, 253);
-        position: absolute;
-        left: 20vw;
-        top: 90vh;
-        animation-name: blueb;
-        animation-duration: 10s;
-        animation-iteration-count: infinite;
-        cursor: pointer;
-        
 
-        @keyframes blueb{
-            from{
-                left: 20vw;
-                top: 85vh;
-                rotate: 0deg;
-              
             }
             to{
-                left: 15vw;
-                top: 10vh;
-                rotate: 180deg;
-          
+                bottom: 105vh;
+                left: 220px;
+                rotate: 360deg;
             }
-            }
-            &:focus {
-                animation: explode 0.5s forwards;
-                animation-iteration-count: initial;
-                animation-fill-mode: forwards;
-                position: absolute;
-                left: 85vw;
-                top: 10vh;
-            }
-        
-            @keyframes explode {
-                0% {
-                    width: 3vw;
-                    height: 8vh;
-                    opacity: 1;
-                    border-radius: 50%;
-                    
-                }
-                50% {
-                    width: 3.6vw;
-                    height: 9.6vh;
-                    opacity: 0.5;
-                    border-radius: 48%;
-               
-                }
-                100% {
-                    width: 0;
-                    height: 0;
-                    opacity: 0;
-                    border-radius: 0;
-                }
-            }
-        
-            &:focus::after{
-                display: none;
-            }
+        }
     }
 
-&__baloonpurple{
-    width: 3vw;
-    height: 8vh;
-    border-radius: 50%;
-    background-color: rgb(230, 34, 213);
-    position: absolute;
-    left: 20vw;
-    top: 90vh;
-    animation-name: purpleb;
-    animation-duration: 10s;
-    animation-iteration-count: infinite;
-    cursor: pointer;
-    
+    &__baloon3{
+        @include hover;
+         @include baloon(rgb(61, 63, 206));
+         bottom: -100px;
+         left: 400px;
+         animation-name: purpleb;
+         @include animation;
+ 
+         @keyframes purpleb{
+             from{
+                 bottom: -100px;
+                 left: 400px;
+                 rotate: 0deg;
+ 
+             }
+             to{
+                 bottom: 105vh;
+                 left: 420px;
+                 rotate: 360deg;
+             }
+         }
+     }
 
-    @keyframes purpleb{
-        from{
-            left: 40vw;
-            top: 82vh;
-            rotate: 0deg;
-          
-        }
-        to{
-            left: 30vw;
-            top: 10vh;
-            rotate: 180deg;
-      
-        }
-        }
-        &:focus {
-            animation: explode 0.5s forwards;
-            animation-iteration-count: initial;
-            animation-fill-mode: forwards;
-            position: absolute;
-            left: 85vw;
-            top: 10vh;
-        }
-    
-        @keyframes explode {
-            0% {
-                width: 3vw;
-                height: 8vh;
-                opacity: 1;
-                border-radius: 50%;
-                
-            }
-            50% {
-                width: 3.6vw;
-                height: 9.6vh;
-                opacity: 0.5;
-                border-radius: 48%;
-           
-            }
-            100% {
-                width: 0;
-                height: 0;
-                opacity: 0;
-                border-radius: 0;
-            }
-        }
-    
-        &:focus::after{
-            display: none;
-        }
+     &__baloon4{
+        @include hover;
+         @include baloon(rgb(26, 194, 180));
+         bottom: -100px;
+         left: 600px;
+         animation-name: theletb;
+         @include animation;
+ 
+         @keyframes theletb{
+             from{
+                 bottom: -100px;
+                 left: 600px;
+                 rotate: 0deg;
+ 
+             }
+             to{
+                 bottom: 105vh;
+                 left: 620px;
+                 rotate: 360deg;
+             }
+         }
+     }
+
+     &__baloon5{
+        @include hover;
+         @include baloon(rgb(207, 22, 207));
+         bottom: -100px;
+         left: 800px;
+         animation-name: roseb;
+         @include animation;
+ 
+         @keyframes roseb{
+             from{
+                 bottom: -100px;
+                 left: 800px;
+                 rotate: 0deg;
+ 
+             }
+             to{
+                 bottom: 105vh;
+                 left: 820px;
+                 rotate: 360deg;
+             }
+         }
+     }
+
+     &__baloon5{
+        @include hover;
+         @include baloon(rgb(54, 212, 107));
+         bottom: -100px;
+         left: 850px;
+         animation-name: turkizb;
+         @include animation;
+ 
+         @keyframes turkizb{
+             from{
+                 bottom: -100px;
+                 left: 850px;
+                 rotate: 0deg;
+ 
+             }
+             to{
+                 bottom: 105vh;
+                 left: 870px;
+                 rotate: 360deg;
+             }
+         }
+     }
+
+     &__baloon6{
+        @include hover;
+         @include baloon(rgb(182, 228, 19));
+         bottom: -100px;
+         left: 1000px;
+         animation-name: yellb;
+         @include animation;
+ 
+         @keyframes yellb{
+             from{
+                 bottom: -100px;
+                 left: 1000px;
+                 rotate: 0deg;
+ 
+             }
+             to{
+                 bottom: 105vh;
+                 left: 1020px;
+                 rotate: 360deg;
+             }
+         }
+     }
+
+     &__baloon7{
+        @include hover;
+         @include baloon(rgb(55, 61, 41));
+         bottom: -100px;
+         left: 1200px;
+         animation-name: brownb;
+         @include animation;
+ 
+         @keyframes brownb{
+             from{
+                 bottom: -100px;
+                 left: 1200px;
+                 rotate: 0deg;
+ 
+             }
+             to{
+                 bottom: 105vh;
+                 left: 1220px;
+                 rotate: 360deg;
+             }
+         }
+     }
+
+     &__baloon8{
+        @include hover;
+         @include baloon(rgb(0, 0, 0));
+         bottom: -100px;
+         left: 1400px;
+         animation-name: blackb;
+         @include animation;
+ 
+         @keyframes blackb{
+             from{
+                 bottom: -100px;
+                 left: 1400px;
+                 rotate: 0deg;
+ 
+             }
+             to{
+                 bottom: 105vh;
+                 left: 1420px;
+                 rotate: 360deg;
+             }
+         }
+     }
 }
-
-&__baloonblack{
-    width: 3vw;
-    height: 8vh;
-    border-radius: 50%;
-    background-color: rgb(24, 23, 32);
-    position: absolute;
-    left: 30vw;
-    top: 90vh;
-    animation-name: blackb;
-    animation-duration: 10s;
-    animation-iteration-count: infinite;
-    cursor: pointer;
-    
-    @keyframes blackb{
-        from{
-            left: 25vw;
-            top: 110vh;
-            rotate: 0deg;
-          
-        }
-        to{
-            left: 15vw;
-            top: 10vh;
-            rotate: 180deg;
-      
-        }
-        }
-        &:focus {
-            animation: explode 0.5s forwards;
-            animation-iteration-count: initial;
-            animation-fill-mode: forwards;
-            position: absolute;
-            left: 85vw;
-            top: 10vh;
-        }
-    
-        @keyframes explode {
-            0% {
-                width: 3vw;
-                height: 8vh;
-                opacity: 1;
-                border-radius: 50%;
-                
-            }
-            50% {
-                width: 3.6vw;
-                height: 9.6vh;
-                opacity: 0.5;
-                border-radius: 48%;
-           
-            }
-            100% {
-                width: 0;
-                height: 0;
-                opacity: 0;
-                border-radius: 0;
-            }
-        }
-    
-        &:focus::after{
-            display: none;
-        }
-        
-}
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

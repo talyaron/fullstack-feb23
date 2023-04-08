@@ -9,6 +9,7 @@
   animation-direction: alternate;
   animation-timing-function: linear;
   animation-fill-mode: forwards;
+  animation-delay: 5s;
 }
 
 /* The animation code */
