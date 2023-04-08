@@ -7,6 +7,23 @@ body {
   height: 100vh;
   display: flex;
   align-items: end;
+  position: relative;
+  .sun {
+    position: absolute;
+    top: 100px;
+    right: 0px;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate-reverse;
+    animation-name: sun-movement;
+    animation-fill-mode: both;
+    animation-timing-function: ease-in-out;
+
+    img {
+      width: 300px;
+      height: auto;
+    }
+  }
   a {
     cursor: url("./dist/gun.png"), crosshair;
   }
@@ -93,6 +110,21 @@ body {
   img {
     &:target {
       opacity: 1;
+    }
+  }
+  .win {
+    position: absolute;
+    top: 50%;
+    right: 50%;
+    translate: calc(50%);
+    display: none;
+    transition: 0.4s;
+    animation-name: win;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    &:target {
+      display: block;
     }
   }
   .first-ballon {
@@ -189,4 +221,32 @@ body {
   //     display: none;
   //   }
   // }
+}
+@keyframes sun-movement {
+  // 25% {
+  //   top: 80px;
+  //   right: 20px;
+  // }
+  // 50% {
+  //   top: 60px;
+  //   right: 40px;
+  // }
+  // 75% {
+  //   top: 40px;
+  //   right: 60px;
+  // }
+  100% {
+    top: 20px;
+    right: 80px;
+  }
+}
+@keyframes win {
+  50% {
+    scale: 2;
+    rotate: -20deg;
+  }
+  100% {
+    scale: 2;
+    rotate: 360deg;
+  }
 }
