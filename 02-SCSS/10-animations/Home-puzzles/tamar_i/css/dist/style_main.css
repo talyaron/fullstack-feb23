@@ -87,20 +87,28 @@
 }
 
 .hexagon {
-  height: 100px;
-  width: 100px;
+  height: 80px;
+  width: 45px;
+  background: purple;
+  position: absolute;
+  display: inline-block;
 }
 
-.hexatop {
-  width: 70px;
-  border: 60px solid transparent;
-  border-bottom-color: purple;
+.hexagon::before,
+.hexagon::after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  background: purple;
+  position: absolute;
 }
 
-.hexabottom {
-  width: 70px;
-  border: 60px solid transparent;
-  border-top-color: purple;
+.hexagon::before {
+  transform: rotate(60deg);
+}
+
+.hexagon::after {
+  transform: rotate(-60deg);
 }
 
 * {
