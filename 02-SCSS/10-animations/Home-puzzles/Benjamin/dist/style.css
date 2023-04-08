@@ -1,343 +1,353 @@
-.genwrapper {
-  width: 100%;
-  height: 100vh;
-  background-color: #d1c3c3;
-  border-radius: 2px;
+body {
+  align-items: center;
+  background-color: #dac7b1;
+  overflow: hidden;
 }
-.genwrapper__baloonred {
-  width: 3vw;
-  height: 8vh;
+
+.container {
+  width: 90%;
+  height: 90vh;
+  overflow: hidden;
+}
+.container__baloon1 {
+  transition: scale 0.5s ease-in-out;
+  transition: background-color 50ms ease-in;
+  transition: border 50ms ease-in;
+  width: 50px;
+  height: 80px;
   border-radius: 50%;
-  background-color: red;
-  border: 1px black solid;
   position: absolute;
-  left: 90vw;
-  top: 90vh;
+  box-shadow: 5px 5px 8px grey;
+  background-color: red;
+  cursor: pointer;
+  bottom: -100px;
+  left: 6px;
   animation-name: redb;
   animation-duration: 10s;
   animation-iteration-count: infinite;
-  cursor: pointer;
+  animation-direction: normal;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+}
+.container__baloon1:hover {
+  scale: 0.8;
+}
+.container__baloon1:focus {
+  display: none;
 }
 @keyframes redb {
   from {
-    left: 90vw;
-    top: 120vh;
+    bottom: -100px;
+    left: 6px;
     rotate: 0deg;
   }
   to {
-    left: 85vw;
-    top: 10vh;
-    rotate: 180deg;
+    bottom: 105vh;
+    left: 26px;
+    rotate: 360deg;
   }
 }
-.genwrapper__baloonred:focus {
-  animation: explode 0.5s forwards;
-  animation-iteration-count: initial;
-  animation-fill-mode: forwards;
-  position: absolute;
-  left: 85vw;
-  top: 10vh;
-}
-@keyframes explode {
-  0% {
-    width: 3vw;
-    height: 8vh;
-    opacity: 1;
-    border-radius: 50%;
-  }
-  50% {
-    width: 3.6vw;
-    height: 9.6vh;
-    opacity: 0.5;
-    border-radius: 48%;
-  }
-  100% {
-    width: 0;
-    height: 0;
-    opacity: 0;
-    border-radius: 0;
-  }
-}
-.genwrapper__baloonred:focus::after {
-  display: none;
-}
-.genwrapper__baloonyellow {
-  width: 3vw;
-  height: 8vh;
+.container__baloon2 {
+  transition: scale 0.5s ease-in-out;
+  transition: background-color 50ms ease-in;
+  transition: border 50ms ease-in;
+  width: 50px;
+  height: 80px;
   border-radius: 50%;
-  background-color: #f0e221;
   position: absolute;
-  left: 70vw;
-  top: 90vh;
-  animation-name: yellowb;
-  animation-duration: 10s;
-  animation-iteration-count: infinite;
+  box-shadow: 5px 5px 8px grey;
+  background-color: #0cc725;
   cursor: pointer;
-}
-@keyframes yellowb {
-  from {
-    left: 70vw;
-    top: 95vh;
-    rotate: 0deg;
-  }
-  to {
-    left: 65vw;
-    top: 10vh;
-    rotate: 180deg;
-  }
-}
-.genwrapper__baloonyellow:focus {
-  animation: explode 0.5s forwards;
-  animation-iteration-count: initial;
-  animation-fill-mode: forwards;
-  position: absolute;
-  left: 85vw;
-  top: 10vh;
-}
-@keyframes explode {
-  0% {
-    width: 3vw;
-    height: 8vh;
-    opacity: 1;
-    border-radius: 50%;
-  }
-  50% {
-    width: 3.6vw;
-    height: 9.6vh;
-    opacity: 0.5;
-    border-radius: 48%;
-  }
-  100% {
-    width: 0;
-    height: 0;
-    opacity: 0;
-    border-radius: 0;
-  }
-}
-.genwrapper__baloonyellow:focus::after {
-  display: none;
-}
-.genwrapper__baloongreen {
-  width: 3vw;
-  height: 8vh;
-  border-radius: 50%;
-  background-color: #2bd61b;
-  position: absolute;
-  left: 50vw;
-  top: 90vh;
+  bottom: -100px;
+  left: 100px;
   animation-name: greenb;
   animation-duration: 10s;
   animation-iteration-count: infinite;
-  cursor: pointer;
+  animation-direction: normal;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+}
+.container__baloon2:hover {
+  scale: 0.8;
+}
+.container__baloon2:focus {
+  display: none;
 }
 @keyframes greenb {
   from {
-    left: 50vw;
-    top: 140vh;
+    bottom: -100px;
+    left: 200px;
     rotate: 0deg;
   }
   to {
-    left: 55vw;
-    top: 10vh;
-    rotate: 180deg;
+    bottom: 105vh;
+    left: 220px;
+    rotate: 360deg;
   }
 }
-.genwrapper__baloongreen:focus {
-  animation: explode 0.5s forwards;
-  animation-iteration-count: initial;
-  animation-fill-mode: forwards;
-  position: absolute;
-  left: 85vw;
-  top: 10vh;
-}
-@keyframes explode {
-  0% {
-    width: 3vw;
-    height: 8vh;
-    opacity: 1;
-    border-radius: 50%;
-  }
-  50% {
-    width: 3.6vw;
-    height: 9.6vh;
-    opacity: 0.5;
-    border-radius: 48%;
-  }
-  100% {
-    width: 0;
-    height: 0;
-    opacity: 0;
-    border-radius: 0;
-  }
-}
-.genwrapper__baloongreen:focus::after {
-  display: none;
-}
-.genwrapper__baloonblue {
-  width: 3vw;
-  height: 8vh;
+.container__baloon3 {
+  transition: scale 0.5s ease-in-out;
+  transition: background-color 50ms ease-in;
+  transition: border 50ms ease-in;
+  width: 50px;
+  height: 80px;
   border-radius: 50%;
-  background-color: #2f19fd;
   position: absolute;
-  left: 20vw;
-  top: 90vh;
-  animation-name: blueb;
-  animation-duration: 10s;
-  animation-iteration-count: infinite;
+  box-shadow: 5px 5px 8px grey;
+  background-color: #3d3fce;
   cursor: pointer;
-}
-@keyframes blueb {
-  from {
-    left: 20vw;
-    top: 85vh;
-    rotate: 0deg;
-  }
-  to {
-    left: 15vw;
-    top: 10vh;
-    rotate: 180deg;
-  }
-}
-.genwrapper__baloonblue:focus {
-  animation: explode 0.5s forwards;
-  animation-iteration-count: initial;
-  animation-fill-mode: forwards;
-  position: absolute;
-  left: 85vw;
-  top: 10vh;
-}
-@keyframes explode {
-  0% {
-    width: 3vw;
-    height: 8vh;
-    opacity: 1;
-    border-radius: 50%;
-  }
-  50% {
-    width: 3.6vw;
-    height: 9.6vh;
-    opacity: 0.5;
-    border-radius: 48%;
-  }
-  100% {
-    width: 0;
-    height: 0;
-    opacity: 0;
-    border-radius: 0;
-  }
-}
-.genwrapper__baloonblue:focus::after {
-  display: none;
-}
-.genwrapper__baloonpurple {
-  width: 3vw;
-  height: 8vh;
-  border-radius: 50%;
-  background-color: #e622d5;
-  position: absolute;
-  left: 20vw;
-  top: 90vh;
+  bottom: -100px;
+  left: 400px;
   animation-name: purpleb;
   animation-duration: 10s;
   animation-iteration-count: infinite;
-  cursor: pointer;
+  animation-direction: normal;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+}
+.container__baloon3:hover {
+  scale: 0.8;
+}
+.container__baloon3:focus {
+  display: none;
 }
 @keyframes purpleb {
   from {
-    left: 40vw;
-    top: 82vh;
+    bottom: -100px;
+    left: 400px;
     rotate: 0deg;
   }
   to {
-    left: 30vw;
-    top: 10vh;
-    rotate: 180deg;
+    bottom: 105vh;
+    left: 420px;
+    rotate: 360deg;
   }
 }
-.genwrapper__baloonpurple:focus {
-  animation: explode 0.5s forwards;
-  animation-iteration-count: initial;
-  animation-fill-mode: forwards;
+.container__baloon4 {
+  transition: scale 0.5s ease-in-out;
+  transition: background-color 50ms ease-in;
+  transition: border 50ms ease-in;
+  width: 50px;
+  height: 80px;
+  border-radius: 50%;
   position: absolute;
-  left: 85vw;
-  top: 10vh;
+  box-shadow: 5px 5px 8px grey;
+  background-color: #1ac2b4;
+  cursor: pointer;
+  bottom: -100px;
+  left: 600px;
+  animation-name: theletb;
+  animation-duration: 10s;
+  animation-iteration-count: infinite;
+  animation-direction: normal;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
 }
-@keyframes explode {
-  0% {
-    width: 3vw;
-    height: 8vh;
-    opacity: 1;
-    border-radius: 50%;
-  }
-  50% {
-    width: 3.6vw;
-    height: 9.6vh;
-    opacity: 0.5;
-    border-radius: 48%;
-  }
-  100% {
-    width: 0;
-    height: 0;
-    opacity: 0;
-    border-radius: 0;
-  }
+.container__baloon4:hover {
+  scale: 0.8;
 }
-.genwrapper__baloonpurple:focus::after {
+.container__baloon4:focus {
   display: none;
 }
-.genwrapper__baloonblack {
-  width: 3vw;
-  height: 8vh;
+@keyframes theletb {
+  from {
+    bottom: -100px;
+    left: 600px;
+    rotate: 0deg;
+  }
+  to {
+    bottom: 105vh;
+    left: 620px;
+    rotate: 360deg;
+  }
+}
+.container__baloon5 {
+  transition: scale 0.5s ease-in-out;
+  transition: background-color 50ms ease-in;
+  transition: border 50ms ease-in;
+  width: 50px;
+  height: 80px;
   border-radius: 50%;
-  background-color: #181720;
   position: absolute;
-  left: 30vw;
-  top: 90vh;
+  box-shadow: 5px 5px 8px grey;
+  background-color: #cf16cf;
+  cursor: pointer;
+  bottom: -100px;
+  left: 800px;
+  animation-name: roseb;
+  animation-duration: 10s;
+  animation-iteration-count: infinite;
+  animation-direction: normal;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+}
+.container__baloon5:hover {
+  scale: 0.8;
+}
+.container__baloon5:focus {
+  display: none;
+}
+@keyframes roseb {
+  from {
+    bottom: -100px;
+    left: 800px;
+    rotate: 0deg;
+  }
+  to {
+    bottom: 105vh;
+    left: 820px;
+    rotate: 360deg;
+  }
+}
+.container__baloon5 {
+  transition: scale 0.5s ease-in-out;
+  transition: background-color 50ms ease-in;
+  transition: border 50ms ease-in;
+  width: 50px;
+  height: 80px;
+  border-radius: 50%;
+  position: absolute;
+  box-shadow: 5px 5px 8px grey;
+  background-color: #36d46b;
+  cursor: pointer;
+  bottom: -100px;
+  left: 850px;
+  animation-name: turkizb;
+  animation-duration: 10s;
+  animation-iteration-count: infinite;
+  animation-direction: normal;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+}
+.container__baloon5:hover {
+  scale: 0.8;
+}
+.container__baloon5:focus {
+  display: none;
+}
+@keyframes turkizb {
+  from {
+    bottom: -100px;
+    left: 850px;
+    rotate: 0deg;
+  }
+  to {
+    bottom: 105vh;
+    left: 870px;
+    rotate: 360deg;
+  }
+}
+.container__baloon6 {
+  transition: scale 0.5s ease-in-out;
+  transition: background-color 50ms ease-in;
+  transition: border 50ms ease-in;
+  width: 50px;
+  height: 80px;
+  border-radius: 50%;
+  position: absolute;
+  box-shadow: 5px 5px 8px grey;
+  background-color: #b6e413;
+  cursor: pointer;
+  bottom: -100px;
+  left: 1000px;
+  animation-name: yellb;
+  animation-duration: 10s;
+  animation-iteration-count: infinite;
+  animation-direction: normal;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+}
+.container__baloon6:hover {
+  scale: 0.8;
+}
+.container__baloon6:focus {
+  display: none;
+}
+@keyframes yellb {
+  from {
+    bottom: -100px;
+    left: 1000px;
+    rotate: 0deg;
+  }
+  to {
+    bottom: 105vh;
+    left: 1020px;
+    rotate: 360deg;
+  }
+}
+.container__baloon7 {
+  transition: scale 0.5s ease-in-out;
+  transition: background-color 50ms ease-in;
+  transition: border 50ms ease-in;
+  width: 50px;
+  height: 80px;
+  border-radius: 50%;
+  position: absolute;
+  box-shadow: 5px 5px 8px grey;
+  background-color: #373d29;
+  cursor: pointer;
+  bottom: -100px;
+  left: 1200px;
+  animation-name: brownb;
+  animation-duration: 10s;
+  animation-iteration-count: infinite;
+  animation-direction: normal;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+}
+.container__baloon7:hover {
+  scale: 0.8;
+}
+.container__baloon7:focus {
+  display: none;
+}
+@keyframes brownb {
+  from {
+    bottom: -100px;
+    left: 1200px;
+    rotate: 0deg;
+  }
+  to {
+    bottom: 105vh;
+    left: 1220px;
+    rotate: 360deg;
+  }
+}
+.container__baloon8 {
+  transition: scale 0.5s ease-in-out;
+  transition: background-color 50ms ease-in;
+  transition: border 50ms ease-in;
+  width: 50px;
+  height: 80px;
+  border-radius: 50%;
+  position: absolute;
+  box-shadow: 5px 5px 8px grey;
+  background-color: black;
+  cursor: pointer;
+  bottom: -100px;
+  left: 1400px;
   animation-name: blackb;
   animation-duration: 10s;
   animation-iteration-count: infinite;
-  cursor: pointer;
+  animation-direction: normal;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+}
+.container__baloon8:hover {
+  scale: 0.8;
+}
+.container__baloon8:focus {
+  display: none;
 }
 @keyframes blackb {
   from {
-    left: 25vw;
-    top: 110vh;
+    bottom: -100px;
+    left: 1400px;
     rotate: 0deg;
   }
   to {
-    left: 15vw;
-    top: 10vh;
-    rotate: 180deg;
+    bottom: 105vh;
+    left: 1420px;
+    rotate: 360deg;
   }
-}
-.genwrapper__baloonblack:focus {
-  animation: explode 0.5s forwards;
-  animation-iteration-count: initial;
-  animation-fill-mode: forwards;
-  position: absolute;
-  left: 85vw;
-  top: 10vh;
-}
-@keyframes explode {
-  0% {
-    width: 3vw;
-    height: 8vh;
-    opacity: 1;
-    border-radius: 50%;
-  }
-  50% {
-    width: 3.6vw;
-    height: 9.6vh;
-    opacity: 0.5;
-    border-radius: 48%;
-  }
-  100% {
-    width: 0;
-    height: 0;
-    opacity: 0;
-    border-radius: 0;
-  }
-}
-.genwrapper__baloonblack:focus::after {
-  display: none;
 }
