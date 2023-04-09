@@ -10,8 +10,15 @@
   animation: pacmen 10s linear infinite;
   transform: rotate(40deg);
 }
-.pakmen .iris {
-  top: -62px;
+
+.pakmeniris {
+  background: black;
+  border-radius: 100%;
+  height: 20px;
+  position: absolute;
+  width: 20px;
+  .
+    top: -62px;
   left: 10px;
 }
 
@@ -38,13 +45,7 @@
   width: 120px;
   left: 885px;
   top: -9px;
-  animation-name: gost;
-  animation-duration: 4s;
-  animation-direction: alternate;
-  animation-iteration-count: 5;
-  animation-timing-function: linear;
-  animation-fill-mode: forwards;
-  animation-delay: 5s;
+  animation: gost 4s linear 5s 5 alternate forwards;
 }
 
 .eyes {
@@ -71,12 +72,12 @@
   width: 20px;
   top: 10px;
   animation-name: gost-iris;
-  animation-duration: 4s;
+  animation-duration: 1s;
   animation-iteration-count: infinite;
   animation-direction: alternate;
   animation-timing-function: linear;
   animation-fill-mode: forwards;
-  animation-delay: 5s;
+  animation: blinky 0.5s linear infinite;
 }
 
 .leftEye {
@@ -164,7 +165,19 @@ body {
     top: 573px;
   }
 }
-@keyframes gost-iris {}
+@keyframes gost-iris {
+  from {
+    top: 7px;
+  }
+  to {
+    top: 32px;
+  }
+}
+@keyframes blinky {
+  50% {
+    background: #69fdff;
+  }
+}
 @keyframes pacmen {
   from {
     left: -200%;

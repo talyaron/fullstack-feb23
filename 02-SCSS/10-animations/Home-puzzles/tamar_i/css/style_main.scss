@@ -28,7 +28,20 @@ body {
     }
 }
 
-@keyframes gost-iris {}
+@keyframes gost-iris {
+    from {
+        top: 7px;
+    }
+    to {
+        top: 32px;
+    }
+}
+
+@keyframes blinky{
+    50%{
+        background: rgb(105, 253, 255);
+    }
+}
 
 @keyframes pacmen {
     from {
