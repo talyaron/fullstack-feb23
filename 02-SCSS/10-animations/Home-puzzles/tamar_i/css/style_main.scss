@@ -30,3 +30,16 @@ body{ background: #000; }
 
     }
 }
+
+@keyframes mouthTop{
+    50%{
+        transform: rotate(45deg);
+    }
+}
+
+@keyframes mouthBottom{
+    50%{
+        transform: rotate(-90deg);
+    }
+}
+

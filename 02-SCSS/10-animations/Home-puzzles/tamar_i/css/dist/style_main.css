@@ -14,10 +14,26 @@
   animation-timing-function: linear;
   animation-fill-mode: forwards;
   animation-delay: 10s;
+  animation: mouthTop 0.7s ease infinite;
+  transform: rotate(40deg);
 }
 .pakmen .iris {
   top: -62px;
   left: 10px;
+}
+
+.pakmen::before {
+  content: "";
+  display: block;
+  height: 0;
+  width: 0;
+  position: absolute;
+  border: 100px solid;
+  border-color: yellow transparent yellow yellow;
+  border-radius: 50%;
+  top: -100px;
+  left: -101px;
+  animation: mouthBottom 0.7s ease infinite;
 }
 
 .gost {
@@ -107,6 +123,12 @@
   left: 70px;
   transform: translate(-50%, -50%);
   display: inline-block;
+  animation-name: hexagon;
+  animation-duration: 4s;
+  animation-direction: alternate;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+  animation-delay: 5s;
 }
 
 .hexagon::before,
@@ -148,5 +170,15 @@ body {
   }
   to {
     left: 900px;
+  }
+}
+@keyframes mouthTop {
+  50% {
+    transform: rotate(45deg);
+  }
+}
+@keyframes mouthBottom {
+  50% {
+    transform: rotate(-90deg);
   }
 }

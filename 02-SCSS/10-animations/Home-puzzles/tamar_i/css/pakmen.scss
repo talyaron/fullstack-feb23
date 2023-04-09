@@ -14,9 +14,26 @@
     animation-timing-function: linear;
     animation-fill-mode: forwards;
     animation-delay: 10s;
+    animation: mouthTop 0.7s ease infinite;
+    transform: rotate(40deg);
+
 
     .iris {
         top: -62px;
         left: 10px;
     }
+}
+
+.pakmen::before {
+    content: '';
+    display: block;
+    height: 0;
+    width: 0;
+    position: absolute;
+    border: 100px solid;
+    border-color: yellow transparent yellow yellow;
+    border-radius: 50%;
+    top: -100px;
+    left: -101px;
+    animation: mouthBottom 0.7s ease infinite;
 }
