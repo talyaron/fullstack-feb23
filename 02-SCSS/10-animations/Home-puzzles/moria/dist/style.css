@@ -1,0 +1,20 @@
+@charset "UTF-8";
+body {
+  background: url(img/רקע.jpg) no-repeat center center/cover;
+  height: 80vh;
+}
+
+img {
+  position: relative;
+  top: 190px;
+  left: 420px;
+}
+
+.men {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  background: url(img/1.png) no-repeat center center/cover;
+  left: 610px;
+  top: -120px;
+}
