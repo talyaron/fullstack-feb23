@@ -10,15 +10,13 @@
   animation: pacmen 10s linear infinite;
   transform: rotate(40deg);
 }
-
-.pakmeniris {
+.pakmen .pakmeniris {
   background: black;
   border-radius: 100%;
   height: 20px;
   position: absolute;
   width: 20px;
-  .
-    top: -62px;
+  top: -62px;
   left: 10px;
 }
 
