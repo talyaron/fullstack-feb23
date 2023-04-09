@@ -7,9 +7,25 @@ body {
   height: 100vh;
   display: flex;
   align-items: end;
+  position: relative;
+}
+.wrapper .sun {
+  position: absolute;
+  top: 100px;
+  right: 0px;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate-reverse;
+  animation-name: sun-movement;
+  animation-fill-mode: both;
+  animation-timing-function: ease-in-out;
+}
+.wrapper .sun img {
+  width: 300px;
+  height: auto;
 }
 .wrapper a {
-  cursor: url(./dist/gun.png) auto;
+  cursor: url("./dist/gun.png"), crosshair;
 }
 .wrapper .ballon {
   position: relative;
@@ -18,6 +34,7 @@ body {
   animation-duration: 10s;
   animation-direction: alternate;
   animation-iteration-count: infinite;
+  transition: 0.5s;
   animation-timing-function: ease-in-out;
 }
 .wrapper .ballon:hover {
@@ -25,7 +42,7 @@ body {
 }
 .wrapper .ballon img {
   width: 100px;
-  cursor: url(./dist/gun.png) auto;
+  cursor: url(https://w7.pngwing.com/pngs/1004/336/png-transparent-telescopic-sight-reticle-computer-icons-crosshair-miscellaneous-angle-symmetry-thumbnail.png) auto;
   transition: 0.5s;
   opacity: 0;
 }
@@ -67,9 +84,44 @@ body {
 .wrapper img:target {
   opacity: 1;
 }
+.wrapper .win {
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  translate: calc(50%);
+  display: none;
+  transition: 0.4s;
+  animation-name: win;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+.wrapper .win:target {
+  display: block;
+}
 .wrapper .first-ballon {
   opacity: 1 !important;
 }
 .wrapper .first-ballon:target {
   opacity: 0 !important;
+}
+.wrapper .first-ballon:focus {
+  opacity: 0;
+}
+
+@keyframes sun-movement {
+  100% {
+    top: 20px;
+    right: 80px;
+  }
+}
+@keyframes win {
+  50% {
+    scale: 2;
+    rotate: -20deg;
+  }
+  100% {
+    scale: 2;
+    rotate: 360deg;
+  }
 }
