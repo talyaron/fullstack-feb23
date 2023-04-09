@@ -1,4 +1,4 @@
-.pakmen{
+.pakmen {
     display: inline-block;
     width: 0px;
     height: 0px;
@@ -6,10 +6,17 @@
     border-color: yellow transparent yellow yellow;
     border-radius: 50%;
     position: relative;
+    left: -150px;
+    top: 10px;
+    animation-name: pacmen;
+    animation-duration: 5s;
+    animation-direction: alternate;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+    animation-delay: 10s;
 
-    .iris{
+    .iris {
         top: -62px;
         left: 10px;
     }
 }
-
