@@ -41,6 +41,7 @@
   animation-name: gost;
   animation-duration: 4s;
   animation-direction: alternate;
+  animation-iteration-count: 5;
   animation-timing-function: linear;
   animation-fill-mode: forwards;
   animation-delay: 5s;
@@ -155,7 +156,14 @@ body {
 }
 
 @keyframes hexagon {}
-@keyframes gost {}
+@keyframes gost {
+  from {
+    top: -9px;
+  }
+  to {
+    top: 573px;
+  }
+}
 @keyframes gost-iris {}
 @keyframes pacmen {
   from {

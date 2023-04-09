@@ -2,44 +2,54 @@
 @import "gosts";
 @import "backgraound";
 
-*{margin: 0; padding: 0;}
-body{ background: #000; }
-
-.red{ background-color: red;}
-
-
-@keyframes hexagon{
-
+* {
+    margin: 0;
+    padding: 0;
 }
 
-@keyframes gost{
-
+body {
+    background: #000;
 }
 
-@keyframes gost-iris{
-
+.red {
+    background-color: red;
 }
 
-@keyframes pacmen{
+
+@keyframes hexagon {}
+
+@keyframes gost {
     from {
-      left: -200%;
-      
+        top: -9px;
     }
+
     to {
-      left: 100%;
+        top: 573px;
+    }
+}
+
+@keyframes gost-iris {}
+
+@keyframes pacmen {
+    from {
+        left: -200%;
+
+    }
+
+    to {
+        left: 100%;
 
     }
 }
 
-@keyframes mouthTop{
-    50%{
+@keyframes mouthTop {
+    50% {
         transform: rotate(45deg);
     }
 }
 
-@keyframes mouthBottom{
-    50%{
+@keyframes mouthBottom {
+    50% {
         transform: rotate(-90deg);
     }
 }
-
