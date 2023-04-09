@@ -7,7 +7,7 @@
   border-radius: 50%;
   position: relative;
   top: 10px;
-  animation: pacmen 10s linear infinite;
+  animation: pacmen 10s linear 6;
   transform: rotate(40deg);
 }
 .pakmen .pakmeniris {
@@ -43,7 +43,7 @@
   width: 120px;
   left: 885px;
   top: -9px;
-  animation: gost 4s linear 6s 5 alternate forwards;
+  animation: gost 4s linear alternate forwards;
 }
 
 .eyes {
@@ -154,7 +154,12 @@ body {
   background-color: red;
 }
 
-@keyframes hexagon {}
+@keyframes hexagon {
+  0% {
+    top: 40%;
+    left: 70px;
+  }
+}
 @keyframes gost {
   from {
     top: -9px;

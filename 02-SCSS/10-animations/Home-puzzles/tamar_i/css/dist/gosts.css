@@ -7,7 +7,7 @@
   width: 120px;
   left: 885px;
   top: -9px;
-  animation: gost 4s linear 6s 5 alternate forwards;
+  animation: gost 4s linear alternate forwards;
 }
 
 .eyes {
