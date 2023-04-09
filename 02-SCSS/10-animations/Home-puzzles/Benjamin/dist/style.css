@@ -1,0 +1,353 @@
+body {
+  align-items: center;
+  background-color: #dac7b1;
+  overflow: hidden;
+}
+
+.container {
+  width: 90%;
+  height: 90vh;
+  overflow: hidden;
+}
+.container__baloon1 {
+  transition: scale 0.5s ease-in-out;
+  transition: background-color 50ms ease-in;
+  transition: border 50ms ease-in;
+  width: 50px;
+  height: 80px;
+  border-radius: 50%;
+  position: absolute;
+  box-shadow: 5px 5px 8px grey;
+  background-color: red;
+  cursor: pointer;
+  bottom: -100px;
+  left: 6px;
+  animation-name: redb;
+  animation-duration: 10s;
+  animation-iteration-count: infinite;
+  animation-direction: normal;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+}
+.container__baloon1:hover {
+  scale: 0.8;
+}
+.container__baloon1:focus {
+  display: none;
+}
+@keyframes redb {
+  from {
+    bottom: -100px;
+    left: 6px;
+    rotate: 0deg;
+  }
+  to {
+    bottom: 105vh;
+    left: 26px;
+    rotate: 360deg;
+  }
+}
+.container__baloon2 {
+  transition: scale 0.5s ease-in-out;
+  transition: background-color 50ms ease-in;
+  transition: border 50ms ease-in;
+  width: 50px;
+  height: 80px;
+  border-radius: 50%;
+  position: absolute;
+  box-shadow: 5px 5px 8px grey;
+  background-color: #0cc725;
+  cursor: pointer;
+  bottom: -100px;
+  left: 100px;
+  animation-name: greenb;
+  animation-duration: 10s;
+  animation-iteration-count: infinite;
+  animation-direction: normal;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+}
+.container__baloon2:hover {
+  scale: 0.8;
+}
+.container__baloon2:focus {
+  display: none;
+}
+@keyframes greenb {
+  from {
+    bottom: -100px;
+    left: 200px;
+    rotate: 0deg;
+  }
+  to {
+    bottom: 105vh;
+    left: 220px;
+    rotate: 360deg;
+  }
+}
+.container__baloon3 {
+  transition: scale 0.5s ease-in-out;
+  transition: background-color 50ms ease-in;
+  transition: border 50ms ease-in;
+  width: 50px;
+  height: 80px;
+  border-radius: 50%;
+  position: absolute;
+  box-shadow: 5px 5px 8px grey;
+  background-color: #3d3fce;
+  cursor: pointer;
+  bottom: -100px;
+  left: 400px;
+  animation-name: purpleb;
+  animation-duration: 10s;
+  animation-iteration-count: infinite;
+  animation-direction: normal;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+}
+.container__baloon3:hover {
+  scale: 0.8;
+}
+.container__baloon3:focus {
+  display: none;
+}
+@keyframes purpleb {
+  from {
+    bottom: -100px;
+    left: 400px;
+    rotate: 0deg;
+  }
+  to {
+    bottom: 105vh;
+    left: 420px;
+    rotate: 360deg;
+  }
+}
+.container__baloon4 {
+  transition: scale 0.5s ease-in-out;
+  transition: background-color 50ms ease-in;
+  transition: border 50ms ease-in;
+  width: 50px;
+  height: 80px;
+  border-radius: 50%;
+  position: absolute;
+  box-shadow: 5px 5px 8px grey;
+  background-color: #1ac2b4;
+  cursor: pointer;
+  bottom: -100px;
+  left: 600px;
+  animation-name: theletb;
+  animation-duration: 10s;
+  animation-iteration-count: infinite;
+  animation-direction: normal;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+}
+.container__baloon4:hover {
+  scale: 0.8;
+}
+.container__baloon4:focus {
+  display: none;
+}
+@keyframes theletb {
+  from {
+    bottom: -100px;
+    left: 600px;
+    rotate: 0deg;
+  }
+  to {
+    bottom: 105vh;
+    left: 620px;
+    rotate: 360deg;
+  }
+}
+.container__baloon5 {
+  transition: scale 0.5s ease-in-out;
+  transition: background-color 50ms ease-in;
+  transition: border 50ms ease-in;
+  width: 50px;
+  height: 80px;
+  border-radius: 50%;
+  position: absolute;
+  box-shadow: 5px 5px 8px grey;
+  background-color: #cf16cf;
+  cursor: pointer;
+  bottom: -100px;
+  left: 800px;
+  animation-name: roseb;
+  animation-duration: 10s;
+  animation-iteration-count: infinite;
+  animation-direction: normal;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+}
+.container__baloon5:hover {
+  scale: 0.8;
+}
+.container__baloon5:focus {
+  display: none;
+}
+@keyframes roseb {
+  from {
+    bottom: -100px;
+    left: 800px;
+    rotate: 0deg;
+  }
+  to {
+    bottom: 105vh;
+    left: 820px;
+    rotate: 360deg;
+  }
+}
+.container__baloon5 {
+  transition: scale 0.5s ease-in-out;
+  transition: background-color 50ms ease-in;
+  transition: border 50ms ease-in;
+  width: 50px;
+  height: 80px;
+  border-radius: 50%;
+  position: absolute;
+  box-shadow: 5px 5px 8px grey;
+  background-color: #36d46b;
+  cursor: pointer;
+  bottom: -100px;
+  left: 850px;
+  animation-name: turkizb;
+  animation-duration: 10s;
+  animation-iteration-count: infinite;
+  animation-direction: normal;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+}
+.container__baloon5:hover {
+  scale: 0.8;
+}
+.container__baloon5:focus {
+  display: none;
+}
+@keyframes turkizb {
+  from {
+    bottom: -100px;
+    left: 850px;
+    rotate: 0deg;
+  }
+  to {
+    bottom: 105vh;
+    left: 870px;
+    rotate: 360deg;
+  }
+}
+.container__baloon6 {
+  transition: scale 0.5s ease-in-out;
+  transition: background-color 50ms ease-in;
+  transition: border 50ms ease-in;
+  width: 50px;
+  height: 80px;
+  border-radius: 50%;
+  position: absolute;
+  box-shadow: 5px 5px 8px grey;
+  background-color: #b6e413;
+  cursor: pointer;
+  bottom: -100px;
+  left: 1000px;
+  animation-name: yellb;
+  animation-duration: 10s;
+  animation-iteration-count: infinite;
+  animation-direction: normal;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+}
+.container__baloon6:hover {
+  scale: 0.8;
+}
+.container__baloon6:focus {
+  display: none;
+}
+@keyframes yellb {
+  from {
+    bottom: -100px;
+    left: 1000px;
+    rotate: 0deg;
+  }
+  to {
+    bottom: 105vh;
+    left: 1020px;
+    rotate: 360deg;
+  }
+}
+.container__baloon7 {
+  transition: scale 0.5s ease-in-out;
+  transition: background-color 50ms ease-in;
+  transition: border 50ms ease-in;
+  width: 50px;
+  height: 80px;
+  border-radius: 50%;
+  position: absolute;
+  box-shadow: 5px 5px 8px grey;
+  background-color: #373d29;
+  cursor: pointer;
+  bottom: -100px;
+  left: 1200px;
+  animation-name: brownb;
+  animation-duration: 10s;
+  animation-iteration-count: infinite;
+  animation-direction: normal;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+}
+.container__baloon7:hover {
+  scale: 0.8;
+}
+.container__baloon7:focus {
+  display: none;
+}
+@keyframes brownb {
+  from {
+    bottom: -100px;
+    left: 1200px;
+    rotate: 0deg;
+  }
+  to {
+    bottom: 105vh;
+    left: 1220px;
+    rotate: 360deg;
+  }
+}
+.container__baloon8 {
+  transition: scale 0.5s ease-in-out;
+  transition: background-color 50ms ease-in;
+  transition: border 50ms ease-in;
+  width: 50px;
+  height: 80px;
+  border-radius: 50%;
+  position: absolute;
+  box-shadow: 5px 5px 8px grey;
+  background-color: black;
+  cursor: pointer;
+  bottom: -100px;
+  left: 1400px;
+  animation-name: blackb;
+  animation-duration: 10s;
+  animation-iteration-count: infinite;
+  animation-direction: normal;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+}
+.container__baloon8:hover {
+  scale: 0.8;
+}
+.container__baloon8:focus {
+  display: none;
+}
+@keyframes blackb {
+  from {
+    bottom: -100px;
+    left: 1400px;
+    rotate: 0deg;
+  }
+  to {
+    bottom: 105vh;
+    left: 1420px;
+    rotate: 360deg;
+  }
+}
