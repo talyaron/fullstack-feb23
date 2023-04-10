@@ -1,25 +1,40 @@
-.pakmen{
+.pakmen {
     display: inline-block;
-    background-color: yellow;
-    border: 100px solid yellow;
-    border-right-color: black;
     width: 0px;
     height: 0px;
-    margin: 20px;
+    border: 100px solid;
+    border-color: yellow transparent yellow yellow;
     border-radius: 50%;
     position: relative;
+    // left: -120%;
+    top: 10px;
+    animation: pacmen 10s linear infinite ;
+    // animation: mouthTop 0.7s ease infinite;
+    transform: rotate(40deg);
 
-    .iris{
+    .pakmeniris {
+        background: black;
+        border-radius: 100%;
+        height: 20px;
+        position: absolute;
+        width: 20px;
         top: -62px;
         left: 10px;
-    }
+      }
+    
 }
 
-.mouth{
-    width: 0;
+
+.pakmen::before {
+    content: '';
+    display: block;
     height: 0;
-    border: 70px solid black;
+    width: 0;
     position: absolute;
-    bottom: -70px;
-    left: 72px;
+    border: 100px solid;
+    border-color: yellow transparent yellow yellow;
+    border-radius: 50%;
+    top: -100px;
+    left: -101px;
+    animation: mouthBottom 0.7s ease infinite;
 }

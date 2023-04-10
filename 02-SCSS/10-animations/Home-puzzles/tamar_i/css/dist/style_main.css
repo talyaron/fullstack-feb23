@@ -1,26 +1,37 @@
 .pakmen {
   display: inline-block;
-  background-color: yellow;
-  border: 100px solid yellow;
-  border-right-color: black;
   width: 0px;
   height: 0px;
-  margin: 20px;
+  border: 100px solid;
+  border-color: yellow transparent yellow yellow;
   border-radius: 50%;
   position: relative;
+  top: 10px;
+  animation: pacmen 10s linear infinite;
+  transform: rotate(40deg);
 }
-.pakmen .iris {
+.pakmen .pakmeniris {
+  background: black;
+  border-radius: 100%;
+  height: 20px;
+  position: absolute;
+  width: 20px;
   top: -62px;
   left: 10px;
 }
 
-.mouth {
-  width: 0;
+.pakmen::before {
+  content: "";
+  display: block;
   height: 0;
-  border: 70px solid black;
+  width: 0;
   position: absolute;
-  bottom: -70px;
-  left: 72px;
+  border: 100px solid;
+  border-color: yellow transparent yellow yellow;
+  border-radius: 50%;
+  top: -100px;
+  left: -101px;
+  animation: mouthBottom 0.7s ease infinite;
 }
 
 .gost {
@@ -31,7 +42,8 @@
   position: relative;
   width: 120px;
   left: 885px;
-  top: -33px;
+  top: -9px;
+  animation: gost 4s linear 6s 5 alternate forwards;
 }
 
 .eyes {
@@ -48,6 +60,7 @@
   border-radius: 100%;
   height: 60px;
   width: 30px;
+  animation: blinky 0.5s linear infinite;
 }
 
 .iris {
@@ -57,6 +70,12 @@
   position: absolute;
   width: 20px;
   top: 10px;
+  animation-name: gost-iris;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
 }
 
 .leftEye {
@@ -97,6 +116,12 @@
   left: 70px;
   transform: translate(-50%, -50%);
   display: inline-block;
+  animation-name: hexagon;
+  animation-duration: 4s;
+  animation-direction: alternate;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+  animation-delay: 5s;
 }
 
 .hexagon::before,
@@ -127,4 +152,45 @@ body {
 
 .red {
   background-color: red;
+}
+
+@keyframes hexagon {}
+@keyframes gost {
+  from {
+    top: -9px;
+  }
+  to {
+    top: 573px;
+  }
+}
+@keyframes gost-iris {
+  from {
+    top: 7px;
+  }
+  to {
+    top: 32px;
+  }
+}
+@keyframes blinky {
+  50% {
+    background: #69fdff;
+  }
+}
+@keyframes pacmen {
+  from {
+    left: -200%;
+  }
+  to {
+    left: 100%;
+  }
+}
+@keyframes mouthTop {
+  50% {
+    transform: rotate(45deg);
+  }
+}
+@keyframes mouthBottom {
+  50% {
+    transform: rotate(-90deg);
+  }
 }
