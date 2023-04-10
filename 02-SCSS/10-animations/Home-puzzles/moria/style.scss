@@ -7,7 +7,7 @@ img {
     position: relative;
     top: 190px;
     left: 420px;
-
+    z-index: 3;
 }
 
 .men {
@@ -45,9 +45,10 @@ img {
     }
 
     100% {
-        top: 440px;
+        top: 500px;
         background: url(img/4.png) no-repeat center center/ cover;
         transform: rotate(-25deg);
+
     }
 
 
