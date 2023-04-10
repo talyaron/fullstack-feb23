@@ -7,6 +7,12 @@
   left: 70px;
   transform: translate(-50%, -50%);
   display: inline-block;
+  animation-name: hexagon;
+  animation-duration: 4s;
+  animation-direction: alternate;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+  animation-delay: 5s;
 }
 
 .hexagon::before,
