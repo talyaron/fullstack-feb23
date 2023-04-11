@@ -58,6 +58,7 @@ body {
   box-shadow: 0 0 40px 9px white;
   animation-name: moon;
   animation-duration: 8s;
+  animation-iteration-count: infinite;
 }
 
 @keyframes moon {
