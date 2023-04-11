@@ -109,5 +109,22 @@ body {
      top: 00px;
      z-index: 5;
      text-shadow: 1px 6px 8px rgba(255,255,255,0.6);
-
     }
+
+    .star {
+       width: 150px;
+      height: 150px;
+     animation-name: stars;
+     box-shadow: 0 0 40px 9px white;
+     animation-duration: 8s;
+     animation-iteration-count: infinite;
+    }
+
+    @keyframes stars {
+        0% {
+                transform: translateY(100%);
+            }
+            -100% {
+                transform: translateY(-100%);
+            }
+            }
