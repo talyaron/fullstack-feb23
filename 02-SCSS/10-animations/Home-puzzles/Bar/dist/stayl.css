@@ -10,6 +10,9 @@
   text-align: center;
   background-size: cover;
 }
+.wrapper audio {
+  position: absolute;
+}
 .wrapper__red {
   border: none;
   animation-name: redballoon;
