@@ -22,18 +22,34 @@ body {
     }
 
     &__hugeballon {
-        img {
-            width: 200px;
-            position: absolute;
-            height: 300px;
-            top: 455px;
-            left: 735px;
-            animation-name: bigballon;
+        &--basket {
+                width: 200px;
+                position: absolute;
+                height: 300px;
+                top: 455px;
+                left: 735px;
+        }    
 
-        }
+        &--airballon {
+                animation-name: top;
+                width: 200px;
+                height: 300px;
+                top: 455px;
+                position: absolute;
+                left: 735px;
+                animation-timing-function: linear;
+                animation-delay: 3s;
+                animation-direction:normal;
+                animation-iteration-count: infinite;
+        
+            // &:active {
+            //     width: 500px;
+            //     animation: 1s 5s forwards; 
+                
+                
+            }
 
 
-    }
 
     &__hotballon {
 
@@ -78,7 +94,32 @@ body {
         }
     }
 }
+}
 
+@keyframes top {
+    0% {
+        top: 455px;
+        left: 735px;
+    }
+
+    50% {
+        top: 440px;
+        left: 735px;
+    }
+
+    80% {
+        top: 430px;
+        left: 735px;
+        transform: rotate(10deg);
+    }
+
+    100% {
+        top: 0px;
+        left: 735px;
+        transform: rotate(-10deg);
+    }
+
+}
 
 
 @keyframes firstballon{
@@ -224,38 +265,4 @@ body {
         top: 0px;
         transform: rotate(-10deg);
     }
-}
-
-.hugeballon {
-    &--ballon-top {
-
-        &:hover {
-            @keyframes bigballon {
-                0% {
-                    left: 10px;
-                    top: 600px;
-            
-                }
-            
-                50% {
-                    left: 20px;
-                    top: 350px;
-                }
-            
-                80% {
-                    left: 30px;
-                    top: 150px;
-                    transform: rotate(10deg);
-                }
-            
-                100% {
-                    left: 40px;
-                    top: 0px;
-                    transform: rotate(-10deg);
-                }
-        
-            }
-        }
-    }
-
 }
