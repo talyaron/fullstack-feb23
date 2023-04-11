@@ -64,15 +64,15 @@ body {
     75% {
         top: 250px;
         background: url(img/3.png) no-repeat center center/ cover;
-        transform: rotate(130deg);
-        transform: scaleX(-1);
+        transform: rotate(-10deg);
+
     }
 
     100% {
         top: 350px;
         background: url(img/4.png) no-repeat center center/ cover;
-        transform: rotate(100deg);
-        transform: scaleX(-1);
+        transform: rotate(-10deg);
+
 
     }
 
