@@ -1,14 +1,33 @@
 @charset "UTF-8";
 body {
   background: url(img/רקע.jpg) no-repeat center center/cover;
-  height: 80vh;
+  height: 70vh;
+  overflow: hidden;
 }
 
-img {
+.birds {
+  width: 200px;
+  height: 200px;
+  top: 35px;
+  left: 0;
   position: relative;
-  top: 190px;
-  left: 420px;
-  z-index: 3;
+  animation: birds 5s infinite;
+}
+
+@keyframes birds {
+  from {
+    top: 500px;
+    left: 0;
+  }
+  to {
+    top: -190px;
+    left: 300px;
+  }
+}
+.pit {
+  position: relative;
+  top: 50px;
+  left: 400px;
 }
 
 .men {
@@ -18,27 +37,64 @@ img {
   background: url(img/1.png) no-repeat center center/cover;
   left: 620px;
   top: -120px;
-  animation: men 5s infinite;
+  animation: men 2s infinite ease-in;
 }
 
 @keyframes men {
   25% {
-    top: 150px;
-    transform: rotate(25deg);
+    top: -10px;
+    transform: rotate(70deg);
   }
   50% {
-    top: 250px;
+    top: 150px;
     background: url(img/2.png) no-repeat center center/cover;
-    transform: rotate(45deg);
+    transform: rotate(90deg);
   }
   75% {
-    top: 350px;
+    top: 250px;
     background: url(img/3.png) no-repeat center center/cover;
-    transform: rotate(75deg);
+    transform: rotate(130deg);
+    transform: scaleX(-1);
   }
   100% {
-    top: 500px;
+    top: 350px;
     background: url(img/4.png) no-repeat center center/cover;
-    transform: rotate(-25deg);
+    transform: rotate(100deg);
+    transform: scaleX(-1);
+  }
+}
+.Balloon {
+  width: 50px;
+  height: 50px;
+  position: relative;
+  top: -225px;
+  left: 460px;
+  animation: Balloon 7s infinite ease-in-out;
+}
+
+@keyframes Balloon {
+  25% {
+    top: -325px;
+    left: 560px;
+    width: 50px;
+    height: 50px;
+  }
+  50% {
+    width: 100px;
+    height: 100px;
+    left: 460px;
+    top: -425px;
+  }
+  75% {
+    left: 560px;
+    top: -525px;
+    width: 150px;
+    height: 150px;
+  }
+  100% {
+    width: 200px;
+    height: 200px;
+    left: 460px;
+    top: -725px;
   }
 }
