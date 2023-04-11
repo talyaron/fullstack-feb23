@@ -1,8 +1,9 @@
+$animation-duration: 10s;
 @mixin animation{
-    animation-duration: 10s;
+    animation-duration: $animation-duration;
     animation-iteration-count: infinite;
     animation-direction: normal;
-    animation-timing-function: ease-in-out;
+    animation-timing-function: cubic-bezier(.62,1.11,.8,.12);
     animation-fill-mode: forwards;
 }
 @mixin baloon($color){
@@ -29,9 +30,17 @@
 
 body{
     align-items: center;
-    background-color: rgb(218, 199, 177);
+
     overflow: hidden;
-}
+    }
+#myVideo {
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        min-width: 100%;
+        min-height: 100%;
+    
+      }
 
 .container{
     width: 90%;
