@@ -99,4 +99,6 @@ typings/
 
 #notebook
 *.onetoc2/
+*.onetoc2/
 *.onetoc2
+02-SCSS/10-animations/example/dist/style.css

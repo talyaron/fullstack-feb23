@@ -1,0 +1,160 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.eyes {
+  display: flex;
+}
+
+.packmen {
+  width: fit-content;
+  position: relative;
+  animation-name: example;
+  animation-duration: 8s;
+  animation-direction: alternate;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+
+.head {
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  background-color: yellow;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  animation-name: colors;
+  animation-duration: 8s;
+}
+
+.eye {
+  width: 15px;
+  height: 15px;
+  border-radius: 100%;
+  background-color: #080807;
+}
+
+.dots {
+  width: 15px;
+  height: 15px;
+  border-radius: 100%;
+  background-color: #070707;
+  animation-name: packmenEat1;
+  animation-duration: 4s;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+
+.mouth {
+  margin-top: 5px;
+  background-color: aqua;
+  width: 55px;
+  height: 15px;
+  border-radius: 100%;
+  animation-name: colors;
+  animation-duration: 8s;
+}
+
+.eat {
+  display: flex;
+  flex-direction: column;
+}
+
+.food {
+  display: flex;
+  justify-content: space-between;
+  width: 400px;
+  padding: 20px;
+  margin-left: 50%;
+}
+
+@keyframes packmenEat1 {
+  0% {
+    background-color: black;
+  }
+  100% {
+    background-color: white;
+  }
+}
+@keyframes example {
+  0% {
+    left: 0px;
+    top: 0px;
+  }
+  10% {
+    left: 400px;
+    top: 0px;
+  }
+  20% {
+    left: 400px;
+    top: 20px;
+  }
+  30% {
+    left: 0px;
+    top: 20px;
+  }
+  40% {
+    left: 0px;
+    top: 40px;
+    rotate: 360deg;
+  }
+  50% {
+    left: 400px;
+    top: 40px;
+  }
+  60% {
+    left: 400px;
+    top: 60px;
+  }
+  70% {
+    left: 0px;
+    top: 60px;
+  }
+  80% {
+    left: 0px;
+    top: 80px;
+  }
+  90% {
+    left: 400px;
+    top: 80px;
+  }
+  100% {
+    left: 400px;
+    top: 100px;
+  }
+}
+@keyframes colors {
+  10% {
+    background-color: blue;
+  }
+  20% {
+    background-color: aqua;
+  }
+  30% {
+    background-color: beige;
+  }
+  40% {
+    background-color: chocolate;
+  }
+  50% {
+    background-color: cadetblue;
+  }
+  60% {
+    background-color: coral;
+  }
+  70% {
+    background-color: #875f22;
+  }
+  80% {
+    background-color: darkslategray;
+  }
+  90% {
+    background-color: #0bb2b8;
+  }
+  100% {
+    background-color: aqua;
+  }
+}

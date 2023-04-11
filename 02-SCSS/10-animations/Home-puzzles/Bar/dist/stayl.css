@@ -1,0 +1,59 @@
+.wrapper {
+  background-color: #ceffea;
+  width: 100%;
+  height: 950px;
+  position: relative;
+}
+.wrapper__red {
+  background-color: rgba(255, 0, 0, 0);
+  border: none;
+  animation-name: redballoon;
+  position: relative;
+  animation-duration: 7s;
+  animation-iteration-count: infinite;
+}
+.wrapper__red img {
+  width: 200px;
+  height: 200px;
+}
+.wrapper__red:focus {
+  background-image: url(https://o.remove.bg/downloads/92db331b-bdf3-4e22-b5bb-8e612edca167/image-removebg-preview.png);
+}
+.wrapper__red:focus img {
+  opacity: 0;
+}
+.wrapper__blue {
+  background-color: rgba(255, 0, 0, 0);
+  border: none;
+  animation-name: blueballoon;
+  position: relative;
+  animation-duration: 8s;
+  animation-iteration-count: infinite;
+}
+.wrapper__blue img {
+  width: 200px;
+  height: 200px;
+}
+.wrapper__blue:focus {
+  background-image: url(https://o.remove.bg/downloads/be5e4c5d-6fc9-4015-bb5f-29fa78a737e8/image-removebg-preview.png);
+}
+.wrapper__blue:focus img {
+  opacity: 0;
+}
+
+@keyframes redballoon {
+  0% {
+    top: 1000px;
+  }
+  100% {
+    top: -200px;
+  }
+}
+@keyframes blueballoon {
+  0% {
+    top: 1000px;
+  }
+  100% {
+    top: -200px;
+  }
+}
