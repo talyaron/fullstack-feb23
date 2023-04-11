@@ -16,7 +16,21 @@ body {
 }
 
 
-@keyframes hexagon {}
+@keyframes hexagon {
+    0%{
+        top: 40%;
+        left: 70px;
+    }
+    10%{
+
+    }
+    20%{
+
+    }
+    30%{
+
+    }
+}
 
 @keyframes gost {
     from {

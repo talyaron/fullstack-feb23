@@ -6,10 +6,8 @@
     border-color: yellow transparent yellow yellow;
     border-radius: 50%;
     position: relative;
-    // left: -120%;
     top: 10px;
-    animation: pacmen 10s linear infinite ;
-    // animation: mouthTop 0.7s ease infinite;
+    animation: pacmen 10s linear 6;
     transform: rotate(40deg);
 
     .pakmeniris {
