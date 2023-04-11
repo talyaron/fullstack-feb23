@@ -61,17 +61,17 @@ body {
    box-shadow: 0 0 40px 9px white;
   animation-name: moon;
   animation-duration: 8s;
-  animation-iteration-count: infinite;
 }
 
 @keyframes moon {
-    0% {
-        top: 500px;
+0% {
+        transform: translateY(100%);
     }
-    100% {
-        bottom: 500px;
+    -100% {
+        transform: translateY(-100%);
     }
-}
+    }
+
 
 .forestbg {
     position: absolute;
@@ -84,7 +84,7 @@ body {
     width: 150px;
     height: 150px;
     position: absolute;
-    top: 100px;
+    top: 250px;
     transform:rotate(-10deg);
     animation-name: plane;
     animation-duration: 3s;
@@ -92,11 +92,22 @@ body {
 }
 
 @keyframes plane {
-    0% {
-        transform: translateX(-100%);
+    from {
+        transform: translatex(-100%);
     }
 
-    100% {
-        transform: translateX(1100%);
+    to {
+        transform: translatex(1100%);
         }
     } 
+
+    h1 {
+     color: white;
+     font-family: 'Tilt Prism', cursive;
+     text-align: center;
+     position: relative;
+     top: 00px;
+     z-index: 5;
+     text-shadow: 1px 6px 8px rgba(255,255,255,0.6);
+
+    }
