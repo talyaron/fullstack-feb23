@@ -1,7 +1,14 @@
 body {
   align-items: center;
-  background-color: #dac7b1;
   overflow: hidden;
+}
+
+#myVideo {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
 }
 
 .container {
@@ -26,7 +33,7 @@ body {
   animation-duration: 10s;
   animation-iteration-count: infinite;
   animation-direction: normal;
-  animation-timing-function: ease-in-out;
+  animation-timing-function: cubic-bezier(0.62, 1.11, 0.8, 0.12);
   animation-fill-mode: forwards;
 }
 .container__baloon1:hover {
@@ -64,7 +71,7 @@ body {
   animation-duration: 10s;
   animation-iteration-count: infinite;
   animation-direction: normal;
-  animation-timing-function: ease-in-out;
+  animation-timing-function: cubic-bezier(0.62, 1.11, 0.8, 0.12);
   animation-fill-mode: forwards;
 }
 .container__baloon2:hover {
@@ -102,7 +109,7 @@ body {
   animation-duration: 10s;
   animation-iteration-count: infinite;
   animation-direction: normal;
-  animation-timing-function: ease-in-out;
+  animation-timing-function: cubic-bezier(0.62, 1.11, 0.8, 0.12);
   animation-fill-mode: forwards;
 }
 .container__baloon3:hover {
@@ -140,7 +147,7 @@ body {
   animation-duration: 10s;
   animation-iteration-count: infinite;
   animation-direction: normal;
-  animation-timing-function: ease-in-out;
+  animation-timing-function: cubic-bezier(0.62, 1.11, 0.8, 0.12);
   animation-fill-mode: forwards;
 }
 .container__baloon4:hover {
@@ -178,7 +185,7 @@ body {
   animation-duration: 10s;
   animation-iteration-count: infinite;
   animation-direction: normal;
-  animation-timing-function: ease-in-out;
+  animation-timing-function: cubic-bezier(0.62, 1.11, 0.8, 0.12);
   animation-fill-mode: forwards;
 }
 .container__baloon5:hover {
@@ -216,7 +223,7 @@ body {
   animation-duration: 10s;
   animation-iteration-count: infinite;
   animation-direction: normal;
-  animation-timing-function: ease-in-out;
+  animation-timing-function: cubic-bezier(0.62, 1.11, 0.8, 0.12);
   animation-fill-mode: forwards;
 }
 .container__baloon5:hover {
@@ -254,7 +261,7 @@ body {
   animation-duration: 10s;
   animation-iteration-count: infinite;
   animation-direction: normal;
-  animation-timing-function: ease-in-out;
+  animation-timing-function: cubic-bezier(0.62, 1.11, 0.8, 0.12);
   animation-fill-mode: forwards;
 }
 .container__baloon6:hover {
@@ -292,7 +299,7 @@ body {
   animation-duration: 10s;
   animation-iteration-count: infinite;
   animation-direction: normal;
-  animation-timing-function: ease-in-out;
+  animation-timing-function: cubic-bezier(0.62, 1.11, 0.8, 0.12);
   animation-fill-mode: forwards;
 }
 .container__baloon7:hover {
@@ -330,7 +337,7 @@ body {
   animation-duration: 10s;
   animation-iteration-count: infinite;
   animation-direction: normal;
-  animation-timing-function: ease-in-out;
+  animation-timing-function: cubic-bezier(0.62, 1.11, 0.8, 0.12);
   animation-fill-mode: forwards;
 }
 .container__baloon8:hover {
