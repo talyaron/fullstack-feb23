@@ -13,11 +13,36 @@ body {
   width: 1540px;
   height: 680px;
   background-size: cover;
+  text-transform: capitalize;
 }
 .wrapper video {
   width: 100%;
   height: 100%;
   overflow: hidden;
+}
+.wrapper .title h1 {
+  block-size: auto;
+  writing-mode: horizontal-tb;
+  border: 0px solid;
+  width: 600px;
+  background-color: #b1aba4;
+  font-size: 85px;
+  height: 162px;
+  margin-top: 45px;
+  position: absolute;
+  font-size: 70px;
+  left: 470px;
+  top: 330px;
+  padding-top: 3px;
+  line-height: 68px;
+  text-align: center;
+  font-family: cursive;
+  color: #f8d79b;
+  text-shadow: #969695 1px 0 10px;
+}
+.wrapper .title span {
+  font-size: 20px;
+  color: #796e5a;
 }
 .wrapper__hugeballon--basket {
   width: 200px;
@@ -26,8 +51,7 @@ body {
   top: 455px;
   left: 735px;
 }
-.wrapper__hugeballon--airballon {
-  animation-name: top;
+.wrapper__hugeballon #image {
   width: 200px;
   height: 300px;
   top: 455px;
@@ -35,55 +59,66 @@ body {
   left: 735px;
   animation-timing-function: linear;
   animation-delay: 3s;
+  animation-duration: 4s;
   animation-direction: normal;
   animation-iteration-count: infinite;
+  animation-name: theballoon;
 }
-.wrapper__hugeballon__hotballon img {
+.wrapper__hugeballon #image:focus {
+  content: url("https://o.remove.bg/downloads/4b2c6be2-898e-4113-84b7-c8c456bffb61/1939969_10154752864595157_3520658885860107922_o-removebg-preview.png");
+}
+.wrapper__hotballon img {
   position: absolute;
   animation-duration: 3s;
   animation-timing-function: linear;
-  animation-delay: 3s;
+  animation-delay: 2s;
   animation-direction: normal;
   animation-iteration-count: infinite;
   width: 190px;
   height: 145px;
 }
-.wrapper__hugeballon__hotballon img:active {
+.wrapper__hotballon:active {
   width: 500px;
   animation: 1s 5s forwards;
 }
-.wrapper__hugeballon__hotballon--first {
+.wrapper__hotballon--first {
   animation-name: firstballon;
 }
-.wrapper__hugeballon__hotballon--second {
+.wrapper__hotballon--second {
   animation-name: secondballon;
 }
-.wrapper__hugeballon__hotballon--third {
+.wrapper__hotballon--third {
   animation-name: thirdballon;
 }
-.wrapper__hugeballon__hotballon--fourth {
+.wrapper__hotballon--fourth {
   animation-name: fourthballon;
 }
-.wrapper__hugeballon__hotballon--fifth {
+.wrapper__hotballon--fifth {
   animation-name: fifthballon;
 }
-.wrapper__hugeballon__hotballon--sixth {
+.wrapper__hotballon--sixth {
   animation-name: sixthballon;
 }
 
-@keyframes top {
+@keyframes theballoon {
   0% {
     top: 455px;
-    left: 735px;
+    left: 700px;
+    width: 260px;
+    height: 310px;
   }
   50% {
-    top: 440px;
+    top: 300px;
     left: 735px;
+    width: 320px;
+    height: 400px;
   }
   80% {
-    top: 430px;
+    top: 200px;
     left: 735px;
-    transform: rotate(10deg);
+    width: 320px;
+    height: 400px;
+    transform: rotate(5deg);
   }
   100% {
     top: 0px;
