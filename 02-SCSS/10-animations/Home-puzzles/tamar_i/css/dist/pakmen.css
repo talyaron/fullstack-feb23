@@ -7,7 +7,7 @@
   border-radius: 50%;
   position: relative;
   top: 10px;
-  animation: pacmen 10s linear 6;
+  animation: pacmen 15s linear infinite;
   transform: rotate(40deg);
 }
 .pakmen .pakmeniris {

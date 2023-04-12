@@ -7,7 +7,7 @@
   border-radius: 50%;
   position: relative;
   top: 10px;
-  animation: pacmen 10s linear 6;
+  animation: pacmen 15s linear infinite;
   transform: rotate(40deg);
 }
 .pakmen .pakmeniris {
@@ -43,7 +43,7 @@
   width: 120px;
   left: 885px;
   top: -9px;
-  animation: gost 4s linear alternate forwards;
+  animation: gost 4s linear infinite alternate;
 }
 
 .eyes {
@@ -109,36 +109,72 @@
 
 .hexagon {
   height: 80px;
-  width: 45px;
-  background: purple;
+  width: 84px;
+  clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+  background-color: black;
   position: absolute;
-  top: 40%;
-  left: 70px;
   transform: translate(-50%, -50%);
   display: inline-block;
-  animation-name: hexagon;
-  animation-duration: 4s;
-  animation-direction: alternate;
-  animation-timing-function: linear;
-  animation-fill-mode: forwards;
-  animation-delay: 5s;
 }
 
-.hexagon::before,
-.hexagon::after {
-  content: "";
-  width: 100%;
-  height: 100%;
-  background: purple;
-  position: absolute;
+.one {
+  top: 40%;
+  left: 70px;
+  animation: hexagoneFlesh 0.5s linear 1;
 }
 
-.hexagon::before {
-  transform: rotate(60deg);
+.two {
+  top: 46%;
+  left: 151px;
+  animation: hexagoneFlesh 0.5s linear 0.1s 1;
 }
 
-.hexagon::after {
-  transform: rotate(-60deg);
+.three {
+  top: 40%;
+  left: 231px;
+  animation: hexagoneFlesh 0.5s linear 0.2s 1;
+}
+
+.fure {
+  top: 46%;
+  left: 317px;
+  animation: hexagoneFlesh 0.5s linear 0.3s 1;
+}
+
+.five {
+  top: 53%;
+  left: 394px;
+  animation: hexagoneFlesh 0.5s linear 0.4s 1;
+}
+
+.six {
+  top: 65%;
+  left: 394px;
+  animation: hexagoneFlesh 0.5s linear 0.5s 1;
+}
+
+.seven {
+  top: 71%;
+  left: 317px;
+  animation: hexagoneFlesh 0.5s linear 0.6s 1;
+}
+
+.eghit {
+  top: 65%;
+  left: 240px;
+  animation: hexagoneFlesh 0.5s linear 0.7s 1;
+}
+
+.nine {
+  top: 53%;
+  left: 238px;
+  animation: hexagoneFlesh 0.5s linear 0.8s 1;
+}
+
+.ten {
+  top: 59%;
+  left: 318px;
+  animation: hexagoneFlesh 0.5s linear 0.9s 1;
 }
 
 * {
@@ -154,10 +190,12 @@ body {
   background-color: red;
 }
 
-@keyframes hexagon {
+@keyframes hexagoneFlesh {
   0% {
-    top: 40%;
-    left: 70px;
+    background: black;
+  }
+  100% {
+    background: purple;
   }
 }
 @keyframes gost {
