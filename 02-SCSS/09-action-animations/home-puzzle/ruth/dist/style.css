@@ -15,10 +15,15 @@ img {
   position: absolute;
   top: 6rem;
   left: 1rem;
-  width: 20rem;
-  height: 15rem;
+  width: 26rem;
+  height: 20rem;
+}
+img:hover {
+  cursor: auto;
 }
 
 .gallery__box:hover {
   z-index: 8;
+  background-color: #f4f4f4;
+  cursor: pointer;
 }

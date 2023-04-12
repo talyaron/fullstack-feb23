@@ -1,0 +1,82 @@
+@import "pakmen";
+@import "gosts";
+@import "backgraound";
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #000;
+}
+
+.red {
+    background-color: red;
+}
+
+
+@keyframes hexagon {
+    0%{
+        top: 40%;
+        left: 70px;
+    }
+    10%{
+
+    }
+    20%{
+
+    }
+    30%{
+
+    }
+}
+
+@keyframes gost {
+    from {
+        top: -9px;
+    }
+
+    to {
+        top: 573px;
+    }
+}
+
+@keyframes gost-iris {
+    from {
+        top: 7px;
+    }
+    to {
+        top: 32px;
+    }
+}
+
+@keyframes blinky{
+    50%{
+        background: rgb(105, 253, 255);
+    }
+}
+
+@keyframes pacmen {
+    from {
+        left: -200%;
+
+    }
+
+    to {
+        left: 100%;
+
+    }
+}
+
+@keyframes mouthTop {
+    50% {
+        transform: rotate(45deg);
+    }
+}
+
+@keyframes mouthBottom {
+    50% {
+        transform: rotate(-90deg);
+    }
+}

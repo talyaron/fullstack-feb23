@@ -1,0 +1,140 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+$width: 200px;
+$height: 200px;
+
+.wrapper {
+    background-color: rgb(206, 255, 234);
+    // width: 100%;
+    height: 100vh;
+    position: relative;
+    text-align: center;
+    background-size: cover;
+
+
+    &__red {
+        border: none;
+        animation-name: redballoon;
+        position: relative;
+        animation-duration: 7s;
+        animation-iteration-count: infinite;
+        background-color: rgba(255, 0, 0, 0);
+
+        img {
+            width: $width;
+            height: $height;
+        }
+
+
+        &:hover {
+            cursor: url(https://cur.cursors-4u.net/mechanics/mec-2/mec110.cur), auto
+        }
+
+
+        &:focus {
+            background-image: url(https://o.remove.bg/downloads/982a3ec6-dcb9-4f5f-ac40-161f9ac7b3bd/image-removebg-preview.png);
+            background-size: cover;
+            border-radius: 40%;
+            animation-name: redconfetti;
+            animation-duration: 5s;
+            animation-iteration-count: 1;
+            position: relative;
+            animation-fill-mode: forwards;
+
+            img {
+                opacity: 0;
+            }
+        }
+
+    }
+
+
+    &__blue {
+        border: none;
+        animation-name: blueballoon;
+        position: relative;
+        animation-duration: 8s;
+        animation-iteration-count: infinite;
+        background-color: rgba(255, 0, 0, 0);
+
+        img {
+            width: $width;
+            height: $height;
+        }
+
+        &:hover {
+            cursor: url(https://cur.cursors-4u.net/mechanics/mec-2/mec110.cur), auto
+        }
+
+        &:focus {
+            background-image: url(https://o.remove.bg/downloads/2f4b58aa-8f2d-4219-86ab-d75d8ad955ca/image-removebg-preview.png);
+            background-size: cover;
+            border-radius: 50%;
+            animation-name: blueconfetti;
+            animation-duration: 5s;
+            animation-iteration-count: 1;
+            position: relative;
+           animation-fill-mode: forwards;
+
+            img {
+                opacity: 0;
+            }
+        }
+    }
+}
+
+@keyframes redballoon {
+
+    from {
+        top: 110vh;
+    }
+
+    to {
+        top: -20vh;
+    }
+}
+
+@keyframes blueballoon {
+
+    from {
+        top: 110vh;
+    }
+
+    to {
+        top: -20vh;
+    }
+
+}
+
+@keyframes redconfetti {
+
+    from {
+        top: 80vh;
+        width: 0px;
+        height: 0px;
+    }
+
+    to {
+        top: -20vh;
+        width: 250px;
+        height: 250px;
+    }
+}
+
+@keyframes blueconfetti {
+
+    from {
+        top: 80vh;
+        width: 0px;
+        height: 0px;
+    }
+
+    to {
+        top: -20vh;
+        width: 250px;
+        height: 250px;
+    }
+}

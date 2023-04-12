@@ -1,0 +1,63 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: url(https://static.nationalgeographic.co.uk/files/styles/image_3200/public/webbdeepfield.jpg?w=1600&h=900) center no-repeat;
+  background-size: cover;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.moon {
+  width: 20em;
+  height: 20em;
+  background: url(https://1721181113.rsc.cdn77.org/data/images/full/40533/china-released-a-detailed-map-of-the-moon-using-data-collected-over-the-past-15-years.jpg);
+  box-shadow: -2em -2em 2em #000 -0.5em -0.5em 1em #f0d08b;
+  position: relative;
+  animation: rotate 10s linear infinite;
+}
+
+.earth {
+  background: url(https://1.bp.blogspot.com/-UUXaK5GCj-k/UcsKJRMgkVI/AAAAAAAACfM/sePP_H08JTQ/s1600/1.jpg);
+  width: 6em;
+  height: 6em;
+  position: absolute;
+  left: -11em;
+  top: 50%;
+  transform: translateY(-50%);
+  animation: rotate 5s linear infinite, orbit 10s infinite ease-in-out;
+  z-index: 1;
+}
+
+.moon,
+.earth {
+  border-radius: 50%;
+  background-repeat: repeat;
+  background-size: 200% 100%;
+}
+
+@keyframes rotate {
+  to {
+    background-position: -200px 0;
+  }
+}
+@keyframes orbit {
+  49% {
+    z-index: 1;
+  }
+  50% {
+    left: 25em;
+    z-index: -1;
+  }
+  99% {
+    z-index: -1;
+  }
+  100% {
+    left: -11em;
+    z-index: 1;
+  }
+}

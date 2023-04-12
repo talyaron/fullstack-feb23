@@ -1,0 +1,33 @@
+.hexagon{
+    height: 80px;
+    width: 45px;
+    background: purple;
+    position: absolute;
+    top: 40%;
+    left: 70px;
+    transform: translate(-50%,-50%);
+    display: inline-block;
+    animation-name: hexagon;
+    animation-duration: 4s;
+    animation-direction: alternate;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+    animation-delay: 5s;
+}
+
+.hexagon::before,
+.hexagon::after{
+    content: '';
+    width: 100%;
+    height: 100%;
+    background: purple;
+    position: absolute;    
+}
+
+.hexagon::before{
+    transform: rotate(60deg);
+}
+
+.hexagon::after{
+    transform: rotate(-60deg);
+}
