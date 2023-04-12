@@ -16,6 +16,8 @@ $height: 200px;
 
     audio {
         position: absolute;
+        top: 0px;
+        right: 0px;
     }
 
 
@@ -32,14 +34,12 @@ $height: 200px;
             height: $height;
         }
 
-
         &:hover {
             cursor: url(https://cur.cursors-4u.net/mechanics/mec-2/mec110.cur), auto
         }
 
-
         &:focus {
-            background-image: url(https://o.remove.bg/downloads/982a3ec6-dcb9-4f5f-ac40-161f9ac7b3bd/image-removebg-preview.png);
+            background-image: url(./img/redconfetti.png);
             background-size: cover;
             border-radius: 40%;
             animation-name: redconfetti;
@@ -47,8 +47,6 @@ $height: 200px;
             animation-iteration-count: 1;
             position: relative;
             animation-fill-mode: forwards;
-            
-        
 
             img {
                 opacity: 0;
@@ -76,7 +74,7 @@ $height: 200px;
         }
 
         &:focus {
-            background-image: url(https://o.remove.bg/downloads/2f4b58aa-8f2d-4219-86ab-d75d8ad955ca/image-removebg-preview.png);
+            background-image: url(./img/blueconfetti.png);
             background-size: cover;
             border-radius: 50%;
             animation-name: blueconfetti;
@@ -92,6 +90,7 @@ $height: 200px;
     }
 }
 
+
 @keyframes redballoon {
 
     from {
@@ -99,7 +98,7 @@ $height: 200px;
     }
 
     to {
-        top: -20vh;
+        top: -25vh;
     }
 }
 
@@ -110,10 +109,11 @@ $height: 200px;
     }
 
     to {
-        top: -20vh;
+        top: -25vh;
     }
 
 }
+
 
 @keyframes redconfetti {
 
@@ -124,7 +124,7 @@ $height: 200px;
     }
 
     to {
-        top: -20vh;
+        top: -30vh;
         width: 250px;
         height: 250px;
     }
@@ -139,7 +139,7 @@ $height: 200px;
     }
 
     to {
-        top: -20vh;
+        top: -30vh;
         width: 250px;
         height: 250px;
     }
