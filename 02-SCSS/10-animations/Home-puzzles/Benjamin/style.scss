@@ -16,7 +16,7 @@ $animation-duration: 10s;
     cursor: pointer;
 }
 @mixin hover{
-    transition: scale 0.5s ease-in-out;
+    transition: scale 1s ease-in-out;
     transition: background-color 50ms ease-in;
     transition: border 50ms ease-in;
     &:hover{
@@ -42,6 +42,31 @@ body{
     
       }
 
+#header{
+    position: absolute;
+    font-size: 60px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    left: 3vw;
+    top: 1vh;
+    text-shadow: 2px 2px rgb(202, 111, 111);
+   
+    animation-name: color;
+    animation-duration: 8s;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+    @keyframes color {
+        from{
+            color: rgb(219, 132, 132);
+
+        }
+        to{
+            color: yellow;
+
+        }
+        
+    }
+}
+
 .container{
     width: 90%;
     height: 90vh;
@@ -58,6 +83,7 @@ body{
         left: 6px;
         animation-name: redb;
         @include animation;
+        
 
         @keyframes redb{
             from{
