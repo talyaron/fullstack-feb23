@@ -59,13 +59,13 @@ body {
 }
 
 .cloud:nth-child(3) {
-  top: -530px;
-  left: 200px;
+  top: -440px;
+  left: 210px;
 }
 
 .cloud:nth-child(4) {
   top: -850px;
-  right: 35%;
+  right: 210px;
   transform: scale(0.8);
 }
 
