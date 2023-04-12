@@ -1,59 +1,114 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
 .wrapper {
   background-color: #ceffea;
-  width: 100%;
-  height: 950px;
+  height: 100vh;
   position: relative;
+  text-align: center;
+  background-size: cover;
+}
+.wrapper audio {
+  position: absolute;
+  top: 0px;
+  right: 0px;
 }
 .wrapper__red {
-  background-color: rgba(255, 0, 0, 0);
   border: none;
   animation-name: redballoon;
   position: relative;
   animation-duration: 7s;
   animation-iteration-count: infinite;
+  background-color: rgba(255, 0, 0, 0);
 }
 .wrapper__red img {
   width: 200px;
   height: 200px;
 }
+.wrapper__red:hover {
+  cursor: url(https://cur.cursors-4u.net/mechanics/mec-2/mec110.cur), auto;
+}
 .wrapper__red:focus {
-  background-image: url(https://o.remove.bg/downloads/92db331b-bdf3-4e22-b5bb-8e612edca167/image-removebg-preview.png);
+  background-image: url(./img/redconfetti.png);
+  background-size: cover;
+  border-radius: 40%;
+  animation-name: redconfetti;
+  animation-duration: 5s;
+  animation-iteration-count: 1;
+  position: relative;
+  animation-fill-mode: forwards;
 }
 .wrapper__red:focus img {
   opacity: 0;
 }
 .wrapper__blue {
-  background-color: rgba(255, 0, 0, 0);
   border: none;
   animation-name: blueballoon;
   position: relative;
   animation-duration: 8s;
   animation-iteration-count: infinite;
+  background-color: rgba(255, 0, 0, 0);
 }
 .wrapper__blue img {
   width: 200px;
   height: 200px;
 }
+.wrapper__blue:hover {
+  cursor: url(https://cur.cursors-4u.net/mechanics/mec-2/mec110.cur), auto;
+}
 .wrapper__blue:focus {
-  background-image: url(https://o.remove.bg/downloads/be5e4c5d-6fc9-4015-bb5f-29fa78a737e8/image-removebg-preview.png);
+  background-image: url(./img/blueconfetti.png);
+  background-size: cover;
+  border-radius: 50%;
+  animation-name: blueconfetti;
+  animation-duration: 5s;
+  animation-iteration-count: 1;
+  position: relative;
+  animation-fill-mode: forwards;
 }
 .wrapper__blue:focus img {
   opacity: 0;
 }
 
 @keyframes redballoon {
-  0% {
-    top: 1000px;
+  from {
+    top: 110vh;
   }
-  100% {
-    top: -200px;
+  to {
+    top: -25vh;
   }
 }
 @keyframes blueballoon {
-  0% {
-    top: 1000px;
+  from {
+    top: 110vh;
   }
-  100% {
-    top: -200px;
+  to {
+    top: -25vh;
+  }
+}
+@keyframes redconfetti {
+  from {
+    top: 80vh;
+    width: 0px;
+    height: 0px;
+  }
+  to {
+    top: -30vh;
+    width: 250px;
+    height: 250px;
+  }
+}
+@keyframes blueconfetti {
+  from {
+    top: 80vh;
+    width: 0px;
+    height: 0px;
+  }
+  to {
+    top: -30vh;
+    width: 250px;
+    height: 250px;
   }
 }

@@ -19,15 +19,26 @@ body {
   height: 100%;
   overflow: hidden;
 }
-.wrapper__hugeballon img {
+.wrapper__hugeballon--basket {
   width: 200px;
   position: absolute;
   height: 300px;
   top: 455px;
   left: 735px;
-  animation-name: bigballon;
 }
-.wrapper__hotballon img {
+.wrapper__hugeballon--airballon {
+  animation-name: top;
+  width: 200px;
+  height: 300px;
+  top: 455px;
+  position: absolute;
+  left: 735px;
+  animation-timing-function: linear;
+  animation-delay: 3s;
+  animation-direction: normal;
+  animation-iteration-count: infinite;
+}
+.wrapper__hugeballon__hotballon img {
   position: absolute;
   animation-duration: 3s;
   animation-timing-function: linear;
@@ -37,29 +48,49 @@ body {
   width: 190px;
   height: 145px;
 }
-.wrapper__hotballon img:active {
+.wrapper__hugeballon__hotballon img:active {
   width: 500px;
   animation: 1s 5s forwards;
 }
-.wrapper__hotballon--first {
+.wrapper__hugeballon__hotballon--first {
   animation-name: firstballon;
 }
-.wrapper__hotballon--second {
+.wrapper__hugeballon__hotballon--second {
   animation-name: secondballon;
 }
-.wrapper__hotballon--third {
+.wrapper__hugeballon__hotballon--third {
   animation-name: thirdballon;
 }
-.wrapper__hotballon--fourth {
+.wrapper__hugeballon__hotballon--fourth {
   animation-name: fourthballon;
 }
-.wrapper__hotballon--fifth {
+.wrapper__hugeballon__hotballon--fifth {
   animation-name: fifthballon;
 }
-.wrapper__hotballon--sixth {
+.wrapper__hugeballon__hotballon--sixth {
   animation-name: sixthballon;
 }
 
+@keyframes top {
+  0% {
+    top: 455px;
+    left: 735px;
+  }
+  50% {
+    top: 440px;
+    left: 735px;
+  }
+  80% {
+    top: 430px;
+    left: 735px;
+    transform: rotate(10deg);
+  }
+  100% {
+    top: 0px;
+    left: 735px;
+    transform: rotate(-10deg);
+  }
+}
 @keyframes firstballon {
   0% {
     left: 10px;
@@ -176,26 +207,6 @@ body {
   }
   100% {
     left: 1180px;
-    top: 0px;
-    transform: rotate(-10deg);
-  }
-}
-@keyframes bigballon {
-  0% {
-    left: 10px;
-    top: 600px;
-  }
-  50% {
-    left: 20px;
-    top: 350px;
-  }
-  80% {
-    left: 30px;
-    top: 150px;
-    transform: rotate(10deg);
-  }
-  100% {
-    left: 40px;
     top: 0px;
     transform: rotate(-10deg);
   }
