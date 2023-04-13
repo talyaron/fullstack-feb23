@@ -1,68 +1,67 @@
-*{
+* {
     margin: 0;
     padding: 0;
 }
 
-body{
+body {
     background: url(https://cdn.pixabay.com/photo/2017/08/30/01/05/milky-way-2695569__480.jpg);
     background-size: cover;
     width: 100%;
 }
 
-.box{
+.box {
     margin: 0 auto;
     width: 120vh;
-    height: 120vh;
+    height: 100vh;
     position: relative;
 
 }
 
-.sun{
+.sun {
     position: absolute;
     width: 40vh;
     height: 40vh;
     background: url(https://www.solarsystemscope.com/textures/download/8k_sun.jpg);
     background-size: cover;
     top: 30%;
-    left: 30%;
+    left: 35%;
     border-radius: 50%;
-    animation: 
-    rotate 15s linear infinite,
-    sun 5s infinite alternate ease-in-out;
+    animation:
+        rotate 15s linear infinite,
+        sun 5s infinite alternate ease-in-out;
     background-repeat: repeat;
     background-size: 200% 100%;
 
 }
 
-.moon{
+.moon {
+    background: url(https://1.bp.blogspot.com/-UUXaK5GCj-k/UcsKJRMgkVI/AAAAAAAACfM/sePP_H08JTQ/s1600/1.jpg);
     position: absolute;
     width: 20vh;
     height: 20vh;
-    background: url(https://1721181113.rsc.cdn77.org/data/images/full/40533/china-released-a-detailed-map-of-the-moon-using-data-collected-over-the-past-15-years.jpg);
     background-size: cover;
     border-radius: 50%;
     top: 30%;
     left: -62%;
     animation: rotate 15s linear infinite,
-    moon 10s infinite ease-in-out ;
+        moon 10s infinite ease-in-out;
     background-repeat: repeat;
     background-size: 200% 100%;
-    }
+}
 
 
-.earth{
+.earth {
+    background: url(https://1721181113.rsc.cdn77.org/data/images/full/40533/china-released-a-detailed-map-of-the-moon-using-data-collected-over-the-past-15-years.jpg);
     position: absolute;
     width: 10vh;
     height: 10vh;
-    background: url(https://1.bp.blogspot.com/-UUXaK5GCj-k/UcsKJRMgkVI/AAAAAAAACfM/sePP_H08JTQ/s1600/1.jpg);
     background-size: cover;
     border-radius: 50%;
     top: 28%;
     left: -61%;
-    animation: rotate 15s linear
-    ,earth 10s infinite ease-in-out;
+    animation: rotate 15s linear, earth 10s infinite ease-in-out;
     background-repeat: repeat;
-    background-size: 200% 100%;    
+    background-size: 200% 100%;
 }
 
 @keyframes rotate {
@@ -71,7 +70,7 @@ body{
     }
 }
 
-@keyframes earth{
+@keyframes earth {
 
     49% {
         z-index: 1;
@@ -92,8 +91,8 @@ body{
     }
 }
 
-@keyframes moon{
-  
+@keyframes moon {
+
     49% {
         z-index: 1;
     }
@@ -113,10 +112,8 @@ body{
     }
 }
 
-@keyframes sun{
-    0%{
+@keyframes sun {
+    0% {
         background-position: 150px 0;
     }
 }
-
-
