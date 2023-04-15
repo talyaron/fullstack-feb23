@@ -17,7 +17,7 @@
   color: yellow;
   box-shadow: inset 200px 0 0 0 yellow;
   animation-name: changeColor;
-  animation-duration: 0.111s;
+  animation-duration: 10s;
   animation-iteration-count: infinite;
   animation-direction: alternate;
 }
