@@ -27,6 +27,43 @@ $animation-duration: 10s;
     }
   
 }
+@mixin ball($delay){
+    animation-name: ball;
+        animation-duration: 2s;
+        animation-delay: $delay;
+        animation-fill-mode: forwards;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
+        @keyframes ball {
+          0%{
+            background-color: red;
+
+          }
+          15%{
+            background-color: rgb(219, 191, 32);
+          }
+          30%{
+            background-color: rgb(22, 37, 255);
+          }
+          45%{
+            background-color: rgb(218, 8, 218);
+          }
+          60%{
+            background-color: rgb(12, 204, 194);
+          }
+          75%{
+            background-color: rgb(22, 161, 80);
+          }
+          90%{
+            background-color: rgb(73, 133, 4);
+          }
+          100%{
+            background-color: rgb(243, 196, 255);
+          }
+       
+          }
+        }
+        
 
 body{
     align-items: center;
@@ -41,6 +78,114 @@ body{
         min-height: 100%;
     
       }
+#start{
+    color: rgb(17, 10, 10);
+    font-size: 200px;
+    position: absolute;
+    left: 32vw;
+    top: 20vh;
+    opacity: 0;
+    animation-name: name;
+    animation-duration: 4s;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in-out;
+
+    @keyframes name {
+        0%{
+            opacity: 0;
+            color: aqua;
+        }
+        20%{
+            opacity: 1;
+            color: red;
+        }
+        40%{
+            color: rgb(0, 255, 106);
+        }
+        60%{
+            color: rgb(194, 15, 164);
+        }
+        100%{
+            opacity: 0;
+            color: yellow;
+        }
+    }
+
+
+
+
+
+}
+.parent{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    left: 3vw;
+    top: 3vh;
+    width: 11vw;
+
+    &__first{
+        background-color:red;
+        border-radius: 50%;
+        width: 10px;
+        height: 10px;
+        @include ball(0);
+        
+    }
+    &__second{
+        background-color:red;
+        border-radius: 50%;
+        width: 10px;
+        height: 10px;
+        @include ball(50ms);
+    }
+    &__third{
+        background-color:red;
+        border-radius: 50%;
+        width: 10px;
+        height: 10px;
+        @include ball(100ms);
+    }
+    &__firth{
+        background-color:red;
+        border-radius: 50%;
+        width: 10px;
+        height: 10px;
+        @include ball(150ms);
+    }
+    &__fifth{
+        background-color:red;
+        border-radius: 50%;
+        width: 10px;
+        height: 10px;
+        @include ball(200ms);
+    }
+    &__six{
+        background-color:red;
+        border-radius: 50%;
+        width: 10px;
+        height: 10px;
+        @include ball(250ms);
+    }
+    &__seven{
+        background-color:red;
+        border-radius: 50%;
+        width: 10px;
+        height: 10px;
+        @include ball(300ms);
+    }
+    &__eight{
+        background-color:red;
+        border-radius: 50%;
+        width: 10px;
+        height: 10px;
+        @include ball(350ms);
+    }
+
+
+}
 
 #header{
     position: absolute;
@@ -83,7 +228,6 @@ body{
         left: 6px;
         animation-name: redb;
         @include animation;
-        
 
         @keyframes redb{
             from{
@@ -279,6 +423,52 @@ body{
              to{
                  bottom: 105vh;
                  left: 1420px;
+                 rotate: 360deg;
+             }
+         }
+     }
+
+     &__baloon9{
+        @include hover;
+         @include baloon(rgb(255, 244, 244));
+         bottom: -100px;
+         left: 1400px;
+         animation-name: whiteb;
+         @include animation;
+ 
+         @keyframes whiteb{
+             from{
+                 bottom: -100px;
+                 left: 1550px;
+                 rotate: 0deg;
+ 
+             }
+             to{
+                 bottom: 105vh;
+                 left: 1570px;
+                 rotate: 360deg;
+             }
+         }
+     }
+
+     &__baloon10{
+        @include hover;
+         @include baloon(rgb(236, 131, 201));
+         bottom: -100px;
+         left: 1400px;
+         animation-name: gumb;
+         @include animation;
+ 
+         @keyframes gumb{
+             from{
+                 bottom: -100px;
+                 left: 1700px;
+                 rotate: 0deg;
+ 
+             }
+             to{
+                 bottom: 105vh;
+                 left: 1720px;
                  rotate: 360deg;
              }
          }
