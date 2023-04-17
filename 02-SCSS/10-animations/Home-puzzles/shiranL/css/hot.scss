@@ -45,41 +45,33 @@ p {
         animation-duration:3s;
         animation-timing-function: linear;
         animation-fill-mode: forwards;
-        animation-direction: alternate;
-
 }
 .pir{
-    color:red;
+      
         height: 70px;
         top: 390px;
         right: 850px;
         width:400px;
-        
         z-index: -1;
+
         animation-name: pir;
         animation-duration:6s;
-        animation-timing-function: linear;
         animation-fill-mode: forwards;
-        animation-direction: alternate;
+        
 
 }
 .H{
-   
-    left:500px;
-    animation-name: Hmove;
+        left:500px;
+        animation-name: Hmove;
         animation-duration:3s;
-        //animation-timing-function: linear;
         animation-fill-mode: forwards;
-        animation-direction: alternate;
-       
 }
 .O{
     left:500px;
     animation-name: Omove;
         animation-duration:3s;
-        animation-timing-function: linear;
         animation-fill-mode: forwards;
-        animation-direction: alternate;
+       
        
 }
 .T{
@@ -88,9 +80,8 @@ p {
     bottom: 375px;
     animation-name: Tmove;
         animation-duration:3s;
-        animation-timing-function: linear;
         animation-fill-mode: forwards;
-        animation-direction: alternate;
+     
     
 }
 
