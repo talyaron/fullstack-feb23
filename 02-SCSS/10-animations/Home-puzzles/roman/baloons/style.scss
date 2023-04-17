@@ -1,0 +1,186 @@
+@keyframes move {
+    0% {
+        // background-color: red;
+    }
+
+    100% {
+        top: 40px;
+    }
+}
+
+.wrapper {
+    width: 500px;
+    margin: auto;
+    position: relative;
+}
+
+.balloons {
+    position: relative;
+    top: 300px;
+    // border: 2px solid green;
+    height: 200px;
+    width: 200px;
+    animation: move 5s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+
+
+
+    .balloon {
+        position: absolute;
+        // background-color: cyan!important;
+        // border: 2px solid red;
+        width: 100px;
+        height: 200px;
+
+
+        span {
+            z-index: 1;
+            display: none;
+            width: 100px;
+            height: 100%;
+            background-image: url(../dist/boom.png);
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+
+
+
+        }
+    }
+}
+
+.balloon.item-1 {
+
+    background: url(../dist/baloons.png) 0 0;
+    transform: rotate(20deg);
+    bottom: -60px;
+    right: 0;
+    z-index: 10;
+
+
+}
+
+.balloon.item-2 {
+
+
+    background: url(../dist/baloons.png) 483px 0;
+    transform: rotate(10deg);
+    left: 16px;
+    bottom: -50px;
+    
+
+}
+
+.balloon.item-3 {
+
+    background: url(../dist/baloons.png) 675px 0;
+    transform: rotate(351deg);
+    right: 154px;
+    bottom: -50px;
+    z-index: 8;
+
+
+
+}
+
+.balloon.item-4 {
+
+    background: url(../dist/baloons.png) 199px 0;
+    transform: rotate(327deg);
+    right: 200px;
+    bottom: -70px;
+    z-index: 7;
+
+
+
+}
+
+.balloon.item-5 {
+
+
+    background: url(../dist/baloons.png) 483px 0;
+    transform: rotate(333deg);
+    right: 250px;
+    bottom: -60px;
+    z-index: 6;
+
+
+}
+
+.balloon.item-6 {
+
+
+    background: url(../dist/baloons.png) 583px 0;
+    transform: rotate(358deg);
+    right: 130px;
+    top: 20px;
+    z-index: 5;
+
+}
+
+.balloon.item-7 {
+
+
+    background: url(../dist/baloons.png) 295px 0;
+    transform: rotate(347deg);
+    right: 196px;
+    bottom: 20px;
+    z-index: 4;
+
+}
+
+.balloon.item-8 {
+
+
+    background: url(../dist/baloons.png) 391px 0;
+    transform: rotate(347deg);
+    right: 242px;
+    top: 20px;
+    z-index: 3;
+
+}
+
+.balloon.item-9 {
+
+
+    background: url(../dist/baloons.png) 100px 0;
+    transform: rotate(10deg);
+    right: 85px;
+    bottom: 20px;
+    z-index: 2;
+
+}
+
+.balloon.item-10 {
+
+
+    background: url(../dist/baloons.png) 196px 0;
+    transform: rotate(20deg);
+    right: 20px;
+    bottom: 20px;
+    z-index: 1;
+
+}
+
+.balloon:hover {
+    cursor: pointer;
+}
+
+.balloon:active {
+    background: none;
+    // z-index: 100;
+    // transition: opacity 1s; 
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 1s, opacity 2s ease-out;
+
+    span {
+        display: block;
+        z-index: 100;
+        transform: scale(2);
+        opacity: 1;
+        visibility: visible;
+    }
+}
