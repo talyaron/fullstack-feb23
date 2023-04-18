@@ -1,0 +1,31 @@
+.wapper {
+  width: 400px;
+  height: 800px;
+  border-radius: 10px;
+  border: 1px solid black;
+  margin: auto;
+  position: relative;
+}
+
+.images {
+  margin-top: 10px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 10px;
+}
+.images__item img {
+  width: 240px;
+  height: 140px;
+  border-radius: 10px;
+}
+.images__item--maxSize img {
+  width: 390px;
+}
+.images__item--minSize img {
+  width: 140px;
+}
