@@ -1,0 +1,16 @@
+body {
+  display: flex;
+  gap: 5px;
+}
+@media only screen and (max-width: 600px) {
+  body {
+    flex-direction: column;
+  }
+}
+
+.box {
+  width: 100px;
+  height: 100px;
+  background-color: blue;
+  flex: 1;
+}
