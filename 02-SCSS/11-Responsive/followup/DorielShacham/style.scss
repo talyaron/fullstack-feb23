@@ -25,8 +25,10 @@ body{
         width: 100px;
         height: 150px;
         display: flex;
+        transition: 0.5s ease-in-out;
         
         .box{
+            transition: 0.5s ;
             flex-direction: column;
             background-color: black;
             
