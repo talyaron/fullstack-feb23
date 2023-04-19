@@ -8,6 +8,7 @@
 
 body {
   height: 100vh;
+<<<<<<< Updated upstream
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -21,15 +22,30 @@ body {
     justify-content: center;
     align-items: center;
 
+=======
+
+  .header {
+    background-color: white;
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.098);
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+>>>>>>> Stashed changes
     &__ctg {
       ul {
         display: flex;
         list-style-type: none;
+<<<<<<< Updated upstream
 
         li {
           padding: 26px 20px;
           transition: all 0.2s;
 
+=======
+        li {
+          padding: 26px 20px;
+>>>>>>> Stashed changes
           &:hover {
             background-color: rgba(0, 0, 0, 0.05);
             cursor: pointer;
@@ -41,6 +57,7 @@ body {
     &__Btns {
       display: flex;
       margin-right: 60px;
+<<<<<<< Updated upstream
 
       &__btn {
         padding: 0px 20px;
@@ -54,18 +71,35 @@ body {
           display: flex;
         }
 
+=======
+      &__btn {
+        padding: 0px 20px;
+        &:hover{
+            cursor: pointer;
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+        &--userEnter {
+          display: flex;
+        }
+>>>>>>> Stashed changes
         &--heartIcon {
           padding: 20px 10px;
           font-size: larger;
           font-weight: 50;
         }
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
         &--enter {
           padding: 18px 5px;
           font-size: 14px;
           margin-top: 5px;
         }
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
         &--userIcon {
           padding: 12px;
           margin: 10px 0px;
@@ -76,7 +110,10 @@ body {
           font-size: larger;
           background-color: rgba(0, 0, 0, 0.084);
         }
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
         &--addPost {
           all: unset;
           cursor: pointer;
@@ -87,8 +124,12 @@ body {
           border-radius: 30px;
           color: white;
           font-size: medium;
+<<<<<<< Updated upstream
 
           &:hover {
+=======
+          &:hover{
+>>>>>>> Stashed changes
             background-color: rgba(15, 202, 128);
           }
         }
@@ -96,6 +137,7 @@ body {
     }
   }
 
+<<<<<<< Updated upstream
   .wrapper {
     display: flex;
     flex-direction: column;
@@ -471,3 +513,23 @@ body {
 
   // evgeny
 }
+=======
+  .wrapper{
+    width: 100%;
+    
+    display: flex;
+    justify-content: center;
+  }
+
+  .recoForU {
+  }
+  // ruth
+
+  .ad2 {
+  }
+
+  .listTabs {
+  }
+}
+// evgeny
+>>>>>>> Stashed changes
