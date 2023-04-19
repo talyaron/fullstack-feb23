@@ -1,0 +1,26 @@
+.wrapper {
+    display: flex;
+    margin: auto;
+}
+
+.box {
+
+    width: 100px;
+    height: 50px;
+    margin: 2%;
+    background-color: rgb(108, 78, 108);
+    color: white;
+    text-align: center;
+    padding: 100px;
+    border: dashed 3px white;
+ 
+}
+
+  
+  @media only screen and (max-width: 600px) {
+    .wrapper {
+      flex-direction: column;
+    }
+  
+    
+  }
