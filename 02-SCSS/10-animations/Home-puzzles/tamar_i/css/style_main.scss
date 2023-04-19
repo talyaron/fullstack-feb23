@@ -15,20 +15,13 @@ body {
     background-color: red;
 }
 
-
-@keyframes hexagon {
+@keyframes hexagoneFlesh{
     0%{
-        top: 40%;
-        left: 70px;
+        background: black;
+        
     }
-    10%{
-
-    }
-    20%{
-
-    }
-    30%{
-
+    100%{
+        background: purple;
     }
 }
 
@@ -62,7 +55,6 @@ body {
         left: -200%;
 
     }
-
     to {
         left: 100%;
 

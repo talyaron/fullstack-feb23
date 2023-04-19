@@ -10,11 +10,13 @@ button {
     top: 450px;
     left: 180px;
     gap: 50px;
-    transition: all 2000s;
+    // transition: all 2000s;
     margin: auto;
+   
 
     
     &__textimg1 {
+       
      
         &:hover {
             font-style: oblique;
@@ -35,6 +37,7 @@ button {
                 left: $left;
                 box-shadow: $box-shadow;
                 background-size: cover;
+          
             }
         }
     }
