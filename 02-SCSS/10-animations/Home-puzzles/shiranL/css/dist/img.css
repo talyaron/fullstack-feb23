@@ -1,22 +1,30 @@
-.wapper {
-  width: 400px;
-  height: 800px;
-  border-radius: 10px;
-  border: 1px solid black;
-  margin: auto;
-  position: relative;
+/* scrollbar width */
+::-webkit-scrollbar {
+  width: 1px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  display: none;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  display: none;
 }
 
 .images {
   margin-top: 10px;
+  height: 300px;
+  overflow: scroll;
   position: absolute;
-  top: 0px;
+  top: 70px;
   left: 0px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-around;
-  gap: 10px;
+  gap: 5px;
 }
 .images__item img {
   width: 240px;
