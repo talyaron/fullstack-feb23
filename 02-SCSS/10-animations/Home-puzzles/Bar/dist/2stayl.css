@@ -10,6 +10,10 @@
   height: 100%;
   position: absolute;
 }
+.wrapper audio {
+  position: absolute;
+  right: 0px;
+}
 .wrapper .tiso {
   position: absolute;
   left: 3%;
@@ -65,12 +69,11 @@
     left: 80%;
   }
   50% {
-    transform: rotate(0deg);
-    top: 10%;
+    top: 20%;
     left: 45%;
   }
   100% {
-    transform: rotate(-360deg);
+    transform: rotate(-720deg);
     top: 55%;
     left: 0%;
   }
