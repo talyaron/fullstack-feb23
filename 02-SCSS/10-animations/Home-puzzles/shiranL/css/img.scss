@@ -17,7 +17,7 @@
   
 .images{
     margin-top: 10px;
-    height: 300px;
+    height: 350px;
     overflow: scroll;
     position: absolute;
     top: 70px;
@@ -25,13 +25,11 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: center;
     gap: 5px;
 
 
     &__item{
-
-
 
         img{
             width: 240px;
@@ -39,17 +37,23 @@
             border-radius: 10px;
     
         }
+        img:hover {
+            opacity: 0.5;
+          }
+        img:focus {
+            opacity: 0;
+          }
        
         &--maxSize{
             img{
-                width: 390px;
+                width: 425px;
              
             }
         }
 
         &--minSize{
             img{
-                width: 140px;
+                width: 180px;
             }
         
         }

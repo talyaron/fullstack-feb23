@@ -3,6 +3,7 @@ $border-radius: 10px;
 
 //import
 @import "img";
+@import "btn";
 
 
 .wapper{
@@ -37,4 +38,27 @@ $border-radius: 10px;
     color: rgb(32, 28, 90);
     font-family: 'Rubik', sans-serif;
 
+  }
+  .IconsBer{
+    
+    width: 450px;
+    position: absolute;
+    top: 450px;
+    left: 0px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    
+    gap: 50px;
+
+    &__item{
+      width: 55px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
   }
