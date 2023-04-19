@@ -13,7 +13,11 @@ body {
 }
 body .header {
   background-color: white;
+<<<<<<< Updated upstream
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.098);
+=======
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.098);
+>>>>>>> Stashed changes
   height: 70px;
   width: 100%;
   display: flex;
@@ -26,7 +30,10 @@ body .header__ctg ul {
 }
 body .header__ctg ul li {
   padding: 26px 20px;
+<<<<<<< Updated upstream
   transition: all 0.2s;
+=======
+>>>>>>> Stashed changes
 }
 body .header__ctg ul li:hover {
   background-color: rgba(0, 0, 0, 0.05);
@@ -81,6 +88,7 @@ body .header__Btns__btn--addPost:hover {
   background-color: #0fca80;
 }
 body .wrapper {
+<<<<<<< Updated upstream
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -412,4 +420,9 @@ body .wrapper .listTabs .listTabs__buttomCtg__column__text {
 body .wrapper .listTabs .listTabs__buttomCtg__column__text p {
   font-size: 0.8em;
   margin: 0.5em;
+=======
+  width: 100%;
+  display: flex;
+  justify-content: center;
+>>>>>>> Stashed changes
 }
