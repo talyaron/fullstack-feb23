@@ -3,7 +3,7 @@
 }
 
 .box {
-  width: 300px;
+  flex: 1;
   background-color: antiquewhite;
   margin: 10px;
 }
