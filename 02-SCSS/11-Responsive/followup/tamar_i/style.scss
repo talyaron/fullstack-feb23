@@ -1,17 +1,30 @@
 body {
-    display: flex;
-    gap: 5px; 
-    
-    @media only screen and (max-width: 600px) {
-        flex-direction: column;
-    }   
+  display: flex;
+  gap: 5px;
 }
 
 .box {
+<<<<<<< HEAD
+  width: 100px;
+  height: 100px;
+  background-color: blue;
+  flex: 1;
+}
+=======
     width: 100px;
     height: 100px;
     background-color: blue;
     // flex: 1; בגלל שאין גובה לבודי ועל מנת לא לתפוס מקום אינסופי אז הפלקס גורם לכך שהגובה הופך ל-0 ולא רואים אותו
 
+>>>>>>> main
 
+@media only screen and (max-width: 600px) {
+  body {
+    flex-direction: column;
+    // height: 200px;
+  }
+  .box {
+    height: 100px;
+    flex: none;
+  }
 }
