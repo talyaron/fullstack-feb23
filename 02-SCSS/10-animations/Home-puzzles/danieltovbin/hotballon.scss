@@ -1,0 +1,200 @@
+
+
+.wrapper {
+
+    &__hotballon {
+        
+                
+            img {
+                position: absolute;
+                animation-duration: 3s;
+                animation-timing-function: linear;
+                animation-delay: 2s;
+                animation-direction:normal;
+                animation-iteration-count: infinite;
+                width: 190px;
+                height: 145px;
+        
+                &:active {
+                    width: 500px;
+                    animation: 1s 5s forwards;  
+                }
+            }
+        
+                &--first {
+                    animation-name: firstballon;
+                }
+        
+                &--second {
+                    animation-name: secondballon;
+                }
+        
+                &--third {
+                    animation-name: thirdballon;
+                }
+        
+                &--fourth {
+                    animation-name: fourthballon;
+                }
+        
+                &--fifth {
+                    animation-name: fifthballon;
+                }
+        
+                &--sixth {
+                    animation-name: sixthballon;
+                }
+            
+            
+        }
+}
+
+
+
+    
+    
+    
+    @keyframes firstballon{
+    0% {
+        left: 10px;
+        top: 600px;
+    
+    }
+    
+    50% {
+        left: 20px;
+        top: 350px;
+    }
+    
+    80% {
+        left: 30px;
+        top: 150px;
+        transform: rotate(10deg);
+    }
+    
+    100% {
+        left: 40px;
+        top: 0px;
+        transform: rotate(-10deg);
+    }
+    }
+    
+    
+    @keyframes secondballon {
+    0% {
+        top: 600px;
+        left: 500px;
+    }
+    50% {
+        left: 510px;
+        top: 300px;
+    }
+    
+    80% {
+        left: 520px;
+        top: 150px;
+        transform: rotate(10deg);
+    }
+    
+    100% {
+        left: 530px;
+        top: 0px;
+        transform: rotate(-10deg);
+    }
+    }
+    
+    
+    @keyframes thirdballon {
+    0% {
+        top: 600px;
+        left: 1000px;
+    }
+    50% {
+        left: 1010px;
+        top: 300px;
+    }
+    
+    80% {
+        left: 1020px;
+        top: 150px;
+        transform: rotate(10deg);
+    }
+    
+    100% {
+        left: 1030px;
+        top: 0px;
+        transform: rotate(-10deg);
+    }
+    }
+    
+    
+    @keyframes fourthballon {
+    0% {
+        top: 600px;
+        left: 1300px;
+    }
+    50% {
+        left: 1310px;
+        top: 300px;
+    }
+    
+    80% {
+        left: 1320px;
+        top: 150px;
+        transform: rotate(10deg);
+    }
+    
+    100% {
+        left: 1330px;
+        top: 0px;
+        transform: rotate(-10deg);
+    }
+    }
+    
+    
+    @keyframes fifthballon {
+    0% {
+        top: 600px;
+        left: 210px;
+    }
+    50% {
+        left: 220px;
+        top: 300px;
+    }
+    
+    80% {
+        left: 230px;
+        top: 150px;
+        transform: rotate(10deg);
+    }
+    
+    100% {
+        left: 240px;
+        top: 0px;
+        transform: rotate(-10deg);
+    }
+    }
+    
+    
+    @keyframes sixthballon {
+    0% {
+        top: 600px;
+        left: 1150px;
+    }
+    50% {
+        left: 1160px;
+        top: 300px;
+    }
+    
+    80% {
+        left: 1170px;
+        top: 150px;
+        transform: rotate(10deg);
+    }
+    
+    100% {
+        left: 1180px;
+        top: 0px;
+        transform: rotate(-10deg);
+    }
+    }

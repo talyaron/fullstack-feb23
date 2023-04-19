@@ -1,0 +1,91 @@
+@charset "UTF-8";
+body {
+  margin: 5.5rem;
+  background: #def0f8;
+  text-align: center;
+}
+
+.balloon {
+  display: inline-block;
+  width: 12rem;
+  height: 14rem;
+  background: #799ed2;
+  border-radius: 80%;
+  position: relative;
+  box-shadow: inset -10px -10px 0 rgba(0, 0, 0, 0.07);
+  margin: 20px 30px;
+  transition: transform 1s ease;
+  z-index: 10;
+  animation: explode 4s ease infinite;
+}
+
+@keyframes explode {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.5);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(2);
+  }
+}
+.balloon:before {
+  content: "▲";
+  font-size: 20px;
+  color: #5979a6;
+  display: block;
+  text-align: center;
+  width: 100%;
+  position: absolute;
+  bottom: -25px;
+  z-index: -100;
+}
+
+.balloon:after {
+  display: inline-block;
+  top: 250px;
+  position: absolute;
+  height: 250px;
+  width: 1px;
+  margin: 0 auto;
+  content: "";
+  background: rgba(13, 12, 12, 0.719);
+}
+
+.balloon:nth-child(2) {
+  background: #1703fc;
+  animation-duration: 3.5s;
+}
+
+.balloon:nth-child(2):before {
+  color: #1c08fd;
+}
+
+.balloon:nth-child(3) {
+  background: #02f750;
+  animation-duration: 3s;
+}
+
+.balloon:nth-child(3):before {
+  color: #59a671;
+}
+
+.balloon:nth-child(4) {
+  background: #fcf803;
+  animation-duration: 4.5s;
+}
+
+.balloon:nth-child(4):before {
+  color: #eae606;
+}
+
+.balloon:nth-child(5) {
+  background: #f60404;
+  animation-duration: 5s;
+}
+
+.balloon:nth-child(5):before {
+  color: #f60404;
+}

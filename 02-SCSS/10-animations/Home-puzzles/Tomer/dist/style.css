@@ -1,6 +1,6 @@
 body {
-  /* margin: 0;
-  padding: 0; */
+ margin: 0;
+ padding: 0;
   box-sizing: border-box;
   justify-content: center;
   align-items: center;
@@ -138,3 +138,4 @@ h1 {
 .star img:nth-child(3) {
   animation-delay: 5s;
 }
+

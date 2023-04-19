@@ -1,0 +1,64 @@
+
+
+/* scrollbar width */
+::-webkit-scrollbar {
+    width: 1px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    display: none;
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    display: none;
+  }
+  
+.images{
+    margin-top: 10px;
+    height: 350px;
+    overflow: scroll;
+    position: absolute;
+    top: 70px;
+    left: 0px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 5px;
+
+
+    &__item{
+
+        img{
+            width: 240px;
+            height: 140px;
+            border-radius: 10px;
+    
+        }
+        img:hover {
+            opacity: 0.5;
+          }
+        img:focus {
+            opacity: 0;
+          }
+       
+        &--maxSize{
+            img{
+                width: 425px;
+             
+            }
+        }
+
+        &--minSize{
+            img{
+                width: 180px;
+            }
+        
+        }
+    }
+
+   
+
+}

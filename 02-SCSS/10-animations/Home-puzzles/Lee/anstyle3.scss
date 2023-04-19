@@ -19,14 +19,8 @@ body {
 	width: 350px; height: 120px;
 	background: #f2f9fe;
 	background: linear-gradient(top, #f2f9fe 5%, #d6f0fd 100%);
-	background: -webkit-linear-gradient(top, #f2f9fe 5%, whitesmoke 100%);
-	background: -moz-linear-gradient(top, #f2f9fe 5%, #e5f1f7 100%);
-	background: -ms-linear-gradient(top, #f2f9fe 5%, #d6f0fd 100%);
-	background: -o-linear-gradient(top, #e5ecf1 5%, #d6f0fd 100%);
-	
 	border-radius: 100px;
-	border-radius: 100px;
-	-moz-border-radius: 100px;
+
 	
 	position: relative;
 	margin: 180px 50px 250px 100px;
@@ -42,27 +36,22 @@ body {
 .cloud:after {
 	width: 100px; height: 100px;
 	top: -50px; left: 50px;
-	
 	border-radius: 100px;
-	border-radius: 100px;
-	-moz-border-radius: 100px;
 }
 
 .cloud:before {
 	width: 180px; height: 200px;
 	top: -100px; right: 50px;
 	border-radius: 200px;
-	border-radius: 200px;
-	-moz-border-radius: 200px;
 }
 .cloud:nth-child(3){
-    top: -530px;
-    left: 200px;
+    top: -440px;
+    left: 210px;
    
 }
 .cloud:nth-child(4){
     top:-850px;
-    right: 35%;
+    right: 210px;
     transform: scale(0.8);
     
 }
@@ -70,20 +59,40 @@ body {
 .balloon {
     height: 200px;
     width: 200px;
-    background-color: bisque;
+    background-color: rgb(255, 196, 243);
     border-radius: 50%;
     position: absolute;
-    top: 100px;
+    top: 200px;
     left: 140px;
     animation: air_balloon 4.5s infinite;
+    border: none;
+
+    &:hover {
+
+        cursor: pointer;
+    }
+
+    &:active {
+        cursor: grabbing;
+        animation: 0s;
+        transform: scale(1.4);
+    }
+
+
 }
 
 @keyframes air_balloon {
 
-50% {
+0% {
     transform: translateY(75px);
 }
+50% {
+    transform: translateX(15px);
+}
 
+100% {
+    transform: translateY(-175px);
+}
 }
 
 .balloon::before {
@@ -91,7 +100,7 @@ body {
     content: "";
     height: 200px;
     width: 140px;
-    background-color: burlywood;
+    background-color: rgb(144, 21, 181);
     border-radius: 50%;
     left: 30px;
 }
@@ -101,37 +110,37 @@ body {
     content: "";
     height: 200px;
     width: 80px;
-    background-color: bisque;
+    background-color: rgb(255, 196, 254);
     border-radius: 50%;
     left: 60px;
     top: 0;
 }
 
 .bottom {
-    background-color: bisque;
+    background-color:rgb(255, 196, 254);
     height: 30px;
     width: 80px;
     position: relative;
     top: 188px;
     left: 57px;
-    border-bottom: 10px solid burlywood;
+    border-bottom: 10px solid rgb(146, 13, 148);
+    
 }
 
 .basket {
     height: 50px;
     width: 70px;
-    background-color: burlywood;
+    background-color: rgb(192, 129, 202);
     position: relative;
     top: 240px;
     left: 62.5px;
     border-radius: 0 0 10px 10px;
-
 }
 
 .basket::before {
     position: absolute;
     content: "";
-    background-color: bisque;
+    background-color: rgb(51, 4, 59);
     height: 7px;
     width: 80px;
     border-radius: 7px;
@@ -139,19 +148,19 @@ body {
 }
 
 .rope {
-    background-color: blanchedalmond;
-    height: 55px;
+    background-color: lightpink;
+    height: 52px;
     width: 3px;
     position: relative;
-    top: 137px;
+    top: 138px;
     left: 96.5px;
 }
 
 .rope::before {
     position: absolute;
     content: "";
-    background-color: blanchedalmond;
-    height: 55px;
+    background-color: lightpink;
+    height: 52px;
     width: 3px;
     top: 0;
     left: -32px;
@@ -161,8 +170,8 @@ body {
 .rope::after {
     position: absolute;
     content: "";
-    background-color: blanchedalmond;
-    height: 55px;
+    background-color: lightpink;
+    height: 52px;
     width: 3px;
     top: 0;
     left: 32px;
