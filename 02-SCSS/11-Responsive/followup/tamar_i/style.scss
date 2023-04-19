@@ -1,17 +1,22 @@
 body {
-    display: flex;
-    gap: 5px; 
-    
-    @media only screen and (max-width: 600px) {
-        flex-direction: column;
-    }   
+  display: flex;
+  gap: 5px;
 }
 
 .box {
-    width: 100px;
+  width: 100px;
+  height: 100px;
+  background-color: blue;
+  flex: 1;
+}
+
+@media only screen and (max-width: 600px) {
+  body {
+    flex-direction: column;
+    // height: 200px;
+  }
+  .box {
     height: 100px;
-    background-color: blue;
-    flex: 1;
-
-
+    flex: none;
+  }
 }
