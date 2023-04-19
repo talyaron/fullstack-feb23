@@ -1,6 +1,6 @@
 * {
     margin: 0px;
-    padding: 0px;
+
 }
 
 .wrapper {
@@ -40,16 +40,21 @@
     }
 
     .galgalon {
-        top: 55%;
-        left: 80%;
+        top: 53%;
+        left: 70%;
         width: 0px;
+       
 
         img {
             position: absolute;
             animation: galgalon linear 1ms infinite alternate;
             animation-duration: 3s;
-            height: 52vh;
-            width: 47vh;
+            height: 42vh;
+            width: 37vh;
+            // height: 32vh;
+            // width: 27vh;
+            box-sizing: border-box;
+            // background-color: aqua;
         }
     }
 }
@@ -76,10 +81,10 @@
 
 @keyframes galgalon {
 
-   0% {
+    0% {
         transform: rotate(360deg);
-        top: 55%;
-        left: 80%;
+        top: 53%;
+        left: 70%;
     }
 
     50% {
@@ -89,7 +94,7 @@
 
     100% {
         transform: rotate(-720deg);
-        top: 55%;
-        left: 0%;
+        top: 53%;
+        left: 10%;
     }
 }

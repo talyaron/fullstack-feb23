@@ -1,6 +1,5 @@
 * {
   margin: 0px;
-  padding: 0px;
 }
 
 .wrapper {
@@ -34,16 +33,17 @@
   transition-timing-function: linear;
 }
 .wrapper .galgalon {
-  top: 55%;
-  left: 80%;
+  top: 53%;
+  left: 70%;
   width: 0px;
 }
 .wrapper .galgalon img {
   position: absolute;
   animation: galgalon linear 1ms infinite alternate;
   animation-duration: 3s;
-  height: 52vh;
-  width: 47vh;
+  height: 42vh;
+  width: 37vh;
+  box-sizing: border-box;
 }
 
 @keyframes tiso {
@@ -65,8 +65,8 @@
 @keyframes galgalon {
   0% {
     transform: rotate(360deg);
-    top: 55%;
-    left: 80%;
+    top: 53%;
+    left: 70%;
   }
   50% {
     top: 20%;
@@ -74,7 +74,7 @@
   }
   100% {
     transform: rotate(-720deg);
-    top: 55%;
-    left: 0%;
+    top: 53%;
+    left: 10%;
   }
 }
