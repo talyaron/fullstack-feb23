@@ -82,12 +82,12 @@
 {
     from{
         opacity:1;
-        transform: translateZ(0) scale(1,1);
+        transform:  scale(1,1);
     }
 
     to{
         opacity:0;
-        transform: translateZ(0) scale(1.5,1.5);
+        transform:  scale(1.5,1.5);
     }
 }
 @keyframes dance
