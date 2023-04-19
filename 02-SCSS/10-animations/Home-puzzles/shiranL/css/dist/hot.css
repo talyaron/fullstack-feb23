@@ -1,0 +1,148 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+p {
+  text-align: center;
+  font-size: 26px;
+  font-weight: 700;
+}
+
+p span.c1 {
+  color: #E53D30;
+}
+
+p span.c2 {
+  color: #f83b3b;
+}
+
+p span.c3 {
+  color: #c00606;
+}
+
+p span.c4 {
+  color: #a50303;
+}
+
+p span.c5 {
+  color: #700303;
+}
+
+p span.c6 {
+  color: #470101;
+}
+
+p span.c7 {
+  color: #5a0101;
+}
+
+.wapper {
+  height: 937px;
+  background-color: black;
+  font-family: "Coda Caption", sans-serif;
+  position: relative;
+  z-index: -1;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.item {
+  color: white;
+  font-size: 87px;
+  position: absolute;
+}
+
+.red {
+  background: radial-gradient(#e66465, #f70410);
+  height: 70px;
+  top: 375px;
+  right: 0px;
+  width: 70px;
+  z-index: -1;
+  animation-name: red;
+  animation-duration: 3s;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+
+.pir {
+  height: 70px;
+  top: 390px;
+  right: 850px;
+  width: 400px;
+  z-index: -1;
+  animation-name: pir;
+  animation-duration: 6s;
+  animation-fill-mode: forwards;
+}
+
+.H {
+  left: 500px;
+  animation-name: Hmove;
+  animation-duration: 3s;
+  animation-fill-mode: forwards;
+}
+
+.O {
+  left: 500px;
+  animation-name: Omove;
+  animation-duration: 3s;
+  animation-fill-mode: forwards;
+}
+
+.T {
+  right: 0px;
+  bottom: 375px;
+  animation-name: Tmove;
+  animation-duration: 3s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes red {
+  0% {
+    width: 0px;
+  }
+  50% {
+    width: 600px;
+  }
+  100% {
+    width: 70px;
+    right: 1250px;
+  }
+}
+@keyframes Hmove {
+  0% {
+    top: 0px;
+  }
+  100% {
+    top: 340px;
+  }
+}
+@keyframes Omove {
+  0% {
+    bottom: 0px;
+  }
+  100% {
+    bottom: 375px;
+  }
+}
+@keyframes Tmove {
+  from {
+    right: 0px;
+  }
+  to {
+    right: 1250px;
+  }
+}
+@keyframes pir {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1.5;
+  }
+}

@@ -1,0 +1,105 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    margin: auto;
+}
+
+
+button{
+    border: none;
+    background: none;
+    &:hover{
+        cursor: pointer;
+    }
+
+    &:focus{
+        opacity: 0;
+    }
+}
+
+img{
+    height: 100%;
+    width: 100px;
+}
+
+.wrapper{
+    display: flex;
+    gap: 150px;
+    position: relative;
+    top: 80vh;
+
+    &__B1{
+        animation-name: move1;
+        animation-duration: 5s;
+        animation-iteration-count: infinite;
+        animation-direction:normal;
+        position: relative;
+        
+    }
+
+    &__B2{
+        animation-name: move2;
+        animation-duration: 6s;
+        animation-iteration-count: infinite;
+        animation-direction:normal;
+        position: relative;
+        
+    }
+
+    &__B3{
+        animation-name: move3;
+        animation-duration: 8s;
+        animation-iteration-count: infinite;
+        animation-direction:normal;
+        position: relative;
+        
+    }
+
+    &__B4{
+        animation-name: move4;
+        animation-duration: 9s;
+        animation-iteration-count: infinite;
+        animation-direction:normal;
+        position: relative;
+        
+    }
+
+    &__B5{
+        animation-name: move5;
+        animation-duration: 4s;
+        animation-iteration-count: infinite;
+        animation-direction:normal;
+        position: relative;
+        
+    }
+
+    
+    
+}
+
+
+@keyframes move1 {
+    from{bottom: -5vh;}
+    to{bottom: 100vh;}
+    
+}
+@keyframes move2 {
+    from{bottom: 0vh;}
+    to{bottom: 100vh;}
+    
+}
+@keyframes move3 {
+    from{bottom: 0vh;}
+    to{bottom: 100vh;}
+    
+}
+@keyframes move4 {
+    from{bottom: 0vh;}
+    to{bottom: 100vh;}
+    
+}
+@keyframes move5 {
+    from{bottom: 0vh;}
+    to{bottom: 100vh;}
+    
+}
