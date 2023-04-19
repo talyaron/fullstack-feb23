@@ -1,0 +1,11 @@
+.main {
+  background-color: black;
+  color: white;
+  display: flex;
+  padding: 10px;
+  justify-content: space-between;
+  font-family: Netflix Sans, Helvetica Neue, Segoe UI, Roboto, Ubuntu, sans-serif;
+}
+.main .p1 {
+  margin-left: 500px;
+}
