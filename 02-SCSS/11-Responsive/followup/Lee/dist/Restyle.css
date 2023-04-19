@@ -1,7 +1,6 @@
 .wrapper {
   display: flex;
   margin: auto;
-  width: 100vw;
 }
 
 .box {
@@ -18,5 +17,6 @@
 @media only screen and (max-width: 600px) {
   .wrapper {
     flex-direction: column;
+    background-color: lightpink;
   }
 }
