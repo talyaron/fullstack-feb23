@@ -1,6 +1,6 @@
 * {
     margin: 0px;
-    padding: 0px;
+
 }
 
 .wrapper {
@@ -10,13 +10,18 @@
     height: 100%;
     position: absolute;
 
+    audio {
+        position: absolute;
+        right: 0px;
+    }
+
     .tiso {
         position: absolute;
         left: 3%;
         width: 0px;
 
         img {
-            animation: tiso ease-in-out 1s infinite alternate-reverse;
+            animation: tiso linear 1s infinite alternate;
             transform-origin: center -20px;
         }
     }
@@ -28,23 +33,28 @@
         width: 0px;
 
         img {
-            animation: trapes ease-in-out 5s infinite alternate-reverse;
-            transform-origin: center -20px;
+            animation: trapes linear 5s infinite alternate;
+            // transform-origin: center -20px;
+            transition-timing-function: linear;
         }
     }
 
     .galgalon {
-        // position: absolute;
-        top: 55%;
-        left: 80%;
+        top: 53%;
+        left: 70%;
         width: 0px;
+       
 
         img {
             position: absolute;
-            animation: galgalon 1ms infinite alternate;
+            animation: galgalon linear 1ms infinite alternate;
             animation-duration: 3s;
-            height: 52vh;
-            width: 47vh;
+            height: 42vh;
+            width: 37vh;
+            // height: 32vh;
+            // width: 27vh;
+            box-sizing: border-box;
+            // background-color: aqua;
         }
     }
 }
@@ -71,33 +81,20 @@
 
 @keyframes galgalon {
 
-   0% {
+    0% {
         transform: rotate(360deg);
-        top: 55%;
-        left: 80%;
+        top: 53%;
+        left: 70%;
     }
 
-    // 25% {
-    //     transform: rotate(180deg);
-    //     top: 35%;
-    //     left: 65%;
-    // }
-
     50% {
-        transform: rotate(0deg);
-        top: 10%;
+        top: 20%;
         left: 45%;
     }
 
-    // 75% {
-    //     transform: rotate(-180deg);
-    //     top: 40%;
-    //     left: 20%;
-    // }
-
     100% {
-        transform: rotate(-360deg);
-        top: 55%;
-        left: 0%;
+        transform: rotate(-720deg);
+        top: 53%;
+        left: 10%;
     }
 }

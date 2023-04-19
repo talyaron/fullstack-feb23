@@ -1,6 +1,5 @@
 * {
   margin: 0px;
-  padding: 0px;
 }
 
 .wrapper {
@@ -10,13 +9,17 @@
   height: 100%;
   position: absolute;
 }
+.wrapper audio {
+  position: absolute;
+  right: 0px;
+}
 .wrapper .tiso {
   position: absolute;
   left: 3%;
   width: 0px;
 }
 .wrapper .tiso img {
-  animation: tiso ease-in-out 1s infinite alternate-reverse;
+  animation: tiso linear 1s infinite alternate;
   transform-origin: center -20px;
 }
 .wrapper .trapes {
@@ -26,20 +29,21 @@
   width: 0px;
 }
 .wrapper .trapes img {
-  animation: trapes ease-in-out 5s infinite alternate-reverse;
-  transform-origin: center -20px;
+  animation: trapes linear 5s infinite alternate;
+  transition-timing-function: linear;
 }
 .wrapper .galgalon {
-  top: 55%;
-  left: 80%;
+  top: 53%;
+  left: 70%;
   width: 0px;
 }
 .wrapper .galgalon img {
   position: absolute;
-  animation: galgalon 1ms infinite alternate;
+  animation: galgalon linear 1ms infinite alternate;
   animation-duration: 3s;
-  height: 52vh;
-  width: 47vh;
+  height: 42vh;
+  width: 37vh;
+  box-sizing: border-box;
 }
 
 @keyframes tiso {
@@ -61,17 +65,16 @@
 @keyframes galgalon {
   0% {
     transform: rotate(360deg);
-    top: 55%;
-    left: 80%;
+    top: 53%;
+    left: 70%;
   }
   50% {
-    transform: rotate(0deg);
-    top: 10%;
+    top: 20%;
     left: 45%;
   }
   100% {
-    transform: rotate(-360deg);
-    top: 55%;
-    left: 0%;
+    transform: rotate(-720deg);
+    top: 53%;
+    left: 10%;
   }
 }
