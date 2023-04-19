@@ -3,17 +3,18 @@
   display: block;
   height: 400px;
   width: 600px;
-  flex: content;
+  margin: auto;
 }
-.wrapper .box {
+
+.box {
   height: 100px;
   width: 100px;
   border: 2px solid black;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
 }
-@media only screen and (max-width: 700px) {
-  .wrapper .box {
+@media only screen and (max-width: 100px) {
+  .box {
     flex-direction: column;
   }
 }
