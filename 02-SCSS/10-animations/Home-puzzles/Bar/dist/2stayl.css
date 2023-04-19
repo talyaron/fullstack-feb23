@@ -16,7 +16,7 @@
   width: 0px;
 }
 .wrapper .tiso img {
-  animation: tiso ease-in-out 1s infinite alternate-reverse;
+  animation: tiso linear 1s infinite alternate;
   transform-origin: center -20px;
 }
 .wrapper .trapes {
@@ -26,8 +26,8 @@
   width: 0px;
 }
 .wrapper .trapes img {
-  animation: trapes ease-in-out 5s infinite alternate-reverse;
-  transform-origin: center -20px;
+  animation: trapes linear 5s infinite alternate;
+  transition-timing-function: linear;
 }
 .wrapper .galgalon {
   top: 55%;
@@ -36,7 +36,7 @@
 }
 .wrapper .galgalon img {
   position: absolute;
-  animation: galgalon 1ms infinite alternate;
+  animation: galgalon linear 1ms infinite alternate;
   animation-duration: 3s;
   height: 52vh;
   width: 47vh;
