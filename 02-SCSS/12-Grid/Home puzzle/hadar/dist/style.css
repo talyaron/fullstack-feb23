@@ -5,7 +5,10 @@ body {
   color: white;
 }
 
-.main {
+.video video {
+  width: 1437.6px;
+}
+.video .video__nav {
   background-color: black;
   color: white;
   display: flex;
@@ -13,47 +16,73 @@ body {
   justify-content: space-between;
   align-items: center;
 }
-.main .p1 {
+.video .video__nav .video__nav--p1 {
   margin-left: 500px;
 }
-.main .netflix {
+.video .video__nav .video__nav--netflix {
   width: 100px;
   height: 38px;
 }
-.main .uzer {
+.video .video__nav .video__nav--uzer {
   width: 51px;
   height: 32px;
 }
+.video .video__text {
+  position: absolute;
+  top: 400px;
+  font-weight: bolder;
+  font-size: 150px;
+}
+.video .video__buttons {
+  position: absolute;
+  top: 620px;
+}
+.video .video__buttons .video__buttons--play {
+  width: 130px;
+  height: 44px;
+  font-size: 17.6px;
+  border-color: white;
+  border-radius: 8px;
+  margin-left: 10px;
+}
+.video .video__buttons .video__buttons--info {
+  width: 162px;
+  height: 44px;
+  font-size: 17.6px;
+  background-color: rgba(109, 109, 110, 0.7);
+  border-color: rgba(109, 109, 110, 0.7);
+  border-radius: 8px;
+  color: white;
+}
 
-h2 {
+.main h2 {
   direction: rtl;
   color: white;
   padding-right: 58px;
 }
-
-.wrapper {
+.main .wrapper {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   grid-template-rows: repeat(1, 1fr);
   padding-right: 58px;
 }
-.wrapper img {
+.main .wrapper img {
   width: 217px;
   height: 122px;
   border-radius: 5px;
   padding: 3px;
   z-index: -1;
 }
-.wrapper div {
+.main .wrapper div {
   height: 123px;
 }
-.wrapper i {
+.main .wrapper i {
   position: relative;
   left: -10px;
   z-index: 1;
   font-size: 60px;
   top: -100px;
 }
-.wrapper i:hover {
+.main .wrapper i:hover {
   font-size: 75px;
 }
