@@ -70,6 +70,7 @@ body {
   }
 
   .wrapper {
+    top: 20%;
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     grid-template-rows: repeat(1, 1fr);
@@ -80,6 +81,14 @@ body {
       height: 85%;
       border-radius: 5px;
       z-index: -1;
+    }
+
+    img:hover{
+      width: 230px;
+      height: 120px;
+      position: absolute;
+      z-index: 1;
+
     }
 
 
