@@ -17,7 +17,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 50%;
+  width: 100%;
 }
 .wrapper .section__image img {
   width: 100%;
@@ -27,8 +27,4 @@
   border-right: 7px solid red;
   overflow: hidden;
   transition: 2s;
-}
-
-.section:hover {
-  display: block;
 }
