@@ -1,0 +1,41 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+img{
+    width: 200px;
+    height: 100%;
+}
+
+.FramesWrapper{
+
+    margin: auto;
+
+
+    &__Video{
+        width: 12vw;
+        height: 100%;
+
+        &--sub{
+            position: relative;
+            bottom: 5px;
+            opacity: 0.2;
+            
+        }
+
+        &:hover{
+            cursor: pointer;
+            scale: 1.5;
+            transition-duration: 1.5s;
+            .sub{opacity: 1;}
+        }
+        
+        &:hover + .sub{opacity: 1;}
+       
+
+
+        
+        
+    }
+}
