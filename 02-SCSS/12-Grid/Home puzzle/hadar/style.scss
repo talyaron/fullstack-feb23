@@ -1,6 +1,9 @@
+
 body{
     background-color: black;
     font-family: Netflix Sans,Helvetica Neue,Segoe UI,Roboto,Ubuntu,sans-serif;
+    direction: rtl;
+    color: white ;
 }
 .main{
     background-color: black;
@@ -9,6 +12,7 @@ body{
     padding: 10px;
     justify-content: space-between;
     align-items: center;
+    
     
     .p1{
         margin-left: 500px;
@@ -28,22 +32,35 @@ h2{
     direction: rtl;
     color: white;
     padding-right: 58px;
+    
 }
 
 .wrapper{
     display: grid;
-    justify-content: flex-end;
     grid-template-columns: repeat(7,1fr);
     grid-template-rows: repeat(1,1fr);
     padding-right: 58px;
+    
     img{
         width: 217px;
         height: 122px;
         border-radius: 5px;
         padding: 3px;
+        z-index: -1;
+        
     }
-    img:hover{
-        width: 224px;
-        height: 128px;
-    } 
+    div{
+        height: 123px;
+    }
+    i{
+        position: relative;
+        left: -10px;
+        z-index: 1;
+        font-size: 60px;
+        top: -100px; 
+        &:hover{
+        font-size: 75px;
+        }
+    }
+
 }

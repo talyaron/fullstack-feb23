@@ -1,6 +1,8 @@
 body {
   background-color: black;
   font-family: Netflix Sans, Helvetica Neue, Segoe UI, Roboto, Ubuntu, sans-serif;
+  direction: rtl;
+  color: white;
 }
 
 .main {
@@ -31,7 +33,6 @@ h2 {
 
 .wrapper {
   display: grid;
-  justify-content: flex-end;
   grid-template-columns: repeat(7, 1fr);
   grid-template-rows: repeat(1, 1fr);
   padding-right: 58px;
@@ -41,8 +42,18 @@ h2 {
   height: 122px;
   border-radius: 5px;
   padding: 3px;
+  z-index: -1;
 }
-.wrapper img:hover {
-  width: 224px;
-  height: 128px;
+.wrapper div {
+  height: 123px;
+}
+.wrapper i {
+  position: relative;
+  left: -10px;
+  z-index: 1;
+  font-size: 60px;
+  top: -100px;
+}
+.wrapper i:hover {
+  font-size: 75px;
 }
