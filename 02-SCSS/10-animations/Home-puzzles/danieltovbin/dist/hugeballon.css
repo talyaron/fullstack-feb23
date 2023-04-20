@@ -29,6 +29,6 @@
   transition: 2s;
 }
 
-.section:hover {
-  display: block;
+body > div > section > div.wrapper__image > img:hover {
+  display: none;
 }

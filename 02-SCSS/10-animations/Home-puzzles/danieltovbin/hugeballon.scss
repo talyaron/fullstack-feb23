@@ -1,5 +1,3 @@
-
-
 .wrapper {
 
     &__hugeballon {
@@ -20,7 +18,7 @@
         transform: translate(-50%, -50%);
         width: 800px;
         height: 450px;
-
+       
         
         &__image {
             position: absolute;
@@ -39,16 +37,16 @@
                 overflow: hidden;
                 transition: 2s;
 
-
-    
+                
             }
         }
 
     }
 }
-.section:hover  {
-    display: block;
+body > div > section > div.wrapper__image > img:hover  {
+    display: none;
         // width: 100%;
+        
 }
     
 
