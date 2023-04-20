@@ -5,49 +5,30 @@
   top: 455px;
   left: 735px;
 }
-.wrapper__image img {
-  width: 200px;
-  height: 300px;
-  top: 455px;
-  cursor: pointer;
+.wrapper .section {
   position: absolute;
-  left: 735px;
-  animation-timing-function: linear;
-  animation-delay: 3s;
-  animation-duration: 4s;
-  animation-direction: normal;
-  animation-iteration-count: infinite;
-  animation-name: theballoon;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 800px;
+  height: 450px;
 }
-.wrapper__image img:active {
-  animation: 1s 5s forwards;
+.wrapper .section__image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+}
+.wrapper .section__image img {
+  width: 100%;
+}
+.wrapper .section__image__effect {
+  display: none;
+  border-right: 7px solid red;
+  overflow: hidden;
+  transition: 2s;
 }
 
-@keyframes theballoon {
-  0% {
-    top: 455px;
-    left: 735px;
-    width: 260px;
-    height: 310px;
-  }
-  50% {
-    top: 300px;
-    left: 735px;
-    width: 350px;
-    height: 450px;
-  }
-  80% {
-    top: 200px;
-    left: 735px;
-    width: 400px;
-    height: 550px;
-    transform: rotate(5deg);
-  }
-  100% {
-    top: 0px;
-    left: 735px;
-    width: 460px;
-    height: 600px;
-    transform: rotate(-10deg);
-  }
+body > div > section > div.wrapper__image > img:hover {
+  display: none;
 }
