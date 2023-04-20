@@ -1,5 +1,6 @@
 body {
   background-color: black;
+  font-family: Netflix Sans, Helvetica Neue, Segoe UI, Roboto, Ubuntu, sans-serif;
 }
 
 .main {
@@ -9,27 +10,39 @@ body {
   padding: 10px;
   justify-content: space-between;
   align-items: center;
-  font-family: Netflix Sans, Helvetica Neue, Segoe UI, Roboto, Ubuntu, sans-serif;
 }
 .main .p1 {
   margin-left: 500px;
 }
+.main .netflix {
+  width: 100px;
+  height: 38px;
+}
+.main .uzer {
+  width: 51px;
+  height: 32px;
+}
 
 h2 {
-  font-family: Netflix Sans, Helvetica Neue, Segoe UI, Roboto, Ubuntu, sans-serif;
   direction: rtl;
   color: white;
+  padding-right: 58px;
 }
 
 .wrapper {
   display: grid;
-  justify-content: center;
-  gap: 10px;
+  justify-content: flex-end;
   grid-template-columns: repeat(7, 1fr);
   grid-template-rows: repeat(1, 1fr);
+  padding-right: 58px;
 }
 .wrapper img {
-  width: 219px;
-  height: 123px;
+  width: 217px;
+  height: 122px;
   border-radius: 5px;
+  padding: 3px;
+}
+.wrapper img:hover {
+  width: 224px;
+  height: 128px;
 }
