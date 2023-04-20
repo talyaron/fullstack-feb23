@@ -3,7 +3,6 @@
   padding: 0;
 }
 
-
 body {
   background-color: black;
   font-family: Netflix Sans, Helvetica Neue, Segoe UI, Roboto, Ubuntu,
@@ -11,7 +10,6 @@ body {
   direction: rtl;
   color: white;
   font-size: 1.2vw;
-
 }
 
 .video {
@@ -43,7 +41,6 @@ body {
     }
 
     .video__nav--netflix {
-
       width: 7%;
       height: 7%;
       margin-right: 2%;
@@ -56,56 +53,49 @@ body {
   }
 }
 
-
-
-
 .main {
   position: absolute;
-  top: 120%;
-
+  top: 95%;
   h2 {
     direction: rtl;
     color: white;
-    padding-right: 1%;
+    padding-right: 58px;
+    font-size: 20px;
+    margin-bottom: 14px;
   }
 
   .wrapper {
-    top: 20%;
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     grid-template-rows: repeat(1, 1fr);
-    padding-right: 1%;
+    padding-right: 58px;
+    margin-bottom: 50px;
 
     img {
-      width: 85%;
-      height: 85%;
+      width: 217px;
+      height: 122px;
       border-radius: 5px;
+      padding: 3px;
       z-index: -1;
     }
-
-    img:hover{
-      width: 230px;
-      height: 120px;
-      position: absolute;
-      z-index: 1;
-
+    img:hover {
+      width: 222px;
+      height: 127px;
     }
-
-
+    div {
+      height: 123px;
+    }
     i {
-      position: absolute;
+      position: relative;
       left: -10px;
       z-index: 1;
       font-size: 60px;
-      top: 50%;
-
+      top: -100px;
       &:hover {
         font-size: 75px;
       }
     }
   }
-
-
 }
 
 // טום<<<<<<<<<<<<<<<
@@ -113,7 +103,6 @@ body {
 .wapper {
   position: relative;
   max-width: 100%;
-
 
   &__box {
     width: 100%;
@@ -126,25 +115,23 @@ body {
 
     &__video1 {
       width: 100%;
-
     }
-
   }
 
   &__btn {
     p {
       max-width: 100;
       position: absolute;
-      color: red;
-      top: 39%;
+      top: 45%;
       margin-right: 5%;
-      font-weight: 800;
       font-size: 450%;
+      color: white;
+      font-weight: 700;
     }
 
     img {
       position: absolute;
-      top: 34%;
+      top: 40%;
       width: 9%;
       margin-right: 4%;
     }
@@ -155,7 +142,7 @@ body {
       background-color: white;
       color: black;
       border-radius: 4%;
-      top: 56%;
+      top: 62%;
       margin-right: 5%;
       width: 11%;
       height: 7%;
@@ -168,7 +155,6 @@ body {
         width: 30%;
         left: 60%;
         top: 12%;
-
       }
     }
 
@@ -183,19 +169,17 @@ body {
       color: white;
       border-radius: 4%;
       border: none;
-      top: 56%;
+      top: 62%;
       margin-right: 17%;
       width: 14%;
       height: 7%;
       font-size: 110%;
       font-weight: 700;
       border: none;
-
     }
 
     .btn2:hover {
       background-color: rgba(107, 107, 108, 0.271);
-
     }
 
     .btn3 {
@@ -216,15 +200,11 @@ body {
         position: absolute;
         width: 50%;
       }
-
-
     }
 
     .btn3:hover {
       background-color: rgba(248, 248, 255, 0.586);
     }
-
-
 
     .p-1 {
       position: absolute;
@@ -237,7 +217,5 @@ body {
       width: 8%;
       height: 3%;
     }
-
   }
-
 }

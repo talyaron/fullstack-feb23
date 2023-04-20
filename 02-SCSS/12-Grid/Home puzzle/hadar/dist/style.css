@@ -48,38 +48,42 @@ body {
 
 .main {
   position: absolute;
-  top: 120%;
+  top: 95%;
 }
 .main h2 {
   direction: rtl;
   color: white;
-  padding-right: 1%;
+  padding-right: 58px;
+  font-size: 20px;
+  margin-bottom: 14px;
 }
 .main .wrapper {
-  top: 20%;
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   grid-template-rows: repeat(1, 1fr);
-  padding-right: 1%;
+  padding-right: 58px;
+  margin-bottom: 50px;
 }
 .main .wrapper img {
-  width: 85%;
-  height: 85%;
+  width: 217px;
+  height: 122px;
   border-radius: 5px;
+  padding: 3px;
   z-index: -1;
 }
 .main .wrapper img:hover {
-  width: 230px;
-  height: 120px;
-  position: absolute;
-  z-index: 1;
+  width: 222px;
+  height: 127px;
+}
+.main .wrapper div {
+  height: 123px;
 }
 .main .wrapper i {
-  position: absolute;
+  position: relative;
   left: -10px;
   z-index: 1;
   font-size: 60px;
-  top: 50%;
+  top: -100px;
 }
 .main .wrapper i:hover {
   font-size: 75px;
@@ -103,15 +107,15 @@ body {
 .wapper__btn p {
   max-width: 100;
   position: absolute;
-  color: red;
-  top: 39%;
+  top: 45%;
   margin-right: 5%;
-  font-weight: 800;
   font-size: 450%;
+  color: white;
+  font-weight: 700;
 }
 .wapper__btn img {
   position: absolute;
-  top: 34%;
+  top: 40%;
   width: 9%;
   margin-right: 4%;
 }
@@ -121,7 +125,7 @@ body {
   background-color: white;
   color: black;
   border-radius: 4%;
-  top: 56%;
+  top: 62%;
   margin-right: 5%;
   width: 11%;
   height: 7%;
@@ -145,7 +149,7 @@ body {
   color: white;
   border-radius: 4%;
   border: none;
-  top: 56%;
+  top: 62%;
   margin-right: 17%;
   width: 14%;
   height: 7%;
