@@ -38,6 +38,8 @@ body .container .header__corner img {
   margin: 0 5px;
 }
 body .container .big__picture {
+  display: grid;
+  background: url(img/big.jpg) no-repeat center center/cover;
   grid-area: picture;
   background: gold;
 }

@@ -60,6 +60,9 @@ body {
         }
 
         .big__picture {
+            display: grid;
+            // grid-template-columns: 1;
+            background: url(img/big.jpg) no-repeat center center/ cover;
             grid-area: picture;
             background: gold;
 
