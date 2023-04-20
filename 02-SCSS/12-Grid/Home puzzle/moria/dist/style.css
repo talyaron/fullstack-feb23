@@ -1,7 +1,7 @@
 body {
   font-family: sans-serif;
   color: white;
-  background: #1B1A18;
+  background-color: #141414;
 }
 body .container {
   display: grid;
@@ -41,7 +41,6 @@ body .container .big__picture {
   display: grid;
   background: url(img/big.jpg) no-repeat center center/cover;
   grid-area: picture;
-  background: gold;
 }
 body .container .big__picture img {
   width: 25px;

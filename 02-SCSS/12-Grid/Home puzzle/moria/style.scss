@@ -1,7 +1,7 @@
 body {
     font-family: sans-serif;
     color: white;
-    background: #1B1A18;
+    background-color: #141414;
 
     .container {
         display: grid;
@@ -64,7 +64,7 @@ body {
             // grid-template-columns: 1;
             background: url(img/big.jpg) no-repeat center center/ cover;
             grid-area: picture;
-            background: gold;
+            // background: gold;
 
             img {
                 width: 25px;
