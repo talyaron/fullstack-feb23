@@ -102,6 +102,7 @@ justify-content: space-around;
         width: 80px;
 }
 animation-name: fly; 
+animation: fly 6s linear 1s 3  forwards;
 animation-duration: 6s;
 animation-timing-function: linear;
 animation-fill-mode: forwards;

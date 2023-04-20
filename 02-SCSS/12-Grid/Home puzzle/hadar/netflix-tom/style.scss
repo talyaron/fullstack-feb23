@@ -1,0 +1,73 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: black;
+    direction: rtl;
+}
+
+.wapper {
+    position: relative;
+    max-width: 100%;
+
+
+    &__box {
+        max-width: 100%;
+        margin: 0%;
+        border: red 1px solid;
+    }
+
+    &__video {
+        position: absolute;
+        top: -60px;
+
+        &__video1 {
+            width: 100%;
+
+        }
+
+    }
+
+    &__btn {
+        p {
+            position: absolute;
+            color: red;
+            top: 60%;
+            margin-right: 10px;
+            font-weight: 800;
+            font-size: 200%;
+        }
+
+        .btn1 {
+            position: absolute;
+            padding: 1%;
+            background-color: white;
+            color: black;
+            border-radius: 30%;
+            top: 70%;
+            margin-right: 1%;
+            width: 10%;
+            height: 7%;
+            font-size: 5%;
+            font-weight: 700;
+        }
+
+        .btn2 {
+            position: absolute;
+            padding: 1%;
+            background-color: rgba(140, 140, 140, 0.589);
+            color: black;
+            border-radius: 30%;
+            top: 70%;
+            margin-right: 12%;
+            width: 10%;
+            height: 7%;
+            font-size: 5%;
+            font-weight: 700;
+        }
+
+    }
+
+}
