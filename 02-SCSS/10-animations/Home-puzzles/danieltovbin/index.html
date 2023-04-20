@@ -43,7 +43,7 @@
         </div>
         <section class="section">
             <div class="wrapper__image">
-                <img  src="./img/ballon.png" alt="">
+                <img onclick="pop()" src="./img/ballon.png" alt="">
             </div>
             <div class="wrapper__image__effect">
                 <img  src="./img/yoda.png" alt="">
@@ -69,7 +69,15 @@
             </div> -->
         
     </div>
-    
+    <script>
+        function pop(){
+        let ballon = document.querySelector("body > div > section > div.wrapper__image > img");
+        ballon.addEventListener('click', e => {
+            ballon.style.display = 'none'
+        })}
+        pop();
+
+    </script>
     
 </body>
 </html>

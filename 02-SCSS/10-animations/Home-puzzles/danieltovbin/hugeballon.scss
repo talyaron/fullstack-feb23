@@ -24,7 +24,7 @@
             position: absolute;
             top: 0;
             left:0;
-            width: 50%; 
+            width: 100%; 
             
             & img {
                 width: 100%;
@@ -43,10 +43,10 @@
 
     }
 }
-body > div > section > div.wrapper__image > img:hover  {
-    display: none;
+// body > div > section > div.wrapper__image > img:hover  {
+//     display: none;
         
-}
+// }
     
 
     
