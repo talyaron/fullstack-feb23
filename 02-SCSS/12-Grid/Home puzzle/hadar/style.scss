@@ -38,6 +38,33 @@ body {
       font-size: 0.9rem;
     }
 
+    .serach {
+      img {
+        width: 20px;
+      }
+    }
+
+
+    .bell {
+      img {
+        width: 20px;
+      }
+    }
+
+
+    .uzer1 {
+      img {
+        width: 10px;
+      }
+    }
+
+
+    .reverse {
+      img {
+        width: 20px;
+      }
+    }
+
     .a2 {
       margin-left: 20%;
     }
@@ -57,7 +84,7 @@ body {
 
 .main {
   position: absolute;
-  top: 800px;
+
   h2 {
     direction: rtl;
     color: white;
@@ -71,7 +98,6 @@ body {
     grid-template-columns: repeat(8, 1fr);
     grid-template-rows: repeat(1, 1fr);
     padding-right: 58px;
-    margin-bottom: 50px;
 
     img {
       width: 217px;
@@ -80,19 +106,22 @@ body {
       padding: 3px;
       z-index: -1;
     }
+
     img:hover {
-      width: 222px;
-      height: 127px;
+      position: absolute;
+      width: 20%;
+      height: 19%;
+      z-index: 1;
     }
-    div {
-      height: 123px;
-    }
+
+
     i {
       position: relative;
       left: -10px;
       z-index: 1;
       font-size: 60px;
       top: -100px;
+
       &:hover {
         font-size: 75px;
       }

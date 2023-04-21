@@ -34,6 +34,18 @@ body {
   font-weight: 400;
   font-size: 0.9rem;
 }
+.video .video__nav .serach img {
+  width: 20px;
+}
+.video .video__nav .bell img {
+  width: 20px;
+}
+.video .video__nav .uzer1 img {
+  width: 10px;
+}
+.video .video__nav .reverse img {
+  width: 20px;
+}
 .video .video__nav .a2 {
   margin-left: 20%;
 }
@@ -49,7 +61,6 @@ body {
 
 .main {
   position: absolute;
-  top: 800px;
 }
 .main h2 {
   direction: rtl;
@@ -63,7 +74,6 @@ body {
   grid-template-columns: repeat(8, 1fr);
   grid-template-rows: repeat(1, 1fr);
   padding-right: 58px;
-  margin-bottom: 50px;
 }
 .main .wrapper img {
   width: 217px;
@@ -73,11 +83,10 @@ body {
   z-index: -1;
 }
 .main .wrapper img:hover {
-  width: 222px;
-  height: 127px;
-}
-.main .wrapper div {
-  height: 123px;
+  position: absolute;
+  width: 20%;
+  height: 19%;
+  z-index: 1;
 }
 .main .wrapper i {
   position: relative;
