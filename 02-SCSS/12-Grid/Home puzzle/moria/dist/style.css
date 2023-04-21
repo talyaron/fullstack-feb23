@@ -6,16 +6,17 @@ body {
 body .container {
   display: grid;
   grid-gap: 1rem;
-  grid-template-areas: "header header header " "picture picture picture " "picture picture picture " "picture picture picture" "picture picture picture " "picture picture picture" "top top top " "top top top ";
+  grid-template-columns: repeat(1, 4fr);
 }
 body .container .header {
-  grid-area: header;
   display: flex;
   justify-content: space-between;
+  grid-column: 1/span 5;
+  grid-row: 1/span 1;
 }
 body .container .header__main span {
   color: red;
-  margin-right: 80px;
+  margin-right: 40px;
   font-weight: bold;
   font-size: 25px;
 }
@@ -24,30 +25,43 @@ body .container .header__main a {
   text-decoration: none;
   margin: 0 10px;
 }
-body .container .header img {
-  width: 25px;
-  height: 25px;
-  padding: 1px 0;
-}
 body .container .header__corner a {
   color: white;
   text-decoration: none;
   margin: 0 5px;
 }
 body .container .header__corner img {
-  margin: 0 5px;
+  width: 25px;
+  height: 25px;
+  padding: 1px 0;
 }
 body .container .big__picture {
+  grid-column: 1/span 5;
+  grid-row: 2/span 35;
   display: grid;
-  background: url(img/big.jpg) no-repeat center center/cover;
-  grid-area: picture;
+  background: url(img/big.jpg) no-repeat top center/cover;
+}
+body .container .big__picture span {
+  color: red;
+  font-weight: bold;
+  font-size: 25px;
+}
+body .container .big__picture .info {
+  font-size: 13px;
+  color: white;
+  border: 2px white solid;
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
+  margin-right: 4px;
 }
 body .container .big__picture img {
   width: 25px;
   height: 25px;
 }
 body .container .top10 {
-  background: red;
-  grid-area: top;
+  grid-column: 1/span 5;
+  grid-row: 36/span 37;
   display: flex;
+  background: red;
 }
