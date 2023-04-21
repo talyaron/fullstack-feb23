@@ -25,7 +25,7 @@ body {
     .a1 {
       color: white;
       font-weight: 500;
-      font-size: 0.9rem;
+      font-size: 100%;
 
     }
 
@@ -35,10 +35,10 @@ body {
       color: rgba(255, 253, 253, 0.863);
       text-decoration: none;
       font-weight: 200;
-      font-size: 0.9rem;
+      font-size: 100%;
     }
 
-    a:hover{
+    a:hover {
       color: rgb(203, 201, 201);
     }
 
@@ -131,6 +131,8 @@ body {
     }
   }
 }
+
+
 
 // טום<<<<<<<<<<<<<<<
 
