@@ -24,20 +24,43 @@ body {
     .a1 {
       color: white;
       font-weight: 700;
-      font-size: 1rem;
+      font-size: 100%;
     }
 
     a {
-      top: 1rem;
+      top: 1%;
       margin: 1%;
       color: rgb(184, 180, 180);
       text-decoration: none;
       font-weight: 400;
-      font-size: 0.9rem;
+      font-size: 100%;
+    }
+
+    .bell {
+      img {
+        width: 20px;
+      }
+    }
+
+    .serach {
+      img {
+        width: 20px;
+      }
+    }
+
+    .Reverse {
+      img {
+        width: 20px;
+      }
+
+    }
+
+    a:hover {
+      color: white;
     }
 
     .a2 {
-      margin-left: 20%;
+      margin-left: 10%;
     }
 
     .video__nav--netflix {
@@ -47,15 +70,16 @@ body {
     }
   }
 
-  .video__nav--uzer {
+  .uzer {
     width: 3%;
-    padding: 2%;
+    padding: 1%;
   }
 }
 
 .main {
   position: absolute;
-  top: 95%;
+  top: 520px;
+
   h2 {
     direction: rtl;
     color: white;
@@ -68,8 +92,8 @@ body {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     grid-template-rows: repeat(1, 1fr);
-    padding-right: 58px;
-    margin-bottom: 50px;
+    padding-right: 2%;
+    margin-bottom: 1%;
 
     img {
       width: 217px;
@@ -78,19 +102,26 @@ body {
       padding: 3px;
       z-index: -1;
     }
+
     img:hover {
-      width: 222px;
-      height: 127px;
+      position: absolute;
+      width: 422px;
+      height: 227px;
+      z-index: 1;
+
     }
+
     div {
-      height: 123px;
+      height: 3%;
     }
+
     i {
       position: relative;
       left: -10px;
       z-index: 1;
       font-size: 60px;
       top: -100px;
+
       &:hover {
         font-size: 75px;
       }
@@ -188,7 +219,7 @@ body {
       background-color: rgba(248, 248, 255, 0.051);
       border: 2px solid rgb(255, 255, 255);
       border-radius: 55%;
-      top: 56.5%;
+      top: 62.5%;
       margin-right: 85%;
       color: white;
       width: 4%;
@@ -211,7 +242,7 @@ body {
       padding: 1%;
       background-color: rgba(0, 0, 0, 0.404);
       border-right: 3px solid white;
-      top: 56%;
+      top: 62%;
       margin-right: 90%;
       color: white;
       width: 8%;
