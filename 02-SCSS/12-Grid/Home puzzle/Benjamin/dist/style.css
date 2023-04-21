@@ -1,0 +1,58 @@
+body {
+  background-color: #0f0c0c;
+}
+
+.wrapper {
+  width: 96%;
+  height: fit-content;
+  margin-left: 4vw;
+  overflow: hidden;
+}
+
+.uppersection {
+  width: 100;
+  height: 90vh;
+  background-image: url(https://occ-0-300-420.1.nflxso.net/dnm/api/v6/6AYY37jfdO6hpXcMjf9Yu5cnmO0/AAAABZKJpdcSuvqwGBxBJNKVRze0JWHe9phJW6L1xaiqvLePPRKhRis-7FHr69URHZIYXqUVus0HIoz_3fLZPQr3VVqGGzRNlDoNkPwp.jpg?r=72d);
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  width: 100vw;
+  height: 8vh;
+  align-items: center;
+}
+.header__logo {
+  height: 6vh;
+  width: 7vw;
+  cursor: pointer;
+}
+.header__secheader {
+  display: flex;
+  flex-direction: row;
+  margin-left: 3vw;
+  gap: 2ch;
+  font-size: 16px;
+  color: #c6cdd4;
+}
+.header__secheader__little {
+  cursor: pointer;
+  transition: color 100ms ease-in-out;
+}
+.header__secheader__little:hover {
+  color: white;
+}
+
+.SevenKingsgrid {
+  display: grid;
+  grid-template-areas: "boo main purple purple" "boo red red ." ". red red .";
+}
+.SevenKingsgrid__Nlogo {
+  height: 7vh;
+  width: 3vw;
+}
+.SevenKingsgrid__SevenKings {
+  height: 35vh;
+  width: 32vw;
+  grid-area: SevenKings;
+}
