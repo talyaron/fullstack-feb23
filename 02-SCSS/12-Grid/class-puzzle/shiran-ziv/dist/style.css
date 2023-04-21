@@ -1,19 +1,25 @@
+* {
+  box-sizing: border-box;
+}
+
 .wrapper {
   margin: auto;
   background-color: lightgrey;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(5, auto);
+  grid-template-rows: 80px 1fr 1fr 1fr;
   gap: 10px;
 }
 
 .article {
   background-color: aqua;
   padding: 10px;
+  height: 100%;
 }
 
 .header {
   grid-column: 1/-1;
+  margin-bottom: 100px;
 }
 
 .sidebar {
