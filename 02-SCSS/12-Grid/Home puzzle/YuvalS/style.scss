@@ -115,7 +115,7 @@
     }
     margin-top: 20px;
     display: grid;
-    grid-template-columns: repeat(7, 13.5vw);
+    grid-template-columns: repeat(7, 13.4vw);
     justify-content: center;
     position: relative;
     top: 40vh;
@@ -140,6 +140,7 @@
 
         &--number{
             z-index: 1;
+            width: 100px;
         }
     }
 }
@@ -183,10 +184,10 @@
 
 @media screen and (max-width: 1700px) {
     .FramesWrapper{
-    grid-template-columns: repeat(5, 16vw);
+    grid-template-columns: repeat(4, 16vw);
     }
     .topWrapper{
-        grid-template-columns: repeat(5, 16vw);
+        grid-template-columns: repeat(3, 18.5vw);
     }
     
 
@@ -194,7 +195,10 @@
 
 @media screen and (max-width: 1200px) {
     .FramesWrapper{
-    grid-template-columns: repeat(4, 16vw);
+    grid-template-columns: repeat(3, 16vw);
+    }
+    .topWrapper{
+        grid-template-columns: repeat(3, 13.5vw);
     }
 
 }
@@ -202,6 +206,9 @@
 @media screen and (max-width: 600px) {
     .FramesWrapper{
     grid-template-columns: repeat(2, 16vw);
+    .topWrapper{
+        grid-template-columns: repeat(2, 13.5vw);
+    }
     }
 
 }
