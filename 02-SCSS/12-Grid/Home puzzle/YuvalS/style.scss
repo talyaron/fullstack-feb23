@@ -1,41 +1,104 @@
 *{
     margin: 0px;
     padding: 0px;
+    margin: auto;
+    background-color: black;
+    color: white;
+    font-family: "Lucida Console", "Courier New", monospace;
 }
 
+
+
 img{
-    width: 200px;
-    height: 100%;
+    width: 300px;
+    height: 55%;
 }
 
 .FramesWrapper{
 
-    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(6, 16vw);
+    grid-template-rows: repeat(2, 30vh);
+    position: relative;
+    top: 50vh;
 
+    h2{
+        position: relative;
+        bottom: 66vh;
+        left: 82vw;
+        font-size: 25px;
+        font-weight: 900;
+        
+        
+    }
 
+    h3{
+        position: relative;
+        bottom: 36vh;
+        left: 70vw;
+        font-size: 25px;
+        font-weight: 900;
+        
+    }
+    
+    
+  
+    
+    
     &__Video{
         width: 12vw;
         height: 100%;
+        text-align: right;
+       
+        
+        
+
+
+        &--main{
+            border-radius: 5px;
+        }
 
         &--sub{
             position: relative;
             bottom: 5px;
-            opacity: 0.2;
+            opacity: 0;
+            height: 27%;
             
         }
 
         &:hover{
             cursor: pointer;
-            scale: 1.5;
-            transition-duration: 1.5s;
-            .sub{opacity: 1;}
+            scale: 1.3;
+            transition-duration: 2s;
+            .FramesWrapper__Video--sub{opacity: 1;}
         }
         
-        &:hover + .sub{opacity: 1;}
        
 
 
         
         
     }
+}
+
+@media screen and (max-width: 1700px) {
+    .FramesWrapper{
+    grid-template-columns: repeat(5, 16vw);
+    }
+    
+
+}
+
+@media screen and (max-width: 1200px) {
+    .FramesWrapper{
+    grid-template-columns: repeat(4, 16vw);
+    }
+
+}
+
+@media screen and (max-width: 600px) {
+    .FramesWrapper{
+    grid-template-columns: repeat(2, 16vw);
+    }
+
 }

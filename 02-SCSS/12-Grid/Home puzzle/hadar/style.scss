@@ -21,25 +21,25 @@ body {
     text-decoration: none;
     margin-top: 0.7%;
 
+
     .a1 {
       color: white;
-      font-weight: 700;
-      font-size: 100%;
+      font-weight: 500;
+      font-size: 0.9rem;
+
     }
 
     a {
-      top: 1%;
-      margin: 1%;
-      color: rgb(184, 180, 180);
+      top: 1rem;
+      margin: 1% 0.5% 1%;
+      color: rgba(255, 253, 253, 0.863);
       text-decoration: none;
-      font-weight: 400;
-      font-size: 100%;
+      font-weight: 200;
+      font-size: 0.9rem;
     }
 
-    .bell {
-      img {
-        width: 20px;
-      }
+    a:hover{
+      color: rgb(203, 201, 201);
     }
 
     .serach {
@@ -48,37 +48,45 @@ body {
       }
     }
 
-    .Reverse {
+    .uzer1 {
+      img {
+        width: 25px;
+      }
+    }
+
+
+    .bell {
       img {
         width: 20px;
       }
-
     }
 
-    a:hover {
-      color: white;
+
+    .reverse {
+      img {
+        width: 20px;
+      }
     }
 
     .a2 {
-      margin-left: 10%;
+      margin-left: 20%;
     }
 
     .video__nav--netflix {
-      width: 7%;
-      height: 7%;
+      width: 10%;
       margin-right: 2%;
+      margin-top: -1%;
     }
   }
 
-  .uzer {
+  .video__nav--uzer {
     width: 3%;
-    padding: 1%;
+    padding: 2%;
   }
 }
 
 .main {
   position: absolute;
-  top: 520px;
 
   h2 {
     direction: rtl;
@@ -90,10 +98,9 @@ body {
 
   .wrapper {
     display: grid;
-    grid-template-columns: repeat(7, 1fr);
+    grid-template-columns: repeat(8, 1fr);
     grid-template-rows: repeat(1, 1fr);
-    padding-right: 2%;
-    margin-bottom: 1%;
+    padding-right: 58px;
 
     img {
       width: 217px;
@@ -105,15 +112,11 @@ body {
 
     img:hover {
       position: absolute;
-      width: 422px;
-      height: 227px;
+      width: 20%;
+      height: 19%;
       z-index: 1;
-
     }
 
-    div {
-      height: 3%;
-    }
 
     i {
       position: relative;
@@ -219,7 +222,7 @@ body {
       background-color: rgba(248, 248, 255, 0.051);
       border: 2px solid rgb(255, 255, 255);
       border-radius: 55%;
-      top: 62.5%;
+      top: 62%;
       margin-right: 85%;
       color: white;
       width: 4%;

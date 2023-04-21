@@ -22,45 +22,47 @@ body {
 }
 .video .video__nav .a1 {
   color: white;
-  font-weight: 700;
-  font-size: 100%;
+  font-weight: 500;
+  font-size: 0.9rem;
 }
 .video .video__nav a {
-  top: 1%;
-  margin: 1%;
-  color: #b8b4b4;
+  top: 1rem;
+  margin: 1% 0.5% 1%;
+  color: rgba(255, 253, 253, 0.863);
   text-decoration: none;
-  font-weight: 400;
-  font-size: 100%;
+  font-weight: 200;
+  font-size: 0.9rem;
 }
-.video .video__nav .bell img {
-  width: 20px;
+.video .video__nav a:hover {
+  color: #cbc9c9;
 }
 .video .video__nav .serach img {
   width: 20px;
 }
-.video .video__nav .Reverse img {
+.video .video__nav .uzer1 img {
+  width: 25px;
+}
+.video .video__nav .bell img {
   width: 20px;
 }
-.video .video__nav a:hover {
-  color: white;
+.video .video__nav .reverse img {
+  width: 20px;
 }
 .video .video__nav .a2 {
-  margin-left: 10%;
+  margin-left: 20%;
 }
 .video .video__nav .video__nav--netflix {
-  width: 7%;
-  height: 7%;
+  width: 10%;
   margin-right: 2%;
+  margin-top: -1%;
 }
-.video .uzer {
+.video .video__nav--uzer {
   width: 3%;
-  padding: 1%;
+  padding: 2%;
 }
 
 .main {
   position: absolute;
-  top: 520px;
 }
 .main h2 {
   direction: rtl;
@@ -71,10 +73,9 @@ body {
 }
 .main .wrapper {
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
+  grid-template-columns: repeat(8, 1fr);
   grid-template-rows: repeat(1, 1fr);
-  padding-right: 2%;
-  margin-bottom: 1%;
+  padding-right: 58px;
 }
 .main .wrapper img {
   width: 217px;
@@ -85,12 +86,9 @@ body {
 }
 .main .wrapper img:hover {
   position: absolute;
-  width: 422px;
-  height: 227px;
+  width: 20%;
+  height: 19%;
   z-index: 1;
-}
-.main .wrapper div {
-  height: 3%;
 }
 .main .wrapper i {
   position: relative;
@@ -180,7 +178,7 @@ body {
   background-color: rgba(248, 248, 255, 0.051);
   border: 2px solid white;
   border-radius: 55%;
-  top: 62.5%;
+  top: 62%;
   margin-right: 85%;
   color: white;
   width: 4%;
