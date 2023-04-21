@@ -1,0 +1,97 @@
+body {
+    background-color: black;
+}
+
+video {
+    position: absolute;
+    width: 100%;
+    top: -139px;
+    padding: 0;
+    margin: 0;
+}
+
+
+.Titles {
+ width: 100%;
+ display: flex;
+ gap: 47px;
+ position: relative;
+
+  &__Logo {
+    img {
+        position: relative;
+        bottom: 20px;
+        width: 170px;
+        height: 100px  
+    } 
+  }
+  
+  &__SubTitle {
+    position: relative;
+    top: 18px;
+    a {
+        color: rgb(209, 209, 209);
+        font-size: 18px;
+        font-family:  'Pathway Extreme', sans-serif;;
+        font-weight: 400;
+        text-decoration: none;
+    }
+    a:hover {
+        text-shadow: 1px 0px 10px white ;
+        color: white;
+        
+    }
+    
+  }
+
+.Icons {
+    display: flex;
+    gap: 15px;
+    position: relative;
+    top: 18px;
+    left: 600px;
+    img {
+        width: 25px;
+        height: 25px;
+        rotate: -18deg;
+    }
+    &__SubTitle {
+       
+            a {
+                color: rgb(209, 209, 209);
+                font-size: 18px;
+                font-family:  'Pathway Extreme', sans-serif;;
+                font-weight: 400;
+                text-decoration: none;  
+               } 
+                 
+        
+            }
+    
+    &__SubIcons {
+     
+        &--bell {
+            rotate: 17deg;
+        }
+    }    
+    
+}
+
+}
+.circule {
+    position: absolute;
+    color: white;
+    font-size: small;
+    rotate: -15deg;
+    background-color: red;
+    width: 17px;
+    height: 17px;
+    border-radius: 100px;
+    left: 11px;
+    top: -5px;
+    p {
+        position: absolute;
+        top: -13px;
+        left: 2px;
+    }
+}
