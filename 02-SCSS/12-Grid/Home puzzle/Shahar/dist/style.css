@@ -18,6 +18,8 @@
 .underheader {
   color: white;
   font-size: 25px;
+  direction: rtl;
+  margin-right: 30px;
 }
 
 .movies {
@@ -33,4 +35,13 @@
   border-radius: 5px;
   width: 300px;
   height: 150px;
+  margin-right: 30px;
+}
+
+.allthis {
+  display: flex;
+  gap: none;
+}
+.allthis .netflixone {
+  width: 200px;
 }
