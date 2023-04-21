@@ -19,6 +19,77 @@
   background-repeat: no-repeat;
   z-index: -5;
   margin-bottom: -400px;
+  align-items: center;
+}
+.headWrapper h1 {
+  background: none;
+  position: absolute;
+  top: 14vh;
+  left: 70vw;
+  font-size: 320px;
+  font-weight: 1000000000;
+  margin-left: 0px;
+}
+.headWrapper h2 {
+  background: none;
+  position: absolute;
+  top: 43vh;
+  left: 70vw;
+  font-size: 50px;
+  font-weight: 10000;
+}
+.headWrapper h3 {
+  background: none;
+  position: absolute;
+  top: 50vh;
+  left: 79vw;
+  font-size: 30px;
+  font-weight: 1000;
+}
+.headWrapper p {
+  background: none;
+  width: 800px;
+  position: absolute;
+  top: 55vh;
+  left: 55vw;
+  font-size: 20px;
+  font-weight: 600;
+  text-align: justify;
+}
+.headWrapper i {
+  background: none;
+}
+.headWrapper .fa-play {
+  color: #141414;
+}
+.headWrapper__btn1 {
+  background-color: rgba(109, 109, 110, 0.7);
+  width: 180px;
+  height: 45px;
+  font-size: 20px;
+  font-weight: 600;
+  position: relative;
+  top: 64vh;
+  left: 75vw;
+  border-radius: 7px;
+}
+.headWrapper__btn1:hover {
+  opacity: 0.8;
+}
+.headWrapper__btn2 {
+  background-color: white;
+  width: 180px;
+  height: 45px;
+  font-size: 20px;
+  font-weight: 1000;
+  color: black;
+  position: relative;
+  top: 64vh;
+  left: 75vw;
+  border-radius: 7px;
+}
+.headWrapper__btn2:hover {
+  opacity: 0.6;
 }
 
 .topWrapper {
