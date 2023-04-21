@@ -20,6 +20,8 @@ body {
     display: flex;
     text-decoration: none;
     margin-top: 0.7%;
+    font-size: 17px;
+
 
     .a1 {
       color: white;
@@ -55,7 +57,7 @@ body {
 
 .main {
   position: absolute;
-  top: 105%;
+  top: 800px;
   h2 {
     direction: rtl;
     color: white;
@@ -66,7 +68,7 @@ body {
 
   .wrapper {
     display: grid;
-    grid-template-columns: repeat(7, 1fr);
+    grid-template-columns: repeat(8, 1fr);
     grid-template-rows: repeat(1, 1fr);
     padding-right: 58px;
     margin-bottom: 50px;
