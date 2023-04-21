@@ -29,3 +29,7 @@
     grid-template-columns: repeat(1, 1fr);
   }
 }
+.contriner .movie {
+  display: grid;
+  max-width: 50px;
+}
