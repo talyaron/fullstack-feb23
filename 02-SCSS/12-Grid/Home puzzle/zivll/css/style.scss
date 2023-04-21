@@ -1,0 +1,60 @@
+@import "header";
+@import "hero";
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  direction: rtl;
+  color: white;
+  background-color: black;
+}
+.movies {
+  padding: 0 4%;
+  padding-top: 50px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: auto 200px auto 200px auto 200px;
+  gap: 2vw;
+  &__header {
+    font-size: 2rem;
+    text-align: right;
+    grid-column: span 5;
+  }
+  .movie {
+    position: relative;
+    &__hover {
+      position: absolute;
+      right: 50px;
+      opacity: 0;
+      transition: 0.4s;
+      .flexdiv {
+        display: flex;
+      }
+      .btns {
+        display: flex;
+      }
+      .btns__btn {
+      }
+      .movie__hover__menu {
+      }
+      &:hover {
+        opacity: 1;
+        scale: 1.5;
+      }
+    }
+
+    svg {
+      position: absolute;
+      right: 4%;
+      width: 50%;
+    }
+    img {
+      height: 100%;
+      position: absolute;
+      left: 0;
+      width: 50%;
+    }
+  }
+}
