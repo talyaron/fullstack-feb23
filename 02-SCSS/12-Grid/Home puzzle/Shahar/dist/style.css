@@ -1,0 +1,36 @@
+.wrapper {
+  background-color: black;
+  height: 100vh;
+}
+
+.header {
+  display: flex;
+  direction: rtl;
+  color: white;
+  gap: 15px;
+  align-items: center;
+  font-weight: lighter;
+}
+.header .logo {
+  width: 6%;
+}
+
+.underheader {
+  color: white;
+  font-size: 25px;
+}
+
+.movies {
+  direction: rtl;
+  gap: 10px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  grid-template-areas: "underheader underheader underheader underheader underheader underheader" "one two three four one";
+}
+.movies .movie {
+  margin-bottom: 20px;
+  border-radius: 5px;
+  width: 300px;
+  height: 150px;
+}
