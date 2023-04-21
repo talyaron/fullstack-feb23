@@ -1,66 +1,252 @@
-
-body{
-    background-color: black;
-    font-family: Netflix Sans,Helvetica Neue,Segoe UI,Roboto,Ubuntu,sans-serif;
-    direction: rtl;
-    color: white ;
+* {
+  margin: 0;
+  padding: 0;
 }
-.main{
-    background-color: black;
+
+body {
+  background-color: black;
+  font-family: Netflix Sans, Helvetica Neue, Segoe UI, Roboto, Ubuntu,
+    sans-serif;
+  direction: rtl;
+  color: white;
+  font-size: 1.2vw;
+}
+
+.video {
+  width: 100%;
+
+  .video__nav {
     color: white;
     display: flex;
-    padding: 10px;
-    justify-content: space-between;
-    align-items: center;
-    
-    
-    .p1{
-        margin-left: 500px;
-    }
-    .netflix{
-        width: 100px;
-        height: 38px;
-    }
-    .uzer{
-        width: 51px;
-        height: 32px;
+    text-decoration: none;
+    margin-top: 0.7%;
+    font-size: 17px;
+
+
+    .a1 {
+      color: white;
+      font-weight: 700;
+      font-size: 1rem;
     }
 
+    a {
+      top: 1rem;
+      margin: 1%;
+      color: rgb(184, 180, 180);
+      text-decoration: none;
+      font-weight: 400;
+      font-size: 0.9rem;
+    }
+
+    .serach {
+      img {
+        width: 20px;
+      }
+    }
+
+
+    .bell {
+      img {
+        width: 20px;
+      }
+    }
+
+
+    .uzer1 {
+      img {
+        width: 10px;
+      }
+    }
+
+
+    .reverse {
+      img {
+        width: 20px;
+      }
+    }
+
+    .a2 {
+      margin-left: 20%;
+    }
+
+    .video__nav--netflix {
+      width: 7%;
+      height: 7%;
+      margin-right: 2%;
+    }
+  }
+
+  .video__nav--uzer {
+    width: 3%;
+    padding: 2%;
+  }
 }
 
-h2{
+.main {
+  position: absolute;
+
+  h2 {
     direction: rtl;
     color: white;
     padding-right: 58px;
-    
+    font-size: 20px;
+    margin-bottom: 14px;
+  }
+
+  .wrapper {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(1, 1fr);
+    padding-right: 58px;
+
+    img {
+      width: 217px;
+      height: 122px;
+      border-radius: 5px;
+      padding: 3px;
+      z-index: -1;
+    }
+
+    img:hover {
+      position: absolute;
+      width: 20%;
+      height: 19%;
+      z-index: 1;
+    }
+
+
+    i {
+      position: relative;
+      left: -10px;
+      z-index: 1;
+      font-size: 60px;
+      top: -100px;
+
+      &:hover {
+        font-size: 75px;
+      }
+    }
+  }
 }
 
-.wrapper{
-    display: grid;
-    grid-template-columns: repeat(7,1fr);
-    grid-template-rows: repeat(1,1fr);
-    padding-right: 58px;
-    
-    img{
-        width: 217px;
-        height: 122px;
-        border-radius: 5px;
-        padding: 3px;
-        z-index: -1;
-        
+// טום<<<<<<<<<<<<<<<
+
+.wapper {
+  position: relative;
+  max-width: 100%;
+
+  &__box {
+    width: 100%;
+  }
+
+  &__video {
+    position: absolute;
+    top: -110px;
+    z-index: -1;
+
+    &__video1 {
+      width: 100%;
     }
-    div{
-        height: 123px;
-    }
-    i{
-        position: relative;
-        left: -10px;
-        z-index: 1;
-        font-size: 60px;
-        top: -100px; 
-        &:hover{
-        font-size: 75px;
-        }
+  }
+
+  &__btn {
+    p {
+      max-width: 100;
+      position: absolute;
+      top: 45%;
+      margin-right: 5%;
+      font-size: 450%;
+      color: white;
+      font-weight: 700;
     }
 
+    img {
+      position: absolute;
+      top: 40%;
+      width: 9%;
+      margin-right: 4%;
+    }
+
+    .btn1 {
+      position: absolute;
+      padding: 1%;
+      background-color: white;
+      color: black;
+      border-radius: 4%;
+      top: 62%;
+      margin-right: 5%;
+      width: 11%;
+      height: 7%;
+      font-size: 110%;
+      font-weight: 700;
+      border: none;
+
+      img {
+        position: absolute;
+        width: 30%;
+        left: 60%;
+        top: 12%;
+      }
+    }
+
+    .btn1:hover {
+      background-color: rgba(204, 200, 200, 0.565);
+    }
+
+    .btn2 {
+      position: absolute;
+      padding: 1%;
+      background-color: rgba(109, 109, 110, 0.7);
+      color: white;
+      border-radius: 4%;
+      border: none;
+      top: 62%;
+      margin-right: 17%;
+      width: 14%;
+      height: 7%;
+      font-size: 110%;
+      font-weight: 700;
+      border: none;
+    }
+
+    .btn2:hover {
+      background-color: rgba(107, 107, 108, 0.271);
+    }
+
+    .btn3 {
+      position: absolute;
+      padding: 1%;
+      background-color: rgba(248, 248, 255, 0.051);
+      border: 2px solid rgb(255, 255, 255);
+      border-radius: 55%;
+      top: 56.5%;
+      margin-right: 85%;
+      color: white;
+      width: 4%;
+      height: 6%;
+
+      .img-1 {
+        top: 20%;
+        left: 25%;
+        position: absolute;
+        width: 50%;
+      }
+    }
+
+    .btn3:hover {
+      background-color: rgba(248, 248, 255, 0.586);
+    }
+
+    .p-1 {
+      position: absolute;
+      padding: 1%;
+      background-color: rgba(0, 0, 0, 0.404);
+      border-right: 3px solid white;
+      top: 56%;
+      margin-right: 90%;
+      color: white;
+      width: 8%;
+      height: 3%;
+    }
+  }
 }
