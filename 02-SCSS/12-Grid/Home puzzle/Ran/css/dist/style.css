@@ -77,3 +77,8 @@ video {
   top: -13px;
   left: 2px;
 }
+
+.TopMovie {
+  display: grid;
+  grid-template-rows: 5, 100px;
+}
