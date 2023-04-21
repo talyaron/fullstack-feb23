@@ -23,7 +23,7 @@ body {
 .video .video__nav .a1 {
   color: white;
   font-weight: 500;
-  font-size: 0.9rem;
+  font-size: 100%;
 }
 .video .video__nav a {
   top: 1rem;
@@ -31,7 +31,7 @@ body {
   color: rgba(255, 253, 253, 0.863);
   text-decoration: none;
   font-weight: 200;
-  font-size: 0.9rem;
+  font-size: 100%;
 }
 .video .video__nav a:hover {
   color: #cbc9c9;
