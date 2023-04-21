@@ -63,8 +63,42 @@ body {
             display: grid;
             // grid-template-columns: 1;
             background: url(img/big.jpg) no-repeat top center/ cover;
+            bottom: 2px;
+            position: relative;
 
+            p {
+                width: 30%;
+            }
 
+            &__bth {
+
+                display: flex;
+
+                .white {
+                    background-color: white;
+                    max-width: fit-content;
+                    color: black;
+                    margin-right: 12px;
+                    padding: 10px 20px;
+                }
+
+                .gray {
+                    background-color: gray;
+                    max-width: fit-content;
+                    padding: 10px 20px;
+
+                    .info {
+                        font-size: 13px;
+                        color: white;
+                        border: 2px white solid;
+                        border-radius: 50%;
+                        padding: 1px 5px;
+                        margin-right: 5px;
+                        text-align: center;
+
+                    }
+                }
+            }
 
             span {
                 color: red;
@@ -72,15 +106,7 @@ body {
                 font-size: 25px;
             }
 
-            .info {
-                font-size: 13px;
-                color: white;
-                border: 2px white solid;
-                border-radius: 50%;
-                width: 10px;
-                height: 10px;
-                margin-right: 4px;
-            }
+
 
             img {
                 width: 25px;
@@ -93,13 +119,45 @@ body {
 
         .top10 {
             grid-column: 1 / span 5;
-            grid-row: 36 / span 37;
+            grid-row: 33 / span 37;
             // background: red;
             // grid-area: top;
-            display: flex;
-            background: red;
 
 
+            &__tital {
+                position: relative;
+                top: 25px;
+                margin-bottom: 0;
+            }
+
+            &__movies {
+                display: flex;
+                justify-content: space-around;
+                top: 10px;
+
+
+                &__movie {
+
+                    width: 200px;
+                    height: 160px;
+                    position: relative;
+                    color: black;
+                    font-size: 150px;
+                    -webkit-text-stroke-width: 2px;
+                    -webkit-text-stroke-color: gray;
+
+
+                    img {
+                        height: 115px;
+                        position: absolute;
+                        left: 55px;
+                        z-index: 3;
+                        top: 30px;
+                    }
+                }
+            }
         }
+
+
     }
 }
