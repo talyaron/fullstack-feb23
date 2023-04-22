@@ -1,0 +1,157 @@
+.grid__row__span{
+    grid-column: span 6;
+    margin-top: 7em;
+    
+}
+
+
+
+*{ margin: 0; padding: 0;}
+body{
+height: 100vh;
+background: #141414;
+
+    .navbar{
+        height: 2.5em;
+        width: 100%;
+        background-color: aqua;
+        position: fixed;
+    }
+
+
+    .wrapper{
+        
+        
+        
+        .recomended{
+            height: 100vh;
+            background-image: url(https://i.gifer.com/B1E2.gif);
+            background-repeat: no-repeat;
+            background-size: cover;
+
+
+        }
+        .grid{
+            display: grid;
+            grid-template-columns: repeat(6,15em);
+            grid-template-rows:repeat(6,14em) ;
+            grid-template-rows: auto;
+            height: 40em;
+            padding: 1em;
+            box-shadow: 0px -10px 50px black;
+            
+            
+            &__title{
+                h1{color: white;}
+                margin-top: 0em;
+
+            }
+            &__item{
+                height: 8em;
+                width: 14em;
+                margin-top: -3em;
+               
+                border: 1px solid purple;
+                &__coverImg{
+                    height: 100%;
+                    background-color: aqua;
+                    border-radius: .5em .5em 0 0;
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                    background-clip: border-box;
+                }
+                &__text{
+                    background-color:#222222;
+                    height: 7em;
+                    opacity: 0;
+                    position: relative;
+                    .fa-solid{
+                        position: absolute;
+                        background-color: white;
+                        padding: .5em;
+                        border-radius: 50%;
+                        left: .5em;
+                        top: .5em;
+                        font-size: 1em;
+                    }
+                    .fa-regular{
+                        position: absolute;
+                        color: white;
+                        padding: .5em;
+                        border-radius: 50%;
+                        border: 1px solid rgba(255, 255, 255, 0.686);
+                        left: 2.5em;
+                        top: .5em;
+                        font-size: 1em;
+                      
+                    }
+                    .fa-plus{
+                        
+                        left: 2.5em;
+                        top: .5em;
+                       
+                    }
+
+                    .fa-thumbs-up{
+                                      
+                        top: .5em;
+                        left: 4.8em;                       
+                    }
+                    .fa-chevron-down{
+                        left: 11.3em;
+                        border: 1px solid rgba(255, 255, 255, 0.686);
+                        background-color: #14141400;
+                        color: white;
+                       
+                    }
+                    &__freetext{
+                        display: flex;
+                        padding-left: 5px;
+                        position: absolute;
+                        top: 5em;
+                        
+                        .match{
+                            color: rgb(19, 211, 19);
+                            margin-left: 8px;
+                        }
+                        .age{
+                            margin-left: 8px;
+                            color: white;
+                            border: 1px solid white;
+                            padding: 0 5px 0 5px;
+                        }
+                        .time{
+                            margin-left: 8px;
+                            color: white;
+                        }
+
+                    }
+                }
+                
+                
+            }
+            &__item:hover{
+                transform: scale(1.5) translateY(-40%) ;
+                transform-origin: center;
+                transition:  1.5s ; 
+                
+                
+            }
+            &__item:hover .grid__item__text  {
+                
+                opacity: 1;
+            }
+           
+            .transRight:hover{
+               transform: scale(1.5) translateY(-40%) translateX(15%);
+            }
+        }
+
+
+    }
+
+
+
+
+
+}

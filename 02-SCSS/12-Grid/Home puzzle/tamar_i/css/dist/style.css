@@ -1,0 +1,22 @@
+.contriner {
+  display: grid;
+  gap: 5px;
+  max-width: 100vh;
+  margin: auto;
+  grid-template-rows: [row1-start] 20px [row2] 200px [row3] 20px [row4] 200px [row5] 20px [row6] 200px [row7-end];
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-areas: "headline1 headline1 headline1 headline1 headline1" "movies1 movies1 movies1 movies1 movies1" "headline2 . . . ." "movies2 . . . .";
+}
+.contriner .headline {
+  grid-area: headline1;
+  background-color: blue;
+  color: white;
+}
+.contriner .movies {
+  grid-area: movies1;
+  background-color: black;
+}
+.contriner .movies .vid-wrapper {
+  height: 200px;
+  width: 100px;
+}
