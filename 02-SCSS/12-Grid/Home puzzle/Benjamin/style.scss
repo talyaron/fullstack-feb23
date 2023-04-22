@@ -7,8 +7,32 @@
     cursor: pointer;
 }
 
+@mixin showanimation($delay) {
+    opacity: 0;
+    animation-name: sevenshow;
+    animation-iteration-count: 1;
+    animation-delay: $delay;
+    animation-timing-function: ease-in-out;
+    animation-direction: normal;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+
+    @keyframes sevenshow {
+        from {
+            opacity: 0;
+
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+}
+
 body {
     background-color: rgb(15, 12, 12);
+    background-size: cover;
+    background-image: url(https://occ-0-300-420.1.nflxso.net/dnm/api/v6/6AYY37jfdO6hpXcMjf9Yu5cnmO0/AAAABZKJpdcSuvqwGBxBJNKVRze0JWHe9phJW6L1xaiqvLePPRKhRis-7FHr69URHZIYXqUVus0HIoz_3fLZPQr3VVqGGzRNlDoNkPwp.jpg?r=72d);
 }
 
 .wrapper {
@@ -16,12 +40,14 @@ body {
     height: fit-content;
     margin-left: 4vw;
     overflow: hidden;
+
 }
 
 .uppersection {
     width: 100;
     height: 90vh;
-    background-image: url(https://occ-0-300-420.1.nflxso.net/dnm/api/v6/6AYY37jfdO6hpXcMjf9Yu5cnmO0/AAAABZKJpdcSuvqwGBxBJNKVRze0JWHe9phJW6L1xaiqvLePPRKhRis-7FHr69URHZIYXqUVus0HIoz_3fLZPQr3VVqGGzRNlDoNkPwp.jpg?r=72d);
+    background-repeat: no-repeat;
+
 }
 
 
@@ -42,6 +68,7 @@ body {
 
     &__secheader {
         @include flex(row);
+        align-items: center;
         margin-left: 3vw;
         gap: 2ch;
         font-size: 16px;
@@ -55,25 +82,147 @@ body {
                 color: white;
             }
         }
+    }
 
+    &__thirdheader {
+        @include flex(row);
+        width: 15vw;
+        height: 2vh;
+        align-items: center;
+        margin-left: 24vw;
+        justify-content: space-between;
+
+    }
+
+
+}
+
+.search {
+    position: relative;
+    top: 1.8vh;
+    width: 2vw;
+    height: 3vh;
+    background-color: transparent;
+    @include cursor();
+    transition: color 100ms ease-in-out;
+    transition: scale 100ms ease-in-out;
+
+    &:hover {
+        scale: 1.2;
+        color: bisque;
     }
 }
 
-.SevenKingsgrid{
- display: grid;
-    grid-template-areas: 
-    "boo main purple purple"
-    "boo red red ."
-    ". red red .";
-    &__Nlogo{
-        height: 7vh;
-        width: 3vw;
-    }
- 
-    &__SevenKings{
-    height: 35vh;
-    width: 32vw;
-    grid-area:SevenKings ;
+#kids {
+    color: white;
+    transition: color 100ms ease-in-out;
+
+    &:hover {
+        color: bisque;
     }
 
+    @include cursor();
+}
+
+.profileimg {
+    width: 2vw;
+    height: 4vh;
+    @include cursor();
+    transition: border 100ms ease-in-out;
+
+    &:hover {
+        border: 2px solid white;
+    }
+}
+
+.sevenkingsgrid {
+    display: flex;
+    flex-direction: column;
+    height: 30vh;
+    position: absolute;
+    top: 15vh;
+
+    &__netflixfilm {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        &__Nlogo {
+            height: 7vh;
+            width: 3vw;
+            @include showanimation(1s);
+        }
+
+        &__film {
+            font-size: 15px;
+            color: white;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            @include showanimation(1s);
+        }
+    }
+
+    &__SevenKings {
+        height: 35vh;
+        width: 32vw;
+        @include showanimation(1s);
+
+    }
+
+    &__topten {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 0.5vw;
+        @include showanimation(2s);
+
+        &__img {
+            width: 1.2vw;
+            height: 3vh;
+            border-radius: 2px;
+        }
+
+        &__txt {
+            font-size: 15px;
+            color: white;
+        }
+    }
+    &__playinfo{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin-top: 2vh;
+        gap: 1vw;
+        @include showanimation(2.4s);
+
+        &__play{
+            display: flex;
+            flex-direction: row;
+            width: 7vw;
+            height: 5vh;
+            border-radius: 4px;
+            background-color: rgb(255, 255, 255);
+            @include cursor();
+            align-items: center;
+            justify-content: center;
+
+        }
+        &__info{
+            display: flex;
+            flex-direction: row;
+            width: 9vw;
+            height: 5vh;
+            border-radius: 4px;
+            background-color: rgb(114, 110, 110);
+            @include cursor();
+            align-items: center;
+            justify-content: center;
+            padding-left: 2px;
+
+        }
+    }
+
+}
+.txt{
+    color: white;
+    @include showanimation(2.2s)
 }

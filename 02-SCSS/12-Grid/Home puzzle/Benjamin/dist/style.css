@@ -1,5 +1,7 @@
 body {
   background-color: #0f0c0c;
+  background-size: cover;
+  background-image: url(https://occ-0-300-420.1.nflxso.net/dnm/api/v6/6AYY37jfdO6hpXcMjf9Yu5cnmO0/AAAABZKJpdcSuvqwGBxBJNKVRze0JWHe9phJW6L1xaiqvLePPRKhRis-7FHr69URHZIYXqUVus0HIoz_3fLZPQr3VVqGGzRNlDoNkPwp.jpg?r=72d);
 }
 
 .wrapper {
@@ -12,7 +14,7 @@ body {
 .uppersection {
   width: 100;
   height: 90vh;
-  background-image: url(https://occ-0-300-420.1.nflxso.net/dnm/api/v6/6AYY37jfdO6hpXcMjf9Yu5cnmO0/AAAABZKJpdcSuvqwGBxBJNKVRze0JWHe9phJW6L1xaiqvLePPRKhRis-7FHr69URHZIYXqUVus0HIoz_3fLZPQr3VVqGGzRNlDoNkPwp.jpg?r=72d);
+  background-repeat: no-repeat;
 }
 
 .header {
@@ -30,6 +32,7 @@ body {
 .header__secheader {
   display: flex;
   flex-direction: row;
+  align-items: center;
   margin-left: 3vw;
   gap: 2ch;
   font-size: 16px;
@@ -42,17 +45,217 @@ body {
 .header__secheader__little:hover {
   color: white;
 }
-
-.SevenKingsgrid {
-  display: grid;
-  grid-template-areas: "boo main purple purple" "boo red red ." ". red red .";
+.header__thirdheader {
+  display: flex;
+  flex-direction: row;
+  width: 15vw;
+  height: 2vh;
+  align-items: center;
+  margin-left: 24vw;
+  justify-content: space-between;
 }
-.SevenKingsgrid__Nlogo {
+
+.search {
+  position: relative;
+  top: 1.8vh;
+  width: 2vw;
+  height: 3vh;
+  background-color: transparent;
+  cursor: pointer;
+  transition: color 100ms ease-in-out;
+  transition: scale 100ms ease-in-out;
+}
+.search:hover {
+  scale: 1.2;
+  color: bisque;
+}
+
+#kids {
+  color: white;
+  transition: color 100ms ease-in-out;
+  cursor: pointer;
+}
+#kids:hover {
+  color: bisque;
+}
+
+.profileimg {
+  width: 2vw;
+  height: 4vh;
+  cursor: pointer;
+  transition: border 100ms ease-in-out;
+}
+.profileimg:hover {
+  border: 2px solid white;
+}
+
+.sevenkingsgrid {
+  display: flex;
+  flex-direction: column;
+  height: 30vh;
+  position: absolute;
+  top: 15vh;
+}
+.sevenkingsgrid__netflixfilm {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.sevenkingsgrid__netflixfilm__Nlogo {
   height: 7vh;
   width: 3vw;
+  opacity: 0;
+  animation-name: sevenshow;
+  animation-iteration-count: 1;
+  animation-delay: 1s;
+  animation-timing-function: ease-in-out;
+  animation-direction: normal;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
 }
-.SevenKingsgrid__SevenKings {
+@keyframes sevenshow {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.sevenkingsgrid__netflixfilm__film {
+  font-size: 15px;
+  color: white;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  opacity: 0;
+  animation-name: sevenshow;
+  animation-iteration-count: 1;
+  animation-delay: 1s;
+  animation-timing-function: ease-in-out;
+  animation-direction: normal;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+@keyframes sevenshow {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.sevenkingsgrid__SevenKings {
   height: 35vh;
   width: 32vw;
-  grid-area: SevenKings;
+  opacity: 0;
+  animation-name: sevenshow;
+  animation-iteration-count: 1;
+  animation-delay: 1s;
+  animation-timing-function: ease-in-out;
+  animation-direction: normal;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+@keyframes sevenshow {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.sevenkingsgrid__topten {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5vw;
+  opacity: 0;
+  animation-name: sevenshow;
+  animation-iteration-count: 1;
+  animation-delay: 2s;
+  animation-timing-function: ease-in-out;
+  animation-direction: normal;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+@keyframes sevenshow {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.sevenkingsgrid__topten__img {
+  width: 1.2vw;
+  height: 3vh;
+  border-radius: 2px;
+}
+.sevenkingsgrid__topten__txt {
+  font-size: 15px;
+  color: white;
+}
+.sevenkingsgrid__playinfo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 2vh;
+  gap: 1vw;
+  opacity: 0;
+  animation-name: sevenshow;
+  animation-iteration-count: 1;
+  animation-delay: 2.4s;
+  animation-timing-function: ease-in-out;
+  animation-direction: normal;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+@keyframes sevenshow {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.sevenkingsgrid__playinfo__play {
+  display: flex;
+  flex-direction: row;
+  width: 7vw;
+  height: 5vh;
+  border-radius: 4px;
+  background-color: white;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+}
+.sevenkingsgrid__playinfo__info {
+  display: flex;
+  flex-direction: row;
+  width: 9vw;
+  height: 5vh;
+  border-radius: 4px;
+  background-color: #726e6e;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  padding-left: 2px;
+}
+
+.txt {
+  color: white;
+  opacity: 0;
+  animation-name: sevenshow;
+  animation-iteration-count: 1;
+  animation-delay: 2.2s;
+  animation-timing-function: ease-in-out;
+  animation-direction: normal;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+@keyframes sevenshow {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
