@@ -1,0 +1,49 @@
+body {
+  margin: 0;
+  direction: rtl;
+  background-color: black;
+}
+
+.background {
+  background-image: url(./dist/bg-image.jpg);
+  width: 100%;
+}
+
+.logo {
+  float: right;
+  width: 100px;
+}
+
+.topnav {
+  width: 100%;
+  position: fixed;
+  overflow: hidden;
+  background-color: black;
+  opacity: 75%;
+  padding-right: 2%;
+  user-select: none;
+}
+.topnav__link {
+  float: right;
+  text-decoration: none;
+  color: white;
+  font-family: sans-serif;
+  margin: 20px;
+}
+.topnav__link:hover {
+  color: #dfdada;
+}
+.topnav .home {
+  font-weight: 600;
+}
+
+.watched {
+  display: flex;
+  height: auto;
+  border-radius: 7%;
+  margin-right: 0;
+}
+.watched__item {
+  width: 300px;
+  margin-left: 3%;
+}
