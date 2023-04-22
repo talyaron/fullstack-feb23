@@ -1,0 +1,53 @@
+.wrapper {
+    display: grid;
+    gap: 5px;
+    grid-template-rows: repeat(4, 200px);
+    grid-template-columns:repeat(4, 1fr) ;
+    grid-template-areas: 
+    "main . purple purple"
+    "main red red .";
+
+    .article{
+        background-color: wheat;
+    }
+
+    .article__main{
+        grid-area: main;
+        background-color: navy;
+        color: white;
+    }
+    .article__red{
+        grid-area: red;
+        background-color:red;
+        color: white;        
+    }
+
+    .article__purple{
+        grid-area:purple;
+        background-color:purple;
+        color: white;        
+    }
+
+
+
+
+}
+
+.box {
+    background-color: blue;
+    flex: 1;
+    color: white;
+    padding: 10px;
+    height: 100px;
+    width: 100px;
+    // min-width: 200px;
+}
+
+
+@media only screen and (max-width:800px) {
+    .wrapper, body {
+        flex-direction: column;
+        background-color: tomato;
+    }
+
+}
