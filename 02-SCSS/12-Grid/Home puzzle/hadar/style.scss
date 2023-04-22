@@ -20,6 +20,8 @@ body {
     display: flex;
     text-decoration: none;
     align-items: center;
+    position: sticky;
+    top: 0;
 
     .a1 {
       color: white;
@@ -44,40 +46,42 @@ body {
 
   &__uzer {
     position: absolute;
-    max-width: 20%;
     text-decoration: none;
     align-items: center;
-    top: 3%;
+    top: 3.5%;
     right: 82%;
 
 
     .serach {
       img {
-        margin: 2px;
+        // position: absolute;
+        left: 60%;
         width: 10%;
-        height: 10%;
       }
     }
 
     .uzer1 {
       img {
-        margin: 2px;
+        position: absolute;
+        left: 75%;
         width: 10%;
       }
     }
 
     .bell {
       img {
-        margin: 2px;
-
+        position: absolute;
+        left: 61%;
         width: 10%;
       }
     }
 
     .reverse {
       img {
-        margin: 6px;
-        width: 10%;
+        position: absolute;
+        top: 20%;
+        left: 48%;
+        width: 8%;
       }
     }
   }
@@ -105,16 +109,17 @@ body {
   h2 {
     direction: rtl;
     color: white;
-    padding-right: 58px;
-    font-size: 20px;
-    margin-bottom: 14px;
+    padding-right: 3%;
+    font-size: 160%;
+    margin-bottom: 2%;
   }
 
   .wrapper {
+    position: relative;
     display: grid;
     grid-template-columns: repeat(8, 1fr);
     grid-template-rows: repeat(1, 1fr);
-    padding-right: 50px;
+    padding-right: 3%;
 
     img {
       width: 90%;
@@ -125,7 +130,6 @@ body {
     img:hover {
       position: absolute;
       width: 20%;
-      height: 20%;
       z-index: 1;
     }
 
@@ -134,7 +138,7 @@ body {
       position: absolute;
       left: 1%;
       z-index: 3;
-      font-size: 60px;
+      font-size: 400%;
 
       &:hover {
         width: 2%;
@@ -144,15 +148,29 @@ body {
     @media only screen and (max-width: 1200px) {
       max-width: 100%;
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      grid-template-rows: repeat(2, 1fr);
+      grid-template-columns: repeat(8, 1fr);
+      grid-template-rows: repeat(1, 1fr);
     }
 
     @media only screen and (max-width: 600px) {
       max-width: 100%;
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      grid-template-rows: repeat(4, 1fr);
+      grid-template-columns: repeat(8, 1fr);
+      grid-template-rows: repeat(1, 1fr);
+
+      img {
+        width: 90%;
+      }
+
+      img:hover {
+        position: absolute;
+        width: 40%;
+        z-index: 1;
+      }
+
+      .uzer {
+        top: 1.5%;
+      }
     }
   }
 }
