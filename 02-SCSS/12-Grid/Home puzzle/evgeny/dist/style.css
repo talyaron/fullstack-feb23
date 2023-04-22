@@ -13,10 +13,45 @@ body {
   background: #141414;
 }
 body .navbar {
-  height: 2.5em;
+  height: 4.3em;
   width: 100%;
-  background-color: aqua;
+  background-color: #060606;
+  display: flex;
   position: fixed;
+  align-items: center;
+}
+body .navbar img {
+  height: 1.5em;
+  width: 6em;
+  margin-left: 2.9em;
+  margin-right: 2.9em;
+}
+body .navbar__catego {
+  color: white;
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+}
+body .navbar__catego__R {
+  color: white;
+  margin: 0 1em;
+}
+body .navbar .fa-magnifying-glass {
+  margin-left: 35em;
+}
+body .navbar__userImg {
+  height: 2.2em;
+  width: 2.2em;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 0.5em;
+  margin-left: 1em;
+}
+body .navbar .fa-caret-down {
+  margin-left: 1em;
+}
+body .navbar .fa-caret-down:hover {
+  transition: 0.5s;
+  transform: rotate(180deg);
 }
 body .wrapper .recomended {
   height: 100vh;

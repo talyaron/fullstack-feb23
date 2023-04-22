@@ -12,7 +12,9 @@ body{
     height: 100vh;
     color: white;
 
-    .container{
+    .container{        a{
+            color:white;
+        }
         display: grid;
         grid-template-columns: repeat(5, 1fr);
         grid-template-rows: repeat(3, 200px);
@@ -30,14 +32,14 @@ body{
             margin: 5px;
             list-style: none;
             display:inline-block;
-            width: 200px;
+            width: 250px;
             height: 100px;
             align-items: center;
             padding: auto;
             transition: transform 0.5s;
 
                 img {
-                width: 200px;
+                width: 250px;
                 height: 100px;
                 background-repeat: no-repeat;
                 object-fit: fill;
