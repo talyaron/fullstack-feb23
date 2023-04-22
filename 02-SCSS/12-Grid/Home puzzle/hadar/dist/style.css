@@ -110,33 +110,6 @@ body {
 .main .wrapper i:hover {
   width: 2%;
 }
-@media only screen and (max-width: 1200px) {
-  .main .wrapper {
-    max-width: 100%;
-    display: grid;
-    grid-template-columns: repeat(8, 1fr);
-    grid-template-rows: repeat(1, 1fr);
-  }
-}
-@media only screen and (max-width: 600px) {
-  .main .wrapper {
-    max-width: 100%;
-    display: grid;
-    grid-template-columns: repeat(8, 1fr);
-    grid-template-rows: repeat(1, 1fr);
-  }
-  .main .wrapper img {
-    width: 90%;
-  }
-  .main .wrapper img:hover {
-    position: absolute;
-    width: 40%;
-    z-index: 1;
-  }
-  .main .wrapper .uzer {
-    top: 1.5%;
-  }
-}
 
 .wapper {
   position: relative;

@@ -30,7 +30,6 @@ body {
     }
 
     a {
-      // top: rem;
       margin: 1% 0.5% 1%;
       color: rgba(255, 253, 253, 0.863);
       text-decoration: none;
@@ -54,7 +53,6 @@ body {
 
     .serach {
       img {
-        // position: absolute;
         left: 60%;
         width: 10%;
       }
@@ -145,33 +143,33 @@ body {
       }
     }
 
-    @media only screen and (max-width: 1200px) {
-      max-width: 100%;
-      display: grid;
-      grid-template-columns: repeat(8, 1fr);
-      grid-template-rows: repeat(1, 1fr);
-    }
+    // @media only screen and (max-width: 1200px) {
+    //   max-width: 100%;
+    //   display: grid;
+    //   grid-template-columns: repeat(8, 1fr);
+    //   grid-template-rows: repeat(1, 1fr);
+    // }
 
-    @media only screen and (max-width: 600px) {
-      max-width: 100%;
-      display: grid;
-      grid-template-columns: repeat(8, 1fr);
-      grid-template-rows: repeat(1, 1fr);
+    // @media only screen and (max-width: 600px) {
+    //   max-width: 100%;
+    //   display: grid;
+    //   grid-template-columns: repeat(8, 1fr);
+    //   grid-template-rows: repeat(1, 1fr);
 
-      img {
-        width: 90%;
-      }
+    //   img {
+    //     width: 90%;
+    //   }
 
-      img:hover {
-        position: absolute;
-        width: 40%;
-        z-index: 1;
-      }
+    //   img:hover {
+    //     position: absolute;
+    //     width: 40%;
+    //     z-index: 1;
+    //   }
 
-      .uzer {
-        top: 1.5%;
-      }
-    }
+    //   .uzer {
+    //     top: 1.5%;
+    //   }
+    // }
   }
 }
 
