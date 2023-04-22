@@ -1,7 +1,7 @@
 .header {
   position: relative;
   z-index: 1;
-  width: 90vw;
+  width: 100vw;
   height: 70px;
 }
 .header ul {
@@ -12,16 +12,20 @@
   background: linear-gradient(360deg, #000000 0%, #332f36 100%);
   list-style: none;
   display: flex;
+  align-items: center;
+  transition: transform 0.5s;
+  padding: 0;
+  margin: 0;
 }
 .header ul .logo {
   position: relative;
-  right: 40px;
+  right: 0px;
   width: 200px;
   height: 70px;
 }
 .header ul .headerRight {
   position: relative;
-  left: 100px;
+  justify-content: right;
 }
 .header ul li {
   display: flex;
@@ -33,6 +37,10 @@
   justify-content: center;
   padding: auto;
   transition: transform 0.5s;
+}
+.header ul li a {
+  color: white;
+  text-decoration: none;
 }
 .header ul li:hover {
   opacity: 0.7;
@@ -61,18 +69,21 @@ body {
   width: 100vw;
   height: 100vh;
 }
+.wrapper .container a {
+  color: white;
+}
 .wrapper .container li {
   margin: 5px;
   list-style: none;
   display: inline-block;
-  width: 200px;
+  width: 250px;
   height: 100px;
   align-items: center;
   padding: auto;
   transition: transform 0.5s;
 }
 .wrapper .container li img {
-  width: 200px;
+  width: 250px;
   height: 100px;
   background-repeat: no-repeat;
   object-fit: fill;
