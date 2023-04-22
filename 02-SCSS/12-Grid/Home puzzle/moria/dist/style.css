@@ -94,18 +94,37 @@ body .container .top10__movies {
   top: 10px;
 }
 body .container .top10__movies__movie {
+  font-weight: bold;
   width: 200px;
   height: 160px;
   position: relative;
   color: black;
-  font-size: 150px;
+  font-size: 180px;
   -webkit-text-stroke-width: 2px;
   -webkit-text-stroke-color: gray;
 }
 body .container .top10__movies__movie img {
-  height: 115px;
+  height: 135px;
   position: absolute;
-  left: 55px;
+  left: 65px;
   z-index: 3;
-  top: 30px;
+  top: 35px;
+}
+body .container .options {
+  grid-column: 1/span 5;
+  grid-row: 45/span 80;
+}
+body .container .options__tirle {
+  margin-top: 30px;
+  margin-bottom: 5px;
+}
+body .container .options img {
+  width: 280px;
+  height: 150px;
+}
+body .container .options .half {
+  width: 75px;
+}
+body .container .options__moviess img {
+  height: 50px;
 }
