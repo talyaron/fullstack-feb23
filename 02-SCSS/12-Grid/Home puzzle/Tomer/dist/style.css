@@ -1,7 +1,7 @@
 * {
   margin: 0;
   padding: 0;
-  font-family: "Netflix Font", sans-serif;
+  font-family: "Assistant", sans-serif;
   direction: rtl;
 }
 
@@ -19,10 +19,6 @@ body {
   cursor: pointer;
 }
 
-.navmenu {
-  background-color: transparent;
-}
-
 a {
   color: #dfdfdf;
   font-size: 18px;
@@ -38,6 +34,10 @@ a {
   position: relative;
   right: 320px;
   bottom: 2px;
+}
+
+.icon:hover {
+  cursor: pointer;
 }
 
 .arrow {
@@ -79,9 +79,8 @@ h1 {
   font-weight: bold;
   color: white;
   position: absolute;
-  bottom: 263px;
+  bottom: 250px;
   right: 60px;
-  word-spacing: -20px;
 }
 
 .button {
@@ -89,8 +88,8 @@ h1 {
   background-color: white;
   bottom: 210px;
   right: 60px;
-  font-size: 25px;
-  font-weight: 200;
+  font-size: 20px;
+  font-weight: bold;
   color: black;
   border: white;
   border-radius: 5px;
@@ -110,13 +109,13 @@ button:hover {
 
 .info {
   position: absolute;
-  background-color: #c9c5c5;
+  background-color: #939191;
   opacity: 70%;
   bottom: 210px;
   right: 200px;
-  font-size: 25px;
-  font-weight: 200;
-  color: black;
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
   border: white;
   border-radius: 5px;
   padding: 10px 35px;
@@ -141,7 +140,7 @@ button:hover {
 }
 
 h2 {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Assistant", sans-serif;
   font-weight: 100;
   font-size: 10px;
   color: white;
@@ -158,13 +157,11 @@ h2 {
 
 .title {
   color: white;
-  font-size: 10px;
-  font-family: Arial, Helvetica, sans-serif;
-  font-weight: 100;
+  font-weight: bold;
   position: relative;
   top: 400px;
   right: 30px;
-  font-size: 30px;
+  font-size: 20px;
   letter-spacing: 1px;
 }
 
@@ -178,4 +175,121 @@ h2 {
   padding: 5px;
   justify-content: center;
   align-items: center;
+}
+
+.pic:hover {
+  cursor: pointer;
+}
+
+.pic:active {
+  box-shadow: inset;
+}
+
+@media only screen and (max-width: 600px) {
+  h1 {
+    font-size: 35px;
+    position: absolute;
+    bottom: 310px;
+    right: 80px;
+  }
+
+  a {
+    display: none;
+  }
+
+  .video {
+    width: fit-content;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .button {
+    position: absolute;
+    background-color: white;
+    bottom: 210px;
+    right: 60px;
+    font-size: 6px;
+    font-weight: bold;
+    color: black;
+    border: white;
+    border-radius: 5px;
+    padding: 10px 35px;
+  }
+
+  button:hover {
+    background-color: #dddddd;
+    cursor: pointer;
+  }
+
+  .play {
+    position: absolute;
+    bottom: 219px;
+    right: 65px;
+  }
+
+  .info {
+    position: absolute;
+    background-color: #777777;
+    bottom: 210px;
+    right: 190px;
+    font-size: 5px;
+    font-weight: bold;
+    color: white;
+    border: #636363;
+    border-radius: 5px;
+    padding: 10px 35px;
+  }
+
+  .icon {
+    padding: 8px;
+    position: relative;
+    right: 50px;
+    bottom: 2px;
+  }
+
+  .icon:hover {
+    cursor: pointer;
+  }
+
+  .mute {
+    width: 14px;
+    height: 14px;
+    position: relative;
+    right: 350px;
+    top: 335px;
+    border: white 1px;
+    border-style: solid;
+    border-radius: 55px;
+    padding: 10px;
+  }
+
+  .mute:hover {
+    cursor: pointer;
+    color: white;
+    opacity: 80%;
+  }
+
+  h2 {
+    font-family: "Assistant", sans-serif;
+    font-weight: 100;
+    font-size: 5px;
+    color: white;
+    background-color: #2e2e2e;
+    padding: 10px;
+    position: relative;
+    right: 400px;
+    top: 295px;
+    width: fit-content;
+    border-right: solid 3px white;
+    opacity: 60%;
+    padding-left: 100px;
+  }
+
+  .pic:hover {
+    cursor: pointer;
+  }
+
+  .pic:active {
+    box-shadow: inset;
+  }
 }
