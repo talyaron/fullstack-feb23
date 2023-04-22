@@ -36,8 +36,7 @@
 }
 .wrapper .backgroundvideo .navbar {
   font-size: 1.2rem;
-  position: absolute;
-  background-color: rgba(14, 14, 14, 0.111);
+  position: sticky;
   top: 0;
   left: 0;
   z-index: 1;
@@ -48,25 +47,31 @@
   width: 100%;
 }
 .wrapper .backgroundvideo .navbar li {
+  margin-top: 10px;
   float: left;
   display: block;
   text-align: center;
   padding: 16px;
   font-weight: 400;
   text-decoration: none;
-  animation: textColor 2s fill-mode;
+}
+.wrapper .backgroundvideo li:hover {
+  cursor: pointer;
+  animation-name: textColor;
+  animation-duration: 0.5s;
+  animation-timing-function: ease;
+  animation-fill-mode: forwards;
+}
+.wrapper .backgroundvideo img {
+  float: left;
 }
 @keyframes textColor {
   0% {
     color: #fff;
   }
-}
-.wrapper .backgroundvideo .navbar li:hover {
-  color: #ffffffd7;
-  cursor: pointer;
-}
-.wrapper .backgroundvideo .navbar img {
-  float: left;
+  100% {
+    color: #c7c4c4d7;
+  }
 }
 .wrapper .section {
   padding-left: 5px;
