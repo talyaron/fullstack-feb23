@@ -38,7 +38,10 @@ body {
 
 
             &__corner {
+                @media only screen and (max-width:800px) {
+                    display: none;
 
+                }
 
                 a {
                     color: white;
@@ -67,6 +70,9 @@ body {
             bottom: 2px;
             position: relative;
 
+            @media only screen and (max-width:800px) {
+                background: url(img/מלכים.png) no-repeat top center/ cover;
+            }
 
 
 
@@ -140,10 +146,16 @@ body {
             grid-row: 38 / span 40;
             background-color: #141414;
 
+
+
             &__tital {
                 position: relative;
                 top: 25px;
                 margin-bottom: 0;
+
+                @media only screen and (max-width:800px) {
+                    margin-top: 10px;
+                }
             }
 
             &__movies {
@@ -169,6 +181,8 @@ body {
                         left: 65px;
                         z-index: 3;
                         top: 35px;
+
+
                     }
                 }
             }
@@ -182,6 +196,7 @@ body {
             &__tirle {
                 margin-top: 30px;
                 margin-bottom: 5px;
+
             }
 
             img {
@@ -192,13 +207,20 @@ body {
 
             .half {
                 width: 75px;
-            }
 
+                @media only screen and (max-width: 1530px) {
+                    display: none;
+                }
+            }
 
             &__moviess {
                 img {
 
                     height: 50px;
+
+                    @media only screen and (max-width:1530px) {
+                        display: none;
+                    }
                 }
             }
 

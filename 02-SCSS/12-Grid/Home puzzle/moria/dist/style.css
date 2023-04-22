@@ -1,3 +1,4 @@
+@charset "UTF-8";
 body {
   font-family: sans-serif;
   color: white;
@@ -28,6 +29,11 @@ body .container .header__main a {
   text-decoration: none;
   margin: 0 10px;
 }
+@media only screen and (max-width: 800px) {
+  body .container .header__corner {
+    display: none;
+  }
+}
 body .container .header__corner a {
   color: white;
   text-decoration: none;
@@ -46,6 +52,11 @@ body .container .big__picture {
   background: url(img/big.jpg) no-repeat top center/cover;
   bottom: 2px;
   position: relative;
+}
+@media only screen and (max-width: 800px) {
+  body .container .big__picture {
+    background: url(img/מלכים.png) no-repeat top center/cover;
+  }
 }
 body .container .big__picture__title {
   padding-left: 25px;
@@ -102,6 +113,11 @@ body .container .top10__tital {
   top: 25px;
   margin-bottom: 0;
 }
+@media only screen and (max-width: 800px) {
+  body .container .top10__tital {
+    margin-top: 10px;
+  }
+}
 body .container .top10__movies {
   display: flex;
   justify-content: space-around;
@@ -140,6 +156,16 @@ body .container .options img {
 body .container .options .half {
   width: 75px;
 }
+@media only screen and (max-width: 1530px) {
+  body .container .options .half {
+    display: none;
+  }
+}
 body .container .options__moviess img {
   height: 50px;
+}
+@media only screen and (max-width: 1530px) {
+  body .container .options__moviess img {
+    display: none;
+  }
 }

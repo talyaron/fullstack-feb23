@@ -12,10 +12,49 @@ height: 100vh;
 background: #141414;
 
     .navbar{
-        height: 2.5em;
+        height: 4.3em;
         width: 100%;
-        background-color: aqua;
+        background-color: rgb(6, 6, 6);
+        display: flex;
         position: fixed;
+        align-items: center;
+        img{ 
+            height: 1.5em; 
+            width: 6em;
+            margin-left: 2.9em;
+            margin-right: 2.9em;
+
+        }
+        &__catego{
+            color: white;
+            margin-left: .5em;
+            margin-right: .5em;
+            &__R{
+                color: white;
+                margin: 0 1em;
+            }
+        }
+        .fa-magnifying-glass{
+           margin-left: 35em;
+           
+        }
+        &__userImg{
+            height: 2.2em;
+            width: 2.2em;
+            background-repeat: no-repeat;
+            background-size: cover;
+            border-radius: .5em;
+            margin-left: 1em;
+
+        }
+        .fa-caret-down{
+            margin-left: 1em;
+        }
+        .fa-caret-down:hover{
+                 transition:  .5s;
+                transform: rotate(180deg);
+            
+        }
     }
 
 
