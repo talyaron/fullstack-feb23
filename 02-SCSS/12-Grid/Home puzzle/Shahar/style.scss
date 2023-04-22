@@ -1,47 +1,109 @@
-.wrapper{
-    background-color: black;
-    height: 100vh;
+.wrapper {
+  font-family: 'Noto Sans', sans-serif;
+  background-color: black;
+  height: 200vh;
+  direction: rtl;
 }
-.header{
-    .logo{
-        width: 6%;
+.header  {
+display: flex;
+justify-content:space-between;
+
+    .headerright{
+        .logo {
+            width: 8%;
+        }
+        display: flex;
+        color: white;
+        gap: 15px;
+        align-items: center;
+        font-weight: lighter;
     }
-    display: flex;
-    direction: rtl;
-    color: white;
-    gap: 15px;
-    align-items: center;
-    font-weight:lighter;
-}
-.underheader{
-    color: white;
-    font-size: 25px;
-    direction: rtl;
-    margin-right: 30px;
     
 }
-.movies{
-    direction: rtl;
-    gap: 10px;
-display: grid;
-grid-template-columns:repeat(4, 1fr);
-grid-template-rows: repeat(5, 1fr);
-grid-template-areas:
-"underheader underheader underheader underheader underheader underheader"
-"one two three four one"
-;
+.underheader {
+  color: white;
+  font-size: 25px;
+  margin-right: 30px;
+}
+.movies {
+  display: grid;
+  grid-template-rows: repeat(1, 1fr);
+  grid-template-columns: repeat(6, 1fr);
+  gap: 20px;
+//   grid-template-areas: "one two three four five";
+  // grid-template-columns:repeat(4, 1fr);
+  // grid-template-rows: repeat(5, 1fr);
+  // grid-template-areas:
+  // "underheader underheader underheader underheader underheader underheader"
+  // "one two three four one"
+  margin-bottom: 20px;
+  border-radius: 5px;
+  width: 300px;
+  height: 150px;
+  margin-right: 30px;
+
+
 .movie{
-    margin-bottom: 20px;
-        border-radius: 5px;
-        width: 300px;
-        height: 150px;
-        margin-right: 30px;
+    width: 300px;
+    height: 150px;
+    z-index: 2;
+    position: relative;
+    
+    &:hover{
+        transform: scale(1.5) translateY(-40%) ;
+        transform-origin: center;
+        transition:  1.5s ; 
     }
 }
-.allthis{
-    display: flex;
-    gap: none;
-    .netflixone{
-        width: 200px;
-    }
 }
+.movies__topten{
+    gap: 40px 0;
+
+}
+.number{
+    position: absolute;
+    left: -140px;
+    bottom: -31px;
+    height: 140%;
+}
+
+.top{
+    position:relative;
+
+
+}
+
+.topmovies {
+gap: 120px;
+
+}
+.underheader:hover{
+    font-weight: bolder;
+}
+// .stam{
+//     display: grid;
+//     grid-template-rows: repeat(1, 100px);
+//     grid-template-columns: repeat(5, 250px);
+
+//     img{
+//         width: 300px;
+//         height: 150px;
+//     }
+
+
+    // &__yellow{
+    //     background-color: yellow;
+    // }
+
+    // &__blue{
+    //     background-color: blue;
+    // }
+
+    // &__red{
+    //     background-color: red;
+    // }
+
+    // &__black{
+    //     background-color: purple;
+    // }
+// }
