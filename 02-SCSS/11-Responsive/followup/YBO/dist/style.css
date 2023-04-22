@@ -15,11 +15,8 @@
 }
 
 @media only screen and (max-width: 800px) {
-  .wrapper {
+  .wrapper, body {
     flex-direction: column;
-  }
-
-  body {
     background-color: tomato;
   }
 }
