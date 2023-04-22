@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Netflix</title>
     <link rel="stylesheet" href="./dist/style.css">
+    <script src="https://kit.fontawesome.com/761340618e.js" crossorigin="anonymous"></script>
 
 </head>
 
@@ -25,16 +26,104 @@
                     <p class="header__secheader__little">My List</p>
                     <p class="header__secheader__little">Browse by languages</p>
                 </div>
+                <div class="header__thirdheader">
+                    <i class="fas fa-search fa-lg search" style="color: #ffffff;"></i>
+                    <p id="kids">Kids</p>
+                    <i class="fas fa-bell fa-lg search" style="color: #ffffff;"></i>
+                    <img class="profileimg" src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png"
+                        alt="">
+                    <i class="fas fa-caret-down fa-lg search" style="color: #ffffff;"></i>
+
+
+
+                </div>
+
             </div>
 
             <div class="sevenkingsgrid">
-                <img class="sevenkingsgrid__Nlogo" src="https://www.edigitalagency.com.au/wp-content/uploads/Netflix-N-Symbol-logo-red-transparent-RGB-png.png" alt="">
-                <p class="sevenkingsgrid__film">FILM</p>
+                <div class="sevenkingsgrid__netflixfilm">
+                    <img class="sevenkingsgrid__netflixfilm__Nlogo"
+                        src="https://www.edigitalagency.com.au/wp-content/uploads/Netflix-N-Symbol-logo-red-transparent-RGB-png.png"
+                        alt="">
+                    <p class="sevenkingsgrid__netflixfilm__film">FILM</p>
+                </div>
                 <img class="sevenkingsgrid__SevenKings"
                     src="https://ar.cimanow.online/wp-content/uploads/2023/04/%D9%81%D9%8A%D9%84%D9%85-The-Last-Kingdom-Seven-Kings-Must-Die-2023-%D9%85%D8%AA%D8%B1%D8%AC%D9%85-%D9%84%D9%88%D8%AC%D9%88.png"
                     alt="">
 
+                <div class="sevenkingsgrid__topten">
+                    <img class="sevenkingsgrid__topten__img"
+                        src="data:image/png;base64,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"
+                        alt="">
+                    <p class="sevenkingsgrid__topten__txt">#2 in movies today</p>
+                </div>
+                <p class="txt">In the wake of King Edward’s death, Uhtred of Bebbanburg and <br> his comrades adventure
+                    across a fractured kingdom in the hopes <br> of uniting England at last.</p>
+                <div class="sevenkingsgrid__playinfo">
+                    <div class="sevenkingsgrid__playinfo__play">
+                        <i class="fas fa-play fa-xl search" style="color: #020202; position: relative;"></i>
+                        <p>Play</p>
+
+                    </div>
+                    <div class="sevenkingsgrid__playinfo__info">
+                        <i class="fas fa-info fa-sm search" style="color: #fff6f6; position: relative;"></i>
+                        <p style="color: rgb(254, 250, 250);">More info</p>
+
+
+                    </div>
+
+                </div>
             </div>
+            <p class="israel">Top 10 movies in israel Today</p>
+            <div class="midsection">
+                
+                <div class="midsection__one">
+                    <h1 class="midsection__one__topnum">1</h1>
+                    <img class="midsection__one__img" src="https://assets.nflxext.com/us/boxshots/hd1080/81198900.jpg" alt="">
+                </div>
+                <div class="midsection__two">
+                    <h1 class="midsection__two__topnum">2</h1>
+                    <img class="midsection__two__img" src="https://upload.wikimedia.org/wikipedia/en/1/15/Last_kingdom_seven_kings_must_die.png" alt="">
+                </div>
+                <div class="midsection__three">
+                    <h1 class="midsection__three__topnum">3</h1>
+                    <img class="midsection__three__img" src="https://assets.nflxext.com/us/boxshots/hd1080/70101375.jpg" alt="">
+                </div>
+                <div class="midsection__four">
+                    <h1 class="midsection__four__topnum">4</h1>
+                    <img class="midsection__four__img" src="https://m.media-amazon.com/images/M/MV5BZWUwOWU2NmMtYzc2Zi00MTMyLTg2NTUtZGM4Nzg2MGQyOGJkXkEyXkFqcGdeQXVyMTMzNzIyNDc1._V1_FMjpg_UX1000_.jpg" alt="">
+                </div>
+                <div class="midsection__five">
+                    <h1 class="midsection__five__topnum">5</h1>
+                    <img class="midsection__five__img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmsftlWtmib5xegyQhjcPwn7bbLykZqJbOG3S303uD6hn7niAIHHtHoD_W6gNYY71GLio&usqp=CAU" alt="">
+                </div>
+                <div class="midsection__six">
+                    <h1 class="midsection__six__topnum">6</h1>
+                    <img class="midsection__six__img" src="https://fr.web.img6.acsta.net/pictures/15/07/29/14/33/086520.jpg" alt="">
+                </div>
+    
+            </div>
+        </div>
+        
+
+
+
+
+
+
+
+
+        <div class="lastsection">
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -47,6 +136,10 @@
 
 
         </div>
+
+
+
+    </div>
 </body>
 
 </html>

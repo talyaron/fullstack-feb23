@@ -1,7 +1,7 @@
 body {
   font-family: sans-serif;
   color: white;
-  background-color: #141414;
+  background: black;
 }
 body .container {
   display: grid;
@@ -9,16 +9,19 @@ body .container {
   grid-template-columns: repeat(1, 4fr);
 }
 body .container .header {
+  background-color: black;
   display: flex;
   justify-content: space-between;
   grid-column: 1/span 5;
   grid-row: 1/span 1;
 }
-body .container .header__main span {
-  color: red;
-  margin-right: 40px;
-  font-weight: bold;
-  font-size: 25px;
+body .container .header img {
+  width: 110px;
+  height: 35px;
+}
+body .container .header__main {
+  display: flex;
+  align-items: center;
 }
 body .container .header__main a {
   color: white;
@@ -36,18 +39,33 @@ body .container .header__corner img {
   padding: 1px 0;
 }
 body .container .big__picture {
+  box-shadow: 1px -15px 10px 15px #141414 inset;
   grid-column: 1/span 5;
-  grid-row: 2/span 35;
+  grid-row: 2/span 43;
   display: grid;
   background: url(img/big.jpg) no-repeat top center/cover;
   bottom: 2px;
   position: relative;
 }
-body .container .big__picture p {
+body .container .big__picture__title {
+  padding-left: 25px;
+}
+body .container .big__picture__title span {
+  color: red;
+  font-weight: bold;
+  font-size: 30px;
+}
+body .container .big__picture__explan {
+  margin-top: 190px;
+  margin-left: 30px;
+}
+body .container .big__picture__explan p {
   width: 30%;
+  align-self: flex-end;
 }
 body .container .big__picture__bth {
   display: flex;
+  font-weight: bold;
 }
 body .container .big__picture__bth .white {
   background-color: white;
@@ -66,14 +84,9 @@ body .container .big__picture__bth .gray .info {
   color: white;
   border: 2px white solid;
   border-radius: 50%;
-  padding: 1px 5px;
+  padding: 1px 6px;
   margin-right: 5px;
   text-align: center;
-}
-body .container .big__picture span {
-  color: red;
-  font-weight: bold;
-  font-size: 25px;
 }
 body .container .big__picture img {
   width: 25px;
@@ -81,7 +94,8 @@ body .container .big__picture img {
 }
 body .container .top10 {
   grid-column: 1/span 5;
-  grid-row: 33/span 37;
+  grid-row: 38/span 40;
+  background-color: #141414;
 }
 body .container .top10__tital {
   position: relative;
@@ -94,18 +108,38 @@ body .container .top10__movies {
   top: 10px;
 }
 body .container .top10__movies__movie {
+  font-weight: bold;
   width: 200px;
   height: 160px;
   position: relative;
   color: black;
-  font-size: 150px;
+  font-size: 180px;
   -webkit-text-stroke-width: 2px;
   -webkit-text-stroke-color: gray;
 }
 body .container .top10__movies__movie img {
-  height: 115px;
+  height: 135px;
   position: absolute;
-  left: 55px;
+  left: 65px;
   z-index: 3;
-  top: 30px;
+  top: 35px;
+}
+body .container .options {
+  background-color: #141414;
+  grid-column: 1/span 5;
+  grid-row: 51/span 80;
+}
+body .container .options__tirle {
+  margin-top: 30px;
+  margin-bottom: 5px;
+}
+body .container .options img {
+  width: 280px;
+  height: 150px;
+}
+body .container .options .half {
+  width: 75px;
+}
+body .container .options__moviess img {
+  height: 50px;
 }
