@@ -1,0 +1,138 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Netflix Font", sans-serif;
+  direction: rtl;
+}
+
+.logo {
+  width: 150px;
+  height: 50px;
+  margin-right: 45px;
+}
+
+.logo:hover {
+  cursor: pointer;
+}
+
+.navmenu {
+  background-color: transparent;
+}
+
+a {
+  color: #dfdfdf;
+  font-size: 18px;
+  font-weight: 400;
+  text-decoration: none;
+  position: relative;
+  bottom: 17px;
+  margin: 10px;
+}
+
+.icon {
+  padding: 8px;
+  position: relative;
+  right: 320px;
+  bottom: 2px;
+}
+
+.arrow {
+  width: 10px;
+  height: 10px;
+  position: relative;
+  bottom: 10px;
+}
+
+.video {
+  background-size: cover;
+  width: 100%;
+  background-position: center;
+  position: absolute;
+  left: 0px;
+  bottom: 0px;
+  z-index: -1;
+}
+
+.small {
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  bottom: 360px;
+  right: 70px;
+}
+
+h3 {
+  color: #cfc5c5;
+  position: absolute;
+  bottom: 363px;
+  right: 97px;
+  font-size: 7px;
+  font-weight: 100;
+}
+
+h1 {
+  font-size: 120px;
+  font-weight: bold;
+  color: white;
+  position: absolute;
+  bottom: 263px;
+  right: 60px;
+  word-spacing: 1;
+}
+
+.button {
+  position: absolute;
+  background-color: white;
+  bottom: 210px;
+  right: 60px;
+  font-size: 25px;
+  font-weight: 200;
+  color: black;
+  border: white;
+  border-radius: 5px;
+  padding: 10px 35px;
+}
+
+button:hover {
+  background-color: #dddddd;
+  cursor: pointer;
+}
+
+.play {
+  position: absolute;
+  bottom: 222px;
+  right: 65px;
+}
+
+.info {
+  position: absolute;
+  background-color: #c9c5c5;
+  opacity: 70%;
+  bottom: 210px;
+  right: 200px;
+  font-size: 25px;
+  font-weight: 200;
+  color: black;
+  border: white;
+  border-radius: 5px;
+  padding: 10px 35px;
+}
+
+.mute {
+  width: 25px;
+  height: 25px;
+  position: relative;
+  right: 1360px;
+  top: 350px;
+  border: white 1px;
+  border-style: solid;
+  border-radius: 55px;
+  padding: 10px;
+}
+
+h2 {
+  color: white;
+  position: relative;
+  right: 1360px;
+  top: 350px;
+}

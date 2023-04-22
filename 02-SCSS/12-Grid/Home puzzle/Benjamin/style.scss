@@ -1,0 +1,79 @@
+@mixin flex($direction) {
+    display: flex;
+    flex-direction: row;
+}
+
+@mixin cursor {
+    cursor: pointer;
+}
+
+body {
+    background-color: rgb(15, 12, 12);
+}
+
+.wrapper {
+    width: 96%;
+    height: fit-content;
+    margin-left: 4vw;
+    overflow: hidden;
+}
+
+.uppersection {
+    width: 100;
+    height: 90vh;
+    background-image: url(https://occ-0-300-420.1.nflxso.net/dnm/api/v6/6AYY37jfdO6hpXcMjf9Yu5cnmO0/AAAABZKJpdcSuvqwGBxBJNKVRze0JWHe9phJW6L1xaiqvLePPRKhRis-7FHr69URHZIYXqUVus0HIoz_3fLZPQr3VVqGGzRNlDoNkPwp.jpg?r=72d);
+}
+
+
+
+
+.header {
+    @include flex(row);
+    width: 100vw;
+    height: 8vh;
+    align-items: center;
+
+
+    &__logo {
+        height: 6vh;
+        width: 7vw;
+        @include cursor();
+    }
+
+    &__secheader {
+        @include flex(row);
+        margin-left: 3vw;
+        gap: 2ch;
+        font-size: 16px;
+        color: rgb(198, 205, 212);
+
+        &__little {
+            @include cursor();
+            transition: color 100ms ease-in-out;
+
+            &:hover {
+                color: white;
+            }
+        }
+
+    }
+}
+
+.SevenKingsgrid{
+ display: grid;
+    grid-template-areas: 
+    "boo main purple purple"
+    "boo red red ."
+    ". red red .";
+    &__Nlogo{
+        height: 7vh;
+        width: 3vw;
+    }
+ 
+    &__SevenKings{
+    height: 35vh;
+    width: 32vw;
+    grid-area:SevenKings ;
+    }
+
+}
