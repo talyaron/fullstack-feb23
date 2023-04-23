@@ -1,4 +1,5 @@
 .mainwrapper {
+    
     .myVideo {
         right: 0;
         top: 0;
@@ -7,14 +8,28 @@
         z-index: -1;
       }
       .tools {
-        background: linear-gradient(black,rgba(0, 0, 0, 0));
-        display: flex;
+        @media only screen and (max-width: 900px) {
+            grid-template-columns: repeat(9, 1fr);
+            
+        }
+        @media only screen and (max-width: 600px) {
+            grid-template-columns: repeat(6, 1fr);
+            
+        }
+    
+        display: grid;
+       grid-template-columns: 150px 70px 100px 90px 140px 80px 180px 150px 50px 50px 50px 50px 40px;
+       grid-template-rows: 40px;
+
+        background: linear-gradient(rgb(0, 0, 0),rgba(0, 0, 0, 0));
+        // display: flex;
+        // flex-wrap: wrap;
         position: fixed;
-        z-index: 3;
-        height: 40px;
-        width: 97%;
+        // z-index: 3;
+        // height: 40px;
+        // width: 97%;
         padding: 10px;
-        gap: 30px;
+        gap: 4px;
         align-items: center;
         p{
             &:hover {
