@@ -1,24 +1,40 @@
-.wrapper {
+body {
+  background-color: black;
+}
+
+p {
+  color: white;
+  font-family: sans-serif;
+  text-align: right;
+  font-size: 20px;
+}
+
+.content {
   display: grid;
   background-color: black;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
   grid-template-rows: 100px 100px 200px 200px 200px 200px;
-  grid-template-areas: "topnav topnav topnav topnav topnav topnav" "bg-image bg-image bg-image bg-image bg-image bg-image" "bg-image bg-image bg-image bg-image bg-image bg-image" "bg-image bg-image bg-image bg-image bg-image bg-image" "watched watched watched watched watched watched" "watched watched watched watched watched watched";
+  grid-template-areas: "content content content content content content" "content content content content content content";
   width: 100vw;
-  flex-wrap: wrap;
   margin: auto;
   gap: 5px;
 }
-.wrapper .bg-image img {
-  width: 100%;
+.content .content__item:hover {
+  transform: scale(1.2);
+}
+
+.bg-image img {
+  width: 600px;
   height: 600px;
   grid-area: bg-image;
 }
-.wrapper .logo {
+
+.logo {
   float: right;
   width: 100px;
 }
-.wrapper .topnav {
+
+.topnav {
   width: 100%;
   top: 0;
   position: fixed;
@@ -30,20 +46,24 @@
   grid-area: topnav;
   margin-right: 4%;
 }
-.wrapper .topnav__link {
+
+.topnav__link {
   float: right;
   text-decoration: none;
   color: white;
   font-family: sans-serif;
   margin: 20px;
 }
-.wrapper .topnav__link:hover {
+
+.topnav__link:hover {
   color: #dfdada;
 }
-.wrapper .topnav .home {
+
+.topnav .home {
   font-weight: 600;
 }
-.wrapper .watched, .wrapper .popular {
+
+.content {
   display: flex;
   max-width: 90vw;
   justify-content: end;
@@ -52,14 +72,4 @@
   margin-right: 0;
   gap: 10px;
   grid-area: watched;
-}
-@media only screen and (max-width: 600px) {
-  .wrapper {
-    flex-direction: column;
-  }
-}
-.wrapper .box {
-  flex: 1;
-  border-radius: 3%;
-  min-width: 200px;
 }
