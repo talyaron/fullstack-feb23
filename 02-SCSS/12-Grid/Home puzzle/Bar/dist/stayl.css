@@ -9,6 +9,7 @@
   font-family: "Rubik", sans-serif;
 }
 .wrapper .header {
+  position: relative;
   display: flex;
   max-width: 125vh;
   margin-left: 5vh;
@@ -18,8 +19,25 @@
   font-style: bold;
   margin-right: 2vh;
 }
+.wrapper .header .home {
+  color: white;
+}
 .wrapper .header p {
   margin-left: 3vh;
+  color: #cecece;
+}
+.wrapper .header .kids {
+  position: relative;
+  left: 22vh;
+  color: white;
+}
+.wrapper .header img {
+  position: relative;
+  width: 4vh;
+  height: 4vh;
+  left: 25vh;
+  top: 1vh;
+  border-radius: 5px;
 }
 .wrapper .video {
   max-width: 100%;
@@ -101,6 +119,10 @@
   padding: 2px;
   text-align: center;
 }
+.wrapper .video .buttens .info .i:hover {
+  background-color: white;
+  color: black;
+}
 .wrapper .video .buttens .info h2 {
   position: relative;
   top: -1.5vh;
@@ -146,7 +168,7 @@
   font-size: 18vh;
   position: absolute;
   top: -24.7vh;
-  color: rgba(83, 83, 83, 0.535);
+  color: #626262;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.631);
 }
 .wrapper .rowsnambers .img .img1 {

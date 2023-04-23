@@ -10,6 +10,7 @@
     font-family: 'Rubik', sans-serif;
 
     .header {
+        position: relative;
         display: flex;
         max-width: 125vh;
         margin-left: 5vh;
@@ -20,8 +21,28 @@
             margin-right: 2vh;
         }
 
+        .home {
+            color: white;
+        }
+
         p {
             margin-left: 3vh;
+            color: #cecece;
+        }
+
+        .kids {
+            position: relative;
+            left: 22vh;
+            color: white;
+        }
+
+        img {
+            position: relative;
+            width: 4vh;
+            height: 4vh;
+            left: 25vh;
+            top: 1vh;
+            border-radius: 5px;
         }
     }
 
@@ -114,6 +135,11 @@
                     height: 2.5vh;
                     padding: 2px;
                     text-align: center;
+
+                    &:hover {
+                        background-color: white;
+                        color: black;
+                    }
                 }
 
                 h2 {
@@ -176,7 +202,7 @@
                 font-size: 18vh;
                 position: absolute;
                 top: -24.7vh;
-                color: rgba(83, 83, 83, 0.535);
+                color: rgb(98, 98, 98);
                 text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.631);
             }
 
