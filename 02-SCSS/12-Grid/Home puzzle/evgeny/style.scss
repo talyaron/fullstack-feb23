@@ -10,45 +10,62 @@
 body{
 height: 100vh;
 background: #141414;
+h1,h2,p{
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif ;
+}
 
     .navbar{
-        height: 4.3em;
+        height: 3.5em;
         width: 100%;
         background-color: rgb(6, 6, 6);
         display: flex;
         position: fixed;
         align-items: center;
+        z-index: 99;
         img{ 
             height: 1.5em; 
             width: 6em;
             margin-left: 2.9em;
             margin-right: 2.9em;
+            cursor: pointer;
 
         }
         &__catego{
-            color: white;
+            color: rgb(119, 116, 116);
             margin-left: .5em;
             margin-right: .5em;
+            cursor: pointer;
             &__R{
                 color: white;
                 margin: 0 1em;
+                cursor: pointer;
+            }
+            &--white{
+                color: white;
             }
         }
+        &__catego:hover{
+           color: white;
+           font-weight: bolder;
+        }
         .fa-magnifying-glass{
-           margin-left: 35em;
+           margin-left: 39em;
+           cursor: pointer;
            
         }
         &__userImg{
-            height: 2.2em;
-            width: 2.2em;
+            height: 2em;
+            width: 2em;
             background-repeat: no-repeat;
             background-size: cover;
             border-radius: .5em;
             margin-left: 1em;
+            cursor: pointer;
 
         }
         .fa-caret-down{
             margin-left: 1em;
+            cursor: pointer;
         }
         .fa-caret-down:hover{
                  transition:  .5s;
@@ -62,22 +79,99 @@ background: #141414;
         
         
         
+      
         .recomended{
             height: 100vh;
             background-image: url(https://i.gifer.com/B1E2.gif);
+            box-shadow: inset 18rem 18rem 18rem 5rem rgba(15, 15, 15, 0.622);
             background-repeat: no-repeat;
             background-size: cover;
+            position: relative;
+            &__movieLogo{
+                margin-top: 12rem;
+                margin-right: 13rem;
+                
+            }
+            &__Nlogo{
+                height: 3em;
+                width: 3em;
+                position: absolute;
+                top: 9.9rem;
+                left: 3.7rem;
+            }
+            &__MovieText{
+                position: absolute;
+                bottom: 34.5rem;
+                left: 6.5rem;
+                color: white;
+            }
+            &__bottomText{
+                width: 30rem;
+                margin-left: 4.8rem;
+                
+                position: relative;
+                &__top10{
+                    height: 2rem;
+                    width: 2rem;
+                   position: absolute;
+                   
+                }
+                h2{ 
+                    margin-left: 3rem;
+                    color: white;
+                }
+                p{
+                    color: white;
+                    margin-top: 1em;
+                }
+                &__Btns{
+                    padding: .3em 1.5em;
+                    border-radius: .3em;
+                    margin: .5em;
+                    &--play{
+                        border: none;
+                        .fa-play{
+                            margin-right: .3em;
+                            width: 1.1em;
+                            height: 1.1em;
+                            border: 3px solid rgba(255, 255, 255, 0);
+                        }
+                    }
+                    &--info{
+                        background-color: grey;
+                        color: white;
+                        border: none;
+                        .fa-info{
+                            border: 3px solid white;
+                            width: 1.1em;
+                            height: 1.1em;
+                           color: white;
+                            border-radius: 50%;
+                        }
+                    }
+                }
+
+            }
+            &__PG{
+                color: white;
+                background-color: rgba(43, 42, 42, 0.386);
+                margin-left: 93rem;
+                padding: .5rem;
+                border-left: 4px solid white;
+            }
 
 
         }
         .grid{
             display: grid;
-            grid-template-columns: repeat(6,15em);
-            grid-template-rows:repeat(6,14em) ;
+            grid-template-columns: repeat(6,15rem);
+            grid-template-rows:repeat(6,14rem) ;
             grid-template-rows: auto;
             height: 40em;
             padding: 1em;
-            box-shadow: 0px -10px 50px black;
+            padding-left: 3em;
+            
+            z-index: 1;
             
             
             &__title{
@@ -86,11 +180,12 @@ background: #141414;
 
             }
             &__item{
-                height: 8em;
-                width: 14em;
+
+                height: 8rem;
+                width: 14rem;
                 margin-top: -3em;
                
-                border: 1px solid purple;
+                
                 &__coverImg{
                     height: 100%;
                     background-color: aqua;
