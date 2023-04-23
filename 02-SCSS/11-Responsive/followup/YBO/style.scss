@@ -1,25 +1,27 @@
 .wrapper {
-    background-color: aqua;
-    display: block;
-    height: 400px;
-    width: 600px;
+    display: flex;
+    background-color: yellow;
+    // width: 100vw;
+    // flex-wrap: wrap;
     margin: auto;
+    gap: 5px;
+}
 
+.box {
+    background-color: blue;
+    flex: 1;
+    color: white;
+    padding: 10px;
+    height: 100px;
+    width: 100px;
+    // min-width: 200px;
 }
 
 
-.box {
-    height: 100px;
-    width: 100px;
-    border: 2px solid black;
-    display: flex;
-    flex-direction:column;
-
-
-    @media only screen and (max-width:100px) {
+@media only screen and (max-width:800px) {
+    .wrapper, body {
         flex-direction: column;
-
+        background-color: tomato;
     }
-
 
 }

@@ -2,21 +2,16 @@
   display: flex;
   background-color: yellow;
   width: 100vw;
-  //   flex-wrap: wrap;
   margin: auto;
   gap: 5px;
 }
 
 .box {
-    background-color: blue;
+  background-color: blue;
   flex: 1;
   color: white;
   padding: 10px;
   min-width: 200px;
-  @media only screen and (max-width: 900px) {
-    background-color: tan;
-  }
-  
 }
 
 @media only screen and (max-width: 900px) {

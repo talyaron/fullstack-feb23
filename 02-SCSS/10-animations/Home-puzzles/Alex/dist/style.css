@@ -35,7 +35,8 @@ body #ball-trigger:checked + label .ball {
 }
 body #ball-trigger:checked + label .ball + .explosion {
   display: block;
-  animation: explode 1s ease-in-out;
+  animation: explode 2s ease-in-out;
+  animation-fill-mode: forward;
 }
 @keyframes rise {
   0% {
@@ -56,6 +57,6 @@ body #ball-trigger:checked + label .ball + .explosion {
     transform: scale(0.5);
   }
   100% {
-    transform: scale(1);
+    transform: scale(0);
   }
 }
