@@ -1,24 +1,39 @@
-.wrapper {
+body {
+
+  background-color: black;
+
+}
+
+p {  color: white;
+  font-family: sans-serif;
+  text-align: right;
+  font-size: 20px;
+}
+.content {
     display: grid;
     background-color: black;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
     grid-template-rows: 100px 100px 200px 200px 200px 200px;
     grid-template-areas: 
-    "topnav topnav topnav topnav topnav topnav"
-    "bg-image bg-image bg-image bg-image bg-image bg-image"
-    "bg-image bg-image bg-image bg-image bg-image bg-image"
-    "bg-image bg-image bg-image bg-image bg-image bg-image"
-    "watched watched watched watched watched watched"
-    "watched watched watched watched watched watched";
-
+    "content content content content content content"
+    "content content content content content content";
     width: 100vw;
-    flex-wrap: wrap;
     margin: auto;
     gap: 5px;
 
+    .content__item {
+
+      &:hover {
+         
+          transform: scale(1.2);
+      }
+  }
+
+}
+
 .bg-image {
     img {
-    width: 100%;
+    width: 600px;
     height: 600px;
     grid-area: bg-image;
 }
@@ -57,7 +72,7 @@
     font-weight: 600;
   }
   
-  .watched, .popular {
+  .content {
     display: flex;
     max-width: 90vw;
     justify-content: end;
@@ -68,15 +83,3 @@
     grid-area: watched;
 
   }
-
-    @media only screen and (max-width: 600px) {
-        flex-direction: column;
-      }
-
-    .box {
-        flex: 1;
-        border-radius: 3%;
-        min-width: 200px;
-    }
-
-}

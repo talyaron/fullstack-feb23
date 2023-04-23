@@ -1,3 +1,66 @@
+@media only screen and (max-width: 768px) {
+    .uppersection{
+        height: 40vh;
+    }
+}
+@media only screen and (min-width: 768px) {
+    .uppersection{
+        height: 40vh;
+    }
+}
+
+@media only screen and (min-width: 900px) {
+    .uppersection{
+        height: 45vh;
+    }
+    .midsection{
+        top: 50vh;
+    }
+
+    }
+@media only screen and (min-width: 1000px) {
+        .uppersection{
+            height: 60vh;
+        }
+        .midsection{
+            top: 62vh;
+        }
+        .txt{
+            font-size: 10px;
+        }
+        }
+@media only screen and (min-width: 1200px) {
+            .uppersection{
+                height: 70vh;
+            }
+            .midsection{
+                top: 70vh;
+            }
+            .txt{
+                font-size: 15px;
+            }
+    }
+
+@media only screen and (min-width: 1400px) {
+    .uppersection{
+        height: 90vh;
+    }
+    .midsection{
+        top: 90vh;
+    }
+    .txt{
+        font-size: 15px;
+    }
+    }
+
+
+
+
+
+
+
+
+
 @mixin flex($direction) {
     display: flex;
     flex-direction: row;
@@ -6,9 +69,14 @@
     @include cursor;
     border-radius: 4px;
     height: 20vh;
-    width: 17vw;
+    width: 10vw;
     background-size: cover;
     transition: scale 200ms ease-in-out;
+    flex-shrink: 0;
+    flex: 1 0 auto;
+
+    min-width: 250px;
+    box-sizing: border-box;
 }
 @mixin cursor {
     cursor: pointer;
@@ -42,9 +110,9 @@ body {
 }
 
 .wrapper {
-    width: 96%;
+    width: 100%;
     height: 300vh;
-    margin-left: 4vw;
+
     overflow: hidden;
 
 
@@ -52,10 +120,12 @@ body {
 
 .uppersection {
     @include showanimation(0.2s);
-    width: 100;
-    height: 90vh;
+    width: 100vw;
+    
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center center;
     background-image: url(https://occ-0-300-420.1.nflxso.net/dnm/api/v6/6AYY37jfdO6hpXcMjf9Yu5cnmO0/AAAABZKJpdcSuvqwGBxBJNKVRze0JWHe9phJW6L1xaiqvLePPRKhRis-7FHr69URHZIYXqUVus0HIoz_3fLZPQr3VVqGGzRNlDoNkPwp.jpg?r=72d);
 
 }
@@ -65,10 +135,11 @@ body {
 
 .header {
     @include flex(row);
-    width: 100vw;
+    width: 95vw;
     height: 8vh;
     align-items: center;
     @include showanimation(0.8s);
+    justify-content: space-between;
 
 
     &__logo {
@@ -80,7 +151,9 @@ body {
     &__secheader {
         @include flex(row);
         align-items: center;
-        margin-left: 3vw;
+        position: absolute;
+       left: 12vw;
+
         gap: 2ch;
         font-size: 16px;
         color: rgb(198, 205, 212);
@@ -100,7 +173,7 @@ body {
         width: 15vw;
         height: 2vh;
         align-items: center;
-        margin-left: 24vw;
+
         justify-content: space-between;
 
     }
@@ -152,6 +225,7 @@ body {
     height: 30vh;
     position: absolute;
     top: 15vh;
+    margin-left: 5vw;
 
     &__netflixfilm {
         display: flex;
@@ -193,7 +267,6 @@ body {
         }
 
         &__txt {
-            font-size: 15px;
             color: white;
         }
     }
@@ -255,14 +328,16 @@ body {
     position: absolute;
     top: 82vh;
     @include showanimation(3s);
+    margin-left: 5vw;
     
 }
 
 .midsection{
+    margin-left: 5vw;
     height: 20vh;
     margin-left: 3vw;
     position: absolute;
-    top: 90vh;
+
     @include showanimation(3.2s);
     display: flex;
     flex-direction: row;
@@ -287,9 +362,11 @@ body {
     }
     &__img{
         width: 9vw;
+        min-width: 9vw;
         height: 24vh;
         position: relative;
         right: 3vw;
+        
         @include cursor();
         transition: scale 300ms ease-in-out;
         &:hover{
@@ -315,6 +392,7 @@ body {
     right: 3vw;
     @include cursor();
     transition: scale 300ms ease-in-out;
+    min-width: 9vw;
     &:hover{
         scale: 1.2;
     }
@@ -336,6 +414,7 @@ body {
     height: 24vh;
     position: relative;
     right: 3vw;
+    min-width: 9vw;
     @include cursor();
     transition: scale 300ms ease-in-out;
     &:hover{
@@ -359,6 +438,7 @@ body {
     height: 24vh;
     position: relative;
     right: 3vw;
+    min-width: 9vw;
     @include cursor();
     transition: scale 300ms ease-in-out;
     &:hover{
@@ -382,6 +462,7 @@ body {
     height: 24vh;
     position: relative;
     right: 3vw;
+    min-width: 9vw;
     @include cursor();
     transition: scale 300ms ease-in-out;
     &:hover{
@@ -405,6 +486,7 @@ body {
     height: 24vh;
     position: relative;
     right: 3vw;
+    min-width: 9vw;
     @include cursor();
     transition: scale 300ms ease-in-out;
     &:hover{
@@ -429,6 +511,7 @@ body {
         flex-direction: row;
         gap: 0.3vw;
         width: 175vw;
+        
 
         &__one{
             

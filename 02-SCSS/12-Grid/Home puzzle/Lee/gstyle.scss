@@ -41,6 +41,7 @@ body {
 
         &:hover {
             color: rgb(223, 218, 218);
+           
         }
 
     }
@@ -51,11 +52,18 @@ body {
   
 }
 
-.watched, .popular {
+.content {
     display: flex;
     height: auto;
     border-radius: 7%;
     margin-right: 0;
     gap: 10px;
 
+    .content__item {
+
+    &:hover {
+       
+        transform: scale(1.2);
+    }
+}
 }
