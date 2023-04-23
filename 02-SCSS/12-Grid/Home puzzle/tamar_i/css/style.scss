@@ -1,0 +1,35 @@
+// @import "style-repo";
+// @import "style-movie-grip";
+$headlineRow: 20px;
+$moviesRow: 200px;
+
+.contriner {
+    display: grid;
+    gap: 5px;
+    max-width: 100vh;
+    margin: auto;
+    grid-template-rows: [row1-start] $headlineRow [row2] $moviesRow [row3] $headlineRow [row4] $moviesRow [row5] $headlineRow [row6] $moviesRow [row7-end];
+    grid-template-columns: repeat(5, 1fr);
+
+    grid-template-areas:
+        "headline1 headline1 headline1 headline1 headline1"
+        "movies1 movies1 movies1 movies1 movies1"
+        "headline2 . . . ."
+        "movies2 . . . .";
+
+    .headline {
+        grid-area: headline1;
+        background-color: blue;
+        color: white;
+    }
+
+    .movies {
+        grid-area: movies1;
+        background-color: black;
+
+        .vid-wrapper {
+            height: $moviesRow;
+            width: 100px;
+        }
+    }
+}
