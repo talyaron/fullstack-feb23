@@ -107,6 +107,8 @@ body {
   animation-duration: 1s;
   animation-fill-mode: forwards;
   justify-content: space-between;
+  position: fixed;
+  z-index: 1;
 }
 @keyframes sevenshow {
   from {
@@ -572,6 +574,7 @@ body {
   position: relative;
   top: 30vh;
   height: 100vh;
+  z-index: 0;
 }
 .lastsection__headertext {
   font-size: 18px;
