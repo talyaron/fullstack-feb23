@@ -50,8 +50,6 @@
     .video {
         max-width: 100%;
         height: 60vh;
-        // box-shadow: ;
-        background-color: rgb(156, 156, 17);
 
         video {
             max-width: 100%;
@@ -151,6 +149,28 @@
                     // }
                 }
             }
+        }
+
+
+        @media only screen and (max-width: 1300px) {
+            max-width: 1300px;
+
+            .buttens {
+                display: none;
+            }
+
+            p {
+                display: none;
+            }
+
+            .h {
+                display: none;
+            }
+        }
+
+        @media only screen and (max-width: 600px) {
+            max-width: 600px;
+            display: none;
         }
     }
 

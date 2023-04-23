@@ -42,7 +42,6 @@
 .wrapper .video {
   max-width: 100%;
   height: 60vh;
-  background-color: #9c9c11;
 }
 .wrapper .video video {
   max-width: 100%;
@@ -126,6 +125,26 @@
 .wrapper .video .buttens .info h2 {
   position: relative;
   top: -1.5vh;
+}
+@media only screen and (max-width: 1300px) {
+  .wrapper .video {
+    max-width: 1300px;
+  }
+  .wrapper .video .buttens {
+    display: none;
+  }
+  .wrapper .video p {
+    display: none;
+  }
+  .wrapper .video .h {
+    display: none;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .wrapper .video {
+    max-width: 600px;
+    display: none;
+  }
 }
 .wrapper .line {
   position: relative;
