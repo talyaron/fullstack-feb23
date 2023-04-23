@@ -1,0 +1,57 @@
+
+
+body{height: 100vh; 
+display: flex;
+align-items: center;
+justify-content: center;
+}
+.gameBox{
+    border: 1rem solid black;
+    width: fit-content;
+    height: fit-content;
+    &__upper{
+        display: flex;
+        &__arrow-down{
+            width: 0; 
+            height: 0; 
+            border-left: 3rem solid transparent;
+            border-right: 3rem solid transparent;
+            margin-bottom: 9rem;
+            border-top: 15rem solid black;
+            position: relative;
+            &__piece{
+                background-color: aqua;
+                opacity: 0;
+                height: 2.5rem;
+                width: 2.5rem;
+                border-radius: 50%;
+                position: absolute;
+                bottom: 12rem;
+                left: -1rem;
+
+            }
+            &:nth-child(2n){
+                border-top: 15rem solid rgb(255, 9, 9);
+            }
+            &__piece:hover{
+                opacity: 1;
+            }
+        
+        }
+    }
+    &__lower{
+        display: flex;
+        &__arrow-up {
+            width: 0; 
+            height: 0; 
+            border-left: 3rem solid transparent;
+            border-right: 3rem solid transparent;
+            
+            border-bottom: 15rem solid black;
+            &:nth-child(2n+1){
+                border-bottom: 15rem solid rgb(255, 9, 9);
+            }
+        }
+
+    }
+}
