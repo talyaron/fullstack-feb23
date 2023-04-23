@@ -1,0 +1,22 @@
+table{
+    margin: auto;
+    width: 900px;
+}
+
+tr:nth-child(2n+2){
+    background-color: aqua;
+    text-align: left;
+    
+}
+
+table, th , td {
+border: 1px solid black;
+border-collapse:collapse;
+padding: 20px;
+}
+
+td:nth-child(even){
+    color: red;
+    background-color: black;
+    text-align: right;
+}
