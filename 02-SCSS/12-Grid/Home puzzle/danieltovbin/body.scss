@@ -1,0 +1,120 @@
+@mixin name-serial {
+    position: relative;
+        width: 200px;
+        height: 100px;
+}
+
+@mixin video-img {
+    position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: none;
+        background-repeat: repeat;
+        object-fit: cover;
+}
+
+@mixin first-img {
+    position: absolute;
+        top: 0;
+        left: 0;
+        width: 90%;
+        height: 90%;
+}
+.wrapper{
+&__container {
+    display: flex;
+    max-width: 100rem;
+    margin: auto;
+
+    
+
+
+    &__image__star {
+        @include name-serial ;
+    }
+
+    &__image__star video{
+        @include video-img;
+    }
+
+    &__image__star img {
+        @include first-img ;
+    }
+
+
+    &__image__national-geographic {
+        @include name-serial ;
+    }
+
+    &__image__national-geographic video{
+        @include video-img;
+    }
+
+    &__image__national-geographic img {
+        @include first-img ;
+    }
+
+
+    &__image__starwars {
+        @include name-serial ;
+    }
+
+    &__image__starwars video{
+        @include video-img;
+    }
+
+    &__image__starwars img {
+        @include first-img ;
+    }
+
+
+    &__image__marvel {
+        @include name-serial ;
+    }
+
+    &__image__marvel video{
+        @include video-img;
+    }
+
+    &__image__marvel img {
+        @include first-img ;
+    }
+
+
+    &__image__pixar {
+        @include name-serial ;
+    }
+
+    &__image__pixar video{
+        @include video-img;
+    }
+
+    &__image__pixar img {
+        @include first-img ;
+    }
+
+
+    &__image__disney {
+        @include name-serial ;
+    }
+
+    &__image__disney video{
+        @include video-img;
+    }
+
+    &__image__disney img {
+        @include first-img ;
+    }
+}
+}
+
+
+
+.wrapper__container__image:hover img {
+    display: none;
+}
+.wrapper__container__image:hover video {
+    display: block;
+}

@@ -1,0 +1,34 @@
+$displaySomething: block;
+
+body {
+  background-image: url("https://media.istockphoto.com/id/1328689113/photo/summer-blue-sky-and-white-cloud-white-background-beautiful-clear-cloudy-in-sunlight-calm.jpg?b=1&s=170667a&w=0&k=20&c=zll8NetKpkVebLipZi-jmAAz56gMvPlRNtnHNVuip_k=");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.wrapper {
+  width: 150px;
+  height: 150px;
+  background-color: aqua;
+
+  img {
+    width: 100%;
+  }
+
+  &__firstBaloon {
+    display: none;
+  }
+  &__secondBaloon {
+    display: $displaySomething;
+  }
+
+  &:hover {
+    .wrapper__firstBaloon {
+      display: $displaySomething;
+    }
+
+    .wrapper__secondBaloon {
+      display: none;
+    }
+  }
+}

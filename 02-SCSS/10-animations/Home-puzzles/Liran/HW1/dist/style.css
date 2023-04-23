@@ -1,0 +1,572 @@
+body {
+  width: 100%;
+  height: 100%;
+  background-color: beige;
+  margin: 0;
+  position: relative;
+}
+
+/***************************** CLOCK *************************/
+/*style*/
+.dots {
+  position: absolute;
+  height: 400px;
+  width: 50px;
+  left: 310px;
+}
+.dots .dot {
+  width: 30px;
+  height: 30px;
+  background-color: red;
+  position: absolute;
+  left: 10px;
+  border-radius: 100%;
+}
+.dots .dot1 {
+  bottom: 250px;
+}
+.dots .dot2 {
+  bottom: 150px;
+}
+
+.eight {
+  width: 200px;
+  height: 400px;
+  background-color: black;
+  position: absolute;
+}
+.eight .ver {
+  width: 20px;
+  height: 100px;
+  position: absolute;
+}
+.eight .hor {
+  width: 100px;
+  height: 20px;
+  position: absolute;
+  left: 50px;
+}
+.eight .hor3 {
+  bottom: 90px;
+}
+.eight .hor2 {
+  bottom: 215px;
+}
+.eight .hor1 {
+  bottom: 340px;
+}
+.eight .ver1 {
+  bottom: 112px;
+}
+.eight .ver2 {
+  bottom: 238px;
+}
+.eight .ver1, .eight .ver2 {
+  left: 50px;
+}
+.eight .ver3 {
+  bottom: 112px;
+}
+.eight .ver4 {
+  bottom: 238px;
+}
+.eight .ver3, .eight .ver4 {
+  left: 130px;
+}
+
+.dig1 .hor1 {
+  animation-name: dig1hor1;
+  animation-duration: 60s;
+  animation-timing-function: step-end;
+  animation-iteration-count: infinite;
+}
+.dig1 .hor2 {
+  animation-name: dig1hor2;
+  animation-duration: 60s;
+  animation-timing-function: step-end;
+  animation-iteration-count: infinite;
+}
+.dig1 .hor3 {
+  animation-name: dig1hor1;
+  animation-duration: 60s;
+  animation-timing-function: step-end;
+  animation-iteration-count: infinite;
+}
+.dig1 .ver1 {
+  animation-name: dig1ver1;
+  animation-duration: 60s;
+  animation-timing-function: step-end;
+  animation-iteration-count: infinite;
+}
+.dig1 .ver2 {
+  animation-name: dig1ver2;
+  animation-duration: 60s;
+  animation-timing-function: step-end;
+  animation-iteration-count: infinite;
+}
+.dig1 .ver3 {
+  animation-name: dig1ver3;
+  animation-duration: 60s;
+  animation-timing-function: step-end;
+  animation-iteration-count: infinite;
+}
+.dig1 .ver4 {
+  animation-name: dig1ver4;
+  animation-duration: 60s;
+  animation-timing-function: step-end;
+  animation-iteration-count: infinite;
+}
+
+.dig2 {
+  left: 150px;
+}
+.dig2 .hor1 {
+  animation-name: dig4hor1;
+  animation-duration: 10s;
+  animation-timing-function: step-end;
+  animation-iteration-count: infinite;
+}
+.dig2 .hor2 {
+  animation-name: dig4hor2;
+  animation-duration: 10s;
+  animation-timing-function: step-end;
+  animation-iteration-count: infinite;
+}
+.dig2 .hor3 {
+  animation-name: dig4hor3;
+  animation-duration: 10s;
+  animation-timing-function: step-end;
+  animation-iteration-count: infinite;
+}
+.dig2 .ver1 {
+  animation-name: dig4ver1;
+  animation-duration: 10s;
+  animation-timing-function: step-end;
+  animation-iteration-count: infinite;
+}
+.dig2 .ver2 {
+  animation-name: dig4ver2;
+  animation-duration: 10s;
+  animation-timing-function: step-end;
+  animation-iteration-count: infinite;
+}
+.dig2 .ver3 {
+  animation-name: dig4ver3;
+  animation-duration: 10s;
+  animation-timing-function: step-end;
+  animation-iteration-count: infinite;
+}
+.dig2 .ver4 {
+  animation-name: dig4ver4;
+  animation-duration: 10s;
+  animation-timing-function: step-end;
+  animation-iteration-count: infinite;
+}
+
+.dig3 {
+  left: 350px;
+}
+.dig3 .hor1 {
+  animation-name: dig4hor1;
+  animation-duration: 1s;
+  animation-timing-function: step-end;
+  animation-iteration-count: infinite;
+}
+.dig3 .hor2 {
+  animation-name: dig4hor2;
+  animation-duration: 1s;
+  animation-timing-function: step-end;
+  animation-iteration-count: infinite;
+}
+.dig3 .hor3 {
+  animation-name: dig4hor3;
+  animation-duration: 1s;
+  animation-timing-function: step-end;
+  animation-iteration-count: infinite;
+}
+.dig3 .ver1 {
+  animation-name: dig4ver1;
+  animation-duration: 1s;
+  animation-timing-function: step-end;
+  animation-iteration-count: infinite;
+}
+.dig3 .ver2 {
+  animation-name: dig4ver2;
+  animation-duration: 1s;
+  animation-timing-function: step-end;
+  animation-iteration-count: infinite;
+}
+.dig3 .ver3 {
+  animation-name: dig4ver3;
+  animation-duration: 1s;
+  animation-timing-function: step-end;
+  animation-iteration-count: infinite;
+}
+.dig3 .ver4 {
+  animation-name: dig4ver4;
+  animation-duration: 1s;
+  animation-timing-function: step-end;
+  animation-iteration-count: infinite;
+}
+
+.dig4 {
+  left: 500px;
+}
+.dig4 .hor1 {
+  animation-name: dig4hor1;
+  animation-duration: 0.1s;
+  animation-timing-function: step-end;
+  animation-iteration-count: infinite;
+}
+.dig4 .hor2 {
+  animation-name: dig4hor2;
+  animation-duration: 0.1s;
+  animation-timing-function: step-end;
+  animation-iteration-count: infinite;
+}
+.dig4 .hor3 {
+  animation-name: dig4hor3;
+  animation-duration: 0.1s;
+  animation-timing-function: step-end;
+  animation-iteration-count: infinite;
+}
+.dig4 .ver1 {
+  animation-name: dig4ver1;
+  animation-duration: 0.1s;
+  animation-timing-function: step-end;
+  animation-iteration-count: infinite;
+}
+.dig4 .ver2 {
+  animation-name: dig4ver2;
+  animation-duration: 0.1s;
+  animation-timing-function: step-end;
+  animation-iteration-count: infinite;
+}
+.dig4 .ver3 {
+  animation-name: dig4ver3;
+  animation-duration: 0.1s;
+  animation-timing-function: step-end;
+  animation-iteration-count: infinite;
+}
+.dig4 .ver4 {
+  animation-name: dig4ver4;
+  animation-duration: 0.1s;
+  animation-timing-function: step-end;
+  animation-iteration-count: infinite;
+}
+
+/* animation*/
+@keyframes dig4hor1 {
+  0% {
+    background-color: red;
+  }
+  10% {
+    background-color: black;
+  }
+  20% {
+    background-color: red;
+  }
+  40% {
+    background-color: black;
+  }
+  50% {
+    background-color: red;
+  }
+}
+@keyframes dig4hor2 {
+  0% {
+    background-color: black;
+  }
+  20% {
+    background-color: red;
+  }
+  70% {
+    background-color: black;
+  }
+  80% {
+    background-color: red;
+  }
+}
+@keyframes dig4hor3 {
+  0% {
+    background-color: red;
+  }
+  10% {
+    background-color: black;
+  }
+  20% {
+    background-color: red;
+  }
+  40% {
+    background-color: black;
+  }
+  50% {
+    background-color: red;
+  }
+  70% {
+    background-color: black;
+  }
+  80% {
+    background-color: red;
+  }
+  90% {
+    background-color: black;
+  }
+}
+@keyframes dig4ver1 {
+  0% {
+    background-color: red;
+  }
+  10% {
+    background-color: black;
+  }
+  20% {
+    background-color: red;
+  }
+  30% {
+    background-color: black;
+  }
+  60% {
+    background-color: red;
+  }
+  70% {
+    background-color: black;
+  }
+  80% {
+    background-color: red;
+  }
+  90% {
+    background-color: black;
+  }
+}
+@keyframes dig4ver2 {
+  0% {
+    background-color: red;
+  }
+  10% {
+    background-color: black;
+  }
+  40% {
+    background-color: red;
+  }
+  70% {
+    background-color: black;
+  }
+  80% {
+    background-color: red;
+  }
+}
+@keyframes dig4ver3 {
+  0% {
+    background-color: red;
+  }
+  20% {
+    background-color: black;
+  }
+  30% {
+    background-color: red;
+  }
+}
+@keyframes dig4ver4 {
+  0% {
+    background-color: red;
+  }
+  50% {
+    background-color: black;
+  }
+  70% {
+    background-color: red;
+  }
+}
+@keyframes dig1hor1 {
+  0% {
+    background-color: red;
+  }
+  16.667% {
+    background-color: black;
+  }
+  33.334% {
+    background-color: red;
+  }
+  66.667% {
+    background-color: black;
+  }
+  83.333% {
+    background-color: red;
+  }
+}
+@keyframes dig1hor2 {
+  0% {
+    background-color: black;
+  }
+  33.334% {
+    background-color: red;
+  }
+}
+@keyframes dig1ver1 {
+  0% {
+    background-color: red;
+  }
+  16.667% {
+    background-color: black;
+  }
+  33.334% {
+    background-color: red;
+  }
+  50% {
+    background-color: black;
+  }
+}
+@keyframes dig1ver2 {
+  0% {
+    background-color: red;
+  }
+  16.667% {
+    background-color: black;
+  }
+  66.667% {
+    background-color: red;
+  }
+}
+@keyframes dig1ver3 {
+  0% {
+    background-color: red;
+  }
+  33.334% {
+    background-color: black;
+  }
+  50% {
+    background-color: red;
+  }
+}
+@keyframes dig1ver4 {
+  0% {
+    background-color: red;
+  }
+  83.335% {
+    background-color: black;
+  }
+}
+/*************************** END CLOCK ***********************/
+/***************************** ILLUSION **********************/
+.illusion {
+  background-color: black;
+  width: 99vw;
+  height: 45vh;
+  position: absolute;
+  top: 400px;
+  display: flex;
+  animation-name: illusionFade;
+  animation-duration: 20s;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+}
+.illusion .stripe {
+  width: 8.333%;
+  height: 100%;
+}
+
+.illusionStripes {
+  position: absolute;
+  top: 500px;
+  width: 99vw;
+  height: 45vh;
+}
+
+.horStripe {
+  position: absolute;
+  height: 8vh;
+  width: 16.667%;
+  background-color: black;
+  animation-name: illusionAnimation;
+  animation-duration: 20s;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+}
+
+.blackStripe {
+  top: 100px;
+}
+
+.white {
+  background-color: #fff;
+}
+
+@keyframes illusionAnimation {
+  0% {
+    left: 0;
+  }
+  25% {
+    left: 83.334%;
+  }
+  50% {
+    left: 0;
+  }
+  75% {
+    left: 83.334%;
+  }
+  100% {
+    left: 0;
+  }
+}
+@keyframes illusionFade {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+/**************************** END ILLUSION *******************/
+/**************************** Glow ***************************/
+.glow {
+  background-color: black;
+  width: 800px;
+  height: 400px;
+  position: absolute;
+  right: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  flex-wrap: wrap;
+  animation: colorChange 5s linear infinite;
+}
+.glow .ball {
+  position: relative;
+  display: block;
+  width: 40px;
+  height: 40px;
+}
+.glow .ball::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #11db11;
+  border-radius: 50%;
+  transform: scale(0);
+  transition: 2s;
+  box-shadow: 0 0 10px #11db11, 0 0 20px #11db11, 0 0 40px #11db11, 0 0 60px #11db11, 0 0 80px #11db11, 0 0 100px #11db11;
+}
+.glow .ball:hover::before {
+  content: "";
+  transform: scale(1);
+  transition: 0s;
+}
+
+@keyframes colorChange {
+  0% {
+    filter: hue-rotate(0deg);
+  }
+  100% {
+    filter: hue-rotate(360deg);
+  }
+}

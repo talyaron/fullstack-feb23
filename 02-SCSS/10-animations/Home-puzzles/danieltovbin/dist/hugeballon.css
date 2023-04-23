@@ -5,35 +5,44 @@
   top: 455px;
   left: 735px;
 }
-.wrapper__image img {
-  width: 200px;
-  height: 300px;
-  top: 455px;
+.wrapper__image {
+  animation-name: theballoon;
   cursor: pointer;
   position: absolute;
-  left: 735px;
   animation-timing-function: linear;
   animation-delay: 3s;
   animation-duration: 4s;
   animation-direction: normal;
   animation-iteration-count: infinite;
-  animation-name: theballoon;
 }
-.wrapper__image img:active {
-  animation: 1s 5s forwards;
+.wrapper__image img {
+  width: 190px;
+  height: 220px;
+}
+.wrapper__image--natural {
+  display: block;
+}
+.wrapper__image:active .wrapper__image--natural {
+  display: none;
+}
+.wrapper__image:active .wrapper__image--effect {
+  display: block;
+}
+.wrapper__image--effect {
+  display: none;
 }
 
 @keyframes theballoon {
   0% {
-    top: 455px;
+    top: 510px;
     left: 735px;
-    width: 260px;
+    width: 120px;
     height: 310px;
   }
   50% {
-    top: 300px;
+    top: 450px;
     left: 735px;
-    width: 350px;
+    width: 200px;
     height: 450px;
   }
   80% {

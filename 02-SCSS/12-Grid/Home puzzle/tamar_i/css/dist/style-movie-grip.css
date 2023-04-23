@@ -1,0 +1,8 @@
+.movie {
+  display: grid;
+  grid-template-rows: 150px 30px 20px;
+  grid-template-columns: repeat(5, 1fr);
+}
+.movie img {
+  display: cover;
+}
