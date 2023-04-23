@@ -1,0 +1,11 @@
+.header a {
+  flex-direction: column;
+}
+
+.big__picture {
+  width: 400px;
+  height: 500px;
+}
+.big__picture p {
+  width: 300px;
+}

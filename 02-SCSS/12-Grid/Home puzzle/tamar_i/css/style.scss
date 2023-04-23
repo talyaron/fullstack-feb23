@@ -1,0 +1,56 @@
+@import "style-repo";
+@import "grid-style-main";
+// @import "style-movie-grip";
+// $headlineRow: 20px;
+// $moviesRow: 200px;
+$moviehight: 100px;
+$moviewidth: 200px;
+
+body{
+    
+}
+
+.continer {
+
+    .headline {
+        background-color: blue;
+        color: white;
+    }
+
+    .movieblock {
+        display: flex;
+        flex-direction: column;
+        width: $moviewidth;
+        background-color: black;
+        align-items: center;
+        justify-content: center;             
+    }
+
+    .vid-wrapper {
+        display: flex;
+        grid-area: vidarea;
+        height: $moviehight;
+        width: 150px;
+        background-size: cover;
+        background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8lE_9uOQ_lS-gdrFGRLdCJsCVYzamjqN8fg&usqp=CAU);
+    }
+
+    .btn-line {
+        grid-area: btn;
+    }
+
+    .info {
+        color: white;
+    }
+
+    .Age-classification {
+        .new {
+        }
+        .age {
+        }
+        .data {
+        }
+        .defenision {
+        }
+    }
+}

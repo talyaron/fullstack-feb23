@@ -1,7 +1,7 @@
 body {
     font-family: sans-serif;
     color: white;
-    background-color: #141414;
+    background: black;
 
     .container {
         display: grid;
@@ -10,23 +10,23 @@ body {
 
 
         .header {
-
+            background-color: black;
             // grid-area: header;
             display: flex;
             justify-content: space-between;
             grid-column: 1 / span 5;
             grid-row: 1 / span 1;
 
+            img {
+
+                width: 110px;
+                height: 35px;
+
+            }
 
             &__main {
-
-
-                span {
-                    color: red;
-                    margin-right: 40px;
-                    font-weight: bold;
-                    font-size: 25px;
-                }
+                display: flex;
+                align-items: center;
 
                 a {
                     color: white;
@@ -38,7 +38,10 @@ body {
 
 
             &__corner {
+                @media only screen and (max-width:800px) {
+                    display: none;
 
+                }
 
                 a {
                     color: white;
@@ -58,29 +61,76 @@ body {
         }
 
         .big__picture {
+            box-shadow: 1px -15px 10px 15px #141414 inset;
             grid-column: 1 / span 5;
-            grid-row: 2 / span 35;
+            grid-row: 2 / span 43;
             display: grid;
             // grid-template-columns: 1;
             background: url(img/big.jpg) no-repeat top center/ cover;
+            bottom: 2px;
+            position: relative;
+
+            @media only screen and (max-width:800px) {
+                background: url(img/מלכים.png) no-repeat top center/ cover;
+            }
 
 
 
-            span {
-                color: red;
+            &__title {
+                padding-left: 25px;
+
+                span {
+                    color: red;
+                    font-weight: bold;
+                    font-size: 30px;
+                }
+            }
+
+            &__explan {
+                margin-top: 190px;
+                margin-left: 30px;
+
+                p {
+                    width: 30%;
+                    align-self: flex-end;
+                }
+            }
+
+            &__bth {
+
+                display: flex;
                 font-weight: bold;
-                font-size: 25px;
+
+                .white {
+                    background-color: white;
+                    max-width: fit-content;
+                    color: black;
+                    margin-right: 12px;
+                    padding: 10px 20px;
+                }
+
+                .gray {
+                    background-color: gray;
+                    max-width: fit-content;
+                    padding: 10px 20px;
+
+                    .info {
+                        font-size: 13px;
+                        color: white;
+                        border: 2px white solid;
+                        border-radius: 50%;
+                        padding: 1px 6px;
+                        margin-right: 5px;
+                        text-align: center;
+
+
+                    }
+                }
             }
 
-            .info {
-                font-size: 13px;
-                color: white;
-                border: 2px white solid;
-                border-radius: 50%;
-                width: 10px;
-                height: 10px;
-                margin-right: 4px;
-            }
+
+
+
 
             img {
                 width: 25px;
@@ -93,13 +143,88 @@ body {
 
         .top10 {
             grid-column: 1 / span 5;
-            grid-row: 36 / span 37;
-            // background: red;
-            // grid-area: top;
-            display: flex;
-            background: red;
+            grid-row: 38 / span 40;
+            background-color: #141414;
 
+
+
+            &__tital {
+                position: relative;
+                top: 25px;
+                margin-bottom: 0;
+
+                @media only screen and (max-width:800px) {
+                    margin-top: 10px;
+                }
+            }
+
+            &__movies {
+                display: flex;
+                justify-content: space-around;
+                top: 10px;
+
+
+                &__movie {
+                    font-weight: bold;
+                    width: 200px;
+                    height: 160px;
+                    position: relative;
+                    color: black;
+                    font-size: 180px;
+                    -webkit-text-stroke-width: 2px;
+                    -webkit-text-stroke-color: gray;
+
+
+                    img {
+                        height: 135px;
+                        position: absolute;
+                        left: 65px;
+                        z-index: 3;
+                        top: 35px;
+
+
+                    }
+                }
+            }
+        }
+
+        .options {
+            background-color: #141414;
+            grid-column: 1 / span 5;
+            grid-row: 51 / span 80;
+
+            &__tirle {
+                margin-top: 30px;
+                margin-bottom: 5px;
+
+            }
+
+            img {
+                width: 280px;
+                height: 150px;
+
+            }
+
+            .half {
+                width: 75px;
+
+                @media only screen and (max-width: 1530px) {
+                    display: none;
+                }
+            }
+
+            &__moviess {
+                img {
+
+                    height: 50px;
+
+                    @media only screen and (max-width:1530px) {
+                        display: none;
+                    }
+                }
+            }
 
         }
+
     }
 }

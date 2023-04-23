@@ -1,0 +1,63 @@
+.mainwrapper {
+    
+    .myVideo {
+        right: 0;
+        top: 0;
+        width: 700px; 
+        height: 400px;
+        z-index: -1;
+      }
+      .tools {
+        @media only screen and (max-width: 900px) {
+            grid-template-columns: repeat(9, 1fr);
+            
+        }
+        @media only screen and (max-width: 600px) {
+            grid-template-columns: repeat(6, 1fr);
+            
+        }
+    
+        display: grid;
+       grid-template-columns: 150px 70px 100px 90px 140px 80px 180px 150px 50px 50px 50px 50px 40px;
+       grid-template-rows: 40px;
+
+        background: linear-gradient(rgb(0, 0, 0),rgba(0, 0, 0, 0));
+        // display: flex;
+        // flex-wrap: wrap;
+        position: fixed;
+        // z-index: 3;
+        // height: 40px;
+        // width: 97%;
+        padding: 10px;
+        gap: 4px;
+        align-items: center;
+        p{
+            &:hover {
+                font-size: large;
+            }
+        }
+        img {
+            height: 30px;
+        }
+        .logo {
+            flex: 1.5;
+        }
+        .bell {
+            position: relative;
+        }
+        .ntf {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 10px;
+            width: fit-content;
+            background-color: red;
+            border-radius: 50%;
+            padding: 2px 4px;
+        }
+        .empty {
+            flex: 2;
+        }
+      }
+}
+

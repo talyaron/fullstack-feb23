@@ -1,46 +1,202 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="./dist/style.css">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Netflix</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./dist/style.css" />
+  </head>
+  <body>
     <div class="wrapper">
-
         <div class="header">
-            <img class="logo" src="data:image/png;base64,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" alt="netlogo">
-            <p>דף הבית</p>
-            <p>תוכניות טלוויזיה</p>
-            <p>סרטים</p>
-            <p>חדשים ופופולריים</p>
-            <p>הרשימה שלי</p>
-            <p>דפדוף לפי שפות</p>
-        </div>
+          <div class="headerright">
 
-        <p class="underheader">תוכניות טלויזיה אמריקאיות</p>
-        <div class="movies">
-            <div class="allthis">
-                <img class="netflixone" src="https://top10.netflix.com/images/big_numbers/1.png" alt="">
-                <img class="movie one" src="https://media1.giphy.com/media/PnTbJDFX0q9IDKnqyx/giphy.gif" alt="">
+              <img
+              class="logo"
+              src="data:image/png;base64,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"
+              alt="netlogo"
+              />
+              <button class="navi">דף הבית</button >
+              <button class="navi">תוכניות טלוויזיה</button >
+              <button class="navi">סרטים</button >
+              <button class="navi">חדשים ופופולריים</button >
+              <button class="navi">הרשימה שלי</button >
+              <button class="navi">דפדוף לפי שפות</button>
             </div>
-            <img class="movie two" src="https://media0.giphy.com/media/CFePnBKl9oX7BwFCgI/giphy.gif" alt="">
-            <img class="movie three" src="https://media4.giphy.com/media/AXitPK2Jhpd6JHNunt/giphy.gif" alt=""><img src="" alt="">
-            <img class="movie four" src="https://media.tenor.com/mWpYDtV1zTkAAAAC/minions-shh.gif" alt="">
-            <img class="movie" src="https://media3.giphy.com/media/rCmC12OWz9kTS/giphy.gif?cid=6c09b95217aawndks262gqr4lo0rmnc39vxvyxt0v3d1v7ei&rid=giphy.gif&ct=g" alt="">
-            <img class="movie" src="https://media1.giphy.com/media/PnTbJDFX0q9IDKnqyx/giphy.gif" alt="">
-            <img class="movie" src="https://media0.giphy.com/media/CFePnBKl9oX7BwFCgI/giphy.gif" alt="">
-            <img class="movie" src="https://media4.giphy.com/media/AXitPK2Jhpd6JHNunt/giphy.gif" alt=""><img src="" alt="">
-            <img class="movie" src="https://media.tenor.com/mWpYDtV1zTkAAAAC/minions-shh.gif" alt="">
-            <img class="movie" src="https://media3.giphy.com/media/rCmC12OWz9kTS/giphy.gif?cid=6c09b95217aawndks262gqr4lo0rmnc39vxvyxt0v3d1v7ei&rid=giphy.gif&ct=g" alt="">
-            <img class="movie" src="https://media1.giphy.com/media/PnTbJDFX0q9IDKnqyx/giphy.gif" alt="">
-            <img class="movie" src="https://media0.giphy.com/media/CFePnBKl9oX7BwFCgI/giphy.gif" alt="">
-            <img class="movie" src="https://media4.giphy.com/media/AXitPK2Jhpd6JHNunt/giphy.gif" alt=""><img src="" alt="">
-            <img class="movie" src="https://media.tenor.com/mWpYDtV1zTkAAAAC/minions-shh.gif" alt="">
-            <img class="movie" src="https://media3.giphy.com/media/rCmC12OWz9kTS/giphy.gif?cid=6c09b95217aawndks262gqr4lo0rmnc39vxvyxt0v3d1v7ei&rid=giphy.gif&ct=g" alt="">
-        </div>
-    </div>
-</body>
+            <div class="headerleft">
+                <button><img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt=""></button>
+                <button><img src="data:image/png;base64,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" alt=""></button>
+                <button><img src="https://icon-library.com/images/white-search-icon-transparent-background/white-search-icon-transparent-background-1.jpg" alt=""></button>
+            </div>
+            </div>
+            <p class="underheader">10 התוכניות הטלוויזה המובילות בישראל היום</p>
+            <div class="topmovies movies">
+                <div class="top">
+                  <img class="number"
+                    src="https://top10.netflix.com/images/big_numbers/5.png"
+                    alt=""
+                  />
+                  <img
+                    class="movie"
+                    src="https://media0.giphy.com/media/CFePnBKl9oX7BwFCgI/giphy.gif"
+                    alt=""
+                  />
+                </div>
+                <div class="top">
+                  <img class="number"
+                    src="https://top10.netflix.com/images/big_numbers/4.png"
+                    alt=""
+                  />
+                  <img
+                    class="movie"
+                    src="https://media0.giphy.com/media/CFePnBKl9oX7BwFCgI/giphy.gif"
+                    alt=""
+                  />
+                </div>
+                <div class="top">
+                  <img class="number"
+                    src="https://top10.netflix.com/images/big_numbers/3.png"
+                    alt=""
+                  />
+                  <img
+                    class="movie"
+                    src="https://media0.giphy.com/media/CFePnBKl9oX7BwFCgI/giphy.gif"
+                    alt=""
+                  />
+                </div>
+                <div class="top">
+                  <img class="number"
+                    src="https://top10.netflix.com/images/big_numbers/2.png"
+                    alt=""
+                  />
+                  <img
+                    class="movie"
+                    src="https://media0.giphy.com/media/CFePnBKl9oX7BwFCgI/giphy.gif"
+                    alt=""
+                  />
+                </div>
+                <div class="top">
+                  <img class="number"
+                    src="https://top10.netflix.com/images/big_numbers/1.png"
+                    alt=""
+                  />
+                  <img
+                    class="movie"
+                    src="https://media0.giphy.com/media/CFePnBKl9oX7BwFCgI/giphy.gif"
+                    alt=""
+                  />
+                </div>
+         
+            </div>
+        
+      <p class="underheader">תוכניות טלויזיה אמריקאיות</p>
+      <div class="movies">
+        <img
+          class="movie movies_one"
+          src="https://media1.giphy.com/media/PnTbJDFX0q9IDKnqyx/giphy.gif"
+          alt=""
+        />
+        <img
+          class="movie movies_two"
+          src="https://media0.giphy.com/media/CFePnBKl9oX7BwFCgI/giphy.gif"
+          alt=""
+        />
+        <img
+          class="movie movies_three"
+          src="https://media4.giphy.com/media/AXitPK2Jhpd6JHNunt/giphy.gif"
+          alt=""
+        />
+        <img
+          class="movie movies_four"
+          src="https://media.tenor.com/mWpYDtV1zTkAAAAC/minions-shh.gif"
+          alt=""
+        />
+        <img
+          class="movie movies_five"
+          src="https://media3.giphy.com/media/rCmC12OWz9kTS/giphy.gif?cid=6c09b95217aawndks262gqr4lo0rmnc39vxvyxt0v3d1v7ei&rid=giphy.gif&ct=g" 
+          alt=""
+        />
+        <img
+          class="movie movies_five"
+          src="https://media3.giphy.com/media/rCmC12OWz9kTS/giphy.gif?cid=6c09b95217aawndks262gqr4lo0rmnc39vxvyxt0v3d1v7ei&rid=giphy.gif&ct=g"
+          alt=""
+        />
+      </div>
+      <p class="underheader">המשך צפיה של שחר</p>
+      <div class="movies">
+        <img
+          class="movie"
+          src="https://media1.giphy.com/media/PnTbJDFX0q9IDKnqyx/giphy.gif"
+          alt=""
+        />
+        <img
+          class="movie"
+          src="https://media0.giphy.com/media/CFePnBKl9oX7BwFCgI/giphy.gif"
+          alt=""
+        />
+        <img
+          class="movie"
+          src="https://media4.giphy.com/media/AXitPK2Jhpd6JHNunt/giphy.gif"
+          alt=""
+        />
+        <img
+          class="movie"
+          src="https://media.tenor.com/mWpYDtV1zTkAAAAC/minions-shh.gif"
+          alt=""
+        />
+        <img
+          class="movie"
+          src="https://media3.giphy.com/media/rCmC12OWz9kTS/giphy.gif?cid=6c09b95217aawndks262gqr4lo0rmnc39vxvyxt0v3d1v7ei&rid=giphy.gif&ct=g"
+          alt=""
+        />
+        <img
+          class="movie movies_five"
+          src="https://media3.giphy.com/media/rCmC12OWz9kTS/giphy.gif?cid=6c09b95217aawndks262gqr4lo0rmnc39vxvyxt0v3d1v7ei&rid=giphy.gif&ct=g"
+          alt=""
+        />
+      </div>
+      <p class="underheader">הפופולריים כרגע</p>
+      <div class="movies">
+        <img
+          class="movie"
+          src="https://media1.giphy.com/media/PnTbJDFX0q9IDKnqyx/giphy.gif"
+          alt=""
+        />
+        <img
+          class="movie"
+          src="https://media0.giphy.com/media/CFePnBKl9oX7BwFCgI/giphy.gif"
+          alt=""
+        />
+        <img
+          class="movie"
+          src="https://media4.giphy.com/media/AXitPK2Jhpd6JHNunt/giphy.gif"
+          alt=""
+        />
+        <img
+          class="movie"
+          src="https://media.tenor.com/mWpYDtV1zTkAAAAC/minions-shh.gif"
+          alt=""
+        />
+        <img
+          class="movie movies_five"
+          src="https://media3.giphy.com/media/rCmC12OWz9kTS/giphy.gif?cid=6c09b95217aawndks262gqr4lo0rmnc39vxvyxt0v3d1v7ei&rid=giphy.gif&ct=g"
+          alt=""
+        />
+        <img
+          class="movie"
+          src="https://media3.giphy.com/media/rCmC12OWz9kTS/giphy.gif?cid=6c09b95217aawndks262gqr4lo0rmnc39vxvyxt0v3d1v7ei&rid=giphy.gif&ct=g"
+          alt=""
+        />
+      </div>
+  
+    
+
+  </body>
 </html>

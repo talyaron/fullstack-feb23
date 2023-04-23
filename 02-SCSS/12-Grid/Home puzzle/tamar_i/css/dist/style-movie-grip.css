@@ -1,0 +1,7 @@
+.movie {
+  display: grid;
+  grid-template-rows: 150px 30px 20px;
+}
+.movie img {
+  display: cover;
+}
