@@ -43,10 +43,13 @@ body p {
   font-weight: 600;
 }
 
-.watched, .popular {
+.content {
   display: flex;
   height: auto;
   border-radius: 7%;
   margin-right: 0;
   gap: 10px;
+}
+.content .content__item:hover {
+  transform: scale(1.2);
 }
