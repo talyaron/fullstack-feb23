@@ -1,0 +1,108 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto:700,900");
+.Menubtn {
+  border: none;
+  color: white;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+}
+
+.Infobtn {
+  background-color: transparent;
+  background-repeat: no-repeat;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.arrow {
+  border: solid black;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+}
+
+.right {
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+}
+
+.wrapper {
+  margin: auto;
+  background-color: black;
+  font-family: "Roboto";
+}
+
+.Toolbar {
+  position: sticky;
+  top: 0;
+  opacity: 0.5;
+  height: 75px;
+  background-color: black;
+  background: transparent;
+  display: grid;
+  gap: 5px;
+  grid-template-columns: 1fr 3fr 1fr;
+  grid-template-areas: " right middle left";
+}
+.Toolbar__Icon {
+  text-align: center;
+  font-size: 5vmin;
+  color: #e90418;
+  grid-area: right;
+}
+.Toolbar__Menu {
+  grid-area: middle;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: 20px;
+}
+.Toolbar__Info {
+  grid-area: left;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-around;
+  align-items: center;
+}
+.Toolbar__Info .profile {
+  width: 35px;
+  height: 35px;
+  background-color: #e90418;
+  border-radius: 10px;
+}
+
+.trailerContainer {
+  height: 650px;
+  background-image: url("https://thumbs.gfycat.com/ScaredFailingBumblebee-size_restricted.gif");
+  background-size: cover;
+}
+.mediascroller {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 100%;
+  gap: 0.25rem;
+  overflow-x: hidden;
+}
+.mediascroller__group {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  gap: 0.25rem;
+  border: 1px solid greenyellow;
+}
+.mediascroller__group__item {
+  border-radius: 25rem;
+}
+.mediascroller__group__item .trailerimg {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+}

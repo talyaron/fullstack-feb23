@@ -9,6 +9,7 @@
   font-family: "Rubik", sans-serif;
 }
 .wrapper .header {
+  position: relative;
   display: flex;
   max-width: 125vh;
   margin-left: 5vh;
@@ -18,13 +19,29 @@
   font-style: bold;
   margin-right: 2vh;
 }
+.wrapper .header .home {
+  color: white;
+}
 .wrapper .header p {
   margin-left: 3vh;
+  color: #cecece;
+}
+.wrapper .header .kids {
+  position: relative;
+  left: 22vh;
+  color: white;
+}
+.wrapper .header img {
+  position: relative;
+  width: 4vh;
+  height: 4vh;
+  left: 25vh;
+  top: 1vh;
+  border-radius: 5px;
 }
 .wrapper .video {
   max-width: 100%;
   height: 60vh;
-  background-color: #9c9c11;
 }
 .wrapper .video video {
   max-width: 100%;
@@ -101,9 +118,33 @@
   padding: 2px;
   text-align: center;
 }
+.wrapper .video .buttens .info .i:hover {
+  background-color: white;
+  color: black;
+}
 .wrapper .video .buttens .info h2 {
   position: relative;
   top: -1.5vh;
+}
+@media only screen and (max-width: 1300px) {
+  .wrapper .video {
+    max-width: 1300px;
+  }
+  .wrapper .video .buttens {
+    display: none;
+  }
+  .wrapper .video p {
+    display: none;
+  }
+  .wrapper .video .h {
+    display: none;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .wrapper .video {
+    max-width: 600px;
+    display: none;
+  }
 }
 .wrapper .line {
   position: relative;
@@ -146,7 +187,7 @@
   font-size: 18vh;
   position: absolute;
   top: -24.7vh;
-  color: rgba(83, 83, 83, 0.535);
+  color: #626262;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.631);
 }
 .wrapper .rowsnambers .img .img1 {

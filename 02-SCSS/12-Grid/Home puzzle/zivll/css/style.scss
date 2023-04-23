@@ -25,6 +25,8 @@ body {
   .movie {
     position: relative;
     &__hover {
+      background-color: rgb(36, 35, 35);
+      z-index: 999;
       position: absolute;
       right: 50px;
       opacity: 0;
@@ -34,10 +36,47 @@ body {
       }
       .btns {
         display: flex;
+        padding: 15px;
+        gap: 5px;
       }
+
       .btns__btn {
+        display: flex;
+        border-radius: 50%;
+        border: rgb(78, 75, 75) solid 2px;
+        cursor: pointer;
+        background-color: transparent;
+        width: 2vw;
+        height: 2vw;
+        position: relative;
+        svg {
+          max-width: 50px;
+          position: absolute;
+          right: 50%;
+          top: 25%;
+          translate: calc(50%);
+        }
+        .primary {
+          fill: rgb(43, 42, 42);
+        }
+        .secondary {
+          max-width: 50px;
+          position: absolute;
+          right: 50%;
+          top: 25%;
+          translate: calc(50%);
+        }
+      }
+      .primary {
+        background-color: #fff;
       }
       .movie__hover__menu {
+        padding: 15px;
+        align-items: center;
+        justify-content: center;
+        display: flex;
+        justify-content: end;
+        width: 100%;
       }
       &:hover {
         opacity: 1;
@@ -55,6 +94,32 @@ body {
       position: absolute;
       left: 0;
       width: 50%;
+    }
+  }
+}
+@media screen and (max-width: 1070px) {
+  .movies {
+    // padding: 0 4%;
+    padding-top: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0vw;
+    width: 100%;
+    .movie {
+      margin-bottom: 4%;
+      max-height: 200px;
+      min-height: 100px;
+      width: 50%;
+      &:nth-child(even) {
+        padding-left: 10px;
+      }
+      svg {
+        right: 0%;
+        width: 55%;
+      }
+      img {
+        left: 4%;
+      }
     }
   }
 }
