@@ -140,6 +140,8 @@ body {
     align-items: center;
     @include showanimation(0.8s);
     justify-content: space-between;
+    position: fixed;
+    z-index: 1;
 
 
     &__logo {
@@ -500,6 +502,7 @@ body {
    position: relative;
    top: 30vh;
    height: 100vh;
+   z-index: 0;
     &__headertext{
         font-size: 18px;
         color: white;
