@@ -1,1 +1,1 @@
-create chess or backgomnd
+create chess or backgomend
