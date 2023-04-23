@@ -1,0 +1,72 @@
+$headlineRow: 20px;
+$moviesRow: 200px;
+
+.continer {
+    display: grid;
+    gap: 5px;
+    max-width: 100vh;
+    margin: auto;
+    grid-template-rows: [row1-start] $headlineRow [row2] $moviesRow [row3] $headlineRow [row4] $moviesRow [row5] $headlineRow [row6] $moviesRow [row7-end];
+    grid-template-columns: repeat(5, 1fr);
+
+    grid-template-areas:
+        "headline1 headline1 headline1 headline1 headline1"
+        "movieblock1 movieblock2 movieblock3 movieblock4 movieblock5"
+        "headline2 headline2 headline2 headline2 headline2"
+        "movieblock6 movieblock7 movieblock8 movieblock9 movieblock10"
+        "headline3 headline3 headline3 headline3 headline3"
+        "movieblock11 movieblock12 movieblock13 movieblock14 movieblock15";
+
+    .headline1 {
+        grid-area: headline1;
+    }
+
+    .headline2 {
+        grid-area: headline2;
+    }
+
+    .headline3 {
+        grid-area: headline3;
+    }
+
+    .movieblock1 {
+        grid-area: movieblock1;
+    }
+
+    .movieblock2 {
+        grid-area: movieblock2;
+    }
+
+    .movieblock3 {
+        grid-area: movieblock3;
+    }
+
+    .movieblock4 {
+        grid-area: movieblock4;
+    }
+
+    .movieblock5 {
+        grid-area: movieblock5;
+    }
+
+    .movieblock6 {
+        grid-area: movieblock6;
+    }
+
+    .movieblock7 {
+        grid-area: movieblock7;
+    }
+
+    .movieblock8 {
+        grid-area: movieblock8;
+    }
+
+    .movieblock9 {
+        grid-area: movieblock9;
+    }
+
+    .movieblock10 {
+        grid-area: movieblock10;
+    }
+
+}

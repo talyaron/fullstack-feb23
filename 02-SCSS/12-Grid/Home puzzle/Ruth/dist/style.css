@@ -1,0 +1,48 @@
+@import url("https://fonts.googleapis.com/css2?family=Butterfly+Kids&family=IBM+Plex+Sans+Hebrew&family=Open+Sans:wght@300;400&family=Oswald&family=Rubik:ital,wght@0,400;0,500;1,300;1,400&display=swap");
+* {
+  padding: 0%;
+  margin: 0px;
+  font-family: "Rubik", sans-serif;
+}
+
+body {
+  width: 100vw;
+}
+body header {
+  padding: 0 10%;
+  background-color: black;
+}
+body header .logo-header {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid gray;
+}
+body header .logo-header__search {
+  margin: 15px;
+}
+body header .logo-header__search input {
+  height: 36px;
+  width: 250px;
+  border: solid 1px #333333;
+  background-color: gray;
+  box-shadow: inset 5px 5px 5px rgba(0, 0, 0, 0.42);
+  border-radius: 13px;
+}
+body header nav {
+  color: white;
+  display: flex;
+  flex-direction: row-reverse;
+  padding: 10px;
+}
+body header nav li {
+  padding: 0 10px;
+  border-left: 1px solid gray;
+  list-style: none;
+  font-size: 20px;
+}
+
+::placeholder {
+  color: #f7f7f7;
+  padding: 10px;
+  direction: rtl;
+}

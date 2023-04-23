@@ -1,0 +1,21 @@
+.box {
+  width: 80%;
+  height: 80ch;
+  background-color: black;
+  padding: 20px;
+  gap: 10px;
+  margin: 0 auto;
+  display: flex;
+  flex: 1;
+}
+
+.box-1 {
+  height: 20ch;
+  background-color: yellow;
+}
+
+@media only screen and (max-width: 600px) {
+  .box {
+    flex-wrap: wrap;
+  }
+}
