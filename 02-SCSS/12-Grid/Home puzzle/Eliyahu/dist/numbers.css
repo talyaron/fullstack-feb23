@@ -1,0 +1,48 @@
+.numwrapper {
+  font-family: "Open Sans", sans-serif;
+  width: 98%;
+  height: 220px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(5, 19.7%);
+  align-content: space-evenly;
+  justify-content: space-between;
+}
+
+.topMovie {
+  display: flex;
+  align-items: center;
+}
+.topMovie .num1 {
+  margin-left: -50px;
+}
+.topMovie img {
+  height: 160px;
+  width: 120px;
+  margin-left: -25px;
+  margin-top: -2px;
+  border-radius: 3px;
+}
+.topMovie .hide {
+  margin-left: -150px;
+  width: 180px;
+  opacity: 0;
+  z-index: -1;
+}
+.topMovie .hide:hover {
+  opacity: 1;
+}
+
+.number {
+  font-family: "Roboto", sans-serif;
+  font-size: 220px;
+  color: rgba(0, 0, 0, 0);
+  -webkit-text-stroke: 3.5px #515151;
+}
+.number--num1 {
+  font-family: "Roboto", sans-serif;
+  font-size: 220px;
+  color: rgba(0, 0, 0, 0);
+  -webkit-text-stroke: 3.5px #515151;
+  margin-left: 20px;
+}

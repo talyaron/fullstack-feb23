@@ -1,0 +1,43 @@
+.mainwrapper .myVideo {
+  right: 0;
+  top: 0;
+  width: 700px;
+  height: 400px;
+  z-index: -1;
+}
+.mainwrapper .tools {
+  background: linear-gradient(black, rgba(0, 0, 0, 0));
+  display: flex;
+  position: fixed;
+  z-index: 3;
+  height: 40px;
+  width: 97%;
+  padding: 10px;
+  gap: 30px;
+  align-items: center;
+}
+.mainwrapper .tools p:hover {
+  font-size: large;
+}
+.mainwrapper .tools img {
+  height: 30px;
+}
+.mainwrapper .tools .logo {
+  flex: 1.5;
+}
+.mainwrapper .tools .bell {
+  position: relative;
+}
+.mainwrapper .tools .ntf {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 10px;
+  width: fit-content;
+  background-color: red;
+  border-radius: 50%;
+  padding: 2px 4px;
+}
+.mainwrapper .tools .empty {
+  flex: 2;
+}

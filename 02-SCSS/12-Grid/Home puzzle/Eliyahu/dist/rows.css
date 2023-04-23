@@ -59,12 +59,18 @@
 }
 .movie .open__btns--btn1 button, .movie .open__btns--btn2 button, .movie .open__btns--btn3 button, .movie .open__btns--btn4 button {
   transition: all 0.2s;
+  font-size: 16px;
+  padding-left: 3px;
   border: 1.5px solid #a6a4a4;
   background-color: rgba(255, 0, 0, 0);
   border-radius: 50%;
   color: #b8b8b8;
   width: 25px;
   height: 25px;
+}
+.movie .open__btns--btn3 button {
+  font-size: 11px;
+  padding: 5px;
 }
 .movie .open__txts {
   display: flex;
@@ -119,12 +125,18 @@
   height: 160px;
 }
 
-.open__btns--btn1:hover button, .open__btns--btn2:hover button, .open__btns--btn3:hover button, .open__btns--btn4:hover button {
+.open__btns--btn1:hover button,
+.open__btns--btn2:hover button,
+.open__btns--btn3:hover button,
+.open__btns--btn4:hover button {
   background-color: #b4b1b1;
   border: none;
   color: black;
 }
-.open__btns--btn1 button:focus, .open__btns--btn2 button:focus, .open__btns--btn3 button:focus, .open__btns--btn4 button:focus {
+.open__btns--btn1 button:focus,
+.open__btns--btn2 button:focus,
+.open__btns--btn3 button:focus,
+.open__btns--btn4 button:focus {
   background-color: white;
   border: none;
   color: black;
@@ -150,4 +162,8 @@
     margin-top: 10px;
     margin-bottom: 168px;
   }
+}
+
+.material-symbols-outlined {
+  font-variation-settings: "FILL" 1;
 }
