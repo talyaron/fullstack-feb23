@@ -1,0 +1,39 @@
+
+.wrapper {
+    display: grid;
+    gap:5px;
+    grid-template-rows: repeat( 2, 200px);
+    grid-template-columns: repeat(4, 1fr);
+  
+    grid-template-areas: 
+    "main main one two"
+    "main main red .";
+
+    &__main {
+        grid-area: main;
+        background-image: url("https://ichef.bbc.co.uk/wwhp/624/cpsprodpb/10069/production/_129414656_40ca794cc4d8b173a0ef7267b59d56e0d407104a.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    &__box {
+        background-color: aqua;
+
+        &--one {
+            grid-area: one; 
+            background-color: red;
+        }
+
+        &--two {
+            grid-area: two;
+            background-color: orange;
+            }
+
+        }
+    
+
+    &__red {
+        grid-area: red;
+        background-color: red;
+    }
+}
