@@ -1,0 +1,82 @@
+.wrapper {
+    display: grid;
+    background-color: black;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 100px 100px 200px 200px 200px 200px;
+    grid-template-areas: 
+    "topnav topnav topnav topnav topnav topnav"
+    "bg-image bg-image bg-image bg-image bg-image bg-image"
+    "bg-image bg-image bg-image bg-image bg-image bg-image"
+    "bg-image bg-image bg-image bg-image bg-image bg-image"
+    "watched watched watched watched watched watched"
+    "watched watched watched watched watched watched";
+
+    width: 100vw;
+    flex-wrap: wrap;
+    margin: auto;
+    gap: 5px;
+
+.bg-image {
+    img {
+    width: 100%;
+    height: 600px;
+    grid-area: bg-image;
+}
+}
+
+    
+.logo {
+    float: right;
+    width: 100px;
+  }
+  
+  .topnav {
+    width: 100%;
+    top: 0;
+    position: fixed;
+    overflow: hidden;
+    background-color: black;
+    opacity: 75%;
+    padding-right: 2%;
+    user-select: none;
+    grid-area: topnav;
+    margin-right: 4%;
+  }
+  .topnav__link {
+    float: right;
+    text-decoration: none;
+    color: white;
+    font-family: sans-serif;
+    margin: 20px;
+   
+  }
+  .topnav__link:hover {
+    color: #dfdada;
+  }
+  .topnav .home {
+    font-weight: 600;
+  }
+  
+  .watched, .popular {
+    display: flex;
+    max-width: 90vw;
+    justify-content: end;
+    height: auto;
+    border-radius: 7%;
+    margin-right: 0;
+    gap: 10px;
+    grid-area: watched;
+
+  }
+
+    @media only screen and (max-width: 600px) {
+        flex-direction: column;
+      }
+
+    .box {
+        flex: 1;
+        border-radius: 3%;
+        min-width: 200px;
+    }
+
+}
