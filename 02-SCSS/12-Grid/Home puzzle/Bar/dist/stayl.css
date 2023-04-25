@@ -5,7 +5,7 @@ body {
 .wrapper {
   position: relative;
   color: white;
-  max-width: 125vh;
+  max-width: 100%;
   margin: auto;
   height: 160vh;
   font-family: "Rubik", sans-serif;
@@ -17,9 +17,12 @@ body {
   margin-left: 5vh;
 }
 .wrapper .header h3 {
+  position: relative;
+  top: -1vh;
   color: #da0e0e;
   font-style: bold;
   margin-right: 2vh;
+  font-size: x-large;
 }
 .wrapper .header .home {
   color: white;
@@ -30,30 +33,26 @@ body {
 }
 .wrapper .header .kids {
   position: relative;
-  left: 22vh;
+  left: 90vh;
   color: white;
 }
 .wrapper .header img {
   position: relative;
   width: 4vh;
   height: 4vh;
-  left: 25vh;
+  left: 92vh;
   top: 1vh;
   border-radius: 5px;
 }
-.wrapper .video {
-  max-width: 100%;
-  height: 60vh;
-}
 .wrapper .video video {
-  max-width: 100%;
-  size: 100%;
+  width: 100%;
+  height: auto;
   box-shadow: 10px 10px 20px #1a1a1a;
 }
 .wrapper .video .h {
   display: flex;
   position: relative;
-  top: -42vh;
+  top: -39vh;
   z-index: 1;
   margin-left: 5vh;
 }
@@ -69,14 +68,14 @@ body {
 }
 .wrapper .video p {
   position: relative;
-  top: -45vh;
+  top: -42vh;
   margin-left: 5vh;
   font-size: 2vh;
 }
 .wrapper .video .buttens {
   display: flex;
   position: relative;
-  top: -45vh;
+  top: -39vh;
   margin-left: 5vh;
 }
 .wrapper .video .buttens .play {
@@ -129,30 +128,10 @@ body {
   position: relative;
   top: -1.5vh;
 }
-@media only screen and (max-width: 1300px) {
-  .wrapper .video {
-    max-width: 1300px;
-  }
-  .wrapper .video .buttens {
-    display: none;
-  }
-  .wrapper .video p {
-    display: none;
-  }
-  .wrapper .video .h {
-    display: none;
-  }
-}
-@media only screen and (max-width: 600px) {
-  .wrapper .video {
-    max-width: 600px;
-    display: none;
-  }
-}
 .wrapper .line {
   position: relative;
-  top: -6vh;
-  width: 120vh;
+  top: -38vh;
+  width: 180vh;
   height: 5vh;
   padding-left: 1vh;
   font-size: 1.5vh;
@@ -162,13 +141,13 @@ body {
   justify-content: space-evenly;
   margin: auto;
   position: relative;
-  top: -6vh;
+  top: -38vh;
   background-color: rgba(255, 0, 0, 0);
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  width: 120vh;
+  grid-template-columns: repeat(6, 1fr);
+  width: 180vh;
   height: 18vh;
-  grid-template-areas: "img1 img2 img3 img4 img5";
+  grid-template-areas: "img1 img2 img3 img4 img5 img6";
 }
 .wrapper .rowsnambers .img {
   width: 22vh;
@@ -179,17 +158,17 @@ body {
   display: flex;
 }
 .wrapper .rowsnambers .img img {
-  width: 12vh;
-  height: 15vh;
+  width: 13vh;
+  height: 18vh;
   position: absolute;
-  right: 3vh;
+  right: 2vh;
   z-index: 1;
 }
 .wrapper .rowsnambers .img p {
   font-family: "Rampart One", cursive;
-  font-size: 18vh;
+  font-size: 20vh;
   position: absolute;
-  top: -24.7vh;
+  top: -27vh;
   color: #626262;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.631);
 }
@@ -208,42 +187,13 @@ body {
 .wrapper .rowsnambers .img .img5 {
   grid-area: img5;
 }
-@media only screen and (max-width: 1200px) {
-  .wrapper .rowsnambers {
-    max-width: 1200px;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-areas: "img1 img2 img3 img4";
-  }
-  .wrapper .rowsnambers .img5 {
-    opacity: 0;
-  }
-}
-@media only screen and (max-width: 900px) {
-  .wrapper .rowsnambers {
-    max-width: 900px;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-areas: "img1 img2 img3 img4";
-  }
-}
-@media only screen and (max-width: 600px) {
-  .wrapper .rowsnambers {
-    max-width: 600px;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-areas: "img1 img2 img3";
-    gap: 0vh;
-  }
-  .wrapper .rowsnambers .img {
-    width: 15vh;
-    height: 8vh;
-  }
-  .wrapper .rowsnambers .img4 {
-    opacity: 0;
-  }
+.wrapper .rowsnambers .img .img6 {
+  grid-area: img6;
 }
 .wrapper .box {
   background-color: rgba(0, 251, 255, 0);
-  width: 22vh;
-  height: 15vh;
+  width: 25vh;
+  height: 18vh;
   margin: auto;
   cursor: pointer;
   position: relative;
@@ -258,8 +208,8 @@ body {
   position: relative;
   top: -4vh;
   left: -5vh;
-  width: 30vh;
-  height: 20vh;
+  width: 36vh;
+  height: 26vh;
   z-index: 1;
   box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.545);
   transition: all 0.5s ease-in-out;
@@ -269,8 +219,8 @@ body {
 }
 .wrapper .box .hide {
   opacity: 0;
-  width: 30vh;
-  height: 13vh;
+  width: 36vh;
+  height: 15vh;
   color: white;
   background-color: black;
   border-radius: 5px;
@@ -298,11 +248,13 @@ body {
   transition: all 0.1s;
 }
 .wrapper .box .hide .icons .right {
-  margin-left: 12vh;
+  margin-left: 18vh;
 }
 .wrapper .box .hide .line1 {
+  position: relative;
+  top: 1vh;
   display: flex;
-  margin-bottom: -20px;
+  margin-bottom: -10px;
 }
 .wrapper .box .hide .line1 .new {
   font-size: medium;
@@ -325,25 +277,17 @@ body {
   border: 0.1px solid rgba(255, 255, 255, 0.438);
   border-radius: 2px;
 }
-@media only screen and (max-width: 600px) {
-  .wrapper .box {
-    max-width: 600px;
-    width: 15vh;
-    height: 8vh;
-    gap: 0vh;
-  }
-}
 .wrapper .rows1 {
   justify-content: space-evenly;
   margin: auto;
   position: relative;
-  top: -6vh;
+  top: -38vh;
   background-color: rgba(255, 0, 0, 0);
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  width: 120vh;
+  grid-template-columns: repeat(6, 1fr);
+  width: 180vh;
   height: 18vh;
-  grid-template-areas: "box1 box2 box3 box4 box5";
+  grid-template-areas: "box1 box2 box3 box4 box5 box6";
   flex-wrap: wrap;
 }
 .wrapper .rows1 .box1 {
@@ -366,27 +310,73 @@ body {
   grid-area: box5;
   position: absolute;
 }
+.wrapper .rows1 .box6 {
+  grid-area: box6;
+  position: absolute;
+}
 @media only screen and (max-width: 1200px) {
-  .wrapper .rows1 {
+  .wrapper {
     max-width: 1200px;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-areas: "box1 box2 box3 box4";
-    font-size: smaller;
+  }
+  .wrapper .video .h {
+    display: none;
+  }
+  .wrapper .video .buttens {
+    display: none;
+  }
+  .wrapper .video p {
+    display: none;
   }
 }
 @media only screen and (max-width: 900px) {
-  .wrapper .rows1 {
+  .wrapper {
     max-width: 900px;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-areas: "box1 box2 box3 box4";
-    font-size: x-small;
+  }
+  .wrapper .video {
+    display: none;
   }
 }
 @media only screen and (max-width: 600px) {
-  .wrapper .rows1 {
+  .wrapper {
     max-width: 600px;
+  }
+  .wrapper .rows1 {
     grid-template-columns: repeat(3, 1fr);
     grid-template-areas: "box1 box2 box3";
-    font-size: x-small;
+    gap: 0vh;
+  }
+  .wrapper .rows1 .box1 {
+    grid-area: box1;
+    position: absolute;
+  }
+  .wrapper .rows1 .box2 {
+    grid-area: box2;
+    position: absolute;
+  }
+  .wrapper .rows1 .box3 {
+    grid-area: box3;
+    position: absolute;
+  }
+  .wrapper .rows1 .box4 {
+    opacity: 0;
+  }
+  .wrapper .rows1 .box5 {
+    opacity: 0;
+  }
+  .wrapper .rows1 .box6 {
+    opacity: 0;
+  }
+  .wrapper .rowsnambers {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-areas: "img1 img2 img3";
+    gap: 0vh;
+  }
+  .wrapper .box {
+    width: 20vh;
+    height: 13vh;
+  }
+  .wrapper .box img {
+    width: 100%;
+    height: 100%;
   }
 }
