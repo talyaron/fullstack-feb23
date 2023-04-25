@@ -1,7 +1,9 @@
-@import url(./dist/rows.css);
+body {
+  background-color: black;
+}
+
 .wrapper {
   position: relative;
-  background-color: black;
   color: white;
   max-width: 125vh;
   margin: auto;
@@ -15,7 +17,7 @@
   margin-left: 5vh;
 }
 .wrapper .header h3 {
-  color: #9c9c11;
+  color: #da0e0e;
   font-style: bold;
   margin-right: 2vh;
 }
@@ -46,6 +48,7 @@
 .wrapper .video video {
   max-width: 100%;
   size: 100%;
+  box-shadow: 10px 10px 20px #1a1a1a;
 }
 .wrapper .video .h {
   display: flex;
@@ -222,23 +225,18 @@
     grid-template-areas: "img1 img2 img3 img4";
   }
 }
-@media only screen and (max-width: 700px) {
-  .wrapper .rowsnambers {
-    max-width: 700px;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-areas: "img1 img2 img3";
-  }
-  .wrapper .rowsnambers .img4 {
-    opacity: 0;
-  }
-}
 @media only screen and (max-width: 600px) {
   .wrapper .rowsnambers {
     max-width: 600px;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-areas: "img1 img2";
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-areas: "img1 img2 img3";
+    gap: 0vh;
   }
-  .wrapper .rowsnambers .img3 {
+  .wrapper .rowsnambers .img {
+    width: 15vh;
+    height: 8vh;
+  }
+  .wrapper .rowsnambers .img4 {
     opacity: 0;
   }
 }
@@ -257,6 +255,9 @@
   border-radius: 3px;
 }
 .wrapper .box:hover {
+  position: relative;
+  top: -4vh;
+  left: -5vh;
   width: 30vh;
   height: 20vh;
   z-index: 1;
@@ -324,6 +325,14 @@
   border: 0.1px solid rgba(255, 255, 255, 0.438);
   border-radius: 2px;
 }
+@media only screen and (max-width: 600px) {
+  .wrapper .box {
+    max-width: 600px;
+    width: 15vh;
+    height: 8vh;
+    gap: 0vh;
+  }
+}
 .wrapper .rows1 {
   justify-content: space-evenly;
   margin: auto;
@@ -373,18 +382,11 @@
     font-size: x-small;
   }
 }
-@media only screen and (max-width: 700px) {
-  .wrapper .rows1 {
-    max-width: 700px;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-areas: "box1 box2 box3";
-    font-size: x-small;
-  }
-}
 @media only screen and (max-width: 600px) {
   .wrapper .rows1 {
     max-width: 600px;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-areas: "box1 box2";
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-areas: "box1 box2 box3";
+    font-size: x-small;
   }
 }
