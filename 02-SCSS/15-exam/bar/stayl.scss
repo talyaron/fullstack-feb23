@@ -1,0 +1,99 @@
+.wrapper {
+    position: relative;
+    font-family: 'Roboto', sans-serif;
+    background-color: rgb(223, 223, 223);
+    width: 400px;
+    height: 85vh;
+    margin: auto;
+    border-radius: 20px;
+    padding: 20px;
+
+    .uptitle {}
+
+    .haeder {
+        position: relative;
+        font-size: larger;
+    }
+
+    .staar {
+        position: relative;
+        display: flex;
+
+        h4 {
+            position: relative;
+            top: -0.5vh;
+            margin-right: 0.5em;
+        }
+
+        p {
+            color: rgb(149, 149, 149);
+        }
+    }
+
+    .img {
+        position: relative;
+        background-image: url(./img/villa1.jpeg);
+        background-size: cover;
+        width: 380px;
+        height: 35vh;
+        margin: auto;
+        border-radius: 20px;
+
+        .namber {
+            position: relative;
+            top: 300px;
+            left: 20px;
+            background-color: rgba(0, 0, 0, 0.464);
+            width: 3em;
+            height: 2.5vh;
+            border-radius: 20px;
+
+            p {
+                color: white;
+                position: relative;
+                top: 0.3vh;
+                left: 0.3em;
+            }
+        }
+    }
+
+    .gps {
+        position: relative;
+        width: 200px;
+
+        p {
+            color: rgb(83, 83, 83);
+            position: relative;
+            left: 40px;
+            // border-bottom: 0.5px solid rgb(83, 83, 83);
+        }
+    }
+
+    .features {
+        color: rgb(60, 60, 60);
+    }
+
+    .sabs {
+        display: flex;
+        gap: 1em;
+
+        &__sab1 {
+            background-color: rgb(30, 30, 243);
+            width: 8em;
+            height: 4vh;
+        }
+        &__sab2 {
+            background-color: rgb(30, 30, 243);
+            width: 8em;
+            height: 4vh;
+        }
+        &__sab3 {
+            background-color: rgb(30, 30, 243);
+            width: 8em;
+            height: 4vh;
+        }
+    }
+
+    .prais {}
+
+}
