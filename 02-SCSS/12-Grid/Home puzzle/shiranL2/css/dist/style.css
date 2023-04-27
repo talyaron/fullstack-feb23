@@ -1,6 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto:700,900");
 .cardContainer {
-  overflow: hidden;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   gap: 20px;
@@ -84,9 +83,27 @@
   font-size: 35px;
 }
 
-.home {
-  color: white;
-  font-size: 30px;
+.smallBoxContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  gap: 20px;
+}
+.smallBoxContainer__item {
+  width: 120px;
+  height: 120px;
+  border-radius: 40px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+.smallBoxContainer .trick {
+  background-image: url("https://img.freepik.com/premium-vector/cute-animal-little-mummy-panda-with-butterfly-illustration-cute-animal-watercolor-panda-character_90238-1281.jpg?w=740");
+}
+.smallBoxContainer .mause {
+  background-image: url("https://img.freepik.com/free-vector/halloween-bat-concept_52683-44517.jpg?w=826&t=st=1682593146~exp=1682593746~hmac=49dc8e01449e258282b044bacc403fa9cf3dad4edea9224d3d616799b0f0d93e");
+}
+.smallBoxContainer .cat {
+  background-image: url("https://img.freepik.com/free-vector/scary-halloween-cat-background_23-2147946231.jpg?w=826&t=st=1682593396~exp=1682593996~hmac=34dff2879781c1767ab1d2b617e4d6f8fc579db30be0e12e5ceba1241f059c18");
 }
 
 * {
@@ -96,7 +113,24 @@
 }
 
 ::-webkit-scrollbar {
-  width: 10px;
+  height: 10px;
+  cursor: pointer;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #383737;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #1a1e25;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #181818;
+  height: 150px;
 }
 
 .wapper {
@@ -104,7 +138,15 @@
   border: 1px solid black;
   margin: auto;
   background-color: #1a1e25;
-  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: flex-start;
+}
+
+.fontstyle {
+  color: white;
+  font-size: 30px;
 }
 
 @media only screen and (max-width: 900px) {
@@ -114,11 +156,6 @@
 
   .header {
     justify-content: flex-start !important;
-  }
-
-  .menu {
-    justify-content: flex-start !important;
-    overflow: scroll;
   }
 
   .home {
@@ -134,8 +171,7 @@
   }
 
   .cardContainer {
-    row-gap: 20px;
-    overflow: scroll;
+    overflow-y: hidden;
   }
 }
 @media only screen and (max-width: 600px) {
@@ -150,18 +186,18 @@
   justify-content: space-between;
   align-items: center;
 }
-.header__item {
-  max-width: 25%;
-}
-
 .menu {
-  display: flex;
-  gap: 5px;
-  justify-content: space-around;
+  min-width: 500px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  gap: 20px;
   padding: 25px;
-  -ms-overflow-style: none;
+  cursor: pointer;
 }
 .menu__item {
   flex: 1;
   color: #61646c;
+}
+.menu__item :hover {
+  color: yellow;
 }
