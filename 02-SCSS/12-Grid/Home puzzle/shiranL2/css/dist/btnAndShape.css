@@ -1,15 +1,35 @@
-.card {
-  max-width: 220px;
+.cardContainer {
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  gap: 20px;
+}
+.cardContainer__card {
+  width: 210px;
   height: 310px;
   border-radius: 45px;
-  background-image: url("https://img.freepik.com/free-vector/black-spooky-castle-flying-dragon-canyon-with-mountains-forest-cartoon-fantasy-illustration-with-medieval-palace-with-towers-creepy-beast-with-wings-rocks-pine-trees_107791-4592.jpg?w=1800&t=st=1682324205~exp=1682324805~hmac=7c0aff0a88b8b5765f01b766676fd46b8040d745bc2e1f19125fabe593767063");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
   position: relative;
 }
-.card__btn {
-  width: 220px;
+.cardContainer__card--dragon {
+  background-image: url("https://img.freepik.com/free-vector/black-spooky-castle-flying-dragon-canyon-with-mountains-forest-cartoon-fantasy-illustration-with-medieval-palace-with-towers-creepy-beast-with-wings-rocks-pine-trees_107791-4592.jpg?w=1800&t=st=1682324205~exp=1682324805~hmac=7c0aff0a88b8b5765f01b766676fd46b8040d745bc2e1f19125fabe593767063");
+}
+.cardContainer__card--witch {
+  background-image: url("https://img.freepik.com/free-vector/witch-flying-moon_1308-14522.jpg?size=626&ext=jpg&uid=R96966099&ga=GA1.2.557225288.1681882927&semt=robertav1_2_sidr");
+}
+.cardContainer__card--bigdragon {
+  background-image: url("https://img.freepik.com/premium-photo/painting-dragon-top-mountain-generative-ai_791316-16727.jpg?size=626&ext=jpg&uid=R96966099&ga=GA1.2.557225288.1681882927&semt=robertav1_2_sidr");
+}
+.cardContainer__card--walkingDead {
+  background-image: url("https://img.freepik.com/free-photo/scary-zombie-costume-cosplay_144627-14455.jpg?w=1380&t=st=1682571145~exp=1682571745~hmac=60b2a772cf9c0d405ef1f4fdd8055247b54f2aeb26a308eea50d3fc6368bc6df");
+}
+.cardContainer__card--Kristallnacht {
+  background-image: url("https://img.freepik.com/free-photo/halloween-wallpaper-with-evil-pumpkin_23-2149122582.jpg?size=626&ext=jpg&uid=R96966099&ga=GA1.2.557225288.1681882927&semt=robertav1_2_sidr");
+}
+.cardContainer__card__btn {
+  width: 100%;
   height: 90px;
   font-family: "Roboto", sans-serif;
   position: absolute;
@@ -28,7 +48,7 @@
   gap: 5px;
   flex-wrap: wrap;
 }
-.card__btn .bigP {
+.cardContainer__card__btn .bigP {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -39,14 +59,13 @@
   font-weight: bold;
   letter-spacing: 2.5px;
 }
-.card__btn .bigP .red {
+.cardContainer__card__btn .bigP .red {
   clip-path: circle(11.6% at 50% 50%);
   background-color: red;
-  height: 25px;
-  width: 25px;
+  height: 20px;
+  width: 20px;
 }
-.card__btn .smallP {
-  flex: 1;
+.cardContainer__card__btn .smallP {
   font-size: 9px;
   letter-spacing: 2px;
 }
@@ -62,4 +81,9 @@
 }
 .Search i {
   font-size: 35px;
+}
+
+.home {
+  color: white;
+  font-size: 30px;
 }
