@@ -1,12 +1,20 @@
 .wrapper {
   position: relative;
   font-family: "Roboto", sans-serif;
-  background-color: #dfdfdf;
+  background-color: #f3f3f3;
   width: 400px;
-  height: 85vh;
+  height: 90vh;
   margin: auto;
   border-radius: 20px;
   padding: 20px;
+}
+.wrapper .uptitle {
+  position: relative;
+}
+.wrapper .uptitle .save {
+  position: relative;
+  left: 14em;
+  color: #00059c;
 }
 .wrapper .haeder {
   position: relative;
@@ -16,15 +24,27 @@
   position: relative;
   display: flex;
 }
+.wrapper .staar .staars {
+  position: relative;
+  top: 1.5vh;
+  color: #cfb80c;
+}
 .wrapper .staar h4 {
   position: relative;
+  left: 1em;
   top: -0.5vh;
   margin-right: 0.5em;
 }
 .wrapper .staar p {
+  position: relative;
+  left: 1em;
   color: #959595;
 }
-.wrapper .img {
+.wrapper .imgs {
+  display: flex;
+  width: 780px;
+}
+.wrapper .imgs .img {
   position: relative;
   background-image: url(./img/villa1.jpeg);
   background-size: cover;
@@ -33,49 +53,119 @@
   margin: auto;
   border-radius: 20px;
 }
-.wrapper .img .namber {
+.wrapper .imgs .img .namber {
   position: relative;
-  top: 300px;
+  top: 31vh;
   left: 20px;
   background-color: rgba(0, 0, 0, 0.464);
   width: 3em;
   height: 2.5vh;
   border-radius: 20px;
 }
-.wrapper .img .namber p {
+.wrapper .imgs .img .namber p {
   color: white;
   position: relative;
   top: 0.3vh;
   left: 0.3em;
 }
+.wrapper .imgs .img2 {
+  position: relative;
+  background-image: url(./dist/img/villa2.jpg);
+  background-size: cover;
+  width: 380px;
+  height: 35vh;
+  margin: auto;
+  border-radius: 20px;
+  opacity: 0;
+}
 .wrapper .gps {
   position: relative;
   width: 200px;
+  display: flex;
+}
+.wrapper .gps .loc {
+  position: relative;
+  top: 2.5vh;
+  left: 0.5em;
+  color: #cfb80c;
 }
 .wrapper .gps p {
-  color: #535353;
   position: relative;
-  left: 40px;
+  top: 1vh;
+  color: #535353;
+  left: 1em;
 }
 .wrapper .features {
   color: #3c3c3c;
 }
 .wrapper .sabs {
+  position: relative;
   display: flex;
   gap: 1em;
+  color: white;
+  text-align: center;
 }
 .wrapper .sabs__sab1 {
+  position: relative;
   background-color: #1e1ef3;
-  width: 8em;
+  width: 12em;
   height: 4vh;
+  border-radius: 20px;
+}
+.wrapper .sabs__sab1 h4 {
+  position: relative;
+  top: -1vh;
 }
 .wrapper .sabs__sab2 {
-  background-color: #1e1ef3;
-  width: 8em;
+  position: relative;
+  background-color: #1e81f3;
+  width: 12em;
   height: 4vh;
+  border-radius: 20px;
+}
+.wrapper .sabs__sab2 h4 {
+  position: relative;
+  top: -1vh;
 }
 .wrapper .sabs__sab3 {
-  background-color: #1e1ef3;
-  width: 8em;
+  position: relative;
+  background-color: #ff6200;
+  width: 12em;
   height: 4vh;
+  border-radius: 20px;
+}
+.wrapper .sabs__sab3 h4 {
+  position: relative;
+  top: -1vh;
+}
+.wrapper .prais {
+  position: relative;
+  top: 2vh;
+  background-color: #e2e208;
+  width: 380px;
+  height: 6vh;
+  margin: auto;
+  border-radius: 12px;
+}
+.wrapper .prais h3 {
+  color: #1b1b1b;
+  position: relative;
+  top: 1.5vh;
+  text-align: center;
+}
+@media only screen and (max-width: 900px) {
+  .wrapper .wrapper {
+    width: 900px;
+  }
+  .wrapper .img2 {
+    opacity: 1;
+  }
+}
+@media only screen and (max-width: 1200px) {
+  .wrapper .wrapper {
+    width: 1200px;
+  }
+  .wrapper .img2 {
+    opacity: 1;
+  }
 }
