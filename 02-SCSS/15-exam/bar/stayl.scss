@@ -2,7 +2,7 @@
     position: relative;
     font-family: 'Roboto', sans-serif;
     background-color: rgb(243, 243, 243);
-    width: 400px;
+    width: 25em;
     height: 90vh;
     margin: auto;
     border-radius: 20px;
@@ -62,7 +62,7 @@
 
             .namber {
                 position: relative;
-                top: 31vh;
+                top: 30vh;
                 left: 20px;
                 background-color: rgba(0, 0, 0, 0.464);
                 width: 3em;
@@ -117,12 +117,13 @@
 
     .sabs {
         $top: -1vh;
-        $width: 12em;
+        $width: 16em;
         $height: 4vh;
+        $left: 0.5em;
         $border-radius: 20px;
         position: relative;
         display: flex;
-        gap: 1em;
+        gap: 0.5em;
         color: white;
         text-align: center;
 
@@ -133,10 +134,18 @@
             width: $width;
             height: $height;
             border-radius: $border-radius;
+            display: flex;
 
             h4 {
                 position: relative;
                 top: $top;
+                left: $left;
+            }
+
+            .icon {
+                position: relative;
+                top: 1vh;
+                left: 0.2em;
             }
         }
 
@@ -146,10 +155,18 @@
             width: $width;
             height: $height;
             border-radius: $border-radius;
+            display: flex;
 
             h4 {
                 position: relative;
                 top: $top;
+                left: $left;
+            }
+
+            .icon {
+                position: relative;
+                top: 1vh;
+                left: 0.2em;
             }
         }
 
@@ -159,10 +176,18 @@
             width: $width;
             height: $height;
             border-radius: $border-radius;
+            display: flex;
 
             h4 {
                 position: relative;
                 top: $top;
+                left: $left;
+            }
+
+            .icon {
+                position: relative;
+                top: 1vh;
+                left: 0.2em;
             }
         }
     }

@@ -2,7 +2,7 @@
   position: relative;
   font-family: "Roboto", sans-serif;
   background-color: #f3f3f3;
-  width: 400px;
+  width: 25em;
   height: 90vh;
   margin: auto;
   border-radius: 20px;
@@ -55,7 +55,7 @@
 }
 .wrapper .imgs .img .namber {
   position: relative;
-  top: 31vh;
+  top: 30vh;
   left: 20px;
   background-color: rgba(0, 0, 0, 0.464);
   width: 3em;
@@ -101,42 +101,63 @@
 .wrapper .sabs {
   position: relative;
   display: flex;
-  gap: 1em;
+  gap: 0.5em;
   color: white;
   text-align: center;
 }
 .wrapper .sabs__sab1 {
   position: relative;
   background-color: #1e1ef3;
-  width: 12em;
+  width: 16em;
   height: 4vh;
   border-radius: 20px;
+  display: flex;
 }
 .wrapper .sabs__sab1 h4 {
   position: relative;
   top: -1vh;
+  left: 0.5em;
+}
+.wrapper .sabs__sab1 .icon {
+  position: relative;
+  top: 1vh;
+  left: 0.2em;
 }
 .wrapper .sabs__sab2 {
   position: relative;
   background-color: #1e81f3;
-  width: 12em;
+  width: 16em;
   height: 4vh;
   border-radius: 20px;
+  display: flex;
 }
 .wrapper .sabs__sab2 h4 {
   position: relative;
   top: -1vh;
+  left: 0.5em;
+}
+.wrapper .sabs__sab2 .icon {
+  position: relative;
+  top: 1vh;
+  left: 0.2em;
 }
 .wrapper .sabs__sab3 {
   position: relative;
   background-color: #ff6200;
-  width: 12em;
+  width: 16em;
   height: 4vh;
   border-radius: 20px;
+  display: flex;
 }
 .wrapper .sabs__sab3 h4 {
   position: relative;
   top: -1vh;
+  left: 0.5em;
+}
+.wrapper .sabs__sab3 .icon {
+  position: relative;
+  top: 1vh;
+  left: 0.2em;
 }
 .wrapper .prais {
   position: relative;
