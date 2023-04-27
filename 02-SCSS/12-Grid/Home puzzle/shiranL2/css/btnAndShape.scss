@@ -100,8 +100,8 @@
 
 .smallBoxContainer{
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-  gap: 20px;
+  grid-template-columns: repeat(18 , 1fr);
+  column-gap: 20px;
 
 
   &__item{
@@ -123,4 +123,16 @@
   .cat{
     background-image: url("https://img.freepik.com/free-vector/scary-halloween-cat-background_23-2147946231.jpg?w=826&t=st=1682593396~exp=1682593996~hmac=34dff2879781c1767ab1d2b617e4d6f8fc579db30be0e12e5ceba1241f059c18");
   }
+  .eyes{
+    background-image: url("https://img.freepik.com/free-photo/3d-halloween-background-with-red-evil-eyes_1048-6975.jpg?size=626&ext=jpg&uid=R96966099&ga=GA1.2.557225288.1681882927&semt=robertav1_2_sidr");
+  }
+   .spider{
+     background-image: url("https://img.freepik.com/premium-photo/jumping-spider_44272-5187.jpg?w=1380");
+   }
+   .shark{
+     background-image: url("https://img.freepik.com/free-vector/aggressive-shark-underwater-deep-sea-background_1308-98484.jpg?w=1380&t=st=1682593839~exp=1682594439~hmac=cba7c0f32898fc8ca950c6779ceea545ff2af34ea40efd16f3cbc622c3855e70");
+   }
+   .dog{
+     background-image: url("https://img.freepik.com/free-photo/dog-surrounded-by-ferns-standing-dense-forest_23-2147831047.jpg?w=1380&t=st=1682593928~exp=1682594528~hmac=c3ab99212e004d9339df2dc2df2fe34ae016b3d685e04294d6dd1f6c7a1f85d8");
+   }
 }
