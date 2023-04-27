@@ -1,0 +1,81 @@
+.wrapper {
+  position: relative;
+  font-family: "Roboto", sans-serif;
+  background-color: #dfdfdf;
+  width: 400px;
+  height: 85vh;
+  margin: auto;
+  border-radius: 20px;
+  padding: 20px;
+}
+.wrapper .haeder {
+  position: relative;
+  font-size: larger;
+}
+.wrapper .staar {
+  position: relative;
+  display: flex;
+}
+.wrapper .staar h4 {
+  position: relative;
+  top: -0.5vh;
+  margin-right: 0.5em;
+}
+.wrapper .staar p {
+  color: #959595;
+}
+.wrapper .img {
+  position: relative;
+  background-image: url(./img/villa1.jpeg);
+  background-size: cover;
+  width: 380px;
+  height: 35vh;
+  margin: auto;
+  border-radius: 20px;
+}
+.wrapper .img .namber {
+  position: relative;
+  top: 300px;
+  left: 20px;
+  background-color: rgba(0, 0, 0, 0.464);
+  width: 3em;
+  height: 2.5vh;
+  border-radius: 20px;
+}
+.wrapper .img .namber p {
+  color: white;
+  position: relative;
+  top: 0.3vh;
+  left: 0.3em;
+}
+.wrapper .gps {
+  position: relative;
+  width: 200px;
+}
+.wrapper .gps p {
+  color: #535353;
+  position: relative;
+  left: 40px;
+}
+.wrapper .features {
+  color: #3c3c3c;
+}
+.wrapper .sabs {
+  display: flex;
+  gap: 1em;
+}
+.wrapper .sabs__sab1 {
+  background-color: #1e1ef3;
+  width: 8em;
+  height: 4vh;
+}
+.wrapper .sabs__sab2 {
+  background-color: #1e1ef3;
+  width: 8em;
+  height: 4vh;
+}
+.wrapper .sabs__sab3 {
+  background-color: #1e1ef3;
+  width: 8em;
+  height: 4vh;
+}

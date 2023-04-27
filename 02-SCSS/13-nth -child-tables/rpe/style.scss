@@ -1,0 +1,51 @@
+table,
+th,
+td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+td,
+th {
+    padding: 5px;
+    cursor: pointer;
+    width: 120px;
+}
+tr:nth-child(4){
+td:nth-child(2n) {
+    background-color: cadetblue;
+        &:hover {
+            color: blue;
+           
+        }
+    }
+}
+
+tr:nth-child(2){
+    td:nth-child(4){
+        background-color: rgb(5, 138, 255);
+    }
+}
+th {
+    background-color: aquamarine;
+}
+
+tr:nth-child(2n+1) {
+    background-color: bisque;
+
+    &:hover {
+        font-weight: bold;
+    }
+}
+
+table {
+    margin: auto;
+    margin-top: 202px;
+}
+
+.bold {
+    &:hover {
+        font-weight: bold;
+    }
+}
+
