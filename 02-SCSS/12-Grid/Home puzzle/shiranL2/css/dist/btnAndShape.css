@@ -1,0 +1,118 @@
+.cardContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  gap: 20px;
+}
+.cardContainer__card {
+  width: 210px;
+  height: 310px;
+  border-radius: 45px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  position: relative;
+}
+.cardContainer__card--dragon {
+  background-image: url("https://img.freepik.com/free-vector/black-spooky-castle-flying-dragon-canyon-with-mountains-forest-cartoon-fantasy-illustration-with-medieval-palace-with-towers-creepy-beast-with-wings-rocks-pine-trees_107791-4592.jpg?w=1800&t=st=1682324205~exp=1682324805~hmac=7c0aff0a88b8b5765f01b766676fd46b8040d745bc2e1f19125fabe593767063");
+}
+.cardContainer__card--witch {
+  background-image: url("https://img.freepik.com/free-vector/witch-flying-moon_1308-14522.jpg?size=626&ext=jpg&uid=R96966099&ga=GA1.2.557225288.1681882927&semt=robertav1_2_sidr");
+}
+.cardContainer__card--bigdragon {
+  background-image: url("https://img.freepik.com/premium-photo/painting-dragon-top-mountain-generative-ai_791316-16727.jpg?size=626&ext=jpg&uid=R96966099&ga=GA1.2.557225288.1681882927&semt=robertav1_2_sidr");
+}
+.cardContainer__card--walkingDead {
+  background-image: url("https://img.freepik.com/free-photo/scary-zombie-costume-cosplay_144627-14455.jpg?w=1380&t=st=1682571145~exp=1682571745~hmac=60b2a772cf9c0d405ef1f4fdd8055247b54f2aeb26a308eea50d3fc6368bc6df");
+}
+.cardContainer__card--Kristallnacht {
+  background-image: url("https://img.freepik.com/free-photo/halloween-wallpaper-with-evil-pumpkin_23-2149122582.jpg?size=626&ext=jpg&uid=R96966099&ga=GA1.2.557225288.1681882927&semt=robertav1_2_sidr");
+}
+.cardContainer__card__btn {
+  width: 100%;
+  height: 90px;
+  font-family: "Roboto", sans-serif;
+  position: absolute;
+  top: 225px;
+  background-color: Transparent;
+  color: white;
+  border: none;
+  border-radius: 45px;
+  cursor: pointer;
+  backdrop-filter: blur(15.7742px);
+  padding: 17px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+.cardContainer__card__btn .bigP {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  flex-wrap: wrap;
+  font-size: 15px;
+  font-weight: bold;
+  letter-spacing: 2.5px;
+}
+.cardContainer__card__btn .bigP .red {
+  clip-path: circle(11.6% at 50% 50%);
+  background-color: red;
+  height: 20px;
+  width: 20px;
+}
+.cardContainer__card__btn .smallP {
+  font-size: 9px;
+  letter-spacing: 2px;
+}
+
+.Search {
+  border-radius: 180px;
+  height: 60px;
+  width: 60px;
+  background-color: yellow;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.Search i {
+  font-size: 35px;
+}
+
+.smallBoxContainer {
+  display: grid;
+  grid-template-columns: repeat(18, 1fr);
+  column-gap: 20px;
+}
+.smallBoxContainer__item {
+  width: 120px;
+  height: 120px;
+  border-radius: 40px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+.smallBoxContainer .trick {
+  background-image: url("https://img.freepik.com/premium-vector/cute-animal-little-mummy-panda-with-butterfly-illustration-cute-animal-watercolor-panda-character_90238-1281.jpg?w=740");
+}
+.smallBoxContainer .mause {
+  background-image: url("https://img.freepik.com/free-vector/halloween-bat-concept_52683-44517.jpg?w=826&t=st=1682593146~exp=1682593746~hmac=49dc8e01449e258282b044bacc403fa9cf3dad4edea9224d3d616799b0f0d93e");
+}
+.smallBoxContainer .cat {
+  background-image: url("https://img.freepik.com/free-vector/scary-halloween-cat-background_23-2147946231.jpg?w=826&t=st=1682593396~exp=1682593996~hmac=34dff2879781c1767ab1d2b617e4d6f8fc579db30be0e12e5ceba1241f059c18");
+}
+.smallBoxContainer .eyes {
+  background-image: url("https://img.freepik.com/free-photo/3d-halloween-background-with-red-evil-eyes_1048-6975.jpg?size=626&ext=jpg&uid=R96966099&ga=GA1.2.557225288.1681882927&semt=robertav1_2_sidr");
+}
+.smallBoxContainer .spider {
+  background-image: url("https://img.freepik.com/premium-photo/jumping-spider_44272-5187.jpg?w=1380");
+}
+.smallBoxContainer .shark {
+  background-image: url("https://img.freepik.com/free-vector/aggressive-shark-underwater-deep-sea-background_1308-98484.jpg?w=1380&t=st=1682593839~exp=1682594439~hmac=cba7c0f32898fc8ca950c6779ceea545ff2af34ea40efd16f3cbc622c3855e70");
+}
+.smallBoxContainer .dog {
+  background-image: url("https://img.freepik.com/free-photo/dog-surrounded-by-ferns-standing-dense-forest_23-2147831047.jpg?w=1380&t=st=1682593928~exp=1682594528~hmac=c3ab99212e004d9339df2dc2df2fe34ae016b3d685e04294d6dd1f6c7a1f85d8");
+}

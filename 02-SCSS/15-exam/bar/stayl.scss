@@ -1,0 +1,207 @@
+.wrapper {
+    position: relative;
+    font-family: 'Roboto', sans-serif;
+    background-color: rgb(243, 243, 243);
+    width: 400px;
+    height: 90vh;
+    margin: auto;
+    border-radius: 20px;
+    padding: 20px;
+
+    .uptitle {
+        position: relative;
+
+        .save {
+            position: relative;
+            left: 14em;
+            color: rgb(0, 5, 156);
+        }
+    }
+
+    .haeder {
+        position: relative;
+        font-size: larger;
+    }
+
+    .staar {
+        position: relative;
+        display: flex;
+
+        .staars {
+            position: relative;
+            top: 1.5vh;
+            color: rgb(207, 184, 12);
+        }
+
+        h4 {
+            position: relative;
+            left: 1em;
+            top: -0.5vh;
+            margin-right: 0.5em;
+        }
+
+        p {
+            position: relative;
+            left: 1em;
+            color: rgb(149, 149, 149);
+        }
+    }
+
+    .imgs {
+        display: flex;
+        width: 780px;
+
+        .img {
+            position: relative;
+            background-image: url(./img/villa1.jpeg);
+            background-size: cover;
+            width: 380px;
+            height: 35vh;
+            margin: auto;
+            border-radius: 20px;
+
+            .namber {
+                position: relative;
+                top: 31vh;
+                left: 20px;
+                background-color: rgba(0, 0, 0, 0.464);
+                width: 3em;
+                height: 2.5vh;
+                border-radius: 20px;
+
+                p {
+                    color: white;
+                    position: relative;
+                    top: 0.3vh;
+                    left: 0.3em;
+                }
+            }
+        }
+
+        .img2 {
+            position: relative;
+            background-image: url(./dist/img/villa2.jpg);
+            background-size: cover;
+            width: 380px;
+            height: 35vh;
+            margin: auto;
+            border-radius: 20px;
+            opacity: 0;
+        }
+    }
+
+    .gps {
+        position: relative;
+        width: 200px;
+        display: flex;
+
+        .loc {
+            position: relative;
+            top: 2.5vh;
+            left: 0.5em;
+            color: rgb(207, 184, 12);
+        }
+
+        p {
+            position: relative;
+            top: 1vh;
+            color: rgb(83, 83, 83);
+            left: 1em;
+            // border-bottom: 0.5px solid rgb(83, 83, 83);
+        }
+    }
+
+    .features {
+        color: rgb(60, 60, 60);
+    }
+
+    .sabs {
+        $top: -1vh;
+        $width: 12em;
+        $height: 4vh;
+        $border-radius: 20px;
+        position: relative;
+        display: flex;
+        gap: 1em;
+        color: white;
+        text-align: center;
+
+
+        &__sab1 {
+            position: relative;
+            background-color: rgb(30, 30, 243);
+            width: $width;
+            height: $height;
+            border-radius: $border-radius;
+
+            h4 {
+                position: relative;
+                top: $top;
+            }
+        }
+
+        &__sab2 {
+            position: relative;
+            background-color: rgb(30, 129, 243);
+            width: $width;
+            height: $height;
+            border-radius: $border-radius;
+
+            h4 {
+                position: relative;
+                top: $top;
+            }
+        }
+
+        &__sab3 {
+            position: relative;
+            background-color: rgb(255, 98, 0);
+            width: $width;
+            height: $height;
+            border-radius: $border-radius;
+
+            h4 {
+                position: relative;
+                top: $top;
+            }
+        }
+    }
+
+    .prais {
+        position: relative;
+        top: 2vh;
+        background-color: rgb(226, 226, 8);
+        width: 380px;
+        height: 6vh;
+        margin: auto;
+        border-radius: 12px;
+
+        h3 {
+            color: rgb(27, 27, 27);
+            position: relative;
+            top: 1.5vh;
+            text-align: center;
+        }
+    }
+
+
+    @media only screen and (max-width: 900px) {
+        .wrapper {
+            width: 900px
+        }
+
+        .img2 {
+            opacity: 1;
+        }
+    }
+
+    @media only screen and (max-width: 1200px) {
+        .wrapper {
+            width: 1200px
+        }
+
+        .img2 {
+            opacity: 1;
+        }
+    }
+}
