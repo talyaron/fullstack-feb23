@@ -19,7 +19,7 @@
   height: 150px;
 }
 
-@keyframes smallBoxAn {
+@keyframes backgroundAn {
   from {
     background-position: 0 0;
   }
