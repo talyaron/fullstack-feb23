@@ -1,0 +1,117 @@
+// The scss for the tray-container
+.tray-container {
+    &__name-series {
+        padding-top: 30px;
+        padding-right: 70px;
+        direction: rtl;
+        background-color: black;
+
+        p {
+            width: 175px;
+            height: 30px;
+            font-size: 30px;
+            color: white;
+        }
+    }
+
+
+
+&__tray-series {
+    display: grid;
+    grid-template-columns:repeat(6, 1fr);
+    grid-template-rows: auto;
+    padding-top: 10px;
+    padding-right: 70px;
+    direction: rtl;
+    padding-bottom: 20px;
+
+
+    &__text{
+        border: 2px solid ;
+        background-color: black;
+    }
+
+    ul{
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        color: white;
+        padding-bottom: 8px;
+    }
+
+    .tray-series__text {
+        display: none;
+        position: relative;
+    }
+    img{
+        width: 250px;
+        height: 225px;
+        border-radius: 4px;
+
+        &:hover ~ .tray-series__text{
+            display: block;
+            background-color: black;
+        }
+
+        &:hover {
+            width: 300px;
+            height: 225px;
+            z-index: 1;
+            .border{
+                transform: scale(2) translateY(-10%) ;
+                transform-origin: center;
+                transition:  1s ; 
+                position: re;
+            }
+        }
+    }
+
+
+                .top {
+                    display: flex;
+                    justify-content: space-evenly; 
+                    padding-bottom: 12px;
+                    padding-top: 7px;
+                    position: absolute;
+        
+        
+                    &__watch-now {
+                        display: flex;
+                        border: 2px solid white;
+                        border-radius: 6px;
+                        padding: 7px 13px;
+                        width: 181px;
+                        align-items: center;
+                        justify-content: center;
+                        flex-direction: row-reverse;
+                        gap: 8px;
+                        position: absolute;
+                        background-color: white;
+                    }
+        
+                    &__fa-plus {
+                        border: 2px solid rgba(0, 0, 0, 0.09);
+                        padding: 5px 9px;
+                        color: white;
+                        display: flex;
+                        align-items: center;
+                        border-radius: 6px;
+                        position: absolute;
+                        background-color: black;
+                    }
+                }
+        
+                .summary {
+                    color: gray;
+                    padding-bottom: 20px;
+                    position: absolute;
+                }
+
+    
+
+
+
+}
+}
+
+
+
