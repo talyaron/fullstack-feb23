@@ -48,7 +48,6 @@
 
                 .img1 {
                     position: relative;
-                    filter: grayscale(0%) brightness(119%) contrast(60%);
                     width: 40%;
                     height: 20vw;
                     border-radius: 5%;
@@ -56,7 +55,7 @@
                     background-image: url(https://images.pexels.com/photos/842711/pexels-photo-842711.jpeg?cs=srgb&dl=pexels-christian-heitz-842711.jpg&fm=jpg);
                     background-size: cover;
                     background-position: center;
-                    filter: brightness(1.88) contrast(152%) saturate(57%);
+
 
                     .icon1 {
                         background-color: blue;
@@ -67,6 +66,14 @@
                     }
                 }
 
+                .img1:active {
+                    filter: grayscale(0%) brightness(119%) contrast(60%);
+                }
+
+
+
+
+
                 .img2 {
                     margin: 0.5%;
                     width: 50%;
@@ -76,6 +83,7 @@
                     background-size: cover;
 
                 }
+
             }
 
             &__middle {
@@ -108,7 +116,6 @@
                 }
 
                 .img5 {
-                    filter: grayscale(0%) brightness(119%) contrast(60%);
                     width: 50%;
                     height: 20vw;
                     border-radius: 5%;
@@ -116,21 +123,26 @@
                     background-image: url(https://as2.ftcdn.net/v2/jpg/04/39/89/01/1000_F_439890152_sYbPxa1ANTSKcZuUsKzRAf9O7bJ1Tx5B.jpg);
                     background-size: cover;
                     background-position: center;
-                    filter: brightness(1.88) contrast(152%) saturate(57%);
-                    z-index: 0;
 
-                    .icon1 {
+                }
 
-                        background-color: hsl(240, 76%, 31%);
-                        color: white;
-                        font-size: 2.5vw;
-                        border-radius: 50%;
-                        margin-top: 20%;
-                    }
+                .icon1 {
+
+                    background-color: hsl(240, 76%, 31%);
+                    color: white;
+                    font-size: 2.5vw;
+                    border-radius: 50%;
+                    margin-top: 20%;
                 }
             }
 
+            .img5:active {
+                filter: grayscale(0%) brightness(119%) contrast(60%);
+            }
+
         }
+
+
 
         &__icon {
             width: 100%;
@@ -171,6 +183,7 @@
 
             }
 
+
             .nav1 {
                 margin-right: 20px;
                 width: 20%;
@@ -207,7 +220,13 @@
                     height: 5vw;
                     border-radius: 50%;
                 }
+
+                .p-1 {
+                    font-size: 3vw;
+                }
+
             }
+
 
         }
 
@@ -246,13 +265,3 @@
     }
 
 
-
-
-
-
-
-    // @media screen and (max-width: 600px) {
-    //     h1 {
-    //         font-size: 20px;
-    //     }
-    // }
