@@ -1,0 +1,139 @@
+.setballoon0 {
+  position: absolute;
+  top: 50px;
+  left: 600px;
+  transform: rotate(0deg);
+  z-index: 1;
+}
+
+.vlGold {
+  border-left: 3px solid gold;
+  height: 250px;
+  position: relative;
+  left: 53px;
+  top: -10px;
+}
+
+.ballGold {
+  height: 150px;
+}
+
+.setballoon1 {
+  position: absolute;
+  top: 54px;
+  left: 644px;
+  transform: rotate(13deg);
+  z-index: 2;
+}
+
+.vlBrown {
+  border-left: 3px solid brown;
+  height: 250px;
+  position: relative;
+  left: 57px;
+  top: -8px;
+}
+
+.ballBrown {
+  height: 150px;
+}
+
+.setballoon2 {
+  position: absolute;
+  top: 53px;
+  left: 551px;
+  transform: rotate(-13deg);
+  z-index: 1;
+}
+
+.vlPink {
+  border-left: 3px solid pink;
+  height: 250px;
+  position: relative;
+  left: 53px;
+  top: -7px;
+}
+
+.ballPink {
+  height: 150px;
+}
+
+.setballoon3 {
+  position: absolute;
+  top: 35px;
+  left: 480px;
+  transform: rotate(-25deg);
+  z-index: 2;
+}
+
+.vlRed {
+  border-left: 3px solid red;
+  height: 250px;
+  position: relative;
+  left: 85px;
+  top: -52px;
+}
+
+.ballRed {
+  height: 230px;
+}
+
+.setballoon4 {
+  position: absolute;
+  top: 54px;
+  left: 662px;
+  transform: rotate(25deg);
+  z-index: 3;
+}
+
+.vlGreen {
+  border-left: 3px solid greenyellow;
+  height: 250px;
+  position: relative;
+  left: 82px;
+  top: -20px;
+}
+
+.ballGreen {
+  height: 180px;
+}
+
+.setballoon5 {
+  position: absolute;
+  top: 50px;
+  left: 606px;
+  transform: rotate(7deg);
+  z-index: 2;
+}
+
+.vlOrange {
+  border-left: 3px solid orange;
+  height: 250px;
+  position: relative;
+  left: 72px;
+  top: -8px;
+}
+
+.ballOrange {
+  height: 150px;
+}
+
+.setballoon6 {
+  position: absolute;
+  top: 65px;
+  left: 553px;
+  transform: rotate(-7deg);
+  z-index: 2;
+}
+
+.vlMetalic {
+  border-left: 3px solid magenta;
+  height: 232px;
+  position: relative;
+  left: 74px;
+  top: -6px;
+}
+
+.ballMetalic {
+  height: 150px;
+}/*# sourceMappingURL=style.css.map */

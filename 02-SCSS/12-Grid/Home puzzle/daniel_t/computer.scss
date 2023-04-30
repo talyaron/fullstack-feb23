@@ -97,6 +97,7 @@
         
     .bottom {
         display: flex;
+        flex-wrap: wrap;
         justify-content: center;
         gap: 100px;
         padding-top: 40px;
@@ -106,16 +107,22 @@
         margin-right: 90px;
         border-radius: 15px;
         max-width: 100rem;
+        width: auto;
 
         .article {
+position: relative;
+width:fit-content;
+
             h2 {
                 font-size: 36px;
-                width: 347px;
+                max-width: 347px;
+                width: fit-content;
                 margin-bottom: 12px;
             }
 
             h3{
-                width: 347px;
+                max-width: 347;
+                width: fit-content;
                 font-size: 16px;
                 margin-bottom: 12px;
             }
@@ -172,3 +179,4 @@
 
     }
 
+   
