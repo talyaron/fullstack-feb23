@@ -1,0 +1,41 @@
+.general {
+  display: flex;
+  align-items: center;
+  height: 50vh;
+  width: 100%;
+  justify-content: center;
+  background-size: cover;
+  background-image: url(https://hips.hearstapps.com/hmg-prod/images/nature-quotes-landscape-1648265299.jpg?crop=1.00xw:0.760xh;0,0.0587xh&resize=1200:*);
+}
+
+.wrapper {
+  background-image: url(https://hips.hearstapps.com/hmg-prod/images/nature-quotes-landscape-1648265299.jpg?crop=1.00xw:0.760xh;0,0.0587xh&resize=1200:*);
+  background-size: cover;
+  display: flex;
+  width: 80vh;
+  height: 40%;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+}
+
+.one {
+  width: 30vw;
+  height: 30vh;
+}
+
+.two {
+  width: 30vw;
+  height: 30vh;
+}
+
+.three {
+  width: 30vw;
+  height: 30vh;
+}
+
+.ocean {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}/*# sourceMappingURL=style.css.map */

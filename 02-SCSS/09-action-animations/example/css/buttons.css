@@ -1,0 +1,30 @@
+.btn {
+  background-color: rgb(30, 158, 158);
+  color: white;
+  border: none;
+  padding: 20px;
+  border-radius: 5px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  transition: all 200ms;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+.btn:hover {
+  background-color: rgb(24, 132, 132);
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.491);
+  cursor: pointer;
+  transform: scale(1.05);
+}
+.btn:active {
+  background-color: rgb(17, 102, 102);
+  box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.491);
+  cursor: pointer;
+  transform: scale(1.1);
+}
+.btn--danger {
+  background-color: tomato;
+}/*# sourceMappingURL=buttons.css.map */

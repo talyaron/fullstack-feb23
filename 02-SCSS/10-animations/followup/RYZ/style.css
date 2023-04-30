@@ -1,0 +1,86 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  background-image: url(https://blog.bawahreserve.com/hubfs/Bawah-reserve-stars.jpg);
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+}
+
+.wrapper {
+  margin-top: 40px;
+  max-height: 80vh;
+  display: flex;
+  flex-wrap: wrap;
+}
+.wrapper .box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 10em;
+  height: 10em;
+  background-color: rgba(255, 99, 71, 0);
+  margin: 5px;
+}
+.wrapper .box .star {
+  position: relative;
+  width: 30px;
+  height: 30px;
+  stroke: #c9c6c6;
+  fill: #fff;
+  -webkit-animation-duration: 2s;
+          animation-duration: 2s;
+  -webkit-animation-delay: 2s;
+          animation-delay: 2s;
+  animation-direction: alternate-reverse;
+  -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  -webkit-animation-timing-function: cubic-bezier(0, 2, 0.57, -0.39);
+          animation-timing-function: cubic-bezier(0, 2, 0.57, -0.39);
+  cursor: pointer;
+  -webkit-animation-name: star-movement;
+          animation-name: star-movement;
+}
+.wrapper .justify-content-end {
+  justify-content: end;
+}
+.wrapper .justify-content-start {
+  justify-content: start;
+}
+.wrapper .align-items-end {
+  align-items: end;
+}
+.wrapper .align-items-start {
+  align-items: start;
+}
+
+@-webkit-keyframes star-movement {
+  from {
+    transform: scale(1);
+    top: 0%;
+    left: 0;
+  }
+  to {
+    transform: scale(1.4);
+    top: 50%;
+    left: 30%;
+  }
+}
+
+@keyframes star-movement {
+  from {
+    transform: scale(1);
+    top: 0%;
+    left: 0;
+  }
+  to {
+    transform: scale(1.4);
+    top: 50%;
+    left: 30%;
+  }
+}/*# sourceMappingURL=style.css.map */

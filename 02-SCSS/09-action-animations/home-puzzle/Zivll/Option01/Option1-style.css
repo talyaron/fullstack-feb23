@@ -1,0 +1,7 @@
+@import "/02-SCSS/09-action-animations/home-puzzle/Zivll/dist/style.css";
+.images div {
+  display: none;
+}
+.images div:target {
+  display: block;
+}/*# sourceMappingURL=Option1-style.css.map */

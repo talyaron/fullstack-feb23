@@ -1,0 +1,28 @@
+html .wrapper img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 500px;
+  height: 400px;
+  display: none;
+}
+html .wrapper img:target {
+  display: block;
+}
+html button {
+  padding: 15px;
+  font-size: 15px;
+  font-weight: 600;
+  background-color: rgb(146, 181, 181);
+  margin-right: 10px;
+  margin-left: 18px;
+}
+html button a {
+  text-decoration: none;
+  color: rgb(26, 25, 25);
+}
+html button:hover {
+  background-color: rgb(81, 121, 121);
+  cursor: -webkit-grab;
+  cursor: grab;
+}/*# sourceMappingURL=style.css.map */
