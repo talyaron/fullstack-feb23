@@ -1,34 +1,14 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto:700,900');
+@import 'computer';
+@import 'mobile';
 
-@import "shape";
 
-*{
+* {
+    text-transform:capitalize;
     margin: 0;
     padding: 0;
-    font-family: 'Roboto';
-
 }
 
-.header
-{
-    display: flex;
-    p{
-        font-size: 30px;
-    }
-}
-
-
-.wapper{
-    width: 800px;
-    border: 1px solid black;
-    margin: auto;
-}
-    @media screen and (max-width: 900px) {
-        .header__item {
-            display: flex;
-            justify-content: flex-start;
-            align-items: flex-start;
-            background-color: purple;
-        }
-
+body {
+    max-width: 100rem;
+    height: 100px;
 }
