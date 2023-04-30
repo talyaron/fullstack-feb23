@@ -1,0 +1,55 @@
+div[lang|=zh] {
+  color: red;
+}
+
+.box {
+  background-color: aqua;
+}
+.box__text {
+  background-color: beige;
+  width: 50%;
+}
+
+.box .active {
+  font-size: 50px;
+}
+
+.displayFlex {
+  display: flex;
+  background-color: rgb(213, 97, 213);
+  width: clamp(250px, 70%, 700px);
+  margin: 0 auto;
+}
+@media screen and (max-width: 800px) {
+  .displayFlex {
+    flex-direction: column;
+  }
+}
+@media screen and (max-width: 300px) {
+  .displayFlex {
+    font-size: 2rem;
+  }
+}
+.displayFlex > div {
+  background-color: aqua;
+  margin: 0% 5%;
+  display: flex;
+  align-items: center;
+}
+.displayFlex__first-div h1 {
+  box-sizing: border-box;
+  background-color: orange;
+  width: 100%;
+  border: solid #5b6dcd 10px;
+  padding: 5px;
+}
+@media screen and (max-width: 400px) {
+  .displayFlex__first-div h1 {
+    background-color: rgb(85, 14, 14);
+    font-size: 2rem;
+  }
+}
+
+.displayFlex__first-div--oneone {
+  font-size: clamp(20px, 3vw, 80px);
+}/*# sourceMappingURL=index.css.map */

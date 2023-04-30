@@ -1,0 +1,275 @@
+body {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  right: 10px;
+}
+
+h2 {
+  color: #4a4a4a;
+  font-weight: bolder;
+  border-left: 5px solid rgb(255, 200, 20);
+  padding: 10px;
+  height: 20px;
+  position: absolute;
+  left: 50px;
+}
+
+.container {
+  position: absolute;
+  width: 100%;
+  height: auto;
+  top: 80px;
+}
+.container ul {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+}
+.container ul li {
+  display: flex;
+  flex: 1;
+  justify-content: space-evenly;
+  padding-right: 20px;
+}
+.container ul li .leftBox {
+  height: 100%;
+  width: 100%;
+  background-color: white;
+  flex: auto;
+}
+.container ul li .leftBox .imgBox {
+  display: block;
+  box-sizing: inherit;
+}
+.container ul li .leftBox .imgBox .imgBoxSub {
+  height: 0;
+  overflow: hidden;
+  padding-bottom: 56.25%;
+  box-shadow: inset 0 0 80px rgba(0, 0, 0, 0.5);
+}
+.container ul li .leftBox .imgBox .imgBoxSub img {
+  display: block;
+  width: 100%;
+  box-sizing: inherit;
+}
+.container ul li .leftBox .imgBox .boxText h3 {
+  display: block;
+  font-size: 1.17em;
+  -webkit-margin-before: 1em;
+          margin-block-start: 1em;
+  -webkit-margin-after: 1em;
+          margin-block-end: 1em;
+  -webkit-margin-start: 0px;
+          margin-inline-start: 0px;
+  -webkit-margin-end: 0px;
+          margin-inline-end: 0px;
+  font-weight: bold;
+}
+.container ul li .leftBox .imgBox .boxText p {
+  display: block;
+  -webkit-margin-before: 1em;
+          margin-block-start: 1em;
+  -webkit-margin-after: 1em;
+          margin-block-end: 1em;
+  -webkit-margin-start: 0px;
+          margin-inline-start: 0px;
+  -webkit-margin-end: 0px;
+          margin-inline-end: 0px;
+}
+.container ul li .middleBox {
+  height: 100%;
+  width: 100%;
+  background-color: white;
+  flex: auto;
+}
+.container ul li .middleBox .imgBox {
+  display: block;
+  box-sizing: inherit;
+}
+.container ul li .middleBox .imgBox .imgBoxSub {
+  height: 0;
+  overflow: hidden;
+  padding-bottom: 56.25%;
+  box-shadow: inset 0 0 80px rgba(0, 0, 0, 0.5);
+}
+.container ul li .middleBox .imgBox .imgBoxSub img {
+  display: block;
+  width: 100%;
+  box-sizing: inherit;
+}
+.container ul li .middleBox .imgBox .boxText h3 {
+  display: block;
+  font-size: 1.17em;
+  -webkit-margin-before: 1em;
+          margin-block-start: 1em;
+  -webkit-margin-after: 1em;
+          margin-block-end: 1em;
+  -webkit-margin-start: 0px;
+          margin-inline-start: 0px;
+  -webkit-margin-end: 0px;
+          margin-inline-end: 0px;
+  font-weight: bold;
+}
+.container ul li .middleBox .imgBox .boxText p {
+  display: block;
+  -webkit-margin-before: 1em;
+          margin-block-start: 1em;
+  -webkit-margin-after: 1em;
+          margin-block-end: 1em;
+  -webkit-margin-start: 0px;
+          margin-inline-start: 0px;
+  -webkit-margin-end: 0px;
+          margin-inline-end: 0px;
+}
+.container ul li .rightBox {
+  height: 100%;
+  width: 100%;
+  background-color: white;
+  flex: auto;
+}
+.container ul li .rightBox .imgBox {
+  display: block;
+  box-sizing: inherit;
+}
+.container ul li .rightBox .imgBox .imgBoxSub {
+  height: 0;
+  overflow: hidden;
+  padding-bottom: 56.25%;
+  box-shadow: inset 0 0 80px rgba(0, 0, 0, 0.5);
+}
+.container ul li .rightBox .imgBox .imgBoxSub img {
+  display: block;
+  width: 100%;
+  box-sizing: inherit;
+}
+.container ul li .rightBox .imgBox .boxText h3 {
+  display: block;
+  font-size: 1.17em;
+  -webkit-margin-before: 1em;
+          margin-block-start: 1em;
+  -webkit-margin-after: 1em;
+          margin-block-end: 1em;
+  -webkit-margin-start: 0px;
+          margin-inline-start: 0px;
+  -webkit-margin-end: 0px;
+          margin-inline-end: 0px;
+  font-weight: bold;
+}
+.container ul li .rightBox .imgBox .boxText p {
+  display: block;
+  -webkit-margin-before: 1em;
+          margin-block-start: 1em;
+  -webkit-margin-after: 1em;
+          margin-block-end: 1em;
+  -webkit-margin-start: 0px;
+          margin-inline-start: 0px;
+  -webkit-margin-end: 0px;
+          margin-inline-end: 0px;
+}
+
+.icons {
+  width: 600px;
+  height: 100px;
+  position: flex;
+  top: 550px;
+  flex-wrap: wrap;
+}
+.icons div {
+  height: 70px;
+  width: auto;
+  padding: auto;
+  margin: 10px;
+  display: inline-flex;
+  flex-wrap: wrap;
+}
+
+.taskTwo {
+  width: 100%;
+  height: 50px;
+  position: absolute;
+  bottom: 150px;
+}
+.taskTwo h2 {
+  color: #4a4a4a;
+  left: 50px;
+  border-left: 5px solid rgb(0, 222, 222);
+}
+
+.mainTwo {
+  width: 100%;
+  height: 800px;
+  position: absolute;
+  bottom: -700px;
+}
+.mainTwo .subTwo {
+  margin-left: -20px;
+  margin-right: -20px;
+  box-sizing: inherit;
+}
+.mainTwo .subTwo .subRight {
+  width: 30%;
+  position: absolute;
+  left: 700px;
+  top: 20px;
+  background-color: red;
+  float: right;
+}
+.mainTwo .subTwo .subRight ul {
+  list-style: none;
+  color: white;
+  padding: 10px;
+}
+.mainTwo .subTwo .subRight ul li {
+  margin: -10px;
+  width: 100%;
+  height: 100%;
+}
+.mainTwo .subTwo .subSubTwo {
+  position: absolute;
+  float: left;
+  padding-left: 8px;
+  padding-right: 8px;
+}
+.mainTwo .subTwo .subSubTwo .listTaskTwo {
+  position: flex;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 0;
+  margin-bottom: 0;
+  list-style: none;
+  padding: 0;
+}
+.mainTwo .subTwo .subSubTwo .listTaskTwo .listHeader {
+  position: flex;
+  flex-wrap: wrap;
+  width: 70vw;
+  padding: 10px;
+  margin: 10px;
+}
+.mainTwo .subTwo .subSubTwo .listTaskTwo .fourList {
+  position: flex;
+  flex-wrap: wrap;
+  margin: 10px;
+  padding-bottom: 10px;
+  justify-content: space-evenly;
+  box-shadow: 3px 3px 3px rgba(74, 74, 74, 0.0666666667);
+}
+.mainTwo .subTwo .subSubTwo .listTaskTwo .fourList h3 {
+  padding-left: 10px;
+}
+.mainTwo .subTwo .subSubTwo .listTaskTwo .fourList p {
+  width: 30vw;
+  overflow: scroll;
+  padding-left: 10px;
+}
+.mainTwo .subTwo .subSubTwo .listTaskTwo .fourList a {
+  padding-left: 10px;
+}
+.mainTwo .subTwo .subSubTwo .listTaskTwo .fourList img {
+  width: 300px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -webkit-mask-repeat: no-repeat;
+          mask-repeat: no-repeat;
+}/*# sourceMappingURL=style.css.map */

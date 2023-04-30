@@ -1,0 +1,105 @@
+.wrapper {
+  width: 1050px;
+  height: 1000px;
+  margin: auto;
+}
+
+.line5 {
+  width: 1050px;
+  height: 200px;
+}
+.line5 .blue {
+  position: relative;
+  left: 50px;
+}
+.line5 .blue img {
+  width: 200px;
+  height: 200px;
+}
+.line5 .yelow {
+  position: relative;
+  left: 220px;
+  top: -195px;
+}
+.line5 .yelow img {
+  width: 200px;
+  height: 200px;
+}
+.line5 .brawn {
+  position: relative;
+  left: 400px;
+  top: -395px;
+}
+.line5 .brawn img {
+  width: 200px;
+  height: 200px;
+}
+.line5 .green {
+  position: relative;
+  left: 590px;
+  top: -590px;
+}
+.line5 .green img {
+  width: 180px;
+  height: 180px;
+}
+.line5 .red {
+  position: relative;
+  left: 800px;
+  top: -770px;
+}
+.line5 .red img {
+  width: 140px;
+  height: 180px;
+}
+
+.line4 {
+  width: 1050px;
+  height: 180px;
+  position: relative;
+  left: 100px;
+}
+.line4 .blue {
+  position: relative;
+  left: 50px;
+}
+.line4 .blue img {
+  width: 200px;
+  height: 200px;
+}
+.line4 .yelow {
+  position: relative;
+  left: 220px;
+  top: -195px;
+}
+.line4 .yelow img {
+  width: 200px;
+  height: 200px;
+}
+.line4 .brawn {
+  position: relative;
+  left: 400px;
+  top: -395px;
+}
+.line4 .brawn img {
+  width: 200px;
+  height: 200px;
+}
+.line4 .green {
+  position: relative;
+  left: 590px;
+  top: -590px;
+}
+.line4 .green img {
+  width: 180px;
+  height: 180px;
+}
+.line4 .red {
+  position: relative;
+  left: 800px;
+  top: -770px;
+}
+.line4 .red img {
+  width: 140px;
+  height: 180px;
+}/*# sourceMappingURL=style.css.map */
