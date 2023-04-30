@@ -1,0 +1,42 @@
+@charset "UTF-8";
+.chessboard {
+  display: flex;
+  flex-wrap: wrap;
+  width: 400px;
+}
+
+.row {
+  display: flex;
+  width: 100%;
+}
+
+.square {
+  width: calc(100% / 8);
+  padding-bottom: calc(100% / 8);
+  background-color: lightgray;
+}
+
+.row:nth-child(odd) .square:nth-child(even),
+.row:nth-child(even) .square:nth-child(odd) {
+  background-color: #808080;
+}
+
+.row:nth-child(1) .square:nth-child(1)::before,
+.row:nth-child(1) .square:nth-child(8)::before,
+.row:nth-child(8) .square:nth-child(1)::before,
+.row:nth-child(8) .square:nth-child(8)::before {
+  content: "♜";
+}
+
+.square:hover::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("https://p7.hiclipart.com/preview/544/273/88/chess-piece-rook-knight-pawn-chess.jpg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  z-index: 1;
+}
