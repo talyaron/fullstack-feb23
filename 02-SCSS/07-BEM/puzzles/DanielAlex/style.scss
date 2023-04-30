@@ -1,4 +1,7 @@
-
+*{
+    margin:0;
+    padding: 0;
+}
 
 .categories {
   display: flex;
@@ -89,6 +92,7 @@
 
 }
 
+<<<<<<< Updated upstream
 .topic {
     
     margin: auto;
@@ -217,3 +221,9 @@
     }
 }
 
+=======
+.container{
+    display: flex;
+    flex-direction: row-reverse;
+}
+>>>>>>> Stashed changes
