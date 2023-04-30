@@ -1,0 +1,92 @@
+.ruler {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.ruler img {
+  width: 20px;
+  height: auto;
+}
+.ruler .search {
+  width: 1250px;
+  text-align: end;
+  border-radius: 20px;
+  border: white;
+  color: gray;
+  height: 30px;
+}
+.ruler .create {
+  border-radius: 20px;
+  border: white;
+  background-color: white;
+}
+.ruler .home {
+  border-radius: 20px;
+  background-color: black;
+  color: white;
+  font-weight: bold;
+}
+
+.ruler2 {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  width: 100%;
+}
+.ruler2 .divtext {
+  width: 1070px;
+}
+.ruler2 .divtext .pmain {
+  font-weight: bold;
+  font-size: 15px;
+}
+.ruler2 .divtext p {
+  font-size: 10px;
+}
+.ruler2 .settings {
+  border-radius: 20px;
+  border: red;
+  background-color: red;
+  color: white;
+  font-weight: bold;
+  height: 35px;
+  width: 130px;
+  margin-bottom: 20px;
+  margin-right: 5px;
+}
+.ruler2 .notnow {
+  border-radius: 20px;
+  border: grey;
+  font-weight: bold;
+  height: 35px;
+  width: 70px;
+  margin-bottom: 20px;
+  margin-right: 135px;
+}
+
+.main {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.imgs {
+  display: flex;
+  flex-direction: column;
+}
+.imgs .imgsmall {
+  border-radius: 10px;
+  width: 140px;
+  height: 140px;
+  margin-bottom: 10px;
+}
+.imgs .imgbig {
+  border-radius: 10px;
+  width: 140px;
+  height: 220px;
+  margin-bottom: 10px;
+}
+.imgs img:hover {
+  transform: scale(0.9);
+}/*# sourceMappingURL=style.css.map */

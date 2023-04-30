@@ -1,0 +1,133 @@
+body {
+  width: 100%;
+  height: 100%;
+}
+
+.container {
+  position: relative;
+  top: 200px;
+}
+
+.car {
+  width: 200px;
+  height: 100px;
+}
+
+.roadOne {
+  width: 800px;
+  height: 100px;
+  border: 2px solid black;
+}
+
+.one {
+  -webkit-animation-name: move;
+          animation-name: move;
+  -webkit-animation-duration: 3s;
+          animation-duration: 3s;
+  position: relative;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+  -webkit-animation-delay: 6s;
+          animation-delay: 6s;
+}
+
+.two {
+  -webkit-animation-name: move;
+          animation-name: move;
+  -webkit-animation-duration: 4s;
+          animation-duration: 4s;
+  position: relative;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+  -webkit-animation-delay: 6s;
+          animation-delay: 6s;
+  margin-top: 50px;
+}
+
+@-webkit-keyframes move {
+  0% {
+    left: 0px;
+  }
+  50% {
+    left: 800px;
+  }
+  100% {
+    left: 0px;
+    transform: rotate(180deg);
+  }
+}
+
+@keyframes move {
+  0% {
+    left: 0px;
+  }
+  50% {
+    left: 800px;
+  }
+  100% {
+    left: 0px;
+    transform: rotate(180deg);
+  }
+}
+/*counter*/
+.counterMain {
+  display: flex;
+}
+
+.counterOne {
+  -webkit-animation-name: counter;
+          animation-name: counter;
+  -webkit-animation-duration: 2s;
+          animation-duration: 2s;
+  -webkit-animation-delay: 4s;
+          animation-delay: 4s;
+  font-size: 30px;
+  width: 50px;
+  height: 50px;
+  position: relative;
+  right: 100px;
+}
+
+.counterTwo {
+  -webkit-animation-name: counter;
+          animation-name: counter;
+  -webkit-animation-delay: 2s;
+          animation-delay: 2s;
+  -webkit-animation-duration: 2s;
+          animation-duration: 2s;
+  font-size: 30px;
+  width: 50px;
+  height: 50px;
+  position: relative;
+  right: 100px;
+}
+
+.counterThree {
+  -webkit-animation-name: counter;
+          animation-name: counter;
+  -webkit-animation-duration: 2s;
+          animation-duration: 2s;
+  font-size: 30px;
+  width: 50px;
+  height: 50px;
+  position: relative;
+  right: 100px;
+}
+
+@-webkit-keyframes counter {
+  from {
+    right: 100px;
+  }
+  to {
+    right: -500px;
+  }
+}
+
+@keyframes counter {
+  from {
+    right: 100px;
+  }
+  to {
+    right: -500px;
+  }
+}/*# sourceMappingURL=style.css.map */

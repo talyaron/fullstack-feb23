@@ -1,0 +1,97 @@
+.wrapper__hugeballon--basket {
+  width: 200px;
+  position: absolute;
+  height: 300px;
+  top: 455px;
+  left: 735px;
+}
+.wrapper__image {
+  -webkit-animation-name: theballoon;
+          animation-name: theballoon;
+  cursor: pointer;
+  position: absolute;
+  -webkit-animation-timing-function: linear;
+          animation-timing-function: linear;
+  -webkit-animation-delay: 3s;
+          animation-delay: 3s;
+  -webkit-animation-duration: 4s;
+          animation-duration: 4s;
+  -webkit-animation-direction: normal;
+          animation-direction: normal;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+}
+.wrapper__image img {
+  width: 190px;
+  height: 220px;
+}
+.wrapper__image--natural {
+  display: block;
+}
+.wrapper__image:active .wrapper__image--natural {
+  display: none;
+}
+.wrapper__image:active .wrapper__image--effect {
+  display: block;
+}
+.wrapper__image--effect {
+  display: none;
+}
+
+@-webkit-keyframes theballoon {
+  0% {
+    top: 510px;
+    left: 735px;
+    width: 120px;
+    height: 310px;
+  }
+  50% {
+    top: 450px;
+    left: 735px;
+    width: 200px;
+    height: 450px;
+  }
+  80% {
+    top: 200px;
+    left: 735px;
+    width: 400px;
+    height: 550px;
+    transform: rotate(5deg);
+  }
+  100% {
+    top: 0px;
+    left: 735px;
+    width: 460px;
+    height: 600px;
+    transform: rotate(-10deg);
+  }
+}
+
+@keyframes theballoon {
+  0% {
+    top: 510px;
+    left: 735px;
+    width: 120px;
+    height: 310px;
+  }
+  50% {
+    top: 450px;
+    left: 735px;
+    width: 200px;
+    height: 450px;
+  }
+  80% {
+    top: 200px;
+    left: 735px;
+    width: 400px;
+    height: 550px;
+    transform: rotate(5deg);
+  }
+  100% {
+    top: 0px;
+    left: 735px;
+    width: 460px;
+    height: 600px;
+    transform: rotate(-10deg);
+  }
+}/*# sourceMappingURL=hugeballon.css.map */
