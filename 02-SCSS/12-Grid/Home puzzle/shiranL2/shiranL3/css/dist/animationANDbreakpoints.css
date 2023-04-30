@@ -1,0 +1,47 @@
+::-webkit-scrollbar {
+  height: 10px;
+  cursor: pointer;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #383737;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #1a1e25;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #181818;
+  height: 150px;
+}
+
+@keyframes backgroundAn {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 100% 0;
+  }
+}
+@keyframes wapperAn {
+  from {
+    background-color: pink;
+  }
+  to {
+    background-color: #86061c;
+  }
+}
+@media only screen and (max-width: 900px) {
+  .wapper {
+    border-radius: 10px;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .wapper {
+    border-radius: 20px;
+  }
+}
