@@ -4,7 +4,8 @@
 
 .wrapper {
   margin: auto;
-  width: 100ch;
+  width: 400px;
+  padding-left: 20px;
 }
 .wrapper__mainheader {
   width: 300px;
@@ -15,7 +16,7 @@
   background: none;
   border: none;
   position: relative;
-  left: 90px;
+  left: 120px;
 }
 .wrapper__mainheader button:hover {
   border-radius: 360px;
@@ -25,8 +26,47 @@
   width: 150px;
   height: 50px;
 }
+.wrapper__imgs {
+  width: 300px;
+  padding-top: 20px;
+  justify-content: end;
+}
+.wrapper__imgs img {
+  width: 120px;
+  height: 150px;
+  border-radius: 7px;
+}
+.wrapper__imgs__row1 {
+  display: flex;
+  gap: 5px;
+}
+.wrapper__imgs__row1 .p1 {
+  flex: 1;
+}
+.wrapper__imgs__row1 .p2 {
+  flex: 1.5;
+  width: 250px;
+}
+.wrapper__imgs__row2 {
+  padding-top: 5px;
+}
+.wrapper__imgs__row2 .p3 {
+  width: 117%;
+}
+.wrapper__imgs__row3 {
+  display: flex;
+  gap: 5px;
+}
+.wrapper__imgs__row3 .p5 {
+  flex: 1;
+}
+.wrapper__imgs__row3 .p4 {
+  flex: 1.5;
+  width: 250px;
+}
 .wrapper__navbar {
   position: absolute;
+  padding-left: 20px;
   bottom: 10vh;
   width: 300px;
   display: flex;
