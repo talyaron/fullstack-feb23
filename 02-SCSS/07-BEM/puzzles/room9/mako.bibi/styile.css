@@ -1,0 +1,170 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  direction: rtl;
+  margin: 0 auto;
+  font-family: sans-serif;
+  background-color: whitesmoke;
+}
+
+.wrapper {
+  background-color: white;
+  margin: 0 auto;
+  max-width: 100%;
+}
+.wrapper__main12 {
+  background-color: #db000b;
+  width: 100%;
+}
+.wrapper__main12__mako {
+  margin-right: 12%;
+  height: 80px;
+}
+.wrapper .nav {
+  background-color: whitesmoke;
+}
+.wrapper .nav :nth-last-child(-n+3) {
+  display: flex;
+}
+.wrapper .nav :nth-last-child(-n+3) img {
+  width: 20px;
+}
+.wrapper .nav__menu {
+  display: flex;
+  justify-content: center;
+}
+.wrapper .nav__menu a {
+  font-weight: 600;
+  margin: 12px;
+  text-decoration: none;
+  color: black;
+}
+.wrapper .nav__menu a:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+.wrapper .nav__menu .political {
+  color: red;
+}
+.wrapper .nav__menu .Search {
+  margin-right: 30px;
+}
+.wrapper span {
+  margin-right: 15%;
+  font-weight: 700;
+  color: red;
+  font-size: 30px;
+}
+.wrapper__ads img {
+  margin-right: 13%;
+  max-width: 70%;
+  margin-bottom: 20px;
+}
+.wrapper__ads-1 img {
+  float: right;
+  margin-right: 1%;
+  max-width: 10%;
+}
+.wrapper__ads-2 {
+  display: flex;
+  flex-direction: column;
+  float: left;
+  align-items: center;
+}
+.wrapper__ads-2 img {
+  max-width: 44%;
+  float: left;
+  margin-left: 26%;
+}
+.wrapper__ads-2 h2 {
+  margin-left: 52%;
+}
+.wrapper__ads-2__more {
+  display: flex;
+  padding: 2px;
+}
+.wrapper__ads-2__more img {
+  width: 25%;
+  margin: 0;
+  margin-right: 6%;
+}
+.wrapper__ads-2__more p {
+  width: 248px;
+  margin: 6px;
+  font-weight: 700;
+  text-align: justify;
+}
+.wrapper__text {
+  background-color: white;
+  max-width: 50%;
+  margin-right: 8%;
+}
+.wrapper__text__h1 {
+  margin-top: 2%;
+  margin-right: 14%;
+  font-size: 46px;
+}
+.wrapper__text__h2 {
+  text-align: justify;
+  font-size: 20px;
+  margin-top: 1%;
+  margin-right: 14%;
+}
+
+.mainads {
+  display: flex;
+  align-items: flex-end;
+}
+.mainads__img {
+  margin: 0;
+  margin-top: 1%;
+  margin-left: 1%;
+  margin-right: 7.5%;
+  width: 4%;
+}
+.mainads__p {
+  font-size: large;
+  color: rgb(149, 148, 148);
+  font-size: 15px;
+}
+.mainads__spam {
+  color: rgb(149, 148, 148);
+}
+
+.spam2 {
+  margin-right: 4%;
+  font-size: 23px;
+  color: red;
+}
+
+.wrapper__text img {
+  margin-top: 2%;
+  margin-right: 8%;
+  width: 84%;
+}
+.wrapper__text .img-2 {
+  float: right;
+  width: 15%;
+  margin-right: 14%;
+}
+.wrapper__text__p2 {
+  padding: 4px;
+  margin-right: 14%;
+  color: rgb(149, 148, 148);
+  font-size: 75%;
+}
+.wrapper__text__p3 {
+  text-align: justify;
+  margin-top: 2%;
+  font-size: 1.125rem;
+}
+.wrapper__text__moreads {
+  display: flex;
+  float: left;
+}
+.wrapper__text__moreads h2 {
+  display: flex;
+}/*# sourceMappingURL=styile.css.map */

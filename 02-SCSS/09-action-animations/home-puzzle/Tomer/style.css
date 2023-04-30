@@ -1,0 +1,103 @@
+body {
+  background-image: url(https://media.istockphoto.com/id/1186790852/vector/abstract-blurred-colorful-background.jpg?s=612x612&w=0&k=20&c=AuYq0OYK55PfWulrgi-JpRBDRjkNQNcSxJ_zlO-b96I=);
+  background-size: cover;
+  align-items: center;
+  font-family: "Assistant", sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+
+h1 {
+  direction: rtl;
+  color: white;
+  text-align: center;
+  text-shadow: -1px 3px 6px #000000;
+}
+
+.first {
+  width: 550px;
+  height: 550px;
+}
+
+.main {
+  display: none;
+  width: 100px;
+  height: 500px;
+}
+
+.pic {
+  width: 500px;
+  height: 500px;
+  display: flex;
+}
+
+.btns {
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  display: flex;
+}
+
+.all {
+  color: white;
+  margin: 20px;
+  padding: 10px;
+  text-decoration: none;
+  color: #fff;
+  background: linear-gradient(to right, #fc00ff, #00dbde);
+  background-color: #fc00ff;
+  color: #fff;
+  text-decoration: none;
+  padding: 14px 14px;
+  border: 0px solid #000000;
+  border-radius: 19px;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 0px 9px 0px #000000;
+}
+
+a.all:hover {
+  cursor: pointer;
+  transition: 1000ms;
+  transform: translateY(-6px);
+  background: linear-gradient(90deg, #0066CC 0%, #c500cc 100%);
+  color: #ffffff;
+  border: none;
+  background: linear-gradient(to right, #fc51ff, #51dfe2);
+  background-color: #fc51ff;
+  display: flex;
+  justify-content: center;
+}
+
+.bt1:focus {
+  content: url(https://images.pexels.com/photos/3408744/pexels-photo-3408744.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);
+  display: flex;
+  bottom: 200px;
+  height: 400px;
+  justify-content: center;
+}
+
+.bt2:focus {
+  content: url(https://images.pexels.com/photos/807598/pexels-photo-807598.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);
+  display: flex;
+  width: 700px;
+  height: 400px;
+  justify-content: center;
+}
+
+.bt3:focus {
+  content: url(https://images.pexels.com/photos/1486222/pexels-photo-1486222.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);
+  display: flex;
+  width: 700px;
+  height: 400px;
+  justify-content: center;
+}
+
+.bt4:focus {
+  content: url(https://images.pexels.com/photos/1005417/pexels-photo-1005417.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);
+  display: flex;
+  width: 700px;
+  height: 400px;
+  justify-content: center;
+}/*# sourceMappingURL=style.css.map */

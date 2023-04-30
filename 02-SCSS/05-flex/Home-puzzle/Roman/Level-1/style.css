@@ -1,0 +1,101 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+}
+.wrapper h2 {
+  width: 100%;
+  font-family: sans-serif;
+  color: #414141;
+  line-height: 24px;
+  flex-wrap: nowrap;
+}
+.wrapper h2,
+.wrapper .category {
+  border-left: 3px solid yellow;
+  padding-left: 5px;
+}
+.wrapper .items {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+.wrapper .items .item-box {
+  width: 400px;
+}
+.wrapper .items .item-box .pic {
+  background-size: cover;
+  height: 250px;
+  width: auto;
+}
+.wrapper .items .item-box .pic1 {
+  background-image: url(../img/img1.png);
+}
+.wrapper .items .item-box .pic2 {
+  background-image: url(../img/img2.png);
+}
+.wrapper .items .item-box .pic3 {
+  background-image: url(../img/img3.png);
+}
+.wrapper .items .item-box .title {
+  font-size: 20px;
+  font-weight: 770;
+  font-family: sans-serif;
+  color: #1e1e1e;
+  padding-top: 10px;
+}
+.wrapper .items .item-box .text {
+  color: #414141;
+  padding: 10px 0;
+}
+.wrapper .category {
+  text-transform: uppercase;
+  color: gray;
+}
+.wrapper .weather h2 {
+  font-size: 20px;
+  display: flex;
+  border: none;
+  margin: 40px 0px;
+}
+.wrapper .weather h2:after {
+  content: "EDIT";
+  font-size: 13px;
+  line-height: 13px;
+  align-content: center;
+  background-color: lightgray;
+  color: gray;
+  padding: 5px;
+  margin-left: 10px;
+}
+.wrapper .weather .weather-forecast {
+  display: flex;
+  flex-direction: column;
+}
+.wrapper .weather .weather-forecast .forecast-list {
+  display: flex;
+}
+.wrapper .weather .weather-forecast .forecast-list .forecast {
+  flex-direction: row;
+  display: inline-flex;
+  margin-right: 25px;
+}
+.wrapper .weather .weather-forecast .forecast-list .forecast .forecast-text {
+  display: flex;
+  flex-direction: column;
+}
+.wrapper .weather .weather-forecast .forecast-list .forecast h3,
+.wrapper .weather .weather-forecast .forecast-list .forecast p {
+  margin: 0;
+}
+.wrapper .weather .weather-forecast .forecast-list .forecast .day {
+  text-transform: uppercase;
+  font-size: 12px;
+}
+.wrapper .weather .weather-forecast .forecast-list .forecast .high {
+  font-size: 20px;
+  font-weight: bold;
+}
+.wrapper .weather .weather-forecast .forecast-list .forecast .low {
+  font-size: 14px;
+  color: gray;
+}/*# sourceMappingURL=style.css.map */

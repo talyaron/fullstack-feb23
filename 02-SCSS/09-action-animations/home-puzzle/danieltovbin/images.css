@@ -1,0 +1,19 @@
+.wrapper .all {
+  position: absolute;
+  width: 92%;
+  top: 27px;
+  height: 72vh;
+  display: flex;
+  background-image: url("https://images.pexels.com/photos/2433283/pexels-photo-2433283.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+  background-size: cover;
+}
+.wrapper #first:active ~ .all {
+  background-image: url("https://images.pexels.com/photos/3699434/pexels-photo-3699434.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+}
+.wrapper .buttons {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  gap: 34px;
+  margin: auto;
+}/*# sourceMappingURL=images.css.map */

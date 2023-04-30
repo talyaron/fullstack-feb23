@@ -1,0 +1,70 @@
+body {
+  margin: 20px;
+  background: hsl(70deg, 31%, 85%);
+  text-align: center;
+}
+
+.wrapper .balloon {
+  position: absolute;
+  box-sizing: border-box;
+}
+.wrapper .balloon .gold {
+  position: relative;
+  left: 410px;
+  top: -1880px;
+  transform: rotate(20deg);
+}
+.wrapper .balloon .pink {
+  position: relative;
+  left: 250px;
+  top: -980px;
+  transform: rotate(-25deg);
+}
+.wrapper .balloon .lightpink {
+  position: relative;
+  left: 310px;
+  top: -1400px;
+  transform: rotate(-15deg);
+}
+.wrapper .balloon .green {
+  position: relative;
+  left: 500px;
+  top: -2750px;
+  transform: rotate(15deg);
+}
+.wrapper .balloon .lightgreen {
+  position: relative;
+  left: 580px;
+  top: -2320px;
+  transform: rotate(35deg);
+}
+.wrapper .balloon .blue {
+  position: relative;
+  left: 555px;
+  top: 780px;
+  transform: rotate(10deg);
+}
+.wrapper .balloon .lightblue {
+  position: relative;
+  left: 100px;
+  top: 210px;
+  transform: rotate(-30deg);
+}
+.wrapper .balloon .red {
+  position: relative;
+  left: 210px;
+  top: -3100px;
+  transform: rotate(-30deg);
+}
+.wrapper .balloon .redheart {
+  position: relative;
+  left: 600px;
+  top: -3600px;
+  transform: rotate(32deg);
+}
+.wrapper .balloon .orange {
+  position: relative;
+  left: 330px;
+  top: -450px;
+  transform: rotate(-5deg);
+}/*# sourceMappingURL=Bstyle.css.map */

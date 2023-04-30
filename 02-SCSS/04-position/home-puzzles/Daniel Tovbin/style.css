@@ -1,0 +1,126 @@
+.wrapper {
+  position: relative;
+}
+.wrapper .balloon img {
+  position: absolute;
+}
+.wrapper .one img {
+  top: 3px;
+  left: 100px;
+}
+.wrapper .ten img {
+  top: 3px;
+  left: 360px;
+  width: 230px;
+}
+.wrapper .two img {
+  top: 3px;
+  left: 660px;
+  width: 160px;
+}
+.wrapper .eleven img {
+  top: 3px;
+  left: 930px;
+  width: 220px;
+}
+.wrapper .three img {
+  top: 3px;
+  left: 1200px;
+  width: 230px;
+}
+.wrapper .twelve img {
+  top: 250px;
+  width: 190px;
+  left: 380px;
+}
+.wrapper .four img {
+  top: 240px;
+  width: 170px;
+  left: 120px;
+}
+.wrapper .five img {
+  top: 260px;
+  width: 250px;
+  left: 620px;
+}
+.wrapper .thirteen img {
+  top: 260px;
+  width: 200px;
+  left: 940px;
+}
+.wrapper .six img {
+  top: 270px;
+  left: 1240px;
+  width: 150px;
+}
+.wrapper .seven img {
+  top: 470px;
+  left: 100px;
+}
+.wrapper .fourteen img {
+  top: 480px;
+  left: 370px;
+  width: 210px;
+}
+.wrapper .eight img {
+  top: 470px;
+  left: 650px;
+  width: 190px;
+}
+.wrapper .fifteen img {
+  top: 470px;
+  left: 930px;
+}
+.wrapper .nine img {
+  top: 470px;
+  left: 1200px;
+}
+
+.task-two .behind {
+  position: relative;
+}
+.task-two .behind img {
+  filter: blur(5px);
+}
+.task-two .one img {
+  position: relative;
+  top: 870px;
+  left: 930px;
+  width: 70px;
+}
+.task-two .two img {
+  position: relative;
+  left: 440px;
+  top: 800px;
+  width: 130px;
+}
+.task-two .three img {
+  position: relative;
+  width: 100px;
+  top: 900px;
+  left: 440px;
+}
+.task-two .four img {
+  position: relative;
+  width: 200px;
+  top: 800px;
+  left: 800px;
+}
+.task-two .between {
+  position: relative;
+  width: 19px;
+}
+
+.left {
+  position: relative;
+  left: 500px;
+  top: 340px;
+  width: 270px;
+}
+
+.between {
+  position: relative;
+  left: 600px;
+  top: 50px;
+  width: 100px;
+}/*# sourceMappingURL=style.css.map */
