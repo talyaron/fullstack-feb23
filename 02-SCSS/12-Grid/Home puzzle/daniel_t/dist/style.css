@@ -1,94 +1,148 @@
-@import url("https://fonts.googleapis.com/css?family=Roboto:700,900");
-.card {
-  max-width: 220px;
-  height: 310px;
-  border-radius: 45px;
-  background-image: url("https://img.freepik.com/free-vector/black-spooky-castle-flying-dragon-canyon-with-mountains-forest-cartoon-fantasy-illustration-with-medieval-palace-with-towers-creepy-beast-with-wings-rocks-pine-trees_107791-4592.jpg?w=1800&t=st=1682324205~exp=1682324805~hmac=7c0aff0a88b8b5765f01b766676fd46b8040d745bc2e1f19125fabe593767063");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
-  position: relative;
-}
-.card__btn {
-  width: 220px;
-  height: 90px;
-  font-family: "Roboto", sans-serif;
-  position: absolute;
-  top: 225px;
-  background-color: Transparent;
-  color: white;
-  border: none;
-  border-radius: 45px;
-  cursor: pointer;
-  backdrop-filter: blur(15.7742px);
-  padding: 17px;
+.navigation {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 5px;
-  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 9px;
 }
-.card__btn .bigP {
+.navigation__left {
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  gap: 5px;
-  flex-wrap: wrap;
-  font-size: 15px;
-  font-weight: bold;
-  letter-spacing: 2.5px;
 }
-.card__btn .bigP .red {
-  clip-path: circle(11.6% at 50% 50%);
-  background-color: red;
-  height: 25px;
-  width: 25px;
+.navigation__middle {
+  display: flex;
+  gap: 35px;
 }
-.card__btn .smallP {
-  flex: 1;
-  font-size: 9px;
-  letter-spacing: 2px;
+.navigation__middle a {
+  text-decoration: none;
+  color: gray;
+}
+.navigation .right__circle {
+  display: flex;
+  border: 2px solid black;
+  border-radius: 20px;
+  width: 30px;
+  float: left;
+  height: 30px;
+}
+.navigation .right__circle--one {
+  background-color: yellow;
+}
+.navigation .right__circle--two {
+  background-color: black;
 }
 
-.Search {
-  border-radius: 180px;
-  height: 60px;
-  width: 60px;
-  background-color: yellow;
+.top {
   display: flex;
   justify-content: center;
-  align-items: center;
+  gap: 20px;
+  padding-top: 34px;
+  padding-bottom: 25px;
 }
-.Search i {
-  font-size: 35px;
+.top img:nth-child(1) {
+  background-color: yellow;
+  border-radius: 30px;
+}
+.top .title h1 {
+  width: 450px;
+  font-size: 83px;
+  line-height: 75px;
+  margin-bottom: 10px;
+}
+.top .title p {
+  width: 400px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.top .title__gettheapp {
+  display: flex;
+  border: 1px solid gray;
+  border-radius: 30px;
+  justify-content: center;
+  padding: 12px;
+}
+.top .title__gettheapp i {
+  border: 1px solid gray;
+  border-radius: 45px;
+  background-color: yellow;
+  padding: 9px 12px;
+}
+.top .visa img {
+  width: 300px;
+}
+
+.bottom {
+  display: flex;
+  justify-content: center;
+  gap: 100px;
+  padding-top: 40px;
+  border: 2px solid gray;
+  background-color: #c0baba;
+  margin-left: 90px;
+  margin-right: 90px;
+  border-radius: 15px;
+}
+.bottom .article h2 {
+  font-size: 36px;
+  width: 347px;
+  margin-bottom: 12px;
+}
+.bottom .article h3 {
+  width: 347px;
+  font-size: 16px;
+  margin-bottom: 12px;
+}
+.bottom .article__learn-more {
+  display: flex;
+  border: 1px solid yellow;
+  border-radius: 20px;
+  padding: 2px;
+  width: 160px;
+  align-items: center;
+  background-color: yellow;
+}
+.bottom .article__learn-more i {
+  border: 1px solid black;
+  border-radius: 45px;
+  background-color: black;
+  padding: 9px 12px;
+  color: yellow;
+}
+.bottom .article__learn-more p {
+  color: black;
+  margin-left: 12px;
+  width: 347px;
+}
+.bottom .box--one {
+  margin-right: 2px;
+}
+.bottom .box i {
+  border: 2px solid yellow;
+  padding: 7px 7px;
+  border-radius: 20px;
+  background-color: yellow;
+}
+.bottom .box h3 {
+  width: 100px;
+  font-size: 13px;
+  margin-top: 10px;
+}
+.bottom .box__one, .bottom .box__two, .bottom .box__three, .bottom .box__four {
+  border: 2px solid white;
+  text-align: center;
+  padding: 14px 5px;
+  border-radius: 15px;
+  background-color: white;
+  gap: 3px;
+  margin-bottom: 22px;
 }
 
 * {
+  text-transform: capitalize;
   margin: 0;
   padding: 0;
-  font-family: "Roboto";
 }
 
-.header {
-  display: flex;
-}
-.header p {
-  font-size: 30px;
-}
-
-.wapper {
-  width: 800px;
-  border: 1px solid black;
-  margin: auto;
-}
-
-@media screen and (max-width: 900px) {
-  .header__item {
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    background-color: purple;
-  }
+body {
+  max-width: 100rem;
+  height: 100px;
 }

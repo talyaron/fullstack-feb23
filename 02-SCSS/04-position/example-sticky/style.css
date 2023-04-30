@@ -1,0 +1,31 @@
+.wrapper {
+  position: absolute;
+  left: 200px;
+  background-color: teal;
+}
+.wrapper .box {
+  width: 100px;
+  height: 100px;
+  background-color: wheat;
+  border: 1px solid gray;
+}
+.wrapper .relative {
+  position: relative;
+  left: 180px;
+}
+.wrapper .blue {
+  background-color: lightblue;
+}
+.wrapper .absolute {
+  position: absolute;
+  left: 180px;
+}
+.wrapper .wide {
+  width: 300px;
+}
+.wrapper .sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  bottom: 100px;
+  top: 10px;
+}/*# sourceMappingURL=style.css.map */

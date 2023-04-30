@@ -1,0 +1,14 @@
+.slider {
+  width: 800px;
+  height: 500px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.slider .slide {
+  width: 500%;
+  height: 500px;
+  display: flex;
+}
+.slider .slide input {
+  display: none;
+}/*# sourceMappingURL=slider.css.map */

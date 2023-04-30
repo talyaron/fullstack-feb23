@@ -1,0 +1,160 @@
+.wrapper__container {
+  display: flex;
+  max-width: 100rem;
+  margin: auto;
+  padding-left: 65px;
+  background-color: black;
+  margin: -30px;
+}
+.wrapper__container__image__star {
+  position: relative;
+  width: 230px;
+  height: 100px;
+}
+.wrapper__container__image__star video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  background-repeat: repeat;
+  -o-object-fit: cover;
+     object-fit: cover;
+  transform: scale(0.9) translateY(0%) translateX(-10%);
+}
+.wrapper__container__image__star img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 90%;
+  height: 90%;
+}
+.wrapper__container__image__national-geographic {
+  position: relative;
+  width: 230px;
+  height: 100px;
+}
+.wrapper__container__image__national-geographic video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  background-repeat: repeat;
+  -o-object-fit: cover;
+     object-fit: cover;
+  transform: scale(0.9) translateY(0%) translateX(-10%);
+}
+.wrapper__container__image__national-geographic img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 90%;
+  height: 90%;
+}
+.wrapper__container__image__starwars {
+  position: relative;
+  width: 230px;
+  height: 100px;
+}
+.wrapper__container__image__starwars video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  background-repeat: repeat;
+  -o-object-fit: cover;
+     object-fit: cover;
+  transform: scale(0.9) translateY(0%) translateX(-10%);
+}
+.wrapper__container__image__starwars img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 90%;
+  height: 90%;
+}
+.wrapper__container__image__marvel {
+  position: relative;
+  width: 230px;
+  height: 100px;
+}
+.wrapper__container__image__marvel video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  background-repeat: repeat;
+  -o-object-fit: cover;
+     object-fit: cover;
+  transform: scale(0.9) translateY(0%) translateX(-10%);
+}
+.wrapper__container__image__marvel img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 90%;
+  height: 90%;
+}
+.wrapper__container__image__pixar {
+  position: relative;
+  width: 230px;
+  height: 100px;
+}
+.wrapper__container__image__pixar video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  background-repeat: repeat;
+  -o-object-fit: cover;
+     object-fit: cover;
+  transform: scale(0.9) translateY(0%) translateX(-10%);
+}
+.wrapper__container__image__pixar img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 90%;
+  height: 90%;
+}
+.wrapper__container__image__disney {
+  position: relative;
+  width: 230px;
+  height: 100px;
+}
+.wrapper__container__image__disney video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  background-repeat: repeat;
+  -o-object-fit: cover;
+     object-fit: cover;
+  transform: scale(0.9) translateY(0%) translateX(-10%);
+}
+.wrapper__container__image__disney img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 90%;
+  height: 90%;
+}
+
+.wrapper__container__image:hover img {
+  display: none;
+}
+
+.wrapper__container__image:hover video {
+  display: block;
+}/*# sourceMappingURL=body.css.map */
