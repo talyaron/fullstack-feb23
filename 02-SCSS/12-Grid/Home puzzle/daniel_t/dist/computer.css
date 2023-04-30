@@ -72,6 +72,7 @@
 
 .bottom {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   gap: 100px;
   padding-top: 40px;
@@ -80,14 +81,22 @@
   margin-left: 90px;
   margin-right: 90px;
   border-radius: 15px;
+  max-width: 100rem;
+  width: auto;
+}
+.bottom .article {
+  position: relative;
+  width: fit-content;
 }
 .bottom .article h2 {
   font-size: 36px;
-  width: 347px;
+  max-width: 347px;
+  width: fit-content;
   margin-bottom: 12px;
 }
 .bottom .article h3 {
-  width: 347px;
+  max-width: 347;
+  width: fit-content;
   font-size: 16px;
   margin-bottom: 12px;
 }
@@ -134,15 +143,4 @@
   background-color: white;
   gap: 3px;
   margin-bottom: 22px;
-}
-
-* {
-  text-transform: capitalize;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  max-width: 100rem;
-  height: 100px;
 }
