@@ -1,5 +1,7 @@
 # Videos
 .mp4
+*.scss
+*.css
 
 # Logs
 logs
@@ -106,3 +108,7 @@ typings/
 *.onetoc2
 02-SCSS/10-animations/example/dist/style.css
 02-SCSS/12-Grid/Home puzzle/hadar-tom/dist/style.css
+02-SCSS/15-exam/elisa/style.scss
+02-SCSS/15-exam/elisa/index.html
+02-SCSS/15-exam/elisa/dist/style.css
+02-SCSS/15-exam/elisa/dist/style.css

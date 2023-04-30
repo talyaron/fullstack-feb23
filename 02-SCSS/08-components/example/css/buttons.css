@@ -1,0 +1,10 @@
+.btn {
+  background-color: rgb(74, 220, 220);
+  color: white;
+  border: none;
+  padding: 20px;
+  border-radius: 5px;
+}
+.btn--danger {
+  background-color: tomato;
+}/*# sourceMappingURL=buttons.css.map */
