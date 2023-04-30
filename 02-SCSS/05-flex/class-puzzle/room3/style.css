@@ -1,0 +1,33 @@
+.wrapper {
+  display: flex;
+  height: 50vh;
+  margin: 20px;
+  flex-wrap: wrap;
+}
+.wrapper img {
+  background-position: center;
+  background-repeat: repeat;
+  background-size: cover;
+  position: relative;
+}
+.wrapper .box {
+  flex: 3;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.wrapper .box img {
+  width: 400px;
+}
+.wrapper .box .text {
+  color: gray;
+  font-size: 20px;
+  font-weight: bold;
+  font-family: sans-serif;
+  background-color: white;
+  height: 100px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  width: 400px;
+}/*# sourceMappingURL=style.css.map */

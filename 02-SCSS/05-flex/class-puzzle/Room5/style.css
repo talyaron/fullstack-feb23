@@ -1,0 +1,30 @@
+body {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wrapper {
+  margin: auto;
+  display: flex;
+  gap: 10px;
+  height: 700px;
+  background-image: url(https://thumbs.dreamstime.com/b/beach-sea-18378306.jpg);
+  background-size: cover;
+  align-items: center;
+  jutsify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.box {
+  border-radius: 50px;
+  background-color: rgb(7, 7, 7);
+  height: 600px;
+  color: white;
+  font-size: 100px;
+  text-align: center;
+}
+.box p {
+  margin-top: 5px;
+}/*# sourceMappingURL=style.css.map */

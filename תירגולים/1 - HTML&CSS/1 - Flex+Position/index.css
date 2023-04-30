@@ -1,0 +1,22 @@
+body {
+  margin: 0;
+}
+
+.flex-show {
+  background-color: rgb(120, 120, 239);
+  display: flex;
+  height: 100vh;
+  justify-content: space-evenly;
+  align-items: center;
+  font-size: 20px;
+}
+.flex-show p {
+  background-color: rgb(193, 193, 193);
+  font-size: 2rem;
+}
+.flex-show p:nth-child(odd) {
+  color: red;
+}
+.flex-show p:nth-child(even) {
+  color: green;
+}/*# sourceMappingURL=index.css.map */

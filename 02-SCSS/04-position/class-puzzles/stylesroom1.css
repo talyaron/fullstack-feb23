@@ -1,0 +1,17 @@
+.wrapper {
+  background-color: aliceblue;
+  position: relative;
+  left: 300px;
+  top: 300px;
+}
+
+.main {
+  width: 100px;
+  height: 100px;
+  background-color: black;
+  border: 1px dashed gray;
+}
+
+.red {
+  background-color: red;
+}/*# sourceMappingURL=stylesroom1.css.map */

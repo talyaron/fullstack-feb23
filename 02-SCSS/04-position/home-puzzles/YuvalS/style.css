@@ -1,0 +1,88 @@
+body img {
+  width: 150px;
+  height: 300px;
+}
+
+.wrapper {
+  position: relative;
+  left: 300px;
+  top: 300px;
+}
+.wrapper .green {
+  width: 300px;
+  transform: rotate(320deg);
+  position: relative;
+  left: 270px;
+}
+.wrapper .pink {
+  width: 350px;
+  transform: rotate(45deg);
+  position: relative;
+  right: 185px;
+  top: 20px;
+}
+.wrapper .yellow {
+  position: relative;
+  width: 220px;
+}
+.wrapper .blue {
+  position: relative;
+  left: 750px;
+  bottom: 50px;
+  transform: rotate(30deg);
+}
+.wrapper .red {
+  position: relative;
+  left: 110px;
+  bottom: 30px;
+  transform: rotate(333deg);
+}
+
+.wrapper2 {
+  position: relative;
+  left: 300px;
+  top: 300px;
+}
+.wrapper2 .green {
+  width: 300px;
+  transform: rotate(47deg);
+  position: relative;
+  left: 480px;
+  bottom: 280px;
+}
+.wrapper2 .pink {
+  width: 350px;
+  transform: rotate(320deg);
+  position: relative;
+  right: 335px;
+  bottom: 240px;
+}
+.wrapper2 .yellow {
+  position: relative;
+  width: 220px;
+  left: 200px;
+  bottom: 300px;
+  transform: rotate(45deg);
+}
+.wrapper2 .blue {
+  position: relative;
+  left: 610px;
+  bottom: 290px;
+  transform: rotate(340deg);
+}
+.wrapper2 .red {
+  position: relative;
+  left: 250px;
+  bottom: 340px;
+  transform: rotate(23deg);
+  width: 130px;
+}
+
+#gift {
+  position: relative;
+  left: 876px;
+  bottom: 95px;
+}
+#gift img {
+  width: 300px;
+}/*# sourceMappingURL=style.css.map */
