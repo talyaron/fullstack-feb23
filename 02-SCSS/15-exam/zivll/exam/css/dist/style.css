@@ -150,6 +150,7 @@
   animation-duration: 0.2s;
 }
 .main .services {
+  margin-top: 3%;
   display: flex;
   align-items: baseline;
   flex-direction: column;
