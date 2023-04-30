@@ -1,0 +1,48 @@
+.continer {
+  display: grid;
+  gap: 5px;
+  max-width: 100vh;
+  margin: auto;
+  grid-template-rows: [row1-start] 20px [row2] 200px [row3] 20px [row4] 200px [row5] 20px [row6] 200px [row7-end];
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-areas: "headline1 headline1 headline1 headline1 headline1" "movieblock1 movieblock2 movieblock3 movieblock4 movieblock5" "headline2 headline2 headline2 headline2 headline2" "movieblock6 movieblock7 movieblock8 movieblock9 movieblock10" "headline3 headline3 headline3 headline3 headline3" "movieblock11 movieblock12 movieblock13 movieblock14 movieblock15";
+}
+.continer .headline1 {
+  grid-area: headline1;
+}
+.continer .headline2 {
+  grid-area: headline2;
+}
+.continer .headline3 {
+  grid-area: headline3;
+}
+.continer .movieblock1 {
+  grid-area: movieblock1;
+}
+.continer .movieblock2 {
+  grid-area: movieblock2;
+}
+.continer .movieblock3 {
+  grid-area: movieblock3;
+}
+.continer .movieblock4 {
+  grid-area: movieblock4;
+}
+.continer .movieblock5 {
+  grid-area: movieblock5;
+}
+.continer .movieblock6 {
+  grid-area: movieblock6;
+}
+.continer .movieblock7 {
+  grid-area: movieblock7;
+}
+.continer .movieblock8 {
+  grid-area: movieblock8;
+}
+.continer .movieblock9 {
+  grid-area: movieblock9;
+}
+.continer .movieblock10 {
+  grid-area: movieblock10;
+}/*# sourceMappingURL=grid-style-main.css.map */

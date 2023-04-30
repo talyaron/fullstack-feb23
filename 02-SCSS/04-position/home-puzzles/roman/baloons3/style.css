@@ -1,0 +1,97 @@
+.wrapper {
+  width: 500px;
+  margin: auto;
+}
+
+.balloons {
+  position: relative;
+  top: 200px;
+  height: 200px;
+  width: 200px;
+}
+
+.balloon {
+  position: absolute;
+  width: 100px;
+  height: 200px;
+}
+
+.balloon.item-1 {
+  background: url(../dist/baloons.png) 0 0;
+  transform: rotate(20deg);
+  top: 60px;
+  right: 0;
+  z-index: 10;
+}
+
+.balloon.item-2 {
+  background: url(../dist/baloons.png) 483px 0;
+  transform: rotate(10deg);
+  left: 16px;
+  top: 50px;
+  z-index: 9;
+}
+
+.balloon.item-3 {
+  background: url(../dist/baloons.png) 675px 0;
+  transform: rotate(351deg);
+  right: 154px;
+  top: 50px;
+  z-index: 8;
+}
+
+.balloon.item-4 {
+  background: url(../dist/baloons.png) 199px 0;
+  transform: rotate(327deg);
+  right: 200px;
+  top: 70px;
+  z-index: 7;
+}
+
+.balloon.item-5 {
+  background: url(../dist/baloons.png) 483px 0;
+  transform: rotate(333deg);
+  right: 250px;
+  top: 60px;
+  z-index: 6;
+}
+
+.balloon.item-6 {
+  background: url(../dist/baloons.png) 583px 0;
+  transform: rotate(358deg);
+  right: 130px;
+  top: 20px;
+  z-index: 5;
+}
+
+.balloon.item-7 {
+  background: url(../dist/baloons.png) 295px 0;
+  transform: rotate(347deg);
+  right: 196px;
+  bottom: 20px;
+  z-index: 4;
+}
+
+.balloon.item-8 {
+  background: url(../dist/baloons.png) 391px 0;
+  transform: rotate(347deg);
+  right: 242px;
+  top: 20px;
+  z-index: 3;
+}
+
+.balloon.item-9 {
+  background: url(../dist/baloons.png) 100px 0;
+  transform: rotate(10deg);
+  right: 85px;
+  bottom: 20px;
+  z-index: 2;
+}
+
+.balloon.item-10 {
+  background: url(../dist/baloons.png) 196px 0;
+  transform: rotate(20deg);
+  right: 20px;
+  bottom: 20px;
+  z-index: 1;
+}/*# sourceMappingURL=style.css.map */
