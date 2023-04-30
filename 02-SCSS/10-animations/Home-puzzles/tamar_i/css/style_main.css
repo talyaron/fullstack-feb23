@@ -1,0 +1,308 @@
+.pakmen {
+  display: inline-block;
+  width: 0px;
+  height: 0px;
+  border: 100px solid;
+  border-color: yellow transparent yellow yellow;
+  border-radius: 50%;
+  position: relative;
+  top: 10px;
+  -webkit-animation: pacmen 15s linear 180s;
+          animation: pacmen 15s linear 180s;
+  transform: rotate(40deg);
+}
+.pakmen .pakmeniris {
+  background: black;
+  border-radius: 100%;
+  height: 20px;
+  position: absolute;
+  width: 20px;
+  top: -62px;
+  left: 10px;
+}
+
+.pakmen::before {
+  content: "";
+  display: block;
+  height: 0;
+  width: 0;
+  position: absolute;
+  border: 100px solid;
+  border-color: yellow transparent yellow yellow;
+  border-radius: 50%;
+  top: -100px;
+  left: -101px;
+  -webkit-animation: mouthBottom 0.7s ease infinite;
+          animation: mouthBottom 0.7s ease infinite;
+}
+
+.gost {
+  border-radius: 100% 100% 0 0;
+  display: inline-block;
+  height: 160px;
+  margin: 20px;
+  position: relative;
+  width: 120px;
+  left: 885px;
+  top: -9px;
+  -webkit-animation: gost 4s linear 180s alternate;
+          animation: gost 4s linear 180s alternate;
+}
+
+.eyes {
+  height: 60px;
+  left: 50%;
+  margin-left: -45px;
+  position: absolute;
+  width: 90px;
+  top: 50px;
+}
+
+.eye {
+  background: white;
+  border-radius: 100%;
+  height: 60px;
+  width: 30px;
+  -webkit-animation: blinky 0.5s linear infinite;
+          animation: blinky 0.5s linear infinite;
+}
+
+.iris {
+  background: black;
+  border-radius: 100%;
+  height: 20px;
+  position: absolute;
+  width: 20px;
+  top: 10px;
+  -webkit-animation-name: gost-iris;
+          animation-name: gost-iris;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  -webkit-animation-direction: alternate;
+          animation-direction: alternate;
+  -webkit-animation-timing-function: linear;
+          animation-timing-function: linear;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+
+.leftEye {
+  float: left;
+}
+
+.leftEye .iris {
+  left: 5px;
+}
+
+.rightEye {
+  float: right;
+}
+
+.rightEye .iris {
+  right: 5px;
+}
+
+.ghostTail {
+  background-repeat: repeat-x;
+  bottom: -20px;
+  height: 20px;
+  position: absolute;
+  width: 120px;
+}
+
+.red .ghostTail {
+  background: linear-gradient(-45deg, transparent 75%, red 75%) 0 50%, linear-gradient(45deg, transparent 75%, red 75%) 0 50%;
+  background-size: 20px 20px, 20px 20px;
+}
+
+.hexagon {
+  height: 80px;
+  width: 84px;
+  -webkit-clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+          clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+  background-color: black;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  display: inline-block;
+}
+
+.one {
+  top: 40%;
+  left: 70px;
+  -webkit-animation: hexagoneFlesh 0.5s linear 1;
+          animation: hexagoneFlesh 0.5s linear 1;
+}
+
+.two {
+  top: 46%;
+  left: 151px;
+  -webkit-animation: hexagoneFlesh 0.5s linear 0.1s 1;
+          animation: hexagoneFlesh 0.5s linear 0.1s 1;
+}
+
+.three {
+  top: 40%;
+  left: 231px;
+  -webkit-animation: hexagoneFlesh 0.5s linear 0.2s 1;
+          animation: hexagoneFlesh 0.5s linear 0.2s 1;
+}
+
+.fure {
+  top: 46%;
+  left: 317px;
+  -webkit-animation: hexagoneFlesh 0.5s linear 0.3s 1;
+          animation: hexagoneFlesh 0.5s linear 0.3s 1;
+}
+
+.five {
+  top: 53%;
+  left: 394px;
+  -webkit-animation: hexagoneFlesh 0.5s linear 0.4s 1;
+          animation: hexagoneFlesh 0.5s linear 0.4s 1;
+}
+
+.six {
+  top: 65%;
+  left: 394px;
+  -webkit-animation: hexagoneFlesh 0.5s linear 0.5s 1;
+          animation: hexagoneFlesh 0.5s linear 0.5s 1;
+}
+
+.seven {
+  top: 71%;
+  left: 317px;
+  -webkit-animation: hexagoneFlesh 0.5s linear 0.6s 1;
+          animation: hexagoneFlesh 0.5s linear 0.6s 1;
+}
+
+.eghit {
+  top: 65%;
+  left: 240px;
+  -webkit-animation: hexagoneFlesh 0.5s linear 0.7s 1;
+          animation: hexagoneFlesh 0.5s linear 0.7s 1;
+}
+
+.nine {
+  top: 53%;
+  left: 238px;
+  -webkit-animation: hexagoneFlesh 0.5s linear 0.8s 1;
+          animation: hexagoneFlesh 0.5s linear 0.8s 1;
+}
+
+.ten {
+  top: 59%;
+  left: 318px;
+  -webkit-animation: hexagoneFlesh 0.5s linear 0.9s 1;
+          animation: hexagoneFlesh 0.5s linear 0.9s 1;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #000;
+}
+
+.red {
+  background-color: red;
+}
+
+@-webkit-keyframes hexagoneFlesh {
+  0% {
+    background: black;
+  }
+  100% {
+    background: purple;
+  }
+}
+
+@keyframes hexagoneFlesh {
+  0% {
+    background: black;
+  }
+  100% {
+    background: purple;
+  }
+}
+@-webkit-keyframes gost {
+  from {
+    top: -9px;
+  }
+  to {
+    top: 573px;
+  }
+}
+@keyframes gost {
+  from {
+    top: -9px;
+  }
+  to {
+    top: 573px;
+  }
+}
+@-webkit-keyframes gost-iris {
+  from {
+    top: 7px;
+  }
+  to {
+    top: 32px;
+  }
+}
+@keyframes gost-iris {
+  from {
+    top: 7px;
+  }
+  to {
+    top: 32px;
+  }
+}
+@-webkit-keyframes blinky {
+  50% {
+    background: rgb(105, 253, 255);
+  }
+}
+@keyframes blinky {
+  50% {
+    background: rgb(105, 253, 255);
+  }
+}
+@-webkit-keyframes pacmen {
+  from {
+    left: -20%;
+  }
+  to {
+    left: 100%;
+  }
+}
+@keyframes pacmen {
+  from {
+    left: -20%;
+  }
+  to {
+    left: 100%;
+  }
+}
+@-webkit-keyframes mouthTop {
+  50% {
+    transform: rotate(45deg);
+  }
+}
+@keyframes mouthTop {
+  50% {
+    transform: rotate(45deg);
+  }
+}
+@-webkit-keyframes mouthBottom {
+  50% {
+    transform: rotate(-90deg);
+  }
+}
+@keyframes mouthBottom {
+  50% {
+    transform: rotate(-90deg);
+  }
+}/*# sourceMappingURL=style_main.css.map */

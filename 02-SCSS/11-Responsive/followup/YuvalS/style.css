@@ -1,0 +1,17 @@
+.wrapper {
+  width: 100vw;
+  display: flex;
+  gap: 10px;
+  margin: auto;
+}
+
+.box {
+  background-color: aqua;
+  flex: 1;
+}
+
+@media only screen and (max-width: 75ch) {
+  .wrapper {
+    flex-direction: column;
+  }
+}/*# sourceMappingURL=style.css.map */
