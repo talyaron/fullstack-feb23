@@ -1,7 +1,7 @@
 # Videos
 .mp4
-.scss
-.css
+*.scss
+*.css
 
 # Logs
 logs
