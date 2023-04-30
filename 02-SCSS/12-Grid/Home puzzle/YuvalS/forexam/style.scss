@@ -5,7 +5,8 @@
 
 .wrapper{
     margin: auto;
-    width: 100ch;
+    width: 400px;
+    padding-left: 20px;
 
     &__mainheader{
 
@@ -17,7 +18,7 @@
             background: none;
             border: none;
             position: relative;
-            left: 90px;
+            left: 120px;
             
         
             &:hover{
@@ -36,7 +37,49 @@
 
 
     
+    &__imgs{
+        width: 300px;
+        padding-top: 20px;
+        justify-content:end;
     
+        
+        img{
+            width: 120px;
+            height: 150px;
+            border-radius: 7px;
+        }
+
+        &__row1{
+           display: flex;
+           gap: 5px;
+           .p1{
+            flex: 1;
+           }
+           .p2{
+            flex: 1.5;
+            width: 250px;
+           }
+        }
+
+        &__row2{
+            padding-top: 5px;
+            .p3{
+             width: 117%;
+            }
+         }
+
+         &__row3{
+            display: flex;
+            gap: 5px;
+            .p5{
+             flex: 1;
+            }
+            .p4{
+             flex: 1.5;
+             width: 250px;
+            }
+         }
+    }
     
     
     
@@ -52,11 +95,13 @@
     &__navbar{
 
         position: absolute;
+        padding-left: 20px;
         bottom: 10vh;
         width: 300px;
         display: flex;
         justify-content: center;
         gap: 20px;
+
   
 button {
     width: 40px;
