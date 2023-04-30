@@ -1,0 +1,72 @@
+.card{
+    max-width: 220px;
+      height: 310px;
+      border-radius: 45px;
+      background-image: url("https://img.freepik.com/free-vector/black-spooky-castle-flying-dragon-canyon-with-mountains-forest-cartoon-fantasy-illustration-with-medieval-palace-with-towers-creepy-beast-with-wings-rocks-pine-trees_107791-4592.jpg?w=1800&t=st=1682324205~exp=1682324805~hmac=7c0aff0a88b8b5765f01b766676fd46b8040d745bc2e1f19125fabe593767063");
+      background-size: cover;                   
+      background-repeat: no-repeat;
+      background-position: center center; 
+      position: relative;  
+    
+  
+  &__btn{
+    width: 220px;
+    height: 90px;
+    font-family: 'Roboto', sans-serif;
+    position: absolute;
+    top: 225px;
+    background-color: Transparent;
+    color:white;
+    border: none;
+    border-radius: 45px;
+    cursor: pointer;
+    backdrop-filter: blur(15.7742px);
+  padding: 17px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    flex-wrap: wrap;
+  
+    .bigP{
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      flex-wrap: wrap;
+      font-size: 15px;
+      font-weight: bold;
+      letter-spacing: 2.5px;
+      .red{
+          clip-path: circle(11.6% at 50% 50%);
+          background-color: red;
+          height: 25px;
+          width: 25px;
+      }
+    }
+    .smallP{
+      flex: 1;
+      font-size: 9px;
+      letter-spacing: 2px;
+    }
+  }
+      
+  }
+  .Search{
+     border-radius: 180px;
+      height: 60px;
+      width: 60px;
+      background-color: yellow;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+     
+      i{
+  
+        font-size: 35px;
+        
+      }
+   
+  }

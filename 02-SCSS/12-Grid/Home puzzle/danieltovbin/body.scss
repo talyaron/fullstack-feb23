@@ -1,11 +1,11 @@
 @mixin name-serial {
-    position: relative;
-        width: 200px;
+        position: relative;
+        width: 230px;
         height: 100px;
 }
 
 @mixin video-img {
-    position: absolute;
+        position: absolute;
         top: 0;
         left: 0;
         width: 100%;
@@ -13,6 +13,7 @@
         display: none;
         background-repeat: repeat;
         object-fit: cover;
+        transform: scale(0.9) translateY(0%) translateX(-10%);
 }
 
 @mixin first-img {
@@ -27,6 +28,9 @@
     display: flex;
     max-width: 100rem;
     margin: auto;
+    padding-left: 65px;
+    background-color: black;
+    margin: -30px;
 
     
 
