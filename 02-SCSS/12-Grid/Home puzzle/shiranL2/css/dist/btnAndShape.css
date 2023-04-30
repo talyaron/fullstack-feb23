@@ -1,25 +1,51 @@
+.arrow {
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 5px;
+  margin: 7px;
+}
+
+.down {
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+}
+
+.hideCategory {
+  display: none;
+}
+
 .cardContainer {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   gap: 20px;
+  height: 360px;
+  justify-items: center;
 }
 .cardContainer__card {
   width: 210px;
   height: 310px;
+  opacity: 0.8;
   border-radius: 45px;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
   position: relative;
+  animation-name: smallBoxAn;
+  animation-duration: 40s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
 }
 .cardContainer__card--dragon {
   background-image: url("https://img.freepik.com/free-vector/black-spooky-castle-flying-dragon-canyon-with-mountains-forest-cartoon-fantasy-illustration-with-medieval-palace-with-towers-creepy-beast-with-wings-rocks-pine-trees_107791-4592.jpg?w=1800&t=st=1682324205~exp=1682324805~hmac=7c0aff0a88b8b5765f01b766676fd46b8040d745bc2e1f19125fabe593767063");
 }
+.cardContainer__card--bigdragon {
+  background-image: url("https://img.freepik.com/free-vector/hand-drawn-dragon_53876-86938.jpg?size=626&ext=jpg&ga=GA1.2.603089216.1682777622&semt=ais");
+}
 .cardContainer__card--witch {
   background-image: url("https://img.freepik.com/free-vector/witch-flying-moon_1308-14522.jpg?size=626&ext=jpg&uid=R96966099&ga=GA1.2.557225288.1681882927&semt=robertav1_2_sidr");
-}
-.cardContainer__card--bigdragon {
-  background-image: url("https://img.freepik.com/premium-photo/painting-dragon-top-mountain-generative-ai_791316-16727.jpg?size=626&ext=jpg&uid=R96966099&ga=GA1.2.557225288.1681882927&semt=robertav1_2_sidr");
 }
 .cardContainer__card--walkingDead {
   background-image: url("https://img.freepik.com/free-photo/scary-zombie-costume-cosplay_144627-14455.jpg?w=1380&t=st=1682571145~exp=1682571745~hmac=60b2a772cf9c0d405ef1f4fdd8055247b54f2aeb26a308eea50d3fc6368bc6df");
@@ -39,7 +65,6 @@
   border-radius: 45px;
   cursor: pointer;
   backdrop-filter: blur(15.7742px);
-  padding: 17px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -68,6 +93,15 @@
   font-size: 9px;
   letter-spacing: 2px;
 }
+.cardContainer__card:hover {
+  width: 260px;
+  height: 360px;
+  opacity: 1;
+}
+.cardContainer__card:hover .cardContainer__card__btn {
+  backdrop-filter: blur(5px);
+  top: 270px;
+}
 
 .Search {
   border-radius: 180px;
@@ -84,8 +118,10 @@
 
 .smallBoxContainer {
   display: grid;
-  grid-template-columns: repeat(18, 1fr);
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(2, 200px);
   column-gap: 20px;
+  row-gap: 20px;
 }
 .smallBoxContainer__item {
   width: 120px;
@@ -94,6 +130,31 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
+  opacity: 0.8;
+  position: relative;
+}
+.smallBoxContainer__item .check {
+  color: white;
+  font-size: 30px;
+  border: 1px solid white;
+  width: 50px;
+  height: 50px;
+  border-radius: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 60px;
+  left: 60px;
+  opacity: 0;
+}
+.smallBoxContainer__item:hover {
+  width: 180px;
+  height: 180px;
+  opacity: 1;
+}
+.smallBoxContainer__item:hover .check {
+  opacity: 1;
 }
 .smallBoxContainer .trick {
   background-image: url("https://img.freepik.com/premium-vector/cute-animal-little-mummy-panda-with-butterfly-illustration-cute-animal-watercolor-panda-character_90238-1281.jpg?w=740");
@@ -115,4 +176,41 @@
 }
 .smallBoxContainer .dog {
   background-image: url("https://img.freepik.com/free-photo/dog-surrounded-by-ferns-standing-dense-forest_23-2147831047.jpg?w=1380&t=st=1682593928~exp=1682594528~hmac=c3ab99212e004d9339df2dc2df2fe34ae016b3d685e04294d6dd1f6c7a1f85d8");
+}
+
+.btnboxstest__item {
+  width: 120px;
+  height: 120px;
+  opacity: 0.5;
+  position: relative;
+  border-radius: 40px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-image: url("https://img.freepik.com/premium-vector/cute-animal-little-mummy-panda-with-butterfly-illustration-cute-animal-watercolor-panda-character_90238-1281.jpg?w=740");
+}
+.btnboxstest__item p {
+  color: red;
+  font-size: 30px;
+  border: 1px solid red;
+  width: 50px;
+  height: 50px;
+  border-radius: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 60px;
+  left: 60px;
+  display: none;
+}
+.btnboxstest__item:hover {
+  opacity: 1;
+}
+.btnboxstest__item:focus {
+  width: 180px;
+  height: 180px;
+}
+.btnboxstest__item:focus p {
+  display: block;
 }
