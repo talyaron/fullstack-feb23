@@ -80,6 +80,7 @@
   margin-left: 90px;
   margin-right: 90px;
   border-radius: 15px;
+  max-width: 100rem;
 }
 .bottom .article h2 {
   font-size: 36px;
@@ -134,15 +135,4 @@
   background-color: white;
   gap: 3px;
   margin-bottom: 22px;
-}
-
-* {
-  text-transform: capitalize;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  max-width: 100rem;
-  height: 100px;
 }
