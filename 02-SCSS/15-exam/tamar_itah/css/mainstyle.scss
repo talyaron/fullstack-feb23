@@ -242,7 +242,7 @@ body {
             color: $b_color;
             position: absolute;
             z-index: 1;
-            animation-name: btn;
+            animation: btn1 2s linear 2s infinite normal forwards;
 
         }
 
@@ -251,16 +251,9 @@ body {
             width: 200px;
             border-radius: 20px;
             background-color: gray;
-            color: $t_color;
-            left: 25px;
-            animation-name: btn;
-
+            animation: btn2 2s linear 2s infinite normal forwards;
+            position: absolute;
         }
-    }
-
-    @keyframes btn {
-        :focus
-        
     }
 
     &__links {
@@ -276,8 +269,39 @@ body {
 
         }
     }
+}
 
+@keyframes btn1 {
+    50% {
+        background-color: gray;
+        color: $t_color;
+        // z-index: 0;
+        // width: 200px;
+    }
 
+    100% {
+        background-color: $h_color;
+        color: $b_color;
+        // z-index: 1;
+        // width: 200px;
+    }
+}
+
+@keyframes btn2 {
+    50% {
+        background-color: $h_color;
+        color: $b_color;
+        z-index: 1;
+        // width: 200px;
+        // left: 25px;
+    }
+
+    100% {
+        background-color: gray;
+        color: $t_color;
+        // z-index: 0;
+        // width: 200px;
+    }
 }
 
 .footer {
