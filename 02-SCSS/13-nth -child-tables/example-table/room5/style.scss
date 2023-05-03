@@ -1,0 +1,30 @@
+body{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+tr:nth-child(odd){
+background-color: aqua;
+}
+table, th, td {
+    width: 25vw;
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding: 10px;
+
+  }
+  td{
+    font-size: 12px;
+  }
+  th{
+    text-align: start;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    
+
+    &:hover{
+        background-color: aqua;
+        color: black;
+        font-size: 25px;
+        border: 1px solid white;
+    border-collapse: collapse;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }  
+    }
