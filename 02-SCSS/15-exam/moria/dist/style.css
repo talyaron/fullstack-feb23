@@ -141,3 +141,6 @@ body .container .icons {
   font-size: 20px;
   padding-bottom: 20px;
 }
+body .container .icons i:nth-child(1) {
+  color: #202091;
+}
