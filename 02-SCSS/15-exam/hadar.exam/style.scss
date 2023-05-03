@@ -125,7 +125,7 @@
         font-size: 22px;
         color: rgb(0, 0, 61);
         i {
-          color: rgba(101, 209, 105, 1);
+          color: rgba(102, 209, 105, 1);
           font-weight: bolder;
         }
       }
@@ -135,7 +135,7 @@
       }
     }
 
-    @media only screen and (max-width: 1024px) {
+    @media only screen and (max-width: 1510px) {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       grid-template-rows: repeat(2, 1fr);

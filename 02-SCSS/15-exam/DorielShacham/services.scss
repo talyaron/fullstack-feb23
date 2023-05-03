@@ -1,6 +1,7 @@
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css');
 
 .services {
+    z-index: 0; //test after giving exam...to check git
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 20px;

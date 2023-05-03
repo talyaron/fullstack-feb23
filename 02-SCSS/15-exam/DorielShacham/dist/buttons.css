@@ -7,6 +7,7 @@
   align-items: center;
   background-color: #c8c8c8;
   border-radius: 25px;
+  z-index: 0;
 }
 .buttons .buttonsContainer {
   display: flex;
