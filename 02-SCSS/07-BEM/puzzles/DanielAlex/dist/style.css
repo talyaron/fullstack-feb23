@@ -1,3 +1,8 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
 .categories {
   display: flex;
   gap: 30px;
@@ -50,6 +55,7 @@
 .container {
   margin: auto;
   display: flex;
+<<<<<<< Updated upstream
   direction: rtl;
   box-sizing: border-box;
   width: 1200px;
@@ -191,4 +197,12 @@
   font-size: 20px;
   padding: 4px;
   width: 200px;
+=======
+  justify-content: flex-end;
+}
+
+.container {
+  display: flex;
+  flex-direction: row-reverse;
+>>>>>>> Stashed changes
 }

@@ -5,32 +5,40 @@
  
  /* Track */
  ::-webkit-scrollbar-track {
-   background: #383737; 
+   background: #9CCC65; 
  }
   
  /* Handle */
  ::-webkit-scrollbar-thumb {
-   background:rgba(26,30,37,255); 
+   background: #70cefa
  }
  
  /* Handle on hover */
  ::-webkit-scrollbar-thumb:hover {
-   background: #181818; 
+   background: #4FC3F7; 
    height: 150px;
  }
 
-
+ .arrow {
+  border: solid black;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+}
+.right {
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+}
 
 //animations
 
-@keyframes backgroundAn {
+@keyframes icondAn {
     from {
-        background-position: 0 0;
-       
+       opacity: 0;
 
       }
       to {
-        background-position: 100% 0;
+        opacity:1;
          
       }
   }
@@ -50,13 +58,37 @@
   
   //breaking point
 
-  @media only screen and (max-width: 900px) {
+  @media only screen and (max-width: 1020px) {
     .wapper{
-     border-radius: 10px;
+    
     }
+    .gradientdiv__boxContainer{
+      overflow-y: hidden;
+    }
+    .telemedicinetext{
+      p{
+        font-size: 15px;
+      }
+    }
+    .telemedicineheder{
+      p{
+        font-size: 25px;
+      }
+    }
+    .telemedicineicon{
+      i{
+        font-size: 70px;
+      }
+    }
+    .bigList{
+
+      grid-template-columns: repeat(2 ,1fr) !important;
+    }
+
 }
  @media only screen and (max-width: 600px) {
- .wapper{
-     border-radius: 20px;
-    }
+  .bigList{
+
+    grid-template-columns: repeat(1 ,1fr) !important;
+  }
 }
