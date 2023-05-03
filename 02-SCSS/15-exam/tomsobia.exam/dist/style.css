@@ -134,7 +134,7 @@ body {
   font-size: 1.5vw;
 }
 .wrapper .btn1:focus {
-  background-color: blue;
+  background-color: #0000eb;
 }
 .wrapper .btn2:focus {
   background-color: blue;
