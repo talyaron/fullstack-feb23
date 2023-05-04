@@ -3,9 +3,12 @@ var x = "Ziv";
 console.log(y, x);
 var adult = 18;
 var userAge = prompt("מהו הגיל שלך?");
-if (userAge < adult) {
-    console.log("You can not by any alcohol");
+var ageAsNumber = parseInt(userAge || "0");
+if (ageAsNumber < adult) {
+    document.write("<h2>אתה צעיר מידי בשביל לקנות אלכוהול</h2>");
 }
 else {
-    console.log("You may buy alcohol");
+    document.write("<h2>מה תרצה לקנות?</h2>");
 }
+// var container = document.getElementById("ziv");
+// container.innerHTML = '<span style="color:red;"></span>';
