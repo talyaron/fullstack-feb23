@@ -1,5 +1,5 @@
 header {
-    width: 100%;
+    width: 104%;
     height: 280px;
     background: linear-gradient(90deg, rgba(43,134,190,1) 26%, rgba(217,255,85,1) 100%, rgba(0,176,218,1) 100%, rgba(0,212,255,1) 100%, rgba(9,9,121,1) 100%);
     border-radius: 12px;
@@ -31,6 +31,7 @@ header {
     grid-template-columns: repeat(5, 276px);
     grid-gap: 12px;
     justify-items: center;
+    overflow: hidden;
 
     &__specialist {
         width: 100px;
@@ -46,6 +47,17 @@ header {
         h2 {
             color: #5454b0;
         }
+
+        i{
+            margin-left: 118px;
+            color: white;
+            background-color: #4141a6;
+            border-radius: 85px 20px 0px;
+            padding: 2px 10px;
+            width: 4px;
+            position: absolute;
+            top: 150px;
+        }
     }
 
 }
@@ -56,11 +68,11 @@ header {
     grid-template-columns: auto 1fr;
     grid-gap: 17px;
     background-color: white;
-    position: relative;
-    left: 580px;
-    top: 40px;
+    position: absolute;
+    left: 483px;
+    top: 240px;
     border-radius: 9px;
-    width: 440px;
+    width: 31%;
     padding: 16px 20px;
     box-shadow: 1px 1px 2px black;
 
@@ -88,7 +100,7 @@ header {
     top: 65px;
     border-radius: 12px;
     background-color: #f2f2f2;
-    width: 475px;
+    width: 34%;
     justify-content: space-around;
 
     button{
@@ -98,14 +110,14 @@ header {
     &__services:focus {
         border: 2px solid #5454b0;
         border-radius: 12px;
-        width: 50%;
+        width: 70%;
         background-color: #5454b0;
     }
 
     &__doctors:focus {
         border: 2px solid #5454b0;
         border-radius: 12px;
-        width: 50%;
+        width: 70%;
         background-color: #5454b0;
     }
 

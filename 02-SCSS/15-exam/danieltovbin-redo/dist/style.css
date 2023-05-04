@@ -1,5 +1,5 @@
 header {
-  width: 100%;
+  width: 104%;
   height: 280px;
   background: linear-gradient(90deg, #2b86be 26%, #d9ff55 100%, #00b0da 100%, #00d4ff 100%, #090979 100%);
   border-radius: 12px;
@@ -28,6 +28,7 @@ header {
   grid-template-columns: repeat(5, 276px);
   grid-gap: 12px;
   justify-items: center;
+  overflow: hidden;
 }
 .box__specialist {
   width: 100px;
@@ -42,6 +43,13 @@ header {
 .box__specialist h2 {
   color: #5454b0;
 }
+.box__specialist i {
+  background-color: #4141a6;
+  border-radius: 12px;
+  padding: 2px 8px;
+  margin-left: 118px;
+  color: white;
+}
 
 .box-bottom {
   display: grid;
@@ -49,11 +57,11 @@ header {
   grid-template-columns: auto 1fr;
   grid-gap: 17px;
   background-color: white;
-  position: relative;
-  left: 580px;
-  top: 40px;
+  position: absolute;
+  left: 483px;
+  top: 240px;
   border-radius: 9px;
-  width: 440px;
+  width: 31%;
   padding: 16px 20px;
   box-shadow: 1px 1px 2px black;
 }
@@ -77,7 +85,7 @@ header {
   top: 65px;
   border-radius: 12px;
   background-color: #f2f2f2;
-  width: 475px;
+  width: 34%;
   justify-content: space-around;
 }
 .buttons button {
@@ -86,13 +94,13 @@ header {
 .buttons__services:focus {
   border: 2px solid #5454b0;
   border-radius: 12px;
-  width: 50%;
+  width: 70%;
   background-color: #5454b0;
 }
 .buttons__doctors:focus {
   border: 2px solid #5454b0;
   border-radius: 12px;
-  width: 50%;
+  width: 70%;
   background-color: #5454b0;
 }
 
@@ -128,6 +136,27 @@ article {
   text-shadow: 1px 1px 2px black;
 }
 
+footer {
+  width: 100%;
+  height: 60px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background-color: white;
+  display: flex;
+  justify-content: space-around;
+  box-shadow: 1px 1px 2px black;
+}
+footer .fa-file-text-o, footer .fa-check-square-o, footer .fa-calendar-check-o, footer .fa-gitlab, footer .fa-align-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+footer .fa-file-text-o:hover, footer .fa-check-square-o:hover, footer .fa-calendar-check-o:hover, footer .fa-gitlab:hover, footer .fa-align-left:hover {
+  color: #2b86be;
+}
+
 body {
   width: 90vw;
   height: 100vh;
@@ -138,4 +167,15 @@ body {
   margin: 0;
   padding: 0;
   text-transform: capitalize;
+}
+
+@media only screen and (max-width: 1200px) {
+  article .all-services__three {
+    display: none;
+  }
+}
+@media only screen and (max-width: 600px) {
+  article .all-services__two, article .all-services__three {
+    display: none;
+  }
 }

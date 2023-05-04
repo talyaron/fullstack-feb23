@@ -13,3 +13,19 @@ body {
     padding: 0;
     text-transform: capitalize;
 }
+
+
+@media only screen and (max-width:1200px) {
+    article {
+        .all-services__three{
+            display: none;
+        }
+    }
+}
+@media only screen and (max-width:600px) {
+    article {
+        .all-services__two, .all-services__three{
+            display: none;
+        }
+    }
+} 
