@@ -1,0 +1,31 @@
+article {
+  display: flex;
+  justify-content: space-around;
+  padding-top: 100px;
+}
+
+.option {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-column-gap: 10px;
+  padding-bottom: 20px;
+}
+.option .fa-stethoscope, .option .fa-h-square, .option .fa-heartbeat, .option .fa-file-o, .option .fa-check-square-o {
+  grid-column: 1;
+  font-size: 40px;
+  margin-top: 4px;
+}
+.option__info {
+  grid-column: 2;
+}
+.option__info p {
+  color: gray;
+}
+.option__info__title {
+  display: flex;
+  align-items: center;
+}
+.option__info__title .fa-angle-right {
+  color: #2c9e8b;
+  text-shadow: 1px 1px 2px black;
+}
