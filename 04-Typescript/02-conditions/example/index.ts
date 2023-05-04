@@ -36,3 +36,12 @@ const userType: string = "admin";
 if (userType === "admin") {
   console.log("show all data");
 }
+
+const age = prompt("what is your age?");
+const ageAsNumber = parseInt(age || "0");
+
+if (ageAsNumber >= 18) {
+  document.write("תרצה וודקה תפוזים?");
+} else {
+  document.write("לך מכאן ילד אהבל");
+}
