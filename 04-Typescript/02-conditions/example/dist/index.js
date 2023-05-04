@@ -33,3 +33,11 @@ var userType = "admin";
 if (userType === "admin") {
     console.log("show all data");
 }
+var age = prompt("what is your age?");
+var ageAsNumber = parseInt(age || "0");
+if (ageAsNumber >= 18) {
+    document.write("תרצה וודקה תפוזים?");
+}
+else {
+    document.write("לך מכאן ילד אהבל");
+}
