@@ -1,0 +1,57 @@
+* {
+  margin: 10px;
+  padding: 10px;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  color: white;
+  background-color: black;
+}
+body h1 {
+  width: 100vw;
+  height: 100px;
+  text-align: center;
+  justify-content: center;
+  position: relative;
+}
+body form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+body form label {
+  border: double white 2px;
+  border-radius: 6px;
+}
+body form input {
+  background-color: black;
+  color: white;
+  border-radius: 6px;
+  width: 200px;
+  border: double white 2px;
+}
+body form button {
+  background-color: rgba(255, 0, 0, 0.8);
+  border: double white 2px;
+  color: white;
+  border-radius: 6px;
+  width: 150px;
+  cursor: pointer;
+}
+body .boxer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+body .boxer #result {
+  width: auto;
+  height: auto;
+  border: double white 2px;
+  color: white;
+  position: relative;
+  left: -100%;
+  transition: left 1s ease-in-out;
+}
