@@ -20,7 +20,7 @@ form.addEventListener("submit", (event) => {
 });
 
 
-//button click
+
 const op = document.querySelector("body > div.container");
 const submit = document.querySelector(".submit");
 submit.addEventListener('click', () => {

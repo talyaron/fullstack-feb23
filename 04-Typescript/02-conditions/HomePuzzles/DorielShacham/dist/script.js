@@ -15,7 +15,6 @@ form.addEventListener("submit", function (event) {
         result.innerHTML = "You are not old enough to buy alcohol.";
     }
 });
-//button click
 var op = document.querySelector("body > div.container");
 var submit = document.querySelector(".submit");
 submit.addEventListener('click', function () {
