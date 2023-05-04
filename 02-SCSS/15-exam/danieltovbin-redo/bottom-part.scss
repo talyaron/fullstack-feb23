@@ -1,0 +1,38 @@
+
+
+article {
+    display: flex;
+    justify-content: space-around;
+    padding-top: 100px;
+}
+
+.option {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-column-gap: 10px;
+    padding-bottom: 20px;
+    
+
+    .fa-stethoscope, .fa-h-square, .fa-heartbeat, .fa-file-o, .fa-check-square-o{
+        grid-column: 1;
+        font-size: 40px;
+        margin-top: 4px;
+    }
+    &__info{
+        grid-column: 2;
+
+        p {
+            color: gray;
+        }
+        
+        &__title {
+            display: flex;
+            align-items: center;
+
+            .fa-angle-right{
+                color: #2c9e8b;
+                text-shadow: 1px 1px 2px black;
+            }
+        }
+    }
+}
