@@ -1,15 +1,13 @@
 //variables
-var x:number|string = 3;
+var x: number | string = 3;
 
-x="346fjgdfjkgkdjfghjkdfg" //string
-
+x = "346fjgdfj"; //string
 
 console.log(x);
-
-
-const myName = "Tal" //string
-
+const myName = "Elisa"; //string
 
 // myName = 4 //number
 
-console.log(myName)
+console.log(myName);
+
+console.log();
