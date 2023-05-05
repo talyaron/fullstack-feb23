@@ -35,8 +35,6 @@ if (userBMI < 18.5) {
   console.log(`Your BMI is ${userBMI} .Your weight is normal.`);
 } else if (userBMI >= 25 && userBMI < 30) {
   console.log(`Your BMI is ${userBMI}.You are overweight.`);
-} else {
+} else if (userBMI >= 30) {
   console.log(`Your BMI is ${userBMI}.You are obese.`);
-}
-1.55;
-35;
+} else console.log(`You enterd invalid parameters.`);
