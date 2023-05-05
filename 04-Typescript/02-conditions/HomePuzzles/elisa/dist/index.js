@@ -25,14 +25,16 @@ var userWeight = prompt("What is your weight in kilograms?");
 var userBMI = userWeight / Math.pow(userHight, 2);
 console.log(userBMI);
 if (userBMI < 18.5) {
-    console.log("You are underweight.");
+    console.log("Your BMI is " + userBMI + ". You are underweight");
 }
 else if (userBMI >= 18.5 && userBMI < 25) {
-    console.log("Your weight is normal.");
+    console.log("Your BMI is " + userBMI + " .Your weight is normal.");
 }
 else if (userBMI >= 25 && userBMI < 30) {
-    console.log("You are overweight.");
+    console.log("Your BMI is " + userBMI + ".You are overweight.");
 }
 else {
-    console.log("You are obese.");
+    console.log("Your BMI is " + userBMI + ".You are obese.");
 }
+1.55;
+35;
