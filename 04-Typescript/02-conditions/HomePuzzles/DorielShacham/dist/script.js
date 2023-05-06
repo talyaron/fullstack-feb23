@@ -9,8 +9,8 @@ function checker() {
         case "female":
             alert("You you female");
             break;
-        case "*":
-            alert("You are undefinded");
+        default:
+            alert("You are undefind, please enter `male` or `female`");
             break;
     }
 }
