@@ -1,5 +1,19 @@
 var form = document.querySelector("form");
 var result = document.querySelector("#result");
+function checker() {
+    var gend = prompt("are you male or female?");
+    switch (gend) {
+        case "male":
+            alert("You are male");
+            break;
+        case "female":
+            alert("You you female");
+            break;
+        case "*":
+            alert("You are undefinded");
+            break;
+    }
+}
 form.addEventListener("submit", function (event) {
     event.preventDefault();
     var ageInput = document.querySelector("#age");

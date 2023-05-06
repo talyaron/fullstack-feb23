@@ -1,12 +1,27 @@
-const form: number|null  = document.querySelector("form");
-const result: string|number|null = document.querySelector("#result");
+const form: number = document.querySelector("form");
+const result: string | null = document.querySelector("#result");
 
+function checker(){
+  const gend = prompt("are you male or female?"); 
+  switch (gend)
+  {
+      case "male":
+          alert("You are male");
 
+          break;
+      case "female":
+          alert("You you female");
+          break;
+      case "*":
+          alert("You are undefinded");
+          break;
+  }
+}
 
 form.addEventListener("submit", (event) => {
   event.preventDefault();
 
-  const ageInput:number|null|undefined = document.querySelector("#age");
+  const ageInput:number = document.querySelector("#age");
   const age = parseInt(ageInput.value);
   if (age >= 18) {
     console.log("You are old enough to buy alcohol!")
@@ -18,8 +33,6 @@ form.addEventListener("submit", (event) => {
     result.innerHTML = "You are not old enough to buy alcohol.";
   }
 });
-
-
 
 const op = document.querySelector("body > div.container");
 const submit = document.querySelector(".submit");
