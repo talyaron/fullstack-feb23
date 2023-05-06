@@ -33,6 +33,10 @@ body form input {
   width: 200px;
   border: double white 2px;
 }
+body form input:focus {
+  outline: none;
+  border: rgba(255, 0, 0, 0.8) 2px solid;
+}
 body form button {
   background-color: rgba(255, 0, 0, 0.8);
   border: double white 2px;
