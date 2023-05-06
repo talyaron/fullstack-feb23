@@ -235,25 +235,39 @@ body {
 
     &__header {
 
-        &__services {
+        &__services{
+            border: 1px solid gray;
+            border-radius: 20px; 
+            width: 200px;
+        }
+
+        &__Doctors{
+            border: 1px solid gray;
+            border-radius: 20px;
+            width: 200px;
+            position: absolute;
+            left: 190px;
+        }
+
+
+        &__services:focus {
             border: 1px solid $h_color;
             border-radius: 20px;
             background-color: $h_color;
             color: $b_color;
             position: absolute;
             z-index: 1;
-            animation: btn1 2s linear 2s infinite normal forwards;
-
         }
 
-        &__Doctors {
+        &__Doctors:focus {
             border: 1px solid $h_color;
-            width: 200px;
             border-radius: 20px;
-            background-color: gray;
-            animation: btn2 2s linear 2s infinite normal forwards;
+            background-color: $h_color;
+            color: $b_color;
             position: absolute;
+            z-index: 1;
         }
+
     }
 
     &__links {
@@ -271,38 +285,7 @@ body {
     }
 }
 
-@keyframes btn1 {
-    50% {
-        background-color: gray;
-        color: $t_color;
-        // z-index: 0;
-        // width: 200px;
-    }
 
-    100% {
-        background-color: $h_color;
-        color: $b_color;
-        // z-index: 1;
-        // width: 200px;
-    }
-}
-
-@keyframes btn2 {
-    50% {
-        background-color: $h_color;
-        color: $b_color;
-        z-index: 1;
-        // width: 200px;
-        // left: 25px;
-    }
-
-    100% {
-        background-color: gray;
-        color: $t_color;
-        // z-index: 0;
-        // width: 200px;
-    }
-}
 
 .footer {
     display: grid;

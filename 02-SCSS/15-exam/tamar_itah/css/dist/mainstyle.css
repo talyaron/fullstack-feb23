@@ -185,21 +185,32 @@ body {
   margin-top: 100px;
 }
 .categories__header__services {
+  border: 1px solid gray;
+  border-radius: 20px;
+  width: 200px;
+}
+.categories__header__Doctors {
+  border: 1px solid gray;
+  border-radius: 20px;
+  width: 200px;
+  position: absolute;
+  left: 190px;
+}
+.categories__header__services:focus {
   border: 1px solid #0095ff;
   border-radius: 20px;
   background-color: #0095ff;
   color: white;
   position: absolute;
   z-index: 1;
-  animation: btn1 2s linear 2s infinite normal forwards;
 }
-.categories__header__Doctors {
+.categories__header__Doctors:focus {
   border: 1px solid #0095ff;
-  width: 200px;
   border-radius: 20px;
-  background-color: gray;
-  animation: btn2 2s linear 2s infinite normal forwards;
+  background-color: #0095ff;
+  color: white;
   position: absolute;
+  z-index: 1;
 }
 .categories__links {
   display: grid;
@@ -212,27 +223,6 @@ body {
   padding: 17px;
 }
 
-@keyframes btn1 {
-  50% {
-    background-color: gray;
-    color: lightgray;
-  }
-  100% {
-    background-color: #0095ff;
-    color: white;
-  }
-}
-@keyframes btn2 {
-  50% {
-    background-color: #0095ff;
-    color: white;
-    z-index: 1;
-  }
-  100% {
-    background-color: gray;
-    color: lightgray;
-  }
-}
 .footer {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
