@@ -1,5 +1,5 @@
 
-var gender = prompt ("Choose gender");
+const gender = prompt ("Choose gender");
 if (gender === "male"){
     
     console.log("לשון זכר")
