@@ -15,4 +15,21 @@ btn.addEventListener('click', function () {
   var BMI = weight / (height * height);
   BMI = BMI.toFixed(2);
   document.querySelector('#result').innerHTML = BMI;
+  var status = '';
+
+  if (BMI < 18.5) {
+    status = "Underweight";
+  }
+
+  if (BMI >= 18.5 && BMI < 25) {
+    status = "Normal";
+  }
+
+  if (BMI >= 25 && BMI < 30) {
+    status = "Overweight";
+  }
+
+  if (BMI >= 30) {
+    status = "Obese";
+  }
 });
