@@ -12,19 +12,29 @@
 
 <body class="body">
     <div class="container">
-        <h1>Age Check</h1>
-        <hr style="border: 1px solid white; width: 130%;position:relative;right: 10%; margin: 0; padding: 0">
         <form>
+            <h1>Age Check</h1>
             <label class="label" for="age">Enter your age:
                 <input type="number" id="age" name="age" required />
                 <button type="submit" class="submit">Submit</button>
             </label>
-            
-            
         </form>
     </div>
+
     <div class="boxer">
         <div id="result"></div>
+    </div>
+
+    <hr style="border: 1px solid white; width: 130%;position:relative;right: 10%; margin: 0; padding: 0">
+
+    <div class="container">
+        <form>
+            <h1>Gender Check</h1>
+            <div class="gender">
+                <button id="userG" onclick="checker()"><img
+                        src="https://media.licdn.com/dms/image/C5612AQEQ9bcNIbH1Kg/article-inline_image-shrink_1000_1488/0/1604945013121?e=1687996800&v=beta&t=-eisVrrKhMru6jb3a5Ej-jnhiTLdibdf9H_c8xdOQ88"></button>
+            </div>
+        </form>
     </div>
 
 </body>
