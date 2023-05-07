@@ -12,4 +12,4 @@ if (bmi > 18.5 && bmi < 25) {
     console.log("Your BMI is too low");
 } else {
     console.log("Your BMI is too high");
-}
+};
