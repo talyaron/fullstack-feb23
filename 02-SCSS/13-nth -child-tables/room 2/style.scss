@@ -1,0 +1,36 @@
+body {
+  background-color: rgb(245, 220, 220);
+
+  table {
+    margin: 20px;
+    max-width: 80%;
+    text-align: center;
+    tr:nth-child(2n) {
+      background-image: linear-gradient(
+        to bottom right,
+        rgb(0, 238, 255),
+        rgb(238, 80, 240)
+      );
+    }
+    tr:nth-child(2n + 1) {
+      background-image: linear-gradient(
+        to bottom right,
+        rgb(238, 80, 240),
+        rgb(0, 238, 255)
+      );
+    }
+    tr:hover {
+      //   background-color: aqua;
+      background-image: linear-gradient(
+        to bottom right,
+        rgb(215, 109, 10),
+        rgb(87, 166, 172)
+      );
+      transform: scale(1.2);
+    }
+    th:hover {
+      rotate: 180deg;
+      transition: all 1s;
+    }
+  }
+}

@@ -143,6 +143,7 @@
   border: none;
   color: #435260;
   cursor: pointer;
+  transition: 0.3s;
 }
 .main .btns__btn:focus {
   background-color: #1864ab;

@@ -191,18 +191,16 @@ body {
   color: white;
   position: absolute;
   z-index: 1;
-  animation-name: btn;
+  animation: btn1 2s linear 2s infinite normal forwards;
 }
 .categories__header__Doctors {
   border: 1px solid #0095ff;
   width: 200px;
   border-radius: 20px;
   background-color: gray;
-  color: lightgray;
-  left: 25px;
-  animation-name: btn;
+  animation: btn2 2s linear 2s infinite normal forwards;
+  position: absolute;
 }
-@keyframes btn {}
 .categories__links {
   display: grid;
 }
@@ -214,6 +212,27 @@ body {
   padding: 17px;
 }
 
+@keyframes btn1 {
+  50% {
+    background-color: gray;
+    color: lightgray;
+  }
+  100% {
+    background-color: #0095ff;
+    color: white;
+  }
+}
+@keyframes btn2 {
+  50% {
+    background-color: #0095ff;
+    color: white;
+    z-index: 1;
+  }
+  100% {
+    background-color: gray;
+    color: lightgray;
+  }
+}
 .footer {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;

@@ -110,6 +110,7 @@ footer {
     padding-top: var(--main-padding);
     display: flex;
     flex-direction: row;
+    
 }
 
 .toggle {
@@ -217,6 +218,7 @@ footer {
         "footer footer";
     }
   }
+  
 
   @media only screen and (max-width: 786px) {
     .container {

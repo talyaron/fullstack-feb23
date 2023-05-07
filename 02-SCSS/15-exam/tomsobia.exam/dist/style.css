@@ -134,13 +134,14 @@ body {
   font-size: 1.5vw;
 }
 .wrapper .btn1:focus {
-  background-color: blue;
+  background-color: #0000eb;
 }
 .wrapper .btn2:focus {
   background-color: blue;
 }
 .wrapper .wrapper2 {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   margin-top: 10%;
   width: 100%;
   height: auto;
@@ -151,7 +152,7 @@ body {
 .wrapper .wrapper2 .box-2 {
   position: relative;
   border: 2px solid black;
-  width: 33%;
+  width: 100%;
   height: auto;
 }
 .wrapper .wrapper2 .box-2 h2 {
@@ -174,6 +175,11 @@ body {
 .wrapper .wrapper2 .box-2 .icon4 {
   color: #0eff0e;
   font-size: 2.2vw;
+}
+@media screen and (max-width: 600px) {
+  .wrapper .wrapper2 {
+    grid-template-columns: repeat(auto-fit, 2, 1fr);
+  }
 }
 .wrapper nav {
   position: relative;
