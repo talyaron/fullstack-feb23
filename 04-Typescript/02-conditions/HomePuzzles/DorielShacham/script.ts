@@ -1,5 +1,5 @@
-const form: number  = document.querySelector("form");
-const result: string  = document.querySelector("#result");
+const form = document.querySelector("form");
+const result: HTMLDivElement | null  = document.querySelector("#result");
 
 function checker(){
   const gend = prompt("are you male or female?"); 
@@ -17,14 +17,14 @@ function checker(){
   }
 }
 
-form.addEventListener("submit", (event) => {
+form!.addEventListener("submit", (event) => {
   event.preventDefault();
 
-  const ageInput:number = document.querySelector("#age");
+  const ageInput: Element | null = document.querySelector("#age");
   const age = parseInt(ageInput.value);
   if (age >= 18) {
     console.log("You are old enough to buy alcohol!")
-    result.style.backgroundColor = "lime";
+    result!.style.backgroundColor = "lime";
     result.innerHTML = "You are old enough to buy alcohol!";
   } else {
     console.log("You are not old enough to buy alcohol.")
