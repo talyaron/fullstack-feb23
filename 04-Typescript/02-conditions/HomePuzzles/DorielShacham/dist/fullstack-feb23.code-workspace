@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "../../../../.."
+		},
+		{
+			"path": "../../../../../../ios"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "fullstack-feb23",
+		"compile-hero.disable-compile-files-on-did-save-code": false
+	}
+}

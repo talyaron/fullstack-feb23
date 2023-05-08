@@ -1,5 +1,5 @@
-const form: number = document.querySelector("form");
-const result: string | null = document.querySelector("#result");
+const form: number  = document.querySelector("form");
+const result: string  = document.querySelector("#result");
 
 function checker(){
   const gend = prompt("are you male or female?"); 
@@ -40,6 +40,18 @@ submit.addEventListener('click', () => {
   op.style.opacity = '0.3';
 });
 
+//--> test list creation
+for (var aii = 1; aii <= 6; aii++) {
+  const aba = document.querySelector("body > ul.test");
+  var lily = document.createElement("li");
+  lily.classList.add("lili");
+  aba.appendChild(lily);
+}
 
-const x = "zero";
-x
+//destroy
+var liliElements = document.querySelectorAll('.lili');
+liliElements.forEach(function(element) {
+  element.addEventListener('click', function() {
+    element.remove();
+  });
+});

@@ -35,5 +35,17 @@ submit.addEventListener('click', function () {
     result.style.left = '0%';
     op.style.opacity = '0.3';
 });
-var x = "zero";
-x;
+//--> test list creation
+for (var aii = 1; aii <= 6; aii++) {
+    var aba = document.querySelector("body > ul.test");
+    var lily = document.createElement("li");
+    lily.classList.add("lili");
+    aba.appendChild(lily);
+}
+//destroy
+var liliElements = document.querySelectorAll('.lili');
+liliElements.forEach(function (element) {
+    element.addEventListener('click', function () {
+        element.remove();
+    });
+});
