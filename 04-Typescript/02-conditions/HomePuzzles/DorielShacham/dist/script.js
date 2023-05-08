@@ -4,10 +4,10 @@ function checker() {
     var gend = prompt("are you male or female?");
     switch (gend) {
         case "male":
-            alert("You are male");
+            alert("אתה גבר גבר");
             break;
         case "female":
-            alert("You you female");
+            alert("את וואלה אישה");
             break;
         default:
             alert("You are undefind, please enter `male` or `female`");
@@ -35,3 +35,5 @@ submit.addEventListener('click', function () {
     result.style.left = '0%';
     op.style.opacity = '0.3';
 });
+var x = "zero";
+x;
