@@ -40,7 +40,7 @@ submit.addEventListener('click', () => {
   op.style.opacity = '0.3';
 });
 
-//--> test list creation
+//--> test list creation forLoop
 for (var aii = 1; aii <= 6; aii++) {
   const aba = document.querySelector("body > ul.test");
   var lily = document.createElement("li");
@@ -48,7 +48,6 @@ for (var aii = 1; aii <= 6; aii++) {
   aba.appendChild(lily);
 }
 
-//destroy
 var liliElements = document.querySelectorAll('.lili');
 liliElements.forEach(function(element) {
   element.addEventListener('click', function() {
