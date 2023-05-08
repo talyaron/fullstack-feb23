@@ -1,7 +1,9 @@
-var x = 4;
-console.log(x);
-var myname = "benjamin";
-console.log(myname);
-var y = 0;
-for (y == 0; y < 10; y++)
-    console.log(y);
+var age = prompt("what is your age?");
+var ageasnumber = parseInt(age || "0");
+if (ageasnumber >= 18) {
+    document.write("תרצה וודקה?");
+}
+else {
+    document.write("תרצה חלב?");
+}
+document.write("תרצה חלב?");
