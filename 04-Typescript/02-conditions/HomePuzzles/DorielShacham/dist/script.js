@@ -3,10 +3,10 @@ var result = document.querySelector("#result");
 function checker() {
     var gend = prompt("are you male or female?");
     switch (gend) {
-        case "male":
+        case "male" || "MALE" || "Male":
             alert("אתה גבר גבר");
             break;
-        case "female":
+        case "female" || "FEMALE" || "Female":
             alert("את וואלה אישה");
             break;
         default:
