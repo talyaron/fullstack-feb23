@@ -1,12 +1,16 @@
-var age = prompt("what is your age?");
-var ageAsNumber = parseInt(age || "0");
-if (ageAsNumber >= 18) {
-    console.log("you can buy alcohol.");
+function ager() {
+    var age = prompt("what is your age?");
+    var ageAsNumber = parseInt(age || "0");
+    if (ageAsNumber >= 18) {
+        console.table("You are " + ageAsNumber + " years old, you can buy alcohol."); //this is an example of dollar variable you need to put back tick its called ` ` and ${} for the variable.
+        console.log("you can buy alcohol.");
+    }
+    else {
+        console.log("go away, you're still young.");
+    }
 }
-else {
-    console.log("go away, you're still young.");
-}
-var gender = ("Please enter your gender:");
+ager(); // Add this to "play/start function"
+var gender = "Please enter your gender:";
 if (gender === "female") {
     console.log("את אישה");
 }
