@@ -1,5 +1,5 @@
 var form = document.querySelector("form");
-var result = document.querySelector("#result");
+var result = document.querySelector("#result") || document.createElement("div");
 function checker() {
     var gend = prompt("are you male or female?");
     switch (gend) {
@@ -15,37 +15,38 @@ function checker() {
     }
 }
 form.addEventListener("submit", function (event) {
-    event.preventDefault();
-    var ageInput = document.querySelector("#age");
+    var ageInput = document.querySelector("#age") || document.createElement("input");
     var age = parseInt(ageInput.value);
-    if (age >= 18) {
-        console.log("You are old enough to buy alcohol!");
-        result.style.backgroundColor = "lime";
-        result.innerHTML = "You are old enough to buy alcohol!";
+    if (!ageInput.value) {
+        result.style.backgroundColor = "red";
+        result.innerHTML = "No input recived!";
     }
     else {
-        console.log("You are not old enough to buy alcohol.");
-        result.style.backgroundColor = "red";
-        result.innerHTML = "You are not old enough to buy alcohol.";
+        if (age >= 18) {
+            console.log("You are old enough to buy alcohol!");
+            result.style.backgroundColor = "lime";
+            result.innerHTML = "You are old enough to buy alcohol!";
+        }
+        else {
+            console.log("You are not old enough to buy alcohol.");
+            result.style.backgroundColor = "red";
+            result.innerHTML = "You are not old enough to buy alcohol.";
+        }
     }
+    event.preventDefault();
+    document.querySelector("body > div.container").style.opacity = "0.3";
+    result.style.left = "0%";
 });
-var op = document.querySelector("body > div.container");
-var submit = document.querySelector(".submit");
-submit.addEventListener('click', function () {
-    result.style.left = '0%';
-    op.style.opacity = '0.3';
-});
-//--> test list creation
+//--> test list creation forLoop
 for (var aii = 1; aii <= 6; aii++) {
     var aba = document.querySelector("body > ul.test");
     var lily = document.createElement("li");
     lily.classList.add("lili");
-    aba.appendChild(lily);
+    aba === null || aba === void 0 ? void 0 : aba.appendChild(lily);
 }
-//destroy
-var liliElements = document.querySelectorAll('.lili');
+var liliElements = document.querySelectorAll(".lili");
 liliElements.forEach(function (element) {
-    element.addEventListener('click', function () {
+    element.addEventListener("click", function () {
         element.remove();
     });
 });
