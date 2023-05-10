@@ -5,3 +5,6 @@ if (gender === "male") {
 else if (gender === "female") {
     console.log("לשון נקבה");
 }
+else {
+    console.log("You enterd invalid parameters.");
+}

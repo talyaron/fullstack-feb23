@@ -15,13 +15,15 @@ btn.addEventListener('click', function () {
     if (BMI < 18.5) {
         status = "Underweight";
     }
-    if (BMI >= 18.5 && BMI < 25) {
+    else if (BMI >= 18.5 && BMI < 25) {
         status = "Normal";
     }
-    if (BMI >= 25 && BMI < 30) {
+    else if (BMI >= 25 && BMI < 30) {
         status = "Overweight";
     }
-    if (BMI >= 30) {
+    else
+        (BMI >= 30);
+    {
         status = "Obese";
     }
     document.querySelector('.comment').innerHTML = "Comment:you are <span id=\"comment\">" + status + "</span>";
