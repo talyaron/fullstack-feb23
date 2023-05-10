@@ -47,7 +47,7 @@ form!.addEventListener("submit", (event) => {
 //--> test list creation forLoop
 for (var aii = 1; aii <= 6; aii++) {
   const aba = document.querySelector("body > ul.test");
-  var lily = document.createElement("li");
+  const lily = document.createElement("li");
   lily.classList.add("lili");
   aba?.appendChild(lily);
 }
