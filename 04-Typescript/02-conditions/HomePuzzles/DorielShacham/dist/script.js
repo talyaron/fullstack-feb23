@@ -1,5 +1,6 @@
+//--> Gender checker
 var form = document.querySelector("form");
-var result = document.querySelector("#result") || document.createElement("div");
+var result = document.querySelector("#result") || document.querySelector("#bmiResult") || document.createElement("div");
 function checker() {
     var gend = prompt("are you male or female?");
     switch (gend) {
@@ -14,6 +15,7 @@ function checker() {
             break;
     }
 }
+//--> Age checker
 form.addEventListener("submit", function (event) {
     var ageInput = document.querySelector("#age") || document.createElement("input");
     var age = parseInt(ageInput.value);
@@ -36,6 +38,46 @@ form.addEventListener("submit", function (event) {
     event.preventDefault();
     document.querySelector("body > div.container").style.opacity = "0.3";
     result.style.left = "0%";
+});
+//--> BMI calculator
+var bmiForm = document.querySelector("body > div:nth-child(6) > form > label:nth-child(3) > button");
+var bmiResult = document.querySelector("#bmiResult") || document.createElement("div");
+bmiForm.addEventListener("click", function (event) {
+    var heightInput = document.querySelector("#height") || document.createElement("input");
+    var weightInput = document.querySelector("#weight") || document.createElement("input");
+    var height = parseInt(heightInput.value);
+    var weight = parseInt(weightInput.value);
+    var heightMeters = height / 100;
+    var bmi = weight / (heightMeters * heightMeters);
+    if (!heightInput.value || !weightInput.value) {
+        bmiResult.style.backgroundColor = "red";
+        bmiResult.innerHTML = "No input received!";
+    }
+    else {
+        if (bmi < 18.5) {
+            console.log("You are underweight");
+            bmiResult.style.backgroundColor = "red";
+            bmiResult.innerHTML = "You are underweight";
+        }
+        else if (bmi >= 18.5 && bmi <= 24.9) {
+            console.log("You are normal");
+            bmiResult.style.backgroundColor = "lime";
+            bmiResult.innerHTML = "You are normal";
+        }
+        else if (bmi >= 25 && bmi <= 29.9) {
+            console.log("You are overweight");
+            bmiResult.style.backgroundColor = "red";
+            bmiResult.innerHTML = "You are overweight";
+        }
+        else if (bmi >= 30) {
+            console.log("You are obese");
+            bmiResult.style.backgroundColor = "red";
+            bmiResult.innerHTML = "You are obese";
+        }
+    }
+    event.preventDefault();
+    document.querySelector("body > div.container").style.opacity = "0.3";
+    bmiResult.style.left = "0%";
 });
 //--> test list creation forLoop
 for (var aii = 1; aii <= 6; aii++) {
