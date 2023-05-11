@@ -1,37 +1,94 @@
-var form = document.querySelector("form");
-var result = document.querySelector("#result");
+//--> Gender checker
+var form = document.querySelector("#gengen");
+var result = document.querySelector("#result") || document.createElement("div");
 function checker() {
     var gend = prompt("are you male or female?");
     switch (gend) {
-        case "male":
-            alert("You are male");
+        case "male" || "MALE" || "Male":
+            alert("אתה גבר גבר");
             break;
-        case "female":
-            alert("You you female");
+        case "female" || "FEMALE" || "Female":
+            alert("את וואלה אישה");
             break;
         default:
             alert("You are undefind, please enter `male` or `female`");
             break;
     }
 }
+//--> Age checker
 form.addEventListener("submit", function (event) {
-    event.preventDefault();
-    var ageInput = document.querySelector("#age");
+    var ageInput = document.querySelector("#age") || document.createElement("input");
     var age = parseInt(ageInput.value);
-    if (age >= 18) {
-        console.log("You are old enough to buy alcohol!");
-        result.style.backgroundColor = "lime";
-        result.innerHTML = "You are old enough to buy alcohol!";
+    if (!ageInput.value) {
+        result.style.backgroundColor = "red";
+        result.innerHTML = "No input recived!";
     }
     else {
-        console.log("You are not old enough to buy alcohol.");
-        result.style.backgroundColor = "red";
-        result.innerHTML = "You are not old enough to buy alcohol.";
+        if (age >= 18) {
+            console.log("You are old enough to buy alcohol!");
+            result.style.backgroundColor = "lime";
+            result.innerHTML = "You are old enough to buy alcohol!";
+        }
+        else {
+            console.log("You are not old enough to buy alcohol.");
+            result.style.backgroundColor = "red";
+            result.innerHTML = "You are not old enough to buy alcohol.";
+        }
     }
+    event.preventDefault();
+    document.querySelector("body > div.container").style.opacity = "0.3";
+    result.style.left = "0%";
 });
-var op = document.querySelector("body > div.container");
-var submit = document.querySelector(".submit");
-submit.addEventListener('click', function () {
-    result.style.left = '0%';
-    op.style.opacity = '0.3';
+//--> BMI calculator
+var bmiForm = document.querySelector("#bmii");
+var bmiResult = document.querySelector("#bmiResult") || document.createElement("div");
+bmiForm.addEventListener("submit", function (event) {
+    var heightInput = document.querySelector("#height") || document.createElement("input");
+    var weightInput = document.querySelector("#weight") || document.createElement("input");
+    var height = parseInt(heightInput.value);
+    var weight = parseInt(weightInput.value);
+    var heightMeters = height / 100;
+    var bmi = weight / (heightMeters * heightMeters);
+    if (!heightInput.value || !weightInput.value) {
+        bmiResult.style.backgroundColor = "red";
+        bmiResult.innerHTML = "No input received!";
+    }
+    else {
+        if (bmi < 18.5) {
+            console.log("You are underweight");
+            bmiResult.style.backgroundColor = "red";
+            bmiResult.innerHTML = "You are underweight";
+        }
+        else if (bmi >= 18.5 && bmi <= 24.9) {
+            console.log("You are normal");
+            bmiResult.style.backgroundColor = "lime";
+            bmiResult.innerHTML = "You are normal";
+        }
+        else if (bmi >= 25 && bmi <= 29.9) {
+            console.log("You are overweight");
+            bmiResult.style.backgroundColor = "red";
+            bmiResult.innerHTML = "You are overweight";
+        }
+        else if (bmi >= 30) {
+            console.log("You are obese");
+            bmiResult.style.backgroundColor = "red";
+            bmiResult.innerHTML = "You are obese";
+        }
+    }
+    event.preventDefault();
+    document.querySelector("body > div.container").style.opacity = "0.3";
+    bmiResult.style.left = "0%";
+});
+//--> test list creation forLoop
+for (var aii = 1; aii <= 6; aii++) {
+    var aba = document.querySelector("body > ul.test");
+    var lily = document.createElement("li");
+    lily.classList.add("lili");
+    aba === null || aba === void 0 ? void 0 : aba.appendChild(lily);
+}
+var liliElements = document.querySelectorAll(".lili");
+liliElements.forEach(function (element) {
+    element.addEventListener("click", function () {
+        element.remove();
+    });
 });

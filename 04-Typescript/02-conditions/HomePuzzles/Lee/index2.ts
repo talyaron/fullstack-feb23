@@ -11,6 +11,12 @@ if (gender === "male"){
 
  }
 
+ else {
+
+    console.log("You enterd invalid parameters.");
+
+ }
+
   
 
 
