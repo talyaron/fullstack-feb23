@@ -1,7 +1,8 @@
 //--> Gender checker
-const form = document.querySelector("form");
+const form = document.querySelector("#gengen");
 const result: HTMLDivElement =
-  document.querySelector("#result") || document.querySelector("#bmiResult") || document.createElement("div");
+  document.querySelector("#result") || document.createElement("div");
+
 
 function checker() {
   const gend = prompt("are you male or female?");
@@ -38,7 +39,6 @@ form!.addEventListener("submit", (event) => {
       result.innerHTML = "You are not old enough to buy alcohol.";
     }
   }
-
   event.preventDefault();
   document.querySelector<HTMLDivElement>(
     "body > div.container"
@@ -47,10 +47,10 @@ form!.addEventListener("submit", (event) => {
 });
 
 //--> BMI calculator
-const bmiForm = document.querySelector("body > div:nth-child(6) > form > label:nth-child(3) > button");
+const bmiForm = document.querySelector("#bmii");
 const bmiResult: HTMLDivElement = document.querySelector("#bmiResult") || document.createElement("div");
 
-bmiForm!.addEventListener("click", (event) => {  
+bmiForm!.addEventListener("submit", (event) => {  
   const heightInput: HTMLInputElement = document.querySelector("#height") || document.createElement("input");
   const weightInput: HTMLInputElement = document.querySelector("#weight") || document.createElement("input");
   const height = parseInt(heightInput.value);
@@ -80,7 +80,6 @@ bmiForm!.addEventListener("click", (event) => {
       bmiResult.innerHTML = "You are obese";
     }
   }
-
   event.preventDefault();
   document.querySelector<HTMLDivElement>(
     "body > div.container"

@@ -1,6 +1,6 @@
 //--> Gender checker
-var form = document.querySelector("form");
-var result = document.querySelector("#result") || document.querySelector("#bmiResult") || document.createElement("div");
+var form = document.querySelector("#gengen");
+var result = document.querySelector("#result") || document.createElement("div");
 function checker() {
     var gend = prompt("are you male or female?");
     switch (gend) {
@@ -40,9 +40,9 @@ form.addEventListener("submit", function (event) {
     result.style.left = "0%";
 });
 //--> BMI calculator
-var bmiForm = document.querySelector("body > div:nth-child(6) > form > label:nth-child(3) > button");
+var bmiForm = document.querySelector("#bmii");
 var bmiResult = document.querySelector("#bmiResult") || document.createElement("div");
-bmiForm.addEventListener("click", function (event) {
+bmiForm.addEventListener("submit", function (event) {
     var heightInput = document.querySelector("#height") || document.createElement("input");
     var weightInput = document.querySelector("#weight") || document.createElement("input");
     var height = parseInt(heightInput.value);
