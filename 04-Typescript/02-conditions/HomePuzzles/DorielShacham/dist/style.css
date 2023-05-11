@@ -4,10 +4,52 @@
 }
 
 body {
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   color: white;
   background-color: black;
+}
+body .test {
+  position: relative;
+}
+body .test .lili {
+  background-image: url("https://d1lss44hh2trtw.cloudfront.net/resize?type=webp&url=https%3A%2F%2Fshacknews-www.s3.amazonaws.com%2Fassets%2Farticle%2F2016%2F12%2F19%2Fwarhammer-40k-dawn-of-war-3_feature.jpg&width=1032&sign=XFwDqQaGXT_m96K2SJXYyqbAqPdpWUD_VKnWUdKpB4g") no-repeat center center fixed;
+  width: 400px;
+  height: 200px;
+  box-shadow: 0 6px 40px 0 rgba(150, 150, 150, 0.2), 0 6px 40px 0 rgba(255, 150, 3, 0.7);
+  border-radius: 20px;
+  list-style: none;
+  margin: 100px;
+  padding: 10px;
+  background-size: cover;
+}
+body .test .lili:hover {
+  box-shadow: 0 0 40px 8px darkred;
+  transition: 0.3s;
+}
+body .test h1 {
+  width: 100vw;
+  height: 100px;
+  text-align: center;
+  justify-content: center;
+  position: relative;
+}
+body .lili {
+  background-image: url("https://d1lss44hh2trtw.cloudfront.net/resize?type=webp&url=https%3A%2F%2Fshacknews-www.s3.amazonaws.com%2Fassets%2Farticle%2F2016%2F12%2F19%2Fwarhammer-40k-dawn-of-war-3_feature.jpg&width=1032&sign=XFwDqQaGXT_m96K2SJXYyqbAqPdpWUD_VKnWUdKpB4g");
+  width: 500px;
+  height: 200px;
+  background-position: center;
+  background-repeat: none;
+  object-fit: cover;
+  box-shadow: 0 6px 40px 0 rgba(150, 150, 150, 0.2), 0 6px 40px 0 rgba(255, 150, 3, 0.7);
+  border-radius: 20px;
+  list-style: none;
+  margin: 100px;
+  padding: 10px;
+}
+body .lili:hover {
+  box-shadow: 0 0 40px 8px darkred;
+  transition: 0.3s;
 }
 body h1 {
   width: 100vw;
@@ -33,6 +75,10 @@ body form input {
   width: 200px;
   border: double white 2px;
 }
+body form input:focus {
+  outline: none;
+  border: rgba(255, 0, 0, 0.8) 2px solid;
+}
 body form button {
   background-color: rgba(255, 0, 0, 0.8);
   border: double white 2px;
@@ -41,12 +87,51 @@ body form button {
   width: 150px;
   cursor: pointer;
 }
+body form .gender {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+body form .gender #userG {
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+body form .gender #userG img {
+  width: 50px;
+  height: 50px;
+  background-repeat: no-repeat;
+  background-position: center;
+  object-fit: fill;
+}
+body form .gender:hover {
+  opacity: 0.9;
+}
+body form .gender:active {
+  opacity: 0.4;
+}
 body .boxer {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 body .boxer #result {
+  width: auto;
+  height: auto;
+  border: double white 2px;
+  color: white;
+  position: relative;
+  left: -100%;
+  transition: left 1s ease-in-out;
+}
+body .boxer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+body .boxer #bmiResult {
   width: auto;
   height: auto;
   border: double white 2px;
