@@ -25,7 +25,10 @@ if (gender === "female") {
 const height = prompt("what is your height in meters?");
 const weight = prompt("what is your weight in kg?");
 
-const BMI = weight / (height * height);
+const numHeight = Number(height); //added this to convert the prompt message from string to number (like parseInt) - Prompt message comes as string - 0 = "0", 1 = "1"
+const numWeight = Number(weight); //added this to convert the prompt message from string to number (like parseInt) - Prompt message comes as string - 0 = "0", 1 = "1"
+
+const BMI = numWeight / (numHeight * numHeight);
 
 
 if (BMI < 18.5) {
