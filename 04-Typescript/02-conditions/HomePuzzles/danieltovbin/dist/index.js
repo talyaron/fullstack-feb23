@@ -32,3 +32,21 @@ else if (BMI >= 25 && BMI < 30) {
 else if (BMI >= 30) {
     console.log("you are within the obesity range");
 }
+var names = ['shaun', 'mario', 'luigi'];
+var i = 0;
+console.log(names.length);
+var i = 4;
+do {
+    console.log('val of i is: ', i);
+    i++;
+} while (i < 5);
+var password = 'psdsdsdhvh323sfsf';
+if (password.length >= 12) {
+    console.log('that password is mighty enough!');
+}
+if (password.length >= 8) {
+    console.log('that password is long enough!');
+}
+else {
+    console.log('password is not long enough');
+}
