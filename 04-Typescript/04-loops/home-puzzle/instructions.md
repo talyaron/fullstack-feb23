@@ -2,4 +2,6 @@
 
 2. calculate with a varibal and a loop how much is 1+2+3+...+n
 
-3. calculate with loop inside a loop, how much is (1+2+3+...+n) double j
+3. calculate with loop inside a loop, how much is (1+2+3+...+n) multply by j
+
+learn about while loop
