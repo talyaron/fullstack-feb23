@@ -1,5 +1,5 @@
 
-var gender = prompt ("Choose gender");
+const gender = prompt ("Choose gender");
 if (gender === "male"){
     
     console.log("לשון זכר")
@@ -8,6 +8,12 @@ if (gender === "male"){
  else if (gender === "female") {
 
     console.log("לשון נקבה")
+
+ }
+
+ else {
+
+    console.log("You enterd invalid parameters.");
 
  }
 
