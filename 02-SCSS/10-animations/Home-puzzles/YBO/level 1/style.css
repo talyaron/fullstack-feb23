@@ -1,0 +1,26 @@
+.headar {
+  width: 900px;
+  height: 200px;
+  font-size: xx-large;
+  font-family: "Courier New", Courier, monospace;
+  text-align: center;
+  margin: auto;
+  border: 1px solid black;
+}
+
+.wrapper {
+  width: 900px;
+  height: 900px;
+  margin: auto;
+  border: 1px solid black;
+}
+
+.killBubbles {
+  width: 900px;
+  height: 100px;
+  font-size: xx-large;
+  font-family: "Courier New", Courier, monospace;
+  text-align: center;
+  margin: auto;
+  border: 1px solid black;
+}/*# sourceMappingURL=style.css.map */

@@ -1,0 +1,54 @@
+body {
+  direction: ltr;
+}
+
+.wrapper {
+  width: 600px;
+  margin: auto;
+  border: 1px solid black;
+}
+
+.task1 {
+  border: 2px solid black;
+}
+.task1 .row {
+  display: flex;
+}
+.task1 .column {
+  flex: 25%;
+  padding: 5px;
+}
+
+.task2 {
+  border: 2px solid black;
+  display: flex;
+  position: relative;
+}
+.task2 .one {
+  position: absolute;
+  left: 300px;
+  top: 10px;
+}
+.task2 .two {
+  position: absolute;
+  left: 320px;
+  top: 30px;
+}
+.task2 .ybo {
+  position: absolute;
+  left: 280px;
+  top: 30px;
+}
+.task2 .end {
+  height: 200px;
+}
+
+.task3 {
+  border: 2px solid black;
+}
+
+.moved {
+  position: relative;
+  top: 40px;
+  left: 40px;
+}/*# sourceMappingURL=style.css.map */

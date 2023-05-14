@@ -1,0 +1,33 @@
+body {
+  background: palevioletred;
+}
+
+.boxes {
+  display: flex;
+  width: 1000px;
+}
+.boxes .box {
+  width: 200px;
+  height: 200px;
+  margin: 5px;
+  background: white;
+}
+
+@media only screen and (max-width: 900px) {
+  .boxes {
+    flex-direction: column;
+  }
+  .boxes .box {
+    background: orange;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .boxes {
+    flex-direction: row;
+  }
+  .boxes .box {
+    width: 150px;
+    height: 150px;
+    background: black;
+  }
+}/*# sourceMappingURL=styel.css.map */

@@ -1,0 +1,25 @@
+body .wrapper {
+  width: 45vw;
+  height: 50vh;
+  display: grid;
+  grid-template-columns: repeat(13, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-template-areas: "box box box box box box . box box box box box box";
+  background-color: tan;
+}
+body .wrapper .box {
+  background-color: black;
+  clip-path: polygon(49% 36%, 36% 100%, 61% 100%);
+  grid-area: box;
+}
+body .wrapper .box:nth-child(2n+1) {
+  background-color: red;
+}
+body .wrapper #top {
+  transform: rotate(180deg);
+  background-color: red;
+  clip-path: polygon(49% 36%, 36% 100%, 61% 100%);
+}
+body .wrapper #top:nth-child(2n+1) {
+  background-color: black;
+}

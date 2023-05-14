@@ -1,8 +1,13 @@
 @import 'top';
 @import 'body';
+@import 'selection-series';
 @import 'bottom';
 
 *{
     margin: 0;
     padding:0;
+}
+
+.wrapper {
+    background-color: black;
 }

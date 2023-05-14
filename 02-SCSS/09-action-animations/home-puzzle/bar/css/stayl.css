@@ -1,0 +1,100 @@
+button {
+  border: none;
+  background-color: white;
+  font-size: larger;
+}
+
+.btn {
+  position: absolute;
+  display: flex;
+  top: 450px;
+  left: 180px;
+  gap: 50px;
+  margin: auto;
+}
+.btn__textimg1:hover {
+  font-style: oblique;
+  font-weight: bold;
+  cursor: pointer;
+}
+.btn__textimg1:focus .imgs {
+  background-image: url(https://gara-sea-view-klungkung.booked.net/data/Photos/OriginalPhoto/12566/1256619/1256619598/Gara-Gara-Sea-View-Hotel-Nusa-Penida-Exterior.JPEG);
+  width: 700px;
+  height: 400px;
+  margin: auto;
+  position: absolute;
+  top: -420px;
+  left: -135px;
+  box-shadow: 4px 4px 12px rgba(36, 35, 35, 0.426);
+  background-size: cover;
+}
+.btn__textimg2 {
+  border: none;
+  background-color: white;
+}
+.btn__textimg2:hover {
+  font-style: oblique;
+  font-weight: bold;
+  cursor: pointer;
+}
+.btn__textimg2:focus .imgs {
+  background-image: url(https://sgp1.digitaloceanspaces.com/tz-mag-ph/wp-content/uploads/2023/01/010101012828/hills-view-mountainside-villa-davao.png);
+  width: 700px;
+  height: 400px;
+  margin: auto;
+  position: absolute;
+  top: -420px;
+  left: -135px;
+  box-shadow: 4px 4px 12px rgba(36, 35, 35, 0.426);
+  background-size: cover;
+}
+.btn__textimg3 {
+  border: none;
+  background-color: white;
+}
+.btn__textimg3:hover {
+  font-style: oblique;
+  font-weight: bold;
+  cursor: pointer;
+}
+.btn__textimg3:focus .imgs {
+  background-image: url(https://railaygardenview.com/wp-content/uploads/2020/09/Sea-View-view-resize-edited-scaled.jpg);
+  width: 700px;
+  height: 400px;
+  margin: auto;
+  position: absolute;
+  top: -420px;
+  left: -135px;
+  box-shadow: 4px 4px 12px rgba(36, 35, 35, 0.426);
+  background-size: cover;
+}
+.btn__textimg4 {
+  border: none;
+  background-color: white;
+}
+.btn__textimg4:hover {
+  font-style: oblique;
+  font-weight: bold;
+  cursor: pointer;
+}
+.btn__textimg4:focus .imgs {
+  background-image: url(https://media-cdn.tripadvisor.com/media/photo-s/0b/71/47/1b/dusk-harbour-view.jpg);
+  width: 700px;
+  height: 400px;
+  margin: auto;
+  position: absolute;
+  top: -420px;
+  left: -135px;
+  box-shadow: 4px 4px 12px rgba(36, 35, 35, 0.426);
+  background-size: cover;
+}
+
+.wrapper {
+  position: relative;
+  border: 2px solid rgb(83, 138, 169);
+  width: 800px;
+  height: 500px;
+  margin: auto;
+  border-radius: 10px;
+  font-family: "Open Sans", sans-serif;
+}/*# sourceMappingURL=stayl.css.map */

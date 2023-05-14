@@ -2,10 +2,13 @@
   display: flex;
   max-width: 100rem;
   margin: auto;
+  padding-left: 65px;
+  background-color: black;
+  margin: -30px;
 }
 .wrapper__container__image__star {
   position: relative;
-  width: 200px;
+  width: 230px;
   height: 100px;
 }
 .wrapper__container__image__star video {
@@ -17,6 +20,7 @@
   display: none;
   background-repeat: repeat;
   object-fit: cover;
+  transform: scale(0.9) translateY(0%) translateX(-10%);
 }
 .wrapper__container__image__star img {
   position: absolute;
@@ -27,7 +31,7 @@
 }
 .wrapper__container__image__national-geographic {
   position: relative;
-  width: 200px;
+  width: 230px;
   height: 100px;
 }
 .wrapper__container__image__national-geographic video {
@@ -39,6 +43,7 @@
   display: none;
   background-repeat: repeat;
   object-fit: cover;
+  transform: scale(0.9) translateY(0%) translateX(-10%);
 }
 .wrapper__container__image__national-geographic img {
   position: absolute;
@@ -49,7 +54,7 @@
 }
 .wrapper__container__image__starwars {
   position: relative;
-  width: 200px;
+  width: 230px;
   height: 100px;
 }
 .wrapper__container__image__starwars video {
@@ -61,6 +66,7 @@
   display: none;
   background-repeat: repeat;
   object-fit: cover;
+  transform: scale(0.9) translateY(0%) translateX(-10%);
 }
 .wrapper__container__image__starwars img {
   position: absolute;
@@ -71,7 +77,7 @@
 }
 .wrapper__container__image__marvel {
   position: relative;
-  width: 200px;
+  width: 230px;
   height: 100px;
 }
 .wrapper__container__image__marvel video {
@@ -83,6 +89,7 @@
   display: none;
   background-repeat: repeat;
   object-fit: cover;
+  transform: scale(0.9) translateY(0%) translateX(-10%);
 }
 .wrapper__container__image__marvel img {
   position: absolute;
@@ -93,7 +100,7 @@
 }
 .wrapper__container__image__pixar {
   position: relative;
-  width: 200px;
+  width: 230px;
   height: 100px;
 }
 .wrapper__container__image__pixar video {
@@ -105,6 +112,7 @@
   display: none;
   background-repeat: repeat;
   object-fit: cover;
+  transform: scale(0.9) translateY(0%) translateX(-10%);
 }
 .wrapper__container__image__pixar img {
   position: absolute;
@@ -115,7 +123,7 @@
 }
 .wrapper__container__image__disney {
   position: relative;
-  width: 200px;
+  width: 230px;
   height: 100px;
 }
 .wrapper__container__image__disney video {
@@ -127,6 +135,7 @@
   display: none;
   background-repeat: repeat;
   object-fit: cover;
+  transform: scale(0.9) translateY(0%) translateX(-10%);
 }
 .wrapper__container__image__disney img {
   position: absolute;
