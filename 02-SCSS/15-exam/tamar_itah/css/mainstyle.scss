@@ -11,7 +11,7 @@ body {
 
 .wrapper {
     width: 90vw;
-    height: 100vh;
+    height: 100%;
     background-color: $b_color;
     margin: auto;
     // border: 1px solid none;
@@ -44,7 +44,6 @@ body {
             grid-template-columns: 1fr 1fr;
             align-items: center;
         }
-
     }
 }
 
@@ -61,10 +60,6 @@ body {
         flex-direction: column;
     }
 }
-
-
-
-
 
 .header {
     display: grid;
@@ -291,5 +286,19 @@ body {
 
 .footer {
     display: grid;
+    position: fixed;
+    bottom: 0;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas: 
+    "i1 i2 i3 i4 i5"
+    "text1 text2 text3 text4 text5";
+
+    .i1{
+        grid-area: i1;
+    }
+
+    .text1{
+        grid-area: text1;
+    }
 }
