@@ -25,8 +25,9 @@ if (userAge >= 18) {
 // Exercise no 3
 
 const userHight = prompt("What is your height in meters?");
+const userHightNum = parseInt(userHight || "0");
 const userWeight = prompt("What is your weight in kilograms?");
-const userBMI = userWeight / userHight ** 2;
+const userBMI = parseInt(userWeight) / userHight ** 2;
 console.log(userBMI);
 
 if (userBMI < 18.5) {
