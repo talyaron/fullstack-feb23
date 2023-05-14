@@ -2,7 +2,7 @@ let use = confirm("Welcome to Age verefication for byuing alcohol, press ok to c
 while(use)
 {
     const np = prompt("Enter your name")
-    let ap = Number(prompt("Enter your age"))
+    var ap = Number(prompt("Enter your age"))
     while((Number.isNaN(ap)) || (ap == null) || (ap <= 0))
     {
         if(ap == 0)
