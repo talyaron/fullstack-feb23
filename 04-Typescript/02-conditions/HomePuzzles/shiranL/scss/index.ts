@@ -40,7 +40,7 @@ if (height === "" || isNaN(height))
   
         else if (bmi >= 18.6 && bmi < 24.9) {
             result.innerHTML = 
-                `<span>${fname}</span>כל הכבוד משקל תקין  , BMI: <span>${bmi}</span>`;
+                `<span>${fname}</span> כל הכבוד משקל תקין  , BMI: <span>${bmi}</span>`;
                 document.getElementById("thinIMG").hidden = true;
                 document.getElementById("fatIMG").hidden = true;
                 document.getElementById("healthyIMG").hidden = false;

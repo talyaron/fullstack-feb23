@@ -26,7 +26,7 @@ function Myfunc() {
         }
         else if (bmi >= 18.6 && bmi < 24.9) {
             result.innerHTML =
-                "<span>" + fname + "</span>\u05DB\u05DC \u05D4\u05DB\u05D1\u05D5\u05D3 \u05DE\u05E9\u05E7\u05DC \u05EA\u05E7\u05D9\u05DF  , BMI: <span>" + bmi + "</span>";
+                "<span>" + fname + "</span> \u05DB\u05DC \u05D4\u05DB\u05D1\u05D5\u05D3 \u05DE\u05E9\u05E7\u05DC \u05EA\u05E7\u05D9\u05DF  , BMI: <span>" + bmi + "</span>";
             document.getElementById("thinIMG").hidden = true;
             document.getElementById("fatIMG").hidden = true;
             document.getElementById("healthyIMG").hidden = false;
