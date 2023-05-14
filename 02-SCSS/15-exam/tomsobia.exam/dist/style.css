@@ -114,7 +114,9 @@ body {
 .wrapper__btn .btn1 {
   margin-left: 10%;
   background-color: #0027ffcc;
-  border-radius: 50px;
+  border: none;
+  border-top-left-radius: 50px;
+  border-bottom-left-radius: 50px;
   width: 40%;
   color: white;
   height: 5vw;
@@ -124,6 +126,7 @@ body {
 }
 .wrapper__btn .btn2 {
   background-color: #253cbd6b;
+  border: none;
   border-top-right-radius: 50px;
   border-bottom-right-radius: 50px;
   color: gray;
