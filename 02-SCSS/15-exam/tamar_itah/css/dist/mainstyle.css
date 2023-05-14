@@ -5,7 +5,7 @@ body {
 
 .wrapper {
   width: 90vw;
-  height: 100vh;
+  height: 100%;
   background-color: white;
   margin: auto;
   border-radius: 1.2rem;
@@ -19,15 +19,11 @@ body {
   margin-left: -20px;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (min-width: 1024px) {
   .categories__links {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     align-items: center;
-  }
-
-  .wrapper {
-    flex-direction: column;
   }
 }
 @media only screen and (max-width: 1024px) {
@@ -37,11 +33,15 @@ body {
     align-items: center;
   }
 }
-@media only screen and (min-width: 1024px) {
+@media only screen and (max-width: 600px) {
   .categories__links {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr;
     align-items: center;
+  }
+
+  .wrapper {
+    flex-direction: column;
   }
 }
 .header {
@@ -185,21 +185,32 @@ body {
   margin-top: 100px;
 }
 .categories__header__services {
+  border: 1px solid gray;
+  border-radius: 20px;
+  width: 200px;
+}
+.categories__header__Doctors {
+  border: 1px solid gray;
+  border-radius: 20px;
+  width: 200px;
+  position: absolute;
+  left: 190px;
+}
+.categories__header__services:focus {
   border: 1px solid #0095ff;
   border-radius: 20px;
   background-color: #0095ff;
   color: white;
   position: absolute;
   z-index: 1;
-  animation: btn1 2s linear 2s infinite normal forwards;
 }
-.categories__header__Doctors {
+.categories__header__Doctors:focus {
   border: 1px solid #0095ff;
-  width: 200px;
   border-radius: 20px;
-  background-color: gray;
-  animation: btn2 2s linear 2s infinite normal forwards;
+  background-color: #0095ff;
+  color: white;
   position: absolute;
+  z-index: 1;
 }
 .categories__links {
   display: grid;
@@ -212,28 +223,17 @@ body {
   padding: 17px;
 }
 
-@keyframes btn1 {
-  50% {
-    background-color: gray;
-    color: lightgray;
-  }
-  100% {
-    background-color: #0095ff;
-    color: white;
-  }
-}
-@keyframes btn2 {
-  50% {
-    background-color: #0095ff;
-    color: white;
-    z-index: 1;
-  }
-  100% {
-    background-color: gray;
-    color: lightgray;
-  }
-}
 .footer {
   display: grid;
+  position: fixed;
+  bottom: 0;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-template-areas: "i1 i2 i3 i4 i5" "text1 text2 text3 text4 text5";
+}
+.footer .i1 {
+  grid-area: i1;
+}
+.footer .text1 {
+  grid-area: text1;
 }
