@@ -46,11 +46,19 @@ div {
 .imgDiv {
   background-color: transparent;
   position: absolute;
-  top: 550px;
+  top: 600px;
   left: 150px;
 }
 .imgDiv img {
   width: 400px;
   height: 400px;
   border-radius: 360px;
+}
+
+.details {
+  width: 600px;
+  margin: auto;
+  background-color: plum;
+  display: flex;
+  flex-direction: column;
 }
