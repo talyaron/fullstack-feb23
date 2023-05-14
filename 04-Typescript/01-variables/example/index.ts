@@ -8,12 +8,9 @@ const myName = "Elisa"; //string
 
 // myName = 4 //number
 
-<<<<<<< HEAD
+
 console.log(myName);
 
-console.log();
-=======
-console.log(myName)
 
 
 let isStudent:boolean = true;
@@ -36,4 +33,4 @@ console.log(d);
 
 console.log(myName)
 
->>>>>>> 4da5e883e7da23e83b5884d6cca590d2dc05a877
+
