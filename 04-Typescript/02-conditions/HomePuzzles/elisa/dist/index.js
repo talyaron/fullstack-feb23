@@ -21,8 +21,9 @@ else {
 // } else console.log(`ערב טוב לכם, ברוכים הבאים לאתר`);
 // Exercise no 3
 var userHight = prompt("What is your height in meters?");
+var userHightNum = parseInt(userHight || "0");
 var userWeight = prompt("What is your weight in kilograms?");
-var userBMI = userWeight / Math.pow(userHight, 2);
+var userBMI = parseInt(userWeight) / Math.pow(userHight, 2);
 console.log(userBMI);
 if (userBMI < 18.5) {
     console.log("Your BMI is " + userBMI + ". You are underweight");
