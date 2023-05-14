@@ -20,6 +20,7 @@ else if (gender === "male") {
 }
 var height = prompt("what is your height in meters?");
 var weight = prompt("what is your weight in kg?");
+console.log("'hello --> '" + height);
 var numHeight = Number(height); //added this to convert the prompt message from string to number (like parseInt) - Prompt message comes as string - 0 = "0", 1 = "1"
 var numWeight = Number(weight); //added this to convert the prompt message from string to number (like parseInt) - Prompt message comes as string - 0 = "0", 1 = "1"
 var BMI = numWeight / (numHeight * numHeight);
