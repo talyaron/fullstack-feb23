@@ -20,6 +20,7 @@ else if (gender === "male") {
 }
 var height = prompt("what is your height in meters?");
 var weight = prompt("what is your weight in kg?");
+console.log("'hello --> '" + height);
 var numHeight = Number(height); //added this to convert the prompt message from string to number (like parseInt) - Prompt message comes as string - 0 = "0", 1 = "1"
 var numWeight = Number(weight); //added this to convert the prompt message from string to number (like parseInt) - Prompt message comes as string - 0 = "0", 1 = "1"
 var BMI = numWeight / (numHeight * numHeight);
@@ -35,21 +36,39 @@ else if (BMI >= 25 && BMI < 30) {
 else if (BMI >= 30) {
     console.log("you are within the obesity range");
 }
-var names = ['shaun', 'mario', 'luigi'];
-var i = 0;
-console.log(names.length);
-var i = 4;
-do {
-    console.log('val of i is: ', i);
-    i++;
-} while (i < 5);
-var password = 'psdsdsdhvh323sfsf';
-if (password.length >= 12) {
-    console.log('that password is mighty enough!');
-}
-if (password.length >= 8) {
-    console.log('that password is long enough!');
-}
-else {
-    console.log('password is not long enough');
-}
+// const names = ['shaun', 'mario', 'luigi'];
+// let i = 0;
+// console.log(names.length);
+// let i = 4;
+// do{
+//   console.log('val of i is: ', i);
+//   i++;
+// } while(i < 5);
+// const password = 'psdsdsdhvh323sfsf';
+// if(password.length >= 12){
+//   console.log('that password is mighty enough!');
+// }
+//   if(password.length >= 8){
+//     console.log('that password is long enough!');
+// } else {
+//   console.log('password is not long enough');
+// }
+// const greet = function(){
+//   return 'hello, world';
+// };
+// const greet = () => 'hello, world'; 
+var bill = function (products, tax) {
+    var total = 0;
+    for (var i = 0; i < products.length; i++) {
+        total += products[i] + products[i] * tax;
+    }
+    return total;
+};
+var bill = function (products, tax) {
+    var total = 0;
+    for (var i = 0; i < products.length; i++) {
+        total += products[i] + products[i] * tax;
+    }
+    return total;
+};
+console.log(bill([10, 15, 30], 0.2));

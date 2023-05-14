@@ -25,6 +25,8 @@ if (gender === "female") {
 const height = prompt("what is your height in meters?");
 const weight = prompt("what is your weight in kg?");
 
+console.log(`'hello --> '${height}`);
+
 const numHeight = Number(height); //added this to convert the prompt message from string to number (like parseInt) - Prompt message comes as string - 0 = "0", 1 = "1"
 const numWeight = Number(weight); //added this to convert the prompt message from string to number (like parseInt) - Prompt message comes as string - 0 = "0", 1 = "1"
 
@@ -41,27 +43,53 @@ if (BMI < 18.5) {
   console.log("you are within the obesity range");
 }
 
-const names = ['shaun', 'mario', 'luigi'];
-let i = 0;
+// const names = ['shaun', 'mario', 'luigi'];
+// let i = 0;
 
-console.log(names.length);
+// console.log(names.length);
 
-let i = 4;
+// let i = 4;
 
-do{
-  console.log('val of i is: ', i);
-  i++;
-} while(i < 5);
+// do{
+//   console.log('val of i is: ', i);
+//   i++;
+// } while(i < 5);
 
 
-const password = 'psdsdsdhvh323sfsf';
+// const password = 'psdsdsdhvh323sfsf';
 
-if(password.length >= 12){
-  console.log('that password is mighty enough!');
+// if(password.length >= 12){
+//   console.log('that password is mighty enough!');
+// }
+
+//   if(password.length >= 8){
+//     console.log('that password is long enough!');
+// } else {
+//   console.log('password is not long enough');
+// }
+
+// const greet = function(){
+//   return 'hello, world';
+// };
+
+// const greet = () => 'hello, world'; 
+
+const bill = function(products, tax){
+  let total = 0;
+  for(let i = 0; i < products.length; i++){
+    total += products[i] + products[i] * tax;
+  }
+  return total;
 }
 
-  if(password.length >= 8){
-    console.log('that password is long enough!');
-} else {
-  console.log('password is not long enough');
+const bill = (products, tax) => {
+  let total = 0;
+  for(let i = 0; i < products.length; i++){
+    total += products[i] + products[i] * tax;
+  }
+  return total;
 }
+
+
+
+console.log(bill([10,15,30], 0.2));

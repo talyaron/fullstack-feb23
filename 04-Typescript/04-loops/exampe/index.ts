@@ -3,10 +3,13 @@
 // x++ 
 // console.log(x);
 
-
+const userName = "Matan";
 
 //loop
-for(let x = 2; x<100;x++){
-    console.log(x);
+for(let x = 2; x<10;x++){
+    const userName = "Shachar";
+    console.log(`This ${x} BOOM, ${userName}`);
 }
+
+console.log(userName)
 
