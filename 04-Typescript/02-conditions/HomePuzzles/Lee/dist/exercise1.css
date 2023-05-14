@@ -1,0 +1,36 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  background-color: #fda500;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tictactoe {
+  background-color: black;
+  width: 200px;
+  height: 200px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  border-radius: 7px;
+  box-shadow: 4px 5px 8px 2px rgba(0, 0, 0, 0.4);
+}
+.tictactoe .btn {
+  font-size: 50px;
+  font-weight: 800;
+  text-align: center;
+  background-color: white;
+  width: calc(33% - 6px);
+  height: calc(33% - 6px);
+  margin: 3px;
+}

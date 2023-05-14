@@ -21,10 +21,11 @@ btn.addEventListener('click', function () {
     else if (BMI >= 25 && BMI < 30) {
         status = "Overweight";
     }
-    else
-        (BMI >= 30);
-    {
+    else if (BMI >= 30) {
         status = "Obese";
+    }
+    else {
+        console.log("Error");
     }
     document.querySelector('.comment').innerHTML = "Comment:you are <span id=\"comment\">" + status + "</span>";
 });
