@@ -30,11 +30,11 @@ form!.addEventListener("submit", (event) => {
     result.innerHTML = "No input recived!";
   } else {
     if (age >= 18) {
-      console.log("You are old enough to buy alcohol!");
+      console.log('%c' + "You are old enough to buy alcohol!"+ '', 'color: lime; background-color: blue; display: block; font-weight: bold; font-size: 20px; padding: 10px; border-radius: 15px;');
       result!.style.backgroundColor = "lime";
       result.innerHTML = "You are old enough to buy alcohol!";
     } else {
-      console.log("You are not old enough to buy alcohol.");
+      console.log('%c' + "You are not old enough to buy alcohol."+ '', 'color: red; background-color: blue; display: block; font-weight: bold; font-size: 20px; padding: 10px; border-radius: 15px;');
       result.style.backgroundColor = "red";
       result.innerHTML = "You are not old enough to buy alcohol.";
     }
