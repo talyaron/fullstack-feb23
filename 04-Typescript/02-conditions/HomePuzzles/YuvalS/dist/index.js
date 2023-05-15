@@ -7,7 +7,7 @@
 // }
 // const gender = (prompt("what is your gender?"))
 // if (gender === 'man') {
-//     document.write ("hello man")
+//     document.write ("h ello man")
 // }
 // else {
 //     document.write ("hello woman")

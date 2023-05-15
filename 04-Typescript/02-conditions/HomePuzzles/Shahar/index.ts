@@ -7,5 +7,3 @@ if (AgeAsNumber >= 18) {
 } else {
   document.write("עוף לי מהפנים");
 }
-
-  
