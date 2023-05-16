@@ -1,4 +1,4 @@
 for (var i = 99; i > 0; i--) {
     console.log(i);
-    console.log(" בקבוקים על העץ אחד 1 והתפוצץ");
+    console.log(" בקבוקים על העץ  1 נפל  והתפוצץ");
 }
