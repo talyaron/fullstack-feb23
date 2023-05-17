@@ -16,7 +16,7 @@ var thirdNumber = 2;
 var sumTwo = 0;
 for (var i = 1; i <= seconNnumber; i++) {
     for (var k = 1; k <= i; k++) {
-        sumTwo += i;
+        sumTwo += k;
     }
 }
 var newSum = sumTwo * thirdNumber;

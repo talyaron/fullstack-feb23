@@ -24,7 +24,7 @@ let sumTwo = 0;
 
 for (let i = 1; i <= seconNnumber; i++) {
   for (let k = 1; k <= i; k++) {
-    sumTwo += i;
+    sumTwo += k;
   }
 }
 const newSum = sumTwo * thirdNumber;
