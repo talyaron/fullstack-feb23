@@ -1,19 +1,19 @@
-console.log(Mul(4, 5));
-console.log(Add(4, 5));
-console.log(Div(4, 5));
-console.log(Sub(4, 5));
-function Mul(a, b) {
+console.log(mul(12, 6));
+console.log(add(12, 6));
+console.log(div(12, 6));
+console.log(sub(12, 6));
+function mul(a, b) {
     return a * b;
 }
-function Add(a, b) {
+function add(a, b) {
     return a + b;
 }
-function Div(a, b) {
+function div(a, b) {
     if (b != 0) {
         return a / b;
     }
     return 0;
 }
-function Sub(a, b) {
+function sub(a, b) {
     return a - b;
 }
