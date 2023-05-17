@@ -1,12 +1,13 @@
 let n: number = parseInt(prompt("Enter a value for n:"));
 let j: number = parseInt(prompt("Enter a value for j:"));
-let sum: number = 0;
-let i: number = 1;
 
-while (i <= n) {
+let start: number = Math.min(n, j);
+let end: number = Math.max(n, j);
+let sum: number = 0;
+
+for (let i = start; i <= end; i++) {
     sum += i;
-    i++;
 }
 
-let result: number = (n + j) * sum;
-console.log(`The result of (${1}+${2}+...+${n}) * (${n} + ${j}) is ${result}`);
+let result: number = sum * (n * j);
+console.log(`The result of (${start}+${start+1}+...+${end}) * (${n} * ${j}) is ${result}`);

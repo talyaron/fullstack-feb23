@@ -1,10 +1,10 @@
 var n = parseInt(prompt("Enter a value for n:"));
 var j = parseInt(prompt("Enter a value for j:"));
+var start = Math.min(n, j);
+var end = Math.max(n, j);
 var sum = 0;
-var i = 1;
-while (i <= n) {
+for (var i = start; i <= end; i++) {
     sum += i;
-    i++;
 }
-var result = (n + j) * sum;
-console.log("The result of (" + 1 + "+" + 2 + "+...+" + n + ") * (" + n + " + " + j + ") is " + result);
+var result = sum * (n * j);
+console.log("The result of (" + start + "+" + (start + 1) + "+...+" + end + ") * (" + n + " * " + j + ") is " + result);
