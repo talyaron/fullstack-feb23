@@ -3,22 +3,11 @@
 // } 
 
 
-// for (let i = 0; i <= 10; i++) {
-//     console.log(`${i}`);
-// }
+let x = 0
+for (let y = 1; y <= 10; y++) {
+    for (let i = 1; i <= 22; i++) {
+        x = x + i
+    }
+}
+console.log(`(1+2+...+ ${i}) x ${y} = ${x}`)
 
-
-//למידה
-// const n = prompt("הכנס מספר סכום");
-// const m = prompt("הכנס מספר כפל");
-// const sum = Number(n);
-// const multiply = Number(m);
-// let x = 0
-// for (let j = 1; j <= multiply; j++) {
-//     for (let i = 1; i <= sum; i++) {
-//         x = x + i
-//     }
-//     if (j === multiply) {
-//         document.write(`(1+2+...+ ${sum})x${multiply}=${x}`)
-//     }
-// }
