@@ -6,8 +6,8 @@ for (var n = 0; n < number; n++) {
     sum = number + n;
     s--;
     while (s < 1) {
-        console.log(sum + " = " + number + " + " + n + " * " + j);
         sum = (number + n) * j;
+        console.log(sum + " = " + number + " + " + n + " * " + j);
         s++;
     }
 }
