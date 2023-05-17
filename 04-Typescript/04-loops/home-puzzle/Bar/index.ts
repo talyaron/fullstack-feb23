@@ -4,10 +4,10 @@
 
 
 let x = 0
-for (let y = 0; y <= 2; y++) {
-    for (let i = 0; i <= 100; i++) {
+for (let y = 1; y <= 10; y++) {
+    for (let i = 1; i <= 22; i++) {
         x = x + i
     }
 }
- console.log(`(1+2+...+ ${i}) x ${y} = ${x}`)
+console.log(`(1+2+...+ ${i}) x ${y} = ${x}`)
 
