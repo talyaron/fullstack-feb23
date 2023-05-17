@@ -33,7 +33,7 @@ if (AgeAsNumber > 1000) {
   }
   let SubTotal = 0;
   for (let p = 0; p <= MultipleNumber; p++) {
-    SubTotal = SubTotal + sum;
+    SubTotal = sum * p;
   }
   debugger;
 
