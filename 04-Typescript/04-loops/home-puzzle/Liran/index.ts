@@ -68,3 +68,4 @@ for(let i = 1; i <= Jfactor; i++){
 
 resString += "= " + totalSum;
 console.log(resString)
+confirm("See result in Console")
