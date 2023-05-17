@@ -19,3 +19,4 @@ function multiplyTriangular(t, m) {
     //   }
     return resultTriangular * m;
 }
+console.log(multiplyTriangular);

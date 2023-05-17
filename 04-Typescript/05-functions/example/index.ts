@@ -24,3 +24,6 @@ function multiplyTriangular(t: number, m: number): number {
   //   }
   return resultTriangular * m;
 }
+
+
+console.log(multiplyTriangular)
