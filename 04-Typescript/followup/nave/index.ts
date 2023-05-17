@@ -1,6 +1,6 @@
 var x:number = 3;
 
-x= "346fjgdfjkgkdjfghjkdfg"
+x= 5
 
  console.log(x);
  const MyName = "nave"

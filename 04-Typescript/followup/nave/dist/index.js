@@ -1,5 +1,5 @@
 var x = 3;
-x = "346fjgdfjkgkdjfghjkdfg";
+x = 5;
 console.log(x);
 var MyName = "nave";
 console.log(MyName);
