@@ -1,0 +1,2 @@
+function Mul(a, b) {
+}
