@@ -7,8 +7,5 @@ for (var j = 1; j <= multiply; j++) {
     for (var i = 1; i <= sum; i++) {
         x = x + i;
     }
-    // if (j === multiply) {
-    //     document.write(`(1+2+...+ ${sum})x${multiply}=${x}`)
-    // }
 }
 document.write("(1+2+...+ " + sum + ")x" + multiply + "=" + x);
