@@ -8,3 +8,6 @@ function mult (a:number,b:number):number{
     const multi:number = a * b;
     return multi;
 }
+
+
+
