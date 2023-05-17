@@ -33,7 +33,7 @@ else {
     }
     var SubTotal = 0;
     for (var p = 0; p <= MultipleNumber; p++) {
-        SubTotal = SubTotal + sum;
+        SubTotal = sum * p;
     }
     debugger;
     console.log("the sum of your number is " + SubTotal);
