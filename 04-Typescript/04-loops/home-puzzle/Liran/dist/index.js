@@ -1,5 +1,6 @@
 var Nfactor = Number(prompt("Enter first positive number"));
 // debugger;
+/* input from User */
 while ((Number.isNaN(Nfactor)) || (Nfactor == null) || (Nfactor <= 0)) {
     if (Nfactor == 0) {
         Nfactor = Number(prompt("Don't leave empty, please enter positive number"));
@@ -25,9 +26,9 @@ while ((Number.isNaN(Jfactor)) || (Jfactor == null) || (Jfactor <= 0)) {
 }
 var loopSum = 0;
 var totalSum = 0;
-for (var i = 1; i <= Jfactor; i++) {
+for (var i = 1; i <= Jfactor; i++) { // Loops to calculate (1+2+3..+N) * J
     loopSum = 0;
-    for (var l = 1; l <= Nfactor; l++) {
+    for (var l = 1; l <= Nfactor; l++) { // single inside loop calculation
         loopSum += l;
     }
     totalSum += loopSum;
@@ -35,7 +36,7 @@ for (var i = 1; i <= Jfactor; i++) {
 console.log("N = " + Nfactor + "  J = " + Jfactor);
 var resString = "";
 resString += "the result of 1+2...+N: ";
-for (var l = 1; l <= Nfactor; l++) {
+for (var l = 1; l <= Nfactor; l++) { // Loops to build single loop string printed to console
     if (l == Nfactor) {
         resString += l.toString() + " ";
     }
@@ -46,7 +47,7 @@ for (var l = 1; l <= Nfactor; l++) {
 resString += "= " + loopSum;
 console.log(resString);
 resString = "the result of 1+2...+N, J times: ";
-for (var i = 1; i <= Jfactor; i++) {
+for (var i = 1; i <= Jfactor; i++) { // Loops to build full result string printed to console
     for (var l = 1; l <= Nfactor; l++) {
         if ((l == Nfactor) && (i == Jfactor)) {
             resString += l.toString() + " ";
