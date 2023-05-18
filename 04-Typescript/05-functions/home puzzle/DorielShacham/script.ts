@@ -6,7 +6,7 @@
 //         return document.write("You canceled the prompt");
 //     }
 
-//     const lowercaseGender: string = gender.toLowerCase();
+    // const lowercaseGender: string = gender.toLowerCase();
 
 //     if (lowercaseGender === "male") {
 //         return document.write("Hello sir");
@@ -31,6 +31,6 @@ function biggerNum(num1: number, num2: number): number {
     }
 }
 const bigger:number = biggerNum(num1, num2);
-document.write(bigger);
+document.write(bigger.toString());
 
 // 3) write a function that gets an array of numbers, and return the number ordered from the smallest to the largest. dont use .sort. dont use chatGPT. you can only search of array in javascript. ([9,4,5,7] ->[4,5,7,9] )
