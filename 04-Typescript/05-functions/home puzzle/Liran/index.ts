@@ -1,5 +1,7 @@
 
-
+function whosBigger(a:number , b:number):number{
+    return a>b?a:b;
+}
 
 function sortArray(arr:number[]){
     let tempArray:number[]= new Array(arr.length);
@@ -16,6 +18,11 @@ function sortArray(arr:number[]){
 }
 
 let numberArray: number[] = [4,85,24,98,3,1,0,4,-5,45,-9,43,-90];
-document.write(`original array: ${numberArray.toString()}`);
+const firstNum = 81;
+const secondNum = 12;
+let maxVal;
+document.write(`original array: ${numberArray.toString()}<br>`);
 sortArray(numberArray);
-document.write(`<br>sorted array: ${numberArray.toString()}`);
+document.write(`<br>sorted array: ${numberArray.toString()}<br>`);
+maxVal = whosBigger(firstNum,secondNum);
+document.write(`<br>The max between ${firstNum} and ${secondNum} is: ${maxVal}<br>`)
