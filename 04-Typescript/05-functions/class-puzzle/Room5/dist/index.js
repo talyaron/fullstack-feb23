@@ -1,4 +1,4 @@
-function deleteSpace(str) {
+function deleteSpaces(str) {
     var newStr = "";
     for (var i = 0; i < str.length; i++) {
         if (str[i] != " ") {
@@ -7,4 +7,4 @@ function deleteSpace(str) {
     }
     return newStr;
 }
-document.write(deleteSpace("Hellow world nkgf grei rk fd"));
+document.write(deleteSpaces("Hellow world nkgf gf gfdss ,,vdl rfe 43 3232 43"));
