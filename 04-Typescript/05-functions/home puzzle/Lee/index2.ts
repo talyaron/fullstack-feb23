@@ -5,7 +5,7 @@ const number2 = parseInt(prompt ('Enter another one: '));
 
 
 
-function max(a, b) {
+function max(a:number, b:number) {
 if (a > b) {
     return a;
 }
