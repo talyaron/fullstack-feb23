@@ -5,7 +5,6 @@ function drawDigits(){
 
     let digits = [7,9,2,5]
     return digits
-
     
 }
 
