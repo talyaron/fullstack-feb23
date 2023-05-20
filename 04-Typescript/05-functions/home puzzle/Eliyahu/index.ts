@@ -1,5 +1,3 @@
-// // 1) write a prompt that ask the user if he is male or female. if the answer is "male" return "hello sir" if it is "female" return "hello Miss". If the user write another answer, it should return "hello".
-
 const type = prompt("what is your gender?")
 
 function Hello(sug: string | null): string {
@@ -11,15 +9,14 @@ function Hello(sug: string | null): string {
             gender = "Miss"
         }
     }
-    return `Hello ${gender}`
+    return `Hello ${gender} <br/>`
 }
 
 document.write(Hello(type))
 
 
-// // 2) write a function that gets 2 numbers, and return the bigger. (max)
-const num1 = Number(prompt("הכנס מספר"))
-const num2 = Number(prompt("הכנס מספר נוסף"))
+const num1 = Number(prompt("הכנס מספר להשוואה"))
+const num2 = Number(prompt("הכנס מספר נוסף להשוואה"))
 
 function max(a: number, b: number): number {
     if (a > b) {
@@ -30,10 +27,9 @@ function max(a: number, b: number): number {
     }
 }
 
-console.log(max(num1, num2))
+document.write(`The big number is ` + (max(num1, num2)).toString() +`<br/>`)
 
 
-// 3) write a function that gets an array of numbers, and return the number ordered from the smallest to the largest. dont use .sort. dont use chatGPT. you can only search of array in javascript. ([9,4,5,7] ->[4,5,7,9] )
 
 let nums = []
 const lng = Number(prompt("כמה מספרים יש במערך?"))
@@ -43,20 +39,24 @@ for (let z = 0; z < lng; z++) {
     nums.push(n)
 }
 
-let orderNums = []
-for (let j = 0; j < nums.length; j++) {
-    let x = 0
-    for (let i = 0; i < nums.length; i++) {
-        if (nums[i] > x) {
-            x = nums[i]
+function order(arr: number[]) {
+    let orderNums = []
+    for (let j = 0; j < arr.length; j++) {
+        let x = 0
+        for (let i = 0; i < arr.length; i++) {
+            if (x < arr[i]) {
+                x = arr[i]
+            }
         }
+        arr[arr.indexOf(x)] = 0
+        orderNums.unshift(x)
+
+
     }
-    nums[nums.indexOf(x)] = 0
-    orderNums.unshift(x)
+    return orderNums
 }
-document.write(orderNums)
-
-
+let result = (order(nums))
+document.write(`Here your array sort by order: ` + (result.toString()))
 
 
 
