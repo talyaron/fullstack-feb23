@@ -34,3 +34,13 @@ const bigger:number = biggerNum(num1, num2);
 document.write(bigger.toString());
 
 // 3) write a function that gets an array of numbers, and return the number ordered from the smallest to the largest. dont use .sort. dont use chatGPT. you can only search of array in javascript. ([9,4,5,7] ->[4,5,7,9] )
+const arr = [5,2,3,4,1];
+console.log(`[${arr}`,']', 'this is the first array');
+const OOO = arr.splice(1, 4);
+console.log(`${OOO}`, 'using .splice to remove the first(0) number');
+OOO.unshift(0, 1);
+console.log(`${OOO}`, 'Using .unshift to add values(0, 1) to the start of the array');
+const newNewOOO = OOO.splice(0, 5);
+console.log(`${newNewOOO}`, 'Using .splice again to cut the last number of the array(1)');
+newNewOOO.push(5)
+console.log(`${newNewOOO}`, 'Using .push to add the number (5) to the end of the array');
