@@ -4,4 +4,3 @@ function roomSix(a, b) {
 }
 var result = roomSix(2, 3);
 console.log(result);
-console.log(roomSix);

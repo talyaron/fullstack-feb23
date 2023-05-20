@@ -6,9 +6,10 @@
   // };
 
 // task two
-let addNumber = prompt ('')
-let exerciseAsNumber = [1 + 2 + 3];
-for (let exerciseAsNumber; exerciseAsNumber ; (`${addNumber}`)){
+let addNumber :number = prompt ('type a number')
+let exerciseAsNumber :number = [1 + 2 + 3];
+
+for (let exerciseAsNumber = ; exerciseAsNumber ; (`${addNumber}`)){
 
   console.log(exerciseAsNumber);
 };

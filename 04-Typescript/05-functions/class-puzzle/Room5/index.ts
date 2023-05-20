@@ -1,6 +1,6 @@
 
 
-function deleteSpace(str:string):string{
+function deleteSpaces(str:string):string{
     let newStr="";
     for(let i=0; i<str.length;i++){
         if(str[i] != " "){
@@ -10,4 +10,4 @@ function deleteSpace(str:string):string{
     return  newStr;
 }
 
-document.write(deleteSpace("Hellow world nkgf grei rk fd"))
+document.write(deleteSpaces("Hellow world nkgf gf gfdss ,,vdl rfe 43 3232 43"));
