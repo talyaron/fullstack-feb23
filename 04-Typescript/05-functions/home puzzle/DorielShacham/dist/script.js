@@ -33,13 +33,16 @@ function harry() {
     console.log('%c[' + harr.reverse() + '] values in the array asc to dec', 'background: blueviolet; color: white; display: block; font-family:monospace; font-weight: bold; font-size: 20px; text-shadow: 3px 3px 0 rgb(0,0,0)');
 }
 harry();
-var arr = [5, 2, 3, 4, 1];
-console.log('%c[' + arr + '] this is the first array', 'background: blue; color: white; display: block; font-family:monospace; font-weight: bold; font-size: 20px; text-shadow: 3px 3px 0 rgb(0,0,0)');
-var OOO = arr.splice(1, 4);
-console.log('%c[' + OOO + '] using .splice to remove the first(0) number', 'background: teal; color: white; display: block; font-family:monospace; font-weight: bold; font-size: 20px; text-shadow: 3px 3px 0 rgb(0,0,0)');
-OOO.unshift(0, 1);
-console.log('%c[' + OOO + '] Using .unshift to add values(0, 1) to the start of the array', 'background: orange; color: white; display: block; font-family:monospace; font-weight: bold; font-size: 20px; text-shadow: 3px 3px 0 rgb(0,0,0)');
-var newNewOOO = OOO.splice(0, 5);
-console.log('%c[' + newNewOOO + '] Using .splice again to cut the last number of the array(1)', 'background: red; color: white; display: block; font-family:monospace; font-weight: bold; font-size: 20px; text-shadow: 3px 3px 0 rgb(0,0,0)');
-newNewOOO.push(5);
-console.log('%c[' + newNewOOO + '] Using .push to add the number (5) to the end of the array', 'background: lime; color: white; display: block; font-family:monospace; font-weight: bold; font-size: 20px; text-shadow: 3px 3px 0 rgb(0,0,0)');
+function harryTwo() {
+    var arr = [5, 2, 3, 4, 1];
+    console.log('%c[' + arr + '] this is the first array', 'background: blue; color: white; display: block; font-family:monospace; font-weight: bold; font-size: 20px; text-shadow: 3px 3px 0 rgb(0,0,0)');
+    var OOO = arr.splice(1, 4);
+    console.log('%c[' + OOO + '] using .splice to remove the first(0) number', 'background: teal; color: white; display: block; font-family:monospace; font-weight: bold; font-size: 20px; text-shadow: 3px 3px 0 rgb(0,0,0)');
+    OOO.unshift(0, 1);
+    console.log('%c[' + OOO + '] Using .unshift to add values(0, 1) to the start of the array', 'background: orange; color: white; display: block; font-family:monospace; font-weight: bold; font-size: 20px; text-shadow: 3px 3px 0 rgb(0,0,0)');
+    var newNewOOO = OOO.splice(0, 5);
+    console.log('%c[' + newNewOOO + '] Using .splice again to cut the last number of the array(1)', 'background: red; color: white; display: block; font-family:monospace; font-weight: bold; font-size: 20px; text-shadow: 3px 3px 0 rgb(0,0,0)');
+    newNewOOO.push(5);
+    console.log('%c[' + newNewOOO + '] Using .push to add the number (5) to the end of the array', 'background: lime; color: white; display: block; font-family:monospace; font-weight: bold; font-size: 20px; text-shadow: 3px 3px 0 rgb(0,0,0)');
+}
+harryTwo();
