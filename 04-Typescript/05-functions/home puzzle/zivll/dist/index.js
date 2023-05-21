@@ -1,7 +1,6 @@
 var userNumber = Number(prompt("please write some numbers") || 0);
 var arrOfDigits = Array.from(String(userNumber), Number);
 var arrRange = Array.from(String(userNumber), Number);
-debugger;
 var arrResult = [];
 for (var x = 0; x < arrRange.length; x++) {
     arrResult[x] = Math.max.apply(Math, arrOfDigits);
