@@ -1,6 +1,10 @@
 
 function whoIsBigger(a:number , b:number):number{
-    return a>b?a:b;
+    // return a>b?a:b;
+    if(a>b){
+        return a;
+    }
+    return b;
 }
 
 function sortArray(arr:number[]){
@@ -16,6 +20,8 @@ function sortArray(arr:number[]){
         }
     }
 }
+
+/* main */
 
 let numberArray: number[] = [4,85,24,98,3,1,0,4,-5,45,-9,43,-90];
 const firstNum = 81;
