@@ -16,15 +16,19 @@
 
 // console.log(whoIsBigger(x, y))
 
-const numbers2 = ["3, 1, 4, 2"];
+const numbers2 = [3, 1, 4, 8];
 function fromStoB (numbers2) {
 
 for(let i=0; i<numbers2.length ; i ++) {
-console.log(Math.min(...numbers2))
+numbers2[i] = Math.min(...numbers2)
+
 }
 }
 console.log(fromStoB(numbers2))
 
+// const arr = [3, 1, 4, 2];
+// const x = Math.min(...arr)
+// console.log(x)
 
    
 
