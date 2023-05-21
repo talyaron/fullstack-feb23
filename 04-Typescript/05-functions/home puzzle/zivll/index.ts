@@ -1,7 +1,6 @@
 const userNumber = Number(prompt("please write some numbers") || 0);
 let arrOfDigits = Array.from(String(userNumber), Number);
 const arrRange = Array.from(String(userNumber), Number);
-// const a = amountOfNum(userNumber);
 debugger;
 let arrResult: any = [];
 
