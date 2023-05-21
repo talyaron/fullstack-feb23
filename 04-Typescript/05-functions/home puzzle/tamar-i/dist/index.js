@@ -1,5 +1,6 @@
 //1
 function hello(jander) {
+    console.log(jander);
     if (jander == 'mail') {
         return ("Hello sir, ");
     }
@@ -15,6 +16,7 @@ var jander = prompt("what is your jander?");
 document.write(hello(jander));
 //2
 function max(num1, num2) {
+    console.log("max-numbers: " + num1 + ", " + num2);
     if (num1 > num2)
         return num1;
     else
@@ -24,23 +26,32 @@ var num1 = Number(prompt("please enter the first number"));
 var num2 = Number(prompt("please enter the srcond number"));
 document.write("the bigger number is " + max(num1, num2) + ". ");
 //3
-function sortArray(arr) {
-    var big = [0];
-    for (var i = 1; i < (arr.length); i++) {
-        big[i - 1] = max(arr[i - 1], arr[i]);
-    }
-    return big;
+function min(num1, num2) {
+    console.log("min-numbers: " + num1 + ", " + num2);
+    if (num1 < num2)
+        return num1;
+    else
+        return num2;
 }
-function getArray() {
-    var arr = [0];
-    var i = 0;
-    var num = Number(prompt("enter a number diffrent then 0"));
-    while (num != 0) {
-        arr[i] = num;
-        i++;
-        num = Number(prompt("enter the next number"));
+function sortArraymintomax(arr, lenght) {
+    console.log("lenght=" + lenght);
+    var big = 0;
+    for (var i = 0; i < (lenght - 1); i++) {
+        big = max(arr[i], arr[i + 1]);
+        arr[i] = min(arr[i], arr[i + 1]);
+        arr[i + 1] = big;
+        console.log("i=" + i + ", arr[" + i + "]=" + arr[i] + ", big=" + big);
     }
     return arr;
 }
-var arr = getArray();
-document.write("the sort array is " + sortArray(arr));
+var lenght = Number(prompt("enter the length of your array"));
+function getArray(lenght) {
+    var arr = [0];
+    for (var i = 0; i < lenght; i++) {
+        arr[i] = Number(prompt("enter a number"));
+    }
+    console.log(arr);
+    return arr;
+}
+var arr = getArray(lenght);
+document.write("the sort array is " + sortArraymintomax(arr, lenght));

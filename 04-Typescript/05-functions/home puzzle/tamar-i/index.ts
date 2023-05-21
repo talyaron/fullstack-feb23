@@ -1,6 +1,8 @@
 //1
 
 function hello (jander:string | null):string{
+    console.log(jander);
+
     if (jander=='mail'){
         return ("Hello sir, ")}
 
@@ -20,6 +22,8 @@ document.write(hello(jander));
 //2
 
 function max (num1:number, num2:number):number {
+    console.log(`max-numbers: ${num1}, ${num2}`);
+
     if (num1 > num2) return num1
     else return num2
 }
@@ -31,26 +35,39 @@ document.write(`the bigger number is ${max(num1,num2)}. `);
 
 //3
 
-function sortArray (arr:number[]):number[]{
-    let big:number[] = [0];
-    for (let i=1 ; i<(arr.length) ; i++){
-        big[i-1] = max(arr[i-1], arr[i])
-    }
-    return big;
+function min (num1:number, num2:number):number {
+    console.log(`min-numbers: ${num1}, ${num2}`);
+
+    if (num1 < num2) return num1
+    else return num2
 }
 
-function getArray ():number[]{
-    let arr:number[] = [0]
-    let i:number = 0
-    let num:number = Number(prompt("enter a number diffrent then 0"));
-    while (num!=0){
-        arr[i] = num;
-        i++;
-        num = Number(prompt("enter the next number"));
+function sortArraymintomax (arr:number[],lenght:number):number[]{
+    console.log(`lenght=${lenght}`);
+    let big:number = 0;
+  
+    for (let i=0 ; i<(lenght-1) ; i++){
+        big = max(arr[i],arr[i+1]);
+        arr[i] = min(arr[i], arr[i+1]);
+        arr[i+1] = big;
+
+        console.log(`i=${i}, arr[${i}]=${arr[i]}, big=${big}`);
     }
     return arr;
 }
 
-let arr:number[] = getArray();
+let lenght:number = Number(prompt("enter the length of your array"));
 
-document.write(`the sort array is ${sortArray(arr)}`);
+function getArray (lenght:number):number[]{
+    let arr:number[] = [0]
+      
+    for (let i=0; i<lenght; i++){
+        arr[i] = Number(prompt("enter a number")); 
+    }
+    console.log(arr);
+    return arr;
+}
+
+let arr:number[] = getArray(lenght);
+
+document.write(`the sort array is ${sortArraymintomax(arr,lenght)}`);

@@ -5,10 +5,17 @@ const number2 = parseInt(prompt('Enter another one: '));
 
 
 
+<<<<<<< HEAD
 function max(a, b) {
     if (a > b) {
         return a;
     }
+=======
+function max(a:number, b:number) {
+if (a > b) {
+    return a;
+}
+>>>>>>> main
 
     else {
         return b;
