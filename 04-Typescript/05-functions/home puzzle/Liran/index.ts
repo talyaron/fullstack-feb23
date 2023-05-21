@@ -1,5 +1,5 @@
 
-function whosBigger(a:number , b:number):number{
+function whoIsBigger(a:number , b:number):number{
     return a>b?a:b;
 }
 
@@ -24,5 +24,5 @@ let maxVal;
 document.write(`original array: ${numberArray.toString()}<br>`);
 sortArray(numberArray);
 document.write(`<br>sorted array: ${numberArray.toString()}<br>`);
-maxVal = whosBigger(firstNum,secondNum);
+maxVal = whoIsBigger(firstNum,secondNum);
 document.write(`<br>The max between ${firstNum} and ${secondNum} is: ${maxVal}<br>`)
