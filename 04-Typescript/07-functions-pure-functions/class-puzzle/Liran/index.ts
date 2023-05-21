@@ -4,12 +4,11 @@ function calculate(num1:number,op:string|null ,num2:number):number | undefined{
         if(isNaN(num1) || isNaN(num2))throw new Error("Not a number");
         if(op !== "/" && op !== "*" && op !== "+" && op !== "-")throw new Error("Not one of the calculate operations")
         switch(op){
-            case "/": if(num2 == 0)throw new Error("Can't divide 0"){
-            } return num1/num2;
+            case "/": if(num2 == 0)throw new Error("Can't divide 0")
+                return num1/num2;
             case "*": return num1*num2;
             case "+": return num1+num2;
-            case "-": return num1-num2;
-            
+            case "-": return num1-num2;   
         }
         } catch (error) {
         console.error(error)
