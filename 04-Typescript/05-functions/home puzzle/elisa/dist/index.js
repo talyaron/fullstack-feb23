@@ -12,11 +12,27 @@
 // const greetHello = userGender();
 // console.log(greetHello);
 // 2. write a function that gets 2 numbers, and return the bigger. (max)
-var num1 = Number(prompt('Enter a number between  1-100'));
-var num2 = Number(prompt('Enter another number between 1-100'));
-function findMaxNumber(num1, num2) {
-    return Math.max(num1, num2);
-}
-var maxNumber = findMaxNumber(num1, num2);
-console.log("The bigger number is: " + maxNumber);
+// const num1: number = Number(prompt('Enter a number between  1-100'));
+// const num2: number = Number(prompt('Enter another number between 1-100'));
+// function findMaxNumber(num1: number, num2: number): number {
+//   return Math.max(num1, num2);
+// }
+// const maxNumber: number = findMaxNumber(num1, num2);
+// console.log(`The bigger number is: ${maxNumber}`);
 // 3.write a function that gets an array of numbers, and return the number ordered from the smallest to the largest. dont use .sort. dont use chatGPT. you can only search of array in javascript. ([9,4,5,7] ->[4,5,7,9] )
+function basicArray(numbers) {
+    var afterSortArray = [];
+    while (numbers.length > 0) {
+        var minIndex = 0;
+        for (var i = 1; i < numbers.length; i++) {
+            if (numbers[i] < numbers[minIndex]) {
+                minIndex = i;
+            }
+        }
+        afterSortArray.push(numbers.splice(minIndex, 1)[0]);
+    }
+    return afterSortArray;
+}
+var numbers = [9, 44, 17, 2, 1, 0];
+var sortedNumbers = basicArray(numbers);
+console.log("Sorted numbers: " + sortedNumbers);
