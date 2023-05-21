@@ -40,7 +40,7 @@ function harry(){
 }
 harry();
 
-
+function harryTwo(){
 const arr:number[] = [5,2,3,4,1];
 console.log('%c[' + arr +'] this is the first array', 'background: blue; color: white; display: block; font-family:monospace; font-weight: bold; font-size: 20px; text-shadow: 3px 3px 0 rgb(0,0,0)');
 const OOO:number[] = arr.splice(1, 4);
@@ -51,3 +51,5 @@ const newNewOOO:number[] = OOO.splice(0, 5);
 console.log('%c[' + newNewOOO +'] Using .splice again to cut the last number of the array(1)', 'background: red; color: white; display: block; font-family:monospace; font-weight: bold; font-size: 20px; text-shadow: 3px 3px 0 rgb(0,0,0)');
 newNewOOO.push(5)
 console.log('%c[' + newNewOOO +'] Using .push to add the number (5) to the end of the array', 'background: lime; color: white; display: block; font-family:monospace; font-weight: bold; font-size: 20px; text-shadow: 3px 3px 0 rgb(0,0,0)');
+}
+harryTwo();
