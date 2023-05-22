@@ -78,15 +78,40 @@
 // range(orderedNumbers);
 
 
-function arr(numbers :number[] = [2, 6, 9, 3]):number[] {
-    const length = numbers.length
-    for (let i = 0; i < length; i++) {
-        console.log(`${numbers}`);
-    }
-    return(numbers);
-}
-arr();
+// function arr(numbers :number[] = [2, 6, 9, 3]):number[] {
+//     const length = numbers.length
+//     for (let i = 0; i < length; i++) {
+//         console.log(`${numbers}`);
+//     }
+//     return(numbers);
+// }
+// arr();
 
+
+// function lol (numbers : number[]) {
+//      let outPutString :string = "";
+//     for(let i = 0; i < numbers.length; i++){
+//         outPutString += numbers[i];
+//     if (i == 0){
+//         console.log('(');
+        
+//     }
+//     }
+//     return outPutString;
+// }
+
+// console.log(lol([1, 2, 3, 4, 5, 6, 7, 8, 9, 0]));
+
+// // functions
+// function kal (y :number) {
+//     let sum = 0;
+//     for(let i = 0; i < 8; i++){
+//         sum = sum + i;
+//     }
+//     return sum;
+// }
+
+// console.log(kal(8))
 
 
 
@@ -121,3 +146,6 @@ arr();
 
 // numbers(100); 
 
+
+
+https://docs.google.com/spreadsheets/d/10slK5HLDW88YgNIh05LKMOFB9CffCEsqw6EG0cV373A/edit?usp=sharing
