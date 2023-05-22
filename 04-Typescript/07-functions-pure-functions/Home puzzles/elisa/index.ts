@@ -103,6 +103,7 @@ function reverseText(str: string | null) {
 const userStr: string | null = prompt("Enter text")
 
 console.log(reverseText(userStr))
+
 // const str = 'guitar'; //5
 // console.log('The original string is: ' + str);
 // let reversedStr = '';
