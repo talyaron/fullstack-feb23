@@ -6,12 +6,12 @@
 //    Expected Output: -32243;
 function makeNegative(number) {
   try {
-    return -number
+    return -number;
     // if (number > 0) {
     //   return (number *= -1);
     // }
   } catch (error) {
-    console.error(error)
+    console.error(error);
   }
 }
 
@@ -40,24 +40,24 @@ const calc2: number = fahrenheitToCelsius(100);
 
 function userCalculate(gender: string | null, height: number) {
   try {
-    const averageHeightMale = 174
-    const averageHeightFemale = 168
+    const averageHeightMale = 174;
+    const averageHeightFemale = 168;
 
     if (gender == null) {
-      return "The value is not good"
+      return 'The value is not good';
     }
 
-    if (gender !== "female" && gender !== "male") {
-      return "Enter valid gender"
+    if (gender !== 'female' && gender !== 'male') {
+      return 'Enter valid gender';
     }
 
-    if (gender === "male") {
-      return height - averageHeightMale
-    } else if (gender === "female") {
-      return height - averageHeightFemale
+    if (gender === 'male') {
+      return height - averageHeightMale;
+    } else if (gender === 'female') {
+      return height - averageHeightFemale;
     }
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
 }
 
@@ -90,24 +90,23 @@ function reverseText(str: string | null) {
   let reversedStr = '';
 
   if (str == null) {
-    return "Input not valids"
+    return 'Input is not valid';
   }
 
-  for (let i = str.length - 1; i >= 0; i--) { //while the number less that 5 do -1
+  for (let i = str.length - 1; i >= 0; i--) {
+    //while the number less that 5 do -1
     reversedStr += str[i];
   }
 
-  return reversedStr
+  return reversedStr;
 }
 
-const userStr: string | null = prompt("Enter text")
+const userStr: string | null = prompt('Enter text');
 
-console.log(reverseText(userStr))
+console.log(reverseText(userStr));
 
 // const str = 'guitar'; //5
 // console.log('The original string is: ' + str);
 // let reversedStr = '';
-
-
 
 // console.log('The reversed string is: ' + reversedStr);
