@@ -30,25 +30,31 @@
 // לגבר הוא 1.76 
 // לנשים הוא 1.61
 
-const userGender = prompt("what is your gender?")
-const userHeight = Number(prompt("what is your height?"))
 
-// let manAverage = 176
-let womanAverage = 176
+const userGender = prompt("What is your gender?");
+const userHeight = Number(prompt("What is your height?"));
 
-let average = `${userHeight}-${manAverage} = ${y}`
+const manAverage = 176;
+const womanAverage = 162;
 
 const greting = heightAndGender(userGender, userHeight);
-console.log(greting)
+console.log(greting);
 
-function heightAndGender(userGender: string | null, userHeight: number, y: number) {
-    try {
-        if (userGender === "man") { 
-            const manAverage = 176
-            return `"hi man, you are" ${y}`
-        }
-    } catch (error) {
-
+function heightAndGender(userGender: string | null, userHeight: number) {
+  try {
+    if(isNaN(userHeight)) throw new console.error("This is not a number!");
+    
+    if (userGender === "man") {
+      return userHeight - manAverage;
+    } else if (userGender === "woman") {
+      return userHeight - womanAverage;
+    } else {
+      return "Invalid gender input.";
     }
+  } catch (error) {
+    console.error(error)
+    return undefined;
+  }
 }
+
 

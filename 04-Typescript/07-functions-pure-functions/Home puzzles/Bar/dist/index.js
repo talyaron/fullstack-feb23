@@ -23,20 +23,28 @@
 //    The average height of males is 174cm, and the function return -4
 // לגבר הוא 1.76 
 // לנשים הוא 1.61
-var userGender = prompt("what is your gender?");
-var userHeight = Number(prompt("what is your height?"));
-// let manAverage = 176
-var womanAverage = 176;
-var average = userHeight + "-" + manAverage + " = " + y;
+var userGender = prompt("What is your gender?");
+var userHeight = Number(prompt("What is your height?"));
+var manAverage = 176;
+var womanAverage = 162;
 var greting = heightAndGender(userGender, userHeight);
 console.log(greting);
-function heightAndGender(userGender, userHeight, y) {
+function heightAndGender(userGender, userHeight) {
     try {
+        if (isNaN(userHeight))
+            throw new console.error("This is not a number!");
         if (userGender === "man") {
-            var manAverage = 176;
-            return "\"hi man, you are\" " + y;
+            return userHeight - manAverage;
+        }
+        else if (userGender === "woman") {
+            return userHeight - womanAverage;
+        }
+        else {
+            return "Invalid gender input.";
         }
     }
     catch (error) {
+        console.error(error);
+        return undefined;
     }
 }
