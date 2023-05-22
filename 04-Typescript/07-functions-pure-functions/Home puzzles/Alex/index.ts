@@ -10,12 +10,12 @@ function reversedNum(num) {
         if(isNaN(num))throw new Error("Not a number! Enter NUMBER type input only!");
 
     return (
-      parseFloat(
+      parseFloat(//convert to float type after modifying
         num
-          .toString()
-          .split('')
-          .reverse()
-          .join('')
+          .toString()//convert to string type
+          .split('')//split the value of num , and create array from single digits
+          .reverse()//reverse the order of positions un the array
+          .join('')//convert array to string
       ) * Math.sign(num)
     )                 
   }

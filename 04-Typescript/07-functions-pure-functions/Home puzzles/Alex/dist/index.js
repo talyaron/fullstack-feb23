@@ -5,11 +5,13 @@ function reversedNum(num) {
     try {
         if (isNaN(num))
             throw new Error("Not a number! Enter NUMBER type input only!");
-        return (parseFloat(num
-            .toString()
-            .split('')
-            .reverse()
-            .join('')) * Math.sign(num));
+        return (parseFloat(//convert to float type after modifying
+        num
+            .toString() //convert to string type
+            .split('') //split the value of num , and create array from single digits
+            .reverse() //reverse the order of positions un the array
+            .join('') //convert array to string
+        ) * Math.sign(num));
     }
     catch (error) {
         console.error(error);
