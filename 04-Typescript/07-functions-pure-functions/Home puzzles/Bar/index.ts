@@ -64,3 +64,11 @@ function heightAndGender(userGender, userHeight) {
 
 // 1. Write a function to reverse a number. For example, the function gets 123 and returns 321
 
+
+function reverse(num: number) {
+    const str = num.toString().split("").reverse().join("");
+    const num1 = parseInt(str);
+    return num1
+}
+
+console.log(reverse(12345));
