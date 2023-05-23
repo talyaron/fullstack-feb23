@@ -30,7 +30,6 @@
 // לגבר הוא 1.76 
 // לנשים הוא 1.61
 
-
 const userGender = prompt("What is your gender?");
 const userHeight = Number(prompt("What is your height?"));
 
@@ -40,21 +39,28 @@ const womanAverage = 162;
 const greting = heightAndGender(userGender, userHeight);
 console.log(greting);
 
-function heightAndGender(userGender: string | null, userHeight: number) {
-  try {
-    if(isNaN(userHeight)) throw new console.error("This is not a number!");
-    
-    if (userGender === "man") {
-      return userHeight - manAverage;
-    } else if (userGender === "woman") {
-      return userHeight - womanAverage;
-    } else {
-      return "Invalid gender input.";
+function heightAndGender(userGender, userHeight) {
+    try {
+        if (isNaN(userHeight))
+            throw new console.error("This is not a number!");
+        if (userGender === "man") {
+            return userHeight - manAverage;
+        }
+        else if (userGender === "woman") {
+            return userHeight - womanAverage;
+        }
+        else {
+            return "Invalid gender input.";
+        }
     }
-  } catch (error) {
-    console.error(error)
-    return undefined;
-  }
+    catch (error) {
+        console.error(error);
+        return undefined;
+    }
 }
 
+
+// # Level 3
+
+// 1. Write a function to reverse a number. For example, the function gets 123 and returns 321
 
