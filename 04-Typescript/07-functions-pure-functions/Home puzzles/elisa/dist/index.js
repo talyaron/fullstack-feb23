@@ -18,7 +18,16 @@ function makeNegative(number) {
 // 2. Write a function to convert Celsius to Fahrenheit
 //JavaScript program to convert Celsius to Fahrenheit
 function celsiusToFahrenheit(celsius) {
-    return (celsius * 9) / 5 + 32;
+    try {
+        if (typeof celsius !== 'number' || isNaN(celsius)) {
+            throw new Error('Invalid input. Please provide a valid number for Celsius temperature.');
+        }
+        return (celsius * 9) / 5 + 32;
+    }
+    catch (error) {
+        console.error(error);
+        return NaN;
+    }
 }
 // convert temperature from Fahrenheit to Celsius
 function fahrenheitToCelsius(fahrenheit) {
@@ -36,15 +45,15 @@ function userCalculate(gender, height) {
         var averageHeightMale = 174;
         var averageHeightFemale = 168;
         if (gender == null) {
-            return "The value is not good";
+            return 'The value is not good';
         }
-        if (gender !== "female" && gender !== "male") {
-            return "Enter valid gender";
+        if (gender !== 'female' && gender !== 'male') {
+            return 'Enter valid gender';
         }
-        if (gender === "male") {
+        if (gender === 'male') {
             return height - averageHeightMale;
         }
-        else if (gender === "female") {
+        else if (gender === 'female') {
             return height - averageHeightFemale;
         }
     }
@@ -71,14 +80,15 @@ function userCalculate(gender, height) {
 function reverseText(str) {
     var reversedStr = '';
     if (str == null) {
-        return "Input not valids";
+        return 'Input is not valid';
     }
-    for (var i = str.length - 1; i >= 0; i--) { //while the number less that 5 do -1
+    for (var i = str.length - 1; i >= 0; i--) {
+        //while the number less that 5 do -1
         reversedStr += str[i];
     }
     return reversedStr;
 }
-var userStr = prompt("Enter text");
+var userStr = prompt('Enter text');
 console.log(reverseText(userStr));
 // const str = 'guitar'; //5
 // console.log('The original string is: ' + str);
