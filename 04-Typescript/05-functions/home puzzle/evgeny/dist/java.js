@@ -1,14 +1,18 @@
-var arrayOfNum = [9, 2, 4, 6, 8];
-var newArrayOfNum = [];
-console.log(arrayOfNum);
-console.log(newArrayOfNum);
+var arrayOfNum = [5, 2, 4, 1, 9, 3];
 sort(arrayOfNum);
 function sort(array) {
-    if (array[0] > array[1]) {
-        // for(let i=1;i<array.length;i++){
-        array.splice(array[0]);
-        console.log("test");
-        //  return   array.splice(array[1])
-        // }
+    var sorted = false;
+    while (!sorted) {
+        sorted = true;
+        for (var i = 0; i < array.length; i++) {
+            console.log(arrayOfNum);
+            if (array[i] > array[i + 1]) {
+                var temp = array[i];
+                array[i] = array[i + 1];
+                array[i + 1] = temp;
+                sorted = false;
+            }
+        }
     }
+    console.log(arrayOfNum, "finle");
 }
