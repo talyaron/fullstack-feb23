@@ -16,35 +16,15 @@
 
 // 2. Write a function to convert Celsius to Fahrenheit
 
-// function addName (another :string = "Celsius"):string {
-//     let firstName :string = another + " Fahrenheit" ;
-//     return firstName;
-    
+// task 1(2)
+
+// const celsius :string | null = prompt("type a number in Celsius", "0");
+// function CelToFahr () :number {
+//     const x :number = parseInt(celsius);
+//     const y :number = x * 2 + 30;
+//     return y;
 // }
-
-// console.log(addName())
-
-
-
-// function popElement(arr) :string{
-//     arr.pop()
-//     return arr;
-//   }
-//   console.log(popElement())
-
-
-//   const person = {
-//     name: "Doriel",
-//     age: 29,
-//     date: "11.1.1994"
-//   }
-
-
-
-
-
-
-
+// console.log(CelToFahr()); 
 
 
 
@@ -61,6 +41,19 @@
 // # Level 3
 
 // 1. Write a function to reverse a number. For example, the function gets 123 and returns 321
+
+
+
+
+// const a = "123";
+// console.log(a.split(""))
+// const c = a.split("") 
+// console.log(c.reverse()) 
+// const d = c.join("")
+// console.log(d)
+// const b = parseInt(d)
+// console.log(b);
+
 
 // Find exercises for js functions and complete them.
 // https://www.w3resource.com/javascript-exercises/javascript-functions-exercises.php
