@@ -1,29 +1,37 @@
 
 
-let arrayOfNum=[9,2,4,6,8]
-let newArrayOfNum=[]
+
+let arrayOfNum=[5,2,4,1,9,3]
 
 
-console.log(arrayOfNum)
-console.log(newArrayOfNum)
 
-    sort(arrayOfNum)
 
+sort(arrayOfNum)
+
+
+
+function sort(array){
+    let sorted = false;
+
+    while (!sorted) {
+        sorted = true;
     
+        for(let i=0;i<array.length;i++){
+            console.log(arrayOfNum) 
+            
+            if(array[i]>array[i+1]){
+                
+                let temp = array[i];
+                array[i] = array[i + 1];
+                array[i + 1] = temp;
+                sorted = false;
+            }
+        
+            
+        }
+    }    
+  
     
-    function sort(array){
-        
-        
-        
-        if(array[0]>array[1]){
-           
-            // for(let i=1;i<array.length;i++){
-                array.splice(array[0])
-              
-                console.log("test")
-            //  return   array.splice(array[1])
-         
-            // }
-    }
-
+    console.log(arrayOfNum,"finle")
+    
 }
