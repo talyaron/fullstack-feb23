@@ -5,10 +5,10 @@ function reverse (num:number,digitlength:number):number|undefined{
     try {
          
         if (isNaN(num) || isNaN(digitlength)) throw new Error("num expected to be a number")
-debugger
+
         for( let i=0 ; i<(digitlength-1) ; i++){
             newnum = newnum*10 + (num%10)
-            num = num/10
+            num = (num - (num%10))/10
         }
         newnum = newnum*10 + num
         return newnum
