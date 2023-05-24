@@ -62,17 +62,19 @@ function reverseNumber(num: number): number | undefined{
         return reversedNum;
     } catch (error) {
         console.error(error)
+        return undefined
     }
-}console.log(Number(reverseNumber(123)));
+}
+console.log(Number(reverseNumber(123)));
 
-// const a = "123";
-// console.log(a.split(""))
-// const c = a.split("") 
-// console.log(c.reverse()) 
-// const d = c.join("")
-// console.log(d)
-// const b = parseInt(d)
-// console.log(b);
+const a = "123";
+console.log(a.split(""))
+const c = a.split("") 
+console.log(c.reverse()) 
+const d = c.join("")
+console.log(d)
+const b = parseInt(d)
+console.log(b);
 
 
 

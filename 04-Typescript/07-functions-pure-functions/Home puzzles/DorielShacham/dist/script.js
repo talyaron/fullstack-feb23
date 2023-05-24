@@ -48,17 +48,18 @@ function reverseNumber(num) {
     }
     catch (error) {
         console.error(error);
+        return undefined;
     }
 }
 console.log(Number(reverseNumber(123)));
-// const a = "123";
-// console.log(a.split(""))
-// const c = a.split("") 
-// console.log(c.reverse()) 
-// const d = c.join("")
-// console.log(d)
-// const b = parseInt(d)
-// console.log(b);
+var a = "123";
+console.log(a.split(""));
+var c = a.split("");
+console.log(c.reverse());
+var d = c.join("");
+console.log(d);
+var b = parseInt(d);
+console.log(b);
 // Number(prompt(reverseNumber("enter a number:")));
 // Find exercises for js functions and complete them.
 // https://www.w3resource.com/javascript-exercises/javascript-functions-exercises.php
