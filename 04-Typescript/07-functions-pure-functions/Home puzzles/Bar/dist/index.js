@@ -23,36 +23,37 @@
 //    The average height of males is 174cm, and the function return -4
 // לגבר הוא 1.76 
 // לנשים הוא 1.61
-var userGender = prompt("What is your gender?");
-var userHeight = Number(prompt("What is your height?"));
-var manAverage = 176;
-var womanAverage = 162;
-var greting = heightAndGender(userGender, userHeight);
-console.log(greting);
-function heightAndGender(userGender, userHeight) {
-    try {
-        if (isNaN(userHeight))
-            throw new console.error("This is not a number!");
-        if (userGender === "man") {
-            return userHeight - manAverage;
-        }
-        else if (userGender === "woman") {
-            return userHeight - womanAverage;
-        }
-        else {
-            return "Invalid gender input.";
-        }
-    }
-    catch (error) {
-        console.error(error);
-        return undefined;
-    }
-}
+// const userGender = prompt("What is your gender?");
+// const userHeight = Number(prompt("What is your height?"));
+// const manAverage = 176;
+// const womanAverage = 161;
+// function heightAndGender(userGender, userHeight) {
+//     try {
+//         if (isNaN(userHeight)) throw new console.error("This is not a number!");
+//         if (userGender === "man") {
+//             return userHeight - manAverage;
+//         }
+//         else if (userGender === "woman") {
+//             return userHeight - womanAverage;
+//         }
+//         else {
+//             return "Invalid gender input.";
+//         }
+//     }
+//     catch (error) {
+//         console.error(error);
+//         return undefined;
+//     }
+// }
+// const greeting = heightAndGender(userGender, userHeight);
+// console.log(greeting);
 // # Level 3
 // 1. Write a function to reverse a number. For example, the function gets 123 and returns 321
-function reverse(num) {
-    var str = num.toString().split("").reverse().join("");
-    var num1 = parseInt(str);
-    return num1;
-}
-console.log(reverse(12345));
+// const num = Number(prompt("Enter a number"))
+// function reverse(num: number) {
+//     const str = num.toString().split("").reverse().join("");
+//     const num1 = parseInt(str);
+//     return num1
+// }
+// const greeting = reverse(num);
+// console.log(greeting);
