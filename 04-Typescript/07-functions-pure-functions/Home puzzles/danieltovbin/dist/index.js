@@ -32,10 +32,13 @@ function grade() {
             try {
                 var averageWo = 170;
                 if (height < averageWo) {
-                    console.log(height - averageWo);
+                    return "you are " + (averageWo - height) + " cm less than the average height";
+                }
+                if (height == averageWo) {
+                    return "you are on the average height";
                 }
                 if (height > averageWo) {
-                    console.log(averageWo - height);
+                    return "you are " + (height - averageWo) + " cm more than the average height";
                 }
             }
             catch (error) {
@@ -46,10 +49,13 @@ function grade() {
             try {
                 var averageMa = 180;
                 if (height < averageMa) {
-                    console.log(height - averageMa);
+                    return "you are " + (averageMa - height) + " cm less than the average height";
+                }
+                if (height == averageMa) {
+                    return "you are on the average height";
                 }
                 if (height > averageMa) {
-                    console.log(averageMa - height);
+                    return "you are " + (height - averageMa) + " cm more than the average height";
                 }
             }
             catch (error) {
