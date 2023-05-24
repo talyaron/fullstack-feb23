@@ -11,7 +11,21 @@ const x = prompt (" Write your gender:");
     return `${i}`
     }
 
-    let result= (gender(x));
-    document.write(result);
+let result= (gender(x));
+document.write(result);
+
+const y:number= prompt("give me a number")
+const z:number= prompt("give me a number")
+
+function numbers (y:number,z:number): number {
+    if(y>z){
+        return y;
+    }
+    return z;
+   }
+
+const result2= numbers(y,z)
+console.log(result2)
+
 
 
