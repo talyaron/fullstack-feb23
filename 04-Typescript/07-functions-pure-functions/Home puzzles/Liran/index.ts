@@ -1,5 +1,5 @@
 
-let functionNumber = 2;
+let functionNumber = 1;
 switch (functionNumber) {
     case 1:
         var num: string | null = prompt("Reverse number:");
@@ -77,6 +77,7 @@ function reverses(numberString: string | null): number | undefined {
         if (isNaN(numberNum)) throw new Error("Not a number")
         let newNumber = 0;
         let remainder = 0;
+        debugger;
         while (numberNum > 0) {
             remainder = numberNum % 10;
             newNumber = newNumber * 10 + remainder;
