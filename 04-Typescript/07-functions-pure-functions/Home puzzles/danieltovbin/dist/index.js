@@ -21,6 +21,47 @@
 // 1. Create a function that gets the gender of the user and height of the user.
 //    The function returns the height of the user relative to his gender. For example, the user's height is 170cm, and the gender is male.
 //    The average height of males is 174cm, and the function return -4
+// task 2
+var firstQuestion = prompt('Hey, what is your gender?');
+var secondQuestion = prompt("what is your height in cm?");
+var height = parseInt(secondQuestion);
+console.log(height);
+function grade() {
+    try {
+        if (firstQuestion === "woman") {
+            try {
+                var averageWo = 170;
+                if (height < averageWo) {
+                    console.log(height - averageWo);
+                }
+                if (height > averageWo) {
+                    console.log(averageWo - height);
+                }
+            }
+            catch (error) {
+                console.log(error);
+            }
+        }
+        if (firstQuestion === "man") {
+            try {
+                var averageMa = 180;
+                if (height < averageMa) {
+                    console.log(height - averageMa);
+                }
+                if (height > averageMa) {
+                    console.log(averageMa - height);
+                }
+            }
+            catch (error) {
+                console.log(error);
+            }
+        }
+    }
+    catch (error) {
+        console.log(error);
+    }
+}
+console.log(grade());
 // # Level 3
 // 1. Write a function to reverse a number. For example, the function gets 123 and returns 321
 // const a = "123";
