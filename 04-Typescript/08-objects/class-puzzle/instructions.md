@@ -1,6 +1,6 @@
-create object of type Cars.
+Create an object of type Cars.
 
-with the following properties: company, year, model, millage, color, fuelConsamption (km/l);
+with the following properties: company, year, model, mileage, color, and fuel consumption (km/l);
 
 
-create a function that gets Car, and trip, and returns the how many litters were consumed in the trip.
+Create a function that gets the car and trip and returns how many litters of gas were consumed in the trip.
