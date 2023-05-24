@@ -18,7 +18,16 @@ function makeNegative(number) {
 // 2. Write a function to convert Celsius to Fahrenheit
 //JavaScript program to convert Celsius to Fahrenheit
 function celsiusToFahrenheit(celsius) {
-    return (celsius * 9) / 5 + 32;
+    try {
+        if (typeof celsius !== 'number' || isNaN(celsius)) {
+            throw new Error('Invalid input. Please provide a valid number for Celsius temperature.');
+        }
+        return (celsius * 9) / 5 + 32;
+    }
+    catch (error) {
+        console.error(error);
+        return NaN;
+    }
 }
 // convert temperature from Fahrenheit to Celsius
 function fahrenheitToCelsius(fahrenheit) {
