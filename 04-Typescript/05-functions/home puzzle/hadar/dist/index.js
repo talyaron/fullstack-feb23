@@ -11,3 +11,13 @@ function gender(gender) {
 }
 var result = (gender(x));
 document.write(result);
+var y = prompt("give me a number");
+var z = prompt("give me a number");
+function numbers(y, z) {
+    if (y > z) {
+        return y;
+    }
+    return z;
+}
+var result2 = numbers(y, z);
+console.log(result2);
