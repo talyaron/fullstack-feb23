@@ -40,19 +40,22 @@
 
 // task 2
 const firstQuestion :string | null = prompt('Hey, what is your gender?');
-const secondQuestion : number = prompt("what is your height in cm?");
-const height : number = parseInt(secondQuestion);
+const secondQuestion : string | null = prompt("what is your height in cm?");
+const height :number = parseInt(secondQuestion);
 console.log(height);
-function grade (): string | number {
+function grade (): string | null {
     try{
         if(firstQuestion === "woman") {
             try{
                 const averageWo :number = 170;
                 if(height < averageWo) {
-                    console.log(height - averageWo);
+                    return "you are " + (averageWo - height) + " cm less than the average height";
+                }
+                if(height == averageWo) {
+                    return "you are on the average height";
                 }
                 if(height > averageWo) {
-                    console.log(averageWo - height);
+                    return "you are " + (height - averageWo) + " cm more than the average height";
                 }
             }
             catch(error){
@@ -63,10 +66,13 @@ function grade (): string | number {
             try{
                 const averageMa :number = 180;
                 if(height < averageMa) {
-                    console.log(height - averageMa);
+                    return "you are " + (averageMa - height) + " cm less than the average height";
+                }
+                if(height == averageMa) {
+                    return "you are on the average height";
                 }
                 if(height > averageMa) {
-                    console.log(averageMa - height);
+                    return "you are " + (height - averageMa) + " cm more than the average height";
                 }
             }
             catch(error){
