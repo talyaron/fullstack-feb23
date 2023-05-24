@@ -4,36 +4,61 @@ switch (functionNumber) {
         var num = prompt("Reverse number:");
         document.write("Write a JavaScript function that reverses a number.<br>");
         var resFun1 = reverses(num);
-        document.write("Original number: " + num + ".<br>");
-        document.write("Revers number: " + resFun1 + ".<br>");
+        if (resFun1 === undefined) {
+            document.write("Error, see console");
+        }
+        else {
+            document.write("Original number: " + num + ".<br>");
+            document.write("Revers number: " + resFun1 + ".<br>");
+        }
         break;
     case 2:
         var strIn = prompt("Palindrom test, Enter string:");
         document.write("Write a JavaScript function that checks whether a passed string is a palindrome or not?.<br>");
         var resFun2 = palindrom(strIn);
-        document.write("Original string: " + strIn + ".<br>");
-        document.write("The above string is palindrom?: " + resFun2 + " .<br>");
+        if (resFun1 === undefined) {
+            document.write("Error, see console");
+        }
+        else {
+            document.write("Original string: " + strIn + ".<br>");
+            document.write("The above string is palindrom?: " + resFun2 + " .<br>");
+        }
         break;
     case 3:
         var strIn = prompt("String combination, Enter string:");
         document.write("Write a JavaScript function that generates all combinations of a string.<br>");
         var resFun3 = stringCombination(strIn);
-        document.write("Original string: " + strIn + ".<br>");
-        document.write("The above string is palindrom?: " + resFun3 + " .<br>");
+        if (resFun1 === undefined) {
+            document.write("Error, see console");
+        }
+        else {
+            document.write("Original string: " + strIn + ".<br>");
+            document.write("The above string is palindrom?: " + resFun3 + " .<br>");
+        }
         break;
     case 4:
         var alphabeticaIn = prompt("Alphabetical order, Enter string:");
         document.write("Write a JavaScript function that returns a string that has letters in alphabetical order.<br>");
         var resFun4 = alphabeticalOrder(alphabeticaIn);
-        document.write("Original string: " + alphabeticaIn + ".<br>");
-        document.write("The above string is palindrom?: " + resFun4 + " .<br>");
+        if (resFun1 === undefined) {
+            document.write("Error, see console");
+        }
+        else {
+            document.write("Original string: " + alphabeticaIn + ".<br>");
+            document.write("The above string is palindrom?: " + resFun4 + " .<br>");
+        }
         break;
     case 5:
         var maxLenIn = prompt("Longest word, Enter string:");
         document.write("Write a JavaScript function that accepts a string as a parameter and finds the longest word within the string.<br>");
         var resFun5 = longestWord(maxLenIn);
-        document.write("Original string: " + maxLenIn + ".<br>");
-        document.write("The longest word in the string is: " + resFun5 + " .<br>");
+        if (resFun1 === undefined) {
+            document.write("Error, see console");
+        }
+        else {
+            document.write("Original string: " + maxLenIn + ".<br>");
+            document.write("The longest word in the string is: " + resFun5 + " .<br>");
+        }
         break;
     default: break;
 }
