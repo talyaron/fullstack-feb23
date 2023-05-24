@@ -1,0 +1,10 @@
+var num1 = parseInt(prompt('Enter the first number '));
+var num2 = parseInt(prompt('Enter the second number '));
+Then, the;
+sum;
+of;
+the;
+numbers;
+is;
+computed["const"];
+sum = num1 + num2;
