@@ -23,6 +23,7 @@ function callCar(vehicle) {
         return fuelUsed;
     }
     catch (error) {
+        console.error(error);
         return undefined;
     }
 }
