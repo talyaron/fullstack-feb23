@@ -1,0 +1,4 @@
+{
+    company: string;
+    year: number;
+}
