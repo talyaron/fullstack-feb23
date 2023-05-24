@@ -16,7 +16,7 @@ switch (functionNumber) {
         var strIn = prompt("Palindrom test, Enter string:");
         document.write("Write a JavaScript function that checks whether a passed string is a palindrome or not?.<br>");
         var resFun2 = palindrom(strIn);
-        if (resFun1 === undefined) {
+        if (resFun2 === undefined) {
             document.write("Error, see console");
         }
         else {
@@ -28,7 +28,7 @@ switch (functionNumber) {
         var strIn = prompt("String combination, Enter string:");
         document.write("Write a JavaScript function that generates all combinations of a string.<br>");
         var resFun3 = stringCombination(strIn);
-        if (resFun1 === undefined) {
+        if (resFun3 === undefined) {
             document.write("Error, see console");
         }
         else {
@@ -40,7 +40,7 @@ switch (functionNumber) {
         var alphabeticaIn = prompt("Alphabetical order, Enter string:");
         document.write("Write a JavaScript function that returns a string that has letters in alphabetical order.<br>");
         var resFun4 = alphabeticalOrder(alphabeticaIn);
-        if (resFun1 === undefined) {
+        if (resFun4 === undefined) {
             document.write("Error, see console");
         }
         else {
@@ -52,7 +52,7 @@ switch (functionNumber) {
         var maxLenIn = prompt("Longest word, Enter string:");
         document.write("Write a JavaScript function that accepts a string as a parameter and finds the longest word within the string.<br>");
         var resFun5 = longestWord(maxLenIn);
-        if (resFun1 === undefined) {
+        if (resFun5 === undefined) {
             document.write("Error, see console");
         }
         else {
@@ -97,7 +97,7 @@ function palindrom(str) {
     }
     catch (error) {
         console.error(error);
-        return false;
+        return undefined;
     }
 }
 function stringCombination(str) {

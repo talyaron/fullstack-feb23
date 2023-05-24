@@ -12,13 +12,13 @@ switch (functionNumber) {
             document.write(`Original number: ${num}.<br>`)
             document.write(`Revers number: ${resFun1}.<br>`)
         }
-
         break;
+
     case 2: 
         var strIn: string | null = prompt("Palindrom test, Enter string:");
         document.write(`Write a JavaScript function that checks whether a passed string is a palindrome or not?.<br>`)
         const resFun2 = palindrom(strIn);
-        if(resFun1 === undefined){
+        if(resFun2 === undefined){
             document.write(`Error, see console`)
         }
         else{
@@ -31,7 +31,7 @@ switch (functionNumber) {
         var strIn: string | null = prompt("String combination, Enter string:");
         document.write(`Write a JavaScript function that generates all combinations of a string.<br>`)
         const resFun3 = stringCombination(strIn);
-        if(resFun1 === undefined){
+        if(resFun3 === undefined){
             document.write(`Error, see console`)
         }
         else{
@@ -44,28 +44,26 @@ switch (functionNumber) {
         var alphabeticaIn: string | null = prompt("Alphabetical order, Enter string:");
         document.write(`Write a JavaScript function that returns a string that has letters in alphabetical order.<br>`)
         const resFun4 = alphabeticalOrder(alphabeticaIn);
-        if(resFun1 === undefined){
+        if(resFun4 === undefined){
             document.write(`Error, see console`)
         }
         else{
             document.write(`Original string: ${alphabeticaIn}.<br>`)
             document.write(`The above string is palindrom?: ${resFun4} .<br>`)
         }
-
         break;
 
     case 5:
         var maxLenIn: string | null = prompt("Longest word, Enter string:");
         document.write(`Write a JavaScript function that accepts a string as a parameter and finds the longest word within the string.<br>`)
         const resFun5 = longestWord(maxLenIn);
-        if(resFun1 === undefined){
+        if(resFun5 === undefined){
             document.write(`Error, see console`)
         }
         else{
             document.write(`Original string: ${maxLenIn}.<br>`)
             document.write(`The longest word in the string is: ${resFun5} .<br>`)
         }
-
         break;
 
     default: break;
@@ -92,7 +90,7 @@ function reverses(numberString: string | null): number | undefined {
     }
 }
 
-function palindrom(str: string | null): boolean {
+function palindrom(str: string | null): boolean | undefined {
     try {
         if (str === null || str === "") throw new Error("Missing input")
         const strLength = str.length
@@ -104,7 +102,7 @@ function palindrom(str: string | null): boolean {
         return true
     } catch (error) {
         console.error(error)
-        return false
+        return undefined
     }
 }
 
