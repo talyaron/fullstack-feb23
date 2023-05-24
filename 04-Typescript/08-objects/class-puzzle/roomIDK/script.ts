@@ -42,6 +42,7 @@ function callCar(vehicle: Cars): number | undefined{
         const fuelUsed = vehicle.trip/vehicle.fuelConsamption
         return fuelUsed
     } catch (error) {
+        console.error(error)
         return undefined
     }
 }
