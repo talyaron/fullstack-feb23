@@ -1,4 +1,4 @@
-var functionNumber = 2;
+var functionNumber = 1;
 switch (functionNumber) {
     case 1:
         var num = prompt("Reverse number:");
@@ -71,6 +71,7 @@ function reverses(numberString) {
             throw new Error("Not a number");
         var newNumber = 0;
         var remainder = 0;
+        debugger;
         while (numberNum > 0) {
             remainder = numberNum % 10;
             newNumber = newNumber * 10 + remainder;
