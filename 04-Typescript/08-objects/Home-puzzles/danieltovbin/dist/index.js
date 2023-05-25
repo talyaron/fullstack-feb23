@@ -1,4 +1,3 @@
-// create an object for students
 var maria = {
     name: "Maria",
     gender: "woman",
@@ -43,6 +42,6 @@ var tony = {
         return (this.mathMidTermGrade + this.historyMidTermGrade + this.mathFinalTermGrade + this.historyFinalTermGrade) / 4;
     }
 };
-// 2) create a method, that calculate the avarge of studnet's grades. (use "this")
+// 2) Implement a method within the object that calculates the average grade of the student by utilizing the available grades (make use of the 'this' keyword).
 console.log(tony.sum());
-// 4) create a list of grades, in many courses, and create a method, which give the avrage grade. and also a method, which give a grade in spesific subject. (tip: use arrays and arrays of grades)
+// 3) Additionally, create a list of grades for multiple courses and include a method that calculates the average grade across all courses. You can utilize arrays and arrays of grades for this purpose. Also, implement a method that provides the grade for a specific subject based on the provided information (consider using arrays and indexing).

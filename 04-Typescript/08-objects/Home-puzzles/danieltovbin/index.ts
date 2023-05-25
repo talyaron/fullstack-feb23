@@ -1,9 +1,6 @@
-// create an object for students
-
-// 1) it should have the following properties(name, gender, mathMidTermGrade, historyMidTermGrade, mathFinalTermGrade, historyFinalTermGrade).
-
+// 1) Create a student object with the following properties: name, gender, mathMidTermGrade, historyMidTermGrade, mathFinalTermGrade, and historyFinalTermGrade.
 // task one
-interface Pupils {
+interface Student {
     name: string
     gender: string
     mathMidTermGrade: number
@@ -13,7 +10,7 @@ interface Pupils {
     sum: Function 
 }
 
-const maria :Pupils= {
+const maria :Student= {
     name: "Maria",
     gender: "woman",
     mathMidTermGrade: 90,
@@ -25,7 +22,7 @@ const maria :Pupils= {
     }
 }
 
-const ilya :Pupils= {
+const ilya :Student= {
     name: "Ilya",
     gender: "man",
     mathMidTermGrade: 78,
@@ -37,7 +34,7 @@ const ilya :Pupils= {
     }
 }
 
-const nina :Pupils = {
+const nina :Student = {
     name: "Nina",
     gender: "woman",
     mathMidTermGrade: 60,
@@ -49,7 +46,7 @@ const nina :Pupils = {
     }
 }
 
-const tony :Pupils = {
+const tony :Student = {
     name: "Tony",
     gender: "man",
     mathMidTermGrade: 68,
@@ -60,9 +57,9 @@ const tony :Pupils = {
         return (this.mathMidTermGrade + this.historyMidTermGrade + this.mathFinalTermGrade + this.historyFinalTermGrade) / 4;
     }
 }
-// 2) create a method, that calculate the avarge of studnet's grades. (use "this")
+// 2) Implement a method within the object that calculates the average grade of the student by utilizing the available grades (make use of the 'this' keyword).
 
 
 console.log(tony.sum())
 
-// 4) create a list of grades, in many courses, and create a method, which give the avrage grade. and also a method, which give a grade in spesific subject. (tip: use arrays and arrays of grades)
+// 3) Additionally, create a list of grades for multiple courses and include a method that calculates the average grade across all courses. You can utilize arrays and arrays of grades for this purpose. Also, implement a method that provides the grade for a specific subject based on the provided information (consider using arrays and indexing).
