@@ -36,20 +36,29 @@ const student:Grades = {
     historyMidTermGrade: 95,
     mathFinalTermGrade: 70, 
     historyFinalTermGrade: 92,
-    calculateAverage:gradesAverage
+    calculateAverage:function(){
+        try {
+            return (this.mathMidTermGrade+this.historyMidTermGrade+this.mathFinalTermGrade+this.historyFinalTermGrade)/4
+        } catch (error) {
+            console.error(error)
+            return undefined
+            
+        }
+
+
+    }
 }
 
-function gradesAverage (midMath:number, finalMath:number, midHistory:number, finalHistory:number){
+// function gradesAverage (midMath:number, finalMath:number, midHistory:number, finalHistory:number):number | undefined 
+// {
 
-
-try {
-    return (this.mathMidTermGrade+this.historyMidTermGrade+this.mathFinalTermGrade+this.historyFinalTermGrade)/4
-} catch (error) {
-    console.error(error)
-    return undefined
+// try {
+//     return (this.mathMidTermGrade+this.historyMidTermGrade+this.mathFinalTermGrade+this.historyFinalTermGrade)/4
+// } catch (error) {
+//     console.error(error)
+//     return undefined
     
-}
-}
+// }
+// }
 
 console.log(student.calculateAverage())
-// 2) Implement a method within the object that calculates the average grade of the student by utilizing the available grades (make use of the 'this' keyword).
