@@ -8,6 +8,15 @@ var studentB = {
     historyFinalTermGrade: 82,
     calculateAverage: gradesAverage
 };
+var studentC = {
+    name: "Inbar Budniatzky",
+    gender: "female",
+    mathMidTermGrade: 100,
+    historyMidTermGrade: 99,
+    mathFinalTermGrade: 97,
+    historyFinalTermGrade: 95,
+    calculateAverage: gradesAverage
+};
 var student = {
     name: "Lee Dekel",
     gender: "female",

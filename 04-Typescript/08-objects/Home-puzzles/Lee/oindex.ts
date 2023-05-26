@@ -19,6 +19,16 @@ const studentB:Grades = {
     calculateAverage:gradesAverage
 }
 
+const studentC:Grades = {
+    name: "Inbar Budniatzky",
+    gender: "female",
+    mathMidTermGrade: 100,
+    historyMidTermGrade: 99,
+    mathFinalTermGrade: 97, 
+    historyFinalTermGrade: 95,
+    calculateAverage:gradesAverage
+}
+
 const student:Grades = {
     name: "Lee Dekel",
     gender: "female",
