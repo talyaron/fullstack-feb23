@@ -42,17 +42,20 @@ body{
     height: 10vh;
     gap: 10px;
     padding: 10px;
-    border: 1px gray dotted;
+    font-size: 15px;
+    border: 1px gray solid;
+    box-shadow: 1px 1px 1px 1px;
     border-radius: 15px;
     cursor: pointer;
-    transition: font-size 100ms ease-in;
+    transition: font-size 200ms ease-in-out;
     transition: color 100ms ease-in;
-    transition: color 100ms ease-in;
+    transition: background-color 100ms ease-in;
     transition: transform 200ms ease-in-out;
     background-color: antiquewhite;
     &:hover{
         font-size: 20px;
         color: rgb(17, 129, 129);
+        background-color: azure;
     }
     &:active{
         transform: scale(2.5);
@@ -69,11 +72,13 @@ body{
         #literatureall{
             display: block;
         }
+        background-color: rgb(214, 202, 187);
 
     }
 }
 #history{
     font-size: 20px;
+    
 }
 #math{
     font-size: 20px;
