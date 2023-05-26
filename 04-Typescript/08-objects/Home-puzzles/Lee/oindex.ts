@@ -53,4 +53,4 @@ const studentB = {
     }
   }
   
-  console.log(student.calculateAverage());
+  console.log(studentB.calculateAverage());
