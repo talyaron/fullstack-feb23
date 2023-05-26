@@ -3,8 +3,18 @@
 // 1) Create a student object with the following properties: name, gender, mathMidTermGrade, historyMidTermGrade, mathFinalTermGrade, and historyFinalTermGrade.
 // 2) Implement a method within the object that calculates the average grade of the student by utilizing the available grades (make use of the 'this' keyword).
 
+interface Student {
+    name: string,
+    gender: string,
+    mathMidTermGrade: number,
+    historyMidTermGrade: number,
+    mathFinalTermGrade: number,
+    historyFinalTermGrade: number,
+    calculateAverage: gradesAverage
+   
+}
 
-var studentB = {
+const studentB = {
     name: "Linor Monir",
     gender: "female",
     mathMidTermGrade: 95,
@@ -13,7 +23,7 @@ var studentB = {
     historyFinalTermGrade: 82,
     calculateAverage: gradesAverage
   };
-  var studentC = {
+  const studentC = {
     name: "Inbar Budniatzky",
     gender: "female",
     mathMidTermGrade: 100,
@@ -22,7 +32,7 @@ var studentB = {
     historyFinalTermGrade: 95,
     calculateAverage: gradesAverage
   };
-  var student = {
+  const student = {
     name: "Lee Dekel",
     gender: "female",
     mathMidTermGrade: 65,
@@ -41,4 +51,4 @@ var studentB = {
     }
   }
   
-  console.log(studentB.calculateAverage());
+  console.log(student.calculateAverage());
