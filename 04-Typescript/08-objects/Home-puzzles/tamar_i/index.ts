@@ -18,10 +18,8 @@ const studentA: Student = {
     historyMidTermGrade: 90,
     mathFinalTermGrade: 75,
     historyFinalTermGrade: 90,
-    averageGrade: function (): number|undefined {
+    averageGrade: function (): number | undefined {
         try {
-            debugger;
-            console.log(this.mathMidTermGrade + this.historyMidTermGrade + this.mathFinalTermGrade + this.historyFinalTermGrade / 4);
             return ((this.mathMidTermGrade + this.historyMidTermGrade + this.mathFinalTermGrade + this.historyFinalTermGrade) / 4);
         } catch (error) {
             console.log(error)
@@ -35,26 +33,64 @@ console.log(`${studentA.name} average grade is ${studentA.averageGrade()}`)
 
 //3
 
-interface CourseGrade {
+interface CourseGrades {
     courseName: string,
-    courseGrade: number,
+    firstgrade: number,
+    secoundgrade: number,
+    midgrade: number,
+    finalgrade: number,
+    courseAvargeGrade: Function,
 }
 
-let listofgrade: CourseGrade[] = [
-    {
-        courseName: "phizics",
-        courseGrade: 85,
-    },
-    {
-        courseName: "math",
-        courseGrade: 80,
-    },
-    {
-        courseName: "englsh",
-        courseGrade: 96,
-    },
-    {
-        courseName: "sport",
-        courseGrade: 70,
-    },
-]
+interface StudentCourses {
+    firstcours: CourseGrades,
+    secoundcours: CourseGrades,
+    averageAllGrades: Function,
+}
+
+const firstcours: CourseGrades = {
+    courseName: "physics",
+    firstgrade: 70,
+    secoundgrade: 80,
+    midgrade: 75,
+    finalgrade: 96,
+    courseAvargeGrade: function (): number | undefined {
+        try {
+            return (this.firstgrade + this.secoundgrade + this.midgrade + this.finalgrade / 4);
+        } catch (error) {
+            console.log(error)
+            return undefined
+        }
+    }
+}
+
+const secoundcours:CourseGrades = {
+    courseName: "english",
+    firstgrade:90,
+    secoundgrade: 62,
+    midgrade:75,
+    finalgrade: 82,
+    courseAvargeGrade:  function (): number|undefined {
+        try {
+            return (this.firstgrade + this.secoundgrade + this.midgrade + this.finalgrade / 4);
+        } catch (error) {
+            console.log(error)
+            return undefined
+        }
+    }
+}
+
+const StudentAllCourses: StudentCourses = {
+    firstcours: firstcours,
+    secoundcours: secoundcours,
+    averageAllGrades: function (): number|undefined {
+        try {
+            return (this.first + this.secound / 2);
+        } catch (error) {
+            console.log(error)
+            return undefined
+        }
+    } 
+}
+
+
