@@ -91,3 +91,20 @@ if(literatureavgg!=null){
     const finalavgg= document.getElementById('finavg')
     if(finalavgg!=null){
         finalavgg.textContent= finalAvgAsString}
+
+
+
+        const historyallgrades= document.getElementById('historyall')
+        if(historyallgrades!=null){
+            historyallgrades.textContent= historysub.grades} 
+        const mathallgrades= document.getElementById('mathall')
+        if(mathallgrades!=null){
+            mathallgrades.textContent= mathsub.grades}
+        
+            const englishallgrades= document.getElementById('englishall')
+        if(englishallgrades!=null){
+            englishallgrades.textContent= englishsub.grades} 
+            const literatureallgrades= document.getElementById('literatureall')
+        if(literatureallgrades!=null){
+            literatureallgrades.textContent= literaturesub.grades} 
+          

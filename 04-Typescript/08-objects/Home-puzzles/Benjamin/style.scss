@@ -29,14 +29,17 @@ body{
     margin-top: 5vh;
     width: 30vw;
     height: fit-content;
+    max-height: 50vh;
     background-color: rgb(219, 195, 164);
     border-radius: 15px;
+    flex-grow: 0;
 }
 .subject{
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
     align-items: center;
+    height: 10vh;
     gap: 10px;
     padding: 10px;
     border: 1px gray dotted;
@@ -44,11 +47,29 @@ body{
     cursor: pointer;
     transition: font-size 100ms ease-in;
     transition: color 100ms ease-in;
+    transition: color 100ms ease-in;
+    transition: transform 200ms ease-in-out;
     background-color: antiquewhite;
-
     &:hover{
         font-size: 20px;
         color: rgb(17, 129, 129);
+    }
+    &:active{
+        transform: scale(2.5);
+        z-index: 1;
+        #mathall{
+            display: block;
+        }
+        #historyall{
+            display: block;
+        }
+        #englishall{
+            display: block;
+        }
+        #literatureall{
+            display: block;
+        }
+
     }
 }
 #history{
@@ -67,4 +88,32 @@ body{
     font-size: 20px;
     color: red;
 
+}
+#mathall{
+    display: none;
+    position: absolute;
+    font-size: 10px;
+    top: 8vh;
+    right: 4vw;
+}
+#englishall{
+    display: none;
+    position: absolute;
+    font-size: 10px;
+    top: 8vh;
+    right: 4vw;
+}
+#literatureall{
+    display: none;
+    position: absolute;
+    font-size: 10px;
+    top: 8vh;
+    right: 4vw;
+}
+#historyall{
+    display: none;
+    position: absolute;
+    font-size: 10px;
+    top: 8vh;
+    right: 4vw;
 }
