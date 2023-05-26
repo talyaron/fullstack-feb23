@@ -36,4 +36,4 @@ function gradesAverage(midMath, finalMath, midHistory, finalHistory) {
         return undefined;
     }
 }
-console.log(student.calculateAverage());
+console.log(studentB.calculateAverage());
