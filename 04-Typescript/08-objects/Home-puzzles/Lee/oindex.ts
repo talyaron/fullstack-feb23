@@ -21,8 +21,9 @@ const studentB = {
     historyMidTermGrade: 75,
     mathFinalTermGrade: 90,
     historyFinalTermGrade: 82,
-    calculateAverage: gradesAverage
+    calculateAverage: gradesAverage,
   };
+
   const studentC = {
     name: "Inbar Budniatzky",
     gender: "female",
@@ -30,8 +31,9 @@ const studentB = {
     historyMidTermGrade: 99,
     mathFinalTermGrade: 97,
     historyFinalTermGrade: 95,
-    calculateAverage: gradesAverage
+    calculateAverage: gradesAverage,
   };
+
   const student = {
     name: "Lee Dekel",
     gender: "female",
@@ -39,7 +41,7 @@ const studentB = {
     historyMidTermGrade: 95,
     mathFinalTermGrade: 70,
     historyFinalTermGrade: 92,
-    calculateAverage: gradesAverage
+    calculateAverage: gradesAverage,
   };
   
   function gradesAverage(midMath, finalMath, midHistory, finalHistory) {
