@@ -9,10 +9,15 @@ const ziv: StudentGrades = {
   grades: [100, 90, 76],
   // Number(prompt(`please insert your grades`)),
   averageGrades() {
-    const result =
-      this.grades.reduce((a: number, b: number) => a + b, 0) /
-      this.grades.length;
-    return result;
+    try {
+      const result =
+        this.grades.reduce((a: number, b: number) => a + b, 0) /
+        this.grades.length;
+      return result;
+    } catch (error) {
+      console.error(error);
+      return undefined;
+    }
   },
 };
 const dana: StudentGrades = {
