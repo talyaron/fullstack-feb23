@@ -31,7 +31,7 @@ while (get) {
     get = confirm("Add another student?")
 }
 
-/*printing students grades list + Average*/ 
+/*printing students grades list + Average*/
 let i = 0;
 while (studentsArray[i] != undefined) {
     document.write(`Student Name: <strong>${studentsArray[i].name}</strong><br>`)
@@ -45,22 +45,23 @@ while (studentsArray[i] != undefined) {
 
 /*print average in specific course*/
 const className = "English";
-i  = 0;
+i = 0;
 let sum = 0;
 let cnt = 0;
 debugger;
 while (studentsArray[i] != undefined) {
     for (let j = 0; j < studentsArray[i].courses.length; j++) {
-        if (studentsArray[i].courses[j].courseName == className){
-            sum+= studentsArray[i].courses[j].courseAverageGrade();
+        if (studentsArray[i].courses[j].courseName == className) {
+            sum += studentsArray[i].courses[j].courseAverageGrade();
             cnt++;
         }
     }
     i++;
 }
-if(cnt)
-    document.write(`Average grade in ${className} is: ${sum/cnt}<br>`)
-else     document.write(`No grades in ${className} course<br>`)
+if (cnt)
+    document.write(`Average grade in ${className} is: ${sum / cnt}<br>`)
+else
+    document.write(`No grades in ${className} course<br>`)
 
 
 
@@ -90,7 +91,7 @@ function printCourseGrades(): void {
         document.write(`Course: ${this.courseName}<br>`)
         document.write(`Grades:`)
         for (let i = 0; i < this.grades.length; i++) {
-            if(this.grades[i] !== undefined)
+            if (this.grades[i] !== undefined)
                 document.write(`${this.grades[i]} `)
         }
         document.write(`<br>Average grade: ${this.courseAverageGrade()}<br>`)
@@ -120,7 +121,7 @@ function createCourse(courseName: string | null): Course | undefined {
             add = confirm("Add more?")
             index++;
         }
-        const course: Course = { courseName , grades, courseAverageGrade, printCourseGrades }
+        const course: Course = { courseName, grades, courseAverageGrade, printCourseGrades }
         return course;
     } catch (error) {
         console.error(error)
