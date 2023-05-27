@@ -1,4 +1,5 @@
 // 1) Create a student object with the following properties: name, gender, mathMidTermGrade, historyMidTermGrade, mathFinalTermGrade, and historyFinalTermGrade.
+// 2) Implement a method within the object that calculates the average grade of the student by utilizing the available grades (make use of the 'this' keyword).
 var studentB = {
     name: "Linor Monir",
     gender: "female",
@@ -6,6 +7,15 @@ var studentB = {
     historyMidTermGrade: 75,
     mathFinalTermGrade: 90,
     historyFinalTermGrade: 82,
+    calculateAverage: gradesAverage
+};
+var studentC = {
+    name: "Inbar Budniatzky",
+    gender: "female",
+    mathMidTermGrade: 100,
+    historyMidTermGrade: 99,
+    mathFinalTermGrade: 97,
+    historyFinalTermGrade: 95,
     calculateAverage: gradesAverage
 };
 var student = {
@@ -26,5 +36,4 @@ function gradesAverage(midMath, finalMath, midHistory, finalHistory) {
         return undefined;
     }
 }
-console.log(student.calculateAverage());
-// 2) Implement a method within the object that calculates the average grade of the student by utilizing the available grades (make use of the 'this' keyword).
+console.log(studentB.calculateAverage());
