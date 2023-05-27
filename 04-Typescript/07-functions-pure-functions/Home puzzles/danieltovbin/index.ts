@@ -41,9 +41,9 @@
 // task 2
 const firstQuestion :string | null = prompt('Hey, what is your gender?');
 const secondQuestion : string | null = prompt("what is your height in cm?");
-const height :number = parseInt(secondQuestion);
+const height = parseInt(secondQuestion);
 console.log(height);
-function grade (): string | null {
+function grade (): string | undefined {
     try{
         if(firstQuestion === "woman") {
             try{
