@@ -5,9 +5,26 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Objects</title>
-    <script src="./dist/script.js"></script>
+    <script src="./dist/script.js" defer></script>
 </head>
-<body>
-    
+<!---->
+<body style="background-image:url('https://img.freepik.com/free-vector/cartoon-math-concept-background_23-2148165492.jpg?w=2000');display: flex; z-index: 0; font-size: larger; width: 100%; height: 100%; justify-content: center; align-items: center;">
+    <main style="width: 600px; height: 400px; display:flex; justify-content: center; align-items: center;">
+        <h1 style="color: white">
+            Click on the black box's with the yellow border to watch your final year results
+        </h1>
+        <table style="display: relative;z-index: 2;border: 5px solid black; padding: 20px; margin: 20px; justify-content: center; align-items: center;"> 
+            <thead style=" color:white; background-color: gray; z-index: 3;border: 3px solid gray; border: 3px solid gray; width: 100%; height: 100%;">
+                <th style="position:relative; z-index: 3; padding: 20px;">History</th>
+                <th style="position:relative; z-index: 3; padding: 20px;">Math</th>
+            </head>
+            <tbody>
+                <tr style="background-color:black">
+                    <td style="position:relative; z-index: 3; padding: 20px; border: 2px solid yellow" class="history"></td>
+                    <td style="position:relative; z-index: 3; padding: 20px; border: 2px solid yellow" class="math"></td>
+                </tr>
+            </tbody>
+        </table>
+    </main>
 </body>
 </html>
