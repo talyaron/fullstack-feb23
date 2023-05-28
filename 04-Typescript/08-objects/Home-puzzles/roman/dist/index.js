@@ -29,7 +29,6 @@ function averageAllGrades(student) {
         var math = this.mathAll;
         var lenght = Object.keys(this).length;
         for (var key in this) {
-            console.log(lenght);
             if (Number(this[key])) {
                 var sum = sum += this[key];
                 //     var str = student[i];
