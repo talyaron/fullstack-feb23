@@ -1,10 +1,10 @@
 var Celeb = /** @class */ (function () {
     function Celeb(name, genre, tiktokAccount, instagramAccount, numberOfFollowers) {
-        this.name = name,
-            this.genre = genre,
-            this.tiktokAccount = tiktokAccount,
-            this.instagramAccount = instagramAccount,
-            this.numberOfFollowers = numberOfFollowers;
+        this.name = name;
+        this.genre = genre;
+        this.tiktokAccount = tiktokAccount;
+        this.instagramAccount = instagramAccount;
+        this.numberOfFollowers = numberOfFollowers;
     }
     Celeb.prototype.setFollowers = function (followers) {
         try {

@@ -12,11 +12,11 @@ class Celeb {
         instagramAccount: string,
         numberOfFollowers: number,
     ) {
-        this.name = name,
-            this.genre = genre,
-            this.tiktokAccount = tiktokAccount,
-            this.instagramAccount = instagramAccount,
-            this.numberOfFollowers = numberOfFollowers
+        this.name = name;
+        this.genre = genre;
+        this.tiktokAccount = tiktokAccount;
+        this.instagramAccount = instagramAccount;
+        this.numberOfFollowers = numberOfFollowers
     }
 
     setFollowers(followers: number) {
