@@ -8,17 +8,18 @@ var zivsGrades = {
     geography: [46, 83, 70, 77],
     averageGrade: averageGrades
 };
-// function averageGrade(studentGrades: StudentsGrades): number[] | undefined {
-//   try {
-//     let averageGradesResult = [];
-// // let x = 0;
-// for (let x=1; x<=)
-//     averageGradesResult = this.StudentGrades[x].reduce((a:number, b:number)=> a+b,0) /this.StudentGrades[x].length;
-//   } catch (error) {
-//     console.error(error);
-//     return undefined;
-//   }
-// }
+function averageGrade(studentGrades) {
+    try {
+        var averageGradesResult = [];
+        // let x = 0;
+        for (var x = 1; x <= ;)
+            averageGradesResult = this.StudentGrades[x].reduce(function (a, b) { return a + b; }, 0) / this.StudentGrades[x].length;
+    }
+    catch (error) {
+        console.error(error);
+        return undefined;
+    }
+}
 var StudentsGrades = [
     {
         math: [100, 90, 65]
@@ -29,3 +30,15 @@ var StudentsGrades = [
     { music: [78, 89, 78] },
     { geography: [98, 65, 48] },
 ];
+function averageGrade(studentGrades) {
+    try {
+        var averageGradesResult = [];
+        // let x = 0;
+        for (var x = 1; x <= ;)
+            averageGradesResult = this.StudentGrades[x].reduce(function (a, b) { return a + b; }, 0) / this.StudentGrades[x].length;
+    }
+    catch (error) {
+        console.error(error);
+        return undefined;
+    }
+}
