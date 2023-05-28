@@ -13,6 +13,7 @@ const skoda: Car = {
   millage: 100000,
   color: `black`,
   fuelConsamption: 10,
+  trip: 469,
 };
 const audi: Car = {
   company: `audi`,
@@ -20,6 +21,7 @@ const audi: Car = {
   millage: 100000,
   color: `black`,
   fuelConsamption: 10,
+  trip: 320,
 };
 
 function gasConsumed(Car: Car): number | undefined {
