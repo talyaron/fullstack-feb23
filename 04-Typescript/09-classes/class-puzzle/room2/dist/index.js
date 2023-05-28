@@ -9,8 +9,8 @@
 var Pawn = /** @class */ (function () {
     function Pawn(x, y) {
         try {
-            if ((x < 0) || (y < 0) || (x > 7) || (y > 7))
-                throw new Error('you are off the board');
+            if (x < 0 || y < 0 || x > 7 || y > 7)
+                throw new Error("you are off the board");
             this.x = x;
             this.y = y;
         }
@@ -21,17 +21,9 @@ var Pawn = /** @class */ (function () {
         }
     }
     Pawn.prototype.goRight = function () {
-        // try{
-        //     if(this.x === 7) throw new Error('end of the board'); 
-        //     return this.x + 1;
-        // }
-        // catch (error) {
-        //     console.error(error);
-        //     return undefined;
-        //   }
         try {
             if (this.x === 7)
-                throw new Error('end of the board');
+                throw new Error("end of the board");
             this.x++;
             return this.getLocation();
         }
@@ -43,7 +35,7 @@ var Pawn = /** @class */ (function () {
     Pawn.prototype.goLeft = function () {
         try {
             if (this.x === 0)
-                throw new Error('end of the board');
+                throw new Error("end of the board");
             this.x--;
             return this.getLocation();
         }
@@ -55,7 +47,7 @@ var Pawn = /** @class */ (function () {
     Pawn.prototype.goDown = function () {
         try {
             if (this.y === 7)
-                throw new Error('end of the board');
+                throw new Error("end of the board");
             this.y++;
             return this.getLocation();
         }
@@ -67,7 +59,7 @@ var Pawn = /** @class */ (function () {
     Pawn.prototype.goUp = function () {
         try {
             if (this.y === 0)
-                throw new Error('end of the board');
+                throw new Error("end of the board");
             this.y--;
             return this.getLocation();
         }
@@ -78,7 +70,8 @@ var Pawn = /** @class */ (function () {
     };
     Pawn.prototype.getLocation = function () {
         return {
-            x: this.x, y: this.y
+            x: this.x,
+            y: this.y
         };
     };
     return Pawn;

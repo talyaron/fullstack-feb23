@@ -9,90 +9,76 @@
 // p1.goUp() -> {x:2, y:6}
 
 class Pawn {
-    x: number;
-    y: number;
+  x: number;
+  y: number;
 
-    constructor (
-    x: number,
-    y: number,
+  constructor(x: number, y: number) {
+    try {
+      if (x < 0 || y < 0 || x > 7 || y > 7)
+        throw new Error("you are off the board");
+      this.x = x;
+      this.y = y;
+    } catch (error) {
+      console.error(error);
+      this.x = 0;
+      this.y = 0;
+    }
+  }
 
-    ) {
-        try {
-            if((x < 0) || (y < 0) || (x > 7) || (y > 7)) throw new Error('you are off the board')
-                this.x = x;
-                this.y = y;
-        } catch (error) {
-            console.error(error)
-            this.x = 0;
-            this.y = 0;
-        }
-    } 
-    
-    goRight() {
-        // try{
-        //     if(this.x === 7) throw new Error('end of the board'); 
-        //     return this.x + 1;
-        // }
-        // catch (error) {
-        //     console.error(error);
-        //     return undefined;
-        //   }
-        try{
-                if(this.x === 7) throw new Error('end of the board'); 
-                this.x++;
-                return this.getLocation()
-            }
-            catch (error) {
-                console.error(error);
-                return this.getLocation()
-            }
+  goRight() {
+    try {
+      if (this.x === 7) throw new Error("end of the board");
+      this.x++;
+      return this.getLocation();
+    } catch (error) {
+      console.error(error);
+      return this.getLocation();
     }
+  }
 
-    goLeft() {
-        try{
-            if(this.x === 0) throw new Error('end of the board'); 
-            this.x--;
-            return this.getLocation()
-        }
-        catch (error) {
-            console.error(error);
-            return this.getLocation()
-          }
+  goLeft() {
+    try {
+      if (this.x === 0) throw new Error("end of the board");
+      this.x--;
+      return this.getLocation();
+    } catch (error) {
+      console.error(error);
+      return this.getLocation();
     }
-    goDown() {
-        try{
-            if(this.y === 7) throw new Error('end of the board'); 
-            this.y++;
-            return this.getLocation()
-        }
-        catch (error) {
-            console.error(error);
-            return this.getLocation()
-          }
+  }
+  goDown() {
+    try {
+      if (this.y === 7) throw new Error("end of the board");
+      this.y++;
+      return this.getLocation();
+    } catch (error) {
+      console.error(error);
+      return this.getLocation();
     }
+  }
 
-    goUp () {
-        try{
-            if(this.y === 0) throw new Error('end of the board'); 
-            this.y--;
-            return this.getLocation()
-        }
-        catch (error) {
-            console.error(error);
-            return this.getLocation()
-          }
+  goUp() {
+    try {
+      if (this.y === 0) throw new Error("end of the board");
+      this.y--;
+      return this.getLocation();
+    } catch (error) {
+      console.error(error);
+      return this.getLocation();
     }
+  }
 
-    getLocation () {
-        return {
-            x:this.x, y:this.y
-        }
-    }
+  getLocation() {
+    return {
+      x: this.x,
+      y: this.y,
+    };
+  }
 }
 
-const p1 = new Pawn (2, 8);
+const p1 = new Pawn(2, 8);
 
-console.log(p1.getLocation())
+console.log(p1.getLocation());
 console.log(p1.goLeft());
 console.log(p1.goUp());
 console.log(p1.goDown());
