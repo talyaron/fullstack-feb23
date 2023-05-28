@@ -23,6 +23,7 @@ var Pawn = /** @class */ (function () {
             console.error(error);
             return;
         }
+        console.log(this.getLocation());
     };
     Pawn.prototype.goLeft = function () {
         try {
@@ -34,6 +35,7 @@ var Pawn = /** @class */ (function () {
             console.error(error);
             return;
         }
+        console.log(this.getLocation());
     };
     Pawn.prototype.goUp = function () {
         try {
@@ -45,6 +47,7 @@ var Pawn = /** @class */ (function () {
             console.error(error);
             return;
         }
+        console.log(this.getLocation());
     };
     Pawn.prototype.goDown = function () {
         try {
@@ -56,6 +59,7 @@ var Pawn = /** @class */ (function () {
             console.error(error);
             return;
         }
+        console.log(this.getLocation());
     };
     Pawn.prototype.getLocation = function () {
         return this.x + ", " + this.y;
@@ -64,20 +68,8 @@ var Pawn = /** @class */ (function () {
 }());
 var p1 = new Pawn(5, 1);
 p1.goRight();
-console.log(p1.getLocation());
+// con3sole.log(p1.getLocation())
 p1.goRight();
-console.log(p1.getLocation());
+// console.log(p1.getLocation())
 p1.goDown();
-console.log(p1.getLocation());
-p1.goDown();
-console.log(p1.getLocation());
-p1.goDown();
-console.log(p1.getLocation());
-p1.goDown();
-console.log(p1.getLocation());
-p1.goDown();
-console.log(p1.getLocation());
-p1.goDown();
-console.log(p1.getLocation());
-p1.goDown();
-console.log(p1.getLocation());
+// console.log(p1.getLocation())
