@@ -17,7 +17,7 @@ const historysub:Subject = {
         for (let i = len - 1; i >= 0; i--) {
             c = c + this.grades[i];
         }
-        return c / len;
+        return Math.floor(c / len);
     
     }
     
@@ -34,7 +34,7 @@ const mathsub:Subject = {
         for (let i = len - 1; i >= 0; i--) {
             c = c + this.grades[i];
         }
-        return c / len;
+        return Math.floor(c / len);
     }
 
 }
@@ -48,7 +48,7 @@ const englishsub:Subject = {
         for (let i = len - 1; i >= 0; i--) {
             c = c + this.grades[i];
         }
-        return c / len;
+        return Math.floor(c / len);
     }
 
 }
@@ -61,7 +61,7 @@ const literaturesub:Subject = {
         for (let i = len - 1; i >= 0; i--) {
             c = c + this.grades[i];
         }
-        return c / len;
+        return Math.floor(c / len);
     }
 
 }
@@ -71,3 +71,40 @@ console.log("History Avg:", historysub.calculateaverage())
 console.log("math Avg:", mathsub.calculateaverage())
 console.log("english Avg:", englishsub.calculateaverage())
 console.log("literature Avg:", literaturesub.calculateaverage())
+const finalAvgAsString= String(finalAvg)
+const historyavgg= document.getElementById('history')
+if(historyavgg!=null){
+historyavgg.textContent= historysub.calculateaverage()}
+
+const mathavgg= document.getElementById('math')
+if(mathavgg!=null){
+    mathavgg.textContent= mathsub.calculateaverage()}
+
+const englishavgg= document.getElementById('english')
+if(englishavgg!=null){
+    englishavgg.textContent= englishsub.calculateaverage()}
+
+const literatureavgg= document.getElementById('literature')
+if(literatureavgg!=null){
+    literatureavgg.textContent= literaturesub.calculateaverage()}
+    
+    const finalavgg= document.getElementById('finavg')
+    if(finalavgg!=null){
+        finalavgg.textContent= finalAvgAsString}
+
+
+
+        const historyallgrades= document.getElementById('historyall')
+        if(historyallgrades!=null){
+            historyallgrades.textContent= historysub.grades} 
+        const mathallgrades= document.getElementById('mathall')
+        if(mathallgrades!=null){
+            mathallgrades.textContent= mathsub.grades}
+        
+            const englishallgrades= document.getElementById('englishall')
+        if(englishallgrades!=null){
+            englishallgrades.textContent= englishsub.grades} 
+            const literatureallgrades= document.getElementById('literatureall')
+        if(literatureallgrades!=null){
+            literatureallgrades.textContent= literaturesub.grades} 
+          

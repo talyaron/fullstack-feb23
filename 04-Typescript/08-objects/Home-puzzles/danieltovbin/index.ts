@@ -77,20 +77,32 @@ const maria :Student= {
     name: "Maria",
     gender: "woman",
     mathGrades: function (array :number[] = [90, 60, 80, 60]) { 
+        // part one
         let averageGrade :number = 0;
         for(let i = 0; i < array.length; i++) {
             averageGrade += array[i]
         }
         return averageGrade / array.length;
         // average = 72.5
+
+        // part two
+        let sum = array;
+        sum.reduce(( currentValue) => currentValue);
+        return sum;
     },
     historyGrades: function (array :number[] =[80, 99, 100, 70]) {
+        // part one
         let averageGrade :number = 0;
         for(let i = 0; i < array.length; i++){
             averageGrade += array[i]
         }
         return averageGrade / array.length;
         // average = 87.25
+
+        // part two
+        let sum = array;
+        sum.reduce(( currentValue) => currentValue);
+        return sum;
     },
     physicsGrades: function (array :number[] = [100, 100, 90, 80]){
         let averageGrade :number = 0;
@@ -99,21 +111,31 @@ const maria :Student= {
         }
         return averageGrade / array.length;
         // average = 92.5
+
+        // part two
+        let sum = array;
+        sum.reduce(( currentValue) => currentValue);
+        return sum;
     },
     sportGrades: function(array :number[] = [85, 60, 70, 80]){
-        const oneGrade = 85;
+        // part one
         let averageGrade :number = 0;
         for(let i = 0; i < array.length; i++){
             averageGrade += array[i]
         }
         return averageGrade / array.length;
         // average = 73.75
-        // return array.indexOf(oneGrade);
+
+        // part two
+            let sum = array;
+            sum.reduce(( currentValue) => currentValue);
+            return sum;
+
     },
-    sum: function() {
+    sum: function(array :number[]) {
         return (this.mathGrades() + this.historyGrades() + this.physicsGrades() + this.sportGrades()) / 4;
         // average of all = 81.5
     }
 }
-console.log(maria.sum());
+console.log(maria.mathGrades());
 
