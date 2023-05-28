@@ -20,15 +20,26 @@ interface Student {
 const Shay = {
     userName: "Shay",
     gender: "Female",
-    mathMidTermGrade: 98,
-    historyMidTermGrade:89,
-    mathFinalTermGrade:82,
-    hisoryFinalTermGrade:95,
+    mathMidTermGrade: 100,
+    historyMidTermGrade:75,
+    mathFinalTermGrade:50,
+    hisoryFinalTermGrade:25,
     avgMath: function(){
-                return (this.historyMidTermGrade + this.hisoryFinalTermGrade) / 2;
+        try {
+            return (this.historyMidTermGrade + this.hisoryFinalTermGrade) / 2;
+        } catch (error) {
+            console.error(Error)
+            return undefined
+        }
             },
             avgHistory: function(){
-                return (this.mathMidTermGrade + this.mathFinalTermGrade) / 2;
+                try {
+                    
+                    return (this.mathMidTermGrade + this.mathFinalTermGrade) / 2;
+                } catch (error) {
+                    console.error(Error)
+                return undefined
+                }
             }
 }
 
