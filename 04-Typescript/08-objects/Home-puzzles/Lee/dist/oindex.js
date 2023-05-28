@@ -18,7 +18,7 @@ var studentC = {
     historyFinalTermGrade: 95,
     calculateAverage: gradesAverage
 };
-var student = {
+var studentA = {
     name: "Lee Dekel",
     gender: "female",
     mathMidTermGrade: 65,
@@ -36,4 +36,4 @@ function gradesAverage(midMath, finalMath, midHistory, finalHistory) {
         return undefined;
     }
 }
-console.log(studentB.calculateAverage());
+console.log(studentB.name, studentB.gender, studentB.calculateAverage());
