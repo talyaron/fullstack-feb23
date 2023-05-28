@@ -52,11 +52,11 @@ var h = document.querySelector("body > main > table > tbody > tr > td.history");
 h === null || h === void 0 ? void 0 : h.addEventListener('click', function (e) {
     h.style.transition = '0.5s';
     h.style.border = '3px solid lime';
-    h.style.backgroundColor = 'aliceblue';
+    h.style.backgroundColor = 'white';
 });
 var m = document.querySelector("body > main > table > tbody > tr > td.math");
 m === null || m === void 0 ? void 0 : m.addEventListener('click', function (e) {
     m.style.transition = '0.5s';
     m.style.border = '3px solid red';
-    m.style.backgroundColor = 'aliceblue';
+    m.style.backgroundColor = 'white';
 });

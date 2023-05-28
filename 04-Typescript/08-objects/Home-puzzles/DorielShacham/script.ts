@@ -67,12 +67,13 @@ const h: HTMLElement | null = document.querySelector("body > main > table > tbod
 h?.addEventListener('click', e => {
     h.style.transition = '0.5s';
     h.style.border = '3px solid lime'
-    h.style.backgroundColor = 'aliceblue'
+    h.style.backgroundColor = 'white'
 })
 
 const m: HTMLElement | null = document.querySelector("body > main > table > tbody > tr > td.math");
 m?.addEventListener('click', e => {
     m.style.transition = '0.5s';
     m.style.border = '3px solid red'
-    m.style.backgroundColor = 'aliceblue'
+    m.style.backgroundColor = 'white'
 })
+
