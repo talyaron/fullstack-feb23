@@ -44,15 +44,15 @@ function allAvg(unit) {
 console.log(allAvg(grades));
 console.log("The average of all grades is", allAvg(grades));
 var spcCourse = prompt('For which course you want get the average?');
-function courseAvg(course, unit) {
+function courseAvg(course, grades) {
     try {
         if (!course)
             throw new Error('Name of course is not input');
         var sum = 0;
         var j = 0;
-        for (var i = 0; i < unit.length; i++) {
-            if (course === unit[i].course) {
-                sum = sum + unit[i].grade;
+        for (var i = 0; i < grades.length; i++) {
+            if (course === grades[i].course) {
+                sum = sum + grades[i].grade;
                 j++;
             }
         }
