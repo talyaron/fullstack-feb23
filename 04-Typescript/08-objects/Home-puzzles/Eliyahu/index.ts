@@ -84,14 +84,14 @@ console.log(`The average of all grades is`, allAvg(grades))
 
 const spcCourse = prompt('For which course you want get the average?')
 
-function courseAvg(course: string|null, unit: Grade[]): number | undefined {
+function courseAvg(course: string|null, grades: Grade[]): number | undefined {
     try {
         if (!course) throw new Error ('Name of course is not input')
         let sum = 0
         let j = 0
-        for (let i = 0; i < unit.length; i++) {
-            if (course === unit[i].course) {
-                sum = sum + unit[i].grade
+        for (let i = 0; i < grades.length; i++) {
+            if (course === grades[i].course) {
+                sum = sum + grades[i].grade
                 j++
             }
             
