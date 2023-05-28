@@ -40,7 +40,7 @@
 
 interface Grade {
     course: string,
-    grade: number
+    grade: number,
 }
 
 const g1: Grade = {
@@ -66,23 +66,25 @@ const g5: Grade = {
 }
 
 const grades = [g1, g2, g3, g4, g5]
-function allAvg(unit: Grade[]): string | undefined {
+function allAvg(unit: Grade[]): number | undefined {
     try {
         let sum = 0
         for (let i = 0; i < unit.length; i++) {
             sum = sum + unit[i].grade
         }
-        return `The average of all grades is ${sum / unit.length}`
+        return sum / unit.length
     } catch (error) {
         console.error(error)
         return
     }
 }
 
+console.log(allAvg(grades))
+console.log(`The average of all grades is`, allAvg(grades))
 
 const spcCourse = prompt('For which course you want get the average?')
 
-function courseAvg(course: string|null, unit: Grade[]): string | undefined {
+function courseAvg(course: string|null, unit: Grade[]): number | undefined {
     try {
         if (!course) throw new Error ('Name of course is not input')
         let sum = 0
@@ -94,13 +96,14 @@ function courseAvg(course: string|null, unit: Grade[]): string | undefined {
             }
             
         }
-        return `The average of ${spcCourse} grades is ${sum / j}`
+        return sum / j
     } catch (error) {
         console.error(error)
         return
     }
 }
-console.log(allAvg(grades))
 console.log(courseAvg(spcCourse,grades))
+console.log(`The average of ${spcCourse} grades is`, courseAvg(spcCourse,grades))
+
 
 

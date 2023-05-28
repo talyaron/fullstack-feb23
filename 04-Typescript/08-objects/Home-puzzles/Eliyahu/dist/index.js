@@ -34,13 +34,15 @@ function allAvg(unit) {
         for (var i = 0; i < unit.length; i++) {
             sum = sum + unit[i].grade;
         }
-        return "The average of all grades is " + sum / unit.length;
+        return sum / unit.length;
     }
     catch (error) {
         console.error(error);
         return;
     }
 }
+console.log(allAvg(grades));
+console.log("The average of all grades is", allAvg(grades));
 var spcCourse = prompt('For which course you want get the average?');
 function courseAvg(course, unit) {
     try {
@@ -54,12 +56,12 @@ function courseAvg(course, unit) {
                 j++;
             }
         }
-        return "The average of " + spcCourse + " grades is " + sum / j;
+        return sum / j;
     }
     catch (error) {
         console.error(error);
         return;
     }
 }
-console.log(allAvg(grades));
 console.log(courseAvg(spcCourse, grades));
+console.log("The average of " + spcCourse + " grades is", courseAvg(spcCourse, grades));
