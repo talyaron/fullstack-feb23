@@ -90,7 +90,7 @@ class Pawn {
     }
 }
 
-const p1 = new Pawn (2, 8);
+const p1 = new Pawn (-1,-1);
 
 console.log(p1.getLocation())
 console.log(p1.goLeft());

@@ -83,7 +83,7 @@ var Pawn = /** @class */ (function () {
     };
     return Pawn;
 }());
-var p1 = new Pawn(2, 8);
+var p1 = new Pawn(-1, -1);
 console.log(p1.getLocation());
 console.log(p1.goLeft());
 console.log(p1.goUp());
