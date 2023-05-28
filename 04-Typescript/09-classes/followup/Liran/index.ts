@@ -1,31 +1,61 @@
-class Person{
-    name:string
-    ageOfBirth:number
-    gender:string
-    city:string
-    hobby:string
+class Pawn{
+    x:number
+    y:number
 
-    constructor(
-        name:string,
-        ageOfBirth:number,
-        gender:string,
-        city:string,
-        hobby:string
-    )
-    {
-        this.name = name;
-        this.ageOfBirth = ageOfBirth
-        this.gender = gender
-        this.city = city;
-        this.hobby = hobby
+    constructor(x:number,y:number){
+        try {
+            if(x < 0 || x > 7 || y < 0 || y > 7)throw new Error("Out of limit")
+            this.x = x
+            this.y = y
+        } catch (error) {
+            console.error(error)
+            this.x = 0;
+            this.y = 0;
+        }
     }
 
-    ageOfPerson(){
-        return new Date().getFullYear()-this.ageOfBirth;
+    goLeft(){
+        try {
+            if(this.x == 0)throw new Error("Out of limit")
+            this.x--
+            this.getLocation()
+        } catch (error) {
+            console.error(error)
+        }
+    }
+
+    goRight(){
+        try {
+            if(this.x == 7)throw new Error("Out of limit")
+            this.x++
+            this.getLocation()
+        } catch (error) {
+            console.error(error)
+        }
+    }
+
+    goUp(){
+        try {
+            if(this.y == 7)throw new Error("Out of limit")
+            this.y++
+            this.getLocation()
+        } catch (error) {
+            console.error(error)
+        }
+    }
+
+    goDown(){
+        try {
+            if(this.x == 7)throw new Error("Out of limit")
+            this.x++
+            this.getLocation()
+        } catch (error) {
+            console.error(error)
+        }
+    }
+
+    getLocation(){
+        console.log(`{ x:${this.x} , y:${this.y} }`)
+        return {x:this.x,y:this.y}
     }
 }
-
-
-const liran = new Person("Liran",1989,"Male","Yoqne'am","football");
-console.log(liran)
-console.log(liran.ageOfPerson())
