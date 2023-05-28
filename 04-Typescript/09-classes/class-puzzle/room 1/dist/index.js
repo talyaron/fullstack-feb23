@@ -9,8 +9,9 @@
 var Pawn = /** @class */ (function () {
     function Pawn(x, y) {
         try {
-            if (x < 0 || y < 0 || x > 7 || y > 7)
-                throw new Error("you are off the board");
+            // debugger;
+            if (x < 0 || x > 7 || y < 0 || y > 7)
+                throw new Error("pawn is not in range");
             this.x = x;
             this.y = y;
         }
@@ -22,64 +23,58 @@ var Pawn = /** @class */ (function () {
     }
     Pawn.prototype.goRight = function () {
         try {
-            if (this.x === 7)
-                throw new Error("end of the board");
+            if (this.x >= 7)
+                throw Error("pawn is not in range");
             this.x++;
-            return this.getLocation();
+            this.getLocation();
         }
         catch (error) {
             console.error(error);
-            return this.getLocation();
         }
     };
     Pawn.prototype.goLeft = function () {
         try {
-            if (this.x === 0)
-                throw new Error("end of the board");
+            if (this.x < 0)
+                throw Error("pawn is not in range");
             this.x--;
-            return this.getLocation();
+            this.getLocation();
         }
         catch (error) {
             console.error(error);
-            return this.getLocation();
-        }
-    };
-    Pawn.prototype.goDown = function () {
-        try {
-            if (this.y === 7)
-                throw new Error("end of the board");
-            this.y++;
-            return this.getLocation();
-        }
-        catch (error) {
-            console.error(error);
-            return this.getLocation();
         }
     };
     Pawn.prototype.goUp = function () {
         try {
-            if (this.y === 0)
-                throw new Error("end of the board");
+            if (this.y < 0)
+                throw Error("pawn is not in range");
             this.y--;
-            return this.getLocation();
+            this.getLocation();
         }
         catch (error) {
             console.error(error);
-            return this.getLocation();
+        }
+    };
+    Pawn.prototype.goDown = function () {
+        try {
+            if (this.y >= 7)
+                throw Error("pawn is not in range");
+            this.y++;
+            this.getLocation();
+        }
+        catch (error) {
+            console.error(error);
         }
     };
     Pawn.prototype.getLocation = function () {
-        return {
-            x: this.x,
-            y: this.y
-        };
+        console.log("your pown position is: " + this.x + ", " + this.y);
+        return { x: this.x, y: this.y };
     };
     return Pawn;
 }());
-var p1 = new Pawn(2, 8);
-console.log(p1.getLocation());
-console.log(p1.goLeft());
-console.log(p1.goUp());
-console.log(p1.goDown());
-console.log(p1.goDown());
-console.log(p1.goDown());
+var newPawn = new Pawn(7, 7);
+newPawn.goDown();
+newPawn.goUp();
+newPawn.goRight();
+newPawn.goDown();
+newPawn.goLeft();
+// newPawn.getLocation();
