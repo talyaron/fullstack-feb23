@@ -43,8 +43,8 @@ interface CourseGrades {
 }
 
 interface StudentCourses {
-    firstcours: CourseGrades,
-    secoundcours: CourseGrades,
+    first: CourseGrades,
+    secound: CourseGrades,
     averageAllGrades: Function,
 }
 
@@ -56,13 +56,15 @@ const firstcours: CourseGrades = {
     finalgrade: 96,
     courseAvargeGrade: function (): number | undefined {
         try {
-            return (this.firstgrade + this.secoundgrade + this.midgrade + this.finalgrade / 4);
+            return ((this.firstgrade + this.secoundgrade + this.midgrade + this.finalgrade) / 4);
         } catch (error) {
             console.log(error)
             return undefined
         }
     }
 }
+
+console.log(`${firstcours.courseName} average grade is ${firstcours.courseAvargeGrade()}`)
 
 const secoundcours:CourseGrades = {
     courseName: "english",
@@ -72,7 +74,7 @@ const secoundcours:CourseGrades = {
     finalgrade: 82,
     courseAvargeGrade:  function (): number|undefined {
         try {
-            return (this.firstgrade + this.secoundgrade + this.midgrade + this.finalgrade / 4);
+            return ((this.firstgrade + this.secoundgrade + this.midgrade + this.finalgrade) / 4);
         } catch (error) {
             console.log(error)
             return undefined
@@ -80,12 +82,14 @@ const secoundcours:CourseGrades = {
     }
 }
 
+console.log(`${secoundcours.courseName} average grade is ${secoundcours.courseAvargeGrade()}`)
+
 const StudentAllCourses: StudentCourses = {
-    firstcours: firstcours,
-    secoundcours: secoundcours,
+    first: firstcours.courseAvargeGrade(),
+    secound: secoundcours.courseAvargeGrade(),
     averageAllGrades: function (): number|undefined {
         try {
-            return (this.first + this.secound / 2);
+            return ((this.first + this.secound) / 2);
         } catch (error) {
             console.log(error)
             return undefined
@@ -93,4 +97,9 @@ const StudentAllCourses: StudentCourses = {
     } 
 }
 
+console.log(StudentAllCourses.averageAllGrades())
 
+let array_of_all_cources: Array<CourseGrades> = [firstcours,secoundcours]
+console.log(array_of_all_cources[0], array_of_all_cources[1])
+
+console.log(`${array_of_all_cources[0].courseName} average grade is ${array_of_all_cources[0].courseAvargeGrade()}`)

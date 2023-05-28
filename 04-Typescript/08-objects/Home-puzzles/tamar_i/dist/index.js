@@ -26,7 +26,7 @@ var firstcours = {
     finalgrade: 96,
     courseAvargeGrade: function () {
         try {
-            return (this.firstgrade + this.secoundgrade + this.midgrade + this.finalgrade / 4);
+            return ((this.firstgrade + this.secoundgrade + this.midgrade + this.finalgrade) / 4);
         }
         catch (error) {
             console.log(error);
@@ -34,6 +34,7 @@ var firstcours = {
         }
     }
 };
+console.log(firstcours.courseName + " average grade is " + firstcours.courseAvargeGrade());
 var secoundcours = {
     courseName: "english",
     firstgrade: 90,
@@ -42,7 +43,7 @@ var secoundcours = {
     finalgrade: 82,
     courseAvargeGrade: function () {
         try {
-            return (this.firstgrade + this.secoundgrade + this.midgrade + this.finalgrade / 4);
+            return ((this.firstgrade + this.secoundgrade + this.midgrade + this.finalgrade) / 4);
         }
         catch (error) {
             console.log(error);
@@ -50,12 +51,13 @@ var secoundcours = {
         }
     }
 };
+console.log(secoundcours.courseName + " average grade is " + secoundcours.courseAvargeGrade());
 var StudentAllCourses = {
-    firstcours: firstcours,
-    secoundcours: secoundcours,
+    first: firstcours.courseAvargeGrade(),
+    secound: secoundcours.courseAvargeGrade(),
     averageAllGrades: function () {
         try {
-            return (this.first + this.secound / 2);
+            return ((this.first + this.secound) / 2);
         }
         catch (error) {
             console.log(error);
@@ -63,3 +65,7 @@ var StudentAllCourses = {
         }
     }
 };
+console.log(StudentAllCourses.averageAllGrades());
+var array_of_all_cources = [firstcours, secoundcours];
+console.log(array_of_all_cources[0], array_of_all_cources[1]);
+console.log(array_of_all_cources[0].courseName + " average grade is " + array_of_all_cources[0].courseAvargeGrade());
