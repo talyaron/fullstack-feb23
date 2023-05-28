@@ -16,5 +16,6 @@ function reverseNumber(number) {
     catch (error) {
         console.error(error);
     }
+    3;
 }
 console.log(reverseNumber(num));
