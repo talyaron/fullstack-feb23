@@ -25,10 +25,27 @@ class Pawn {
     }
   }
 
-  goRight() {
+  go(direction: "Up" | "Down" | "Right" | "Left") {
     try {
-      if (this.x === 7) throw new Error("end of the board");
-      this.x++;
+      switch (direction) {
+        case "Up":
+          if (this.y === 0) throw new Error("end of the board");
+          this.y--;
+          break;
+        case "Down":
+          if (this.y === 7) throw new Error("end of the board");
+          this.y++;
+          break;
+        case "Right":
+          if (this.x === 7) throw new Error("end of the board");
+          this.x++;
+          break;
+        case "Left":
+          if (this.x === 0) throw new Error("end of the board");
+          this.x--;
+          break;
+      }
+
       return this.getLocation();
     } catch (error) {
       console.error(error);
@@ -36,37 +53,38 @@ class Pawn {
     }
   }
 
-  goLeft() {
-    try {
-      if (this.x === 0) throw new Error("end of the board");
-      this.x--;
-      return this.getLocation();
-    } catch (error) {
-      console.error(error);
-      return this.getLocation();
-    }
-  }
-  goDown() {
-    try {
-      if (this.y === 7) throw new Error("end of the board");
-      this.y++;
-      return this.getLocation();
-    } catch (error) {
-      console.error(error);
-      return this.getLocation();
-    }
-  }
+  //DRY dont repeat yourself
+  // goLeft() {
+  //   try {
+  //     if (this.x === 0) throw new Error("end of the board");
+  //     this.x--;
+  //     return this.getLocation();
+  //   } catch (error) {
+  //     console.error(error);
+  //     return this.getLocation();
+  //   }
+  // }
+  // goDown() {
+  //   try {
+  //     if (this.y === 7) throw new Error("end of the board");
+  //     this.y++;
+  //     return this.getLocation();
+  //   } catch (error) {
+  //     console.error(error);
+  //     return this.getLocation();
+  //   }
+  // }
 
-  goUp() {
-    try {
-      if (this.y === 0) throw new Error("end of the board");
-      this.y--;
-      return this.getLocation();
-    } catch (error) {
-      console.error(error);
-      return this.getLocation();
-    }
-  }
+  // goUp() {
+  //   try {
+  //     if (this.y === 0) throw new Error("end of the board");
+  //     this.y--;
+  //     return this.getLocation();
+  //   } catch (error) {
+  //     console.error(error);
+  //     return this.getLocation();
+  //   }
+  // }
 
   getLocation() {
     return {
@@ -76,11 +94,10 @@ class Pawn {
   }
 }
 
-const p1 = new Pawn(2, 8);
+const p1 = new Pawn(2, 6);
 
 console.log(p1.getLocation());
-console.log(p1.goLeft());
-console.log(p1.goUp());
-console.log(p1.goDown());
-console.log(p1.goDown());
-console.log(p1.goDown());
+console.log(p1.go("Left"));
+console.log(p1.go("Left"));
+console.log(p1.go("Down"));
+console.log(p1.go("Down"));
