@@ -19,19 +19,19 @@
 var studentOne = {
     name: "Doriel",
     gender: "Male",
-    mathMidTermGrade: [63, 55, 70],
+    mathMidTermGrade: [64, 55, 70],
     historyMidTermGrade: [100, 90, 95],
     mathFinalTermGrade: [100, 86, 100],
     historyFinalTermGrade: [60, 85, 98],
     avgMath: function () {
-        studentOne.mathMidTermGrade.forEach(function (e) {
-            console.log.apply(console, studentOne.mathMidTermGrade);
-        });
+        var sum = this.mathMidTermGrade.reduce(function (total, grade) { return total + grade; }, 0);
+        var average = sum / this.mathMidTermGrade.length;
+        console.log("Average Math Grade:", average);
     },
     avgHistory: function () {
-        studentOne.historyMidTermGrade.forEach(function (ev) {
-            console.log.apply(console, studentOne.historyMidTermGrade);
-        });
+        var sum = this.historyMidTermGrade.reduce(function (total, grade) { return total + grade; }, 0);
+        var average = sum / this.historyMidTermGrade.length;
+        console.log("Average History Grade:", average);
     }
 };
 console.log(studentOne.avgMath());
