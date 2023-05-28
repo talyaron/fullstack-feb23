@@ -25,14 +25,14 @@ var studentOne = {
     historyFinalTermGrade: [60, 85, 98],
     avgMath: function () {
         studentOne.mathMidTermGrade.forEach(function (e) {
-            console.log(e);
+            console.log.apply(console, studentOne.mathMidTermGrade);
         });
     },
     avgHistory: function () {
         studentOne.historyMidTermGrade.forEach(function (ev) {
-            console.log(ev);
+            console.log.apply(console, studentOne.historyMidTermGrade);
         });
     }
 };
 console.log(studentOne.avgMath());
-// console.log(studentOne.avgHistory())
+console.log(studentOne.avgHistory());
