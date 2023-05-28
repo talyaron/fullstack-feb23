@@ -2,9 +2,9 @@ var Pawn = /** @class */ (function () {
     function Pawn(x, y) {
         try {
             if (x > 7 || x < 0)
-                throw new Error('Out of range');
+                throw new Error("Out of range");
             if (y > 1 || y < 0)
-                throw new Error('Out of range');
+                throw new Error("Out of range");
             this.x = x;
             this.y = y;
         }
@@ -16,7 +16,7 @@ var Pawn = /** @class */ (function () {
     Pawn.prototype.goRight = function () {
         try {
             if (this.x > 6)
-                throw new Error('no more moves');
+                throw new Error("no more moves");
             this.x++;
         }
         catch (error) {
@@ -27,7 +27,7 @@ var Pawn = /** @class */ (function () {
     Pawn.prototype.goLeft = function () {
         try {
             if (this.x < 1)
-                throw new Error('no more moves');
+                throw new Error("no more moves");
             this.x--;
         }
         catch (error) {
@@ -38,7 +38,7 @@ var Pawn = /** @class */ (function () {
     Pawn.prototype.goUp = function () {
         try {
             if (this.y < 1)
-                throw new Error('no more moves');
+                throw new Error("no more moves");
             this.y--;
         }
         catch (error) {
@@ -49,7 +49,7 @@ var Pawn = /** @class */ (function () {
     Pawn.prototype.goDown = function () {
         try {
             if (this.y > 6)
-                throw new Error('no more moves');
+                throw new Error("no more moves");
             this.y++;
         }
         catch (error) {
