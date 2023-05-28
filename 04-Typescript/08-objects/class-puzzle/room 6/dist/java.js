@@ -1,13 +1,16 @@
 // company, year, model, millage, color, fuelConsamption
-var userCar = prompt("enter the car company");
-var tripKM = prompt("enter the trip distince");
+// const userCar= prompt("enter the car company")
+// const tripKM= prompt("enter the trip distince")
+var userCar = "audi";
+var tripKM = 100;
 var audi = {
     company: "audi",
     year: 2022,
     model: "tt",
     milage: 12000,
     color: "purple",
-    fuelConsamption: 12
+    Consamption: 12,
+    calFuel: carConsumption
 };
 var lada = {
     company: "lada",
@@ -15,13 +18,13 @@ var lada = {
     model: "vodka",
     milage: 1200000,
     color: "brown rust",
-    fuelConsamption: 1
+    Consamption: 1,
+    calFuel: carConsumption
 };
-carConsumption(userCar, tripKM);
+carConsumption(tripKM);
 // Create a function that gets the car and trip and returns how many litters of gas were consumed in the trip.
-function carConsumption(car, trip) {
-    var answer = trip / car.fuelConsamption;
-    return answer;
+function carConsumption(trip) {
+    return trip / this.fuelConsamption;
 }
 // function carConsumption(Cars:Cars){
 //     Cars.company=userCar

@@ -2,8 +2,10 @@
 
 
 
-const userCar= prompt("enter the car company")
-const tripKM= prompt("enter the trip distince")
+// const userCar= prompt("enter the car company")
+// const tripKM= prompt("enter the trip distince")
+const userCar= "audi"
+const tripKM= 100
 
 
 
@@ -13,8 +15,8 @@ interface Cars{
     model?:string;
     milage:number;
     color?:string;
-    fuelConsamption:number;
-    
+    Consamption:number;
+    calFuel:Function
 } 
 
 
@@ -24,8 +26,8 @@ const audi:Cars={
     model:"tt",
     milage:12000,
     color:"purple",
-    fuelConsamption:12,
-    
+    Consamption:12,
+    calFuel:carConsumption
 }
 const lada:Cars={
     company:"lada",
@@ -33,22 +35,24 @@ const lada:Cars={
     model:"vodka",
     milage:1200000,
     color:"brown rust",
-    fuelConsamption:1,
-    
+    Consamption:1,
+    calFuel:carConsumption
 }
 
 
-carConsumption(userCar,tripKM)
+carConsumption(tripKM)
+
+
 
 // Create a function that gets the car and trip and returns how many litters of gas were consumed in the trip.
 
-function carConsumption(car:Cars,trip:number){
+function carConsumption(trip:number){
     
     
-    let answer=trip/car.fuelConsamption
-    
-  return answer
+   return trip/this.fuelConsamption
+
 }
+
 
 // function carConsumption(Cars:Cars){
 //     Cars.company=userCar

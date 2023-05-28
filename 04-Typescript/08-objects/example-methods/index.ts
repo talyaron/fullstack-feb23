@@ -56,3 +56,4 @@ console.log(shiransCar.calculateFuelConsumption(100))
 
 console.log(shiransCar.ageOfCar())
 console.log(alexsCar.ageOfCar())
+
