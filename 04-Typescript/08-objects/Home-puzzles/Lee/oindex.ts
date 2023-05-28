@@ -54,4 +54,4 @@ const studentB: Student = {
     }
   }
   
-  console.log(studentB.name, studentB.gender, studentB.calculateAverage);
+  console.log(studentB.name, studentB.gender, studentB.calculateAverage());
