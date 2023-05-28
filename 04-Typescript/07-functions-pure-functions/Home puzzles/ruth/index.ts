@@ -15,7 +15,7 @@ function reverseNumber(number: number) {
     return newNumberStr;
   } catch (error) {
     console.error(error);
-  }
+  }3
 }
 
 console.log(reverseNumber(num));
