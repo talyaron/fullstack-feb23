@@ -19,20 +19,44 @@
 var studentOne = {
     name: "Doriel",
     gender: "Male",
-    mathMidTermGrade: [64, 55, 70],
+    mathMidTermGrade: [56, 55, 61],
     historyMidTermGrade: [100, 90, 95],
-    mathFinalTermGrade: [100, 86, 100],
+    mathFinalTermGrade: [65, 42, 0],
     historyFinalTermGrade: [60, 85, 98],
     avgMath: function () {
         var sum = this.mathMidTermGrade.reduce(function (total, grade) { return total + grade; }, 0);
-        var average = sum / this.mathMidTermGrade.length;
-        console.log("Average Math Grade:", average);
+        var averageMidMath = sum / this.mathMidTermGrade.length;
+        var summ = this.mathFinalTermGrade.reduce(function (totalF, gradeF) { return totalF + gradeF; }, 0);
+        var averageFinMath = summ / this.mathFinalTermGrade.length;
+        var avgAllMath = (averageMidMath + averageFinMath) / 2;
+        console.log("averageMidMath Math Grade:", averageMidMath);
+        document.querySelector('.math').textContent = averageMidMath.toFixed(2);
+        console.log("Avg mid + final " + avgAllMath);
+        document.querySelector('.history').textContent = avgAllMath.toFixed(2);
     },
     avgHistory: function () {
         var sum = this.historyMidTermGrade.reduce(function (total, grade) { return total + grade; }, 0);
-        var average = sum / this.historyMidTermGrade.length;
-        console.log("Average History Grade:", average);
+        var averageMidHistory = sum / this.historyMidTermGrade.length;
+        var summ = this.historyFinalTermGrade.reduce(function (totalF, gradeF) { return totalF + gradeF; }, 0);
+        var averageFinHistory = summ / this.historyFinalTermGrade.length;
+        var avgAllHistory = (averageMidHistory + averageFinHistory) / 2;
+        console.log("Average History Grade:", averageMidHistory);
+        document.querySelector('.history').textContent = averageMidHistory.toFixed(2);
+        console.log("Avg mid + final " + avgAllHistory);
+        document.querySelector('.history').textContent = avgAllHistory.toFixed(2);
     }
 };
 console.log(studentOne.avgMath());
 console.log(studentOne.avgHistory());
+var h = document.querySelector("body > main > table > tbody > tr > td.history");
+h === null || h === void 0 ? void 0 : h.addEventListener('click', function (e) {
+    h.style.transition = '0.5s';
+    h.style.border = '3px solid lime';
+    h.style.backgroundColor = 'aliceblue';
+});
+var m = document.querySelector("body > main > table > tbody > tr > td.math");
+m === null || m === void 0 ? void 0 : m.addEventListener('click', function (e) {
+    m.style.transition = '0.5s';
+    m.style.border = '3px solid red';
+    m.style.backgroundColor = 'aliceblue';
+});
