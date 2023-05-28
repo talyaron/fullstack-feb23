@@ -4,17 +4,17 @@
 // 2) Implement a method within the object that calculates the average grade of the student by utilizing the available grades (make use of the 'this' keyword).
 
 interface Student {
-    name: string,
-    gender: string,
-    mathMidTermGrade: number,
-    historyMidTermGrade: number,
-    mathFinalTermGrade: number,
-    historyFinalTermGrade: number,
-    calculateAverage: gradesAverage
+    name:string,
+    gender:string,
+    mathMidTermGrade:number,
+    historyMidTermGrade:number,
+    mathFinalTermGrade:number,
+    historyFinalTermGrade:number,
+    calculateAverage:Function,
    
 }
 
-const studentB = {
+const studentB: Student = {
     name: "Linor Monir",
     gender: "female",
     mathMidTermGrade: 95,
@@ -24,7 +24,7 @@ const studentB = {
     calculateAverage: gradesAverage,
   };
 
-  const studentC = {
+  const studentC: Student = {
     name: "Inbar Budniatzky",
     gender: "female",
     mathMidTermGrade: 100,
@@ -34,7 +34,7 @@ const studentB = {
     calculateAverage: gradesAverage,
   };
 
-  const student = {
+  const studentA: Student = {
     name: "Lee Dekel",
     gender: "female",
     mathMidTermGrade: 65,
@@ -44,7 +44,8 @@ const studentB = {
     calculateAverage: gradesAverage,
   };
   
-  function gradesAverage(midMath, finalMath, midHistory, finalHistory) {
+  function gradesAverage(midMath:number, finalMath:number, midHistory:number, finalHistory:number):number | undefined 
+  {
     try {
       return (this.mathMidTermGrade + this.historyMidTermGrade + this.mathFinalTermGrade + this.historyFinalTermGrade) / 4;
     } catch (error) {
@@ -53,4 +54,4 @@ const studentB = {
     }
   }
   
-  console.log(studentB.calculateAverage());
+  console.log(studentB.name, studentB.gender, studentB.calculateAverage());

@@ -73,3 +73,19 @@ var finalavgg = document.getElementById('finavg');
 if (finalavgg != null) {
     finalavgg.textContent = finalAvgAsString;
 }
+var historyallgrades = document.getElementById('historyall');
+if (historyallgrades != null) {
+    historyallgrades.textContent = historysub.grades;
+}
+var mathallgrades = document.getElementById('mathall');
+if (mathallgrades != null) {
+    mathallgrades.textContent = mathsub.grades;
+}
+var englishallgrades = document.getElementById('englishall');
+if (englishallgrades != null) {
+    englishallgrades.textContent = englishsub.grades;
+}
+var literatureallgrades = document.getElementById('literatureall');
+if (literatureallgrades != null) {
+    literatureallgrades.textContent = literaturesub.grades;
+}
