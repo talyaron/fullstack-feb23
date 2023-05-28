@@ -3,14 +3,16 @@ var skoda = {
     model: "octavia",
     millage: 100000,
     color: "black",
-    fuelConsamption: 10
+    fuelConsamption: 10,
+    trip: 469
 };
 var audi = {
     company: "audi",
     model: "TT",
     millage: 100000,
     color: "black",
-    fuelConsamption: 10
+    fuelConsamption: 10,
+    trip: 320
 };
 function gasConsumed(Car) {
     try {
