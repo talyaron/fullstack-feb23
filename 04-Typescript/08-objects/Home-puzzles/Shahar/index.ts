@@ -29,6 +29,7 @@ const Shay = {
             return (this.historyMidTermGrade + this.hisoryFinalTermGrade) / 2;
         } catch (error) {
             console.error(Error)
+            return undefined
         }
             },
             avgHistory: function(){
@@ -37,6 +38,7 @@ const Shay = {
                     return (this.mathMidTermGrade + this.mathFinalTermGrade) / 2;
                 } catch (error) {
                     console.error(Error)
+                return undefined
                 }
             }
 }

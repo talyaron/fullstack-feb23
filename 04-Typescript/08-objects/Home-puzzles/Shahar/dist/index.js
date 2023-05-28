@@ -17,6 +17,7 @@ var Shay = {
         }
         catch (error) {
             console.error(Error);
+            return undefined;
         }
     },
     avgHistory: function () {
@@ -25,6 +26,7 @@ var Shay = {
         }
         catch (error) {
             console.error(Error);
+            return undefined;
         }
     }
 };
