@@ -40,3 +40,5 @@ const tomsCar = new Car("Mazada", "CX5", "Red", 2014);
 console.log(talsCar, shiransCar, tomsCar);
 
 console.log(tomsCar.ageOfCar());
+
+
