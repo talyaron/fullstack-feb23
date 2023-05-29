@@ -64,3 +64,14 @@ if (arrFollowets !== undefined) {
         console.log(arrFollowets[i].name);
     }
 }
+var myDate = /** @class */ (function () {
+    function myDate(date) {
+        this.date = date;
+    }
+    myDate.prototype.fullDate = function () {
+        return this.date.getDate() + "/" + this.date.getMonth() + "/" + this.date.getFullYear() + " " + this.date.getHours() + ":" + this.date.getMinutes() + ":" + this.date.getSeconds();
+    };
+    return myDate;
+}());
+var thisMoment = new myDate(new Date());
+console.log(thisMoment.fullDate());
