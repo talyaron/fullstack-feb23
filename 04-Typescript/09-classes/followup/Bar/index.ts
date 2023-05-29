@@ -30,4 +30,4 @@ class Person {
 
 const barPerson = new Person("Bar", 2002, "female", "Kedumim", "hoola hoop");
 
-console.log(barPerson.ageOfPerson())
+console.log(barPerson.ageOfPerson());
