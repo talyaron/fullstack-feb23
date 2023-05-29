@@ -79,3 +79,18 @@ if (arrFollowets !== undefined) {
         console.log(arrFollowets[i].name)
     }
 }
+
+class myDate {
+    date: Date;
+    constructor(
+        date: Date,
+    ) {
+        this.date = date;
+    }
+    fullDate(){
+       return `${this.date.getDate()}/${this.date.getMonth()}/${this.date.getFullYear()} ${this.date.getHours()}:${this.date.getMinutes()}:${this.date.getSeconds()}`
+    }
+}
+
+const thisMoment = new myDate (new Date())
+console.log(thisMoment.fullDate())
