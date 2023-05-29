@@ -1,6 +1,6 @@
 class Moment {
   date: Date;
-  now: number;
+  now: number; //save the miliSeconed from the creation
 
   constructor() {
     this.date = new Date();
