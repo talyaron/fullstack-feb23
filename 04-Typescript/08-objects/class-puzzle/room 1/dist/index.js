@@ -3,7 +3,7 @@ var shiransCar = {
     year: 2020,
     model: "Q3",
     millage: 10000,
-    color: "yellow",
+    color: "pink",
     fuelConsamption: 11.9
 };
 var alexsCar = {
@@ -23,5 +23,5 @@ function tripConsamption(car, trip) {
         return undefined;
     }
 }
-console.log(tripConsamption(alexsCar, 123));
+console.log(tripConsamption(alexsCar, 1000));
 console.log("you need " + tripConsamption(shiransCar, 1000) + " Liters");
