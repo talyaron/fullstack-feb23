@@ -57,6 +57,9 @@ var myDate = /** @class */ (function () {
     function myDate() {
         this.date = new Date();
     }
+    myDate.prototype.turnToString = function (arg0) {
+        throw new Error("Method not implemented.");
+    };
     myDate.prototype.getSimpleDate = function () {
         //format dd/mm/yyyy, hh:mm:ss
         return this.date.toLocaleDateString() + " " + this.date.toLocaleTimeString();

@@ -82,6 +82,9 @@ console.log(orderByCellebs());
 // myDate.getPasedDate() -> 2 seconds past from that date
 
 class myDate{
+  turnToString(arg0: number) {
+      throw new Error("Method not implemented.");
+  }
   date: Date;
   constructor(){
     this.date = new Date();
