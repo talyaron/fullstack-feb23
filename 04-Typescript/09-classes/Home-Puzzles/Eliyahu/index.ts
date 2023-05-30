@@ -4,7 +4,6 @@ class Celeb {
     tiktokAccount: string;
     instagramAccount: string;
     numberOfFollowers: number;
-
     constructor(
         name: string,
         genre: string,
@@ -36,7 +35,6 @@ class Celeb {
         console.log(this.tiktokAccount)
     }
 }
-
 
 const hanan = new Celeb('Hanan', 'music', 'https://www.tiktok.com/@hananbenari', 'https://z-p42.www.instagram.com/hananbenariofficial/?hl=en-gb', 7310)
 const shuli = new Celeb('shuli', 'music', 'none', 'none', 457)
@@ -82,40 +80,24 @@ if (arrFollowets !== undefined) {
 
 class myDate {
     date: Date;
-    constructor() {
-        this.date = new Date(); //<--- switched check git to see older version
+    constructor(
+        date: Date,
+    ) {
+        this.date = date;
     }
-    fullDate(){
-        return `${this.date.getDate()}/${this.date.getMonth()}/${this.date.getFullYear()} ${this.date.getHours()}:${this.date.getMinutes()}:${this.date.getSeconds()}`
+    getSimpleDate() {
+        return `${this.date.getDate()}/${this.date.getMonth() + 1}/${this.date.getFullYear()} ${this.date.getHours()}:${this.date.getMinutes()}:${this.date.getSeconds()}`
     }
-
-
-
-// --- -|- --- --- Edit 
-//      v
-    turnToString(){
-        return `${this.date.toLocaleDateString()} ${this.date.toLocaleTimeString()}`
+    nextMoment() {
+        const nextMoment = new myDate(new Date())
+        return console.log(`${Math.floor((nextMoment.date.getTime() - thisMoment.date.getTime()) / 1000)} seconds past from that date`)
     }
-    addSeconds(sec: number): void{
-        this.date.setSeconds(this.date.getSeconds() + sec); //adding seconds to our time
+    getPasedDate() {
+        setTimeout(thisMoment.nextMoment, 4000)
+        return
     }
-//      ^
-// --- -|- --- --- 
-
-
 }
-const thisMoment = new myDate (new Date())
-console.log(thisMoment.fullDate())
 
-
-
-
-// --- -|- --- --- Edit
-//      v
-const newMoment = new myDate;
-newMoment.addSeconds(2);
-console.log(newMoment.turnToString())
-//      ^
-// --- -|- --- ---
-
-
+const thisMoment = new myDate(new Date())
+console.log(thisMoment.getSimpleDate())
+console.log(thisMoment.getPasedDate())
