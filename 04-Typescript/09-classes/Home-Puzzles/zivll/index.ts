@@ -73,8 +73,11 @@ function mostFollowers(celebsArr): string | undefined {
     return undefined;
   }
 }
+// Function to get sorted list of celebrities by number of followers
 function mostOrderedByFollowers(celebsArr) {
-  return celebsArr.sort((a, b) => b.Followers - a.Followers);
+  return celebsArr.sort(
+    (a: Influencers, b: Influencers) => b.Followers - a.Followers
+  );
 }
 const celebs = [celeb1, celeb2, celeb3];
 console.log(`the celeb with the most followers is: ${mostFollowers(celebs)}`);

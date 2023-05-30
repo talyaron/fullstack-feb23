@@ -45,6 +45,7 @@ function mostFollowers(celebsArr) {
         return undefined;
     }
 }
+// Function to get sorted list of celebrities by number of followers
 function mostOrderedByFollowers(celebsArr) {
     return celebsArr.sort(function (a, b) { return b.Followers - a.Followers; });
 }
