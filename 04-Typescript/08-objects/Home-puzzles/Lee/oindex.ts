@@ -21,37 +21,44 @@ const studentB: Student = {
     historyMidTermGrade: 75,
     mathFinalTermGrade: 90,
     historyFinalTermGrade: 82,
-    calculateAverage: gradesAverage,
-  };
-
-  const studentC: Student = {
-    name: "Inbar Budniatzky",
-    gender: "female",
-    mathMidTermGrade: 100,
-    historyMidTermGrade: 99,
-    mathFinalTermGrade: 97,
-    historyFinalTermGrade: 95,
-    calculateAverage: gradesAverage,
-  };
-
-  const studentA: Student = {
-    name: "Lee Dekel",
-    gender: "female",
-    mathMidTermGrade: 65,
-    historyMidTermGrade: 95,
-    mathFinalTermGrade: 70,
-    historyFinalTermGrade: 92,
-    calculateAverage: gradesAverage,
-  };
-  
-  function gradesAverage(midMath:number, finalMath:number, midHistory:number, finalHistory:number):number | undefined 
-  {
-    try {
-      return (this.mathMidTermGrade + this.historyMidTermGrade + this.mathFinalTermGrade + this.historyFinalTermGrade) / 4;
-    } catch (error) {
-      console.error(error);
-      return undefined;
+    calculateAverage: function(){
+      return (this.mathMidTermGrade+this.historyMidTermGrade+this.mathFinalTermGrade+this.historyFinalTermGrade)/4
     }
   }
+
+  console.log(studentB.calculateAverage())
+
+   const studentC: Student = {
+     name: "Inbar Budniatzky",
+     gender: "female",
+     mathMidTermGrade: 100,
+     historyMidTermGrade: 99,
+     mathFinalTermGrade: 97,
+     historyFinalTermGrade: 95,
+    calculateAverage: function(){
+      return (this.mathMidTermGrade+this.historyMidTermGrade+this.mathFinalTermGrade+this.historyFinalTermGrade)/4
+    }
+   }
+
+   console.log(studentC.calculateAverage())
+
+  // const studentA: Student = {
+  //   name: "Lee Dekel",
+  //   gender: "female",
+  //   mathMidTermGrade: 65,
+  //   historyMidTermGrade: 95,
+  //   mathFinalTermGrade: 70,
+  //   historyFinalTermGrade: 92,
+    
+  // };
   
-  console.log(studentB.name, studentB.gender, studentB.calculateAverage());
+  // function gradesAverage(){
+  //   try {
+  //     return (this.mathMidTermGrade + this.historyMidTermGrade + this.mathFinalTermGrade + this.historyFinalTermGrade) / 4;
+  //   } catch (error) {
+  //     console.error(error);
+  //     return undefined;
+  //   }
+  // }
+  
+  // console.log(studentB.calculateAverage());
