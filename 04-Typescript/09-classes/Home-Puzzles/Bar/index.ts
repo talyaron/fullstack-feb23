@@ -1,7 +1,7 @@
 // 1. create a class of celebs (influencers) with properties: name, genre, account in TikTok, account in Instagram,
 // and the number of followers.
 
-class Celebs {
+class Celeb {
     name: string;
     genre: string;
     accountInTikTok: string;
@@ -34,7 +34,6 @@ class Celebs {
             return followrs
         } catch (error) {
             console.error(error)
-            return isNaN
         }
     }
 
@@ -58,22 +57,40 @@ class Celebs {
 }
 
 
-const adir = new Celebs("Adir", "Instagram personality", "adirmiz", "Adir Mizrahi", 126000);
-const nofar = new Celebs("nofar", "friend with a funny instegram", "nufarthequeen", "nufarhashavia", 712);
-const maya = new Celebs("maya", "comedian and actress", "mayawertheimer", "mayawertheimer", 535000);
+// 3. create a function that gets all the celebs and returns the celeb with the most followers.
+//    Even better, return a list of celebs, ordered by their number of followers. (use array).
+
+function theMostFolowers(celebs: Array<Celeb>) {
+    try {
+        let theMostFolowers = celebs[0]
+        for (let i = 0; i < celebs.length; i++) {
+            if (theMostFolowers.numberOfFollowers < celebs[i].numberOfFollowers) {
+                theMostFolowers = celebs[i];
+            }
+        }
+        return theMostFolowers;
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+
+const adir = new Celeb("Adir", "Instagram personality", "adirmiz", "Adir Mizrahi", 10);
+const nofar = new Celeb("nofar", "friend with a funny instegram", "nufarthequeen", "nufarhashavia", 5);
+const maya = new Celeb("maya", "comedian and actress", "mayawertheimer", "mayawertheimer", 20);
+
 console.log(adir);
 console.log(nofar);
 console.log(maya);
 
-adir.enterFollowrs(100)
-nofar.enterFollowrs(5000)
-maya.enterFollowrs(50000)
+adir.enterFollowrs(10);
+nofar.enterFollowrs(5000);
+maya.enterFollowrs(200);
 
+
+const celebs: Array<Celeb> = [adir, nofar, maya]
+console.log(theMostFolowers(celebs)?.name)
 
 adir.enterTikTokAccount("hi")
-nofar.enterTikTokAccount("I dont hev tiktot")
+nofar.enterTikTokAccount("I dont have a tiktot")
 maya.enterTikTokAccount("bla bla")
-
-
-// 3. create a function that gets all the celebs and returns the celeb with the most followers.
-//    Even better, return a list of celebs, ordered by their number of followers. (use array).
