@@ -82,15 +82,40 @@ if (arrFollowets !== undefined) {
 
 class myDate {
     date: Date;
-    constructor(
-        date: Date,
-    ) {
-        this.date = date;
+    constructor() {
+        this.date = new Date(); //<--- switched check git to see older version
     }
     fullDate(){
-       return `${this.date.getDate()}/${this.date.getMonth()}/${this.date.getFullYear()} ${this.date.getHours()}:${this.date.getMinutes()}:${this.date.getSeconds()}`
+        return `${this.date.getDate()}/${this.date.getMonth()}/${this.date.getFullYear()} ${this.date.getHours()}:${this.date.getMinutes()}:${this.date.getSeconds()}`
     }
-}
 
+
+
+// --- -|- --- --- Edit 
+//      v
+    turnToString(){
+        return `${this.date.toLocaleDateString()} ${this.date.toLocaleTimeString()}`
+    }
+    addSeconds(sec: number): void{
+        this.date.setSeconds(this.date.getSeconds() + sec); //adding seconds to our time
+    }
+//      ^
+// --- -|- --- --- 
+
+
+}
 const thisMoment = new myDate (new Date())
 console.log(thisMoment.fullDate())
+
+
+
+
+// --- -|- --- --- Edit
+//      v
+const newMoment = new myDate;
+newMoment.addSeconds(2);
+console.log(newMoment.turnToString())
+//      ^
+// --- -|- --- ---
+
+

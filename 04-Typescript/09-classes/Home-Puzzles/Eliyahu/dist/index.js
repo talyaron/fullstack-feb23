@@ -65,13 +65,28 @@ if (arrFollowets !== undefined) {
     }
 }
 var myDate = /** @class */ (function () {
-    function myDate(date) {
-        this.date = date;
+    function myDate() {
+        this.date = new Date(); //<--- switched check git to see older version
     }
     myDate.prototype.fullDate = function () {
         return this.date.getDate() + "/" + this.date.getMonth() + "/" + this.date.getFullYear() + " " + this.date.getHours() + ":" + this.date.getMinutes() + ":" + this.date.getSeconds();
+    };
+    // --- -|- --- --- Edit 
+    //      v
+    myDate.prototype.turnToString = function () {
+        return this.date.toLocaleDateString() + " " + this.date.toLocaleTimeString();
+    };
+    myDate.prototype.addSeconds = function (sec) {
+        this.date.setSeconds(this.date.getSeconds() + sec); //adding seconds to our time
     };
     return myDate;
 }());
 var thisMoment = new myDate(new Date());
 console.log(thisMoment.fullDate());
+// --- -|- --- --- Edit
+//      v
+var newMoment = new myDate;
+newMoment.addSeconds(2);
+console.log(newMoment.turnToString());
+//      ^
+// --- -|- --- ---
