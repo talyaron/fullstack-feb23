@@ -76,7 +76,6 @@ function mostFollowers(celebsArr): string | undefined {
 function mostOrderedByFollowers(celebsArr) {
   return celebsArr.sort((a, b) => b.Followers - a.Followers);
 }
-debugger;
 const celebs = [celeb1, celeb2, celeb3];
 console.log(`the celeb with the most followers is: ${mostFollowers(celebs)}`);
 console.log(celeb2.setFollowers(75000));
