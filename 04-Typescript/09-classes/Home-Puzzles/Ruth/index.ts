@@ -2,6 +2,7 @@ class Moment {
   date: Date;
   now: number; //save the miliSeconed from the creation
 
+
   constructor() {
     this.date = new Date();
     this.now = Date.now();
@@ -25,10 +26,10 @@ class Moment {
 }
 
 //ביצוע
-const moment1 = new Moment();
-console.log(moment1);
-console.log(moment1.getSimpleDate());
+// const moment1 = new Moment();
+// console.log(moment1);
+// console.log(moment1.getSimpleDate());
 
-setTimeout(() => {
-  console.log(moment1.getPassedDate());
-}, 2000);
+// setTimeout(() => {
+//   console.log(moment1.getPassedDate());
+// }, 2000);
