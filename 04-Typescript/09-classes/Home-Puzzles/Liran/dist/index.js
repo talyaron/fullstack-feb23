@@ -9,8 +9,8 @@ var MyDate = /** @class */ (function () {
         this.timePast = 0;
     }
     MyDate.prototype.getSimpleDate = function () {
-        // return (`${this.day}/${this.month}/${this.year}, ${this.hours}:${this.minutes}:${this.second}`)
-        return (this.day + "/" + this.month + "/" + this.year + ", " + this.hours + ":" + ((this.minutes > 9 || this.minutes < (-9)) ? Math.abs(this.minutes) : "0" + Math.abs(this.minutes))
+        return (this.day + "/" + this.month + "/" + this.year + ", " + this.hours + ":" +
+            ((this.minutes > 9 || this.minutes < (-9)) ? Math.abs(this.minutes) : "0" + Math.abs(this.minutes))
             + ":" + ((this.second > 9 || this.second < (-9)) ? Math.abs(this.second) : "0" + Math.abs(this.second)));
     };
     MyDate.prototype.getPassedDate = function () {
