@@ -36,8 +36,8 @@ class Pawn{
 
     goUp(){
         try {
-            if(this.y == 7)throw new Error("Out of limit")
-            this.y++
+            if(this.y == 0)throw new Error("Out of limit")
+            this.y--
             this.getLocation()
         } catch (error) {
             console.error(error)
@@ -46,8 +46,8 @@ class Pawn{
 
     goDown(){
         try {
-            if(this.x == 7)throw new Error("Out of limit")
-            this.x++
+            if(this.y == 7)throw new Error("Out of limit")
+            this.y++
             this.getLocation()
         } catch (error) {
             console.error(error)
@@ -59,3 +59,10 @@ class Pawn{
         return {x:this.x,y:this.y}
     }
 }
+
+const p1 = new Pawn(0,0)
+p1.getLocation();
+p1.goUp();
+p1.getLocation();
+p1.goLeft();
+
