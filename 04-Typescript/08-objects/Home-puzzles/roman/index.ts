@@ -11,7 +11,7 @@ interface Student {
     historyFinalTermGrade: number,
     averageGrade: Function,
     mathAll: number[],
-    averageAllGrade: Function
+    // averageAllGrade: Function
 }
 const average = "";
 
@@ -50,7 +50,7 @@ function averageAllGrades(student: any) {
         var math = this.mathAll;
         var lenght = Object.keys(this).length
         for (const key in this) {
-            console.log(lenght)
+            
 
             if (Number(this[key])) {
                

@@ -1,6 +1,6 @@
 // # Level 3
 //  Write a function to reverse a number. For example, the function gets 123 and returns 321
-var num = Number(prompt("enter number"));
+var number = Number(prompt("enter number"));
 function reversedNum(num) {
     try {
         if (isNaN(num))
@@ -18,4 +18,4 @@ function reversedNum(num) {
         return undefined;
     }
 }
-console.log(reversedNum(num));
+console.log(reversedNum(number));

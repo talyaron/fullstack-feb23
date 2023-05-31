@@ -71,11 +71,18 @@ interface Student {
     physicsGrades: Function
     sportGrades: Function
     sum: Function 
+    grades:Array<Grade>
+}
+
+interface Grade{
+    grade:number,
+course:string
 }
 
 const maria :Student= {
     name: "Maria",
     gender: "woman",
+    grades:[{course:"Math",grade: 96},{course:"History",grade:100}],
     mathGrades: function (array :number[] = [90, 60, 80, 60]) { 
         // part one
         let averageGrade :number = 0;
@@ -87,7 +94,7 @@ const maria :Student= {
 
         // part two
         let sum = array;
-        sum.reduce(( currentValue) => currentValue);
+        sum.reduce((acc, currentValue) => acc + currentValue);
         return sum;
     },
     historyGrades: function (array :number[] =[80, 99, 100, 70]) {
@@ -101,7 +108,7 @@ const maria :Student= {
 
         // part two
         let sum = array;
-        sum.reduce(( currentValue) => currentValue);
+        sum.reduce((acc, currentValue) => acc + currentValue);
         return sum;
     },
     physicsGrades: function (array :number[] = [100, 100, 90, 80]){
@@ -114,7 +121,7 @@ const maria :Student= {
 
         // part two
         let sum = array;
-        sum.reduce(( currentValue) => currentValue);
+        sum.reduce((acc, currentValue) => acc + currentValue);
         return sum;
     },
     sportGrades: function(array :number[] = [85, 60, 70, 80]){
@@ -128,7 +135,7 @@ const maria :Student= {
 
         // part two
             let sum = array;
-            sum.reduce(( currentValue) => currentValue);
+            sum.reduce((acc, currentValue) => acc + currentValue);
             return sum;
 
     },
@@ -137,5 +144,84 @@ const maria :Student= {
         // average of all = 81.5
     }
 }
-console.log(maria.mathGrades());
+console.log(maria.sum());
 
+
+// interface Courses {
+//     nameSubject : string;
+//     grades: number[];
+//     averageGrade:  Function
+// }
+
+// const subject :Courses[] = [
+//     {
+//         nameSubject: "physics",
+//         grades: [70, 80, 85, 90],
+//         averageGrade: function() {
+//             let sum = 0;
+//             for(let i = 0; i < this.grades.length; i++) {
+//                 sum += this.grades[i]
+//             }
+//             return sum / this.grades.length
+//         }
+//     },
+//     {
+//         nameSubject: "math",
+//         grades: [100, 80, 95, 80],
+//         averageGrade: function() {
+//             let sum = 0;
+//             for(let i = 0; i < this.grades.length; i++) {
+//                 sum += this.grades[i]
+//             }
+//             return sum / this.grades.length
+//         }
+//     },
+//     {
+//         nameSubject: "chemistry",
+//         grades: [75, 80, 95, 100],
+//         averageGrade: function() {
+//             let sum = 0;
+//             for(let i = 0; i < this.grades.length; i++) {
+//                 sum += this.grades[i]
+//             }
+//             return sum / this.grades.length
+//         }
+//     },
+//     {
+//         nameSubject: "sport",
+//         grades: [100, 90, 95, 100],
+//         averageGrade: function() {
+//             let sum = 0;
+//             for(let i = 0; i < this.grades.length; i++) {
+//                 sum += this.grades[i]
+//             }
+//             return sum / this.grades.length
+//         }
+//     },
+
+// ]
+
+
+
+// console.log(subject.averageGradeAll())
+
+// interface Ob {
+//     name: string
+//     legs: number
+//     color: string
+//     fun: Function
+    
+// }
+// const dog :Ob= {
+//     name:"dog",
+//     legs:4,
+//     color:"white",
+//     fun: function animal(){
+//         const legProperty = Object.keys(this)[1];
+//         return 'this ' + this.color + ' ' + this.name + ' has ' + this.legs + ' ' + legProperty + ' ';
+//       }
+// }
+
+
+
+//   console.log(dog.fun())
