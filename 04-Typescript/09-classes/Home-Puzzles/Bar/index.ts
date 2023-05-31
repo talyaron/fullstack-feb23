@@ -75,23 +75,22 @@ function theMostFolowers(celebs: Array<Celeb>) {
 }
 
 "The celeb how have the most followers is" 
-const adir = new Celeb("Adir", "Instagram personality", "adirmiz", "Adir Mizrahi", 10);
-const nofar = new Celeb("nofar", "friend with a funny instegram", "nufarthequeen", "nufarhashavia", 5);
-const maya = new Celeb("maya", "comedian and actress", "mayawertheimer", "mayawertheimer", 20);
+const Adir = new Celeb("Adir", "Instagram personality", "Adirmiz", "Adir Mizrahi", 10);
+const Nofar = new Celeb("Nofar", "friend with a funny instegram", "nufarthequeen", "nufarhashavia", 5);
+const Maya = new Celeb("Maya", "comedian and actress", "Mayawertheimer", "Mayawertheimer", 20);
 
-console.log(adir);
-console.log(nofar);
-console.log(maya);
+console.log(Adir);
+console.log(Nofar);
+console.log(Maya);
 
-adir.enterFollowrs(10);
-nofar.enterFollowrs(50);
-maya.enterFollowrs(200);
+Adir.enterFollowrs(1000);
+Nofar.enterFollowrs(50);
+Maya.enterFollowrs(200);
 
 
-const celebs: Array<Celeb> = [adir, nofar, maya]
-// console.log(theMostFolowers(celebs)?.name)
-console.log("The celeb how have the most followers is", theMostFolowers(celebs)?.name)
+const celebs: Array<Celeb> = [Adir, Nofar, Maya]
+console.log("The celebrity with the most followers is", theMostFolowers(celebs)?.name)
 
-adir.enterTikTokAccount("hi")
-nofar.enterTikTokAccount("I dont have a tiktot")
-maya.enterTikTokAccount("bla bla")
+Adir.enterTikTokAccount("hi")
+Nofar.enterTikTokAccount("I dont have a tiktot")
+Maya.enterTikTokAccount("bla bla")
