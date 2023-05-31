@@ -9,16 +9,12 @@ var Celeb = /** @class */ (function () {
         this.instagramAccount = instagramAccount;
         this.numberOfFollowers = numberOfFollowers;
     }
-    Object.defineProperty(Celeb.prototype, "followersCount", {
-        get: function () {
-            return this.numberOfFollowers;
-        },
-        set: function (numberOfFollowers) {
-            this.numberOfFollowers = numberOfFollowers;
-        },
-        enumerable: false,
-        configurable: true
-    });
+    Celeb.prototype.getFollowersCount = function () {
+        return this.numberOfFollowers;
+    };
+    Celeb.prototype.setFollowersCount = function (numberOfFollowers) {
+        this.numberOfFollowers = numberOfFollowers;
+    };
     Celeb.prototype.toString = function () {
         return this.name + " is a " + this.genre + " influencer with " + this.numberOfFollowers + " followers on TikTok and " + this.numberOfFollowers + " followers on Instagram.";
     };
@@ -37,3 +33,28 @@ console.log(jlo.toString());
 // myDate.getSimpleDate() -> dd/mm/yyyy, hh:mm:ss
 // use "setTimeout()" to postpone the time...
 // myDate.getPasedDate() -> 2 seconds past from that date
+var CustomDate = /** @class */ (function () {
+    function CustomDate(date) {
+        this.date = date;
+    }
+    CustomDate.prototype.getFormattedDate = function () {
+        var day = this.date.getDate();
+        var month = this.date.getMonth() + 1;
+        var year = this.date.getFullYear();
+        var hours = this.date.getHours();
+        var minutes = this.date.getMinutes();
+        var seconds = this.date.getSeconds();
+        return day + "/" + month + "/" + year + ", " + hours + ":" + minutes + ":" + seconds;
+    };
+    CustomDate.prototype.getElapsedSeconds = function () {
+        var currentDate = new Date();
+        var elapsedMilliseconds = currentDate.getTime() - this.date.getTime();
+        var elapsedSeconds = Math.floor(elapsedMilliseconds / 1000);
+        return elapsedSeconds + " seconds ago from that date";
+    };
+    return CustomDate;
+}());
+var currentDate = new Date();
+var customDate = new CustomDate(currentDate);
+console.log(customDate.getFormattedDate());
+console.log(customDate.getElapsedSeconds());

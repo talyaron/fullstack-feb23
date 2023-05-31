@@ -21,15 +21,12 @@ class Celeb {
     this.instagramAccount = instagramAccount;
     this.numberOfFollowers = numberOfFollowers;
   }
-
-  get followersCount() {
+  getFollowersCount() {
     return this.numberOfFollowers;
   }
-
-  set followersCount(numberOfFollowers: number) {
+  setFollowersCount(numberOfFollowers: number) {
     this.numberOfFollowers = numberOfFollowers;
   }
-
   toString() {
     return `${this.name} is a ${this.genre} influencer with ${this.numberOfFollowers} followers on TikTok and ${this.numberOfFollowers} followers on Instagram.`;
   }
@@ -63,3 +60,35 @@ console.log(jlo.toString());
 // myDate.getSimpleDate() -> dd/mm/yyyy, hh:mm:ss
 // use "setTimeout()" to postpone the time...
 // myDate.getPasedDate() -> 2 seconds past from that date
+class CustomDate {
+  date: Date;
+
+  constructor(date: Date) {
+    this.date = date;
+  }
+
+  getFormattedDate(): string {
+    const day = this.date.getDate();
+    const month = this.date.getMonth() + 1;
+    const year = this.date.getFullYear();
+    const hours = this.date.getHours();
+    const minutes = this.date.getMinutes();
+    const seconds = this.date.getSeconds();
+
+    return `${day}/${month}/${year}, ${hours}:${minutes}:${seconds}`;
+  }
+
+  getElapsedSeconds(): string {
+    const currentDate = new Date();
+    const elapsedMilliseconds = currentDate.getTime() - this.date.getTime();
+    const elapsedSeconds = Math.floor(elapsedMilliseconds / 1000);
+
+    return `${elapsedSeconds} seconds ago from that date`;
+  }
+}
+
+const currentDate = new Date();
+const customDate = new CustomDate(currentDate);
+
+console.log(customDate.getFormattedDate());
+console.log(customDate.getElapsedSeconds());
