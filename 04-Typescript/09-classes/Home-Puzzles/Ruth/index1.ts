@@ -23,8 +23,14 @@ class Celebs {
     return this.followers;
   }
 
-  setFollowers(_newNumberOfFollowers) {
-    this.followers = _newNumberOfFollowers;
+  setFollowers(_newNumberOfFollowers: number) {
+    try {
+      if (isNaN(_newNumberOfFollowers) || !_newNumberOfFollowers)
+        throw new Error(`${_newNumberOfFollowers} is not a number`);
+      this.followers = _newNumberOfFollowers;
+    } catch (error) {
+      console.error(error);
+    }
   }
 }
 
@@ -38,7 +44,7 @@ function mostPopular(celebs: Celebs[]) {
   } have the most bigger number of followers with ${temp.getFollowers()}`;
 }
 
-function sortedByFollowers(celebs: Celebs[]) {
+function sortedByFollowers(celebs: Celebs[]) { 
   let temp: Celebs = celebs[0];
 
   for (let i = 0; i < celebs.length; i++) {
@@ -87,7 +93,7 @@ const hadarMarks = new Celebs(
 );
 
 console.log(yodaLevi.followers);
-// yodaLevi.setFollowers(26);
+yodaLevi.setFollowers(67);
 console.log(yodaLevi.getFollowers());
 
 const arrayCel: Celebs[] = [yodaLevi, amosTammam, yonitLevi, hadarMarks];
