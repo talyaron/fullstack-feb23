@@ -59,6 +59,7 @@ function theMostFolowers(celebs) {
         console.error(error);
     }
 }
+"The celeb how have the most followers is";
 var adir = new Celeb("Adir", "Instagram personality", "adirmiz", "Adir Mizrahi", 10);
 var nofar = new Celeb("nofar", "friend with a funny instegram", "nufarthequeen", "nufarhashavia", 5);
 var maya = new Celeb("maya", "comedian and actress", "mayawertheimer", "mayawertheimer", 20);
@@ -66,10 +67,11 @@ console.log(adir);
 console.log(nofar);
 console.log(maya);
 adir.enterFollowrs(10);
-nofar.enterFollowrs(5000);
+nofar.enterFollowrs(50);
 maya.enterFollowrs(200);
 var celebs = [adir, nofar, maya];
-console.log((_a = theMostFolowers(celebs)) === null || _a === void 0 ? void 0 : _a.name);
+// console.log(theMostFolowers(celebs)?.name)
+console.log("The celeb how have the most followers is", (_a = theMostFolowers(celebs)) === null || _a === void 0 ? void 0 : _a.name);
 adir.enterTikTokAccount("hi");
 nofar.enterTikTokAccount("I dont have a tiktot");
 maya.enterTikTokAccount("bla bla");

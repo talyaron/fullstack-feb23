@@ -74,7 +74,7 @@ function theMostFolowers(celebs: Array<Celeb>) {
     }
 }
 
-
+"The celeb how have the most followers is" 
 const adir = new Celeb("Adir", "Instagram personality", "adirmiz", "Adir Mizrahi", 10);
 const nofar = new Celeb("nofar", "friend with a funny instegram", "nufarthequeen", "nufarhashavia", 5);
 const maya = new Celeb("maya", "comedian and actress", "mayawertheimer", "mayawertheimer", 20);
@@ -84,12 +84,13 @@ console.log(nofar);
 console.log(maya);
 
 adir.enterFollowrs(10);
-nofar.enterFollowrs(5000);
+nofar.enterFollowrs(50);
 maya.enterFollowrs(200);
 
 
 const celebs: Array<Celeb> = [adir, nofar, maya]
-console.log(theMostFolowers(celebs)?.name)
+// console.log(theMostFolowers(celebs)?.name)
+console.log("The celeb how have the most followers is", theMostFolowers(celebs)?.name)
 
 adir.enterTikTokAccount("hi")
 nofar.enterTikTokAccount("I dont have a tiktot")
