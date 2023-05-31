@@ -26,4 +26,8 @@ class celebs{
         this.tiktokAccount = tiktokAccount;
         this.instagramAccgount = instagramAccgount;
     }
+    setNumFollowers (followers:Number)
+    {
+       
+    }
 }

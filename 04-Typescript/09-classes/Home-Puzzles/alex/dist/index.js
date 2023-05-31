@@ -15,5 +15,7 @@ var celebs = /** @class */ (function () {
         this.tiktokAccount = tiktokAccount;
         this.instagramAccgount = instagramAccgount;
     }
+    celebs.prototype.setNumFollowers = function (followers) {
+    };
     return celebs;
 }());
