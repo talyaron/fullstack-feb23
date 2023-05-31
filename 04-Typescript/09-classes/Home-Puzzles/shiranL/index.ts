@@ -54,13 +54,13 @@ class Influencers {
       }
       Updatefollowers(direction: "Up" | "Down", num:number ) {
         try {
-            
             switch (direction) {
               case "Down":
-                if (this.followers === 0) throw new Error("Cannot be less then zero followers");
+                if (this.followers <num) throw new Error("Cannot be less then zero followers");
                 this.followers-=num;
                 break;
               case "Up":
+
                 this.followers+=num;;
                 break;
       
@@ -76,7 +76,7 @@ class Influencers {
   function WhoIsTheWinner(celebArray:CelebArray):Influencers|undefined
   {
     try {
-       
+       debugger
         let max=0;
         let index=-1;
         for (let i = 0; i < celebArray.celebs.length; i++) {
@@ -95,15 +95,16 @@ class Influencers {
   }
 
   const Ninet = new Influencers("Ninet taib", "Femail", "Ninetush123Insta", "Ninetush123TIK",125300);
- 
-  const Ran = new Influencers("Ran Danker", "mail", "Ranchiz123456", "Ranchiz123456",500000);
+  const Shiran = new Influencers("Shiran Levy", "Femail", "shirala123Insta", "shiralaN123TIK",150000);
+  const Ran = new Influencers("Ran Danker", "mail", "Ranchiz123456", "Ranchiz123456",50000);
   console.log(Ninet);
-  Ninet.Updatefollowers("Up",5005);
+  Ninet.Updatefollowers("Down",150005005);
   console.log(Ninet.Getfollowers());
 
   const celebArray= new CelebArray();
   celebArray.newPlayer(Ninet);
   celebArray.newPlayer(Ran);
+  celebArray.newPlayer(Shiran);
 
   console.log(celebArray);
 
