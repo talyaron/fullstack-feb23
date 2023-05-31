@@ -68,10 +68,19 @@ var myDate = /** @class */ (function () {
     function myDate(date) {
         this.date = date;
     }
-    myDate.prototype.fullDate = function () {
-        return this.date.getDate() + "/" + this.date.getMonth() + "/" + this.date.getFullYear() + " " + this.date.getHours() + ":" + this.date.getMinutes() + ":" + this.date.getSeconds();
+    myDate.prototype.getSimpleDate = function () {
+        return this.date.getDate() + "/" + (this.date.getMonth() + 1) + "/" + this.date.getFullYear() + " " + this.date.getHours() + ":" + this.date.getMinutes() + ":" + this.date.getSeconds();
+    };
+    myDate.prototype.nextMoment = function () {
+        var nextMoment = new myDate(new Date());
+        return console.log(Math.floor((nextMoment.date.getTime() - thisMoment.date.getTime()) / 1000) + " seconds past from that date");
+    };
+    myDate.prototype.getPasedDate = function () {
+        setTimeout(thisMoment.nextMoment, 4000);
+        return;
     };
     return myDate;
 }());
 var thisMoment = new myDate(new Date());
-console.log(thisMoment.fullDate());
+console.log(thisMoment.getSimpleDate());
+console.log(thisMoment.getPasedDate());
