@@ -19,9 +19,9 @@ var Moment = /** @class */ (function () {
     return Moment;
 }());
 //ביצוע
-var moment1 = new Moment();
-console.log(moment1);
-console.log(moment1.getSimpleDate());
-setTimeout(function () {
-    console.log(moment1.getPassedDate());
-}, 2000);
+// const moment1 = new Moment();
+// console.log(moment1);
+// console.log(moment1.getSimpleDate());
+// setTimeout(() => {
+//   console.log(moment1.getPassedDate());
+// }, 2000);

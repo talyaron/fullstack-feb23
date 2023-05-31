@@ -24,14 +24,18 @@ var studentC = {
     }
 };
 console.log(studentC.calculateAverage());
-// const studentA: Student = {
-//   name: "Lee Dekel",
-//   gender: "female",
-//   mathMidTermGrade: 65,
-//   historyMidTermGrade: 95,
-//   mathFinalTermGrade: 70,
-//   historyFinalTermGrade: 92,
-// };
+var studentA = {
+    name: "Lee Dekel",
+    gender: "female",
+    mathMidTermGrade: 65,
+    historyMidTermGrade: 95,
+    mathFinalTermGrade: 70,
+    historyFinalTermGrade: 92,
+    calculateAverage: function () {
+        return (this.mathMidTermGrade + this.historyMidTermGrade + this.mathFinalTermGrade + this.historyFinalTermGrade) / 4;
+    }
+};
+console.log(studentA.calculateAverage());
 // function gradesAverage(){
 //   try {
 //     return (this.mathMidTermGrade + this.historyMidTermGrade + this.mathFinalTermGrade + this.historyFinalTermGrade) / 4;

@@ -26,10 +26,11 @@ class Moment {
     }
 
     getPasedDate(){ 
-        return `${setTimeout(this.date.getSeconds(), 5000)-this.date.getSeconds()} seconds past from that date`
+        return `${this.date.getSeconds()-setTimeout(this.date.getSeconds, 5000)} seconds past from that date`
     }
 }
 
 const myDate = new Moment(new Date());
 
 console.log(myDate.getSimpleDate());
+console.log(myDate.getPasedDate());
