@@ -7,11 +7,10 @@ var Student = /** @class */ (function () {
     }
     return Student;
 }());
-var bar = new Student("Bar", "Yaron", 99);
-var roman = new Student("Roman", "R", 98);
+var bar = new Student("Bar", "Yaron", 98);
+var roman = new Student("Roman", "R", 100);
 console.log(bar);
 var students = [bar, roman];
-console.log(students);
 students.forEach(function (student) {
     console.log(student.name, student.average);
 });
