@@ -8,3 +8,6 @@ var celebrity = /** @class */ (function () {
     }
     return celebrity;
 }());
+var shir = new Car("shir", 2500, "female", "shrir23", "shrir60");
+var lior = new Car("lior", 5500, "female", "lior51", "lior63");
+var or = new Car("or", 7500, "female", "or54", "or");
