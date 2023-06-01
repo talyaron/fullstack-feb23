@@ -15,11 +15,17 @@ function printElementI(index, array) {
         return;
     }
 }
-printElementI(100, arr);
+printElementI(10, arr);
 // 2. print every item in a given array
+arr.forEach(function (element) {
+    console.log(element);
+});
 // 3. print every odd item in a given array
+console.log(arr.filter(function (number) { return number % 2 != 0; }));
 // 4. Write a simple JavaScript program to join all elements of the following array into a string.
 //    Sample array : myColor = ["Red", "Green", "White", "Black"];
+var myColor = ["Red", "Green", "White", "Black"];
+console.log(myColor.toString());
 // medium
 // 1. Write a JavaScript program that accepts a number
 //    as input and inserts dashes (-) between each even number. For

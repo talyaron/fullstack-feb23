@@ -5,28 +5,33 @@
 //    if not exist - print error
 
 const arr = [2, 4, 57, 90, 44, 3, 1, 2, 33, 4, 55, 666, 76, 6, 55, 4, 4, 3, 2, 11, 5, 8, 0, 0, 9, 8, 7]
-
 function printElementI(index, array: number[]) {
     try {
         const i = array[index]
         if (!i) throw new Error("this index is not exist")
         console.log(i)
-
     } catch (error) {
         console.error(error)
         return
-
     }
 }
-
-printElementI(100, arr)
+printElementI(10, arr)
 
 // 2. print every item in a given array
 
+arr.forEach(element => {
+    console.log(element)
+});
+
 // 3. print every odd item in a given array
+
+console.log(arr.filter((number) => number % 2 != 0))
 
 // 4. Write a simple JavaScript program to join all elements of the following array into a string.
 //    Sample array : myColor = ["Red", "Green", "White", "Black"];
+
+const myColor = ["Red", "Green", "White", "Black"]
+console.log(myColor.toString())
 
 // medium
 
