@@ -3,6 +3,8 @@
 //    in a given array.
 //    if not exist - print error
 var arr = [2, 4, 57, 90, 44, 3, 1, 2, 33, 4, 55, 666, 76, 6, 55, 4, 4, 3, 2, 11, 5, 8, 0, 0, 9, 8, 7];
+// arr.splice(1, 0, `-`)
+console.log(arr);
 function printElementI(index, array) {
     try {
         var i = array[index];
@@ -30,6 +32,25 @@ console.log(myColor.toString());
 // 1. Write a JavaScript program that accepts a number
 //    as input and inserts dashes (-) between each even number. For
 //    example if you accept 025468 the output should be 0-254-6-8.
+function numToDigitArr(number) {
+    var sNumber = number.toString();
+    var array = new Array;
+    for (var i = 0; i < sNumber.length; i++) {
+        array.push(sNumber.charAt(i));
+    }
+    return array;
+}
+function addDashEvenNum(array) {
+    var str = '';
+    for (var i = 0; i < array.length; i++) {
+        if ((array[i] % 2 == 0) && (array[i + 1] % 2 == 0)) {
+            array[i] = array[i] + "-";
+        }
+        str = str + array[i];
+    }
+    return str;
+}
+console.log(addDashEvenNum(numToDigitArr(3445678865)));
 // 2. Write a JavaScript program to find the most frequent
 //    item in an array.
 //    Sample array : var arr1=[3, 'a', 'a', 'a', 2, 3, 'a', 3, 'a', 2, 4, 9, 3];
