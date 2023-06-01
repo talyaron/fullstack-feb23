@@ -23,7 +23,7 @@ class MyDate {
             + ":" + ((this.second > 9 || this.second < (-9)) ? Math.abs(this.second) : "0" + Math.abs(this.second)))
     }
     getPassedDate() {
-        debugger
+        //debugger
         const current = new Date()
         console.log(`getPassed() on at: ${current}`)
         if (current.getSeconds() < this.second) {
@@ -39,4 +39,4 @@ console.log(newDate.getSimpleDate())
 
 setTimeout(() => {
     console.log(newDate.getPassedDate());
-}, 1000);
+}, 5000);
