@@ -4,9 +4,9 @@
 //    in a given array.
 //    if not exist - print error
 
-const arr:any = [2, 4, 57, 90, 44, 3, 1, 2, 33, 4, 55, 666, 76, 6, 55, 4, 4, 3, 2, 11, 5, 8, 0, 0, 9, 8, 7]
+const arr: any = [2, 4, 57, 90, 44, 3, 1, 2, 33, 4, 55, 666, 76, 6, 55, 4, 4, 3, 2, 11, 5, 8, 0, 0, 9, 8, 7]
 // arr.splice(1, 0, `-`)
-console.log (arr)
+console.log(arr)
 function printElementI(index, array: number[]) {
     try {
         const i = array[index]
@@ -49,11 +49,11 @@ function numToDigitArr(number) {
     }
     return array
 }
-function addDashEvenNum(array: any[]) {
-    let str=''
+function addDashEvenNum(array:any[]) {
+    let str
     for (let i = 0; i < array.length; i++) {
-        if ((array[i] % 2 == 0)&&(array[i+1] % 2 == 0) ) {
-            array[i]=`${array[i]}-`
+        if ((array[i] % 2 == 0) && (array[i + 1] % 2 == 0)) {
+            array[i] = `${array[i]}-`
         }
         str = str + array[i]
     }

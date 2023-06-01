@@ -41,7 +41,7 @@ function numToDigitArr(number) {
     return array;
 }
 function addDashEvenNum(array) {
-    var str = '';
+    var str;
     for (var i = 0; i < array.length; i++) {
         if ((array[i] % 2 == 0) && (array[i + 1] % 2 == 0)) {
             array[i] = array[i] + "-";
