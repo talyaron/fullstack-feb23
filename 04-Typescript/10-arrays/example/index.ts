@@ -5,12 +5,11 @@ class Student{
 
     }
 }
-const bar = new Student("Bar", "Yaron", 99);
-const roman = new Student("Roman", "R", 98)
+const bar = new Student("Bar", "Yaron",98);
+const roman = new Student("Roman", "R",100)
 
 console.log(bar);
-const students:Array<Student> = [bar, roman];
-console.log(students);
+const students:Array<any> = [bar, roman]
 
 students.forEach(function(student){
     console.log(student.name, student.average)
