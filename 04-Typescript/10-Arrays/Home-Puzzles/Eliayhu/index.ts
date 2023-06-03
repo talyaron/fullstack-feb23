@@ -49,7 +49,7 @@ function numToDigitArr(number) {
     }
     return array
 }
-function addDashEvenNum(array:any[]) {
+function addDashEvenNum(array: any[]) {
     let str
     for (let i = 0; i < array.length; i++) {
         if ((array[i] % 2 == 0) && (array[i + 1] % 2 == 0)) {
@@ -67,6 +67,26 @@ console.log(addDashEvenNum(numToDigitArr(3445678865)))
 //    item in an array.
 //    Sample array : var arr1=[3, 'a', 'a', 'a', 2, 3, 'a', 3, 'a', 2, 4, 9, 3];
 //    Sample Output : a ( 5 times )
+const arr1: any = [44, 44, 1, 1, 1, 57, 90, 7, `k`, `k`, `k`]
+
+
+let most = 0
+let mostElement = ``
+arr1.forEach(element => {
+    let count = 0
+    arr1.forEach(item => {
+        if (element == item) {
+            count++
+        }
+    });
+    if (most < count) {
+        most = count
+        mostElement = element
+    }
+});
+
+console.log(`${mostElement} (${most} times)`)
+
 
 // 3. We have the following arrays :
 //    color = ["Blue ", "Green", "Red", "Orange", "Violet", "Indigo", "Yellow "];
@@ -89,6 +109,17 @@ console.log(addDashEvenNum(numToDigitArr(3445678865)))
 //    returns
 //    [2,3,1,1,0,0,0,2,0,1]
 
+const array1 = [1, 1, 1, 4, 6, 8, 6, 4, 4, 3]
+const array2: Array<number> = []
+
+array1.forEach((element, index) => {
+    const result = array1.filter(number => number == index)
+    array2.push(result.length)
+});
+console.log(array1)
+console.log(array2)
+
+
 // 2. in a given matrix (squre array of arrays) calculate the
 //    absuloute diffrence between the sum of the diagonals. example:
 //    const arr = [
@@ -109,6 +140,12 @@ console.log(addDashEvenNum(numToDigitArr(3445678865)))
 // const arr = [1,2,3,4,3,2,1,5,5]
 // The unique element is 4
 
+const arr2 = [1, 2, 3, 4, 3, 2, 1, 5, 5]
+
+arr2.forEach(element1=> {
+    const result = arr2.filter(number => number == element1)
+    if (result.length == 1) { console.log(`The unique element is ${element1}`) }
+});
 // //methods
 // push, shift, nestted array, foreach, map, filter,
 // find, some(true, false), every, icludes
