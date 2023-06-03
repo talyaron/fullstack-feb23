@@ -8,13 +8,17 @@
 //    returns
 //    [2,3,1,1,0,0,0,2,0,1]
 console.log("***** Exercise 1 *****")
-const numbersArray = [1,2,3,6,5,3,1,4,6,8,4,6,9,2,1]
+const ex1ArrLength = 12
+const numbersArray: number[] = new Array();
+for (let i = 0; i < ex1ArrLength; i++) {
+    numbersArray[i] = Math.floor(Math.random() * 10);
+}
 const indexCount = new Array(10);
-let cnt=0;
-for(let i = 0 ; i < 10; i++){
-    for(let j = 0; j < numbersArray.length; j++){
-        if(numbersArray[j] == i)
-        cnt++;
+let cnt = 0;
+for (let i = 0; i < 10; i++) {
+    for (let j = 0; j < numbersArray.length; j++) {
+        if (numbersArray[j] == i)
+            cnt++;
     }
     indexCount[i] = cnt;
     cnt = 0;
@@ -31,18 +35,21 @@ console.log(`index Count array: ${indexCount}`)
 // sum2 = 4 + (-1) + 3 = 6
 // finalSum = | (-9) - (6) | = 15
 console.log("***** Exercise 2 *****")
+const arr = [[0,0,0],[0,0,0],[0,0,0]]
+for (let i = 0; i < 3; i++) {
+    for (let j = 0; j < 3; j++) {
+        arr[i][j] = Math.floor((Math.random() * (1- (-1)) -1 ) * 10);
+    }
+}
+///print array
+console.log(`${arr[0][0]} ,${arr[0][1]} ,${arr[0][2]} `)
+console.log(`${arr[1][0]} ,${arr[1][1]} ,${arr[1][2]} `)
+console.log(`${arr[2][0]} ,${arr[2][1]} ,${arr[2][2]} `)
 
-
-const arr = [
-    [0,2,3],
-    [3,-1,-5],
-    [4,0,-8]
-    ]
-
-    console.log(`top left to bootom right diagonal sum:${arr[0][0] + arr[1][1] + arr[2][2]}`)
-    console.log(`top right to bootom left diagonal sum:${arr[0][2] + arr[1][1] + arr[2][0]}`)
-    const res = Math.abs((arr[0][0] + arr[1][1] + arr[2][2])-(arr[0][2] + arr[1][1] + arr[2][0]));
-    console.log(`absolut diff |a - b| = ${res}`)
+console.log(`top left to bootom right diagonal sum:${arr[0][0] + arr[1][1] + arr[2][2]}`)
+console.log(`top right to bootom left diagonal sum:${arr[0][2] + arr[1][1] + arr[2][0]}`)
+const res = Math.abs((arr[0][0] + arr[1][1] + arr[2][2]) - (arr[0][2] + arr[1][1] + arr[2][0]));
+console.log(`absolut diff |a - b| = ${res}`)
 /* End of 2 */
 
 
@@ -53,22 +60,22 @@ const arr = [
 console.log("***** Exercise 3 *****")
 
 
-const arr2 = [1,2,3,4,3,2,1,5,5]
+const arr2 = [1, 2, 3, 4, 3, 2, 1, 5, 5]
 console.log(`Original array: ${arr2}`)
 
-for(let i = 0 ; i < arr2.length; i++){
+for (let i = 0; i < arr2.length; i++) {
     let flag = false;
-    for(let j = i+1; j < arr2.length; j++){
-        if(arr2[j] == arr2[i]){
+    for (let j = i + 1; j < arr2.length; j++) {
+        if (arr2[j] == arr2[i]) {
             flag = true;
             break;
         }
     }
-    if(!flag){
+    if (!flag) {
         console.log(`The uniqe number (appear only once) is: ${arr2[i]}`)
         break;
     }
-    else(
+    else (
         flag = false
     )
 }
@@ -84,9 +91,9 @@ for(let i = 0 ; i < arr2.length; i++){
 console.log("***** Exercise 5 *****")
 
 interface Student {
-    name:string;
-    age:number;
-    id:number;
+    name: string;
+    age: number;
+    id: number;
 }
 
 const student1 = {
@@ -107,13 +114,13 @@ const student3 = {
     id: 154426799
 };
 
-const student = [student1,student2,student3]
+const student = [student1, student2, student3]
 console.log(studentNameList(student))
 
-function studentNameList(studentArray:Student[]):string[]{
+function studentNameList(studentArray: Student[]): string[] {
     // debugger;
     const nameArray = new Array();
-    for(let i =0; i < studentArray.length; i++){
+    for (let i = 0; i < studentArray.length; i++) {
         nameArray[i] = studentArray[i].name
     }
     return nameArray
@@ -128,17 +135,17 @@ function studentNameList(studentArray:Student[]):string[]{
 console.log("***** Exercise 6 *****")
 
 const numbers = new Array()
-for(let i = 0; i < 10 ; i++){
-    numbers[i] = Math.floor(Math.random()*100);
+for (let i = 0; i < 10; i++) {
+    numbers[i] = Math.floor(Math.random() * 100);
 }
 console.log(`Original array: ${numbers}`)
 console.log(`Only even numbers: ${evenNumbers(numbers)}`)
 
-function evenNumbers(numArray:number[]):number[]{
-    const evenNumOnly:number[] = new Array();
+function evenNumbers(numArray: number[]): number[] {
+    const evenNumOnly: number[] = new Array();
     let newIndex = 0
-    for(let i =0; i < numArray.length; i++){
-        if(numArray[i] % 2 == 0){
+    for (let i = 0; i < numArray.length; i++) {
+        if (numArray[i] % 2 == 0) {
             evenNumOnly[newIndex] = numArray[i];
             newIndex++
         }
@@ -153,29 +160,45 @@ function evenNumbers(numArray:number[]):number[]{
 // and returns a new array with the words sorted in alphabetical
 // order, regardless of the case (uppercase or lowercase).
 console.log("***** Exercise 7 *****")
-
-const words = ["test","Bagle","baby","Turn","Opacity"]
+const arrLength = 8;
+const words:string[] =[] 
+for (let i = 0; i < arrLength; i++) {
+    words[i] = makeid(Math.floor(Math.random() * (8-2) + 2));
+}
 console.log(`Original Array: ${words}`)
 console.log(`After sort: ${sortWords(words)}`)
 
 
-function sortWords(strArray:string[]):string[]{
-    let newArray:string[] = new Array();
+function sortWords(strArray: string[]): string[] {
+    let newArray: string[] = new Array();
     newArray = strArray;
-    let temp:string;
+    let temp: string;
     // debugger;
-    for(let i=0; i < newArray.length-1; i++){
-        for(let j = 0; j < newArray.length-1;j++){
-            if(newArray[j].localeCompare(newArray[j+1])>0){
+    for (let i = 0; i < newArray.length - 1; i++) {
+        for (let j = 0; j < newArray.length - 1; j++) {
+            if (newArray[j].localeCompare(newArray[j + 1]) > 0) {
                 temp = newArray[j];
-                newArray[j] = newArray[j+1];
-                newArray[j+1] = temp;
+                newArray[j] = newArray[j + 1];
+                newArray[j + 1] = temp;
             }
 
         }
     }
     return newArray;
 }
+
+function makeid(length):string {
+    let result = '';
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+    const charactersLength = characters.length;
+    let counter = 0;
+    while (counter < length) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+      counter += 1;
+    }
+    return result;
+}
+
 /* End of 7 */
 
 
@@ -185,7 +208,12 @@ function sortWords(strArray:string[]):string[]{
 // of all the numbers in the matrix.
 console.log("***** Exercise 8 *****")
 
-const matrix: number[][] = [[4, 77, 21, 87], [4, 23, 87, 12], [15, 8, 43, 9]]
+const matrix: number[][] = [[], [], []]
+for (let i = 0; i < 3; i++) {
+    for (let j = 0; j < 4; j++) {
+        matrix[i][j] = Math.floor((Math.random() * (1- (-1)) -1 ) * 10);
+    }
+}
 console.log(`original matrix: ${matrix}`)
 console.log(`matrix sum: ${calculateSum(matrix)}`)
 

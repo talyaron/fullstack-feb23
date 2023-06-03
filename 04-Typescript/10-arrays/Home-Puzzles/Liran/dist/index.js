@@ -8,7 +8,11 @@
 //    returns
 //    [2,3,1,1,0,0,0,2,0,1]
 console.log("***** Exercise 1 *****");
-var numbersArray = [1, 2, 3, 6, 5, 3, 1, 4, 6, 8, 4, 6, 9, 2, 1];
+var ex1ArrLength = 12;
+var numbersArray = new Array();
+for (var i = 0; i < ex1ArrLength; i++) {
+    numbersArray[i] = Math.floor(Math.random() * 10);
+}
 var indexCount = new Array(10);
 var cnt = 0;
 for (var i = 0; i < 10; i++) {
@@ -28,11 +32,16 @@ console.log("index Count array: " + indexCount);
 // sum2 = 4 + (-1) + 3 = 6
 // finalSum = | (-9) - (6) | = 15
 console.log("***** Exercise 2 *****");
-var arr = [
-    [0, 2, 3],
-    [3, -1, -5],
-    [4, 0, -8]
-];
+var arr = [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
+for (var i = 0; i < 3; i++) {
+    for (var j = 0; j < 3; j++) {
+        arr[i][j] = Math.floor((Math.random() * (1 - (-1)) - 1) * 10);
+    }
+}
+///print array
+console.log(arr[0][0] + " ," + arr[0][1] + " ," + arr[0][2] + " ");
+console.log(arr[1][0] + " ," + arr[1][1] + " ," + arr[1][2] + " ");
+console.log(arr[2][0] + " ," + arr[2][1] + " ," + arr[2][2] + " ");
 console.log("top left to bootom right diagonal sum:" + (arr[0][0] + arr[1][1] + arr[2][2]));
 console.log("top right to bootom left diagonal sum:" + (arr[0][2] + arr[1][1] + arr[2][0]));
 var res = Math.abs((arr[0][0] + arr[1][1] + arr[2][2]) - (arr[0][2] + arr[1][1] + arr[2][0]));
@@ -122,7 +131,11 @@ function evenNumbers(numArray) {
 // and returns a new array with the words sorted in alphabetical
 // order, regardless of the case (uppercase or lowercase).
 console.log("***** Exercise 7 *****");
-var words = ["test", "Bagle", "baby", "Turn", "Opacity"];
+var arrLength = 8;
+var words = [];
+for (var i = 0; i < arrLength; i++) {
+    words[i] = makeid(Math.floor(Math.random() * (8 - 2) + 2));
+}
 console.log("Original Array: " + words);
 console.log("After sort: " + sortWords(words));
 function sortWords(strArray) {
@@ -141,13 +154,29 @@ function sortWords(strArray) {
     }
     return newArray;
 }
+function makeid(length) {
+    var result = '';
+    var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+    var charactersLength = characters.length;
+    var counter = 0;
+    while (counter < length) {
+        result += characters.charAt(Math.floor(Math.random() * charactersLength));
+        counter += 1;
+    }
+    return result;
+}
 /* End of 7 */
 // Exercise 8: Create an array called "matrix" with three
 // sub-arrays, each containing four numbers. Write a function
 // that takes the "matrix" array as input and returns the sum
 // of all the numbers in the matrix.
 console.log("***** Exercise 8 *****");
-var matrix = [[4, 77, 21, 87], [4, 23, 87, 12], [15, 8, 43, 9]];
+var matrix = [[], [], []];
+for (var i = 0; i < 3; i++) {
+    for (var j = 0; j < 4; j++) {
+        matrix[i][j] = Math.floor((Math.random() * (1 - (-1)) - 1) * 10);
+    }
+}
 console.log("original matrix: " + matrix);
 console.log("matrix sum: " + calculateSum(matrix));
 function calculateSum(numMatrix) {
