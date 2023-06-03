@@ -46,10 +46,10 @@ console.log(`${arr[0][0]} ,${arr[0][1]} ,${arr[0][2]} `)
 console.log(`${arr[1][0]} ,${arr[1][1]} ,${arr[1][2]} `)
 console.log(`${arr[2][0]} ,${arr[2][1]} ,${arr[2][2]} `)
 
-console.log(`top left to bootom right diagonal sum:${arr[0][0] + arr[1][1] + arr[2][2]}`)
-console.log(`top right to bootom left diagonal sum:${arr[0][2] + arr[1][1] + arr[2][0]}`)
+console.log(`top left to bottom right diagonal sum:${arr[0][0] + arr[1][1] + arr[2][2]}`)
+console.log(`top right to bottom left diagonal sum:${arr[0][2] + arr[1][1] + arr[2][0]}`)
 const res = Math.abs((arr[0][0] + arr[1][1] + arr[2][2]) - (arr[0][2] + arr[1][1] + arr[2][0]));
-console.log(`absolut diff |a - b| = ${res}`)
+console.log(`absolute diff |a - b| = ${res}`)
 /* End of 2 */
 
 
