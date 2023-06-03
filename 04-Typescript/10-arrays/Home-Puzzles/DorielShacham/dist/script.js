@@ -55,4 +55,5 @@ arrayz.forEach(function (num) {
         console.log(num);
     }
 });
-console.log(arrayz.filter(function (num) { return arrayz.indexOf(num) === arrayz.lastIndexOf(num); }));
+var final = arrayz.filter(function (num) { return arrayz.indexOf(num) === arrayz.lastIndexOf(num); });
+console.log(final);

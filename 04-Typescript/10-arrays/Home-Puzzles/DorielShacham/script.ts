@@ -58,4 +58,5 @@ arrayz.forEach((num:number) => {
         console.log(num);
     }
 });
-console.log(arrayz.filter((num) => arrayz.indexOf(num) === arrayz.lastIndexOf(num)));
+const final: number[] = arrayz.filter((num) => arrayz.indexOf(num) === arrayz.lastIndexOf(num));
+console.log(final);
