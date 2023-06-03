@@ -60,3 +60,9 @@ arrayz.forEach((num:number) => {
 });
 const final: number[] = arrayz.filter((num) => arrayz.indexOf(num) === arrayz.lastIndexOf(num));
 console.log(final);
+
+// --------------------------------------------------------- ---------------------------------------------------------
+const test:number[] = [1, 2, 3, 4, 5];
+const resulty:string | number = test.reduce((first, second) => `${first}-${second}`);
+console.log(resulty);
+// --------------------------------------------------------- ---------------------------------------------------------

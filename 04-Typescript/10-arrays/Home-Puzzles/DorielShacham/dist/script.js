@@ -57,3 +57,8 @@ arrayz.forEach(function (num) {
 });
 var final = arrayz.filter(function (num) { return arrayz.indexOf(num) === arrayz.lastIndexOf(num); });
 console.log(final);
+// --------------------------------------------------------- ---------------------------------------------------------
+var test = [1, 2, 3, 4, 5];
+var resulty = test.reduce(function (first, second) { return first + "-" + second; });
+console.log(resulty);
+// --------------------------------------------------------- ---------------------------------------------------------
