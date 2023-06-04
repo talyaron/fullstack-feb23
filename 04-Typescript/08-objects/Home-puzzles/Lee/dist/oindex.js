@@ -7,8 +7,11 @@ var studentB = {
     historyMidTermGrade: 75,
     mathFinalTermGrade: 90,
     historyFinalTermGrade: 82,
-    calculateAverage: gradesAverage
+    calculateAverage: function () {
+        return (this.mathMidTermGrade + this.historyMidTermGrade + this.mathFinalTermGrade + this.historyFinalTermGrade) / 4;
+    }
 };
+console.log(studentB.calculateAverage());
 var studentC = {
     name: "Inbar Budniatzky",
     gender: "female",
@@ -16,8 +19,11 @@ var studentC = {
     historyMidTermGrade: 99,
     mathFinalTermGrade: 97,
     historyFinalTermGrade: 95,
-    calculateAverage: gradesAverage
+    calculateAverage: function () {
+        return (this.mathMidTermGrade + this.historyMidTermGrade + this.mathFinalTermGrade + this.historyFinalTermGrade) / 4;
+    }
 };
+console.log(studentC.calculateAverage());
 var studentA = {
     name: "Lee Dekel",
     gender: "female",
@@ -25,15 +31,17 @@ var studentA = {
     historyMidTermGrade: 95,
     mathFinalTermGrade: 70,
     historyFinalTermGrade: 92,
-    calculateAverage: gradesAverage
-};
-function gradesAverage(midMath, finalMath, midHistory, finalHistory) {
-    try {
+    calculateAverage: function () {
         return (this.mathMidTermGrade + this.historyMidTermGrade + this.mathFinalTermGrade + this.historyFinalTermGrade) / 4;
     }
-    catch (error) {
-        console.error(error);
-        return undefined;
-    }
-}
-console.log(studentB.name, studentB.gender, studentB.calculateAverage());
+};
+console.log(studentA.calculateAverage());
+// function gradesAverage(){
+//   try {
+//     return (this.mathMidTermGrade + this.historyMidTermGrade + this.mathFinalTermGrade + this.historyFinalTermGrade) / 4;
+//   } catch (error) {
+//     console.error(error);
+//     return undefined;
+//   }
+// }
+// console.log(studentB.calculateAverage());

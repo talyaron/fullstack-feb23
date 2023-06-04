@@ -2,9 +2,9 @@
 
 //  Write a function to reverse a number. For example, the function gets 123 and returns 321
 
-const num = Number(prompt("enter number"));
+const number = Number(prompt("enter number"));
 
-function reversedNum(num) {
+function reversedNum(num:number): number | undefined  {
     try {
         
         if(isNaN(num))throw new Error("Not a number! Enter NUMBER type input only!");
@@ -24,4 +24,4 @@ function reversedNum(num) {
     return undefined; 
 }
 }
-console.log(reversedNum(num))
+console.log(reversedNum(number))

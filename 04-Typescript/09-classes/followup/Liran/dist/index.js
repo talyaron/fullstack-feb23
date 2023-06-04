@@ -36,9 +36,9 @@ var Pawn = /** @class */ (function () {
     };
     Pawn.prototype.goUp = function () {
         try {
-            if (this.y == 7)
+            if (this.y == 0)
                 throw new Error("Out of limit");
-            this.y++;
+            this.y--;
             this.getLocation();
         }
         catch (error) {
@@ -47,9 +47,9 @@ var Pawn = /** @class */ (function () {
     };
     Pawn.prototype.goDown = function () {
         try {
-            if (this.x == 7)
+            if (this.y == 7)
                 throw new Error("Out of limit");
-            this.x++;
+            this.y++;
             this.getLocation();
         }
         catch (error) {
@@ -62,3 +62,8 @@ var Pawn = /** @class */ (function () {
     };
     return Pawn;
 }());
+var p1 = new Pawn(0, 0);
+p1.getLocation();
+p1.goUp();
+p1.getLocation();
+p1.goLeft();
