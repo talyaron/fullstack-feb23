@@ -1,4 +1,5 @@
 // 2. print every item in a given array
+var _a;
 var Item = /** @class */ (function () {
     function Item(name, age) {
         this.name = name;
@@ -24,8 +25,6 @@ for (var i = 0; i < items.length; i++) {
 // the year of release, and rank (with a score from 1 to 5)
 //Create an array of movies
 //Print all movies in the array, one after the other.
-//Print only movies which were released after 2010
-//Print only movies with a score of more than 3
 var Movie = /** @class */ (function () {
     function Movie(name, yearOfRelease, rank) {
         this.name = name;
@@ -39,19 +38,41 @@ var TheFastAndTheFurious = new Movie("The Fast and the Furious", 2001, 3);
 var RedNotice = new Movie("Red Notice", 2021, 2);
 var DirtyDancing = new Movie("Dirty Dancing", 1987, 4);
 var movies = [titanic, TheFastAndTheFurious, RedNotice, DirtyDancing];
-// movies.forEach(function (Movie) {
-//     console.log(Movie)
-// })
-function moviesReleasedAfter2010(movies, a) {
-    a = 2010;
-    for (var i = 0; i < movies.length; i++) {
-        if (movies.yearOfRelease[i] > a) {
-            return movies.yearOfRelease[i];
+//Print only movies which were released after 2010.
+function moviesAfter2010(movies) {
+    try {
+        var moviesAfter2010_1 = movies[0];
+        for (var i = 0; i < movies.length; i++) {
+            if (movies[i].yearOfRelease > 2010) {
+                moviesAfter2010_1 = movies[i];
+            }
         }
+        return moviesAfter2010_1;
     }
-    // return a
+    catch (error) {
+        console.error(error);
+    }
 }
-// console.log(moviesReleasedAfter2010(movies, a).yearOfRelease)
+console.log("The movie which were released after 2010 is", (_a = moviesAfter2010(movies)) === null || _a === void 0 ? void 0 : _a.name);
+// Print only movies with a score of more than 3.
+movies.forEach(scoreMoreThan3);
+debugger;
+function scoreMoreThan3(movies) {
+    try {
+        var scoreMoreThan3_1 = movies[0];
+        for (var i = 0; i < movies.length; i++) {
+            if (movies[i].score > 3) {
+                scoreMoreThan3_1 = movies[i];
+            }
+        }
+        return scoreMoreThan3_1;
+    }
+    catch (error) {
+        console.error(error);
+        return undefined;
+    }
+}
+console.log("The movies with a score of more than 3 is", scoreMoreThan3(movies).name);
 //level 2
 //Create a function that gets an array of movies and returns the top score movie.
 //level 3
