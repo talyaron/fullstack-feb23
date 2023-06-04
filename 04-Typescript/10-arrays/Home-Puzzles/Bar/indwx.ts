@@ -59,40 +59,44 @@ const DirtyDancing = new Movie("Dirty Dancing", 1987, 4)
 const movies: Array<any> = [RedNotice, TheFastAndTheFurious, titanic, DirtyDancing]
 
 //Print only movies which were released after 2010.
-function moviesAfter2010(movies) {
+function moviesAfter2010(movies: Movie[]): Movie[] {
+    const releasedAfter2010: Movie[] = [];
     try {
-        let moviesAfter2010 = movies[0]
+        // let moviesAfter2010 = movies[0]
         for (let i = 0; i < movies.length; i++) {
             if (movies[i].yearOfRelease > 2010) {
-                moviesAfter2010 = movies[i]
+                releasedAfter2010.push(movies[i]);
             }
         }
-        return moviesAfter2010
     } catch (error) {
         console.error(error)
-        return undefined
     }
+    return releasedAfter2010
 }
-console.log("The movie which were released after 2010 is", moviesAfter2010(movies)?.name)
+// console.log("The movie which were released after 2010 is", moviesAfter2010(movies)?.name)
+const after2010 = moviesAfter2010(movies);
+console.log("The movie which were released after 2010 are");
+after2010.forEach(movies => console.log(movies.name))
 
 
 // Print only movies with a score of more than 3.
-function scoreMoreThan3(movies) {
+function scoreMoreThan3(movies: Movie[]): Movie[] {
+    const moviesWithScoreMoreThan3: Movie[] = [];
     try {
-        let scoreMoreThan3 = movies[0]
         for (let i = 0; i < movies.length; i++) {
             if (movies[i].score > 3) {
-                scoreMoreThan3 = movies[i]
+                moviesWithScoreMoreThan3.push(movies[i]);
             }
         }
-        return scoreMoreThan3
     } catch (error) {
         console.error(error)
-        return undefined
     }
+    return moviesWithScoreMoreThan3;
 }
-console.log("The movies with a score of more than 3 is", scoreMoreThan3(movies)?.name)
-
+// console.log("The movies with a score of more than 3 is", scoreMoreThan3(movies).name)
+const highRatedMovies = scoreMoreThan3(movies);
+console.log("The movies with a score of more than 3 are:");
+highRatedMovies.forEach(movies => console.log(movies.name));
 
 //level 2
 //Create a function that gets an array of movies and returns the top score movie.
@@ -119,27 +123,17 @@ console.log("The top score movie is", topScore(movies).name)
 // this function will return the
 // average of films from that year and onward.
 
-// const RedNotice = new Movie("Red Notice", 2021, 2)
-// const TheFastAndTheFurious = new Movie("The Fast and the Furious", 2001, 3)
-// const titanic = new Movie("Titanic", 1997, 5)
-// const DirtyDancing = new Movie("Dirty Dancing", 1987, 4)
-
-// const movies: Array<any> = [RedNotice, TheFastAndTheFurious, titanic, DirtyDancing]
-
 function averageScore(movies) {
     try {
-        // movies.length = (movies.yearOfRelease > 2000)
         let sum = 0;
-        // if (movies.yearOfRelease > 2000) {
-            for (let i = 0; i < movies.length; i++) {
-                sum += parseInt(movies[i].score)
-            }
-        // }
-        return sum / movies.length;
+        for (let i = 0; i < movies.length; i++) {
+            sum += parseInt(movies[i].score)
+        }
     } catch (error) {
         console.error(error)
         return undefined
     }
+    return sum / movies.length;
 }
 const average = averageScore(movies);
-console.log(average);
+console.log("The average score of movies is", average);
