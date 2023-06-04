@@ -42,15 +42,15 @@ function numToDigitArr(number) {
 }
 function addDashEvenNum(array) {
     var str;
-    for (var i = 0; i < array.length; i++) {
+    array.forEach(function (element, i) {
         if ((array[i] % 2 == 0) && (array[i + 1] % 2 == 0)) {
             array[i] = array[i] + "-";
         }
         str = str + array[i];
-    }
+    });
     return str;
 }
-console.log(addDashEvenNum(numToDigitArr(3445678865)));
+console.log(addDashEvenNum(numToDigitArr(344555678865)));
 // 2. Write a JavaScript program to find the most frequent
 //    item in an array.
 //    Sample array : var arr1=[3, 'a', 'a', 'a', 2, 3, 'a', 3, 'a', 2, 4, 9, 3];
