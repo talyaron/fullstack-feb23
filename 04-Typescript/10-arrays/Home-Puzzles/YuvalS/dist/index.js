@@ -4,11 +4,15 @@
 // const ages1: number[] = [5, 8, 3, 25, 100, 15, 10]
 // ages1.sort((a, b) => a-b);
 // console.log(ages1)
-var numbers1 = [5, 8, 3, 25, 100, 15, 10];
-var evenNumberss = new Array();
-for (var i = 0; i < numbers1.length; i++) {
-    if (numbers1[i] % 2 == 0) {
-        evenNumberss[i] += numbers1[1];
-    }
-}
+// const numbers1: number[] = [5, 8, 3, 25, 100, 15, 10]
+// const evenNumberss: number[] = [];
+// for(let i = 0; i < numbers1.length; i++ ){
+//     if(numbers1[i] % 2 == 0){
+//         evenNumberss.push(numbers1[i])
+//     }
+// }
+// console.log(evenNumberss)
+var numbers1 = [5, 8, 3, 25, 100, 15, 10, 2, 4, 6];
+// const evenNumberss: number[] = [];
+var evenNumberss = numbers1.filter(function (elm) { return elm % 2 == 0; });
 console.log(evenNumberss);
