@@ -55,6 +55,22 @@ console.log(addDashEvenNum(numToDigitArr(3445678865)));
 //    item in an array.
 //    Sample array : var arr1=[3, 'a', 'a', 'a', 2, 3, 'a', 3, 'a', 2, 4, 9, 3];
 //    Sample Output : a ( 5 times )
+var arr1 = [44, 44, 1, 1, 1, 57, 90, 7, "k", "k", "k"];
+var most = 0;
+var mostElement = "";
+arr1.forEach(function (element) {
+    var count = 0;
+    arr1.forEach(function (item) {
+        if (element == item) {
+            count++;
+        }
+    });
+    if (most < count) {
+        most = count;
+        mostElement = element;
+    }
+});
+console.log(mostElement + " (" + most + " times)");
 // 3. We have the following arrays :
 //    color = ["Blue ", "Green", "Red", "Orange", "Violet", "Indigo", "Yellow "];
 //    o = ["th","st","nd","rd"]
@@ -73,6 +89,14 @@ console.log(addDashEvenNum(numToDigitArr(3445678865)));
 //    [0,3,9,1,1,7,2,1,0,7]
 //    returns
 //    [2,3,1,1,0,0,0,2,0,1]
+var array1 = [1, 1, 1, 4, 6, 8, 6, 4, 4, 3];
+var array2 = [];
+array1.forEach(function (element, index) {
+    var result = array1.filter(function (number) { return number == index; });
+    array2.push(result.length);
+});
+console.log(array1);
+console.log(array2);
 // 2. in a given matrix (squre array of arrays) calculate the
 //    absuloute diffrence between the sum of the diagonals. example:
 //    const arr = [
@@ -88,6 +112,13 @@ console.log(addDashEvenNum(numToDigitArr(3445678865)));
 // Example
 // const arr = [1,2,3,4,3,2,1,5,5]
 // The unique element is 4
+var arr2 = [1, 2, 3, 4, 3, 2, 1, 5, 5];
+arr2.forEach(function (element1) {
+    var result = arr2.filter(function (number) { return number == element1; });
+    if (result.length == 1) {
+        console.log("The unique element is " + element1);
+    }
+});
 // //methods
 // push, shift, nestted array, foreach, map, filter,
 // find, some(true, false), every, icludes

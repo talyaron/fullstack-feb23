@@ -10,7 +10,7 @@ class Celeb{
     tiktok:string;
     ig:string;
     followers:number;
-    setFollowers:Function;
+   
 
     constructor(celebName:string, genre:string, tiktok:string, ig:string, followers:number){
         this.celebName = celebName;
@@ -19,12 +19,22 @@ class Celeb{
         this.ig = ig;
         this.followers = followers;
     }
-    setFollowers(){
-       
+    setFollowers(followers:number):number | undefined
+    {
+       try {
+        return (this.followers = followers)
+       } catch (error) {
+        console.log(error);
+        return undefined;
+       }
+    }
+    getFollowers(){
+        return this.followers;
     }
 }
 
-const mayaD = new Celeb("Maya Dagan", "pop culture", "maya_D", "Maya Dagan", 63000);
-console.log(mayaD)
-const demiB = new Celeb("Demi Bagby", "sport", "demi_b", "Demi Bagby", 2600000);
-console.log(demiB)
+const celeb1 = new Celeb("Maya Dagan", "pop culture", "maya_D", "Maya Dagan", 63000);
+const celeb2 = new Celeb("Demi Bagby", "sport", "demi_b", "Demi Bagby", 2600000);
+
+console.log(celeb1.setFollowers(1000000));
+console.log(celeb2.getFollowers());
