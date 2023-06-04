@@ -10,6 +10,15 @@ const result = numbers.filter((n) => n % 2 === 0)
 // document.getElementById('output').innerHTML = 'Resulting Array : ' + result;
 console.log(result)
 
+// 3. print every odd item in a given array
+
+const oddNumbers = [2, 5, 7, 8, 10, 13, 16, 22];
+const sortOddNumbers = (numbers) => {
+    const oddNumbers = numbers.filter(numbers => numbers % 2);
+    console.log(oddNumbers);
+}
+console.log(sortOddNumbers(oddNumbers));
+
 
 // // 1. write a JavaScript program that counts the
 // //    times an elements appears in an array. it takes into
@@ -47,16 +56,50 @@ const arr = [
 ];
 
 function diagonalSum(mat) {
-    let length = mat.length -1,
-    sum = 0 
-    for (let i = 0; i< mat.length; i++) {
-        sum += mat[i][i] + mat[i][length-1]
+    let length = mat.length - 1,
+        sum = 0
+    for (let i = 0; i < mat.length; i++) {
+        sum += mat[i][i] + mat[i][length - 1]
     }
-    if(length % 2 === 0) sum -= mat[length/2][length/2];
+    if (length % 2 === 0) sum -= mat[length / 2][length / 2];
     return Math.abs(sum);
 
 }
 
-console.log(diagonalSum(arr))
+// console.log(diagonalSum(arr))
+
+// Write a JavaScript program to find the most frequent
+//    item in an array.
+//    Sample Output : a ( 5 times )
+
+const array:  (string | number)[] = [3, 'a', 'a', 'a', 2, 3, 'a', 3, 'a', 2, 4, 9, 3];
+
+function mostFrequent(array) {
+    const frequencyMap = {};
+    let maxElement = array[0];
+    let maxCount = 1;
+    for (let i = 0; i < array.length; i++) {
+        const element = array[i];
+        if (frequencyMap[element]) {
+            frequencyMap[element]++;
+        } else {
+            frequencyMap[element] = 1;
+        }
+        if (frequencyMap[element] > maxCount) {
+            maxElement = element;
+            maxCount = frequencyMap[element];
+        }
+    }
+    return maxElement;
+}
+console.log(mostFrequent(array))
+
+
+// Write a JavaScript program that accepts a number
+//    as input and inserts dashes (-) between each even number. For
+//    example if you accept 025468 the output should be 0-254-6-8.
+
+
+
 
 
