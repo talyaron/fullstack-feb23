@@ -89,13 +89,21 @@ console.log(`${mostElement} (${most} times)`)
 
 
 // 3. We have the following arrays :
-//    color = ["Blue ", "Green", "Red", "Orange", "Violet", "Indigo", "Yellow "];
-//    o = ["th","st","nd","rd"]
+  const color = ["Blue ", "Green", "Red", "Orange", "Violet", "Indigo", "Yellow "];
+  const end = ["st","nd","rd","th"]
 //    Write a JavaScript program to display the colors in
 //    the following way :
 //    "1st choice is Blue ."
 //    "2nd choice is Green."
 //    "3rd choice is Red."
+
+color.forEach((element, index) => {
+    if(index<3){
+        console.log(`${index+1}${end[index]} choice is ${color[index]}`)
+    }else{
+    console.log(`${index+1}${end[3]} choice is ${color[index]}`)}
+
+});
 
 // hard
 
@@ -122,16 +130,19 @@ console.log(array2)
 
 // 2. in a given matrix (squre array of arrays) calculate the
 //    absuloute diffrence between the sum of the diagonals. example:
-//    const arr = [
-//    [0,2,3],
-//    [3,-1,-5],
-//    [4,0,-8]
-//    ]
-
-// sum1 = 0 + (-1) + -8 = -9
-// sum2 = 4 + (-1) + 3 = 6
-
-// finalSum = |(-9) - (6)| = 15
+const matrix = [
+    [0, 2, 3, 9],
+    [3, -1, -5, 3],
+    [4, 0, -8, 1],
+    [3, 4, 1, 9]
+]
+let sum1 = 0
+let sum2 = 0
+matrix.forEach((element, index) => {
+    sum1 += (element[index])
+    sum2 += (element[matrix.length - 1 - index])
+})
+console.log(Math.abs(sum1 - sum2))
 
 // 3. Given an array of integers, where all elements
 //    but one occur twice, find the unique element.
@@ -142,7 +153,7 @@ console.log(array2)
 
 const arr2 = [1, 2, 3, 4, 3, 2, 1, 5, 5]
 
-arr2.forEach(element1=> {
+arr2.forEach(element1 => {
     const result = arr2.filter(number => number == element1)
     if (result.length == 1) { console.log(`The unique element is ${element1}`) }
 });

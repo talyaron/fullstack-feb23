@@ -1,20 +1,36 @@
-var userNmae = "Bar";
-var Student = /** @class */ (function () {
-    function Student(name, last, average) {
-        this.name = name;
-        this.last = last;
-        this.average = average;
-    }
-    return Student;
-}());
-var bar = new Student("Bar", "Yaron", 98);
-var roman = new Student("Roman", "R", 100);
-console.log(bar);
-var students = [bar, roman];
-students.forEach(function (student) {
-    console.log(student.name, student.average);
+//arrays are lists of object/varaibles
+var arr = [
+    2,
+    "Hi",
+    { a: 1, b: 222 },
+    [1000, 2345],
+    undefined,
+    false,
+    7,
+];
+//getting an element (element is an variable inside the array)
+console.log(arr);
+// console.log(arr[3][0]);
+//dont use it!!!!!!!
+// for(let i=0;i<arr.length; i++){
+//     console.log(`${i}: ${arr[i]}`);
+// }
+// arr.forEach(callbackFunction)
+// arr.forEach(function(elm){
+//     console.log(elm)
+// })
+//arrow function
+arr.forEach(printElement);
+function printElement(elm) {
+    console.log(elm);
+}
+arr.forEach(function (elm) {
+    console.log(elm);
 });
-var topStudents = students.filter(function (student) {
-    return student.average >= 99;
-});
-console.log(topStudents);
+var ages = [10, 15, 18, 22, 56];
+var index = ages.findIndex(function (age) { return age > 17; });
+console.log("Index: " + index);
+var elmBiggerThan = ages.find(function (age) { return age > 18; });
+console.log(elmBiggerThan);
+var elemsBigger = ages.filter(function (elm) { return elm > 18; });
+console.log(elemsBigger);

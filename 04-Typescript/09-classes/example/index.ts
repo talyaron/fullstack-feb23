@@ -1,5 +1,21 @@
 //clases are objects factory
 
+class Dog{
+  type:string;
+  name:string;
+  yearOfBirth:number;
+
+  constructor(type:string,name:string,yearOfBirth:number){
+    this.name = name;
+    this.type = type;
+    this.yearOfBirth = yearOfBirth
+  }
+
+  getAge(){
+    return new Date().getFullYear() - this.yearOfBirth
+  }
+}
+
 class Car {
   company: string;
   model: string;
