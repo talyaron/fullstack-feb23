@@ -51,16 +51,16 @@ function numToDigitArr(number) {
 }
 function addDashEvenNum(array: any[]) {
     let str
-    for (let i = 0; i < array.length; i++) {
+    array.forEach((element, i) => {
         if ((array[i] % 2 == 0) && (array[i + 1] % 2 == 0)) {
             array[i] = `${array[i]}-`
         }
         str = str + array[i]
-    }
-
+    });
     return str
+ 
 }
-console.log(addDashEvenNum(numToDigitArr(3445678865)))
+console.log(addDashEvenNum(numToDigitArr(344555678865)))
 
 
 // 2. Write a JavaScript program to find the most frequent
@@ -89,8 +89,8 @@ console.log(`${mostElement} (${most} times)`)
 
 
 // 3. We have the following arrays :
-  const color = ["Blue ", "Green", "Red", "Orange", "Violet", "Indigo", "Yellow "];
-  const end = ["st","nd","rd","th"]
+const color = ["Blue ", "Green", "Red", "Orange", "Violet", "Indigo", "Yellow "];
+const end = ["st", "nd", "rd", "th"]
 //    Write a JavaScript program to display the colors in
 //    the following way :
 //    "1st choice is Blue ."
@@ -98,10 +98,11 @@ console.log(`${mostElement} (${most} times)`)
 //    "3rd choice is Red."
 
 color.forEach((element, index) => {
-    if(index<3){
-        console.log(`${index+1}${end[index]} choice is ${color[index]}`)
-    }else{
-    console.log(`${index+1}${end[3]} choice is ${color[index]}`)}
+    if (index < 3) {
+        console.log(`${index + 1}${end[index]} choice is ${color[index]}`)
+    } else {
+        console.log(`${index + 1}${end[3]} choice is ${color[index]}`)
+    }
 
 });
 
