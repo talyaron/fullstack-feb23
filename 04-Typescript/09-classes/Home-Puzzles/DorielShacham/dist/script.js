@@ -45,7 +45,12 @@ console.log("This is after set Celeb folowers: " + CelebOne.Followers);
 function orderByCellebs() {
     return allCelebs.sort(function (a, b) { return b.Followers - a.Followers; });
 }
-console.log(orderByCellebs());
+//console.log(orderByCellebs());
+function findByName(nameF) {
+    return !!allCelebs.find(function (Celeb) { return Celeb.nameFull.toLowerCase() == nameF.toLowerCase(); }) ? 'found' : 'not found';
+}
+console.log(findByName("nathan"));
+console.log(findByName("kevin hart"));
 // ## Moment Class
 // 4. Create a class for dates. it gets Date format (new Date()). 
 //the instnce(object) gets a date and one method returns the date in the format: "dd/mm/yyyy, hh:mm:ss" for instance, gets a date (new Date ())returns "12/1/2023 17:56:12". And another method return in the following format "2 seconds past from that date" (getSimpleDate(), getPasedDate())

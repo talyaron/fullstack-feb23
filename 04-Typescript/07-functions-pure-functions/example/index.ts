@@ -1,6 +1,4 @@
-
-
-// // const userName2 = prompt("say again your name 2")
+// const userName2 = prompt("say again your name 2")
 
 
 

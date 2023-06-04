@@ -17,9 +17,10 @@ var Moment = /** @class */ (function () {
         return this.date.getDate() + "/" + (this.date.getMonth() + 1) + "/" + this.date.getFullYear() + ", \n        " + this.date.getHours() + ":" + this.date.getMinutes() + ":" + this.date.getSeconds();
     };
     Moment.prototype.getPasedDate = function () {
-        return setTimeout(this.date.getSeconds(), 5000) - this.date.getSeconds() + " seconds past from that date";
+        return this.date.getSeconds() - setTimeout(this.date.getSeconds, 5000) + " seconds past from that date";
     };
     return Moment;
 }());
 var myDate = new Moment(new Date());
 console.log(myDate.getSimpleDate());
+console.log(myDate.getPasedDate());

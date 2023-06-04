@@ -4,7 +4,7 @@ function samTwoNumbers(x, y) {
     try {
         if (isNaN(x) || isNaN(y))
             throw new Error("input is NaN");
-        if (typeof (x || y) !== number)
+        if (typeof number !== (x))
             throw new Error("input is not a number");
         return x + y;
     }
