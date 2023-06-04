@@ -1,4 +1,15 @@
 //clases are objects factory
+var Dog = /** @class */ (function () {
+    function Dog(type, name, yearOfBirth) {
+        this.name = name;
+        this.type = type;
+        this.yearOfBirth = yearOfBirth;
+    }
+    Dog.prototype.getAge = function () {
+        return new Date().getFullYear() - this.yearOfBirth;
+    };
+    return Dog;
+}());
 var Car = /** @class */ (function () {
     function Car(company, model, color, year, id) {
         this.color = color;
