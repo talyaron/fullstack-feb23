@@ -36,9 +36,9 @@ var Movie = /** @class */ (function () {
     }
     return Movie;
 }());
+var RedNotice = new Movie("Red Notice", 2021, 2);
 var TheFastAndTheFurious = new Movie("The Fast and the Furious", 2001, 3);
 var titanic = new Movie("Titanic", 1997, 5);
-var RedNotice = new Movie("Red Notice", 2021, 2);
 var DirtyDancing = new Movie("Dirty Dancing", 1987, 4);
 var movies = [RedNotice, TheFastAndTheFurious, titanic, DirtyDancing];
 //Print only movies which were released after 2010.
@@ -92,9 +92,32 @@ function topScore(movies) {
         return undefined;
     }
 }
-console.log(topScore(movies).name);
+console.log("The top score movie is", topScore(movies).name);
 //level 3
 //Create a function that gets an array of movies and returns the average score of movies
-// use the same function, but add another parameter: the year of publication. this function will return the
-// average of films from that year and onward
-// define array of students 
+// use the same function, but add another parameter: the year of publication.
+// this function will return the
+// average of films from that year and onward.
+// const RedNotice = new Movie("Red Notice", 2021, 2)
+// const TheFastAndTheFurious = new Movie("The Fast and the Furious", 2001, 3)
+// const titanic = new Movie("Titanic", 1997, 5)
+// const DirtyDancing = new Movie("Dirty Dancing", 1987, 4)
+// const movies: Array<any> = [RedNotice, TheFastAndTheFurious, titanic, DirtyDancing]
+function averageScore(movies) {
+    try {
+        // movies.length = (movies.yearOfRelease > 2000)
+        var sum = 0;
+        // if (movies.yearOfRelease > 2000) {
+        for (var i = 0; i < movies.length; i++) {
+            sum += parseInt(movies[i].score);
+        }
+        // }
+        return sum / movies.length;
+    }
+    catch (error) {
+        console.error(error);
+        return undefined;
+    }
+}
+var average = averageScore(movies);
+console.log(average);

@@ -51,9 +51,9 @@ class Movie {
     }
 }
 
+const RedNotice = new Movie("Red Notice", 2021, 2)
 const TheFastAndTheFurious = new Movie("The Fast and the Furious", 2001, 3)
 const titanic = new Movie("Titanic", 1997, 5)
-const RedNotice = new Movie("Red Notice", 2021, 2)
 const DirtyDancing = new Movie("Dirty Dancing", 1987, 4)
 
 const movies: Array<any> = [RedNotice, TheFastAndTheFurious, titanic, DirtyDancing]
@@ -97,13 +97,13 @@ console.log("The movies with a score of more than 3 is", scoreMoreThan3(movies)?
 //level 2
 //Create a function that gets an array of movies and returns the top score movie.
 
-function topScore(movies){
+function topScore(movies) {
     try {
         let topScore = movies[0]
-        for(let i =0; i < movies.length; i++){
-          if(topScore.score < movies[i].score){
-            topScore = movies[i]
-          }
+        for (let i = 0; i < movies.length; i++) {
+            if (topScore.score < movies[i].score) {
+                topScore = movies[i]
+            }
         }
         return topScore
     } catch (error) {
@@ -111,10 +111,35 @@ function topScore(movies){
         return undefined
     }
 }
-console.log(topScore(movies).name)
+console.log("The top score movie is", topScore(movies).name)
 
 //level 3
 //Create a function that gets an array of movies and returns the average score of movies
-// use the same function, but add another parameter: the year of publication. this function will return the
-// average of films from that year and onward
-// define array of students 
+// use the same function, but add another parameter: the year of publication.
+// this function will return the
+// average of films from that year and onward.
+
+// const RedNotice = new Movie("Red Notice", 2021, 2)
+// const TheFastAndTheFurious = new Movie("The Fast and the Furious", 2001, 3)
+// const titanic = new Movie("Titanic", 1997, 5)
+// const DirtyDancing = new Movie("Dirty Dancing", 1987, 4)
+
+// const movies: Array<any> = [RedNotice, TheFastAndTheFurious, titanic, DirtyDancing]
+
+function averageScore(movies) {
+    try {
+        // movies.length = (movies.yearOfRelease > 2000)
+        let sum = 0;
+        // if (movies.yearOfRelease > 2000) {
+            for (let i = 0; i < movies.length; i++) {
+                sum += parseInt(movies[i].score)
+            }
+        // }
+        return sum / movies.length;
+    } catch (error) {
+        console.error(error)
+        return undefined
+    }
+}
+const average = averageScore(movies);
+console.log(average);
