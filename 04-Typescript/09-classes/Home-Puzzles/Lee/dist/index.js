@@ -10,11 +10,21 @@ var Celeb = /** @class */ (function () {
         this.ig = ig;
         this.followers = followers;
     }
-    Celeb.prototype.setFollowers = function () {
+    Celeb.prototype.setFollowers = function (followers) {
+        try {
+            return (this.followers = followers);
+        }
+        catch (error) {
+            console.log(error);
+            return undefined;
+        }
+    };
+    Celeb.prototype.getFollowers = function () {
+        return this.followers;
     };
     return Celeb;
 }());
-var mayaD = new Celeb("Maya Dagan", "pop culture", "maya_D", "Maya Dagan", 63000);
-console.log(mayaD);
-var demiB = new Celeb("Demi Bagby", "sport", "demi_b", "Demi Bagby", 2600000);
-console.log(demiB);
+var celeb1 = new Celeb("Maya Dagan", "pop culture", "maya_D", "Maya Dagan", 63000);
+var celeb2 = new Celeb("Demi Bagby", "sport", "demi_b", "Demi Bagby", 2600000);
+console.log(celeb1.setFollowers(1000000));
+console.log(celeb2.getFollowers());

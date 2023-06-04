@@ -1,6 +1,6 @@
 //Model (data) View (GUI) Controler(process)
 var ageAsString = prompt("what is your age?");
-debugger;
+// debugger;
 console.log(ageAsString);
 //scope
 if (ageAsString) {
