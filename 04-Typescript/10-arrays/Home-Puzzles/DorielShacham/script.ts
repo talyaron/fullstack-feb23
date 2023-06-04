@@ -65,4 +65,8 @@ console.log(final);
 const test:number[] = [1, 2, 3, 4, 5];
 const resulty:string | number = test.reduce((first, second) => `${first}-${second}`);
 console.log(resulty);
+
+const tester: string[] = ['1, 2, 3, 4, 5'];
+const [first, second, third] = tester.splice(',');
+console.log(first, second, third);
 // --------------------------------------------------------- ---------------------------------------------------------

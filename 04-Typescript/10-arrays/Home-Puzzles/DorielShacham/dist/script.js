@@ -61,4 +61,7 @@ console.log(final);
 var test = [1, 2, 3, 4, 5];
 var resulty = test.reduce(function (first, second) { return first + "-" + second; });
 console.log(resulty);
+var tester = ['1, 2, 3, 4, 5'];
+var _a = tester.splice(','), first = _a[0], second = _a[1], third = _a[2];
+console.log(first, second, third);
 // --------------------------------------------------------- ---------------------------------------------------------
