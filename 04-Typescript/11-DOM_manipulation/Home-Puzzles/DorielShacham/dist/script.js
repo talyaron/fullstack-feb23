@@ -19,7 +19,7 @@ var motorcycles = [
 var main = document.querySelector("body > div.Main");
 var inputs = document.querySelector("#Search");
 var button = document.querySelector(".btnSearch");
-var selectMoto = document.querySelector("#motorcycles");
+var selectMoto = document.querySelector("#motorcycles") || new HTMLSelectElement();
 selectMoto.addEventListener("change", function () {
     if (!!inputs)
         inputs.value = selectMoto.value;
@@ -30,14 +30,15 @@ if (button) {
     button.addEventListener("click", function () {
         var input = inputs;
         var search = input.value;
-        var query = new URL(window.location.href + ("?q=" + search));
-        console.log(query);
-        window.history.pushState({}, '', query.toString());
+        // const query = new URL(window.location.href.split("?")[0] +`?q=${search}`);
+        var fullURL = window.location.origin + window.location.pathname + ("?q=" + search); // const newQuery = new RegExp(window.location.href.replace(/(\?.*)?/gm,"")+`?q=${search}`) 
+        // console.log(newQuery)
+        window.history.pushState({}, '', fullURL.toString());
         var motorcycleHTML = motorcycles.filter(function (motorcycle) {
             return motorcycle.name.toLowerCase().includes(search.toLowerCase());
         })
             .map(function (motorcycle) {
-            return "<div><p>" + motorcycle.name + ", price: " + motorcycle.getPrice() + " NIS</p><img src=\"" + motorcycle.imgSrc + "\"></div><hr style=\"border: 2px solid white; width:100%; position: relative; top: 100px; margin: 20px; right:10px;\">";
+            return "<div><p>" + motorcycle.name + ", price: " + motorcycle.getPrice().toLocaleString() + " NIS</p><img src=\"" + motorcycle.imgSrc + "\"></div><hr style=\"border: 2px solid white; width:100%; position: relative; top: 100px; margin: 20px; right:10px;\">";
         })
             .join(" ");
         if (main) {
