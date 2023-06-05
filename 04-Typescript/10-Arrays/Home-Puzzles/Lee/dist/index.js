@@ -10,7 +10,7 @@ console.log(result);
 // 3. print every odd item in a given array
 var oddNumbers = [2, 5, 7, 8, 10, 13, 16, 22];
 var sortOddNumbers = function (numbers) {
-    var oddNumbers = numbers.filter(function (numbers) { return numbers % 2; });
+    var oddNumbers = numbers.filter(function (numbers) { return numbers % 2 !== 0; });
     console.log(oddNumbers);
 };
 console.log(sortOddNumbers(oddNumbers));
@@ -80,3 +80,6 @@ console.log(mostFrequent(array));
 // Write a JavaScript program that accepts a number
 //    as input and inserts dashes (-) between each even number. For
 //    example if you accept 025468 the output should be 0-254-6-8.
+var arr1 = [1, 2, 1];
+var result = arr1.flatMap(function (num) { return (num === 2 ? [2, 2] : 1); });
+console.log(result);

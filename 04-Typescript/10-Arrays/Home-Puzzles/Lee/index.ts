@@ -14,7 +14,7 @@ console.log(result)
 
 const oddNumbers = [2, 5, 7, 8, 10, 13, 16, 22];
 const sortOddNumbers = (numbers) => {
-    const oddNumbers = numbers.filter(numbers => numbers % 2);
+    const oddNumbers = numbers.filter(numbers => numbers % 2 !==0);
     console.log(oddNumbers);
 }
 console.log(sortOddNumbers(oddNumbers));
@@ -99,6 +99,12 @@ console.log(mostFrequent(array))
 //    as input and inserts dashes (-) between each even number. For
 //    example if you accept 025468 the output should be 0-254-6-8.
 
+
+const arr1 = [1, 2, 1];
+
+const result = arr1.flatMap((num) => (num === 2 ? [2, 2] : 1));
+
+console.log(result);
 
 
 
