@@ -23,7 +23,7 @@ const motorcycles: Motorcycle[] = [
 
 const main: HTMLElement | null = document.querySelector("body > div.Main");
 const inputs: HTMLInputElement | null = document.querySelector("#Search");
-const button: HTMLElement | null = document.querySelector(".btnSearch");
+const button: HTMLElement  = document.querySelector(".btnSearch");
 const selectMoto: any = document.querySelector("#motorcycles");
 
 selectMoto.addEventListener("change", () => {
@@ -36,9 +36,12 @@ if (button) {
   button.addEventListener("click", () => {
     const input = inputs as HTMLInputElement;
     const search = input.value;
-    const motorcycleHTML = motorcycles
 
-      .filter((motorcycle) => {
+    const query = new URL(window.location.href+`?q=${search}`);
+    console.log(query)
+    window.history.pushState({}, '', query.toString());
+
+    const motorcycleHTML = motorcycles.filter((motorcycle) => {
         return motorcycle.name.toLowerCase().includes(search.toLowerCase());
       })
       .map((motorcycle) => {

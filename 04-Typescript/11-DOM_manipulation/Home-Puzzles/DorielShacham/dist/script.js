@@ -30,8 +30,10 @@ if (button) {
     button.addEventListener("click", function () {
         var input = inputs;
         var search = input.value;
-        var motorcycleHTML = motorcycles
-            .filter(function (motorcycle) {
+        var query = new URL(window.location.href + ("?q=" + search));
+        console.log(query);
+        window.history.pushState({}, '', query.toString());
+        var motorcycleHTML = motorcycles.filter(function (motorcycle) {
             return motorcycle.name.toLowerCase().includes(search.toLowerCase());
         })
             .map(function (motorcycle) {
