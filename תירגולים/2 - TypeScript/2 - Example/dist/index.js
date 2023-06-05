@@ -40,4 +40,3 @@ var render = function (movie) {
         root.innerHTML = "\n        <div>\n            <img src='" + movie.imgSrc + "'/>\n        </div>";
     }
 };
-render(movies[0]);

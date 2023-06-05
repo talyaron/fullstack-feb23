@@ -65,5 +65,3 @@ const render = (movie) => {
         </div>`
     }
 }
-
-render(movies[0])
