@@ -27,7 +27,7 @@ console.log(arr.filter(function (number) { return number % 2 != 0; }));
 // 4. Write a simple JavaScript program to join all elements of the following array into a string.
 //    Sample array : myColor = ["Red", "Green", "White", "Black"];
 var myColor = ["Red", "Green", "White", "Black"];
-console.log(myColor.toString());
+console.log(myColor.join(" "));
 // medium
 // 1. Write a JavaScript program that accepts a number
 //    as input and inserts dashes (-) between each even number. For

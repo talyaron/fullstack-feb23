@@ -33,7 +33,7 @@ console.log(arr.filter((number) => number % 2 != 0))
 //    Sample array : myColor = ["Red", "Green", "White", "Black"];
 
 const myColor = ["Red", "Green", "White", "Black"]
-console.log(myColor.toString())
+console.log(myColor.join(` `))
 
 // medium
 // 1. Write a JavaScript program that accepts a number
@@ -58,7 +58,7 @@ function addDashEvenNum(array: any[]) {
         str = str + array[i]
     });
     return str
- 
+
 }
 console.log(addDashEvenNum(numToDigitArr(344555678865)))
 
