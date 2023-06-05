@@ -2,7 +2,7 @@ var Motorcycle = /** @class */ (function () {
     function Motorcycle(name, price, imj) {
         this.name = name;
         this.price = price;
-        this.imj = imj;
+        this.imgSrc = imj;
     }
     Motorcycle.prototype.getPrice = function () {
         return this.price;
@@ -35,7 +35,7 @@ if (button) {
             return motorcycle.name.toLowerCase().includes(search.toLowerCase());
         })
             .map(function (motorcycle) {
-            return "<div><p>" + motorcycle.name + ", price: " + motorcycle.getPrice() + "</p><img src=\"" + motorcycle.imj + "\"></div><hr style=\"border: 2px solid white; width:100%; position: relative; top: 100px; margin: 20px; right:10px;\">";
+            return "<div><p>" + motorcycle.name + ", price: " + motorcycle.getPrice() + "</p><img src=\"" + motorcycle.imgSrc + "\"></div><hr style=\"border: 2px solid white; width:100%; position: relative; top: 100px; margin: 20px; right:10px;\">";
         })
             .join(" ");
         if (main) {

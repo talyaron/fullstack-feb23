@@ -41,6 +41,32 @@ body #motorcycles {
   color: white;
 }
 
+.Engine {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+}
+.Engine #Search {
+  width: 24%;
+  height: 30px;
+  border-radius: 12px;
+  background-color: rgba(15, 15, 15, 0.9);
+  color: white;
+}
+.Engine .btnSearch {
+  width: 14%;
+  height: 30px;
+  margin: 20px;
+  border-radius: 12px;
+  background-color: rgba(255, 255, 255, 0.9);
+}
+.Engine .btnSearch:hover {
+  transition: 0.2s;
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
 .Main {
   display: flex;
   flex-direction: column;
@@ -51,22 +77,4 @@ body #motorcycles {
   margin: 10px;
   position: relative;
   top: 50px;
-}
-.Main #Search {
-  width: 24%;
-  height: 30px;
-  border-radius: 12px;
-  background-color: rgba(15, 15, 15, 0.9);
-  color: white;
-}
-.Main .btnSearch {
-  width: 14%;
-  height: 30px;
-  margin: 20px;
-  border-radius: 12px;
-  background-color: rgba(255, 255, 255, 0.9);
-}
-.Main .btnSearch:hover {
-  transition: 0.2s;
-  background-color: rgba(255, 255, 255, 0.6);
 }
