@@ -23,7 +23,7 @@ const motorcycles: Motorcycle[] = [
 
 const main: HTMLElement | null = document.querySelector("body > div.Main");
 const inputs: HTMLInputElement | null = document.querySelector("#Search");
-const button: HTMLElement  = document.querySelector(".btnSearch");
+const button: HTMLElement | null  = document.querySelector(".btnSearch");
 const selectMoto: any = document.querySelector("#motorcycles");
 
 selectMoto.addEventListener("change", () => {
@@ -45,7 +45,7 @@ if (button) {
         return motorcycle.name.toLowerCase().includes(search.toLowerCase());
       })
       .map((motorcycle) => {
-        return `<div><p>${motorcycle.name}, price: ${motorcycle.getPrice()}</p><img src="${motorcycle.imgSrc}"></div><hr style="border: 2px solid white; width:100%; position: relative; top: 100px; margin: 20px; right:10px;">`;
+        return `<div><p>${motorcycle.name}, price: ${motorcycle.getPrice()} NIS</p><img src="${motorcycle.imgSrc}"></div><hr style="border: 2px solid white; width:100%; position: relative; top: 100px; margin: 20px; right:10px;">`;
       })
       .join(" ");
     if (main) {
