@@ -1,8 +1,8 @@
 var Motorcycle = /** @class */ (function () {
-    function Motorcycle(name, price, imj) {
+    function Motorcycle(name, price, imgSrc) {
         this.name = name;
         this.price = price;
-        this.imgSrc = imj;
+        this.imgSrc = imgSrc;
     }
     Motorcycle.prototype.getPrice = function () {
         return this.price;

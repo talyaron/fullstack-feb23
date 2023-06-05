@@ -2,10 +2,10 @@ class Motorcycle {
   name: string;
   price: number;
   imgSrc: string;
-  constructor(name: string, price: number, imj: string) {
+  constructor(name: string, price: number, imgSrc: string) {
     this.name = name;
     this.price = price;
-    this.imgSrc = imj;
+    this.imgSrc = imgSrc;
   }
 
   getPrice() {
@@ -30,7 +30,7 @@ selectMoto.addEventListener("change", () => {
   if (!!inputs) inputs.value = selectMoto.value;
 });
 
-if(inputs?.value === "") inputs.value = "Kawasaki";
+if(inputs?.value === "")  inputs.value = "Kawasaki"; 
 
 if (button) {
   button.addEventListener("click", () => {
