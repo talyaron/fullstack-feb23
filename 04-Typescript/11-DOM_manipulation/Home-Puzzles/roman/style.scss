@@ -1,0 +1,13 @@
+#cars img{
+    height:100px;
+    width: auto;
+    overflow: hidden;
+    
+}
+#cars {
+    display: grid;
+    
+    grid-template-rows:repeat(1fr) ;
+    grid-template-columns: repeat(4, 200px);
+    gap: 10px
+}
