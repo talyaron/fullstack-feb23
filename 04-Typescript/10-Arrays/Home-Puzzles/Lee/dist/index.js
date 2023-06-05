@@ -43,12 +43,13 @@ var arr = [
     [4, 0, -8]
 ];
 function diagonalSum(mat) {
-    var length = mat.length - 1, sum = 0;
-    for (var i = 0; i < mat.length; i++) {
-        sum += mat[i][i] + mat[i][length - 1];
+    var length = mat.length - 1, //2
+    sum = 0;
+    for (var i = 0; i < mat.length; i++) { //3
+        sum += mat[i][i] + mat[i][length - 1]; //sum += mat[1][1] + mat[1][2-1]
     }
     if (length % 2 === 0)
-        sum -= mat[length / 2][length / 2];
+        sum -= mat[length / 2][length / 2]; //sum -= mat[2/2][2/2]
     return Math.abs(sum);
 }
 // console.log(diagonalSum(arr))

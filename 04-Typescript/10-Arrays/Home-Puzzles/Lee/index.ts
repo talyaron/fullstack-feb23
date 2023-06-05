@@ -56,12 +56,12 @@ const arr = [
 ];
 
 function diagonalSum(mat) {
-    let length = mat.length - 1,
+    let length = mat.length - 1, //2
         sum = 0
-    for (let i = 0; i < mat.length; i++) {
-        sum += mat[i][i] + mat[i][length - 1]
+    for (let i = 0; i < mat.length; i++) { //3
+        sum += mat[i][i] + mat[i][length - 1] //sum += mat[1][1] + mat[1][2-1]
     }
-    if (length % 2 === 0) sum -= mat[length / 2][length / 2];
+    if (length % 2 === 0) sum -= mat[length / 2][length / 2]; //sum -= mat[2/2][2/2]
     return Math.abs(sum);
 
 }
@@ -72,7 +72,7 @@ function diagonalSum(mat) {
 //    item in an array.
 //    Sample Output : a ( 5 times )
 
-const array:  (string | number)[] = [3, 'a', 'a', 'a', 2, 3, 'a', 3, 'a', 2, 4, 9, 3];
+const array: (string | number)[] = [3, 'a', 'a', 'a', 2, 3, 'a', 3, 'a', 2, 4, 9, 3];
 
 function mostFrequent(array) {
     const frequencyMap = {};
