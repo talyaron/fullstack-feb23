@@ -134,7 +134,7 @@ console.log("***** Exercise 7 *****");
 var arrLength = 8;
 var words = [];
 for (var i = 0; i < arrLength; i++) {
-    words[i] = makeid(Math.floor(Math.random() * (8 - 2) + 2));
+    words[i] = makeString(Math.floor(Math.random() * (5 - 2) + 2));
 }
 console.log("Original Array: " + words);
 console.log("After sort: " + sortWords(words));
@@ -154,7 +154,7 @@ function sortWords(strArray) {
     }
     return newArray;
 }
-function makeid(length) {
+function makeString(length) {
     var result = '';
     var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
     var charactersLength = characters.length;
