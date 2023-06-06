@@ -18,7 +18,7 @@ const div = document.querySelector("#div");
 let imgDiv: string = `<div class='img'>`;
 imgDiv += people.map((peoplee) => {
     return `<div class="info">  ${peoplee.imgg}
-     ${peoplee.name
+    ${peoplee.name
         }</div>`;
 })
     .join(" ");
