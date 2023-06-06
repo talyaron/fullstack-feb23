@@ -110,6 +110,7 @@ span:hover {
 }
 .gallery .post .likesDiv {
   color: white;
+  background: linear-gradient(rgba(255, 255, 255, 0), rgba(0, 0, 0, 0.279), rgba(255, 255, 255, 0));
   width: 100%;
   display: flex;
   position: absolute;
