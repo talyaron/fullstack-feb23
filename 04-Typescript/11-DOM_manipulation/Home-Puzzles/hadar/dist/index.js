@@ -10,4 +10,8 @@ var arrCars = [
     new Car("hyundai", "https://cdn.motor1.com/images/mgl/RvGRx/s1/hyundai-ioniq-5-2021.jpg"),
     new Car("audi", "https://media.ed.edmunds-media.com/audi/a4/2022/oem/2022_audi_a4_sedan_prestige-s-line_fq_oem_8_600.jpg"),
 ];
-document.write(C);
+var cars = document.querySelector("#cars");
+var carsScreen = arrCars.map(function (car) { return "<div><img src = " + car.img + " </br><p> " + car.company + "</p> </div>"; }).join(" ");
+if (cars) {
+    cars.innerHTML = carsScreen;
+}

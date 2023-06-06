@@ -14,4 +14,8 @@ const arrCars: Car[] = [
   new Car("audi","https://media.ed.edmunds-media.com/audi/a4/2022/oem/2022_audi_a4_sedan_prestige-s-line_fq_oem_8_600.jpg"),
 ];
 
-document.write(C)
+const cars= document.querySelector(`#cars`)
+const carsScreen = arrCars.map(car => {return `<div><img src = ${car.img} </br><p> ${car.company}</p> </div>`}).join(" ");
+if(cars){
+    cars.innerHTML=carsScreen;
+}
