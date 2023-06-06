@@ -1,11 +1,11 @@
 class Motorcycle {
   name: string;
   price: number;
-  imj: string;
-  constructor(name: string, price: number, imj: string) {
+  imgSrc: string;
+  constructor(name: string, price: number, imgSrc: string) {
     this.name = name;
     this.price = price;
-    this.imj = imj;
+    this.imgSrc = imgSrc;
   }
 
   getPrice() {
@@ -14,35 +14,38 @@ class Motorcycle {
 }
 
 const motorcycles: Motorcycle[] = [
-  new Motorcycle("Kawasaki", 65000, "https://www.motorcyclesdirect.co.uk/upload/images/--2023%20Kawasaki/Ninja%201000SX/NINJA%201000SX%20GREEN.png"),
-  new Motorcycle("Benelli", 100000, "https://www.motorcyclesdirect.co.uk/upload/images/--Benelli/2022%20Leoncino%20800%20Trail/Benelli%20Leoncino%20800%20Trail.png"),
-  new Motorcycle("Suzuki", 60000, "https://www.motorcyclesdirect.co.uk/upload/images/--2022%20Suzuki/GSX-S1000/gsx-s1000_m2_ysf_right.png"),
-  new Motorcycle("Aprilia", 70000, "https://www.motorcyclesdirect.co.uk/upload/images/--2023%20Aprilia/35%20RS660%20BLACK.png"),
-  new Motorcycle("Royal Enfield", 40000, "https://www.motorcyclesdirect.co.uk/upload/images/--2023%20Royal%20Enfield/Thunder/Rocker%20Red.png"),
+  new Motorcycle("Kawasaki", 65_000, "https://www.motorcyclesdirect.co.uk/upload/images/--2023%20Kawasaki/Ninja%201000SX/NINJA%201000SX%20GREEN.png"),
+  new Motorcycle("Benelli", 100_000, "https://www.motorcyclesdirect.co.uk/upload/images/--Benelli/2022%20Leoncino%20800%20Trail/Benelli%20Leoncino%20800%20Trail.png"),
+  new Motorcycle("Suzuki", 60_000, "https://www.motorcyclesdirect.co.uk/upload/images/--2022%20Suzuki/GSX-S1000/gsx-s1000_m2_ysf_right.png"),
+  new Motorcycle("Aprilia", 70_000, "https://www.motorcyclesdirect.co.uk/upload/images/--2023%20Aprilia/35%20RS660%20BLACK.png"),
+  new Motorcycle("Royal Enfield", 40_000, "https://www.motorcyclesdirect.co.uk/upload/images/--2023%20Royal%20Enfield/Thunder/Rocker%20Red.png"),
 ];
 
 const main: HTMLElement | null = document.querySelector("body > div.Main");
-const inputs: HTMLInputElement | null = document.querySelector("#Search");
-const button: HTMLElement | null = document.querySelector(".btnSearch");
-const selectMoto: any = document.querySelector("#motorcycles");
+const inputs: HTMLInputElement | null = document.querySelector("#Search") || new HTMLInputElement();
+const button: HTMLButtonElement | null  = document.querySelector(".btnSearch")|| new HTMLButtonElement();
+const selectMoto: HTMLSelectElement = document.querySelector("#motorcycles") || new HTMLSelectElement();
 
 selectMoto.addEventListener("change", () => {
   if (!!inputs) inputs.value = selectMoto.value;
 });
-
-if(inputs?.value === "") inputs.value = "Kawasaki";
+// if(inputs.value ==="" && window.location.search !== "") inputs.value = window.location.search.split("=")[1];
+if(inputs?.value === "") inputs.value = "Kawasaki"; 
 
 if (button) {
   button.addEventListener("click", () => {
     const input = inputs as HTMLInputElement;
     const search = input.value;
-    const motorcycleHTML = motorcycles
+    // const query = new URL(window.location.href.split("?")[0] +`?q=${search}`);
+    const fullURL = window.location.origin + window.location.pathname +`?q=${search}`;  // const newQuery = new RegExp(window.location.href.replace(/(\?.*)?/gm,"")+`?q=${search}`) 
+    // console.log(newQuery)
+    window.history.pushState({}, '', fullURL.toString());
 
-      .filter((motorcycle) => {
+    const motorcycleHTML = motorcycles.filter((motorcycle) => {
         return motorcycle.name.toLowerCase().includes(search.toLowerCase());
       })
       .map((motorcycle) => {
-        return `<div><p>${motorcycle.name}, price: ${motorcycle.getPrice()}</p><img src="${motorcycle.imj}"></div><hr style="border: 2px solid white; width:100%; position: relative; top: 100px; margin: 20px; right:10px;">`;
+        return `<div><p>${motorcycle.name}, price: ${motorcycle.getPrice().toLocaleString()} NIS</p><img src="${motorcycle.imgSrc}"></div><hr style="border: 2px solid white; width:100%; position: relative; top: 100px; margin: 20px; right:10px;">`;
       })
       .join(" ");
     if (main) {

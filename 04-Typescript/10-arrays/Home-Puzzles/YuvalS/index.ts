@@ -28,5 +28,5 @@ const matrix: any[]= [[5, 5, 5 ,5], [4, 4, 4 ,4], [3, 3, 3 ,3]]
 const a = matrix[0]
 const b = matrix[1]
 const result = 0
-matrix.reduce((a, b) => a + b, result)
-console.log(matrix)
+const newMatrix = matrix.flat().reduce((a, b) => a + b, result)
+console.log(newMatrix)

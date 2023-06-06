@@ -25,11 +25,13 @@ var students = [
     new Student("Alex", 1991),
 ];
 var root = document.querySelector("#root");
-var studntsHTML = students
+var studntsHTML = "<div class='wrapper'>";
+studntsHTML += students
     .map(function (student) {
-    return "<p>" + student.name + ", age: " + student.getAge() + "</p>";
+    return "<p class=\"myParagraph\">" + student.name + ", age: " + student.getAge() + "</p>";
 })
     .join(" ");
+studntsHTML += "</div>";
 console.log(studntsHTML);
 if (root) {
     root.innerHTML = studntsHTML;
