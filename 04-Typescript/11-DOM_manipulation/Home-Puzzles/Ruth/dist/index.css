@@ -65,3 +65,18 @@ body {
   border: 1px solid #292123;
   background-color: #ed98ea;
 }
+.gallery__post {
+  width: 31%;
+  border: 1px solid #5c5555;
+  position: relative;
+}
+.gallery__post img {
+  width: calc(100% - 20px);
+  margin: 10px;
+}
+.gallery__post .likesDiv {
+  display: flex;
+  position: absolute;
+  bottom: 20px;
+  left: 15px;
+}
