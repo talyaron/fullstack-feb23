@@ -14,7 +14,7 @@ console.log(result)
 
 const oddNumbers = [2, 5, 7, 8, 10, 13, 16, 22];
 const sortOddNumbers = (numbers) => {
-    const oddNumbers = numbers.filter(numbers => numbers % 2);
+    const oddNumbers = numbers.filter(numbers => numbers % 2 !==0);
     console.log(oddNumbers);
 }
 console.log(sortOddNumbers(oddNumbers));
@@ -56,12 +56,12 @@ const arr = [
 ];
 
 function diagonalSum(mat) {
-    let length = mat.length - 1,
+    let length = mat.length - 1, //2
         sum = 0
-    for (let i = 0; i < mat.length; i++) {
-        sum += mat[i][i] + mat[i][length - 1]
+    for (let i = 0; i < mat.length; i++) { //3
+        sum += mat[i][i] + mat[i][length - 1] //sum += mat[1][1] + mat[1][2-1]
     }
-    if (length % 2 === 0) sum -= mat[length / 2][length / 2];
+    if (length % 2 === 0) sum -= mat[length / 2][length / 2]; //sum -= mat[2/2][2/2]
     return Math.abs(sum);
 
 }
@@ -72,7 +72,7 @@ function diagonalSum(mat) {
 //    item in an array.
 //    Sample Output : a ( 5 times )
 
-const array:  (string | number)[] = [3, 'a', 'a', 'a', 2, 3, 'a', 3, 'a', 2, 4, 9, 3];
+const array: (string | number)[] = [3, 'a', 'a', 'a', 2, 3, 'a', 3, 'a', 2, 4, 9, 3];
 
 function mostFrequent(array) {
     const frequencyMap = {};
@@ -99,6 +99,12 @@ console.log(mostFrequent(array))
 //    as input and inserts dashes (-) between each even number. For
 //    example if you accept 025468 the output should be 0-254-6-8.
 
+
+const arr1 = [1, 2, 1];
+
+const result = arr1.flatMap((num) => (num === 2 ? [2, 2] : 1));
+
+console.log(result);
 
 
 
