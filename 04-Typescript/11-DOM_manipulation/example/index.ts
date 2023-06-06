@@ -35,9 +35,8 @@ const root = document.querySelector("#root");
 let studntsHTML = `<div class='wrapper'>`;
 studntsHTML += students
   .map((student) => {
-    return `<p class="myParagraph">${
-      student.name
-    }, age: ${student.getAge()}</p>`;
+    return `<p class="myParagraph">${student.name
+      }, age: ${student.getAge()}</p>`;
   })
   .join(" ");
 
