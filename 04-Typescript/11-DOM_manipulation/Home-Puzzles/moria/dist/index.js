@@ -14,7 +14,7 @@ var people = [
 var div = document.querySelector("#div");
 var imgDiv = "<div class='img'>";
 imgDiv += people.map(function (peoplee) {
-    return "<div class=\"info\">  " + peoplee.imgg + "\n    " + peoplee.name + "</div>";
+    return "<div class=\"info\">  " + peoplee.imgg + "<br>\n    " + peoplee.name + "</div>";
 })
     .join(" ");
 imgDiv += "<div>";

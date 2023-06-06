@@ -19,15 +19,24 @@ body .conteiner header i {
 }
 body .conteiner img {
   width: 100%;
-  height: 200px;
+  height: 250px;
 }
 body .conteiner #div {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
 }
+body .conteiner #div .img {
+  display: flex;
+  justify-content: space-between;
+  height: 70px;
+  width: 100%;
+}
+body .conteiner #div .info {
+  display: block;
+  text-align: center;
+}
 body .conteiner #div img {
-  background-color: aquamarine;
   width: 40px;
   height: 40px;
   border-radius: 100px;
