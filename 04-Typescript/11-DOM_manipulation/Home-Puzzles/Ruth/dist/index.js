@@ -23,28 +23,32 @@ var Post = /** @class */ (function () {
     return Post;
 }());
 var postsArray = [
-    new Post("ruthbentov", "https://cdn.pixabay.com/photo/2023/06/01/06/22/british-shorthair-8032816_1280.jpg", "hello world"),
-    new Post("ruthbentov", "https://cdn.pixabay.com/photo/2023/05/01/11/48/bird-7962790_1280.jpg", "hello world"),
-    new Post("ruthBentov", "https://cdn.pixabay.com/photo/2023/05/31/18/15/st-stephens-basilica-8031985_1280.jpg", "hello world"),
-    new Post("ruthbentov", "https://cdn.pixabay.com/photo/2023/01/16/19/13/laptop-7723139_1280.jpg", "hello world"),
+    new Post("ruthbentov 1", "https://cdn.pixabay.com/photo/2023/06/01/06/22/british-shorthair-8032816_1280.jpg", "hello world"),
+    new Post("ruthbentov 2", "https://cdn.pixabay.com/photo/2023/05/01/11/48/bird-7962790_1280.jpg", "hello world"),
+    new Post("ruthBentov 3", "https://cdn.pixabay.com/photo/2023/05/31/18/15/st-stephens-basilica-8031985_1280.jpg", "hello world"),
+    new Post("ruthbentov 4", "https://cdn.pixabay.com/photo/2023/01/16/19/13/laptop-7723139_1280.jpg", "hello world"),
+    new Post("ruthbentov 5", "https://cdn.pixabay.com/photo/2023/01/16/19/13/laptop-7723139_1280.jpg", "hello world"),
+    new Post("ruthbentov 6", "https://cdn.pixabay.com/photo/2023/01/16/19/13/laptop-7723139_1280.jpg", "hello world"),
 ];
 postsArray.forEach(function (element) {
     element.renderNewPost();
 });
 var doingLike = function (event) {
+    var elem = event.target;
     var idElem = event.target.parentNode.parentNode.id;
     var LikeNum = event.target.parentNode.querySelector("p");
     LikeNum.innerHTML++;
     updateInObject(idElem);
 };
-var updateInObject = function (idElem) {
+function updateInObject(idElem) {
     var postById = postsArray.find(function (elem) { return elem.id == idElem; });
     try {
         if (!postById)
             throw new Error();
         postById === null || postById === void 0 ? void 0 : postById.addLike();
+        console.log(postById);
     }
     catch (error) {
         console.error(error);
     }
-};
+}

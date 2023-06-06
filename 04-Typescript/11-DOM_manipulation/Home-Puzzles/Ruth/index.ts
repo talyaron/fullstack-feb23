@@ -44,22 +44,32 @@ class Post {
 
 const postsArray: Post[] = [
   new Post(
-    "ruthbentov",
+    "ruthbentov 1",
     "https://cdn.pixabay.com/photo/2023/06/01/06/22/british-shorthair-8032816_1280.jpg",
     "hello world",
   ),
   new Post(
-    "ruthbentov",
+    "ruthbentov 2",
     "https://cdn.pixabay.com/photo/2023/05/01/11/48/bird-7962790_1280.jpg",
     "hello world",
   ),
   new Post(
-    "ruthBentov",
+    "ruthBentov 3",
     "https://cdn.pixabay.com/photo/2023/05/31/18/15/st-stephens-basilica-8031985_1280.jpg",
     "hello world",
   ),
   new Post(
-    "ruthbentov",
+    "ruthbentov 4",
+    "https://cdn.pixabay.com/photo/2023/01/16/19/13/laptop-7723139_1280.jpg",
+    "hello world",
+  ),
+  new Post(
+    "ruthbentov 5",
+    "https://cdn.pixabay.com/photo/2023/01/16/19/13/laptop-7723139_1280.jpg",
+    "hello world",
+  ),
+  new Post(
+    "ruthbentov 6",
     "https://cdn.pixabay.com/photo/2023/01/16/19/13/laptop-7723139_1280.jpg",
     "hello world",
   ),
@@ -70,18 +80,20 @@ postsArray.forEach((element) => {
 });
 
 const doingLike = (event) => {
+  let elem = event.target;
   let idElem: string = event.target.parentNode.parentNode.id;
   let LikeNum = event.target.parentNode.querySelector("p");
   LikeNum.innerHTML++;
   updateInObject(idElem);
 };
 
-const updateInObject = (idElem: string) => {
+function updateInObject(idElem: string) {
   let postById = postsArray.find((elem) => elem.id == idElem);
   try {
     if (!postById) throw new Error();
     postById?.addLike();
+    console.log(postById);
   } catch (error) {
     console.error(error);
   }
-};
+}
