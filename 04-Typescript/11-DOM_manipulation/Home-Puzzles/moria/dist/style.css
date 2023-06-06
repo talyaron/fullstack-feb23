@@ -25,7 +25,6 @@ body .conteiner #div {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  background-color: red;
 }
 body .conteiner #div img {
   background-color: aquamarine;
@@ -39,6 +38,7 @@ body .conteiner #div img {
 body .conteiner .icons {
   display: flex;
   justify-content: space-between;
+  font-size: 18px;
 }
 body .conteiner .home {
   display: flex;
