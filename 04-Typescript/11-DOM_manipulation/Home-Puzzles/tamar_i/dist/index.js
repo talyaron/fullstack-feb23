@@ -20,10 +20,12 @@ var cackArray = [
 //     cackname.innerHTML = cackstoHTML;
 // }
 //2
-var cackname = document.querySelector("#cackname");
-var cackstoHTML = cackArray.map(function (cack) {
+var cack = document.querySelector("#cack");
+var cackstoHTML = "<div class = 'wrapper'>";
+cackstoHTML += cackArray.map(function (cack) {
     return "<p>this cack call " + cack.name + ".</p> <img src=" + cack.imgSrc + ">";
 }).join("");
-if (cackname) {
-    cackname.innerHTML = cackstoHTML;
+cackstoHTML += "</div>";
+if (cack) {
+    cack.innerHTML = cackstoHTML;
 }
