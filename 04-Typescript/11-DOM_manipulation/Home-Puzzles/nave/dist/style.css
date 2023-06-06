@@ -1,0 +1,47 @@
+header {
+  height: 25vh;
+  display: flex;
+  justify-content: space-between;
+  margin: auto;
+  align-items: center;
+  gap: 15px;
+  width: 95vw;
+}
+header .logo {
+  height: 14vh;
+}
+header .profileImgUser {
+  height: 9.5vh;
+  margin-left: 15px;
+}
+header .userName {
+  font-size: 15px;
+  font-weight: 500;
+  font-family: "Assistant", sans-serif;
+}
+header .switch {
+  color: #1877f2;
+  font-size: 15px;
+  font-weight: 500;
+  font-family: "Assistant", sans-serif;
+  background-color: white;
+  border: none;
+}
+header .profileImg {
+  height: 10vh;
+  border-radius: 100px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+header .profileImg .box {
+  width: 400px;
+  height: 200px;
+  max-width: 100%;
+  margin: 1rem auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+header .profileImg .box .border {
+  border: solid 1px black;
+}
