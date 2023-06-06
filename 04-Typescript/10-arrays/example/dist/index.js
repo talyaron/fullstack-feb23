@@ -34,3 +34,5 @@ var elmBiggerThan = ages.find(function (age) { return age > 18; });
 console.log(elmBiggerThan);
 var elemsBigger = ages.filter(function (elm) { return elm > 18; });
 console.log(elemsBigger);
+var multiBiggerThan = ages.filter(function (elm) { return elm > 17; }).map(function (elm) { return elm * 3; });
+console.log(multiBiggerThan);

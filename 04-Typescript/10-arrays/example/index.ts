@@ -48,3 +48,6 @@ console.log(elmBiggerThan);
 
 const elemsBigger = ages.filter((elm) => elm > 18);
 console.log(elemsBigger);
+
+const multiBiggerThan = ages.filter((elm) => elm > 17).map((elm) => elm * 3);
+console.log(multiBiggerThan)

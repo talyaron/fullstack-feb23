@@ -20,3 +20,7 @@ index (optional): The index of the current element being processed.
 array (optional): The array on which the map() method was called.
 thisArg (optional): A value to use as this when executing the callback function.
 The map() method returns a new array containing the results of calling the provided callback function on each element of the original array.
+exc 6
+In the code above, the getEvenNumbers function takes an array of numbers as input and uses the filter method to create a new array containing only the even numbers from the original array. The getRandomNumbersArray function generates an array of random numbers based on the specified length.
+
+The code then creates the numbers array with ten random numbers using the getRandomNumbersArray function and displays it. Next, it calls the getEvenNumbers function with the numbers array as input to obtain the evenNumbers array, which contains only the even numbers. Finally, it logs the original numbers array and the even numbers array to the console.
