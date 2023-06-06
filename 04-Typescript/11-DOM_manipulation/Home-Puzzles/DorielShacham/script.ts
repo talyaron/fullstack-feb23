@@ -30,7 +30,7 @@ selectMoto.addEventListener("change", () => {
   if (!!inputs) inputs.value = selectMoto.value;
 });
 
-if(inputs?.value === "")  inputs.value = "Kawasaki"; 
+if(inputs?.value === "") inputs.value = "Kawasaki"; 
 
 if (button) {
   button.addEventListener("click", () => {
