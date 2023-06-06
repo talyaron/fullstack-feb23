@@ -6,13 +6,13 @@ console.log(colors[1]);
 // Exercise 2: Create an array called "numbers" with five
 // random numbers. Add two more numbers to the end of the array.
 // Print the updated array.
-// const numbers :number[] = [];
-// for(let i = 0; i < 5; i++){
-//     const max :number = Math.floor(Math.random() * 50);
-//     numbers.push(max);
-// }
-// numbers.push(5,20);
-// console.log(numbers)
+var number = [];
+for (var i = 0; i < 5; i++) {
+    var max = Math.floor(Math.random() * 50);
+    number.push(max);
+}
+number.push(5, 20);
+console.log(number);
 // Medium:
 // Exercise 3: Create an array called "fruits" with five
 // different fruit names. Remove the third fruit from the array.
@@ -90,6 +90,21 @@ console.log(getNumber(undefined, 7));
 // 1. Write a JavaScript program that accepts a number
 //    as input and inserts dashes (-) between each even number. For
 //    example if you accept 025468 the output should be 0-254-6-8.
+function insertsDashes(evenNumbers) {
+    var num = evenNumbers.toString();
+    var result = '';
+    for (var i = 0; i < num.length; i++) {
+        var inToNumber = num[i];
+        if (parseInt(inToNumber) % 2 === 0) {
+            result += '-' + inToNumber;
+        }
+        else {
+            result += inToNumber;
+        }
+    }
+    return result;
+}
+console.log(insertsDashes(2678786));
 // 2. Write a JavaScript program to find the most frequent
 //    item in an array.
 //    Sample array : var arr1=[3, 'a', 'a', 'a', 2, 3, 'a', 3, 'a', 2, 4, 9, 3];
