@@ -28,7 +28,7 @@ body .conteiner #div {
 }
 body .conteiner #div .img {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   height: 70px;
   width: 100%;
 }
