@@ -2,7 +2,7 @@ body {
   margin: 0;
 }
 body .conteiner {
-  max-width: 30%;
+  max-width: 25%;
   margin: auto;
 }
 body .conteiner header {
@@ -10,7 +10,7 @@ body .conteiner header {
   justify-content: space-between;
 }
 body .conteiner header img {
-  width: 120%;
+  width: 50%;
   height: 40px;
 }
 body .conteiner header i {
