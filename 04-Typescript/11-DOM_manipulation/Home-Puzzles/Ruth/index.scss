@@ -13,20 +13,23 @@
   height: 100%;
 
   &__logo {
+    height: 20%;
     img {
-      height: 180px;
+      height: 100%;
     }
   }
   &__list {
     height: 80%;
+    position: fixed;
+    bottom: 0;
     ul {
       li {
         display: flex;
         list-style: none;
-        font-size: 25px;
+        font-size: 18px;
         text-align: center;
-        padding: 5%;
-        margin: 4%;
+        padding: 8px;
+        margin: 10px;
 
         p {
           display: flex;
@@ -35,16 +38,29 @@
           padding-left: 10px;
         }
         span {
-          font-size: 40px;
+          font-size: 30px;
         }
         &:hover {
           background-color: rgb(235, 235, 235);
           transition: all 0.5s;
-          span{
+          span {
             font-weight: bold;
           }
         }
       }
     }
+  }
+}
+
+.gallery {
+  width: 100px;
+  height: 900px;
+  position: absolute;
+  right: 0%;
+
+  border: 9px solid rgb(41, 33, 35);
+  background-color: rgb(86, 160, 224);
+  &__imgBox {
+    width: ;
   }
 }
