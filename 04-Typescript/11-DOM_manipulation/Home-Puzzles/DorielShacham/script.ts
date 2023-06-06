@@ -22,21 +22,20 @@ const motorcycles: Motorcycle[] = [
 ];
 
 const main: HTMLElement | null = document.querySelector("body > div.Main");
-const inputs: HTMLInputElement | null = document.querySelector("#Search");
-const button: HTMLElement | null  = document.querySelector(".btnSearch");
+const inputs: HTMLInputElement | null = document.querySelector("#Search") || new HTMLInputElement();
+const button: HTMLButtonElement | null  = document.querySelector(".btnSearch")|| new HTMLButtonElement();
 const selectMoto: HTMLSelectElement = document.querySelector("#motorcycles") || new HTMLSelectElement();
 
 selectMoto.addEventListener("change", () => {
   if (!!inputs) inputs.value = selectMoto.value;
 });
-
-if(inputs?.value === "")  inputs.value = "Kawasaki"; 
+// if(inputs.value ==="" && window.location.search !== "") inputs.value = window.location.search.split("=")[1];
+if(inputs?.value === "") inputs.value = "Kawasaki"; 
 
 if (button) {
   button.addEventListener("click", () => {
     const input = inputs as HTMLInputElement;
     const search = input.value;
-
     // const query = new URL(window.location.href.split("?")[0] +`?q=${search}`);
     const fullURL = window.location.origin + window.location.pathname +`?q=${search}`;  // const newQuery = new RegExp(window.location.href.replace(/(\?.*)?/gm,"")+`?q=${search}`) 
     // console.log(newQuery)
