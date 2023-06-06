@@ -73,6 +73,7 @@ function moviesAfter2010(movies: Movie[]): Movie[] {
     }
     return releasedAfter2010
 }
+
 // console.log("The movie which were released after 2010 is", moviesAfter2010(movies)?.name)
 const after2010 = moviesAfter2010(movies);
 console.log("The movie which were released after 2010 are");
@@ -100,7 +101,6 @@ highRatedMovies.forEach(movies => console.log(movies.name));
 
 //level 2
 //Create a function that gets an array of movies and returns the top score movie.
-
 function topScore(movies) {
     try {
         let topScore = movies[0]
