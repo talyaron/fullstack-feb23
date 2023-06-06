@@ -71,9 +71,15 @@
     </div>
 
     <div class="gallery">
-      <!-- <div class="gallery__imgBox">
-
-      </div> -->
+      <div class="gallery__post">
+        <h3 class="author">${this.author}</h3>
+        <h3 class="author">${this.text}</h3>
+        <img src=${this.imgSrc} alt="">
+        <div class="likesDiv">
+          <span class="material-symbols-outlined">favorite</span>
+          <p>${this.getLikes}</p>
+        </div>
+      </div>
     </div>
 
     <script src="./dist/index.js"></script>
