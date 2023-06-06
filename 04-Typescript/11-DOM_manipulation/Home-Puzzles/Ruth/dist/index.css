@@ -22,8 +22,10 @@
   height: 80%;
   position: fixed;
   bottom: 0;
+  width: 20%;
 }
 .nav__list ul li {
+  width: calc(100% - 36px);
   display: flex;
   list-style: none;
   font-size: 18px;
@@ -39,20 +41,20 @@
 }
 .nav__list ul li span {
   font-size: 30px;
+  transition: all 0.3s;
 }
 .nav__list ul li:hover {
   background-color: #ebebeb;
-  transition: all 0.5s;
 }
 .nav__list ul li:hover span {
   font-weight: bold;
 }
 
 .gallery {
-  width: 60%;
-  height: 90%;
+  width: 100px;
+  height: 90px;
   align-items: center;
-  float: left;
-  border: 1px solid pink;
-  background-color: aliceblue;
+  float: right;
+  border: 1px solid #292123;
+  background-color: #ed98ea;
 }

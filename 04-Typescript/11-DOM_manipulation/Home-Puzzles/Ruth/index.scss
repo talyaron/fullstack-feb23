@@ -22,8 +22,11 @@
     height: 80%;
     position: fixed;
     bottom: 0;
+    width: 20%;
     ul {
+      
       li {
+        width: calc(100% -  36px);
         display: flex;
         list-style: none;
         font-size: 18px;
@@ -39,10 +42,10 @@
         }
         span {
           font-size: 30px;
+          transition: all .3s;
         }
         &:hover {
           background-color: rgb(235, 235, 235);
-          transition: all 0.5s;
           span {
             font-weight: bold;
           }
@@ -55,12 +58,13 @@
 .gallery {
   width: 100px;
   height: 90px;
-  position: fixed;
-  right: 0%;
+  align-items: center;
+ float:right;
 
-  border: 9px solid rgb(41, 33, 35);
-  background-color: rgb(86, 160, 224);
-  &__imgBox {
-    width: ;
-  }
+
+  border: 1px solid rgb(41, 33, 35);
+  background-color: rgb(237, 152, 234);
+  // &__imgBox {
+  //   width:50px ;
+  // }
 }
