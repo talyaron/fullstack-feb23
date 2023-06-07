@@ -4,10 +4,10 @@ console.dir(boxes);
 setInterval(() => {
   boxes.forEach((box) => {
     box.style.backgroundColor = getRandomColor();
-    box.style.position = "relative";
-    box.style.left = getRandomNumber();
+    box.style.position = "absolute";
+    box.style.left = `${getRandomNumber(50)}vw`;
+    box.style.top = `${getRandomNumber(50)}vh`;
   });
-
 }, 1000);
 
 function getRandomColor() {
@@ -19,19 +19,11 @@ function getRandomColor() {
   return color;
 }
 
-function getRandomNumber() {
-  const letters = "123456789";
-  let num = "";
-  for (let i = 0; i < 3; i++) {
-    num += letters[Math.floor(Math.random() * 10)];
-  }
-  return `${num}px`
-  
+function getRandomNumber(max: number): number {
+  return Math.floor(Math.random() * max);
 }
-console.log(getRandomNumber())
-
+console.log(getRandomNumber(100));
 
 // newspaper.addEventListener("click", () => {
 //   newspaper.animate(newspaperSpinning, newspaperTiming);
 // });
-
