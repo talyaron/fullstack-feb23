@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="./dist/index.css" />
     <title>Document</title>
   </head>
-  <body>
+  <body onload="renderPostsFromData()">
     <div class="header">
       <nav class="nav">
         <div class="nav__logo">
@@ -47,7 +47,7 @@
                     </span>
               <p>Notification</p>
             </li>
-            <li>
+            <li class="createPostBtn" onclick="createNewPost()">
                 <span class="material-symbols-outlined">
                     add_box
                     </span>
@@ -71,15 +71,9 @@
     </div>
 
     <div class="gallery">
-      <div class="gallery__post">
-        <h3 class="author">${this.author}</h3>
-        <h3 class="author">${this.text}</h3>
-        <img src=${this.imgSrc} alt="">
-        <div class="likesDiv">
-          <span class="material-symbols-outlined">favorite</span>
-          <p>${this.getLikes}</p>
-        </div>
-      </div>
+      <div class="gallery__right"></div>
+      <div class="gallery__center"></div>
+      <div class="gallery__left"></div>
     </div>
 
     <script src="./dist/index.js"></script>
