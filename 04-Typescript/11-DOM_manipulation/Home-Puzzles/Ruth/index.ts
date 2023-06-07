@@ -151,3 +151,20 @@ function updateInObject(idElem: string) {
     console.error(error);
   }
 }
+
+function createNewPost() {
+  const newUserName = prompt(`Enter your Name:`);
+  const newImgSrc = prompt(`Enter source of image:`);
+  const newText = prompt(`Enter text:`);
+  try {
+    if(newUserName, newImgSrc, newText){
+      const newPost = new Post(newUserName, newImgSrc, newText);
+    else throw new Error("undefine values")
+  } catch (error) {
+    console.error(error);
+    alert(error)
+    
+  }
+
+  }
+}

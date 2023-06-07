@@ -72,3 +72,21 @@ function updateInObject(idElem) {
         console.error(error);
     }
 }
+function createNewPost() {
+    var newUserName = prompt("Enter your Name:");
+    var newImgSrc = prompt("Enter source of image:");
+    var newText = prompt("Enter text:");
+    try {
+        if (newUserName, newImgSrc, newText) {
+            var newPost = new Post(newUserName, newImgSrc, newText);
+            throw new Error("undefine values");
+        }
+        try { }
+        catch (error) {
+            console.error(error);
+            alert(error);
+        }
+    }
+    finally {
+    }
+}
