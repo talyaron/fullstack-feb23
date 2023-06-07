@@ -8,5 +8,5 @@ body {
   height: 100px;
   background-color: teal;
   margin: 5px;
-  animation: rotation 1s infinite linear;
+  animation: rotation 0.5s infinite linear;
 }
