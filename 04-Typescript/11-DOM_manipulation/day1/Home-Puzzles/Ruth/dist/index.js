@@ -1,6 +1,5 @@
 var body = document.body;
 var gallery = document.querySelector(".gallery");
-// alert(`NEW OPTION :  try click create button :)`)
 var Post = /** @class */ (function () {
     function Post(_author, _imgSrc, _text) {
         this.author = _author;
@@ -16,7 +15,7 @@ var Post = /** @class */ (function () {
         return this.likes;
     };
     Post.prototype.NewPostHtml = function (locate) {
-        return "<div class=\"post\" id = \"" + this.id + "\">\n    <div class=\"text\">\n    <p class=\"author\">@" + this.author + "</p>\n    <p class=\"paragraph\">" + this.text + "</p>\n    </div>\n    <img src=" + this.imgSrc + " alt=\"\">\n    <div class=\"likesDiv\">\n      <span onclick=\"doingLike(event)\" class=\"material-symbols-outlined\">favorite</span>\n      <p>" + this.getLikes() + "</p>\n    </div>\n    </div>";
+        return "<div class=\"post\" id = \"" + this.id + "\">\n      <div class=\"text\">\n      <p class=\"author\">@" + this.author + "</p>\n    <p class=\"paragraph\">" + this.text + "</p>\n    </div>\n    <img src=" + this.imgSrc + " alt=\"\">\n    <div class=\"likesDiv\">\n    <span onclick=\"doingLike(event)\" class=\"material-symbols-outlined\">favorite</span>\n    <p>" + this.getLikes() + "</p>\n    </div>\n    </div>";
     };
     Post.prototype.renderNewPost = function (number) {
         var galleryRight = document.querySelector(".gallery__right");
@@ -58,7 +57,7 @@ function renderPostsFromData() {
     });
 }
 function resetGallery() {
-    gallery.innerHTML = "<div class=\"gallery__right\"></div>\n  <div class=\"gallery__center\"></div>\n  <div class=\"gallery__left\"></div>";
+    gallery.innerHTML = "<div class=\"gallery__right\"></div>\n      <div class=\"gallery__center\"></div>\n      <div class=\"gallery__left\"></div>";
 }
 function doingLike(event) {
     var elem = event.target;
@@ -97,3 +96,4 @@ function createNewPost() {
         alert(error + " the post will not render!");
     }
 }
+alert("NEW OPTION :  try click create button :)");
