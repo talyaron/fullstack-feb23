@@ -4,5 +4,3 @@ console.log(index);
 var fruits = ["banana", "apple", "mango", "melon", "watermelon"];
 var sort = fruits.slice(1, 4);
 console.log(sort);
-var cars, _a = void 0;
-"volvo", ;
