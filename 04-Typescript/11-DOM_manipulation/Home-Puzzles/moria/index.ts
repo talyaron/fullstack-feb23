@@ -1,30 +1,29 @@
 class People {
-    name: string;
-    imgg: string;
-    constructor(name: string, imgg: string) {
-        this.name = name;
-        this.imgg = imgg;
-    }
+  name: string;
+  image: string;
+  constructor(name: string, image: string) {
+    this.name = name;
+    this.image = image;
+  }
 }
 
 const people: People[] = [
-    new People("mor", ' <img src="dist/img/images.jpg">'),
-    new People("shir", '<img src="dist/img/הורדה (1).jpg">'),
-    new People("or", ' <img src="dist/img/הורדה.jpg">'),
-    new People("avi", '<img src="dist/img/הורדה (2).jpg">'),
+  new People("mor", "dist/img/images.jpg"),
+  new People("shir", "dist/img/הורדה (1).jpg"),
+  new People("or", "dist/img/הורדה.jpg"),
+  new People("avi", "dist/img/הורדה (2).jpg"),
 ];
 const div = document.querySelector("#div");
 
 let imgDiv: string = `<div class='img'>`;
-imgDiv += people.map((peoplee) => {
-    return `<div class="info">  ${peoplee.imgg}<br>
-    ${peoplee.name
-        }</div>`;
-})
-    .join(" ");
+imgDiv += people
+  .map((peoplee) => {
+    return `<div class="info"><div class='image' style="background-image:url(${peoplee.image})"></div><br>
+    ${peoplee.name}</div>`;
+  })
+  .join(" ");
 imgDiv += `<div>`;
 
-
 if (div) {
-    div.innerHTML = imgDiv;
+  div.innerHTML = imgDiv;
 }
