@@ -1,0 +1,19 @@
+.box1 {
+  width: 50%;
+  height: auto;
+  margin: 0 auto;
+}
+.box1 #cars {
+  background-color: black;
+  width: 100%;
+  margin: 0 auto;
+}
+.box1 #cars img {
+  width: 100%;
+  height: 20%;
+  border-radius: 20;
+}
+.box1 #cars p {
+  text-align: center;
+  color: gold;
+}
