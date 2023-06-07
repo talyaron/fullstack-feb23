@@ -61,6 +61,7 @@ span:hover {
 }
 .nav__list ul li:hover {
   font-variation-settings: "FILL" 100, "wght" 400, "GRAD" 0, "opsz" 48;
+  color: #d2015f;
   background-color: #ebebeb;
 }
 .nav__list ul li:hover span {
