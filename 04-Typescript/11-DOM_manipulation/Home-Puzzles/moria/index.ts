@@ -9,7 +9,7 @@ class People {
 
 const people: People[] = [
     new People("mor", ' <img src="dist/img/images.jpg">'),
-    new People("shir", '  <img src="dist/img/הורדה (1).jpg">'),
+    new People("shir", '<img src="dist/img/הורדה (1).jpg">'),
     new People("or", ' <img src="dist/img/הורדה.jpg">'),
     new People("avi", '<img src="dist/img/הורדה (2).jpg">'),
 ];
@@ -17,7 +17,8 @@ const div = document.querySelector("#div");
 
 let imgDiv: string = `<div class='img'>`;
 imgDiv += people.map((peoplee) => {
-    return `<div class="info">  ${peoplee.imgg} ${peoplee.name
+    return `<div class="info">  ${peoplee.imgg}<br>
+    ${peoplee.name
         }</div>`;
 })
     .join(" ");
