@@ -1,4 +1,5 @@
 var body = document.body;
+var gallery = document.querySelector(".gallery");
 var Post = /** @class */ (function () {
     function Post(_author, _imgSrc, _text) {
         this.author = _author;
@@ -48,11 +49,14 @@ var postsArray = [
     new Post("Lotem4", "https://images.pexels.com/photos/17107350/pexels-photo-17107350.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load", "DAD see ;)"),
     new Post("ruthbentov123456", "https://images.pexels.com/photos/17048927/pexels-photo-17048927/free-photo-of-wood-light-road-dawn.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load", "MORNING"),
 ];
-var i = 0;
-postsArray.forEach(function (element) {
-    element.renderNewPost(i);
-    i++;
-});
+function renderPostsFromData() {
+    var i = 0;
+    gallery.innerHTML = "<div class=\"gallery__right\"></div>\n  <div class=\"gallery__center\"></div>\n  <div class=\"gallery__left\"></div>";
+    postsArray.forEach(function (element) {
+        element.renderNewPost(i);
+        i++;
+    });
+}
 var doingLike = function (event) {
     var elem = event.target;
     var idElem = event.target.parentNode.parentNode.id;
@@ -77,16 +81,15 @@ function createNewPost() {
     var newImgSrc = prompt("Enter source of image:");
     var newText = prompt("Enter text:");
     try {
-        if (newUserName, newImgSrc, newText) {
+        if (newUserName && newImgSrc && newText) {
             var newPost = new Post(newUserName, newImgSrc, newText);
+            newPost.renderNewPost(postsArray.length);
+        }
+        else
             throw new Error("undefine values");
-        }
-        try { }
-        catch (error) {
-            console.error(error);
-            alert(error);
-        }
     }
-    finally {
+    catch (error) {
+        console.error(error);
+        alert(error + " the post will not render!");
     }
 }

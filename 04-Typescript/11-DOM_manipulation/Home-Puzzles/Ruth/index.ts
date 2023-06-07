@@ -1,4 +1,5 @@
 const body = document.body;
+const gallery = document.querySelector(".gallery") as HTMLDivElement;
 
 class Post {
   author: string;
@@ -127,11 +128,16 @@ const postsArray: Post[] = [
   ),
 ];
 
-let i = 0;
-postsArray.forEach((element) => {
-  element.renderNewPost(i);
-  i++;
-});
+function renderPostsFromData() {
+  let i = 0;
+  gallery.innerHTML = `<div class="gallery__right"></div>
+  <div class="gallery__center"></div>
+  <div class="gallery__left"></div>`;
+  postsArray.forEach((element) => {
+    element.renderNewPost(i);
+    i++;
+  });
+}
 
 const doingLike = (event) => {
   let elem = event.target;
@@ -157,14 +163,12 @@ function createNewPost() {
   const newImgSrc = prompt(`Enter source of image:`);
   const newText = prompt(`Enter text:`);
   try {
-    if(newUserName, newImgSrc, newText){
-      const newPost = new Post(newUserName, newImgSrc, newText);
-    else throw new Error("undefine values")
+    if (newUserName && newImgSrc && newText) {
+      const newPost: Post = new Post(newUserName, newImgSrc, newText);
+      newPost.renderNewPost(postsArray.length);
+    } else throw new Error("undefine values");
   } catch (error) {
     console.error(error);
-    alert(error)
-    
-  }
-
+    alert(error + ` the post will not render!`);
   }
 }
