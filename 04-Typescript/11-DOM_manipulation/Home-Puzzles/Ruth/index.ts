@@ -1,6 +1,6 @@
 const body = document.body;
 const gallery = document.querySelector(".gallery") as HTMLDivElement;
-
+// alert(`NEW OPTION :  try click create button :)`)
 class Post {
   author: string;
   imgSrc: string;
@@ -130,22 +130,25 @@ const postsArray: Post[] = [
 
 function renderPostsFromData() {
   let i = 0;
-  gallery.innerHTML = `<div class="gallery__right"></div>
-  <div class="gallery__center"></div>
-  <div class="gallery__left"></div>`;
   postsArray.forEach((element) => {
     element.renderNewPost(i);
     i++;
   });
 }
 
-const doingLike = (event) => {
+function resetGallery() {
+  gallery.innerHTML = `<div class="gallery__right"></div>
+  <div class="gallery__center"></div>
+  <div class="gallery__left"></div>`;
+}
+
+function doingLike(event) {
   let elem = event.target;
   let idElem: string = event.target.parentNode.parentNode.id;
   let LikeNum = event.target.parentNode.querySelector("p");
   LikeNum.innerHTML++;
   updateInObject(idElem);
-};
+}
 
 function updateInObject(idElem: string) {
   let postById = postsArray.find((elem) => elem.id == idElem);
@@ -165,6 +168,7 @@ function createNewPost() {
   try {
     if (newUserName && newImgSrc && newText) {
       const newPost: Post = new Post(newUserName, newImgSrc, newText);
+      postsArray.push(newPost);
       newPost.renderNewPost(postsArray.length);
     } else throw new Error("undefine values");
   } catch (error) {

@@ -1,5 +1,6 @@
 var body = document.body;
 var gallery = document.querySelector(".gallery");
+// alert(`NEW OPTION :  try click create button :)`)
 var Post = /** @class */ (function () {
     function Post(_author, _imgSrc, _text) {
         this.author = _author;
@@ -51,19 +52,21 @@ var postsArray = [
 ];
 function renderPostsFromData() {
     var i = 0;
-    gallery.innerHTML = "<div class=\"gallery__right\"></div>\n  <div class=\"gallery__center\"></div>\n  <div class=\"gallery__left\"></div>";
     postsArray.forEach(function (element) {
         element.renderNewPost(i);
         i++;
     });
 }
-var doingLike = function (event) {
+function resetGallery() {
+    gallery.innerHTML = "<div class=\"gallery__right\"></div>\n  <div class=\"gallery__center\"></div>\n  <div class=\"gallery__left\"></div>";
+}
+function doingLike(event) {
     var elem = event.target;
     var idElem = event.target.parentNode.parentNode.id;
     var LikeNum = event.target.parentNode.querySelector("p");
     LikeNum.innerHTML++;
     updateInObject(idElem);
-};
+}
 function updateInObject(idElem) {
     var postById = postsArray.find(function (elem) { return elem.id == idElem; });
     try {
@@ -83,6 +86,7 @@ function createNewPost() {
     try {
         if (newUserName && newImgSrc && newText) {
             var newPost = new Post(newUserName, newImgSrc, newText);
+            postsArray.push(newPost);
             newPost.renderNewPost(postsArray.length);
         }
         else
