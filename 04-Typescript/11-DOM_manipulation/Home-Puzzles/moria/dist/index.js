@@ -1,20 +1,21 @@
 var People = /** @class */ (function () {
-    function People(name, imgg) {
+    function People(name, image) {
         this.name = name;
-        this.imgg = imgg;
+        this.image = image;
     }
     return People;
 }());
 var people = [
-    new People("mor", ' <img src="dist/img/images.jpg">'),
-    new People("shir", '<img src="dist/img/הורדה (1).jpg">'),
-    new People("or", ' <img src="dist/img/הורדה.jpg">'),
-    new People("avi", '<img src="dist/img/הורדה (2).jpg">'),
+    new People("mor", "dist/img/images.jpg"),
+    new People("shir", "dist/img/הורדה (1).jpg"),
+    new People("or", "dist/img/הורדה.jpg"),
+    new People("avi", "dist/img/הורדה (2).jpg"),
 ];
 var div = document.querySelector("#div");
 var imgDiv = "<div class='img'>";
-imgDiv += people.map(function (peoplee) {
-    return "<div class=\"info\">  " + peoplee.imgg + "<br>\n    " + peoplee.name + "</div>";
+imgDiv += people
+    .map(function (peoplee) {
+    return "<div class=\"info\"><div class='image' style=\"background-image:url(" + peoplee.image + ")\"></div><br>\n    " + peoplee.name + "</div>";
 })
     .join(" ");
 imgDiv += "<div>";
