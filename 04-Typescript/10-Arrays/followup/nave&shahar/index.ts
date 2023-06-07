@@ -7,4 +7,3 @@ console.log(index);
  
  console.log(sort);
  
- const cars [ `volvo`, ]
