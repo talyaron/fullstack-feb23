@@ -1,23 +1,15 @@
-body {
+#friends-container {
   background-color: #f8dab9;
   text-align: center;
-}
-
-#friends-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  
 }
-
-.Friends {
+#friends-container .Friends {
   margin: auto;
   width: 200px;
-  text-align: center;
-
 }
-
-img {
+#friends-container img {
   width: 400px;
   height: auto;
   margin: 0.5rem;

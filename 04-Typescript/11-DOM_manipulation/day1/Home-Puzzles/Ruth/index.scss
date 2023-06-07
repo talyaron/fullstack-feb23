@@ -49,13 +49,12 @@ span:hover {
         padding: 8px;
         margin: 10px;
         cursor: pointer;
-        
-        
+
         p {
           display: flex;
           flex-direction: column;
           justify-content: center;
-          
+
           padding-left: 10px;
         }
         span {
@@ -64,6 +63,7 @@ span:hover {
         }
         &:hover {
           font-variation-settings: "FILL" 100, "wght" 400, "GRAD" 0, "opsz" 48;
+          color: #d2015f;
           background-color: rgb(235, 235, 235);
           span {
             font-weight: bold;
@@ -108,46 +108,46 @@ span:hover {
         filter: brightness(0.6);
       }
     }
-      .text {
-        z-index: 3;
-        width: calc(100% - 10px);
-        background: linear-gradient(
-          rgba(182, 182, 182, 0),
-          rgba(86, 86, 86, 0.868) 80%
-        );
+    .text {
+      z-index: 3;
+      width: calc(100% - 10px);
+      background: linear-gradient(
+        rgba(182, 182, 182, 0),
+        rgba(86, 86, 86, 0.868) 80%
+      );
 
-        position: absolute;
-        bottom: 0;
-        padding: 5px;
-        .author {
-          color: white;
-          font-size: small;
-        }
-        .paragraph {
-          color: white;
-          font-size: x-small;
-        }
-      }
-      .likesDiv {
+      position: absolute;
+      bottom: 0;
+      padding: 5px;
+      .author {
         color: white;
-        width: 100%;
-        display: flex;
-        position: absolute;
-        bottom: 50%;
-        justify-content: center;
-        span {
-          background: radial-gradient(
-            rgba(11, 11, 11, 0.418) 20%,
-            rgba(255, 255, 255, 0) 80%
-          );
-          padding-right: 10px;
-        }
-        span:active {
-          animation: rotate 0.5s 4;
-        }
+        font-size: small;
+      }
+      .paragraph {
+        color: white;
+        font-size: x-small;
+      }
+    }
+    .likesDiv {
+      color: white;
+      width: 100%;
+      display: flex;
+      position: absolute;
+      bottom: 50%;
+      justify-content: center;
+      span {
+        background: radial-gradient(
+          rgba(11, 11, 11, 0.418) 20%,
+          rgba(255, 255, 255, 0) 80%
+        );
+        padding-right: 10px;
+      }
+      span:active {
+        animation: rotate 0.5s 4;
       }
     }
   }
+}
 
 @keyframes rotate {
   0% {
