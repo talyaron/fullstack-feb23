@@ -2,6 +2,7 @@ var User = /** @class */ (function () {
     function User(name, img) {
         this.name = name;
         this.img = img;
+        // this.yearOfBirth = new Date().getFullYear() - age;
     }
     return User;
 }());
@@ -13,8 +14,8 @@ var users = [
 ];
 var content = document.querySelector("#content");
 var usersHTML = users
-    .map(function (car) {
-    return "<div><img src =" + User.img + "><p>User:" + User.name + "</p></div>";
+    .map(function (user) {
+    return "<div class='postImg'><img src =" + user.img + "><p>User:" + user.name + "</p></div>";
 })
     .join(" ");
 console.log(usersHTML);
