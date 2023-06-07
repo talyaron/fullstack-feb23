@@ -32,7 +32,6 @@ header{
         background-color: white;
         border: none;
     }
-    
         .profileImg{
             height: 10vh;
             border-radius: 100px;
@@ -51,10 +50,64 @@ header{
                     border: solid 1px black;
 
                 }
-
-
             }
+        }  
+}
+
+
+
+.sidebar{
+    margin: 0;
+    padding: 0;
+    width: 200px;
+    background-color: #f1f1f1;
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+    display: block;
+    border-left: 1px grey;
+
+}
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding-left: 55px;
+    width: 60px;
+
+
+  } 
+  
+  li a {
+    display: block;
+    background-color: #ffffff;
+    padding-bottom: 25px;
+    font-size: 19px;
+        font-weight: 500;
+        font-family: 'Assistant', sans-serif;
+        text-decoration: none;
+        color: black;
+   
+  }
+  .profileImgUser2{
+    height: 7vh;
+    padding-left: 55px;
+  }
+  .content{
+    margin: auto;
+    width: 40%;
+    margin-top: -20%;
+
+      
+        .posts{
+            display: block;
+        }
+        .post{
+            display: block;
+        }
+        .postImg{
+            height: 35vh;
+            width: 35vw;
+            padding-bottom: 30px;
 
         }
-   
-}
+  }
