@@ -1,0 +1,12 @@
+body {
+  background-color: black;
+}
+
+.box {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background-color: teal;
+  margin: 5px;
+  animation: rotation 0.5s infinite linear;
+}
