@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="./dist/index.css" />
     <title>Document</title>
   </head>
-  <body>
+  <body onload="renderPostsFromData()">
     <div class="header">
       <nav class="nav">
         <div class="nav__logo">
@@ -47,7 +47,7 @@
                     </span>
               <p>Notification</p>
             </li>
-            <li>
+            <li class="createPostBtn" onclick="createNewPost()">
                 <span class="material-symbols-outlined">
                     add_box
                     </span>

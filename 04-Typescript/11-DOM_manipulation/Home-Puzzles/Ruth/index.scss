@@ -12,6 +12,12 @@ body {
   background-color: rgba(237, 237, 237, 0.441);
 }
 
+span:hover {
+  cursor: pointer;
+  user-select: none;
+  font-variation-settings: "FILL" 100, "wght" 400, "GRAD" 0, "opsz" 48;
+}
+
 .nav {
   background-color: white;
   display: flex;
@@ -42,11 +48,14 @@ body {
         text-align: center;
         padding: 8px;
         margin: 10px;
-
+        cursor: pointer;
+        
+        
         p {
           display: flex;
           flex-direction: column;
           justify-content: center;
+          
           padding-left: 10px;
         }
         span {
@@ -54,6 +63,7 @@ body {
           transition: all 0.3s;
         }
         &:hover {
+          font-variation-settings: "FILL" 100, "wght" 400, "GRAD" 0, "opsz" 48;
           background-color: rgb(235, 235, 235);
           span {
             font-weight: bold;
@@ -64,19 +74,13 @@ body {
   }
 }
 
-span:hover {
-  cursor: pointer;
-
-  font-variation-settings: "FILL" 100, "wght" 400, "GRAD" 0, "opsz" 48;
-}
-
 .gallery {
   padding: 4px;
   background-color: white;
   width: 74%;
   height: fit-content;
   margin-top: 50px;
-  margin-right: 2%; ;
+  margin-right: 2%;
   float: right;
   border: 1px solid rgb(219, 219, 219);
   display: flex;
@@ -91,51 +95,59 @@ span:hover {
     width: 100%;
     margin: 5px 0;
     position: relative;
+    &:hover {
+      cursor: pointer;
+    }
     img {
-      width: calc(100% - 0px);
-      // margin: 10px;
+      width: 100%;
+      object-fit: cover;
+      display: block;
+      // height: fit-content;
       z-index: 0;
       &:hover {
         filter: brightness(0.6);
       }
     }
-    .text {
-      z-index: 3;
-      width: calc(100% - 10px);
-      background: linear-gradient(
-        rgba(182, 182, 182, 0),
-        rgba(86, 86, 86, 0.868) 80%
-      );
+      .text {
+        z-index: 3;
+        width: calc(100% - 10px);
+        background: linear-gradient(
+          rgba(182, 182, 182, 0),
+          rgba(86, 86, 86, 0.868) 80%
+        );
 
-      position: absolute;
-      bottom: 0;
-      padding: 5px;
-      .author {
+        position: absolute;
+        bottom: 0;
+        padding: 5px;
+        .author {
+          color: white;
+          font-size: small;
+        }
+        .paragraph {
+          color: white;
+          font-size: x-small;
+        }
+      }
+      .likesDiv {
         color: white;
-        font-size: small;
-      }
-      .paragraph {
-        color: white;
-        font-size: x-small;
-      }
-    }
-    .likesDiv {
-      color: white;
-      background: linear-gradient(rgba(255, 255, 255, 0) , rgba(0, 0, 0, 0.279), rgba(255, 255, 255, 0));
-      width: 100%;
-      display: flex;
-      position: absolute;
-      bottom: 50%;
-      justify-content: center;
-      span {
-        padding-right: 10px;
-      }
-      span:active {
-        animation: rotate 0.5s 4;
+        width: 100%;
+        display: flex;
+        position: absolute;
+        bottom: 50%;
+        justify-content: center;
+        span {
+          background: radial-gradient(
+            rgba(11, 11, 11, 0.418) 20%,
+            rgba(255, 255, 255, 0) 80%
+          );
+          padding-right: 10px;
+        }
+        span:active {
+          animation: rotate 0.5s 4;
+        }
       }
     }
   }
-}
 
 @keyframes rotate {
   0% {
@@ -145,7 +157,7 @@ span:hover {
     transform: rotate(15deg);
   }
   50% {
-    transform: rotate(0deg);
+    transform: rotate(0deg) scale(1.1);
   }
   70% {
     transform: rotate(-15deg);
