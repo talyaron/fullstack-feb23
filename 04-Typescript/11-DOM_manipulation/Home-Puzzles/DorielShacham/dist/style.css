@@ -74,25 +74,37 @@ img {
   z-index: 1;
   position: relative;
   top: 150px;
-  animation-name: moveAnimation;
-  animation-duration: 4s;
+  animation-name: spinAnimation;
+  animation-duration: 2s;
   animation-timing-function: ease-in-out;
   animation-iteration-count: 1;
   animation-direction: alternate;
+  transform-origin: center;
 }
 
-@keyframes moveAnimation {
+@keyframes spinAnimation {
   0% {
-    transform: rotateZ(0deg);
-    right: 0;
+    transform: scale(0.2) rotate(0deg);
   }
-  50% {
-    transform: rotateZ(-40deg);
-    top: 10px;
-    right: -250px;
+  1% {
+    transform: scale(0.3) rotate(36deg);
+  }
+  2% {
+    transform: scale(0.4) rotate(72deg);
+  }
+  3% {
+    transform: scale(0.5) rotate(108deg);
+  }
+  4% {
+    transform: scale(0.6) rotate(144deg);
+  }
+  98% {
+    transform: scale(0.7) rotate(3456deg);
+  }
+  99% {
+    transform: scale(0.9) rotate(3492deg);
   }
   100% {
-    transform: rotateZ(0deg);
-    right: 0;
+    transform: scale(1) rotate(0deg);
   }
 }

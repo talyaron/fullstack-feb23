@@ -1,29 +1,25 @@
 body {
-    position: absolute;
-  }
-
-.conteiner{
-    width: 1000px;
-    height: 700px;
-    background-color: blue;
-    display: grid;
-    align-items: center;
-    grid-template-rows: 1fr 1fr;
-    padding: 17px;
-
-
-    grid-template-areas:
-        "first-row"
-        "secend-row";
-      
-
+  position: absolute;
 }
 
-p{
-    background-color: yellow;
+.wrapper {
+  width: 1000px;
+  height: 700px;
+  background-color: blue;
+  display: grid;
+  align-items: center;
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
+  padding: 17px;
+
+    // grid-template-areas:
 }
 
-img{
-    height: 40%;
-    width: 20%;
+p {
+  background-color: yellow;
+}
+
+img {
+  height: 40%;
+  width: 20%;
 }

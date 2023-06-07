@@ -27,16 +27,20 @@ class Student {
 const students: Student[] = [
   new Student("Itizk", 2000),
   new Student("Sara", 2004),
-  new Student("Nave",1998),
-  new Student("Alex",1991),
+  new Student("Nave", 1998),
+  new Student("Alex", 1991),
 ];
 
 const root = document.querySelector("#root");
-const studntsHTML = students
+let studntsHTML = `<div class='wrapper'>`;
+studntsHTML += students
   .map((student) => {
-    return `<p>${student.name}, age: ${student.getAge()}</p>`;
+    return `<p class="myParagraph">${student.name
+      }, age: ${student.getAge()}</p>`;
   })
   .join(" ");
+
+studntsHTML += `</div>`;
 
 console.log(studntsHTML);
 if (root) {

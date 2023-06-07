@@ -29,7 +29,7 @@ var cars = [
 var root = document.querySelector("#root");
 var carsHTML = cars
     .map(function (car) {
-    return "<div><img src =" + car.imgSrc + "><p>Company:" + car.company + ", Model:" + car.model + ", Year:" + car.year + ", Color:" + car.color + ", Price:" + car.price + "</p></div>";
+    return "<div><img src =" + car.imgSrc + "><p>" + car.company + " " + car.model + "," + car.year + "<br>Color: " + car.color + "<br>Price: " + car.price + "$</p></div>";
 })
     .join(" ");
 console.log(carsHTML);
