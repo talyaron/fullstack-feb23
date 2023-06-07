@@ -5,7 +5,7 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background-color: black;
+  background-color: #222;
 }
 body h2 {
   display: flex;
@@ -20,7 +20,6 @@ body h2 {
 #userInput {
   width: 50%;
   height: 100px;
-  border: 3px solid darkred;
   font-size: 30px;
   text-align: center;
   margin-bottom: 20px;
@@ -40,6 +39,10 @@ body h2 {
   border-radius: 12px;
   width: 50%;
   height: 600px;
-  border: 3px solid darkred;
-  z-index: 2;
+  z-index: 1;
+  padding: 1rem;
+  color: white;
+  border-width: 5px;
+  border-style: solid;
+  border-image: linear-gradient(to bottom, red, rgba(255, 183, 2, 0.33)) 1 100%;
 }

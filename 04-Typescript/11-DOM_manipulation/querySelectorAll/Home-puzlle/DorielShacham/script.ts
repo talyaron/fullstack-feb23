@@ -2,10 +2,12 @@
 const imgInput: HTMLInputElement = document.querySelector("#userInput") as HTMLInputElement;
 const imgContainer: HTMLImageElement = document.querySelector("#portrait") as HTMLImageElement;
 
+if(imgInput.value === "") {
+    imgInput.placeholder = "Enter a URL";
+}
+
 function printImg(): void {
   imgContainer.src = imgInput.value;
 }
 
 imgInput.addEventListener("input", printImg);
-
-
