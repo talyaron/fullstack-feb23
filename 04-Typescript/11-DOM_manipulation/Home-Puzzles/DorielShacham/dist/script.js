@@ -17,13 +17,14 @@ var motorcycles = [
     new Motorcycle("Royal Enfield", 40000, "https://www.motorcyclesdirect.co.uk/upload/images/--2023%20Royal%20Enfield/Thunder/Rocker%20Red.png"),
 ];
 var main = document.querySelector("body > div.Main");
-var inputs = document.querySelector("#Search");
-var button = document.querySelector(".btnSearch");
+var inputs = document.querySelector("#Search") || new HTMLInputElement();
+var button = document.querySelector(".btnSearch") || new HTMLButtonElement();
 var selectMoto = document.querySelector("#motorcycles") || new HTMLSelectElement();
 selectMoto.addEventListener("change", function () {
     if (!!inputs)
         inputs.value = selectMoto.value;
 });
+// if(inputs.value ==="" && window.location.search !== "") inputs.value = window.location.search.split("=")[1];
 if ((inputs === null || inputs === void 0 ? void 0 : inputs.value) === "")
     inputs.value = "Kawasaki";
 if (button) {
