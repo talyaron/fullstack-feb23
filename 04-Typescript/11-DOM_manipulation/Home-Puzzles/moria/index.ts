@@ -18,7 +18,7 @@ const div = document.querySelector("#div");
 let imgDiv: string = `<div class='img'>`;
 imgDiv += people
   .map((peoplee) => {
-    return `<div class="info"><div class='image' style="background-image:url(${peoplee.image})"></div><br>
+    return `<div class="info"><img src="${peoplee.image}"><br>
     ${peoplee.name}</div>`;
   })
   .join(" ");
