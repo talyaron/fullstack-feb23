@@ -1,2 +1,2 @@
 var array = ["Blue", "Red", "Yellow", "Brown"];
-console.log(array.includes('Red'));
+console.log(array[1]);
