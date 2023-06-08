@@ -13,8 +13,3 @@ function getRandomColor() {
     }
     return color;
 }
-function moveElmRand(box) {
-    box.style.position = 'absolute';
-    box.style.top = Math.floor(Math.random() * 90 + 5) + '%';
-    box.style.left = Math.floor(Math.random() * 90 + 5) + '%';
-}
