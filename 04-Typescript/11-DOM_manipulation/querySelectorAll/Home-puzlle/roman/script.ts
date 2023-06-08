@@ -11,14 +11,14 @@ class Images {
     // imgUrl.push(this);
 }
 
-const imgUrl = [];
+const imgUrl:Array<any> = [];
 function getUrl(){
     for (let i = 0; i < 5; i++) {
         const url = prompt("Enter image link");
-        imgUrl.push(url);
+         imgUrl.push(url);
 
     }
-
+    return imgUrl;
 }
 getUrl();
 

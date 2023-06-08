@@ -13,6 +13,7 @@ function getUrl() {
         var url = prompt("Enter image link");
         imgUrl.push(url);
     }
+    return imgUrl;
 }
 getUrl();
 console.dir(imgUrl);
