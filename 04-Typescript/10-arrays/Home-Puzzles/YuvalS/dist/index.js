@@ -20,5 +20,5 @@ var matrix = [[5, 5, 5, 5], [4, 4, 4, 4], [3, 3, 3, 3]];
 var a = matrix[0];
 var b = matrix[1];
 var result = 0;
-matrix.reduce(function (a, b) { return a + b; }, result);
-console.log(matrix);
+var newMatrix = matrix.flat().reduce(function (a, b) { return a + b; }, result);
+console.log(newMatrix);
