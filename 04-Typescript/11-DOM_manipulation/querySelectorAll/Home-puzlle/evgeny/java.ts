@@ -22,7 +22,7 @@ class pictureArray{
         <img src="${this.picUrl}" class="pictureadded" alt=""> 
         <p>picture number:${this.picNum}</p>
 
-                                </div>`
+        </div>`
     }
 }
 

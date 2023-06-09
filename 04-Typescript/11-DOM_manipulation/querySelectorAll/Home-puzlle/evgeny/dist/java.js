@@ -10,7 +10,7 @@ var pictureArray = /** @class */ (function () {
     }
     ;
     pictureArray.prototype.addToDOM = function () {
-        return pictures.innerHTML += "<div class=\"picture\">\n\n        <img src=\"" + this.picUrl + "\" class=\"pictureadded\" alt=\"\"> \n        <p>picture number:" + this.picNum + "</p>\n\n                                </div>";
+        return pictures.innerHTML += "<div class=\"picture\">\n\n        <img src=\"" + this.picUrl + "\" class=\"pictureadded\" alt=\"\"> \n        <p>picture number:" + this.picNum + "</p>\n\n        </div>";
     };
     return pictureArray;
 }());
