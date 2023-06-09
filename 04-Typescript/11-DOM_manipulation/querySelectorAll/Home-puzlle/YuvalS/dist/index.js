@@ -2,11 +2,11 @@
 // const container1 = document.querySelector("#container1");
 // const imgHTML = `<img src="${imgUrl}" />`;
 // if (imgUrl && container1) container1.innerHTML = imgHTML;
-var imgUrl1 = prompt("Insert url pls");
-var imgUrl2 = prompt("Insert url pls");
-var imgUrl3 = prompt("Insert url pls");
-var imgUrl4 = prompt("Insert url pls");
-var imgUrl5 = prompt("Insert url pls");
+var imgUrl1 = prompt("Insert first url pls");
+var imgUrl2 = prompt("Insert second url pls");
+var imgUrl3 = prompt("Insert third url pls");
+var imgUrl4 = prompt("Insert fourth url pls");
+var imgUrl5 = prompt("Insert fifth url pls");
 var Imgs = /** @class */ (function () {
     function Imgs(image) {
         this.image = image;

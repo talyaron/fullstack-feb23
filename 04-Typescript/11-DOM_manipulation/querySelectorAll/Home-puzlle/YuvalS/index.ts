@@ -3,11 +3,11 @@
 // const imgHTML = `<img src="${imgUrl}" />`;
 // if (imgUrl && container1) container1.innerHTML = imgHTML;
 
-const imgUrl1: string|null = prompt("Insert url pls");
-const imgUrl2: string|null = prompt("Insert url pls");
-const imgUrl3: string|null = prompt("Insert url pls");
-const imgUrl4: string|null = prompt("Insert url pls");
-const imgUrl5: string|null = prompt("Insert url pls");
+const imgUrl1: string|null = prompt("Insert first url pls");
+const imgUrl2: string|null = prompt("Insert second url pls");
+const imgUrl3: string|null = prompt("Insert third url pls");
+const imgUrl4: string|null = prompt("Insert fourth url pls");
+const imgUrl5: string|null = prompt("Insert fifth url pls");
 
 
 class Imgs{
