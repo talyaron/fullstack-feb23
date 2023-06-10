@@ -1,0 +1,14 @@
+.wapper {
+  width: 900px;
+  height: 900px;
+  margin: auto;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: row;
+}
+
+.box {
+  width: 150px;
+  height: 150px;
+  margin: 25px;
+}
