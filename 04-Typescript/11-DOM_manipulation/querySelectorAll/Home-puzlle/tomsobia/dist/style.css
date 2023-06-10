@@ -1,0 +1,14 @@
+.box {
+  background-color: purple;
+  margin: 0 auto;
+  width: 80%;
+  height: auto;
+}
+.box .p {
+  color: gold;
+  font-size: larger;
+}
+.box img {
+  width: 20%;
+  height: 50%;
+}
