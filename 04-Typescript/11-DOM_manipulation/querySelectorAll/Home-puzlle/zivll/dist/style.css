@@ -1,10 +1,15 @@
 .images {
   display: flex;
-  width: 60vw;
+  width: 100vw;
   gap: 2rem;
+  justify-content: center;
 }
 
 img {
-  max-width: 40%;
+  max-width: 80%;
   height: auto;
+}
+
+p {
+  text-align: center;
 }
