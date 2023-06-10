@@ -20,8 +20,8 @@ var ImageSToShow = /** @class */ (function () {
     ImageSToShow.prototype.setBackroundImgNox = function () {
         var _this = this;
         for (var i_1 = 0; i_1 < 5; i_1++) {
-            debugger;
-            var promptLink = prompt("enter image link");
+            ;
+            var promptLink = prompt("enter image link " + (i_1 + 1) + "/5");
             if (promptLink) {
                 var image = new ImageToShow(promptLink);
                 imageSToShow.newLink(image);

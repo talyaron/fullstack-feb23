@@ -22,9 +22,8 @@ class ImageToShow{
     setBackroundImgNox(){
       
         for (let i = 0; i<5; i++)
-        { 
-            debugger;
-            const promptLink: string | null= prompt("enter image link");
+        { ;
+            const promptLink: string | null= prompt(`enter image link ${i+1}/5`);
             if(promptLink)
             {
                 const image=new ImageToShow(promptLink);
