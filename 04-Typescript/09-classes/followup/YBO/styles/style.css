@@ -1,7 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+
 * {
   -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
   text-align: center;
   margin: 0;
   padding: 0;
@@ -20,14 +21,14 @@ body {
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   height: 100vh;
   overflow: hidden;
   margin: 0;
@@ -39,11 +40,11 @@ body .message-box {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   height: calc(min(8vw, 8vh));
   padding: calc(min(1vw, 1vh));
   font-size: 1.8em;
@@ -62,7 +63,7 @@ body .message-box-check {
 body .message-box-checkmate {
   color: #9c40f1;
   -webkit-text-decoration: wavy underline 4px #9c40f1;
-          text-decoration: wavy underline 4px #9c40f1;
+  text-decoration: wavy underline 4px #9c40f1;
   text-underline-offset: 10px;
 }
 
@@ -71,15 +72,15 @@ body .board-container {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   width: 100%;
   height: 90%;
   -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+  flex-wrap: wrap;
   width: calc(min(80vw, 80vh));
   height: calc(min(80vw, 80vh));
   border: calc(0.08 * calc(min(80vw, 80vh))) outset brown;
@@ -93,11 +94,11 @@ body .board-container tr {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   width: 100%;
   height: 12.5%;
 }
@@ -107,11 +108,11 @@ body .board-container tr td {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   background-color: blanchedalmond;
   width: 12.5%;
   height: 100%;
@@ -140,12 +141,12 @@ body .board-container tr td:nth-of-type(2n).selected-tile {
 
 body .board-container tr td:nth-of-type(2n).possible-move {
   -webkit-box-shadow: 0px 10px 10px -10px #000000, inset 0px 0px 50px 0px mediumslateblue;
-          box-shadow: 0px 10px 10px -10px #000000, inset 0px 0px 50px 0px mediumslateblue;
+  box-shadow: 0px 10px 10px -10px #000000, inset 0px 0px 50px 0px mediumslateblue;
 }
 
 body .board-container tr td:nth-of-type(2n).threatend {
   -webkit-box-shadow: 0px 10px 10px -10px #000000, inset 0px 0px 50px 0px crimson;
-          box-shadow: 0px 10px 10px -10px #000000, inset 0px 0px 50px 0px crimson;
+  box-shadow: 0px 10px 10px -10px #000000, inset 0px 0px 50px 0px crimson;
 }
 
 body .board-container tr td.selected-tile {
@@ -154,12 +155,12 @@ body .board-container tr td.selected-tile {
 
 body .board-container tr td.possible-move {
   -webkit-box-shadow: 0px 10px 10px -10px #000000, inset 0px 0px 50px 0px mediumslateblue;
-          box-shadow: 0px 10px 10px -10px #000000, inset 0px 0px 50px 0px mediumslateblue;
+  box-shadow: 0px 10px 10px -10px #000000, inset 0px 0px 50px 0px mediumslateblue;
 }
 
 body .board-container tr td.threatend {
   -webkit-box-shadow: 0px 10px 10px -10px #000000, inset 0px 0px 50px 0px crimson;
-          box-shadow: 0px 10px 10px -10px #000000, inset 0px 0px 50px 0px crimson;
+  box-shadow: 0px 10px 10px -10px #000000, inset 0px 0px 50px 0px crimson;
 }
 
 body .board-container tr:nth-of-type(2n) td {
@@ -178,12 +179,12 @@ body .board-container tr:nth-of-type(2n) td:nth-of-type(2n).selected-tile {
 
 body .board-container tr:nth-of-type(2n) td:nth-of-type(2n).possible-move {
   -webkit-box-shadow: 0px 10px 10px -10px #000000, inset 0px 0px 50px 0px mediumslateblue;
-          box-shadow: 0px 10px 10px -10px #000000, inset 0px 0px 50px 0px mediumslateblue;
+  box-shadow: 0px 10px 10px -10px #000000, inset 0px 0px 50px 0px mediumslateblue;
 }
 
 body .board-container tr:nth-of-type(2n) td:nth-of-type(2n).threatend {
   -webkit-box-shadow: 0px 10px 10px -10px #000000, inset 0px 0px 50px 0px crimson;
-          box-shadow: 0px 10px 10px -10px #000000, inset 0px 0px 50px 0px crimson;
+  box-shadow: 0px 10px 10px -10px #000000, inset 0px 0px 50px 0px crimson;
 }
 
 body .board-container tr:nth-of-type(2n) td img {
@@ -203,11 +204,12 @@ body .board-container tr:nth-of-type(2n) td.selected-tile {
 
 body .board-container tr:nth-of-type(2n) td.possible-move {
   -webkit-box-shadow: 0px 10px 10px -10px #000000, inset 0px 0px 50px 0px mediumslateblue;
-          box-shadow: 0px 10px 10px -10px #000000, inset 0px 0px 50px 0px mediumslateblue;
+  box-shadow: 0px 10px 10px -10px #000000, inset 0px 0px 50px 0px mediumslateblue;
 }
 
 body .board-container tr:nth-of-type(2n) td.threatend {
   -webkit-box-shadow: 0px 10px 10px -10px #000000, inset 0px 0px 50px 0px crimson;
-          box-shadow: 0px 10px 10px -10px #000000, inset 0px 0px 50px 0px crimson;
+  box-shadow: 0px 10px 10px -10px #000000, inset 0px 0px 50px 0px crimson;
 }
+
 /*# sourceMappingURL=style.css.map */
