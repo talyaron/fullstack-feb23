@@ -38,7 +38,7 @@ const image: string[] = [];
 
 function enterurl() {
     for (let i = 0; i < 5; i++) {
-        const url = prompt("Please write your URL ");
+        const url: string = prompt("Please write your URL ")!;
         image.push(url);
     }
     return image;
