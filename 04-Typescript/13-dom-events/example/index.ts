@@ -1,7 +1,7 @@
 const boxes = document.querySelectorAll(".box");
 const box = document.querySelector("#box");
 
-box?.addEventListener("click",(ev:any)=>{
+box.addEventListener("click",(ev:any)=>{
     ev.target.style.backgroundColor = getRandomColor();
 })
 
