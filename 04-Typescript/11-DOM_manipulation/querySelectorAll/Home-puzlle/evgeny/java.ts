@@ -8,7 +8,7 @@
 
 const input:any=document.querySelector(".input")
 const pictures:any=document.querySelector(".pictures")
-let arrayOfPic:pictureArray[]=[]
+const arrayOfPic:pictureArray[]=[]
 let count=1
 
 
