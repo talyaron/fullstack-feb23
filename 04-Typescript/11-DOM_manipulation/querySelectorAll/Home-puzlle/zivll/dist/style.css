@@ -8,8 +8,13 @@
 img {
   max-width: 80%;
   height: auto;
+  margin: 1%;
 }
 
 p {
+  text-align: center;
+}
+
+#imageContainer {
   text-align: center;
 }

@@ -45,12 +45,12 @@ function getFiveImgs() {
     const newArrayImgs: any[] = [];
 
     try {
-        for (let i = 1; i <= 2; i++) {
+        for (let i = 1; i <= 5; i++) {
             // get 5 image url from the user.
             const ImgURL5 = prompt(`Entere the ${i} of 5`);
             newArrayImgs.push(ImgURL5)
             console.log(newArrayImgs)
-            
+
         }
         return newArrayImgs
     } catch (error) {
@@ -62,12 +62,12 @@ const imgs = getFiveImgs();
 //print to the DOM
 renderImges(imgs);
 
-function renderImges(imgs:any[]|undefined) {
+function renderImges(imgs: any[] | undefined) {
     if (imgs) {
         const imgsHTML = imgs.map(imgUrl => `<img src="${imgUrl}">`).join(" ");
         console.log(imgsHTML)
         const imgArray = document.querySelector("#imgArray");
-        if(imgArray){
+        if (imgArray) {
             imgArray.innerHTML = imgsHTML;
         }
     }
