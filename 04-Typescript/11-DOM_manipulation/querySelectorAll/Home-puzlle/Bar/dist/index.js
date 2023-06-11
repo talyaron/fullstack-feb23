@@ -33,7 +33,7 @@ function getFiveImgs() {
     var imgArray = document.querySelector("#imgArray");
     var newArrayImgs = [];
     try {
-        for (var i = 1; i <= 2; i++) {
+        for (var i = 1; i <= 5; i++) {
             // get 5 image url from the user.
             var ImgURL5 = prompt("Entere the " + i + " of 5");
             newArrayImgs.push(ImgURL5);
