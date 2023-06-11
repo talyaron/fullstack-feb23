@@ -1,24 +1,5 @@
 // idea: discount from by copun code.
 // give spefic for copun spesific discount ("hapolim (5%)", "leumi (7%)", "mizrachi (3%)")
-//VIEW
-//enter copun
-//MODEL
-//copun
-var Copun = /** @class */ (function () {
-    function Copun(name, discount) {
-        this.discount = discount;
-        this.name = name;
-    }
-    Copun.prototype.getStaffDisount = function (staffDiscount) {
-        //
-    };
-    return Copun;
-}());
-var copuns = [];
-copuns.push(new Copun("Leumi", 5));
-copuns.push(new Copun("Mizrachi", 3));
-copuns.push(new Copun("Poalim", 7));
-console.log(copuns);
 function discountCalculator(copunCode, sum) {
     try {
         // calculate accourding to copun

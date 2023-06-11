@@ -1,33 +1,34 @@
 // idea: discount from by copun code.
 // give spefic for copun spesific discount ("hapolim (5%)", "leumi (7%)", "mizrachi (3%)")
 
-
 //VIEW
 //enter copun
 
 //MODEL
 //copun
-class Copun{
-  discount:number;
-  name:string;
-  constructor( name:string,discount:number){
+class CopunNew {
+  discount: number;
+  name: string;
+  constructor(name: string, discount: number) {
     this.discount = discount;
-    this.name = name
+    this.name = name;
   }
-  getStaffDisount(staffDiscount:number){
-    //
+  // getStaffDisount(staffDiscount: number) {
+  //   //
+  // }
+
+  getLowerCasesCopunNew(){
+    return this.name.toLowerCase();
   }
 }
 
-const copuns:Copun[]=[];
-copuns.push(new Copun("Leumi",5));
-copuns.push(new Copun("Mizrachi",3));
-copuns.push(new Copun("Poalim",7));
+const CopunNews: CopunNew[] = [];
+CopunNews.push(new CopunNew("Leumi", 5));
+CopunNews.push(new CopunNew("Mizrachi", 3));
+CopunNews.push(new CopunNew("Poalim", 7));
+CopunNews.push(new CopunNew("binleumi", 12));
 
-
-console.log(copuns);
-
-
+console.log(CopunNews);
 
 //CONTROLER
 //input text (copun code), original price.
@@ -37,29 +38,25 @@ interface DiscountCalculator {
   discount: string;
 }
 
-function discountCalculator(
-  copunCode: string,
-  sum: number
-): DiscountCalculator | false {
+function discountCalculator(copunCode: string, sum: number, copuns: CopunNew[]) {
   try {
     // calculate accourding to copun
-  
-    switch (copunCode) {
-      case "leumi":
-        return { price: sum * (1 - 0.07), discount: "7%" };
-      case "hapolim":
-        return { price: sum * (1 - 0.05), discount: "5%" };
-      case "mizrachi":
-        return { price: sum * (1 - 0.03), discount: "3%" };
-      default:
-        return { price: sum, discount: "0%" };
-    }
-    //?
-    //return sum after discount, and discount percentage
+
+    //find copun
+    const copun = copuns.find((copun) => copun.getLowerCasesCopunNew() === copunCode.toLowerCase());
+    
+     //return sum after discount, and discount percentage
+    if(!copun || !copun.discount){
+      return { price: sum, discount: "0%" };
+    } 
+
+    return { price: sum * (1 - copun.discount*.01), discount: `${copun.discount}%` };
+   
+   
   } catch (error) {
     console.error(error);
     return false;
   }
 }
 
-console.log(discountCalculator("mizrachi4", 100));
+console.log(discountCalculator("binleumi", 100, CopunNews));

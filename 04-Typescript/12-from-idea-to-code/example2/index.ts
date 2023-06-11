@@ -5,27 +5,6 @@
 //VIEW
 //enter copun
 
-//MODEL
-//copun
-class Copun{
-  discount:number;
-  name:string;
-  constructor( name:string,discount:number){
-    this.discount = discount;
-    this.name = name
-  }
-  getStaffDisount(staffDiscount:number){
-    //
-  }
-}
-
-const copuns:Copun[]=[];
-copuns.push(new Copun("Leumi",5));
-copuns.push(new Copun("Mizrachi",3));
-copuns.push(new Copun("Poalim",7));
-
-
-console.log(copuns);
 
 
 
