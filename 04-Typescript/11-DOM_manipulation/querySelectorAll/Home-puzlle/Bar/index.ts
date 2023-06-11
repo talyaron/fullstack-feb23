@@ -54,9 +54,9 @@ function getFiveImgs() {
 }
 //we got 5 urls
 const imgs = getFiveImgs();
+
 //print to the DOM
 renderImges(imgs);
-
 function renderImges(imgs: string[] | undefined) {
     if (imgs) {
         const imgsHTML = imgs.map(imgUrl => `<img src="${imgUrl}">`).join(" ");
@@ -69,7 +69,17 @@ function renderImges(imgs: string[] | undefined) {
 }
 
 
-
 // 3) do task number 2. Store items using array of a class.
 // create a method for rendering an image to the dom.
 // render all of them to the DOM.
+
+// class NewArrayImgs {
+//     img_Url: string;
+//     constructor(img_Url: string,) {
+//         this.img_Url = img_Url
+//     }
+// }
+// const newArrayImgs: any[] = [
+//     new NewArrayImgs(`${imgUrl}`)
+// ];
+// console.log(newArrayImgs)
