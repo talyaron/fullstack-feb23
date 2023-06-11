@@ -1,8 +1,8 @@
 class User {
-    ImgName: string|null
-    Img: string|null
+    ImgName: string | null
+    Img: string | null
 
-    constructor(ImgName:string|null, Img: string|null) {
+    constructor(ImgName: string | null, Img: string | null) {
         this.ImgName = ImgName;
         this.Img = Img;
     }
@@ -27,11 +27,11 @@ const fifthUser = new User(fifthImgName, fifthImgUrl);
 
 const div = document.getElementById("box1");
 
-div.innerHTML += `<p>First User: ${firstUser.ImgName}<br>, <img src="${firstUser.Img}"></img></p><hr>`;
-div.innerHTML += `<p>Second User: ${secondUser.ImgName}<br>, <img src="${firstUser.Img}"></img></p><hr>`;
-div.innerHTML += `<p>Third User: ${thirdUser.ImgName}<br>, <img src="${firstUser.Img}"></img></p><hr>`;
-div.innerHTML += `<p>Fourth User: ${fourthUser.ImgName}<br>,<img src="${firstUser.Img}"></img></p><hr>`;
-div.innerHTML += `<p>Fifth User: ${fifthUser.ImgName}<br>, <img src="${firstUser.Img}"></img></p><hr>`;
+div.innerHTML += `<p>First User: ${firstUser.ImgName}<br> <img src="${firstUser.Img}"></img></p><hr>`;
+div.innerHTML += `<p>Second User: ${secondUser.ImgName}<br> <img src="${firstUser.Img}"></img></p><hr>`;
+div.innerHTML += `<p>Third User: ${thirdUser.ImgName}<br> <img src="${firstUser.Img}"></img></p><hr>`;
+div.innerHTML += `<p>Fourth User: ${fourthUser.ImgName}<br> <img src="${firstUser.Img}"></img></p><hr>`;
+div.innerHTML += `<p>Fifth User: ${fifthUser.ImgName}<br> <img src="${firstUser.Img}"></img></p><hr>`;
 
 
 
