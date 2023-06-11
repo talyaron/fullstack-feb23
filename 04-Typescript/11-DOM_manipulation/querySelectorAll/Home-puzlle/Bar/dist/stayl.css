@@ -6,41 +6,51 @@ body {
   position: relative;
   top: 10vh;
   background-color: aliceblue;
-  width: 20vw;
-  height: 65vh;
+  width: 380px;
+  height: 70vh;
   margin: auto;
   border-radius: 30px;
+  border: 2px solid #e45ae4;
 }
-.wrapper .imgURL {
+.wrapper .imgPROFAIL {
   position: relative;
   background: #833ab4;
   background: linear-gradient(90deg, #833ab4 0%, #fd1d1d 50%, #fcb045 100%);
   top: 6vh;
-  left: 14vw;
-  width: 150px;
-  height: 150px;
+  left: 15em;
+  width: 7em;
+  height: 12vh;
   border-radius: 50%;
 }
-.wrapper .imgURL img {
+.wrapper .imgPROFAIL img {
   position: relative;
-  top: 10px;
-  left: 10px;
-  width: 130px;
-  height: 130px;
+  top: 0.3em;
+  left: 1vh;
+  width: 6em;
+  height: 11vh;
   border-radius: 50%;
+}
+.wrapper .folowers {
+  position: relative;
+  width: 4em;
+  top: -5vh;
+  left: 4em;
+}
+.wrapper .folowers p {
+  font-size: large;
 }
 .wrapper .imgArray {
   position: relative;
   display: flex;
-  width: 20vw;
+  width: 380px;
   height: 30vh;
   flex-wrap: wrap;
-  gap: 5px;
+  justify-content: end;
+  gap: 2px;
   margin: auto;
-  top: 25vh;
+  top: 18vh;
 }
 .wrapper .imgArray img {
-  width: 225px;
-  height: 225px;
-  margin: auto;
+  width: 125px;
+  height: 14vh;
 }

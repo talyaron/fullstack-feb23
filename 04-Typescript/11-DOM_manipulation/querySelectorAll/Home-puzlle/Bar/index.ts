@@ -13,16 +13,15 @@
 // }
 
 
-
 function getImgUrlUser() {
     // debugger
     try {
         const getImgUrl: string | null = prompt("Enter image Url")
 
-        const imgURL: HTMLDivElement | null = document.querySelector("#imgURL")
+        const imgPROFAIL: HTMLDivElement | null = document.querySelector("#imgPROFAIL")
 
-        if (imgURL && getImgUrl) {
-            imgURL.innerHTML = `<img src= "${getImgUrl}"/>`
+        if (imgPROFAIL && getImgUrl) {
+            imgPROFAIL.innerHTML = `<img src= "${getImgUrl}"/>`
         }
     } catch (error) {
         console.error(error)
@@ -30,6 +29,18 @@ function getImgUrlUser() {
 }
 getImgUrlUser();
 
+//get number of folowers from the yuser
+function getFolowers() {
+    const getFolowersFrom_User = prompt("How many followers do you have?")
+    const folowers = document.querySelector(`#folowers`)
+    try {
+        if (folowers && getFolowersFrom_User)
+            folowers.innerHTML = `<p>folowers ${getFolowersFrom_User} </p>`
+    } catch (error) {
+        console.error(error)
+    }
+}
+getFolowers()
 
 // 2) get five image URLs from the user and print five images on the DOM.
 

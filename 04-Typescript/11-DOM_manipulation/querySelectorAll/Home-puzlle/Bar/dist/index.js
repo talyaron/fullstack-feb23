@@ -12,9 +12,9 @@ function getImgUrlUser() {
     // debugger
     try {
         var getImgUrl = prompt("Enter image Url");
-        var imgURL = document.querySelector("#imgURL");
-        if (imgURL && getImgUrl) {
-            imgURL.innerHTML = "<img src= \"" + getImgUrl + "\"/>";
+        var imgPROFAIL = document.querySelector("#imgPROFAIL");
+        if (imgPROFAIL && getImgUrl) {
+            imgPROFAIL.innerHTML = "<img src= \"" + getImgUrl + "\"/>";
         }
     }
     catch (error) {
@@ -22,6 +22,19 @@ function getImgUrlUser() {
     }
 }
 getImgUrlUser();
+//get number of folowers from the yuser
+function getFolowers() {
+    var getFolowersFrom_User = prompt("How many followers do you have?");
+    var folowers = document.querySelector("#folowers");
+    try {
+        if (folowers && getFolowersFrom_User)
+            folowers.innerHTML = "<p>folowers " + getFolowersFrom_User + " </p>";
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+getFolowers();
 // 2) get five image URLs from the user and print five images on the DOM.
 //get the elements from the dom.
 var imgArray = document.querySelector("#imgArray");
