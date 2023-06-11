@@ -1,10 +1,4 @@
 // 1) get an image URL from the user, and add the image to the DOM. 
-// class Img {
-//     imgUrl: string;
-//     constructor(imgUrl: string,) {
-//         this.imgUrl = imgUrl;
-//     }
-// }
 
 
 //get image url from the user
@@ -21,37 +15,38 @@
 
 
 function getImgUrlUser() {
+    // debugger
     try {
-        const getImgUrl: string | null = prompt("enter  image Url")
+        const getImgUrl: string | null = prompt("Enter image Url")
 
         const imgURL: HTMLDivElement | null = document.querySelector("#imgURL")
 
         if (imgURL && getImgUrl) {
-            imgURL.innerHTML = `<img src= ${getImgUrl}/>`
+            imgURL.innerHTML = `<img src= "${getImgUrl}"/>`
         }
     } catch (error) {
         console.error(error)
     }
 }
-// getImgUrlUser();
+getImgUrlUser();
 
 
 // 2) get five image URLs from the user and print five images on the DOM.
 
 //get the elements from the dom.
-
+const imgArray = document.querySelector(`#imgArray`)
 function getFiveImgs() {
-    const imgArray = document.querySelector(`#imgArray`)
     const newArrayImgs: any[] = [];
 
     try {
+
         for (let i = 1; i <= 5; i++) {
             // get 5 image url from the user.
             const ImgURL5 = prompt(`Entere the ${i} of 5`);
             newArrayImgs.push(ImgURL5)
             console.log(newArrayImgs)
-
         }
+
         return newArrayImgs
     } catch (error) {
         console.error(error)
@@ -62,7 +57,7 @@ const imgs = getFiveImgs();
 //print to the DOM
 renderImges(imgs);
 
-function renderImges(imgs: any[] | undefined) {
+function renderImges(imgs: string[] | undefined) {
     if (imgs) {
         const imgsHTML = imgs.map(imgUrl => `<img src="${imgUrl}">`).join(" ");
         console.log(imgsHTML)
@@ -73,7 +68,6 @@ function renderImges(imgs: any[] | undefined) {
     }
 }
 
-// const newArray = getFiveImgs();
 
 
 // 3) do task number 2. Store items using array of a class.

@@ -2,6 +2,17 @@ body {
   background-color: beige;
 }
 
+.imgURL {
+  position: relative;
+  margin: auto;
+  top: 20vh;
+  width: 200px;
+}
+.imgURL img {
+  width: 200px;
+  height: 200px;
+}
+
 .imgArray {
   position: relative;
   display: flex;
@@ -14,4 +25,5 @@ body {
 .imgArray img {
   width: 200px;
   height: 200px;
+  margin: auto;
 }
