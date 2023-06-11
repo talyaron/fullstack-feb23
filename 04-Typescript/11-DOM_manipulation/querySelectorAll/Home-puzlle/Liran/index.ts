@@ -27,7 +27,7 @@ function imgToDom(urlList: ImgUrl[]) {
     try {
         if (urlList === null) throw new Error("Error in Array")
         urlList.forEach((imgAddress, index) =>
-            setTimeout(() => imgAddress.render(), (index - 4) * 500) //2 seconds
+            setTimeout(() => imgAddress.render(), (index - 4) * 500)
         )
 
     } catch (error) {
