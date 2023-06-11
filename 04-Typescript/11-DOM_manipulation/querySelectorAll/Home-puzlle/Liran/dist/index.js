@@ -30,8 +30,7 @@ function imgToDom(urlList) {
             throw new Error("Error in Array");
         urlList.forEach(function (imgAddress, index) {
             return setTimeout(function () { return imgAddress.render(); }, (index - 4) * 500);
-        } //2 seconds
-        );
+        });
     }
     catch (error) {
         console.error(error);

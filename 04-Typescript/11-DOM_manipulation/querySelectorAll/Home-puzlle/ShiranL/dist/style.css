@@ -1,6 +1,4 @@
 .wapper {
-  width: 900px;
-  height: 900px;
   margin: auto;
   display: flex;
   justify-content: flex-start;
@@ -10,5 +8,5 @@
 .box {
   width: 150px;
   height: 150px;
-  margin: 25px;
+  flex: 1;
 }

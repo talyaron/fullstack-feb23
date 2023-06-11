@@ -34,6 +34,8 @@ class ImageToShow{
         let i=0
         boxes.forEach((box)=>{
             box.style.backgroundImage = `url('${this.image[i].link}')`;
+            box.style.objectFit= "cover" ;
+            box.style.borderRadius= "20px"
             i++
         })
        

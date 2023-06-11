@@ -31,6 +31,8 @@ var ImageSToShow = /** @class */ (function () {
         var i = 0;
         boxes.forEach(function (box) {
             box.style.backgroundImage = "url('" + _this.image[i].link + "')";
+            box.style.objectFit = "cover";
+            box.style.borderRadius = "20px";
             i++;
         });
     };

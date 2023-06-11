@@ -8,6 +8,9 @@
 
 const input:any=document.querySelector(".input")
 const pictures:any=document.querySelector(".pictures")
+let arrayOfPic:pictureArray[]=[]
+let count=1
+
 
 
 class pictureArray{
@@ -18,17 +21,13 @@ class pictureArray{
    
     addToDOM(){
         return  pictures.innerHTML+=`<div class="picture">
-
         <img src="${this.picUrl}" class="pictureadded" alt=""> 
         <p>picture number:${this.picNum}</p>
-
         </div>`
     }
 }
 
-let arrayOfPic:pictureArray[]=[]
 
-let count=1
 function addToArray(){
     arrayOfPic.push( new pictureArray(input.value,count))
     count++
