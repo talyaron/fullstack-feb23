@@ -1,18 +1,18 @@
 .box{
-    background-color: black;
+    background-color: wheat;
     margin: 0 auto;
     width: 80%;
     height: auto;
 
     p{
         text-align: center;
-        color: gold;
+        color: rgba(168, 172, 173, 0.566);
         font-size: larger;
     }
 
     img{
-        border-radius: 20px;
-        width: 20%;
-        height: 50%;
+        border-radius: 50%;
+        width: 100px;
+        height: 100px;
     }
 }

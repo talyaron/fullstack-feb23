@@ -36,6 +36,3 @@ function UserDetails(){
     div.innerHTML += `<p>Fourth User: ${fourthUser.ImgName}<br> <img src="${firstUser.Img}"></img></p><hr>`;
     div.innerHTML += `<p>Fifth User: ${fifthUser.ImgName}<br> <img src="${firstUser.Img}"></img></p><hr>`;
 }
-
-
-
