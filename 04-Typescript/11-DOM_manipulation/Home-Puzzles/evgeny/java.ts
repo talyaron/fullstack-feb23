@@ -44,6 +44,7 @@ console.dir(beers)
                 try {
                     if(input.value!==element.name) throw new Error ("worng beer selected");
                     if(input.value=null) throw new Error("no input");
+                    if(input.value="") throw new Error("no input");
                 } catch (error) {
                     console.error(error)
                 }

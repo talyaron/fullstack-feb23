@@ -51,9 +51,11 @@ console.log(kamelot);
 console.log(dwayneJohnson);
 console.log(conorMcGregor);
 // 3. create a function that gets all the celebs and returns the celeb with the most followers. Even better, return a list of celebs, ordered by their number of followers. (use array)
-var celebs = [littleBig, kamelot, dwayneJohnson, conorMcGregor];
-function sortCelebsByFollowersAmount(celeb1, celeb2, celeb3, celeb4) {
-    var sortedData = celebs.sort(function (a, b) { return b[4] - a[4]; });
-    console.log(sortedData);
-}
-console.log(sortCelebsByFollowersAmount(littleBig, kamelot, dwayneJohnson, conorMcGregor));
+var data = [
+    ['Little Big', 'Music', 'https://www.facebook.com/littlebigbandofficial/', 'https://www.instagram.com/littlebigband/', 859000],
+    ['Kamelot', 'Music', 'https://www.facebook.com/kamelotofficial/', 'https://www.instagram.com/kamelotofficial/', 130000],
+    ['Dwayne Johnson', 'Sports', 'https://www.facebook.com/DwayneJohnson', 'https://www.instagram.com/therock/', 382000000],
+    ['Conor McGregor', 'MMA', 'https://www.facebook.com/thenotoriousmma', 'https://www.instagram.com/thenotoriousmma/', 46600000]
+];
+var sortedData = data.sort(function (a, b) { return b[4] - a[4]; });
+console.log(sortedData);

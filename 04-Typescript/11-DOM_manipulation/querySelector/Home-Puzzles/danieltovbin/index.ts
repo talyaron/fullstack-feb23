@@ -35,11 +35,11 @@ const flowers :Flowers[] = [
 
 
 
-const root = document.querySelector('#root');
+const root :HTMLDivElement | null = document.querySelector('#root');
 if(root) {
     flowers.forEach((flower) => {
         const imageContainer = document.createElement('div');
-        imageContainer.className = `flowers-${flower.name.toLowerCase().replace(' ', '-')}`;
+        root.style.gridArea = flower.name.toLowerCase().replace(' ', '-');
         
         const p = document.createElement('p');
     p.innerText = flower.name;
