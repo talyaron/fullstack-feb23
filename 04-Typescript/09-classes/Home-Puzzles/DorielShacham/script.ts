@@ -71,7 +71,16 @@ console.log(`This is after set Celeb folowers: ${CelebOne.Followers}`);
 function orderByCellebs(): Celeb[] {
   return allCelebs.sort((a, b) => b.Followers - a.Followers);
 }
-console.log(orderByCellebs());
+//console.log(orderByCellebs());
+
+function findByName(nameF:string){
+  return !!allCelebs.find(Celeb => Celeb.nameFull.toLowerCase() == nameF.toLowerCase())?'found':'not found'
+}
+
+
+console.log(findByName("nathan"));
+console.log(findByName("kevin hart"));
+
 
 // ## Moment Class
 // 4. Create a class for dates. it gets Date format (new Date()). 

@@ -10,7 +10,14 @@ var Celebs = /** @class */ (function () {
         return this.followers;
     };
     Celebs.prototype.setFollowers = function (_newNumberOfFollowers) {
-        this.followers = _newNumberOfFollowers;
+        try {
+            if (isNaN(_newNumberOfFollowers) || !_newNumberOfFollowers)
+                throw new Error(_newNumberOfFollowers + " is not a number");
+            this.followers = _newNumberOfFollowers;
+        }
+        catch (error) {
+            console.error(error);
+        }
     };
     return Celebs;
 }());
@@ -43,7 +50,7 @@ var amosTammam = new Celebs("Amos Tamam ", "actor", "www.tiktok.com", "www.inste
 var yonitLevi = new Celebs("Yonit Levi", "newscaster", "www.tiktok.com", "www.instegram.com", 20);
 var hadarMarks = new Celebs("Hadar Marks", "radio broadcaster", "www.tiktok.com", "www.instegram.com", 20080);
 console.log(yodaLevi.followers);
-// yodaLevi.setFollowers(26);
+yodaLevi.setFollowers(67);
 console.log(yodaLevi.getFollowers());
 var arrayCel = [yodaLevi, amosTammam, yonitLevi, hadarMarks];
 console.log(arrayCel);

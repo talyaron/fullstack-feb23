@@ -8,12 +8,54 @@
 // myDate.getSimpleDate() -> dd/mm/yyyy, hh:mm:ss
 // use "setTimeout()" to postpone the time...
 // myDate.getPasedDate() -> 2 seconds past from that date
-var celebs = /** @class */ (function () {
-    function celebs(name, genre, tiktokAccount, instagramAccgount, followers) {
+// 1.
+var Celeb = /** @class */ (function () {
+    function Celeb(name, genre, facebookAccount, instagramAccgount, numfollowers) {
         this.name = name;
         this.genre = genre;
-        this.tiktokAccount = tiktokAccount;
+        this.facebookAccount = facebookAccount;
         this.instagramAccgount = instagramAccgount;
     }
-    return celebs;
+    // 2. based on question number one, create a method to set the number of followers and another method to get the number of followers.
+    //    Create a few celebs-objects, and set the number of followers. Write to the console each celeb TikTok account.
+    Celeb.prototype.setNumFollowers = function (followers) {
+        try {
+            if (isNaN(followers))
+                throw new Error('The value of followers must be a number');
+            this.numfollowers = followers;
+            return this.numfollowers;
+        }
+        catch (error) {
+            console.error(error);
+            return;
+        }
+    };
+    Celeb.prototype.getNumFollowers = function () {
+        console.log("The number of followers: " + this.numfollowers);
+    };
+    Celeb.prototype.getTikTokAccount = function () {
+        console.log("FaceBook account: " + this.facebookAccount);
+    };
+    return Celeb;
 }());
+var littleBig = new Celeb('Little Big', 'Music', 'https://www.facebook.com/littlebigbandofficial/', 'https://www.instagram.com/littlebigband/', 859000);
+var kamelot = new Celeb('Kamelot', 'Music', 'https://www.facebook.com/kamelotofficial/', 'https://www.instagram.com/kamelotofficial/', 130000);
+var dwayneJohnson = new Celeb('Dwayne Johnson', 'Sports', 'https://www.facebook.com/DwayneJohnson', 'https://www.instagram.com/therock/', 382000000);
+var conorMcGregor = new Celeb('Conor McGregor', 'MMA', 'https://www.facebook.com/thenotoriousmma', 'https://www.instagram.com/thenotoriousmma/', 46600000);
+littleBig.setNumFollowers(900000);
+kamelot.setNumFollowers(140000);
+dwayneJohnson.setNumFollowers(383000000);
+conorMcGregor.setNumFollowers(46700000);
+console.log(littleBig);
+console.log(kamelot);
+console.log(dwayneJohnson);
+console.log(conorMcGregor);
+// 3. create a function that gets all the celebs and returns the celeb with the most followers. Even better, return a list of celebs, ordered by their number of followers. (use array)
+var data = [
+    ['Little Big', 'Music', 'https://www.facebook.com/littlebigbandofficial/', 'https://www.instagram.com/littlebigband/', 859000],
+    ['Kamelot', 'Music', 'https://www.facebook.com/kamelotofficial/', 'https://www.instagram.com/kamelotofficial/', 130000],
+    ['Dwayne Johnson', 'Sports', 'https://www.facebook.com/DwayneJohnson', 'https://www.instagram.com/therock/', 382000000],
+    ['Conor McGregor', 'MMA', 'https://www.facebook.com/thenotoriousmma', 'https://www.instagram.com/thenotoriousmma/', 46600000]
+];
+var sortedData = data.sort(function (a, b) { return b[4] - a[4]; });
+console.log(sortedData);

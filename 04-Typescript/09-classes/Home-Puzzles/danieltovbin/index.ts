@@ -74,3 +74,6 @@ class Celebs {
     // myDate.getSimpleDate() -> dd/mm/yyyy, hh:mm:ss
     // use "setTimeout()" to postpone the time...
     // myDate.getPasedDate() -> 2 seconds past from that date
+
+
+

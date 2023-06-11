@@ -72,10 +72,12 @@ const celeb2=new celebs(
     "@jackinsta",
     136
 )
-            
+
 console.log(celeb1.followers("add"))
-            let celebsArray=[celeb1,celeb2,celeb3]
-            
+
+
+let celebsArray=[celeb1,celeb2,celeb3]
+
 
 function sort(array){
     array.sort(function(a,b){

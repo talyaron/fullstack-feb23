@@ -14,7 +14,7 @@ var MyDate = /** @class */ (function () {
             + ":" + ((this.second > 9 || this.second < (-9)) ? Math.abs(this.second) : "0" + Math.abs(this.second)));
     };
     MyDate.prototype.getPassedDate = function () {
-        debugger;
+        //debugger
         var current = new Date();
         console.log("getPassed() on at: " + current);
         if (current.getSeconds() < this.second) {
@@ -28,4 +28,4 @@ var newDate = new MyDate(new Date());
 console.log(newDate.getSimpleDate());
 setTimeout(function () {
     console.log(newDate.getPassedDate());
-}, 1000);
+}, 5000);
