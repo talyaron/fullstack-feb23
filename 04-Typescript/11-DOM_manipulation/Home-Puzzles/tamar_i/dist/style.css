@@ -1,0 +1,12 @@
+body {
+  position: absolute;
+}
+
+p {
+  background-color: yellow;
+}
+
+img {
+  height: 40%;
+  width: 20%;
+}
