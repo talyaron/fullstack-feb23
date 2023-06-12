@@ -1,13 +1,14 @@
 .wrapper
+    position: relative
     h3
         text-align: center
 
-    .boxes,.pics
+    .boxes,.pics,.dogs
         display: flex
         gap: 10px
         justify-content: center
 
-        .pic,.box img
+        .pic,.box img,.dog
 
             width: 100px
             height: 100px
@@ -18,3 +19,21 @@
         .pic
             // background-image: url('./dist/img.png')
             background-size: cover
+body
+    margin: 0
+    padding: 0
+    overflow: hidden
+    background-color: #77dd77
+    .dogs
+        // display: flex
+        
+    .dog
+        // margin-top: 50px
+        top:500px
+        position: absolute
+        transform: translate(-50%,-50%)
+        height: 35px
+        width: 35px
+        border-radius: 50%
+        border: 1px solid lightgreen
+        background-size: cover
