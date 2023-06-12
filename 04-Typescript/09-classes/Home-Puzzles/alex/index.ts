@@ -65,12 +65,16 @@ console.log(dwayneJohnson)
 console.log(conorMcGregor)
 
 // 3. create a function that gets all the celebs and returns the celeb with the most followers. Even better, return a list of celebs, ordered by their number of followers. (use array)
-const celebs = [littleBig, kamelot, dwayneJohnson, conorMcGregor]
 
 
-function sortCelebsByFollowersAmount(celeb1: Celeb, celeb2: Celeb, celeb3: Celeb, celeb4: Celeb): Array<Celeb> | undefined {
-const sortedData = celebs.sort((a, b) => b[4] - a[4])
-console.log(sortedData)   
-}
+const data = [
+['Little Big','Music','https://www.facebook.com/littlebigbandofficial/','https://www.instagram.com/littlebigband/',859000], 
+['Kamelot','Music','https://www.facebook.com/kamelotofficial/','https://www.instagram.com/kamelotofficial/',130000], 
+['Dwayne Johnson','Sports','https://www.facebook.com/DwayneJohnson','https://www.instagram.com/therock/',382000000], 
+['Conor McGregor','MMA','https://www.facebook.com/thenotoriousmma','https://www.instagram.com/thenotoriousmma/',46600000]]
 
-console.log(sortCelebsByFollowersAmount(littleBig,kamelot,dwayneJohnson,conorMcGregor))
+const sortedData = data.sort((a, b) => b[4] - a[4])
+
+console.log(sortedData)
+
+
