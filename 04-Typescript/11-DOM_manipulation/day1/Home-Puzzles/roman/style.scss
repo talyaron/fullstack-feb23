@@ -1,0 +1,81 @@
+.wrapper {
+    width: 75ch;
+    margin: 0 auto;
+    background-color: #FFFFFF;
+
+    .header {
+        display: flex;
+        justify-content: space-between;
+
+        &__search {
+            position: relative;
+
+            input {
+                border-radius: 5px;
+                line-height: 20px;
+                font-size: 14px;
+                font-family: Roboto;
+                border: none;
+                background-color: #EFEFEF;
+                padding: 7px;
+                padding-left: 35px;
+                ;
+            }
+
+            svg {
+                position: absolute;
+                left: 10px;
+                top: 10px;
+            }
+        }
+
+        &__buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        &__login {
+            background-color: #0095F6;
+            color: white;
+            border-radius: 5px;
+        }
+    }
+
+    .header::after {
+        position: absolute;
+        left: 0;
+        content: " ";
+        display: block;
+        height: 40px;
+        border-bottom: 2px solid #EFEFEF;
+        width: 100%;
+    }
+}
+
+
+#cars img {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    
+
+}
+
+#cars {
+    display: grid;
+  align-items: center;
+    // grid-template-rows: repeat(1fr);
+    grid-template-columns: repeat(3, 33%);
+    gap: 10px;
+    text-align: center;
+    .car p{
+        text-transform: capitalize;
+    }
+    .car:hover{
+    cursor: pointer;
+    transform: scale(1.2);
+    opacity: 0;
+    
+    }
+
+}
