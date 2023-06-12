@@ -1,0 +1,22 @@
+
+#friends-container {
+    background-color: rgb(248, 218, 185);
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    .Friends {
+        margin: auto;
+        width: 200px;
+      
+    }
+    
+    img {
+        width: 400px;
+        height: auto;
+        margin: .5rem;
+      }
+    
+}
+
