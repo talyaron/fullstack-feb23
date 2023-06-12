@@ -1,0 +1,15 @@
+.wrapper h3 {
+  text-align: center;
+}
+.wrapper .boxes, .wrapper .pics {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+.wrapper .boxes .pic, .wrapper .boxes .box img, .wrapper .pics .pic, .wrapper .pics .box img {
+  width: 100px;
+  height: 100px;
+}
+.wrapper .pics .pic {
+  background-size: cover;
+}
