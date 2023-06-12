@@ -9,6 +9,7 @@
   position: relative;
 }
 .div-images .imgbox h2 {
+  margin-top: 0;
   text-align: center;
   width: 100%;
   background-color: transparent;

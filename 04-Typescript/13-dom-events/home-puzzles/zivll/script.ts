@@ -14,6 +14,7 @@ rootAllH2.forEach((h2) => {
     h2.nextElementSibling.src = clownImg;
     h2.nextElementSibling.alt = "frightening clown";
     h2.style.fontSize = `50px`;
+    h2.style.marginTop = 0;
     h2.style.color = `red`;
     // h2.style.display = `block`;
     h2.innerHTML = "GOT YOU!";
