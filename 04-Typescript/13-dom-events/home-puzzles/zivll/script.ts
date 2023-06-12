@@ -1,13 +1,15 @@
 // Create images of calm faces on the screen.
-
-// the class that I need to cach is "imgbox"
-const rootAllImages = document.querySelectorAll("img");
-const rootAllH2 = document.querySelectorAll("h2");
-const clownImg =
-  "https://images.squarespace-cdn.com/content/v1/6051793d0c5c911997546d5f/82ed512a-dad0-4fd6-8792-2474179dda33/Scary+pictures+of+clowns.png";
 const clamFace =
   "https://www.nicepng.com/png/detail/805-8058392_image-is-not-available-woman-with-a-calm.png";
+
+// the class that I need to cach is "imgbox" and "h2"
+const rootAllImages = document.querySelectorAll("img");
+const rootAllH2 = document.querySelectorAll("h2");
+
 // When clicked, change the face into to a frighting clown.
+const clownImg =
+  "https://images.squarespace-cdn.com/content/v1/6051793d0c5c911997546d5f/82ed512a-dad0-4fd6-8792-2474179dda33/Scary+pictures+of+clowns.png";
+
 rootAllH2.forEach((h2) => {
   h2.onclick = (ev) => {
     console.log(ev);
@@ -16,13 +18,9 @@ rootAllH2.forEach((h2) => {
     h2.style.fontSize = `50px`;
     h2.style.marginTop = 0;
     h2.style.color = `red`;
-    // h2.style.display = `block`;
     h2.innerHTML = "GOT YOU!";
   };
 });
-
-// the link to the clown image is:
-// https://images.squarespace-cdn.com/content/v1/6051793d0c5c911997546d5f/82ed512a-dad0-4fd6-8792-2474179dda33/Scary+pictures+of+clowns.png
 
 // when the mouse leaves, change back to the nice face.
 rootAllH2.forEach((h2) => {
@@ -32,7 +30,6 @@ rootAllH2.forEach((h2) => {
     h2.nextElementSibling.alt = "clamFace";
     h2.style.fontSize = `2rem`;
     h2.style.color = `black`;
-
     h2.innerHTML = "Can you please click me?";
   };
 });
