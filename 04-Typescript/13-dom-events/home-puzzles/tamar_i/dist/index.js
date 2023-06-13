@@ -19,4 +19,5 @@ if (boximg) {
         ev.target.style.backgroundImage = "url(https://kicky.co.il/wp-content/uploads/2022/05/%D7%90%D7%A8%D7%99%D7%94-%D7%95%D7%A0%D7%9E%D7%A8%D7%94-1024x683.jpg)";
     });
 }
-//3) Create images of dogs on the screen. when the mouse leave the dog, the dog follows the mouse.
+//3) Create images of flawer on the screen.
+//  when the mouse leave the flawer, it follows the mouse.

@@ -25,7 +25,6 @@ if (boximg) {
   
 }
 
+//3) Create images of flawer on the screen.
+//  when the mouse leave the flawer, it follows the mouse.
 
-
-
-//3) Create images of dogs on the screen. when the mouse leave the dog, the dog follows the mouse.
