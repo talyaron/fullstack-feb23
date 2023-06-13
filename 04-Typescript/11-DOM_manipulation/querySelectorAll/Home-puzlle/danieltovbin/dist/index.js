@@ -12,8 +12,7 @@ form.addEventListener('submit', function (event) {
 var nameOfUser = document.querySelector('#name');
 var span = document.querySelector('span');
 var submitBtn = document.querySelector('#submitBtn');
-submitBtn.addEventListener('click', function (event) {
-    event.preventDefault();
+submitBtn.addEventListener('click', function () {
     var nameUser = nameOfUser.value;
     var additionalText = '!';
     span.textContent = nameUser + additionalText;
@@ -23,8 +22,7 @@ submitBtn.addEventListener('click', function (event) {
 var addBtnSecondField = document.querySelector('#addBtnSecondField');
 var inputSecondField = document.querySelector('#inputSecondField');
 var secondField = document.querySelector('.field.secondField');
-addBtnSecondField.addEventListener('click', function (event) {
-    event.preventDefault();
+addBtnSecondField.addEventListener('click', function () {
     var url = inputSecondField.value;
     var img = document.createElement('img');
     img.src = url;
