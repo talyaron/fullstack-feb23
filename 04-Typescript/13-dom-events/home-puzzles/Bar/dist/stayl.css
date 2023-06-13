@@ -1,0 +1,14 @@
+.box {
+  width: 200px;
+  height: 200px;
+  background-color: #b3dafc;
+  border: none;
+}
+
+.clowns {
+  width: 200px;
+  height: 200px;
+  background-color: #fcb3ea;
+  border: none;
+  border-radius: 50%;
+}

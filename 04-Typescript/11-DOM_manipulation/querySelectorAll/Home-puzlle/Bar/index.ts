@@ -13,7 +13,7 @@
 // }
 
 
-function getImgUrlUser() {
+function getImgUrlUser(): void {
     // debugger
     try {
         const getImgUrl: string | null = prompt("Enter image Url")

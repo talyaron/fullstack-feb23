@@ -1,0 +1,18 @@
+body {
+  width: 100vw;
+  height: 100vh;
+}
+
+.box {
+  margin: 10px;
+  width: 600px;
+  height: 600px;
+  border: 2px solid black;
+}
+
+.boxOne {
+  margin: 10px;
+  width: 100px;
+  height: 100px;
+  background-color: red;
+}
