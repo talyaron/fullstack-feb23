@@ -1,0 +1,22 @@
+body{
+    height: 100vh;
+    width: 100%;
+}
+.wrapper{
+    display: flex;
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    .box{
+        background-color: aquamarine;
+        height: 2rem;
+        width: 3rem;
+        background-size: cover;
+      
+        // transition: all 3s;
+        background-image: url(http://clipart-library.com/images/6iyo9AXAT.gif);
+        position: absolute;
+        
+        
+    }
+}
