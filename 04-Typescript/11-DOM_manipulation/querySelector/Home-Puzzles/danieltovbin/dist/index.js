@@ -24,7 +24,7 @@ var root = document.querySelector('#root');
 if (root) {
     flowers.forEach(function (flower) {
         var imageContainer = document.createElement('div');
-        imageContainer.className = "flowers-" + flower.name.toLowerCase().replace(' ', '-');
+        root.style.gridArea = flower.name.toLowerCase().replace(' ', '-');
         var p = document.createElement('p');
         p.innerText = flower.name;
         var img = document.createElement('img');

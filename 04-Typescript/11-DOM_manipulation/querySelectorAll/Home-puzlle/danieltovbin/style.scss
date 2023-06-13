@@ -1,0 +1,89 @@
+body {
+    width: 100vw;
+    height: 100vh;
+    background-color: #373333;
+}
+
+h1 {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    color: white;
+    font-size: 50px;
+}
+
+.field {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 30px;
+}
+
+.secondField {
+    display: none;
+}
+
+.thirdField {
+    display: none;
+}
+
+.fourthField{
+    display: none;
+}
+
+.fifthField{
+    display: none;
+}
+
+.sixthField {
+    display: none;
+}
+    label {
+        color: white;
+        padding-right: 12px;
+    } 
+
+span{
+    color: gray;
+    font-size: 30px;
+    font-weight: 900;
+}
+
+.page {
+    p{
+        display: flex;
+        justify-content: center;
+        font-size: 40px;
+        color:#9797a9;
+    }
+    
+}
+
+
+.container {
+    display: flex;
+    justify-content: space-evenly;
+
+    img{
+    display: flex;
+    justify-content: space-between;
+    width: 200px;
+    height: 170px;
+    border-radius: 12px;
+    box-shadow: 11px 11px 0px 0px #9797a9;
+    animation: roll 3s infinite;
+}
+}
+
+
+
+    @keyframes roll {
+        0% {
+        transform: rotate(-2deg);
+        }
+        50% {
+            transform: rotate(2deg);
+        }
+        100% {
+        transform: rotate(-2deg);
+        }
+    }

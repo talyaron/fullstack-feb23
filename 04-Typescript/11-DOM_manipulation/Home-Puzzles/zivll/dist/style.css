@@ -1,0 +1,9 @@
+img {
+  width: 100px;
+  height: auto;
+}
+
+p {
+  display: flex;
+  align-items: center;
+}
