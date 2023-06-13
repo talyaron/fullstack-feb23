@@ -4,3 +4,15 @@
   height: 100px;
   margin: 20px;
 }
+
+.boximg {
+  background-image: url("https://kicky.co.il/wp-content/uploads/2022/05/%D7%90%D7%A8%D7%99%D7%94-%D7%95%D7%A0%D7%9E%D7%A8%D7%94-1024x683.jpg");
+  background-size: cover;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  width: 250px;
+  height: 200px;
+  margin: 20px;
+}
