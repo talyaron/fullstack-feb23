@@ -1,8 +1,10 @@
-const boxes = document.querySelectorAll('.box');
 
+const playMusic = new Audio("audio.mp3");
+const boxes = document.querySelectorAll('.box');
+console.log(boxes)
 boxes.forEach(box => {
-    box.addEventListener('click', playMusic => {
-        console.log(playMusic)
+    box.addEventListener('click', () => {
+        playMusic.play()
 
         // ev.target.style.backgroundColor = getRandomColor();
 
@@ -10,12 +12,12 @@ boxes.forEach(box => {
 })
 
 
-function playMusic() {
-    let audio = new Audio("audio.mp3");
-    audio.play()
+// function playMusic() {
+//     let audio = new Audio("audio.mp3");
+//     audio.play()
 
-    return Audio
-}
+//     return Audio
+// }
 
 
 // function getRandomColor() {

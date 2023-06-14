@@ -1,15 +1,17 @@
+var playMusic = new Audio("audio.mp3");
 var boxes = document.querySelectorAll('.box');
+console.log(boxes);
 boxes.forEach(function (box) {
-    box.addEventListener('click', function (playMusic) {
-        console.log(playMusic);
+    box.addEventListener('click', function () {
+        playMusic.play();
         // ev.target.style.backgroundColor = getRandomColor();
     });
 });
-function playMusic() {
-    var audio = new Audio("audio.mp3");
-    audio.play();
-    return Audio;
-}
+// function playMusic() {
+//     let audio = new Audio("audio.mp3");
+//     audio.play()
+//     return Audio
+// }
 // function getRandomColor() {
 //     let letters = '0123456789ABCDEF';
 //     let color = '#';
