@@ -13,7 +13,39 @@ box.forEach(function (box) {
 var boximg = document.querySelector(".boximg");
 if (boximg) {
     boximg.addEventListener("click", function (ev) {
-        ev.target.style.backgroundimage = "url(\"https://cdn.xxl.thumbs.canstockphoto.co.il/%D7%9B%D7%95%D7%A2%D7%A1-%D7%90%D7%A8%D7%99%D7%94-%D7%A6%D7%99%D7%9C%D7%95%D7%9D-%D7%9E%D7%A0%D7%99%D7%95%D7%AA_csp2173500.jpg\")";
+        ev.target.style.backgroundImage = "url(https://cdn.xxl.thumbs.canstockphoto.co.il/%D7%9B%D7%95%D7%A2%D7%A1-%D7%90%D7%A8%D7%99%D7%94-%D7%A6%D7%99%D7%9C%D7%95%D7%9D-%D7%9E%D7%A0%D7%99%D7%95%D7%AA_csp2173500.jpg)";
+    });
+    boximg.addEventListener("mouseout", function (ev) {
+        ev.target.style.backgroundImage = "url(https://kicky.co.il/wp-content/uploads/2022/05/%D7%90%D7%A8%D7%99%D7%94-%D7%95%D7%A0%D7%9E%D7%A8%D7%94-1024x683.jpg)";
     });
 }
-//3) Create images of dogs on the screen. when the mouse leave the dog, the dog follows the mouse.
+//3) Create images of flawer on the screen.
+//  when the mouse leave the flawer, it follows the mouse.
+// use `mousemove`.
+//1: get the element
+var flawer = document.getElementById("flawer");
+var moving = false;
+//2. need to add an event listener to move it
+if (flawer) {
+    flawer.addEventListener("mousedown", initialClick, false);
+}
+//3. bild a move function to change the cordinats of the item acording to the cordinats of the mouse.
+function move(e) {
+    var newX = e.clientX - 10;
+    var newY = e.clientY - 10;
+    if (flawer) {
+        flawer.style.left = newX + "px";
+        flawer.style.top = newY + "px";
+    }
+}
+//4. bild a function that catch the item (initial click)
+function initialClick(e) {
+    if (moving) {
+        document.removeEventListener("mousemove", move);
+        moving = !moving;
+        return;
+    }
+    moving = !moving;
+    flawer = this;
+    document.addEventListener("mousemove", move, false);
+}
