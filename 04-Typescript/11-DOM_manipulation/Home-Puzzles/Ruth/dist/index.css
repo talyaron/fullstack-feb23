@@ -1,4 +1,10 @@
+<<<<<<< HEAD
 * {
+=======
+@import url("https://fonts.googleapis.com/css2?family=Butterfly+Kids&family=IBM+Plex+Sans+Hebrew&family=Noto+Serif:ital,wght@0,100;0,300;0,400;0,500;1,300&family=Open+Sans:wght@300;400&family=Oswald&family=Rubik:ital,wght@0,400;0,500;1,300;1,400&display=swap");
+* {
+  font-family: "Noto Serif", serif;
+>>>>>>> c8162fa75b2aa45c9a651d439fa2136ed0663ec0
   padding: 0;
   margin: 0;
 }
@@ -6,14 +12,32 @@
 body {
   width: 100%;
   height: 100%;
+<<<<<<< HEAD
 }
 
 .nav {
+=======
+  background-color: rgba(237, 237, 237, 0.441);
+}
+
+span:hover {
+  cursor: pointer;
+  user-select: none;
+  font-variation-settings: "FILL" 100, "wght" 400, "GRAD" 0, "opsz" 48;
+}
+
+.nav {
+  background-color: white;
+>>>>>>> c8162fa75b2aa45c9a651d439fa2136ed0663ec0
   display: flex;
   flex-direction: column;
   position: fixed;
   justify-content: space-between;
+<<<<<<< HEAD
   border: 1px solid gray;
+=======
+  border: 1px solid #dfdfdf;
+>>>>>>> c8162fa75b2aa45c9a651d439fa2136ed0663ec0
   width: 20%;
   height: 100%;
 }
@@ -37,6 +61,10 @@ body {
   text-align: center;
   padding: 8px;
   margin: 10px;
+<<<<<<< HEAD
+=======
+  cursor: pointer;
+>>>>>>> c8162fa75b2aa45c9a651d439fa2136ed0663ec0
 }
 .nav__list ul li p {
   display: flex;
@@ -49,12 +77,17 @@ body {
   transition: all 0.3s;
 }
 .nav__list ul li:hover {
+<<<<<<< HEAD
+=======
+  font-variation-settings: "FILL" 100, "wght" 400, "GRAD" 0, "opsz" 48;
+>>>>>>> c8162fa75b2aa45c9a651d439fa2136ed0663ec0
   background-color: #ebebeb;
 }
 .nav__list ul li:hover span {
   font-weight: bold;
 }
 
+<<<<<<< HEAD
 span:hover {
   cursor: pointer;
   font-variation-settings: "FILL" 100, "wght" 400, "GRAD" 0, "opsz" 48;
@@ -94,6 +127,70 @@ span:hover {
   left: 15px;
 }
 .gallery__post .likesDiv span:active {
+=======
+.gallery {
+  padding: 4px;
+  background-color: white;
+  width: 74%;
+  height: fit-content;
+  margin-top: 50px;
+  margin-right: 2%;
+  float: right;
+  border: 1px solid #dbdbdb;
+  display: flex;
+  justify-content: space-evenly;
+}
+.gallery__right, .gallery__center, .gallery__left {
+  width: 32%;
+}
+.gallery .post {
+  border: 1px solid #dadada;
+  width: 100%;
+  margin: 5px 0;
+  position: relative;
+}
+.gallery .post:hover {
+  cursor: pointer;
+}
+.gallery .post img {
+  width: 100%;
+  object-fit: cover;
+  display: block;
+  z-index: 0;
+}
+.gallery .post img:hover {
+  filter: brightness(0.6);
+}
+.gallery .post .text {
+  z-index: 3;
+  width: calc(100% - 10px);
+  background: linear-gradient(rgba(182, 182, 182, 0), rgba(86, 86, 86, 0.868) 80%);
+  position: absolute;
+  bottom: 0;
+  padding: 5px;
+}
+.gallery .post .text .author {
+  color: white;
+  font-size: small;
+}
+.gallery .post .text .paragraph {
+  color: white;
+  font-size: x-small;
+}
+.gallery .post .likesDiv {
+  color: white;
+  width: 100%;
+  display: flex;
+  position: absolute;
+  bottom: 50%;
+  justify-content: center;
+}
+.gallery .post .likesDiv span {
+  background: radial-gradient(rgba(11, 11, 11, 0.418) 20%, rgba(255, 255, 255, 0) 80%);
+  padding-right: 10px;
+}
+.gallery .post .likesDiv span:active {
+>>>>>>> c8162fa75b2aa45c9a651d439fa2136ed0663ec0
   animation: rotate 0.5s 4;
 }
 
@@ -105,7 +202,11 @@ span:hover {
     transform: rotate(15deg);
   }
   50% {
+<<<<<<< HEAD
     transform: rotate(0deg);
+=======
+    transform: rotate(0deg) scale(1.1);
+>>>>>>> c8162fa75b2aa45c9a651d439fa2136ed0663ec0
   }
   70% {
     transform: rotate(-15deg);

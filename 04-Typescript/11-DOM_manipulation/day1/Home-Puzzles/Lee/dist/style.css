@@ -1,0 +1,16 @@
+#friends-container {
+  background-color: #f8dab9;
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+#friends-container .Friends {
+  margin: auto;
+  width: 200px;
+}
+#friends-container img {
+  width: 400px;
+  height: auto;
+  margin: 0.5rem;
+}

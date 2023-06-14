@@ -1,4 +1,4 @@
-var boxes = document.querySelectorAll(".box");
+// const boxes = document.querySelectorAll(".box");
 var box = document.querySelector("#box");
 box.addEventListener("click", function (ev) {
     ev.target.style.backgroundColor = getRandomColor();
