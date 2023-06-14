@@ -27,4 +27,20 @@ if (boximg) {
 
 //3) Create images of flawer on the screen.
 //  when the mouse leave the flawer, it follows the mouse.
+// use `mousemove`.
 
+interface
+
+const flawer: Element | null = document.querySelector(".flawer");
+if (flawer){
+  flawer.addEventListener("mousedown", (e) => {
+    moveFunction();
+  });
+}
+
+function moveFunction(ev){
+  let x:number = ev.moveinX;
+  let y:number = ev.moveinY;
+  let move = "Coordinates: (" + x + "," + y + ")";
+  document.getElementById("").innerHTML = move;
+}
