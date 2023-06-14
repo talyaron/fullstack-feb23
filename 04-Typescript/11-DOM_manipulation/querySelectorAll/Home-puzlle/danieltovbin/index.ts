@@ -20,8 +20,7 @@ const nameOfUser = document.querySelector('#name') as HTMLInputElement;
 const span = document.querySelector('span') as HTMLLabelElement ;
 const submitBtn = document.querySelector('#submitBtn') as HTMLButtonElement;
 
-submitBtn.addEventListener('click', (event) => {
-    event.preventDefault();
+submitBtn.addEventListener('click', () => {
     const nameUser = nameOfUser.value;
     const additionalText = '!'
     
@@ -34,8 +33,7 @@ const addBtnSecondField = document.querySelector('#addBtnSecondField') as HTMLBu
 const inputSecondField = document.querySelector('#inputSecondField') as HTMLInputElement;
 const secondField = document.querySelector('.field.secondField') as HTMLDivElement;
 
-addBtnSecondField.addEventListener('click', (event) => {
-    event.preventDefault();
+addBtnSecondField.addEventListener('click', () => {
     const url = inputSecondField.value;
     const img = document.createElement('img');
     img.src = url

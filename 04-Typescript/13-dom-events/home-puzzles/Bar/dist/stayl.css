@@ -12,3 +12,30 @@
   border: none;
   border-radius: 50%;
 }
+
+.followers {
+  position: absolute;
+  display: flex;
+  transition: all 100ms;
+}
+.followers .follower1 {
+  position: relative;
+  width: 300px;
+  height: 200px;
+  background-image: url(./src/DOG-1.png);
+  background-size: cover;
+}
+.followers .follower2 {
+  position: relative;
+  width: 300px;
+  height: 200px;
+  background-image: url(./src/DOG-2.png);
+  background-size: cover;
+}
+.followers .follower3 {
+  position: relative;
+  width: 300px;
+  height: 200px;
+  background-image: url(./src/DOG-3.png);
+  background-size: cover;
+}

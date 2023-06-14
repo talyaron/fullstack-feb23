@@ -1,0 +1,35 @@
+body{
+    background-color: black;
+    background-image: url("https://images.pexels.com/photos/933054/pexels-photo-933054.jpeg?cs=srgb&dl=pexels-joyston-judah-933054.jpg&fm=jpg");
+    background-size: cover;
+    background-position: center bottom 80%;
+    background-repeat: no-repeat;
+}
+div {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+}
+
+.box {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    border: 2px solid #7B707E;
+    background-color: #7B707E;
+    margin-bottom: 20px;
+
+}
+
+.stop-icon, .play-icon {
+    position: absolute;
+    translate: -50%, -50%;
+    font-size: 30px;
+    top: 50%;
+    left: 50%;
+    color: white;
+}
+
+.stop-icon {
+    display: none;
+}

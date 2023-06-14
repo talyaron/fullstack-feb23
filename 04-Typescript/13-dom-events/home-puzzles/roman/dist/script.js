@@ -22,3 +22,16 @@ pics.forEach(function (pic) {
 });
 // console.log(pics)
 // 3) Create images of dogs on the screen. when the mouse leave the dog, the dog follows the mouse.
+var dogUrl = "https://easydrawingguides.com/wp-content/uploads/2022/06/how-to-draw-an-easy-dog-featured-image-1200-662x1024.png";
+var dogs = document.querySelectorAll('.dog');
+dogs.forEach(function (dog) {
+    dog.style.backgroundImage = "url(\"" + dogUrl + "\")";
+    dog.addEventListener('mouseleave', function (elm) {
+        dog.style.left = elm.pageX + 'px';
+        dog.style.top = elm.pageY + 'px';
+        console.log(elm);
+    });
+    dog.addEventListener('click', function (elm) {
+        dog.style.display = "none";
+    });
+});
