@@ -1,10 +1,7 @@
 * {
   margin: 0;
   padding: 0;
-}
-
-.container {
-  display: flex;
+  box-sizing: border-box;
 }
 
 #playButton {
@@ -17,6 +14,11 @@
 }
 
 #myImage {
+  width: 200px;
+  height: 200px;
+}
+
+#dog-image {
   width: 200px;
   height: 200px;
 }
