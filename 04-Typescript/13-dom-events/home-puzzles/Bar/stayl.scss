@@ -15,26 +15,28 @@
 }
 
 .followers {
+    $width: 300px;
+    $height: 200px;
     position: absolute;
     display: flex;
 
     .follower-1 {
-        width: 300px;
-        height: 200px;
+        width: $width;
+        height: $height;
         background-image: url(./src/DOG-1.png);
         background-size: cover;
     }
 
     .follower-2 {
-        width: 300px;
-        height: 200px;
+        width: $width;
+        height: $height;
         background-image: url(./src/DOG-2.png);
         background-size: cover;
     }
 
     .follower-3 {
-        width: 300px;
-        height: 200px;
+        width: $width;
+        height: $height;
         background-image: url(./src/DOG-3.png);
         background-size: cover;
     }
