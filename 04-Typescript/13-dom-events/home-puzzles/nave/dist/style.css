@@ -8,3 +8,8 @@
   margin: auto;
   margin-top: 10px;
 }
+.box .myAudio {
+  height: 100px;
+  width: 100px;
+  background-color: peachpuff;
+}

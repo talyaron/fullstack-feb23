@@ -5,9 +5,17 @@
 //     // const audio = document.querySelector(".myAudio");
 //     audio?.play();
 //   }
-const audios = document.querySelectorAll(".myAudio");
-const audio_link = new Audio ("./27300490_city-day-san-francisco-constant-1_by_prosoundfx_preview.mp3")
-audios.forEach(audio => {
-    audio.addEventListener("click", ()=>{audio_link.play()})
+const boxs = document.querySelectorAll(".box");
+console.log(boxs)
+const audio_link = new Audio ("./sound.mp3");
+
+// const sounds = {sound1:new Audio('./sound.mp3')}
+
+if(boxs){
+    boxs.forEach((box:any) => {
+    console.dir(box)
+    box.style.backgroundColor = "red";
+    box.addEventListener("click", ()=>{audio_link.play()})
 });
+}
 
