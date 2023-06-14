@@ -24,7 +24,6 @@ var follower = document.querySelector("#followers");
 document.addEventListener("mousemove", function (ev) {
     var mouseX = ev.clientX;
     var mouseY = ev.clientY;
-    // Set the element's position to follow the mouse
     followers.style.left = mouseX + "px";
     followers.style.top = mouseY + "px";
 });

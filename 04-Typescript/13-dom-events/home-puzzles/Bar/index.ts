@@ -34,7 +34,6 @@ document.addEventListener("mousemove", (ev) => {
     const mouseX = ev.clientX;
     const mouseY = ev.clientY;
 
-    // Set the element's position to follow the mouse
     followers.style.left = mouseX + "px";
     followers.style.top = mouseY + "px";
 });
