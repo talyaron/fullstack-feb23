@@ -1,7 +1,23 @@
-.box {
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  display: flex;
+}
+
+#playButton {
   position: absolute;
   width: 100px;
   height: 100px;
-  border: 1px solid red;
+  border: 10px solid red;
   background-color: aqua;
+  font-weight: 900;
+}
+
+#image1 {
+  width: 200px;
+  height: 200px;
+  margin-top: 700 px;
 }
