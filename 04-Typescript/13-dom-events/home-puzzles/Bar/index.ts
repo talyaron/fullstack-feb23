@@ -27,3 +27,24 @@ clowns?.addEventListener("mouseup", (ev: any) => {
 
 // 3) Create images of dogs on the screen. when the mouse leave the dog,
 // the dog follows the mouse.
+
+// const follower = document.querySelector(`#follower`);
+
+// document.addEventListener("mousemove", (ev: any) => {
+//     const mouseX = ev.clientX;
+//     const mouseY = ev.clientY;
+
+//     follower.style.left = mouseX + "px";
+//     follower.style.top = mouseY + "px";
+// });
+
+const follower = document.querySelector("#follower");
+
+document.addEventListener("mousemove", (ev) => {
+  const mouseX = ev.clientX;
+  const mouseY = ev.clientY;
+
+  // Set the element's position to follow the mouse
+  follower.style.left = mouseX + "px";
+  follower.style.top = mouseY + "px";
+});

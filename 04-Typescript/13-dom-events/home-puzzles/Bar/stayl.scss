@@ -2,7 +2,7 @@
     width: 200px;
     height: 200px;
     background-color: rgb(179, 218, 252);
-    border: none;   
+    border: none;
 }
 
 .clowns {
@@ -12,4 +12,12 @@
     border: none;
     border-radius: 50%;
     // background-size: cover;
+}
+
+.follower {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background-color: rgb(50, 108, 158);
+    border-radius: 50px;
 }
