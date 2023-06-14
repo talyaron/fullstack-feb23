@@ -20,3 +20,11 @@ clowns === null || clowns === void 0 ? void 0 : clowns.addEventListener("mouseup
 });
 // 3) Create images of dogs on the screen. when the mouse leave the dog,
 // the dog follows the mouse.
+var follower = document.querySelector("#followers");
+document.addEventListener("mousemove", function (ev) {
+    var mouseX = ev.clientX;
+    var mouseY = ev.clientY;
+    // Set the element's position to follow the mouse
+    followers.style.left = mouseX + "px";
+    followers.style.top = mouseY + "px";
+});
