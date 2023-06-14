@@ -13,38 +13,28 @@ const clowns = document.querySelector("#clowns");
 
 // When clicked, change the face into to a frighting clown.
 clowns?.addEventListener("mousedown", (ev: any) => {
-  ev.target.style.backgroundImage = "url(./dist/src/scery_clown.jpg)";
-  ev.target.style.backgroundSize = "cover";
+    ev.target.style.backgroundImage = "url(./dist/src/scery_clown.jpg)";
+    ev.target.style.backgroundSize = "cover";
 });
 
 // when the mouse leaves, change back to the nice face.
 clowns?.addEventListener("mouseup", (ev: any) => {
     ev.target.style.backgroundImage = "url(./dist/src/nice_clown.webp)";
     ev.target.style.backgroundSize = "cover";
-  });
+});
 
 
 
 // 3) Create images of dogs on the screen. when the mouse leave the dog,
 // the dog follows the mouse.
 
-// const follower = document.querySelector(`#follower`);
-
-// document.addEventListener("mousemove", (ev: any) => {
-//     const mouseX = ev.clientX;
-//     const mouseY = ev.clientY;
-
-//     follower.style.left = mouseX + "px";
-//     follower.style.top = mouseY + "px";
-// });
-
-const follower = document.querySelector("#follower");
+const follower = document.querySelector("#followers");
 
 document.addEventListener("mousemove", (ev) => {
-  const mouseX = ev.clientX;
-  const mouseY = ev.clientY;
+    const mouseX = ev.clientX;
+    const mouseY = ev.clientY;
 
-  // Set the element's position to follow the mouse
-  follower.style.left = mouseX + "px";
-  follower.style.top = mouseY + "px";
+    // Set the element's position to follow the mouse
+    followers.style.left = mouseX + "px";
+    followers.style.top = mouseY + "px";
 });

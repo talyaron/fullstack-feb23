@@ -13,10 +13,25 @@
   border-radius: 50%;
 }
 
-.follower {
+.followers {
   position: absolute;
-  width: 200px;
+  display: flex;
+}
+.followers .follower-1 {
+  width: 300px;
   height: 200px;
-  background-color: #326c9e;
-  border-radius: 50px;
+  background-image: url(./src/DOG-1.png);
+  background-size: cover;
+}
+.followers .follower-2 {
+  width: 300px;
+  height: 200px;
+  background-image: url(./src/DOG-2.png);
+  background-size: cover;
+}
+.followers .follower-3 {
+  width: 300px;
+  height: 200px;
+  background-image: url(./src/DOG-3.png);
+  background-size: cover;
 }

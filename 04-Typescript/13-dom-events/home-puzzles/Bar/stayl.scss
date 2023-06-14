@@ -14,10 +14,28 @@
     // background-size: cover;
 }
 
-.follower {
+.followers {
     position: absolute;
-    width: 200px;
-    height: 200px;
-    background-color: rgb(50, 108, 158);
-    border-radius: 50px;
+    display: flex;
+
+    .follower-1 {
+        width: 300px;
+        height: 200px;
+        background-image: url(./src/DOG-1.png);
+        background-size: cover;
+    }
+
+    .follower-2 {
+        width: 300px;
+        height: 200px;
+        background-image: url(./src/DOG-2.png);
+        background-size: cover;
+    }
+
+    .follower-3 {
+        width: 300px;
+        height: 200px;
+        background-image: url(./src/DOG-3.png);
+        background-size: cover;
+    }
 }
