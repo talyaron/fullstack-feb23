@@ -19,22 +19,26 @@
     $height: 200px;
     position: absolute;
     display: flex;
+    transition: all 100ms;
 
-    .follower-1 {
+    .follower1 {
+        position: relative;
         width: $width;
         height: $height;
         background-image: url(./src/DOG-1.png);
         background-size: cover;
     }
 
-    .follower-2 {
+    .follower2 {
+        position: relative;
         width: $width;
         height: $height;
         background-image: url(./src/DOG-2.png);
         background-size: cover;
     }
 
-    .follower-3 {
+    .follower3 {
+        position: relative;
         width: $width;
         height: $height;
         background-image: url(./src/DOG-3.png);
