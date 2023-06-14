@@ -1,0 +1,113 @@
+header{
+    height: 25vh;
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+    align-items: center;
+    gap: 15px;
+    width: 95vw;
+    
+    .logo{
+        height: 14vh;
+
+
+    }
+    .profileImgUser{
+        height: 9.5vh;
+        margin-left: 15px;
+
+        
+
+    }
+    .userName{
+        font-size: 15px;
+        font-weight: 500;
+        font-family: 'Assistant', sans-serif;
+    }
+    .switch{
+        color: #1877f2;
+        font-size: 15px;
+        font-weight: 500;
+        font-family: 'Assistant', sans-serif;
+        background-color: white;
+        border: none;
+    }
+        .profileImg{
+            height: 10vh;
+            border-radius: 100px;
+            margin-left: 10px;
+            margin-right: 10px;
+
+            .box{
+                width: 400px;
+                height: 200px;
+                max-width: 100%;
+                margin: 1rem auto;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                .border{
+                    border: solid 1px black;
+
+                }
+            }
+        }  
+}
+
+
+
+.sidebar{
+    margin: 0;
+    padding: 0;
+    width: 200px;
+    background-color: #f1f1f1;
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+    display: block;
+    border-left: 1px grey;
+
+}
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding-left: 55px;
+    width: 60px;
+
+
+  } 
+  
+  li a {
+    display: block;
+    background-color: #ffffff;
+    padding-bottom: 25px;
+    font-size: 19px;
+        font-weight: 500;
+        font-family: 'Assistant', sans-serif;
+        text-decoration: none;
+        color: black;
+   
+  }
+  .profileImgUser2{
+    height: 7vh;
+    padding-left: 55px;
+  }
+  .content{
+    margin: auto;
+    width: 40%;
+    margin-top: -20%;
+
+      
+        .posts{
+            display: block;
+        }
+        .post{
+            display: block;
+        }
+        .postImg{
+            height: 35vh;
+            width: 35vw;
+            padding-bottom: 30px;
+
+        }
+  }
