@@ -22,16 +22,30 @@ if (boximg) {
 //3) Create images of flawer on the screen.
 //  when the mouse leave the flawer, it follows the mouse.
 // use `mousemove`.
-interface;
-var flawer = document.querySelector(".flawer");
+//1: get the element
+var flawer = document.getElementById("flawer");
+var moving = false;
+//2. need to add an event listener to move it
 if (flawer) {
-    flawer.addEventListener("mousedown", function (e) {
-        moveFunction();
-    });
+    flawer.addEventListener("mousedown", initialClick, false);
 }
-function moveFunction(ev) {
-    var x = ev.moveinX;
-    var y = ev.moveinY;
-    var move = "Coordinates: (" + x + "," + y + ")";
-    document.getElementById("").innerHTML = move;
+//3. bild a move function to change the cordinats of the item acording to the cordinats of the mouse.
+function move(e) {
+    var newX = e.clientX - 10;
+    var newY = e.clientY - 10;
+    if (flawer) {
+        flawer.style.left = newX + "px";
+        flawer.style.top = newY + "px";
+    }
+}
+//4. bild a function that catch the item (initial click)
+function initialClick(e) {
+    if (moving) {
+        document.removeEventListener("mousemove", move);
+        moving = !moving;
+        return;
+    }
+    moving = !moving;
+    flawer = this;
+    document.addEventListener("mousemove", move, false);
 }
