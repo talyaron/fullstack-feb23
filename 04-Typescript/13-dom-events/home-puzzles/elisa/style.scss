@@ -1,7 +1,23 @@
-.box {
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#playButton {
   position: absolute;
   width: 100px;
   height: 100px;
-  border: 1px solid red;
+  border: 10px solid red;
   background-color: aqua;
+  font-weight: 900;
+}
+
+#myImage {
+  width: 200px;
+  height: 200px;
+}
+#dog-image {
+  width: 200px;
+  height: 200px;
 }
