@@ -14,23 +14,16 @@ playButton?.addEventListener('click', playSound);
 
 // 2) Create images of calm faces on the screen. When clicked, change the face into to a frighting clown. when the mouse leaves, change back to the nice face.
 // Get the image element
-const image = document.getElementById('image') as HTMLImageElement;
+const image = document.getElementById('myImage') as HTMLImageElement;
 
-// Store the paths for the two images
-const firstImagePath = './dist/audio/calmface.jpg';
-const secondImagePath = './dist/audio/angryface.jpg';
-
-// Function to change the image source
 function changeImage() {
-  if (image.src.endsWith(firstImagePath)) {
-    image.src = secondImagePath;
-  } else {
-    image.src = firstImagePath;
-  }
+  image.src = './dist/audio/angryface.jpg';
 }
 
-// Add event listeners for click and mouseleave
-image.addEventListener('click', changeImage);
-image.addEventListener('mouseleave', changeImage);
+function revertImage() {
+  image.src = './dist/audio/calmface.jpg';
+}
 
+image.addEventListener('click', changeImage);
+image.addEventListener('mousemove', revertImage);
 // 3) Create images of dogs on the screen. when the mouse leave the dog, the dog follows the mouse.

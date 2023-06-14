@@ -1,9 +1,9 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
-.container {
-  display: flex;
+
 }
 #playButton {
   position: absolute;
@@ -14,8 +14,7 @@
   font-weight: 900;
 }
 
-#image1 {
+#myImage {
   width: 200px;
   height: 200px;
-  margin-top: 700 px;
 }
