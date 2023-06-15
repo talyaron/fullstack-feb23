@@ -2,56 +2,63 @@
 // create a pawn that moves accross the board. (using the keyboard)
 // 3) create many pawns that can move (press one of them and move it using the keyboard)
 
-// caching pawns
-const movement = 112.5;
 const Pawns = document.querySelectorAll(`.pawn`);
 Pawns.forEach((pawn: HTMLDivElement) => {
+  pawn.addEventListener(`click`, (event) => {
+    addingClassByClick(pawn);
+    // console.dir(pawn);
+  });
+});
+
+Pawns.forEach((pawn: HTMLDivElement) => {
   pawn.onclick = (ev) => {
+    console.dir(ev);
+    document.addEventListener("keyup", (event: KeyboardEvent) => {
+      for (let i = 0; i < Pawns.length; i++) {
+        debugger;
+        // for (let n = 0; n < Pawns[i].classList.length; n++)
+        if (Pawns[i].classList[2] === `clicked`) {
+          switch (event.key) {
+            case "ArrowUp":
+              Pawns[i].style.top = `${Pawns[i].offsetTop - 112.5}px`;
+
+              break;
+            case "ArrowDown":
+              Pawns[i].style.top = `${Pawns[i].offsetTop + 112.5}px`;
+
+              break;
+            case "ArrowLeft":
+              Pawns[i].style.left = `${Pawns[i].offsetLeft - 112.5}px`;
+
+              break;
+            case "ArrowRight":
+              Pawns[i].style.left = `${Pawns[i].offsetLeft + 112.5}px`;
+
+              break;
+          }
+        }
+      }
+    });
+  };
+  // debugger;
+});
+
+function addingClassByClick(pawn) {
+  try {
+    pawn.classList.add(`clicked`);
     for (let i = 0; i < Pawns.length; i++) {
       for (let n = 0; n < Pawns[i].classList.length; n++)
         if (Pawns[i].classList[n] === `clicked`) {
           Pawns[i].classList.remove(`clicked`);
         }
-      // let n = Pawns[i].classList.length;
+      pawn.classList.add(`clicked`);
     }
-    pawn.classList.add(`clicked`);
-    console.dir(pawn);
-  };
-});
-
-Pawns.forEach((pawn: HTMLDivElement) => {
-  pawn.addEventListener(`click`, (ev) => {
-    console.dir(ev);
-
-    document.addEventListener("keyup", (event: KeyboardEvent) => {
-      for (let i = 0; i < Pawns.length; i++) {
-        for (let n = 0; n < Pawns[i].classList.length; n++)
-          if (Pawns[i].classList[n] === `clicked`) {
-            // debugger;
-            switch (event.key) {
-              case "ArrowUp":
-                Pawns[i].style.top = `${pawn.offsetTop - 112.5}px`;
-
-                break;
-              case "ArrowDown":
-                Pawns[i].style.top = `${pawn.offsetTop + 112.5}px`;
-
-                break;
-              case "ArrowLeft":
-                Pawns[i].style.left = `${pawn.offsetLeft - 112.5}px`;
-
-                break;
-              case "ArrowRight":
-                Pawns[i].style.left = `${pawn.offsetLeft + 112.5}px`;
-
-                break;
-            }
-          }
-      }
-    });
-  });
-  // debugger;
-});
+    return pawn;
+  } catch (error) {
+    console.error(error);
+    return;
+  }
+}
 
 // debugger;
 
