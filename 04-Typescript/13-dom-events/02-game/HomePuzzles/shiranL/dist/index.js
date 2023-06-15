@@ -3,12 +3,13 @@ var clown = /** @class */ (function () {
     function clown(title, imgUrl, id) {
         this.title = title;
         this.imgUrl = imgUrl;
+        this.id = id;
     }
     clown.prototype.renderclown = function (clowns) {
         try {
             if (!clowns)
                 throw new Error("missing root element");
-            var html = "<div class='card' id=\"" + this.id + "\" onClick=\"reply_click(this.id)\" ><img src=\"" + this.imgUrl + "\"></div>";
+            var html = "<div  onclick=\"move(this.id)\" class='card' id=\"" + this.id + "\" ><img src=\"" + this.imgUrl + "\"></div>";
             clowns.innerHTML += html;
         }
         catch (error) {
@@ -17,31 +18,29 @@ var clown = /** @class */ (function () {
     };
     return clown;
 }());
-function reply_click(clicked_id) {
+function move(clicked_id) {
     debugger;
-    console.log(clicked_id);
-    return (clicked_id);
+    var moveclown = document.querySelector("#" + clicked_id);
+    document.addEventListener('keyup', function (event) {
+        //if arrow up go up. if arrow down go down...
+        console.log(event);
+    });
 }
 //get root of clowns class
 var clownsHTML = document.querySelector('.clowns');
 // new array of clowns
 var clowns = [];
 //push and render
-var newclown = new clown("shiran", "./p1.png", 1);
+var newclown = new clown("shiran", "./p1.png", "A1");
 newclown.renderclown(clownsHTML);
 clowns.push(newclown);
-newclown = new clown("ohad", "./p2.png", 2);
+newclown = new clown("ohad", "./p2.png", "A2");
 newclown.renderclown(clownsHTML);
 clowns.push(newclown);
-newclown = new clown("Yarden", "./p3.png", 3);
+newclown = new clown("Yarden", "./p3.png", "A3");
 newclown.renderclown(clownsHTML);
 clowns.push(newclown);
-newclown = new clown("Yarden", "./p3.png", 4);
+newclown = new clown("Yarden", "./p3.png", "A4");
 newclown.renderclown(clownsHTML);
 clowns.push(newclown);
-//console.log(clowns);
-// get id from flick and move the element 
-// document.addEventListener('click', (event: Event) => {
-//     //if arrow up go up. if arrow down go down...
-//     console.log(event);
-// });
+document.onkeydown = detectKey;
