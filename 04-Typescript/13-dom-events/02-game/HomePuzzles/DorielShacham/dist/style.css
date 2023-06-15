@@ -20,6 +20,23 @@ h1 {
   justify-content: center;
   align-items: center;
 }
+.mainGame .board {
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  width: 400px;
+  height: 400px;
+}
+.mainGame .square {
+  width: 50px;
+  height: 50px;
+}
+.mainGame .black {
+  background-color: #000;
+}
+.mainGame .white {
+  background-color: #fff;
+}
 
 #player {
   position: absolute;

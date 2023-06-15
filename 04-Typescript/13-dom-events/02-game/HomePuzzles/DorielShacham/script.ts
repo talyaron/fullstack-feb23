@@ -32,16 +32,16 @@ update();
 document.addEventListener('keydown', (event) => {
     switch (event.key) {
         case 'ArrowUp':
-            player1.position.y -= 50;
+            player1.position.y -= 10;
             break;
         case 'ArrowDown':
-            player1.position.y += 50;
+            player1.position.y += 10;
             break;
         case 'ArrowLeft':
-            player1.position.x -= 50;
+            player1.position.x -= 10;
             break;
         case 'ArrowRight':
-            player1.position.x += 50;
+            player1.position.x += 10;
             break;
     }
     updatePlayer();
