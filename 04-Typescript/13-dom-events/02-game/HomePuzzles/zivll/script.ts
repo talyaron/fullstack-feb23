@@ -6,42 +6,47 @@ const Pawns = document.querySelectorAll(`.pawn`);
 Pawns.forEach((pawn: HTMLDivElement) => {
   pawn.addEventListener(`click`, (event) => {
     addingClassByClick(pawn);
-    // console.dir(pawn);
   });
 });
 
-Pawns.forEach((pawn: HTMLDivElement) => {
-  pawn.onclick = (ev) => {
-    console.dir(ev);
-    document.addEventListener("keyup", (event: KeyboardEvent) => {
-      for (let i = 0; i < Pawns.length; i++) {
-        debugger;
-        // for (let n = 0; n < Pawns[i].classList.length; n++)
-        if (Pawns[i].classList[2] === `clicked`) {
-          switch (event.key) {
-            case "ArrowUp":
-              Pawns[i].style.top = `${Pawns[i].offsetTop - 112.5}px`;
+for (let i = 0; i < Pawns.length; i++) {
+  if (Pawns[i].classList[2] === `clicked`) {
+    break;
+  } else
+    Pawns[i].onclick = (ev: KeyboardEvent) => {
+      console.dir(ev);
+      document.addEventListener("keyup", (event: KeyboardEvent) => {
+        for (let i = 0; i < Pawns.length; i++) {
+          if (Pawns[i].classList[2] === `clicked`) {
+            switch (event.key) {
+              case "ArrowUp":
+                Pawns[i].style.top = `${Pawns[i].offsetTop - 112.5}px`;
+                event.stopImmediatePropagation();
 
-              break;
-            case "ArrowDown":
-              Pawns[i].style.top = `${Pawns[i].offsetTop + 112.5}px`;
+                break;
+              case "ArrowDown":
+                Pawns[i].style.top = `${Pawns[i].offsetTop + 112.5}px`;
 
-              break;
-            case "ArrowLeft":
-              Pawns[i].style.left = `${Pawns[i].offsetLeft - 112.5}px`;
+                event.stopImmediatePropagation();
 
-              break;
-            case "ArrowRight":
-              Pawns[i].style.left = `${Pawns[i].offsetLeft + 112.5}px`;
+                break;
+              case "ArrowLeft":
+                Pawns[i].style.left = `${Pawns[i].offsetLeft - 112.5}px`;
+                event.stopImmediatePropagation();
 
-              break;
+                break;
+              case "ArrowRight":
+                Pawns[i].style.left = `${Pawns[i].offsetLeft + 112.5}px`;
+                event.stopImmediatePropagation();
+
+                break;
+            }
+            console.dir(event);
           }
         }
-      }
-    });
-  };
-  // debugger;
-});
+      });
+    };
+}
 
 function addingClassByClick(pawn) {
   try {
@@ -60,7 +65,38 @@ function addingClassByClick(pawn) {
   }
 }
 
-// debugger;
+// Pawns.forEach((pawn: HTMLDivElement) => {
+//   pawn.onclick = (ev) => {
+//     console.dir(ev);
+//     document.addEventListener("keyup", (event: KeyboardEvent) => {
+//       for (let i = 0; i < Pawns.length; i++) {
+//         debugger;
+//         // for (let n = 0; n < Pawns[i].classList.length; n++)
+//         if (Pawns[i].classList[2] === `clicked`) {
+//           switch (event.key) {
+//             case "ArrowUp":
+//               Pawns[i].style.top = `${Pawns[i].offsetTop - 112.5}px`;
+
+//               break;
+//             case "ArrowDown":
+//               Pawns[i].style.top = `${Pawns[i].offsetTop + 112.5}px`;
+
+//               break;
+//             case "ArrowLeft":
+//               Pawns[i].style.left = `${Pawns[i].offsetLeft - 112.5}px`;
+
+//               break;
+//             case "ArrowRight":
+//               Pawns[i].style.left = `${Pawns[i].offsetLeft + 112.5}px`;
+
+//               break;
+//           }
+//         }
+//       }
+//     });
+//   };
+//   // debugger;
+// });
 
 // Pawns.forEach((pawn: HTMLDivElement) => {
 //   pawn.onclick = (ev) => {
@@ -129,7 +165,7 @@ function addingClassByClick(pawn) {
 // //     document.addEventListener("keyup", (event: KeyboardEvent) => {
 // //       console.log(event);
 // //       // if (pawn.click()) {
-// //       //   event.stopPropagation;
+// //       //   event.stopImmediatePropagation;
 // //       // }
 // //       switch (event.key) {
 // //         case "ArrowUp":

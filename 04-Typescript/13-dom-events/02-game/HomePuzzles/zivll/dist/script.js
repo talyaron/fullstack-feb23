@@ -5,37 +5,42 @@ var Pawns = document.querySelectorAll(".pawn");
 Pawns.forEach(function (pawn) {
     pawn.addEventListener("click", function (event) {
         addingClassByClick(pawn);
-        // console.dir(pawn);
     });
 });
-Pawns.forEach(function (pawn) {
-    pawn.onclick = function (ev) {
-        console.dir(ev);
-        document.addEventListener("keyup", function (event) {
-            for (var i = 0; i < Pawns.length; i++) {
-                debugger;
-                // for (let n = 0; n < Pawns[i].classList.length; n++)
-                if (Pawns[i].classList[2] === "clicked") {
-                    switch (event.key) {
-                        case "ArrowUp":
-                            Pawns[i].style.top = Pawns[i].offsetTop - 112.5 + "px";
-                            break;
-                        case "ArrowDown":
-                            Pawns[i].style.top = Pawns[i].offsetTop + 112.5 + "px";
-                            break;
-                        case "ArrowLeft":
-                            Pawns[i].style.left = Pawns[i].offsetLeft - 112.5 + "px";
-                            break;
-                        case "ArrowRight":
-                            Pawns[i].style.left = Pawns[i].offsetLeft + 112.5 + "px";
-                            break;
+for (var i = 0; i < Pawns.length; i++) {
+    if (Pawns[i].classList[2] === "clicked") {
+        break;
+    }
+    else
+        Pawns[i].onclick = function (ev) {
+            console.dir(ev);
+            document.addEventListener("keyup", function (event) {
+                for (var i_1 = 0; i_1 < Pawns.length; i_1++) {
+                    if (Pawns[i_1].classList[2] === "clicked") {
+                        switch (event.key) {
+                            case "ArrowUp":
+                                Pawns[i_1].style.top = Pawns[i_1].offsetTop - 112.5 + "px";
+                                event.stopImmediatePropagation();
+                                break;
+                            case "ArrowDown":
+                                Pawns[i_1].style.top = Pawns[i_1].offsetTop + 112.5 + "px";
+                                event.stopImmediatePropagation();
+                                break;
+                            case "ArrowLeft":
+                                Pawns[i_1].style.left = Pawns[i_1].offsetLeft - 112.5 + "px";
+                                event.stopImmediatePropagation();
+                                break;
+                            case "ArrowRight":
+                                Pawns[i_1].style.left = Pawns[i_1].offsetLeft + 112.5 + "px";
+                                event.stopImmediatePropagation();
+                                break;
+                        }
+                        console.dir(event);
                     }
                 }
-            }
-        });
-    };
-    // debugger;
-});
+            });
+        };
+}
 function addingClassByClick(pawn) {
     try {
         pawn.classList.add("clicked");
@@ -53,7 +58,34 @@ function addingClassByClick(pawn) {
         return;
     }
 }
-// debugger;
+// Pawns.forEach((pawn: HTMLDivElement) => {
+//   pawn.onclick = (ev) => {
+//     console.dir(ev);
+//     document.addEventListener("keyup", (event: KeyboardEvent) => {
+//       for (let i = 0; i < Pawns.length; i++) {
+//         debugger;
+//         // for (let n = 0; n < Pawns[i].classList.length; n++)
+//         if (Pawns[i].classList[2] === `clicked`) {
+//           switch (event.key) {
+//             case "ArrowUp":
+//               Pawns[i].style.top = `${Pawns[i].offsetTop - 112.5}px`;
+//               break;
+//             case "ArrowDown":
+//               Pawns[i].style.top = `${Pawns[i].offsetTop + 112.5}px`;
+//               break;
+//             case "ArrowLeft":
+//               Pawns[i].style.left = `${Pawns[i].offsetLeft - 112.5}px`;
+//               break;
+//             case "ArrowRight":
+//               Pawns[i].style.left = `${Pawns[i].offsetLeft + 112.5}px`;
+//               break;
+//           }
+//         }
+//       }
+//     });
+//   };
+//   // debugger;
+// });
 // Pawns.forEach((pawn: HTMLDivElement) => {
 //   pawn.onclick = (ev) => {
 //     for (let i = 0; i < Pawns.length; i++) {
@@ -114,7 +146,7 @@ function addingClassByClick(pawn) {
 // //     document.addEventListener("keyup", (event: KeyboardEvent) => {
 // //       console.log(event);
 // //       // if (pawn.click()) {
-// //       //   event.stopPropagation;
+// //       //   event.stopImmediatePropagation;
 // //       // }
 // //       switch (event.key) {
 // //         case "ArrowUp":
