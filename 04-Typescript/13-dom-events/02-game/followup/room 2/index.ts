@@ -4,18 +4,30 @@ const box = document.querySelector('#box') as HTMLDivElement;
 document.addEventListener('keyup', (event: KeyboardEvent) => {
     //if arrow up go up. if arrow down go down...
     console.log(event);
-
-    switch (event.key) {
+    switch (event.key || event.ctrlKey) {
         case 'ArrowUp':
+            if(event.ctrlKey == true){
+                box.style.top = `${box.offsetTop - 200}px`;
+            }else
             box.style.top = `${box.offsetTop - 10}px`;
             break;
         case 'ArrowDown':
+            if(event.ctrlKey == true){
+                box.style.top = `${box.offsetTop  + 200}px`;
+            }else
             box.style.top = `${box.offsetTop + 10}px`;
+            
             break;
         case 'ArrowLeft':
+            if(event.ctrlKey == true){
+                box.style.left = `${box.offsetLeft - 200}px`;
+            }else
             box.style.left = `${box.offsetLeft - 10}px`;
             break;
         case 'ArrowRight':
+            if(event.ctrlKey == true){
+                box.style.left = `${box.offsetLeft + 200}px`;
+            }else
 
             box.style.left = `${box.offsetLeft + 10}px`;
             break;

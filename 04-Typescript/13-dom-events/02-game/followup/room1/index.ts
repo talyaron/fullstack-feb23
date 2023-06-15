@@ -4,20 +4,20 @@ const box = document.querySelector('#box') as HTMLDivElement;
 document.addEventListener('keyup', (event: KeyboardEvent) => {
     //if arrow up go up. if arrow down go down...
     console.log(event);
-
+    let movement:number = 10;
     switch (event.key) {
         case 'ArrowUp':
-            box.style.top = `${box.offsetTop - 10}px`;
+             box.style.top = `${box.offsetTop - movement}px`;
             break;
         case 'ArrowDown':
-            box.style.top = `${box.offsetTop + 10}px`;
+            box.style.top = `${box.offsetTop + movement}px`;
             break;
         case 'ArrowLeft':
-            box.style.left = `${box.offsetLeft - 10}px`;
+            box.style.left = `${box.offsetLeft - movement}px`;
             break;
         case 'ArrowRight':
 
-            box.style.left = `${box.offsetLeft + 10}px`;
+            box.style.left = `${box.offsetLeft + movement}px`;
             break;
         case " ":
             const urlMonster = 'url("./dist/packman-monster.png")'
@@ -30,6 +30,15 @@ document.addEventListener('keyup', (event: KeyboardEvent) => {
             }
 
             break;
+           case "Ctrl": if  (event.key === "Ctrl"){
+                movement = movement
+            } 
+            else {
+                movement = movement*2
+            }
+
+console.log(event.key);
+
 
 
 
