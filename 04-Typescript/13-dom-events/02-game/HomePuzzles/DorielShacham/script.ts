@@ -20,7 +20,6 @@ function updatePlayer() {
     player.style.width = `${player1.width}px`;
     player.style.height = `${player1.height}px`;
     //console.log(player1.position);
-    
 }
 
 function update() {
