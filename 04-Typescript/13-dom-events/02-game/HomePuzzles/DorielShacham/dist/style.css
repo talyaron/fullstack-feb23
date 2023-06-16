@@ -40,15 +40,49 @@ h1 {
 
 #player {
   position: absolute;
-  top: 0;
-  left: 0;
-  border: 2px solid white;
-  background-color: bisque;
   border-radius: 50px;
+  z-index: 1;
+}
+#player img {
+  width: 45px;
+  height: 45px;
+  position: relative;
+  bottom: 2px;
+  right: 7px;
+  border-radius: 50px;
+}
+
+#player::before,
+#player::after {
+  content: "";
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  background: linear-gradient(45deg, red, blue, green, yellow, #e11d74, black, #ffff00, #aa0000);
+  background-size: 400%;
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  z-index: -1;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  animation: animate 25s linear infinite;
 }
 
 #player:hover {
   cursor: pointer;
   transition: 0.2s;
   transform: scale(1.2);
+}
+
+@keyframes animate {
+  0% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 400% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
 }
