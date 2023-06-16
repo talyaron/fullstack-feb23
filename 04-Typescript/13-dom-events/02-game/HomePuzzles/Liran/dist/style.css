@@ -53,3 +53,11 @@ body {
 .wrapper .rows:nth-child(even) .box:nth-child(2n-1) {
   background-color: #dba866;
 }
+
+button {
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  top: 50px;
+  left: 50px;
+}

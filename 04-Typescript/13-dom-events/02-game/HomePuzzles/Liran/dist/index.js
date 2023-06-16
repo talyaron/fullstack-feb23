@@ -1,12 +1,19 @@
+function reloadPage() {
+    location.reload();
+}
+var restart = document.querySelector("#restart");
+restart === null || restart === void 0 ? void 0 : restart.addEventListener("click", function () {
+    reloadPage();
+});
 function renderBord() {
     try {
         console.log("renderBord");
         var wrapper = document.querySelector("#wrapper");
         if (!wrapper)
             throw new Error("Error in wrapper");
-        var index = 0;
+        var index_1 = 0;
         for (var i = 0; i < 8; i++) {
-            wrapper.innerHTML += "<div class=\"rows\">\n            <div id=box" + index++ + " class=\"box\"></div>\n            <div id=box" + index++ + " class=\"box\"></div>\n            <div id=box" + index++ + " class=\"box\"></div>\n            <div id=box" + index++ + " class=\"box\"></div>\n            <div id=box" + index++ + " class=\"box\"></div>\n            <div id=box" + index++ + " class=\"box\"></div>\n            <div id=box" + index++ + " class=\"box\"></div>\n            <div id=box" + index++ + " class=\"box\"></div>\n        </div>";
+            wrapper.innerHTML += "<div class=\"rows\">\n            <div id=box" + index_1++ + " class=\"box\"></div>\n            <div id=box" + index_1++ + " class=\"box\"></div>\n            <div id=box" + index_1++ + " class=\"box\"></div>\n            <div id=box" + index_1++ + " class=\"box\"></div>\n            <div id=box" + index_1++ + " class=\"box\"></div>\n            <div id=box" + index_1++ + " class=\"box\"></div>\n            <div id=box" + index_1++ + " class=\"box\"></div>\n            <div id=box" + index_1++ + " class=\"box\"></div>\n        </div>";
         }
     }
     catch (error) {
@@ -43,15 +50,33 @@ function renderBlackPlayer() {
         console.error(error);
     }
 }
-var numOfWP = 5;
+// function getPositions()
+var Pawn = /** @class */ (function () {
+    function Pawn() {
+    }
+    return Pawn;
+}());
+;
+var numOfWP = 12;
 var Limit = 640;
 renderBord();
 renderWhitePlayer();
 renderBlackPlayer();
-var whitePlayers = document.querySelectorAll(".img");
+var topIndex = [0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2];
+var leftIndex = [0, 2, 4, 6, 1, 3, 5, 7, 0, 2, 4, 6];
+var blackPosition = new Array(numOfWP);
+var whitePosition = new Array(numOfWP);
+var index = 0;
+var blackPlayers = document.querySelectorAll(".black");
+blackPlayers.forEach(function (player) {
+    player.style.top = (topIndex[index] * 80) + 10 + "px";
+    player.style.left = (leftIndex[index++] * 80) + 10 + "px";
+});
+index = 0;
+var whitePlayers = document.querySelectorAll(".white");
 whitePlayers.forEach(function (player) {
-    player.style.top = (Math.floor(Math.random() * 7 + 1) * 80) + 10 + "px";
-    player.style.left = (Math.floor(Math.random() * 7 + 1) * 80) + 10 + "px";
+    player.style.top = ((topIndex[index] + 5) * 80) + 10 + "px";
+    player.style.left = ((7 - leftIndex[index++]) * 80) + 10 + "px";
 });
 var whitePawns = document.querySelectorAll(".img");
 var activePawn = null;

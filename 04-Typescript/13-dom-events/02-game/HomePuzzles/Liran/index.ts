@@ -1,3 +1,13 @@
+function reloadPage()
+{
+    location.reload();
+}
+const restart = document.querySelector("#restart");
+restart?.addEventListener("click",()=>{
+    reloadPage();
+})
+
+
 function renderBord() {
     try {
         console.log(`renderBord`)
@@ -51,18 +61,37 @@ function renderBlackPlayer() {
     }
 }
 
-const numOfWP = 5;
+// function getPositions()
+
+class Pawn{
+    x:number;
+    y:number;
+};
+
+const numOfWP = 12;
 const Limit = 640;
 renderBord();
 renderWhitePlayer();
 renderBlackPlayer();
 
-const whitePlayers: NodeListOf<HTMLDivElement> = document.querySelectorAll(".img");
-whitePlayers.forEach(player => {
-    player.style.top = `${(Math.floor(Math.random() * 7 + 1) * 80) + 10}px`
-    player.style.left = `${(Math.floor(Math.random() * 7 + 1) * 80) + 10}px`
+const topIndex = [0,0,0,0,1,1,1,1,2,2,2,2];
+const leftIndex = [0,2,4,6,1,3,5,7,0,2,4,6];
+const blackPosition:Pawn[] = new Array(numOfWP); 
+const whitePosition:Pawn[] = new Array(numOfWP); 
+
+let index = 0;
+const blackPlayers: NodeListOf<HTMLDivElement> = document.querySelectorAll(".black");
+blackPlayers.forEach(player => {
+    player.style.top = `${(topIndex[index] * 80) + 10}px`
+    player.style.left = `${(leftIndex[index++] * 80) + 10}px`
 })
 
+index =0;
+const whitePlayers: NodeListOf<HTMLDivElement> = document.querySelectorAll(".white");
+whitePlayers.forEach(player => {
+    player.style.top = `${((topIndex[index] + 5)* 80) + 10}px`
+    player.style.left = `${((7-leftIndex[index++]) * 80) + 10}px`
+})
 
 const whitePawns: NodeListOf<HTMLDivElement> = document.querySelectorAll(".img");
 let activePawn: HTMLDivElement | null = null;
