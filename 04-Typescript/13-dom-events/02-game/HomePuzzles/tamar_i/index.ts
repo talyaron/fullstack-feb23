@@ -6,38 +6,27 @@
 const pawn = document.querySelector("#pawn") as HTMLDivElement;
 
 //make function that mouse catch the pawn (initial click)
-document.addEventListener("click", (ev: KeyboardEvent) => {
-console.log(ev);
+if(pawn){
+document.addEventListener("click",initiaAtMouselClick);
+}
+function initiaAtMouselClick(ev: any){
+    console.log(ev);
+    if()
 switch (ev.key) {
     case 'ArrowUp':
-        pawn.style.top = `${pawn.offsetTop - 10}px`;
+        pawn.style.top = `${pawn.offsetTop - 92}px`;
         break;
     case 'ArrowDown':
-        box.style.top = `${box.offsetTop + 10}px`;
+        pawn.style.top = `${pawn.offsetTop + 92}px`;
         break;
     case 'ArrowLeft':
-        box.style.left = `${box.offsetLeft - 10}px`;
+        pawn.style.left = `${pawn.offsetLeft - 93}px`;
         break;
     case 'ArrowRight':
-
-        box.style.left = `${box.offsetLeft + 10}px`;
+        pawn.style.left = `${pawn.offsetLeft + 93}px`;
         break;
-    case " ":
-        const urlMonster = 'url("./dist/packman-monster.png")'
-        const urlPackman = 'url("./dist/packman.png")'
+}}
 
-        if (box.style.backgroundImage === urlMonster) {
-            box.style.backgroundImage = urlPackman;
-        } else {
-            box.style.backgroundImage = urlMonster;
-        }
-
-        break;
-
-
-
-}F
-})
 
 
 
