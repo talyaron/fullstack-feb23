@@ -9,7 +9,7 @@ var clown = /** @class */ (function () {
         try {
             if (!clowns)
                 throw new Error("missing root element");
-            var html = "<div  onclick=\"move(this.id)\" class='card' id=\"" + this.id + "\" ><img src=\"" + this.imgUrl + "\"></div>";
+            var html = "<div  onclick=\"getClickedID(this.id as id)\" class='card' id=\"" + this.id + "\" ><img src=\"" + this.imgUrl + "\"></div>";
             clowns.innerHTML += html;
         }
         catch (error) {
@@ -18,14 +18,10 @@ var clown = /** @class */ (function () {
     };
     return clown;
 }());
-function move(clicked_id) {
+var clickedID = function getClickedID(id) {
     debugger;
-    var moveclown = document.querySelector("#" + clicked_id);
-    document.addEventListener('keyup', function (event) {
-        //if arrow up go up. if arrow down go down...
-        console.log(event);
-    });
-}
+    return id;
+};
 //get root of clowns class
 var clownsHTML = document.querySelector('.clowns');
 // new array of clowns
@@ -43,4 +39,34 @@ clowns.push(newclown);
 newclown = new clown("Yarden", "./p3.png", "A4");
 newclown.renderclown(clownsHTML);
 clowns.push(newclown);
-document.onkeydown = detectKey;
+// document.addEventListener('keyup', (event: KeyboardEvent) => {
+//     //if arrow up go up. if arrow down go down...
+//     console.log(event);
+//     if(clickedID!=null)
+//     {
+//         const selectedclownsHTML= document.querySelector(`#${clickedID}`) as HTMLElement;
+//     }
+//     // switch (event.key) {
+//     //     case 'ArrowUp':
+//     //         box.style.top = `${box.offsetTop - 10}px`;
+//     //         break;
+//     //     case 'ArrowDown':
+//     //         box.style.top = `${box.offsetTop + 10}px`;
+//     //         break;
+//     //     case 'ArrowLeft':
+//     //         box.style.left = `${box.offsetLeft - 10}px`;
+//     //         break;
+//     //     case 'ArrowRight':
+//     //         box.style.left = `${box.offsetLeft + 10}px`;
+//     //         break;
+//     //     case " ":
+//     //         const urlMonster = 'url("./dist/packman-monster.png")'
+//     //         const urlPackman = 'url("./dist/packman.png")'
+//     //         if (box.style.backgroundImage === urlMonster) {
+//     //             box.style.backgroundImage = urlPackman;
+//     //         } else {
+//     //             box.style.backgroundImage = urlMonster;
+//     //         }
+//     //         break;
+//     // }
+// });
