@@ -5,6 +5,19 @@ watermelons.forEach(function (watermelon) {
     watermelon.style.top = Math.floor(Math.random() * 99) + "%";
     watermelon.style.left = Math.floor(Math.random() * 99) + "%";
 });
+// function checkArrived() {
+//     const melonaSize = watermelons?.getBoundingClientRect();
+//     const dogSize = dog.getBoundingClientRect();
+//     if (
+//       melonaSize.left <= dogSize.right &&
+//       melonaSize.right >= dogSize.left &&
+//       melonaSize.top <= dogSize.bottom &&
+//       melonaSize.bottom >= dogSize.top
+//     ) {
+//       alert("congratulation!");
+//       location.reload();
+//     }
+//   }
 document.addEventListener('keyup', function (event) {
     //if arrow up go up. if arrow down go down...
     console.log(event);
