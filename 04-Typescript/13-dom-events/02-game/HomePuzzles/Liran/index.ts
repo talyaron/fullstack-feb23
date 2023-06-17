@@ -65,25 +65,7 @@ function renderBlackPlayer() {
 }
 
 
-class Pawn {
-    constructor(public x: number, public y: number) { }
 
-    setX(num: number) {
-        this.x = num;
-    }
-
-    sety(num: number) {
-        this.y = num;
-    }
-
-    getX(): number {
-        return this.x;
-    }
-
-    gety(): number {
-        return this.y;
-    }
-};
 
 const numOfWP = 12;
 const Limit = 640;
@@ -93,15 +75,13 @@ renderBlackPlayer();
 
 const topIndex = [0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2];
 const leftIndex = [0, 2, 4, 6, 1, 3, 5, 7, 0, 2, 4, 6];
-const blackPosition: Pawn[] = new Array();
-const whitePosition: Pawn[] = new Array();
+
 
 let index = 0;
 const blackPlayers: NodeListOf<HTMLDivElement> = document.querySelectorAll(".black");
 blackPlayers.forEach(player => {
     player.style.top = `${(topIndex[index] * 80) + 10}px`
     player.style.left = `${(leftIndex[index++] * 80) + 10}px`
-    setPosition(player, "black")
 })
 
 index = 0;
@@ -109,30 +89,18 @@ const whitePlayers: NodeListOf<HTMLDivElement> = document.querySelectorAll(".whi
 whitePlayers.forEach(player => {
     player.style.top = `${((topIndex[index] + 5) * 80) + 10}px`
     player.style.left = `${((7 - leftIndex[index++]) * 80) + 10}px`
-    setPosition(player, "white")
 
 })
 
-function setPosition(player: HTMLDivElement, team: String): Boolean | undefined {
-    try {
-        if (!player) throw new Error("Missing player");
-        if (team == "white") {
-            whitePosition.push(new Pawn(player.offsetTop, player.offsetLeft))
-        }
-        else {
-            blackPosition.push(new Pawn(player.offsetTop, player.offsetLeft))
-        }
-        return true;
-    } catch (error) {
-        console.log(error);
-    }
-}
 
 function meetPlyer(playerTop: number, playerLeft: number, secondPlayer: Pawn): boolean {
     try {
         if (!playerTop || !playerLeft || !secondPlayer) throw new Error("Missing Player");
-        if (playerTop === secondPlayer.gety() && playerLeft === secondPlayer.getX())
+        // console.log(playerTop, secondPlayer.getX(), playerLeft, secondPlayer.gety())
+        if (playerTop === secondPlayer.getX() && playerLeft === secondPlayer.gety()) {
+            // console.log("True")
             return true;
+        }
         return false;
     } catch (error) {
         console.error(error);
@@ -145,6 +113,7 @@ function canEat(playerTop: number, playerLeft: number, secondPlayer: Pawn): bool
         if (!playerTop || !playerLeft || !secondPlayer) throw new Error("Missing Player");
         if (playerTop === secondPlayer.gety() && playerLeft === secondPlayer.getX())
             return false;
+        // console.log("True")
         return true;
     } catch (error) {
         console.error(error);
@@ -154,75 +123,39 @@ function canEat(playerTop: number, playerLeft: number, secondPlayer: Pawn): bool
 
 const Players: NodeListOf<HTMLDivElement> = document.querySelectorAll(".img");
 let activePawn: HTMLDivElement | null = null;
-Players.forEach(player => {
+Players.forEach((player, index) => {
     player.addEventListener("click", () => {
         activePawn = player;
-        debugger;
     })
     document.addEventListener("keydown", (ev: any) => {
         try {
             if (activePawn === player) {
                 let step = 80;
-                let nextLocatiomn;
+                let nextLocation;
                 let eat = false, meet = false;
                 console.log(ev.key)
                 switch (ev.key) {
                     case 'ArrowUp':
-                        nextLocatiomn = (player.offsetTop - step);
-                        if (nextLocatiomn < 0) throw new Error("Out of Bord");
-                        // debugger;
-                        (player.classList[1] === "white" ? whitePosition : blackPosition).forEach(pawn => {
-                            meet = meetPlyer(nextLocatiomn, player.offsetLeft, pawn);
-                            eat = canEat(nextLocatiomn+step*2, player.offsetLeft, pawn);
-                            if (meet) {
-                                if (eat)
-                                    nextLocatiomn - step * 2;
-                            }
-                        })                        
-                        player.style.top = `${nextLocatiomn}px`;
+                        nextLocation = (player.offsetTop - step);
+                        if (nextLocation < 0) throw new Error("Out of Bord");
+                        player.style.top = `${nextLocation}px`;
                         break;
                     case 'ArrowDown':
-                        nextLocatiomn = (player.offsetTop + step);
-                        if (nextLocatiomn > Limit) throw new Error("Out of Bord");
-                        (player.classList[1] === "white" ? whitePosition : blackPosition).forEach(pawn => {
-                            meet = meetPlyer(nextLocatiomn, player.offsetLeft, pawn);
-                            eat = canEat(nextLocatiomn + 2*step, player.offsetLeft, pawn);
-                            if (meet) {
-                                if (eat)
-                                    nextLocatiomn + step * 2;
-                            }
-                        })
-                        player.style.top = `${nextLocatiomn}px`;
+                        nextLocation = (player.offsetTop + step);
+                        if (nextLocation > Limit) throw new Error("Out of Bord");                    
+                        player.style.top = `${nextLocation}px`;
                         // player.style.top = `${player.offsetTop + step}px`;
                         break;
                     case 'ArrowLeft':
-                        nextLocatiomn = (player.offsetLeft - step);
-                        if (nextLocatiomn < 0) throw new Error("Out of Bord");
-                        // player.style.left = `${player.offsetLeft - step}px`;
-                        (player.classList[1] === "white" ? whitePosition : blackPosition).forEach(pawn => {
-                            meet = meetPlyer(player.offsetTop, nextLocatiomn, pawn);
-                            eat = canEat(player.offsetTop, nextLocatiomn + step * 2, pawn);
-                            if (meet) {
-                                if (eat)
-                                    nextLocatiomn - step * 2;
-                            }
-                        })
-                        player.style.left = `${nextLocatiomn}px`;
+                        nextLocation = (player.offsetLeft - step);
+                        if (nextLocation < 0) throw new Error("Out of Bord");
+                        player.style.left = `${nextLocation}px`;
                         break;
                     case 'ArrowRight':
-                        nextLocatiomn = (player.offsetLeft + step);
-                        if (nextLocatiomn > Limit) throw new Error("Out of Bord");
-                        (player.classList[1] === "white" ? whitePosition : blackPosition).forEach(pawn => {
-                            meet = meetPlyer(player.offsetTop, player.offsetLeft, pawn);
-                            eat = canEat(player.offsetTop, nextLocatiomn + step * 2, pawn);
-                            debugger;
-                            if (meet) {
-                                if (eat)
-                                    nextLocatiomn + step * 2;
-                            }
-                        })
-                        player.style.left = `${nextLocatiomn}px`;
-                        // plyer.style.left = `${plyer.offsetLeft + step}px`;
+                        nextLocation = (player.offsetLeft + step);
+                        if (nextLocation > Limit) throw new Error("Out of Bord");
+                        player.style.left = `${nextLocation}px`;
+
                         break;
                 }
             }
