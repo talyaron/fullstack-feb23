@@ -19,11 +19,11 @@
 .square {
   height: 80px;
   width: 80px;
-  border: 1px solid #c80909;
+  border: 1px solid #c80965;
 }
 
 .dark {
-  background: #c80909;
+  background: #c80965;
 }
 
 .numbers {
@@ -38,7 +38,7 @@
   font-size: 2rem;
   font-weight: bold;
   list-style: none;
-  color: #c80909;
+  color: #c80965;
 }
 
 .letters {
@@ -53,16 +53,15 @@
   font-size: 2rem;
   font-weight: bold;
   list-style: none;
-  color: #c80909;
+  color: #c80965;
 }
 
 #pawn {
+  transition: all 100ms ease-in-out;
   width: 75px;
   height: 75px;
-  background-color: #f65757;
+  background-color: #e72784;
   border-radius: 50%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  position: relative;
-  margin-top: 20%;
-  margin-left: 50%;
+  position: absolute;
 }
