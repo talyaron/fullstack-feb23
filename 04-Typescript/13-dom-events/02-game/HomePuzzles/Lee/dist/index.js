@@ -28,16 +28,16 @@ document.addEventListener('keyup', function (event) {
     console.log(event);
     switch (event.key) {
         case 'ArrowUp':
-            pawn.style.top = pawn.offsetTop - 155 + "px";
+            pawn.style.top = pawn.offsetTop - 80 + "px";
             break;
         case 'ArrowDown':
-            pawn.style.top = pawn.offsetTop + 7 + "px";
+            pawn.style.top = pawn.offsetTop + 80 + "px";
             break;
         case 'ArrowLeft':
-            pawn.style.left = pawn.offsetLeft - 400 + "px";
+            pawn.style.left = pawn.offsetLeft - 80 + "px";
             break;
         case 'ArrowRight':
-            pawn.style.left = pawn.offsetLeft - 237 + "px";
+            pawn.style.left = pawn.offsetLeft + 80 + "px";
             break;
     }
 });
