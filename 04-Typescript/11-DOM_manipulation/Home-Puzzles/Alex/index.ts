@@ -24,9 +24,19 @@ class Car{
 // create an array of this class.
 
 const cars:Car[] = [
-    new Car("Audi","Q8","https://imgd.aeplcdn.com/1200x900/n/cw/ec/34470/audi-q8-front-view4.jpeg?q=75"),
+    new Car("Audi","Q8","https://cdn-2.motorsport.com/images/amp/63vxpl7Y/s1000/ferrari-vision-gran-turismo-1.jpg"),
     new Car("Lexus","SUV","https://cars.usnews.com/static/images/Auto/izmo/i159615470/2023_lexus_gx_angularfront.jpg"),
     new Car("Jeep","Grand Cherokee","https://www.jeep.com/content/dam/fca-brands/na/jeep/en_us/2022/grand-cherokee/trims/2022-All-New-Grand-Cherokee-Laredo-Vehicle-Lineup-All-Breakpoints.jpg.image.1440.jpg")
 ]
 
-const main = document.querySelector("#main");
+const main = document.querySelector("#root");
+const carsHTML = cars.map(car=>{
+
+    return `<p>${car.manufacturer},${car.model}
+    <img src=${car.imgSrc} />`
+})
+.join(" ");
+
+if (root){
+    root.innerHTML = carsHTML;
+}
