@@ -1,24 +1,45 @@
-//1
+//2
 //css- put a bord pic 
 //css- put on the bord a pawn pic
 //catch the pawn using queryselector
-//catch the pawn using mousedown
-//chack if the pawn move, if not - move it, if yes - release it by mouseup
+//move the pawn using keyboardevent
 var pawn = document.querySelector("#pawn");
+var x = 70; //store the start x point on the bord
+var y = 70; //stor the start y point on the bord
+var xMove = 90; //the jump move in x axis
+var yMove = 90; //the jump move in y axis
+var windowWidth = window.innerWidth;
+var windowHeight = window.innerHeight;
+console.log(windowHeight, windowWidth);
 document.addEventListener('keyup', function (event) {
     console.log(event);
     switch (event.key) {
-        case 'ArrowUp':
-            pawn.style.top = pawn.offsetTop - 90 + "px";
+        case 'ArrowLeft': //move left
+            if (x > 70) {
+                pawn.style.left = pawn.offsetLeft - xMove + "px";
+                x -= xMove;
+                console.log(x);
+            }
             break;
-        case 'ArrowDown':
-            pawn.style.top = pawn.offsetTop + 90 + "px";
+        case 'ArrowUp': //move up
+            if (y > 70) {
+                pawn.style.top = pawn.offsetTop - yMove + "px";
+                console.log(y);
+            }
             break;
-        case 'ArrowLeft':
-            pawn.style.left = pawn.offsetLeft - 90 + "px";
+        case 'ArrowRight': //move right
+            if (x < windowWidth) {
+                pawn.style.left = pawn.offsetLeft + xMove + "px";
+                x += xMove;
+                console.log(x);
+            }
             break;
-        case 'ArrowRight':
-            pawn.style.left = pawn.offsetLeft + 90 + "px";
+        case 'ArrowDown': //move down
+            if (y < windowHeight) {
+                pawn.style.top = pawn.offsetTop + yMove + "px";
+                y += yMove;
+                console.log(y);
+            }
             break;
     }
 });
