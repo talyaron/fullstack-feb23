@@ -1,16 +1,15 @@
-.clowns{
+.clowns {
    display: flex;
-  
    flex-wrap: wrap;
    justify-content: center;
    gap: 10px;
-   
-   .card{
-   img{
-
-    width: 250px;
-    height: 250px;
+ 
+   .card {
+     position: relative; // Set position to enable movement
+     img {
+       width: 250px;
+       height: 250px;
+     }
    }
-    
-   }
-}
+ }
+ 
