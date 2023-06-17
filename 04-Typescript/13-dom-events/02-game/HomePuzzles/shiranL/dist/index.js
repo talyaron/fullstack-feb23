@@ -1,4 +1,3 @@
-// create clown
 var clown = /** @class */ (function () {
     function clown(title, imgUrl, id) {
         this.title = title;
@@ -9,7 +8,7 @@ var clown = /** @class */ (function () {
         try {
             if (!clowns)
                 throw new Error("missing root element");
-            var html = "<div  onclick=\"move(this.id)\" class='card' id=\"" + this.id + "\" ><img src=\"" + this.imgUrl + "\"></div>";
+            var html = "<div class='card' id=\"" + this.id + "\"><img class=\"img\" src=\"" + this.imgUrl + "\"></div>";
             clowns.innerHTML += html;
         }
         catch (error) {
@@ -18,19 +17,11 @@ var clown = /** @class */ (function () {
     };
     return clown;
 }());
-function move(clicked_id) {
-    debugger;
-    var moveclown = document.querySelector("#" + clicked_id);
-    document.addEventListener('keyup', function (event) {
-        //if arrow up go up. if arrow down go down...
-        console.log(event);
-    });
-}
-//get root of clowns class
+// Get root of clowns class
 var clownsHTML = document.querySelector('.clowns');
-// new array of clowns
+// New array of clowns
 var clowns = [];
-//push and render
+// Push and render
 var newclown = new clown("shiran", "./p1.png", "A1");
 newclown.renderclown(clownsHTML);
 clowns.push(newclown);
@@ -40,7 +31,46 @@ clowns.push(newclown);
 newclown = new clown("Yarden", "./p3.png", "A3");
 newclown.renderclown(clownsHTML);
 clowns.push(newclown);
-newclown = new clown("Yarden", "./p3.png", "A4");
-newclown.renderclown(clownsHTML);
-clowns.push(newclown);
-document.onkeydown = detectKey;
+var currentPositionX = 0;
+var currentPositionY = 0;
+var selectedClownElement = null; // Store the selected clown element
+// listen to click and get id
+clownsHTML.addEventListener('click', function handleClick(event) {
+    if (event.target.className === 'img') {
+        // Reset border for all clowns
+        clowns.forEach(function (clown) {
+            var clownElement = document.getElementById(clown.id);
+            if (clownElement) {
+                clownElement.style.border = 'none';
+            }
+        });
+        var clickedClownElement = event.target.parentElement; // Get the parent element (card div)
+        clickedClownElement.style.border = '5px solid red'; // Apply border to the clicked clown
+        selectedClownElement = clickedClownElement; // Store the selected clown element for movement
+        currentPositionX = 0;
+        currentPositionY = 0;
+    }
+});
+document.addEventListener('keydown', function (event) {
+    debugger;
+    if (selectedClownElement) {
+        switch (event.key) {
+            case 'ArrowUp':
+                currentPositionY -= 10;
+                break;
+            case 'ArrowDown':
+                currentPositionY += 10;
+                break;
+            case 'ArrowLeft':
+                currentPositionX -= 10;
+                break;
+            case 'ArrowRight':
+                currentPositionX += 10;
+                break;
+        }
+        // Apply new position to the selected clown
+        console.log(selectedClownElement);
+        selectedClownElement.style.left = currentPositionX + 'px';
+        selectedClownElement.style.top = currentPositionY + 'px';
+    }
+});
