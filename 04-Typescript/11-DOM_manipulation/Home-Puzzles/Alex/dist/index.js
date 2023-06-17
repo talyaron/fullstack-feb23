@@ -23,6 +23,6 @@ var carsHTML = cars.map(function (car) {
     return "<p>" + car.manufacturer + "," + car.model + "\n    <img src=" + car.imgSrc + " />";
 })
     .join(" ");
-if (root) {
-    root.innerHTML = carsHTML;
+if (main) {
+    main.innerHTML = carsHTML;
 }

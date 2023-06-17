@@ -37,6 +37,6 @@ const carsHTML = cars.map(car=>{
 })
 .join(" ");
 
-if (root){
-    root.innerHTML = carsHTML;
+if (main){
+    main.innerHTML = carsHTML;
 }
