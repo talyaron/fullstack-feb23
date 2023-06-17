@@ -1,7 +1,7 @@
 var dog = document.querySelector(".dog");
-var melona = document.querySelector(".melona");
-melona.style.left = "calc(" + Math.random() * 100 + "% - 100px)";
-melona.style.top = "calc(" + Math.random() * 100 + "% - 100px)";
+var kennel = document.querySelector(".kennel");
+kennel.style.left = "calc(" + Math.random() * 100 + "% - 100px)";
+kennel.style.top = "calc(" + Math.random() * 100 + "% - 100px)";
 dog.addEventListener("click", onClick);
 var isClick = false;
 function onClick(e) {
@@ -20,12 +20,12 @@ var onMouseMove = function (e) {
     dog.style.top = e.pageY - 50 + "px";
 };
 function checkArrived() {
-    var melonaSize = melona === null || melona === void 0 ? void 0 : melona.getBoundingClientRect();
+    var kannelSize = kennel === null || kennel === void 0 ? void 0 : kennel.getBoundingClientRect();
     var dogSize = dog.getBoundingClientRect();
-    if (melonaSize.left <= dogSize.right &&
-        melonaSize.right >= dogSize.left &&
-        melonaSize.top <= dogSize.bottom &&
-        melonaSize.bottom >= dogSize.top) {
+    if (kannelSize.left <= dogSize.right &&
+        kannelSize.right >= dogSize.left &&
+        kannelSize.top <= dogSize.bottom &&
+        kannelSize.bottom >= dogSize.top) {
         alert("congratulation!");
         location.reload();
     }

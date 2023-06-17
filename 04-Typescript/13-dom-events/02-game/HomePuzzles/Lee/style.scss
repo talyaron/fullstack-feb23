@@ -1,0 +1,73 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: pink;
+}
+
+.board {
+    display: grid;
+    grid-template-columns: repeat(8,80px);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 640px;
+    height: 640px;
+    // border: 1px solid rgb(200, 9, 9);
+}
+        
+
+
+.square {
+    height: 80px;
+    width: 80px;
+    border: 1px solid rgb(200, 9, 9);
+}
+
+.dark 
+{
+    background: rgb(200, 9, 9);
+}
+
+.numbers {
+    position: absolute;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: space-around;
+    height: 640px;
+    width: 50px;
+    left: -50px;
+    font-size: 2rem;
+    font-weight: bold;
+    list-style: none;
+    color: rgb(200, 9, 9);
+}
+
+.letters {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    height: 50px;
+    width: 640px;
+    left: 0px;
+    bottom: -50px;
+    font-size: 2rem;
+    font-weight: bold;
+    list-style: none;
+    color: rgb(200, 9, 9);
+}
+
+#pawn {
+
+    width: 75px;
+    height: 75px;
+    background-color: rgb(246, 87, 87);
+    border-radius: 50%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    position: relative;
+    margin-top: 20%;
+    margin-left: 50%;
+}
