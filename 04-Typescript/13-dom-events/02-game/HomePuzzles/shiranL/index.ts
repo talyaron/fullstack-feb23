@@ -1,72 +1,83 @@
 
-// create clown
 class clown {
-   
-    constructor(public title: string, public imgUrl: string, public id:string) {}
+    constructor(public title: string, public imgUrl: string | null, public id: string) {}
     renderclown(clowns: HTMLElement | null) {
-    
-        try {
-            if (!clowns) throw new Error("missing root element")
-            const html: string = `<div  onclick="getClickedID(this.id as id)" class='card' id="${this.id}" ><img src="${this.imgUrl}"></div>`;
-            clowns.innerHTML += html;
-        } catch (error) {
-            console.error(error)
-        }
+      try {
+        if (!clowns) throw new Error("missing root element");
+        const html: string = `<div class='card' id="${this.id}"><img class="img" src="${this.imgUrl}"></div>`;
+        clowns.innerHTML += html;
+      } catch (error) {
+        console.error(error);
+      }
     }
-    
-}
-let clickedID =function getClickedID(id:string):string|null{
-    debugger;
-    return id;
-}
-//get root of clowns class
-const clownsHTML= document.querySelector('.clowns') as HTMLElement;
-// new array of clowns
-const clowns: clown[] =[]; 
-//push and render
-let newclown =new clown("shiran","./p1.png","A1"); newclown.renderclown(clownsHTML); clowns.push(newclown);
-newclown =new clown("ohad","./p2.png","A2"); newclown.renderclown(clownsHTML); clowns.push(newclown);
-newclown =new clown("Yarden","./p3.png","A3"); newclown.renderclown(clownsHTML); clowns.push(newclown); 
-newclown =new clown("Yarden","./p3.png","A4"); newclown.renderclown(clownsHTML); clowns.push(newclown);
-
-// document.addEventListener('keyup', (event: KeyboardEvent) => {
-//     //if arrow up go up. if arrow down go down...
+  }
   
-//     console.log(event);
-//     if(clickedID!=null)
-//     {
-//         const selectedclownsHTML= document.querySelector(`#${clickedID}`) as HTMLElement;
-
-//     }
-//     // switch (event.key) {
-        
-//     //     case 'ArrowUp':
-
-//     //         box.style.top = `${box.offsetTop - 10}px`;
-//     //         break;
-//     //     case 'ArrowDown':
-//     //         box.style.top = `${box.offsetTop + 10}px`;
-//     //         break;
-//     //     case 'ArrowLeft':
-//     //         box.style.left = `${box.offsetLeft - 10}px`;
-//     //         break;
-//     //     case 'ArrowRight':
-
-//     //         box.style.left = `${box.offsetLeft + 10}px`;
-//     //         break;
-//     //     case " ":
-//     //         const urlMonster = 'url("./dist/packman-monster.png")'
-//     //         const urlPackman = 'url("./dist/packman.png")'
-
-//     //         if (box.style.backgroundImage === urlMonster) {
-//     //             box.style.backgroundImage = urlPackman;
-//     //         } else {
-//     //             box.style.backgroundImage = urlMonster;
-//     //         }
-
-//     //         break;
-
-
-
-//     // }
-// });
+  // Get root of clowns class
+  const clownsHTML = document.querySelector('.clowns') as HTMLElement;
+  
+  // New array of clowns
+  const clowns: clown[] = [];
+  
+  // Push and render
+  let newclown = new clown("shiran", "./p1.png", "A1");
+  newclown.renderclown(clownsHTML);
+  clowns.push(newclown);
+  
+  newclown = new clown("ohad", "./p2.png", "A2");
+  newclown.renderclown(clownsHTML);
+  clowns.push(newclown);
+  
+  newclown = new clown("Yarden", "./p3.png", "A3");
+  newclown.renderclown(clownsHTML);
+  clowns.push(newclown);
+  
+  let currentPositionX = 0;
+  let currentPositionY = 0;
+  let selectedClownElement: HTMLElement | null = null; // Store the selected clown element
+  
+  // listen to click and get id
+  clownsHTML.addEventListener('click', function handleClick(event) {
+    if (event.target.className === 'img') {
+      // Reset border for all clowns
+      clowns.forEach((clown) => {
+        const clownElement = document.getElementById(clown.id);
+        if (clownElement) {
+          clownElement.style.border = 'none';
+        }
+      });
+  
+      const clickedClownElement = event.target.parentElement; // Get the parent element (card div)
+      clickedClownElement.style.border = '5px solid red'; // Apply border to the clicked clown
+  
+      selectedClownElement = clickedClownElement; // Store the selected clown element for movement
+      currentPositionX = 0;
+      currentPositionY = 0;
+    }
+  });
+  
+  document.addEventListener('keydown', (event: KeyboardEvent) => {
+    debugger;
+    if (selectedClownElement) {
+      switch (event.key) {
+        case 'ArrowUp':
+          currentPositionY -= 10;
+          break;
+        case 'ArrowDown':
+          currentPositionY += 10;
+          break;
+        case 'ArrowLeft':
+          currentPositionX -= 10;
+          break;
+        case 'ArrowRight':
+          currentPositionX += 10;
+          break;
+      }
+  
+      // Apply new position to the selected clown
+      console.log(selectedClownElement);
+      
+      selectedClownElement.style.left = currentPositionX + 'px';
+      selectedClownElement.style.top = currentPositionY + 'px';
+    }
+  });
+  
