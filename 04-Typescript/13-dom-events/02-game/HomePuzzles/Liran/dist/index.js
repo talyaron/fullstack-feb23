@@ -23,12 +23,13 @@ function renderBord() {
 function renderWhitePlayer() {
     try {
         console.log("renderWhitePlayer");
+        var pawnId = 0;
         // const boxId = document.querySelector(`#box${Math.floor(Math.random()*64)}`);
         var wrapper = document.querySelector("#wrapper");
         if (!wrapper)
             throw new Error("Error in wrapper");
         for (var i = 0; i < numOfWP; i++) {
-            wrapper.innerHTML += "<div class=\"img white\"></div>";
+            wrapper.innerHTML += "<div id=\"white" + pawnId++ + "\" class=\"img white\"></div>";
         }
     }
     catch (error) {
@@ -38,25 +39,19 @@ function renderWhitePlayer() {
 function renderBlackPlayer() {
     try {
         console.log("renderBlackPlayer");
+        var pawnId = 0;
         // const boxId = document.querySelector(`#box${Math.floor(Math.random()*64)}`);
         var wrapper = document.querySelector("#wrapper");
         if (!wrapper)
             throw new Error("Error in wrapper");
         for (var i = 0; i < numOfWP; i++) {
-            wrapper.innerHTML += "<div class=\"img black\"></div>";
+            wrapper.innerHTML += "<div id=\"black" + pawnId++ + "\" class=\"img black\"></div>";
         }
     }
     catch (error) {
         console.error(error);
     }
 }
-// function getPositions()
-var Pawn = /** @class */ (function () {
-    function Pawn() {
-    }
-    return Pawn;
-}());
-;
 var numOfWP = 12;
 var Limit = 640;
 renderBord();
@@ -64,8 +59,6 @@ renderWhitePlayer();
 renderBlackPlayer();
 var topIndex = [0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2];
 var leftIndex = [0, 2, 4, 6, 1, 3, 5, 7, 0, 2, 4, 6];
-var blackPosition = new Array(numOfWP);
-var whitePosition = new Array(numOfWP);
 var index = 0;
 var blackPlayers = document.querySelectorAll(".black");
 blackPlayers.forEach(function (player) {
@@ -78,36 +71,74 @@ whitePlayers.forEach(function (player) {
     player.style.top = ((topIndex[index] + 5) * 80) + 10 + "px";
     player.style.left = ((7 - leftIndex[index++]) * 80) + 10 + "px";
 });
-var whitePawns = document.querySelectorAll(".img");
+function meetPlyer(playerTop, playerLeft, secondPlayer) {
+    try {
+        if (!playerTop || !playerLeft || !secondPlayer)
+            throw new Error("Missing Player");
+        // console.log(playerTop, secondPlayer.getX(), playerLeft, secondPlayer.gety())
+        if (playerTop === secondPlayer.getX() && playerLeft === secondPlayer.gety()) {
+            // console.log("True")
+            return true;
+        }
+        return false;
+    }
+    catch (error) {
+        console.error(error);
+        return false;
+    }
+}
+function canEat(playerTop, playerLeft, secondPlayer) {
+    try {
+        if (!playerTop || !playerLeft || !secondPlayer)
+            throw new Error("Missing Player");
+        if (playerTop === secondPlayer.gety() && playerLeft === secondPlayer.getX())
+            return false;
+        // console.log("True")
+        return true;
+    }
+    catch (error) {
+        console.error(error);
+        return false;
+    }
+}
+var Players = document.querySelectorAll(".img");
 var activePawn = null;
-whitePawns.forEach(function (whitePawn) {
-    whitePawn.addEventListener("click", function () {
-        activePawn = whitePawn;
+Players.forEach(function (player, index) {
+    player.addEventListener("click", function () {
+        activePawn = player;
     });
     document.addEventListener("keydown", function (ev) {
         try {
-            if (activePawn === whitePawn) {
+            if (activePawn === player) {
+                var step = 80;
+                var nextLocation = void 0;
+                var eat = false, meet = false;
                 console.log(ev.key);
                 switch (ev.key) {
                     case 'ArrowUp':
-                        if ((whitePawn.offsetTop - 80) < 0)
+                        nextLocation = (player.offsetTop - step);
+                        if (nextLocation < 0)
                             throw new Error("Out of Bord");
-                        whitePawn.style.top = whitePawn.offsetTop - 80 + "px";
+                        player.style.top = nextLocation + "px";
                         break;
                     case 'ArrowDown':
-                        if ((whitePawn.offsetTop + 80) > Limit)
+                        nextLocation = (player.offsetTop + step);
+                        if (nextLocation > Limit)
                             throw new Error("Out of Bord");
-                        whitePawn.style.top = whitePawn.offsetTop + 80 + "px";
+                        player.style.top = nextLocation + "px";
+                        // player.style.top = `${player.offsetTop + step}px`;
                         break;
                     case 'ArrowLeft':
-                        if ((whitePawn.offsetLeft - 80) < 0)
+                        nextLocation = (player.offsetLeft - step);
+                        if (nextLocation < 0)
                             throw new Error("Out of Bord");
-                        whitePawn.style.left = whitePawn.offsetLeft - 80 + "px";
+                        player.style.left = nextLocation + "px";
                         break;
                     case 'ArrowRight':
-                        if ((whitePawn.offsetLeft + 80) > Limit)
+                        nextLocation = (player.offsetLeft + step);
+                        if (nextLocation > Limit)
                             throw new Error("Out of Bord");
-                        whitePawn.style.left = whitePawn.offsetLeft + 80 + "px";
+                        player.style.left = nextLocation + "px";
                         break;
                 }
             }

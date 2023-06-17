@@ -29,10 +29,10 @@ body {
   transition: all 1s ease;
 }
 .wrapper .black {
-  background-image: url(https://o.remove.bg/downloads/4ec54c15-91b4-4019-a13c-61072f16654b/BlackPlayer-removebg-preview.png);
+  background-image: url("BlackPlayer.PNG");
 }
 .wrapper .white {
-  background-image: url(https://o.remove.bg/downloads/7c9164d7-8658-4347-8cf3-a76de956649d/whitePlayer-removebg-preview.png);
+  background-image: url("WhitePlayer.PNG");
 }
 .wrapper .rows {
   display: flex;
