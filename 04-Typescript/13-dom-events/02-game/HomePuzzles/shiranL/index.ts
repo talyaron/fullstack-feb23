@@ -4,7 +4,7 @@ class clown {
     renderclown(clowns: HTMLElement | null) {
       try {
         if (!clowns) throw new Error("missing root element");
-        const html: string = `<div class='card' id="${this.id}"><img class="img" src="${this.imgUrl}"></div>`;
+        const html: string = `<div class='clown' id="${this.id}"><img class="img" src="${this.imgUrl}"></div>`;
         clowns.innerHTML += html;
       } catch (error) {
         console.error(error);
@@ -109,3 +109,21 @@ if (clown) {
 }
 }
 
+function deleteClown() {
+  if (selectedClownElement) {
+    const clownId = selectedClownElement.id;
+    const clownIndex = clowns.findIndex((clown) => clown.id === clownId);
+
+    if (clownIndex !== -1) {
+      clowns.splice(clownIndex, 1); // Remove clown from the array
+
+      // Remove clown element from the DOM
+      selectedClownElement.remove();
+
+      // Reset selected clown variables
+      selectedClownElement = null;
+      currentPositionX = 0;
+      currentPositionY = 0;
+    }
+  }
+}

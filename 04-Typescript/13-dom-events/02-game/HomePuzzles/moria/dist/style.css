@@ -1,29 +1,28 @@
 body {
   overflow: hidden;
 }
-body img {
+body .board {
+  position: absolute;
   width: 700px;
-  margin: 20px 370px;
+  height: 700px;
+  margin: 20px 350px;
   z-index: -5;
 }
-body .images #player1 {
+body .player {
   width: 50px;
+  height: 100px;
   position: absolute;
-  top: 3px;
-  left: 25px;
   z-index: 1;
 }
-body .images #player2 {
-  width: 50px;
-  position: absolute;
-  top: 3px;
-  left: 110px;
-  z-index: 1;
+body #player1 {
+  top: 20px;
+  left: 550px;
 }
-body .images #player3 {
-  width: 50px;
-  position: absolute;
-  top: -2px;
-  left: 200px;
-  z-index: 1;
+body #player2 {
+  top: 20px;
+  left: 455px;
+}
+body #player3 {
+  top: 20px;
+  left: 370px;
 }
