@@ -12,7 +12,7 @@ const pawns = document.querySelectorAll('.pawn') as NodeListOf<HTMLDivElement>;
 pawns.forEach(pl => {
     pl.addEventListener('click', (ev) => {
         pawn = ev.target as HTMLDivElement;
-        console.dir(player)
+       
     });
 });
 
