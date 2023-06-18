@@ -33,19 +33,19 @@ var Player = /** @class */ (function () {
         this.age = age;
         this.color = color;
     }
-    Player.prototype.renderPlyer = function (root) {
-        try {
-            if (!root)
-                throw new Error("missing root element");
-            var html = "<div class='card' onclick=\"handleHideCard('" + this.id + "')\" id=\"" + this.id + "\"><img src=\"" + this.imgUrl + "\"><h4>" + this.title + "</h4></div>";
-            root.innerHTML += html;
-        }
-        catch (error) {
-            console.error(error);
-        }
-    };
     return Player;
 }());
+function renderPlayer(root) {
+    try {
+        if (!root)
+            throw new Error("missing root element");
+        var html = "<div class='root' <h1>\"" + this.username + "\"></h1><img src=\"" + this.imageUrl + "\"><h4>" + this.age + "</h4></div>";
+        return root.innerHTML += html;
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
 // function handleInput(event) {
 //     console.dir(event)
 //     console.log(event.target.value);
