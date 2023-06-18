@@ -20,31 +20,16 @@ function renderBord() {
         console.error(error);
     }
 }
-function renderWhitePlayer() {
+function renderPawns() {
     try {
-        console.log("renderWhitePlayer");
+        console.log("renderPawns");
         var pawnId = 0;
         // const boxId = document.querySelector(`#box${Math.floor(Math.random()*64)}`);
         var wrapper = document.querySelector("#wrapper");
         if (!wrapper)
             throw new Error("Error in wrapper");
         for (var i = 0; i < numOfWP; i++) {
-            wrapper.innerHTML += "<div id=\"white" + pawnId++ + "\" class=\"img white\"></div>";
-        }
-    }
-    catch (error) {
-        console.error(error);
-    }
-}
-function renderBlackPlayer() {
-    try {
-        console.log("renderBlackPlayer");
-        var pawnId = 0;
-        // const boxId = document.querySelector(`#box${Math.floor(Math.random()*64)}`);
-        var wrapper = document.querySelector("#wrapper");
-        if (!wrapper)
-            throw new Error("Error in wrapper");
-        for (var i = 0; i < numOfWP; i++) {
+            wrapper.innerHTML += "<div id=\"white" + pawnId + "\" class=\"img white\"></div>";
             wrapper.innerHTML += "<div id=\"black" + pawnId++ + "\" class=\"img black\"></div>";
         }
     }
@@ -55,8 +40,7 @@ function renderBlackPlayer() {
 var numOfWP = 12;
 var Limit = 640;
 renderBord();
-renderWhitePlayer();
-renderBlackPlayer();
+renderPawns();
 var topIndex = [0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2];
 var leftIndex = [0, 2, 4, 6, 1, 3, 5, 7, 0, 2, 4, 6];
 var wIndex = 0;

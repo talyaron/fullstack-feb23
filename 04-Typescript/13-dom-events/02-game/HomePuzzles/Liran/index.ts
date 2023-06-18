@@ -32,31 +32,15 @@ function renderBord() {
 
 }
 
-
-function renderWhitePlayer() {
+function renderPawns() {
     try {
-        console.log(`renderWhitePlayer`)
-        let pawnId = 0;
-
-        // const boxId = document.querySelector(`#box${Math.floor(Math.random()*64)}`);
-        const wrapper = document.querySelector("#wrapper");
-        if (!wrapper) throw new Error("Error in wrapper")
-        for (let i = 0; i < numOfWP; i++) {
-            wrapper.innerHTML += `<div id="white${pawnId++}" class="img white"></div>`
-        }
-    } catch (error) {
-        console.error(error);
-    }
-}
-
-function renderBlackPlayer() {
-    try {
-        console.log(`renderBlackPlayer`)
+        console.log(`renderPawns`)
         let pawnId = 0;
         // const boxId = document.querySelector(`#box${Math.floor(Math.random()*64)}`);
         const wrapper = document.querySelector("#wrapper");
         if (!wrapper) throw new Error("Error in wrapper")
         for (let i = 0; i < numOfWP; i++) {
+            wrapper.innerHTML += `<div id="white${pawnId}" class="img white"></div>`
             wrapper.innerHTML += `<div id="black${pawnId++}" class="img black"></div>`
         }
     } catch (error) {
@@ -65,13 +49,10 @@ function renderBlackPlayer() {
 }
 
 
-
-
 const numOfWP = 12;
 const Limit = 640;
 renderBord();
-renderWhitePlayer();
-renderBlackPlayer();
+renderPawns();
 
 const topIndex = [0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2];
 const leftIndex = [0, 2, 4, 6, 1, 3, 5, 7, 0, 2, 4, 6];
