@@ -1,0 +1,35 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+  }
+
+.body{
+    display: flex;
+    margin: auto;
+    justify-content:center;
+    align-items: center;
+    height: 100vh;
+
+}
+
+.chekersBord{
+    display: grid;
+    height: min(100vw, 900px);
+    width: min(100vw, 900px);
+    grid-template-rows: repeat(8, 1fr);
+    border: black 1px solid;
+    box-sizing: content-box;
+    margin: auto;
+    .box{
+        position: relative;
+        height: max(calc(900px / 8), 100%);
+        width: max(calc(900px / 8), 100%);
+        border: black 1px solid;
+        display: flex;
+        margin: auto;
+        align-items: center;
+       
+    }
+}
+  
+
