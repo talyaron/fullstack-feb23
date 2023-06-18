@@ -7,7 +7,6 @@ var pawns = document.querySelectorAll('.pawn');
 pawns.forEach(function (pl) {
     pl.addEventListener('click', function (ev) {
         pawn = ev.target;
-        console.dir(player);
     });
 });
 // function onClick(){
