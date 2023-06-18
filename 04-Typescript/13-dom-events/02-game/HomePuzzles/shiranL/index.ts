@@ -4,19 +4,19 @@ class clown {
     renderclown(clowns: HTMLElement | null) {
       try {
         if (!clowns) throw new Error("missing root element");
-        const html: string = `<div class='card' id="${this.id}"><img class="img" src="${this.imgUrl}"></div>`;
+        const html: string = `<div class='clown' id="${this.id}"><img class="img" src="${this.imgUrl}"></div>`;
         clowns.innerHTML += html;
       } catch (error) {
         console.error(error);
       }
     }
   }
-  
-  // Get root of clowns class
-  const clownsHTML = document.querySelector('.clowns') as HTMLElement;
-  
   // New array of clowns
   const clowns: clown[] = [];
+  
+  // Get root of clowns class
+  const clownsHTML = document.querySelector('#clowns') as HTMLElement;
+  
   
   // Push and render
   let newclown = new clown("shiran", "./p1.png", "A1");
@@ -31,9 +31,11 @@ class clown {
   newclown.renderclown(clownsHTML);
   clowns.push(newclown);
   
+  //public define the selected clown
   let currentPositionX = 0;
   let currentPositionY = 0;
   let selectedClownElement: HTMLElement | null = null; // Store the selected clown element
+  let indexID=4;
   
   // listen to click and get id
   clownsHTML.addEventListener('click', function handleClick(event) {
@@ -74,10 +76,54 @@ class clown {
       }
   
       // Apply new position to the selected clown
-      console.log(selectedClownElement);
       
       selectedClownElement.style.left = currentPositionX + 'px';
       selectedClownElement.style.top = currentPositionY + 'px';
     }
   });
-  
+  // get new details for new clown
+  function getclownDetails():clown|false{
+    try
+   {
+    const title = prompt("What is the name of the clown?");
+    const imgUrl = prompt("add image url")
+    if (!title || !imgUrl) throw new Error("Missing details")
+
+    const newClown = new clown(title, imgUrl,`A${indexID}`);
+    indexID++;
+    return newClown;
+    } 
+    catch (error) 
+    {
+      console.log(error);
+      return false;
+        
+    }
+}
+// add new clown
+function addClown(){
+ const clown = getclownDetails();
+if (clown) {
+    clown?.renderclown(clownsHTML);
+    clowns.push(clown)
+}
+}
+
+function deleteClown() {
+  if (selectedClownElement) {
+    const clownId = selectedClownElement.id;
+    const clownIndex = clowns.findIndex((clown) => clown.id === clownId);
+
+    if (clownIndex !== -1) {
+      clowns.splice(clownIndex, 1); // Remove clown from the array
+
+      // Remove clown element from the DOM
+      selectedClownElement.remove();
+
+      // Reset selected clown variables
+      selectedClownElement = null;
+      currentPositionX = 0;
+      currentPositionY = 0;
+    }
+  }
+}

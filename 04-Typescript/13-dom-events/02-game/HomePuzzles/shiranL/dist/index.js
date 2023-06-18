@@ -8,7 +8,7 @@ var clown = /** @class */ (function () {
         try {
             if (!clowns)
                 throw new Error("missing root element");
-            var html = "<div class='card' id=\"" + this.id + "\"><img class=\"img\" src=\"" + this.imgUrl + "\"></div>";
+            var html = "<div class='clown' id=\"" + this.id + "\"><img class=\"img\" src=\"" + this.imgUrl + "\"></div>";
             clowns.innerHTML += html;
         }
         catch (error) {
@@ -17,10 +17,10 @@ var clown = /** @class */ (function () {
     };
     return clown;
 }());
-// Get root of clowns class
-var clownsHTML = document.querySelector('.clowns');
 // New array of clowns
 var clowns = [];
+// Get root of clowns class
+var clownsHTML = document.querySelector('#clowns');
 // Push and render
 var newclown = new clown("shiran", "./p1.png", "A1");
 newclown.renderclown(clownsHTML);
@@ -31,9 +31,11 @@ clowns.push(newclown);
 newclown = new clown("Yarden", "./p3.png", "A3");
 newclown.renderclown(clownsHTML);
 clowns.push(newclown);
+//public define the selected clown
 var currentPositionX = 0;
 var currentPositionY = 0;
 var selectedClownElement = null; // Store the selected clown element
+var indexID = 4;
 // listen to click and get id
 clownsHTML.addEventListener('click', function handleClick(event) {
     if (event.target.className === 'img') {
@@ -69,8 +71,46 @@ document.addEventListener('keydown', function (event) {
                 break;
         }
         // Apply new position to the selected clown
-        console.log(selectedClownElement);
         selectedClownElement.style.left = currentPositionX + 'px';
         selectedClownElement.style.top = currentPositionY + 'px';
     }
 });
+// get new details for new clown
+function getclownDetails() {
+    try {
+        var title = prompt("What is the name of the clown?");
+        var imgUrl = prompt("add image url");
+        if (!title || !imgUrl)
+            throw new Error("Missing details");
+        var newClown = new clown(title, imgUrl, "A" + indexID);
+        indexID++;
+        return newClown;
+    }
+    catch (error) {
+        console.log(error);
+        return false;
+    }
+}
+// add new clown
+function addClown() {
+    var clown = getclownDetails();
+    if (clown) {
+        clown === null || clown === void 0 ? void 0 : clown.renderclown(clownsHTML);
+        clowns.push(clown);
+    }
+}
+function deleteClown() {
+    if (selectedClownElement) {
+        var clownId_1 = selectedClownElement.id;
+        var clownIndex = clowns.findIndex(function (clown) { return clown.id === clownId_1; });
+        if (clownIndex !== -1) {
+            clowns.splice(clownIndex, 1); // Remove clown from the array
+            // Remove clown element from the DOM
+            selectedClownElement.remove();
+            // Reset selected clown variables
+            selectedClownElement = null;
+            currentPositionX = 0;
+            currentPositionY = 0;
+        }
+    }
+}

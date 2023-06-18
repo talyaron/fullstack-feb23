@@ -11,18 +11,6 @@ window.addEventListener('click', onClick);
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 // function onClick(){
     let pawn = document.querySelector('.pawn') as HTMLDivElement;
 document.addEventListener('keydown', (event: KeyboardEvent) => {
