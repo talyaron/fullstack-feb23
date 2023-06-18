@@ -25,22 +25,22 @@ window.addEventListener('click', onClick);
 
 
 document.addEventListener('keyup', (event: KeyboardEvent) => {
-    // event.stopPropagation();
+    event.stopPropagation();
     // console.dir(player)
     // console.log(event.key)
     switch (event.key) {
         case 'ArrowUp':
-            player.style.top = `${player.offsetTop - 45}px`;
+            player.style.top = `${player.offsetTop - 90}px`;
             break;
         case 'ArrowDown':
-            player.style.top = `${player.offsetTop + 45}px`;
+            player.style.top = `${player.offsetTop + 90}px`;
             break;
         case 'ArrowLeft':
-            player.style.left = `${player.offsetLeft - 45}px`;
+            player.style.left = `${player.offsetLeft - 85}px`;
             break;
         case 'ArrowRight':
 
-            player.style.left = `${player.offsetLeft + 45}px`;
+            player.style.left = `${player.offsetLeft + 85}px`;
             break;
 
 

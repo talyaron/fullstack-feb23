@@ -5,6 +5,7 @@ body .board {
   position: absolute;
   width: 700px;
   height: 700px;
+  margin: 20px 350px;
   z-index: -5;
 }
 body .player {
@@ -14,12 +15,14 @@ body .player {
   z-index: 1;
 }
 body #player1 {
-  left: 50px;
-  z-index: 1;
+  top: 20px;
+  left: 550px;
 }
 body #player2 {
-  left: 150px;
+  top: 20px;
+  left: 455px;
 }
 body #player3 {
-  left: 250px;
+  top: 20px;
+  left: 370px;
 }
