@@ -2,7 +2,7 @@
 // On submit, add the new profiles in to an array of class User
 // Render all instances of user into cards of profiles
 // this function includes all user information
-// const userArray = [];
+var usersArray = [];
 function handleSubmit(ev) {
     try {
         ev.preventDefault();
@@ -12,10 +12,8 @@ function handleSubmit(ev) {
         var color = ev.target.userColor.value;
         var dateOfBirth = ev.target.dateOfBirth.value;
         console.log(userName);
-        var userArray = [
-            new UserName(userName, imgUrl, color, dateOfBirth),
-        ];
-        console.log(UserName);
+        usersArray.push(new UserName(userName, imgUrl, color, dateOfBirth));
+        console.dir(usersArray);
         // const result = { userName, imgUrl, color, dateOfBirth };
     }
     catch (error) {
@@ -34,4 +32,4 @@ var UserName = /** @class */ (function () {
     }
     return UserName;
 }());
-console.dir(UserName);
+// UserName.forEach((element) => {});

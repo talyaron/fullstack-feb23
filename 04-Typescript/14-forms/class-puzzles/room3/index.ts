@@ -3,7 +3,7 @@
 // Render all instances of user into cards of profiles
 
 // this function includes all user information
-// const userArray = [];
+const usersArray: UserName[] = [];
 function handleSubmit(ev: any) {
   try {
     ev.preventDefault();
@@ -13,10 +13,8 @@ function handleSubmit(ev: any) {
     const color = ev.target.userColor.value;
     const dateOfBirth = ev.target.dateOfBirth.value;
     console.log(userName);
-    const userArray: UserName[] = [
-      new UserName(userName, imgUrl, color, dateOfBirth),
-    ];
-    console.log(UserName);
+    usersArray.push(new UserName(userName, imgUrl, color, dateOfBirth));
+    console.dir(usersArray);
 
     // const result = { userName, imgUrl, color, dateOfBirth };
   } catch (error) {
@@ -36,4 +34,4 @@ class UserName {
     public dateOfBirth: number
   ) {}
 }
-console.dir(UserName);
+// UserName.forEach((element) => {});

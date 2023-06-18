@@ -6,6 +6,7 @@ function handleInput(event) {
         root.innerHTML = event.target.value;
     }
 }
+var arrPlayers = [];
 function handleSubmit(ev) {
     try {
         ev.preventDefault();
@@ -17,7 +18,6 @@ function handleSubmit(ev) {
         var color = ev.target.color.value;
         var result = { username: username, imageUrl: imageUrl, age: age, color: color };
         console.log(result);
-        var arrPlayers = [];
         arrPlayers.push(result);
     }
     catch (error) {
