@@ -12,7 +12,7 @@ function handleSubmit(ev: any) {
     const imgUrl = ev.target.imagUrl.value;
     const color = ev.target.userColor.value;
     const dateOfBirth = ev.target.dateOfBirth.value;
-    console.log(userName);
+    // console.log(userName);
     usersArray.push(new UserName(userName, imgUrl, color, dateOfBirth));
     console.dir(usersArray);
 
@@ -31,7 +31,14 @@ class UserName {
     public userName: string,
     public imgUrl: string,
     public color: string,
-    public dateOfBirth: number
+    public dateOfBirth: number,
+    public age: Function
   ) {}
+  age(dateOfBirth) {
+    try {
+    } catch (error) {
+      console.error(error);
+    }
+  }
 }
 // UserName.forEach((element) => {});

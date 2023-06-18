@@ -11,7 +11,7 @@ function handleSubmit(ev) {
         var imgUrl = ev.target.imagUrl.value;
         var color = ev.target.userColor.value;
         var dateOfBirth = ev.target.dateOfBirth.value;
-        console.log(userName);
+        // console.log(userName);
         usersArray.push(new UserName(userName, imgUrl, color, dateOfBirth));
         console.dir(usersArray);
         // const result = { userName, imgUrl, color, dateOfBirth };
@@ -24,12 +24,20 @@ function handleSubmit(ev) {
 // this function takes all the info and make it into array
 function newUserIntoArray(username) { }
 var UserName = /** @class */ (function () {
-    function UserName(userName, imgUrl, color, dateOfBirth) {
+    function UserName(userName, imgUrl, color, dateOfBirth, age) {
         this.userName = userName;
         this.imgUrl = imgUrl;
         this.color = color;
         this.dateOfBirth = dateOfBirth;
+        this.age = age;
     }
+    UserName.prototype.age = function (dateOfBirth) {
+        try {
+        }
+        catch (error) {
+            console.error(error);
+        }
+    };
     return UserName;
 }());
 // UserName.forEach((element) => {});
