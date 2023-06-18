@@ -12,7 +12,7 @@ class Player {
 }
 
 const player = document.querySelector('#player') as HTMLElement;
-const player1 = new Player({ position: { x: 170, y: 5 } });
+const player1 = new Player({ position: { x: 550, y: 5 } });
 
 function updatePlayer() {
     player.style.top = `${player1.position.y}px`;

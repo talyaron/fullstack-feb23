@@ -22,4 +22,8 @@ const foodsHtml = foods
     <img src="${food.image}" />`
 }).join(" ")
 
+<<<<<<< HEAD
 if (container) container.innerHTML = foodsHtml;
+=======
+if (container) container.innerHTML = foodsHtml;
+>>>>>>> c8162fa75b2aa45c9a651d439fa2136ed0663ec0

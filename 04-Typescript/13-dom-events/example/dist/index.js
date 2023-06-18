@@ -1,6 +1,6 @@
 // const boxes = document.querySelectorAll(".box");
 var box = document.querySelector("#box");
-box === null || box === void 0 ? void 0 : box.addEventListener("click", function (ev) {
+box.addEventListener("click", function (ev) {
     ev.target.style.backgroundColor = getRandomColor();
 });
 // boxes.forEach((box) => {

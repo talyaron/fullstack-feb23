@@ -1,6 +1,9 @@
 var body = document.body;
+<<<<<<< HEAD
+=======
 var gallery = document.querySelector(".gallery");
 // alert(`NEW OPTION :  try click create button :)`)
+>>>>>>> c8162fa75b2aa45c9a651d439fa2136ed0663ec0
 var Post = /** @class */ (function () {
     function Post(_author, _imgSrc, _text) {
         this.author = _author;
@@ -15,6 +18,14 @@ var Post = /** @class */ (function () {
     Post.prototype.getLikes = function () {
         return this.likes;
     };
+<<<<<<< HEAD
+    Post.prototype.NewPostHtml = function () {
+        return "<div class=\"gallery__post\" id = \"" + this.id + "\">\n    <h3 class=\"author\">" + this.author + "</h3>\n    <h3 class=\"author\">" + this.text + "</h3>\n    <img src=" + this.imgSrc + " alt=\"\">\n    <div class=\"likesDiv\">\n      <span onclick=\"doingLike(event)\" class=\"material-symbols-outlined\">favorite</span>\n      <p>" + this.getLikes() + "</p>\n    </div>\n    </div>";
+    };
+    Post.prototype.renderNewPost = function () {
+        var gallery = document.querySelector(".gallery");
+        gallery.innerHTML += this.NewPostHtml();
+=======
     Post.prototype.NewPostHtml = function (locate) {
         return "<div class=\"post\" id = \"" + this.id + "\">\n    <div class=\"text\">\n    <p class=\"author\">@" + this.author + "</p>\n    <p class=\"paragraph\">" + this.text + "</p>\n    </div>\n    <img src=" + this.imgSrc + " alt=\"\">\n    <div class=\"likesDiv\">\n      <span onclick=\"doingLike(event)\" class=\"material-symbols-outlined\">favorite</span>\n      <p>" + this.getLikes() + "</p>\n    </div>\n    </div>";
     };
@@ -31,10 +42,24 @@ var Post = /** @class */ (function () {
         if (number % 3 == 2) {
             galleryLeft.innerHTML += this.NewPostHtml("left");
         }
+>>>>>>> c8162fa75b2aa45c9a651d439fa2136ed0663ec0
     };
     return Post;
 }());
 var postsArray = [
+<<<<<<< HEAD
+    new Post("ruthbentov 1", "https://cdn.pixabay.com/photo/2023/06/01/06/22/british-shorthair-8032816_1280.jpg", "hello world"),
+    new Post("ruthbentov 2", "https://cdn.pixabay.com/photo/2023/05/01/11/48/bird-7962790_1280.jpg", "hello world"),
+    new Post("ruthBentov 3", "https://cdn.pixabay.com/photo/2023/05/31/18/15/st-stephens-basilica-8031985_1280.jpg", "hello world"),
+    new Post("ruthbentov 4", "https://cdn.pixabay.com/photo/2023/01/16/19/13/laptop-7723139_1280.jpg", "hello world"),
+    new Post("ruthbentov 5", "https://cdn.pixabay.com/photo/2023/01/16/19/13/laptop-7723139_1280.jpg", "hello world"),
+    new Post("ruthbentov 6", "https://cdn.pixabay.com/photo/2023/01/16/19/13/laptop-7723139_1280.jpg", "hello world"),
+];
+postsArray.forEach(function (element) {
+    element.renderNewPost();
+});
+var doingLike = function (event) {
+=======
     new Post("RacheLevtov691", "https://images.pexels.com/photos/8723490/pexels-photo-8723490.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load", "see the sea"),
     new Post("PhotoRacheLevtov", "https://images.pexels.com/photos/17094724/pexels-photo-17094724.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load", "till the end"),
     new Post("Avinoam1", "https://images.pexels.com/photos/14089860/pexels-photo-14089860.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load", "31 in february was beauty ..."),
@@ -61,12 +86,17 @@ function resetGallery() {
     gallery.innerHTML = "<div class=\"gallery__right\"></div>\n  <div class=\"gallery__center\"></div>\n  <div class=\"gallery__left\"></div>";
 }
 function doingLike(event) {
+>>>>>>> c8162fa75b2aa45c9a651d439fa2136ed0663ec0
     var elem = event.target;
     var idElem = event.target.parentNode.parentNode.id;
     var LikeNum = event.target.parentNode.querySelector("p");
     LikeNum.innerHTML++;
     updateInObject(idElem);
+<<<<<<< HEAD
+};
+=======
 }
+>>>>>>> c8162fa75b2aa45c9a651d439fa2136ed0663ec0
 function updateInObject(idElem) {
     var postById = postsArray.find(function (elem) { return elem.id == idElem; });
     try {
@@ -79,6 +109,8 @@ function updateInObject(idElem) {
         console.error(error);
     }
 }
+<<<<<<< HEAD
+=======
 function createNewPost() {
     var newUserName = prompt("Enter your Name:");
     var newImgSrc = prompt("Enter source of image:");
@@ -97,3 +129,4 @@ function createNewPost() {
         alert(error + " the post will not render!");
     }
 }
+>>>>>>> c8162fa75b2aa45c9a651d439fa2136ed0663ec0
