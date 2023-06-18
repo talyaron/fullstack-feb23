@@ -9,7 +9,7 @@ var Player = /** @class */ (function () {
     return Player;
 }());
 var player = document.querySelector('#player');
-var player1 = new Player({ position: { x: 170, y: 5 } });
+var player1 = new Player({ position: { x: 550, y: 5 } });
 function updatePlayer() {
     player.style.top = player1.position.y + "px";
     player.style.left = player1.position.x + "px";
