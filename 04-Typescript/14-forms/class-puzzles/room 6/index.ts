@@ -18,10 +18,14 @@ function handleSubmit(ev:any){
         const yearOfBirth = ev.target.yearOfBirth.valueAsNumber;
         const age:number = new Date().getFullYear() - yearOfBirth;
         const color:number = ev.target.color.value;
-        const result = {username, imageUrl, age, color};
-        console.log(result);
+        class Player {
+            constructor(public username: string, public imageUrl: string, public age: number, public color: any) {
+            }
+        }
+        const player = new Player(username, imageUrl, age, color);
+        console.log(player);
         const arrPlayers :any[] =[];
-        arrPlayers.push(result);
+        arrPlayers.push(player);
     } catch (error) {
         console.error(error);
     }
@@ -30,10 +34,10 @@ function handleSubmit(ev:any){
 
 const root = document.querySelectorAll('.root') as NodeListOf<HTMLDivElement> ;
 
-class Player {
-    constructor(public username: string, public imageUrl: string, public age: number, public color: string) {
-    }
-}
+// class Player {
+//     constructor(public username: string, public imageUrl: string, public age: number, public color: string) {
+//     }
+// }
 
  function renderPlayer(root: HTMLElement | null) {
     try {

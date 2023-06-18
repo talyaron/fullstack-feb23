@@ -16,25 +16,29 @@ function handleSubmit(ev) {
         var yearOfBirth = ev.target.yearOfBirth.valueAsNumber;
         var age = new Date().getFullYear() - yearOfBirth;
         var color = ev.target.color.value;
-        var result = { username: username, imageUrl: imageUrl, age: age, color: color };
-        console.log(result);
+        var Player = /** @class */ (function () {
+            function Player(username, imageUrl, age, color) {
+                this.username = username;
+                this.imageUrl = imageUrl;
+                this.age = age;
+                this.color = color;
+            }
+            return Player;
+        }());
+        var player = new Player(username, imageUrl, age, color);
+        console.log(player);
         var arrPlayers = [];
-        arrPlayers.push(result);
+        arrPlayers.push(player);
     }
     catch (error) {
         console.error(error);
     }
 }
 var root = document.querySelectorAll('.root');
-var Player = /** @class */ (function () {
-    function Player(username, imageUrl, age, color) {
-        this.username = username;
-        this.imageUrl = imageUrl;
-        this.age = age;
-        this.color = color;
-    }
-    return Player;
-}());
+// class Player {
+//     constructor(public username: string, public imageUrl: string, public age: number, public color: string) {
+//     }
+// }
 function renderPlayer(root) {
     try {
         if (!root)
