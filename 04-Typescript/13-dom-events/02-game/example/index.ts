@@ -7,6 +7,7 @@ document.addEventListener('keyup', (event: KeyboardEvent) => {
 
     switch (event.key) {
         case 'ArrowUp':
+            if
             box.style.top = `${box.offsetTop - 10}px`;
             break;
         case 'ArrowDown':
