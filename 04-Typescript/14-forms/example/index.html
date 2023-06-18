@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,13 +8,21 @@
     <link rel="stylesheet" href="./dist/style.css">
 
 </head>
+
 <body>
     <h1>Forms</h1>
-    <input type="text" onkeyup="handleInput(event)">
-    <input type="password" onkeyup="handleInput(event)">
-    <input type="number" onkeyup="handleInput(event)">
-    
+    <form onsubmit="handleSubmit(event)">
+        <input type="text" name="username" onkeyup="handleInput(event)" required>
+        <input type="password" name="password" onkeyup="handleInput(event)" required>
+        <input type="number" name="age" onkeyup="handleInput(event)">
+        <input type="datetime-local" name='date' oninput="handleInput(event)">
+        <input type="submit" value="Send">
+        <button type="submit">Send</button>
+        <input type="reset" value="Reset">
+    </form>
+    <input type="color" oninput="handleColor(event)">
     <div id="root"></div>
     <script src="./dist/index.js"></script>
 </body>
+
 </html>

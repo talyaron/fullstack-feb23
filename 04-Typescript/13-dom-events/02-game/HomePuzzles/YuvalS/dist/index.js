@@ -1,10 +1,17 @@
 var pawn = document.querySelector('.pawn');
-var onClick = function (event) {
-    console.log(pawn = document.querySelector("#" + event.srcElement.id));
-};
-window.addEventListener('click', onClick);
+// const onClick = (event) => {
+//     console.log(pawn = document.querySelector(`#${event.srcElement.id}`)!);
+// }
+// window.addEventListener('click', onClick);
+var pawns = document.querySelectorAll('.pawn');
+pawns.forEach(function (pl) {
+    pl.addEventListener('click', function (ev) {
+        pawn = ev.target;
+        console.dir(player);
+    });
+});
 // function onClick(){
-var pawn = document.querySelector('.pawn');
+// let pawn = document.querySelector('.pawn') as HTMLDivElement;
 document.addEventListener('keydown', function (event) {
     console.log(event);
     switch (event.key) {
