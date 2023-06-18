@@ -7,13 +7,14 @@ body {
   background-size: cover;
   height: 30px;
   width: 30px;
-  position: relative;
-  top: 5px;
-  left: 5px;
+  position: absolute;
+  top: 15px;
+  left: 15px;
 }
 
 .chess {
   width: 400px;
+  height: 400px;
   display: grid;
   grid-template-columns: repeat(8, 1fr);
   grid-template-rows: repeat(8, 1fr);
