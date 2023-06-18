@@ -34,7 +34,7 @@
 
 }
 
-#pawn{
+#pawn1{
     width: 40px;
     height: 40px;
     border-radius: 360px;
@@ -42,5 +42,27 @@
     position: absolute;
     top: 25px;
     left: 395px;
+    transition: all 100ms ease-in-out;
+}
+
+#pawn2{
+    width: 40px;
+    height: 40px;
+    border-radius: 360px;
+    background-color: red;
+    position: absolute;
+    top: 25px;
+    left: 450px;
+    transition: all 100ms ease-in-out;
+}
+
+#pawn3{
+    width: 40px;
+    height: 40px;
+    border-radius: 360px;
+    background-color: red;
+    position: absolute;
+    top: 25px;
+    left: 505px;
     transition: all 100ms ease-in-out;
 }

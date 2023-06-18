@@ -1,5 +1,30 @@
-const pawn = document.querySelector('#pawn') as HTMLDivElement;
+let pawn = document.querySelector('.pawn') as HTMLDivElement;
 
+
+
+const onClick = (event) => {
+    console.log(pawn = document.querySelector(`#${event.srcElement.id}`)!);
+
+}
+
+window.addEventListener('click', onClick);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// function onClick(){
+    let pawn = document.querySelector('.pawn') as HTMLDivElement;
 document.addEventListener('keydown', (event: KeyboardEvent) => {
     console.log(event);
     
@@ -19,3 +44,5 @@ document.addEventListener('keydown', (event: KeyboardEvent) => {
             break;
 }
 })
+// }
+

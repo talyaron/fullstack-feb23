@@ -1,4 +1,10 @@
-var pawn = document.querySelector('#pawn');
+var pawn = document.querySelector('.pawn');
+var onClick = function (event) {
+    console.log(pawn = document.querySelector("#" + event.srcElement.id));
+};
+window.addEventListener('click', onClick);
+// function onClick(){
+var pawn = document.querySelector('.pawn');
 document.addEventListener('keydown', function (event) {
     console.log(event);
     switch (event.key) {
@@ -16,3 +22,4 @@ document.addEventListener('keydown', function (event) {
             break;
     }
 });
+// }
