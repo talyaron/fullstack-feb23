@@ -5,7 +5,8 @@ document.addEventListener('keyup', function (event) {
     console.log(event);
     switch (event.key) {
         case 'ArrowUp':
-            box.style.top = box.offsetTop - 10 + "px";
+            if (box.style.top = box.offsetTop - 10 + "px")
+                ;
             break;
         case 'ArrowDown':
             box.style.top = box.offsetTop + 10 + "px";
