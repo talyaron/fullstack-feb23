@@ -7,6 +7,8 @@ function handleInput(event) {
     }
 }
 
+const arrPlayers : {username: string; imageUrl: string; age: number; color: number}[]=[];
+
 function handleSubmit(ev:any){
     try {
         ev.preventDefault();
@@ -17,8 +19,7 @@ function handleSubmit(ev:any){
         const age:number = new Date().getFullYear() - yearOfBirth;
         const color:number = ev.target.color.value;
         const result = {username, imageUrl, age, color};
-        console.log(result)
-        const arrPlayers = [];
+        console.log(result);
         arrPlayers.push(result);
     } catch (error) {
         console.error(error);
