@@ -7,7 +7,7 @@ function handleInput(event) {
     }
 }
 
-const arrPlayers : {username: string; imageUrl: string; age: number; color: number}[]=[];
+// const arrPlayers : {username: string; imageUrl: string; age: number; color: number}[]=[];
 
 function handleSubmit(ev:any){
     try {
@@ -18,28 +18,37 @@ function handleSubmit(ev:any){
         const yearOfBirth = ev.target.yearOfBirth.valueAsNumber;
         const age:number = new Date().getFullYear() - yearOfBirth;
         const color:number = ev.target.color.value;
-        const result = {username, imageUrl, age, color};
-        console.log(result);
-        arrPlayers.push(result);
+        const player = {username, imageUrl, age, color};
+        console.log(player);
+        
+        const arrPlayers : any[] = [];
+        arrPlayers.push(player);
+
+        
+        
     } catch (error) {
         console.error(error);
     }
 }
+
 
 const root = document.querySelectorAll('.root') as NodeListOf<HTMLDivElement> ;
 
 class Player {
     constructor(public username: string, public imageUrl: string, public age: number, public color: string) {
     }
+}
 
-renderPlyer(root: HTMLElement | null) {
+ function renderPlayer(root: HTMLElement | null) {
     try {
         if (!root) throw new Error("missing root element")
-        const html: string = `<div class='card' onclick="handleHideCard('${this.id}')" id="${this.id}"><img src="${this.imgUrl}"><h4>${this.title}</h4></div>`;
-        root.innerHTML += html;
+        const html: string = `<div class='root' <h1>"${this.username}"></h1><img src="${this.imageUrl}"><h4>${this.age}</h4></div>`;
+        return root.innerHTML += html;
     } catch (error) {
         console.error(error)
     }
 }
-}
+
+
+
 

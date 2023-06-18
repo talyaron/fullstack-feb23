@@ -6,7 +6,7 @@ function handleInput(event) {
         root.innerHTML = event.target.value;
     }
 }
-var arrPlayers = [];
+// const arrPlayers : {username: string; imageUrl: string; age: number; color: number}[]=[];
 function handleSubmit(ev) {
     try {
         ev.preventDefault();
@@ -16,9 +16,10 @@ function handleSubmit(ev) {
         var yearOfBirth = ev.target.yearOfBirth.valueAsNumber;
         var age = new Date().getFullYear() - yearOfBirth;
         var color = ev.target.color.value;
-        var result = { username: username, imageUrl: imageUrl, age: age, color: color };
-        console.log(result);
-        arrPlayers.push(result);
+        var player = { username: username, imageUrl: imageUrl, age: age, color: color };
+        console.log(player);
+        var arrPlayers = [];
+        arrPlayers.push(player);
     }
     catch (error) {
         console.error(error);
@@ -32,16 +33,16 @@ var Player = /** @class */ (function () {
         this.age = age;
         this.color = color;
     }
-    Player.prototype.renderPlyer = function (root) {
-        try {
-            if (!root)
-                throw new Error("missing root element");
-            var html = "<div class='card' onclick=\"handleHideCard('" + this.id + "')\" id=\"" + this.id + "\"><img src=\"" + this.imgUrl + "\"><h4>" + this.title + "</h4></div>";
-            root.innerHTML += html;
-        }
-        catch (error) {
-            console.error(error);
-        }
-    };
     return Player;
 }());
+function renderPlayer(root) {
+    try {
+        if (!root)
+            throw new Error("missing root element");
+        var html = "<div class='root' <h1>\"" + this.username + "\"></h1><img src=\"" + this.imageUrl + "\"><h4>" + this.age + "</h4></div>";
+        return root.innerHTML += html;
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
