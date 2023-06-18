@@ -1,6 +1,6 @@
 //define the bord max width and hight
-var maxwidth = 400;
-var maxhight = 400;
+var maxwidth = 400 - 50;
+var maxhight = 400 - 50;
 //insert the pawn from HTML to JS
 var pawn = document.querySelector("#pawn");
 //move the pawn using keybourd in the bord area
@@ -28,6 +28,7 @@ document.addEventListener('keyup', function (event) {
         case 'ArrowUp': //move up
             if (y > 15) {
                 pawn.style.top = pawn.offsetTop - yMove + "px";
+                y -= yMove;
                 console.log(y);
             }
             break;
