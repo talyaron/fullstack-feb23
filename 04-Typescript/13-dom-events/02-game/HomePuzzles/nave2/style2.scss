@@ -1,0 +1,101 @@
+.body{
+    background-color: wheat;
+
+}
+.square{
+    width: 100px;
+    height:100px;
+    box-sizing: border-box;
+    border: 1px solid black;
+    display: flex;
+    margin: auto;
+    align-items: center;
+    justify-content: center;
+
+    
+
+}
+.pawn {
+    position: absolute;
+    width: 6%;
+    height: 6%;
+    border-radius: 100%;
+    z-index: 1000;
+    
+  }
+  .white-pawn {
+    background-color: #fff;
+    border: 3px solid #000;
+    box-sizing: content-box;
+  }
+  .black-pawn {
+    background-color: #000;
+    border: 3px solid #fff;
+    box-sizing: content-box;
+  }
+
+.Row {
+    display: flex;
+  }
+  .one {
+    .square {
+      &:nth-child(even) {
+        background-color: black;
+      }
+    }
+  }
+  .two {
+    .square {
+      &:nth-child(odd) {
+        background-color: black;
+      }
+    }
+  }
+  .three {
+    .square {
+      &:nth-child(even) {
+        background-color: black;
+      }
+    }
+  }
+  .four {
+    .square {
+      &:nth-child(odd) {
+        background-color: black;
+      }
+    }
+  }
+  .five {
+    .square {
+      &:nth-child(even) {
+        background-color: black;
+      }
+    }
+  }
+  .six {
+    .square {
+      &:nth-child(odd) {
+        background-color: black;
+      }
+    }
+  }
+  .seven {
+    .square {
+      &:nth-child(even) {
+        background-color: black;
+      }
+    }
+  }
+  .eight {
+    .square {
+      &:nth-child(odd) {
+        background-color: black;
+      }
+    }
+  }
+#bord{
+    display: flex;
+    margin: auto;
+    width:800px ;
+    flex-wrap: wrap;
+}
