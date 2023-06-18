@@ -2,17 +2,22 @@ let pawn = document.querySelector('.pawn') as HTMLDivElement;
 
 
 
-const onClick = (event) => {
-    console.log(pawn = document.querySelector(`#${event.srcElement.id}`)!);
+// const onClick = (event) => {
+//     console.log(pawn = document.querySelector(`#${event.srcElement.id}`)!);
 
-}
+// }
 
-window.addEventListener('click', onClick);
-
-
+// window.addEventListener('click', onClick);
+const pawns = document.querySelectorAll('.pawn') as NodeListOf<HTMLDivElement>;
+pawns.forEach(pl => {
+    pl.addEventListener('click', (ev) => {
+        pawn = ev.target as HTMLDivElement;
+        console.dir(player)
+    });
+});
 
 // function onClick(){
-    let pawn = document.querySelector('.pawn') as HTMLDivElement;
+    // let pawn = document.querySelector('.pawn') as HTMLDivElement;
 document.addEventListener('keydown', (event: KeyboardEvent) => {
     console.log(event);
     
