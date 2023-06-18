@@ -4,32 +4,31 @@ body {
 
     .board {
         position: absolute;
-        width: 1000px;
-        height: 1000px;
+        width: 700px;
+        height: 700px;
 
         z-index: -5;
+    }
+
+    .player {
+        width: 50px;
+        height: 100px;
+        position: absolute;
+        z-index: 1;
+    }
+
+    #player1 {
+        left: 50px;
+        z-index: 1;
 
 
-        .player {
-            width: 50px;
-            height: 100px;
-            position: absolute;
-            z-index: 1;
-        }
+    }
 
-        #player1 {
-            left: 50px;
-            z-index: 1;
+    #player2 {
+        left: 150px;
+    }
 
-
-        }
-
-        #player2 {
-            left: 150px;
-        }
-
-        #player3 {
-            left: 250px;
-        }
+    #player3 {
+        left: 250px;
     }
 }
