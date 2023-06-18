@@ -1,6 +1,10 @@
 const body = document.body;
+<<<<<<< HEAD
+
+=======
 const gallery = document.querySelector(".gallery") as HTMLDivElement;
 // alert(`NEW OPTION :  try click create button :)`)
+>>>>>>> c8162fa75b2aa45c9a651d439fa2136ed0663ec0
 class Post {
   author: string;
   imgSrc: string;
@@ -25,12 +29,19 @@ class Post {
     return this.likes;
   }
 
+<<<<<<< HEAD
+  NewPostHtml(): string {
+    return `<div class="gallery__post" id = "${this.id}">
+    <h3 class="author">${this.author}</h3>
+    <h3 class="author">${this.text}</h3>
+=======
   NewPostHtml(locate: string): string {
     return `<div class="post" id = "${this.id}">
     <div class="text">
     <p class="author">@${this.author}</p>
     <p class="paragraph">${this.text}</p>
     </div>
+>>>>>>> c8162fa75b2aa45c9a651d439fa2136ed0663ec0
     <img src=${this.imgSrc} alt="">
     <div class="likesDiv">
       <span onclick="doingLike(event)" class="material-symbols-outlined">favorite</span>
@@ -39,6 +50,11 @@ class Post {
     </div>`;
   }
 
+<<<<<<< HEAD
+  renderNewPost() {
+    const gallery = document.querySelector(".gallery");
+    gallery!.innerHTML += this.NewPostHtml();
+=======
   renderNewPost(number: number) {
     const galleryRight = document.querySelector(".gallery__right");
     const galleryCenter = document.querySelector(".gallery__center");
@@ -52,11 +68,50 @@ class Post {
     if (number % 3 == 2) {
       galleryLeft!.innerHTML += this.NewPostHtml("left");
     }
+>>>>>>> c8162fa75b2aa45c9a651d439fa2136ed0663ec0
   }
 }
 
 const postsArray: Post[] = [
   new Post(
+<<<<<<< HEAD
+    "ruthbentov 1",
+    "https://cdn.pixabay.com/photo/2023/06/01/06/22/british-shorthair-8032816_1280.jpg",
+    "hello world",
+  ),
+  new Post(
+    "ruthbentov 2",
+    "https://cdn.pixabay.com/photo/2023/05/01/11/48/bird-7962790_1280.jpg",
+    "hello world",
+  ),
+  new Post(
+    "ruthBentov 3",
+    "https://cdn.pixabay.com/photo/2023/05/31/18/15/st-stephens-basilica-8031985_1280.jpg",
+    "hello world",
+  ),
+  new Post(
+    "ruthbentov 4",
+    "https://cdn.pixabay.com/photo/2023/01/16/19/13/laptop-7723139_1280.jpg",
+    "hello world",
+  ),
+  new Post(
+    "ruthbentov 5",
+    "https://cdn.pixabay.com/photo/2023/01/16/19/13/laptop-7723139_1280.jpg",
+    "hello world",
+  ),
+  new Post(
+    "ruthbentov 6",
+    "https://cdn.pixabay.com/photo/2023/01/16/19/13/laptop-7723139_1280.jpg",
+    "hello world",
+  ),
+];
+
+postsArray.forEach((element) => {
+  element.renderNewPost();
+});
+
+const doingLike = (event) => {
+=======
     "RacheLevtov691",
     "https://images.pexels.com/photos/8723490/pexels-photo-8723490.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load",
     "see the sea",
@@ -143,12 +198,17 @@ function resetGallery() {
 }
 
 function doingLike(event) {
+>>>>>>> c8162fa75b2aa45c9a651d439fa2136ed0663ec0
   let elem = event.target;
   let idElem: string = event.target.parentNode.parentNode.id;
   let LikeNum = event.target.parentNode.querySelector("p");
   LikeNum.innerHTML++;
   updateInObject(idElem);
+<<<<<<< HEAD
+};
+=======
 }
+>>>>>>> c8162fa75b2aa45c9a651d439fa2136ed0663ec0
 
 function updateInObject(idElem: string) {
   let postById = postsArray.find((elem) => elem.id == idElem);
@@ -160,6 +220,8 @@ function updateInObject(idElem: string) {
     console.error(error);
   }
 }
+<<<<<<< HEAD
+=======
 
 function createNewPost() {
   const newUserName = prompt(`Enter your Name:`);
@@ -176,3 +238,4 @@ function createNewPost() {
     alert(error + ` the post will not render!`);
   }
 }
+>>>>>>> c8162fa75b2aa45c9a651d439fa2136ed0663ec0

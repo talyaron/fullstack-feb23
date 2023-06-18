@@ -11,40 +11,25 @@ function renderBord() {
         var wrapper = document.querySelector("#wrapper");
         if (!wrapper)
             throw new Error("Error in wrapper");
-        var index_1 = 0;
+        var index = 0;
         for (var i = 0; i < 8; i++) {
-            wrapper.innerHTML += "<div class=\"rows\">\n            <div id=box" + index_1++ + " class=\"box\"></div>\n            <div id=box" + index_1++ + " class=\"box\"></div>\n            <div id=box" + index_1++ + " class=\"box\"></div>\n            <div id=box" + index_1++ + " class=\"box\"></div>\n            <div id=box" + index_1++ + " class=\"box\"></div>\n            <div id=box" + index_1++ + " class=\"box\"></div>\n            <div id=box" + index_1++ + " class=\"box\"></div>\n            <div id=box" + index_1++ + " class=\"box\"></div>\n        </div>";
+            wrapper.innerHTML += "<div class=\"rows\">\n            <div id=box" + index++ + " class=\"box\"></div>\n            <div id=box" + index++ + " class=\"box\"></div>\n            <div id=box" + index++ + " class=\"box\"></div>\n            <div id=box" + index++ + " class=\"box\"></div>\n            <div id=box" + index++ + " class=\"box\"></div>\n            <div id=box" + index++ + " class=\"box\"></div>\n            <div id=box" + index++ + " class=\"box\"></div>\n            <div id=box" + index++ + " class=\"box\"></div>\n        </div>";
         }
     }
     catch (error) {
         console.error(error);
     }
 }
-function renderWhitePlayer() {
+function renderPawns() {
     try {
-        console.log("renderWhitePlayer");
+        console.log("renderPawns");
         var pawnId = 0;
         // const boxId = document.querySelector(`#box${Math.floor(Math.random()*64)}`);
         var wrapper = document.querySelector("#wrapper");
         if (!wrapper)
             throw new Error("Error in wrapper");
         for (var i = 0; i < numOfWP; i++) {
-            wrapper.innerHTML += "<div id=\"white" + pawnId++ + "\" class=\"img white\"></div>";
-        }
-    }
-    catch (error) {
-        console.error(error);
-    }
-}
-function renderBlackPlayer() {
-    try {
-        console.log("renderBlackPlayer");
-        var pawnId = 0;
-        // const boxId = document.querySelector(`#box${Math.floor(Math.random()*64)}`);
-        var wrapper = document.querySelector("#wrapper");
-        if (!wrapper)
-            throw new Error("Error in wrapper");
-        for (var i = 0; i < numOfWP; i++) {
+            wrapper.innerHTML += "<div id=\"white" + pawnId + "\" class=\"img white\"></div>";
             wrapper.innerHTML += "<div id=\"black" + pawnId++ + "\" class=\"img black\"></div>";
         }
     }
@@ -55,55 +40,18 @@ function renderBlackPlayer() {
 var numOfWP = 12;
 var Limit = 640;
 renderBord();
-renderWhitePlayer();
-renderBlackPlayer();
+renderPawns();
 var topIndex = [0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2];
 var leftIndex = [0, 2, 4, 6, 1, 3, 5, 7, 0, 2, 4, 6];
-var index = 0;
-var blackPlayers = document.querySelectorAll(".black");
-blackPlayers.forEach(function (player) {
-    player.style.top = (topIndex[index] * 80) + 10 + "px";
-    player.style.left = (leftIndex[index++] * 80) + 10 + "px";
-});
-index = 0;
-var whitePlayers = document.querySelectorAll(".white");
-whitePlayers.forEach(function (player) {
-    player.style.top = ((topIndex[index] + 5) * 80) + 10 + "px";
-    player.style.left = ((7 - leftIndex[index++]) * 80) + 10 + "px";
-});
-function meetPlyer(playerTop, playerLeft, secondPlayer) {
-    try {
-        if (!playerTop || !playerLeft || !secondPlayer)
-            throw new Error("Missing Player");
-        // console.log(playerTop, secondPlayer.getX(), playerLeft, secondPlayer.gety())
-        if (playerTop === secondPlayer.getX() && playerLeft === secondPlayer.gety()) {
-            // console.log("True")
-            return true;
-        }
-        return false;
-    }
-    catch (error) {
-        console.error(error);
-        return false;
-    }
-}
-function canEat(playerTop, playerLeft, secondPlayer) {
-    try {
-        if (!playerTop || !playerLeft || !secondPlayer)
-            throw new Error("Missing Player");
-        if (playerTop === secondPlayer.gety() && playerLeft === secondPlayer.getX())
-            return false;
-        // console.log("True")
-        return true;
-    }
-    catch (error) {
-        console.error(error);
-        return false;
-    }
-}
+var wIndex = 0;
+var bIndex = 0;
 var Players = document.querySelectorAll(".img");
 var activePawn = null;
 Players.forEach(function (player, index) {
+    var top = player.classList[1] == "white" ? ((topIndex[wIndex] + 5) * 80) + 10 : ((topIndex[bIndex] * 80) + 10);
+    var left = player.classList[1] == "white" ? ((7 - leftIndex[wIndex++]) * 80) + 10 : ((leftIndex[bIndex++] * 80) + 10);
+    player.style.top = top + "px";
+    player.style.left = left + "px";
     player.addEventListener("click", function () {
         activePawn = player;
     });
