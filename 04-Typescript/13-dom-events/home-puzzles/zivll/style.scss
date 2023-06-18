@@ -1,0 +1,32 @@
+.div-images {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  .imgbox {
+    max-width: 30%;
+    position: relative;
+    h2 {
+      cursor: pointer;
+      margin-top: 0;
+      text-align: center;
+      width: 100%;
+      background-color: transparent;
+      position: absolute;
+      height: 100%;
+      left: 50%;
+      transition: all 0.5s;
+      transform: translate(-50%, 0);
+      opacity: 0;
+      &:hover {
+        opacity: 100;
+      }
+    }
+    img {
+      margin-top: 10%;
+      width: 100%;
+      height: auto;
+      transition: all 0.5s;
+    }
+  }
+}

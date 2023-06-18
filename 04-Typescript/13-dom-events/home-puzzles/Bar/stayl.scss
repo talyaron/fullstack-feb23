@@ -1,0 +1,47 @@
+.box {
+    width: 200px;
+    height: 200px;
+    background-color: rgb(179, 218, 252);
+    border: none;
+}
+
+.clowns {
+    width: 200px;
+    height: 200px;
+    background-color: rgb(252, 179, 234);
+    border: none;
+    border-radius: 50%;
+    // background-size: cover;
+}
+
+.followers {
+    $width: 300px;
+    $height: 200px;
+    position: absolute;
+    display: flex;
+    transition: all 100ms;
+
+    .follower1 {
+        position: relative;
+        width: $width;
+        height: $height;
+        background-image: url(./src/DOG-1.png);
+        background-size: cover;
+    }
+
+    .follower2 {
+        position: relative;
+        width: $width;
+        height: $height;
+        background-image: url(./src/DOG-2.png);
+        background-size: cover;
+    }
+
+    .follower3 {
+        position: relative;
+        width: $width;
+        height: $height;
+        background-image: url(./src/DOG-3.png);
+        background-size: cover;
+    }
+}

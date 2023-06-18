@@ -1,15 +1,17 @@
 .box{
-    background-color: purple;
+    background-color: black;
     margin: 0 auto;
     width: 80%;
     height: auto;
 
-    .p{
+    p{
+        text-align: center;
         color: gold;
         font-size: larger;
     }
 
     img{
+        border-radius: 20px;
         width: 20%;
         height: 50%;
     }

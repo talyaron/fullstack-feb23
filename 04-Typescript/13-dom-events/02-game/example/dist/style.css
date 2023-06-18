@@ -1,0 +1,14 @@
+body {
+  background-color: peachpuff;
+}
+
+.box {
+  width: 150px;
+  height: 100px;
+  position: absolute;
+  transition: all 100ms ease-in-out;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-image: url("./packman.png");
+}

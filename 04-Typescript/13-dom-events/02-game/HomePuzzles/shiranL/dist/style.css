@@ -1,0 +1,13 @@
+.clowns {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+.clowns .card {
+  position: relative;
+}
+.clowns .card img {
+  width: 250px;
+  height: 250px;
+}
