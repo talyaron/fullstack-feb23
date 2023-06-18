@@ -1,8 +1,8 @@
 const dog = document.querySelector(".dog") as HTMLImageElement;
-const melona = document.querySelector(".melona") as HTMLImageElement;
+const kennel = document.querySelector(".kennel") as HTMLImageElement;
 
-melona.style.left = `calc(${Math.random()*100}% - 100px)`
-melona.style.top = `calc(${Math.random()*100}% - 100px)`
+kennel.style.left = `calc(${Math.random()*100}% - 100px)`
+kennel.style.top = `calc(${Math.random()*100}% - 100px)`
 
 
 dog.addEventListener("click", onClick);
@@ -27,13 +27,13 @@ const onMouseMove = (e: any) => {
 
 
 function checkArrived() {
-  const melonaSize = melona?.getBoundingClientRect();
+  const kannelSize = kennel?.getBoundingClientRect();
   const dogSize = dog.getBoundingClientRect();
   if (
-    melonaSize.left <= dogSize.right &&
-    melonaSize.right >= dogSize.left &&
-    melonaSize.top <= dogSize.bottom &&
-    melonaSize.bottom >= dogSize.top
+    kannelSize.left <= dogSize.right &&
+    kannelSize.right >= dogSize.left &&
+    kannelSize.top <= dogSize.bottom &&
+    kannelSize.bottom >= dogSize.top
   ) {
     alert("congratulation!");
     location.reload();

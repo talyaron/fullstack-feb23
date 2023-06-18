@@ -1,0 +1,55 @@
+.wrapper {
+  position: relative;
+}
+.wrapper .checkers {
+  position: relative;
+}
+.wrapper .checkers .checker,
+.wrapper .checkers .checker2,
+.wrapper .checkers .checker3 {
+  width: 45px;
+  height: 45px;
+  border: 2px solid gray;
+  border-radius: 100px;
+  background-color: brown;
+  position: absolute;
+  bottom: 0px;
+}
+.wrapper .checkers .checker2 {
+  left: 50px;
+}
+.wrapper .checkers .checker3 {
+  left: 100px;
+}
+.wrapper .checkers .checker4 {
+  left: 150px;
+}
+.wrapper .checkers .checker5 {
+  left: 200px;
+}
+.wrapper .checkers .checker6 {
+  left: 250px;
+}
+.wrapper .checkers .checker7 {
+  left: 300px;
+}
+.wrapper .checkers .checker8 {
+  left: 350px;
+}
+.wrapper .checkers .checker_rows {
+  display: grid;
+  grid-template-rows: repeat(8, 50px);
+  grid-template-columns: repeat(8, 50px);
+}
+.wrapper .checkers .checker_rows .black,
+.wrapper .checkers .checker_rows .white {
+  width: 50px;
+  height: 50px;
+  background-color: red;
+}
+.wrapper .checkers .checker_rows .black {
+  background-color: #000;
+}
+.wrapper .checkers .checker_rows .white {
+  background-color: wheat;
+}

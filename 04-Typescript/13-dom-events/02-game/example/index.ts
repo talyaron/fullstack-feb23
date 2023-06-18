@@ -4,8 +4,10 @@ const box = document.querySelector('#box') as HTMLDivElement;
 document.addEventListener('keyup', (event: KeyboardEvent) => {
     //if arrow up go up. if arrow down go down...
     console.log(event);
+
     switch (event.key) {
         case 'ArrowUp':
+            if
             box.style.top = `${box.offsetTop - 10}px`;
             break;
         case 'ArrowDown':
