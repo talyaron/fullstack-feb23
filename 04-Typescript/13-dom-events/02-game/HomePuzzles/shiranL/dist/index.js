@@ -8,7 +8,7 @@ var clown = /** @class */ (function () {
         try {
             if (!clowns)
                 throw new Error("missing root element");
-            var html = "<div class='card' id=\"" + this.id + "\"><img class=\"img\" src=\"" + this.imgUrl + "\"></div>";
+            var html = "<div class='clown' id=\"" + this.id + "\"><img class=\"img\" src=\"" + this.imgUrl + "\"></div>";
             clowns.innerHTML += html;
         }
         catch (error) {
@@ -97,5 +97,20 @@ function addClown() {
     if (clown) {
         clown === null || clown === void 0 ? void 0 : clown.renderclown(clownsHTML);
         clowns.push(clown);
+    }
+}
+function deleteClown() {
+    if (selectedClownElement) {
+        var clownId_1 = selectedClownElement.id;
+        var clownIndex = clowns.findIndex(function (clown) { return clown.id === clownId_1; });
+        if (clownIndex !== -1) {
+            clowns.splice(clownIndex, 1); // Remove clown from the array
+            // Remove clown element from the DOM
+            selectedClownElement.remove();
+            // Reset selected clown variables
+            selectedClownElement = null;
+            currentPositionX = 0;
+            currentPositionY = 0;
+        }
     }
 }
