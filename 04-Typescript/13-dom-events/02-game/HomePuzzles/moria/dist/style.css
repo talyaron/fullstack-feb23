@@ -6,6 +6,9 @@ body img {
   margin: 20px 370px;
   z-index: -5;
 }
+body .images {
+  position: absolute;
+}
 body .images #player1 {
   width: 50px;
   position: absolute;

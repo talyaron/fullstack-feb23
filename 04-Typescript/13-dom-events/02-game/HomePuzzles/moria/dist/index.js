@@ -15,7 +15,7 @@ document.addEventListener('keyup', function (event) {
             player.style.left = player.offsetLeft - 45 + "px";
             break;
         case 'ArrowRight':
-            player.style.left = player.offsetLeft - 45 + "px";
+            player.style.left = player.offsetLeft + 45 + "px";
             break;
     }
 });
