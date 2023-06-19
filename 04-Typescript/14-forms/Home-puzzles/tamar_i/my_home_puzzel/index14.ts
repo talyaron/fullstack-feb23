@@ -18,6 +18,10 @@ const imgArray: imageDataFromUser[] = new Array();
 function handelSubmitImg(event: any) {
     try {
 
+<<<<<<< HEAD
+        const imgURL: string = event.target.imgURL.value;
+        const imgWidthSize: number = event.target.imgWidthSize.value;
+=======
         event.preventDefault();  //prevent default satting from work - mast!
 
         // console.log(event.target)
@@ -25,6 +29,7 @@ function handelSubmitImg(event: any) {
 
         const imgURL: string = event.target.elements.imgUrl.value;
         const imgWidthSize: number = event.target.elements.imgWidthSize.value;
+>>>>>>> d01fde47ec1d93487cfa8f97ac8a7e1cdad485b2
         const imgData = new imageDataFromUser(imgURL, imgWidthSize);
 
         console.log(imgData)
