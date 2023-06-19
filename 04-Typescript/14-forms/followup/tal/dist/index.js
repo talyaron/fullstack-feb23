@@ -15,9 +15,9 @@ var User = /** @class */ (function () {
     return User;
 }());
 //keep all users
-var puppkovichoviuc = new Array();
+var userArray = new Array();
 //GUI - get from user
-//controler - handle the data and add tot the model
+//controler - handle the data and add to the model
 function handleSubmit(ev) {
     try {
         ev.preventDefault();
@@ -28,9 +28,9 @@ function handleSubmit(ev) {
         var color = ev.target.color.value;
         var user = new User(username, yearOfBirth, color, picture);
         //get data and store in in the users' array
-        puppkovichoviuc.push(user);
+        userArray.push(user);
         //render the data to the DOM
-        renderCards(puppkovichoviuc, document.querySelector("#cards"));
+        renderCards(userArray, document.querySelector("#cards"));
     }
     catch (error) {
         console.error(error);
@@ -50,7 +50,7 @@ function renderCards(users, element) {
 }
 function renderCard(user) {
     try {
-        var html = "<div id=\"" + user.id + "\" class=\"card\" style=\"background-color:" + user.color + "\">\n            <div class=\"userName\">Name: " + user.userName + "</div>\n            <div class=\"age\">Age: " + user.age() + "</div>\n         <img class=\"image\" src=\"" + user.picture + "\"\n         </div> ";
+        var html = "<div id=\"" + user.id + "\" class=\"card\" style=\"background-color:" + user.color + "\">\n            <div class=\"userName\">Name: " + user.userName + "</div>\n            <div class=\"age\">Age: " + user.age() + "</div>\n            <img class=\"image\" src=\"" + user.picture + "\"\n        </div> ";
         return html;
     }
     catch (error) {
