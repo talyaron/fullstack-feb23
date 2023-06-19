@@ -41,7 +41,7 @@ function renderCards(users, element) {
     try {
         if (!element)
             throw new Error("element is not defined");
-        var html = users.map(function (user) { return renderCard(user); }).join(" ");
+        var html = users.map(function (user) { return renderCard(user); }).join(" "); //users.map go all over the array, and randerCard is go unside every cell to render it
         element.innerHTML = html;
     }
     catch (error) {

@@ -44,7 +44,20 @@ function handelSubmitImg(event: any){
 function renderImage(imgArray:imageDataFromUser, element: HTMLElement |null ){
     try {
         if (!element) throw new Error("element is not defined");  //check if we got an element from the html
-        const backToHtml = imgArray.map((imgData) => renderImage(imgData)).join(" ");
+        const backToHtml = imgArray.map((imgData) => renderpic(imgData)).join(" "); //imgData.map go all over the array, renderpic get insise every cell and render it
+        element.innerHTML = backToHtml;
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+function renderpic(imgData: imageDataFromUser){
+    try {
+        const backToHtml =
+        `<img class= "image" src="${imgData.imgUrl}  style="width: ${imgData.imgWidthSize}">`
+
+        return backToHtml;
+
     } catch (error) {
         console.error(error);
     }

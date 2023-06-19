@@ -36,7 +36,17 @@ function renderImage(imgArray, element) {
     try {
         if (!element)
             throw new Error("element is not defined"); //check if we got an element from the html
-        var backToHtml = imgArray.map(function (imgData) { return renderImage(imgData); }).join(" ");
+        var backToHtml = imgArray.map(function (imgData) { return renderpic(imgData); }).join(" "); //imgData.map go all over the array, renderpic get insise every cell and render it
+        element.innerHTML = backToHtml;
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+function renderpic(imgData) {
+    try {
+        var backToHtml = "<img class= \"image\" src=\"" + imgData.imgUrl + "  style=\"width: " + imgData.imgWidthSize + "\">";
+        return backToHtml;
     }
     catch (error) {
         console.error(error);
