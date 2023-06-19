@@ -18,7 +18,7 @@ var Player = /** @class */ (function () {
     return Player;
 }());
 var arrPlayers = [];
-function handleSubmit1(ev) {
+function handleSubmit(ev) {
     try {
         ev.preventDefault();
         console.dir(ev);

@@ -16,7 +16,7 @@ class Player {
 }
 const arrPlayers :any[] =[];
 
-function handleSubmit1(ev:any){
+function handleSubmit(ev:any){
     try {
         ev.preventDefault();
         console.dir(ev);
