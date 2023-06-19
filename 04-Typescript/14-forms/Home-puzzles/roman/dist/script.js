@@ -13,20 +13,6 @@
 // These instructions outline three different tasks: creating a form to render an image with a specified width, creating a form to render multiple images, and using the "Puzzle Users" class to edit user cards. Each task has specific requirements and actions to be performed.
 var users = [];
 var usersRender = document.querySelector(".usersRender");
-function handleSubmit(ev) {
-    try {
-        ev.preventDefault();
-        console.dir(ev);
-        var imgUrl = ev.target.imgUrl.value;
-        var imgSize = ev.target.imgSize.value;
-        var result = { imgUrl: imgUrl, imgSize: imgSize };
-        usersRender === null || usersRender === void 0 ? void 0 : usersRender.innerHTML = "You have" + (users.length + 1) + " image(s)"; // Display number of images. 	// Display user names. 	// Display user cards.
-        users.push(result);
-    }
-    catch (error) {
-        console.error(error);
-    }
-}
 var User = /** @class */ (function () {
     function User(imgUrl, imgSize) {
         this.imgUrl = imgUrl;
@@ -34,6 +20,22 @@ var User = /** @class */ (function () {
     }
     return User;
 }());
+function handleSubmit(ev) {
+    try {
+        ev.preventDefault();
+        console.dir(ev);
+        var imgUrl = ev.target.imgUrl.value;
+        var imgSize = ev.target.imgSize.value;
+        var result = { imgUrl: imgUrl, imgSize: imgSize };
+        if (usersRender) {
+            usersRender.innerHTML = "You have" + (users.length + 1) + " image(s)"; // Display number of images. 	// Display user names. 	// Display user cards.
+            users.push(result);
+        }
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
 function test() {
     if (users) {
         var usersHtml_1 = "";

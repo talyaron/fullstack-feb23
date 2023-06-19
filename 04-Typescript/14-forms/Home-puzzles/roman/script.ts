@@ -18,25 +18,29 @@
 // Edit each card: Update the information contained in each card, such as modifying user details or deleting a card from the collection.
 // These instructions outline three different tasks: creating a form to render an image with a specified width, creating a form to render multiple images, and using the "Puzzle Users" class to edit user cards. Each task has specific requirements and actions to be performed.
 const users: User[] = [];
-const usersRender = document.querySelector(".usersRender")
+const usersRender: any = document.querySelector(".usersRender")
+
+class User {
+    constructor(public imgUrl: string, public imgSize: number) { }
+}
 function handleSubmit(ev: any) {
     try {
         ev.preventDefault();
         console.dir(ev);
         const imgUrl = ev.target.imgUrl.value;
         const imgSize = ev.target.imgSize.value;
-        const result: any = { imgUrl, imgSize };
-        usersRender?.innerHTML = "You have" + (users.length+1) + " image(s)"; 	// Display number of images. 	// Display user names. 	// Display user cards.
+        const result: User = { imgUrl, imgSize };
+        if (usersRender) {
 
-        users.push(result)
+            usersRender.innerHTML = "You have" + (users.length + 1) + " image(s)"; 	// Display number of images. 	// Display user names. 	// Display user cards.
+
+            users.push(result)
+        }
 
 
     } catch (error) {
         console.error(error);
     }
-}
-class User {
-    constructor(public imgUrl: string, public imgSize: number) { }
 }
 
 
@@ -50,5 +54,6 @@ function test() {
 
             console.log(usersHtml)
             usersRender.innerHTML = usersHtml;
-        }
+        })
+}
 }
