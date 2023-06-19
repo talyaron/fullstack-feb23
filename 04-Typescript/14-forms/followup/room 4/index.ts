@@ -6,3 +6,4 @@ function handleInput(event) {
         root.innerHTML = event.target.value;
     }
 }
+
