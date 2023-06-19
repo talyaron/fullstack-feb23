@@ -13,6 +13,20 @@ var User = /** @class */ (function () {
     User.prototype.calculateAge = function () {
         return new Date().getFullYear() - this.yearOfBirth;
     };
+    User.prototype.renderCards = function (root) {
+        try {
+            if (!root)
+                throw new Error("missing root element");
+            var cardstoHTML = "<div class = 'wrapper' color=\"" + this.preferdColor + "\">";
+            cardstoHTML = cardstoHTML + usersArray.map(function (card) {
+                return "<p>name: " + card.username + ".</p> <img src=" + card.imageUrl + ">  <p>age:" + card.yearOfBirth;
+            }).join("");
+            cardstoHTML += "</div>";
+        }
+        catch (error) {
+            console.error(error);
+        }
+    };
     return User;
 }());
 // bild an array of this class
@@ -30,6 +44,7 @@ function handleSubmit(event) {
         console.log(newUser);
         usersArray.push(newUser);
         console.dir(usersArray);
+        styleCard();
     }
     catch (error) {
         console.log(error);
@@ -37,16 +52,21 @@ function handleSubmit(event) {
 }
 //step 2:
 //criate a card (css)
-//put the data from the user on the card
-var card = document.querySelector(".card");
-//show the card onscreen
-// let cardstoHTML = `<div class = 'wrapper'>`;
-var cardstoHTML = cardstoHTML + usersArray.map(function (card) {
-    return "<p>this cack call " +  + ".</p> <img src=" +  + ">";
-}).join("");
-cardstoHTML += "</div>";
-if (card) {
-    card.innerHTML = cardstoHTML;
+function styleCard() {
+    if (root) {
+        root.style.width = '100%';
+        var wrapper = root.querySelectorAll('.wrapper');
+        debugger;
+        wrapper.forEach(function (wrapper) {
+            var color = wrapper.getAttribute('color');
+            if (color) {
+                wrapper.style.backgroundColor = color;
+            }
+        });
+    }
 }
+//put the data from the user on the card
+var root = document.querySelector(".root");
+//show the card onscreen
 //step 3:
 //show all users that store in the array as carsd on-screen
