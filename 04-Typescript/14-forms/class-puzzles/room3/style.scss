@@ -1,0 +1,26 @@
+.wrapper {
+  form {
+  }
+  .allCards {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 2%;
+    gap: 2%;
+
+    &_card {
+      padding: 25px;
+      max-height: 200px;
+      width: fit-content;
+      background-repeat: no-repeat;
+      background-size: contain;
+      &_card_img {
+        img {
+          height: auto;
+          width: auto;
+        }
+      }
+      &_card_user-details {
+      }
+    }
+  }
+}
