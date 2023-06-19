@@ -1,4 +1,4 @@
-complete on you own, the class puzzle
+complete on your own the class puzzle
 
 1) Create a form with the following inputs:
 
