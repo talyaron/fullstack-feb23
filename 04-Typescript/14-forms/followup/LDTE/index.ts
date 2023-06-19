@@ -1,5 +1,7 @@
 class User{
-    constructor(public userName:string, public age:number, public favorite:string, public picture:string ){}
+    constructor(public userName:string, public age:number, public favorite:string, public picture:string ){
+        
+    }
 }
 
 const userArray:User[] = new Array(); 
