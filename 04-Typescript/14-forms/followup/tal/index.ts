@@ -46,7 +46,7 @@ function handleSubmit(ev: any) {
 function renderCards(users: User[], element: HTMLElement | null) {
     try {
         if (!element) throw new Error("element is not defined");
-        const html = users.map((user) => renderCard(user)).join(" ");
+        const html = users.map((user) => renderCard(user)).join(" "); //users.map go all over the array, and randerCard is go unside every cell to render it
 
         element.innerHTML = html;
     } catch (error) {
