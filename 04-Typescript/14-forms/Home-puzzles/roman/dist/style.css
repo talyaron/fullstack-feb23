@@ -2,6 +2,8 @@
   display: block;
   margin: 5px;
 }
-.wrapper .button {
-  display: none;
+.wrapper .usersRender {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
 }
