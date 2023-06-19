@@ -18,7 +18,7 @@ function handelSubmitImg(event) {
         event.preventDefault(); //prevent default satting from work - mast!
         console.dir(event); //to see what we got in the consol
         var imgURL = event.target.imgURL.value;
-        var imgWidthSize = event.targer.imgWidthSize.value;
+        var imgWidthSize = event.target.imgWidthSize.value;
         var imgData = new imageDataFromUser(imgURL, imgWidthSize);
         console.log(imgData); //to see that i got the data right
         // get the data and store it in the array

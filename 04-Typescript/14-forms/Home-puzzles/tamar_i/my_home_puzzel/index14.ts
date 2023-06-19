@@ -22,7 +22,7 @@ function handelSubmitImg(event: any){
         console.dir(event);  //to see what we got in the consol
 
         const imgURL: string = event.target.imgURL.value;
-        const imgWidthSize: number = event.targer.imgWidthSize.value;
+        const imgWidthSize: number = event.target.imgWidthSize.value;
         const imgData = new imageDataFromUser(imgURL, imgWidthSize);
 
         console.log(imgData); //to see that i got the data right
