@@ -11,7 +11,7 @@ const onClick = (ev) =>{
 window.addEventListener('click', onClick);
 
 document.addEventListener('keyup', (event: KeyboardEvent) => {
-    console.log(event);
+    // console.log(event);
     switch (event.key) {
         case 'ArrowUp':
             pawns.style.top = `${pawns.offsetTop - 123}px`;
