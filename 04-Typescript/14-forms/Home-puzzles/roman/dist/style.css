@@ -1,0 +1,7 @@
+.wrapper form input {
+  display: block;
+  margin: 5px;
+}
+.wrapper .button {
+  display: none;
+}
