@@ -12,7 +12,7 @@ var User = /** @class */ (function () {
         try {
             if (!root)
                 throw new Error("missing root element");
-            var html = "<div class='card'><img src=\"" + this.imageURL + "\"></img></div>";
+            var html = "<div class=\"userCard\" color=\"" + this.color + "\"><img class=\"userImg\" src=\"" + this.imageURL + "\"></img></div>";
             root.innerHTML += html;
         }
         catch (error) {
@@ -22,19 +22,33 @@ var User = /** @class */ (function () {
     return User;
 }());
 var users = [];
+var root = document.querySelector(".root");
 function addUser(ev) {
     try {
         ev.preventDefault();
         var user = new User(ev.target.userName.value, ev.target.userURL.value, ev.target.userColor.value, ev.target.yearOfBirth.valueAsNumber);
-        var root = document.querySelector(".root");
-        debugger;
         if (user) {
-            user === null || user === void 0 ? void 0 : user.renderUser(root);
             users.push(user);
+            user.renderUser(root);
+            cardStyle();
         }
     }
     catch (error) {
         console.error(error);
         return;
+    }
+}
+function cardStyle() {
+    if (root) {
+        root.style.width = '100%';
+        // root.style.backgroundColor = 'aqua';
+        var userCards = root.querySelectorAll('.userCard');
+        debugger;
+        userCards.forEach(function (userCard) {
+            var color = userCard.getAttribute('color');
+            if (color) {
+                userCard.style.backgroundColor = color;
+            }
+        });
     }
 }
