@@ -1,0 +1,11 @@
+.root {
+  width: 100%;
+}
+.root .userCard {
+  width: 250px;
+  height: 400px;
+}
+.root .userCard .userImg {
+  width: 50px;
+  height: 60px;
+}
