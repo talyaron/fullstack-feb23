@@ -24,4 +24,3 @@ function aa():number|undefined{
     }
 }
 
-console.log(multyByTenBetweenZeroAndTen(x));
