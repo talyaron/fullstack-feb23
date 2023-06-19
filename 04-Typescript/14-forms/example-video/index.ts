@@ -12,13 +12,13 @@ class User {
     }
 }
 //keep all users
-const puppkovichoviuc: User[] = new Array();
+const userArray: User[] = new Array();
 
 
 
 
 
-//GUI - get from user
+//GUI (view) - get from user
 
 //controler - handle the data and add tot the model
 function handleSubmit(ev: any) {
@@ -29,13 +29,14 @@ function handleSubmit(ev: any) {
         const picture = ev.target.userPic.value;
         const yearOfBirth = ev.target.yearOfBirth.valueAsNumber;
         const color = ev.target.color.value;
-        const user = new User(username, yearOfBirth, color, picture);
+        const user = new User(username, yearOfBirth, color, picture); //instance of user
 
         //get data and store in in the users' array
-        puppkovichoviuc.push(user);
+        userArray.push(user);
 
         //render the data to the DOM
-        renderCards(puppkovichoviuc, document.querySelector("#cards"));
+        // model (users) -> controler (renderCards) -> view (renderCard)
+        renderCards(userArray, document.querySelector("#cards"));
         
     } catch (error) {
         console.error(error);
@@ -54,6 +55,7 @@ function renderCards(users: User[], element: HTMLElement|null) {
     }
 }
 
+//controler - handle the data and create html string
 function renderCard(user: User) {
     try {
       
