@@ -12,7 +12,7 @@ var User = /** @class */ (function () {
         try {
             if (!root)
                 throw new Error("missing root element");
-            var html = "<div class=\"userCard\" id=\"" + this.color + "\"><img class=\"userImg\" src=\"" + this.imageURL + "\"></img></div>";
+            var html = "<div class=\"userCard\" color=\"" + this.color + "\"><img class=\"userImg\" src=\"" + this.imageURL + "\"></img></div>";
             root.innerHTML += html;
         }
         catch (error) {
@@ -45,7 +45,7 @@ function cardStyle() {
         var userCards = root.querySelectorAll('.userCard');
         debugger;
         userCards.forEach(function (userCard) {
-            var color = userCard.dataset.userColor;
+            var color = userCard.getAttribute('color');
             if (color) {
                 userCard.style.backgroundColor = color;
             }

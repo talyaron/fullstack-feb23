@@ -10,7 +10,7 @@ class User{
         try {
            
             if (!root) throw new Error("missing root element");
-            const html: string = `<div class="userCard" id="${this.color}"><img class="userImg" src="${this.imageURL}"></img></div>`;
+            const html: string = `<div class="userCard" color="${this.color}"><img class="userImg" src="${this.imageURL}"></img></div>`;
             root.innerHTML += html;
         } catch (error) {
             console.error(error);
@@ -49,7 +49,7 @@ function cardStyle(){
         const userCards :any= root.querySelectorAll('.userCard');
         debugger;
         userCards.forEach((userCard) => {
-            const color = userCard.dataset.userColor;
+            const color = userCard.getAttribute('color');
             if (color) {
                 userCard.style.backgroundColor = color;
             }
