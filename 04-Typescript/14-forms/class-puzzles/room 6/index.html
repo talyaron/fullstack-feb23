@@ -10,16 +10,16 @@
 <body>
     <h1>Forms</h1>
     <form onsubmit="handleSubmit(event)">
-        <input type="text" name="username" onkeyup="handleInput(event)" required>
-        <input type="text" name="imageUrl" onkeyup="handleInput(event)" required>
-        <input type="number" name="yearOfBirth" onkeyup="handleInput(event)">
-        <input type="color" name="color" oninput="handleColor(event)">
+        <input type="text" name="username" required placeholder="username">
+        <input type="text" name="imageUrl"  required placeholder="image url">
+        <input type="number" name="yearOfBirth" required placeholder="Year of birth">
+        <input type="color" name="color" required>
         <button type="submit">Send</button>
     </form>
     <div class="wrapper">
-        <div class="root"></div>
-        <div class="root"></div>
-        <div class="root"></div>
+        <div id="roots" class="roots"></div>
+        <!-- <div class="root"></div>
+        <div class="root"></div> -->
     </div>
     <script src="./dist/index.js"></script>
 </body>
