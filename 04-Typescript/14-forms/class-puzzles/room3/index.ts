@@ -42,23 +42,39 @@ class UserName {
 }
 
 function renderUsers(usersDetails: UserName[] = []) {
+  debugger;
+
   const cardsWrapper = document.querySelector(`#cardsWrapper`);
   const userDetails = usersDetails.pop();
+  const randomNumber = Math.round(Math.random() * 1000);
   if (!userDetails) throw new Error(`user's details not found`);
   if (cardsWrapper) {
-    cardsWrapper.innerHTML += `<div class="card" id="${userDetails.color}">
+    cardsWrapper.innerHTML += `<div class="card" id="id-${randomNumber}">
       <div class="card_img"><img src="${userDetails.imgUrl}" alt="" /></div>
       <div class="card_user-details"><h3>Name: ${
         userDetails.userName
       }<br>Age: ${userDetails.age(userDetails.dateOfBirth)}</h3></div>
     </div>`;
+    const usersColor: HTMLElement | null = document.querySelector(
+      `#${randomNumber}`
+    );
+    renderColor(randomNumber, userDetails.color);
+    // if (usersColor) {
+    //   usersColor.style.backgroundColor = userDetails.color;
+    // }
   }
-  const usersColor: HTMLElement | null = document.querySelector(
-    userDetails.color
-  );
-
-  if (usersColor) {
-    usersColor.style.backgroundColor = userDetails.color;
-  }
-  debugger;
 }
+function renderColor(idNumber: number, color: string) {
+  try {
+    const colorId: HTMLElement | null = document.querySelector(
+      `#id-${idNumber}`
+    );
+    if (colorId) {
+      return (colorId.style.backgroundColor = color);
+    }
+  } catch (error) {
+    console.error(error);
+  }
+}
+debugger;
+// console.dir(renderColor(49, "#003F80"));

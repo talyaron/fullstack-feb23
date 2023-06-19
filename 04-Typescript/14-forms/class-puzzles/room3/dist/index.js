@@ -42,16 +42,31 @@ var UserName = /** @class */ (function () {
 }());
 function renderUsers(usersDetails) {
     if (usersDetails === void 0) { usersDetails = []; }
+    debugger;
     var cardsWrapper = document.querySelector("#cardsWrapper");
     var userDetails = usersDetails.pop();
+    var randomNumber = Math.round(Math.random() * 1000);
     if (!userDetails)
         throw new Error("user's details not found");
     if (cardsWrapper) {
-        cardsWrapper.innerHTML += "<div class=\"card\" id=\"" + userDetails.color + "\">\n      <div class=\"card_img\"><img src=\"" + userDetails.imgUrl + "\" alt=\"\" /></div>\n      <div class=\"card_user-details\"><h3>Name: " + userDetails.userName + "<br>Age: " + userDetails.age(userDetails.dateOfBirth) + "</h3></div>\n    </div>";
+        cardsWrapper.innerHTML += "<div class=\"card\" id=\"id-" + randomNumber + "\">\n      <div class=\"card_img\"><img src=\"" + userDetails.imgUrl + "\" alt=\"\" /></div>\n      <div class=\"card_user-details\"><h3>Name: " + userDetails.userName + "<br>Age: " + userDetails.age(userDetails.dateOfBirth) + "</h3></div>\n    </div>";
+        var usersColor = document.querySelector("#" + randomNumber);
+        renderColor(randomNumber, userDetails.color);
+        // if (usersColor) {
+        //   usersColor.style.backgroundColor = userDetails.color;
+        // }
     }
-    var usersColor = document.querySelector(userDetails.color);
-    if (usersColor) {
-        usersColor.style.backgroundColor = userDetails.color;
-    }
-    debugger;
 }
+function renderColor(idNumber, color) {
+    try {
+        var colorId = document.querySelector("#id-" + idNumber);
+        if (colorId) {
+            return (colorId.style.backgroundColor = color);
+        }
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+debugger;
+// console.dir(renderColor(49, "#003F80"));
