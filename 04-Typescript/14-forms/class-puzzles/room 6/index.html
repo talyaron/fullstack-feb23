@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./dist/style.css">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Forms</h1>
+    <form onsubmit="handleSubmit(event)">
+        <input type="text" name="username" onkeyup="handleInput(event)" required>
+        <input type="text" name="imageUrl" onkeyup="handleInput(event)" required>
+        <input type="number" name="yearOfBirth" onkeyup="handleInput(event)">
+        <input type="color" name="color" oninput="handleColor(event)">
+        <button type="submit">Send</button>
+        <input type="reset" value="Reset">
+    </form>
+    <div class="wrapper">
+        <div class="root"></div>
+        <div class="root"></div>
+        <div class="root"></div>
+    </div>
+    <script src="./dist/index.js"></script>
+</body>
+</html>
