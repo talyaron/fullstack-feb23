@@ -7,7 +7,7 @@ var onClick = function (ev) {
 };
 window.addEventListener('click', onClick);
 document.addEventListener('keyup', function (event) {
-    console.log(event);
+    // console.log(event);
     switch (event.key) {
         case 'ArrowUp':
             pawns.style.top = pawns.offsetTop - 123 + "px";

@@ -4,14 +4,28 @@
 //step 1:
 //bild a class for user
 var User = /** @class */ (function () {
-    function User(username, urlimg, peColor, yearOfBirth) {
+    function User(username, imageUrl, preferdColor, yearOfBirth) {
         this.username = username;
-        this.urlimg = urlimg;
-        this.peColor = peColor;
+        this.imageUrl = imageUrl;
+        this.preferdColor = preferdColor;
         this.yearOfBirth = yearOfBirth;
     }
     User.prototype.calculateAge = function () {
         return new Date().getFullYear() - this.yearOfBirth;
+    };
+    User.prototype.renderCards = function (root) {
+        try {
+            if (!root)
+                throw new Error("missing root element");
+            var cardstoHTML = "<div class = 'wrapper' color=\"" + this.preferdColor + "\">";
+            cardstoHTML = cardstoHTML + usersArray.map(function (card) {
+                return "<p>name: " + card.username + ".</p> <img src=" + card.imageUrl + ">  <p>age:" + card.yearOfBirth;
+            }).join("");
+            cardstoHTML += "</div>";
+        }
+        catch (error) {
+            console.error(error);
+        }
     };
     return User;
 }());
@@ -21,13 +35,16 @@ var usersArray = [];
 function handleSubmit(event) {
     try {
         event.preventDefault();
-        var username = event.target.username.value;
+        var username = event.target.username.value; //the name after the target mast be the same as in the name defined in the HTML!
         console.log(username);
-        var urlimg = event.target.urlimg.value;
-        var peColor = event.target.peColor.value;
+        var imageUrl = event.target.imageUrl.value;
+        var preferdColor = event.target.preferdColor.value;
         var yearOfBirth = event.target.yearOfBirth.value;
-        usersArray.push(new User(username, urlimg, peColor, yearOfBirth));
+        var newUser = new User(username, imageUrl, preferdColor, yearOfBirth);
+        console.log(newUser);
+        usersArray.push(newUser);
         console.dir(usersArray);
+        styleCard();
     }
     catch (error) {
         console.log(error);
@@ -35,7 +52,21 @@ function handleSubmit(event) {
 }
 //step 2:
 //criate a card (css)
+function styleCard() {
+    if (root) {
+        root.style.width = '100%';
+        var wrapper = root.querySelectorAll('.wrapper');
+        debugger;
+        wrapper.forEach(function (wrapper) {
+            var color = wrapper.getAttribute('color');
+            if (color) {
+                wrapper.style.backgroundColor = color;
+            }
+        });
+    }
+}
 //put the data from the user on the card
+var root = document.querySelector(".root");
 //show the card onscreen
 //step 3:
 //show all users that store in the array as carsd on-screen
