@@ -5,7 +5,6 @@
 //When the user submits the form, display the image on the screen with the specified width.
 
 //data (model)
-
 class imageDataFromUser {
     constructor (public imgUrl: string, imgWidthSize:number){}
 }
@@ -32,7 +31,7 @@ function handelSubmitImg(event: any){
         imgArray.push(imgData);
 
         //call a function to rander the data to the html (DOM)
-        const root = document.querySelector('#root');
+        const root: HTMLElement |null  = document.querySelector('#root');
         renderImage(imgArray, root);
 
     } catch (error) {
@@ -41,11 +40,13 @@ function handelSubmitImg(event: any){
 }
 
 //controler - handel the data and render it to the DOM (write the function that we call in line 36)
-function renderImage(imgArray:imageDataFromUser, element: HTMLElement |null ){
+function renderImage(imgArray:imageDataFromUser[], element: HTMLElement |null ){
     try {
         if (!element) throw new Error("element is not defined");  //check if we got an element from the html
         const backToHtml = imgArray.map((imgData) => renderpic(imgData)).join(" "); //imgData.map go all over the array, renderpic get insise every cell and render it
-        element.innerHTML = backToHtml;
+        
+        element.innerHTML = backToHtml; //send it back to he html
+
     } catch (error) {
         console.error(error);
     }
@@ -54,7 +55,7 @@ function renderImage(imgArray:imageDataFromUser, element: HTMLElement |null ){
 function renderpic(imgData: imageDataFromUser){
     try {
         const backToHtml =
-        `<img class= "image" src="${imgData.imgUrl}  style="width: ${imgData.imgWidthSize}">`
+        `<img class= "image" src="${imgData.imgUrl}"  style=width: "${imgData.}">`
 
         return backToHtml;
 
