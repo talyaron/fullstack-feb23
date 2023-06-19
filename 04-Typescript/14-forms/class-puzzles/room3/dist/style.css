@@ -1,0 +1,17 @@
+.wrapper .allCards {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 2%;
+  gap: 2%;
+}
+.wrapper .allCards_card {
+  padding: 25px;
+  max-height: 200px;
+  width: fit-content;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+.wrapper .allCards_card_card_img img {
+  height: auto;
+  width: auto;
+}
