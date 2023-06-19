@@ -6,7 +6,7 @@
 //bild a class for user
 
 class User {
-    constructor (public username:string, public urlimg: string, public peColor: string, public yearOfBirth: number){
+    constructor (public username:string, public imageUrl: string, public preferdColor: string, public yearOfBirth: number){
 
     }
     calculateAge (){
@@ -23,12 +23,14 @@ const usersArray: User[] = []
 function handleSubmit(event: any){
     try {
     event.preventDefault();
-    const username = event.target.username.value;
+    const username = event.target.username.value;  //the name after the target mast be the same as in the name defined in the HTML!
     console.log(username);
-    const urlimg =  event.target.urlimg.value;
-    const peColor =  event.target.peColor.value;
+    const imageUrl =  event.target.imageUrl.value;
+    const preferdColor =  event.target.preferdColor.value;
     const yearOfBirth =  event.target.yearOfBirth.value;
-    usersArray.push(new User(username, urlimg, peColor, yearOfBirth));
+    const newUser = new User(username, imageUrl, preferdColor, yearOfBirth);
+    console.log(newUser);
+    usersArray.push(newUser);
     console.dir(usersArray);    
     } catch (error){
         console.log(error)
@@ -38,7 +40,19 @@ function handleSubmit(event: any){
 //step 2:
 //criate a card (css)
 //put the data from the user on the card
+
+const card = document.querySelector(".card") as HTMLDivElement;
+
 //show the card onscreen
+
+// let cardstoHTML = `<div class = 'wrapper'>`;
+let cardstoHTML = cardstoHTML + usersArray.map((card) =>
+    `<p>this cack call ${}.</p> <img src=${}>`).join("");
+cardstoHTML += `</div>`;
+
+if (card) {
+    card.innerHTML = cardstoHTML;
+}
 
 //step 3:
 //show all users that store in the array as carsd on-screen
