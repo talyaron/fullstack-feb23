@@ -12,7 +12,7 @@ var User = /** @class */ (function () {
         try {
             if (!root)
                 throw new Error("missing root element");
-            var html = "<div class=\"userCard\" color=\"" + this.color + "\"><img class=\"userImg\" src=\"" + this.imageURL + "\"></img></div>";
+            var html = "<div class=\"userCard\" color=\"" + this.color + "\" id=\"userCard-" + this.userName + "\">\n                      <img class=\"userImg\" src=\"" + this.imageURL + "\">\n                      <h4 class=\"userName\">my Name: " + this.userName + "</h4>\n                      <h3 class=\"userAge\">my Age: " + this.calculateAge() + "</h3>\n                    </div>";
             root.innerHTML += html;
         }
         catch (error) {
@@ -41,9 +41,7 @@ function addUser(ev) {
 function cardStyle() {
     if (root) {
         root.style.width = '100%';
-        // root.style.backgroundColor = 'aqua';
         var userCards = root.querySelectorAll('.userCard');
-        debugger;
         userCards.forEach(function (userCard) {
             var color = userCard.getAttribute('color');
             if (color) {
@@ -51,4 +49,18 @@ function cardStyle() {
             }
         });
     }
+}
+if (root) {
+    root.addEventListener('click', function handleClick(event) {
+        var target = event.target;
+        console.dir(target);
+        console.log(target.className);
+        if (target.classList.contains('userCard')) {
+            var userCardId = target.id;
+            var selectedCard = document.getElementById(userCardId);
+            if (selectedCard) {
+                selectedCard.classList.toggle('selected');
+            }
+        }
+    });
 }
