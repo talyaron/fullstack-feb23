@@ -31,7 +31,7 @@ function handleSubmit(ev: any) {
         const color = ev.target.color.value;
         const user = new User(username, yearOfBirth, color, picture);
 
-        //get data and store in in the users' array
+        //get data and store it in the users' array
         userArray.push(user);
 
         //render the data to the DOM

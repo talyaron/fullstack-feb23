@@ -27,7 +27,7 @@ function handleSubmit(ev) {
         var yearOfBirth = ev.target.yearOfBirth.valueAsNumber;
         var color = ev.target.color.value;
         var user = new User(username, yearOfBirth, color, picture);
-        //get data and store in in the users' array
+        //get data and store it in the users' array
         userArray.push(user);
         //render the data to the DOM
         renderCards(userArray, document.querySelector("#cards"));
