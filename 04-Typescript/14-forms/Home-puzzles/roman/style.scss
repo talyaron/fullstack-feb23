@@ -1,0 +1,17 @@
+.wrapper {
+  
+    form{
+        input{
+            display: block;
+            margin: 5px;    
+            
+        }
+        
+    }
+   .usersRender{
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+
+   }
+}

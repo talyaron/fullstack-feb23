@@ -1,0 +1,91 @@
+.root {
+  width: 100%;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 50px;
+  padding: 20px;
+}
+
+.userCard {
+  margin: auto;
+  width: 250px;
+  height: 400px;
+  background-color: black;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.userImg {
+  width: 150px;
+  height: 160px;
+  margin-bottom: 10px;
+}
+
+.userName {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.userAge {
+  font-size: 16px;
+}
+
+.wapper {
+  margin: 0 auto;
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+}
+
+form {
+  background-color: #f1f1f1;
+  width: 600px;
+  margin: auto;
+  padding: 50px;
+}
+form .form-group label {
+  display: block;
+  margin: 5px;
+  font-weight: bold;
+  color: #007bff;
+}
+form .form-group input[type=submit],
+form .form-group input[type=reset] {
+  padding: 8px 16px;
+  margin-top: 20px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+form .form-group input[type=submit]:hover,
+form .form-group input[type=reset]:hover {
+  background-color: #0056b3;
+}
+form .form-group input[type=text],
+form .form-group input[type=color],
+form .form-group input[type=number] {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  color: #333;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.selected {
+  border: 2px solid red;
+  /* Customize the border style as desired */
+}
