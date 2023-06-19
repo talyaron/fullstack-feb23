@@ -31,7 +31,6 @@
 
 
 
-
 // # Level 2
 
 // 1. Create a function that gets the gender of the user and height of the user.
