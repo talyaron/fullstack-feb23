@@ -56,18 +56,15 @@ function renderCards(users: User[], element: HTMLElement | null) {
 
 function renderCard(user: User) {
     try {
-
-
         const html =
-        `<div id="${user.id}" class="card" style="background-color:${user.color}">
-            <div class="userName">Name: ${user.userName}</div>
-            <div class="age">Age: ${user.age()}</div>
-            <img class="image" src="${user.picture}"
-        </div> `;
+            `<div id="${user.id}" class="card" style="background-color:${user.color}">
+                    <div class="userName">Name: ${user.userName}</div>
+                    <div class="age">Age: ${user.age()}</div>
+                    <img class="image" src="${user.picture}">
+            </div> `;
         return html
 
     } catch (error) {
         console.error(error)
     }
-
 }

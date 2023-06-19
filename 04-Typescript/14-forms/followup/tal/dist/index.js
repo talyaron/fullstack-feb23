@@ -50,7 +50,7 @@ function renderCards(users, element) {
 }
 function renderCard(user) {
     try {
-        var html = "<div id=\"" + user.id + "\" class=\"card\" style=\"background-color:" + user.color + "\">\n            <div class=\"userName\">Name: " + user.userName + "</div>\n            <div class=\"age\">Age: " + user.age() + "</div>\n            <img class=\"image\" src=\"" + user.picture + "\"\n        </div> ";
+        var html = "<div id=\"" + user.id + "\" class=\"card\" style=\"background-color:" + user.color + "\">\n                    <div class=\"userName\">Name: " + user.userName + "</div>\n                    <div class=\"age\">Age: " + user.age() + "</div>\n                    <img class=\"image\" src=\"" + user.picture + "\">\n            </div> ";
         return html;
     }
     catch (error) {
