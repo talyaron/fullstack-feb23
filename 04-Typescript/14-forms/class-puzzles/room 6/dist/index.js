@@ -1,12 +1,23 @@
-function handleInput(event) {
-    console.dir(event);
-    console.log(event.target.value);
-    var root = document.querySelector('#root');
-    if (root) {
-        root.innerHTML = event.target.value;
-    }
-}
+// function handleInput(event) {
+//     console.dir(event)
+//     console.log(event.target.value);
+//     const root = document.querySelector('#root');
+//     if(root) {
+//         root.innerHTML = event.target.value;
+//     }
+// }
 // const arrPlayers : {username: string; imageUrl: string; age: number; color: number}[]=[];
+var Player = /** @class */ (function () {
+    function Player(username, imageUrl, age, color) {
+        this.username = username;
+        this.imageUrl = imageUrl;
+        this.age = age;
+        this.color = color;
+        this.id = "id-" + Math.random();
+    }
+    return Player;
+}());
+var arrPlayers = [];
 function handleSubmit(ev) {
     try {
         ev.preventDefault();
@@ -16,35 +27,35 @@ function handleSubmit(ev) {
         var yearOfBirth = ev.target.yearOfBirth.valueAsNumber;
         var age = new Date().getFullYear() - yearOfBirth;
         var color = ev.target.color.value;
-        var Player = /** @class */ (function () {
-            function Player(username, imageUrl, age, color) {
-                this.username = username;
-                this.imageUrl = imageUrl;
-                this.age = age;
-                this.color = color;
-            }
-            return Player;
-        }());
         var player = new Player(username, imageUrl, age, color);
         console.log(player);
-        var arrPlayers = [];
         arrPlayers.push(player);
+        renderPlayers(arrPlayers, document.querySelector("#roots"));
     }
     catch (error) {
         console.error(error);
     }
 }
-var root = document.querySelectorAll('.root');
+// const root = document.querySelectorAll('.root') as NodeListOf<HTMLDivElement> ;
 // class Player {
 //     constructor(public username: string, public imageUrl: string, public age: number, public color: string) {
 //     }
 // }
-function renderPlayer(root) {
+function renderPlayers(players, element) {
     try {
-        if (!root)
-            throw new Error("missing root element");
-        var html = "<div class='root' <h1>\"" + this.username + "\"></h1><img src=\"" + this.imageUrl + "\"><h4>" + this.age + "</h4></div>";
-        return root.innerHTML += html;
+        if (!element)
+            throw new Error("element is not defined");
+        var html = players.map(function (player) { return renderPlayer(player); }).join(" "); //users.map go all over the array, and randerCard is go unside every cell to render it
+        element.innerHTML = html;
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+function renderPlayer(player) {
+    try {
+        var html = "<div id=\"" + player.id + "\" class=\"roots\" style=\"background-color:" + player.color + "\">\n            <div class=\"userName\">Name: " + player.username + "</div>\n            <div class=\"age\">Age: " + player.age + "</div>\n            <img class=\"image\" src=\"" + player.imageUrl + "\"\n        </div> ";
+        return html;
     }
     catch (error) {
         console.error(error);
