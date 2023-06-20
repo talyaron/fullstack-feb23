@@ -1,5 +1,22 @@
+body {
+  direction: rtl;
+}
 .wrapper {
   form {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    background-color: beige;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    input {
+      margin: 2%;
+      width: fit-content;
+    }
+    .color {
+      width: revert;
+    }
   }
   .allCards {
     display: flex;
@@ -7,15 +24,17 @@
     padding: 2%;
     gap: 2%;
 
-    &_card {
+    .card {
+      border-radius: 15px;
       padding: 25px;
-      max-height: 200px;
+      max-height: 250px;
       width: fit-content;
       background-repeat: no-repeat;
       background-size: contain;
-      &_card_img {
+      margin: 2%;
+      &_img {
         img {
-          height: auto;
+          max-height: 200px;
           width: auto;
         }
       }

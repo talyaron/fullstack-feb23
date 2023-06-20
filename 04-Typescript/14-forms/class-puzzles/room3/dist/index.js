@@ -11,7 +11,6 @@ function handleSubmit(ev) {
         var color = ev.target.userColor.value;
         var dateOfBirth = ev.target.dateOfBirth.value;
         usersArray.push(new UserName(userName, imgUrl, color, dateOfBirth));
-        debugger;
         renderUsers(usersArray);
     }
     catch (error) {
@@ -22,8 +21,7 @@ function handleSubmit(ev) {
 // this function takes all the info and make it into array
 // function newUserIntoArray(username: []) {}
 var UserName = /** @class */ (function () {
-    function UserName(userName, imgUrl, color, dateOfBirth // public age: Function
-    ) {
+    function UserName(userName, imgUrl, color, dateOfBirth) {
         this.userName = userName;
         this.imgUrl = imgUrl;
         this.color = color;
@@ -42,31 +40,12 @@ var UserName = /** @class */ (function () {
 }());
 function renderUsers(usersDetails) {
     if (usersDetails === void 0) { usersDetails = []; }
-    debugger;
     var cardsWrapper = document.querySelector("#cardsWrapper");
     var userDetails = usersDetails.pop();
     var randomNumber = Math.round(Math.random() * 1000);
     if (!userDetails)
         throw new Error("user's details not found");
     if (cardsWrapper) {
-        cardsWrapper.innerHTML += "<div class=\"card\" id=\"id-" + randomNumber + "\">\n      <div class=\"card_img\"><img src=\"" + userDetails.imgUrl + "\" alt=\"\" /></div>\n      <div class=\"card_user-details\"><h3>Name: " + userDetails.userName + "<br>Age: " + userDetails.age(userDetails.dateOfBirth) + "</h3></div>\n    </div>";
-        var usersColor = document.querySelector("#" + randomNumber);
-        renderColor(randomNumber, userDetails.color);
-        // if (usersColor) {
-        //   usersColor.style.backgroundColor = userDetails.color;
-        // }
+        cardsWrapper.innerHTML += "<div class=\"card\" id=\"id-" + randomNumber + "\" style=\"background-color: " + userDetails.color + "\">\n      <div class=\"card_img\"><img src=\"" + userDetails.imgUrl + "\" alt=\"\" /></div>\n      <div class=\"card_user-details\"><h3>\u05E9\u05DD: " + userDetails.userName + "<br>\u05D2\u05D9\u05DC: " + userDetails.age(userDetails.dateOfBirth) + "</h3></div>\n    </div>";
     }
 }
-function renderColor(idNumber, color) {
-    try {
-        var colorId = document.querySelector("#id-" + idNumber);
-        if (colorId) {
-            return (colorId.style.backgroundColor = color);
-        }
-    }
-    catch (error) {
-        console.error(error);
-    }
-}
-debugger;
-// console.dir(renderColor(49, "#003F80"));

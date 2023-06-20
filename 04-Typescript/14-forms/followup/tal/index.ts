@@ -53,7 +53,7 @@ function renderCards(users: User[], element: HTMLElement | null) {
         console.error(error);
     }
 }
-
+//
 function renderCard(user: User) {
     try {
         const html =

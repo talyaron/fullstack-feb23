@@ -6,6 +6,32 @@
 // Image Size (in vw): This input allows the user to specify the width of the image in viewport width (vw) units.
 // When the user submits the form, display the image on the screen with the specified width.
 
+function addAnImage(event:any) {
+    event.preventDefault();
+    try{
+        const image:string = event.target.imageUrl.value;
+        const imageSize:number = event.target.imageSize.valueAsNumber;
+        console.log(image,imageSize)
+    
+        const root = document.querySelector('#root') as HTMLDivElement;
+        if (root){
+            root.innerHTML= `${image}`;
+        }
+    }
+
+    catch(error) {
+        console.error(error);
+    }
+
+}
+
+
+
+
+
+
+
+
 
 // 2) Create a form with the following inputs:
 
@@ -17,38 +43,39 @@
 // 3) Access the "Puzzle class" class, which likely represents a collection of user data or user profiles.
 // Edit each card: Update the information contained in each card, such as modifying user details or deleting a card from the collection.
 // These instructions outline three different tasks: creating a form to render an image with a specified width, creating a form to render multiple images, and using the "Puzzle Users" class to edit user cards. Each task has specific requirements and actions to be performed.
-const users: User[] = [];
-const usersRender = document.querySelector(".usersRender")
-function handleSubmit(ev: any) {
-    try {
-        ev.preventDefault();
-        console.dir(ev);
-        const imgUrl = ev.target.imgUrl.value;
-        const imgSize = ev.target.imgSize.value;
-        const result: any = { imgUrl, imgSize };
-        usersRender?.innerHTML = "You have" + (users.length+1) + " image(s)"; 	// Display number of images. 	// Display user names. 	// Display user cards.
 
-        users.push(result)
-
-
-    } catch (error) {
-        console.error(error);
-    }
-}
-class User {
-    constructor(public imgUrl: string, public imgSize: number) { }
-}
+// <h1>Forms</h1>
+// <form onsubmit="handleSubmit(event)">
+//     <input type="text" name="username" onkeyup="handleInput(event)" required>
+//     <input type="password" name="password" onkeyup="handleInput(event)" required>
+//     <input type="number" name="age" onkeyup="handleInput(event)">
+//     <input type="datetime-local" name='date' oninput="handleInput(event)">
+//     <input type="submit" value="Send">
+//     <button type="submit">Send</button>
+//     <input type="reset" value="Reset">
+// </form>
+// <input type="color" oninput="handleColor(event)">
+// <div id="root"></div>
 
 
 
-function test() {
 
-    if (users) {
-        let usersHtml = ""
-        users.forEach(user => {
-            usersHtml += `<div class='user'><img src='${user.imgUrl}' style="width:${user.imgSize}vw"></div>`
 
-            console.log(usersHtml)
-            usersRender.innerHTML = usersHtml;
-        }
-}
+
+
+
+
+
+
+
+
+
+
+// const form = document.querySelector('form') as HTMLFormElement;
+
+// // get all the forms in the html
+// document.forms
+
+// // get the second form in html
+// document.forms[1]
+

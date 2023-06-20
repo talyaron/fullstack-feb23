@@ -66,7 +66,7 @@ form {
           display: block;
           margin: 5px;
           font-weight: bold;
-          color: #007bff ;
+          color:$form-input-focus-border-color ;
         }
         input[type="submit"],
         input[type="reset"] {
@@ -74,15 +74,14 @@ form {
             padding: 8px 16px;
             margin-top: 20px;
             font-size: 16px;
-            background-color: #007bff;
+            background-color:$form-input-focus-border-color;
             color: #fff;
             border: none;
             border-radius: $form-input-border-radius;
             cursor: pointer;
             transition: background-color 0.3s ease;
-      
             &:hover {
-              background-color: #0056b3;
+              background-color: #021e3c;
             }
         }
         
