@@ -6,7 +6,7 @@
 
 //data (model)
 class imageDataFromUser {
-    constructor(public imgUrl: string, public imgWidthSize: number, public multiple: number) { }
+    constructor(public imgUrl: string, public imgWidthSize: number) { }
 }
 
 //keep all images 
@@ -18,14 +18,14 @@ const imgArray: imageDataFromUser[] = new Array();
 function handelSubmitImg(event: any) {
     try {
         event.preventDefault();  //prevent default satting from work - mast!
-       
+
         // console.log(event.target)
         console.dir(event);  //to see what we got in the consol
 
         const imgURL: string = event.target.elements.imgUrl.value;  //pey attention to the event.target.element.[name from html].value
         const imgWidthSize: number = event.target.elements.imgWidthSize.value;
-        const multiple: number = event.target.elements.multiple.value;
-        const imgData = new imageDataFromUser(imgURL, imgWidthSize, multiple);
+        // const multiple: number = event.target.elements.multiple.value;
+        const imgData = new imageDataFromUser(imgURL, imgWidthSize);
 
         console.log(imgData); //to see that i got the data right
 
@@ -34,9 +34,10 @@ function handelSubmitImg(event: any) {
 
         // call a function to rander the data to the html (DOM)
         const root: HTMLElement | null = document.querySelector('#root');
-        
-        for( let i=0; i<multiple; i++){
-        renderImage(imgArray, root);}
+
+        // for (let i = 0; i < multiple; i++) {
+            renderImage(imgArray, root);
+        // }
 
         event.target.reset()
 
@@ -50,9 +51,9 @@ function renderImage(imgArray: imageDataFromUser[], element: HTMLElement | null)
     try {
         if (!element) throw new Error("element is not defined");  //check if we got an element from the html
         const backToHtml = imgArray.map((imgData) => renderpic(imgData)).join(" "); //imgData.map go all over the array, renderpic get inside every cell and render it
-        
+
         element.innerHTML = backToHtml //send it back to the html
-     
+
         // const lastIndex = imgArray.length - 1
         // element?.innerHTML = `<img src="${imgArray[lastIndex].imgUrl}" style="width: ${imgArray[lastIndex].imgWidthSize}px"/>`
     } catch (error) {
@@ -65,10 +66,10 @@ function renderpic(imgData: imageDataFromUser) {
         const backToHtml =
             `<img class= "image" src="${imgData.imgUrl}"  style="width: ${imgData.imgWidthSize}px">`
 
-            // <form onSubmit="chengeSize(event)">
-            //     <input type="number" name="urlSize" placeholder="Enter image Size" value="${imgData.imgWidthSize}"/>
-            //     <button type="submit">Chenge Size</button>
-            // </form>`
+        // <form onSubmit="chengeSize(event)">
+        //     <input type="number" name="urlSize" placeholder="Enter image Size" value="${imgData.imgWidthSize}"/>
+        //     <button type="submit">Chenge Size</button>
+        // </form>`
 
         return backToHtml;
 
@@ -79,12 +80,12 @@ function renderpic(imgData: imageDataFromUser) {
 
 //an example to add a "change img size" option in the form and how to do it in ts +line 66-69
 
-        // function chengeSize(ev) {
-        //     ev.preventDefault()
+// function chengeSize(ev) {
+//     ev.preventDefault()
 
-        //     //find the image
-        //     //update the value
-        // }
+//     //find the image
+//     //update the value
+// }
 
 //2) Create a form with the following inputs:
 
@@ -93,7 +94,3 @@ function renderpic(imgData: imageDataFromUser) {
 //When the user submits the form, render multiple instances of the image on the screen, multiplied by the number provided by the user.
 //Use the "Puzzle Users" class
 
-
-function multiImg(imgData: imageDataFromUser) {
-    return imgData.multiple
-}

@@ -4,10 +4,9 @@
 //When the user submits the form, display the image on the screen with the specified width.
 //data (model)
 var imageDataFromUser = /** @class */ (function () {
-    function imageDataFromUser(imgUrl, imgWidthSize, multiple) {
+    function imageDataFromUser(imgUrl, imgWidthSize) {
         this.imgUrl = imgUrl;
         this.imgWidthSize = imgWidthSize;
-        this.multiple = multiple;
     }
     return imageDataFromUser;
 }());
@@ -22,16 +21,16 @@ function handelSubmitImg(event) {
         console.dir(event); //to see what we got in the consol
         var imgURL = event.target.elements.imgUrl.value; //pey attention to the event.target.element.[name from html].value
         var imgWidthSize = event.target.elements.imgWidthSize.value;
-        var multiple = event.target.elements.multiple.value;
-        var imgData = new imageDataFromUser(imgURL, imgWidthSize, multiple);
+        // const multiple: number = event.target.elements.multiple.value;
+        var imgData = new imageDataFromUser(imgURL, imgWidthSize);
         console.log(imgData); //to see that i got the data right
         // get the data and store it in the array
         imgArray.push(imgData);
         // call a function to rander the data to the html (DOM)
         var root = document.querySelector('#root');
-        for (var i = 0; i < multiple; i++) {
-            renderImage(imgArray, root);
-        }
+        // for (let i = 0; i < multiple; i++) {
+        renderImage(imgArray, root);
+        // }
         event.target.reset();
     }
     catch (error) {
@@ -76,6 +75,3 @@ function renderpic(imgData) {
 //Number of Images: This input allows the user to enter a number.
 //When the user submits the form, render multiple instances of the image on the screen, multiplied by the number provided by the user.
 //Use the "Puzzle Users" class
-function multiImg(imgData) {
-    return imgData.multiple;
-}
