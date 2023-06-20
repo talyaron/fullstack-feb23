@@ -17,22 +17,15 @@ var imgArray = new Array();
 function handelSubmitImg(event) {
     try {
         event.preventDefault(); //prevent default satting from work - mast!
-<<<<<<< HEAD
-        console.dir(event); //to see what we got in the consol
-        var imgURL = event.target.imgURL.value;
-        var imgWidthSize = event.target.imgWidthSize.value;
-=======
         // console.log(event.target)
         // console.dir(event);  //to see what we got in the consol
-        var imgURL = event.target.elements.imgUrl.value;
+        var imgURL = event.target.elements.imgUrl.value; //pey attention to the event.target.element
         var imgWidthSize = event.target.elements.imgWidthSize.value;
->>>>>>> d01fde47ec1d93487cfa8f97ac8a7e1cdad485b2
         var imgData = new imageDataFromUser(imgURL, imgWidthSize);
-        console.log(imgData);
-        // console.log(imgData); //to see that i got the data right
-        // // get the data and store it in the array
+        console.log(imgData); //to see that i got the data right
+        // get the data and store it in the array
         imgArray.push(imgData);
-        // //call a function to rander the data to the html (DOM)
+        // call a function to rander the data to the html (DOM)
         var root = document.querySelector('#root');
         renderImage(imgArray, root);
         event.target.reset();
