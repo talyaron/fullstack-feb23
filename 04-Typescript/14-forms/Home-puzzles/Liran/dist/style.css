@@ -1,5 +1,5 @@
 .wrapper {
-  background-color: gray;
+  background-color: #e9e6e6;
   height: fit-content;
   display: flex;
   flex-direction: column;
@@ -9,7 +9,7 @@
 }
 .wrapper form {
   margin: 20px 0;
-  width: 75%;
+  width: 100%;
   display: flex;
   justify-content: space-around;
 }
@@ -22,11 +22,10 @@
 .wrapper .cards .card {
   text-align: center;
   height: 500px;
-  width: 75%;
-  margin: auto;
+  width: fit-content;
   border: solid 2px;
   border-radius: 10px;
-  background-color: black;
+  align-items: center;
 }
 .wrapper .cards .card img {
   width: 100%;

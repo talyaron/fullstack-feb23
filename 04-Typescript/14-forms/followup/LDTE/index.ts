@@ -12,7 +12,7 @@ function handleSubmit(ev: any) {
         console.dir(ev);
         const username = ev.target.username.value;
         const picture = ev.target.userPic.value;
-        const age = ev.target.age.valueAsNumber;
+        const age:number = new Date().getFullYear() - ev.target.age.valueAsNumber;
         const vColor = ev.target.favorite.value;
         const user = new User(username, age, vColor, picture);
         userArray.push(user);
@@ -24,10 +24,12 @@ function handleSubmit(ev: any) {
 
 function backgroundC(str: string, id: string) {
     try {
-        const bc = document.querySelector(`#${id}`) as HTMLDivElement;
+        debugger;
+        const bc = document.querySelector(`#img${id}`) as HTMLDivElement;
         console.log(bc)
         if (!bc) throw new Error("Error");
         bc.style.backgroundColor = str;
+        bc.style.color = (parseInt(str) / (2)).toString();
 
     } catch (error) {
         console.error(error)
@@ -38,13 +40,14 @@ function renderCard(user: User) {
     try {
         const cards = document.querySelector("#cards");
         if (!cards) throw new Error("Missing information");
-        cards.innerHTML += `<div id="${userArray.length}" class="card">
+        cards.innerHTML += `<div class="card">
+        <div id="img${userArray.length}">
         <div class="userName">Name: ${user.userName}</div>
-        <div class="age">Age: ${user.age}</div>
-        <img class="image" src="${user.picture}"> </div> `;
-        backgroundC(user.favorite, userArray.length);
+        <div class="age">Age: ${user.age}</div></div> 
+        <img class="image" src="${user.picture}"></div> `;
+        backgroundC(user.favorite, userArray.length.toString());
 
-        
+
     } catch (error) {
         console.error(error)
     }
