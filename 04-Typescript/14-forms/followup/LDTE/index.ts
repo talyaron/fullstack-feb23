@@ -44,6 +44,7 @@ function renderCard(user: User) {
         <img class="image" src="${user.picture}"> </div> `;
         backgroundC(user.favorite, userArray.length);
 
+        
     } catch (error) {
         console.error(error)
     }
