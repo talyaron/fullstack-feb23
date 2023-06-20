@@ -12,36 +12,64 @@
 // to specify the width of the image in viewport width (vw) units.
 // When the user submits the form, display the image on the screen with the specified width.
 
-class User{
-    constructor(public userName:string, public birthYear:number, public imgURL:string ,public favoriteColor:string){}
+class User {
+    id: string;
+    constructor(public userName: string, public birthYear: number, public imgURL: string, public favoriteColor: string) {
+        this.id = `id-${Math.random()}`;
+    }
+    age() {
+        const age = new Date().getFullYear() - this.birthYear;
+        return age;
+    }
 }
 
-const userArray:User[] = new Array(); 
+const usersArray: User[] = new Array();
 
 
-function handleSubmit(ev:any){
+function handleSubmit(ev: any) {
     try {
         ev.preventDefault();
+        console.dir(ev);
         console.dir(ev);
         const username = ev.target.username.value;
         const birthYear = ev.target.birthYear.valueAsNumber;
         const imgURL = ev.target.imgURL.value;
         const favoriteColor = ev.target.favoriteColor.value;
         const user = new User(username, birthYear, imgURL, favoriteColor);
-        console.log(user)
-        userArray.push(user);
-        renderCard(user);
+
+        usersArray.push(user);
+
+        renderCards(usersArray, document.querySelector("#cards"));
+
     } catch (error) {
         console.error(error);
     }
 }
 
-// function handleColor(ev:any){
-//     try {
-       
-    
-//         document.body.style.backgroundColor = ev.target.value;  
-//     } catch (error) {
-//         console.error(error);
-//     }
-// }
+function renderCards(users: User[], element: HTMLElement | null) {
+    try {
+        if (!element) throw new Error("element is not defind");
+        const html = users.map((user) => renderCard(user)).join(" ");
+
+        element.innerHTML = html;
+
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+function renderCard(user: User) {
+    try {
+        const html =
+       `<div id="${user.id}" class="card" style="background-color: ${user.favoriteColor}">
+             <div class="userName"> Name: ${user.userName} </div>
+             <div class="age"> Age: ${user.age()} </div>
+             <img class="img" src="${user.imgURL}">
+        </div>`;
+
+        return html
+
+    } catch (error) {
+        console.error(error);
+    }
+}

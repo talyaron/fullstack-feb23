@@ -12,13 +12,15 @@
     <div class="wrapper">
 
         <form onsubmit="handleSubmit(event)">
-            <input type="text" name="username" required>
-            <input type="number" name="birthYear" required>
-            <input type="text" name="imgURL" required>
+            <input type="text" name="username" required placeholder="Name">
+            <input type="number" name="birthYear" required placeholder="Year of birth">
+            <input type="text" name="imgURL" required placeholder="Image URL">
             <input type="color" name="favoriteColor">
             <button type="submit">Send</button>
         </form>
-        
+
+        <div id="cards" class="cards"></div>
+
     </div>
     <script src="./dist/index.js"></script>
 </body>
