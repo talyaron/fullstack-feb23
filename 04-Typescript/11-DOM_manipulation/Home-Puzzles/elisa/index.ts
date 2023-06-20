@@ -29,6 +29,50 @@ let movies: Movie[] = [
 
 const container = document.querySelector('#movie-container');
 
+<<<<<<< HEAD
+// function renderMovies(movies: Movie[]) {
+//   let html = '';
+
+//   movies.forEach((movie) => {
+//     html += `
+//       <div class="movie">
+//         <img src="${movie.imgSrc}" alt="${movie.name}">
+//         <h2>${movie.name}</h2>
+//       </div>`;
+//   });
+
+//   console.log(html);
+//   if (container) {
+//     container.innerHTML = html;
+//   }
+
+//   // container.innerHTML = '';
+//   // movies.forEach((movie) => {
+//   //   container.innerHTML += `
+//   //     <div class="movie">
+//   //       <img src="${movie.imgSrc}" alt="${movie.name}">
+//   //       <h2>${movie.name}</h2>
+//   //     </div>
+//   //   `;
+//   // });
+// }
+
+// renderMovies(movies);
+
+const renderToClient = () => {
+  const pElement = document.createElement('p');
+  pElement.textContent = 'Hello World!';
+  const infoEl = document.createElement('h1');
+  infoEl.textContent = 'I Love movies';
+
+  if (container) {
+    container.appendChild(pElement);
+    container.appendChild(infoEl);
+  }
+};
+
+renderToClient();
+=======
 function renderMovies(movies: Movie[]) {
   let html = '';
 
@@ -71,3 +115,4 @@ function renderMovies(movies: Movie[]) {
 // };
 
 // renderToClient();
+>>>>>>> c8162fa75b2aa45c9a651d439fa2136ed0663ec0

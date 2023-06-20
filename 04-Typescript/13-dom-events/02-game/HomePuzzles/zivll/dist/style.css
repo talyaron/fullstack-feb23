@@ -20,8 +20,8 @@ body {
 }
 .checkers-board .box {
   position: relative;
-  width: calc(900px / 8);
-  height: calc(900px / 8);
+  width: max(calc(900px / 8), 100%);
+  height: max(calc(900px / 8), 100%);
   display: flex;
   justify-content: center;
   align-items: center;
