@@ -1,6 +1,33 @@
-form {
+.wrapper {
+  max-width: 500px;
+  height: 60vh;
+  margin: auto;
+}
+.wrapper form {
+  margin: auto;
+  margin-bottom: 20px;
   display: flex;
   flex-flow: column;
   max-width: 200px;
   gap: 0.5rem;
+}
+.wrapper .cards {
+  display: flex;
+  margin: auto;
+}
+.wrapper .card {
+  width: 12vw;
+  height: 20vh;
+  text-align: center;
+  font-size: small;
+  font-style: italic;
+  border-radius: 10px;
+  padding: 2px;
+  margin: auto;
+}
+.wrapper .card .img {
+  width: 11vw;
+  height: 15vh;
+  border-radius: 10px;
+  margin-top: 2px;
 }
