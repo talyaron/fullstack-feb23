@@ -13,31 +13,49 @@ var User = /** @class */ (function () {
         this.birthYear = birthYear;
         this.imgURL = imgURL;
         this.favoriteColor = favoriteColor;
+        this.id = "id-" + Math.random();
     }
+    User.prototype.age = function () {
+        var age = new Date().getFullYear() - this.birthYear;
+        return age;
+    };
     return User;
 }());
-var userArray = new Array();
+var usersArray = new Array();
 function handleSubmit(ev) {
     try {
         ev.preventDefault();
+        console.dir(ev);
         console.dir(ev);
         var username = ev.target.username.value;
         var birthYear = ev.target.birthYear.valueAsNumber;
         var imgURL = ev.target.imgURL.value;
         var favoriteColor = ev.target.favoriteColor.value;
         var user = new User(username, birthYear, imgURL, favoriteColor);
-        console.log(user);
-        userArray.push(user);
-        renderCard(user);
+        usersArray.push(user);
+        renderCards(usersArray, document.querySelector("#cards"));
     }
     catch (error) {
         console.error(error);
     }
 }
-// function handleColor(ev:any){
-//     try {
-//         document.body.style.backgroundColor = ev.target.value;  
-//     } catch (error) {
-//         console.error(error);
-//     }
-// }
+function renderCards(users, element) {
+    try {
+        if (!element)
+            throw new Error("element is not defind");
+        var html = users.map(function (user) { return renderCard(user); }).join(" ");
+        element.innerHTML = html;
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+function renderCard(user) {
+    try {
+        var html = "<div id=\"" + user.id + "\" class=\"card\" style=\"background-color: " + user.favoriteColor + "\">\n             <div class=\"userName\"> Name: " + user.userName + " </div>\n             <div class=\"age\"> Age: " + user.age() + " </div>\n             <img class=\"img\" src=\"" + user.imgURL + "\">\n        </div>";
+        return html;
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
