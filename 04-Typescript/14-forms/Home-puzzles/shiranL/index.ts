@@ -75,19 +75,16 @@ function updateUser(userName: string) {
 
    // deleteUserCard(user.userName);
 
-    const field = prompt("Which field would you like to update? (userName, imageURL, color, yearOfBirth)");
+    const field = prompt("Which field would you like to update? (userName, imageURL, color, yearOfBirth)");// which filed to updae
     if (!field) {
        throw new Error ("no field to update")
     }
-
-    let newValue;
-    let elem:any;
+    let newValue  = prompt("Enter new userName:");   // new value to update
+    let elem:any = document.querySelector(`#A${user.id}`);  // html card user to update;
     switch (field) {
         case "userName":
-            newValue = prompt("Enter new userName:");
-            if (newValue)
-             elem = document.querySelector(`#A${user.id}`);  // html card user
-             if (elem) {
+            if (newValue && elem )
+            {
                 elem.remove(); // Remove the element from the DOM
                 user.userName=newValue;
                 user.renderUser(root);
@@ -95,10 +92,8 @@ function updateUser(userName: string) {
               } 
             break;
         case "imageURL":
-            newValue = prompt("Enter new userName:");
-            if (newValue)
-             elem = document.querySelector(`#A${user.id}`);  // html card user
-             if (elem) {
+            if (newValue && elem )
+            {
                 elem.remove(); // Remove the element from the DOM
                 user.imageURL=newValue;
                 user.renderUser(root);
@@ -106,27 +101,25 @@ function updateUser(userName: string) {
               } 
             break;
         case "color":
-            newValue = prompt("Enter new userName:");
-            if (newValue)
-             elem = document.querySelector(`#A${user.id}`);  // html card user
-             if (elem) {
+            if (newValue && elem )
+            {
                 elem.remove(); // Remove the element from the DOM
                 user.color=newValue;
                 user.renderUser(root);
                 cardcolorStyle();
               } 
             break;
+           
         case "yearOfBirth":
-            newValue = prompt("Enter new userName:");
-            if (newValue)
-             elem = document.querySelector(`#A${user.id}`);  // html card user
-             if (elem) {
+            if (newValue && elem )
+            {
                 elem.remove(); // Remove the element from the DOM
-                user.yearOfBirth=newValue;
+                user.yearOfBirth=Number(newValue);
                 user.renderUser(root);
                 cardcolorStyle();
               } 
             break;
+            
         default:
             console.log("Invalid field specified");
             return;
