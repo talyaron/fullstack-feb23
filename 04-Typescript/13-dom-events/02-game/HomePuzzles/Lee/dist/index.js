@@ -25,4 +25,19 @@ for (i = 1; i <= 8; i++) {
 }
 var pawn = document.querySelector('#pawn');
 document.addEventListener('keyup', function (event) {
+    console.log(event);
+    switch (event.key) {
+        case 'ArrowUp':
+            pawn.style.top = pawn.offsetTop - 80 + "px";
+            break;
+        case 'ArrowDown':
+            pawn.style.top = pawn.offsetTop + 80 + "px";
+            break;
+        case 'ArrowLeft':
+            pawn.style.left = pawn.offsetLeft - 80 + "px";
+            break;
+        case 'ArrowRight':
+            pawn.style.left = pawn.offsetLeft + 80 + "px";
+            break;
+    }
 });

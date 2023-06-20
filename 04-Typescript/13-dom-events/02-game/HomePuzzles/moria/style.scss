@@ -2,35 +2,35 @@ body {
 
     overflow: hidden;
 
-    img {
+    .board {
+        position: absolute;
         width: 700px;
-        margin: 20px 370px;
+        height: 700px;
+        margin: 20px 350px;
         z-index: -5;
     }
 
-    .images {
-        #player1 {
-            width: 50px;
-            position: absolute;
-            top: 3px;
-            left: 25px;
-            z-index: 1;
-        }
+    .player {
+        width: 50px;
+        height: 100px;
+        position: absolute;
+        z-index: 1;
+    }
 
-        #player2 {
-            width: 50px;
-            position: absolute;
-            top: 3px;
-            left: 110px;
-            z-index: 1;
-        }
+    #player1 {
+        top: 20px;
+        left: 550px;
 
-        #player3 {
-            width: 50px;
-            position: absolute;
-            top: -2px;
-            left: 200px;
-            z-index: 1;
-        }
+
+    }
+
+    #player2 {
+        top: 20px;
+        left: 455px;
+    }
+
+    #player3 {
+        top: 20px;
+        left: 370px;
     }
 }

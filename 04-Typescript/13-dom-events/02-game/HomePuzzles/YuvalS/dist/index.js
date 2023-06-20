@@ -1,4 +1,16 @@
-var pawn = document.querySelector('#pawn');
+var pawn = document.querySelector('.pawn');
+// const onClick = (event) => {
+//     console.log(pawn = document.querySelector(`#${event.srcElement.id}`)!);
+// }
+// window.addEventListener('click', onClick);
+var pawns = document.querySelectorAll('.pawn');
+pawns.forEach(function (pl) {
+    pl.addEventListener('click', function (ev) {
+        pawn = ev.target;
+    });
+});
+// function onClick(){
+// let pawn = document.querySelector('.pawn') as HTMLDivElement;
 document.addEventListener('keydown', function (event) {
     console.log(event);
     switch (event.key) {
@@ -16,3 +28,4 @@ document.addEventListener('keydown', function (event) {
             break;
     }
 });
+// }

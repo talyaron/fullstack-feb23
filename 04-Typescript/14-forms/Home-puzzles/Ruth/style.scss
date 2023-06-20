@@ -1,0 +1,76 @@
+* {
+  padding: 0%;
+  margin: 0;
+  font-family:  Geneva, Tahoma, sans-serif;
+}
+
+body {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}
+.wrapper {
+  text-align: center;
+  background-color: rgb(223, 157, 157);
+  margin-top: 5vh;
+  min-height: 95vh;
+  width: 70%;
+  .gallery {
+   display: block;
+    .userCard {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      padding: 10px;
+      margin: 10px;
+      height: fit-content;
+      border: 1px solid black;
+      //   border-radius: 30px;
+      * {
+        width: 120px;
+        height: 30px;
+        align-items: center;
+        text-align: center;
+      }
+      .userImg {
+        height: 30px;
+        width: auto;
+      }
+      button {
+        width: 60px;
+        height: 30px;
+        // border-radius: 30px;
+      }
+    }
+  }
+
+  .addUserForm {
+    border: 1px solid black;
+    input {
+      width: 130px;
+      height: 20px;
+      padding: 4px;
+      margin: 2px;
+    }
+  }
+
+  .editDiv {
+    input {
+      width: 130px;
+      height: 20px;
+      padding: 4px;
+      margin: 2px;
+    }
+    .editDivChanges {
+        display: none;
+    }
+}
+}
+
+input {
+  width: 130px;
+  height: 20px;
+  padding: 4px;
+  margin: 2px;
+}

@@ -2,6 +2,23 @@ body {
     position: absolute;
   }
 
+<<<<<<< HEAD
+.wrapper{
+    width: 1000px;
+    height: 700px;
+    background-color: blue;
+    display: grid;
+    align-items: center;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: repeat(3, 1fr);
+    padding: 17px;
+
+    grid-template-areas:
+
+      
+
+}
+=======
 // .wrapper{
 //     width: 1000px;
 //     height: 700px;
@@ -17,6 +34,7 @@ body {
       
 
 // }
+>>>>>>> c8162fa75b2aa45c9a651d439fa2136ed0663ec0
 
 p{
     background-color: yellow;

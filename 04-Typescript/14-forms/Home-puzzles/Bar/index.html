@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./dist/stayle.css">
+</head>
+
+<body>
+    <div class="wrapper">
+
+        <form onsubmit="handleSubmit(event)">
+            <input type="text" name="username" required placeholder="Name">
+            <input type="number" name="birthYear" required placeholder="Year of birth">
+            <input type="text" name="imgURL" required placeholder="Image URL">
+            <input type="color" name="favoriteColor">
+            <input type="number" name="width" required placeholder="width of the image (5-11)">
+            <input type="number" name="NumberOfImages" required placeholder="Number of Images">
+            <button type="submit">Send</button>
+        </form>
+
+        <div id="cards" class="cards"></div>
+
+    </div>
+    <script src="./dist/index.js"></script>
+</body>
+
+</html>

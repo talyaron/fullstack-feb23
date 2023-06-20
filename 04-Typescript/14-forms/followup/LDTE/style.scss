@@ -1,0 +1,40 @@
+.wrapper{
+    background-color: gray;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 99vw;
+    align-items: center;
+    
+
+    form{
+        margin: 20px 0;
+        width: 75%;
+        display: flex;
+        justify-content:space-around;
+
+    }
+
+    .cards{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        justify-content: center;
+        
+        .card{
+            text-align: center;
+            height: 500px;
+            width: 75%;
+            margin: auto;
+            img{
+                width: 100%;
+            }
+            
+            border: solid 2px;
+            border-radius: 10px;
+            background-color: black;
+        }
+    }
+    
+}
