@@ -1,11 +1,11 @@
-//----------------User--------------
-var User = /** @class */ (function () {
-    function User(firstName, lastName) {
+//----------------Employee--------------
+var Employee = /** @class */ (function () {
+    function Employee(firstName, lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.ID = createID();
     }
-    return User;
+    return Employee;
 }());
 //--------------Time-----------------
 var Time = /** @class */ (function () {
@@ -24,15 +24,18 @@ var TimeClock = /** @class */ (function () {
     return TimeClock;
 }());
 //----------------UserHours---------------
-var UserHours = /** @class */ (function () {
-    function UserHours(user, hoursWork) {
-        this.user = user;
+var EmployeeHours = /** @class */ (function () {
+    function EmployeeHours(employee, hoursWork) {
+        this.employee = employee;
         this.hoursWork = hoursWork;
     }
-    UserHours.prototype.addingWorkingHours = function (workTime) {
+    EmployeeHours.prototype.addingWorkingHours = function (workTime) {
         this.hoursWork.push(workTime);
     };
-    return UserHours;
+    EmployeeHours.prototype.editEntranceTimeByDate = function (dateToEdit, newEntranceTime) {
+        this.hoursWork.find(function (day) { day.date == dateToEdit; }).entranceTime = newEntranceTime;
+    };
+    return EmployeeHours;
 }());
 //create uniq id by Date, from google...
 function createID() {

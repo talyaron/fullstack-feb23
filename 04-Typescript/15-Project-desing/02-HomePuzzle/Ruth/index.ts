@@ -1,5 +1,5 @@
-//----------------User--------------
-class User{
+//----------------Employee--------------
+class Employee{
   ID: string;
   constructor(public firstName: string, public lastName: string) {
     this.ID = createID();
@@ -17,13 +17,21 @@ class TimeClock{
 }
 
 //----------------UserHours---------------
-class UserHours{
-    constructor(public user:User, public hoursWork:TimeClock[]){}
+class EmployeeHours{
+
+    constructor(public employee:Employee, public hoursWork:TimeClock[]){}
 
     addingWorkingHours(workTime:TimeClock){
         this.hoursWork.push(workTime)
     }
+
+    editEntranceTimeByDate(dateToEdit:Date, newEntranceTime:Time){
+        this.hoursWork.find(day=>{day.date == dateToEdit})!.entranceTime = newEntranceTime; 
+    }
 }
+
+
+
 
 //create uniq id by Date, from google...
 function createID() {
