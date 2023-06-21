@@ -1,0 +1,37 @@
+var root = document.querySelector('#root');
+var img = /** @class */ (function () {
+    function img(image, width, amount) {
+        this.image = image;
+        this.width = width;
+        this.amount = amount;
+    }
+    return img;
+}());
+// function imgInput(event: any) {
+//     console.log(event.target.value);
+// }
+// function imageInput(event) {
+//     const root = document.querySelector('#root');
+// // // }
+// function imgInput(ev: any) {
+//     try {
+//         ev.preventDefault();
+//         console.dir(ev);
+//         const imgIn = ev.target.imgIn.value;
+//         var width: number = ev.target.width.value;
+//         var amount: number = ev.target.amount.value;
+//         var result = { imgIn, width, amount, };
+//         console.log(result)
+//     }
+//     catch (error) {
+//         console.error(error);
+//     }
+// }
+// }
+// if (root) {
+//     for (let i = amount; i > 0; i--)
+//         root.innerHTML = `<img src="${imgIn}" width="${width}" >`
+//     console.dir(amount)
+//     console.log(amount)
+// }
+// const image = new Car("Opel", "Coursa", "Blue", 2018);
