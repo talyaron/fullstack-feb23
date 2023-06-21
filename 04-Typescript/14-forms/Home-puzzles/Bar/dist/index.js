@@ -14,22 +14,38 @@
 // multiplied by the number provided by the user.
 // Use the "Puzzle Users" class:
 var User = /** @class */ (function () {
-    function User(userName, birthYear, imgURL, favoriteColor, width, NumberOfImages) {
+    function User(userName, birthYear, imgURL, favoriteColor, width, numberOfImages) {
         this.userName = userName;
         this.birthYear = birthYear;
         this.imgURL = imgURL;
         this.favoriteColor = favoriteColor;
         this.width = width;
-        this.NumberOfImages = NumberOfImages;
+        this.numberOfImages = numberOfImages;
         this.id = "id-" + Math.random();
     }
     User.prototype.age = function () {
         var age = new Date().getFullYear() - this.birthYear;
         return age;
     };
+    User.prototype.totalImgs = function () {
+    };
     return User;
 }());
 var usersArray = new Array();
+//
+function renderMeniImgs(user) {
+    try {
+        var numberOfImages = parseInt(user.numberOfImages);
+        if (isNaN(numberOfImages) || numberOfImages <= 0) {
+            throw new Error("Invalid number of images");
+        }
+        return numberOfImages;
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+//
 function handleSubmit(ev) {
     try {
         ev.preventDefault();
@@ -40,8 +56,8 @@ function handleSubmit(ev) {
         var imgURL = ev.target.imgURL.value;
         var favoriteColor = ev.target.favoriteColor.value;
         var width = ev.target.width.valueAsNumber;
-        var NumberOfImages = ev.target.valueAsNumber;
-        var user = new User(username, birthYear, imgURL, favoriteColor, width, NumberOfImages);
+        var numberOfImages = ev.target.valueAsNumber;
+        var user = new User(username, birthYear, imgURL, favoriteColor, width, numberOfImages);
         usersArray.push(user);
         renderCards(usersArray, document.querySelector("#cards"));
     }
@@ -69,23 +85,3 @@ function renderCard(user) {
         console.error(error);
     }
 }
-function renderMeniImgs(user) {
-    try {
-        var numberOfImages = parseInt(user.NumberOfImages);
-        if (isNaN(numberOfImages) || numberOfImages <= 0) {
-            throw new Error("Invalid number of images");
-        }
-        return numberOfImages;
-    }
-    catch (error) {
-        console.error(error);
-    }
-}
-// function renderMeniImgs(user: User | any) {
-//     try {
-//         // if(!user.NumberOfImages || user.imgURL) throw new Error(" ");
-//         return user.imgURL * user.NumberOfImages
-//     } catch (error) {
-//         console.error(error);
-//     }
-// }

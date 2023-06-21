@@ -1,5 +1,5 @@
 .wrapper {
-  max-width: 500px;
+  max-width: 800px;
   height: 60vh;
   margin: auto;
 }
@@ -8,7 +8,7 @@
   margin-bottom: 20px;
   display: flex;
   flex-flow: column;
-  max-width: 200px;
+  max-width: 400px;
   gap: 0.5rem;
 }
 .wrapper .cards {
@@ -16,8 +16,8 @@
   margin: auto;
 }
 .wrapper .card {
-  width: 12vw;
-  height: 20vh;
+  width: 16vw;
+  height: 25vh;
   text-align: center;
   font-size: small;
   font-style: italic;
@@ -26,8 +26,16 @@
   margin: auto;
 }
 .wrapper .card .img {
-  width: 11vw;
-  height: 15vh;
+  width: 16vw;
+  height: 20vh;
   border-radius: 10px;
   margin-top: 2px;
+}
+.wrapper #imgsDIV {
+  width: 400px;
+  height: 200px;
+}
+.wrapper #imgsDIV img {
+  width: 200px;
+  height: 200px;
 }

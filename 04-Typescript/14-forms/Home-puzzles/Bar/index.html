@@ -14,12 +14,14 @@
         <form onsubmit="handleSubmit(event)">
             <input type="text" name="username" required placeholder="Name">
             <input type="number" name="birthYear" required placeholder="Year of birth">
-            <input type="text" name="imgURL" required placeholder="Image URL">
+            <input type="url" name="imgURL" required placeholder="Image URL">
             <input type="color" name="favoriteColor">
-            <input type="number" name="width" required placeholder="width of the image (5-11)">
-            <input type="number" name="NumberOfImages" required placeholder="Number of Images">
+            <input type="number" name="width" placeholder="width of the image (5-15)">
+            <input type="number" name="NumberOfImages" placeholder="Number of Images">
             <button type="submit">Send</button>
         </form>
+
+        <div id="imgsDIV"></div>
 
         <div id="cards" class="cards"></div>
 
