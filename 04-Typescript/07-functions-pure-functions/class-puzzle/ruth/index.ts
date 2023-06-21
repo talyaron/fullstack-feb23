@@ -1,9 +1,9 @@
 const num1: number = 16;
 const num2: number = 4;
 const sing: string = "*";
-const res: number | undefined = calculate(num1, sing, num2);
+// const res: number | undefined = calculate(num1, sing, num2);
 
-document.body.innerText = `${num1} ${sing} ${num2} = ${res}`;
+// document.body.innerText = `${num1} ${sing} ${num2} = ${res}`;
 
 function calculate(x: number, operator: string, y: number): number | undefined {
   try {

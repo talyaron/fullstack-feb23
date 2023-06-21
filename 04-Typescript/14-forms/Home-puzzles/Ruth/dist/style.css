@@ -1,0 +1,80 @@
+* {
+  padding: 0%;
+  margin: 0;
+  font-family: Geneva, Tahoma, sans-serif;
+}
+
+body {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  background-color: #2e1a92;
+}
+
+.wrapper {
+  text-align: center;
+  background-color: #dfdfdf;
+  margin-top: 5vh;
+  min-height: 95vh;
+  width: 70%;
+}
+.wrapper .gallery {
+  display: block;
+}
+.wrapper .gallery .userCard {
+  display: flex;
+  justify-content: space-between;
+  width: calc(100% - 65px);
+  padding: 10px;
+  margin: 10px;
+  height: fit-content;
+  border: 1px solid black;
+}
+.wrapper .gallery .userCard * {
+  width: 120px;
+  height: 30px;
+  align-items: center;
+  text-align: center;
+}
+.wrapper .gallery .userCard:nth-child(2n+1) {
+  background-color: white;
+}
+.wrapper .gallery .userCard .userImg {
+  height: 30px;
+  width: auto;
+}
+.wrapper .gallery .userCard button {
+  width: 60px;
+  height: 30px;
+}
+.wrapper .addUserForm {
+  border: 1px solid black;
+  padding: 10px;
+}
+.wrapper .addUserForm input {
+  width: 130px;
+  height: 20px;
+  padding: 4px;
+  margin: 2px;
+}
+.wrapper .editDiv {
+  padding: 10px;
+}
+.wrapper .editDiv input {
+  width: 130px;
+  height: 20px;
+  padding: 4px;
+  margin: 2px;
+}
+.wrapper .editDiv .editDivChanges {
+  padding: 10px;
+  display: none;
+}
+
+input {
+  width: 130px;
+  height: 20px;
+  padding: 4px;
+  margin: 2px;
+}
