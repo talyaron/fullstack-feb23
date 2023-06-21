@@ -1,6 +1,6 @@
 .root {
-    width: 100%;
-    width: 100%;
+  width: 100%;
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -12,16 +12,16 @@
     margin: auto;
     width: 250px;
     height: 400px;
-    background-color: black;
     color: white;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     padding: 20px;
-   
+   border-radius: 20px;
+    // opacity: 1;
+    // transition: opacity 0.5s ease-in;
   }
-  
   .userImg {
     width: 150px;
     height: 160px;
@@ -45,7 +45,7 @@
     border-radius: 5px;
   }
  
-  $form-bg-color: #f1f1f1;
+$form-bg-color: #f1f1f1;
 $form-input-bg-color: #fff;
 $form-input-border-color: #ccc;
 $form-input-border-radius: 4px;
@@ -99,6 +99,18 @@ form {
         }
 }}
 
-.selected {
-    border: 2px solid red; /* Customize the border style as desired */
+.updateBtn{
+  padding: 8px 16px;
+  margin-top: 20px;
+  font-size: 16px;
+  background-color:$form-input-focus-border-color;
+  color: #fff;
+  border: none;
+  border-radius: $form-input-border-radius;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  &:hover {
+    background-color: #021e3c;
   }
+}
+
