@@ -22,9 +22,10 @@
 
 class User {
     id: string;
-    constructor(public userName: string, public birthYear: number, public imgURL: string, public favoriteColor: string, public width: number, public NumberOfImages: number) {
+    constructor(public userName: string, public birthYear: number, public imgURL: string, public favoriteColor: string, public width: number) {
         this.id = `id-${Math.random()}`;
     }
+
     age() {
         const age = new Date().getFullYear() - this.birthYear;
         return age;
@@ -44,8 +45,7 @@ function handleSubmit(ev: any) {
         const imgURL = ev.target.imgURL.value;
         const favoriteColor = ev.target.favoriteColor.value;
         const width = ev.target.width.valueAsNumber;
-        const NumberOfImages = ev.target.valueAsNumber;
-        const user = new User(username, birthYear, imgURL, favoriteColor, width, NumberOfImages);
+        const user = new User(username, birthYear, imgURL, favoriteColor, width);
 
         usersArray.push(user);
 
@@ -84,27 +84,3 @@ function renderCard(user: User) {
         console.error(error);
     }
 }
-
-function renderMeniImgs(user) {
-    try {
-      const numberOfImages = parseInt(user.NumberOfImages);
-      if (isNaN(numberOfImages) || numberOfImages <= 0) {
-        throw new Error("Invalid number of images");
-      }
-  
-      return numberOfImages;
-    } catch (error) {
-      console.error(error);
-    }
-  }
-  
-
-// function renderMeniImgs(user: User | any) {
-//     try {
-//         // if(!user.NumberOfImages || user.imgURL) throw new Error(" ");
-//         return user.imgURL * user.NumberOfImages
-
-//     } catch (error) {
-//         console.error(error);
-//     }
-// }
