@@ -6,7 +6,7 @@ class Member {
   ) {}
 }
 
-const arrayOfUser: Member[] = new Array();
+const arrayOfMemeber: Member[] = new Array();
 
 function createUser(event: any) {
   try {
@@ -16,7 +16,7 @@ function createUser(event: any) {
     const age = event.target.age.valueAsNumber;
     const picture = event.target.userPic.value;
     const user = new Member(username, age, picture);
-    arrayOfUser.push(user);
+    arrayOfMemeber.push(user);
     UserObject(user);
   } catch (error) {
     console.error(error);
@@ -27,7 +27,7 @@ function UserObject(user: Member) {
   try {
     const profiles = document.querySelector("#profile");
     if (!profiles) throw new Error("Missing information");
-    profiles.innerHTML += `<div id="${arrayOfUser.length}" class="profile">
+    profiles.innerHTML += `<div id="${arrayOfMemeber.length}" class="profile">
         <div class="userName">Name: ${user.userName}</div>
         <div class="age">Age: ${user.age}</div>
         <img class="image" src="${user.picture}"> </div> `;

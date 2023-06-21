@@ -3,16 +3,46 @@
 // Image URL: This input allows the user to enter the URL of an image.
 // Image Size (in vw): This input allows the user to specify the width of the image in viewport width (vw) units.
 // When the user submits the form, display the image on the screen with the specified width.
-function addAnImage(event) {
-    event.preventDefault();
+var root = document.querySelector('#root');
+// data
+var User = /** @class */ (function () {
+    function User(imageUrl, imageWidthSize) {
+        this.imageUrl = imageUrl;
+        this.imageWidthSize = imageWidthSize;
+    }
+    return User;
+}());
+var usersArray = new Array();
+function handelSubmitImg(event) {
     try {
-        var image = event.target.imageUrl.value;
-        var imageSize = event.target.imageSize.valueAsNumber;
-        console.log(image, imageSize);
-        var root = document.querySelector('#root');
-        if (root) {
-            root.innerHTML = "" + image;
-        }
+        event.preventDefault();
+        var imageUrl = event.target.elements.imageUrl.value;
+        var imageWidthSize = event.target.elements.imageWidthSize.value;
+        var data = new User(imageUrl, imageWidthSize);
+        console.log(data);
+        usersArray.push(data);
+        renderImgs(usersArray, root);
+        event.target.reset();
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+function renderImgs(userArray, element) {
+    try {
+        if (!element)
+            throw new Error("element is not defined");
+        var backToHtml = userArray.map(function (data) { return renderImg(data); }).join("");
+        element.innerHTML = backToHtml;
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+function renderImg(data) {
+    try {
+        var backToHtml = "<img class=\"image\" src=\"" + data.imageUrl + "\" style=\"width: " + data.imageWidthSize + "vw\">";
+        return backToHtml;
     }
     catch (error) {
         console.error(error);

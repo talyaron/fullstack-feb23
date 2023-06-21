@@ -9,16 +9,31 @@
 </head>
 <body>
     <div class="wrapper">
-        <form onsubmit="handleSubmit(event)">
+        <form id="Input" onsubmit="handleSubmit(event)">
             Name:
             <input type="text" name="username" required>
             Year Of Birth:
-            <input type="number" name="age" required></input>
+            <input type="number" name="age" required>
             Profile image Url:
             <input type="text" name="userPic" required>
             Favorite Color:
             <input type="color" name="favorite" required>
             <button type="submit">Send</button>
+        </form>
+        <form id="Update" onsubmit="handleSubmit(event)">
+            Update by Name:
+            <input type="text" name="usernameToUpdate" required>
+            New Name:
+            <input type="text" name="newUsername">
+            New Year Of Birth:
+            <input type="number" name="newAge">
+            Favorite Color:
+            <input type="color" name="newFavorite">
+            Profile image Url:
+            <input type="text" name="newUserPic">
+            Delete Card:
+            <input type="checkbox" onchange="checkDelete(event)" id="delete">
+            <button type="submit">Update</button>
         </form>
         <div id="cards" class="Cards">
 

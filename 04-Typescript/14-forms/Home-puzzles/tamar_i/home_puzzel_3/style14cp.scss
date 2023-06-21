@@ -4,22 +4,17 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 99vw;
+    width: 80vw;
     align-items: center;
-    
 
     form{
-        margin: 20px 0;
-        width: 75%;
-        display: flex;
-        justify-content:space-around;
-
+        margin-bottom: 20px;
     }
 
     .cards{
         display: flex;
         flex-direction: column;
-        width: 100%;
+        width: 50%;
         justify-content: center;
         
         .card{
@@ -28,12 +23,11 @@
             width: 75%;
             margin: auto;
             img{
-                width: 100%;
+                width: 75%;
             }
             
             border: solid 2px;
             border-radius: 10px;
-            background-color: black;
         }
     }
     
