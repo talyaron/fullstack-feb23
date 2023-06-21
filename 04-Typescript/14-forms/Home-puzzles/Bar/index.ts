@@ -22,7 +22,7 @@
 
 class User {
     id: string;
-    constructor(public userName: string, public birthYear: number, public imgURL: string, public favoriteColor: string, public width: number, public numberOfImages: number) {
+    constructor(public userName: string, public birthYear: number, public imgURL: string, public favoriteColor: string, public width: number) {
         this.id = `id-${Math.random()}`;
     }
 
@@ -30,28 +30,10 @@ class User {
         const age = new Date().getFullYear() - this.birthYear;
         return age;
     }
-
-    totalImgs() {
-
-    }
 }
 
 const usersArray: User[] = new Array();
 
-//
-function renderMeniImgs(user) {
-    try {
-        const numberOfImages = parseInt(user.numberOfImages);
-        if (isNaN(numberOfImages) || numberOfImages <= 0) {
-            throw new Error("Invalid number of images");
-        }
-
-        return numberOfImages;
-    } catch (error) {
-        console.error(error);
-    }
-}
-//
 
 function handleSubmit(ev: any) {
     try {
@@ -63,8 +45,7 @@ function handleSubmit(ev: any) {
         const imgURL = ev.target.imgURL.value;
         const favoriteColor = ev.target.favoriteColor.value;
         const width = ev.target.width.valueAsNumber;
-        const numberOfImages = ev.target.valueAsNumber;
-        const user = new User(username, birthYear, imgURL, favoriteColor, width, numberOfImages);
+        const user = new User(username, birthYear, imgURL, favoriteColor, width);
 
         usersArray.push(user);
 

@@ -14,38 +14,21 @@
 // multiplied by the number provided by the user.
 // Use the "Puzzle Users" class:
 var User = /** @class */ (function () {
-    function User(userName, birthYear, imgURL, favoriteColor, width, numberOfImages) {
+    function User(userName, birthYear, imgURL, favoriteColor, width) {
         this.userName = userName;
         this.birthYear = birthYear;
         this.imgURL = imgURL;
         this.favoriteColor = favoriteColor;
         this.width = width;
-        this.numberOfImages = numberOfImages;
         this.id = "id-" + Math.random();
     }
     User.prototype.age = function () {
         var age = new Date().getFullYear() - this.birthYear;
         return age;
     };
-    User.prototype.totalImgs = function () {
-    };
     return User;
 }());
 var usersArray = new Array();
-//
-function renderMeniImgs(user) {
-    try {
-        var numberOfImages = parseInt(user.numberOfImages);
-        if (isNaN(numberOfImages) || numberOfImages <= 0) {
-            throw new Error("Invalid number of images");
-        }
-        return numberOfImages;
-    }
-    catch (error) {
-        console.error(error);
-    }
-}
-//
 function handleSubmit(ev) {
     try {
         ev.preventDefault();
@@ -56,8 +39,7 @@ function handleSubmit(ev) {
         var imgURL = ev.target.imgURL.value;
         var favoriteColor = ev.target.favoriteColor.value;
         var width = ev.target.width.valueAsNumber;
-        var numberOfImages = ev.target.valueAsNumber;
-        var user = new User(username, birthYear, imgURL, favoriteColor, width, numberOfImages);
+        var user = new User(username, birthYear, imgURL, favoriteColor, width);
         usersArray.push(user);
         renderCards(usersArray, document.querySelector("#cards"));
     }

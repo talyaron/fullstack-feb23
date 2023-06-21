@@ -1,9 +1,16 @@
+body {
+  background-color: #f5daf9;
+}
+
 .wrapper {
-  max-width: 800px;
+  position: relative;
+  max-width: 1200px;
   height: 60vh;
   margin: auto;
 }
 .wrapper form {
+  position: relative;
+  top: 25%;
   margin: auto;
   margin-bottom: 20px;
   display: flex;
@@ -11,15 +18,32 @@
   max-width: 400px;
   gap: 0.5rem;
 }
+.wrapper form input {
+  margin: auto;
+  max-width: 400px;
+  height: 30px;
+  border: 3px solid white;
+  background-color: #c5fafe;
+  border-radius: 10px;
+}
+.wrapper form button {
+  margin: auto;
+  max-width: 100px;
+  border: 1px solid white;
+  background-color: #c5fafe;
+  border-radius: 4px;
+}
 .wrapper .cards {
   display: flex;
   margin: auto;
 }
 .wrapper .card {
+  position: relative;
+  top: 20vh;
   width: 16vw;
   height: 25vh;
   text-align: center;
-  font-size: small;
+  font-size: medium;
   font-style: italic;
   border-radius: 10px;
   padding: 2px;
@@ -30,12 +54,4 @@
   height: 20vh;
   border-radius: 10px;
   margin-top: 2px;
-}
-.wrapper #imgsDIV {
-  width: 400px;
-  height: 200px;
-}
-.wrapper #imgsDIV img {
-  width: 200px;
-  height: 200px;
 }
