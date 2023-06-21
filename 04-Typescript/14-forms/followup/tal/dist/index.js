@@ -42,7 +42,7 @@ function renderCards(users, element) {
     try {
         if (!element)
             throw new Error("element is not defined");
-        var html = users.map(function (user) { return renderCard(user); }).join(" ");
+        var html = users.map(function (user) { return renderCard(user); }).join(" "); //users.map go all over the array, and randerCard is go unside every cell to render it
         element.innerHTML = html;
     }
     catch (error) {
@@ -52,7 +52,7 @@ function renderCards(users, element) {
 //controler - handle the data and create html string
 function renderCard(user) {
     try {
-        var html = "<div id=\"" + user.id + "\" class=\"card\" style=\"background-color:" + user.color + "\">\n            <div class=\"userName\">Name: " + user.userName + "</div>\n            <div class=\"age\">Age: " + user.age() + "</div>\n         <img class=\"image\" src=\"" + user.picture + "\"\n         </div> ";
+        var html = "<div id=\"" + user.id + "\" class=\"card\" style=\"background-color:" + user.color + "\">\n                    <div class=\"userName\">Name: " + user.userName + "</div>\n                    <div class=\"age\">Age: " + user.age() + "</div>\n                    <img class=\"image\" src=\"" + user.picture + "\">\n            </div> ";
         return html;
     }
     catch (error) {

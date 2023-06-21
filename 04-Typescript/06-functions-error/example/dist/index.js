@@ -22,4 +22,3 @@ function aa() {
         return undefined;
     }
 }
-console.log(multyByTenBetweenZeroAndTen(x));

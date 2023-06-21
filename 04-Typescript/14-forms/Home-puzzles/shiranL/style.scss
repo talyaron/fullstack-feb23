@@ -1,17 +1,116 @@
-
-.root{
-
-    width: 100%;
- 
-
-.userCard{
-
+.root {
+  width: 100%;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 50px;
+  padding: 20px;
+  }
+  
+  .userCard {
+    margin: auto;
     width: 250px;
     height: 400px;
-.userImg{
-    width: 50px;
-    height: 60px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+   border-radius: 20px;
+    // opacity: 1;
+    // transition: opacity 0.5s ease-in;
+  }
+  .userImg {
+    width: 150px;
+    height: 160px;
+    margin-bottom: 10px;
+  }
+  
+  .userName {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  
+  .userAge {
+    font-size: 16px;
+  }
+  .wapper{
+  
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+  }
+ 
+$form-bg-color: #f1f1f1;
+$form-input-bg-color: #fff;
+$form-input-border-color: #ccc;
+$form-input-border-radius: 4px;
+$form-input-padding: 10px;
+$form-input-font-size: 14px;
+$form-input-color: #333;
+$form-input-focus-border-color: #007bff;
+
+form {
+    background-color: $form-bg-color;
+    width: 600px;
+    margin: auto;
+    padding: 50px;
+
+    .form-group {
+      
+        label {
+          display: block;
+          margin: 5px;
+          font-weight: bold;
+          color:$form-input-focus-border-color ;
+        }
+        input[type="submit"],
+        input[type="reset"] {
+
+            padding: 8px 16px;
+            margin-top: 20px;
+            font-size: 16px;
+            background-color:$form-input-focus-border-color;
+            color: #fff;
+            border: none;
+            border-radius: $form-input-border-radius;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            &:hover {
+              background-color: #021e3c;
+            }
+        }
+        
+        input[type="text"],
+        input[type="color"],
+        input[type="number"] {
+        display: block;
+        width: 100%;
+        padding: $form-input-padding;
+        font-size: $form-input-font-size;
+        color: $form-input-color;
+        background-color: $form-input-bg-color;
+        border: 1px solid $form-input-border-color;
+        border-radius: $form-input-border-radius;
+        }
+}}
+
+.updateBtn{
+  padding: 8px 16px;
+  margin-top: 20px;
+  font-size: 16px;
+  background-color:$form-input-focus-border-color;
+  color: #fff;
+  border: none;
+  border-radius: $form-input-border-radius;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  &:hover {
+    background-color: #021e3c;
+  }
 }
 
-}
-}
