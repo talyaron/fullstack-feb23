@@ -18,7 +18,7 @@ const userArray: User[] = new Array();
 
 
 
-//GUI - get from user
+//GUI (view) - get from user
 
 //controler - handle the data and add to the model
 function handleSubmit(ev: any) {
@@ -29,14 +29,24 @@ function handleSubmit(ev: any) {
         const picture = ev.target.userPic.value;
         const yearOfBirth = ev.target.yearOfBirth.valueAsNumber;
         const color = ev.target.color.value;
-        const user = new User(username, yearOfBirth, color, picture);
+        const user = new User(username, yearOfBirth, color, picture); //instance of user
 
+<<<<<<< HEAD:04-Typescript/14-forms/example-video/index.ts
+        //get data and store in in the users' array
+        userArray.push(user);
+
+        //render the data to the DOM
+        // model (users) -> controler (renderCards) -> view (renderCard)
+        renderCards(userArray, document.querySelector("#cards"));
+        
+=======
         //get data and store it in the users' array
         userArray.push(user);
 
         //render the data to the DOM
         renderCards(userArray, document.querySelector("#cards"));
 
+>>>>>>> main:04-Typescript/14-forms/followup/tal/index.ts
     } catch (error) {
         console.error(error);
     }
@@ -53,7 +63,12 @@ function renderCards(users: User[], element: HTMLElement | null) {
         console.error(error);
     }
 }
+<<<<<<< HEAD:04-Typescript/14-forms/example-video/index.ts
+
+//controler - handle the data and create html string
+=======
 //
+>>>>>>> main:04-Typescript/14-forms/followup/tal/index.ts
 function renderCard(user: User) {
     try {
         const html =
