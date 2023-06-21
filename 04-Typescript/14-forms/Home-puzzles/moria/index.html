@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Forms</h1>
+    <form onsubmit="handleSubmit(event)">
+        <input type="url" name="imgIn" onkeyup="imgInput(event)">
+        <input type="number" name="width" onkeyup="imgInput(event)">
+        <input type="number" name="amount" onkeyup="imgInput(event)">
+        <button type="submit">Send</button>
+    </form>
+    <div id="root"></div>
+
+    <script src="./dist/index.js"></script>
+</body>
+
+</html>
