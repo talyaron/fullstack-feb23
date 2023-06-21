@@ -1,72 +1,62 @@
-//create a form for user profile (with name, image (url), preferd color, year of birth)
-//On submit, add the new profiles in to an array of class User
-//Render all instances of user into cards of profiles.
-//step 1:
-//bild a class for user
+//from tal
+// MVC - Model View Controller
+//data (Model)
 var User = /** @class */ (function () {
-    function User(username, imageUrl, preferdColor, yearOfBirth) {
-        this.username = username;
-        this.imageUrl = imageUrl;
-        this.preferdColor = preferdColor;
+    function User(userName, yearOfBirth, color, picture) {
+        this.userName = userName;
         this.yearOfBirth = yearOfBirth;
+        this.color = color;
+        this.picture = picture;
+        this.id = "id-" + Math.random();
     }
-    User.prototype.calculateAge = function () {
-        return new Date().getFullYear() - this.yearOfBirth;
-    };
-    User.prototype.renderCards = function (root) {
-        try {
-            if (!root)
-                throw new Error("missing root element");
-            var cardstoHTML = "<div class = 'wrapper' color=\"" + this.preferdColor + "\">";
-            cardstoHTML = cardstoHTML + usersArray.map(function (card) {
-                return "<p>name: " + card.username + ".</p> <img src=" + card.imageUrl + ">  <p>age:" + card.yearOfBirth;
-            }).join("");
-            cardstoHTML += "</div>";
-        }
-        catch (error) {
-            console.error(error);
-        }
+    User.prototype.age = function () {
+        var age = new Date().getFullYear() - this.yearOfBirth;
+        return age;
     };
     return User;
 }());
-// bild an array of this class
-var usersArray = [];
-//bild a function that get the data from the user and put it in the class and store the new class into the array
-function handleSubmit(event) {
+//keep all users
+var userArray = new Array();
+//GUI - get from user
+//controler - handle the data and add to the model
+function handleSubmit(ev) {
     try {
-        event.preventDefault();
-        var username = event.target.username.value; //the name after the target mast be the same as in the name defined in the HTML!
-        console.log(username);
-        var imageUrl = event.target.imageUrl.value;
-        var preferdColor = event.target.preferdColor.value;
-        var yearOfBirth = event.target.yearOfBirth.value;
-        var newUser = new User(username, imageUrl, preferdColor, yearOfBirth);
-        console.log(newUser);
-        usersArray.push(newUser);
-        console.dir(usersArray);
-        styleCard();
+        ev.preventDefault();
+        console.dir(ev);
+        var username = ev.target.username.value;
+        var picture = ev.target.userPic.value;
+        var yearOfBirth = ev.target.yearOfBirth.valueAsNumber;
+        var color = ev.target.color.value;
+        var user = new User(username, yearOfBirth, color, picture);
+        //get data and store it in the users' array
+        userArray.push(user);
+        //render the data to the DOM
+        renderCards(userArray, document.querySelector("#cards"));
     }
     catch (error) {
-        console.log(error);
+        console.error(error);
     }
 }
-//step 2:
-//criate a card (css)
-function styleCard() {
-    if (root) {
-        root.style.width = '100%';
-        var wrapper = root.querySelectorAll('.wrapper');
-        debugger;
-        wrapper.forEach(function (wrapper) {
-            var color = wrapper.getAttribute('color');
-            if (color) {
-                wrapper.style.backgroundColor = color;
-            }
-        });
+//controler - handle the data and render to the DOM
+function renderCards(users, element) {
+    try {
+        if (!element)
+            throw new Error("element is not defined");
+        var html = users.map(function (user) { return renderCard(user); }).join(" "); //users.map go all over the array, and randerCard is go unside every cell to render it
+        element.innerHTML = html;
+    }
+    catch (error) {
+        console.error(error);
     }
 }
-//put the data from the user on the card
-var root = document.querySelector(".root");
-//show the card onscreen
-//step 3:
-//show all users that store in the array as carsd on-screen
+//
+function renderCard(user) {
+    try {
+        var html = "<div id=\"" + user.id + "\" class=\"card\" style=\"background-color:" + user.color + "\">\n                    <div class=\"userName\">Name: " + user.userName + "</div>\n                    <div class=\"age\">Age: " + user.age() + "</div>\n                    <img class=\"image\" src=\"" + user.picture + "\">\n            </div>;\n            <form onSubmit=\"updateInfo(event)\">\n                <input type=\"text\" name=\"username\" required placeholder=\"username\">\n                <input type=\"number\" name=\"yearOfBirth\" required placeholder=\"Year of birth\">\n                <input type=\"text\" name=\"userPic\" required  placeholder=\"image url\">\n                <input type=\"color\" name=\"color\" required>\n                <button type=\"submit\">Update Information</button>\n            </form>";
+        return html;
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+//continue to mission 3

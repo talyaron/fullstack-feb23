@@ -1,80 +1,79 @@
-//create a form for user profile (with name, image (url), preferd color, year of birth)
-//On submit, add the new profiles in to an array of class User
-//Render all instances of user into cards of profiles.
+//from tal
+// MVC - Model View Controller
 
-//step 1:
-//bild a class for user
-
+//data (Model)
 class User {
-    constructor(public username: string, public imageUrl: string, public preferdColor: string, public yearOfBirth: number) {
+    id: string;
+    constructor(public userName: string, public yearOfBirth: number, public color: string, public picture: string) {
+        this.id = `id-${Math.random()}`;
     }
-    calculateAge() {
-        return new Date().getFullYear() - this.yearOfBirth;
+    age() {
+        const age = new Date().getFullYear() - this.yearOfBirth;
+        return age;
     }
-
-    renderCards(root: HTMLElement | null) {
-        try {
-            if (!root) throw new Error("missing root element");
-            let cardstoHTML = `<div class = 'wrapper' color="${this.preferdColor}">`;
-            cardstoHTML = cardstoHTML + usersArray.map((card) =>
-                `<p>name: ${card.username}.</p> <img src=${card.imageUrl}>  <p>age:${card.yearOfBirth}`).join("");
-            cardstoHTML += `</div>`;
-        } catch (error) {
-            console.error(error);
-        }
-    }
-
 }
+//keep all users
+const userArray: User[] = new Array();
 
-// bild an array of this class
+//GUI - get from user
 
-const usersArray: User[] = []
-
-//bild a function that get the data from the user and put it in the class and store the new class into the array
-
-function handleSubmit(event: any) {
+//controler - handle the data and add to the model
+function handleSubmit(ev: any) {
     try {
-        event.preventDefault();
-        const username = event.target.username.value;  //the name after the target mast be the same as in the name defined in the HTML!
-        console.log(username);
-        const imageUrl = event.target.imageUrl.value;
-        const preferdColor = event.target.preferdColor.value;
-        const yearOfBirth = event.target.yearOfBirth.value;
-        const newUser = new User(username, imageUrl, preferdColor, yearOfBirth);
-        console.log(newUser);
-        usersArray.push(newUser);
-        console.dir(usersArray);
-        styleCard();
+        ev.preventDefault();
+        console.dir(ev);
+        const username = ev.target.username.value;
+        const picture = ev.target.userPic.value;
+        const yearOfBirth = ev.target.yearOfBirth.valueAsNumber;
+        const color = ev.target.color.value;
+        const user = new User(username, yearOfBirth, color, picture);
+
+        //get data and store it in the users' array
+        userArray.push(user);
+
+        //render the data to the DOM
+        renderCards(userArray, document.querySelector("#cards"));
+
     } catch (error) {
-        console.log(error)
+        console.error(error);
     }
 }
 
-//step 2:
-//criate a card (css)
+//controler - handle the data and render to the DOM
+function renderCards(users: User[], element: HTMLElement | null) {
+    try {
+        if (!element) throw new Error("element is not defined");
+        const html = users.map((user) => renderCard(user)).join(" "); //users.map go all over the array, and randerCard is go unside every cell to render it
 
-function styleCard(){
+        element.innerHTML = html;
+    } catch (error) {
+        console.error(error);
+    }
+}
+//
+function renderCard(user: User) {
+    try {
+        const html =
+            `<div id="${user.id}" class="card" style="background-color:${user.color}">
+                    <div class="userName">Name: ${user.userName}</div>
+                    <div class="age">Age: ${user.age()}</div>
+                    <img class="image" src="${user.picture}">
+            </div>;
+            <form onSubmit="updateInfo(event)">
+                <input type="text" name="username" required placeholder="username">
+                <input type="number" name="yearOfBirth" required placeholder="Year of birth">
+                <input type="text" name="userPic" required  placeholder="image url">
+                <input type="color" name="color" required>
+                <button type="submit">Update Information</button>
+            </form>`
+        
+        
+            return html
 
-    if (root) {
-        root.style.width = '100%';
-
-        const wrapper :any= root.querySelectorAll('.wrapper');
-        debugger;
-        wrapper.forEach((wrapper: any) => {
-            const color = wrapper.getAttribute('color');
-            if (color) {
-                wrapper.style.backgroundColor = color;
-            }
-        });
+    } catch (error) {
+        console.error(error)
     }
 }
 
-//put the data from the user on the card
+//continue to mission 3
 
-const root = document.querySelector(".root") as HTMLDivElement;
-
-//show the card onscreen
-
-
-//step 3:
-//show all users that store in the array as carsd on-screen
