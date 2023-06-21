@@ -6,7 +6,7 @@ var Member = /** @class */ (function () {
     }
     return Member;
 }());
-var arrayOfUser = new Array();
+var arrayOfMemeber = new Array();
 function createUser(event) {
     try {
         event.preventDefault();
@@ -15,7 +15,7 @@ function createUser(event) {
         var age = event.target.age.valueAsNumber;
         var picture = event.target.userPic.value;
         var user = new Member(username, age, picture);
-        arrayOfUser.push(user);
+        arrayOfMemeber.push(user);
         UserObject(user);
     }
     catch (error) {
@@ -27,7 +27,7 @@ function UserObject(user) {
         var profiles = document.querySelector("#profile");
         if (!profiles)
             throw new Error("Missing information");
-        profiles.innerHTML += "<div id=\"" + arrayOfUser.length + "\" class=\"profile\">\n        <div class=\"userName\">Name: " + user.userName + "</div>\n        <div class=\"age\">Age: " + user.age + "</div>\n        <img class=\"image\" src=\"" + user.picture + "\"> </div> ";
+        profiles.innerHTML += "<div id=\"" + arrayOfMemeber.length + "\" class=\"profile\">\n        <div class=\"userName\">Name: " + user.userName + "</div>\n        <div class=\"age\">Age: " + user.age + "</div>\n        <img class=\"image\" src=\"" + user.picture + "\"> </div> ";
     }
     catch (error) {
         console.error(error);
