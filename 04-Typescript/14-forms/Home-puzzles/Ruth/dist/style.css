@@ -9,11 +9,12 @@ body {
   height: 100%;
   display: flex;
   justify-content: center;
+  background-color: #2e1a92;
 }
 
 .wrapper {
   text-align: center;
-  background-color: #df9d9d;
+  background-color: #dfdfdf;
   margin-top: 5vh;
   min-height: 95vh;
   width: 70%;
@@ -24,7 +25,7 @@ body {
 .wrapper .gallery .userCard {
   display: flex;
   justify-content: space-between;
-  width: 100%;
+  width: calc(100% - 65px);
   padding: 10px;
   margin: 10px;
   height: fit-content;
@@ -36,6 +37,9 @@ body {
   align-items: center;
   text-align: center;
 }
+.wrapper .gallery .userCard:nth-child(2n+1) {
+  background-color: white;
+}
 .wrapper .gallery .userCard .userImg {
   height: 30px;
   width: auto;
@@ -46,12 +50,16 @@ body {
 }
 .wrapper .addUserForm {
   border: 1px solid black;
+  padding: 10px;
 }
 .wrapper .addUserForm input {
   width: 130px;
   height: 20px;
   padding: 4px;
   margin: 2px;
+}
+.wrapper .editDiv {
+  padding: 10px;
 }
 .wrapper .editDiv input {
   width: 130px;
@@ -60,6 +68,7 @@ body {
   margin: 2px;
 }
 .wrapper .editDiv .editDivChanges {
+  padding: 10px;
   display: none;
 }
 

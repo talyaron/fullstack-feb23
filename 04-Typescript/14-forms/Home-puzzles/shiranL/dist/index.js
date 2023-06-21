@@ -13,8 +13,20 @@ var User = /** @class */ (function () {
         try {
             if (!root)
                 throw new Error("missing root element");
-            var html = "<div class=\"userCard\" color=\"" + this.color + "\" id=\"A" + this.id + "\">\n            <img class=\"userImg\" src=\"" + this.imageURL + "\">\n            <h4 class=\"userName\">my Name: " + this.userName + "</h4>\n            <h3 class=\"userAge\">my Age: " + this.calculateAge() + "</h3>\n            <button class=\"updateBtn\" data-user=\"" + this.userName + "\" onclick=\"updateUser('" + this.userName + "')\">Update</button>\n        </div>";
-            root.innerHTML += html;
+            var html = "<div class=\"userCard\" color=\"" + this.color + "\" id=\"A" + this.id + "\">\n                            <img class=\"userImg\" src=\"" + this.imageURL + "\">\n                            <h4 class=\"userName\">my Name: " + this.userName + "</h4>\n                            <h3 class=\"userAge\">my Age: " + this.calculateAge() + "</h3>\n                            <button class=\"updateBtn\" data-user=\"" + this.userName + "\" onclick=\"updateUser('" + this.userName + "')\">UPDATE</button>\n                            </div>";
+            // Create a temporary element to hold the new user card
+            var tempDiv = document.createElement('div');
+            tempDiv.innerHTML = html;
+            var userCard_1 = tempDiv.firstChild;
+            // Set initial opacity to 0 and add transition
+            userCard_1.style.opacity = '0';
+            userCard_1.style.transition = 'opacity 0.5s ease-in';
+            // Append the card to the root element
+            root.appendChild(userCard_1);
+            // Trigger the transition by setting opacity to 1 after a small delay
+            setTimeout(function () {
+                userCard_1.style.opacity = '1';
+            }, 10);
         }
         catch (error) {
             console.error(error);
@@ -33,8 +45,31 @@ function cardcolorStyle() {
             var color = userCard.getAttribute('color');
             if (color) {
                 userCard.style.backgroundColor = color;
+                userCard.style.color = getFontColor(color);
+                var updateBtn = userCard.querySelector('.updateBtn');
+                if (updateBtn) {
+                    updateBtn.style.backgroundColor = getFontColor(color);
+                    updateBtn.style.color = color;
+                }
             }
         });
+    }
+}
+function getFontColor(color) {
+    // Convert color to RGB format
+    debugger;
+    color = color.replace('#', '');
+    var red = parseInt(color.substring(0, 2), 16);
+    var green = parseInt(color.substring(2, 4), 16);
+    var blue = parseInt(color.substring(4, 6), 16);
+    // Calculate brightness using a formula
+    var brightness = (red * 299 + green * 587 + blue * 114) / 1000;
+    // Determine the font color based on brightness
+    if (brightness > 125) {
+        return 'black';
+    }
+    else {
+        return 'white';
     }
 }
 function addUser(ev) {
@@ -63,18 +98,15 @@ function updateUser(userName) {
             return;
         }
         // deleteUserCard(user.userName);
-        var field = prompt("Which field would you like to update? (userName, imageURL, color, yearOfBirth)");
+        var field = prompt("Which field would you like to update? (userName, imageURL, color, yearOfBirth)"); // which filed to updae
         if (!field) {
             throw new Error("no field to update");
         }
-        var newValue = void 0;
-        var elem = void 0;
+        var newValue = prompt("Enter new userName:"); // new value to update
+        var elem = document.querySelector("#A" + user.id); // html card user to update;
         switch (field) {
             case "userName":
-                newValue = prompt("Enter new userName:");
-                if (newValue)
-                    elem = document.querySelector("#A" + user.id); // html card user
-                if (elem) {
+                if (newValue && elem) {
                     elem.remove(); // Remove the element from the DOM
                     user.userName = newValue;
                     user.renderUser(root);
@@ -82,10 +114,7 @@ function updateUser(userName) {
                 }
                 break;
             case "imageURL":
-                newValue = prompt("Enter new userName:");
-                if (newValue)
-                    elem = document.querySelector("#A" + user.id); // html card user
-                if (elem) {
+                if (newValue && elem) {
                     elem.remove(); // Remove the element from the DOM
                     user.imageURL = newValue;
                     user.renderUser(root);
@@ -93,10 +122,7 @@ function updateUser(userName) {
                 }
                 break;
             case "color":
-                newValue = prompt("Enter new userName:");
-                if (newValue)
-                    elem = document.querySelector("#A" + user.id); // html card user
-                if (elem) {
+                if (newValue && elem) {
                     elem.remove(); // Remove the element from the DOM
                     user.color = newValue;
                     user.renderUser(root);
@@ -104,12 +130,9 @@ function updateUser(userName) {
                 }
                 break;
             case "yearOfBirth":
-                newValue = prompt("Enter new userName:");
-                if (newValue)
-                    elem = document.querySelector("#A" + user.id); // html card user
-                if (elem) {
+                if (newValue && elem) {
                     elem.remove(); // Remove the element from the DOM
-                    user.yearOfBirth = newValue;
+                    user.yearOfBirth = Number(newValue);
                     user.renderUser(root);
                     cardcolorStyle();
                 }
