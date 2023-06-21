@@ -1,22 +1,22 @@
-const root = document.querySelector('#root');
-class img {
-    image: string;
-    width: number;
-    amount: number;
+// const root = document.querySelector('#root');
+// class img {
+//     image: string;
+//     width: number;
+//     amount: number;
 
 
-    constructor(
-        image: string,
-        width: number,
-        amount: number,
+//     constructor(
+//         image: string,
+//         width: number,
+//         amount: number,
 
-    ) {
-        this.image = image;
-        this.width = width;
-        this.amount = amount;
+//     ) {
+//         this.image = image;
+//         this.width = width;
+//         this.amount = amount;
 
-    }
-}
+//     }
+// }
 // function imgInput(event: any) {
 
 //     console.log(event.target.value);
@@ -52,3 +52,25 @@ class img {
 // }
 
 // const image = new Car("Opel", "Coursa", "Blue", 2018);
+function handleSubmit(event) {
+    event.preventDefault();
+    const imageUrl = event.target.imgIn.value;
+    const imageWidth = event.target.width.value;
+    const amountImage = event.target.amount.valueAsNumber;
+    renderImages(imageUrl, imageWidth, amountImage);
+}
+
+// this function render to ducument recording user's DATA
+
+function renderImages(
+    imageUrl: string,
+    imageWidth: number,
+    amountImage: number
+) {
+    const imageDiv = document.querySelector(`#root`) as HTMLElement;
+    if (imageDiv) {
+        for (let i = 0; i < amountImage; i++) {
+            imageDiv.innerHTML += `<img src="${imageUrl}" width=" ${imageWidth.toString()}vw">`;
+        }
+    }
+}
