@@ -1,7 +1,7 @@
 complete on your own the class puzzle
 
 1) Create a form with the following inputs:
-
+`
 Image URL: This input allows the user to enter the URL of an image.
 Image Size (in vw): This input allows the user to specify the width of the image in viewport width (vw) units.
 When the user submits the form, display the image on the screen with the specified width.
