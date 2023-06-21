@@ -52,7 +52,7 @@ function renderCards(users, element) {
 //
 function renderCard(user) {
     try {
-        var html = "<div id=\"" + user.id + "\" class=\"card\" style=\"background-color:" + user.color + "\">\n                    <div class=\"userName\">Name: " + user.userName + "</div>\n                    <div class=\"age\">Age: " + user.age() + "</div>\n                    <img class=\"image\" src=\"" + user.picture + "\">\n            </div>;\n            <form onSubmit=\"updateInfo(event)\">\n                <input type=\"text\" name=\"username\" required placeholder=\"username\">\n                <input type=\"number\" name=\"yearOfBirth\" required placeholder=\"Year of birth\">\n                <input type=\"text\" name=\"userPic\" required  placeholder=\"image url\">\n                <input type=\"color\" name=\"color\" required>\n                <button type=\"submit\">Update Information</button>\n            </form>";
+        var html = "<div id=\"" + user.id + "\" class=\"card\" style=\"background-color:" + user.color + "\">\n                    <div class=\"userName\">Name: " + user.userName + "</div>\n                    <div class=\"age\">Age: " + user.age() + "</div>\n                    <img class=\"image\" src=\"" + user.picture + "\">\n            </div>;\n            <form onSubmit=\"updateInfo(user.id)\">\n                <input type=\"text\" name=\"username\" required placeholder=\"username\">\n                <input type=\"number\" name=\"yearOfBirth\" required placeholder=\"Year of birth\">\n                <input type=\"text\" name=\"userPic\" required  placeholder=\"image url\">\n                <input type=\"color\" name=\"color\" required>\n                <button type=\"submit\">Update Information</button>\n            </form>";
         return html;
     }
     catch (error) {
@@ -60,3 +60,14 @@ function renderCard(user) {
     }
 }
 //continue to mission 3
+function updateInfo(userId) {
+    //find the card by its ID
+    try {
+        var card = userArray.find(function (card) { return card.id === userId; });
+        return card;
+    }
+    catch (error) {
+        console.error(error);
+    }
+    //change the info
+}

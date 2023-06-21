@@ -59,7 +59,7 @@ function renderCard(user: User) {
                     <div class="age">Age: ${user.age()}</div>
                     <img class="image" src="${user.picture}">
             </div>;
-            <form onSubmit="updateInfo(event)">
+            <form onSubmit="updateInfo(user.id)">
                 <input type="text" name="username" required placeholder="username">
                 <input type="number" name="yearOfBirth" required placeholder="Year of birth">
                 <input type="text" name="userPic" required  placeholder="image url">
@@ -77,3 +77,15 @@ function renderCard(user: User) {
 
 //continue to mission 3
 
+function updateInfo(userId: string){
+    //find the card by its ID
+    try {
+        const card = userArray.find(card => card.id === userId);
+        return card;
+        
+    } catch (error) {
+        console.error(error);
+    }
+    //change the info
+
+}
