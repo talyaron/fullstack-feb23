@@ -1,0 +1,8 @@
+#images-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+}
+#images-wrapper img {
+  height: auto;
+  margin: 2%;
+}
