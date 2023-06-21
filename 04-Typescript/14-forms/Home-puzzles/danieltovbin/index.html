@@ -8,10 +8,12 @@
 </head>
 <body>
     <div class="wrapper">
-        <form onsubmit="addAnImage(event)">
-            <input type="url" name="imageUrl" required  placeholder="Image url">  
-            <input type="text" name="imageSize" required placeholder="Image size">
+        <h1>HTML Form</h1>
+        <form onsubmit="handelSubmitImg(event)">
+            <input type="url" name="imageUrl" required  placeholder="Enter image url">  
+            <input type="number" name="imageWidthSize" required placeholder="Image width size">
             <button type="submit">Send</button>
+            <input type="reset" value="Reset">
         </form>
         <div id="root"></div>
     </div>

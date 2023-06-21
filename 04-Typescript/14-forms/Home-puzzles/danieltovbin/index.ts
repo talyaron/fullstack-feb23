@@ -5,33 +5,57 @@
 // Image URL: This input allows the user to enter the URL of an image.
 // Image Size (in vw): This input allows the user to specify the width of the image in viewport width (vw) units.
 // When the user submits the form, display the image on the screen with the specified width.
+const root = document.querySelector('#root') as HTMLDivElement;
+// data
+class User {
+    id: string;
+    constructor(public imageUrl: string, public imageWidthSize:number){}
+}
 
-function addAnImage(event:any) {
-    event.preventDefault();
-    try{
-        const image:string = event.target.imageUrl.value;
-        const imageSize:number = event.target.imageSize.valueAsNumber;
-        console.log(image,imageSize)
-    
-        const root = document.querySelector('#root') as HTMLDivElement;
-        if (root){
-            root.innerHTML= `${image}`;
-        }
+const usersArray:User[] = new Array();
+
+function handelSubmitImg(event :any){
+    try {
+        event.preventDefault();
+        
+        const imageUrl = event.target.elements.imageUrl.value;
+        const imageWidthSize = event.target.elements.imageWidthSize.value;
+        const data = new User(imageUrl, imageWidthSize);
+        console.log(data);
+        usersArray.push(data);
+        renderImgs(usersArray, root)
+
+        event.target.reset()
+
+    } catch (error) {
+        console.error(error);
     }
+}
 
-    catch(error) {
+
+function renderImgs (userArray: User[], element:HTMLElement | null){
+    try {
+        if (!element) throw new Error("element is not defined");
+        const backToHtml = userArray.map((data) => renderImg(data)).join("");
+        element.innerHTML = backToHtml;
+
+
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+function renderImg(data :User){
+    try {
+        const backToHtml = 
+            `<img class="image" src="${data.imageUrl}" style="width: ${data.imageWidthSize}vw">`
+            return backToHtml;
+            
+    } catch (error) {
         console.error(error);
     }
 
 }
-
-
-
-
-
-
-
-
 
 // 2) Create a form with the following inputs:
 
