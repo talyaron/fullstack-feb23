@@ -20,6 +20,8 @@ var TimeClock = /** @class */ (function () {
     }
     TimeClock.prototype.calkWorkTime = function () {
         try {
+            if (!this.exitTime || !this.enterTime)
+                throw new Error("missing enter or exit");
             var millisecondsPerHour = 1000 * 60 * 60; // Number of milliseconds in an hour
             var enterTimestamp = this.enterTime.getTime(); // Get the enter time as a timestamp
             var exitTimestamp = this.exitTime.getTime(); // Get the exit time as a timestamp

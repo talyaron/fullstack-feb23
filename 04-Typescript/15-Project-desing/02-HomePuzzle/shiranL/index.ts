@@ -16,9 +16,12 @@ class TimeClock{
 
     calkWorkTime(){
         try {
+            if (!this.exitTime || !this.enterTime) throw new Error("missing enter or exit");
+
             const millisecondsPerHour = 1000 * 60 * 60; // Number of milliseconds in an hour
             const enterTimestamp = this.enterTime.getTime(); // Get the enter time as a timestamp
             const exitTimestamp = this.exitTime.getTime(); // Get the exit time as a timestamp
+        
             if (enterTimestamp > exitTimestamp) {
                 throw new Error("Invalid time range: enter time cannot be after exit time.");
             }
@@ -124,8 +127,6 @@ if (AddNewWorkerDiv) {
     console.error(error);
   
 }
-    
- 
    
 }
 let setionID;

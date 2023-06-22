@@ -1,5 +1,90 @@
-.logInAndAddnew{
-    display: flex;
-    flex-direction:  row;
-    gap: 50px;
+/* style.css */
+
+body {
+  background-image: url("https://img.freepik.com/free-psd/blank-wall-psd-japandi-living-room-interior_53876-109284.jpg?size=626&ext=jpg&uid=R96966099&ga=GA1.2.9697832.1687471476");
+  background-size: cover;
+  background-position: center;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.logInAndAddnew {
+  display: flex;
+  flex-direction: row;
+  gap: 50px;
+  justify-content: center;
+}
+
+form {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+input[type="text"],
+input[type="number"] {
+  width: 200px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+input[type="submit"],
+button {
+  padding: 10px 20px;
+  background-color: #428bca;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button {
+  margin-right: 10px;
+}
+
+input[type="submit"]:hover,
+button:hover {
+  background-color: #ff69b4;
+}
+
+button,
+input[type="submit"] {
+  cursor: pointer;
+}
+
+.alert {
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.error {
+  background-color: #ffdddd;
+  border-color: #ff9999;
+  color: #ff0000;
+}
+
+.success {
+  background-color: #ddffdd;
+  border-color: #99ff99;
+  color: #009900;
 }
