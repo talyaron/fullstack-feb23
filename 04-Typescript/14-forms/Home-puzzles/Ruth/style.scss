@@ -81,3 +81,17 @@ input {
   padding: 4px;
   margin: 2px;
 }
+
+.galleryCat{
+    display: flex;
+    justify-content: space-between;
+    width: calc(100% - 65px);
+    padding: 10px;
+    margin: 10px;
+    height: fit-content;
+    border: 1px solid black;
+    p{
+        width: 20%;
+        // text-align: left;
+    }
+}

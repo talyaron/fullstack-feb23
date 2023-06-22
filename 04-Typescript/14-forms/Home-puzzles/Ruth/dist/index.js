@@ -11,7 +11,7 @@ var User = /** @class */ (function () {
     }
     User.prototype.renderUser = function (root) {
         for (var i = 0; i < this.renderTime; i++) {
-            root.innerHTML += "\n        <div class=\"userCard\" style= \"background-color:" + this.userColor + "; width:" + this.cardsWidth + "%;\">\n        <h3>" + this.userName + "</h3>\n        <p>e-mail address: " + this.userEmail + "</p>\n        <img class=\"userImg\" src=\"" + this.userImg + "\" alt=\"\" />\n        <p> age: " + this.userAge + "</p>\n        <button onclick = \"removeUser('" + this.ID + "')\">remove</button>\n        </div>\n        ";
+            root.innerHTML += "\n        <div class=\"userCard\" style= \"background-color:" + this.userColor + "; width:" + this.cardsWidth + "%;\">\n        <h3>" + this.userName + "</h3>\n        <p> " + this.userEmail + "</p>\n        <img class=\"userImg\" src=\"" + this.userImg + "\" alt=\"\" />\n        <p>  " + this.userAge + "</p>\n        <button onclick = \"removeUser('" + this.ID + "')\">remove</button>\n        </div>\n        ";
         }
     };
     User.prototype.editUser = function (_userName, _userImg, _userEmail, _userColor, _yearOfBirth, _cardsWidth, _renderTime) {
@@ -31,7 +31,7 @@ var User = /** @class */ (function () {
 }());
 var gallery = document.querySelector(".gallery");
 var editDivChanges = document.querySelector(".editDivChanges");
-var users = [new User("f,lr", "frffr", ",l,l,l", "mkmk", 89, 90, 9)];
+var users = [new User("ruth_user_name", "https://cdn.pixabay.com/photo/2023/05/07/09/59/mountains-7976041_1280.jpg", "rutttur66@gmail.com", "#989872", 1996, 90, 2)];
 users.forEach(function (user) { return user.renderUser(gallery); });
 function addUser(event) {
     try {

@@ -22,9 +22,9 @@ class User {
       root.innerHTML += `
         <div class="userCard" style= "background-color:${this.userColor}; width:${this.cardsWidth}%;">
         <h3>${this.userName}</h3>
-        <p>e-mail address: ${this.userEmail}</p>
+        <p> ${this.userEmail}</p>
         <img class="userImg" src="${this.userImg}" alt="" />
-        <p> age: ${this.userAge}</p>
+        <p>  ${this.userAge}</p>
         <button onclick = "removeUser('${this.ID}')">remove</button>
         </div>
         `;
@@ -58,7 +58,7 @@ class User {
 const gallery = document.querySelector(".gallery") as HTMLDivElement;
 const editDivChanges = document.querySelector(".editDivChanges") as HTMLDivElement;
 
-let users: User[] = [new User("f,lr","frffr",",l,l,l","mkmk",89,90,9)];
+let users: User[] = [new User("ruth_user_name","https://cdn.pixabay.com/photo/2023/05/07/09/59/mountains-7976041_1280.jpg","rutttur66@gmail.com","#989872",1996,90,2)];
 users.forEach((user) => user.renderUser(gallery));
 
 function addUser(event: any) {
