@@ -20,10 +20,43 @@ body {
       cursor: pointer;
       &:hover {
         background-color: #0042a5;
+        transition: all 0.3s;
+      }
+    }
+    .clicked {
+      background-color: grey;
+      cursor: auto;
+      transition: all 0.3 s;
+      &:hover {
+        background-color: grey;
       }
     }
     h1 {
       margin-bottom: 3rem;
+    }
+    .employeeTimeClockTable {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      table {
+        width: 80%;
+        padding: 10px;
+        border: 1px black solid;
+        border-collapse: collapse;
+        tr {
+          padding: 10px;
+          height: 25%;
+          border: 1px black solid;
+        }
+        td {
+          width: 20%;
+        }
+        th {
+          padding: 10px;
+          width: 20%;
+          border: 1px black solid;
+        }
+      }
     }
   }
 }

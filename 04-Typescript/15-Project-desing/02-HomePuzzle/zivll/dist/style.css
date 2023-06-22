@@ -24,7 +24,40 @@ body .wrapper .btn-log {
 }
 body .wrapper .btn-log:hover {
   background-color: #0042a5;
+  transition: all 0.3s;
+}
+body .wrapper .clicked {
+  background-color: grey;
+  cursor: auto;
+  transition: all 0.3 s;
+}
+body .wrapper .clicked:hover {
+  background-color: grey;
 }
 body .wrapper h1 {
   margin-bottom: 3rem;
+}
+body .wrapper .employeeTimeClockTable {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+body .wrapper .employeeTimeClockTable table {
+  width: 80%;
+  padding: 10px;
+  border: 1px black solid;
+  border-collapse: collapse;
+}
+body .wrapper .employeeTimeClockTable table tr {
+  padding: 10px;
+  height: 25%;
+  border: 1px black solid;
+}
+body .wrapper .employeeTimeClockTable table td {
+  width: 20%;
+}
+body .wrapper .employeeTimeClockTable table th {
+  padding: 10px;
+  width: 20%;
+  border: 1px black solid;
 }
