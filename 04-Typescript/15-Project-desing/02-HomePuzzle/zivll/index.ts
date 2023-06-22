@@ -54,10 +54,14 @@ function hundleEmployeeSelected(ev: any) {
   debugger;
   logsById.forEach((employee) => {
     if (employee.userId === employeeId)
-      new User(employeeId, logsById[1], logsById[2], logsById[3]);
+      new User(
+        employee.userId,
+        employee.date,
+        employee.signIn,
+        employee.signOut
+      );
   });
-
-  console.log(user);
+  console.dir(user);
 
   const html = `<table>
   <thead>
