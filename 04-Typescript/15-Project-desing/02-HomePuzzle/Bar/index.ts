@@ -44,6 +44,28 @@ class MovmentWorker {
 
 const movmentWorkers: MovmentWorker[] = [];
 
+// view->model controlers
+function handleRegisterUser(ev: any) {
+    try {
+        ev.preventDefault();
+        const name = ev.target.elements.name.value;
+        const email = ev.target.elements.email.value;
+        // const entrance = ev.target.elements.entrance.value;
+        // const exit = ev.target.elements.exit.value;
+
+        const worker = new Worker(name, email);
+        //add to model
+        workers.push(worker);
+
+        renderLoggedWorker(worker, document.querySelector("#register"));
+
+
+        console.log(name, email);
+    } catch (error) {
+        console.error(error)
+    }
+}
+
 // view controlers
 //register user
 function renderRegisterWorker(rootElement: HTMLElement | null) {
@@ -55,9 +77,6 @@ function renderRegisterWorker(rootElement: HTMLElement | null) {
           <input type="text" name="name" id="name" placeholder="name" required>
           <input type="text" name="email" id="email" placeholder="email" required>
           <input type="submit" value="register">
-
-          <select name="entrance" id="entrance" placeholder="entrance"></select>
-          <select name="exit" id="exit" placeholder="exit"></select>
         </form>`;
 
         rootElement.innerHTML = html;
@@ -69,11 +88,19 @@ function renderRegisterWorker(rootElement: HTMLElement | null) {
 
 renderRegisterWorker(document.querySelector("#register"));
 
-function renderLoggedWorker(worker: Worker,
+function renderLoggedWorker(
+    worker: Worker,
     rootElement: HTMLElement | null) {
     try {
-        const html = `<h2>Hello ${worker.name}</h2>`;
-       
+        const html = `<h2>Hello ${worker.name}</h2>
+        <form onsubmit="handleRegisterUser(event)">
+          <select name="entrance" id="entrance" placeholder="entrance">
+            <option value="1">1</option>
+            
+          </select>
+          <select name="exit" id="exit" placeholder="exit"></select>
+        </form>`;
+
         if (!rootElement) throw new Error("no root element");
 
         rootElement.innerHTML = html;
