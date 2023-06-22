@@ -28,6 +28,7 @@ function hendleSubmitForm(ev: any) {
 
     render(userArray)
     ev.target.reset()
+    console.log(ev)
 }
 
 function render(users: User[]) {

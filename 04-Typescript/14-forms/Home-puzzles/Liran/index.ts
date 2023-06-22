@@ -9,7 +9,7 @@ const userArray: User[] = new Array();
 
 function handleSubmit(ev: any) {
     try {
-        debugger;
+
         ev.preventDefault();
         console.dir(ev);
         if (ev.target.id == "Input") {
@@ -20,9 +20,9 @@ function handleSubmit(ev: any) {
             const vColor = ev.target.favorite.value;
             const user = new User(username, age, vColor, picture);
             userArray.push(user);
-            renderCard(user);
+            renderCard(user, false, null);
         }
-        else{
+        else {
             const userNameToUpdate = ev.target.usernameToUpdate.value;
             const user: User | undefined = userArray.find(element => element.userName === userNameToUpdate);
             if (user === null || user == undefined) throw new Error("Error");
@@ -30,24 +30,27 @@ function handleSubmit(ev: any) {
             const toDelete = ev.target.delete.value;
             const userProfile = document.querySelector(`#card${userId}`) as HTMLDivElement;
             if (userProfile === null) throw new Error("Error");
+
             if (!allowDelete) {
                 const newUsername = ev.target.newUsername.value;
-                if (newUsername !== null && newUsername !== undefined) {
+                if (newUsername !== null && newUsername !== undefined && newUsername !== "") {
                     user.userName = newUsername;
                 }
                 const picture = ev.target.newUserPic.value;
-                if (picture !== null && picture !== undefined) {
+                if (picture !== null && picture !== undefined && picture !== "") {
                     user.picture = picture;
                 }
                 const newAge: number = ev.target.newAge.valueAsNumber;
-                if (newAge !== null && newAge !== undefined) {
+                if (newAge !== null && newAge !== undefined && !isNaN(newAge)) {
                     user.age = new Date().getFullYear() - newAge;
                 }
-                const vColor = ev.target.favorite.value;
-                if (vColor !== null && vColor !== undefined) {
+                const vColor = ev.target.newFavorite.value;
+                if (vColor !== null && vColor !== undefined && vColor !== "") {
                     user.favorite = vColor;
                 }
-                //renderCard(user);
+                debugger;
+                userProfile.innerHTML = "";
+                renderCard(user, true, userProfile);
             }
             else {
                 //const deleteCard = document.getElementById(`#card${userId}`);
@@ -64,7 +67,7 @@ function handleSubmit(ev: any) {
 
 function backgroundC(str: string, id: string) {
     try {
-        debugger;
+
         const bc = document.querySelector(`#card${id}`) as HTMLDivElement;
         console.log(bc)
         if (!bc) throw new Error("Error");
@@ -76,18 +79,23 @@ function backgroundC(str: string, id: string) {
     }
 }
 
-function renderCard(user: User) {
+function renderCard(user: User, update: boolean, userCard: HTMLDivElement | null) {
     try {
-
-        const cards = document.querySelector("#cards");
+        let cards:HTMLDivElement | null;
+        if (update) {
+            cards = userCard;
+        }
+        else {
+        
+            cards = document.querySelector("#cards");
+        }
         if (!cards) throw new Error("Missing information");
         cards.innerHTML += `<div id="card${user.userID}" class="card">
             <div">
                 <div class="userName">Name: ${user.userName}</div>
                 <div class="age">Age: ${user.age}</div>
-            </div> 
             <img class="image" src="${user.picture}">
-        </div> `;
+        </div> </div> `;
         backgroundC(user.favorite, user.userID.toString());
 
     } catch (error) {
@@ -96,24 +104,24 @@ function renderCard(user: User) {
 
 }
 
-function checkDelete(ev: any){
+function checkDelete(ev: any) {
     try {
-        if(ev.target.checked === true)
+        if (ev.target.checked === true)
             allowDelete = true;
         else
-        allowDelete = false;
+            allowDelete = false;
 
     } catch (error) {
         console.error(error)
 
     }
-    
+
 
 }
 
 // function handleUpdate(ev: any) {
 //     try {
-//         debugger;
+//
 //         ev.preventDefault();
 //         console.dir(ev);
 //         const userNameToUpdate = ev.target.usernameToUpdate.value;

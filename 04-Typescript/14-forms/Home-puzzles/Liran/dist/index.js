@@ -13,7 +13,6 @@ var allowDelete = false;
 var userArray = new Array();
 function handleSubmit(ev) {
     try {
-        debugger;
         ev.preventDefault();
         console.dir(ev);
         if (ev.target.id == "Input") {
@@ -23,7 +22,7 @@ function handleSubmit(ev) {
             var vColor = ev.target.favorite.value;
             var user = new User(username, age, vColor, picture);
             userArray.push(user);
-            renderCard(user);
+            renderCard(user, false, null);
         }
         else {
             var userNameToUpdate_1 = ev.target.usernameToUpdate.value;
@@ -37,22 +36,24 @@ function handleSubmit(ev) {
                 throw new Error("Error");
             if (!allowDelete) {
                 var newUsername = ev.target.newUsername.value;
-                if (newUsername !== null && newUsername !== undefined) {
+                if (newUsername !== null && newUsername !== undefined && newUsername !== "") {
                     user.userName = newUsername;
                 }
                 var picture = ev.target.newUserPic.value;
-                if (picture !== null && picture !== undefined) {
+                if (picture !== null && picture !== undefined && picture !== "") {
                     user.picture = picture;
                 }
                 var newAge = ev.target.newAge.valueAsNumber;
-                if (newAge !== null && newAge !== undefined) {
+                if (newAge !== null && newAge !== undefined && !isNaN(newAge)) {
                     user.age = new Date().getFullYear() - newAge;
                 }
-                var vColor = ev.target.favorite.value;
-                if (vColor !== null && vColor !== undefined) {
+                var vColor = ev.target.newFavorite.value;
+                if (vColor !== null && vColor !== undefined && vColor !== "") {
                     user.favorite = vColor;
                 }
-                //renderCard(user);
+                debugger;
+                userProfile.innerHTML = "";
+                renderCard(user, true, userProfile);
             }
             else {
                 //const deleteCard = document.getElementById(`#card${userId}`);
@@ -69,7 +70,6 @@ function handleSubmit(ev) {
 }
 function backgroundC(str, id) {
     try {
-        debugger;
         var bc = document.querySelector("#card" + id);
         console.log(bc);
         if (!bc)
@@ -81,12 +81,18 @@ function backgroundC(str, id) {
         console.error(error);
     }
 }
-function renderCard(user) {
+function renderCard(user, update, userCard) {
     try {
-        var cards = document.querySelector("#cards");
+        var cards = void 0;
+        if (update) {
+            cards = userCard;
+        }
+        else {
+            cards = document.querySelector("#cards");
+        }
         if (!cards)
             throw new Error("Missing information");
-        cards.innerHTML += "<div id=\"card" + user.userID + "\" class=\"card\">\n            <div\">\n                <div class=\"userName\">Name: " + user.userName + "</div>\n                <div class=\"age\">Age: " + user.age + "</div>\n            </div> \n            <img class=\"image\" src=\"" + user.picture + "\">\n        </div> ";
+        cards.innerHTML += "<div id=\"card" + user.userID + "\" class=\"card\">\n            <div\">\n                <div class=\"userName\">Name: " + user.userName + "</div>\n                <div class=\"age\">Age: " + user.age + "</div>\n            <img class=\"image\" src=\"" + user.picture + "\">\n        </div> </div> ";
         backgroundC(user.favorite, user.userID.toString());
     }
     catch (error) {
@@ -106,7 +112,7 @@ function checkDelete(ev) {
 }
 // function handleUpdate(ev: any) {
 //     try {
-//         debugger;
+//
 //         ev.preventDefault();
 //         console.dir(ev);
 //         const userNameToUpdate = ev.target.usernameToUpdate.value;

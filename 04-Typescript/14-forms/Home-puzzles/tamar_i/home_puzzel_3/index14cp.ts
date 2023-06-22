@@ -1,3 +1,4 @@
+//from tal
 // MVC - Model View Controller
 
 //data (Model)
@@ -13,10 +14,6 @@ class User {
 }
 //keep all users
 const userArray: User[] = new Array();
-
-
-
-
 
 //GUI - get from user
 
@@ -61,10 +58,34 @@ function renderCard(user: User) {
                     <div class="userName">Name: ${user.userName}</div>
                     <div class="age">Age: ${user.age()}</div>
                     <img class="image" src="${user.picture}">
-            </div> `;
-        return html
+            </div>;
+            <form onSubmit="updateInfo(user.id)">
+                <input type="text" name="username" required placeholder="username">
+                <input type="number" name="yearOfBirth" required placeholder="Year of birth">
+                <input type="text" name="userPic" required  placeholder="image url">
+                <input type="color" name="color" required>
+                <button type="submit">Update Information</button>
+            </form>`
+        
+        
+            return html
 
     } catch (error) {
         console.error(error)
     }
+}
+
+//continue to mission 3
+
+function updateInfo(userId: string){
+    //find the card by its ID
+    try {
+        const card = userArray.find(card => card.id === userId);
+        return card;
+        
+    } catch (error) {
+        console.error(error);
+    }
+    //change the info
+
 }

@@ -26,6 +26,8 @@
   border: solid 2px;
   border-radius: 10px;
   align-items: center;
+  display: flex;
+  flex-direction: column;
 }
 .wrapper .cards .card img {
   width: 100%;

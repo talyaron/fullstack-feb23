@@ -1,33 +1,57 @@
+body {
+  background-color: #f5daf9;
+}
+
 .wrapper {
-  max-width: 500px;
+  position: relative;
+  max-width: 1200px;
   height: 60vh;
   margin: auto;
 }
 .wrapper form {
+  position: relative;
+  top: 25%;
   margin: auto;
   margin-bottom: 20px;
   display: flex;
   flex-flow: column;
-  max-width: 200px;
+  max-width: 400px;
   gap: 0.5rem;
+}
+.wrapper form input {
+  margin: auto;
+  max-width: 400px;
+  height: 30px;
+  border: 3px solid white;
+  background-color: #c5fafe;
+  border-radius: 10px;
+}
+.wrapper form button {
+  margin: auto;
+  max-width: 100px;
+  border: 1px solid white;
+  background-color: #c5fafe;
+  border-radius: 4px;
 }
 .wrapper .cards {
   display: flex;
   margin: auto;
 }
 .wrapper .card {
-  width: 12vw;
-  height: 20vh;
+  position: relative;
+  top: 20vh;
+  width: 16vw;
+  height: 25vh;
   text-align: center;
-  font-size: small;
+  font-size: medium;
   font-style: italic;
   border-radius: 10px;
   padding: 2px;
   margin: auto;
 }
 .wrapper .card .img {
-  width: 11vw;
-  height: 15vh;
+  width: 16vw;
+  height: 20vh;
   border-radius: 10px;
   margin-top: 2px;
 }
