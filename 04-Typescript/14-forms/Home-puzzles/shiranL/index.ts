@@ -11,12 +11,28 @@ class User{
            
             if (!root) throw new Error("missing root element");
             const html = `<div class="userCard" color="${this.color}" id="A${this.id}">
-            <img class="userImg" src="${this.imageURL}">
-            <h4 class="userName">my Name: ${this.userName}</h4>
-            <h3 class="userAge">my Age: ${this.calculateAge()}</h3>
-            <button class="updateBtn" data-user="${this.userName}" onclick="updateUser('${this.userName}')">Update</button>
-        </div>`;
-            root.innerHTML += html;
+                            <img class="userImg" src="${this.imageURL}">
+                            <h4 class="userName">my Name: ${this.userName}</h4>
+                            <h3 class="userAge">my Age: ${this.calculateAge()}</h3>
+                            <button class="updateBtn" data-user="${this.userName}" onclick="updateUser('${this.userName}')">UPDATE</button>
+                            </div>`;
+
+                             // Create a temporary element to hold the new user card
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = html;
+        const userCard = tempDiv.firstChild as HTMLElement;
+
+        // Set initial opacity to 0 and add transition
+        userCard.style.opacity = '0';
+        userCard.style.transition = 'opacity 0.5s ease-in';
+
+        // Append the card to the root element
+        root.appendChild(userCard);
+
+        // Trigger the transition by setting opacity to 1 after a small delay
+        setTimeout(() => {
+            userCard.style.opacity = '1';
+        }, 10);
         } catch (error) {
             console.error(error);
         }
@@ -35,11 +51,35 @@ function cardcolorStyle(){
             const color = userCard.getAttribute('color');
             if (color) {
                 userCard.style.backgroundColor = color;
+                userCard.style.color = getFontColor(color);
+
+                const updateBtn = userCard.querySelector('.updateBtn');
+        if (updateBtn) {
+          updateBtn.style.backgroundColor = getFontColor(color);
+          updateBtn.style.color = color;
+        }
             }
         });
     }
 }
-
+function getFontColor(color: string): string {
+    // Convert color to RGB format
+    debugger;
+    color = color.replace('#', '');
+    const red = parseInt(color.substring(0, 2), 16);
+    const green = parseInt(color.substring(2, 4), 16);
+    const blue = parseInt(color.substring(4, 6), 16);
+  
+    // Calculate brightness using a formula
+    const brightness = (red * 299 + green * 587 + blue * 114) / 1000;
+  
+    // Determine the font color based on brightness
+    if (brightness > 125) {
+      return 'black';
+    } else {
+      return 'white';
+    }
+  }
 function addUser(ev: any) {
     try {
         ev.preventDefault();
@@ -75,19 +115,16 @@ function updateUser(userName: string) {
 
    // deleteUserCard(user.userName);
 
-    const field = prompt("Which field would you like to update? (userName, imageURL, color, yearOfBirth)");
+    const field = prompt("Which field would you like to update? (userName, imageURL, color, yearOfBirth)");// which filed to updae
     if (!field) {
        throw new Error ("no field to update")
     }
-
-    let newValue;
-    let elem:any;
+    let newValue  = prompt("Enter new userName:");   // new value to update
+    let elem:any = document.querySelector(`#A${user.id}`);  // html card user to update;
     switch (field) {
         case "userName":
-            newValue = prompt("Enter new userName:");
-            if (newValue)
-             elem = document.querySelector(`#A${user.id}`);  // html card user
-             if (elem) {
+            if (newValue && elem )
+            {
                 elem.remove(); // Remove the element from the DOM
                 user.userName=newValue;
                 user.renderUser(root);
@@ -95,10 +132,8 @@ function updateUser(userName: string) {
               } 
             break;
         case "imageURL":
-            newValue = prompt("Enter new userName:");
-            if (newValue)
-             elem = document.querySelector(`#A${user.id}`);  // html card user
-             if (elem) {
+            if (newValue && elem )
+            {
                 elem.remove(); // Remove the element from the DOM
                 user.imageURL=newValue;
                 user.renderUser(root);
@@ -106,27 +141,25 @@ function updateUser(userName: string) {
               } 
             break;
         case "color":
-            newValue = prompt("Enter new userName:");
-            if (newValue)
-             elem = document.querySelector(`#A${user.id}`);  // html card user
-             if (elem) {
+            if (newValue && elem )
+            {
                 elem.remove(); // Remove the element from the DOM
                 user.color=newValue;
                 user.renderUser(root);
                 cardcolorStyle();
               } 
             break;
+           
         case "yearOfBirth":
-            newValue = prompt("Enter new userName:");
-            if (newValue)
-             elem = document.querySelector(`#A${user.id}`);  // html card user
-             if (elem) {
+            if (newValue && elem )
+            {
                 elem.remove(); // Remove the element from the DOM
-                user.yearOfBirth=newValue;
+                user.yearOfBirth=Number(newValue);
                 user.renderUser(root);
                 cardcolorStyle();
               } 
             break;
+            
         default:
             console.log("Invalid field specified");
             return;
