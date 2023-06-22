@@ -51,9 +51,9 @@ function hundleEmployeeSelected(ev) {
     debugger;
     logsById.forEach(function (employee) {
         if (employee.userId === employeeId)
-            new User(employeeId, logsById[1], logsById[2], logsById[3]);
+            new User(employee.userId, employee.date, employee.signIn, employee.signOut);
     });
-    console.log(user);
+    console.dir(user);
     var html = "<table>\n  <thead>\n    <tr>\n      <th>\u05E8\u05D0\u05E9\u05D5\u05DF</th>\n      <th>\u05E9\u05E0\u05D9</th>\n      <th>\u05E9\u05DC\u05D9\u05E9\u05D9</th>\n      <th>\u05E8\u05D1\u05D9\u05E2\u05D9</th>\n      <th>\u05D7\u05DE\u05D9\u05E9\u05D9</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n    </tr>\n    <tr>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n    </tr>\n    <tr>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n    </tr>\n  </tbody>\n</table>\n";
     var rootTable = document.querySelector("#employeeTimeClockTable");
     if (!rootTable)
