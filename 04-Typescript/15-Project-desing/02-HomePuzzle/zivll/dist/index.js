@@ -35,17 +35,43 @@ var NewLog = /** @class */ (function () {
     }
     return NewLog;
 }());
+var User = /** @class */ (function () {
+    function User(userId, date, signIn, signOut) {
+        this.userId = userId;
+        this.date = date;
+        this.signIn = signIn;
+        this.signOut = signOut;
+    }
+    return User;
+}());
 var logsById = [];
+var user = [];
 function hundleEmployeeSelected(ev) {
-    var employeeIdSelectedId = ev.target.previousSibling.value;
-    console.dir(employeeIdSelectedId);
+    var employeeId = ev.target.parentElement.children[2].value;
+    debugger;
+    logsById.forEach(function (employee) {
+        if (employee.userId === employeeId)
+            new User(employee.userId, employee.date, employee.signIn, employee.signOut);
+    });
+    console.dir(user);
+    var html = "<table>\n  <thead>\n    <tr>\n      <th>\u05E8\u05D0\u05E9\u05D5\u05DF</th>\n      <th>\u05E9\u05E0\u05D9</th>\n      <th>\u05E9\u05DC\u05D9\u05E9\u05D9</th>\n      <th>\u05E8\u05D1\u05D9\u05E2\u05D9</th>\n      <th>\u05D7\u05DE\u05D9\u05E9\u05D9</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n    </tr>\n    <tr>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n    </tr>\n    <tr>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n    </tr>\n  </tbody>\n</table>\n";
+    var rootTable = document.querySelector("#employeeTimeClockTable");
+    if (!rootTable)
+        throw new Error("table div is missing");
+    rootTable.innerHTML = html;
 }
 function renderEmployees(rootElement) {
-    var html = "<label for=\"username\">\u05D9\u05E9 \u05DC\u05D1\u05D7\u05D5\u05E8 \u05E2\u05D5\u05D1\u05D3 \u05DE\u05D4\u05E8\u05E9\u05D9\u05DE\u05D4</label><br>\n  <select name=\"username\" id=\"username\">" + employees.map(function (employee) {
+    var html = "<label for=\"username\">\u05D9\u05E9 \u05DC\u05D1\u05D7\u05D5\u05E8 \u05E2\u05D5\u05D1\u05D3 \u05DE\u05D4\u05E8\u05E9\u05D9\u05DE\u05D4</label><br>\n  <select name=\"username\" id=\"username\" onchange=\"switchingUser()\">" + employees.map(function (employee) {
         return "<option value=\"" + employee.id + "\">" + employee.userName + "</option>";
-    }) + "</select><button onclick=\"hundleEmployeeSelected(event)\" value=\"\">\u05D4\u05E6\u05D2 \u05E0\u05D5\u05DB\u05D7\u05D5\u05EA</button>";
+    }) + "</select><br><label for=\"date\">\u05DB\u05D0\u05DF \u05E0\u05D9\u05EA\u05DF \u05DC\u05D1\u05D7\u05D5\u05E8 \u05EA\u05D0\u05E8\u05D9\u05DA \u05E1\u05E4\u05E6\u05D9\u05E4\u05D9</label><br><input type=\"date\" name=\"date\" id=\"date\" onchange=\"switchingUser()\" /><br><button onclick=\"hundleEmployeeSelected(event)\" value=\"\">\u05D4\u05E6\u05D2 \u05E0\u05D5\u05DB\u05D7\u05D5\u05EA</button>";
     if (!rootElement)
         throw new Error("missing HTML container");
+    rootElement.innerHTML = html;
+}
+function renderLogInButton(rootElement) {
+    var html = "<button class=\"btn-log\" id=\"new-log\" onclick=\"hundleUsersLogin(event)\">\u05D4\u05D7\u05EA\u05DE\u05EA \u05DB\u05E0\u05D9\u05E1\u05D4</button>";
+    if (!rootElement)
+        throw new Error("rootElement is missing");
     rootElement.innerHTML = html;
 }
 function renderLogoutButton(rootElement) {
@@ -54,27 +80,19 @@ function renderLogoutButton(rootElement) {
         throw new Error("rootElement is missing");
     rootElement.innerHTML = html;
 }
-function renderLogInButton(rootElement) {
-    var html = "<button class=\"btn-log\" id=\"new-log\" onclick=\"hundleUsersLog(event)\">\u05D4\u05D7\u05EA\u05DE\u05EA \u05DB\u05E0\u05D9\u05E1\u05D4</button>";
-    if (!rootElement)
-        throw new Error("rootElement is missing");
-    rootElement.innerHTML = html;
-}
-function hundleUsersLog(ev) {
-    var userId = ev.target.parentElement.children[2].children[2].value;
+function hundleUsersLogin(ev) {
+    var userId = ev.target.parentElement.parentElement.children[2].children[2].value;
     var date = currentDateToDispaly();
     var signIn = currentTimeToDispaly();
-    var signOut = currentTimeToDispaly();
     logsById.push({ userId: userId, date: date, signIn: signIn });
-    console.log(logsById);
     renderLogoutButton(document.querySelector(".new-log"));
 }
 function hundleUsersLogOut(ev) {
-    var userId = ev.target.parentElement.children[2].children[2].value;
+    var userId = ev.target.parentElement.parentElement.children[2].children[2].value;
     var date = currentDateToDispaly();
-    var signIn = currentTimeToDispaly();
     var signOut = currentTimeToDispaly();
     logsById.push({ userId: userId, date: date, signOut: signOut });
+    ev.target.classList.add("clicked");
 }
 function currentTimeToDispaly() {
     try {
@@ -94,4 +112,7 @@ function currentDateToDispaly() {
     catch (error) {
         console.error(error);
     }
+}
+function switchingUser(ev) {
+    renderLogInButton(document.querySelector(".new-log"));
 }

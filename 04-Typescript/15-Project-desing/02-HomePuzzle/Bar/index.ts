@@ -45,7 +45,7 @@ class MovmentWorker {
 const movmentWorkers: MovmentWorker[] = [];
 
 // view->model controlers
-function handleRegisterUser(ev: any) {
+function handleRegisterWorker(ev: any) {
     try {
         ev.preventDefault();
         const name = ev.target.elements.name.value;
@@ -57,7 +57,7 @@ function handleRegisterUser(ev: any) {
         //add to model
         workers.push(worker);
 
-        renderLoggedWorker(worker, document.querySelector("#register"));
+        // renderLoggedWorker(worker, document.querySelector("#register"));
 
 
         console.log(name, email);
@@ -68,16 +68,27 @@ function handleRegisterUser(ev: any) {
 
 // view controlers
 //register user
+
+renderRegisterWorker(document.querySelector("#register"));
+
 function renderRegisterWorker(rootElement: HTMLElement | null) {
     try {
         if (!rootElement) throw new Error("Missing root element");
 
         const html = `
+        <div class="register">
         <form onsubmit="handleRegisterUser(event)">
           <input type="text" name="name" id="name" placeholder="name" required>
           <input type="text" name="email" id="email" placeholder="email" required>
+          
+          <label for="entrance">entrance</label>
+          <input type="time" name="entrance" id="entrance">
+          <label for="exit">exit</label>
+          <input type="time" name="exit" id="exit">
+
           <input type="submit" value="register">
-        </form>`;
+        </form>
+        </div>`;
 
         rootElement.innerHTML = html;
         // return html;
@@ -86,28 +97,33 @@ function renderRegisterWorker(rootElement: HTMLElement | null) {
     }
 }
 
-renderRegisterWorker(document.querySelector("#register"));
-
-function renderLoggedWorker(
-    worker: Worker,
-    rootElement: HTMLElement | null) {
+function calculatDayliHours(entrance: number, exit: number, dayliHours: number): number | undefined {
     try {
-        const html = `<h2>Hello ${worker.name}</h2>
-        <form onsubmit="handleRegisterUser(event)">
-          <select name="entrance" id="entrance" placeholder="entrance">
-            <option value="1">1</option>
-            
-          </select>
-          <select name="exit" id="exit" placeholder="exit"></select>
-        </form>`;
+        if (!entrance || !exit) throw new Error("The dittails are missing");
+        const dayliHours = this.exit - this.entrance;
+        return dayliHours;
 
-        if (!rootElement) throw new Error("no root element");
-
-        rootElement.innerHTML = html;
     } catch (error) {
         console.error(error);
+        return undefined;
     }
 }
+
+// function renderDayliHours(rootElement: HTMLElement | null) {
+//     try {
+//         if (!rootElement) throw new Error("Missing root element");
+
+//         const html = `
+//         <div class="dayliHours">
+//            ${calculatDayliHours.dayliHours}
+//         </div>`;
+
+//         rootElement.innerHTML = html;
+//         // return html;
+//     } catch (error) {
+//         console.error(error);
+//     }
+// }
 
 // 2) The system can log different users (use select input).
 //    the system can calculate the user monthly total hours.
