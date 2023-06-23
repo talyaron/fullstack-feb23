@@ -75,24 +75,26 @@ function renderSelectUser() {
     })
         .join("") + "\n        </select><br>\n        ";
 }
-//handle select user--
-function handleUser(event) {
-    event.preventDefault();
-    var chosenUserId = event.target.value;
-    var chosenEmployee = employees.find(function (employee) { return employee.ID === chosenUserId; });
-    var chosenEmployeeWork = employeesHour.find(function (empl) { empl.employee == chosenEmployee; });
-    if (chosenEmployeeWork) {
-        return chosenEmployeeWork;
-    }
-}
+//render Time Input in form---
 function renderTimeInput() {
     var addTimeForm = document.querySelector("#addTimeToUserForm");
     addTimeForm.innerHTML += "\n    <label for=\"date\">date:</label>\n    <input id=\"date\" type=\"date\" required>\n    <label for=\"entranceTime\">entrance:</label>\n    <input id=\"entranceTime\" type=\"time\" required>\n    <label for=\"exitTime\">exit:</label>\n    <input id=\"exitTime\" type=\"time\" required>\n    <button type=\"submit\">ADD</button>\n\n    ";
 }
+//onclick on add button this function called. pay attention, it 2 function callback init
 function addTimeToEmployee(event) {
-    employeesHour[0].addingWorkingHours(handleTime(event));
-    console.log(employeesHour[0]);
+    handleUser(event).addingWorkingHours(handleTime(event));
 }
+//handle select user--return an employee to submit function
+function handleUser(event) {
+    event.preventDefault();
+    var chosenUserId = document.querySelector("#selectUser").value;
+    var chosenEmployee = employees.find(function (employee) { return employee.ID === chosenUserId; });
+    var chosenEmployeeWork = employeesHour.find(function (empl) { return empl.employee === chosenEmployee; });
+    if (chosenEmployeeWork) {
+        return chosenEmployeeWork;
+    }
+}
+//handle selected Time--return time to submit function
 function handleTime(event) {
     event.preventDefault();
     var entranceTime = document.querySelector("#entranceTime").value;
@@ -101,6 +103,11 @@ function handleTime(event) {
     var _b = entranceTime.split(":"), exitHour = _b[0], exitMin = _b[1];
     var newTime = new TimeClock(new Date(document.querySelector("#date").value), new Time(parseInt(entranceHour), parseInt(entranceMin)), new Time(parseInt(exitHour), parseInt(exitMin)));
     return newTime;
+}
+function getEmployeeHours() {
+    var employee = document.querySelector(".selectUser").value;
+    var chosenEmployee = employees.find(function (employee) { return employee.ID === employee; });
+    var chosenEmployeeWork = employeesHour.find(function (empl) { empl.employee == chosenEmployee; });
 }
 //create uniq id by Date, from google...
 function createID() {

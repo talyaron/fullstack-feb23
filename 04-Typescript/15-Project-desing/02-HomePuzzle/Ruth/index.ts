@@ -84,20 +84,7 @@ function renderSelectUser() {
         `;
 }
 
-//handle select user--
-function handleUser(event: Event) {
-  event.preventDefault();
-  const chosenUserId = (event.target as HTMLSelectElement).value;
-  const chosenEmployee = employees.find(
-    (employee) => employee.ID === chosenUserId,
-  );
-
-  const chosenEmployeeWork = employeesHour.find(empl =>{ empl.employee == chosenEmployee})
-  if (chosenEmployeeWork) {
-    return chosenEmployeeWork;}
-}
-
-
+//render Time Input in form---
 function renderTimeInput(){
     const addTimeForm = document.querySelector("#addTimeToUserForm") as HTMLDivElement
     addTimeForm.innerHTML+=`
@@ -112,14 +99,25 @@ function renderTimeInput(){
     `
 }
 
+//onclick on add button this function called. pay attention, it 2 function callback init
 function addTimeToEmployee(event){
-    employeesHour[0].addingWorkingHours(handleTime(event))
-  console.log(
-employeesHour[0]
-  );
+    handleUser(event)!.addingWorkingHours(handleTime(event))
 }
 
+//handle select user--return an employee to submit function
+function handleUser(event: Event) {
+  event.preventDefault();
+  const chosenUserId = (document.querySelector("#selectUser") as HTMLSelectElement).value;
+  const chosenEmployee = employees.find(
+    (employee) => employee.ID === chosenUserId,
+  );
 
+  const chosenEmployeeWork = employeesHour.find(empl =>{return  empl.employee === chosenEmployee})
+  if (chosenEmployeeWork) {
+    return chosenEmployeeWork;}
+}
+
+//handle selected Time--return time to submit function
 function handleTime(event){
     event.preventDefault();
     const entranceTime = (document.querySelector("#entranceTime")as HTMLInputElement).value;
@@ -132,6 +130,18 @@ function handleTime(event){
         new Time(parseInt(exitHour),parseInt(exitMin)))
     
     return newTime;
+}
+
+
+function getEmployeeHours(){
+    const employee = (document.querySelector(".selectUser")as HTMLInputElement).value
+    const chosenEmployee = employees.find(
+        (employee) => employee.ID === employee,
+      );
+    
+      const chosenEmployeeWork = employeesHour.find(empl =>{ empl.employee == chosenEmployee})
+    
+
 }
 
 //create uniq id by Date, from google...
