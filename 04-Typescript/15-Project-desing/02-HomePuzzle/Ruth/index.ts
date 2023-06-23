@@ -80,7 +80,7 @@ function renderSelectUser() {
           `<option value="${employee.ID}">${employee.firstName} ${employee.lastName}</option>`,
       )
       .join("")}
-        </select>
+        </select><br>
         `;
 }
 
@@ -91,7 +91,7 @@ function handleUser(event: Event) {
   const chosenEmployee = employees.find(
     (employee) => employee.ID === chosenUserId,
   );
-  
+
   const chosenEmployeeWork = employeesHour.find(empl =>{ empl.employee == chosenEmployee})
   if (chosenEmployeeWork) {
     return chosenEmployeeWork;}
@@ -103,9 +103,9 @@ function renderTimeInput(){
     addTimeForm.innerHTML+=`
     <label for="date">date:</label>
     <input id="date" type="date" required>
-    <label for="entranceTime">entrance time:</label>
+    <label for="entranceTime">entrance:</label>
     <input id="entranceTime" type="time" required>
-    <label for="exitTime">exit time:</label>
+    <label for="exitTime">exit:</label>
     <input id="exitTime" type="time" required>
     <button type="submit">ADD</button>
 
@@ -113,7 +113,10 @@ function renderTimeInput(){
 }
 
 function addTimeToEmployee(event){
-   handleUser(event)!.addingWorkingHours(handleTime(event))
+    employeesHour[0].addingWorkingHours(handleTime(event))
+  console.log(
+employeesHour[0]
+  );
 }
 
 
@@ -139,7 +142,4 @@ function createID() {
   );
 }
 
-//render input boxes after chosen employee.!!
-//handle input time and connect with employee that chosen by id . in 2 function
-//function 1 : called when you chose employee
-//
+

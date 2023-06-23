@@ -73,7 +73,7 @@ function renderSelectUser() {
         .map(function (employee) {
         return "<option value=\"" + employee.ID + "\">" + employee.firstName + " " + employee.lastName + "</option>";
     })
-        .join("") + "\n        </select>\n        ";
+        .join("") + "\n        </select><br>\n        ";
 }
 //handle select user--
 function handleUser(event) {
@@ -87,10 +87,11 @@ function handleUser(event) {
 }
 function renderTimeInput() {
     var addTimeForm = document.querySelector("#addTimeToUserForm");
-    addTimeForm.innerHTML += "\n    <label for=\"date\">date:</label>\n    <input id=\"date\" type=\"date\" required>\n    <label for=\"entranceTime\">entrance time:</label>\n    <input id=\"entranceTime\" type=\"time\" required>\n    <label for=\"exitTime\">exit time:</label>\n    <input id=\"exitTime\" type=\"time\" required>\n    <button type=\"submit\">ADD</button>\n\n    ";
+    addTimeForm.innerHTML += "\n    <label for=\"date\">date:</label>\n    <input id=\"date\" type=\"date\" required>\n    <label for=\"entranceTime\">entrance:</label>\n    <input id=\"entranceTime\" type=\"time\" required>\n    <label for=\"exitTime\">exit:</label>\n    <input id=\"exitTime\" type=\"time\" required>\n    <button type=\"submit\">ADD</button>\n\n    ";
 }
 function addTimeToEmployee(event) {
-    handleUser(event).addingWorkingHours(handleTime(event));
+    employeesHour[0].addingWorkingHours(handleTime(event));
+    console.log(employeesHour[0]);
 }
 function handleTime(event) {
     event.preventDefault();
@@ -105,7 +106,3 @@ function handleTime(event) {
 function createID() {
     return String(Date.now().toString(32) + Math.random().toString(16)).replace(/\./g, "");
 }
-//render input boxes after chosen employee.!!
-//handle input time and connect with employee that chosen by id . in 2 function
-//function 1 : called when you chose employee
-//
