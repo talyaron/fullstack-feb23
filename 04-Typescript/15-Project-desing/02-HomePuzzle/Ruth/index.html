@@ -1,22 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./dist/style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./dist/style.css" />
     <title>Document</title>
-</head>
-<body onload="renderSelectUser() , renderTimeInput()">
+  </head>
+  <body onload="renderSelectUser(), renderTimeInput()">
     <div class="wrapper">
-        <form onsubmit="addTimeToEmployee(event)" id="addTimeToUserForm">
-        </form>
-    </div>
-    <div id="addTimeForm">
+      <form onsubmit="addTimeToEmployee(event)" id="addTimeToUserForm">
+       <div id="userForm"></div> 
+       <div id="addTimeForm"></div>
+      </form>
     </div>
 
-    <br>
+    <br />
     <button onclick="getEmployeeHours()">employee hours</button>
-    <button onclick="getAllEmployeeHours()"> all employees hours</button>
+    <button onclick="getAllUserHours()">all employees hours</button>
+
+    <div id="tableUser"></div>
+
     <script src="./dist/index.js"></script>
-</body>
+  </body>
 </html>
