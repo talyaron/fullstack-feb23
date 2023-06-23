@@ -1,0 +1,12 @@
+form {
+  input {
+  }
+}
+#images-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  img {
+    height: auto;
+    margin: 2%;
+  }
+}

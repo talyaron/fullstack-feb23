@@ -14,7 +14,7 @@ function handleSubmit(ev) {
         console.dir(ev);
         var username = ev.target.username.value;
         var picture = ev.target.userPic.value;
-        var age = ev.target.age.valueAsNumber;
+        var age = new Date().getFullYear() - ev.target.age.valueAsNumber;
         var vColor = ev.target.favorite.value;
         var user = new User(username, age, vColor, picture);
         userArray.push(user);
@@ -26,11 +26,13 @@ function handleSubmit(ev) {
 }
 function backgroundC(str, id) {
     try {
-        var bc = document.querySelector("#" + id);
+        debugger;
+        var bc = document.querySelector("#img" + id);
         console.log(bc);
         if (!bc)
             throw new Error("Error");
         bc.style.backgroundColor = str;
+        bc.style.color = (parseInt(str) / (2)).toString();
     }
     catch (error) {
         console.error(error);
@@ -41,8 +43,8 @@ function renderCard(user) {
         var cards = document.querySelector("#cards");
         if (!cards)
             throw new Error("Missing information");
-        cards.innerHTML += "<div id=\"" + userArray.length + "\" class=\"card\">\n        <div class=\"userName\">Name: " + user.userName + "</div>\n        <div class=\"age\">Age: " + user.age + "</div>\n        <img class=\"image\" src=\"" + user.picture + "\"> </div> ";
-        backgroundC(user.favorite, userArray.length);
+        cards.innerHTML += "<div class=\"card\">\n        <div id=\"img" + userArray.length + "\">\n        <div class=\"userName\">Name: " + user.userName + "</div>\n        <div class=\"age\">Age: " + user.age + "</div></div> \n        <img class=\"image\" src=\"" + user.picture + "\"></div> ";
+        backgroundC(user.favorite, userArray.length.toString());
     }
     catch (error) {
         console.error(error);

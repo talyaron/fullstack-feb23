@@ -22,3 +22,5 @@ function removeSpaces(newStr: string): string {
 }
 
 console.log(removeSpaces(str));
+
+

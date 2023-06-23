@@ -1,7 +1,7 @@
-for (var x_1 = 99; x_1 > 0; x_1--) {
-    var y = x_1 - 1;
-    console.log(x_1 + " Bottles of Beer on the wall. take one down pass it around, and " + y + " bootle of beer on the wall");
-}
+// for(let x = 99; x>0;x--){
+//     let y = x-1
+//     console.log(`${x} Bottles of Beer on the wall. take one down pass it around, and ${y} bootle of beer on the wall`);
+// }
 var num = prompt("choose a number:");
 var x = prompt("choose a number:");
 var sum = 0;

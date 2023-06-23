@@ -12,7 +12,6 @@ function handleSubmit(ev: any) {
     const color = ev.target.userColor.value;
     const dateOfBirth = ev.target.dateOfBirth.value;
     usersArray.push(new UserName(userName, imgUrl, color, dateOfBirth));
-    debugger;
 
     renderUsers(usersArray);
   } catch (error) {
@@ -29,7 +28,7 @@ class UserName {
     public userName: string,
     public imgUrl: string,
     public color: string,
-    public dateOfBirth: string // public age: Function
+    public dateOfBirth: string
   ) {}
   age(dateOfBirth) {
     try {
@@ -44,21 +43,16 @@ class UserName {
 function renderUsers(usersDetails: UserName[] = []) {
   const cardsWrapper = document.querySelector(`#cardsWrapper`);
   const userDetails = usersDetails.pop();
+  const randomNumber = Math.round(Math.random() * 1000);
   if (!userDetails) throw new Error(`user's details not found`);
   if (cardsWrapper) {
-    cardsWrapper.innerHTML += `<div class="card" id="${userDetails.color}">
+    cardsWrapper.innerHTML += `<div class="card" id="id-${randomNumber}" style="background-color: ${
+      userDetails.color
+    }">
       <div class="card_img"><img src="${userDetails.imgUrl}" alt="" /></div>
-      <div class="card_user-details"><h3>Name: ${
+      <div class="card_user-details"><h3>שם: ${
         userDetails.userName
-      }<br>Age: ${userDetails.age(userDetails.dateOfBirth)}</h3></div>
+      }<br>גיל: ${userDetails.age(userDetails.dateOfBirth)}</h3></div>
     </div>`;
   }
-  const usersColor: HTMLElement | null = document.querySelector(
-    userDetails.color
-  );
-
-  if (usersColor) {
-    usersColor.style.backgroundColor = userDetails.color;
-  }
-  debugger;
 }

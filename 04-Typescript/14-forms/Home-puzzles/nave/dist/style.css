@@ -1,0 +1,27 @@
+* {
+  margin: 0%;
+}
+
+.hero {
+  display: grid;
+  margin: auto;
+  justify-content: center;
+}
+.hero .h1 {
+  margin-bottom: 20px;
+}
+.hero .input {
+  padding: 5px;
+  margin: 10px;
+}
+.hero .button {
+  padding: 5px;
+  margin: 10px;
+  background-color: black;
+  color: white;
+}
+
+.imageUrl {
+  height: 100vh;
+  border: solid 1px black;
+}
