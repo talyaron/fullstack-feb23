@@ -1,0 +1,64 @@
+body {
+    background-color: rgb(245, 218, 249);
+}
+.wrapper {
+    position: relative;
+    max-width: 1200px;
+    height: 60vh;
+    margin: auto;
+    // background-color: aqua;
+
+    form {
+        position: relative;
+        top: 25%;
+        margin: auto;
+        margin-bottom: 20px;
+        display: flex;
+        flex-flow: column;
+        max-width: 400px;
+        gap: .5rem;
+
+        input {
+            margin: auto;
+            max-width: 400px;
+            height: 30px;
+            border: 3px solid white;
+            background-color: rgb(197, 250, 254);
+            border-radius: 10px;
+        }
+
+        button {
+            margin: auto;
+            max-width: 100px;
+            border: 1px solid white;
+            background-color: rgb(197, 250, 254);
+            border-radius: 4px;
+        }
+    }
+
+    .cards {
+        // position: relative;
+        display: flex;
+        margin: auto;
+    }
+
+    .card {
+        position: relative;
+        top: 20vh;
+        width: 16vw;
+        height: 25vh;
+        text-align: center;
+        font-size: medium;
+        font-style: italic;
+        border-radius: 10px;
+        padding: 2px;
+        margin: auto;
+
+        .img {
+            width: 16vw;
+            height: 20vh;
+            border-radius: 10px;
+            margin-top: 2px;
+        }
+    }
+}

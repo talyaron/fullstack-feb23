@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./dist/style.css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <form onsubmit="handleSubmit(event)">
+        <input type="text" name="userPic" required placeholder="Image url" />
+        <input type="number" name="widthPic" required placeholder="Img width" />
+        <input type="color" name="color" required>
+        <input type="submit" value="ADD" />
+        <input type="reset" value="CLEAR">
+      </form>
+      <div id="cards" class="cards" style="width: 25vh"></div>
+    </div>
+
+    <script src="./dist/index.js"></script>
+  </body>
+</html>
