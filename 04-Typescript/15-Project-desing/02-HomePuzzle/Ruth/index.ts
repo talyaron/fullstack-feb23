@@ -70,11 +70,10 @@ employees.forEach(employee => employeesHour.push(new EmployeeHours(employee, emp
 
 //  render select employee
 function renderSelectUser() {
-  const selectDiv = document.querySelector("#selectUserDiv") as HTMLDivElement;
-  selectDiv.innerHTML = `
-    <form id="selectUserForm" >
+  const selectDivForm = document.querySelector("#addTimeToUserForm") as HTMLDivElement;
+  selectDivForm.innerHTML = `
     <label for="selectUser">select user:</label>
-    <select name="selectUser" id="selectUser" onchange="handleUser(event)">
+    <select name="selectUser" id="selectUser" onchange="handleUser(event)" required>
     ${employees
       .map(
         (employee) =>
@@ -82,7 +81,6 @@ function renderSelectUser() {
       )
       .join("")}
         </select>
-        </form>
         `;
 }
 
@@ -90,12 +88,47 @@ function renderSelectUser() {
 function handleUser(event: Event) {
   event.preventDefault();
   const chosenUserId = (event.target as HTMLSelectElement).value;
-  console.log(chosenUserId);
-
   const chosenEmployee = employees.find(
     (employee) => employee.ID === chosenUserId,
   );
-  console.log(chosenEmployee);
+  
+  const chosenEmployeeWork = employeesHour.find(empl =>{ empl.employee == chosenEmployee})
+  if (chosenEmployeeWork) {
+    return chosenEmployeeWork;}
+}
+
+
+function renderTimeInput(){
+    const addTimeForm = document.querySelector("#addTimeToUserForm") as HTMLDivElement
+    addTimeForm.innerHTML+=`
+    <label for="date">date:</label>
+    <input id="date" type="date" required>
+    <label for="entranceTime">entrance time:</label>
+    <input id="entranceTime" type="time" required>
+    <label for="exitTime">exit time:</label>
+    <input id="exitTime" type="time" required>
+    <button type="submit">ADD</button>
+
+    `
+}
+
+function addTimeToEmployee(event){
+   handleUser(event)!.addingWorkingHours(handleTime(event))
+}
+
+
+function handleTime(event){
+    event.preventDefault();
+    const entranceTime = (document.querySelector("#entranceTime")as HTMLInputElement).value;
+    const [entranceHour,entranceMin] = entranceTime.split(":");
+    const exitTime = (document.querySelector("#exitTime")as HTMLInputElement).value;
+    const [exitHour,exitMin] = entranceTime.split(":");
+    const newTime = new TimeClock(
+        new Date((document.querySelector("#date")as HTMLInputElement).value), 
+        new Time (parseInt(entranceHour), parseInt(entranceMin)), 
+        new Time(parseInt(exitHour),parseInt(exitMin)))
+    
+    return newTime;
 }
 
 //create uniq id by Date, from google...
@@ -105,3 +138,8 @@ function createID() {
     "",
   );
 }
+
+//render input boxes after chosen employee.!!
+//handle input time and connect with employee that chosen by id . in 2 function
+//function 1 : called when you chose employee
+//
