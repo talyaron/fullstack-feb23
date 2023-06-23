@@ -6,8 +6,12 @@
     <link rel="stylesheet" href="./dist/style.css">
     <title>Document</title>
 </head>
-<body onload="renderSelectUser()">
-    <div class="selectUserDiv" id="selectUserDiv">
+<body onload="renderSelectUser() , renderTimeInput()">
+    <div class="wrapper">
+        <form onsubmit="addTimeToEmployee(event)" id="addTimeToUserForm">
+        </form>
+    </div>
+    <div id="addTimeForm">
     </div>
     <script src="./dist/index.js"></script>
 </body>
