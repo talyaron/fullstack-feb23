@@ -1,0 +1,28 @@
+body {
+  position: relative;
+  background-color: #96ffff;
+}
+
+.register {
+  position: relative;
+  top: 30vh;
+  margin: auto;
+  width: 11vw;
+  padding: 10px;
+}
+.register form {
+  position: relative;
+  margin: auto;
+  font-style: italic;
+  font-size: large;
+}
+.register form input {
+  display: block;
+  margin-bottom: 15px;
+  width: 10vw;
+  height: 3vh;
+  font-size: medium;
+  font-style: italic;
+  border-radius: 5px;
+  border: 1px solid #aff7ff;
+}
