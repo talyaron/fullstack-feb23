@@ -77,18 +77,31 @@ function renderRegisterWorker(rootElement) {
         console.error(error);
     }
 }
-function calculatDayliHours(entrance, exit) {
+function calculatDayliHours(entrance, exit, dayliHours) {
     try {
         if (!entrance || !exit)
             throw new Error("The dittails are missing");
-        var dayliHours = exit - entrance;
-        return dayliHours;
+        var dayliHours_1 = this.exit - this.entrance;
+        return dayliHours_1;
     }
     catch (error) {
         console.error(error);
         return undefined;
     }
 }
+// function renderDayliHours(rootElement: HTMLElement | null) {
+//     try {
+//         if (!rootElement) throw new Error("Missing root element");
+//         const html = `
+//         <div class="dayliHours">
+//            ${calculatDayliHours.dayliHours}
+//         </div>`;
+//         rootElement.innerHTML = html;
+//         // return html;
+//     } catch (error) {
+//         console.error(error);
+//     }
+// }
 // 2) The system can log different users (use select input).
 //    the system can calculate the user monthly total hours.
 // 3) the user can see all workers times, serach for worker, and show each worker total times.

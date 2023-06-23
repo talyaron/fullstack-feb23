@@ -45,7 +45,7 @@ class MovmentWorker {
 const movmentWorkers: MovmentWorker[] = [];
 
 // view->model controlers
-function handleRegisterWorker(ev: any){
+function handleRegisterWorker(ev: any) {
     try {
         ev.preventDefault();
         const name = ev.target.elements.name.value;
@@ -54,7 +54,7 @@ function handleRegisterWorker(ev: any){
         // const exit = ev.target.elements.exit.value;
 
         const worker = new Worker(name, email);
-          //add to model
+        //add to model
         workers.push(worker);
 
         // renderLoggedWorker(worker, document.querySelector("#register"));
@@ -97,10 +97,10 @@ function renderRegisterWorker(rootElement: HTMLElement | null) {
     }
 }
 
-function calculatDayliHours(entrance: number, exit: number): number | undefined {
+function calculatDayliHours(entrance: number, exit: number, dayliHours: number): number | undefined {
     try {
         if (!entrance || !exit) throw new Error("The dittails are missing");
-        const dayliHours = exit - entrance;
+        const dayliHours = this.exit - this.entrance;
         return dayliHours;
 
     } catch (error) {
@@ -108,6 +108,22 @@ function calculatDayliHours(entrance: number, exit: number): number | undefined 
         return undefined;
     }
 }
+
+// function renderDayliHours(rootElement: HTMLElement | null) {
+//     try {
+//         if (!rootElement) throw new Error("Missing root element");
+
+//         const html = `
+//         <div class="dayliHours">
+//            ${calculatDayliHours.dayliHours}
+//         </div>`;
+
+//         rootElement.innerHTML = html;
+//         // return html;
+//     } catch (error) {
+//         console.error(error);
+//     }
+// }
 
 // 2) The system can log different users (use select input).
 //    the system can calculate the user monthly total hours.
