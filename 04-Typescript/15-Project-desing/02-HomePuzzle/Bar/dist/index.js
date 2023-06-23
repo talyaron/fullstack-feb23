@@ -45,7 +45,7 @@ var MovmentWorker = /** @class */ (function () {
 }());
 var movmentWorkers = [];
 // view->model controlers
-function handleRegisterUser(ev) {
+function handleRegisterWorker(ev) {
     try {
         ev.preventDefault();
         var name = ev.target.elements.name.value;
@@ -55,7 +55,7 @@ function handleRegisterUser(ev) {
         var worker = new Worker(name, email);
         //add to model
         workers.push(worker);
-        renderLoggedWorker(worker, document.querySelector("#register"));
+        // renderLoggedWorker(worker, document.querySelector("#register"));
         console.log(name, email);
     }
     catch (error) {
@@ -64,11 +64,12 @@ function handleRegisterUser(ev) {
 }
 // view controlers
 //register user
+renderRegisterWorker(document.querySelector("#register"));
 function renderRegisterWorker(rootElement) {
     try {
         if (!rootElement)
             throw new Error("Missing root element");
-        var html = "\n        <form onsubmit=\"handleRegisterUser(event)\">\n          <input type=\"text\" name=\"name\" id=\"name\" placeholder=\"name\" required>\n          <input type=\"text\" name=\"email\" id=\"email\" placeholder=\"email\" required>\n          <input type=\"submit\" value=\"register\">\n        </form>";
+        var html = "\n        <div class=\"register\">\n        <form onsubmit=\"handleRegisterUser(event)\">\n          <input type=\"text\" name=\"name\" id=\"name\" placeholder=\"name\" required>\n          <input type=\"text\" name=\"email\" id=\"email\" placeholder=\"email\" required>\n          \n          <label for=\"entrance\">entrance</label>\n          <input type=\"time\" name=\"entrance\" id=\"entrance\">\n          <label for=\"exit\">exit</label>\n          <input type=\"time\" name=\"exit\" id=\"exit\">\n\n          <input type=\"submit\" value=\"register\">\n        </form>\n        </div>";
         rootElement.innerHTML = html;
         // return html;
     }
@@ -76,18 +77,31 @@ function renderRegisterWorker(rootElement) {
         console.error(error);
     }
 }
-renderRegisterWorker(document.querySelector("#register"));
-function renderLoggedWorker(worker, rootElement) {
+function calculatDayliHours(entrance, exit, dayliHours) {
     try {
-        var html = "<h2>Hello " + worker.name + "</h2>\n        <form onsubmit=\"handleRegisterUser(event)\">\n          <select name=\"entrance\" id=\"entrance\" placeholder=\"entrance\">\n            <option value=\"1\">1</option>\n            \n          </select>\n          <select name=\"exit\" id=\"exit\" placeholder=\"exit\"></select>\n        </form>";
-        if (!rootElement)
-            throw new Error("no root element");
-        rootElement.innerHTML = html;
+        if (!entrance || !exit)
+            throw new Error("The dittails are missing");
+        var dayliHours_1 = this.exit - this.entrance;
+        return dayliHours_1;
     }
     catch (error) {
         console.error(error);
+        return undefined;
     }
 }
+// function renderDayliHours(rootElement: HTMLElement | null) {
+//     try {
+//         if (!rootElement) throw new Error("Missing root element");
+//         const html = `
+//         <div class="dayliHours">
+//            ${calculatDayliHours.dayliHours}
+//         </div>`;
+//         rootElement.innerHTML = html;
+//         // return html;
+//     } catch (error) {
+//         console.error(error);
+//     }
+// }
 // 2) The system can log different users (use select input).
 //    the system can calculate the user monthly total hours.
 // 3) the user can see all workers times, serach for worker, and show each worker total times.
