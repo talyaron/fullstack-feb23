@@ -25,16 +25,18 @@ var Time = /** @class */ (function () {
 //----------------TimeClock--------------
 var TimeClock = /** @class */ (function () {
     function TimeClock(date, entranceTime, exitTime) {
+        if (date === void 0) { date = new Date(); }
         this.date = date;
         this.entranceTime = entranceTime;
         this.exitTime = exitTime;
     }
     return TimeClock;
 }());
-var timesClock = [
+var emptyTimeClock = [];
+var timesClock1 = [
     new TimeClock(new Date(), new Time(10, 45), new Time(17, 34)),
     new TimeClock(new Date(), new Time(9, 25), new Time(14, 14)),
-    new TimeClock(new Date(), new Time(10, 45), new Time(15, 50)),
+    new TimeClock(new Date(), new Time(10, 45), new Time(15, 50))
 ];
 //----------------UserHours---------------
 var EmployeeHours = /** @class */ (function () {
@@ -62,6 +64,8 @@ var EmployeeHours = /** @class */ (function () {
     };
     return EmployeeHours;
 }());
+var employeesHour = [];
+employees.forEach(function (employee) { return employeesHour.push(new EmployeeHours(employee, emptyTimeClock)); });
 //  render select employee
 function renderSelectUser() {
     var selectDiv = document.querySelector("#selectUserDiv");

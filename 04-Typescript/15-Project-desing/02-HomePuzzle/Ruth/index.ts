@@ -23,21 +23,23 @@ class Time {
 //----------------TimeClock--------------
 class TimeClock {
   constructor(
-    public date: Date,
+    public date = new Date(),
     public entranceTime: Time,
     public exitTime: Time,
   ) {}
 }
 
-const timesClock: TimeClock[] = [
+const emptyTimeClock:TimeClock[] = []
+const timesClock1: TimeClock[] = [
   new TimeClock(new Date(), new Time(10, 45), new Time(17, 34)),
   new TimeClock(new Date(), new Time(9, 25), new Time(14, 14)),
-  new TimeClock(new Date(), new Time(10, 45), new Time(15, 50)),
+  new TimeClock(new Date(), new Time(10, 45), new Time(15, 50))
 ];
 
 //----------------UserHours---------------
 class EmployeeHours {
   constructor(public employee: Employee, public hoursWork: TimeClock[]) {}
+  
 
   addingWorkingHours(workTime: TimeClock) {
     this.hoursWork.push(workTime);
@@ -61,6 +63,9 @@ class EmployeeHours {
   }
 }
 
+
+const employeesHour:EmployeeHours[] = []
+employees.forEach(employee => employeesHour.push(new EmployeeHours(employee, emptyTimeClock)))
 
 
 //  render select employee
