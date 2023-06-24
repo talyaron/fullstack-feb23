@@ -1,0 +1,9 @@
+.wrapper form input {
+  display: block;
+  margin: 5px;
+}
+.wrapper .usersRender {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}

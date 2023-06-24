@@ -1,10 +1,10 @@
-const userName = "Moshe";
-const password = "1234";
-const profileImage = "....";
+// const userName = "Moshe";
+// const password = "1234";
+// const profileImage = "....";
 
-const userName2 = "Miriam";
-const password2 = "123456";
-const profileImage2 = "....";
+// const userName2 = "Miriam";
+// const password2 = "123456";
+// const profileImage2 = "....";
 
 interface Person {
   userName: string;
@@ -13,17 +13,17 @@ interface Person {
   age?: number;
 }
 
-//object
-const moshe = {
-  //key:value,
-  userName: "Moshe",
-  password: "1234",
-  profileImage: "...",
-  age: 3500,
-};
+// //object
+// const moshe = {
+//   //key:value,
+//   userName: "Moshe",
+//   password: "1234",
+//   profileImage: "...",
+//   age: 3500,
+// };
 
-console.log(moshe.userName, moshe.password);
-console.log(moshe);
+// console.log(moshe.userName, moshe.password);
+// console.log(moshe);
 
 const miriam: Person = {
   userName: "Miriam",

@@ -16,8 +16,8 @@ var usersArray = new Array();
 function handelSubmitImg(event) {
     try {
         event.preventDefault();
-        var imageUrl = event.target.elements.imageUrl.value;
-        var imageWidthSize = event.target.elements.imageWidthSize.value;
+        var imageUrl = event.target.imageUrl.value;
+        var imageWidthSize = event.target.imageWidthSize.value;
         var data = new User(imageUrl, imageWidthSize);
         console.log(data);
         usersArray.push(data);
@@ -41,7 +41,7 @@ function renderImgs(userArray, element) {
 }
 function renderImg(data) {
     try {
-        var backToHtml = "<img class=\"image\" src=\"" + data.imageUrl + "\" style=\"width: " + data.imageWidthSize + "vw\">";
+        var backToHtml = "<img class=\"wrapper__image\" src=\"" + data.imageUrl + "\" style=\"width: " + data.imageWidthSize + "vw\">";
         return backToHtml;
     }
     catch (error) {
