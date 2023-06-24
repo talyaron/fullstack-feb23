@@ -21,12 +21,16 @@ class HoursDaily{
     }
     calculateDailyHoures(): number| undefined{
         try {
-            const enterHour:Date = this.enterance
-            const exitHoure:Date = this.exit
+            
+            const exitHoure = this.exit.getTime();
+            const enterHour = this.enterance.getTime();
+            console.log(exitHoure)
             if (!enterHour || !exitHoure)
         throw new Error("Missing enterance or exit");
-        const dailyhours = exitHoure.getTime() - enterHour.getTime() / 360000;
+        const dailyhours = (Math.abs(exitHoure - enterHour) / 360000);
+        console.log(dailyhours)
         return dailyhours;
+        
         } catch (error) {
             console.error(error);
             return undefined;  
