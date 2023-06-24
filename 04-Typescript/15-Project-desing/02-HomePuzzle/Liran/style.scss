@@ -1,0 +1,49 @@
+.wrapper {
+    display: flex;
+    width: 99vw;
+    background-color: wheat;
+    justify-content: center;
+    min-height:97vh ;
+    h2,h4,h3{
+        text-align: center;
+    }
+    #printTable{
+        display: flex;
+        flex-direction: column;
+        width: 75%;
+        background-color: black;
+        justify-content: center;
+        
+    table, th, td {
+        border:1px solid white;
+        color: white;
+        text-align: center;
+        margin: auto;
+      }
+
+      #update{
+        display: flex;
+        justify-content: space-around;
+        
+      }
+      h2,h4{
+        color: white;
+      }
+    }
+    #fields{
+        height: fit-content;
+        width: 25%;
+        form {
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            max-width: 300px;
+            justify-content: center;
+    
+            input {
+                margin: 3px;
+            }
+        }
+    }
+
+}
