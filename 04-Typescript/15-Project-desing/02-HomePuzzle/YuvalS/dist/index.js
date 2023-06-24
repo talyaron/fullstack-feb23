@@ -19,10 +19,10 @@ var HoursDaily = /** @class */ (function () {
     HoursDaily.prototype.calculateDailyHoures = function () {
         try {
             var enterHour = this.enterance;
-            var exitHour = this.exit;
-            if (!enterHour || !exitHour)
+            var exitHoure = this.exit;
+            if (!enterHour || !exitHoure)
                 throw new Error("Missing enterance or exit");
-            var dailyhours = exitHour - enterHour;
+            var dailyhours = exitHoure.getTime() - enterHour.getTime() / 360000;
             return dailyhours;
         }
         catch (error) {
@@ -43,7 +43,7 @@ var WorkerHoursDaily = /** @class */ (function () {
 }());
 function renderRegisterWorker(rootElement) {
     try {
-        var html = "\n          <form onsubmit=\"handleRegisterUser(event)\">\n              <label for=\"fullname\">Full name</label>\n              <input type=\"text\" name=\"fullName\" id='fullName' placeholder=\"full name\" required>\n              <label for=\"enterance\">enterance</label>\n              <input type=\"time\" name=\"enterance\" id=\"'enterance\" placeholder=\"last name\" required>\n              <label for=\"exit\">exit</label>\n              <input type=\"time\" name=\"exit\" id=\"exit\" required>\n              <input type=\"submit\" value=\"Register\">\n          </form>";
+        var html = "\n          <form onsubmit=\"handleRegisterWorker(event)\">\n              <label for=\"fullname\">Full name</label>\n              <input type=\"text\" name=\"fullName\" id='fullName' placeholder=\"full name\" required>\n              <input type=\"submit\" value=\"Register\">\n          </form>";
         if (!rootElement)
             throw new Error("No root element");
         rootElement.innerHTML = html;
@@ -85,7 +85,7 @@ function handleRegisterhours(ev) {
 }
 function renderCalculateDailyHours(rootElement) {
     try {
-        var html = "\n          <form onsubmit=\"handleRegisterhours(event)\">\n          <h2>You worked " + dailyhours + "</h2>\n          \n          <input type=\"submit\" value=\"Calculate\">\n      </form>";
+        var html = "\n      <form onsubmit=\"handleRegisterhours(event)\">\n      <label for=\"enterance\">enterance</label>\n      <input type=\"time\" name=\"enterance\" id=\"'enterance\" required>\n      <label for=\"exit\">exit</label>\n      <input type=\"time\" name=\"exit\" id=\"exit\" required>\n      <input type=\"submit\" value=\"Calculate\">\n  </form>";
         if (!rootElement)
             throw new Error("No root element");
         rootElement.innerHTML = html;

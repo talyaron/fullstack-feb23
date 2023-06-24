@@ -21,11 +21,11 @@ class HoursDaily{
     }
     calculateDailyHoures(): number| undefined{
         try {
-            const enterHour = this.enterance
-            const exitHour = this.exit
-            if (!enterHour || !exitHour)
+            const enterHour:Date = this.enterance
+            const exitHoure:Date = this.exit
+            if (!enterHour || !exitHoure)
         throw new Error("Missing enterance or exit");
-        const dailyhours = exitHour - enterHour;
+        const dailyhours = exitHoure.getTime() - enterHour.getTime() / 360000;
         return dailyhours;
         } catch (error) {
             console.error(error);
@@ -48,13 +48,9 @@ class WorkerHoursDaily {
 function renderRegisterWorker(rootElement: HTMLElement | null) {
     try {
       const html = `
-          <form onsubmit="handleRegisterUser(event)">
+          <form onsubmit="handleRegisterWorker(event)">
               <label for="fullname">Full name</label>
               <input type="text" name="fullName" id='fullName' placeholder="full name" required>
-              <label for="enterance">enterance</label>
-              <input type="time" name="enterance" id="'enterance" placeholder="last name" required>
-              <label for="exit">exit</label>
-              <input type="time" name="exit" id="exit" required>
               <input type="submit" value="Register">
           </form>`;
   
@@ -76,7 +72,7 @@ function handleRegisterWorker(ev: any) {
   
       //add to model
       worKers.push(worker);
-      
+     
       
   
       
@@ -108,11 +104,13 @@ function handleRegisterWorker(ev: any) {
   function renderCalculateDailyHours(rootElement: HTMLElement | null) {
     try {
       const html = `
-          <form onsubmit="handleRegisterhours(event)">
-          <h2>You worked ${dailyhours}</h2>
-          
-          <input type="submit" value="Calculate">
-      </form>`;
+      <form onsubmit="handleRegisterhours(event)">
+      <label for="enterance">enterance</label>
+      <input type="time" name="enterance" id="'enterance" required>
+      <label for="exit">exit</label>
+      <input type="time" name="exit" id="exit" required>
+      <input type="submit" value="Calculate">
+  </form>`;
   
       if (!rootElement) throw new Error("No root element");
   
