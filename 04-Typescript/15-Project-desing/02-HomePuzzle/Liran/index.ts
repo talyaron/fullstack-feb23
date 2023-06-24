@@ -501,6 +501,7 @@ function handleCheckInOut(ev: any) {
             renderEmployeeList(document.querySelector("#employeesList"), true);
             renderAdmin(document.querySelector("#administrator"), true)
             renderTable(document.querySelector("#table"), null, null, null, null, true);
+            renderSearch(document.querySelector("#update"), null,null, NaN, null, true)
 
         }
         else if (action === "CheckInOut") {
@@ -511,6 +512,7 @@ function handleCheckInOut(ev: any) {
             renderEmployeeList(document.querySelector("#employeesList"), false);
             renderAdmin(document.querySelector("#administrator"), true)
             renderTable(document.querySelector("#table"), null, null, null, null, true);
+            renderSearch(document.querySelector("#update"), null,null, NaN, null, true)
 
         }
         else {
@@ -518,6 +520,8 @@ function handleCheckInOut(ev: any) {
             renderRegisterEmployee(document.querySelector("#register"), true);
             renderEmployeeList(document.querySelector("#employeesList"), true);
             renderAdmin(document.querySelector("#administrator"), false)
+            renderTable(document.querySelector("#table"), null, null, null, null, true);
+
         }
     } catch (error) {
         console.error(error);

@@ -12,12 +12,12 @@
   display: flex;
   flex-direction: column;
   width: 75%;
-  background-color: black;
+  background-color: wheat;
   justify-content: center;
 }
 .wrapper #printTable table, .wrapper #printTable th, .wrapper #printTable td {
-  border: 1px solid white;
-  color: white;
+  border: 1px solid black;
+  color: black;
   text-align: center;
   margin: auto;
 }
@@ -26,7 +26,7 @@
   justify-content: space-around;
 }
 .wrapper #printTable h2, .wrapper #printTable h4 {
-  color: white;
+  color: black;
 }
 .wrapper #fields {
   height: fit-content;
