@@ -260,17 +260,17 @@ function renderCheckInOut(rootElement) {
 /** general function **/
 function calculateMHours(worker, month) {
     var sumHours = 0;
-    debugger;
     hoursDB.forEach(function (elem) {
         if (worker.id === elem.employee.id) {
             var workDate = elem.day.split('.');
             var workMonth = workDate[1];
             if (elem.start !== null && elem.end !== null && month.toString() == workMonth) {
+                debugger;
                 var sTime = elem.start.split(':');
                 var eTime = elem.end.split(':');
                 var hDiff = Math.abs(Number(eTime[0]) - Number(sTime[0]));
                 var mDiff = Math.abs(Number(eTime[1]) - Number(sTime[1]));
-                sumHours += (Math.floor(hDiff * 60) + Math.floor((60 % hDiff)) + mDiff);
+                sumHours += (Math.floor(hDiff * 60) + Math.floor((hDiff % 6)) + mDiff);
             }
         }
     });
@@ -284,8 +284,10 @@ function handleRegisterEmployee(ev) {
         var lastName_1 = ev.target.lastName.value.toUpperCase();
         if (employees.length > 0) {
             employees.forEach(function (employee) {
-                if (firstName_1 == employee.firstName && lastName_1 == employee.lastName)
+                if (firstName_1 == employee.firstName && lastName_1 == employee.lastName) {
+                    alert("Name already exist in the system");
                     throw new Error("Name already exist in the system");
+                }
             });
         }
         var employee = new Employee(firstName_1, lastName_1);

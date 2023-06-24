@@ -349,17 +349,17 @@ function renderCheckInOut(rootElement: HTMLElement | null) {
 /** general function **/
 function calculateMHours(worker: Employee, month:Number ) {
     let sumHours = 0;
-    debugger;
     hoursDB.forEach(elem => {
         if (worker.id === elem.employee.id) {
             const workDate = elem.day.split('.')
             const workMonth = workDate[1];
             if (elem.start !== null && elem.end !== null && month.toString() == workMonth) {
+                debugger;
                 const sTime = elem.start.split(':');
                 const eTime = elem.end.split(':');
                 const hDiff = Math.abs(Number(eTime[0]) - Number(sTime[0]));
                 const mDiff = Math.abs(Number(eTime[1]) - Number(sTime[1]));
-                sumHours += (Math.floor(hDiff*60 ) + Math.floor((60 % hDiff)) + mDiff);
+                sumHours += (Math.floor(hDiff*60 ) + Math.floor((hDiff % 6)) + mDiff);
             }
         }
     })
@@ -374,7 +374,11 @@ function handleRegisterEmployee(ev: any) {
         const lastName: string = ev.target.lastName.value.toUpperCase();
         if (employees.length > 0) {
             employees.forEach(employee => {
-                if (firstName == employee.firstName && lastName == employee.lastName) throw new Error("Name already exist in the system")
+                if (firstName == employee.firstName && lastName == employee.lastName)
+                {
+                    alert("Name already exist in the system")
+                    throw new Error("Name already exist in the system")
+                } 
             })
         }
         const employee = new Employee(firstName, lastName);

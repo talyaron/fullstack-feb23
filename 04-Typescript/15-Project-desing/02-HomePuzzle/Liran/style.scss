@@ -1,9 +1,19 @@
+body{
+    background-color: wheat;
+    text-align: center;
+}
 .wrapper {
     display: flex;
     width: 99vw;
-    background-color: wheat;
     justify-content: center;
-    min-height:97vh ;
+    min-height:80vh ;
+
+    input:hover, tr:hover{
+        font-weight: bold;
+        background-color: rgb(92, 230, 230);
+        cursor: pointer;
+    }
+
     h2,h4,h3{
         text-align: center;
     }
@@ -33,6 +43,14 @@
     #fields{
         height: fit-content;
         width: 25%;
+
+        input{
+            border-radius: 10px;
+            border: 1px solid gray;
+        }
+
+        
+
         form {
             display: flex;
             flex-direction: column;

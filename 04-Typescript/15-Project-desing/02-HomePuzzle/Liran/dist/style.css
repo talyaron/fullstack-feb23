@@ -1,9 +1,18 @@
+body {
+  background-color: wheat;
+  text-align: center;
+}
+
 .wrapper {
   display: flex;
   width: 99vw;
-  background-color: wheat;
   justify-content: center;
-  min-height: 97vh;
+  min-height: 80vh;
+}
+.wrapper input:hover, .wrapper tr:hover {
+  font-weight: bold;
+  background-color: #5ce6e6;
+  cursor: pointer;
 }
 .wrapper h2, .wrapper h4, .wrapper h3 {
   text-align: center;
@@ -31,6 +40,10 @@
 .wrapper #fields {
   height: fit-content;
   width: 25%;
+}
+.wrapper #fields input {
+  border-radius: 10px;
+  border: 1px solid gray;
 }
 .wrapper #fields form {
   display: flex;
