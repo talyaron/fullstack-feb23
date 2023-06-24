@@ -6,54 +6,51 @@ const uid = function () {
 
 class WorKer {
     id: string;
-    constructor(public fullName: string, public enterance: any, public exit: any) {
+    constructor(public fullName: string) {
         this.id = uid();
     }
+}
+const worKers: WorKer[] = [];
 
+
+class HoursDaily{
+    id: string;
+    constructor(public enterance: any, public exit: any) {
+        this.id = uid();
+
+    }
     calculateDailyHoures(): number| undefined{
         try {
-            const enterHour = this.enterance
-            const exitHour = this.exit
-            if (!enterHour || !exitHour)
+            const enterHour:Date = this.enterance
+            const exitHoure:Date = this.exit
+            if (!enterHour || !exitHoure)
         throw new Error("Missing enterance or exit");
-        const dailyhr = exitHour - enterHour;
-        return dailyhr;
+        const dailyhours = exitHoure.getTime() - enterHour.getTime() / 360000;
+        return dailyhours;
         } catch (error) {
             console.error(error);
             return undefined;  
         }
     }
-
-//     calculatemonthlyHoures(): number| undefined{
-//         try {
-//             let totalm:number = 0;
-//             totalm += this.dayTotal
-            
-//             if (!totalm)
-//         throw new Error("Missing hours");
-//         totalm = this.monthTotal
-//         return totalm
-        
-//         } catch (error) {
-//             console.error(error);
-//             return undefined;  
-//         }
-//     }
-// }
 }
 
-const worKers: WorKer[] = [];
+const hoursD: HoursDaily[] = [];
+
+//     join classes
+
+class WorkerHoursDaily {
+    constructor(public worker: WorKer, public hoursD: HoursDaily) {}
+}
+
+
+
 
 function renderRegisterWorker(rootElement: HTMLElement | null) {
     try {
       const html = `
-          <form onsubmit="handleRegisterUser(event)">
+          <form onsubmit="handleRegisterWorker(event)">
               <label for="fullname">Full name</label>
               <input type="text" name="fullName" id='fullName' placeholder="full name" required>
-              <label for="enter">enter</label>
-              <input type="time" name="enter" id="'enter" placeholder="last name" required>
-              <label for="exit">exit</label>
-              <input type="time" name="exit" id="exit" required>
               <input type="submit" value="Register">
           </form>`;
   
@@ -70,23 +67,60 @@ function handleRegisterWorker(ev: any) {
     try {
       ev.preventDefault();
       const fullName = ev.target.fullName.value;
-      const enter = ev.target.enter.value;
-      const exit = ev.target.exit.value;
   
-      const worker = new WorKer(fullName, enter, exit);
+      const worker = new WorKer(fullName);
   
       //add to model
       worKers.push(worker);
-  
-      //control->view
+     
       
   
-      console.log(fullName, enter, exit);
+      
     } catch (error) {
       console.error(error);
     }
   }
 
-  function
+  function handleRegisterhours(ev: any) {
+    try {
+      ev.preventDefault();
+      const enterance = ev.target.enterance.value;
+      const exit = ev.target.exit.value;
+      if (!enterance || !exit)
+      throw new Error("Missing Hours");
+  
+      const hoursDay = new HoursDaily(enterance, exit);
+      hoursD.push(hoursDay);
+      const dailyhours = hoursDay.calculateDailyHoures();
+      const rootDailyhours: any = document.querySelector("#dailyhours");
+    if (rootDailyhours) rootDailyhours.innerHTML = dailyhours;
+    
+      
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
+  function renderCalculateDailyHours(rootElement: HTMLElement | null) {
+    try {
+      const html = `
+      <form onsubmit="handleRegisterhours(event)">
+      <label for="enterance">enterance</label>
+      <input type="time" name="enterance" id="'enterance" required>
+      <label for="exit">exit</label>
+      <input type="time" name="exit" id="exit" required>
+      <input type="submit" value="Calculate">
+  </form>`;
+  
+      if (!rootElement) throw new Error("No root element");
+  
+      rootElement.innerHTML = html;
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  
+
+ 
   renderRegisterWorker(document.querySelector("#register"));
+  renderCalculateDailyHours(document.querySelector("#calculate"));
