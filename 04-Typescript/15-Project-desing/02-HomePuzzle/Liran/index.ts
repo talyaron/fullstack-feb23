@@ -1,3 +1,4 @@
+const adminPassword = "Admin";
 let workerId = 0;
 class Employee {
     id: number;
@@ -501,11 +502,16 @@ function handleCheckInOut(ev: any) {
         console.dir(ev);
         const action = ev.target.id;
         if (action === "NewEmployee") {
-            renderRegisterEmployee(document.querySelector("#register"), false);
-            renderEmployeeList(document.querySelector("#employeesList"), true);
-            renderAdmin(document.querySelector("#administrator"), true)
-            renderTable(document.querySelector("#table"), null, null, null, null, true);
-            renderSearch(document.querySelector("#update"), null,null, NaN, null, true)
+            const password = prompt("Administrator only","Please enter administrator password:")
+            if(adminPassword == password){
+                renderRegisterEmployee(document.querySelector("#register"), false);
+                renderEmployeeList(document.querySelector("#employeesList"), true);
+                renderAdmin(document.querySelector("#administrator"), true)
+                renderTable(document.querySelector("#table"), null, null, null, null, true);
+                renderSearch(document.querySelector("#update"), null,null, NaN, null, true)
+            }
+            else
+            alert("Wrong Password");
 
         }
         else if (action === "CheckInOut") {
@@ -520,11 +526,15 @@ function handleCheckInOut(ev: any) {
 
         }
         else {
-
-            renderRegisterEmployee(document.querySelector("#register"), true);
-            renderEmployeeList(document.querySelector("#employeesList"), true);
-            renderAdmin(document.querySelector("#administrator"), false)
-            renderTable(document.querySelector("#table"), null, null, null, null, true);
+            const password = prompt("Administrator only","Please enter administrator password:")
+            if(adminPassword == password){
+                renderRegisterEmployee(document.querySelector("#register"), true);
+                renderEmployeeList(document.querySelector("#employeesList"), true);
+                renderAdmin(document.querySelector("#administrator"), false)
+                renderTable(document.querySelector("#table"), null, null, null, null, true);
+            }
+            else
+            alert("Wrong Password");
 
         }
     } catch (error) {

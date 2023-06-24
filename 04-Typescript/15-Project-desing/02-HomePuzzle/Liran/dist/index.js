@@ -1,3 +1,4 @@
+var adminPassword = "Admin";
 var workerId = 0;
 var Employee = /** @class */ (function () {
     function Employee(firstName, lastName) {
@@ -401,11 +402,16 @@ function handleCheckInOut(ev) {
         console.dir(ev);
         var action = ev.target.id;
         if (action === "NewEmployee") {
-            renderRegisterEmployee(document.querySelector("#register"), false);
-            renderEmployeeList(document.querySelector("#employeesList"), true);
-            renderAdmin(document.querySelector("#administrator"), true);
-            renderTable(document.querySelector("#table"), null, null, null, null, true);
-            renderSearch(document.querySelector("#update"), null, null, NaN, null, true);
+            var password = prompt("Administrator only", "Please enter administrator password:");
+            if (adminPassword == password) {
+                renderRegisterEmployee(document.querySelector("#register"), false);
+                renderEmployeeList(document.querySelector("#employeesList"), true);
+                renderAdmin(document.querySelector("#administrator"), true);
+                renderTable(document.querySelector("#table"), null, null, null, null, true);
+                renderSearch(document.querySelector("#update"), null, null, NaN, null, true);
+            }
+            else
+                alert("Wrong Password");
         }
         else if (action === "CheckInOut") {
             {
@@ -419,10 +425,15 @@ function handleCheckInOut(ev) {
             renderSearch(document.querySelector("#update"), null, null, NaN, null, true);
         }
         else {
-            renderRegisterEmployee(document.querySelector("#register"), true);
-            renderEmployeeList(document.querySelector("#employeesList"), true);
-            renderAdmin(document.querySelector("#administrator"), false);
-            renderTable(document.querySelector("#table"), null, null, null, null, true);
+            var password = prompt("Administrator only", "Please enter administrator password:");
+            if (adminPassword == password) {
+                renderRegisterEmployee(document.querySelector("#register"), true);
+                renderEmployeeList(document.querySelector("#employeesList"), true);
+                renderAdmin(document.querySelector("#administrator"), false);
+                renderTable(document.querySelector("#table"), null, null, null, null, true);
+            }
+            else
+                alert("Wrong Password");
         }
     }
     catch (error) {
