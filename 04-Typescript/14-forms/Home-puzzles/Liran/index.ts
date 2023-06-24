@@ -27,7 +27,6 @@ function handleSubmit(ev: any) {
             const user: User | undefined = userArray.find(element => element.userName === userNameToUpdate);
             if (user === null || user == undefined) throw new Error("Error");
             const userId = user.userID;
-            const toDelete = ev.target.delete.value;
             const userProfile = document.querySelector(`#card${userId}`) as HTMLDivElement;
             if (userProfile === null) throw new Error("Error");
 
@@ -53,9 +52,7 @@ function handleSubmit(ev: any) {
                 renderCard(user, true, userProfile);
             }
             else {
-                //const deleteCard = document.getElementById(`#card${userId}`);
-                //if (deleteCard === null) throw new Error("Error in delete card");
-                userProfile.innerHTML = "";
+                 userProfile.innerHTML = "";
                 const deleteUser = userArray.findIndex(element => element.userID === userNameToUpdate);
                 userArray.splice(deleteUser, 1);
             }
@@ -81,12 +78,12 @@ function backgroundC(str: string, id: string) {
 
 function renderCard(user: User, update: boolean, userCard: HTMLDivElement | null) {
     try {
-        let cards:HTMLDivElement | null;
+        let cards: HTMLDivElement | null;
         if (update) {
             cards = userCard;
         }
         else {
-        
+
             cards = document.querySelector("#cards");
         }
         if (!cards) throw new Error("Missing information");
@@ -118,47 +115,3 @@ function checkDelete(ev: any) {
 
 
 }
-
-// function handleUpdate(ev: any) {
-//     try {
-//
-//         ev.preventDefault();
-//         console.dir(ev);
-//         const userNameToUpdate = ev.target.usernameToUpdate.value;
-//         const user: User | undefined = userArray.find(element => element.userName === userNameToUpdate);
-//         if (user === null || user == undefined) throw new Error("Error");
-//         const userId = user.userID;
-//         const toDelete = ev.target.delete.value;
-//         const userProfile = document.querySelector(`#${userId}`) as HTMLDivElement;
-//         if (toDelete === "false") {
-//             const newUsername = ev.target.newUsername.value;
-//             if (newUsername !== null && newUsername !== undefined) {
-//                 user.userName = newUsername;
-//             }
-//             const picture = ev.target.newUserPic.value;
-//             if (picture !== null && picture !== undefined) {
-//                 user.picture = picture;
-//             }
-//             const newAge: number = ev.target.newAge.valueAsNumber;
-//             if (newAge !== null && newAge !== undefined) {
-//                 user.age = new Date().getFullYear() - newAge;
-//             }
-//             const vColor = ev.target.favorite.value;
-//             if (vColor !== null && vColor !== undefined) {
-//                 user.favorite = vColor;
-//             }
-//             //renderCard(user);
-//         }
-//         else {
-//             if (userProfile === null) throw new Error("Error");
-//             const deleteCard = document.getElementById(`#${userId}`);
-//             if(deleteCard === null)throw new Error("Error in delete card");
-//             deleteCard.innerHTML="";
-//             const deleteUser = userArray.findIndex(element => element.userID === userNameToUpdate);
-//             userArray.splice(deleteUser, 1);
-//         }
-
-//     } catch (error) {
-//         console.error(error);
-//     }
-// }
