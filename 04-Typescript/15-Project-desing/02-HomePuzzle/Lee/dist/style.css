@@ -1,0 +1,10 @@
+body {
+  background-color: bisque;
+}
+body table {
+  display: flex;
+  flex-flow: column;
+  max-width: fit-content;
+  gap: 0.3rem;
+  font-weight: bold;
+}
