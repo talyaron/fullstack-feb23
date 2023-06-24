@@ -19,10 +19,10 @@ var TimeClock = /** @class */ (function () {
         this.exitTime = exitTime;
     }
     TimeClock.prototype.calkWorkTime = function () {
+        debugger;
         try {
             if (!this.exitTime || !this.enterTime)
                 throw new Error("missing enter or exit");
-            debugger;
             var millisecondsPerHour = 1000 * 60 * 60; // Number of milliseconds in an hour
             var enterTimestamp = this.enterTime.getTime(); // Get the enter time as a timestamp
             var exitTimestamp = this.exitTime.getTime(); // Get the exit time as a timestamp
@@ -143,7 +143,7 @@ function ShowByDate(event) {
                     // Hours per Day
                     var hoursPerDayCell = document.createElement("td");
                     hoursPerDayCell.textContent = exitTime
-                        ? Math.floor(calkWorkTime()) + " hours"
+                        ? Number(employeeTime.calkWorkTime()).toFixed(4) + " hours"
                         : "-";
                     row.appendChild(hoursPerDayCell);
                     table_1.appendChild(row);

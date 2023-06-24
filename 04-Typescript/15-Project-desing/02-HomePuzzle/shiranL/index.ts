@@ -15,9 +15,10 @@ class TimeClock{
     constructor(public employee:Employee, public status:boolean, public enterTime:Date, public exitTime:Date|null){}
 
     calkWorkTime(){
+      debugger;
         try {
             if (!this.exitTime || !this.enterTime) throw new Error("missing enter or exit");
-debugger;
+
             const millisecondsPerHour = 1000 * 60 * 60; // Number of milliseconds in an hour
             const enterTimestamp = this.enterTime.getTime(); // Get the enter time as a timestamp
             const exitTimestamp = this.exitTime.getTime(); // Get the exit time as a timestamp
@@ -184,7 +185,7 @@ function ShowByDate(event: any) {
             // Hours per Day
             const hoursPerDayCell = document.createElement("td");
             hoursPerDayCell.textContent = exitTime
-              ? `${Math.floor(calkWorkTime())} hours`
+              ? `${Number(employeeTime.calkWorkTime()).toFixed(4)} hours`
               : "-";
             row.appendChild(hoursPerDayCell);
   
