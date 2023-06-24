@@ -8,7 +8,14 @@ body{
     justify-content: center;
     min-height:80vh ;
 
-    input:hover, tr:hover{
+    input[type = submit],input[type = button]{
+        border-radius: 10px;
+        border: 1px solid gray;
+    }
+    input:focus{
+        background-color: rgb(188, 183, 183);
+    }
+    input[type =button]:hover,input[type =submit]:hover{
         font-weight: bold;
         background-color: rgb(92, 230, 230);
         cursor: pointer;
@@ -31,6 +38,11 @@ body{
         margin: auto;
       }
 
+      tr:hover{
+        background-color: beige;
+        cursor:pointer;
+      }
+
       #update{
         display: flex;
         justify-content: space-around;
@@ -43,12 +55,7 @@ body{
     #fields{
         height: fit-content;
         width: 25%;
-
-        input{
-            border-radius: 10px;
-            border: 1px solid gray;
-        }
-
+        
         
 
         form {
