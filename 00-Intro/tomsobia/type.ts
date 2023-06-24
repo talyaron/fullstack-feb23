@@ -1,10 +1,30 @@
-const tomid= prompt {"give me a number"}
-const tomname;
-switch (tomid) {
-    case tomname:
-        
-        break;
+const num = prompt("give me a number between 1-5");
+const num2= parseInt(num);
+const tom:any;
 
-    default:
-        break;
+switch (num2) {
+  case 1:
+    tom = "hadar";
+    break;
+
+  case 2:
+    tom = "doriel";
+    break;
+
+  case 3:
+    tom = "nave";
+    break;
+
+  case 4:
+    tom = "alisa";
+    break;
+
+  case 5:
+    tom = "shiran";
+    break;
+
+  default:
+    tom= "unknown"
+    break;
 }
+ console.log(tom)
