@@ -23,6 +23,7 @@ var HoursDaily = /** @class */ (function () {
             if (!enterHour || !exitHoure)
                 throw new Error("Missing enterance or exit");
             var dailyhours = exitHoure.getTime() - enterHour.getTime() / 360000;
+            console.log(dailyhours);
             return dailyhours;
         }
         catch (error) {
