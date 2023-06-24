@@ -5,22 +5,9 @@
 //   return sortedArr;
 // }
 // console.log(sortarr()); 
-var arr = [1, 4, 8, 2, 9, 22];
-function sortarr() {
-    var sortedArr = arr.slice(); // העתקה של המערך
-    for (var i = 0; i < sortedArr.length - 1; i++) {
-        for (var j = 0; j < sortedArr.length - 1 - i; j++) {
-            if (sortedArr[j] > sortedArr[j + 1]) {
-                // החלפת הערכים
-                var temp = sortedArr[j];
-                sortedArr[j] = sortedArr[j + 1];
-                sortedArr[j + 1] = temp;
-            }
-        }
-    }
-    return sortedArr;
-}
-console.log(sortarr());
+var numbers = [5, 2, 9, 1, 7];
+numbers.sort(function (c, a) { return c - a; });
+console.log(numbers);
 // // 1. Exercise 1: Create an array called "colors" with three different color names. Print the second element of the array.
 // // 2. Create an array called "numbers" with five
 // //    random numbers. Add two more numbers to the end of the array.
