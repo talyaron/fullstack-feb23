@@ -1,11 +1,22 @@
 body{background-color: bisque;
-table {
-    display: flex;
-    flex-flow: column;
-    max-width: fit-content;
-    gap: .3rem;
-    font-weight: bold;
+
+    font-size: 20px;
+
+    table {
+        
+        margin: 20px;
+        
+
+  th {
+    border: 2px solid black;
+    padding: 10px;
+    background-color: rgb(225, 189, 135);
     
+    
+  }
+
+  
+  
 }
 
 }
