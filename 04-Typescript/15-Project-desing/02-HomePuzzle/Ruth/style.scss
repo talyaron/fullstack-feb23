@@ -1,3 +1,69 @@
-table,td, tr{
-    border: 1px solid black;
+@import url("https://fonts.googleapis.com/css2?family=Butterfly+Kids&family=IBM+Plex+Sans+Hebrew&family=Noto+Serif:ital,wght@0,100;0,300;0,400;0,500;1,300&family=Open+Sans:wght@300;400&family=Oswald&family=Rubik:ital,wght@0,400;0,500;1,300;1,400&family=Ysabeau+Infant:ital,wght@0,300;1,300&display=swap");
+
+* {
+  padding: 0%;
+  margin: 0%;
+  font-family: "Ysabeau Infant", sans-serif;
 }
+
+body {
+  width: 100vw;
+  height: 100vh;
+  background: url(https://cdn.pixabay.com/photo/2016/03/26/13/09/workspace-1280538_1280.jpg)
+    no-repeat;
+  overflow-x: hidden;
+  display: flex;
+  //   justify-content:center;
+  margin-left: 15%;
+  .wrapper {
+    margin-top: 4%;
+    margin-right: 4%;
+
+    label {
+      color: white;
+      font-size: large;
+    }
+    #userForm {
+      display: block;
+      padding: 10px;
+      // width: 200px;
+      select {
+        width: 200px;
+      }
+    }
+
+    #addTimeForm {
+      display: flex;
+      flex-direction: column;
+      input {
+        height: 25px;
+      }
+      button {
+        margin-top: 10px;
+        padding: 5px;
+        background-color: rgb(172, 209, 168);
+      }
+    }
+
+    table {
+      margin-top: 15px;
+      font-size: small;
+    }
+    table,
+    td,
+    tr,
+    th {
+      border: 1px solid rgb(255, 255, 255);
+      border-collapse: collapse;
+      padding: 4px;
+      color: rgb(210, 208, 208);
+    }
+  }
+
+  .tableBtn{
+    display: flex;
+    justify-content:space-between;
+  }
+
+}
+

@@ -20,6 +20,9 @@ var Time = /** @class */ (function () {
         this.hours = hours < 24 && hours > 0 ? hours : 0;
         this.minutes = minutes < 60 && minutes > 0 ? minutes : 0;
     }
+    Time.prototype.getTimeToString = function () {
+        return this.hours + ":" + this.minutes;
+    };
     return Time;
 }());
 //----------------TimeClock--------------
@@ -39,6 +42,10 @@ var TimeClock = /** @class */ (function () {
     TimeClock.prototype.getExitTime = function () {
         return this.exitTime.hours + ":" + this.exitTime.minutes;
     };
+    TimeClock.prototype.getTotal = function () {
+        var sumInMin = this.exitTime.hours * 60 + this.exitTime.minutes - (this.entranceTime.hours * 60 + this.entranceTime.minutes);
+        return new Time((Math.floor(sumInMin / 60)), sumInMin % 60).getTimeToString();
+    };
     return TimeClock;
 }());
 var emptyTimeClock = [];
@@ -56,6 +63,9 @@ var EmployeeHours = /** @class */ (function () {
     EmployeeHours.prototype.addingWorkingHours = function (workTime) {
         this.hoursWork.push(workTime);
     };
+    EmployeeHours.prototype.addingArrayWorkingHours = function (workTime) {
+        this.hoursWork = this.hoursWork.concat(workTime);
+    };
     EmployeeHours.prototype.editEntranceTimeByDate = function (dateToEdit, newEntranceTime) {
         this.hoursWork.find(function (day) {
             day.date == dateToEdit;
@@ -65,16 +75,15 @@ var EmployeeHours = /** @class */ (function () {
         var sumImMin = 0;
         this.hoursWork.forEach(function (timeClock) {
             sumImMin +=
-                timeClock.exitTime.hours * 60 +
-                    timeClock.exitTime.minutes -
-                    (timeClock.entranceTime.hours * 60 + timeClock.entranceTime.minutes);
+                timeClock.exitTime.hours * 60 + timeClock.exitTime.minutes - (timeClock.entranceTime.hours * 60 + timeClock.entranceTime.minutes);
         });
-        return new Time(Math.floor(sumImMin / 60), sumImMin % 60);
+        return new Time((Math.floor(sumImMin / 60)), sumImMin % 60).getTimeToString();
     };
     return EmployeeHours;
 }());
 var employeesHours = [];
 employees.forEach(function (employee) { return employeesHours.push(new EmployeeHours(employee, emptyTimeClock)); });
+employeesHours[1].addingArrayWorkingHours(timesClock1);
 //  render select employee
 function renderSelectUser() {
     var userForm = document.querySelector("#userForm");
@@ -87,7 +96,7 @@ function renderSelectUser() {
 //render Time Input in form---
 function renderTimeInput() {
     var addTimeForm = document.querySelector("#addTimeForm");
-    addTimeForm.innerHTML = "\n            <label for=\"date\">date:</label>\n            <input id=\"date\" type=\"date\" required>\n            <label for=\"entranceTime\">entrance:</label>\n    <input id=\"entranceTime\" type=\"time\" required>\n    <label for=\"exitTime\">exit:</label>\n    <input id=\"exitTime\" type=\"time\" required>\n    <button type=\"submit\">ADD</button>\n    ";
+    addTimeForm.innerHTML = "\n            <label for=\"date\">date:</label>\n            <input id=\"date\" type=\"date\" required>\n            <label for=\"entranceTime\">entrance:</label>\n            <input id=\"entranceTime\" type=\"time\" required>\n            <label for=\"exitTime\">exit:</label>\n            <input id=\"exitTime\" type=\"time\" required>\n            <button type=\"submit\">ADD</button>\n            ";
 }
 //onclick on add button this function called. pay attention, it 2 function callback init
 function addTimeToEmployee(event) {
@@ -110,22 +119,20 @@ function handleTime(event) {
     var entranceTime = document.querySelector("#entranceTime").value;
     var _a = entranceTime.split(":"), entranceHour = _a[0], entranceMin = _a[1];
     var exitTime = document.querySelector("#exitTime").value;
-    var _b = entranceTime.split(":"), exitHour = _b[0], exitMin = _b[1];
+    var _b = exitTime.split(":"), exitHour = _b[0], exitMin = _b[1];
     var newTime = new TimeClock(new Date(document.querySelector("#date").value), new Time(parseInt(entranceHour), parseInt(entranceMin)), new Time(parseInt(exitHour), parseInt(exitMin)));
     return newTime;
 }
 function getEmployeeHours() {
     var employeeId = document.querySelector("#selectUser").value;
     var chosenEmployeeWork = employeesHours.find(function (empl) { return empl.employee.ID == employeeId; });
-    console.log(chosenEmployeeWork);
     var table = document.querySelector("#tableUser");
-    table.innerHTML = "\n    <table>\n    \n        " + chosenEmployeeWork.hoursWork.map(function (day) { return "<tr><td>" + chosenEmployeeWork.employee.firstName + "</td><td>" + day.getDate() + "</td> <td>" + day.getEntranceTime() + "</td><td>" + day.getExitTime() + "</td></tr>"; }).join("") + "\n    \n    </table> ";
+    table.innerHTML = "\n    <table>\n    <tr> <th>User Name</th> <th>Date</th> <th>Entrance</th> <th>Leaving</th> <th>Total</th></tr>\n       \n        " + chosenEmployeeWork.hoursWork.map(function (day) { return "<tr><td>" + chosenEmployeeWork.employee.firstName + " " + chosenEmployeeWork.employee.lastName + "</td><td>" + day.getDate() + "</td> <td>" + day.getEntranceTime() + "</td><td>" + day.getExitTime() + "</td><td>" + day.getTotal() + "</td></tr>"; }).join("") + "\n        <tr><td>ALL Hours</td><td>" + chosenEmployeeWork.getSumWorkingHours() + "</td></tr>\n    </table> ";
 }
 function getAllUserHours() {
-    // const employeeId = (document.querySelector("#selectUser")as HTMLSelectElement).value
     var table = document.querySelector("#tableUser");
-    console.log(employeesHours);
-    table.innerHTML = "\n    <table>\n    </table> ";
+    table.innerHTML =
+        "<table> \n        <tr> <th>User Name</th> <th>Date</th> <th>Entrance</th> <th>Leaving</th> <th>Total</th></tr>\n        " + employeesHours.map(function (empl) { return empl.hoursWork.map(function (day) { return "<tr><td>" + empl.employee.firstName + " " + empl.employee.lastName + "</td><td>" + day.getDate() + "</td><td>" + day.getEntranceTime() + "</td><td>" + day.getExitTime() + "</td><td>" + day.getTotal() + "</td></tr>"; }).join(""); }).join("") + "\n        " + employeesHours.map(function (empl) { return "<tr><td>" + empl.employee.firstName + " " + empl.employee.lastName + " Hours</td><td>" + empl.getSumWorkingHours() + "</td></tr>"; }) + "\n        </table>";
 }
 //create uniq id by Date, from google...
 function createID() {

@@ -1,3 +1,59 @@
-table, td, tr {
-  border: 1px solid black;
+@import url("https://fonts.googleapis.com/css2?family=Butterfly+Kids&family=IBM+Plex+Sans+Hebrew&family=Noto+Serif:ital,wght@0,100;0,300;0,400;0,500;1,300&family=Open+Sans:wght@300;400&family=Oswald&family=Rubik:ital,wght@0,400;0,500;1,300;1,400&family=Ysabeau+Infant:ital,wght@0,300;1,300&display=swap");
+* {
+  padding: 0%;
+  margin: 0%;
+  font-family: "Ysabeau Infant", sans-serif;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  background: url(https://cdn.pixabay.com/photo/2016/03/26/13/09/workspace-1280538_1280.jpg) no-repeat;
+  overflow-x: hidden;
+  display: flex;
+  margin-left: 15%;
+}
+body .wrapper {
+  margin-top: 4%;
+  margin-right: 4%;
+}
+body .wrapper label {
+  color: white;
+  font-size: large;
+}
+body .wrapper #userForm {
+  display: block;
+  padding: 10px;
+}
+body .wrapper #userForm select {
+  width: 200px;
+}
+body .wrapper #addTimeForm {
+  display: flex;
+  flex-direction: column;
+}
+body .wrapper #addTimeForm input {
+  height: 25px;
+}
+body .wrapper #addTimeForm button {
+  margin-top: 10px;
+  padding: 5px;
+  background-color: #acd1a8;
+}
+body .wrapper table {
+  margin-top: 15px;
+  font-size: small;
+}
+body .wrapper table,
+body .wrapper td,
+body .wrapper tr,
+body .wrapper th {
+  border: 1px solid white;
+  border-collapse: collapse;
+  padding: 4px;
+  color: #d2d0d0;
+}
+body .tableBtn {
+  display: flex;
+  justify-content: space-between;
 }
