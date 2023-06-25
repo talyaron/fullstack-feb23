@@ -313,7 +313,7 @@ function ShowByID(event: any) {
             // Hours per Day
             const hoursPerDayCell = document.createElement("td");
             hoursPerDayCell.textContent = exitTime
-              ? `${Math.floor(employeeTime.calkWorkTime())} hours`
+              ? `${Number(employeeTime.calkWorkTime()).toFixed(4)} hours`
               : "-";
             row.appendChild(hoursPerDayCell);
           

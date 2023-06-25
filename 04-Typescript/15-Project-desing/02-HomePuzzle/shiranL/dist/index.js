@@ -247,7 +247,7 @@ function ShowByID(event) {
                 // Hours per Day
                 var hoursPerDayCell = document.createElement("td");
                 hoursPerDayCell.textContent = exitTime
-                    ? Math.floor(employeeTime.calkWorkTime()) + " hours"
+                    ? Number(employeeTime.calkWorkTime()).toFixed(4) + " hours"
                     : "-";
                 row.appendChild(hoursPerDayCell);
                 table_2.appendChild(row);
