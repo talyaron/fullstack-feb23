@@ -20,7 +20,7 @@ class person {
 
     }
     ageofperson(){
-        return (2023- this.yearOfBirth);
+        return (new Date().getFullYear()- this.yearOfBirth);
     }
 }
 const hadar = new person("hadar", 2001, "female", "Shoham", "painting");

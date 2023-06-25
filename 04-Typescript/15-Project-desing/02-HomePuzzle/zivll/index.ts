@@ -50,62 +50,61 @@ const logsById: NewLog[] = [];
 const user: User[] = [];
 
 function hundleEmployeeSelected(ev: any) {
-  const employeeId = ev.target.parentElement.children[2].value;
-  debugger;
+  console.dir(ev);
+  const employeeId = ev.target.form[0].value;
+  // const date = ev.target.value;
   logsById.forEach((employee) => {
     if (employee.userId === employeeId)
-      new User(
-        employee.userId,
-        employee.date,
-        employee.signIn,
-        employee.signOut
+      user.push(
+        new User(
+          employee.userId,
+          employee.date,
+          employee.signIn,
+          employee.signOut
+        )
       );
   });
-  console.dir(user);
+  debugger;
 
-  const html = `<table>
-  <thead>
+  user.forEach((workday) => {
+    if (workday.signIn === undefined) {
+      delete workday.signIn;
+    }
+  });
+  user.forEach((workday) => {
+    if (workday.signOut === undefined) {
+      delete workday.signOut;
+    }
+  });
+  let html = `<thead>
     <tr>
-      <th>ראשון</th>
-      <th>שני</th>
-      <th>שלישי</th>
-      <th>רביעי</th>
-      <th>חמישי</th>
+      <th>תאריך</th>
+      <th>שעת כניסה</th>
+      <th>שעת יציאה</th>
     </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-  </tbody>
-</table>
-`;
+  </thead>`;
+
+  user.forEach((workday) => {
+    html += `<tr>
+  <td>תאריך: ${workday.date}</td>
+  <td>שעת כניסה: ${workday.signIn}</td>
+  <td>שעת יציאה: ${workday.signOut}</td>
+</tr>`;
+  });
+
   const rootTable = document.querySelector(`#employeeTimeClockTable`);
   if (!rootTable) throw new Error(`table div is missing`);
-  rootTable.innerHTML = html;
+  rootTable.innerHTML = `<table>${html}</table>`;
 }
 function renderEmployees(rootElement: HTMLElement | null) {
-  const html = `<label for="username">יש לבחור עובד מהרשימה</label><br>
+  const html = `<form onsubmit="handleSubmit(event)"><label for="username">יש לבחור עובד מהרשימה</label><br>
   <select name="username" id="username" onchange="switchingUser()">${employees.map(
     (employee) => {
       return `<option value="${employee.id}">${employee.userName}</option>`;
     }
-  )}</select><br><label for="date">כאן ניתן לבחור תאריך ספציפי</label><br><input type="date" name="date" id="date" onchange="switchingUser()" /><br><button onclick="hundleEmployeeSelected(event)" value="">הצג נוכחות</button>`;
+  )}</select><br><label for="date">כאן ניתן לבחור תאריך ספציפי</label><br><input type="date" name="date" id="date" onchange="switchingUser()" /><br><input type="submit" value="הצג נוכחות" onclick="hundleEmployeeSelected(event)"> </form>
+  `;
+  // <button onclick="hundleEmployeeSelected(event)" value="">הצג נוכחות</button>
   if (!rootElement) throw new Error(`missing HTML container`);
   rootElement.innerHTML = html;
 }
@@ -120,18 +119,41 @@ function renderLogoutButton(rootElement: HTMLElement | null) {
   rootElement.innerHTML = html;
 }
 function hundleUsersLogin(ev: any) {
+  // console.log(ev);
   const userId: number =
-    ev.target.parentElement.parentElement.children[2].children[2].value;
-  const date = currentDateToDispaly();
+    ev.target.parentElement.parentElement.children[2].children[0].children[2]
+      .value;
+  let date: string | undefined;
+  if (
+    ev.target.parentElement.parentElement.children[2].children[0].children[6]
+      .value === ""
+  ) {
+    date = currentDateToDispaly();
+  } else {
+    date =
+      ev.target.parentElement.parentElement.children[2].children[0].children[6]
+        .value;
+  }
   const signIn = currentTimeToDispaly();
   logsById.push({ userId, date, signIn });
-
   renderLogoutButton(document.querySelector(".new-log"));
+  console.log(date);
 }
 function hundleUsersLogOut(ev: any) {
   const userId: number =
-    ev.target.parentElement.parentElement.children[2].children[2].value;
-  const date = currentDateToDispaly();
+    ev.target.parentElement.parentElement.children[2].children[0].children[2]
+      .value;
+  let date: string | undefined;
+  if (
+    ev.target.parentElement.parentElement.children[2].children[0].children[6]
+      .value === ""
+  ) {
+    date = currentDateToDispaly();
+  } else {
+    date =
+      ev.target.parentElement.parentElement.children[2].children[0].children[6]
+        .value;
+  }
   const signOut = currentTimeToDispaly();
   logsById.push({ userId, date, signOut });
   ev.target.classList.add("clicked");
@@ -159,4 +181,9 @@ function currentDateToDispaly() {
 
 function switchingUser(ev) {
   renderLogInButton(document.querySelector(`.new-log`));
+}
+function handleSubmit(ev) {
+  ev.preventDefault();
+
+  console.dir(ev);
 }

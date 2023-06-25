@@ -18,8 +18,8 @@ function handelSubmitImg(event :any){
     try {
         event.preventDefault();
         
-        const imageUrl = event.target.elements.imageUrl.value;
-        const imageWidthSize = event.target.elements.imageWidthSize.value;
+        const imageUrl = event.target.imageUrl.value;
+        const imageWidthSize = event.target.imageWidthSize.value;
         const data = new User(imageUrl, imageWidthSize);
         console.log(data);
         usersArray.push(data);
@@ -48,7 +48,7 @@ function renderImgs (userArray: User[], element:HTMLElement | null){
 function renderImg(data :User){
     try {
         const backToHtml = 
-            `<img class="image" src="${data.imageUrl}" style="width: ${data.imageWidthSize}vw">`
+            `<img class="wrapper__image" src="${data.imageUrl}" style="width: ${data.imageWidthSize}vw">`
             return backToHtml;
             
     } catch (error) {
