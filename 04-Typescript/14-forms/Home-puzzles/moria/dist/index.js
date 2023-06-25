@@ -40,7 +40,6 @@
 //     console.dir(amount)
 //     console.log(amount)
 // }
-// const image = new Car("Opel", "Coursa", "Blue", 2018);
 function handleSubmit(event) {
     event.preventDefault();
     var imageUrl = event.target.imgIn.value;
@@ -48,7 +47,6 @@ function handleSubmit(event) {
     var amountImage = event.target.amount.valueAsNumber;
     renderImages(imageUrl, imageWidth, amountImage);
 }
-// this function render to ducument recording user's DATA
 function renderImages(imageUrl, imageWidth, amountImage) {
     var imageDiv = document.querySelector("#root");
     if (imageDiv) {
