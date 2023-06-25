@@ -1,9 +1,19 @@
 // # Goal: #
 // Work Time clock.
-// every worker, can set entrance time , and exit time.
+// every workerr, can set entrance time , and exit time.
 
 // ## Levels ##
 // 1) the system can show every workers entrance and exit times, in a table.
+
+// workers.
+class Workerr {
+    id: string;
+    constructor(public name: string, public email: string) {
+        this.id = Date.now().toString(32) + Math.random().toString(16);
+    }
+}
+
+const workers: Workerr[] = [];
 
 // entrance and exit times.
 class Movment {
@@ -12,72 +22,40 @@ class Movment {
         this.id = Date.now().toString(32) + Math.random().toString(16);
     }
 
-    calculatDayliHours(): number | undefined {
-        try {
-            if (!this.entrance || this.entrance) throw new Error("The dittails are missing");
-            const dayliHours = this.exit - this.entrance;
-            return dayliHours;
+    // calculatDayliHours(): number | undefined {
+    //     try {
+    //         if (!this.entrance || this.entrance) throw new Error("The dittails are missing");
+    //         const dayliHours = this.exit - this.entrance;
+    //         return dayliHours;
 
-        } catch (error) {
-            console.error(error);
-            return undefined;
-        }
-    }
+    //     } catch (error) {
+    //         console.error(error);
+    //         return undefined;
+    //     }
+    // }
 }
 
 const movments: Movment[] = [];
 
-// workers.
-class Worker {
-    id: string;
-    constructor(public name: string, public email: string) {
-        this.id = Date.now().toString(32) + Math.random().toString(16);
-    }
-}
-
-const workers: Worker[] = [];
-
 //join classes
-class MovmentWorker {
-    constructor(public worker: Worker, public movment: Movment) { }
+class MovmentWorkerr {
+    constructor(public workerr: Workerr, public movment: Movment) { }
 }
 
-const movmentWorkers: MovmentWorker[] = [];
-
-// view->model controlers
-function handleRegisterWorker(ev: any) {
-    try {
-        ev.preventDefault();
-        const name = ev.target.elements.name.value;
-        const email = ev.target.elements.email.value;
-        // const entrance = ev.target.elements.entrance.value;
-        // const exit = ev.target.elements.exit.value;
-
-        const worker = new Worker(name, email);
-        //add to model
-        workers.push(worker);
-
-        // renderLoggedWorker(worker, document.querySelector("#register"));
+const movmentWorkers: MovmentWorkerr[] = [];
 
 
-        console.log(name, email);
-    } catch (error) {
-        console.error(error)
-    }
-}
 
 // view controlers
 //register user
 
-renderRegisterWorker(document.querySelector("#register"));
-
-function renderRegisterWorker(rootElement: HTMLElement | null) {
+function renderRegisterWorkerr(rootElement: HTMLElement | null) {
     try {
         if (!rootElement) throw new Error("Missing root element");
 
         const html = `
         <div class="register">
-        <form onsubmit="handleRegisterUser(event)">
+        <form onsubmit="handleRegisterWorkerr(event)">
           <input type="text" name="name" id="name" placeholder="name" required>
           <input type="text" name="email" id="email" placeholder="email" required>
           
@@ -97,35 +75,69 @@ function renderRegisterWorker(rootElement: HTMLElement | null) {
     }
 }
 
-function calculatDayliHours(entrance: number, exit: number, dayliHours: number): number | undefined {
-    try {
-        if (!entrance || !exit) throw new Error("The dittails are missing");
-        const dayliHours = this.exit - this.entrance;
-        return dayliHours;
+renderRegisterWorkerr(document.querySelector("#register"));
 
-    } catch (error) {
-        console.error(error);
-        return undefined;
-    }
-}
 
-// function renderDayliHours(rootElement: HTMLElement | null) {
+// function calculatDayliHours(entrance: number, exit: number, dayliHours: number): number | undefined {
 //     try {
-//         if (!rootElement) throw new Error("Missing root element");
+//         if (!entrance || !exit) throw new Error("The dittails are missing");
+//         const dayliHours = this.exit - this.entrance;
+//         return dayliHours;
 
-//         const html = `
-//         <div class="dayliHours">
-//            ${calculatDayliHours.dayliHours}
-//         </div>`;
-
-//         rootElement.innerHTML = html;
-//         // return html;
 //     } catch (error) {
 //         console.error(error);
+//         return undefined;
 //     }
 // }
 
+function renderMovmentWorkerr(
+    workerr: Workerr | any,
+    movment: Movment |any,
+    rootElement: HTMLElement | null
+    ) {
+    try {
+        const html = `
+        <div class="register">
+            <h2>${workerr.name}</h2>
+            <p>${movment.entrance}</p>
+            <p>${movment.exit}</p>
+        </div>`;
+
+        if (!rootElement) throw new Error("no root element");
+
+        rootElement.innerHTML = html;
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+// view->model controlers
+function handleRegisterWorkerr(ev: any) {
+    try {
+        ev.preventDefault();
+        const name = ev.target.elements.name.value;
+        const email = ev.target.elements.email.value;
+
+        const workerr = new Workerr(name, email);
+        //add to model
+        workers.push(workerr);
+
+        const entrance = ev.target.elements.entrance.valueAsNumber;
+        const exit = ev.target.elements.exit.valueAsNumber;
+
+        const movment = new Movment(entrance, exit);
+        //add to model
+        movments.push(movment);
+
+        renderMovmentWorkerr(workerr, movment, document.querySelector("#register"));
+
+        console.log(name, email, entrance, exit);
+    } catch (error) {
+        console.error(error)
+    }
+}
+
 // 2) The system can log different users (use select input).
 //    the system can calculate the user monthly total hours.
-// 3) the user can see all workers times, serach for worker, and show each worker total times.
+// 3) the user can see all workers times, serach for workerr, and show each workerr total times.
 //    the user could edit entrance details.
