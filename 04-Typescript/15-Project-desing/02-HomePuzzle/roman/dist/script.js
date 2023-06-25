@@ -40,6 +40,7 @@ function writeEntrance() {
         employees[index].entries.push({ date: x.date, enter: enter });
         var findDate = selectedUser.entries.find(function (f) { return f.date === x.date; });
         console.log(findDate);
+        renderEmployeesWorkHours();
         // console.log(employees)
     }
     catch (error) {
@@ -54,6 +55,7 @@ function writeExit() {
     var index = employees.findIndex(function (p) { return p.name === selectedUser.name; });
     var dateIndex = employees[index].entries.findIndex(function (p) { return p.date === tmp.toLocaleDateString(); });
     employees[index].entries[dateIndex].exit = exit;
+    renderEmployeesWorkHours();
     // employees[index].entries.exit = exit;
     // console.log(z)
 }
@@ -67,7 +69,7 @@ employees = [
     ])
 ];
 ;
-var selectedUser = employees[0];
+selectedUser = employees[0];
 // const worker1 = new Employee('John')
 // console.log(worker1)
 // employees.push(worker1);

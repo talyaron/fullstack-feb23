@@ -48,9 +48,10 @@ function writeEntrance() {
         var x = new EmployeeEntries(selectedUser.name, tmp.toLocaleDateString(), enter, "");
         // console.log(x)
         var index = employees.findIndex(p => p.name === selectedUser.name);
-        employees[index].entries.push({ date: x.date, enter });
+        employees[index].entries.push({ date: x.date, enter});
         var findDate = selectedUser.entries.find(f => f.date ===x.date)
-        console.log(findDate)
+        console.log(findDate);
+        renderEmployeesWorkHours()
         // console.log(employees)
         
     } catch (error) {
@@ -70,7 +71,9 @@ function writeExit() {
     console.log(employees.find(function (obj) { return obj == selectedUser; }));
     var index = employees.findIndex(p => p.name === selectedUser.name);
     var dateIndex = employees[index].entries.findIndex(p => p.date === tmp.toLocaleDateString())
-    employees[index].entries[dateIndex].exit = exit
+    employees[index].entries[dateIndex].exit = exit;
+    renderEmployeesWorkHours()
+
     // employees[index].entries.exit = exit;
 
 
@@ -87,7 +90,7 @@ employees = [
     }];)
     
 ];
-const selectedUser = employees[0];
+selectedUser = employees[0];
 // const worker1 = new Employee('John')
 // console.log(worker1)
 // employees.push(worker1);
