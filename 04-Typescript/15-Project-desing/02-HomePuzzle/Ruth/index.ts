@@ -95,10 +95,10 @@ function renderSelectUser() {
   userForm.innerHTML = `
     <label for="selectUser">select user:</label>
     <select name="selectUser" id="selectUser" onchange="handleUser(event)" required>
-    ${employees
+    ${employeesHours
       .map(
           (employee) =>
-          `<option value="${employee.ID}">${employee.firstName} ${employee.lastName}</option>`,
+          `<option value="${employee.employee.ID}">${employee.employee.firstName} ${employee.employee.lastName}</option>`,
           )
           .join("")}
           </select><br>
@@ -111,10 +111,16 @@ function renderSelectUser() {
             addTimeForm.innerHTML =`
             <label for="date">date:</label>
             <input id="date" type="date" required>
+            <div class="timesInput">
+            <div class="entranceInputLabel">
             <label for="entranceTime">entrance:</label>
             <input id="entranceTime" type="time" required>
+            </div>
+            <div class="leavingInputLabel">
             <label for="exitTime">exit:</label>
             <input id="exitTime" type="time" required>
+             </div>
+            </div>
             <button type="submit">ADD</button>
             `
 }
@@ -128,15 +134,13 @@ function addTimeToEmployee(event){
 //handle select user--return an employee to submit function
 function handleUser(event: Event) {
     event.preventDefault();
-    
-  const chosenUserId = (document.querySelector("#selectUser") as HTMLSelectElement).value;
-  const chosenEmployee = employees.find(
-    (employee) => employee.ID === chosenUserId,
+    const chosenUserId = (document.querySelector("#selectUser") as HTMLSelectElement).value;
+    const chosenEmployee = employeesHours.find(
+    (employee) => employee.employee.ID === chosenUserId,
   );
 
-  const chosenEmployeeWork = employeesHours.find(empl =>{return  empl.employee === chosenEmployee})
-  if (chosenEmployeeWork) {
-    return chosenEmployeeWork;}
+  if (chosenEmployee) {
+    return chosenEmployee;}
 }
 
 //handle selected Time--return time to submit function
@@ -158,6 +162,9 @@ function handleTime(event){
 
 function getEmployeeHours(){
     const employeeId = (document.querySelector("#selectUser")as HTMLSelectElement).value
+    console.log(
+      employeesHours
+    );
     const chosenEmployeeWork = employeesHours.find(empl =>{return empl.employee.ID == employeeId})
     const table = document.querySelector("#tableUser") as HTMLDivElement
     table.innerHTML =`
@@ -178,6 +185,25 @@ function getAllUserHours(){
         ${employeesHours.map(empl=>`<tr><td>${empl.employee.firstName} ${empl.employee.lastName} Hours</td><td>${empl.getSumWorkingHours()}</td></tr>`)}
         </table>`
     
+}
+
+
+function addBtnNewUser(){
+  const html = document.body
+  html.innerHTML +=`
+  <button id="addNewUser" onClick="newUserBtnClicked()">new user</button>` 
+
+}
+addBtnNewUser()
+
+function newUserBtnClicked(){
+  const newUserFirstName = prompt("first name:")
+  const newUserLastName = prompt("last name:")
+  const newEmployee = new EmployeeHours(new Employee(newUserFirstName!, newUserLastName!),emptyTimeClock)
+  employeesHours.push(newEmployee)
+  renderSelectUser()
+  alert(`${newUserFirstName} is add to User`)
+
 }
 
 

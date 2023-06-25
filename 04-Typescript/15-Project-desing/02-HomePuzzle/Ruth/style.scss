@@ -9,18 +9,31 @@
 body {
   width: 100vw;
   height: 100vh;
-  background: url(https://cdn.pixabay.com/photo/2016/03/26/13/09/workspace-1280538_1280.jpg)
-    no-repeat;
+  background: url(https://cdn.pixabay.com/photo/2017/05/19/06/22/desk-2325627_1280.jpg)
+    no-repeat center;
   overflow-x: hidden;
   display: flex;
-  //   justify-content:center;
-  margin-left: 15%;
+  justify-content: center;
+  // margin-left: 15%;
+
+  #addNewUser {
+    background-color: #99bbb3;
+    position: absolute;
+    padding: 3px;
+    left: 40px;
+    top: 40px;
+    &:hover{
+      background-color: #afd2ca;
+      cursor: pointer;
+    }
+    // border: 1px solid black;
+  }
   .wrapper {
-    margin-top: 4%;
-    margin-right: 4%;
+    margin-top: 13%;
+    // margin-right: 4%;
 
     label {
-      color: white;
+      color: rgb(0, 0, 0);
       font-size: large;
     }
     #userForm {
@@ -32,38 +45,66 @@ body {
       }
     }
 
+    .timesInput {
+      display: flex;
+      .leavingInputLabel,
+      .entranceInputLabel {
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        margin: 4px;
+      }
+    }
     #addTimeForm {
       display: flex;
       flex-direction: column;
+
       input {
         height: 25px;
       }
       button {
         margin-top: 10px;
         padding: 5px;
-        background-color: rgb(172, 209, 168);
+        background-color: #99bbb3;
+        &:hover{
+          cursor: pointer;
+          background-color: #afd2ca;
+        
+        }
       }
     }
 
     table {
       margin-top: 15px;
       font-size: small;
+      tr:hover {
+        background-color: #99bbb3;
+      }
     }
     table,
     td,
     tr,
     th {
-      border: 1px solid rgb(255, 255, 255);
+      border: 1px solid rgb(65, 65, 65);
       border-collapse: collapse;
       padding: 4px;
-      color: rgb(210, 208, 208);
+      color: rgb(57, 57, 57);
     }
   }
 
-  .tableBtn{
+  .tableBtn {
     display: flex;
-    justify-content:space-between;
+    justify-content: space-between;
+    #employeseHoursBtn,
+    #employeeHoursBtn {
+      padding: 4px;
+      width:45%;
+      background-color: white;
+      &:hover{
+        cursor: pointer;
+        background-color: #afd2ca;      
+      }
+    }
   }
-
 }
 

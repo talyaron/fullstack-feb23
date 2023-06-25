@@ -87,16 +87,16 @@ employeesHours[1].addingArrayWorkingHours(timesClock1);
 //  render select employee
 function renderSelectUser() {
     var userForm = document.querySelector("#userForm");
-    userForm.innerHTML = "\n    <label for=\"selectUser\">select user:</label>\n    <select name=\"selectUser\" id=\"selectUser\" onchange=\"handleUser(event)\" required>\n    " + employees
+    userForm.innerHTML = "\n    <label for=\"selectUser\">select user:</label>\n    <select name=\"selectUser\" id=\"selectUser\" onchange=\"handleUser(event)\" required>\n    " + employeesHours
         .map(function (employee) {
-        return "<option value=\"" + employee.ID + "\">" + employee.firstName + " " + employee.lastName + "</option>";
+        return "<option value=\"" + employee.employee.ID + "\">" + employee.employee.firstName + " " + employee.employee.lastName + "</option>";
     })
         .join("") + "\n          </select><br>\n          ";
 }
 //render Time Input in form---
 function renderTimeInput() {
     var addTimeForm = document.querySelector("#addTimeForm");
-    addTimeForm.innerHTML = "\n            <label for=\"date\">date:</label>\n            <input id=\"date\" type=\"date\" required>\n            <label for=\"entranceTime\">entrance:</label>\n            <input id=\"entranceTime\" type=\"time\" required>\n            <label for=\"exitTime\">exit:</label>\n            <input id=\"exitTime\" type=\"time\" required>\n            <button type=\"submit\">ADD</button>\n            ";
+    addTimeForm.innerHTML = "\n            <label for=\"date\">date:</label>\n            <input id=\"date\" type=\"date\" required>\n            <div class=\"timesInput\">\n            <div class=\"entranceInputLabel\">\n            <label for=\"entranceTime\">entrance:</label>\n            <input id=\"entranceTime\" type=\"time\" required>\n            </div>\n            <div class=\"leavingInputLabel\">\n            <label for=\"exitTime\">exit:</label>\n            <input id=\"exitTime\" type=\"time\" required>\n             </div>\n            </div>\n            <button type=\"submit\">ADD</button>\n            ";
 }
 //onclick on add button this function called. pay attention, it 2 function callback init
 function addTimeToEmployee(event) {
@@ -107,10 +107,9 @@ function addTimeToEmployee(event) {
 function handleUser(event) {
     event.preventDefault();
     var chosenUserId = document.querySelector("#selectUser").value;
-    var chosenEmployee = employees.find(function (employee) { return employee.ID === chosenUserId; });
-    var chosenEmployeeWork = employeesHours.find(function (empl) { return empl.employee === chosenEmployee; });
-    if (chosenEmployeeWork) {
-        return chosenEmployeeWork;
+    var chosenEmployee = employeesHours.find(function (employee) { return employee.employee.ID === chosenUserId; });
+    if (chosenEmployee) {
+        return chosenEmployee;
     }
 }
 //handle selected Time--return time to submit function
@@ -125,6 +124,7 @@ function handleTime(event) {
 }
 function getEmployeeHours() {
     var employeeId = document.querySelector("#selectUser").value;
+    console.log(employeesHours);
     var chosenEmployeeWork = employeesHours.find(function (empl) { return empl.employee.ID == employeeId; });
     var table = document.querySelector("#tableUser");
     table.innerHTML = "\n    <table>\n    <tr> <th>User Name</th> <th>Date</th> <th>Entrance</th> <th>Leaving</th> <th>Total</th></tr>\n       \n        " + chosenEmployeeWork.hoursWork.map(function (day) { return "<tr><td>" + chosenEmployeeWork.employee.firstName + " " + chosenEmployeeWork.employee.lastName + "</td><td>" + day.getDate() + "</td> <td>" + day.getEntranceTime() + "</td><td>" + day.getExitTime() + "</td><td>" + day.getTotal() + "</td></tr>"; }).join("") + "\n        <tr><td>ALL Hours</td><td>" + chosenEmployeeWork.getSumWorkingHours() + "</td></tr>\n    </table> ";
@@ -133,6 +133,19 @@ function getAllUserHours() {
     var table = document.querySelector("#tableUser");
     table.innerHTML =
         "<table> \n        <tr> <th>User Name</th> <th>Date</th> <th>Entrance</th> <th>Leaving</th> <th>Total</th></tr>\n        " + employeesHours.map(function (empl) { return empl.hoursWork.map(function (day) { return "<tr><td>" + empl.employee.firstName + " " + empl.employee.lastName + "</td><td>" + day.getDate() + "</td><td>" + day.getEntranceTime() + "</td><td>" + day.getExitTime() + "</td><td>" + day.getTotal() + "</td></tr>"; }).join(""); }).join("") + "\n        " + employeesHours.map(function (empl) { return "<tr><td>" + empl.employee.firstName + " " + empl.employee.lastName + " Hours</td><td>" + empl.getSumWorkingHours() + "</td></tr>"; }) + "\n        </table>";
+}
+function addBtnNewUser() {
+    var html = document.body;
+    html.innerHTML += "\n  <button id=\"addNewUser\" onClick=\"newUserBtnClicked()\">new user</button>";
+}
+addBtnNewUser();
+function newUserBtnClicked() {
+    var newUserFirstName = prompt("first name:");
+    var newUserLastName = prompt("last name:");
+    var newEmployee = new EmployeeHours(new Employee(newUserFirstName, newUserLastName), emptyTimeClock);
+    employeesHours.push(newEmployee);
+    renderSelectUser();
+    alert(newUserFirstName + " is add to User");
 }
 //create uniq id by Date, from google...
 function createID() {
