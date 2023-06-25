@@ -18,6 +18,9 @@ class Time {
     this.hours = hours < 24 && hours > 0 ? hours : 0;
     this.minutes = minutes < 60 && minutes > 0 ? minutes : 0;
   }
+  getTimeToString(){
+    return `${this.hours}:${this.minutes}`
+  }
 }
 
 //----------------TimeClock--------------
@@ -37,6 +40,11 @@ class TimeClock {
   getExitTime(){
     return`${this.exitTime.hours}:${this.exitTime.minutes}`
   }
+
+  getTotal(){
+   const sumInMin = this.exitTime.hours * 60 + this.exitTime.minutes - (this.entranceTime.hours * 60 + this.entranceTime.minutes);
+    return new Time((Math.floor(sumInMin / 60)), sumInMin % 60).getTimeToString()   ;
+  }
 }
 
 
@@ -55,6 +63,9 @@ class EmployeeHours {
   addingWorkingHours(workTime: TimeClock) {
     this.hoursWork.push(workTime);
   }
+  addingArrayWorkingHours(workTime: TimeClock[]) {
+    this.hoursWork = this.hoursWork.concat(workTime)
+  }
 
   editEntranceTimeByDate(dateToEdit: Date, newEntranceTime: Time) {
     this.hoursWork.find((day) => {
@@ -66,17 +77,16 @@ class EmployeeHours {
     let sumImMin = 0;
     this.hoursWork.forEach((timeClock) => {
       sumImMin +=
-        timeClock.exitTime.hours * 60 +
-        timeClock.exitTime.minutes -
-        (timeClock.entranceTime.hours * 60 + timeClock.entranceTime.minutes);
+        timeClock.exitTime.hours * 60 + timeClock.exitTime.minutes - (timeClock.entranceTime.hours * 60 + timeClock.entranceTime.minutes);
     });
-    return new Time(Math.floor(sumImMin / 60), sumImMin % 60);
+    return new Time((Math.floor(sumImMin / 60)), sumImMin % 60).getTimeToString()   ;
   }
 }
 
 
 const employeesHours:EmployeeHours[] = []
 employees.forEach(employee => employeesHours.push(new EmployeeHours(employee, emptyTimeClock)))
+employeesHours[1].addingArrayWorkingHours(timesClock1)
 
 
 //  render select employee
@@ -85,14 +95,14 @@ function renderSelectUser() {
   userForm.innerHTML = `
     <label for="selectUser">select user:</label>
     <select name="selectUser" id="selectUser" onchange="handleUser(event)" required>
-    ${employees
+    ${employeesHours
       .map(
           (employee) =>
-          `<option value="${employee.ID}">${employee.firstName} ${employee.lastName}</option>`,
+          `<option value="${employee.employee.ID}">${employee.employee.firstName} ${employee.employee.lastName}</option>`,
           )
           .join("")}
           </select><br>
-          `;
+          `
         }
         
         //render Time Input in form---
@@ -101,12 +111,18 @@ function renderSelectUser() {
             addTimeForm.innerHTML =`
             <label for="date">date:</label>
             <input id="date" type="date" required>
+            <div class="timesInput">
+            <div class="entranceInputLabel">
             <label for="entranceTime">entrance:</label>
-    <input id="entranceTime" type="time" required>
-    <label for="exitTime">exit:</label>
-    <input id="exitTime" type="time" required>
-    <button type="submit">ADD</button>
-    `
+            <input id="entranceTime" type="time" required>
+            </div>
+            <div class="leavingInputLabel">
+            <label for="exitTime">exit:</label>
+            <input id="exitTime" type="time" required>
+             </div>
+            </div>
+            <button type="submit">ADD</button>
+            `
 }
 
 //onclick on add button this function called. pay attention, it 2 function callback init
@@ -118,15 +134,13 @@ function addTimeToEmployee(event){
 //handle select user--return an employee to submit function
 function handleUser(event: Event) {
     event.preventDefault();
-    
-  const chosenUserId = (document.querySelector("#selectUser") as HTMLSelectElement).value;
-  const chosenEmployee = employees.find(
-    (employee) => employee.ID === chosenUserId,
+    const chosenUserId = (document.querySelector("#selectUser") as HTMLSelectElement).value;
+    const chosenEmployee = employeesHours.find(
+    (employee) => employee.employee.ID === chosenUserId,
   );
 
-  const chosenEmployeeWork = employeesHours.find(empl =>{return  empl.employee === chosenEmployee})
-  if (chosenEmployeeWork) {
-    return chosenEmployeeWork;}
+  if (chosenEmployee) {
+    return chosenEmployee;}
 }
 
 //handle selected Time--return time to submit function
@@ -135,7 +149,7 @@ function handleTime(event){
     const entranceTime = (document.querySelector("#entranceTime")as HTMLInputElement).value;
     const [entranceHour,entranceMin] = entranceTime.split(":");
     const exitTime = (document.querySelector("#exitTime")as HTMLInputElement).value;
-    const [exitHour,exitMin] = entranceTime.split(":");
+    const [exitHour,exitMin] = exitTime.split(":");
     const newTime = new TimeClock(
         new Date((document.querySelector("#date")as HTMLInputElement).value), 
         new Time (parseInt(entranceHour), parseInt(entranceMin)), 
@@ -148,26 +162,48 @@ function handleTime(event){
 
 function getEmployeeHours(){
     const employeeId = (document.querySelector("#selectUser")as HTMLSelectElement).value
+    console.log(
+      employeesHours
+    );
     const chosenEmployeeWork = employeesHours.find(empl =>{return empl.employee.ID == employeeId})
-console.log(chosenEmployeeWork);
-
     const table = document.querySelector("#tableUser") as HTMLDivElement
     table.innerHTML =`
     <table>
-    
-        ${chosenEmployeeWork!.hoursWork.map(day => `<tr><td>${chosenEmployeeWork!.employee.firstName}</td><td>${day.getDate()}</td> <td>${day.getEntranceTime()}</td><td>${day.getExitTime()}</td></tr>`).join("")}
-    
+    <tr> <th>User Name</th> <th>Date</th> <th>Entrance</th> <th>Leaving</th> <th>Total</th></tr>
+       
+        ${chosenEmployeeWork!.hoursWork.map(day => `<tr><td>${chosenEmployeeWork!.employee.firstName} ${chosenEmployeeWork!.employee.lastName}</td><td>${day.getDate()}</td> <td>${day.getEntranceTime()}</td><td>${day.getExitTime()}</td><td>${day.getTotal()}</td></tr>`).join("")}
+        <tr><td>ALL Hours</td><td>${chosenEmployeeWork!.getSumWorkingHours()}</td></tr>
     </table> ` 
 }
 
 function getAllUserHours(){
-    // const employeeId = (document.querySelector("#selectUser")as HTMLSelectElement).value
-    const table = document.querySelector("#tableUser") as HTMLDivElement
-    console.log(employeesHours)
+    const table = document.querySelector("#tableUser") as HTMLDivElement    
+    table.innerHTML=  
+        `<table> 
+        <tr> <th>User Name</th> <th>Date</th> <th>Entrance</th> <th>Leaving</th> <th>Total</th></tr>
+        ${employeesHours.map(empl=> empl.hoursWork.map(day=>`<tr><td>${empl.employee.firstName} ${empl.employee.lastName}</td><td>${day.getDate()}</td><td>${day.getEntranceTime()}</td><td>${day.getExitTime()}</td><td>${day.getTotal()}</td></tr>`).join("")).join("")}
+        ${employeesHours.map(empl=>`<tr><td>${empl.employee.firstName} ${empl.employee.lastName} Hours</td><td>${empl.getSumWorkingHours()}</td></tr>`)}
+        </table>`
     
-    table.innerHTML =`
-    <table>
-    </table> ` 
+}
+
+
+function addBtnNewUser(){
+  const html = document.body
+  html.innerHTML +=`
+  <button id="addNewUser" onClick="newUserBtnClicked()">new user</button>` 
+
+}
+addBtnNewUser()
+
+function newUserBtnClicked(){
+  const newUserFirstName = prompt("first name:")
+  const newUserLastName = prompt("last name:")
+  const newEmployee = new EmployeeHours(new Employee(newUserFirstName!, newUserLastName!),emptyTimeClock)
+  employeesHours.push(newEmployee)
+  renderSelectUser()
+  alert(`${newUserFirstName} is add to User`)
+
 }
 
 
