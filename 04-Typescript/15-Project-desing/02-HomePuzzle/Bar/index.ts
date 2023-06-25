@@ -5,12 +5,15 @@
 // ## Levels ##
 // 1) the system can show every workers entrance and exit times, in a table.
 
+const id = function () {
+    return Date.now().toString(36) + Math.random().toString(36).substr(2);
+   };
+
 // workers.
 class Workerr {
     id: string;
     constructor(public name: string, public email: string) {
-        this.id = Date.now().toString(32) + Math.random().toString(16);
-    }
+        this.id = id();    }
 }
 
 const workers: Workerr[] = [];
@@ -19,20 +22,21 @@ const workers: Workerr[] = [];
 class Movment {
     id: string;
     constructor(public entrance: number, public exit: number) {
-        this.id = Date.now().toString(32) + Math.random().toString(16);
+        // this.id = Date.now().toString(32) + Math.random().toString(16);
+        this.id = id();
     }
 
-    // calculatDayliHours(): number | undefined {
-    //     try {
-    //         if (!this.entrance || this.entrance) throw new Error("The dittails are missing");
-    //         const dayliHours = this.exit - this.entrance;
-    //         return dayliHours;
+    calculatDayliHours(): number | undefined {
+        try {
+            if (!this.entrance || this.entrance) throw new Error("The dittails are missing");
+            const dayliHours = this.exit - this.entrance;
+            return dayliHours;
 
-    //     } catch (error) {
-    //         console.error(error);
-    //         return undefined;
-    //     }
-    // }
+        } catch (error) {
+            console.error(error);
+            return undefined;
+        }
+    }
 }
 
 const movments: Movment[] = [];
@@ -60,9 +64,9 @@ function renderRegisterWorkerr(rootElement: HTMLElement | null) {
           <input type="text" name="email" id="email" placeholder="email" required>
           
           <label for="entrance">entrance</label>
-          <input type="time" name="entrance" id="entrance">
+          <input type="datetime-local" name="entrance" id="entrance" required>
           <label for="exit">exit</label>
-          <input type="time" name="exit" id="exit">
+          <input type="datetime-local" name="exit" id="exit" required>
 
           <input type="submit" value="register">
         </form>
@@ -77,18 +81,6 @@ function renderRegisterWorkerr(rootElement: HTMLElement | null) {
 
 renderRegisterWorkerr(document.querySelector("#register"));
 
-
-// function calculatDayliHours(entrance: number, exit: number, dayliHours: number): number | undefined {
-//     try {
-//         if (!entrance || !exit) throw new Error("The dittails are missing");
-//         const dayliHours = this.exit - this.entrance;
-//         return dayliHours;
-
-//     } catch (error) {
-//         console.error(error);
-//         return undefined;
-//     }
-// }
 
 function renderMovmentWorkerr(
     workerr: Workerr | any,
