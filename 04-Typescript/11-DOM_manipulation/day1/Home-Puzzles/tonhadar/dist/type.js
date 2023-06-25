@@ -11,7 +11,5 @@ var arr = [
     new Car("ford", "https://media.ed.edmunds-media.com/ford/explorer/2021/oem/2021_ford_explorer_4dr-suv_king-ranch_fq_oem_1_815.jpg")
 ];
 var hadar = document.querySelector(".tom");
-var inr = arr.map(function (element) { return "<p>" + Car.name + "</p>"; }).join(" ");
-if (hadar) {
-    hadar.innerHTML = inr;
-}
+var inr = arr.map(function (Car) { return "<div><img src = " + Car.name + " </br><p> " + Car.urlimg + "</p> </div>"; }).join(" ");
+hadar.innerHTML = inr;
