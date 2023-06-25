@@ -14,13 +14,13 @@ class User {
     }
 }
 
-const userArray: User[] = new Array(); 
+const userArray: User[] = new Array();
 
 function handleSubmitForm(ev: any) {
     ev.preventDefault()
 
     // console.log(ev.target.elements.userName.value)
-    
+
     const userName = ev.target.elements.userName.value
 
     const newUser = new User(userName)
@@ -35,18 +35,27 @@ function handleSubmitForm(ev: any) {
 
 function render(users: User[]) {
     try {
-        let html = users.map(user => {
-            return `<div>
+        let html = ""
+        if (userArray.length > 0) {
+            html = users.map(user => {
+                return `<div class="root__userElement">
             <h1>${user.userName}</h1>
             <h3>The ID of user is: ${user.id}</h3>
+            <button class="root__btn">Change Color</button>
             </div>`
-        }).join(" ")
-
+            }).join(" ")
+        } else {
+            
+            html = "No data"
+        }
         console.log(html)
 
         root.innerHTML = html
     } catch (error) {
         console.log(error)
-        
+
     }
 }
+
+
+render(userArray)

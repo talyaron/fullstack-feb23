@@ -7,7 +7,7 @@ var person = /** @class */ (function () {
         this.hobby = hobby;
     }
     person.prototype.ageofperson = function () {
-        return (2023 - this.yearOfBirth);
+        return (new Date().getFullYear() - this.yearOfBirth);
     };
     return person;
 }());

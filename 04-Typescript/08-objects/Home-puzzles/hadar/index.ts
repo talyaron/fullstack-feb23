@@ -5,7 +5,9 @@ interface student{
     historyMidTermGrade:number,
     mathFinalTermGrade:number,
     historyFinalTermGrade:number,
-    average: Function
+    average: Function;
+    averagehis:Function;
+    averagemath:Function;
 }
 
 const hadar:student={
@@ -17,7 +19,14 @@ const hadar:student={
     historyFinalTermGrade:60,
     average: function(){
         return (this.mathMidTermGrade+ this.historyMidTermGrade+ this.mathFinalTermGrade+ this.historyFinalTermGrade)/4;
+    },
+    averagehis:function(){
+        return(this.historyFinalTermGrade+this.historyMidTermGrade)/2;
+    },
+    averagemath:function(){
+        return(this.mathFinalTermGrade+this.mathMidTermGrade)/2;
     }
 }
-
+console.log(hadar. averagehis())
+console.log(hadar. averagemath())
 console.log(hadar.average())

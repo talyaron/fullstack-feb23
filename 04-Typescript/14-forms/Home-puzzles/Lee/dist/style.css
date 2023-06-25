@@ -1,0 +1,16 @@
+form {
+  margin-bottom: 1%;
+}
+
+.root__userElement {
+  display: flex;
+  flex-flow: column;
+}
+.root__btn {
+  width: 100px;
+  height: 50px;
+  background-color: #c4a1c4;
+}
+.root__btn:hover {
+  background-color: #dea0de;
+}
