@@ -1,4 +1,4 @@
-const root: HTMLDivElement | null = document.querySelector("#root");
+const root: HTMLDivElement | null = document.querySelector(".box");
 if (root) {
   root.innerText = "hi";
   root.style.backgroundColor = "pink";
@@ -11,7 +11,7 @@ if (root) {
     root.style.color = getRandomColor();
     document.body.style.backgroundColor = getRandomColor();
     
-  }, 1000);
+  },1000);
 }
 
 function getRandomColor() {
@@ -19,6 +19,8 @@ function getRandomColor() {
   let color = "#";
   for (let i = 0; i < 6; i++) {
     color += letters[Math.floor(Math.random() * 16)];
+
   }
+
   return color;
 }

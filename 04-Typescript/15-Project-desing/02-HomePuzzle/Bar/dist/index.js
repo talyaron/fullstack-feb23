@@ -3,12 +3,15 @@
 // every workerr, can set entrance time , and exit time.
 // ## Levels ##
 // 1) the system can show every workers entrance and exit times, in a table.
+var id = function () {
+    return Date.now().toString(36) + Math.random().toString(36).substr(2);
+};
 // workers.
 var Workerr = /** @class */ (function () {
     function Workerr(name, email) {
         this.name = name;
         this.email = email;
-        this.id = Date.now().toString(32) + Math.random().toString(16);
+        this.id = id();
     }
     return Workerr;
 }());
@@ -18,8 +21,21 @@ var Movment = /** @class */ (function () {
     function Movment(entrance, exit) {
         this.entrance = entrance;
         this.exit = exit;
-        this.id = Date.now().toString(32) + Math.random().toString(16);
+        // this.id = Date.now().toString(32) + Math.random().toString(16);
+        this.id = id();
     }
+    Movment.prototype.calculatDayliHours = function () {
+        try {
+            if (!this.entrance || this.entrance)
+                throw new Error("The dittails are missing");
+            var dayliHours = this.exit - this.entrance;
+            return dayliHours;
+        }
+        catch (error) {
+            console.error(error);
+            return undefined;
+        }
+    };
     return Movment;
 }());
 var movments = [];
@@ -38,7 +54,7 @@ function renderRegisterWorkerr(rootElement) {
     try {
         if (!rootElement)
             throw new Error("Missing root element");
-        var html = "\n        <div class=\"register\">\n        <form onsubmit=\"handleRegisterWorkerr(event)\">\n          <input type=\"text\" name=\"name\" id=\"name\" placeholder=\"name\" required>\n          <input type=\"text\" name=\"email\" id=\"email\" placeholder=\"email\" required>\n          \n          <label for=\"entrance\">entrance</label>\n          <input type=\"time\" name=\"entrance\" id=\"entrance\">\n          <label for=\"exit\">exit</label>\n          <input type=\"time\" name=\"exit\" id=\"exit\">\n\n          <input type=\"submit\" value=\"register\">\n        </form>\n        </div>";
+        var html = "\n        <div class=\"register\">\n        <form onsubmit=\"handleRegisterWorkerr(event)\">\n          <input type=\"text\" name=\"name\" id=\"name\" placeholder=\"name\" required>\n          <input type=\"text\" name=\"email\" id=\"email\" placeholder=\"email\" required>\n          \n          <label for=\"entrance\">entrance</label>\n          <input type=\"datetime-local\" name=\"entrance\" id=\"entrance\" required>\n          <label for=\"exit\">exit</label>\n          <input type=\"datetime-local\" name=\"exit\" id=\"exit\" required>\n\n          <input type=\"submit\" value=\"register\">\n        </form>\n        </div>";
         rootElement.innerHTML = html;
         // return html;
     }
@@ -47,16 +63,6 @@ function renderRegisterWorkerr(rootElement) {
     }
 }
 renderRegisterWorkerr(document.querySelector("#register"));
-// function calculatDayliHours(entrance: number, exit: number, dayliHours: number): number | undefined {
-//     try {
-//         if (!entrance || !exit) throw new Error("The dittails are missing");
-//         const dayliHours = this.exit - this.entrance;
-//         return dayliHours;
-//     } catch (error) {
-//         console.error(error);
-//         return undefined;
-//     }
-// }
 function renderMovmentWorkerr(workerr, movment, rootElement) {
     try {
         var html = "\n        <div class=\"register\">\n            <h2>" + workerr.name + "</h2>\n            <p>" + movment.entrance + "</p>\n            <p>" + movment.exit + "</p>\n        </div>";
