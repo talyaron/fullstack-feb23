@@ -6,19 +6,20 @@
     height: 50vw;
     justify-content: space-around;
 
-    &__box1{
+    .box1{
         width: 150px;
         height: 150px;
-        background-color: rgb(30, 33, 33);
     }
 
-    &__box2{
+    .box2{
+        display: none;
         width: 150px;
         height: 150px;
         background-color: teal;
     }
 
-    &__box3{
+    .box3{
+        display: none;
         width: 150px;
         height: 150px;
         background-color: rgb(248, 10, 10);
