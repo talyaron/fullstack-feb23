@@ -6,17 +6,18 @@
   height: 50vw;
   justify-content: space-around;
 }
-.box__box1 {
+.box .box1 {
   width: 150px;
   height: 150px;
-  background-color: #1e2121;
 }
-.box__box2 {
+.box .box2 {
+  display: none;
   width: 150px;
   height: 150px;
   background-color: teal;
 }
-.box__box3 {
+.box .box3 {
+  display: none;
   width: 150px;
   height: 150px;
   background-color: #f80a0a;

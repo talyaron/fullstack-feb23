@@ -7,13 +7,14 @@
 
 const id = function () {
     return Date.now().toString(36) + Math.random().toString(36).substr(2);
-   };
+};
 
 // workers.
 class Workerr {
     id: string;
     constructor(public name: string, public email: string) {
-        this.id = id();    }
+        this.id = id();
+    }
 }
 
 const workers: Workerr[] = [];
@@ -26,17 +27,17 @@ class Movment {
         this.id = id();
     }
 
-    calculatDayliHours(): number | undefined {
-        try {
-            if (!this.entrance || this.entrance) throw new Error("The dittails are missing");
-            const dayliHours = this.exit - this.entrance;
-            return dayliHours;
+    // calculatDayliHours(): number | undefined {
+    //     try {
+    //         if (!this.entrance || this.entrance) throw new Error("The dittails are missing");
+    //         const dayliHours = this.exit - this.entrance;
+    //         return dayliHours;
 
-        } catch (error) {
-            console.error(error);
-            return undefined;
-        }
-    }
+    //     } catch (error) {
+    //         console.error(error);
+    //         return undefined;
+    //     }
+    // }
 }
 
 const movments: Movment[] = [];
@@ -49,11 +50,11 @@ class MovmentWorkerr {
 const movmentWorkers: MovmentWorkerr[] = [];
 
 
-
 // view controlers
-//register user
-
-function renderRegisterWorkerr(rootElement: HTMLElement | null) {
+// register user
+function renderRegisterWorkerr(
+    rootElement: HTMLElement | null
+) {
     try {
         if (!rootElement) throw new Error("Missing root element");
 
@@ -64,14 +65,14 @@ function renderRegisterWorkerr(rootElement: HTMLElement | null) {
           <input type="text" name="email" id="email" placeholder="email" required>
           
           <label for="entrance">entrance</label>
-          <input type="datetime-local" name="entrance" id="entrance" required>
+          <input type="time" name="entrance" id="entrance" required>
           <label for="exit">exit</label>
-          <input type="datetime-local" name="exit" id="exit" required>
+          <input type="time" name="exit" id="exit" required>
 
           <input type="submit" value="register">
         </form>
         </div>`;
-
+         
         rootElement.innerHTML = html;
         // return html;
     } catch (error) {
@@ -82,17 +83,33 @@ function renderRegisterWorkerr(rootElement: HTMLElement | null) {
 renderRegisterWorkerr(document.querySelector("#register"));
 
 
+
 function renderMovmentWorkerr(
     workerr: Workerr | any,
-    movment: Movment |any,
-    rootElement: HTMLElement | null
-    ) {
+    movment: Movment | any,
+    rootElement: HTMLElement | any
+) {
     try {
         const html = `
         <div class="register">
+        <form onsubmit="handleRegisterWorkerr(event)">
+          <input type="text" name="name" id="name" placeholder="name" required>
+          <input type="text" name="email" id="email" placeholder="email" required>
+          
+          <label for="entrance">entrance</label>
+          <input type="time" name="entrance" id="entrance" required>
+          <label for="exit">exit</label>
+          <input type="time" name="exit" id="exit" required>
+
+          <input type="submit" value="register">
+        </form>
+        </div>
+        <div class="workwrDitels">
             <h2>${workerr.name}</h2>
-            <p>${movment.entrance}</p>
-            <p>${movment.exit}</p>
+            <div class="ditels">
+              <p> Entrance time is: ${movment.entrance}</p>
+              <p> Exit time is: ${movment.exit}</p>
+            </div>
         </div>`;
 
         if (!rootElement) throw new Error("no root element");
@@ -102,7 +119,7 @@ function renderMovmentWorkerr(
         console.error(error);
     }
 }
-
+//
 // view->model controlers
 function handleRegisterWorkerr(ev: any) {
     try {
@@ -114,15 +131,14 @@ function handleRegisterWorkerr(ev: any) {
         //add to model
         workers.push(workerr);
 
-        const entrance = ev.target.elements.entrance.valueAsNumber;
-        const exit = ev.target.elements.exit.valueAsNumber;
+        const entrance = ev.target.elements.entrance.value;
+        const exit = ev.target.elements.exit.value;
 
         const movment = new Movment(entrance, exit);
         //add to model
         movments.push(movment);
 
         renderMovmentWorkerr(workerr, movment, document.querySelector("#register"));
-
         console.log(name, email, entrance, exit);
     } catch (error) {
         console.error(error)

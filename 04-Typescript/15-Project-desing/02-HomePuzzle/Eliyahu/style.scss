@@ -1,0 +1,30 @@
+#register{
+    background-color: aqua;
+    padding: 20px;
+    max-width: 400px;
+
+    form{
+        input{
+
+            margin: 5px;
+        }
+    }
+}
+
+#entrace{
+    margin: 10px;
+}
+
+#exit{
+    margin: 10px;
+}
+
+th,td{
+    width: 100px;
+    margin: 2px;
+    border: 1px solid black;
+    padding: 2px;
+}
+th{
+    background-color: antiquewhite;
+}

@@ -18,12 +18,14 @@ var HoursDaily = /** @class */ (function () {
     }
     HoursDaily.prototype.calculateDailyHoures = function () {
         try {
-            var exitHoure = this.exit.getTime();
-            var enterHour = this.enterance.getTime();
-            console.log(exitHoure);
-            if (!enterHour || !exitHoure)
+            var exitHour = new Date(this.exit);
+            var enterHour = new Date(this.enterance);
+            var exitHourMiliS = exitHour.getTime();
+            var enterHourMiliS = enterHour.getTime();
+            console.log(exitHourMiliS, enterHourMiliS);
+            if (!enterHour || !exitHour)
                 throw new Error("Missing enterance or exit");
-            var dailyhours = (Math.abs(exitHoure - enterHour) / 360000);
+            var dailyhours = ((exitHourMiliS - enterHourMiliS) / 3600000);
             console.log(dailyhours);
             return dailyhours;
         }
@@ -87,7 +89,7 @@ function handleRegisterhours(ev) {
 }
 function renderCalculateDailyHours(rootElement) {
     try {
-        var html = "\n      <form onsubmit=\"handleRegisterhours(event)\">\n      <label for=\"enterance\">enterance</label>\n      <input type=\"time\" name=\"enterance\" id=\"'enterance\" required>\n      <label for=\"exit\">exit</label>\n      <input type=\"time\" name=\"exit\" id=\"exit\" required>\n      <input type=\"submit\" value=\"Calculate\">\n  </form>";
+        var html = "\n      <form onsubmit=\"handleRegisterhours(event)\">\n      <label for=\"enterance\">enterance</label>\n      <input type=\"datetime-local\" name=\"enterance\" id=\"'enterance\" required>\n      <label for=\"exit\">exit</label>\n      <input type=\"datetime-local\" name=\"exit\" id=\"exit\" required>\n      <input type=\"submit\" value=\"Calculate\">\n  </form>";
         if (!rootElement)
             throw new Error("No root element");
         rootElement.innerHTML = html;
