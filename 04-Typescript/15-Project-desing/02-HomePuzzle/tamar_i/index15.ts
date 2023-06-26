@@ -6,6 +6,7 @@ class TimeClock {
     //entart time
     //exit time
     constructor(public entaryTime: any, public exitTime: any) { }
+
 }
 
 const timeCloceArr: TimeClock[] = [];
@@ -137,17 +138,20 @@ function renderTimeClock(timeCloceArr: TimeClock[] ,timeClockWorker: TimeClock ,
             <tr> <!--row-->
                 <th>entary time</th>  <!--colum-->
                 <th>exit time</th>
+                <th>total hours</th>
             </tr>
             <tr>
                 <td>${timeClockWorker.entaryTime}</td>
                 <td>${timeClockWorker.exitTime}</td>
+                <td>${calculatHours(timeClockWorker)}</td>
             </tr>`;
         timeCloceArr.forEach(element => {
            html += `
            <tr>
             <td>${timeClockWorker.entaryTime}</td>
             <td>${timeClockWorker.exitTime}</td>
-           </tr>;`     
+            <td>${calculatHours(timeClockWorker)}</td>
+           </tr>`     
             });
         html += `</table>`;
         
@@ -158,5 +162,19 @@ function renderTimeClock(timeCloceArr: TimeClock[] ,timeClockWorker: TimeClock ,
        
     } catch (error) {
         console.error(error);
+    }
+}
+
+function calculatHours(timeClockWorker: TimeClock){
+    try {
+        const start = Date.parse((timeClockWorker.entaryTime).valueOf() as string); //get tomestamp of entary time
+        const end = Date.parse((timeClockWorker.exitTime).valueOf() as string); //get tomestamp of entary time
+        let totalHours: number | undefined = NaN;
+        if (start < end){
+            totalHours = Math.floor((end - start)/1000/60/60); //mikkisecound
+        }
+        return totalHours;
+    } catch (error) {
+      console.error(error);  
     }
 }

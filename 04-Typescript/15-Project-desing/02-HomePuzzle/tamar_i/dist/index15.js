@@ -103,14 +103,28 @@ function handletimeclock(ev) {
 }
 function renderTimeClock(timeCloceArr, timeClockWorker, rootElement) {
     try {
-        var html_1 = "\n        <table id=\"timeTable\">\n            <tr> <!--row-->\n                <th>entary time</th>  <!--colum-->\n                <th>exit time</th>\n            </tr>\n            <tr>\n                <td>" + timeClockWorker.entaryTime + "</td>\n                <td>" + timeClockWorker.exitTime + "</td>\n            </tr>";
+        var html_1 = "\n        <table id=\"timeTable\">\n            <tr> <!--row-->\n                <th>entary time</th>  <!--colum-->\n                <th>exit time</th>\n                <th>total hours</th>\n            </tr>\n            <tr>\n                <td>" + timeClockWorker.entaryTime + "</td>\n                <td>" + timeClockWorker.exitTime + "</td>\n                <td>" + calculatHours(timeClockWorker) + "</td>\n            </tr>";
         timeCloceArr.forEach(function (element) {
-            html_1 += "\n           <tr>\n            <td>" + timeClockWorker.entaryTime + "</td>\n            <td>" + timeClockWorker.exitTime + "</td>\n           </tr>;";
+            html_1 += "\n           <tr>\n            <td>" + timeClockWorker.entaryTime + "</td>\n            <td>" + timeClockWorker.exitTime + "</td>\n            <td>" + calculatHours(timeClockWorker) + "</td>\n           </tr>";
         });
         html_1 += "</table>";
         if (!rootElement)
             throw new Error("no root elemant");
         rootElement.innerHTML = html_1;
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+function calculatHours(timeClockWorker) {
+    try {
+        var start = Date.parse((timeClockWorker.entaryTime).valueOf()); //get tomestamp of entary time
+        var end = Date.parse((timeClockWorker.exitTime).valueOf()); //get tomestamp of entary time
+        var totalHours = NaN;
+        if (start < end) {
+            totalHours = Math.floor((end - start) / 1000 / 60 / 60); //mikkisecound
+        }
+        return totalHours;
     }
     catch (error) {
         console.error(error);
