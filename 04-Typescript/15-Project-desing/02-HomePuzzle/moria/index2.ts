@@ -1,10 +1,11 @@
 const root = document.querySelector(`#root`) as HTMLElement;
+const Table = document.querySelector(`#Table`) as HTMLElement;
 function handleSubmit(event) {
     event.preventDefault();
     const EmployeeName = event.target.name.value;
     const EmployeeEnter = event.target.EnterTime.value;
     const EmployeeExit = event.target.ExitTime.value;
-    // renderImages(EmployeeName, EmployeeEnter, EmployeeExit)
+    render(EmployeeName, EmployeeEnter, EmployeeExit)
     const worker = new s(EmployeeName, EmployeeEnter, EmployeeExit);
     renderLoggedWorker(worker, root);
 }
@@ -27,7 +28,7 @@ function renderLoggedWorker(workers: s, rootElement: HTMLElement | null) {
         if (!rootElement) throw new Error("no root element");
 
 
-        root.innerHTML += html;
+        root.innerHTML = html;
     } catch (error) {
         console.error(error)
     }
@@ -35,28 +36,28 @@ function renderLoggedWorker(workers: s, rootElement: HTMLElement | null) {
 
 
 //----------
-// function render(
-//     EmployeeName: string,
-//     EmployeeEnter: number,
-//     EmployeeExit: number
-// ) {
-//     const root = document.querySelector(`#root`) as HTMLElement;
-//     if (root) {
+function render(
+    EmployeeName: string,
+    EmployeeEnter: number,
+    EmployeeExit: number
+) {
 
-//         const html = `
-//         <table>
-//         <tr>
-//             <td>First name</td>
-//             <td>entrance time</td>
-//             <td>leaving time </td>
-//             </tr>
-//             <td>${EmployeeName} </td>
-//             <td>${EmployeeEnter}</td>
-//             <td>${EmployeeExit} </td>
-//             </tr>
-//         </table>`;
-//         // console.log(EmployeeEnter)
-//         // console.log(EmployeeExit)
-//         root.innerHTML += html;
-//     }
-// }
+    if (Table) {
+
+        const htmlTable = `
+        <table>
+        <tr>
+            <td>First name</td>
+            <td>entrance time</td>
+            <td>leaving time </td>
+            </tr>
+            <td>${EmployeeName} </td>
+            <td>${EmployeeEnter}</td>
+            <td>${EmployeeExit} </td>
+            </tr>
+        </table>`;
+        // console.log(EmployeeEnter)
+        // console.log(EmployeeExit)
+        Table.innerHTML += htmlTable;
+    }
+}
