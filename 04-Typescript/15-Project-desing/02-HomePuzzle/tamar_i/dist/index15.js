@@ -10,6 +10,7 @@ var TimeClock = /** @class */ (function () {
     }
     return TimeClock;
 }());
+var timeCloceArr = [];
 var Employ = /** @class */ (function () {
     function Employ(firstName, lastName, idNumber) {
         this.firstName = firstName;
@@ -65,7 +66,7 @@ function renderLoggedUser(worker, rootElement) {
         if (!rootElement)
             throw new Error("no root element");
         rootElement.innerHTML = html;
-        renderHandleTimeClock(document.querySelector("#timeClock"));
+        renderHandleTimeClock(document.querySelector("#register"));
     }
     catch (error) {
         console.error(error);
@@ -84,12 +85,32 @@ function renderHandleTimeClock(rootElement) {
 }
 function handletimeclock(ev) {
     try {
+        console.dir(ev);
+        console.log(ev);
         ev.preventDefault();
         //get entary time
-        var entaryTime = ev.targer.entary.value;
+        var entaryTime = ev.target.entary.value;
         //get exit time
         var exitTime = ev.target.exit.value;
         console.log(entaryTime, exitTime);
+        var timeCloceWorker = new TimeClock(entaryTime, exitTime);
+        timeCloceArr.push(timeCloceWorker);
+        renderTimeClock(timeCloceArr, timeCloceWorker, document.querySelector("#register"));
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+function renderTimeClock(timeCloceArr, timeClockWorker, rootElement) {
+    try {
+        var html_1 = "\n        <table id=\"timeTable\">\n            <tr> <!--row-->\n                <th>entary time</th>  <!--colum-->\n                <th>exit time</th>\n            </tr>\n            <tr>\n                <td>" + timeClockWorker.entaryTime + "</td>\n                <td>" + timeClockWorker.exitTime + "</td>\n            </tr>";
+        timeCloceArr.forEach(function (element) {
+            html_1 += "\n           <tr>\n            <td>" + timeClockWorker.entaryTime + "</td>\n            <td>" + timeClockWorker.exitTime + "</td>\n           </tr>;";
+        });
+        html_1 += "</table>";
+        if (!rootElement)
+            throw new Error("no root elemant");
+        rootElement.innerHTML = html_1;
     }
     catch (error) {
         console.error(error);
