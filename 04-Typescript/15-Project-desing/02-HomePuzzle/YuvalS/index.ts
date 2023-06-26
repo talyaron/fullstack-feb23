@@ -29,7 +29,7 @@ class HoursDaily{
             console.log(exitHourMiliS, enterHourMiliS)
             if (!enterHour || !exitHour)
         throw new Error("Missing enterance or exit");
-        const dailyhours:number = ((exitHourMiliS - enterHourMiliS) / 360000);
+        const dailyhours:number = ((exitHourMiliS - enterHourMiliS) / 3600000);
         console.log(dailyhours)
         return dailyhours;
         

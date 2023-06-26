@@ -25,7 +25,7 @@ var HoursDaily = /** @class */ (function () {
             console.log(exitHourMiliS, enterHourMiliS);
             if (!enterHour || !exitHour)
                 throw new Error("Missing enterance or exit");
-            var dailyhours = ((exitHourMiliS - enterHourMiliS) / 360000);
+            var dailyhours = ((exitHourMiliS - enterHourMiliS) / 3600000);
             console.log(dailyhours);
             return dailyhours;
         }
