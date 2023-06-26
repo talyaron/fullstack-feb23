@@ -20,10 +20,13 @@ var HoursDaily = /** @class */ (function () {
         try {
             var exitHoure = this.exit;
             var enterHour = this.enterance;
-            console.log(exitHoure);
+            var exitHoureMiliS = new Date, exitHoure, getTime;
+            ();
+            var enterHourMiliS = enterHour.getTime();
+            console.log(exitHoureMiliS, enterHourMiliS);
             if (!enterHour || !exitHoure)
                 throw new Error("Missing enterance or exit");
-            var dailyhours = (Math.abs(exitHoure.getTime() - enterHour.getTime()) / 360000);
+            var dailyhours = ((exitHoureMiliS - enterHourMiliS) / 360000);
             console.log(dailyhours);
             return dailyhours;
         }
