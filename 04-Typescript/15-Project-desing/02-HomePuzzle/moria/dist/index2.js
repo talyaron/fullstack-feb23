@@ -1,11 +1,12 @@
+var root = document.querySelector("#root");
 function handleSubmit(event) {
     event.preventDefault();
     var EmployeeName = event.target.name.value;
     var EmployeeEnter = event.target.EnterTime.value;
     var EmployeeExit = event.target.ExitTime.value;
     // renderImages(EmployeeName, EmployeeEnter, EmployeeExit)
-    var worker = new s(EmployeeName, EmployeeEnter, EmployeeExit, Result);
-    renderLoggedWorker(worker, document.getElementById('root'));
+    var worker = new s(EmployeeName, EmployeeEnter, EmployeeExit);
+    renderLoggedWorker(worker, root);
 }
 //-----------
 var s = /** @class */ (function () {
@@ -22,14 +23,14 @@ function renderLoggedWorker(workers, rootElement) {
         var html = "<h2>Hello " + workers.EmployeeName + " you worked from " + workers.EmployeeEnter + " until " + workers.EmployeeExit + "</h2>";
         if (!rootElement)
             throw new Error("no root element");
-        rootElement.innerHTML += html;
+        root.innerHTML += html;
     }
     catch (error) {
         console.error(error);
     }
 }
 //----------
-// function renderImages(
+// function render(
 //     EmployeeName: string,
 //     EmployeeEnter: number,
 //     EmployeeExit: number
