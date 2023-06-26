@@ -18,15 +18,14 @@ var HoursDaily = /** @class */ (function () {
     }
     HoursDaily.prototype.calculateDailyHoures = function () {
         try {
-            var exitHoure = this.exit;
-            var enterHour = this.enterance;
-            var exitHoureMiliS = new Date, exitHoure, getTime;
-            ();
+            var exitHour = new Date(this.exit);
+            var enterHour = new Date(this.enterance);
+            var exitHourMiliS = exitHour.getTime();
             var enterHourMiliS = enterHour.getTime();
-            console.log(exitHoureMiliS, enterHourMiliS);
-            if (!enterHour || !exitHoure)
+            console.log(exitHourMiliS, enterHourMiliS);
+            if (!enterHour || !exitHour)
                 throw new Error("Missing enterance or exit");
-            var dailyhours = ((exitHoureMiliS - enterHourMiliS) / 360000);
+            var dailyhours = ((exitHourMiliS - enterHourMiliS) / 360000);
             console.log(dailyhours);
             return dailyhours;
         }
