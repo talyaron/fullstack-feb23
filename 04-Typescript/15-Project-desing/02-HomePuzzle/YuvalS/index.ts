@@ -22,12 +22,12 @@ class HoursDaily{
     calculateDailyHoures(): number| undefined{
         try {
             
-            const exitHoure = this.exit.getTime();
-            const enterHour = this.enterance.getTime();
+            const exitHoure = this.exit;
+            const enterHour = this.enterance;
             console.log(exitHoure)
             if (!enterHour || !exitHoure)
         throw new Error("Missing enterance or exit");
-        const dailyhours = (Math.abs(exitHoure - enterHour) / 360000);
+        const dailyhours = (Math.abs(exitHoure.getTime() - enterHour.getTime()) / 360000);
         console.log(dailyhours)
         return dailyhours;
         
@@ -110,9 +110,9 @@ function handleRegisterWorker(ev: any) {
       const html = `
       <form onsubmit="handleRegisterhours(event)">
       <label for="enterance">enterance</label>
-      <input type="time" name="enterance" id="'enterance" required>
+      <input type="datetime-local" name="enterance" id="'enterance" required>
       <label for="exit">exit</label>
-      <input type="time" name="exit" id="exit" required>
+      <input type="datetime-local" name="exit" id="exit" required>
       <input type="submit" value="Calculate">
   </form>`;
   

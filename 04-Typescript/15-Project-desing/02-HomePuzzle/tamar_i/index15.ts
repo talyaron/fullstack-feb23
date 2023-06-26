@@ -8,6 +8,8 @@ class TimeClock {
     constructor(public entaryTime: any, public exitTime: any) { }
 }
 
+const timeCloceArr: TimeClock[] = [];
+
 class Employ {
     constructor(public firstName: string, public lastName: string, public idNumber: number) { }
 }
@@ -76,7 +78,7 @@ function renderLoggedUser(
         if (!rootElement) throw new Error("no root element");
 
         rootElement.innerHTML = html;
-        renderHandleTimeClock(document.querySelector("#timeClock"));
+        renderHandleTimeClock(document.querySelector("#register"));
     } catch (error) {
         console.error(error);
     }
@@ -97,26 +99,63 @@ function renderHandleTimeClock(rootElement: HTMLElement | null) {
         if (!rootElement) throw new Error("no root elemant");
 
         rootElement.innerHTML = html;
-
+        
     } catch (error) {
         console.error(error);
     }
 }
 
-
-
 function handletimeclock(ev: any) {
     try {
+        console.dir(ev);
+        console.log(ev);
         ev.preventDefault();
 
         //get entary time
-        const entaryTime = ev.targer.entary.value;
+        const entaryTime = ev.target.entary.value;
 
         //get exit time
         const exitTime = ev.target.exit.value;
 
         console.log(entaryTime, exitTime);
 
+        const timeCloceWorker = new TimeClock(entaryTime, exitTime);
+
+        timeCloceArr.push(timeCloceWorker);
+
+        renderTimeClock(timeCloceArr,timeCloceWorker, document.querySelector("#register"));
+
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+function renderTimeClock(timeCloceArr: TimeClock[] ,timeClockWorker: TimeClock ,rootElement: HTMLElement | null){
+    try {
+        let html = `
+        <table id="timeTable">
+            <tr> <!--row-->
+                <th>entary time</th>  <!--colum-->
+                <th>exit time</th>
+            </tr>
+            <tr>
+                <td>${timeClockWorker.entaryTime}</td>
+                <td>${timeClockWorker.exitTime}</td>
+            </tr>`;
+        timeCloceArr.forEach(element => {
+           html += `
+           <tr>
+            <td>${timeClockWorker.entaryTime}</td>
+            <td>${timeClockWorker.exitTime}</td>
+           </tr>;`     
+            });
+        html += `</table>`;
+        
+
+        if (!rootElement) throw new Error("no root elemant");
+
+        rootElement.innerHTML = html;
+       
     } catch (error) {
         console.error(error);
     }

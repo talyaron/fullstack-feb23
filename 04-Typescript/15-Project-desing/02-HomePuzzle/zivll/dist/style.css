@@ -55,6 +55,7 @@ body .wrapper .employeeTimeClockTable table tr {
 }
 body .wrapper .employeeTimeClockTable table td {
   width: 20%;
+  border: 1px black solid;
 }
 body .wrapper .employeeTimeClockTable table th {
   padding: 10px;
