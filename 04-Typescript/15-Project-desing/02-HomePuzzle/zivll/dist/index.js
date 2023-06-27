@@ -47,23 +47,38 @@ var User = /** @class */ (function () {
 var logsById = [];
 var user = [];
 function hundleEmployeeSelected(ev) {
-    var employeeId = ev.target.parentElement.children[2].value;
-    debugger;
+    console.dir(ev);
+    var employeeId = ev.target.form[0].value;
+    // const date = ev.target.value;
     logsById.forEach(function (employee) {
         if (employee.userId === employeeId)
-            new User(employee.userId, employee.date, employee.signIn, employee.signOut);
+            user.push(new User(employee.userId, employee.date, employee.signIn, employee.signOut));
     });
-    console.dir(user);
-    var html = "<table>\n  <thead>\n    <tr>\n      <th>\u05E8\u05D0\u05E9\u05D5\u05DF</th>\n      <th>\u05E9\u05E0\u05D9</th>\n      <th>\u05E9\u05DC\u05D9\u05E9\u05D9</th>\n      <th>\u05E8\u05D1\u05D9\u05E2\u05D9</th>\n      <th>\u05D7\u05DE\u05D9\u05E9\u05D9</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n    </tr>\n    <tr>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n    </tr>\n    <tr>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n    </tr>\n  </tbody>\n</table>\n";
+    debugger;
+    user.forEach(function (workday) {
+        if (workday.signIn === undefined) {
+            delete workday.signIn;
+        }
+    });
+    user.forEach(function (workday) {
+        if (workday.signOut === undefined) {
+            delete workday.signOut;
+        }
+    });
+    var html = "<thead>\n    <tr>\n      <th>\u05EA\u05D0\u05E8\u05D9\u05DA</th>\n      <th>\u05E9\u05E2\u05EA \u05DB\u05E0\u05D9\u05E1\u05D4</th>\n      <th>\u05E9\u05E2\u05EA \u05D9\u05E6\u05D9\u05D0\u05D4</th>\n    </tr>\n  </thead>";
+    user.forEach(function (workday) {
+        html += "<tr>\n  <td>\u05EA\u05D0\u05E8\u05D9\u05DA: " + workday.date + "</td>\n  <td>\u05E9\u05E2\u05EA \u05DB\u05E0\u05D9\u05E1\u05D4: " + workday.signIn + "</td>\n  <td>\u05E9\u05E2\u05EA \u05D9\u05E6\u05D9\u05D0\u05D4: " + workday.signOut + "</td>\n</tr>";
+    });
     var rootTable = document.querySelector("#employeeTimeClockTable");
     if (!rootTable)
         throw new Error("table div is missing");
-    rootTable.innerHTML = html;
+    rootTable.innerHTML = "<table>" + html + "</table>";
 }
 function renderEmployees(rootElement) {
-    var html = "<label for=\"username\">\u05D9\u05E9 \u05DC\u05D1\u05D7\u05D5\u05E8 \u05E2\u05D5\u05D1\u05D3 \u05DE\u05D4\u05E8\u05E9\u05D9\u05DE\u05D4</label><br>\n  <select name=\"username\" id=\"username\" onchange=\"switchingUser()\">" + employees.map(function (employee) {
+    var html = "<form onsubmit=\"handleSubmit(event)\"><label for=\"username\">\u05D9\u05E9 \u05DC\u05D1\u05D7\u05D5\u05E8 \u05E2\u05D5\u05D1\u05D3 \u05DE\u05D4\u05E8\u05E9\u05D9\u05DE\u05D4</label><br>\n  <select name=\"username\" id=\"username\" onchange=\"switchingUser()\">" + employees.map(function (employee) {
         return "<option value=\"" + employee.id + "\">" + employee.userName + "</option>";
-    }) + "</select><br><label for=\"date\">\u05DB\u05D0\u05DF \u05E0\u05D9\u05EA\u05DF \u05DC\u05D1\u05D7\u05D5\u05E8 \u05EA\u05D0\u05E8\u05D9\u05DA \u05E1\u05E4\u05E6\u05D9\u05E4\u05D9</label><br><input type=\"date\" name=\"date\" id=\"date\" onchange=\"switchingUser()\" /><br><button onclick=\"hundleEmployeeSelected(event)\" value=\"\">\u05D4\u05E6\u05D2 \u05E0\u05D5\u05DB\u05D7\u05D5\u05EA</button>";
+    }) + "</select><br><label for=\"date\">\u05DB\u05D0\u05DF \u05E0\u05D9\u05EA\u05DF \u05DC\u05D1\u05D7\u05D5\u05E8 \u05EA\u05D0\u05E8\u05D9\u05DA \u05E1\u05E4\u05E6\u05D9\u05E4\u05D9</label><br><input type=\"date\" name=\"date\" id=\"date\" onchange=\"switchingUser()\" /><br><input type=\"submit\" value=\"\u05D4\u05E6\u05D2 \u05E0\u05D5\u05DB\u05D7\u05D5\u05EA\" onclick=\"hundleEmployeeSelected(event)\"> </form>\n  ";
+    // <button onclick="hundleEmployeeSelected(event)" value="">הצג נוכחות</button>
     if (!rootElement)
         throw new Error("missing HTML container");
     rootElement.innerHTML = html;
@@ -81,15 +96,37 @@ function renderLogoutButton(rootElement) {
     rootElement.innerHTML = html;
 }
 function hundleUsersLogin(ev) {
-    var userId = ev.target.parentElement.parentElement.children[2].children[2].value;
-    var date = currentDateToDispaly();
+    // console.log(ev);
+    var userId = ev.target.parentElement.parentElement.children[2].children[0].children[2]
+        .value;
+    var date;
+    if (ev.target.parentElement.parentElement.children[2].children[0].children[6]
+        .value === "") {
+        date = currentDateToDispaly();
+    }
+    else {
+        date =
+            ev.target.parentElement.parentElement.children[2].children[0].children[6]
+                .value;
+    }
     var signIn = currentTimeToDispaly();
     logsById.push({ userId: userId, date: date, signIn: signIn });
     renderLogoutButton(document.querySelector(".new-log"));
+    console.log(date);
 }
 function hundleUsersLogOut(ev) {
-    var userId = ev.target.parentElement.parentElement.children[2].children[2].value;
-    var date = currentDateToDispaly();
+    var userId = ev.target.parentElement.parentElement.children[2].children[0].children[2]
+        .value;
+    var date;
+    if (ev.target.parentElement.parentElement.children[2].children[0].children[6]
+        .value === "") {
+        date = currentDateToDispaly();
+    }
+    else {
+        date =
+            ev.target.parentElement.parentElement.children[2].children[0].children[6]
+                .value;
+    }
     var signOut = currentTimeToDispaly();
     logsById.push({ userId: userId, date: date, signOut: signOut });
     ev.target.classList.add("clicked");
@@ -115,4 +152,8 @@ function currentDateToDispaly() {
 }
 function switchingUser(ev) {
     renderLogInButton(document.querySelector(".new-log"));
+}
+function handleSubmit(ev) {
+    ev.preventDefault();
+    console.dir(ev);
 }

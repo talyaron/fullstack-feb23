@@ -12,19 +12,18 @@ body {
   height: 100vh;
 }
 
-.container {
-  background-color: #fff;
-  border-radius: 5px;
-  padding: 20px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  text-align: center;
+.AddNewDiv, .LoginDiv {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
 }
 
 .logInAndAddnew {
   display: flex;
   flex-direction: row;
   gap: 50px;
-  justify-content: center;
+  justify-content: space-around;
 }
 
 form {
@@ -34,6 +33,7 @@ form {
 label {
   display: block;
   margin-bottom: 10px;
+  padding-right: 10px;
 }
 
 input[type=text],
@@ -42,6 +42,8 @@ input[type=number] {
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 3px;
+  margin-top: 5px;
+  /* Add margin to the top of inputs */
 }
 
 input[type=submit],
@@ -82,8 +84,27 @@ input[type=submit] {
   color: #ff0000;
 }
 
-.success {
-  background-color: #ddffdd;
-  border-color: #99ff99;
-  color: #009900;
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th, td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #428bca;
+  color: white;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+tr:hover {
+  background-color: pink;
 }

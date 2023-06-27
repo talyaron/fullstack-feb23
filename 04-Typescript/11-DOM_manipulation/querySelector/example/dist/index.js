@@ -25,7 +25,7 @@ var students = [
     new Student("Alex", 1991),
 ];
 var root = document.querySelector("#root");
-var studntsHTML = "<div class='wrapper'>";
+var LstudntsHTM = "<div class='wrapper'>";
 studntsHTML += students
     .map(function (student) {
     return "<p class=\"myParagraph\">" + student.name + ", age: " + student.getAge() + "</p>";
