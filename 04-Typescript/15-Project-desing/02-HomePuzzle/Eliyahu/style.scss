@@ -1,30 +1,45 @@
-#register{
+#register {
+    margin: auto;
     background-color: aqua;
     padding: 20px;
     max-width: 400px;
-
-    form{
-        input{
+    form {
+        input {
 
             margin: 5px;
         }
     }
 }
 
-#entrace{
-    margin: 10px;
+#attendance {
+    width: 70vw;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    form {
+        margin: 20px;
+    }
 }
 
-#exit{
-    margin: 10px;
+#tableButtons {
+    width: 90vw;
+    margin: auto;
+
+    display: flex;
+    align-items: center;
+    form {
+        margin: -20px 50px 20px 25px;
+    }
 }
 
-th,td{
+th,
+td {
     width: 100px;
     margin: 2px;
     border: 1px solid black;
     padding: 2px;
 }
-th{
+
+th {
     background-color: antiquewhite;
 }
