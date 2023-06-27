@@ -122,8 +122,6 @@ function handleRegisterWorkerr(ev: any) {
 
         renderMovmentWorkerr(workerr, movment, document.querySelector("#MovmentWorker"));
      
-
-
         console.log(name, email, entrance, exit, dayliHours());
     } catch (error) {
         console.error(error)
