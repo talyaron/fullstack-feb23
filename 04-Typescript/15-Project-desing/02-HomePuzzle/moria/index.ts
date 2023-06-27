@@ -9,10 +9,6 @@ class WorkLog {
 }
 const workers: WorkLog[] = [];
 
-const workersHours: WorkLog[] = [
-    new WorkLog("Doriel", 8),
-    new WorkLog("Max", 12)
-];
 
 function renderWorkersHours(rootElement: HTMLElement | null) {
     try {

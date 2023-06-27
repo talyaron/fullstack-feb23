@@ -2,20 +2,23 @@
 //worker personal details
 //time clock
 var TimeClock = /** @class */ (function () {
-    //entart time
-    //exit time
     function TimeClock(entaryTime, exitTime) {
         this.entaryTime = entaryTime;
         this.exitTime = exitTime;
+        this.id = uid();
     }
     return TimeClock;
 }());
 var timeCloceArr = [];
+var uid = function () {
+    return Date.now().toString(36) + Math.random().toString(36).substr(2);
+};
 var Employ = /** @class */ (function () {
     function Employ(firstName, lastName, idNumber) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.idNumber = idNumber;
+        this.id = uid();
     }
     return Employ;
 }());
@@ -53,6 +56,7 @@ function handleWorker(ev) {
         var worker = new Employ(firstName, lastName, idNumber);
         //add to array
         workers.push(worker);
+        console.log(workers);
         //seich in view
         renderLoggedUser(worker, document.querySelector("#register"));
     }
@@ -95,7 +99,8 @@ function handletimeclock(ev) {
         console.log(entaryTime, exitTime);
         var timeCloceWorker = new TimeClock(entaryTime, exitTime);
         timeCloceArr.push(timeCloceWorker);
-        renderTimeClock(timeCloceArr, timeCloceWorker, document.querySelector("#register"));
+        console.log(timeCloceArr);
+        renderTimeClock(timeCloceArr, timeCloceWorker, document.querySelector("#timeClock"));
     }
     catch (error) {
         console.error(error);
@@ -103,9 +108,10 @@ function handletimeclock(ev) {
 }
 function renderTimeClock(timeCloceArr, timeClockWorker, rootElement) {
     try {
-        var html_1 = "\n        <table id=\"timeTable\">\n            <tr> <!--row-->\n                <th>entary time</th>  <!--colum-->\n                <th>exit time</th>\n            </tr>\n            <tr>\n                <td>" + timeClockWorker.entaryTime + "</td>\n                <td>" + timeClockWorker.exitTime + "</td>\n            </tr>";
+        var html_1 = "\n        <table id=\"timeTable\">\n            <tr> <!--row-->\n                <th>entary time</th>  <!--colum-->\n                <th>exit time</th>\n                <th>total hours</th>\n            </tr";
         timeCloceArr.forEach(function (element) {
-            html_1 += "\n           <tr>\n            <td>" + timeClockWorker.entaryTime + "</td>\n            <td>" + timeClockWorker.exitTime + "</td>\n           </tr>;";
+            console.log(element);
+            html_1 += "\n           <tr>\n            <td>" + element.entaryTime + "</td>\n            <td>" + element.exitTime + "</td>\n            <td>" + calculatHours(timeClockWorker) + "</td>\n            <td>\n                <button onclick=\"editTimeClock('" + element.id + ", " + timeClockWorker + ", " + document.querySelector("#editTime") + "')\">Edit</button>\n                <button onclick=\"deleteTimeClock('" + element.id + ", " + timeClockWorker + "')\">Delete</button>\n            </td>\n           </tr>";
         });
         html_1 += "</table>";
         if (!rootElement)
@@ -115,4 +121,67 @@ function renderTimeClock(timeCloceArr, timeClockWorker, rootElement) {
     catch (error) {
         console.error(error);
     }
+}
+function calculatHours(timeClockWorker) {
+    try {
+        var start = Date.parse((timeClockWorker.entaryTime).valueOf()); //get tomestamp of entary time
+        var end = Date.parse((timeClockWorker.exitTime).valueOf()); //get tomestamp of entary time
+        var totalHours = NaN;
+        if (start < end) {
+            totalHours = Math.floor((end - start) / 1000 / 60 / 60); //mikkisecound
+        }
+        return totalHours;
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+//-------------edit and delete
+function editTimeClock(id, timeClockWorker, rootElement) {
+    try {
+        var timeClockEntry = timeCloceArr.find(function (entry) { return entry.id === id; });
+        if (timeClockEntry) {
+            var htmlModel = "\n        <h3>Edit Time Clock Entry</h3>\n        <label for=\"entryInput\">Entry Time:</label>\n        <input type=\"datetime-local\" id=\"entryInput\" value=\"" + timeClockEntry.entaryTime + "\">\n        <label for=\"exitInput\">Exit Time:</label>\n        <input type=\"datetime-local\" id=\"exitInput\" value=\"" + timeClockEntry.exitTime + "\">\n        <button onclick=\"updateTimeClock('" + timeClockEntry.id + "," + timeClockWorker + "')\">Update</button>\n        <button onclick=\"cancelEdit()\">Cancel</button>\n      ";
+            if (!rootElement)
+                throw new Error("no root elemant");
+            rootElement.innerHTML = htmlModel;
+        }
+    }
+    catch (error) {
+        console.log(error);
+    }
+}
+function updateTimeClock(entryId, timeClockWorker) {
+    try {
+        var updatedEntry = document.querySelector("#entryInput").value;
+        var updatedExit = document.querySelector("#exitInput").value;
+        // Perform the necessary update based on the user input
+        var entryToUpdate = timeCloceArr.find(function (entry) { return entry.id === entryId; });
+        if (entryToUpdate) {
+            entryToUpdate.entaryTime = updatedEntry;
+            entryToUpdate.exitTime = updatedExit;
+        }
+        // Remove the htmlModel dialog
+        document.body.removeChild(htmlModel);
+        // Render the updated time clock table
+        renderTimeClock(timeCloceArr, timeClockWorker, document.querySelector("#timeClock"));
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+function cancelEdit() {
+    // Remove the htmlModel dialog
+    document.body.removeChild(htmlModel);
+}
+function deleteTimeClock(id, timeClockWorker) {
+    // Find the index of the time clock entry in the array based on the provided ID
+    var entryIndex = timeCloceArr.findIndex(function (entry) { return entry.id === id; });
+    if (entryIndex !== -1) {
+        // Remove the entry from the array
+        timeCloceArr.splice(entryIndex, 1);
+        // Render the updated time clock table
+        renderTimeClock(timeCloceArr, timeClockWorker, document.querySelector("#timeClock"));
+    }
+    rootElement.innerHTML = htmlModel;
 }
