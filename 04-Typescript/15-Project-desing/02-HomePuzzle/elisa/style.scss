@@ -1,9 +1,42 @@
-table {
-  border-collapse: collapse;
-  width: 100%;
+body {
+  font-family: Arial, sans-serif;
 }
 
-th, td {
-  border: 1px solid black;
+#timeClock {
+  margin-bottom: 2em;
+}
+
+#timeTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#timeTable th, #timeTable td {
+  border: 1px solid #ddd;
   padding: 8px;
+  text-align: center;
+}
+
+#timeTable th {
+  background-color: #4CAF50;
+  color: white;
+}
+
+button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  transition-duration: 0.4s;
+}
+
+button:hover {
+  background-color: white;
+  color: black;
 }
