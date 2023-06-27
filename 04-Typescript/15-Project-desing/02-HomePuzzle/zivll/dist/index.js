@@ -99,7 +99,7 @@ function hundleEmployeeSelected(ev) {
     var employeeId = ev.target.form[0].value;
     employeeLogs.forEach(function (employee) {
         if (employee.userId === employeeId) {
-            html += "<tr><td>\u05EA\u05D0\u05E8\u05D9\u05DA: " + employee.date + "</td><td>\u05E9\u05E2\u05EA \u05DB\u05E0\u05D9\u05E1\u05D4: " + employee.signIn + " <button class=\"edit-log\" onclick=\"editLoginButton(event)\">\u05E2\u05E8\u05D9\u05DB\u05D4</button></td><td>\u05E9\u05E2\u05EA \u05D9\u05E6\u05D9\u05D0\u05D4: " + employee.signOut + " <button class=\"edit-log\" onclick=\"editLogoutButton(event)\">\u05E2\u05E8\u05D9\u05DB\u05D4</button></td></tr>";
+            html += "<tr><td>\u05EA\u05D0\u05E8\u05D9\u05DA: " + employee.date + "</td><td class=\"flex-td\"><p>" + employee.signIn + " </p><button class=\"edit-log\" onclick=\"editLoginButton(event)\">\u05E2\u05E8\u05D9\u05DB\u05D4</button></td><td class=\"flex-td\"><p>" + employee.signOut + "</p> <button class=\"edit-log\" onclick=\"editLogoutButton(event)\">\u05E2\u05E8\u05D9\u05DB\u05D4</button></td></tr>";
         }
         var rootTable = document.querySelector("#employeeTimeClockTable");
         if (!rootTable)
@@ -111,16 +111,14 @@ function renderEmployees(rootElement) {
     var html = "<form onsubmit=\"handleSubmit(event)\"><label for=\"username\">\u05D9\u05E9 \u05DC\u05D1\u05D7\u05D5\u05E8 \u05E2\u05D5\u05D1\u05D3 \u05DE\u05D4\u05E8\u05E9\u05D9\u05DE\u05D4</label><br>\n  <select name=\"username\" id=\"username\" onchange=\"switchingUser()\">" + employees.map(function (employee) {
         return "<option value=\"" + employee.id + "\">" + employee.userName + "</option>";
     }) + "</select><br><label for=\"date\">\u05DB\u05D0\u05DF \u05E0\u05D9\u05EA\u05DF \u05DC\u05D1\u05D7\u05D5\u05E8 \u05EA\u05D0\u05E8\u05D9\u05DA \u05E1\u05E4\u05E6\u05D9\u05E4\u05D9</label><br><input type=\"date\" name=\"date\" id=\"date\" onchange=\"switchingUser(), selectingDate(event)\" /><br><input type=\"submit\" value=\"\u05D4\u05E6\u05D2 \u05E0\u05D5\u05DB\u05D7\u05D5\u05EA\" onclick=\"hundleEmployeeSelected(event)\"> </form>\n  ";
-    // <button onclick="hundleEmployeeSelected(event)" value="">הצג נוכחות</button>
     if (!rootElement)
         throw new Error("missing HTML container");
     rootElement.innerHTML = html;
 }
 function renderLogInButton(rootElement) {
-    var html = "<button class=\"btn-log\" id=\"new-log\" onclick=\"hundleUsersLogin(event)\">\u05D4\u05D7\u05EA\u05DE\u05EA \u05DB\u05E0\u05D9\u05E1\u05D4</button>";
-    if (!rootElement)
-        throw new Error("rootElement is missing");
-    rootElement.innerHTML = html;
+    // const html = `<button class="btn-log" id="new-log" onclick="hundleUsersLogin(event)">החתמת כניסה</button>`;
+    // if (!rootElement) throw new Error(`rootElement is missing`);
+    // rootElement.innerHTML = html;
 }
 function renderLogoutButton(rootElement) {
     var html = "<button class=\"btn-log\" onclick=\"hundleUsersLogOut(event)\">\u05D4\u05D7\u05EA\u05DE\u05EA \u05D9\u05E6\u05D9\u05D0\u05D4</button>";
@@ -204,7 +202,7 @@ function selectingDate(date) {
     var newDate = changingDateToisplay(date);
     employeeLogs.forEach(function (employee) {
         if (employee.userId === employeeId && newDate === employee.date) {
-            html += "<tr><td>\u05EA\u05D0\u05E8\u05D9\u05DA: " + employee.date + "</td><td>\u05E9\u05E2\u05EA \u05DB\u05E0\u05D9\u05E1\u05D4: " + employee.signIn + "    <button class=\"edit-log\" onclick=\"editLoginButton(event)\">\u05E2\u05E8\u05D9\u05DB\u05D4</button>\n      </td><td>\u05E9\u05E2\u05EA \u05D9\u05E6\u05D9\u05D0\u05D4: " + employee.signOut + "    <button class=\"edit-log\" onclick=\"editLogoutButton(event)\">\u05E2\u05E8\u05D9\u05DB\u05D4</button>\n      </td></tr>";
+            html += "<tr><td>\u05EA\u05D0\u05E8\u05D9\u05DA: " + employee.date + "</td><td class=\"flex-td\"><p>" + employee.signIn + " </p><button class=\"edit-log\" onclick=\"editLoginButton(event)\">\u05E2\u05E8\u05D9\u05DB\u05D4</button>\n      </td><td class=\"flex-td\"><p>" + employee.signOut + " </p><button class=\"edit-log\" onclick=\"editLogoutButton(event)\">\u05E2\u05E8\u05D9\u05DB\u05D4</button>\n      </td></tr>";
         }
     });
     var rootTable = document.querySelector("#employeeTimeClockTable");
@@ -215,13 +213,14 @@ function selectingDate(date) {
 function editLoginButton(currentLog) {
     try {
         console.dir(currentLog);
-        var newLog_1 = "\u05E9\u05E2\u05EA \u05DB\u05E0\u05D9\u05E1\u05D4: " + prompt("\u05DE\u05D4 \u05D4\u05E9\u05E2\u05D4 \u05D4\u05D7\u05D3\u05E9\u05D4 \u05E9\u05D1\u05E8\u05E6\u05D5\u05E0\u05DA \u05DC\u05E2\u05D3\u05DB\u05DF?") + " ";
-        currentLog.target.previousSibling.data = newLog_1;
-        ;
-        var employeeId_1 = currentLog.target.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.children[2].firstChild[0].value;
+        var date_1 = currentLog.target.parentElement.parentElement.children[0].textContent.replace("תאריך: ", "");
+        var newLog_1 = prompt("\u05DE\u05D4 \u05D4\u05E9\u05E2\u05D4 \u05D4\u05D7\u05D3\u05E9\u05D4 \u05E9\u05D1\u05E8\u05E6\u05D5\u05E0\u05DA \u05DC\u05E2\u05D3\u05DB\u05DF?") + " ";
+        currentLog.target.previousSibling.firstChild.data = newLog_1;
+        var employeeId_1 = currentLog.target.parentElement.parentElement.parentElement.parentElement
+            .parentElement.parentElement.children[2].firstChild[0].value;
         console.dir(employeeId_1);
         employeeLogs.forEach(function (employee) {
-            if (employee.userId === employeeId_1) {
+            if (employee.userId === employeeId_1 && date_1 === employee.date) {
                 employee.signIn = newLog_1;
                 console.dir(employee.signIn);
             }
@@ -235,15 +234,16 @@ function editLoginButton(currentLog) {
 function editLogoutButton(currentLog) {
     try {
         console.dir(currentLog);
-        var newLog_2 = "\u05E9\u05E2\u05EA \u05DB\u05E0\u05D9\u05E1\u05D4: " + prompt("\u05DE\u05D4 \u05D4\u05E9\u05E2\u05D4 \u05D4\u05D7\u05D3\u05E9\u05D4 \u05E9\u05D1\u05E8\u05E6\u05D5\u05E0\u05DA \u05DC\u05E2\u05D3\u05DB\u05DF?") + " ";
-        currentLog.target.previousSibling.data = newLog_2;
-        ;
-        var employeeId_2 = currentLog.target.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.children[2].firstChild[0].value;
+        var date_2 = currentLog.target.parentElement.parentElement.children[0].textContent.replace("תאריך: ", "");
+        var newLog_2 = prompt("\u05DE\u05D4 \u05D4\u05E9\u05E2\u05D4 \u05D4\u05D7\u05D3\u05E9\u05D4 \u05E9\u05D1\u05E8\u05E6\u05D5\u05E0\u05DA \u05DC\u05E2\u05D3\u05DB\u05DF?") + " ";
+        currentLog.target.previousElementSibling.firstChild.data = newLog_2;
+        var employeeId_2 = currentLog.target.parentElement.parentElement.parentElement.parentElement
+            .parentElement.parentElement.children[2].firstChild[0].value;
         console.dir(employeeId_2);
         employeeLogs.forEach(function (employee) {
-            if (employee.userId === employeeId_2) {
-                employee.signIn = newLog_2;
-                console.dir(employee.signIn);
+            if (employee.userId === employeeId_2 && date_2 === employee.date) {
+                employee.signOut = newLog_2;
+                console.dir(employee.signOut);
             }
         });
     }

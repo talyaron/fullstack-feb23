@@ -106,7 +106,7 @@ function hundleEmployeeSelected(ev: any) {
   const employeeId = ev.target.form[0].value;
   employeeLogs.forEach((employee) => {
     if (employee.userId === employeeId) {
-      html += `<tr><td>תאריך: ${employee.date}</td><td>שעת כניסה: ${employee.signIn} <button class="edit-log" onclick="editLoginButton(event)">עריכה</button></td><td>שעת יציאה: ${employee.signOut} <button class="edit-log" onclick="editLogoutButton(event)">עריכה</button></td></tr>`;
+      html += `<tr><td>תאריך: ${employee.date}</td><td class="flex-td"><p>${employee.signIn} </p><button class="edit-log" onclick="editLoginButton(event)">עריכה</button></td><td class="flex-td"><p>${employee.signOut}</p> <button class="edit-log" onclick="editLogoutButton(event)">עריכה</button></td></tr>`;
     }
     const rootTable = document.querySelector(`#employeeTimeClockTable`);
     if (!rootTable) throw new Error(`table div is missing`);
@@ -123,14 +123,13 @@ function renderEmployees(rootElement: HTMLElement | null) {
     }
   )}</select><br><label for="date">כאן ניתן לבחור תאריך ספציפי</label><br><input type="date" name="date" id="date" onchange="switchingUser(), selectingDate(event)" /><br><input type="submit" value="הצג נוכחות" onclick="hundleEmployeeSelected(event)"> </form>
   `;
-  // <button onclick="hundleEmployeeSelected(event)" value="">הצג נוכחות</button>
   if (!rootElement) throw new Error(`missing HTML container`);
   rootElement.innerHTML = html;
 }
 function renderLogInButton(rootElement: HTMLElement | null) {
-  const html = `<button class="btn-log" id="new-log" onclick="hundleUsersLogin(event)">החתמת כניסה</button>`;
-  if (!rootElement) throw new Error(`rootElement is missing`);
-  rootElement.innerHTML = html;
+  // const html = `<button class="btn-log" id="new-log" onclick="hundleUsersLogin(event)">החתמת כניסה</button>`;
+  // if (!rootElement) throw new Error(`rootElement is missing`);
+  // rootElement.innerHTML = html;
 }
 function renderLogoutButton(rootElement: HTMLElement | null) {
   const html = `<button class="btn-log" onclick="hundleUsersLogOut(event)">החתמת יציאה</button>`;
@@ -226,8 +225,8 @@ function selectingDate(date) {
   const newDate = changingDateToisplay(date);
   employeeLogs.forEach((employee) => {
     if (employee.userId === employeeId && newDate === employee.date) {
-      html += `<tr><td>תאריך: ${employee.date}</td><td>שעת כניסה: ${employee.signIn}    <button class="edit-log" onclick="editLoginButton(event)">עריכה</button>
-      </td><td>שעת יציאה: ${employee.signOut}    <button class="edit-log" onclick="editLogoutButton(event)">עריכה</button>
+      html += `<tr><td>תאריך: ${employee.date}</td><td class="flex-td"><p>${employee.signIn} </p><button class="edit-log" onclick="editLoginButton(event)">עריכה</button>
+      </td><td class="flex-td"><p>${employee.signOut} </p><button class="edit-log" onclick="editLogoutButton(event)">עריכה</button>
       </td></tr>`;
     }
   });
@@ -240,20 +239,21 @@ function selectingDate(date) {
 function editLoginButton(currentLog) {
   try {
     console.dir(currentLog);
-
-    const newLog: string | null = `שעת כניסה: ${prompt(
-      `מה השעה החדשה שברצונך לעדכן?`
-    )} `;
-    currentLog.target.previousSibling.data = newLog;
-    ;
+    const date =
+      currentLog.target.parentElement.parentElement.children[0].textContent.replace(
+        "תאריך: ",
+        ""
+      );
+    const newLog: string | null = `${prompt(`מה השעה החדשה שברצונך לעדכן?`)} `;
+    currentLog.target.previousSibling.firstChild.data = newLog;
     const employeeId =
-      currentLog.target.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.children[2].firstChild[0].value;
+      currentLog.target.parentElement.parentElement.parentElement.parentElement
+        .parentElement.parentElement.children[2].firstChild[0].value;
     console.dir(employeeId);
     employeeLogs.forEach((employee) => {
-      if (employee.userId === employeeId) {
+      if (employee.userId === employeeId && date === employee.date) {
         employee.signIn = newLog;
-        console.dir( employee.signIn);
-
+        console.dir(employee.signIn);
       }
     });
   } catch (error) {
@@ -264,20 +264,22 @@ function editLoginButton(currentLog) {
 function editLogoutButton(currentLog) {
   try {
     console.dir(currentLog);
+    const date =
+      currentLog.target.parentElement.parentElement.children[0].textContent.replace(
+        "תאריך: ",
+        ""
+      );
 
-    const newLog: string | null = `שעת כניסה: ${prompt(
-      `מה השעה החדשה שברצונך לעדכן?`
-    )} `;
-    currentLog.target.previousSibling.data = newLog;
-    ;
+    const newLog: string | null = `${prompt(`מה השעה החדשה שברצונך לעדכן?`)} `;
+    currentLog.target.previousElementSibling.firstChild.data = newLog;
     const employeeId =
-      currentLog.target.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.children[2].firstChild[0].value;
+      currentLog.target.parentElement.parentElement.parentElement.parentElement
+        .parentElement.parentElement.children[2].firstChild[0].value;
     console.dir(employeeId);
     employeeLogs.forEach((employee) => {
-      if (employee.userId === employeeId) {
-        employee.signIn = newLog;
-        console.dir( employee.signIn);
-
+      if (employee.userId === employeeId && date === employee.date) {
+        employee.signOut = newLog;
+        console.dir(employee.signOut);
       }
     });
   } catch (error) {
