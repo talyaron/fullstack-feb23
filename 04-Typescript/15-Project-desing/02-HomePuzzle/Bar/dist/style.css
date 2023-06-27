@@ -4,7 +4,7 @@ body {
   font-style: italic;
 }
 
-.register {
+#register {
   position: relative;
   top: 30vh;
   margin: auto;
@@ -29,9 +29,13 @@ form input {
   border: 1px solid #aff7ff;
 }
 
-.workwrDitels {
+#MovmentWorker {
   position: relative;
   top: 30vh;
+}
+
+.workwrDitels {
+  position: relative;
   margin: auto;
   border: 1px solid #aff7ff;
   width: 12vw;

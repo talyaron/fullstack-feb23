@@ -4,11 +4,10 @@ body {
     font-style: italic;
 }
 
-.register {
+#register {
     position: relative;
     top: 30vh;
     margin: auto;
-    // background-color: white;
     width: 11vw;
     padding: 10px;
 }
@@ -16,9 +15,7 @@ body {
 form {
     position: relative;
     margin: auto;
-
     font-size: large;
-    // top: 30vh;
     width: 11vw;
 
     input {
@@ -33,9 +30,14 @@ form {
     }
 }
 
-.workwrDitels {
+#MovmentWorker{
     position: relative;
     top: 30vh;
+}
+
+.workwrDitels {
+    position: relative;
+    // top: 30vh;
     margin: auto;
     border: 1px solid rgb(175, 247, 255);
     width: 12vw;
