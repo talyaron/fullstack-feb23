@@ -18,10 +18,10 @@ var Workerr = /** @class */ (function () {
 var workers = [];
 // entrance and exit times.
 var Movment = /** @class */ (function () {
-    function Movment(entrance, exit) {
+    function Movment(entrance, exit, dayliHours) {
         this.entrance = entrance;
         this.exit = exit;
-        // this.id = Date.now().toString(32) + Math.random().toString(16);
+        this.dayliHours = dayliHours;
         this.id = id();
     }
     return Movment;
@@ -44,7 +44,6 @@ function renderRegisterWorkerr(rootElement) {
             throw new Error("Missing root element");
         var html = "\n        <div class=\"register\">\n        <form onsubmit=\"handleRegisterWorkerr(event)\">\n          <input type=\"text\" name=\"name\" id=\"name\" placeholder=\"name\" required>\n          <input type=\"text\" name=\"email\" id=\"email\" placeholder=\"email\" required>\n          \n          <label for=\"entrance\">entrance</label>\n          <input type=\"time\" name=\"entrance\" id=\"entrance\" required>\n          <label for=\"exit\">exit</label>\n          <input type=\"time\" name=\"exit\" id=\"exit\" required>\n\n          <input type=\"submit\" value=\"register\">\n        </form>\n        </div>";
         rootElement.innerHTML = html;
-        // return html;
     }
     catch (error) {
         console.error(error);
@@ -53,7 +52,7 @@ function renderRegisterWorkerr(rootElement) {
 renderRegisterWorkerr(document.querySelector("#register"));
 function renderMovmentWorkerr(workerr, movment, rootElement) {
     try {
-        var html = "\n        <div class=\"register\">\n        <form onsubmit=\"handleRegisterWorkerr(event)\">\n          <input type=\"text\" name=\"name\" id=\"name\" placeholder=\"name\" required>\n          <input type=\"text\" name=\"email\" id=\"email\" placeholder=\"email\" required>\n          \n          <label for=\"entrance\">entrance</label>\n          <input type=\"time\" name=\"entrance\" id=\"entrance\" required>\n          <label for=\"exit\">exit</label>\n          <input type=\"time\" name=\"exit\" id=\"exit\" required>\n\n          <input type=\"submit\" value=\"register\">\n        </form>\n        </div>\n        <div class=\"workwrDitels\">\n            <h2>" + workerr.name + "</h2>\n            <div class=\"ditels\">\n              <p> Entrance time is: " + movment.entrance + "</p>\n              <p> Exit time is: " + movment.exit + "</p>\n            </div>\n        </div>";
+        var html = "\n        <div class=\"workwrDitels\">\n            <h2>" + workerr.name + "</h2>\n            <div class=\"ditels\">\n              <p> Entrance time is: " + movment.entrance + "</p>\n              <p> Exit time is: " + movment.exit + "</p>\n                <p> Dayli hours is: " + movment.dayliHours + "</p>\n            </div>\n        </div>";
         if (!rootElement)
             throw new Error("no root element");
         rootElement.innerHTML = html;
@@ -62,7 +61,6 @@ function renderMovmentWorkerr(workerr, movment, rootElement) {
         console.error(error);
     }
 }
-//
 // view->model controlers
 function handleRegisterWorkerr(ev) {
     try {
@@ -74,11 +72,17 @@ function handleRegisterWorkerr(ev) {
         workers.push(workerr);
         var entrance = ev.target.elements.entrance.value;
         var exit = ev.target.elements.exit.value;
-        var movment = new Movment(entrance, exit);
+        var dayliHours = function () {
+            var entrance = parseFloat(ev.target.elements.entrance.value);
+            var exit = parseFloat(ev.target.elements.exit.value);
+            var dailyHours = exit - entrance;
+            return dailyHours;
+        };
+        var movment = new Movment(entrance, exit, dayliHours());
         //add to model
         movments.push(movment);
-        renderMovmentWorkerr(workerr, movment, document.querySelector("#register"));
-        console.log(name, email, entrance, exit);
+        renderMovmentWorkerr(workerr, movment, document.querySelector("#MovmentWorker"));
+        console.log(name, email, entrance, exit, dayliHours());
     }
     catch (error) {
         console.error(error);
