@@ -81,7 +81,7 @@ function handleRegisterhours(ev) {
         var dailyhours = hoursDay.calculateDailyHoures();
         var rootDailyhours = document.querySelector("#dailyhours");
         if (rootDailyhours)
-            rootDailyhours.innerHTML = dailyhours;
+            rootDailyhours.innerHTML = "<h1>You Worked Today: " + dailyhours + " hours</h1>";
     }
     catch (error) {
         console.error(error);

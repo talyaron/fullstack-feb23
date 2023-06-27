@@ -99,7 +99,7 @@ function handleRegisterWorker(ev: any) {
       hoursD.push(hoursDay);
       const dailyhours = hoursDay.calculateDailyHoures();
       const rootDailyhours: any = document.querySelector("#dailyhours");
-    if (rootDailyhours) rootDailyhours.innerHTML = dailyhours;
+    if (rootDailyhours) rootDailyhours.innerHTML = `<h1>You Worked Today: ${dailyhours} hours</h1>`;
     
       
     } catch (error) {
