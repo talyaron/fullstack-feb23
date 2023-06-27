@@ -1,22 +1,23 @@
-
+const root = document.querySelector(`#root`) as HTMLElement;
+const Table = document.querySelector(`#Table`) as HTMLElement;
 function handleSubmit(event) {
     event.preventDefault();
     const EmployeeName = event.target.name.value;
     const EmployeeEnter = event.target.EnterTime.value;
     const EmployeeExit = event.target.ExitTime.value;
-    // renderImages(EmployeeName, EmployeeEnter, EmployeeExit)
-    const worker = new s(EmployeeName, EmployeeEnter, EmployeeExit, Result);
-    renderLoggedWorker(worker, document.getElementById('root'));
+    render(EmployeeName, EmployeeEnter, EmployeeExit)
+    const worker = new s(EmployeeName, EmployeeEnter, EmployeeExit);
+    renderLoggedWorker(worker, root);
 }
 //-----------
 class s {
     EmployeeName: string;
     EmployeeEnter: number;
     EmployeeExit: number;
-    constructor(EmployeeName: string,  EmployeeEnter: number, EmployeeExit: number){
-    this.EmployeeName = EmployeeName, 
-    this.EmployeeEnter = EmployeeEnter,
-    this.EmployeeExit = EmployeeExit
+    constructor(EmployeeName: string, EmployeeEnter: number, EmployeeExit: number) {
+        this.EmployeeName = EmployeeName,
+            this.EmployeeEnter = EmployeeEnter,
+            this.EmployeeExit = EmployeeExit
     }
 }
 const sArr: s[] = []
@@ -26,8 +27,8 @@ function renderLoggedWorker(workers: s, rootElement: HTMLElement | null) {
         const html = `<h2>Hello ${workers.EmployeeName} you worked from ${workers.EmployeeEnter} until ${workers.EmployeeExit}</h2>`;
         if (!rootElement) throw new Error("no root element");
 
-        
-        rootElement.innerHTML += html;
+
+        root.innerHTML = html;
     } catch (error) {
         console.error(error)
     }
@@ -35,28 +36,28 @@ function renderLoggedWorker(workers: s, rootElement: HTMLElement | null) {
 
 
 //----------
-// function renderImages(
-//     EmployeeName: string,
-//     EmployeeEnter: number,
-//     EmployeeExit: number
-// ) {
-//     const root = document.querySelector(`#root`) as HTMLElement;
-//     if (root) {
+function render(
+    EmployeeName: string,
+    EmployeeEnter: number,
+    EmployeeExit: number
+) {
 
-//         const html = `
-//         <table>
-//         <tr>
-//             <td>First name</td>
-//             <td>entrance time</td>
-//             <td>leaving time </td>
-//             </tr>
-//             <td>${EmployeeName} </td>
-//             <td>${EmployeeEnter}</td>
-//             <td>${EmployeeExit} </td>
-//             </tr>
-//         </table>`;
-//         // console.log(EmployeeEnter)
-//         // console.log(EmployeeExit)
-//         root.innerHTML += html;
-//     }
-// }
+    if (Table) {
+
+        const htmlTable = `
+        <table>
+        <tr>
+            <td>First name</td>
+            <td>entrance time</td>
+            <td>leaving time </td>
+            </tr>
+            <td>${EmployeeName} </td>
+            <td>${EmployeeEnter}</td>
+            <td>${EmployeeExit} </td>
+            </tr>
+        </table>`;
+        // console.log(EmployeeEnter)
+        // console.log(EmployeeExit)
+        Table.innerHTML += htmlTable;
+    }
+}

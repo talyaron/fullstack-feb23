@@ -6,10 +6,6 @@ var WorkLog = /** @class */ (function () {
     return WorkLog;
 }());
 var workers = [];
-var workersHours = [
-    new WorkLog("Doriel", 8),
-    new WorkLog("Max", 12)
-];
 function renderWorkersHours(rootElement) {
     try {
         var html = "\n        <form onsubmit=\"handleRegisterWorker(event)\">\n            <label for=\"firstName\">First name</label>\n            <input type=\"text\" name=\"firstName\" id='firstName' placeholder=\"first name\" required>\n            <label for=\"hours\">Last name</label>\n            <input type=\"number\" name=\"hours\" id=\"'hours\" placeholder=\"hours\" required>\n            <input type=\"submit\" value=\"Register\">\n        </form>";
