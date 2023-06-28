@@ -8,6 +8,9 @@ var Table = /** @class */ (function () {
         this.capacity = capacity;
         this.uidTable = Number(uid());
     }
+    Table.prototype.getTable = function () {
+        return this.capacity;
+    };
     return Table;
 }());
 var Dishe = /** @class */ (function () {
@@ -28,8 +31,15 @@ var Order = /** @class */ (function () {
         this.status = status;
         this.uidOrder = Number(uid());
     }
-    Order.prototype.addDishe = function () {
-        //add dishe to open order
+    Order.prototype.addOrder = function () {
+        //add new order
+    };
+    Order.prototype.editOrder = function (action, dishe) {
+        //edit dishe
+    };
+    Order.prototype.closeOrder = function () {
+        // calc sum of dises price
+        this.status = false;
     };
     return Order;
 }());

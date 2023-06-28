@@ -9,6 +9,10 @@ class Table {
     constructor(public capacity: number){
         this.uidTable = Number(uid());
     }
+
+    getTable(){
+        return this.capacity 
+    }
 }
 
 class Dishe {
@@ -16,6 +20,7 @@ class Dishe {
     constructor(public name:string,public img:string, public price:number,public status:boolean, public description:string){
         this.uidDishe = Number(uid());
     }
+
 }
 
 class Order {
@@ -23,7 +28,18 @@ class Order {
     constructor(public table: Table, public dishes: Dishe[],public status:boolean){
         this.uidOrder = Number(uid());
     }
-    addDishe(){
-        //add dishe to open order
+    addOrder(){
+        //add new order
+
     }
+    editOrder(action:string,dishe:Dishe){
+        //edit dishe
+    }
+    closeOrder(){
+
+        // calc sum of dises price
+        this.status=false;
+    }
+
+
 }
