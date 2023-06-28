@@ -23,7 +23,7 @@ function UrlWidth(event) {
 }
 function render(uzer, root) {
     var html = uzer.map(function (uzer) {
-        return "<div>\n      <img src=\"" + uzer.imgUrl + "\"style=\"width:" + uzer.width + "px;\">\n      </div>";
+        return "<div>\n      <img src=\"" + uzer.imgUrl + "\" style=\"width: " + uzer.width + "px;\">\n      </div>";
     }).join("");
     root.innerHTML = html;
 }

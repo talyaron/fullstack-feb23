@@ -23,7 +23,7 @@ function render(uzer,root) {
   
   const html = uzer.map((uzer) => {
       return `<div>
-      <img src="${uzer.imgUrl}"style="width:${uzer.width}px;">
+      <img src="${uzer.imgUrl}" style="width: ${uzer.width}px;">
       </div>`;
     }).join("");
    
