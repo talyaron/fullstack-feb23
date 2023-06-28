@@ -1,0 +1,23 @@
+#form {
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: row;
+  align-items: stretch;
+  margin: 32px;
+}
+
+#root {
+  margin: 0;
+  display: flex;
+  width: 100vw;
+  height: auto;
+  justify-content: space-around;
+}
+#root img {
+  border-radius: 5px;
+}
+#root p {
+  text-align: center;
+  font-size: 1.4vw;
+  color: gold;
+}
