@@ -27,9 +27,7 @@ function render(uzer:Uzer [],root) {
       <img src="${uzer.imgUrl}" style="width: ${uzer.width}px;">
       </div>`;
     }).join("");
-   
-
-     root.innerHTML = html;
+   root.innerHTML = html;
 }
 
 
