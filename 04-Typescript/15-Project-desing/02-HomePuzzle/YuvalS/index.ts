@@ -5,15 +5,11 @@ const uid = function () {
     };
 
 class WorKer {
-    id: string;
-    constructor(public fullName: string) {
-        this.id = uid();
+    constructor(public fullName: string, public workerNumber:number) {
+        
     }
 }
-const worKers: WorKer[] = [
-    new WorKer("Yuval Shtaingos"),
-    new WorKer("Adi Shetach"),
-];
+const worKers: WorKer[] = [];
 
 
 class HoursDaily{
@@ -50,15 +46,12 @@ const hoursD: HoursDaily[] = [];
 
 class WorkerHoursDaily {
     constructor(public worker: WorKer, public hoursD: any) {}
-    let monthH = 0
-    hoursD.forEach(element =>{
+  
 
-    })
     }
 
 
 const workerHours: WorkerHoursDaily[] = [];
-
 
 
 function renderRegisterWorker(rootElement: HTMLElement | null) {
@@ -66,10 +59,9 @@ function renderRegisterWorker(rootElement: HTMLElement | null) {
       const html = `
           <form onsubmit="handleRegisterWorker(event)">
               <label for="fullName">Full name</label>
-              <select name="fullName" id="fullName">
-            ${worKers.map((worker) => {
-              return `<option value="${worker.id}">${worker.fullName}</option>`;
-            })}
+              <input type="text" name="fullName" id='fullName' placeholder="full Name" required>
+              <label for="workerNumber">Worker Number</label>
+              <input type="text" name="workerNumber" id='workerNumber' placeholder="Worker Number" required>
             
         </select>
               <input type="submit" value="Register">
@@ -87,15 +79,13 @@ function renderRegisterWorker(rootElement: HTMLElement | null) {
 function handleRegisterWorker(ev: any) {
     try {
       ev.preventDefault();
-      const fullNameID = ev.target.fullName.value;
-      const fullName = worKers.find(
-        (worker) => worker.id === fullNameID
-      );
+      const fullName = ev.target.fullName.value;
+      const workerNumber = ev.target.workerNumber.value;
 
-      if (!fullName || !fullNameID)
+      if (!fullName || !workerNumber)
       throw new Error("Couldnt find THE WORKER");
 
-      const worker = new WorKer(fullName);
+      const worker = new WorKer(fullName, workerNumber);
   
       //add to model
       worKers.push(worker);
