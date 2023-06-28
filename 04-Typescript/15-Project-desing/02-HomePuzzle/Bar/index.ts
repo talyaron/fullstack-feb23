@@ -68,14 +68,6 @@ function renderRegisterWorkerr(
 
 renderRegisterWorkerr(document.querySelector("#register"));
 
-// const specificWorker = workers.map((workerr) => {
-//     return workerr;
-// });
-
-// const specificMovment = movments.map((movment) => {
-//     return movment;
-// });
-
 function renderMovmentWorkerr(
     workerr: Workerr | any,
     movment: Movment | any,
@@ -94,7 +86,7 @@ function renderMovmentWorkerr(
 
         if (!rootElement) throw new Error("no root element");
 
-        rootElement.innerHTML = html;
+        rootElement.innerHTML += html;
     } catch (error) {
         console.error(error);
     }
