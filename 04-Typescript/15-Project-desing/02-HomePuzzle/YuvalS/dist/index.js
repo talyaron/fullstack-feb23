@@ -3,16 +3,13 @@ var uid = function () {
     return Date.now().toString(36) + Math.random().toString(36).substr(2);
 };
 var WorKer = /** @class */ (function () {
-    function WorKer(fullName) {
+    function WorKer(fullName, workerNumber) {
         this.fullName = fullName;
-        this.id = uid();
+        this.workerNumber = workerNumber;
     }
     return WorKer;
 }());
-var worKers = [
-    new WorKer("Yuval Shtaingos"),
-    new WorKer("Adi Shetach"),
-];
+var worKers = [];
 var HoursDaily = /** @class */ (function () {
     function HoursDaily(enterance, exit) {
         this.enterance = enterance;
@@ -48,15 +45,10 @@ var WorkerHoursDaily = /** @class */ (function () {
     }
     return WorkerHoursDaily;
 }());
-var monthH = 0;
-hoursD.forEach(function (element) {
-});
 var workerHours = [];
 function renderRegisterWorker(rootElement) {
     try {
-        var html = "\n          <form onsubmit=\"handleRegisterWorker(event)\">\n              <label for=\"fullName\">Full name</label>\n              <select name=\"fullName\" id=\"fullName\">\n            " + worKers.map(function (worker) {
-            return "<option value=\"" + worker.id + "\">" + worker.fullName + "</option>";
-        }) + "\n            \n        </select>\n              <input type=\"submit\" value=\"Register\">\n          </form>";
+        var html = "\n          <form onsubmit=\"handleRegisterWorker(event)\">\n              <label for=\"fullName\">Full name</label>\n              <input type=\"text\" name=\"fullName\" id='fullName' placeholder=\"full Name\" required>\n              <label for=\"workerNumber\">Worker Number</label>\n              <input type=\"text\" name=\"workerNumber\" id='workerNumber' placeholder=\"Worker Number\" required>\n            \n        </select>\n              <input type=\"submit\" value=\"Register\">\n          </form>";
         if (!rootElement)
             throw new Error("No root element");
         rootElement.innerHTML = html;
@@ -69,11 +61,11 @@ function renderRegisterWorker(rootElement) {
 function handleRegisterWorker(ev) {
     try {
         ev.preventDefault();
-        var fullNameID_1 = ev.target.fullName.value;
-        var fullName = worKers.find(function (worker) { return worker.id === fullNameID_1; });
-        if (!fullName || !fullNameID_1)
+        var fullName = ev.target.fullName.value;
+        var workerNumber = ev.target.workerNumber.value;
+        if (!fullName || !workerNumber)
             throw new Error("Couldnt find THE WORKER");
-        var worker = new WorKer(fullName);
+        var worker = new WorKer(fullName, workerNumber);
         //add to model
         worKers.push(worker);
         console.log(worKers);
