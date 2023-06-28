@@ -14,5 +14,10 @@
   justify-content: space-around;
 }
 #root img {
-  border-radius: 20px;
+  border-radius: 5px;
+}
+#root p {
+  text-align: center;
+  font-size: 1.4vw;
+  color: gold;
 }

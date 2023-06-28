@@ -81,7 +81,7 @@ function render(img, root) {
         var sum = "";
         for (var i = 1; i <= img[0].picnumber; i++) {
             var html = img.map(function (img) {
-                return "<div style=\"background-color:" + img.color + "\"> \n    <img src=\"" + img.imgUrl + "\"style = \"width:" + img.width + "px;\"\n    <p>" + img.picname + "<p>\n    \n    </div>";
+                return "<div style=\"background-color:" + img.color + "\"> \n    <img src=\"" + img.imgUrl + "\"style = \"width:" + img.width + "px;\">\n    <p>" + img.picname + "<p>\n    \n    </div>";
             }).join("");
             sum += html;
         }

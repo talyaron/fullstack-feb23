@@ -90,7 +90,7 @@ function render(img, root) {
     for(let i = 1;i<=img[0].picnumber;i++){
         const html = img.map((img) => {
             return `<div style="background-color:${img.color}"> 
-    <img src="${img.imgUrl}"style = "width:${img.width}px;"
+    <img src="${img.imgUrl}"style = "width:${img.width}px;">
     <p>${img.picname}<p>
     
     </div>`;
