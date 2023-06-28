@@ -10,6 +10,11 @@ class WorKer {
     }
 }
 const worKers: WorKer[] = [];
+worKers.push(new WorKer("Yuval Shtaingos", 1))
+worKers.push(new WorKer("Adi Shetach", 2))
+
+    
+
 
 
 class HoursDaily{
@@ -64,7 +69,7 @@ function renderRegisterWorker(rootElement: HTMLElement | null) {
               <input type="text" name="workerNumber" id='workerNumber' placeholder="Worker Number" required>
             
         </select>
-              <input type="submit" value="Register">
+              <input type="submit" value="Register First Time">
           </form>`;
   
       if (!rootElement) throw new Error("No root element");
