@@ -32,6 +32,8 @@ form input {
 #MovmentWorker {
   position: relative;
   top: 30vh;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .workwrDitels {
