@@ -1,6 +1,18 @@
-#root {
+#form {
   display: flex;
+  justify-content: space-evenly;
+  flex-direction: row;
+  align-items: stretch;
+  margin: 32px;
 }
-#root input {
-  margin: 0 auto;
+
+#root {
+  margin: 0;
+  display: flex;
+  width: 100vw;
+  height: auto;
+  justify-content: space-around;
+}
+#root img {
+  border-radius: 20px;
 }
