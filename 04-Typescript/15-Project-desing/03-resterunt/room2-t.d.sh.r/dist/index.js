@@ -1,3 +1,4 @@
+//entities:
 //Tables, Order, Dishes
 var uid = function () {
     return Date.now().toString(36) + Math.random().toString(36).substr(2);
@@ -10,8 +11,9 @@ var Table = /** @class */ (function () {
     return Table;
 }());
 var Dishe = /** @class */ (function () {
-    function Dishe(name, price, description) {
+    function Dishe(name, img, price, description) {
         this.name = name;
+        this.img = img;
         this.price = price;
         this.description = description;
         this.uidDishe = Number(uid());
@@ -19,10 +21,14 @@ var Dishe = /** @class */ (function () {
     return Dishe;
 }());
 var Order = /** @class */ (function () {
-    function Order(table, dishe) {
+    function Order(table, dishes, status) {
         this.table = table;
-        this.dishe = dishe;
+        this.dishes = dishes;
+        this.status = status;
         this.uidOrder = Number(uid());
     }
+    Order.prototype.addDishe = function () {
+        //add dishe to open order
+    };
     return Order;
 }());
