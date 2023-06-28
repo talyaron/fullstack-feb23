@@ -12,74 +12,58 @@ const uid = function () {
 };
 
 //Model
-class WorkLog {
+class Employee {
   id: string;
-  constructor(public userName: string, public email: string, public login: da, public hours: number ) {
+  constructor(public userName: string, public email: string, public  workerhours: number ) {
     this.id = uid();
   }}
 
-const workersHours: WorkLog[] = [
-    new WorkLog("nave", 21\05\2023 : , 12,20),
-    new WorkLog("lior",  12, 17,5)
+const Employees: Employee[] = [
+    new Employee("nave", "vnavev@gmail.com", 2),
+    new Employee("lior",  "lior@gmail.com", 17)
 ];
-function currentTime() {
-  let date = new Date(); 
-  let hh:number|string = date.getHours();
-  let mm:number|string  = date.getMinutes();
-  let ss:number|string  = date.getSeconds();
-  let session = "AM";
 
-  if(hh == 0){
-      hh = 12;
-  }
-  if(hh > 12){
-      hh = hh - 12;
-      session = "PM";
-   }
 
-   hh = (hh < 10) ? "0" + hh : hh;
-   mm = (mm < 10) ? "0" + mm : mm;
-   ss = (ss < 10) ? "0" + ss : ss;
-    
-   let time = hh + ":" + mm + ":" + ss + " " + session;
+class LogIn{
+  id:string;
+  constructor(public employee:Employee, public hour:number){
+this.id = uid();
+}}
 
-  document.getElementById("clock").innerText = time; 
-  let t = setTimeout(function(){ currentTime() }, 1000);
-}
-currentTime();
+const logIns: LogIn[] = [
+  new LogIn(Employee.arguments, 12)
+];
+class LogOut{
+  id:string;
+  constructor(public employee:Employee, public hour:number){{
+this.id = uid();
+}}}
+const logOuts: LogOut[] = [
+  new LogOut (Employee.arguments, 14)
+];
 
-  calculateHours(): number | undefined {
-    try {
-      const user = this.userName;
-      const logIn = this.logIn;
-      const logOut = this.logOut;
-      const hours = this.hours;
-      if (!user || !logIn || !logOut )
-        throw new Error("Missing lat or lng");
+function calculateHoursWorked() {
+  const hoursWorked: { [key: string]: number } = {}; // Object to store hours worked for each employee
 
-      const calculateHours =
-        logIn+logOut 
-      return distance;
-    } catch (error) {
-      console.error(error);
-      return undefined;
+  // Loop through each login and logout entry and calculate hours worked for each employee
+  for (const login of logIns) {
+    const logout = logOuts.find(logout => logout.employee.id === login.employee.id); // Find the corresponding logout entry
+    if (logout) {
+      const hours = logout.hour - login.hour; // Calculate hours worked
+      if (hoursWorked[login.employee.id]) {
+        hoursWorked[login.employee.id] += hours; // Add hours worked to existing total for the employee
+      } else {
+        hoursWorked[login.employee.id] = hours; // Set hours worked for the employee
+      }
     }
   }
 
-
-const flights: Flight[] = [];
-
-class AirPort {
-  id: string;
-  constructor(public name: string, public lat: number, public lng: number) {
-    this.id = uid();
-  }
+  return hoursWorked;
 }
 
-const airports: AirPort[] = [
-  new AirPort("Tel-aviv", 32.0057, 34.885),
-  new AirPort("Hithrow", 51.47, -0.454),
-];
+
+
+
 
 class Passanger {
   id: string;
@@ -93,7 +77,6 @@ class Passanger {
   }
 }
 
-const passengers: Passanger[] = [];
 
 //join classes
 
