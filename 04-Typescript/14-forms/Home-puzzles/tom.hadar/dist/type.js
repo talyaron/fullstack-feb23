@@ -9,9 +9,9 @@ var imgs = [];
 function UrlWidth(event) {
     try {
         event.preventDefault();
-        var imgURl = event.target.elements.imgUrl.value;
+        var imgUrl = event.target.elements.imgUrl.value;
         var width = event.target.elements.width.value;
-        var data = new Img(imgURl, width);
+        var data = new Img(imgUrl, width);
         imgs.push(data);
         console.log(imgs);
         event.target.reset();

@@ -7,9 +7,9 @@ const imgs= []
 function UrlWidth(event){
     try {
     event.preventDefault();
-    const imgURl= event.target.elements.imgUrl.value;
+    const imgUrl= event.target.elements.imgUrl.value;
     const width= event.target.elements.width.value;
-    const data= new Img(imgURl,width);
+    const data= new Img(imgUrl,width);
     imgs.push(data);
     console.log(imgs);
     event.target.reset()
