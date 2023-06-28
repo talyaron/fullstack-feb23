@@ -30,7 +30,26 @@ body {
   justify-content: center;
 }
 
-.container {
+.logo {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  justify-content: space-between;
+}
+.logo img {
+  width: 150px;
+  height: 130px;
+  border-radius: 180px;
+}
+
+.wapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: space-between;
+}
+
+.Datacontainer {
   display: flex;
   flex-direction: row;
   gap: 50px;
