@@ -22,10 +22,10 @@ function UrlWidth(event) {
         console.error(error);
     }
 }
-function hadar(imgs, root) {
+function hadar(imgArray, root) {
     try {
-        var html = imgs.map(function (imgs) {
-            return "<div>\n          <img src=\"" + imgs.imgUrl + "\" style=\"width" + imgs.width + "px;\"></div> ";
+        var html = imgArray.map(function (img) {
+            return "<div>\n            <img src=\"" + img.imgUrl + "\" style=\"width: " + img.width + "px;\">\n            </div>";
         }).join("");
         root.innerHTML = html;
     }

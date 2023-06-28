@@ -19,16 +19,15 @@ function UrlWidth(event){
         console.error(error)
     }
 }
-function hadar(imgs,root){
+function hadar(imgArray, root) {
     try {
-        const html= imgs.map((imgs)=>{
-          return `<div>
-          <img src="${imgs.imgUrl}" style="width${imgs.width}px;"></div> `  
-        }).join("")
-
-        root.innerHTML= html
+        const html = imgArray.map((img) => {
+            return `<div>
+            <img src="${img.imgUrl}" style="width: ${img.width}px;">
+            </div>`;
+        }).join("");
+        root.innerHTML = html;
     } catch (error) {
-        console.error(error)
+        console.error(error);
     }
-    
-}
+}   
