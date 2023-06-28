@@ -10,6 +10,8 @@ var WorKer = /** @class */ (function () {
     return WorKer;
 }());
 var worKers = [];
+worKers.push(new WorKer("Yuval Shtaingos", 1));
+worKers.push(new WorKer("Adi Shetach", 2));
 var HoursDaily = /** @class */ (function () {
     function HoursDaily(enterance, exit) {
         this.enterance = enterance;
@@ -48,7 +50,7 @@ var WorkerHoursDaily = /** @class */ (function () {
 var workerHours = [];
 function renderRegisterWorker(rootElement) {
     try {
-        var html = "\n          <form onsubmit=\"handleRegisterWorker(event)\">\n              <label for=\"fullName\">Full name</label>\n              <input type=\"text\" name=\"fullName\" id='fullName' placeholder=\"full Name\" required>\n              <label for=\"workerNumber\">Worker Number</label>\n              <input type=\"text\" name=\"workerNumber\" id='workerNumber' placeholder=\"Worker Number\" required>\n            \n        </select>\n              <input type=\"submit\" value=\"Register\">\n          </form>";
+        var html = "\n          <form onsubmit=\"handleRegisterWorker(event)\">\n              <label for=\"fullName\">Full name</label>\n              <input type=\"text\" name=\"fullName\" id='fullName' placeholder=\"full Name\" required>\n              <label for=\"workerNumber\">Worker Number</label>\n              <input type=\"text\" name=\"workerNumber\" id='workerNumber' placeholder=\"Worker Number\" required>\n            \n        </select>\n              <input type=\"submit\" value=\"Register First Time\">\n          </form>";
         if (!rootElement)
             throw new Error("No root element");
         rootElement.innerHTML = html;
