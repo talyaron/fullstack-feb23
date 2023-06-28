@@ -12,6 +12,7 @@
 // 3) Access the "Puzzle class" class, which likely represents a collection of user data or user profiles.
 // Edit each card: Update the information contained in each card, such as modifying user details or deleting a card from the collection.
 // These instructions outline three different tasks: creating a form to render an image with a specified width, creating a form to render multiple images, and using the "Puzzle Users" class to edit user cards. Each task has specific requirements and actions to be performed.
+// level 1
 // class Img {
 //   constructor(public imgUrl, public width) {}
 // }
@@ -45,13 +46,14 @@
 //     console.error(error);
 //   }
 // }
-// new!!
+// level 2
 var img = /** @class */ (function () {
-    function img(imgUrl, width, picname, picnumber) {
+    function img(imgUrl, width, picname, picnumber, color) {
         this.imgUrl = imgUrl;
         this.width = width;
         this.picname = picname;
         this.picnumber = picnumber;
+        this.color = color;
     }
     return img;
 }());
@@ -63,7 +65,8 @@ function UrlWidth(event) {
         var width = event.target.elements.width.value;
         var picname = event.target.elements.picname.value;
         var picnumber = event.target.elements.picnumber.value;
-        var data = new img(imgUrl, width, picname, picnumber);
+        var color = event.target.elements.color.value;
+        var data = new img(imgUrl, width, picname, picnumber, color);
         imgArray.push(data);
         event.target.reset();
         var root = document.querySelector("#root");
@@ -73,16 +76,19 @@ function UrlWidth(event) {
         console.error(error);
     }
 }
-function render(imgArray, root) {
+function render(img, root) {
     try {
-        for (var i = 0; i < 5; i++) {
-            var html = imgArray.map(function (img) {
-                return "<div>\n    <img src=\"" + img.imgUrl + "\"style = \"width:" + img.width + "px;\"\n    <p>" + img.picname + "<p>\n    </div>";
+        var sum = "";
+        for (var i = 1; i <= img[0].picnumber; i++) {
+            var html = img.map(function (img) {
+                return "<div style=\"background-color:" + img.color + "\"> \n    <img src=\"" + img.imgUrl + "\"style = \"width:" + img.width + "px;\"\n    <p>" + img.picname + "<p>\n    \n    </div>";
             }).join("");
-            root.innerHTML = html;
+            sum += html;
         }
+        root.innerHTML = sum;
     }
     catch (error) {
         console.error(error);
     }
 }
+// level 3

@@ -18,6 +18,8 @@
 // Edit each card: Update the information contained in each card, such as modifying user details or deleting a card from the collection.
 // These instructions outline three different tasks: creating a form to render an image with a specified width, creating a form to render multiple images, and using the "Puzzle Users" class to edit user cards. Each task has specific requirements and actions to be performed.
 
+// level 1
+
 
 // class Img {
 //   constructor(public imgUrl, public width) {}
@@ -55,9 +57,11 @@
 //   }
 // }
 
-// new!!
+
+// level 2
+
 class img {
-  constructor(public imgUrl, public width, public picname,public picnumber) {}
+  constructor(public imgUrl, public width, public picname,public picnumber, public color) {}
 }
 
 const imgArray = [];
@@ -69,28 +73,36 @@ function UrlWidth(event) {
     const width = event.target.elements.width.value;
     const picname = event.target.elements.picname.value;
     const picnumber = event.target.elements.picnumber.value;
-    const data = new img(imgUrl, width, picname, picnumber);
+    const color = event.target.elements.color.value;
+    const data = new img(imgUrl, width, picname, picnumber,color);
     imgArray.push(data);
     event.target.reset();
     const root = document.querySelector("#root");
+
     render(imgArray, root);
   } catch (error) {
     console.error(error);
   }
 }
-function render(imgArray, root) {
+function render(img, root) {
   try {
-    for(let i = 0;i<5;i++){
-        const html = imgArray.map((img) => {
-            return `<div>
+    let sum=""
+    for(let i = 1;i<=img[0].picnumber;i++){
+        const html = img.map((img) => {
+            return `<div style="background-color:${img.color}"> 
     <img src="${img.imgUrl}"style = "width:${img.width}px;"
     <p>${img.picname}<p>
+    
     </div>`;
+    
           }).join("");
-        root.innerHTML = html;
+          sum+=html
     }
+    root.innerHTML = sum;
 
   } catch (error) {
     console.error(error);
   }
 }
+
+// level 3

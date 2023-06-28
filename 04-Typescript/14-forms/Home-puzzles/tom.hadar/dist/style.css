@@ -1,0 +1,6 @@
+#root {
+  display: flex;
+}
+#root input {
+  margin: 0 auto;
+}
