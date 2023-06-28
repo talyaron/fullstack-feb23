@@ -10,7 +10,10 @@ class WorKer {
         this.id = uid();
     }
 }
-const worKers: WorKer[] = [];
+const worKers: WorKer[] = [
+    new WorKer("Yuval Shtaingos"),
+    new WorKer("Adi Shetach"),
+];
 
 
 class HoursDaily{
@@ -38,16 +41,32 @@ class HoursDaily{
             return undefined;  
         }
     }
+    
 }
 
 const hoursD: HoursDaily[] = [];
 
 //     join classes
 
-class WorkerHoursDaily {
-    constructor(public worker: WorKer, public hoursD: HoursDaily) {}
-}
+// class WorkerHoursDaily {
+//     constructor(public worker: WorKer, public hoursD: HoursDaily) {}
+//     calculateMonthlyHoures(): number| undefined{
+//         try {
+//             let monthTotal:number = 0;
+//             for (let i = 0; i < hoursD.length; i++) {
+//             monthTotal += hoursD[i];
+//         }
+            
+        
+        
+//         } catch (error) {
+//             console.error(error);
+//             return undefined;  
+//         }
+//     }
+// }
 
+// const workerHours: WorkerHoursDaily[] = [];
 
 
 
@@ -55,8 +74,13 @@ function renderRegisterWorker(rootElement: HTMLElement | null) {
     try {
       const html = `
           <form onsubmit="handleRegisterWorker(event)">
-              <label for="fullname">Full name</label>
-              <input type="text" name="fullName" id='fullName' placeholder="full name" required>
+              <label for="fullName">Full name</label>
+              <select name="fullName" id="fullName">
+            ${worKers.map((worker) => {
+              return `<option value="${worker.id}">${worker.fullName}</option>`;
+            })}
+            
+        </select>
               <input type="submit" value="Register">
           </form>`;
   
@@ -72,12 +96,19 @@ function renderRegisterWorker(rootElement: HTMLElement | null) {
 function handleRegisterWorker(ev: any) {
     try {
       ev.preventDefault();
-      const fullName = ev.target.fullName.value;
-  
+      const fullNameID = ev.target.fullName.value;
+      const fullName = worKers.find(
+        (worker) => worker.id === fullNameID
+      );
+
+      if (!fullName || !fullNameID)
+      throw new Error("Couldnt find THE WORKER");
+
       const worker = new WorKer(fullName);
   
       //add to model
       worKers.push(worker);
+      console.log(worKers)
      
       
   

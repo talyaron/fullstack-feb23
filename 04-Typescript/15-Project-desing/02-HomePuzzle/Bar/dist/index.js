@@ -50,6 +50,12 @@ function renderRegisterWorkerr(rootElement) {
     }
 }
 renderRegisterWorkerr(document.querySelector("#register"));
+// const specificWorker = workers.map((workerr) => {
+//     return workerr;
+// });
+// const specificMovment = movments.map((movment) => {
+//     return movment;
+// });
 function renderMovmentWorkerr(workerr, movment, rootElement) {
     try {
         var html = "\n        <div class=\"workwrDitels\">\n            <h2>" + workerr.name + "</h2>\n            <div class=\"ditels\">\n              <p> Entrance time is: " + movment.entrance + "</p>\n              <p> Exit time is: " + movment.exit + "</p>\n                <p> Dayli hours is: " + movment.dayliHours + "</p>\n            </div>\n        </div>";
