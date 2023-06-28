@@ -1,6 +1,7 @@
-// const workLogForm = document.getElementById("work-log-form") as HTMLFormElement;
+"use strict"; // const workLogForm = document.getElementById("work-log-form") as HTMLFormElement;
 // const workHoursTable = document.getElementById("work-hours-table") as HTMLDivElement;
 // const workLogs = {};
+// exports.__esModule = true;
 // workLogForm.addEventListener("submit", function (event) {
 //   event.preventDefault();
 //   const workerNameInput = document.getElementById("worker-name") as HTMLInputElement;
@@ -78,89 +79,92 @@
 //   workHoursTable.appendChild(table);
 // }
 //-----------------------------------------------------------------------------------------------
-var WorkLog = /** @class */ (function () {
-    function WorkLog(workerName, hours) {
-        this.workerName = workerName;
-        this.hours = hours;
-    }
-    return WorkLog;
-}());
-var workers = [];
-// const workersHours: WorkLog[] = [
+
+var WorkLog =
+/** @class */
+function () {
+  function WorkLog(workerName, hours) {
+    this.workerName = workerName;
+    this.hours = hours;
+  }
+
+  return WorkLog;
+}();
+
+var workers = []; // const workersHours: WorkLog[] = [
 //     new WorkLog("Doriel", 8),
 //     new WorkLog("Max",  12)
 // ];
+
 function renderWorkersHours(rootElement) {
-    try {
-        var html = "\n        <form onsubmit=\"handleRegisterWorker(event)\">\n            <label for=\"firstName\">First name</label>\n            <input type=\"text\" name=\"firstName\" id='firstName' placeholder=\"first name\" required>\n            <label for=\"hours\">Last name</label>\n            <input type=\"number\" name=\"hours\" id=\"'hours\" placeholder=\"hours\" required>\n            <input type=\"submit\" value=\"Register\">\n        </form>";
-        if (!rootElement)
-            throw new Error("No root element");
-        rootElement.innerHTML = html;
-    }
-    catch (error) {
-        console.error(error);
-    }
+  try {
+    var html = "\n        <form onsubmit=\"handleRegisterWorker(event)\">\n            <label for=\"firstName\">First name</label>\n            <input type=\"text\" name=\"firstName\" id='firstName' placeholder=\"first name\" required>\n            <label for=\"hours\">Last name</label>\n            <input type=\"number\" name=\"hours\" id=\"'hours\" placeholder=\"hours\" required>\n            <input type=\"submit\" value=\"Register\">\n        </form>";
+    if (!rootElement) throw new Error("No root element");
+    rootElement.innerHTML = html;
+  } catch (error) {
+    console.error(error);
+  }
 }
+
 renderWorkersHours(document.querySelector("#WorkersHours"));
-function renderLoggedWorker(worker, rootElement) {
-    try {
-        var htmlAdd = "";
-        var myTab = document.querySelector("#tab");
-        var html = "\n      <form onsubmit=\"handleRegisterWorker(event)\">\n          <label for=\"firstName\">First name</label>\n          <input type=\"text\" name=\"firstName\" id='firstName' placeholder=\"first name\" required>\n          <label for=\"hours\">Last name</label>\n          <input type=\"number\" name=\"hours\" id=\"'hours\" placeholder=\"hours\" required>\n          <input type=\"submit\" value=\"Register\">\n      </form>";
-        // const htmlAddRow = `
-        //         <tr>
-        //           <th>
-        //           worker name
-        //           ${workers.workerName}
-        //           </th>
-        //         </tr>
-        //         <tr>
-        //           <td> hours
-        //           ${workers.hours}
-        //           </td>
-        //         </tr>
-        //     `;
-        // if (!myTab) {
-        //   htmlAdd = `
-        //     <table id="tab">
-        //        ${htmlAddRow}
-        //     </table>`;
-        // } else {
-        //   myTab.innerHTML += htmlAddRow;
-        //   htmlAdd = myTab.outerHTML;
-        // }
-        var workerRows = workers.reduce(function (acc, w) {
-            return acc + ("<tr><td>\n              worker name\n              " + w.workerName + "\n              </td>\n              <td>hours\n              " + w.hours + "\n              </td></tr>");
-        }, "");
-        htmlAdd = html + "\n    <table id=\"tab\"> \n                " + workerRows + "\n            </table>";
-        if (!rootElement)
-            throw new Error("no root element");
-        rootElement.innerHTML = htmlAdd;
-    }
-    catch (error) {
-        console.error(error);
-    }
-}
-// view->model controlers
+
+function renderLoggedWorker(workers, rootElement) {
+  try {
+    var htmlAdd = "";
+    var myTab = document.querySelector("#tab");
+    var html = "\n      <form onsubmit=\"handleRegisterWorker(event)\">\n          <label for=\"firstName\">First name</label>\n          <input type=\"text\" name=\"firstName\" id='firstName' placeholder=\"first name\" required>\n          <label for=\"hours\">Last name</label>\n          <input type=\"number\" name=\"hours\" id=\"'hours\" placeholder=\"hours\" required>\n          <input type=\"submit\" value=\"Register\">\n      </form>"; // const htmlAddRow = `
+    //         <tr>
+    //           <th>
+    //           worker name
+    //           ${workers.workerName}
+    //           </th>
+    //         </tr>
+    //         <tr>
+    //           <td> hours
+    //           ${workers.hours}
+    //           </td>
+    //         </tr>
+    //     `;
+    // if (!myTab) {
+    //   htmlAdd = `
+    //     <table id="tab">
+    //        ${htmlAddRow}
+    //     </table>`;
+    // } else {
+    //   myTab.innerHTML += htmlAddRow;
+    //   htmlAdd = myTab.outerHTML;
+    // }
+
+    htmlAdd = html + "\n    <table id=\"tab\"> <tr>\n              <th>\n              worker name\n              " + workers.workerName + "\n              </th>\n            </tr>\n            <tr>\n              <td> hours\n              " + workers.hours + "\n              </td>\n            </tr>\n            </table>";
+    if (!rootElement) throw new Error("no root element");
+    rootElement.innerHTML = html + htmlAdd;
+  } catch (error) {
+    console.error(error);
+  }
+} // view->model controlers
+
+
 function handleRegisterWorker(ev) {
-    try {
-        ev.preventDefault();
-        var firstName = ev.target.firstName.value;
-        var hours = parseInt(ev.target.hours.value);
-        var newWorker_1 = new WorkLog(firstName, hours);
-        var foundWorker = workers.find(function (w) { return w.workerName === newWorker_1.workerName; });
-        if (!!foundWorker) {
-            foundWorker.hours += hours;
-        }
-        else {
-            //add to model
-            workers.push(newWorker_1);
-        }
-        //control->view
-        renderLoggedWorker(newWorker_1, document.querySelector("#WorkersHours"));
-        console.log(firstName, hours);
-    }
-    catch (error) {
-        console.error(error);
-    }
+  try {
+    ev.preventDefault();
+    var firstName = ev.target.firstName.value;
+    var hours = ev.target.hours.value;
+    var newWorker_1 = new WorkLog(firstName, hours);
+    var foundWorker = workers.find(function (w) {
+      return w.workerName === newWorker_1.workerName;
+    });
+
+    if (!!foundWorker) {
+      foundWorker.hours += hours;
+    } else {
+      //add to model
+      workers.push(newWorker_1);
+    } //control->view
+
+
+    renderLoggedWorker(newWorker_1, document.querySelector("#WorkersHours"));
+    console.log(firstName, hours);
+  } catch (error) {
+    console.error(error);
+  }
 }
