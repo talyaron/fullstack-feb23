@@ -9,73 +9,64 @@ var uid = function () {
     return Date.now().toString(36) + Math.random().toString(36).substr(2);
 };
 //Model
-var WorkLog = /** @class */ (function () {
-    function WorkLog(userName, email, login, hours) {
+var Employee = /** @class */ (function () {
+    function Employee(userName, email, workerhours) {
         this.userName = userName;
         this.email = email;
-        this.login = login;
-        this.hours = hours;
+        this.workerhours = workerhours;
         this.id = uid();
     }
-    return WorkLog;
+    return Employee;
 }());
-var workersHours = [
-    new WorkLog("nave", 21, 05, 2023), 12, 20, ,
-    new WorkLog("lior", 12, 17, 5)
+var Employees = [
+    new Employee("nave", "vnavev@gmail.com", 2),
+    new Employee("lior", "lior@gmail.com", 17)
 ];
-function currentTime() {
-    var date = new Date();
-    var hh = date.getHours();
-    var mm = date.getMinutes();
-    var ss = date.getSeconds();
-    var session = "AM";
-    if (hh == 0) {
-        hh = 12;
-    }
-    if (hh > 12) {
-        hh = hh - 12;
-        session = "PM";
-    }
-    hh = (hh < 10) ? "0" + hh : hh;
-    mm = (mm < 10) ? "0" + mm : mm;
-    ss = (ss < 10) ? "0" + ss : ss;
-    var time = hh + ":" + mm + ":" + ss + " " + session;
-    document.getElementById("clock").innerText = time;
-    var t = setTimeout(function () { currentTime(); }, 1000);
-}
-currentTime();
-calculateHours();
-number | undefined;
-{
-    try {
-        var user = this.userName;
-        var logIn = this.logIn;
-        var logOut = this.logOut;
-        var hours = this.hours;
-        if (!user || !logIn || !logOut)
-            throw new Error("Missing lat or lng");
-        var calculateHours = logIn + logOut;
-        return distance;
-    }
-    catch (error) {
-        console.error(error);
-        return undefined;
-    }
-}
-var flights = [];
-var AirPort = /** @class */ (function () {
-    function AirPort(name, lat, lng) {
-        this.name = name;
-        this.lat = lat;
-        this.lng = lng;
+var LogIn = /** @class */ (function () {
+    function LogIn(employee, hour) {
+        this.employee = employee;
+        this.hour = hour;
         this.id = uid();
     }
-    return AirPort;
+    return LogIn;
 }());
-var airports = [
-    new AirPort("Tel-aviv", 32.0057, 34.885),
-    new AirPort("Hithrow", 51.47, -0.454),
+var logIns = [
+    new LogIn(Employee.arguments, 12)
 ];
+var LogOut = /** @class */ (function () {
+    function LogOut(employee, hour) {
+        this.employee = employee;
+        this.hour = hour;
+        {
+            this.id = uid();
+        }
+    }
+    return LogOut;
+}());
+var logOuts = [
+    new LogOut(Employee.arguments, 14)
+];
+function calculateHoursWorked() {
+    var hoursWorked = {}; // Object to store hours worked for each employee
+    var _loop_1 = function (login) {
+        var logout = logOuts.find(function (logout) { return logout.employee.id === login.employee.id; }); // Find the corresponding logout entry
+        if (logout) {
+            var hours = logout.hour - login.hour; // Calculate hours worked
+            if (hoursWorked[login.employee.id]) {
+                hoursWorked[login.employee.id] += hours; // Add hours worked to existing total for the employee
+            }
+            else {
+                hoursWorked[login.employee.id] = hours; // Set hours worked for the employee
+            }
+        }
+    };
+    // Loop through each login and logout entry and calculate hours worked for each employee
+    for (var _i = 0, logIns_1 = logIns; _i < logIns_1.length; _i++) {
+        var login = logIns_1[_i];
+        _loop_1(login);
+    }
+    return hoursWorked;
+}
 var Passanger = /** @class */ (function () {
     // flights:Flight[] = [];
     function Passanger(firstName, lastName, email) {
@@ -86,7 +77,6 @@ var Passanger = /** @class */ (function () {
     }
     return Passanger;
 }());
-var passengers = [];
 //join classes
 var PassangerFlights = /** @class */ (function () {
     function PassangerFlights(passenger, flight) {
