@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./dist/style14.css">
+    <title>Document</title>
+</head>
+<body>
+    <form onsubmit="handelSubmitImg(event)">
+        <input type="url" name="imgUrl" placeholder="Enter image URL"></form><br>  <!--Image URL: This input allows the user to enter the URL of an image.-->
+        <input type="number" name="imgWidthSize" placeholder="Enrer image width size"> <!--This input allows the user to specify the width of the image in viewport width (vw) units--> 
+        <input type="submit" value="Send">
+        <input type="reset" value="Reset">
+    </form>
+    <div id="root"></div>
+    <script src="./dist/index14.js"></script>
+</body>
+</html>
+
+<!--
+
+1) Create a form with the following inputs:
+
+Image URL: This input allows the user to enter the URL of an image.
+Image Size (in vw): This input allows the user to specify the width of the image in viewport width (vw) units.
+When the user submits the form, display the image on the screen with the specified width.
+
+-->

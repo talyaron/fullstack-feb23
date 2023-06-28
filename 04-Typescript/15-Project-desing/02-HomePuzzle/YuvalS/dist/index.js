@@ -9,7 +9,10 @@ var WorKer = /** @class */ (function () {
     }
     return WorKer;
 }());
-var worKers = [];
+var worKers = [
+    new WorKer("Yuval Shtaingos"),
+    new WorKer("Adi Shetach"),
+];
 var HoursDaily = /** @class */ (function () {
     function HoursDaily(enterance, exit) {
         this.enterance = enterance;
@@ -38,16 +41,26 @@ var HoursDaily = /** @class */ (function () {
 }());
 var hoursD = [];
 //     join classes
-var WorkerHoursDaily = /** @class */ (function () {
-    function WorkerHoursDaily(worker, hoursD) {
-        this.worker = worker;
-        this.hoursD = hoursD;
-    }
-    return WorkerHoursDaily;
-}());
+// class WorkerHoursDaily {
+//     constructor(public worker: WorKer, public hoursD: HoursDaily) {}
+//     calculateMonthlyHoures(): number| undefined{
+//         try {
+//             let monthTotal:number = 0;
+//             for (let i = 0; i < hoursD.length; i++) {
+//             monthTotal += hoursD[i];
+//         }
+//         } catch (error) {
+//             console.error(error);
+//             return undefined;  
+//         }
+//     }
+// }
+// const workerHours: WorkerHoursDaily[] = [];
 function renderRegisterWorker(rootElement) {
     try {
-        var html = "\n          <form onsubmit=\"handleRegisterWorker(event)\">\n              <label for=\"fullname\">Full name</label>\n              <input type=\"text\" name=\"fullName\" id='fullName' placeholder=\"full name\" required>\n              <input type=\"submit\" value=\"Register\">\n          </form>";
+        var html = "\n          <form onsubmit=\"handleRegisterWorker(event)\">\n              <label for=\"fullName\">Full name</label>\n              <select name=\"fullName\" id=\"fullName\">\n            " + worKers.map(function (worker) {
+            return "<option value=\"" + worker.id + "\">" + worker.fullName + "</option>";
+        }) + "\n            \n        </select>\n              <input type=\"submit\" value=\"Register\">\n          </form>";
         if (!rootElement)
             throw new Error("No root element");
         rootElement.innerHTML = html;
@@ -60,10 +73,14 @@ function renderRegisterWorker(rootElement) {
 function handleRegisterWorker(ev) {
     try {
         ev.preventDefault();
-        var fullName = ev.target.fullName.value;
+        var fullNameID_1 = ev.target.fullName.value;
+        var fullName = worKers.find(function (worker) { return worker.id === fullNameID_1; });
+        if (!fullName || !fullNameID_1)
+            throw new Error("Couldnt find THE WORKER");
         var worker = new WorKer(fullName);
         //add to model
         worKers.push(worker);
+        console.log(worKers);
     }
     catch (error) {
         console.error(error);
