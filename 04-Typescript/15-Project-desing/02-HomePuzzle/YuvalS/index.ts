@@ -48,25 +48,16 @@ const hoursD: HoursDaily[] = [];
 
 //     join classes
 
-// class WorkerHoursDaily {
-//     constructor(public worker: WorKer, public hoursD: HoursDaily) {}
-//     calculateMonthlyHoures(): number| undefined{
-//         try {
-//             let monthTotal:number = 0;
-//             for (let i = 0; i < hoursD.length; i++) {
-//             monthTotal += hoursD[i];
-//         }
-            
-        
-        
-//         } catch (error) {
-//             console.error(error);
-//             return undefined;  
-//         }
-//     }
-// }
+class WorkerHoursDaily {
+    constructor(public worker: WorKer, public hoursD: any) {}
+    let monthH = 0
+    hoursD.forEach(element =>{
 
-// const workerHours: WorkerHoursDaily[] = [];
+    })
+    }
+
+
+const workerHours: WorkerHoursDaily[] = [];
 
 
 

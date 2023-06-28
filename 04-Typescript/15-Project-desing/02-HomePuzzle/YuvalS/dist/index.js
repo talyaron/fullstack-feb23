@@ -41,21 +41,17 @@ var HoursDaily = /** @class */ (function () {
 }());
 var hoursD = [];
 //     join classes
-// class WorkerHoursDaily {
-//     constructor(public worker: WorKer, public hoursD: HoursDaily) {}
-//     calculateMonthlyHoures(): number| undefined{
-//         try {
-//             let monthTotal:number = 0;
-//             for (let i = 0; i < hoursD.length; i++) {
-//             monthTotal += hoursD[i];
-//         }
-//         } catch (error) {
-//             console.error(error);
-//             return undefined;  
-//         }
-//     }
-// }
-// const workerHours: WorkerHoursDaily[] = [];
+var WorkerHoursDaily = /** @class */ (function () {
+    function WorkerHoursDaily(worker, hoursD) {
+        this.worker = worker;
+        this.hoursD = hoursD;
+    }
+    return WorkerHoursDaily;
+}());
+var monthH = 0;
+hoursD.forEach(function (element) {
+});
+var workerHours = [];
 function renderRegisterWorker(rootElement) {
     try {
         var html = "\n          <form onsubmit=\"handleRegisterWorker(event)\">\n              <label for=\"fullName\">Full name</label>\n              <select name=\"fullName\" id=\"fullName\">\n            " + worKers.map(function (worker) {
