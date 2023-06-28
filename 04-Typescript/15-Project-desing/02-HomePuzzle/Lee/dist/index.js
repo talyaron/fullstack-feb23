@@ -36,7 +36,7 @@ var User = /** @class */ (function () {
 }());
 var logsById = [];
 var user = [];
-function hundleEmployeeSelected(ev) {
+function handleEmployeeSelected(ev) {
     try {
         var employeeId_1 = ev.target.parentElement.children[2].value;
         logsById.forEach(function (employee) {
@@ -48,7 +48,7 @@ function hundleEmployeeSelected(ev) {
         console.error(error);
     }
     console.dir(user);
-    var html = "<table>\n<thead>\n  <tr>\n    <th>Sunday</th>\n    <th>Monday</th>\n    <th>Tuesday</th>\n    <th>Wednesday</th>\n    <th>Thursday</th>\n  </tr>\n</thead>\n<tbody>\n  <tr>\n    <td></td>\n    <td></td>\n    <td></td>\n    <td></td>\n  </tr>\n  <tr>\n    <td></td>\n    <td></td>\n    <td></td>\n    <td></td>\n  </tr>\n  <tr>\n    <td></td>\n    <td></td>\n    <td></td>\n    <td></td>\n  </tr>\n</tbody>\n</table>\n";
+    var html = "<table>\n<thead>\n  <tr>\n    <th>Date</th>\n    <th>Clock in</th>\n    <th>Clock out</th>\n  </tr>\n</thead>";
     var rootTable = document.querySelector("#employeeTotal");
     if (!rootTable)
         throw new Error("table div is missing");
@@ -57,19 +57,19 @@ function hundleEmployeeSelected(ev) {
 function renderEmployees(rootElement) {
     var html = "<label for=\"username\">Choose Employee</label><br>\n    <select name= \"username\" id=\"username\" onchange=\"switchingUser()\">" + employees.map(function (employee) {
         return "<option value=\"" + employee.id + "\">" + employee.userName + "</option>";
-    }) + "\n    </select><br><label for=\"date\">Date</label><br><input type=\"date\" name=\"date\" id=\"date\" onchange=\"switchingUser()\" /><br><button onclick=\"hundleEmployeeSelected(event)\" value=\"\">Set date</button>";
+    }) + "\n    </select><br><label for=\"date\">Date</label><br><input type=\"date\" name=\"date\" id=\"date\" onchange=\"switchingUser()\" /><br><button onclick=\"handleEmployeeSelected(event)\" value=\"\">Set date</button>";
     if (!rootElement)
         throw new Error("missing HTML container");
     rootElement.innerHTML = html;
 }
 function renderLogInButton(rootElement) {
-    var html = "<button class=\"btn-log\" id=\"addLog\" onclick=\"hundleUsersLogin(event)\">Clock in</button>";
+    var html = "<button class=\"btn-log\" id=\"addLog\" onclick=\"handleUsersLogin(event)\">Clock in</button>";
     if (!rootElement)
         throw new Error("rootElement is missing");
     rootElement.innerHTML = html;
 }
 function renderLogoutButton(rootElement) {
-    var html = "<button class=\"btn-log\" onclick=\"hundleUsersLogOut(event)\">Clock out</button>";
+    var html = "<button class=\"btn-log\" onclick=\"handleUsersLogOut(event)\">Clock out</button>";
     if (!rootElement)
         throw new Error("rootElement is missing");
     rootElement.innerHTML = html;
@@ -80,7 +80,7 @@ function handleUsersLogin(ev) {
     var signIn = currentTimeToDispaly();
     logsById.push({ userId: userId, date: date, signIn: signIn });
 }
-function hundleUsersLogOut(ev) {
+function handleUsersLogOut(ev) {
     var userId = ev.target.parentElement.parentElement.children[2].children[2].value;
     var date = currentDateToDispaly();
     var signOut = currentTimeToDispaly();
