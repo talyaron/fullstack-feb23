@@ -19,7 +19,6 @@ var TimeClock = /** @class */ (function () {
         this.exitTime = exitTime;
     }
     TimeClock.prototype.calkWorkTime = function () {
-        debugger;
         try {
             if (!this.exitTime || !this.enterTime)
                 throw new Error("missing enter or exit");
@@ -43,14 +42,14 @@ var TimeClock = /** @class */ (function () {
 var employeesTimeClock = [];
 // view CONTROLERS
 var LogINDiv = document.querySelector("#LogIN");
-var AddNewWorkerDiv = document.querySelector("#AddNewWorker");
+var AddNewWorkerDiv = document.querySelector("#AddNewDiv");
 var clockiDiv = document.querySelector("#clocki");
 var ShowDetailsbtns = document.querySelector("#ShowDetailsbtns");
 var ShowDetails = document.querySelector("#ShowDetails");
 var setionID = null;
 function renderEmployeeLogIN(rootElement) {
     try {
-        var html = " <form class=\"LoginDiv\" onsubmit=\"handleLogIN(event)\">\n        <label>LogIn</label>\n        <input type=\"text\" name=\"employeeID\" id='employeeID' placeholder=\"ENERT ID\" required>\n        <input type=\"submit\" value=\"ENTER\">\n    </form>";
+        var html = "<form class=\"LoginDiv\" onsubmit=\"handleLogIN(event)\">\n        <label>LogIn</label>\n        <input type=\"text\" name=\"employeeID\" id='employeeID' placeholder=\"ENERT ID\" required>\n        <input type=\"submit\" value=\"ENTER\">\n    </form>";
         if (!rootElement)
             throw new Error("No root element");
         rootElement.innerHTML = html;
@@ -60,11 +59,157 @@ function renderEmployeeLogIN(rootElement) {
     }
 }
 function RenderClock(rootElement) {
+    var _a, _b;
     try {
-        var html = "<form>\n        <button type=\"button\" onclick=\"saveDateTime('enter')\">Enter</button>\n        <button type=\"button\" onclick=\"saveDateTime('exit')\">Exit</button>\n      </form>";
-        if (!rootElement)
-            throw new Error("No root element");
-        rootElement.innerHTML = html;
+        if (setionID) {
+            var fullName = ((_a = employees.find(function (employee) { return employee.employeeID === Number(setionID); })) === null || _a === void 0 ? void 0 : _a.firsName) + " " + ((_b = employees.find(function (employee) { return employee.employeeID === Number(setionID); })) === null || _b === void 0 ? void 0 : _b.lastName);
+            var html = "<div class=\"clockPage\">\n         <form class=\"saveDateBtns\">\n          <ul> Hello " + fullName + "</ul>\n          <button class=\"EnterExitBtns\" type=\"button\" onclick=\"saveDateTime('enter')\">Enter</button>\n          <button class=\"EnterExitBtns\" type=\"button\" onclick=\"saveDateTime('exit')\">Exit</button>\n          </form>\n          <form class=\"showSetionDetails\">\n          <button type=\"button\" onclick=\"showBySetionID()\">show all</button>\n          <button type=\"button\" onclick=\"RenderShowByDate()\">serach Date</button>\n          <button type=\"button\" onclick=\"RenderHomePage()\">Back</button>\n      </form>\n      </div>";
+            if (!rootElement)
+                throw new Error("No root element");
+            rootElement.innerHTML = html;
+        }
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+function buildshowtable(employeeTimesClock) {
+    if (ShowDetails) {
+        ShowDetails.innerHTML = "";
+    } //remove all content before render table
+    // Generate HTML elements and append to ShowDetails element
+    var ul = document.createElement("ul");
+    if (employeeTimesClock.length > 0) {
+        // Create a table for displaying details
+        var table_1 = document.createElement("table");
+        table_1.classList.add("ShowDetailsTable");
+        table_1.innerHTML = "\n       <tr>\n         <th>Full Name</th>\n         <th>Date</th>\n         <th>Enter</th>\n         <th>Exit</th>\n         <th>Total</th>\n       </tr>\n     ";
+        // Iterate over the employee's time clock entries
+        employeeTimesClock.forEach(function (employeeTime) {
+            var enterTime = employeeTime.enterTime, exitTime = employeeTime.exitTime; // declare exit and enter
+            var row = document.createElement("tr");
+            // Name
+            var fullNameCell = document.createElement("td");
+            fullNameCell.textContent = employeeTime.employee.firsName + " " + employeeTime.employee.lastName;
+            row.appendChild(fullNameCell);
+            // Date
+            var dateCell = document.createElement("td");
+            dateCell.textContent = enterTime.toDateString();
+            row.appendChild(dateCell);
+            // Enter Time
+            var enterTimeCell = document.createElement("td");
+            enterTimeCell.textContent = enterTime.toLocaleTimeString();
+            row.appendChild(enterTimeCell);
+            // Exit Time
+            var exitTimeCell = document.createElement("td");
+            exitTimeCell.textContent = exitTime ? exitTime.toLocaleTimeString() : "-";
+            row.appendChild(exitTimeCell);
+            // Hours per Day
+            var hoursPerDayCell = document.createElement("td");
+            hoursPerDayCell.textContent = exitTime
+                ? Number(employeeTime.calkWorkTime()).toFixed(4) + " hours"
+                : "-";
+            row.appendChild(hoursPerDayCell);
+            table_1.appendChild(row);
+        });
+        ul.appendChild(table_1);
+    }
+    else {
+        var errorMessage = document.createElement("p");
+        errorMessage.textContent = "No records found for the given employee ID.";
+        ul.appendChild(errorMessage);
+    }
+    if (ShowDetails) {
+        ShowDetails.appendChild(ul);
+    }
+}
+function showBySetionID() {
+    try {
+        if (setionID) {
+            if (ShowDetailsbtns)
+                ShowDetailsbtns.innerHTML = ""; // remove table from screen
+            // filter to find employee times clock in employees time clock array with setion id
+            var employeeTimesClockByID = employeesTimeClock.filter(function (employeeTime) { return employeeTime.employee.employeeID === Number(setionID); });
+            buildshowtable(employeeTimesClockByID);
+        }
+        else
+            throw new Error("setion ID undefind");
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+function ShowByDate(event) {
+    try {
+        debugger;
+        event.preventDefault();
+        var dateToSearch_1 = event.target.DateToSearch.valueAsDate; // get date from target
+        var employeeTimesClockByDate = void 0;
+        if (ShowDetailsbtns && !setionID) {
+            ShowDetailsbtns.innerHTML = "";
+        } // remove btns from screen
+        if (setionID) {
+            // Filter employee time clock entries by the specified date and setoin id
+            employeeTimesClockByDate = employeesTimeClock.filter(function (employeeTime) {
+                return employeeTime.enterTime.toDateString() === (dateToSearch_1 === null || dateToSearch_1 === void 0 ? void 0 : dateToSearch_1.toDateString()) &&
+                    employeeTime.employee.employeeID === Number(setionID);
+            });
+        }
+        else {
+            // Filter employee time clock entries by the specified date
+            employeeTimesClockByDate = employeesTimeClock.filter(function (employeeTime) {
+                return employeeTime.enterTime.toDateString() === (dateToSearch_1 === null || dateToSearch_1 === void 0 ? void 0 : dateToSearch_1.toDateString());
+            });
+        }
+        buildshowtable(employeeTimesClockByDate); // send timeclock[] and build table show
+        AddBackBTN();
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+function AddBackBTN() {
+    try {
+        if (ShowDetails && !setionID) {
+            var html = "<form>\n    <button class=\"backBtn\" type=\"button\" onclick=\" RenderHomePage()\">Back</button>\n    </form>";
+            ShowDetails.innerHTML += html;
+        }
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+function ShowByDateAndID(event) {
+    try {
+        event.preventDefault();
+        var dateToSearch_2 = event.target.DateToSearch.valueAsDate; // get date from target
+        if (setionID && dateToSearch_2) {
+            // Filter employee time clock entries by the specified date
+            var employeeTimesClockByDate = employeesTimeClock.filter(function (employeeTime) {
+                return employeeTime.enterTime.toDateString() === dateToSearch_2.toDateString() &&
+                    employeeTime.employee.employeeID === Number(setionID);
+            });
+            buildshowtable(employeeTimesClockByDate); // send timeclock[] and build table show
+        }
+        else
+            throw new Error("Setion ID undefind");
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+function ShowByID(event) {
+    try {
+        event.preventDefault();
+        debugger;
+        if (ShowDetailsbtns) {
+            ShowDetailsbtns.innerHTML = "";
+        }
+        var id_1 = event.target.SearchID.valueAsNumber; // get id from target
+        // filter to find employee times clock in employees time clock array with target id
+        var employeeTimesClockByID = employeesTimeClock.filter(function (employeeTime) { return employeeTime.employee.employeeID === id_1; });
+        buildshowtable(employeeTimesClockByID);
+        AddBackBTN();
     }
     catch (error) {
         console.error(error);
@@ -72,7 +217,7 @@ function RenderClock(rootElement) {
 }
 function RenderBtnsDetails(rootElement) {
     try {
-        var html = "<form>\n        <button type=\"button\" onclick=\"RenderIdForSerchEmployee()\">serach ID</button>\n        <button type=\"button\" onclick=\"RenderShowByDate()\">serach Date</button>\n        </form>";
+        var html = "<form class=\"BtnsSearchAndDate\">\n        <label>Show Details</label>\n        <button type=\"button\" onclick=\"RenderIdForSerchEmployee()\">serach ID</button>\n        <button type=\"button\" onclick=\"RenderShowByDate()\">serach Date</button>\n        </form>";
         if (!rootElement)
             throw new Error("No root element");
         rootElement.innerHTML = html;
@@ -83,80 +228,13 @@ function RenderBtnsDetails(rootElement) {
 }
 function RenderShowByDate() {
     try {
-        if (LogINDiv) {
-            LogINDiv.innerHTML = "";
-        } // Remove all HTML content
-        if (AddNewWorkerDiv) {
-            AddNewWorkerDiv.innerHTML = "";
-        }
-        var html = "<form  onsubmit=\"ShowByDate(event)\">\n        <input type=\"Date\" name=\"DateToSearch\" id='DateToSearch' placeholder=\"Choose Date\" required>\n        <input type=\"submit\" value=\"Search\">\n        <button type=\"button\" onclick=\"RenderHomePage()\">Back</button>\n    </form>";
+        debugger;
+        if (ShowDetails)
+            ShowDetails.innerHTML = ""; // remove table from screen
+        var html = "<form class=\"ShowByDate\" onsubmit=\"ShowByDate(event)\">\n        <input type=\"Date\" name=\"DateToSearch\" id='DateToSearch' placeholder=\"Choose Date\" required>\n        <input type=\"submit\" value=\"Search\">\n    </form>";
         if (!ShowDetailsbtns)
             throw new Error("No root element");
         ShowDetailsbtns.innerHTML = html;
-    }
-    catch (error) {
-        console.error(error);
-    }
-}
-function ShowByDate(event) {
-    try {
-        event.preventDefault();
-        var dateToSearch_1 = event.target.DateToSearch.valueAsDate; // get date from target
-        // Filter employee time clock entries by the specified date
-        var employeeTimesClockByDate = employeesTimeClock.filter(function (employeeTime) {
-            return employeeTime.enterTime.toDateString() === (dateToSearch_1 === null || dateToSearch_1 === void 0 ? void 0 : dateToSearch_1.toDateString());
-        });
-        if (ShowDetails) {
-            ShowDetails.innerHTML = ""; // Remove all content before rendering the table
-            if (employeeTimesClockByDate.length > 0) {
-                // Generate HTML elements and append them to the ShowDetails element
-                var ul = document.createElement("ul");
-                // Create a table for displaying details
-                var table_1 = document.createElement("table");
-                table_1.innerHTML = "\n            <tr>\n              <th>Employee ID</th>\n              <th>First Name</th>\n              <th>Last Name</th>\n              <th>Enter</th>\n              <th>Exit</th>\n              <th>Total</th>\n            </tr>\n          ";
-                // Iterate over the employee's time clock entries
-                employeeTimesClockByDate.forEach(function (employeeTime) {
-                    var employee = employeeTime.employee, enterTime = employeeTime.enterTime, exitTime = employeeTime.exitTime, calkWorkTime = employeeTime.calkWorkTime;
-                    var row = document.createElement("tr");
-                    // Employee ID
-                    var idCell = document.createElement("td");
-                    idCell.textContent = employee.employeeID.toString();
-                    row.appendChild(idCell);
-                    // First Name
-                    var firstNameCell = document.createElement("td");
-                    firstNameCell.textContent = employee.firsName;
-                    row.appendChild(firstNameCell);
-                    // Last Name
-                    var lastNameCell = document.createElement("td");
-                    lastNameCell.textContent = employee.lastName;
-                    row.appendChild(lastNameCell);
-                    // Enter Time
-                    var enterTimeCell = document.createElement("td");
-                    enterTimeCell.textContent = enterTime.toLocaleTimeString();
-                    row.appendChild(enterTimeCell);
-                    // Exit Time
-                    var exitTimeCell = document.createElement("td");
-                    exitTimeCell.textContent = exitTime
-                        ? exitTime.toLocaleTimeString()
-                        : "-";
-                    row.appendChild(exitTimeCell);
-                    // Hours per Day
-                    var hoursPerDayCell = document.createElement("td");
-                    hoursPerDayCell.textContent = exitTime
-                        ? Number(employeeTime.calkWorkTime()).toFixed(4) + " hours"
-                        : "-";
-                    row.appendChild(hoursPerDayCell);
-                    table_1.appendChild(row);
-                });
-                ul.appendChild(table_1);
-                ShowDetails.appendChild(ul);
-            }
-            else {
-                var errorMessage = document.createElement("p");
-                errorMessage.textContent = "No records found for the given date.";
-                ShowDetails.appendChild(errorMessage);
-            }
-        }
     }
     catch (error) {
         console.error(error);
@@ -170,7 +248,7 @@ function RenderIdForSerchEmployee() {
         if (AddNewWorkerDiv) {
             AddNewWorkerDiv.innerHTML = "";
         }
-        var html = "<form  onsubmit=\"ShowByID(event)\">\n        <input type=\"number\" name=\"SearchID\" id='SearchID' placeholder=\"Search ID\" required>\n        <input type=\"submit\" value=\"Search\">\n        <button type=\"button\" onclick=\"RenderHomePage()\">Back</button>\n    </form>";
+        var html = "<form  class=\"ShowByID\" onsubmit=\"ShowByID(event)\">\n        <input type=\"number\" name=\"SearchID\" id='SearchID' placeholder=\"Search ID\" required>\n        <input type=\"submit\" value=\"Search\">\n        <button type=\"button\" onclick=\"RenderHomePage()\">Back</button>\n    </form>";
         if (!ShowDetailsbtns)
             throw new Error("No root element");
         ShowDetailsbtns.innerHTML = html;
@@ -189,6 +267,10 @@ function RenderHomePage() {
     if (ShowDetails) {
         ShowDetails.innerHTML = "";
     }
+    if (clockiDiv) {
+        clockiDiv.innerHTML = "";
+    }
+    setionID = null;
     //if (ShowDetailsbtns) ShowDetailsbtns.innerHTML = ``;          
 }
 function resetAddEmployeeForm() {
@@ -199,69 +281,10 @@ function resetAddEmployeeForm() {
 }
 function renderAddEmployee(rootElement) {
     try {
-        var html = "<form class=\"AddNewDiv\" onsubmit=\"handAddEmployee(event)\" id=\"addEmployeeForm\">\n        <label>Add New Employee</label>\n        <input type=\"text\" name=\"firstName\" id='firstName' placeholder=\"First Name:\" required>\n        <input type=\"text\" name=\"lastName\" id='lastName' placeholder=\"Last Name:\" required>\n        <input type=\"number\" name=\"newId\" id='newId' placeholder=\"ID:\" required>\n        <input type=\"submit\" value=\"ADD\">\n    </form>";
+        var html = "<form class=\"AddNewForm\" onsubmit=\"handAddEmployee(event)\" id=\"addEmployeeForm\">\n        <label>Add New Employee</label>\n        <input type=\"text\" name=\"firstName\" id='firstName' placeholder=\"First Name:\" required>\n        <input type=\"text\" name=\"lastName\" id='lastName' placeholder=\"Last Name:\" required>\n        <input type=\"number\" name=\"newId\" id='newId' placeholder=\"ID:\" required>\n        <input type=\"submit\" value=\"ADD\">\n    </form>";
         if (!rootElement)
             throw new Error("No root element");
         rootElement.innerHTML = html;
-    }
-    catch (error) {
-        console.error(error);
-    }
-}
-function ShowByID(event) {
-    try {
-        event.preventDefault();
-        var id_1 = event.target.SearchID.valueAsNumber; // get id from target
-        // filter to find employee times clock in employees time clock array with target id
-        var employeeTimesClockByID = employeesTimeClock.filter(function (employeeTime) { return employeeTime.employee.employeeID === id_1; });
-        if (ShowDetails) {
-            ShowDetails.innerHTML = "";
-        } //remove all content before render table
-        // Generate HTML elements and append to ShowDetails element
-        var ul = document.createElement("ul");
-        // Add full name as a title
-        if (employeeTimesClockByID.length > 0) {
-            var fullName = employeeTimesClockByID[0].employee.firsName + " " + employeeTimesClockByID[0].employee.lastName;
-            var fullNameElement = document.createElement("h2");
-            fullNameElement.textContent = "" + fullName;
-            ul.appendChild(fullNameElement);
-            // Create a table for displaying details
-            var table_2 = document.createElement("table");
-            table_2.innerHTML = "\n            <tr>\n              <th>Date</th>\n              <th>Enter</th>\n              <th>Exit</th>\n              <th>Total</th>\n            </tr>\n          ";
-            // Iterate over the employee's time clock entries
-            employeeTimesClockByID.forEach(function (employeeTime) {
-                var enterTime = employeeTime.enterTime, exitTime = employeeTime.exitTime; // declare exit and enter
-                var row = document.createElement("tr");
-                // Date
-                var dateCell = document.createElement("td");
-                dateCell.textContent = enterTime.toDateString();
-                row.appendChild(dateCell);
-                // Enter Time
-                var enterTimeCell = document.createElement("td");
-                enterTimeCell.textContent = enterTime.toLocaleTimeString();
-                row.appendChild(enterTimeCell);
-                // Exit Time
-                var exitTimeCell = document.createElement("td");
-                exitTimeCell.textContent = exitTime ? exitTime.toLocaleTimeString() : "-";
-                row.appendChild(exitTimeCell);
-                // Hours per Day
-                var hoursPerDayCell = document.createElement("td");
-                hoursPerDayCell.textContent = exitTime
-                    ? Number(employeeTime.calkWorkTime()).toFixed(4) + " hours"
-                    : "-";
-                row.appendChild(hoursPerDayCell);
-                table_2.appendChild(row);
-            });
-            ul.appendChild(table_2);
-        }
-        else {
-            var errorMessage = document.createElement("p");
-            errorMessage.textContent = "No records found for the given employee ID.";
-            ul.appendChild(errorMessage);
-        }
-        if (ShowDetails) {
-            ShowDetails.appendChild(ul);
-        }
     }
     catch (error) {
         console.error(error);
@@ -284,11 +307,10 @@ function handAddEmployee(event) {
         if (employeeExists) { // if true do nothing
             alert('Employee exists!');
         }
-        else { // push new employee
+        else { // push new employee 
             employees.push(newEmployee);
             alert('Add Employee sucsess!');
-            // reset form input
-            resetAddEmployeeForm();
+            resetAddEmployeeForm(); // reset form input
         }
     }
     catch (error) {
@@ -346,12 +368,9 @@ function saveDateTime(action) {
                     employeesTimeClock.push(newtimeclock);
                     alert('Enter date and time saved: ' + dateTime);
                     // reset sestion
-                    setionID = null;
                 }
-                if (clockiDiv) {
-                    clockiDiv.innerHTML = "";
-                } // Remove all HTML content for enter and exit btns
-                RenderHomePage();
+                // if (clockiDiv) { clockiDiv.innerHTML = ""; }// Remove all HTML content for enter and exit btns
+                // RenderHomePage();
             }
         }
         else if (action === 'exit') {
@@ -368,10 +387,8 @@ function saveDateTime(action) {
                 employeesTimeClock[employeeIndex].status = false;
                 alert('Exit date and time saved: ' + dateTime);
             }
-            if (clockiDiv) {
-                clockiDiv.innerHTML = "";
-            } // Remove all HTML content
-            RenderHomePage();
+            // if (clockiDiv) { clockiDiv.innerHTML = "";} // Remove all HTML content
+            // RenderHomePage();
         }
     }
     catch (error) {

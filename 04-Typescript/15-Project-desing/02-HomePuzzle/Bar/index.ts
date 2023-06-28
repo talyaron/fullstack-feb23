@@ -22,22 +22,9 @@ const workers: Workerr[] = [];
 // entrance and exit times.
 class Movment {
     id: string;
-    constructor(public entrance: number, public exit: number) {
-        // this.id = Date.now().toString(32) + Math.random().toString(16);
+    constructor(public entrance: number, public exit: number, public dayliHours: number) {
         this.id = id();
     }
-
-    // calculatDayliHours(): number | undefined {
-    //     try {
-    //         if (!this.entrance || this.entrance) throw new Error("The dittails are missing");
-    //         const dayliHours = this.exit - this.entrance;
-    //         return dayliHours;
-
-    //     } catch (error) {
-    //         console.error(error);
-    //         return undefined;
-    //     }
-    // }
 }
 
 const movments: Movment[] = [];
@@ -72,16 +59,14 @@ function renderRegisterWorkerr(
           <input type="submit" value="register">
         </form>
         </div>`;
-         
+
         rootElement.innerHTML = html;
-        // return html;
     } catch (error) {
         console.error(error);
     }
 }
 
 renderRegisterWorkerr(document.querySelector("#register"));
-
 
 
 function renderMovmentWorkerr(
@@ -91,27 +76,15 @@ function renderMovmentWorkerr(
 ) {
     try {
         const html = `
-        <div class="register">
-        <form onsubmit="handleRegisterWorkerr(event)">
-          <input type="text" name="name" id="name" placeholder="name" required>
-          <input type="text" name="email" id="email" placeholder="email" required>
-          
-          <label for="entrance">entrance</label>
-          <input type="time" name="entrance" id="entrance" required>
-          <label for="exit">exit</label>
-          <input type="time" name="exit" id="exit" required>
-
-          <input type="submit" value="register">
-        </form>
-        </div>
         <div class="workwrDitels">
             <h2>${workerr.name}</h2>
             <div class="ditels">
               <p> Entrance time is: ${movment.entrance}</p>
               <p> Exit time is: ${movment.exit}</p>
+                <p> Dayli hours is: ${movment.dayliHours}</p>
             </div>
         </div>`;
-
+        
         if (!rootElement) throw new Error("no root element");
 
         rootElement.innerHTML = html;
@@ -119,7 +92,8 @@ function renderMovmentWorkerr(
         console.error(error);
     }
 }
-//
+
+
 // view->model controlers
 function handleRegisterWorkerr(ev: any) {
     try {
@@ -134,12 +108,21 @@ function handleRegisterWorkerr(ev: any) {
         const entrance = ev.target.elements.entrance.value;
         const exit = ev.target.elements.exit.value;
 
-        const movment = new Movment(entrance, exit);
+        const dayliHours = (): number => {
+            const entrance = parseFloat(ev.target.elements.entrance.value);
+            const exit = parseFloat(ev.target.elements.exit.value);
+            const dailyHours = exit - entrance;
+            return dailyHours;
+        };
+
+
+        const movment = new Movment(entrance, exit, dayliHours());
         //add to model
         movments.push(movment);
 
-        renderMovmentWorkerr(workerr, movment, document.querySelector("#register"));
-        console.log(name, email, entrance, exit);
+        renderMovmentWorkerr(workerr, movment, document.querySelector("#MovmentWorker"));
+     
+        console.log(name, email, entrance, exit, dayliHours());
     } catch (error) {
         console.error(error)
     }
