@@ -16,6 +16,7 @@ function UrlWidth(event) {
         Imgarr.push(data);
         var root = document.querySelector("#root");
         event.target.reset();
+        render(Imgarr, root);
     }
     catch (error) {
         console.log(error);

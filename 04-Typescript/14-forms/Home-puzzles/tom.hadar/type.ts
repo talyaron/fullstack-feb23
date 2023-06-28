@@ -13,13 +13,14 @@ function UrlWidth(event) {
     const data = new Uzer(imgUrl, width);
     Imgarr.push(data);
 
-    const root = document.querySelector("#root") as HTMLDivElement;
+    const root = document.querySelector("#root");
     event.target.reset();
+    render(Imgarr, root);
   } catch (error) {
     console.log(error);
   }
 }
-function render(uzer,root) {
+function render(uzer:Uzer [],root) {
   
   const html = uzer.map((uzer) => {
       return `<div>
