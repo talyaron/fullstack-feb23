@@ -10,7 +10,10 @@ class WorKer {
         this.id = uid();
     }
 }
-const worKers: WorKer[] = [];
+const worKers: WorKer[] = [
+    new WorKer("Yuval Shtaingos"),
+    new WorKer("Adi Shetach"),
+];
 
 
 class HoursDaily{
@@ -22,12 +25,14 @@ class HoursDaily{
     calculateDailyHoures(): number| undefined{
         try {
             
-            const exitHoure = this.exit.getTime();
-            const enterHour = this.enterance.getTime();
-            console.log(exitHoure)
-            if (!enterHour || !exitHoure)
+            const  exitHour  = new Date (this.exit);
+            const enterHour = new Date (this.enterance);
+            const exitHourMiliS =  exitHour.getTime();
+            const enterHourMiliS = enterHour.getTime();
+            console.log(exitHourMiliS, enterHourMiliS)
+            if (!enterHour || !exitHour)
         throw new Error("Missing enterance or exit");
-        const dailyhours = (Math.abs(exitHoure - enterHour) / 360000);
+        const dailyhours:number = ((exitHourMiliS - enterHourMiliS) / 3600000);
         console.log(dailyhours)
         return dailyhours;
         
@@ -36,16 +41,32 @@ class HoursDaily{
             return undefined;  
         }
     }
+    
 }
 
 const hoursD: HoursDaily[] = [];
 
 //     join classes
 
-class WorkerHoursDaily {
-    constructor(public worker: WorKer, public hoursD: HoursDaily) {}
-}
+// class WorkerHoursDaily {
+//     constructor(public worker: WorKer, public hoursD: HoursDaily) {}
+//     calculateMonthlyHoures(): number| undefined{
+//         try {
+//             let monthTotal:number = 0;
+//             for (let i = 0; i < hoursD.length; i++) {
+//             monthTotal += hoursD[i];
+//         }
+            
+        
+        
+//         } catch (error) {
+//             console.error(error);
+//             return undefined;  
+//         }
+//     }
+// }
 
+// const workerHours: WorkerHoursDaily[] = [];
 
 
 
@@ -53,8 +74,13 @@ function renderRegisterWorker(rootElement: HTMLElement | null) {
     try {
       const html = `
           <form onsubmit="handleRegisterWorker(event)">
-              <label for="fullname">Full name</label>
-              <input type="text" name="fullName" id='fullName' placeholder="full name" required>
+              <label for="fullName">Full name</label>
+              <select name="fullName" id="fullName">
+            ${worKers.map((worker) => {
+              return `<option value="${worker.id}">${worker.fullName}</option>`;
+            })}
+            
+        </select>
               <input type="submit" value="Register">
           </form>`;
   
@@ -70,12 +96,19 @@ function renderRegisterWorker(rootElement: HTMLElement | null) {
 function handleRegisterWorker(ev: any) {
     try {
       ev.preventDefault();
-      const fullName = ev.target.fullName.value;
-  
+      const fullNameID = ev.target.fullName.value;
+      const fullName = worKers.find(
+        (worker) => worker.id === fullNameID
+      );
+
+      if (!fullName || !fullNameID)
+      throw new Error("Couldnt find THE WORKER");
+
       const worker = new WorKer(fullName);
   
       //add to model
       worKers.push(worker);
+      console.log(worKers)
      
       
   
@@ -97,7 +130,7 @@ function handleRegisterWorker(ev: any) {
       hoursD.push(hoursDay);
       const dailyhours = hoursDay.calculateDailyHoures();
       const rootDailyhours: any = document.querySelector("#dailyhours");
-    if (rootDailyhours) rootDailyhours.innerHTML = dailyhours;
+    if (rootDailyhours) rootDailyhours.innerHTML = `<h1>You Worked Today: ${dailyhours} hours</h1>`;
     
       
     } catch (error) {
@@ -110,9 +143,9 @@ function handleRegisterWorker(ev: any) {
       const html = `
       <form onsubmit="handleRegisterhours(event)">
       <label for="enterance">enterance</label>
-      <input type="time" name="enterance" id="'enterance" required>
+      <input type="datetime-local" name="enterance" id="'enterance" required>
       <label for="exit">exit</label>
-      <input type="time" name="exit" id="exit" required>
+      <input type="datetime-local" name="exit" id="exit" required>
       <input type="submit" value="Calculate">
   </form>`;
   

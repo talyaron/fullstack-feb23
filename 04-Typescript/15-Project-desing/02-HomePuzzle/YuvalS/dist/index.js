@@ -9,7 +9,10 @@ var WorKer = /** @class */ (function () {
     }
     return WorKer;
 }());
-var worKers = [];
+var worKers = [
+    new WorKer("Yuval Shtaingos"),
+    new WorKer("Adi Shetach"),
+];
 var HoursDaily = /** @class */ (function () {
     function HoursDaily(enterance, exit) {
         this.enterance = enterance;
@@ -18,12 +21,14 @@ var HoursDaily = /** @class */ (function () {
     }
     HoursDaily.prototype.calculateDailyHoures = function () {
         try {
-            var exitHoure = this.exit.getTime();
-            var enterHour = this.enterance.getTime();
-            console.log(exitHoure);
-            if (!enterHour || !exitHoure)
+            var exitHour = new Date(this.exit);
+            var enterHour = new Date(this.enterance);
+            var exitHourMiliS = exitHour.getTime();
+            var enterHourMiliS = enterHour.getTime();
+            console.log(exitHourMiliS, enterHourMiliS);
+            if (!enterHour || !exitHour)
                 throw new Error("Missing enterance or exit");
-            var dailyhours = (Math.abs(exitHoure - enterHour) / 360000);
+            var dailyhours = ((exitHourMiliS - enterHourMiliS) / 3600000);
             console.log(dailyhours);
             return dailyhours;
         }
@@ -36,16 +41,26 @@ var HoursDaily = /** @class */ (function () {
 }());
 var hoursD = [];
 //     join classes
-var WorkerHoursDaily = /** @class */ (function () {
-    function WorkerHoursDaily(worker, hoursD) {
-        this.worker = worker;
-        this.hoursD = hoursD;
-    }
-    return WorkerHoursDaily;
-}());
+// class WorkerHoursDaily {
+//     constructor(public worker: WorKer, public hoursD: HoursDaily) {}
+//     calculateMonthlyHoures(): number| undefined{
+//         try {
+//             let monthTotal:number = 0;
+//             for (let i = 0; i < hoursD.length; i++) {
+//             monthTotal += hoursD[i];
+//         }
+//         } catch (error) {
+//             console.error(error);
+//             return undefined;  
+//         }
+//     }
+// }
+// const workerHours: WorkerHoursDaily[] = [];
 function renderRegisterWorker(rootElement) {
     try {
-        var html = "\n          <form onsubmit=\"handleRegisterWorker(event)\">\n              <label for=\"fullname\">Full name</label>\n              <input type=\"text\" name=\"fullName\" id='fullName' placeholder=\"full name\" required>\n              <input type=\"submit\" value=\"Register\">\n          </form>";
+        var html = "\n          <form onsubmit=\"handleRegisterWorker(event)\">\n              <label for=\"fullName\">Full name</label>\n              <select name=\"fullName\" id=\"fullName\">\n            " + worKers.map(function (worker) {
+            return "<option value=\"" + worker.id + "\">" + worker.fullName + "</option>";
+        }) + "\n            \n        </select>\n              <input type=\"submit\" value=\"Register\">\n          </form>";
         if (!rootElement)
             throw new Error("No root element");
         rootElement.innerHTML = html;
@@ -58,10 +73,14 @@ function renderRegisterWorker(rootElement) {
 function handleRegisterWorker(ev) {
     try {
         ev.preventDefault();
-        var fullName = ev.target.fullName.value;
+        var fullNameID_1 = ev.target.fullName.value;
+        var fullName = worKers.find(function (worker) { return worker.id === fullNameID_1; });
+        if (!fullName || !fullNameID_1)
+            throw new Error("Couldnt find THE WORKER");
         var worker = new WorKer(fullName);
         //add to model
         worKers.push(worker);
+        console.log(worKers);
     }
     catch (error) {
         console.error(error);
@@ -79,7 +98,7 @@ function handleRegisterhours(ev) {
         var dailyhours = hoursDay.calculateDailyHoures();
         var rootDailyhours = document.querySelector("#dailyhours");
         if (rootDailyhours)
-            rootDailyhours.innerHTML = dailyhours;
+            rootDailyhours.innerHTML = "<h1>You Worked Today: " + dailyhours + " hours</h1>";
     }
     catch (error) {
         console.error(error);
@@ -87,7 +106,7 @@ function handleRegisterhours(ev) {
 }
 function renderCalculateDailyHours(rootElement) {
     try {
-        var html = "\n      <form onsubmit=\"handleRegisterhours(event)\">\n      <label for=\"enterance\">enterance</label>\n      <input type=\"time\" name=\"enterance\" id=\"'enterance\" required>\n      <label for=\"exit\">exit</label>\n      <input type=\"time\" name=\"exit\" id=\"exit\" required>\n      <input type=\"submit\" value=\"Calculate\">\n  </form>";
+        var html = "\n      <form onsubmit=\"handleRegisterhours(event)\">\n      <label for=\"enterance\">enterance</label>\n      <input type=\"datetime-local\" name=\"enterance\" id=\"'enterance\" required>\n      <label for=\"exit\">exit</label>\n      <input type=\"datetime-local\" name=\"exit\" id=\"exit\" required>\n      <input type=\"submit\" value=\"Calculate\">\n  </form>";
         if (!rootElement)
             throw new Error("No root element");
         rootElement.innerHTML = html;

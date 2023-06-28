@@ -6,7 +6,11 @@
 
 //data (model)
 class imageDataFromUser {
+<<<<<<< HEAD
     constructor(public imgUrl: string, public imgWidthSize: number) { }
+=======
+    constructor (public imgUrl: string, imgWidthSize:number){}
+>>>>>>> 05ede7c4fc138e42339c896fa5313fdb6a38f8dd
 }
 
 //keep all images 
@@ -15,6 +19,7 @@ const imgArray: imageDataFromUser[] = new Array();
 //GUI - get from user
 //controler - handel the data and add ut to the model (to the array)
 
+<<<<<<< HEAD
 function handelSubmitImg(event: any) {
     try {
         event.preventDefault();  //prevent default satting from work - mast!
@@ -25,6 +30,16 @@ function handelSubmitImg(event: any) {
         const imgURL: string = event.target.elements.imgUrl.value;  //pey attention to the event.target.element.[name from html].value
         const imgWidthSize: number = event.target.elements.imgWidthSize.value;
         // const multiple: number = event.target.elements.multiple.value;
+=======
+function handelSubmitImg(event: any){
+    try {
+        
+        event.preventDefault();  //prevent default satting from work - mast!
+        console.dir(event);  //to see what we got in the consol
+
+        const imgURL: string = event.target.imgURL.value;
+        const imgWidthSize: number = event.targer.imgWidthSize.value;
+>>>>>>> 05ede7c4fc138e42339c896fa5313fdb6a38f8dd
         const imgData = new imageDataFromUser(imgURL, imgWidthSize);
 
         console.log(imgData); //to see that i got the data right
@@ -32,6 +47,7 @@ function handelSubmitImg(event: any) {
         // get the data and store it in the array
         imgArray.push(imgData);
 
+<<<<<<< HEAD
         // call a function to rander the data to the html (DOM)
         const root: HTMLElement | null = document.querySelector('#root');
 
@@ -43,10 +59,19 @@ function handelSubmitImg(event: any) {
 
     } catch (error) {
         console.error(error);
+=======
+        //call a function to rander the data to the html (DOM)
+        const root: HTMLElement |null  = document.querySelector('#root');
+        renderImage(imgArray, root);
+
+    } catch (error) {
+       console.error(error) ;
+>>>>>>> 05ede7c4fc138e42339c896fa5313fdb6a38f8dd
     }
 }
 
 //controler - handel the data and render it to the DOM (write the function that we call in line 36)
+<<<<<<< HEAD
 function renderImage(imgArray: imageDataFromUser[], element: HTMLElement | null) {
     try {
         if (!element) throw new Error("element is not defined");  //check if we got an element from the html
@@ -56,11 +81,21 @@ function renderImage(imgArray: imageDataFromUser[], element: HTMLElement | null)
 
         // const lastIndex = imgArray.length - 1
         // element?.innerHTML = `<img src="${imgArray[lastIndex].imgUrl}" style="width: ${imgArray[lastIndex].imgWidthSize}px"/>`
+=======
+function renderImage(imgArray:imageDataFromUser[], element: HTMLElement |null ){
+    try {
+        if (!element) throw new Error("element is not defined");  //check if we got an element from the html
+        const backToHtml = imgArray.map((imgData) => renderpic(imgData)).join(" "); //imgData.map go all over the array, renderpic get insise every cell and render it
+        
+        element.innerHTML = backToHtml; //send it back to he html
+
+>>>>>>> 05ede7c4fc138e42339c896fa5313fdb6a38f8dd
     } catch (error) {
         console.error(error);
     }
 }
 
+<<<<<<< HEAD
 function renderpic(imgData: imageDataFromUser) {
     try {
         const backToHtml =
@@ -70,6 +105,12 @@ function renderpic(imgData: imageDataFromUser) {
         //     <input type="number" name="urlSize" placeholder="Enter image Size" value="${imgData.imgWidthSize}"/>
         //     <button type="submit">Chenge Size</button>
         // </form>`
+=======
+function renderpic(imgData: imageDataFromUser){
+    try {
+        const backToHtml =
+        `<img class= "image" src="${imgData.imgUrl}"  style=width: "${imgData.}">`
+>>>>>>> 05ede7c4fc138e42339c896fa5313fdb6a38f8dd
 
         return backToHtml;
 
@@ -77,6 +118,7 @@ function renderpic(imgData: imageDataFromUser) {
         console.error(error);
     }
 }
+<<<<<<< HEAD
 
 //an example to add a "change img size" option in the form and how to do it in ts +line 66-69
 
@@ -94,3 +136,5 @@ function renderpic(imgData: imageDataFromUser) {
 //When the user submits the form, render multiple instances of the image on the screen, multiplied by the number provided by the user.
 //Use the "Puzzle Users" class
 
+=======
+>>>>>>> 05ede7c4fc138e42339c896fa5313fdb6a38f8dd

@@ -53,6 +53,7 @@ function renderCards(users: User[], element: HTMLElement | null) {
         console.error(error);
     }
 }
+<<<<<<< HEAD
 //
 function renderCard(user: User) {
     try {
@@ -62,9 +63,26 @@ function renderCard(user: User) {
                     <div class="age">Age: ${user.age()}</div>
                     <img class="image" src="${user.picture}">
             </div> `;
+=======
+
+function renderCard(user: User) {
+    try {
+
+
+        const html =
+        `<div id="${user.id}" class="card" style="background-color:${user.color}">
+            <div class="userName">Name: ${user.userName}</div>
+            <div class="age">Age: ${user.age()}</div>
+            <img class="image" src="${user.picture}"
+        </div> `;
+>>>>>>> 05ede7c4fc138e42339c896fa5313fdb6a38f8dd
         return html
 
     } catch (error) {
         console.error(error)
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 05ede7c4fc138e42339c896fa5313fdb6a38f8dd
 }
