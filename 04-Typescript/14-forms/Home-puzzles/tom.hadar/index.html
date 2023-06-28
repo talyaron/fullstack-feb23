@@ -7,10 +7,11 @@
     <title>Document</title>
 </head>
 <body>
-    <form id="from" onsubmit="UrlWidth()">
+    <form id="from" onsubmit="UrlWidth(event)">
         <input type="text" name="imgUrl" placeholder="imgUrl">
         <input type="number" name="width" placeholder="width">
         <button type="submit">click me</button>
+        
     </form>
     <div id="root"></div>
     <script src="dist/type.js"></script>
