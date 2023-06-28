@@ -7,6 +7,19 @@ body {
   justify-content: center;
   font-size: 53px;
 }
+.wrapper__image {
+  display: flex;
+  flex-direction: row;
+  border: 0px solid black;
+  padding-bottom: 100px;
+  background-color: black;
+  border-radius: 20px;
+}
+
+#root {
+  display: flex;
+  justify-content: space-around;
+}
 
 form {
   display: flex;

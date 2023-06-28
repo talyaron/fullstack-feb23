@@ -1,6 +1,6 @@
-var uid = function () {
-    return Date.now().toString(36) + Math.random().toString(36).substr(2);
-};
+// const uid = function () {
+//   return Date.now().toString(36) + Math.random().toString(36).substr(2);
+// };
 //Model
 var Flight = /** @class */ (function () {
     function Flight(from, to) {
@@ -16,7 +16,8 @@ var Flight = /** @class */ (function () {
             var lon2 = this.to.lng;
             if (!lat1 || !lat2 || !lon1 || !lon2)
                 throw new Error("Missing lat or lng");
-            var distance = Math.acos(Math.sin(lat1) * Math.sin(lat2) + Math.cos(lat1) * Math.cos(lat2) * Math.cos(lon2 - lon1)) * 6371;
+            var distance = Math.acos(Math.sin(lat1) * Math.sin(lat2) +
+                Math.cos(lat1) * Math.cos(lat2) * Math.cos(lon2 - lon1)) * 6371;
             return distance;
         }
         catch (error) {
@@ -38,7 +39,7 @@ var AirPort = /** @class */ (function () {
 }());
 var airports = [
     new AirPort("Tel-aviv", 32.0057, 34.885),
-    new AirPort("Hithrow", 51.47, -0.454)
+    new AirPort("Hithrow", 51.47, -0.454),
 ];
 var Passanger = /** @class */ (function () {
     // flights:Flight[] = [];
@@ -97,7 +98,7 @@ function handleRegisterUser(ev) {
         var passenger = new Passanger(firstName, lastName, email);
         //add to model
         passengers.push(passenger);
-        //control->view 
+        //control->view
         renderLoggedUser(passenger, document.querySelector("#register"));
         console.log(firstName, lastName, email);
     }
@@ -123,7 +124,7 @@ function renderCalculateDistance(rootElement) {
 function handleCalculate(ev) {
     try {
         ev.preventDefault();
-        //get from airport 
+        //get from airport
         var airportIdFrom_1 = ev.target.from.value;
         //get to airport
         var airportIdTo_1 = ev.target.to.value;
