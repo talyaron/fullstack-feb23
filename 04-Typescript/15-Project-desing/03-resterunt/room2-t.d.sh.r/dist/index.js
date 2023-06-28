@@ -11,10 +11,11 @@ var Table = /** @class */ (function () {
     return Table;
 }());
 var Dishe = /** @class */ (function () {
-    function Dishe(name, img, price, description) {
+    function Dishe(name, img, price, status, description) {
         this.name = name;
         this.img = img;
         this.price = price;
+        this.status = status;
         this.description = description;
         this.uidDishe = Number(uid());
     }

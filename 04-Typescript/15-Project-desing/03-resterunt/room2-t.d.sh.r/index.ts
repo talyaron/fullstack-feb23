@@ -13,7 +13,7 @@ class Table {
 
 class Dishe {
     uidDishe: number;
-    constructor(public name:string,public img:string, public price:number, public description:string){
+    constructor(public name:string,public img:string, public price:number,public status:boolean, public description:string){
         this.uidDishe = Number(uid());
     }
 }
