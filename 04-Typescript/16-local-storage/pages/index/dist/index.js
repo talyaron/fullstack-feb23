@@ -1,3 +1,4 @@
+var myDog = new Dog("Rex", 5);
 var Person = /** @class */ (function () {
     function Person(name, yearOfBirth) {
         this.name = name;
