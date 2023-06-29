@@ -2,6 +2,9 @@
 // const workHoursTable = document.getElementById("work-hours-table") as HTMLDivElement;
 // const workLogs = {};
 
+
+
+
 // workLogForm.addEventListener("submit", function (event) {
 //   event.preventDefault();
 
@@ -106,14 +109,14 @@ class WorkLog {
 }
 const workers: WorkLog[] = [];
 
-const workersHours: WorkLog[] = [
-    new WorkLog("Doriel", 8),
-    new WorkLog("Max",  12)
-];
+// const workersHours: WorkLog[] = [
+//     new WorkLog("Doriel", 8),
+//     new WorkLog("Max",  12)
+// ];
 
 function renderWorkersHours(rootElement: HTMLElement | null) {
-    try {
-        const html = `
+  try {
+    const html = `
         <form onsubmit="handleRegisterWorker(event)">
             <label for="firstName">First name</label>
             <input type="text" name="firstName" id='firstName' placeholder="first name" required>
@@ -122,44 +125,93 @@ function renderWorkersHours(rootElement: HTMLElement | null) {
             <input type="submit" value="Register">
         </form>`;
 
-        if (!rootElement) throw new Error("No root element")
+    if (!rootElement) throw new Error("No root element");
 
-        rootElement.innerHTML = html;
-    } catch (error) {
-        console.error(error)
-    }
+    rootElement.innerHTML = html;
+  } catch (error) {
+    console.error(error);
+  }
 }
 renderWorkersHours(document.querySelector("#WorkersHours"));
 
+function renderLoggedWorker(worker: WorkLog, rootElement: HTMLElement | null) {
+  try {
+    let htmlAdd = "";
+    const myTab = document.querySelector("#tab");
+    const html = `
+      <form onsubmit="handleRegisterWorker(event)">
+          <label for="firstName">First name</label>
+          <input type="text" name="firstName" id='firstName' placeholder="first name" required>
+          <label for="hours">Last name</label>
+          <input type="number" name="hours" id="'hours" placeholder="hours" required>
+          <input type="submit" value="Register">
+      </form>`;
+    // const htmlAddRow = `
+    //         <tr>
+    //           <th>
+    //           worker name
+    //           ${workers.workerName}
+    //           </th>
+    //         </tr>
+    //         <tr>
+    //           <td> hours
+    //           ${workers.hours}
+    //           </td>
+    //         </tr>
+    //     `;
+    // if (!myTab) {
+    //   htmlAdd = `
+    //     <table id="tab">
+    //        ${htmlAddRow}
+    //     </table>`;
+    // } else {
+    //   myTab.innerHTML += htmlAddRow;
+    //   htmlAdd = myTab.outerHTML;
+    // }
 
-function renderLoggedWorker(workers: WorkLog, rootElement: HTMLElement | null) {
-    try {
-        const html = `<h2>Hello ${workers.workerName} you worked for ${workers.hours} hours today</h2>`;
-        if (!rootElement) throw new Error("no root element");
+    const workerRows = workers.reduce((acc,w)=>{return acc +  `<tr><td>
+              worker name
+              ${w.workerName}
+              </td>
+              <td>hours
+              ${w.hours}
+              </td></tr>`}, "")
 
-        rootElement.innerHTML = html;
-    } catch (error) {
-        console.error(error)
-    }
+    htmlAdd = `${html}
+    <table id="tab"> 
+                ${workerRows}
+            </table>`;
+    if (!rootElement) throw new Error("no root element");
+
+    rootElement.innerHTML = htmlAdd;
+  } catch (error) {
+    console.error(error);
+  }
 }
-
 // view->model controlers
 function handleRegisterWorker(ev: any) {
-    try {
-        ev.preventDefault();
-        const firstName = ev.target.firstName.value;
-        const hours = ev.target.hours.value;
-
-        const newWorker = new WorkLog(firstName, hours);
-
-        //add to model
-        workers.push(newWorker);
-
-        //control->view 
-        renderLoggedWorker(newWorker, document.querySelector("#WorkersHours"))
-
-        console.log(firstName, hours)
-    } catch (error) {
-        console.error(error)
+  try {
+    ev.preventDefault();
+    const firstName = ev.target.firstName.value;
+    const hours = parseInt(ev.target.hours.value);
+    const newWorker = new WorkLog(firstName, hours);
+    const foundWorker = workers.find(
+      (w) => w.workerName === newWorker.workerName
+    );
+    if (!!foundWorker) {
+        foundWorker.hours += hours;
     }
+    else {
+      //add to model
+      workers.push(newWorker);
+    }
+    //control->view
+    renderLoggedWorker(newWorker, document.querySelector("#WorkersHours"));
+
+    console.log(firstName, hours);
+  } catch (error) {
+    console.error(error);
+  }
 }
+
+

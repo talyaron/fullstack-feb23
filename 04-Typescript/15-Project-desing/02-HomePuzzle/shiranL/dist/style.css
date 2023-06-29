@@ -1,4 +1,3 @@
-/* style.css */
 body {
   background-image: url("https://img.freepik.com/free-psd/blank-wall-psd-japandi-living-room-interior_53876-109284.jpg?size=626&ext=jpg&uid=R96966099&ga=GA1.2.9697832.1687471476");
   background-size: cover;
@@ -12,14 +11,45 @@ body {
   height: 100vh;
 }
 
-.AddNewDiv, .LoginDiv {
+.EnterExitBtns {
+  padding: 15px 30px;
+  background-color: #08de68;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.AddNewForm,
+.LoginDiv,
+.clockPage, .BtnsSearchAndDate {
   display: flex;
   flex-direction: column;
   gap: 10px;
   justify-content: center;
 }
 
-.logInAndAddnew {
+.logo {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  justify-content: space-between;
+}
+.logo img {
+  width: 150px;
+  height: 130px;
+  border-radius: 180px;
+}
+
+.wapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: space-between;
+}
+
+.Datacontainer {
   display: flex;
   flex-direction: row;
   gap: 50px;
@@ -43,12 +73,11 @@ input[type=number] {
   border: 1px solid #ccc;
   border-radius: 3px;
   margin-top: 5px;
-  /* Add margin to the top of inputs */
 }
 
 input[type=submit],
 button {
-  padding: 10px 20px;
+  padding: 15px 30px;
   background-color: #428bca;
   color: #fff;
   border: none;
@@ -90,7 +119,8 @@ table {
   margin-top: 20px;
 }
 
-th, td {
+th,
+td {
   padding: 8px;
   text-align: left;
   border-bottom: 1px solid #ddd;

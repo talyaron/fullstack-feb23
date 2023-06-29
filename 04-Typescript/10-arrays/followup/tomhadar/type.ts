@@ -10,31 +10,9 @@
 // console.log(sortarr()); 
 
 
-const arr = [1, 4, 8, 2, 9, 22];
-
-function sortarr() {
-  const sortedArr = arr.slice(); // העתקה של המערך
-  
-  for (let i = 0; i < sortedArr.length - 1; i++) {
-    for (let j = 0; j < sortedArr.length - 1 - i; j++) {
-      if (sortedArr[j] > sortedArr[j + 1]) {
-        // החלפת הערכים
-        const temp = sortedArr[j];
-        sortedArr[j] = sortedArr[j + 1];
-        sortedArr[j + 1] = temp;
-      }
-    }
-  }
-  
-  return sortedArr;
-}
-
-console.log(sortarr());
-
-
-
-
-
+const numbers: number[] = [5, 2, 9, 1, 7];
+numbers.sort((c, a) => c - a);
+console.log(numbers);
 
 
 
