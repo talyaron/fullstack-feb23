@@ -1,0 +1,15 @@
+body {
+  width: 99vw;
+  margin: auto;
+  align-content: center;
+  background-color: antiquewhite;
+  display: flex;
+  flex-direction: column;
+}
+body #main {
+  text-align: center;
+}
+body #main input {
+  margin-left: 15px;
+  border-radius: 10px;
+}

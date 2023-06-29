@@ -3,8 +3,8 @@
 // every worker, can set entrance time , and exit time.
 // ## Levels ##
 // 1) the system can show every workers entrance and exit times, in a table
-// Model
 // Entities : Hour
+// Model
 var Hour = /** @class */ (function () {
     function Hour(entrance, exit) {
         this.entrance = entrance;
@@ -27,9 +27,10 @@ var Hour = /** @class */ (function () {
     return Hour;
 }());
 var hoursArray = new Array;
+// view
 function handleClockTime(rootElement) {
     try {
-        var html = "\n        <div class=\"wrapper\">\n            <form onsubmit=\"handleClockSubmit(event)\">\n                <label for=\"entrance\">Entrance time</label>\n                <input type=\"text\" name=\"entrance\" id=\"entrance\" placeholder=\"Entrance time\">\n                <label for=\"exit\">Exit time</label>\n                <input type=\"text\" name=\"exit\" id=\"exit\" placeholder=\"Exit time\">\n                <button type=\"sumbit\">Send</button>\n            </form>\n        </div>";
+        var html = "\n        <div class=\"wrapper\">\n            <form onsubmit=\"handleClockSubmit(event)\">\n                <label for=\"entrance\">Entrance time</label>\n                <input type=\"time\" name=\"entrance\" id=\"entrance\" placeholder=\"Entrance time\">\n                <label for=\"exit\">Exit time</label>\n                <input type=\"time\" name=\"exit\" id=\"exit\" placeholder=\"Exit time\">\n                <button type=\"sumbit\">Send</button>\n            </form>\n        </div>";
         if (!rootElement)
             throw new Error("No root element");
         rootElement.innerHTML = html;
@@ -50,6 +51,7 @@ function renderTotalHours(totalHours) {
         console.error(error);
     }
 }
+// controller
 function handleClockSubmit(ev) {
     ev.preventDefault();
     var numEntrance = ev.target.entrance.value;

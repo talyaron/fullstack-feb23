@@ -30,31 +30,32 @@ form {
     }
 }
 
-#MovmentWorker{
+#MovmentWorker {
     position: relative;
     top: 30vh;
-}
+    display: flex;
+    flex-wrap: wrap;
 
-.workwrDitels {
-    position: relative;
-    // top: 30vh;
-    margin: auto;
-    border: 1px solid rgb(175, 247, 255);
-    width: 12vw;
-
-    h2 {
-        text-align: center;
-        font-size: x-large;
-        border-bottom: 2px solid white;
-    }
-
-    .ditels {
+    .workwrDitels {
         position: relative;
-        // display: flex;
-        font-size: large;
+        margin: auto;
+        border: 1px solid rgb(175, 247, 255);
+        width: 12vw;
 
-        p {
-            border: 1px solid white;
+        h2 {
+            text-align: center;
+            font-size: x-large;
+            border-bottom: 2px solid white;
+        }
+
+        .ditels {
+            position: relative;
+            // display: flex;
+            font-size: large;
+
+            p {
+                border: 1px solid white;
+            }
         }
     }
 }

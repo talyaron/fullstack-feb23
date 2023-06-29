@@ -3,16 +3,15 @@ var uid = function () {
     return Date.now().toString(36) + Math.random().toString(36).substr(2);
 };
 var WorKer = /** @class */ (function () {
-    function WorKer(fullName) {
+    function WorKer(fullName, workerNumber) {
         this.fullName = fullName;
-        this.id = uid();
+        this.workerNumber = workerNumber;
     }
     return WorKer;
 }());
-var worKers = [
-    new WorKer("Yuval Shtaingos"),
-    new WorKer("Adi Shetach"),
-];
+var worKers = [];
+worKers.push(new WorKer("Yuval Shtaingos", 1));
+worKers.push(new WorKer("Adi Shetach", 2));
 var HoursDaily = /** @class */ (function () {
     function HoursDaily(enterance, exit) {
         this.enterance = enterance;
@@ -41,26 +40,18 @@ var HoursDaily = /** @class */ (function () {
 }());
 var hoursD = [];
 //     join classes
-// class WorkerHoursDaily {
-//     constructor(public worker: WorKer, public hoursD: HoursDaily) {}
-//     calculateMonthlyHoures(): number| undefined{
-//         try {
-//             let monthTotal:number = 0;
-//             for (let i = 0; i < hoursD.length; i++) {
-//             monthTotal += hoursD[i];
-//         }
-//         } catch (error) {
-//             console.error(error);
-//             return undefined;  
-//         }
-//     }
-// }
-// const workerHours: WorkerHoursDaily[] = [];
+var WorkerHours = /** @class */ (function () {
+    function WorkerHours(worker, hoursD, month) {
+        this.worker = worker;
+        this.hoursD = hoursD;
+        this.month = month;
+    }
+    return WorkerHours;
+}());
+var workerHours = [];
 function renderRegisterWorker(rootElement) {
     try {
-        var html = "\n          <form onsubmit=\"handleRegisterWorker(event)\">\n              <label for=\"fullName\">Full name</label>\n              <select name=\"fullName\" id=\"fullName\">\n            " + worKers.map(function (worker) {
-            return "<option value=\"" + worker.id + "\">" + worker.fullName + "</option>";
-        }) + "\n            \n        </select>\n              <input type=\"submit\" value=\"Register\">\n          </form>";
+        var html = "\n          <form onsubmit=\"handleRegisterWorker(event)\">\n          <h2>Register</h2>\n              <label for=\"fullName\">Full name</label>\n              <input type=\"text\" name=\"fullName\" id='fullName' placeholder=\"full Name\" required>\n              <label for=\"workerNumber\">Worker Number</label>\n              <input type=\"text\" name=\"workerNumber\" id='workerNumber' placeholder=\"Worker Number\" required>\n            \n        </select>\n              <input type=\"submit\" value=\"Register First Time\">\n          </form>";
         if (!rootElement)
             throw new Error("No root element");
         rootElement.innerHTML = html;
@@ -73,11 +64,11 @@ function renderRegisterWorker(rootElement) {
 function handleRegisterWorker(ev) {
     try {
         ev.preventDefault();
-        var fullNameID_1 = ev.target.fullName.value;
-        var fullName = worKers.find(function (worker) { return worker.id === fullNameID_1; });
-        if (!fullName || !fullNameID_1)
+        var fullName = ev.target.fullName.value;
+        var workerNumber = ev.target.workerNumber.value;
+        if (!fullName || !workerNumber)
             throw new Error("Couldnt find THE WORKER");
-        var worker = new WorKer(fullName);
+        var worker = new WorKer(fullName, workerNumber);
         //add to model
         worKers.push(worker);
         console.log(worKers);
@@ -86,19 +77,32 @@ function handleRegisterWorker(ev) {
         console.error(error);
     }
 }
-function handleRegisterhours(ev) {
+function renderChooseWorker(rootElement) {
+    try {
+        var html = "\n          <form onsubmit=\"handleChooseWorker(event)\">\n          <h2>Worker</h2>\n          <label for=\"Worker\">Worker</label>\n          <input type=\"text\" name=\"Worker\" id=\"Worker\" placeholder=\"Your Full Name\" required>\n              \n              \n          </input>\n              <input type=\"submit\" value=\"Log-in\">\n          </form>";
+        if (!rootElement)
+            throw new Error("No root element");
+        rootElement.innerHTML = html;
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+function handleChooseWorker(ev) {
     try {
         ev.preventDefault();
-        var enterance = ev.target.enterance.value;
-        var exit = ev.target.exit.value;
-        if (!enterance || !exit)
-            throw new Error("Missing Hours");
-        var hoursDay = new HoursDaily(enterance, exit);
-        hoursD.push(hoursDay);
-        var dailyhours = hoursDay.calculateDailyHoures();
-        var rootDailyhours = document.querySelector("#dailyhours");
-        if (rootDailyhours)
-            rootDailyhours.innerHTML = "<h1>You Worked Today: " + dailyhours + " hours</h1>";
+        var workerChosen_1 = ev.target.Worker.value;
+        var workerLg = worKers.find(function (worker) {
+            return String(worker.fullName) === String(workerChosen_1);
+        });
+        if (!workerLg) {
+            alert('Employee NOt Exists');
+            workerChosen_1 = null;
+            throw new Error("Employee NOt Exists");
+        }
+        var rootWorkerChosen = document.querySelector("#greeting");
+        if (rootWorkerChosen)
+            rootWorkerChosen.innerHTML = "<h3>Hello " + workerChosen_1 + " please enter your working hours today.</h3>";
     }
     catch (error) {
         console.error(error);
@@ -115,5 +119,26 @@ function renderCalculateDailyHours(rootElement) {
         console.error(error);
     }
 }
+function handleRegisterhours(ev) {
+    try {
+        ev.preventDefault();
+        var enterance = ev.target.enterance.value;
+        var exit = new Date(ev.target.exit.value);
+        if (!enterance || !exit)
+            throw new Error("Missing Hours");
+        var month = (exit.getMonth() + 1);
+        console.log(month);
+        var hoursDay = new HoursDaily(enterance, exit);
+        hoursD.push(hoursDay);
+        var dailyhours = hoursDay.calculateDailyHoures();
+        var rootDailyhours = document.querySelector("#dailyhours");
+        if (rootDailyhours)
+            rootDailyhours.innerHTML = "<h1>You Worked Today: " + dailyhours + " hours</h1>";
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
 renderRegisterWorker(document.querySelector("#register"));
+renderChooseWorker(document.querySelector("#login"));
 renderCalculateDailyHours(document.querySelector("#calculate"));

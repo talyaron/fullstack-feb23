@@ -7,9 +7,8 @@
 
 
 
-// Model
 // Entities : Hour
-
+// Model
 
 class Hour {
     id:string;
@@ -35,15 +34,16 @@ class Hour {
 
 const hoursArray :Hour[] = new Array;
 
+// view
 function handleClockTime(rootElement :HTMLElement | null){
     try {
         const html = `
         <div class="wrapper">
             <form onsubmit="handleClockSubmit(event)">
                 <label for="entrance">Entrance time</label>
-                <input type="text" name="entrance" id="entrance" placeholder="Entrance time">
+                <input type="time" name="entrance" id="entrance" placeholder="Entrance time">
                 <label for="exit">Exit time</label>
-                <input type="text" name="exit" id="exit" placeholder="Exit time">
+                <input type="time" name="exit" id="exit" placeholder="Exit time">
                 <button type="sumbit">Send</button>
             </form>
         </div>`;
@@ -70,7 +70,7 @@ function renderTotalHours (totalHours:any){
     }
 }
 
-
+// controller
 function handleClockSubmit(ev:any){
     ev.preventDefault()
     const numEntrance = ev.target.entrance.value;

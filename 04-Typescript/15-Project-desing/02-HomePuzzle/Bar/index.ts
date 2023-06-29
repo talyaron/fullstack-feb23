@@ -68,7 +68,6 @@ function renderRegisterWorkerr(
 
 renderRegisterWorkerr(document.querySelector("#register"));
 
-
 function renderMovmentWorkerr(
     workerr: Workerr | any,
     movment: Movment | any,
@@ -84,15 +83,14 @@ function renderMovmentWorkerr(
                 <p> Dayli hours is: ${movment.dayliHours}</p>
             </div>
         </div>`;
-        
+
         if (!rootElement) throw new Error("no root element");
 
-        rootElement.innerHTML = html;
+        rootElement.innerHTML += html;
     } catch (error) {
         console.error(error);
     }
 }
-
 
 // view->model controlers
 function handleRegisterWorkerr(ev: any) {
@@ -121,7 +119,7 @@ function handleRegisterWorkerr(ev: any) {
         movments.push(movment);
 
         renderMovmentWorkerr(workerr, movment, document.querySelector("#MovmentWorker"));
-     
+
         console.log(name, email, entrance, exit, dayliHours());
     } catch (error) {
         console.error(error)
