@@ -8,40 +8,41 @@ const uid = function () {
 
  //table number with number of people sitting on it
 class Table {
-    constructor(public tableNumbe :number, public capacity: number, public chatch: boolean){}
+    constructor(public tableNumbe :number, public capacity: number, public catched: boolean){}
 }
 
 
 class Dish {
-    uidDishe: number;
-    constructor(public disgName:string, public img:string, public price:number, public status:boolean, public description:string){
-        this.uidDishe = Number(uid());
+    constructor(public dishName:string, public img:string, public price:number, public status:boolean, public description:string){
     }
-
 }
+
+const dishes: Dish[] = []; 
+const order: Order[] = [];
 
 //all the dishes for one table
 class Order {
     uidOrder: number;
-    constructor(public table: Table, public dishes: Dish[],public status:boolean){
+    constructor(public table: Table, public dishes: Dish[], public status:boolean){
         this.uidOrder = Number(uid());
     }
     openTable(){
-        //add new order
+        //the function return that the table is catched (=true)
         try {
             if(!this.table.tableNumbe) throw new Error("no table catched");
             //3 btns -> add, del, close
-            return (this.table.chatch=true)
+            return (this.table.catched=true)
 
         } catch (error) {
             console.error(error)   
         }
 
     }
-    addDish(table: Table, dish:Dish){
+    addDish(table: Table, dish:Dish, order:Order[]){
         //add dish to order array
+        //need to get the table num and to find in it the uid of the order to 
         try {
-           if(!table.chatch) throw new Error("not an open table"); 
+           if(!table.catched) throw new Error("not an open table"); 
            order.push(dish) 
 
         } catch (error) {
@@ -53,8 +54,7 @@ class Order {
         //delet dish from order array
     }
     closeOrder(){
-
-        // calc sum of dises price
+        //close the order and return the calcolat of all dises price in the order (sum of the order)
         this.status=false;
     }
 

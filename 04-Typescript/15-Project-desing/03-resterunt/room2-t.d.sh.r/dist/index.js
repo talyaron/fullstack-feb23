@@ -6,24 +6,25 @@ var uid = function () {
 };
 //table number with number of people sitting on it
 var Table = /** @class */ (function () {
-    function Table(tableNumbe, capacity, chatch) {
+    function Table(tableNumbe, capacity, catched) {
         this.tableNumbe = tableNumbe;
         this.capacity = capacity;
-        this.chatch = chatch;
+        this.catched = catched;
     }
     return Table;
 }());
 var Dish = /** @class */ (function () {
-    function Dish(disgName, img, price, status, description) {
-        this.disgName = disgName;
+    function Dish(dishName, img, price, status, description) {
+        this.dishName = dishName;
         this.img = img;
         this.price = price;
         this.status = status;
         this.description = description;
-        this.uidDishe = Number(uid());
     }
     return Dish;
 }());
+var dishes = [];
+var order = [];
 //all the dishes for one table
 var Order = /** @class */ (function () {
     function Order(table, dishes, status) {
@@ -33,21 +34,22 @@ var Order = /** @class */ (function () {
         this.uidOrder = Number(uid());
     }
     Order.prototype.openTable = function () {
-        //add new order
+        //the function return that the table is catched (=true)
         try {
             if (!this.table.tableNumbe)
                 throw new Error("no table catched");
             //3 btns -> add, del, close
-            return (this.table.chatch = true);
+            return (this.table.catched = true);
         }
         catch (error) {
             console.error(error);
         }
     };
-    Order.prototype.addDish = function (table, dish) {
+    Order.prototype.addDish = function (table, dish, order) {
         //add dish to order array
+        //need to get the table num and to find in it the uid of the order to 
         try {
-            if (!table.chatch)
+            if (!table.catched)
                 throw new Error("not an open table");
             order.push(dish);
         }
@@ -59,7 +61,7 @@ var Order = /** @class */ (function () {
         //delet dish from order array
     };
     Order.prototype.closeOrder = function () {
-        // calc sum of dises price
+        //close the order and return the calcolat of all dises price in the order (sum of the order)
         this.status = false;
     };
     return Order;
