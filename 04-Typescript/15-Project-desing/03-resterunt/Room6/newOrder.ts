@@ -62,6 +62,7 @@ function renderregisterControlers(rootElement: HTMLElement | null) {
              <option value="string">Table 5</option>
              <option value="string">Table 6</option>
           </select>
+          <button type="submit">send order</button>
          </form>`;
 
         if (!rootElement) throw new Error("no root element");
@@ -77,12 +78,12 @@ function handleRegisterOrder(event: any) {
         event.preventDefault();
         const phoneNum = event.target.elements.phoneNum.value;
         const Table = event.target.elements.Table.value;
-
-        const order = new Order([], phoneNum);
-        const tableOrder = new Table(order);
-        tables.push(tableOrder);
+        const order = new Order(dishes, phoneNum);
+        const table = new Table(order);
+        tables.push(table);
         orders.push(order);
-        // renderTableOrder(document.querySelector("#tableOrder"));
+        renderMain(document.querySelector("#main"));
+        
     } catch (error) {
         console.error(error);
     }
