@@ -12,6 +12,23 @@ var Dishe = /** @class */ (function () {
     return Dishe;
 }());
 var dishes = [];
+var dishes = [];
+// Create sushi dishes and add them to the menu
+var sushi1 = new Dishe('California Roll', 12.99, './dist/image/sushi.webp', 'Fresh crab, avocado, and cucumber rolled in rice and seaweed.');
+dishes.push(sushi1);
+var sushi2 = new Dishe('Spicy Tuna Roll', 10.99, './dist/image/sushi.webp', 'Tuna, spicy mayo, and cucumber rolled in rice and seaweed.');
+dishes.push(sushi2);
+var sushi3 = new Dishe('Salmon Nigiri', 6.99, './dist/image/sushi.webp', 'Fresh salmon slices served on a bed of rice.');
+dishes.push(sushi3);
+var sushi2 = new Dishe('Spicy Tuna Roll', 10.99, './dist/image/sushi.webp', 'Tuna, spicy mayo, and cucumber rolled in rice and seaweed.');
+dishes.push(sushi2);
+var sushi3 = new Dishe('Salmon Nigiri', 6.99, './dist/image/sushi.webp', 'Fresh salmon slices served on a bed of rice.');
+dishes.push(sushi3);
+var sushi2 = new Dishe('Spicy Tuna Roll', 10.99, './dist/image/sushi.webp', 'Tuna, spicy mayo, and cucumber rolled in rice and seaweed.');
+dishes.push(sushi2);
+var sushi3 = new Dishe('Salmon Nigiri', 6.99, './dist/image/sushi.webp', 'Fresh salmon slices served on a bed of rice.');
+dishes.push(sushi3);
+console.log(dishes);
 //order - class
 var Order = /** @class */ (function () {
     function Order(tableOrder, phoneNum) {
@@ -62,16 +79,27 @@ function renderregisterControlers(rootElement) {
         console.error(error);
     }
 }
+function renderMain(dishes, rootElement) {
+    try {
+        var html = "<div class=\"main\">\n          <div class=\"dish\">\n           " + dishes.map(function (dishe) {
+            return "<div class=\"dish\">\n                      <img src=\"" + dishe.image + "\" alt=\"" + dishe.name + "\">\n                    <div class=\"dish-text\">  \n                      <h3>" + dishe.name + "</h3>\n                      <p>" + dishe.description + "</p>\n                      <p>" + dishe.price + "</p>\n                    </div>\n                   </div>";
+        }) + ";\n          </div> \n       </div>";
+        if (!rootElement)
+            throw new Error("no root element");
+        rootElement.innerHTML += html;
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
 function handleRegisterOrder(event) {
     try {
         event.preventDefault();
         var phoneNum = event.target.elements.phoneNum.value;
-        var Table_1 = event.target.elements.Table.value;
-        var order = new Order(dishes, phoneNum);
-        var table = new Table_1(order);
-        tables.push(table);
+        var table = event.target.elements.Table.value;
+        var order = new Order(table, phoneNum);
         orders.push(order);
-        renderMain(document.querySelector("#main"));
+        renderMain(dishes, document.querySelector("#main"));
     }
     catch (error) {
         console.error(error);
