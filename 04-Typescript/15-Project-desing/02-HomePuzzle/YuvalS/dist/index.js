@@ -40,17 +40,18 @@ var HoursDaily = /** @class */ (function () {
 }());
 var hoursD = [];
 //     join classes
-var WorkerHoursDaily = /** @class */ (function () {
-    function WorkerHoursDaily(worker, hoursD) {
+var WorkerHours = /** @class */ (function () {
+    function WorkerHours(worker, hoursD, month) {
         this.worker = worker;
         this.hoursD = hoursD;
+        this.month = month;
     }
-    return WorkerHoursDaily;
+    return WorkerHours;
 }());
 var workerHours = [];
 function renderRegisterWorker(rootElement) {
     try {
-        var html = "\n          <form onsubmit=\"handleRegisterWorker(event)\">\n              <label for=\"fullName\">Full name</label>\n              <input type=\"text\" name=\"fullName\" id='fullName' placeholder=\"full Name\" required>\n              <label for=\"workerNumber\">Worker Number</label>\n              <input type=\"text\" name=\"workerNumber\" id='workerNumber' placeholder=\"Worker Number\" required>\n            \n        </select>\n              <input type=\"submit\" value=\"Register First Time\">\n          </form>";
+        var html = "\n          <form onsubmit=\"handleRegisterWorker(event)\">\n          <h2>Register</h2>\n              <label for=\"fullName\">Full name</label>\n              <input type=\"text\" name=\"fullName\" id='fullName' placeholder=\"full Name\" required>\n              <label for=\"workerNumber\">Worker Number</label>\n              <input type=\"text\" name=\"workerNumber\" id='workerNumber' placeholder=\"Worker Number\" required>\n            \n        </select>\n              <input type=\"submit\" value=\"Register First Time\">\n          </form>";
         if (!rootElement)
             throw new Error("No root element");
         rootElement.innerHTML = html;
@@ -76,19 +77,32 @@ function handleRegisterWorker(ev) {
         console.error(error);
     }
 }
-function handleRegisterhours(ev) {
+function renderChooseWorker(rootElement) {
+    try {
+        var html = "\n          <form onsubmit=\"handleChooseWorker(event)\">\n          <h2>Worker</h2>\n          <label for=\"Worker\">Worker</label>\n          <input type=\"text\" name=\"Worker\" id=\"Worker\" placeholder=\"Your Full Name\" required>\n              \n              \n          </input>\n              <input type=\"submit\" value=\"Log-in\">\n          </form>";
+        if (!rootElement)
+            throw new Error("No root element");
+        rootElement.innerHTML = html;
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+function handleChooseWorker(ev) {
     try {
         ev.preventDefault();
-        var enterance = ev.target.enterance.value;
-        var exit = ev.target.exit.value;
-        if (!enterance || !exit)
-            throw new Error("Missing Hours");
-        var hoursDay = new HoursDaily(enterance, exit);
-        hoursD.push(hoursDay);
-        var dailyhours = hoursDay.calculateDailyHoures();
-        var rootDailyhours = document.querySelector("#dailyhours");
-        if (rootDailyhours)
-            rootDailyhours.innerHTML = "<h1>You Worked Today: " + dailyhours + " hours</h1>";
+        var workerChosen_1 = ev.target.Worker.value;
+        var workerLg = worKers.find(function (worker) {
+            return String(worker.fullName) === String(workerChosen_1);
+        });
+        if (!workerLg) {
+            alert('Employee NOt Exists');
+            workerChosen_1 = null;
+            throw new Error("Employee NOt Exists");
+        }
+        var rootWorkerChosen = document.querySelector("#greeting");
+        if (rootWorkerChosen)
+            rootWorkerChosen.innerHTML = "<h3>Hello " + workerChosen_1 + " please enter your working hours today.</h3>";
     }
     catch (error) {
         console.error(error);
@@ -105,5 +119,26 @@ function renderCalculateDailyHours(rootElement) {
         console.error(error);
     }
 }
+function handleRegisterhours(ev) {
+    try {
+        ev.preventDefault();
+        var enterance = ev.target.enterance.value;
+        var exit = new Date(ev.target.exit.value);
+        if (!enterance || !exit)
+            throw new Error("Missing Hours");
+        var month = (exit.getMonth() + 1);
+        console.log(month);
+        var hoursDay = new HoursDaily(enterance, exit);
+        hoursD.push(hoursDay);
+        var dailyhours = hoursDay.calculateDailyHoures();
+        var rootDailyhours = document.querySelector("#dailyhours");
+        if (rootDailyhours)
+            rootDailyhours.innerHTML = "<h1>You Worked Today: " + dailyhours + " hours</h1>";
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
 renderRegisterWorker(document.querySelector("#register"));
+renderChooseWorker(document.querySelector("#login"));
 renderCalculateDailyHours(document.querySelector("#calculate"));
