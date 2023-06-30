@@ -128,7 +128,7 @@ function renderMenu() {
 ${dishes.map(dish => {
         return `
 <tr><td>${dish.dishName} </td><td><img class="dishImage" src="${dish.img} "></td>
-    <td> ${dish.price}</td><td> ${dish.description}</td><td><button onclick=${thisTable.addDish()};>Add</button></td>
+    <td> ${dish.price}</td><td> ${dish.description}</td><td><button onclick=thisTable.addDish();>Add</button></td>
     `
     }).join('')}
 </table>
