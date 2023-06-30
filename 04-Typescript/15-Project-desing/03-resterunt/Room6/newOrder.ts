@@ -4,11 +4,71 @@
 
 //menu - class
 class Dishe {
-    constructor(public name: string, public price: number, public image: URL, public description: string) {
+    constructor(public name: string, public price: number, public image: string, public description: string) {
     }
 }
 const dishes: Dishe[] = [];
+const dishes: Dishe[] = [];
 
+// Create sushi dishes and add them to the menu
+const sushi1 = new Dishe(
+  'California Roll',
+  12.99,
+  './dist/image/sushi.webp',
+  'Fresh crab, avocado, and cucumber rolled in rice and seaweed.'
+);
+dishes.push(sushi1);
+
+const sushi2 = new Dishe(
+  'Spicy Tuna Roll',
+  10.99,
+  './dist/image/sushi.webp',
+  'Tuna, spicy mayo, and cucumber rolled in rice and seaweed.'
+);
+dishes.push(sushi2);
+
+const sushi3 = new Dishe(
+  'Salmon Nigiri',
+  6.99,
+  './dist/image/sushi.webp',
+  'Fresh salmon slices served on a bed of rice.'
+);
+dishes.push(sushi3);
+
+const sushi2 = new Dishe(
+    'Spicy Tuna Roll',
+    10.99,
+    './dist/image/sushi.webp',
+    'Tuna, spicy mayo, and cucumber rolled in rice and seaweed.'
+  );
+  dishes.push(sushi2);
+  
+  const sushi3 = new Dishe(
+    'Salmon Nigiri',
+    6.99,
+    './dist/image/sushi.webp',
+    'Fresh salmon slices served on a bed of rice.'
+  );
+  dishes.push(sushi3);
+
+  const sushi2 = new Dishe(
+    'Spicy Tuna Roll',
+    10.99,
+    './dist/image/sushi.webp',
+    'Tuna, spicy mayo, and cucumber rolled in rice and seaweed.'
+  );
+  dishes.push(sushi2);
+  
+  const sushi3 = new Dishe(
+    'Salmon Nigiri',
+    6.99,
+    './dist/image/sushi.webp',
+    'Fresh salmon slices served on a bed of rice.'
+  );
+  dishes.push(sushi3);
+  
+
+console.log(dishes);
 
 //order - class
 class Order {
@@ -73,17 +133,44 @@ function renderregisterControlers(rootElement: HTMLElement | null) {
     }
 }
 
+function renderMain(
+    dishes: Dishe[],
+    rootElement: HTMLElement | null) {
+    try {
+        const html =
+       `<div class="main">
+          <div class="dish">
+           ${dishes.map(dishe => {
+            return `<div class="dish">
+                      <img src="${dishe.image}" alt="${dishe.name}">
+                    <div class="dish-text">  
+                      <h3>${dishe.name}</h3>
+                      <p>${dishe.description}</p>
+                      <p>${dishe.price}</p>
+                    </div>
+                   </div>`
+           })};
+          </div> 
+       </div>`;
+        if (!rootElement) throw new Error("no root element");
+
+        rootElement.innerHTML += html;
+    } catch (error) {
+        console.error(error);
+    }
+}
+
 function handleRegisterOrder(event: any) {
     try {
         event.preventDefault();
         const phoneNum = event.target.elements.phoneNum.value;
-        const Table = event.target.elements.Table.value;
-        const order = new Order(dishes, phoneNum);
-        const table = new Table(order);
-        tables.push(table);
-        orders.push(order);
-        renderMain(document.querySelector("#main"));
+        const table = event.target.elements.Table.value;
         
+        const order = new Order(table, phoneNum);
+        orders.push(order);
+
+        renderMain(dishes ,document.querySelector("#main"));
+       
     } catch (error) {
         console.error(error);
     }
