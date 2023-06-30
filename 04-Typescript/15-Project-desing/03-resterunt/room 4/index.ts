@@ -29,12 +29,14 @@ const Meal2 = new Dishe(
 dishes.push(Meal2);
 
 
+for (const element of tables) {
 
+    element.addEventListener("click", ChooseADish);
+    function ChooseADish() {
 
-table1.addEventListener("click", ChooseADish);
-function ChooseADish() {
-    table1.style.background = "red";
-    renderMenu(dishes, root);
+        element.style.background = "red";
+        renderMenu(dishes, root);
+    }
 }
 
 
