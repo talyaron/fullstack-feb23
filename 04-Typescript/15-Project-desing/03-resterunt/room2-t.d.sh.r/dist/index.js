@@ -117,8 +117,8 @@ tableDiv.forEach(function (item, idx) {
 //render the menu to screen and call the addDish to add a dish to the order
 function renderMenu() {
     console.log(thisTable);
-    tablesDiv.innerHTML = "\n<div class=\"menu\"><h2>Table number " + thisTable.tableNumber + " Menu</h2><table>\n<tr><th>Name</th><th>Image</th><th>Price</th><th>Description</th></tr>\n\n" + dishes.map(function (dish) {
-        return "\n<tr><td>" + dish.dishName + " </td><td><img class=\"dishImage\" src=\"" + dish.img + " \"></td>\n    <td> " + dish.price + "</td><td> " + dish.description + "</td>\n    ";
+    tablesDiv.innerHTML = "\n<div class=\"menu\"><h2>Table number " + thisTable.tableNumber + " Menu</h2><table>\n<tr><th>Name</th><th>Image</th><th>Price</th><th>Description</th><th>btns</th></tr>\n\n" + dishes.map(function (dish) {
+        return "\n<tr><td>" + dish.dishName + " </td><td><img class=\"dishImage\" src=\"" + dish.img + " \"></td>\n    <td> " + dish.price + "</td><td> " + dish.description + "</td><td><button onclick=" + thisTable.addDish() + ";>Add</button></td>\n    ";
     }).join('') + "\n</table>\n\n";
 }
 //renderDelet --> after chosing a table and click del-btn

@@ -123,12 +123,12 @@ function renderMenu() {
     console.log(thisTable);
     tablesDiv.innerHTML = `
 <div class="menu"><h2>Table number ${thisTable.tableNumber} Menu</h2><table>
-<tr><th>Name</th><th>Image</th><th>Price</th><th>Description</th></tr>
+<tr><th>Name</th><th>Image</th><th>Price</th><th>Description</th><th>btns</th></tr>
 
 ${dishes.map(dish => {
         return `
 <tr><td>${dish.dishName} </td><td><img class="dishImage" src="${dish.img} "></td>
-    <td> ${dish.price}</td><td> ${dish.description}</td>
+    <td> ${dish.price}</td><td> ${dish.description}</td><td><button onclick=${thisTable.addDish()};>Add</button></td>
     `
     }).join('')}
 </table>
