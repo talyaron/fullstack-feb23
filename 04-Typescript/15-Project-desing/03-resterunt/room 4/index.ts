@@ -1,6 +1,6 @@
-class Table {
-    idTable: number;
-    capacity: number;
+// class Table {
+//     idTable: number;
+//     capacity: number;
 
 
-}
+// }
