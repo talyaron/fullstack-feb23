@@ -95,6 +95,18 @@ function renderTable(divName) {
 }
 var tablesDiv = document.querySelector(".tables");
 renderTable(tablesDiv);
+///Table Event Listener
+var tableDiv = document.querySelectorAll(".table");
+tableDiv.forEach(function (item, idx) {
+    item.addEventListener('click', function () {
+        var result = tables.find(function (_a) {
+            var tableNumber = _a.tableNumber;
+            return tableNumber === tableNumber;
+        });
+        console.log(result, item, idx);
+        renderMenu();
+    });
+});
 //renderMenu --> after chosing a table and click add-btn
 //render the menu to screen and call the addDish to add a dish to the order
 renderMenu();

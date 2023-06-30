@@ -100,6 +100,16 @@ function renderTable(divName){
 }
 const tablesDiv = document.querySelector(".tables")
 renderTable(tablesDiv);
+///Table Event Listener
+const tableDiv = document.querySelectorAll(".table");
+tableDiv.forEach(function (item, idx) {
+    item.addEventListener('click', function () {
+        const result = tables.find(({ tableNumber }) => tableNumber === tableNumber);
+        console.log(result, item, idx)
+        renderMenu();
+    });
+});
+
 
 //renderMenu --> after chosing a table and click add-btn
 //render the menu to screen and call the addDish to add a dish to the order
