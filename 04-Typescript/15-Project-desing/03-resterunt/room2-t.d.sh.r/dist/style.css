@@ -1,13 +1,16 @@
 .wrapper {
   display: flex;
 }
+.tables{
+  position: relative;
+}
 
 .table {
   width: 100px;
   height: 100px;
   border: 2px solid green;
   text-align: center;
-  position: relative;
+  position: absolute;
   border-radius: 50%;
 }
 

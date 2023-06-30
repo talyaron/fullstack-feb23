@@ -1,5 +1,4 @@
-var Table = /** @class */ (function () {
-    function Table() {
-    }
-    return Table;
-}());
+// class Table {
+//     idTable: number;
+//     capacity: number;
+// }
