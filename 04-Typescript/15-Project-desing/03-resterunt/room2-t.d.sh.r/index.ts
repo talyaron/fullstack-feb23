@@ -101,14 +101,17 @@ function renderTable(divName) {
 const tablesDiv = document.querySelector(".tables")
 renderTable(tablesDiv);
 ///Table Event Listener
+var thisTable;
 const tableDiv = document.querySelectorAll(".table");
 tableDiv.forEach(function (item, idx) {
     item.addEventListener('click', function () {
         const result = tables.find(({ tableNumber }) => tableNumber === idx + 1);
-       if(!result.catched){
-        result.openTable()}
+        if (!result.catched) {
+            result.openTable()
+        }
         else result.closeTable();
-       console.log(result);
+        thisTable = result;
+        renderMenu();
 
     });
 });
@@ -116,8 +119,21 @@ tableDiv.forEach(function (item, idx) {
 
 //renderMenu --> after chosing a table and click add-btn
 //render the menu to screen and call the addDish to add a dish to the order
-renderMenu(){
+function renderMenu() {
+    console.log(thisTable);
+    tablesDiv.innerHTML = `
+<div class="menu"><h2>Table number ${thisTable.tableNumber} Menu</h2><table>
+<tr><th>Name</th><th>Image</th><th>Price</th><th>Description</th></tr>
 
+${dishes.map(dish => {
+        return `
+<tr><td>${dish.dishName} </td><td><img class="dishImage" src="${dish.img} "></td>
+    <td> ${dish.price}</td><td> ${dish.description}</td>
+    `
+    }).join('')}
+</table>
+
+`
 }
 
 //renderDelet --> after chosing a table and click del-btn
