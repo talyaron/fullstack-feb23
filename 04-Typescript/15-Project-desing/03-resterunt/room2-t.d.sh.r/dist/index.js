@@ -101,10 +101,9 @@ tableDiv.forEach(function (item, idx) {
     item.addEventListener('click', function () {
         var result = tables.find(function (_a) {
             var tableNumber = _a.tableNumber;
-            return tableNumber === tableNumber;
+            return tableNumber === idx + 1;
         });
-        console.log(result, item, idx);
-        renderMenu();
+        console.log(result);
     });
 });
 //renderMenu --> after chosing a table and click add-btn

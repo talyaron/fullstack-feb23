@@ -104,9 +104,9 @@ renderTable(tablesDiv);
 const tableDiv = document.querySelectorAll(".table");
 tableDiv.forEach(function (item, idx) {
     item.addEventListener('click', function () {
-        const result = tables.find(({ tableNumber }) => tableNumber === tableNumber);
-        console.log(result, item, idx)
-        renderMenu();
+        const result = tables.find(({ tableNumber }) => tableNumber === idx+1);
+        console.log(result)
+       
     });
 });
 
