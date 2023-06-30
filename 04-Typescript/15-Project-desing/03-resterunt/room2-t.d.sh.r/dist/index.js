@@ -1,7 +1,7 @@
 //entities:
 //Tables, Order, Dishes
 //no need for unic ids!!
-// the table class will contain the order class
+//the table class will contain the order class
 //the table class will have the option to add or delet an order
 //the table class will have the option to open or closed the table (t-open, f-closed) 
 var Table = /** @class */ (function () {
@@ -15,14 +15,11 @@ var Table = /** @class */ (function () {
             if (!this.tableNumber)
                 throw new Error("no table catched");
             this.catched = true; // the table is now open
-            // render 3 btns -> menu, del, close
+            // render 3 btns -> add, del, close
         }
         catch (error) {
             console.error(error);
         }
-    };
-    //render the menu to screen and call the addDish to add a dish to rhe order
-    Table.prototype.renderMenu = function () {
     };
     //to add dish to an order, we need the specific order and the dish to add
     Table.prototype.addDish = function (order, dish) {
@@ -71,3 +68,11 @@ var pastaMilk = new Dish("pastaMilk", "https://realhousemoms.com/wp-content/uplo
 var pizzaOnion = new Dish("pizzaOnion", "https://pizzatoday.com/wp-content/uploads/2020/05/OnionPizza-1.jpg", 35, "pizza with onions");
 var pizzaOliv = new Dish("pizzaOliv", "https://images.squarespace-cdn.com/content/v1/55370317e4b047f1053ee431/1546891998774-XFFPMCUA4MAQ5251Y5TA/ke17ZwdGBToddI8pDm48kEKeeVwguwXFnn1ZDuv86ikUqsxRUqqbr1mOJYKfIPR7LoDQ9mXPOjoJoqy81S2I8PaoYXhp6HxIwZIk7-Mi3Tsic-L2IOPH3Dwrhl-Ne3Z2sPGQHE4gTOo1QfbaGNmWRT3ltfHJNtU0FQBDPzwxb0xkOpdljO7Z-5qh0zg85Jnj/Loaded+Olive+Pizza?format=original", 30, "pizza with olives");
 var dishes = [pastaRed, pastaMilk, pizzaOliv, pizzaOnion]; //contain the information about all dishes
+//------view------------------------
+//renderTable --> at open screen
+//renderMenu --> after chosing a table and click add-btn
+//render the menu to screen and call the addDish to add a dish to the order
+renderMenu();
+{
+}
+//renderDelet --> after chosing a table and click del-btn
