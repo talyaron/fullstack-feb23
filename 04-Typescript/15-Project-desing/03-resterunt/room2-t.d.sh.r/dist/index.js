@@ -35,8 +35,18 @@ var Table = /** @class */ (function () {
             console.error(error);
         }
     };
-    Table.prototype.deletDish = function () {
+    Table.prototype.deletDish = function (order, dish) {
         //delet dish from order array
+        try {
+            if (!order)
+                throw new Error('cant find order');
+            if (!dish)
+                throw new Error('cant find dish');
+            order = order.filter(function (e) { return e !== dish; });
+        }
+        catch (error) {
+            console.error(error);
+        }
     };
     Table.prototype.closeTable = function () {
         //close the table and the order and return the calcolat of all dises price in the order (sum of the order)
@@ -44,6 +54,12 @@ var Table = /** @class */ (function () {
     };
     return Table;
 }());
+var tables = [
+    new Table(1, false),
+    new Table(2, false),
+    new Table(3, false),
+    new Table(4, false)
+];
 //the order class will contain the dish class
 var Order = /** @class */ (function () {
     function Order(dishes) {
@@ -70,6 +86,15 @@ var pizzaOliv = new Dish("pizzaOliv", "https://images.squarespace-cdn.com/conten
 var dishes = [pastaRed, pastaMilk, pizzaOliv, pizzaOnion]; //contain the information about all dishes
 //------view------------------------
 //renderTable --> at open screen
+function renderTable(divName) {
+    var html = "";
+    html += tables.map(function (table) {
+        return "<div class=\"table\" id=\"table" + table.tableNumber + "\">" + table.tableNumber + "</div>";
+    }).join('');
+    divName.innerHTML = html;
+}
+var tablesDiv = document.querySelector(".tables");
+renderTable(tablesDiv);
 //renderMenu --> after chosing a table and click add-btn
 //render the menu to screen and call the addDish to add a dish to the order
 renderMenu();

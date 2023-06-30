@@ -7,7 +7,7 @@
 //the table class will have the option to add or delet an order
 //the table class will have the option to open or closed the table (t-open, f-closed) 
 class Table {
-    constructor(public tableNumber: number, public catched: boolean, order: Order) { }
+    constructor(public tableNumber: number, public catched: boolean, order?: Order) { }
 
     openTable() {
         //the function return that the table is catched (=true)
@@ -39,8 +39,16 @@ class Table {
         }
     }
 
-    deletDish() {
+    deletDish(order: Dish[], dish: Dish) {
         //delet dish from order array
+        try {
+            if (!order) throw new Error('cant find order');
+            if (!dish) throw new Error('cant find dish');
+            order = order.filter(e => e !== dish);
+        } catch (error) {
+            console.error(error)
+        }
+
     }
     closeTable() {
         //close the table and the order and return the calcolat of all dises price in the order (sum of the order)
@@ -48,7 +56,15 @@ class Table {
     }
 
 }
+const tables: Table[] = [
 
+    new Table(1, false),
+    new Table(2, false),
+    new Table(3, false),
+    new Table(4, false)
+
+
+]
 //the order class will contain the dish class
 class Order {
     constructor(public dishes: Dish[]) {
@@ -73,7 +89,17 @@ const dishes: Dish[] = [pastaRed, pastaMilk, pizzaOliv, pizzaOnion]; //contain t
 
 //------view------------------------
 //renderTable --> at open screen
+function renderTable(divName){
+    let html =""
+    html += tables.map(table => {
+       return  `<div class="table" id="table${table.tableNumber}">${table.tableNumber}</div>`
+    }).join('')
+    divName.innerHTML = html;
+    
 
+}
+const tablesDiv = document.querySelector(".tables")
+renderTable(tablesDiv);
 
 //renderMenu --> after chosing a table and click add-btn
 //render the menu to screen and call the addDish to add a dish to the order
