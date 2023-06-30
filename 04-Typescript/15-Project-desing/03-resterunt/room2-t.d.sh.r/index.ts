@@ -1,8 +1,6 @@
 //entities:
 //Tables, Order, Dishes
 
-
-
 //no need for unic ids!!
 
 // the table class will contain the order class
@@ -15,8 +13,9 @@ class Table {
         //the function return that the table is catched (=true)
         try {
             if(!this.tableNumber) throw new Error("no table catched");
-            //3 btns -> add, del, close
             this.catched=true;  // the table is now open
+
+            // render 3 btns -> menu, del, close
 
         } catch (error) {
             console.error(error)   
@@ -24,12 +23,17 @@ class Table {
 
     }
 
+    //render the menu to screen and call the addDish to add a dish to rhe order
+    renderMenu(){
+        
+    }
+
     //to add dish to an order, we need the specific order and the dish to add
-    addDish(dish:Dish, order:Order[]){
+    addDish(order:Dish[], dish:Dish){
         //add dish to order array
 
         try {
-            if(!order) throw new Error("no order picked")
+            if(!order) throw new Error("no order")
             if(!dish) throw new Error("not a dish")
 
             order.push(dish)
@@ -42,9 +46,9 @@ class Table {
     deletDish(){
         //delet dish from order array
     }
-    closeOrder(){
-        //close the order and return the calcolat of all dises price in the order (sum of the order)
-        this.status=false;
+    closeTable(){
+        //close the table and the order and return the calcolat of all dises price in the order (sum of the order)
+        this.catched=false;
     }
 
 }
@@ -56,7 +60,6 @@ class Order {
 }
 
 const ordersArray: Order[] = []; //contain all the dishes in a spesific order
-
 
 //the Dish class will contain the info of the dish
 class Dish {

@@ -14,19 +14,22 @@ var Table = /** @class */ (function () {
         try {
             if (!this.tableNumber)
                 throw new Error("no table catched");
-            //3 btns -> add, del, close
             this.catched = true; // the table is now open
+            // render 3 btns -> menu, del, close
         }
         catch (error) {
             console.error(error);
         }
     };
+    //render the menu to screen and call the addDish to add a dish to rhe order
+    Table.prototype.renderMenu = function () {
+    };
     //to add dish to an order, we need the specific order and the dish to add
-    Table.prototype.addDish = function (dish, order) {
+    Table.prototype.addDish = function (order, dish) {
         //add dish to order array
         try {
             if (!order)
-                throw new Error("no order picked");
+                throw new Error("no order");
             if (!dish)
                 throw new Error("not a dish");
             order.push(dish);
@@ -38,9 +41,9 @@ var Table = /** @class */ (function () {
     Table.prototype.deletDish = function () {
         //delet dish from order array
     };
-    Table.prototype.closeOrder = function () {
-        //close the order and return the calcolat of all dises price in the order (sum of the order)
-        this.status = false;
+    Table.prototype.closeTable = function () {
+        //close the table and the order and return the calcolat of all dises price in the order (sum of the order)
+        this.catched = false;
     };
     return Table;
 }());
