@@ -103,6 +103,11 @@ tableDiv.forEach(function (item, idx) {
             var tableNumber = _a.tableNumber;
             return tableNumber === idx + 1;
         });
+        if (!result.catched) {
+            result.openTable();
+        }
+        else
+            result.closeTable();
         console.log(result);
     });
 });

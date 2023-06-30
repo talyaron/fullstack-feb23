@@ -89,13 +89,13 @@ const dishes: Dish[] = [pastaRed, pastaMilk, pizzaOliv, pizzaOnion]; //contain t
 
 //------view------------------------
 //renderTable --> at open screen
-function renderTable(divName){
-    let html =""
+function renderTable(divName) {
+    let html = ""
     html += tables.map(table => {
-       return  `<div class="table" id="table${table.tableNumber}">${table.tableNumber}</div>`
+        return `<div class="table" id="table${table.tableNumber}">${table.tableNumber}</div>`
     }).join('')
     divName.innerHTML = html;
-    
+
 
 }
 const tablesDiv = document.querySelector(".tables")
@@ -104,9 +104,12 @@ renderTable(tablesDiv);
 const tableDiv = document.querySelectorAll(".table");
 tableDiv.forEach(function (item, idx) {
     item.addEventListener('click', function () {
-        const result = tables.find(({ tableNumber }) => tableNumber === idx+1);
-        console.log(result)
-       
+        const result = tables.find(({ tableNumber }) => tableNumber === idx + 1);
+       if(!result.catched){
+        result.openTable()}
+        else result.closeTable();
+       console.log(result);
+
     });
 });
 
