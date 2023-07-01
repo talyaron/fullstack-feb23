@@ -1,8 +1,7 @@
-
-function getDishesForTablepage(): Dishe[]{
+// get Menu data from json or create array
+function getMenuForTablepage(): Dishe[]{
     try {
-        
-        const disesString = localStorage.getItem('dises');
+        const disesString = localStorage.getItem('menuDises');
         if (!disesString) {
           console.log("There are no orders");
           return [];
@@ -16,41 +15,35 @@ function getDishesForTablepage(): Dishe[]{
         return [];
       }
     }
-
-
-function getTablesForTablepage(): (Table | undefined)[]  |undefined{
+// get Tables data from json or create array
+function getTablesForTablepage(): Table [] {
     try {
-        
-        const tables: (Table | undefined)[]  |undefined = [];
+        const tables: Table []  = [];
         const tablesString = localStorage.getItem('tables');
         if (!tablesString){ // if there is not table on json , create one
             for (let index = 0; index < 5; index++) {
                 tables.push(new Table(index+1,"Table "+(index+1).toString(),4))
          ;}
-         const tablesJson = JSON.stringify(tables);
+         const tablesJson = JSON.stringify(tables); // save to local 
             localStorage.setItem('tables', tablesJson);
-            console.log(tables);
         } else{
             //get tables from localstorage
-                //convert string to array;
-                const tablesArray = JSON.parse(tablesString);
-                tablesArray.forEach((table) => {
+            const tablesArray = JSON.parse(tablesString);
+            tablesArray.forEach((table) => {
                     tables.push(new Table(table.idTable, table.tableName, table.capacity));
                 });}
      return tables;          
-} catch (error) {
+     } catch (error) {
         console.error(error);
-        return undefined;
+        return [];
     }
-
 }
-// get orders data from json
+// get orders data from json or return empty array
 function getOrdersForTablepage(): Order[] {
     try {
-        
-      const ordersString = localStorage.getItem('orders');
+      
+      const ordersString = localStorage.getItem('Orders');
       if (!ordersString) {
-        console.log("There are no orders");
         return [];
       } else {
         const ordersArray = JSON.parse(ordersString);
@@ -62,20 +55,14 @@ function getOrdersForTablepage(): Order[] {
       return [];
     }
   }
-  
-  
 //  get id of current table
 function getCurrentTableIDJason():Number{
     try {
-        
         const CurrentTableIDString = localStorage.getItem('tableID');
-        if (!CurrentTableIDString) // if there is not id on json , create one
+        if (!CurrentTableIDString) // if there is no id for current Table id on json 
             throw new Error("can not find tableContainer html elment")
          
-        //get id from localstorage
-       //convert string to array;
          const CurrentTableID = JSON.parse(CurrentTableIDString);
-         console.log(CurrentTableID);
          return Number(CurrentTableID);
          }
                
@@ -85,6 +72,61 @@ catch (error) {
     }
 
 }
+function CheckoutTableId() :boolean {
+  try {
+      const CurrentTableIDString = localStorage.getItem('tableID');
+      if (!CurrentTableIDString) {
+          throw new Error("Cannot find tableContainer HTML element");
+      }
+      const CurrentTableID = JSON.parse(CurrentTableIDString);
+      
+      // Remove the current table ID from the JSON
+      localStorage.removeItem('tableID');
+      
+      return true;
+  } catch (error) {
+      console.error(error);
+      return false;
+  }
+}
+function CheckOutcurrentOrder() :boolean {
+  try {
+    if (OrdersT && OrdersT.length) {
+      const order = OrdersT.find(function (order) {
+          return order && order.status === true && order.table?.idTable === currentTable?.idTable;
+      });
+
+      if (order){
+        //set date and status
+        order.CloseTime=new Date();
+        order.calcTotal();
+        order.status=false;
+
+        return true;
+      }
+          
+  }
+  return false;
+  } catch (error) {
+      console.error(error);
+      return false;
+  }
+}
+function saveChengesToLocal(){
+  // save orders,
+  const ordersJson = JSON.stringify(OrdersT); // save to local 
+            localStorage.setItem('Orders', ordersJson);
+  
+}
+function BackToMain(){
+  
+  CheckoutTableId();
+  saveChengesToLocal();
+  
+  window.location.href = './Main.html';
+
+}
+
 // rendet curent table details
 function renderTableDetails() {
     try {
@@ -110,102 +152,140 @@ function renderTableDetails() {
 }
 // get order details if there is open order for the table
 function checkIfHaveOpenOrder ():boolean|undefined{
-    try {
-        debugger;
-        const order = OrdersT?.find(order=>order?.status==true && order.table=== currentTable)
-        if(order) return true
-        else return false;
-
-        
-    } catch (error) {
-        console.error(error);
-        return undefined;
+  try {
+    if (OrdersT && OrdersT.length) {
+        var order = OrdersT.find(function (order) {
+            return order && order.status === true && order.table?.idTable === currentTable?.idTable;
+        });
+        if (order)
+            return true;
     }
+    return false;
 }
+catch (error) {
+    console.error(error);
+    return undefined;
+}
+}
+function renderCurrentOrder() {
+  try {
+    const currentOrder = OrdersT.find(
+      (order) =>
+        order.table?.idTable === currentTable?.idTable && order.status === true
+    );
 
-  function renderCurrentOrder(){
-    try {
-        const currentOrder = OrdersT.find(order => order.table === currentTable && order.status === true);
-        // const menu = OrdersT.find(order => order.table === currentTable && order.status === true);
-        if (currentOrder) {
+    if (currentOrder) {
+      currentOrder.calcTotal();
+      const openOrderContainer = document.getElementById("openOrderContainer");
 
-        const openOrderContainer = document.getElementById("openOrderContainer");
-        if (openOrderContainer) {  
-          openOrderContainer.innerHTML = ""; // Clear the container before rendering the current order
-          const html=` <div class="openOrderDishes">
-                        <form class="DishesForm">
-                        ${currentOrder.dishes.map((dish) => `
-                        <p> ${dish.name} - price: ${dish.price}</p>
-                         `).join("")}
-                         <div class="openOrderToal">
-                        <p>Total: </p> </div>
-                        <div class="optionBtnsOrderDish">
-                        <form class="AddDishForm">
-                        <button type="button" onclick="handleAddDish()">Add Dish</button>
-                        <button type="button" onclick="handleDeleteDish()">Delete Dish</button>
-                        <button type="button" onclick="checkOut()">Check Out</button>
-                        </form></div>
-                        </form></div>
-                        
-                         <div class="MenueDiv">
-                        <form id="TableMenueForm" class="MenuForm" onsubmit="handleAddDishToOrder(event)" style="display: none;">
-                            ${MenuT.map((dish) => `
-                            <div class="disheCard">
-                                <input class="disheCardCheckbox" type="checkbox" name="dish" id="${dish.name}" value="${dish.idDishe}">
-                                <div class="dishDetails">
-                                    <p class="dishName">${dish.name}</p>
-                                    <p class="dishPrice">Price: ${dish.price}</p>
-                                    <img class="dishImage" src="${dish.img}" alt="">
-                                </div> 
-                                </div> 
-                                `).join("")}
-                            <input type="submit" value="Add Dishes">
-                        </form>
-                    </div>  `
-        openOrderContainer.innerHTML=html
-        }
-        
+      if (openOrderContainer) {
+        openOrderContainer.innerHTML = ""; // Clear the container before rendering the current order
 
+        const groupedDishes = {}; // Object to store grouped dishes by name
+
+        // Group the dishes by name and calculate the total quantity and price
+        currentOrder.dishes?.forEach((dish) => {
+          if (groupedDishes[dish.name]) {
+            // Dish already exists in the group, update quantity and price
+            groupedDishes[dish.name].quantity++;
+            groupedDishes[dish.name].price += dish.price;
+          } else {
+            // Add a new entry for the dish in the group
+            groupedDishes[dish.name] = {
+              dish,
+              quantity: 1,
+              price: dish.price,
+            };
+          }
+        });
+
+        const html = `
+          <div class="openOrderDishes">
+            <form class="DishesForm">
+              ${Object.values(groupedDishes)
+                .map(
+                  (groupedDish) => `
+                    <p>${groupedDish?.dish.category.categoyName}</p>
+                    <p>${groupedDish?.dish.name} - price: ${groupedDish?.dish.price} - quantity: ${groupedDish?.quantity}</p>
+                  `
+                )
+                .join("")}
+              <div class="openOrderToal">
+                <p>Total: ${currentOrder.total}</p>
+              </div>
+              <div class="optionBtnsOrderDish">
+                <form class="AddDishForm">
+                  <button type="button" onclick="handleAddDishes()">Add Dish</button>
+                  <button type="button" onclick="handleDeleteDish()">Delete Dish</button>
+                  <button type="button" onclick="BackToMain()">Back To Main</button>
+                  <button type="button" onclick="checkOut()">Check Out</button>
+                </form>
+              </div>
+            </form>
+          </div>
+
+          <div class="MenueDiv">
+            <form id="TableMenueForm" class="MenuForm" onsubmit="handleAddDishesToOrder(event)" style="display: none;">
+              ${MenuT.map(
+                (dish) => `
+                  <div class="disheCard">
+                    <input class="disheCardCheckbox" type="checkbox" name="dishes" id="${dish.name}" value="${dish.idDishe}">
+                    <div class="dishDetails">
+                      <p class="dishName">${dish.name}</p>
+                      <p class="dishPrice">Price: ${dish.price}</p>
+                      <img class="dishImage" src="${dish.img}" alt="">
+                    </div>
+                  </div>
+                `
+              ).join("")}
+              <input type="submit" value="Add Dishes">
+            </form>
+          </div>
+        `;
+
+        openOrderContainer.innerHTML = html;
+      }
     }
-        
-    } catch (error) {
-        console.error(error);
-    }
+  } catch (error) {
+    console.error(error);
   }
-  function handleAddDishToOrder(event) {
+}
+function checkOut(){
+  CheckOutcurrentOrder();
+  BackToMain();
+}
+function handleAddDishesToOrder(event) {
+ 
     event.preventDefault(); // Prevent form submission
-  
     // Get all the selected dish checkboxes
-    const selectedDishCheckboxes = Array.from(event.target.elements.dish).filter((checkbox) => checkbox.checked);
+    const selectedDishCheckboxes = Array.from(event.target.elements.dishes).filter((checkbox) => checkbox.checked);
   
     // Get the selected dish IDs
     const selectedDishIds = selectedDishCheckboxes.map((checkbox) => checkbox.value);
   
     // Use the dish IDs to add the dishes to the order or perform any other necessary actions
-    console.log("Selected Dish IDs:", selectedDishIds);
+    
     const newDishes = MenuT.filter((dish) => selectedDishIds.includes(String(dish.idDishe)));
     const openOrder = OrdersT.find((order) => order.table?.idTable === CurrentTableID && order.status === true);
-    if (openOrder) {
+    if (openOrder && openOrder.dishes) {
+      
       openOrder.dishes.push(...newDishes);
+      openOrder.calcTotal();
     }
     renderCurrentOrder();
   
     // Reset the form (optional)
     event.target.reset();
   }
-  
-  
   function handleDeleteDish(){}
-  function handleAddDish (){
-    debugger
+  function handleAddDishes (){
     const TableMenueHtml = document.getElementById("TableMenueForm");
     if(TableMenueHtml)
     TableMenueHtml.style.display='block';
-
   }
   function handleAddOrder() {
     // Logic to create a new order
-    debugger
+    
     const addOrderContainer = document.getElementById("AddOrderContainer");
     if(addOrderContainer)  addOrderContainer.innerHTML = "";
     const table:Table|undefined = currentTable; // Assuming you have a reference to the current table
@@ -229,24 +309,27 @@ function checkIfHaveOpenOrder ():boolean|undefined{
 
 
   }
-  
-
-
-
-const tablesT : (Table | undefined)[] |undefined =getTablesForTablepage(); 
-const OrdersT : Order[] =getOrdersForTablepage(); 
-const MenuT: Dishe[] = getDishesForTablepage(); // menu- All dishes
-const CurrentTableID:Number = getCurrentTableIDJason();
-
-const currentTable :Table | undefined = tablesT?.find(table=>table?.idTable === CurrentTableID)
-const orderStatus : boolean|undefined= checkIfHaveOpenOrder();
-if(orderStatus == false)
-{
+  function renderNewOrder(){
     const addOrderContainer = document.getElementById("AddOrderContainer");
     if (addOrderContainer) {
         const html = `<button class="AddNewOrder" type="button" onclick="handleAddOrder()">Add New Order</button>`
         addOrderContainer.innerHTML = html;
     }
+  }
+const tablesT : Table [] = getTablesForTablepage(); 
+const OrdersT : Order[] = getOrdersForTablepage(); 
+const MenuT: Dishe[] = getMenuForTablepage(); // menu- All dishes
+const CurrentTableID:Number = getCurrentTableIDJason();
+
+const currentTable :Table | undefined = tablesT?.find(table=>table?.idTable === CurrentTableID)
+
+const orderStatus : boolean|undefined= checkIfHaveOpenOrder();
+if(orderStatus == false)
+{
+  renderNewOrder();
+}
+else{
+  renderCurrentOrder();
 }
 
 renderTableDetails();
