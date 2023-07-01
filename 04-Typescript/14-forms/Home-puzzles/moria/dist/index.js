@@ -1,12 +1,18 @@
-var root = document.querySelector('#root');
-var img = /** @class */ (function () {
-    function img(image, width, amount) {
-        this.image = image;
-        this.width = width;
-        this.amount = amount;
-    }
-    return img;
-}());
+// const root = document.querySelector('#root');
+// class img {
+//     image: string;
+//     width: number;
+//     amount: number;
+//     constructor(
+//         image: string,
+//         width: number,
+//         amount: number,
+//     ) {
+//         this.image = image;
+//         this.width = width;
+//         this.amount = amount;
+//     }
+// }
 // function imgInput(event: any) {
 //     console.log(event.target.value);
 // }
@@ -34,4 +40,18 @@ var img = /** @class */ (function () {
 //     console.dir(amount)
 //     console.log(amount)
 // }
-// const image = new Car("Opel", "Coursa", "Blue", 2018);
+function handleSubmit(event) {
+    event.preventDefault();
+    var imageUrl = event.target.imgIn.value;
+    var imageWidth = event.target.width.value;
+    var amountImage = event.target.amount.valueAsNumber;
+    renderImages(imageUrl, imageWidth, amountImage);
+}
+function renderImages(imageUrl, imageWidth, amountImage) {
+    var imageDiv = document.querySelector("#root");
+    if (imageDiv) {
+        for (var i = 0; i < amountImage; i++) {
+            imageDiv.innerHTML += "<img src=\"" + imageUrl + "\" width=\" " + imageWidth.toString() + "vw\">";
+        }
+    }
+}

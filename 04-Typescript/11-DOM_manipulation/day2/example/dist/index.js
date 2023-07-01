@@ -1,4 +1,4 @@
-var root = document.querySelector("#root");
+var root = document.querySelector(".box");
 if (root) {
     root.innerText = "hi";
     root.style.backgroundColor = "pink";

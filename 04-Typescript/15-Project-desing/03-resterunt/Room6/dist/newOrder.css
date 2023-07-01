@@ -1,0 +1,50 @@
+.wrapper {
+  position: relative;
+  width: 500px;
+  height: 130vh;
+  background-color: #efa2a2;
+  margin: auto;
+  border-radius: 10px;
+  padding: 20px;
+  font-style: oblique;
+}
+.wrapper #register {
+  position: relative;
+  width: 70%;
+  height: 6vh;
+  margin: auto;
+}
+.wrapper #main {
+  position: relative;
+  width: 100%;
+  height: 80%;
+  top: -10vh;
+}
+.wrapper .main {
+  position: relative;
+  top: -40vh;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+.wrapper .main .dish {
+  position: relative;
+  height: 12vh;
+}
+.wrapper .main .dish img {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  left: -10%;
+  top: 5vh;
+}
+.wrapper .main .dish .dish-text {
+  position: relative;
+  width: 350px;
+  top: -9vh;
+  left: 20%;
+  margin-left: 1vw;
+}

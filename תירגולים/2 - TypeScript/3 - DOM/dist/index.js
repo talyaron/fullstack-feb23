@@ -22,6 +22,7 @@ function hendleSubmitForm(ev) {
     console.log(userArray);
     render(userArray);
     ev.target.reset();
+    console.log(ev);
 }
 function render(users) {
     try {

@@ -30,7 +30,7 @@ function handleSubmit(ev) {
         var player = new Player(username, imageUrl, age, color);
         console.log(player);
         arrPlayers.push(player);
-        renderPlayers(arrPlayers, document.querySelector("#roots"));
+        renderPlayers(arrPlayers, document.querySelector("#root"));
     }
     catch (error) {
         console.error(error);

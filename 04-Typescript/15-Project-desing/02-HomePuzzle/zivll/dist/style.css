@@ -1,0 +1,91 @@
+* {
+  margin: 0;
+  box-sizing: border-box;
+  padding: 0;
+}
+
+body {
+  margin: 0 auto;
+  direction: rtl;
+}
+body .wrapper {
+  max-width: 900px;
+  margin: 50px auto;
+}
+body .wrapper .btn-log {
+  position: absolute;
+  left: 5%;
+  top: 50px;
+  padding: 10px 20px;
+  background-color: #0057d8;
+  color: #fff;
+  border-radius: 20px;
+  cursor: pointer;
+}
+body .wrapper .btn-log:hover {
+  background-color: #0042a5;
+  transition: all 0.3s;
+}
+body .wrapper .clicked {
+  background-color: grey;
+  cursor: auto;
+  transition: all 0.3 s;
+}
+body .wrapper .clicked:hover {
+  background-color: grey;
+}
+body .wrapper h1 {
+  margin-bottom: 3rem;
+}
+body .wrapper .employeeTimeClockTable {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+body .wrapper .employeeTimeClockTable table {
+  width: 80%;
+  padding: 10px;
+  border: 1px black solid;
+  border-collapse: collapse;
+}
+body .wrapper .employeeTimeClockTable table tr {
+  padding: 10px;
+  height: 40px;
+  border: 1px black solid;
+}
+body .wrapper .employeeTimeClockTable table td {
+  width: 33%;
+  border: 1px black solid;
+}
+body .wrapper .employeeTimeClockTable table td button {
+  padding: 5px 10px;
+  background-color: #0057d8;
+  color: #fff;
+  border-radius: 20px;
+  cursor: pointer;
+}
+body .wrapper .employeeTimeClockTable table td button:hover {
+  background-color: #0042a5;
+  transition: all 0.3s;
+}
+body .wrapper .employeeTimeClockTable table .flex-td p {
+  display: inline-flex;
+  margin-left: 40%;
+  margin-right: 10%;
+}
+body .wrapper .employeeTimeClockTable table .flex-td button {
+  padding: 5px 10px;
+  background-color: #0057d8;
+  color: #fff;
+  border-radius: 20px;
+  cursor: pointer;
+}
+body .wrapper .employeeTimeClockTable table .flex-td button:hover {
+  background-color: #0042a5;
+  transition: all 0.3s;
+}
+body .wrapper .employeeTimeClockTable table th {
+  padding: 10px;
+  width: 20%;
+  border: 1px black solid;
+}

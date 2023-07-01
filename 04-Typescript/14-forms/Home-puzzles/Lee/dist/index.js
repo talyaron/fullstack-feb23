@@ -23,9 +23,15 @@ function handleSubmitForm(ev) {
 }
 function render(users) {
     try {
-        var html = users.map(function (user) {
-            return "<div>\n            <h1>" + user.userName + "</h1>\n            <h3>The ID of user is: " + user.id + "</h3>\n            </div>";
-        }).join(" ");
+        var html = "";
+        if (userArray.length > 0) {
+            html = users.map(function (user) {
+                return "<div class=\"root__userElement\">\n            <h1>" + user.userName + "</h1>\n            <h3>The ID of user is: " + user.id + "</h3>\n            <button class=\"root__btn\">Change Color</button>\n            </div>";
+            }).join(" ");
+        }
+        else {
+            html = "No data";
+        }
         console.log(html);
         root.innerHTML = html;
     }
@@ -33,3 +39,4 @@ function render(users) {
         console.log(error);
     }
 }
+render(userArray);

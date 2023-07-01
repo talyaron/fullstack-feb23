@@ -1,0 +1,28 @@
+.wrapper {
+  background-color: #8a3bb8;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100vw;
+  align-items: center;
+}
+.wrapper form {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.wrapper .cards {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.wrapper .cards .card {
+  text-align: center;
+  width: 75%;
+  margin: auto;
+  border: solid 2px;
+  border-radius: 10px;
+}
+.wrapper .cards .card img {
+  width: 75%;
+}
