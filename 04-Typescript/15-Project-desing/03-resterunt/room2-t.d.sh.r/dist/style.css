@@ -1,8 +1,8 @@
 .wrapper {
   display: flex;
-}
-.tables{
   position: relative;
+  justify-content: center;
+  align-content: center;
 }
 
 .table {
@@ -10,31 +10,60 @@
   height: 100px;
   border: 2px solid green;
   text-align: center;
-  position: absolute;
-  border-radius: 50%;
+  position: relative;
+  border-radius: 25px;
 }
 
-#table1 {
-  left: 150px;
-  top: 150px;
+.table:hover {
+  transition: 0.3s;
+  border: 2px solid lime;
 }
 
-#table2 {
-  left: 300px;
-  top: 150px;
+.tables {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 10px;
+  padding: 10px;
+}
+.tables #table1 {
+  position: relative;
+  margin: 10px;
+  padding: 10px;
+}
+.tables #table2 {
+  position: relative;
+  margin: 10px;
+  padding: 10px;
+}
+.tables #table3 {
+  position: relative;
+  margin: 10px;
+  padding: 10px;
+}
+.tables #table4 {
+  position: relative;
+  margin: 10px;
+  padding: 10px;
 }
 
-#table3 {
-  left: 150px;
-  top: 300px;
+img {
+  width: 200px;
+  height: 200px;
+  position: relative;
 }
 
-#table4 {
-  left: 300px;
-  top: 300px;
+.menu {
+  border: 2px solid black;
+  position: relative;
+  justify-content: center;
+  align-content: center;
+  padding: 10px;
+  margin: 10px;
 }
-.dishImage{
-  width: auto;
-  height: 50px;
-  
+.menu h2 {
+  display: flex;
+  justify-content: center;
+}
+.menu tr:nth-child(1) {
+  border-bottom: 2px solid red;
 }

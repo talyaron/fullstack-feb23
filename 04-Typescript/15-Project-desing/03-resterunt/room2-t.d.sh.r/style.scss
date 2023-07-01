@@ -1,31 +1,77 @@
-.wrapper{
+.wrapper {
     display: flex;
+    position: relative;
+    justify-content: center;
+    align-content: center;
 }
-.table{
+
+.table {
     width: 100px;
     height: 100px;
     border: 2px solid green;
     text-align: center;
     position: relative;
-    border-radius: 50%;
+    border-radius: 25px;
 }
 
-#table1{
-    left: 150px;
-    top: 150px;
+.table:hover {
+    transition: 0.3s;
+    border: 2px solid lime;
 }
 
-#table2{
-    left: 300px;
-    top: 150px;
+
+.tables {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 10px;
+    padding: 10px;
+
+
+    #table1 {
+        position: relative;
+        margin: 10px;
+        padding: 10px;
+    }
+
+    #table2 {
+        position: relative;
+        margin: 10px;
+        padding: 10px;
+    }
+
+    #table3 {
+        position: relative;
+        margin: 10px;
+        padding: 10px;
+    }
+
+    #table4 {
+        position: relative;
+        margin: 10px;
+        padding: 10px;
+    }
 }
 
-#table3{
-    left: 150px;
-    top: 300px;
+img{
+    width: 200px;
+    height: 200px;
+    position: relative;
 }
 
-#table4{
-    left: 300px;
-    top: 300px;    
+.menu{
+    border: 2px solid black;
+    position:relative;
+    justify-content: center;
+    align-content: center;
+    padding: 10px;
+    margin: 10px;
+
+    h2{
+        display:flex;
+        justify-content: center;
+    }
+
+    tr:nth-child(1){
+        border-bottom: 2px solid red;
+    }
 }
