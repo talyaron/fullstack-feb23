@@ -8,7 +8,6 @@ Objective: Create a web application for a restaurant that allows customers to vi
 
 3) build control-view (DOM + controls), for all pages ( split the jobs between the team-members)
 
-
 4) pass data bewtween pages
 
 5) make it work
