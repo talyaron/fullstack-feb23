@@ -1,6 +1,7 @@
-function getDishesForTablepage() {
+// get Menu data from json or create array
+function getMenuForTablepage() {
     try {
-        var disesString = localStorage.getItem('dises');
+        var disesString = localStorage.getItem('menuDises');
         if (!disesString) {
             console.log("There are no orders");
             return [];
@@ -16,6 +17,7 @@ function getDishesForTablepage() {
         return [];
     }
 }
+// get Tables data from json or create array
 function getTablesForTablepage() {
     try {
         var tables_1 = [];
@@ -24,13 +26,11 @@ function getTablesForTablepage() {
             for (var index = 0; index < 5; index++) {
                 tables_1.push(new Table(index + 1, "Table " + (index + 1).toString(), 4));
             }
-            var tablesJson = JSON.stringify(tables_1);
+            var tablesJson = JSON.stringify(tables_1); // save to local 
             localStorage.setItem('tables', tablesJson);
-            console.log(tables_1);
         }
         else {
             //get tables from localstorage
-            //convert string to array;
             var tablesArray = JSON.parse(tablesString);
             tablesArray.forEach(function (table) {
                 tables_1.push(new Table(table.idTable, table.tableName, table.capacity));
@@ -40,15 +40,14 @@ function getTablesForTablepage() {
     }
     catch (error) {
         console.error(error);
-        return undefined;
+        return [];
     }
 }
-// get orders data from json
+// get orders data from json or return empty array
 function getOrdersForTablepage() {
     try {
-        var ordersString = localStorage.getItem('orders');
+        var ordersString = localStorage.getItem('Orders');
         if (!ordersString) {
-            console.log("There are no orders");
             return [];
         }
         else {
@@ -66,18 +65,63 @@ function getOrdersForTablepage() {
 function getCurrentTableIDJason() {
     try {
         var CurrentTableIDString = localStorage.getItem('tableID');
-        if (!CurrentTableIDString) // if there is not id on json , create one
+        if (!CurrentTableIDString) // if there is no id for current Table id on json 
             throw new Error("can not find tableContainer html elment");
-        //get id from localstorage
-        //convert string to array;
         var CurrentTableID_1 = JSON.parse(CurrentTableIDString);
-        console.log(CurrentTableID_1);
         return Number(CurrentTableID_1);
     }
     catch (error) {
         console.error(error);
         return -1;
     }
+}
+function CheckoutTableId() {
+    try {
+        var CurrentTableIDString = localStorage.getItem('tableID');
+        if (!CurrentTableIDString) {
+            throw new Error("Cannot find tableContainer HTML element");
+        }
+        var CurrentTableID_2 = JSON.parse(CurrentTableIDString);
+        // Remove the current table ID from the JSON
+        localStorage.removeItem('tableID');
+        return true;
+    }
+    catch (error) {
+        console.error(error);
+        return false;
+    }
+}
+function CheckOutcurrentOrder() {
+    try {
+        if (OrdersT && OrdersT.length) {
+            var order = OrdersT.find(function (order) {
+                var _a;
+                return order && order.status === true && ((_a = order.table) === null || _a === void 0 ? void 0 : _a.idTable) === (currentTable === null || currentTable === void 0 ? void 0 : currentTable.idTable);
+            });
+            if (order) {
+                //set date and status
+                order.CloseTime = new Date();
+                order.calcTotal();
+                order.status = false;
+                return true;
+            }
+        }
+        return false;
+    }
+    catch (error) {
+        console.error(error);
+        return false;
+    }
+}
+function saveChengesToLocal() {
+    // save orders,
+    var ordersJson = JSON.stringify(OrdersT); // save to local 
+    localStorage.setItem('Orders', ordersJson);
+}
+function BackToMain() {
+    CheckoutTableId();
+    saveChengesToLocal();
+    window.location.href = './Main.html';
 }
 // rendet curent table details
 function renderTableDetails() {
@@ -101,12 +145,15 @@ function renderTableDetails() {
 // get order details if there is open order for the table
 function checkIfHaveOpenOrder() {
     try {
-        debugger;
-        var order = OrdersT === null || OrdersT === void 0 ? void 0 : OrdersT.find(function (order) { return (order === null || order === void 0 ? void 0 : order.status) == true && order.table === currentTable; });
-        if (order)
-            return true;
-        else
-            return false;
+        if (OrdersT && OrdersT.length) {
+            var order = OrdersT.find(function (order) {
+                var _a;
+                return order && order.status === true && ((_a = order.table) === null || _a === void 0 ? void 0 : _a.idTable) === (currentTable === null || currentTable === void 0 ? void 0 : currentTable.idTable);
+            });
+            if (order)
+                return true;
+        }
+        return false;
     }
     catch (error) {
         console.error(error);
@@ -114,14 +161,34 @@ function checkIfHaveOpenOrder() {
     }
 }
 function renderCurrentOrder() {
+    var _a;
     try {
-        var currentOrder = OrdersT.find(function (order) { return order.table === currentTable && order.status === true; });
-        // const menu = OrdersT.find(order => order.table === currentTable && order.status === true);
+        var currentOrder = OrdersT.find(function (order) { var _a; return ((_a = order.table) === null || _a === void 0 ? void 0 : _a.idTable) === (currentTable === null || currentTable === void 0 ? void 0 : currentTable.idTable) && order.status === true; });
         if (currentOrder) {
+            currentOrder.calcTotal();
             var openOrderContainer = document.getElementById("openOrderContainer");
             if (openOrderContainer) {
                 openOrderContainer.innerHTML = ""; // Clear the container before rendering the current order
-                var html = " <div class=\"openOrderDishes\">\n                        <form class=\"DishesForm\">\n                        " + currentOrder.dishes.map(function (dish) { return "\n                        <p> " + dish.name + " - price: " + dish.price + "</p>\n                         "; }).join("") + "\n                         <div class=\"openOrderToal\">\n                        <p>Total: </p> </div>\n                        <div class=\"optionBtnsOrderDish\">\n                        <form class=\"AddDishForm\">\n                        <button type=\"button\" onclick=\"handleAddDish()\">Add Dish</button>\n                        <button type=\"button\" onclick=\"handleDeleteDish()\">Delete Dish</button>\n                        <button type=\"button\" onclick=\"checkOut()\">Check Out</button>\n                        </form></div>\n                        </form></div>\n                        \n                         <div class=\"MenueDiv\">\n                        <form id=\"TableMenueForm\" class=\"MenuForm\" onsubmit=\"handleAddDishToOrder(event)\" style=\"display: none;\">\n                            " + MenuT.map(function (dish) { return "\n                            <div class=\"disheCard\">\n                                <input class=\"disheCardCheckbox\" type=\"checkbox\" name=\"dish\" id=\"" + dish.name + "\" value=\"" + dish.idDishe + "\">\n                                <div class=\"dishDetails\">\n                                    <p class=\"dishName\">" + dish.name + "</p>\n                                    <p class=\"dishPrice\">Price: " + dish.price + "</p>\n                                    <img class=\"dishImage\" src=\"" + dish.img + "\" alt=\"\">\n                                </div> \n                                </div> \n                                "; }).join("") + "\n                            <input type=\"submit\" value=\"Add Dishes\">\n                        </form>\n                    </div>  ";
+                var groupedDishes_1 = {}; // Object to store grouped dishes by name
+                // Group the dishes by name and calculate the total quantity and price
+                (_a = currentOrder.dishes) === null || _a === void 0 ? void 0 : _a.forEach(function (dish) {
+                    if (groupedDishes_1[dish.name]) {
+                        // Dish already exists in the group, update quantity and price
+                        groupedDishes_1[dish.name].quantity++;
+                        groupedDishes_1[dish.name].price += dish.price;
+                    }
+                    else {
+                        // Add a new entry for the dish in the group
+                        groupedDishes_1[dish.name] = {
+                            dish: dish,
+                            quantity: 1,
+                            price: dish.price
+                        };
+                    }
+                });
+                var html = "\n          <div class=\"openOrderDishes\">\n            <form class=\"DishesForm\">\n              " + Object.values(groupedDishes_1)
+                    .map(function (groupedDish) { return "\n                    <p>" + (groupedDish === null || groupedDish === void 0 ? void 0 : groupedDish.dish.category.categoyName) + "</p>\n                    <p>" + (groupedDish === null || groupedDish === void 0 ? void 0 : groupedDish.dish.name) + " - price: " + (groupedDish === null || groupedDish === void 0 ? void 0 : groupedDish.dish.price) + " - quantity: " + (groupedDish === null || groupedDish === void 0 ? void 0 : groupedDish.quantity) + "</p>\n                  "; })
+                    .join("") + "\n              <div class=\"openOrderToal\">\n                <p>Total: " + currentOrder.total + "</p>\n              </div>\n              <div class=\"optionBtnsOrderDish\">\n                <form class=\"AddDishForm\">\n                  <button type=\"button\" onclick=\"handleAddDishes()\">Add Dish</button>\n                  <button type=\"button\" onclick=\"handleDeleteDish()\">Delete Dish</button>\n                  <button type=\"button\" onclick=\"BackToMain()\">Back To Main</button>\n                  <button type=\"button\" onclick=\"checkOut()\">Check Out</button>\n                </form>\n              </div>\n            </form>\n          </div>\n\n          <div class=\"MenueDiv\">\n            <form id=\"TableMenueForm\" class=\"MenuForm\" onsubmit=\"handleAddDishesToOrder(event)\" style=\"display: none;\">\n              " + MenuT.map(function (dish) { return "\n                  <div class=\"disheCard\">\n                    <input class=\"disheCardCheckbox\" type=\"checkbox\" name=\"dishes\" id=\"" + dish.name + "\" value=\"" + dish.idDishe + "\">\n                    <div class=\"dishDetails\">\n                      <p class=\"dishName\">" + dish.name + "</p>\n                      <p class=\"dishPrice\">Price: " + dish.price + "</p>\n                      <img class=\"dishImage\" src=\"" + dish.img + "\" alt=\"\">\n                    </div>\n                  </div>\n                "; }).join("") + "\n              <input type=\"submit\" value=\"Add Dishes\">\n            </form>\n          </div>\n        ";
                 openOrderContainer.innerHTML = html;
             }
         }
@@ -130,34 +197,36 @@ function renderCurrentOrder() {
         console.error(error);
     }
 }
-function handleAddDishToOrder(event) {
+function checkOut() {
+    CheckOutcurrentOrder();
+    BackToMain();
+}
+function handleAddDishesToOrder(event) {
     var _a;
     event.preventDefault(); // Prevent form submission
     // Get all the selected dish checkboxes
-    var selectedDishCheckboxes = Array.from(event.target.elements.dish).filter(function (checkbox) { return checkbox.checked; });
+    var selectedDishCheckboxes = Array.from(event.target.elements.dishes).filter(function (checkbox) { return checkbox.checked; });
     // Get the selected dish IDs
     var selectedDishIds = selectedDishCheckboxes.map(function (checkbox) { return checkbox.value; });
     // Use the dish IDs to add the dishes to the order or perform any other necessary actions
-    console.log("Selected Dish IDs:", selectedDishIds);
     var newDishes = MenuT.filter(function (dish) { return selectedDishIds.includes(String(dish.idDishe)); });
     var openOrder = OrdersT.find(function (order) { var _a; return ((_a = order.table) === null || _a === void 0 ? void 0 : _a.idTable) === CurrentTableID && order.status === true; });
-    if (openOrder) {
+    if (openOrder && openOrder.dishes) {
         (_a = openOrder.dishes).push.apply(_a, newDishes);
+        openOrder.calcTotal();
     }
     renderCurrentOrder();
     // Reset the form (optional)
     event.target.reset();
 }
 function handleDeleteDish() { }
-function handleAddDish() {
-    debugger;
+function handleAddDishes() {
     var TableMenueHtml = document.getElementById("TableMenueForm");
     if (TableMenueHtml)
         TableMenueHtml.style.display = 'block';
 }
 function handleAddOrder() {
     // Logic to create a new order
-    debugger;
     var addOrderContainer = document.getElementById("AddOrderContainer");
     if (addOrderContainer)
         addOrderContainer.innerHTML = "";
@@ -175,18 +244,24 @@ function handleAddOrder() {
     // render new order with no dishes
     renderCurrentOrder();
 }
-var tablesT = getTablesForTablepage();
-var OrdersT = getOrdersForTablepage();
-var MenuT = getDishesForTablepage(); // menu- All dishes
-var CurrentTableID = getCurrentTableIDJason();
-var currentTable = tablesT === null || tablesT === void 0 ? void 0 : tablesT.find(function (table) { return (table === null || table === void 0 ? void 0 : table.idTable) === CurrentTableID; });
-var orderStatus = checkIfHaveOpenOrder();
-if (orderStatus == false) {
+function renderNewOrder() {
     var addOrderContainer = document.getElementById("AddOrderContainer");
     if (addOrderContainer) {
         var html = "<button class=\"AddNewOrder\" type=\"button\" onclick=\"handleAddOrder()\">Add New Order</button>";
         addOrderContainer.innerHTML = html;
     }
+}
+var tablesT = getTablesForTablepage();
+var OrdersT = getOrdersForTablepage();
+var MenuT = getMenuForTablepage(); // menu- All dishes
+var CurrentTableID = getCurrentTableIDJason();
+var currentTable = tablesT === null || tablesT === void 0 ? void 0 : tablesT.find(function (table) { return (table === null || table === void 0 ? void 0 : table.idTable) === CurrentTableID; });
+var orderStatus = checkIfHaveOpenOrder();
+if (orderStatus == false) {
+    renderNewOrder();
+}
+else {
+    renderCurrentOrder();
 }
 renderTableDetails();
 console.log(tablesT);
