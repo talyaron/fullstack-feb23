@@ -49,8 +49,20 @@ var foodsArr = [
     new food("פיצת הבית", "https://d3o5sihylz93ps.cloudfront.net/wp-content/uploads/2019/08/13182108/%D7%A1%D7%99%D7%99%D7%9E%D7%9F-185.jpg", 8),
 ];
 foodsArr.forEach(function (dish) {
-    var foodHTML = "\n      <button class=\"foodPageRoot__foodGrid__food\" onclick=\"dishIdentifier()\">\n        <div class=\"foodPageRoot__foodGrid__food__foodHeader\">" + dish.dishName + "</div>\n        <img class=\"foodPageRoot__foodGrid__food__foodImg\" src=\"" + dish.img + "\" alt=\"\">\n      </button>\n    ";
+    var foodHTML = "\n      <button class=\"foodPageRoot__foodGrid__food\" onclick=\"ChosenDish(" + foodsArr.indexOf(dish) + ")\">\n        <div class=\"foodPageRoot__foodGrid__food__foodHeader\">" + dish.dishName + "</div>\n        <img class=\"foodPageRoot__foodGrid__food__foodImg\" src=\"" + dish.img + "\" alt=\"\">\n      </button>\n    ";
     if (foodGrid) {
         foodGrid.innerHTML += foodHTML;
     }
 });
+function ChosenDish(i) {
+    var thisDish = foodsArr[i];
+    localStorage.setItem("chosenDish", JSON.stringify(thisDish));
+}
+function DishaddButtonPushed() {
+    window.location.href = "exsictOrder.html";
+}
+var ExcistPageRoot = document.querySelector(".ExcistPageRoot");
+if (ExcistPageRoot) {
+    ExcistPageRoot.innerHTML += "<h1>\u05D4\u05D6\u05DE\u05E0\u05D4 \u05DC\u05E9\u05D5\u05DC\u05D7\u05DF \u05DE\u05E1 " + localStorage.getItem("currentTable");
+    var newDish = localStorage.getItem(JSON.parse("chosenDish"));
+}

@@ -48,14 +48,29 @@ const foodsArr: food[] = [
     new food("פיצת הבית", "https://d3o5sihylz93ps.cloudfront.net/wp-content/uploads/2019/08/13182108/%D7%A1%D7%99%D7%99%D7%9E%D7%9F-185.jpg", 8),
 ]
 foodsArr.forEach(dish => {
+
     let foodHTML = `
-      <button class="foodPageRoot__foodGrid__food" onclick="dishIdentifier()">
+      <button class="foodPageRoot__foodGrid__food" onclick="ChosenDish(${foodsArr.indexOf(dish)})">
         <div class="foodPageRoot__foodGrid__food__foodHeader">${dish.dishName}</div>
         <img class="foodPageRoot__foodGrid__food__foodImg" src="${dish.img}" alt="">
       </button>
     `;
     if (foodGrid) {
-      foodGrid.innerHTML += foodHTML;
+        foodGrid.innerHTML += foodHTML;
     }
-  });
-  
+});
+
+function ChosenDish(i) {
+    let thisDish= foodsArr[i]
+    localStorage.setItem("chosenDish",JSON.stringify(thisDish))
+}
+
+function DishaddButtonPushed(){
+    window.location.href = "exsictOrder.html";
+}
+
+const ExcistPageRoot = document.querySelector(".ExcistPageRoot")
+if(ExcistPageRoot){
+ExcistPageRoot.innerHTML+= `<h1>הזמנה לשולחן מס ${localStorage.getItem("currentTable")}`
+let newDish= localStorage.getItem(JSON.parse("chosenDish"))
+}
