@@ -172,9 +172,16 @@ function renderMenu() {
 function addToOrder(price) {
     if (thisTable) {
       const order = new Order([]);
-      ordersArray.push(order); // Create a new order for the table
+      ordersArray.push(order);
       thisTable.addDish(order.dishes, price);
       updateSummary(price);
+      const summaryElement = document.querySelector("#summary");
+      if (summaryElement) {
+        summaryElement.classList.add("added"); 
+        setTimeout(() => {
+          summaryElement.classList.remove("added");
+        }, 500);
+      }
     }
   }
   
@@ -190,5 +197,4 @@ function updateSummary(price) {
     summaryElement.innerHTML = `Total Items: ${totalItems}, Total Price: $${totalPrice}`;
   }
 }
-
 //renderDelet --> after chosing a table and click del-btn

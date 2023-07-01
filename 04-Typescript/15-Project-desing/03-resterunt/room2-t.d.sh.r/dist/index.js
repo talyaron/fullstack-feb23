@@ -127,9 +127,16 @@ function renderMenu() {
 function addToOrder(price) {
     if (thisTable) {
         var order = new Order([]);
-        ordersArray.push(order); // Create a new order for the table
+        ordersArray.push(order);
         thisTable.addDish(order.dishes, price);
         updateSummary(price);
+        var summaryElement_1 = document.querySelector("#summary");
+        if (summaryElement_1) {
+            summaryElement_1.classList.add("added");
+            setTimeout(function () {
+                summaryElement_1.classList.remove("added");
+            }, 500);
+        }
     }
 }
 function updateSummary(price) {
