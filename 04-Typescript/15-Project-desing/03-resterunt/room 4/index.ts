@@ -33,6 +33,8 @@ const Meal2 = new Dishe(
 dishes.push(Meal2);
 
 
+
+
 for (const element of tables) {
 
     element.addEventListener("click", ChooseADish);
@@ -102,7 +104,8 @@ function Remove() {
                 No sauces </label></li>
                 <button id="add">Add</button>
         </ul>
-        </form>`;
+        </form>
+        `;
 
         if (!checkbox) throw new Error("no root element");
 

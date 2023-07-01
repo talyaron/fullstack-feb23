@@ -52,7 +52,7 @@ function renderMenu(dishes, root) {
 // image.addEventListener("click", Remove);
 function Remove() {
     try {
-        var html = "<form onsubmit=\"RemoveOrder(event)\">\n            <ul>\n            <li> <input type=\"checkbox\" >\n                without lettuce\n                </label></li>\n            <li><input type=\"checkbox\" >\n                without tomato\n                </label></li>\n            <li> <input type=\"checkbox\" >\n                without pickle\n                </label></li>\n            <li> <input type=\"checkbox\" >\n                No sauces </label></li>\n                <button id=\"add\">Add</button>\n        </ul>\n        </form>";
+        var html = "<form onsubmit=\"RemoveOrder(event)\">\n            <ul>\n            <li> <input type=\"checkbox\" >\n                without lettuce\n                </label></li>\n            <li><input type=\"checkbox\" >\n                without tomato\n                </label></li>\n            <li> <input type=\"checkbox\" >\n                without pickle\n                </label></li>\n            <li> <input type=\"checkbox\" >\n                No sauces </label></li>\n                <button id=\"add\">Add</button>\n        </ul>\n        </form>\n        ";
         if (!checkbox)
             throw new Error("no root element");
         checkbox.innerHTML = html;
