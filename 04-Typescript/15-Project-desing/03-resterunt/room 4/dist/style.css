@@ -1,4 +1,7 @@
-.table {
+body {
+  font-family: sans-serif;
+}
+body .table {
   border-radius: 50%;
   width: 100px;
   height: 100px;
@@ -7,24 +10,25 @@
   justify-content: center;
   align-items: center;
 }
-
-.main {
+body .main {
   position: absolute;
   top: -10px;
   left: 200px;
   border: grey 2px solid;
   background: rgba(128, 128, 128, 0.372);
 }
-.main .dish {
+body .main .dish {
   border: gray solid 2px;
   background: rgba(128, 128, 128, 0.205);
 }
-
-ul {
+body ul {
   position: absolute;
   top: 60px;
   left: 550px;
 }
-ul li {
+body ul li {
   list-style: none;
+}
+body ul #add {
+  margin-top: 10px;
 }
