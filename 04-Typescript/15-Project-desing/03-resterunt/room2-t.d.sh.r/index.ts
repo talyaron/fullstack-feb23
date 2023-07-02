@@ -110,21 +110,20 @@ const dishes: Dish[] = [pastaRed, pastaMilk, pizzaOliv, pizzaOnion]; //contain t
 
 //------view------------------------
 //renderTable --> at open screen
-function renderTable(divName) {
-  let html = tables
-    .map((table) => {
-      return `<button class="table ${
-        table.catched ? "red-hover" : "green-hover"
-      }" id="table${table.tableNumber}">${table.tableNumber}</button>`;
+function renderTable(divName: any) {
+  let html = tables.map((table) => {
+      return `<button class="table ${table.catched ? "red-hover" : "green-hover"}"
+       id="table${table.tableNumber}">${table.tableNumber}</button>`;
     })
     .join("");
   divName.innerHTML = html;
 }
 
 const tablesDiv = document.querySelector(".tables") as Element;
+
 renderTable(tablesDiv);
-///Table Event Listener
-var thisTable;
+//Table Event Listener
+var thisTable: any;
 const tableDiv = document.querySelectorAll(".table");
 tableDiv.forEach(function (item, idx) {
   item.addEventListener("click", function () {
@@ -153,8 +152,7 @@ function renderMenu() {
             <th>Description</th>
             <th>Actions</th>
           </tr>
-          ${dishes
-            .map((dish) => {
+          ${dishes.map((dish) => {
               return `
               <tr>
                 <td>${dish.dishName}</td>
@@ -172,7 +170,7 @@ function renderMenu() {
     `;
 }
 
-function addToOrder(price) {
+function addToOrder(price:any) {
   if (thisTable) {
     const order = new Order([]);
     ordersArray.push(order);

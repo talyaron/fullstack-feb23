@@ -28,7 +28,7 @@ function getTablesForMainPage(): Table [] {
       const tables: Table []  = [];
       const tablesString = localStorage.getItem('tables');
       if (!tablesString){ // if there is not table on json , create one
-          for (let index = 0; index < 5; index++) {
+          for (let index = 0; index < 15; index++) {
               tables.push(new Table(index+1,"Table "+(index+1).toString(),4))
        ;}
        const tablesJson = JSON.stringify(tables); // save to local 

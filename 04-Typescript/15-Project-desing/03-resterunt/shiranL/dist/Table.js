@@ -186,9 +186,9 @@ function renderCurrentOrder() {
                         };
                     }
                 });
-                var html = "\n          <div class=\"openOrderDishes\">\n            <form class=\"DishesForm\">\n              " + Object.values(groupedDishes_1)
+                var html = "\n          <div class=\"openOrderDishes\">\n            <form id=\"DishesForm\" class=\"DishesForm\">\n              " + Object.values(groupedDishes_1)
                     .map(function (groupedDish) { return "\n                    <p>" + (groupedDish === null || groupedDish === void 0 ? void 0 : groupedDish.dish.category.categoyName) + "</p>\n                    <p>" + (groupedDish === null || groupedDish === void 0 ? void 0 : groupedDish.dish.name) + " - price: " + (groupedDish === null || groupedDish === void 0 ? void 0 : groupedDish.dish.price) + " - quantity: " + (groupedDish === null || groupedDish === void 0 ? void 0 : groupedDish.quantity) + "</p>\n                  "; })
-                    .join("") + "\n              <div class=\"openOrderToal\">\n                <p>Total: " + currentOrder.total + "</p>\n              </div>\n              <div class=\"optionBtnsOrderDish\">\n                <form class=\"AddDishForm\">\n                  <button type=\"button\" onclick=\"handleAddDishes()\">Add Dish</button>\n                  <button type=\"button\" onclick=\"handleDeleteDish()\">Delete Dish</button>\n                  <button type=\"button\" onclick=\"BackToMain()\">Back To Main</button>\n                  <button type=\"button\" onclick=\"checkOut()\">Check Out</button>\n                </form>\n              </div>\n            </form>\n          </div>\n\n          <div class=\"MenueDiv\">\n            <form id=\"TableMenueForm\" class=\"MenuForm\" onsubmit=\"handleAddDishesToOrder(event)\" style=\"display: none;\">\n              " + MenuT.map(function (dish) { return "\n                  <div class=\"disheCard\">\n                    <input class=\"disheCardCheckbox\" type=\"checkbox\" name=\"dishes\" id=\"" + dish.name + "\" value=\"" + dish.idDishe + "\">\n                    <div class=\"dishDetails\">\n                      <p class=\"dishName\">" + dish.name + "</p>\n                      <p class=\"dishPrice\">Price: " + dish.price + "</p>\n                      <img class=\"dishImage\" src=\"" + dish.img + "\" alt=\"\">\n                    </div>\n                  </div>\n                "; }).join("") + "\n              <input type=\"submit\" value=\"Add Dishes\">\n            </form>\n          </div>\n        ";
+                    .join("") + "\n                </form>\n              <div class=\"openOrderToal\">\n                <p>Total: " + currentOrder.total + "</p>\n              </div>\n              <div class=\"optionBtnsOrderDish\">\n                <form class=\"AddDishForm\">\n                  <button type=\"button\" onclick=\"handleAddDishes()\">Add Dish</button>\n                  <button type=\"button\" onclick=\"handleDeleteDish()\">Delete Dish</button>\n                  <button type=\"button\" onclick=\"BackToMain()\">Back To Main</button>\n                  <button type=\"button\" onclick=\"checkOut()\">Check Out</button>\n                </form>\n              </div>\n            \n          </div>\n            <form id=\"TableMenueForm\" class=\"MenuForm\" onsubmit=\"handleAddDishesToOrder(event)\" style=\"display: none;\">\n              " + MenuT.map(function (dish) { return "\n                  <div class=\"disheCard\">\n                    <input class=\"disheCardCheckbox\" type=\"checkbox\" name=\"dishes\" id=\"" + dish.name + "\" value=\"" + dish.idDishe + "\">\n                    <div class=\"dishDetails\">\n                      <p class=\"dishName\">" + dish.name + "</p>\n                      <p class=\"dishPrice\">Price: " + dish.price + "</p>\n                      <img class=\"dishImage\" src=\"" + dish.img + "\" alt=\"\">\n                    </div>\n                  </div>\n                "; }).join("") + "\n              <input type=\"submit\" value=\"Add Dishes\">\n            </form>\n          \n        ";
                 openOrderContainer.innerHTML = html;
             }
         }
@@ -203,6 +203,7 @@ function checkOut() {
 }
 function handleAddDishesToOrder(event) {
     var _a;
+    debugger;
     event.preventDefault(); // Prevent form submission
     // Get all the selected dish checkboxes
     var selectedDishCheckboxes = Array.from(event.target.elements.dishes).filter(function (checkbox) { return checkbox.checked; });
@@ -219,8 +220,50 @@ function handleAddDishesToOrder(event) {
     // Reset the form (optional)
     event.target.reset();
 }
-function handleDeleteDish() { }
+function handleDeleteDish() {
+    try {
+        var currentOrder = OrdersT.find(function (order) { var _a; return ((_a = order.table) === null || _a === void 0 ? void 0 : _a.idTable) === (currentTable === null || currentTable === void 0 ? void 0 : currentTable.idTable) && order.status === true; });
+        if (!currentOrder) {
+            throw new Error("Cant Finde Current Order");
+        }
+        var orderDishes = currentOrder.dishes;
+        var dishesForm_1 = document.getElementById("DishesForm");
+        if (orderDishes && dishesForm_1) {
+            dishesForm_1.innerHTML = "";
+            orderDishes.forEach(function (dish) {
+                var dishElement = document.createElement("div");
+                dishElement.classList.add("dish-item");
+                // Display dish information (name, price, description, etc.)
+                dishElement.innerHTML = "\n            <div class=\"dish-name\">" + dish.name + "</div>\n            <div class=\"dish-price\">$" + dish.price.toFixed(2) + "</div>\n            <div class=\"dish-description\">" + dish.description + "</div>\n            <button class=\"delete-button\" onclick=\"deleteDish(" + dish.idDishe + ")\">Delete</button>\n          ";
+                // Append the dish element to the dishesForm container
+                dishesForm_1.appendChild(dishElement);
+            });
+        }
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+function deleteDish(dishId) {
+    var _a, _b;
+    debugger;
+    var currentOrder = OrdersT.find(function (order) { var _a; return ((_a = order.table) === null || _a === void 0 ? void 0 : _a.idTable) === (currentTable === null || currentTable === void 0 ? void 0 : currentTable.idTable) && order.status === true; });
+    if (!currentOrder) {
+        throw new Error("Cant Finde Current Order");
+    }
+    // Find the dish with the specified dishId in the currentOrder.dishes array
+    var dishIndex = (_a = currentOrder.dishes) === null || _a === void 0 ? void 0 : _a.findIndex(function (dish) { return dish.idDishe === dishId; });
+    if (dishIndex !== undefined && dishIndex !== -1) {
+        // Remove the dish from the array
+        (_b = currentOrder.dishes) === null || _b === void 0 ? void 0 : _b.splice(dishIndex, 1);
+        // Recalculate the order total
+        currentOrder.calcTotal();
+        // Refresh the displayed dishes by calling handleDeleteDish again or updating the UI accordingly
+        renderCurrentOrder();
+    }
+}
 function handleAddDishes() {
+    renderCurrentOrder(); // reset other options
     var TableMenueHtml = document.getElementById("TableMenueForm");
     if (TableMenueHtml)
         TableMenueHtml.style.display = 'block';
