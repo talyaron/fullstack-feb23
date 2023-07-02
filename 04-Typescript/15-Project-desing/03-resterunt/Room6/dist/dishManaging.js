@@ -18,6 +18,15 @@ var pizza = new Dish("Pizza", 55, "https://nomoneynotime.com.au/uploads/recipes/
 var soup = new Dish("Soup", 36, "https://www.deliciousmagazine.co.uk/wp-content/uploads/2018/09/430005-1-eng-GB_carrotsoup_00010_rt_.jpg", "Orange soup or vegetable soup");
 var salad = new Dish("Sweet potato salad", 32, "https://www.tavshilim.co.il/wp-content/uploads/2015/05/IMG_8873.jpg", "Selected vegetables with baked sweet potato cubes");
 dishes.push(coffee, pasta, pizza, tea, soup, salad);
+var dishesJson = JSON.stringify(dishes);
+localStorage.setItem('dishes', dishesJson);
+var dishesString = localStorage.getItem('dishes');
+if (dishesString) {
+    var dishesArray = JSON.parse(dishesString);
+    dishesArray.forEach(function (dish) { return dishes.push(new Dish(dish.name, dish.price, dish.img, dish.description)); });
+    console.log(dishes);
+    renderDishes(document.querySelector("#dishes"));
+}
 function renderMain(rootElement) {
     try {
         var html = "<h1>Dish Managing</h1>\n        <form>\n        <input type=\"button\" value=\"add dish\" onclick=\"handleRenderAddDish()\">\n        <input type=\"button\" value=\"set price\" onclick=\"handleRenderSetPrice()\">\n        <input type=\"button\" value=\"delete dish\" onclick=\"handleRenderDeleteDish()\">\n    </form>";
@@ -102,6 +111,8 @@ function handleAddDish(ev) {
         var img = ev.target.img.value;
         var newDish = new Dish(name, price, img, description);
         dishes.push(newDish);
+        var dishesJson_1 = JSON.stringify(dishes);
+        localStorage.setItem('dishes', dishesJson_1);
         renderDishes(document.querySelector("#dishes"));
         renderAddDish(document.querySelector("#addDish"), false);
     }
@@ -123,8 +134,10 @@ function handleSetPrice(ev) {
         var thisDish_1 = ev.target.dishes.value;
         var dishToChange = dishes.find(function (dish) { return dish.name === thisDish_1; });
         if (dishToChange) {
-            dishToChange.price = ev.target.newPrice.value;
+            dishToChange.setPrice(ev.target.newPrice.valueAsNumber);
         }
+        var dishesJson_2 = JSON.stringify(dishes);
+        localStorage.setItem('dishes', dishesJson_2);
         renderDishes(document.querySelector("#dishes"));
         renderSetPrice(document.querySelector("#addDish"), false);
     }
@@ -146,7 +159,9 @@ function handleDeleteDish(ev) {
         var name_1 = ev.target.dishes.value;
         var indexOfDish = dishes.findIndex(function (dish) { return dish.name === name_1; });
         dishes.splice(indexOfDish, 1);
-        renderDishes(document.querySelector("#dishes"));
+        var dishesJson_3 = JSON.stringify(dishes);
+        localStorage.setItem('dishes', dishesJson_3);
+        // renderDishes(document.querySelector("#dishes"))
         renderDeleteDish(document.querySelector("#addDish"), false);
     }
     catch (error) {

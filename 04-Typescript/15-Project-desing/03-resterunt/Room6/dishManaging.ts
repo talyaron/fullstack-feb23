@@ -15,7 +15,17 @@ const soup = new Dish("Soup", 36, "https://www.deliciousmagazine.co.uk/wp-conten
 const salad = new Dish("Sweet potato salad", 32, "https://www.tavshilim.co.il/wp-content/uploads/2015/05/IMG_8873.jpg", "Selected vegetables with baked sweet potato cubes")
 dishes.push(coffee, pasta, pizza, tea, soup, salad)
 
+const dishesJson = JSON.stringify(dishes);
+localStorage.setItem('dishes', dishesJson);
 
+const dishesString = localStorage.getItem('dishes');
+if (dishesString) {
+    const dishesArray = JSON.parse(dishesString);
+    dishesArray.forEach(dish => dishes.push(new Dish(dish.name, dish.price, dish.img, dish.description)));
+    console.log(dishes);
+    renderDishes(document.querySelector("#dishes"))
+
+}
 
 
 function renderMain(rootElement: HTMLElement | null) {
@@ -136,6 +146,8 @@ function handleAddDish(ev: any) {
         const img = ev.target.img.value
         const newDish = new Dish(name, price, img, description)
         dishes.push(newDish)
+        const dishesJson = JSON.stringify(dishes);
+        localStorage.setItem('dishes', dishesJson);
         renderDishes(document.querySelector("#dishes"))
         renderAddDish(document.querySelector("#addDish"), false)
 
@@ -161,8 +173,10 @@ function handleSetPrice(ev: any) {
         const thisDish = ev.target.dishes.value;
         const dishToChange = dishes.find((dish) => dish.name === thisDish);
         if (dishToChange) {
-            dishToChange.price = ev.target.newPrice.value
+            dishToChange.setPrice(ev.target.newPrice.valueAsNumber)
         }
+        const dishesJson = JSON.stringify(dishes);
+        localStorage.setItem('dishes', dishesJson);
         renderDishes(document.querySelector("#dishes"))
         renderSetPrice(document.querySelector("#addDish"), false)
 
@@ -188,7 +202,9 @@ function handleDeleteDish(ev: any) {
         const name = ev.target.dishes.value;
         const indexOfDish = dishes.findIndex((dish) => dish.name === name)
         dishes.splice(indexOfDish, 1)
-        renderDishes(document.querySelector("#dishes"))
+        const dishesJson = JSON.stringify(dishes);
+        localStorage.setItem('dishes', dishesJson);
+        // renderDishes(document.querySelector("#dishes"))
         renderDeleteDish(document.querySelector("#addDish"), false)
 
     } catch (error) {
