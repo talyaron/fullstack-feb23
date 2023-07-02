@@ -2,14 +2,16 @@
 const tables = document.querySelectorAll(`.table`);
 const root = document.querySelector(`#root`) as HTMLElement;
 const checkbox = document.querySelector(`#checkbox`) as HTMLElement;
-const check = document.querySelector(`#check`) as HTMLElement;
+
 
 
 class Dishe {
     constructor(public name: string, public price: number, public image: string, public description: string, public without1: string, public without2: string, public without3: string, public without4: string) {
     }
+    // }
+    // class tabless{
+    //     constructor(public name: string, public dishe: Dishe[]){}
 }
-
 const dishes: Dishe[] = [];
 
 const Meal1 = new Dishe(
@@ -38,8 +40,9 @@ dishes.push(Meal2);
 
 
 
-for (const element of tables) {
 
+for (const element of tables) {
+    console.log(element)
     element.addEventListener("click", ChooseADish);
     function ChooseADish() {
         element.style.background = "red"
@@ -65,7 +68,7 @@ function renderMenu(
         <div class="dish">
         ${dishes.map((dishe, index) => {
                 return `<div class="dish">
-                    <button onClick="Remove(${index})"><img id="img" src="${dishe.image}" width="150px" alt="${dishe.name}" 
+                    <button onClick="Remove(${index},checkbox)"><img id="img" src="${dishe.image}" width="150px" alt="${dishe.name}" 
                     <div class="dish-text"></button> 
                     <h3>${dishe.name}</h3>
                     <p>${dishe.description}</p>
@@ -88,7 +91,7 @@ function renderMenu(
 // image.addEventListener("click", Remove);
 
 
-function Remove(index) {
+function Remove(index, checkbox: HTMLElement | null) {
     try {
         console.log(index)
 
@@ -124,7 +127,6 @@ function Remove(index) {
 
 function RemoveOrder(event, index) {
 
-    // event.target.reset();
     var checkboxes =
         document.getElementsByName('without');
     var result = "";

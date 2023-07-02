@@ -81,7 +81,6 @@ function renderTables() {
         `;
   });
 }
-renderTables();
 
 function addDiner(event: any) {
   const numOfTable = event.target.parentNode.attributes.table.value;
@@ -123,26 +122,30 @@ function renderMenu() {
           <img src=${dish.dishImg} alt="">
           <h3 class="dishName"> ${dish.dishName} </h3>
           <h3> ${dish.price}$ </h3>
-        <button onclick="addDishToOrderList(${dish.dishName})"><span class="material-symbols-outlined"> add_box </span></button>
+        <button onclick="addDishToOrderList(event)"><span class="material-symbols-outlined"> add_box </span></button>
           </div>
   `;
   });
 }
 
-renderMenu();
-
-function addDishToOrderList(dishName: string) {
+function addDishToOrderList(event: any) {
+  const dishName = event.target.parentNode.parentNode.attributes.name.value;
   const orderList = document.querySelector(".orderList") as HTMLDivElement;
   const chosenDish = dishesArray.find((dish) => dish.dishName == dishName)!;
-
   orderList.innerHTML += `
     <div class = "orderListItem" name = ${chosenDish.dishName}>
         <img src=${chosenDish.dishImg} alt="">
         <h3 class="dishName"> ${chosenDish.dishName} </h3>
         <input type="number" value="1" min="1" placeholder="amount"> </input>
         <h3> ${chosenDish.price}$ </h3>
-        <button onclick="removeDishToOrderList(${chosenDish.dishName})"><span class="material-symbols-outlined"> delete </span></button>
+        <button onclick="removeDishToOrderList(event)"><span class="material-symbols-outlined"> delete </span></button>
     </div>
-    
     `;
 }
+
+function removeDishToOrderList(event) {
+  const chosenDish = event.target.parentNode.parentNode;
+  chosenDish.remove();
+}
+
+function addOrderToList() {}

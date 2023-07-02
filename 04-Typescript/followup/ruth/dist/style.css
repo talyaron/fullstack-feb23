@@ -36,6 +36,7 @@
 .wrapper .menu {
   width: 40%;
   border-right: 1px solid black;
+  padding: 20px;
 }
 .wrapper .menu .dish {
   display: flex;
@@ -53,4 +54,20 @@
 }
 .wrapper .orderList {
   width: 50%;
+  padding: 20px;
+  background-color: #e3e3e3;
+  text-align: center;
+}
+.wrapper .orderList .orderListItem {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
+  border: 1px solid black;
+  margin: 5px;
+  border-radius: 30px;
+}
+.wrapper .orderList .orderListItem img {
+  width: 70px;
+  height: 50px;
+  object-fit: cover;
 }

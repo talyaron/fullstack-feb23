@@ -1,6 +1,3 @@
-//input: phone number
-//צג מחיר
-//button: send order
 //menu - class
 var Dishe = /** @class */ (function () {
     function Dishe(name, price, image, description) {
@@ -8,10 +5,11 @@ var Dishe = /** @class */ (function () {
         this.price = price;
         this.image = image;
         this.description = description;
+        this.id = Math.random().toString(36).substr(2, 9);
     }
     return Dishe;
 }());
-this.id = Math.random().toString(36).substr(2, 9);
+;
 var dishes = [];
 // Create sushi dishes and add them to the menu
 var sushi1 = new Dishe('California Roll', 32.99, './dist/image/sushi3.webp', 'Fresh crab, avocado, and cucumber rolled in rice and seaweed.');
@@ -35,6 +33,7 @@ var Order = /** @class */ (function () {
     }
     return Order;
 }());
+;
 var orders = [];
 //select teble - class
 var Table = /** @class */ (function () {
@@ -49,6 +48,7 @@ var Table = /** @class */ (function () {
     };
     return Table;
 }());
+;
 var tables = [];
 var table1 = new Table('table 1', []);
 var table2 = new Table('table 2', []);
@@ -60,7 +60,9 @@ tables.push(table1, table2, table3, table4, table5, table6);
 renderregisterControlers(document.querySelector("#register"));
 function renderregisterControlers(rootElement) {
     try {
-        var html = "<form onsubmit=\"handleRegisterOrder(event)\">\n               <input type=\"string\" name=\"phoneNum\" placeholder=\"phone number\" required>\n          <select name=\"Table\" id=\"Table\" required> \n            <option value=\"string\">table 1</option>\n            <option value=\"string\">table 2</option>\n            <option value=\"string\">table 3</option>\n            <option value=\"string\">table 4</option>\n            <option value=\"string\">table 5</option>\n            <option value=\"string\">table 6</option> \n          </select>\n             <button type=\"submit\">send order</button>\n            </form>";
+        var html = "<form onsubmit=\"handleRegisterOrder(event)\">\n               <input type=\"string\" name=\"phoneNum\" placeholder=\"phone number\" required>\n          <select name=\"Table\" id=\"Table\" required> \n          " + tables.map(function (table) {
+            return "<option value=\"string\">" + table.tableNum + "</option>";
+        }) + ";\n          </select>\n             <button type=\"submit\">send order</button>\n     </form>\n     <form onclick=\"handleBack(event)\">\n        <input type=\"button\" id=\"back\" value=\"Back\">\n     </form>";
         if (!rootElement)
             throw new Error("no root element");
         rootElement.innerHTML = html;
@@ -69,10 +71,11 @@ function renderregisterControlers(rootElement) {
         console.error(error);
     }
 }
+;
 function renderMain(dishes, rootElement) {
     try {
-        var html = "<div class=\"main\">\n          <div class=\"dish\">\n           " + dishes.map(function (dishe) {
-            return "<div class=\"dish\">\n            <img src=\"" + dishe.image + "\" alt=\"" + dishe.name + "\">\n            <div class=\"dish-text\">  \n              <h3>" + dishe.name + "</h3>\n              <p>" + dishe.description + "</p>\n              <p>" + dishe.price + "</p>\n           </div>\n           <button onclick=\"handleAddToOrder(event)\">add to order</button>\n       </div>";
+        var html = "<div class=\"main\">\n      " + dishes.map(function (dishe) {
+            return "<div class=\"dish\">\n            <img src=\"" + dishe.image + "\" alt=\"" + dishe.name + "\">\n            <div class=\"dish-text\">  \n              <h3>" + dishe.name + "</h3>\n              <p>" + dishe.description + "</p>\n              <p>" + dishe.price + "</p>\n           </div>\n           <button onclick=\"handleAddToOrder('" + dishe.id + "')\">add to order</button>\n       </div>";
         }) + ";\n          </div> \n       </div>";
         if (!rootElement)
             throw new Error("no root element");
@@ -82,11 +85,13 @@ function renderMain(dishes, rootElement) {
         console.error(error);
     }
 }
+;
 function handleAddToOrder(event) {
     try {
         event.preventDefault();
         var dish = event.target.elements.dish.value;
         orders.push(dish);
+        console.log(dish);
     }
     catch (error) {
         console.error(error);
@@ -101,6 +106,17 @@ function handleRegisterOrder(event) {
         var order = new Order(table, phoneNum);
         orders.push(order);
         renderMain(dishes, document.querySelector("#main"));
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+;
+function handleBack(ev) {
+    try {
+        ev.preventDefault();
+        console.dir(ev);
+        location.href = "index.html";
     }
     catch (error) {
         console.error(error);
