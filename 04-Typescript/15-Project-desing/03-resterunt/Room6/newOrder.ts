@@ -11,26 +11,26 @@ const dishes: Dishe[] = [];
 
 // Create sushi dishes and add them to the menu
 const sushi1 = new Dishe(
-    'California Roll',
-    12.99,
-    './dist/image/sushi.webp',
-    'Fresh crab, avocado, and cucumber rolled in rice and seaweed.'
+  'California Roll',
+  12.99,
+  './dist/image/sushi.webp',
+  'Fresh crab, avocado, and cucumber rolled in rice and seaweed.'
 );
 dishes.push(sushi1);
 
 const sushi2 = new Dishe(
-    'Spicy Tuna Roll',
-    10.99,
-    './dist/image/sushi.webp',
-    'Tuna, spicy mayo, and cucumber rolled in rice and seaweed.'
+  'Spicy Tuna Roll',
+  10.99,
+  './dist/image/sushi.webp',
+  'Tuna, spicy mayo, and cucumber rolled in rice and seaweed.'
 );
 dishes.push(sushi2);
 
 const sushi3 = new Dishe(
-    'Salmon Nigiri',
-    6.99,
-    './dist/image/sushi.webp',
-    'Fresh salmon slices served on a bed of rice.'
+  'Salmon Nigiri',
+  6.99,
+  './dist/image/sushi.webp',
+  'Fresh salmon slices served on a bed of rice.'
 );
 dishes.push(sushi3);
 
@@ -39,49 +39,49 @@ const sushi4 = new Dishe(
     12.99,
     './dist/image/sushi.webp',
     'Fresh crab, avocado, and cucumber rolled in rice and seaweed.'
-);
-dishes.push(sushi4);
+  );
+  dishes.push(sushi4);
 
 const sushi5 = new Dishe(
     'Spicy Tuna Roll',
     10.99,
     './dist/image/sushi.webp',
     'Tuna, spicy mayo, and cucumber rolled in rice and seaweed.'
-);
-dishes.push(sushi5);
-
-const sushi6 = new Dishe(
+  );
+  dishes.push(sushi5);
+  
+  const sushi6 = new Dishe(
     'Salmon Nigiri',
     6.99,
     './dist/image/sushi.webp',
     'Fresh salmon slices served on a bed of rice.'
-);
-dishes.push(sushi6);
+  );
+  dishes.push(sushi6);
 
-const sushi7 = new Dishe(
+  const sushi7 = new Dishe(
     'California Roll',
     12.99,
     './dist/image/sushi.webp',
     'Fresh crab, avocado, and cucumber rolled in rice and seaweed.'
-);
-dishes.push(sushi7);
+  );
+  dishes.push(sushi7);
 
-const sushi8 = new Dishe(
+  const sushi8 = new Dishe(
     'Spicy Tuna Roll',
     10.99,
     './dist/image/sushi.webp',
     'Tuna, spicy mayo, and cucumber rolled in rice and seaweed.'
-);
-dishes.push(sushi8);
-
-const sushi9 = new Dishe(
+  );
+  dishes.push(sushi8);
+  
+  const sushi9 = new Dishe(
     'Salmon Nigiri',
     6.99,
     './dist/image/sushi.webp',
     'Fresh salmon slices served on a bed of rice.'
-);
-dishes.push(sushi9);
-
+  );
+  dishes.push(sushi9);
+  
 
 console.log(dishes);
 
@@ -127,7 +127,7 @@ renderregisterControlers(document.querySelector("#register"));
 function renderregisterControlers(rootElement: HTMLElement | null) {
     try {
         const html =
-            `<form onsubmit="handleRegisterOrder(event)">
+         `<form onsubmit="handleRegisterOrder(event)">
             <input type="string" name="phoneNum" placeholder="phone number" required>
           <select name="Table" id="Table" required>
              <option value="string">Table 1</option>
@@ -153,11 +153,10 @@ function renderMain(
     rootElement: HTMLElement | null) {
     try {
         const html =
-            `<div class="main">
-         <form onsubmit="hendelOrder(event)">
+       `<div class="main">
           <div class="dish">
            ${dishes.map(dishe => {
-                return `<div class="dish">
+            return `<div class="dish">
                       <img src="${dishe.image}" alt="${dishe.name}">
                     <div class="dish-text">  
                       <h3>${dishe.name}</h3>
@@ -165,10 +164,8 @@ function renderMain(
                       <p>${dishe.price}</p>
                     </div>
                    </div>`
-            })};
+           })};
           </div> 
-             <button type="submit">send order</button>
-         </form>
        </div>`;
         if (!rootElement) throw new Error("no root element");
 
@@ -183,30 +180,12 @@ function handleRegisterOrder(event: any) {
         event.preventDefault();
         const phoneNum = event.target.elements.phoneNum.value;
         const table = event.target.elements.Table.value;
-
+        
         const order = new Order(table, phoneNum);
         orders.push(order);
 
-        renderMain(dishes, document.querySelector("#main"));
-
-    } catch (error) {
-        console.error(error);
-    }
-}
-
-function hendelOrder(event: any) {
-    try {
-        event.preventDefault();
-        const image = event.target.elements.image.value;
-        const name = event.target.elements.name.value;
-        const description = event.target.elements.description.value;
-        const price = event.target.elements.price.valueAsNumber;
-
-        const dishe = new Dishe(name, price, image, description);
-        dishes.push(dishe);
-
-        renderMain(dishes, document.querySelector("#main"));
-
+        renderMain(dishes ,document.querySelector("#main"));
+       
     } catch (error) {
         console.error(error);
     }

@@ -84,9 +84,9 @@ function renderregisterControlers(rootElement) {
 }
 function renderMain(dishes, rootElement) {
     try {
-        var html = "<div class=\"main\">\n         <form onsubmit=\"hendelOrder(event)\">\n          <div class=\"dish\">\n           " + dishes.map(function (dishe) {
+        var html = "<div class=\"main\">\n          <div class=\"dish\">\n           " + dishes.map(function (dishe) {
             return "<div class=\"dish\">\n                      <img src=\"" + dishe.image + "\" alt=\"" + dishe.name + "\">\n                    <div class=\"dish-text\">  \n                      <h3>" + dishe.name + "</h3>\n                      <p>" + dishe.description + "</p>\n                      <p>" + dishe.price + "</p>\n                    </div>\n                   </div>";
-        }) + ";\n          </div> \n             <button type=\"submit\">send order</button>\n         </form>\n       </div>";
+        }) + ";\n          </div> \n       </div>";
         if (!rootElement)
             throw new Error("no root element");
         rootElement.innerHTML += html;
@@ -102,21 +102,6 @@ function handleRegisterOrder(event) {
         var table = event.target.elements.Table.value;
         var order = new Order(table, phoneNum);
         orders.push(order);
-        renderMain(dishes, document.querySelector("#main"));
-    }
-    catch (error) {
-        console.error(error);
-    }
-}
-function hendelOrder(event) {
-    try {
-        event.preventDefault();
-        var image = event.target.elements.image.value;
-        var name = event.target.elements.name.value;
-        var description = event.target.elements.description.value;
-        var price = event.target.elements.price.valueAsNumber;
-        var dishe = new Dishe(name, price, image, description);
-        dishes.push(dishe);
         renderMain(dishes, document.querySelector("#main"));
     }
     catch (error) {
