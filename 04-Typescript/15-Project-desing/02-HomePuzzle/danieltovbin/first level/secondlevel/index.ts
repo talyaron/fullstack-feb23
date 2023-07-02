@@ -17,14 +17,28 @@ class User {
     workingHours: Hour[]=[];
     constructor(public userName: string) {}
 
-    getTotalWorkHours() :string{
+    getMonthlyWorkHours(monthDays: number){
         let totalMinutes = 0;
         for(const hour of this.workingHours){
-            totalMinutes += hour.convertTimeStringToMinutes(hour.exit) - hour.convertTimeStringToMinutes(hour.enctrance)
-
+            totalMinutes += hour.calculateTotalMinutes
         }
-        const hourInstance = new Hour(" ", " ");
-        return hourInstance.convertMinutesToString(totalMinutes);
+        // let dailyMinutes = this.calculateDailyMinutes(entrance, exit);
+        // const monthlyMinutes = dailyMinutes * monthDays;
+        const hourInstance = new Hour("","");
+        return hourInstance.convertMinutesToString(monthlyMinutes);
+
+    }
+
+    calculateDailyMinutes (entrance: string, exit: string){
+        const entranceTime = this.convertTimeStringToMinutes(entrance);
+        const exitTime = this.convertTimeStringToMinutes(exit);
+        const totalMinutes = exitTime - entranceTime;
+        return totalMinutes;
+    }
+    convertTimeStringToMinutes(timeInString:string){
+        const [hours, minutes] = timeInString.split(":");
+        const totalMinutes = parseInt(hours) * 60 + parseInt(minutes);
+        return totalMinutes;
     }
 }
 
@@ -58,11 +72,11 @@ function addUser(){
     const userSelect = document.querySelector("#user-select") as HTMLSelectElement;
     const nameInput = document.querySelector("#name-input") as HTMLInputElement;
     const entranceInput = document.querySelector("#entrance-input") as HTMLInputElement;
-    const exitinput = document.querySelector("#exit-input") as HTMLInputElement;
+    const exitInput = document.querySelector("#exit-input") as HTMLInputElement;
 
     const name = nameInput.value;
     const entrance = entranceInput.value;
-    const exit = exitinput.value;
+    const exit = exitInput.value;
 
 
     if(name && entrance && exit) {
@@ -79,7 +93,7 @@ function addUser(){
 
         nameInput.value = '';
         entranceInput.value = '';
-        exitinput.value = '';
+        exitInput.value = '';
     }
 }
 
@@ -91,8 +105,8 @@ const hourArray:Hour[] = [];
 
 class Hour {
     id: string;
-    constructor(public enctrance: string, public exit:string){
-        const entranceTime = this.convertTimeStringToMinutes(enctrance);
+    constructor(public entrance: string, public exit:string){
+        const entranceTime = this.convertTimeStringToMinutes(entrance);
         const exitime = this.convertTimeStringToMinutes(exit);
         const totalTime = exitime - entranceTime;
         this.id = this.convertMinutesToString(totalTime);
@@ -112,28 +126,63 @@ class Hour {
     }
 }
 
+const addUserBtn = document.querySelector("#add-user-btn") as HTMLButtonElement;
+if(addUserBtn){
+    addUserBtn.addEventListener("click", addUser);
+}
+
 
 const submitBtn = document.querySelector("#submit-btn") as HTMLButtonElement;
 
 if(submitBtn) {
-    submitBtn.addEventListener("click", displayUserWorkHours);
+    submitBtn.addEventListener("click", calculateMonthlyWorkHours);
 }
 
-function displayUserWorkHours(){
+function calculateMonthlyWorkHours(){
     const userSelect = document.querySelector("#user-select") as HTMLSelectElement;
     const selectedUserName = userSelect.value;
-    const resultDiv = document.querySelector("#result") as HTMLDivElement;
+    const selectedUser = userArray.find(user => user.userName === selectedUserName);
 
-    if(selectedUserName) {
-        const user = userArray.find((u) => u.userName === selectedUserName);
-        if (user) {
-            const totalWorkHours = user.getTotalWorkHours();
-            resultDiv.textContent = `User: ${selectedUserName}, Total hours worked:${totalWorkHours}`
-        }
-    }else {
-        resultDiv.textContent = "";
+    if (selectedUser) {
+        const entranceInput = document.querySelector("#entrance-input") as HTMLInputElement;
+        const exitInput = document.querySelector("#exit-input") as HTMLInputElement;
+        const monthDays = new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0).getDate();
+        const monthlyWorkHours = selectedUser.getMonthlyWorkHours(entranceInput.value, exitInput.value, monthDays);
+
+        const resultDiv = document.querySelector("#result") as HTMLDivElement;
+        resultDiv.textContent = `Monthly work hours for ${selectedUserName}: ${monthlyWorkHours}`;
     }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// function displayUserWorkHours(){
+//     const userSelect = document.querySelector("#user-select") as HTMLSelectElement;
+//     const selectedUserName = userSelect.value;
+//     const resultDiv = document.querySelector("#result") as HTMLDivElement;
+
+//     if(selectedUserName) {
+//         const user = userArray.find((u) => u.userName === selectedUserName);
+//         if (user) {
+//             const totalWorkHours = user.getTotalWorkHours();
+//             resultDiv.textContent = `User: ${selectedUserName}, Total hours worked:${totalWorkHours}`
+//         }
+//     }else {
+//         resultDiv.textContent = "";
+//     }
+// }
 
 
 

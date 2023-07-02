@@ -1,0 +1,17 @@
+tr {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+tr td {
+  border: 2px solid black;
+  gap: 3px;
+}
+
+button {
+  background-color: green;
+}
+
+button.occupied {
+  background-color: red;
+}
