@@ -1,0 +1,16 @@
+.cd {
+  width: 95vw;
+  display: flex;
+  flex-wrap: wrap;
+  margin: auto;
+}
+
+.card {
+  width: 120px;
+  padding: 10px;
+  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.694);
+  margin: 20px;
+}
+.card img {
+  width: 100%;
+}
