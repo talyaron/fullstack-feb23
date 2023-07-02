@@ -12,12 +12,7 @@ class Dishe {
 const dishes: Dishe[] = [];
 
 // Create sushi dishes and add them to the menu
-const sushi1 = new Dishe(
-  'California Roll',
-  12.99,
-  './dist/image/sushi.webp',
-  'Fresh crab, avocado, and cucumber rolled in rice and seaweed.'
-);
+const sushi1 = new Dishe('California Roll', 12.99, './dist/image/sushi3.webp', 'Fresh crab, avocado, and cucumber rolled in rice and seaweed.');
 dishes.push(sushi1);
 
 const sushi2 = new Dishe('Spicy Tuna Roll', 100.99, './dist/image/sushi.webp', 'Tuna, spicy mayo, and cucumber rolled in rice and seaweed.');
@@ -144,6 +139,9 @@ function handleRegisterOrder(event: any) {
 
     const order = new Order(table, phoneNum);
     orders.push(order);
+
+    const totalPayment = order.calculatePayment();
+    console.log(totalPayment);
 
     renderMain(dishes, document.querySelector("#main"));
 

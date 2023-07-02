@@ -13,7 +13,7 @@ var Dishe = /** @class */ (function () {
 }());
 var dishes = [];
 // Create sushi dishes and add them to the menu
-var sushi1 = new Dishe('California Roll', 12.99, './dist/image/sushi.webp', 'Fresh crab, avocado, and cucumber rolled in rice and seaweed.');
+var sushi1 = new Dishe('California Roll', 12.99, './dist/image/sushi3.webp', 'Fresh crab, avocado, and cucumber rolled in rice and seaweed.');
 dishes.push(sushi1);
 var sushi2 = new Dishe('Spicy Tuna Roll', 100.99, './dist/image/sushi.webp', 'Tuna, spicy mayo, and cucumber rolled in rice and seaweed.');
 dishes.push(sushi2);
@@ -102,6 +102,8 @@ function handleRegisterOrder(event) {
         var table = event.target.elements.Table.value;
         var order = new Order(table, phoneNum);
         orders.push(order);
+        var totalPayment = order.calculatePayment();
+        console.log(totalPayment);
         renderMain(dishes, document.querySelector("#main"));
     }
     catch (error) {
