@@ -250,3 +250,11 @@ function removeDish(index) {
     }
   }
 }
+
+//test to run back page
+const backButton = document.querySelector("#backButton") as HTMLButtonElement;
+backButton.addEventListener("click", backPage);
+
+function backPage() {
+  renderTable(tablesDiv);
+}

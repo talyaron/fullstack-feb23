@@ -183,3 +183,9 @@ function removeDish(index) {
         }
     }
 }
+//test to run back page
+var backButton = document.querySelector("#backButton");
+backButton.addEventListener("click", backPage);
+function backPage() {
+    renderTable(tablesDiv);
+}
