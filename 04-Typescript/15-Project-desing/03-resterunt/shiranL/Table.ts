@@ -201,7 +201,7 @@ function renderCurrentOrder() {
 
         const html = `
           <div class="openOrderDishes">
-            <form class="DishesForm">
+            <form id="DishesForm" class="DishesForm">
               ${Object.values(groupedDishes)
                 .map(
                   (groupedDish) => `
@@ -210,6 +210,7 @@ function renderCurrentOrder() {
                   `
                 )
                 .join("")}
+                </form>
               <div class="openOrderToal">
                 <p>Total: ${currentOrder.total}</p>
               </div>
@@ -221,10 +222,8 @@ function renderCurrentOrder() {
                   <button type="button" onclick="checkOut()">Check Out</button>
                 </form>
               </div>
-            </form>
+            
           </div>
-
-          <div class="MenueDiv">
             <form id="TableMenueForm" class="MenuForm" onsubmit="handleAddDishesToOrder(event)" style="display: none;">
               ${MenuT.map(
                 (dish) => `
@@ -240,7 +239,7 @@ function renderCurrentOrder() {
               ).join("")}
               <input type="submit" value="Add Dishes">
             </form>
-          </div>
+          
         `;
 
         openOrderContainer.innerHTML = html;
@@ -255,9 +254,10 @@ function checkOut(){
   BackToMain();
 }
 function handleAddDishesToOrder(event) {
- 
+  debugger;
     event.preventDefault(); // Prevent form submission
     // Get all the selected dish checkboxes
+    
     const selectedDishCheckboxes = Array.from(event.target.elements.dishes).filter((checkbox) => checkbox.checked);
   
     // Get the selected dish IDs
@@ -277,8 +277,72 @@ function handleAddDishesToOrder(event) {
     // Reset the form (optional)
     event.target.reset();
   }
-  function handleDeleteDish(){}
+  function handleDeleteDish(){
+   
+    try {
+      
+      const currentOrder = OrdersT.find(
+        (order) =>
+          order.table?.idTable === currentTable?.idTable && order.status === true
+      );
+      if(!currentOrder){throw new Error("Cant Finde Current Order");
+      }
+      const orderDishes = currentOrder.dishes;
+      
+
+      const dishesForm = document.getElementById("DishesForm");
+      
+      if (orderDishes && dishesForm) {
+        dishesForm.innerHTML=``;
+        orderDishes.forEach((dish) => {
+          const dishElement = document.createElement("div");
+          dishElement.classList.add("dish-item");
+      
+          // Display dish information (name, price, description, etc.)
+          dishElement.innerHTML = `
+            <div class="dish-name">${dish.name}</div>
+            <div class="dish-price">$${dish.price.toFixed(2)}</div>
+            <div class="dish-description">${dish.description}</div>
+            <button class="delete-button" onclick="deleteDish(${dish.idDishe})">Delete</button>
+          `;
+      
+          // Append the dish element to the dishesForm container
+          dishesForm.appendChild(dishElement);
+        });
+      }
+      
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  function deleteDish(dishId) {
+    debugger;
+    const currentOrder = OrdersT.find(
+      (order) =>
+        order.table?.idTable === currentTable?.idTable && order.status === true
+    );
+    if(!currentOrder){throw new Error("Cant Finde Current Order");
+      }
+    // Find the dish with the specified dishId in the currentOrder.dishes array
+
+    const dishIndex = currentOrder.dishes?.findIndex((dish) => dish.idDishe === dishId);
+
+  
+    if (dishIndex !== undefined && dishIndex !== -1) {
+      // Remove the dish from the array
+      currentOrder.dishes?.splice(dishIndex, 1);
+  
+      // Recalculate the order total
+      currentOrder.calcTotal();
+  
+      // Refresh the displayed dishes by calling handleDeleteDish again or updating the UI accordingly
+      renderCurrentOrder();
+    }
+  }
+  
   function handleAddDishes (){
+    renderCurrentOrder(); // reset other options
+   
     const TableMenueHtml = document.getElementById("TableMenueForm");
     if(TableMenueHtml)
     TableMenueHtml.style.display='block';
