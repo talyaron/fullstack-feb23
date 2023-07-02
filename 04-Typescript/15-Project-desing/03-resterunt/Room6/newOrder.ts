@@ -23,25 +23,25 @@ dishes.push(sushi1);
 const sushi2 = new Dishe('Spicy Tuna Roll', 100.99, './dist/image/sushi.webp', 'Tuna, spicy mayo, and cucumber rolled in rice and seaweed.');
 dishes.push(sushi2);
 
-const sushi3 = new Dishe('Salmon Nigiri', 60.99, './dist/image/sushi.webp', 'Fresh salmon slices served on a bed of rice.');
+const sushi3 = new Dishe('Salmon Nigiri', 60.99, './dist/image/sushi2.jpg', 'Fresh salmon slices served on a bed of rice.');
 dishes.push(sushi3);
 
-const sushi4 = new Dishe('California Roll', 62.99, './dist/image/sushi.webp', 'Fresh crab, avocado, and cucumber rolled in rice and seaweed.');
+const sushi4 = new Dishe('California Roll', 62.99, './dist/image/sushi3.webp', 'Fresh crab, avocado, and cucumber rolled in rice and seaweed.');
 dishes.push(sushi4);
 
 const sushi5 = new Dishe('Spicy Tuna Roll', 80.99, './dist/image/sushi.webp', 'Tuna, spicy mayo, and cucumber rolled in rice and seaweed.');
 dishes.push(sushi5);
 
-const sushi6 = new Dishe('Salmon Nigiri', 60.99, './dist/image/sushi.webp', 'Fresh salmon slices served on a bed of rice.');
+const sushi6 = new Dishe('Salmon Nigiri', 60.99, './dist/image/sushi2.jpg', 'Fresh salmon slices served on a bed of rice.');
 dishes.push(sushi6);
 
-const sushi7 = new Dishe('California Roll', 92.99, './dist/image/sushi.webp', 'Fresh crab, avocado, and cucumber rolled in rice and seaweed.');
+const sushi7 = new Dishe('California Roll', 92.99, './dist/image/sushi3.webp', 'Fresh crab, avocado, and cucumber rolled in rice and seaweed.');
 dishes.push(sushi7);
 
 const sushi8 = new Dishe('Spicy Tuna Roll', 70.99, './dist/image/sushi.webp', 'Tuna, spicy mayo, and cucumber rolled in rice and seaweed.');
 dishes.push(sushi8);
 
-const sushi9 = new Dishe('Salmon Nigiri', 60.99, './dist/image/sushi.webp', 'Fresh salmon slices served on a bed of rice.');
+const sushi9 = new Dishe('Salmon Nigiri', 60.99, './dist/image/sushi2.jpg', 'Fresh salmon slices served on a bed of rice.');
 dishes.push(sushi9);
 
 console.log(dishes);

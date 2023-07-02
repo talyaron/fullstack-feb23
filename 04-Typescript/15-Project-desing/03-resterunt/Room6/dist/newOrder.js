@@ -17,19 +17,19 @@ var sushi1 = new Dishe('California Roll', 12.99, './dist/image/sushi.webp', 'Fre
 dishes.push(sushi1);
 var sushi2 = new Dishe('Spicy Tuna Roll', 100.99, './dist/image/sushi.webp', 'Tuna, spicy mayo, and cucumber rolled in rice and seaweed.');
 dishes.push(sushi2);
-var sushi3 = new Dishe('Salmon Nigiri', 60.99, './dist/image/sushi.webp', 'Fresh salmon slices served on a bed of rice.');
+var sushi3 = new Dishe('Salmon Nigiri', 60.99, './dist/image/sushi2.jpg', 'Fresh salmon slices served on a bed of rice.');
 dishes.push(sushi3);
-var sushi4 = new Dishe('California Roll', 62.99, './dist/image/sushi.webp', 'Fresh crab, avocado, and cucumber rolled in rice and seaweed.');
+var sushi4 = new Dishe('California Roll', 62.99, './dist/image/sushi3.webp', 'Fresh crab, avocado, and cucumber rolled in rice and seaweed.');
 dishes.push(sushi4);
 var sushi5 = new Dishe('Spicy Tuna Roll', 80.99, './dist/image/sushi.webp', 'Tuna, spicy mayo, and cucumber rolled in rice and seaweed.');
 dishes.push(sushi5);
-var sushi6 = new Dishe('Salmon Nigiri', 60.99, './dist/image/sushi.webp', 'Fresh salmon slices served on a bed of rice.');
+var sushi6 = new Dishe('Salmon Nigiri', 60.99, './dist/image/sushi2.jpg', 'Fresh salmon slices served on a bed of rice.');
 dishes.push(sushi6);
-var sushi7 = new Dishe('California Roll', 92.99, './dist/image/sushi.webp', 'Fresh crab, avocado, and cucumber rolled in rice and seaweed.');
+var sushi7 = new Dishe('California Roll', 92.99, './dist/image/sushi3.webp', 'Fresh crab, avocado, and cucumber rolled in rice and seaweed.');
 dishes.push(sushi7);
 var sushi8 = new Dishe('Spicy Tuna Roll', 70.99, './dist/image/sushi.webp', 'Tuna, spicy mayo, and cucumber rolled in rice and seaweed.');
 dishes.push(sushi8);
-var sushi9 = new Dishe('Salmon Nigiri', 60.99, './dist/image/sushi.webp', 'Fresh salmon slices served on a bed of rice.');
+var sushi9 = new Dishe('Salmon Nigiri', 60.99, './dist/image/sushi2.jpg', 'Fresh salmon slices served on a bed of rice.');
 dishes.push(sushi9);
 console.log(dishes);
 //order - class
