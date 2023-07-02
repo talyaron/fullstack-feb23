@@ -178,10 +178,9 @@ function getEmployeeHours(){
 
 function getAllUserHours(){
     const table = document.querySelector("#tableUser") as HTMLDivElement    
-    table.innerHTML=  
-        `<table> 
+    table.innerHTML= `<table> 
         <tr> <th>User Name</th> <th>Date</th> <th>Entrance</th> <th>Leaving</th> <th>Total</th></tr>
-        ${employeesHours.map(empl=> empl.hoursWork.map(day=>`<tr><td>${empl.employee.firstName} ${empl.employee.lastName}</td><td>${day.getDate()}</td><td>${day.getEntranceTime()}</td><td>${day.getExitTime()}</td><td>${day.getTotal()}</td></tr>`).join("")).join("")}
+        ${employeesHours.map(empl=> empl.hoursWork.map(day=>`<tr><td>${empl.employee.firstName} ${empl.employee.lastName}</td><td>${day.getDate()}</td><td>${day.getEntranceTime()}</td><td>${day.getExitTime()}</td><td>${day.getTotal()}</td></tr>`).join(" ")).join(" ")}
         ${employeesHours.map(empl=>`<tr><td>${empl.employee.firstName} ${empl.employee.lastName} Hours</td><td>${empl.getSumWorkingHours()}</td></tr>`)}
         </table>`
     
