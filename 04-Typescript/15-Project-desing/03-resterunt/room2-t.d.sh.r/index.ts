@@ -38,19 +38,22 @@ class Table {
     }
   }
 
-  deletDish(order: Dish[], dish: Dish) {
-    //delet dish from order array
+  deletDish(order, dish) {
     try {
-      if (!order) throw new Error("cant find order");
-      if (!dish) throw new Error("cant find dish");
-      order = order.filter((e) => e !== dish);
+      if (!order) throw new Error("Cannot find order");
+      if (!dish) throw new Error("Cannot find dish");
+
+      const index = order.findIndex((item) => item === dish);
+      if (index !== -1) {
+        order.splice(index, 1);
+      }
     } catch (error) {
       console.error(error);
     }
   }
   closeTable() {
     //close the table and the order and return the calcolat of all dises price in the order (sum of the order)
-    this.catched = false;
+    this.catched = true;
   }
 }
 const tables: Table[] = [
@@ -110,9 +113,9 @@ const dishes: Dish[] = [pastaRed, pastaMilk, pizzaOliv, pizzaOnion]; //contain t
 function renderTable(divName) {
   let html = tables
     .map((table) => {
-      return `<div class="table ${
-        table.catched ? "green-hover" : "red-hover"
-      }" id="table${table.tableNumber}">${table.tableNumber}</div>`;
+      return `<button class="table ${
+        table.catched ? "red-hover" : "green-hover"
+      }" id="table${table.tableNumber}">${table.tableNumber}</button>`;
     })
     .join("");
   divName.innerHTML = html;
@@ -156,7 +159,7 @@ function renderMenu() {
               <tr>
                 <td>${dish.dishName}</td>
                 <td><img class="dishImage" src="${dish.img}"></td>
-                <td>${this.price}</td>
+                <td>${dish.price}</td>
                 <td>${dish.description}</td>
                 <td><button onclick="addToOrder(${dish.price})">Add</button></td>
               </tr>
@@ -170,21 +173,20 @@ function renderMenu() {
 }
 
 function addToOrder(price) {
-    if (thisTable) {
-      const order = new Order([]);
-      ordersArray.push(order);
-      thisTable.addDish(order.dishes, price);
-      updateSummary(price);
-      const summaryElement = document.querySelector("#summary");
-      if (summaryElement) {
-        summaryElement.classList.add("added"); 
-        setTimeout(() => {
-          summaryElement.classList.remove("added");
-        }, 500);
-      }
+  if (thisTable) {
+    const order = new Order([]);
+    ordersArray.push(order);
+    thisTable.addDish(order.dishes, price);
+    updateSummary(price);
+    const summaryElement = document.querySelector("#summary");
+    if (summaryElement) {
+      summaryElement.classList.add("added");
+      setTimeout(() => {
+        summaryElement.classList.remove("added");
+      }, 500);
     }
   }
-  
+}
 
 function updateSummary(price) {
   const summaryElement = document.querySelector("#summary");
@@ -194,7 +196,65 @@ function updateSummary(price) {
       (sum, order) => sum + order.dishes.length * price,
       0
     );
-    summaryElement.innerHTML = `Total Items: ${totalItems}, Total Price: $${totalPrice}`;
+
+    const dishList = ordersArray.flatMap((order) =>
+      order.dishes.map((dish) => ({
+        name: dish.dishName,
+        price: dish.price,
+        order,
+      }))
+    );
+
+    const dishItems = dishList
+      .map(
+        (dish, index) => `
+          <li>
+            ${dish.name} - $${dish.price}
+            <button onclick="removeDish(${index})">Remove</button>
+          </li>
+        `
+      )
+      .join("");
+
+    summaryElement.innerHTML = `
+      <p>Total Items: ${totalItems}, Total Price: ₪${totalPrice}</p>
+      <ul>${dishItems}</ul>
+    `;
   }
 }
-//renderDelet --> after chosing a table and click del-btn
+
+function removeDish(index) {
+  const dishList = ordersArray.flatMap((order) =>
+    order.dishes.map((dish) => ({
+      name: dish.dishName,
+      price: dish.price,
+      order,
+    }))
+  );
+
+  const dishItem = dishList[index];
+  const { order, name, price } = dishItem;
+  thisTable.deletDish(order.dishes, dishItem);
+  updateSummary(price);
+  alert(`Removed dish: ${name}`);
+
+  const summaryElement = document.querySelector("#summary");
+  if (summaryElement) {
+    const dishListElement = summaryElement.querySelector("ul");
+    if (dishListElement) {
+      const dishItems = dishListElement.querySelectorAll("li");
+      const itemToRemove = dishItems[index];
+      if (itemToRemove) {
+        dishListElement.removeChild(itemToRemove);
+      }
+    }
+  }
+}
+
+//test to run back page
+const backButton = document.querySelector("#backButton") as HTMLButtonElement;
+backButton.addEventListener("click", backPage);
+
+function backPage() {
+  renderTable(tablesDiv);
+}

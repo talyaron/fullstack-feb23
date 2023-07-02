@@ -1,4 +1,4 @@
-const myDog = new Dog("Rex", 5);
+// const myDog = new Dog("Rex", 5);
 class Person {
     
     constructor(public name: string, public yearOfBirth:number) {
