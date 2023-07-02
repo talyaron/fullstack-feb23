@@ -52,7 +52,7 @@ var Table = /** @class */ (function () {
     };
     Table.prototype.closeTable = function () {
         //close the table and the order and return the calcolat of all dises price in the order (sum of the order)
-        this.catched = false;
+        this.catched = true;
     };
     return Table;
 }());
@@ -91,7 +91,7 @@ var dishes = [pastaRed, pastaMilk, pizzaOliv, pizzaOnion]; //contain the informa
 function renderTable(divName) {
     var html = tables
         .map(function (table) {
-        return "<div class=\"table " + (table.catched ? "green-hover" : "red-hover") + "\" id=\"table" + table.tableNumber + "\">" + table.tableNumber + "</div>";
+        return "<button class=\"table " + (table.catched ? "red-hover" : "green-hover") + "\" id=\"table" + table.tableNumber + "\">" + table.tableNumber + "</button>";
     })
         .join("");
     divName.innerHTML = html;
@@ -183,4 +183,9 @@ function removeDish(index) {
         }
     }
 }
-//renderDelet --> after chosing a table and click del-btn
+//test to run back page
+var backButton = document.querySelector("#backButton");
+backButton.addEventListener("click", backPage);
+function backPage() {
+    renderTable(tablesDiv);
+}

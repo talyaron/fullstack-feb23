@@ -2,10 +2,11 @@
 const tables = document.querySelectorAll(`.table`);
 const root = document.querySelector(`#root`) as HTMLElement;
 const checkbox = document.querySelector(`#checkbox`) as HTMLElement;
+const check = document.querySelector(`#check`) as HTMLElement;
 
 
 class Dishe {
-    constructor(public name: string, public price: number, public image: string, public description: string, public without1: string, public without2: string, public without3: string) {
+    constructor(public name: string, public price: number, public image: string, public description: string, public without1: string, public without2: string, public without3: string, public without4: string) {
     }
 }
 
@@ -18,7 +19,8 @@ const Meal1 = new Dishe(
     'Hamburger bun, avocado, lettuce, tomato and pickle.',
     ' without lettuce',
     ' without tomato',
-    ' without pickle'
+    ' without pickle',
+    ' No sauces'
 );
 dishes.push(Meal1);
 const Meal2 = new Dishe(
@@ -28,7 +30,8 @@ const Meal2 = new Dishe(
     'Tomato sauce, cheese, olives.',
     '  without Tomato sauce',
     '  without cheese',
-    '  without olives'
+    '  without olives',
+    '  No sauces'
 );
 dishes.push(Meal2);
 
@@ -60,9 +63,9 @@ function renderMenu(
         const html =
             `<div class="main">
         <div class="dish">
-        ${dishes.map(dishe => {
+        ${dishes.map((dishe, index) => {
                 return `<div class="dish">
-                    <button onClick="Remove()"><img id="img" src="${dishe.image}" width="150px" alt="${dishe.name}" 
+                    <button onClick="Remove(${index})"><img id="img" src="${dishe.image}" width="150px" alt="${dishe.name}" 
                     <div class="dish-text"></button> 
                     <h3>${dishe.name}</h3>
                     <p>${dishe.description}</p>
@@ -85,26 +88,29 @@ function renderMenu(
 // image.addEventListener("click", Remove);
 
 
-function Remove() {
+function Remove(index) {
     try {
+        console.log(index)
 
         const html =
-            `<form onsubmit="RemoveOrder(event)">
+            `
+                <form onsubmit="RemoveOrder(event, ${index})">
             <ul>
-            <li> <input type="checkbox" >
-                without lettuce
+            <li> <input type="checkbox" name="without" value="${dishes[index].without1}">
+                ${dishes[index].without1}
                 </label></li>
-            <li><input type="checkbox" >
-                without tomato
+            <li><input type="checkbox" name="without" value="${dishes[index].without2}">
+            ${dishes[index].without2}
                 </label></li>
-            <li> <input type="checkbox" >
-                without pickle
+            <li> <input type="checkbox" name="without" value="${dishes[index].without3}">
+            ${dishes[index].without3}
                 </label></li>
-            <li> <input type="checkbox" >
-                No sauces </label></li>
+            <li> <input type="checkbox" name="without" value="${dishes[index].without4}">
+                ${dishes[index].without4}  </label></li>
                 <button id="add">Add</button>
         </ul>
         </form>
+                
         `;
 
         if (!checkbox) throw new Error("no root element");
@@ -116,8 +122,26 @@ function Remove() {
 }
 ;
 
-function RemoveOrder(event) {
-    event.target.reset();
+function RemoveOrder(event, index) {
+
+    // event.target.reset();
+    var checkboxes =
+        document.getElementsByName('without');
+    var result = "";
+    for (var i = 0; i < checkboxes.length; i++) {
+        if (checkboxes[i].checked) {
+            result += checkboxes[i].value
+                + " ";
+        }
+    }
+    // document.write();
+    const html = `<p class="check"> You have selected ${dishes[index].name}: 
+    ${result} ${dishes[index].price}$ </p>`;
+    if (!checkbox) throw new Error("no root element");
+
+    checkbox.innerHTML += html;
+
+
 
 }
 
