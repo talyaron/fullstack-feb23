@@ -117,6 +117,7 @@ function openMenu(event) {
   );
   console.log(chosenTable);
 
+
   const chosenTableString = JSON.stringify(chosenTable);
   localStorage.setItem("chosenTable", chosenTableString);
   window.location.href = "./pages/menu.html";
@@ -124,7 +125,6 @@ function openMenu(event) {
 
 function renderMenu() {
   const menuDiv = document.querySelector("#menu") as HTMLDivElement;
-
   dishesArray.forEach((dish) => {
     menuDiv.innerHTML += `
           <div class ="dish" name = ${dish.dishName}> 
@@ -135,12 +135,28 @@ function renderMenu() {
           </div>
   `;
   });
+
+
+  const orderList = document.querySelector(".orderList") as HTMLDivElement;
+  const chosenTable :TableOrderHandler = JSON.parse(localStorage.getItem("chosenTable")!)
+  chosenTable!.dishesOrdered.forEach(dish=>{
+    orderList.innerHTML += `
+      <div class = "orderListItem" name = ${dish.dishName}>
+          <img src=${dish.dishImg} alt="">
+          <h3 class="dishName"> ${dish.dishName} </h3>
+          <input type="number" value="1" min="1" placeholder="amount"> </input>
+          <h3> ${dish.price}$ </h3>
+          <button onclick="removeDishToOrderList(event)"><span class="material-symbols-outlined"> delete </span></button>
+      </div>
+      `;
+  })
+
 }
 
 function addDishToOrderList(event: any) {
   const dishName = event.target.parentNode.parentNode.attributes.name.value;
-  const orderList = document.querySelector(".orderList") as HTMLDivElement;
   const chosenDish = dishesArray.find((dish) => dish.dishName == dishName)!;
+  const orderList = document.querySelector(".orderList") as HTMLDivElement;
   orderList.innerHTML += `
     <div class = "orderListItem" name = ${chosenDish.dishName}>
         <img src=${chosenDish.dishImg} alt="">
@@ -163,6 +179,8 @@ function addOrderToList() {
        const dishOrder :Dish = addDishToOrder(item.attributes.name.value , item.querySelector("input")?.valueAsNumber! ) 
        const chosenTable :TableOrderHandler =  JSON.parse(localStorage.getItem("chosenTable")!)
        chosenTable.dishesOrdered.push(dishOrder)
+      
+       localStorage.setItem("chosenTable", JSON.stringify(chosenTable))
     })
     window.location.href = "../home.html";
 }

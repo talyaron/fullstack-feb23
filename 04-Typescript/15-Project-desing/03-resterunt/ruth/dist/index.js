@@ -90,11 +90,16 @@ function renderMenu() {
     dishesArray.forEach(function (dish) {
         menuDiv.innerHTML += "\n          <div class =\"dish\" name = " + dish.dishName + "> \n          <img src=" + dish.dishImg + " alt=\"\">\n          <h3 class=\"dishName\"> " + dish.dishName + " </h3>\n          <h3> " + dish.price + "$ </h3>\n        <button onclick=\"addDishToOrderList(event)\"><span class=\"material-symbols-outlined\"> add_box </span></button>\n          </div>\n  ";
     });
+    var orderList = document.querySelector(".orderList");
+    var chosenTable = JSON.parse(localStorage.getItem("chosenTable"));
+    chosenTable.dishesOrdered.forEach(function (dish) {
+        orderList.innerHTML += "\n      <div class = \"orderListItem\" name = " + dish.dishName + ">\n          <img src=" + dish.dishImg + " alt=\"\">\n          <h3 class=\"dishName\"> " + dish.dishName + " </h3>\n          <input type=\"number\" value=\"1\" min=\"1\" placeholder=\"amount\"> </input>\n          <h3> " + dish.price + "$ </h3>\n          <button onclick=\"removeDishToOrderList(event)\"><span class=\"material-symbols-outlined\"> delete </span></button>\n      </div>\n      ";
+    });
 }
 function addDishToOrderList(event) {
     var dishName = event.target.parentNode.parentNode.attributes.name.value;
-    var orderList = document.querySelector(".orderList");
     var chosenDish = dishesArray.find(function (dish) { return dish.dishName == dishName; });
+    var orderList = document.querySelector(".orderList");
     orderList.innerHTML += "\n    <div class = \"orderListItem\" name = " + chosenDish.dishName + ">\n        <img src=" + chosenDish.dishImg + " alt=\"\">\n        <h3 class=\"dishName\"> " + chosenDish.dishName + " </h3>\n        <input type=\"number\" value=\"1\" min=\"1\" placeholder=\"amount\"> </input>\n        <h3> " + chosenDish.price + "$ </h3>\n        <button onclick=\"removeDishToOrderList(event)\"><span class=\"material-symbols-outlined\"> delete </span></button>\n    </div>\n    ";
 }
 function removeDishToOrderList(event) {
@@ -109,6 +114,7 @@ function addOrderToList() {
         var dishOrder = addDishToOrder(item.attributes.name.value, (_a = item.querySelector("input")) === null || _a === void 0 ? void 0 : _a.valueAsNumber);
         var chosenTable = JSON.parse(localStorage.getItem("chosenTable"));
         chosenTable.dishesOrdered.push(dishOrder);
+        localStorage.setItem("chosenTable", JSON.stringify(chosenTable));
     });
     window.location.href = "../home.html";
 }
