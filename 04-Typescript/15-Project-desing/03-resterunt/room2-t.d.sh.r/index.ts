@@ -41,8 +41,8 @@ class Table {
   deletDish(order: Dish[], dish: Dish) {
     //delet dish from order array
     try {
-      if (!order) throw new Error("cant find order");
-      if (!dish) throw new Error("cant find dish");
+      if (!order) throw new Error("can't find order");
+      if (!dish) throw new Error("can't find dish");
       order = order.filter((e) => e !== dish);
     } catch (error) {
       console.error(error);
@@ -107,21 +107,20 @@ const dishes: Dish[] = [pastaRed, pastaMilk, pizzaOliv, pizzaOnion]; //contain t
 
 //------view------------------------
 //renderTable --> at open screen
-function renderTable(divName) {
-  let html = tables
-    .map((table) => {
-      return `<div class="table ${
-        table.catched ? "green-hover" : "red-hover"
-      }" id="table${table.tableNumber}">${table.tableNumber}</div>`;
+function renderTable(divName: any) {
+  let html = tables.map((table) => {
+      return `<div class="table ${table.catched ? "green-hover" : "red-hover"}"
+       id="table${table.tableNumber}">${table.tableNumber}</div>`;
     })
     .join("");
   divName.innerHTML = html;
 }
 
 const tablesDiv = document.querySelector(".tables") as Element;
+
 renderTable(tablesDiv);
-///Table Event Listener
-var thisTable;
+//Table Event Listener
+var thisTable: any;
 const tableDiv = document.querySelectorAll(".table");
 tableDiv.forEach(function (item, idx) {
   item.addEventListener("click", function () {
@@ -150,13 +149,12 @@ function renderMenu() {
             <th>Description</th>
             <th>Actions</th>
           </tr>
-          ${dishes
-            .map((dish) => {
+          ${dishes.map((dish) => {
               return `
               <tr>
                 <td>${dish.dishName}</td>
                 <td><img class="dishImage" src="${dish.img}"></td>
-                <td>${this.price}</td>
+                <td>${dish.price}</td>
                 <td>${dish.description}</td>
                 <td><button onclick="addToOrder(${dish.price})">Add</button></td>
               </tr>
@@ -169,7 +167,7 @@ function renderMenu() {
     `;
 }
 
-function addToOrder(price) {
+function addToOrder(price:any) {
     if (thisTable) {
       const order = new Order([]);
       ordersArray.push(order);
