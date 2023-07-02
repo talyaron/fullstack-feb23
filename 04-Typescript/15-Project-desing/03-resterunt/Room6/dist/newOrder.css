@@ -50,3 +50,8 @@
   margin-left: 2vw;
   border-bottom: 1px solid white;
 }
+.wrapper .main .dish button {
+  position: relative;
+  left: 340px;
+  top: -13vh;
+}
