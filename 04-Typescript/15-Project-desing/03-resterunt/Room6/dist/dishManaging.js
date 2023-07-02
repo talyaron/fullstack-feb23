@@ -23,8 +23,8 @@ localStorage.setItem('dishes', dishesJson);
 var dishesString = localStorage.getItem('dishes');
 if (dishesString) {
     var dishesArray = JSON.parse(dishesString);
-    dishesArray.forEach(function (dish) { return dishes.push(new Dish(dish.name, dish.price, dish.img, dish.description)); });
-    console.log(dishes);
+    var dishes_1 = dishesArray.map(function (dish) { return new Dish(dish.name, dish.price, dish.img, dish.description); });
+    console.log(dishes_1);
     renderDishes(document.querySelector("#dishes"));
 }
 function renderMain(rootElement) {
