@@ -7,10 +7,13 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@40,200,0,0" />
     <title>Document</title>
 </head>
-<body>
+<body onload="renderMenu();">
     <div class="wrapper">
         <div class="menu" id="menu"></div>    
-        <div class="orderList" id="orderList"></div>
+        <div class="orderList" id="orderList">
+            <h2>ORDER - LIST</h2>
+            <button onclick="addOrderToList()">next order</button>
+        </div>
     </div>
 
     <script src="../dist/index.js"></script>

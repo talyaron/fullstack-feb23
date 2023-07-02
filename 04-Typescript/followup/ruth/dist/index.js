@@ -52,7 +52,6 @@ function renderTables() {
         tablesDiv.innerHTML += "\n        <div table=" + table.numOfTable + " class=\"table\" onclick=\"openMenu(event)\" >\n        <h3 class=\"numOfTable\">" + table.numOfTable + "</h3>\n        <button onclick=\"addDiner(event)\">+</button>\n        <h3 class=\"numberOfDiner\">" + table.numOfDiners + "</h3>\n        <button onclick=\"reduceDiner(event)\">-</button>\n      </div>\n        ";
     });
 }
-renderTables();
 function addDiner(event) {
     var numOfTable = event.target.parentNode.attributes.table.value;
     var numOfDiners = event.target.parentNode.querySelector(".numberOfDiner");
@@ -83,12 +82,17 @@ function openMenu(event) {
 function renderMenu() {
     var menuDiv = document.querySelector("#menu");
     dishesArray.forEach(function (dish) {
-        menuDiv.innerHTML += "\n          <div class =\"dish\" name = " + dish.dishName + "> \n          <img src=" + dish.dishImg + " alt=\"\">\n          <h3 class=\"dishName\"> " + dish.dishName + " </h3>\n          <h3> " + dish.price + "$ </h3>\n        <button onclick=\"addDishToOrderList(" + dish.dishName + ")\"><span class=\"material-symbols-outlined\"> add_box </span></button>\n          </div>\n  ";
+        menuDiv.innerHTML += "\n          <div class =\"dish\" name = " + dish.dishName + "> \n          <img src=" + dish.dishImg + " alt=\"\">\n          <h3 class=\"dishName\"> " + dish.dishName + " </h3>\n          <h3> " + dish.price + "$ </h3>\n        <button onclick=\"addDishToOrderList(event)\"><span class=\"material-symbols-outlined\"> add_box </span></button>\n          </div>\n  ";
     });
 }
-renderMenu();
-function addDishToOrderList(dishName) {
+function addDishToOrderList(event) {
+    var dishName = event.target.parentNode.parentNode.attributes.name.value;
     var orderList = document.querySelector(".orderList");
     var chosenDish = dishesArray.find(function (dish) { return dish.dishName == dishName; });
-    orderList.innerHTML += "\n    <div class = \"orderListItem\" name = " + chosenDish.dishName + ">\n        <img src=" + chosenDish.dishImg + " alt=\"\">\n        <h3 class=\"dishName\"> " + chosenDish.dishName + " </h3>\n        <input type=\"number\" value=\"1\" min=\"1\" placeholder=\"amount\"> </input>\n        <h3> " + chosenDish.price + "$ </h3>\n        <button onclick=\"removeDishToOrderList(" + chosenDish.dishName + ")\"><span class=\"material-symbols-outlined\"> delete </span></button>\n    </div>\n    \n    ";
+    orderList.innerHTML += "\n    <div class = \"orderListItem\" name = " + chosenDish.dishName + ">\n        <img src=" + chosenDish.dishImg + " alt=\"\">\n        <h3 class=\"dishName\"> " + chosenDish.dishName + " </h3>\n        <input type=\"number\" value=\"1\" min=\"1\" placeholder=\"amount\"> </input>\n        <h3> " + chosenDish.price + "$ </h3>\n        <button onclick=\"removeDishToOrderList(event)\"><span class=\"material-symbols-outlined\"> delete </span></button>\n    </div>\n    ";
 }
+function removeDishToOrderList(event) {
+    var chosenDish = event.target.parentNode.parentNode;
+    chosenDish.remove();
+}
+function addOrderToList() { }
