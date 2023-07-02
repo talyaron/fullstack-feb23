@@ -35,3 +35,22 @@ class TableOrderHandler{
     constructor(public table:Table, public dishesOrdered:Dish[] = emptyDishArray){
     }
 }
+
+//-----------------------------------------function------------------------------------
+
+function onLoad(){
+}
+
+function renderTables(){
+    const tablesDiv = document.querySelector("#tablesDiv") as HTMLDivElement
+    tables.forEach( table => {
+        tablesDiv.innerHTML += `
+        <div table=${table.numOfTable} class="table">
+        <button onclick="addDiner">+</button>
+        <h3 class="numberOfDiner">${table.numOfDiners}</h3>
+        <button onclick="reduceDiner">-</button>
+      </div>
+        `
+    } )
+}
+renderTables()

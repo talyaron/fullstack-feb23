@@ -40,3 +40,13 @@ var TableOrderHandler = /** @class */ (function () {
     }
     return TableOrderHandler;
 }());
+//-----------------------------------------function------------------------------------
+function onLoad() {
+}
+function renderTables() {
+    var tablesDiv = document.querySelector("#tablesDiv");
+    tables.forEach(function (table) {
+        tablesDiv.innerHTML += "\n        <div table=" + table.numOfTable + " class=\"table\">\n        <button onclick=\"addDiner\">+</button>\n        <h3 class=\"numberOfDiner\">" + table.numOfDiners + "</h3>\n        <button onclick=\"reduceDiner\">-</button>\n      </div>\n        ";
+    });
+}
+renderTables();
