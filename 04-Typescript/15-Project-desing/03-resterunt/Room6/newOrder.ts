@@ -75,6 +75,9 @@ function renderregisterControlers(rootElement: HTMLElement | null) {
       })};
           </select>
              <button type="submit">send order</button>
+     </form>
+     <form onclick="handleBack(event)">
+        <input type="button" id="back" value="Back">
      </form>`;
 
     if (!rootElement) throw new Error("no root element");
@@ -137,5 +140,17 @@ function handleRegisterOrder(event: any) {
 
   } catch (error) {
     console.error(error);
+  }
+};
+
+
+function handleBack(ev: any) {
+  try {
+      ev.preventDefault();
+      console.dir(ev);
+
+      location.href = "index.html"
+  } catch (error) {
+      console.error(error);
   }
 };
