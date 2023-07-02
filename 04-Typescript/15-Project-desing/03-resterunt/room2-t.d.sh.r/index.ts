@@ -38,12 +38,15 @@ class Table {
     }
   }
 
-  deletDish(order: Dish[], dish: Dish) {
-    //delet dish from order array
+  deletDish(order, dish) {
     try {
-      if (!order) throw new Error("cant find order");
-      if (!dish) throw new Error("cant find dish");
-      order = order.filter((e) => e !== dish);
+      if (!order) throw new Error("Cannot find order");
+      if (!dish) throw new Error("Cannot find dish");
+
+      const index = order.findIndex((item) => item === dish);
+      if (index !== -1) {
+        order.splice(index, 1);
+      }
     } catch (error) {
       console.error(error);
     }
@@ -156,7 +159,7 @@ function renderMenu() {
               <tr>
                 <td>${dish.dishName}</td>
                 <td><img class="dishImage" src="${dish.img}"></td>
-                <td>${this.price}</td>
+                <td>${dish.price}</td>
                 <td>${dish.description}</td>
                 <td><button onclick="addToOrder(${dish.price})">Add</button></td>
               </tr>
@@ -184,9 +187,8 @@ function addToOrder(price) {
       }
     }
   }
-  
 
-function updateSummary(price) {
+ function updateSummary(price) {
   const summaryElement = document.querySelector("#summary");
   if (summaryElement) {
     const totalItems = ordersArray.length;
@@ -194,7 +196,59 @@ function updateSummary(price) {
       (sum, order) => sum + order.dishes.length * price,
       0
     );
-    summaryElement.innerHTML = `Total Items: ${totalItems}, Total Price: $${totalPrice}`;
+
+    const dishList = ordersArray.flatMap((order) =>
+      order.dishes.map((dish) => ({
+        name: dish.dishName,
+        price: dish.price,
+        order,
+      }))
+    );
+
+    const dishItems = dishList
+      .map(
+        (dish, index) => `
+          <li>
+            ${dish.name} - $${dish.price}
+            <button onclick="removeDish(${index})">Remove</button>
+          </li>
+        `
+      )
+      .join("");
+
+    summaryElement.innerHTML = `
+      <p>Total Items: ${totalItems}, Total Price: ₪${totalPrice}</p>
+      <ul>${dishItems}</ul>
+    `;
   }
 }
+
+function removeDish(index) {
+    const dishList = ordersArray.flatMap((order) =>
+      order.dishes.map((dish) => ({
+        name: dish.dishName,
+        price: dish.price,
+        order,
+      }))
+    );
+  
+    const dishItem = dishList[index];
+    const { order, name, price } = dishItem;
+    thisTable.deletDish(order.dishes, dishItem);
+    updateSummary(price);
+    alert(`Removed dish: ${name}`);
+  
+    const summaryElement = document.querySelector("#summary");
+    if (summaryElement) {
+      const dishListElement = summaryElement.querySelector("ul");
+      if (dishListElement) {
+        const dishItems = dishListElement.querySelectorAll("li");
+        const itemToRemove = dishItems[index];
+        if (itemToRemove) {
+          dishListElement.removeChild(itemToRemove);
+        }
+      }
+    }
+  }
+  
 //renderDelet --> after chosing a table and click del-btn
