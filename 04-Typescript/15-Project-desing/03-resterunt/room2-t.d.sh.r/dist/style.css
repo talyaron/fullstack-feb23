@@ -79,6 +79,12 @@ img {
   transition: background-color 0.5s ease-in-out;
 }
 
-.added {
-  background-color: lightgreen;
+.red-hover:hover {
+  border: 2px solid red;
+  color: black;
+}
+
+.green-hover:hover {
+  border: 2px solid lime;
+  color: black;
 }

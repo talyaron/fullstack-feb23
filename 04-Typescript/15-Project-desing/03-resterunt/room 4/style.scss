@@ -28,6 +28,7 @@ body {
         position: absolute;
         top: 60px;
         left: 550px;
+        margin: 0 80px;
 
         li {
             list-style: none;
@@ -38,4 +39,12 @@ body {
             margin-top: 10px;
         }
     }
+
+    .check {
+        width: 30%;
+        position: relative;
+        top: -460px;
+        left: 900px;
+    }
+
 }

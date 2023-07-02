@@ -1,0 +1,56 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+#tablesDiv {
+  display: grid;
+  grid-template-columns: auto auto auto;
+}
+#tablesDiv .table {
+  width: 100px;
+  height: 130px;
+  border: 1px solid black;
+  text-align: center;
+  margin: 8px;
+}
+#tablesDiv .table .numOfTable {
+  display: block;
+  color: #b2afaf;
+}
+#tablesDiv .table .numberOfDiner {
+  padding: 8px;
+  display: inline-block;
+}
+#tablesDiv .table button {
+  margin-top: 30%;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+}
+
+.wrapper {
+  display: flex;
+  height: 100%;
+}
+.wrapper .menu {
+  width: 40%;
+  border-right: 1px solid black;
+}
+.wrapper .menu .dish {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
+  border: 1px solid black;
+  margin: 5px;
+  border-radius: 30px;
+}
+.wrapper .menu .dish .dishName {
+  width: 140px;
+}
+.wrapper .menu .dish img {
+  width: 70px;
+}
+.wrapper .orderList {
+  width: 50%;
+}

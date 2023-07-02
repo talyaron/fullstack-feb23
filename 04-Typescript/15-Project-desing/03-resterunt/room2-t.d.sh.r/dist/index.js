@@ -36,13 +36,15 @@ var Table = /** @class */ (function () {
         }
     };
     Table.prototype.deletDish = function (order, dish) {
-        //delet dish from order array
         try {
             if (!order)
-                throw new Error("can't find order");
+                throw new Error("Cannot find order");
             if (!dish)
-                throw new Error("can't find dish");
-            order = order.filter(function (e) { return e !== dish; });
+                throw new Error("Cannot find dish");
+            var index = order.findIndex(function (item) { return item === dish; });
+            if (index !== -1) {
+                order.splice(index, 1);
+            }
         }
         catch (error) {
             console.error(error);
@@ -50,7 +52,7 @@ var Table = /** @class */ (function () {
     };
     Table.prototype.closeTable = function () {
         //close the table and the order and return the calcolat of all dises price in the order (sum of the order)
-        this.catched = false;
+        this.catched = true;
     };
     return Table;
 }());
@@ -87,8 +89,9 @@ var dishes = [pastaRed, pastaMilk, pizzaOliv, pizzaOnion]; //contain the informa
 //------view------------------------
 //renderTable --> at open screen
 function renderTable(divName) {
-    var html = tables.map(function (table) {
-        return "<div class=\"table " + (table.catched ? "green-hover" : "red-hover") + "\"\n       id=\"table" + table.tableNumber + "\">" + table.tableNumber + "</div>";
+    var html = tables
+        .map(function (table) {
+        return "<button class=\"table " + (table.catched ? "red-hover" : "green-hover") + "\" id=\"table" + table.tableNumber + "\">" + table.tableNumber + "</button>";
     })
         .join("");
     divName.innerHTML = html;
@@ -116,7 +119,8 @@ tableDiv.forEach(function (item, idx) {
 //--------------------------- Summary - Price ---------------------------
 function renderMenu() {
     console.log(thisTable);
-    tablesDiv.innerHTML = "\n      <div class=\"menu\">\n        <h2>Table number " + thisTable.tableNumber + " Menu</h2>\n        <table>\n          <tr>\n            <th>Name</th>\n            <th>Image</th>\n            <th>Price</th>\n            <th>Description</th>\n            <th>Actions</th>\n          </tr>\n          " + dishes.map(function (dish) {
+    tablesDiv.innerHTML = "\n      <div class=\"menu\">\n        <h2>Table number " + thisTable.tableNumber + " Menu</h2>\n        <table>\n          <tr>\n            <th>Name</th>\n            <th>Image</th>\n            <th>Price</th>\n            <th>Description</th>\n            <th>Actions</th>\n          </tr>\n          " + dishes
+        .map(function (dish) {
         return "\n              <tr>\n                <td>" + dish.dishName + "</td>\n                <td><img class=\"dishImage\" src=\"" + dish.img + "\"></td>\n                <td>" + dish.price + "</td>\n                <td>" + dish.description + "</td>\n                <td><button onclick=\"addToOrder(" + dish.price + ")\">Add</button></td>\n              </tr>\n              ";
     })
         .join("") + "\n        </table>\n      </div>\n      <div id=\"summary\"></div>\n    ";
@@ -141,7 +145,47 @@ function updateSummary(price) {
     if (summaryElement) {
         var totalItems = ordersArray.length;
         var totalPrice = ordersArray.reduce(function (sum, order) { return sum + order.dishes.length * price; }, 0);
-        summaryElement.innerHTML = "Total Items: " + totalItems + ", Total Price: $" + totalPrice;
+        var dishList = ordersArray.flatMap(function (order) {
+            return order.dishes.map(function (dish) { return ({
+                name: dish.dishName,
+                price: dish.price,
+                order: order
+            }); });
+        });
+        var dishItems = dishList
+            .map(function (dish, index) { return "\n          <li>\n            " + dish.name + " - $" + dish.price + "\n            <button onclick=\"removeDish(" + index + ")\">Remove</button>\n          </li>\n        "; })
+            .join("");
+        summaryElement.innerHTML = "\n      <p>Total Items: " + totalItems + ", Total Price: \u20AA" + totalPrice + "</p>\n      <ul>" + dishItems + "</ul>\n    ";
     }
 }
-//renderDelet --> after chosing a table and click del-btn
+function removeDish(index) {
+    var dishList = ordersArray.flatMap(function (order) {
+        return order.dishes.map(function (dish) { return ({
+            name: dish.dishName,
+            price: dish.price,
+            order: order
+        }); });
+    });
+    var dishItem = dishList[index];
+    var order = dishItem.order, name = dishItem.name, price = dishItem.price;
+    thisTable.deletDish(order.dishes, dishItem);
+    updateSummary(price);
+    alert("Removed dish: " + name);
+    var summaryElement = document.querySelector("#summary");
+    if (summaryElement) {
+        var dishListElement = summaryElement.querySelector("ul");
+        if (dishListElement) {
+            var dishItems = dishListElement.querySelectorAll("li");
+            var itemToRemove = dishItems[index];
+            if (itemToRemove) {
+                dishListElement.removeChild(itemToRemove);
+            }
+        }
+    }
+}
+//test to run back page
+var backButton = document.querySelector("#backButton");
+backButton.addEventListener("click", backPage);
+function backPage() {
+    renderTable(tablesDiv);
+}
