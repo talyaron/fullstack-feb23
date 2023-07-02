@@ -1,15 +1,21 @@
-.cd{
+.cards{
     width: 95vw;
     display: flex;
     flex-wrap: wrap;
     margin:auto;
 }
 .card{
+    border-radius: 10px;
     width:120px;
     padding: 10px;
     box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.694);
     margin: 20px;
     img{
         width: 100%;
+    }
+    button{
+        margin-bottom: 5px;
+        padding: 5px;
+        border-radius: 10px;
     }
 }
