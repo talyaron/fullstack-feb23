@@ -110,5 +110,5 @@ function addOrderToList() {
         var chosenTable = JSON.parse(localStorage.getItem("chosenTable"));
         chosenTable.dishesOrdered.push(dishOrder);
     });
-    window.location.href = "./pages/menu.html";
+    window.location.href = "../home.html";
 }
