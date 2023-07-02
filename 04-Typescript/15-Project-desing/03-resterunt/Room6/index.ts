@@ -68,7 +68,7 @@ function handleFormSelect(ev:any) {
         console.dir(ev);
         debugger;
         const action = ev.target.id;
-        if (action === "NewOrder") {
+        if (action === "newOrder") {
             location.href = "newOrder.html"
         }
         else if (action === "openOrders") {
