@@ -6,7 +6,9 @@
 class Dishe {
   constructor(public name: string, public price: number, public image: string, public description: string) {
   }
+
 }
+
 const dishes: Dishe[] = [];
 
 // Create sushi dishes and add them to the menu
@@ -18,70 +20,29 @@ const sushi1 = new Dishe(
 );
 dishes.push(sushi1);
 
-const sushi2 = new Dishe(
-  'Spicy Tuna Roll',
-  10.99,
-  './dist/image/sushi.webp',
-  'Tuna, spicy mayo, and cucumber rolled in rice and seaweed.'
-);
+const sushi2 = new Dishe('Spicy Tuna Roll', 100.99, './dist/image/sushi.webp', 'Tuna, spicy mayo, and cucumber rolled in rice and seaweed.');
 dishes.push(sushi2);
 
-const sushi3 = new Dishe(
-  'Salmon Nigiri',
-  6.99,
-  './dist/image/sushi.webp',
-  'Fresh salmon slices served on a bed of rice.'
-);
+const sushi3 = new Dishe('Salmon Nigiri', 60.99, './dist/image/sushi2.jpg', 'Fresh salmon slices served on a bed of rice.');
 dishes.push(sushi3);
 
-const sushi4 = new Dishe(
-  'California Roll',
-  12.99,
-  './dist/image/sushi.webp',
-  'Fresh crab, avocado, and cucumber rolled in rice and seaweed.'
-);
+const sushi4 = new Dishe('California Roll', 62.99, './dist/image/sushi3.webp', 'Fresh crab, avocado, and cucumber rolled in rice and seaweed.');
 dishes.push(sushi4);
 
-const sushi5 = new Dishe(
-  'Spicy Tuna Roll',
-  10.99,
-  './dist/image/sushi.webp',
-  'Tuna, spicy mayo, and cucumber rolled in rice and seaweed.'
-);
+const sushi5 = new Dishe('Spicy Tuna Roll', 80.99, './dist/image/sushi.webp', 'Tuna, spicy mayo, and cucumber rolled in rice and seaweed.');
 dishes.push(sushi5);
 
-const sushi6 = new Dishe(
-  'Salmon Nigiri',
-  6.99,
-  './dist/image/sushi.webp',
-  'Fresh salmon slices served on a bed of rice.'
-);
+const sushi6 = new Dishe('Salmon Nigiri', 60.99, './dist/image/sushi2.jpg', 'Fresh salmon slices served on a bed of rice.');
 dishes.push(sushi6);
 
-const sushi7 = new Dishe(
-  'California Roll',
-  12.99,
-  './dist/image/sushi.webp',
-  'Fresh crab, avocado, and cucumber rolled in rice and seaweed.'
-);
+const sushi7 = new Dishe('California Roll', 92.99, './dist/image/sushi3.webp', 'Fresh crab, avocado, and cucumber rolled in rice and seaweed.');
 dishes.push(sushi7);
 
-const sushi8 = new Dishe(
-  'Spicy Tuna Roll',
-  10.99,
-  './dist/image/sushi.webp',
-  'Tuna, spicy mayo, and cucumber rolled in rice and seaweed.'
-);
+const sushi8 = new Dishe('Spicy Tuna Roll', 70.99, './dist/image/sushi.webp', 'Tuna, spicy mayo, and cucumber rolled in rice and seaweed.');
 dishes.push(sushi8);
 
-const sushi9 = new Dishe(
-  'Salmon Nigiri',
-  6.99,
-  './dist/image/sushi.webp',
-  'Fresh salmon slices served on a bed of rice.'
-);
+const sushi9 = new Dishe('Salmon Nigiri', 60.99, './dist/image/sushi2.jpg', 'Fresh salmon slices served on a bed of rice.');
 dishes.push(sushi9);
-
 
 console.log(dishes);
 
@@ -124,10 +85,10 @@ const tables: Table[] = [];
 
 renderregisterControlers(document.querySelector("#register"));
 
- function renderregisterControlers(rootElement: HTMLElement | null) {
-   try {
-     const html =
-       `<form onsubmit="handleRegisterOrder(event)">
+function renderregisterControlers(rootElement: HTMLElement | null) {
+  try {
+    const html =
+      `<form onsubmit="handleRegisterOrder(event)">
                <input type="string" name="phoneNum" placeholder="phone number" required>
              <select name="Table" id="Table" required>
                 <option value="string">Table 1</option>
@@ -140,13 +101,13 @@ renderregisterControlers(document.querySelector("#register"));
              <button type="submit">send order</button>
             </form>`;
 
-     if (!rootElement) throw new Error("no root element");
+    if (!rootElement) throw new Error("no root element");
 
-     rootElement.innerHTML = html;
-   } catch (error) {
-     console.error(error);
-   }
- }
+    rootElement.innerHTML = html;
+  } catch (error) {
+    console.error(error);
+  }
+}
 
 function renderMain(
   dishes: Dishe[],
@@ -156,7 +117,7 @@ function renderMain(
       `<div class="main">
           <div class="dish">
            ${dishes.map(dishe => {
-      return `<div class="dish">
+        return `<div class="dish">
             <img src="${dishe.image}" alt="${dishe.name}">
             <div class="dish-text">  
               <h3>${dishe.name}</h3>

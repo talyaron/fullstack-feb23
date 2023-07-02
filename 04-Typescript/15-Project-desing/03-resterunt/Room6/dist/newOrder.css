@@ -44,7 +44,9 @@
 .wrapper .main .dish .dish-text {
   position: relative;
   width: 350px;
-  top: -9vh;
+  height: 13vh;
+  top: -10vh;
   left: 20%;
-  margin-left: 1vw;
+  margin-left: 2vw;
+  border-bottom: 1px solid white;
 }
