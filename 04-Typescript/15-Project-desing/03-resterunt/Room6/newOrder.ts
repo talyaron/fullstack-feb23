@@ -1,14 +1,10 @@
-//input: phone number
-//צג מחיר
-//button: send order
-
 //menu - class
 class Dishe {
   id: string;
   constructor(public name: string, public price: number, public image: string, public description: string) {
+    this.id = Math.random().toString(36).substr(2, 9);
   }
-  this.id = Math.random().toString(36).substr(2, 9);
-}
+};
 
 const dishes: Dishe[] = [];
 
@@ -41,19 +37,7 @@ class Order {
   constructor(public dishs: Dishe[], public phoneNum: string) {
     this.id = Math.random().toString(36).substr(2, 9);
   }
-
-  // calculatePayment() {
-  //   try {
-  //     if (this.tableOrder === null) throw new Error();
-  //     this.tableOrder.forEach(dishe => {
-  //       this.totalPayment += dishe.price;
-  //     })
-
-  //   } catch (error) {
-  //     console.error(error)
-  //   }
-  // }
-}
+};
 const orders: Order[] = [];
 
 
@@ -68,7 +52,7 @@ class Table {
   setOccupide() {
     this.occupide = !this.occupide;
   }
-}
+};
 const tables: Table[] = [];
 const table1 = new Table('table 1', []);
 const table2 = new Table('table 2', []);
@@ -86,15 +70,12 @@ function renderregisterControlers(rootElement: HTMLElement | null) {
       `<form onsubmit="handleRegisterOrder(event)">
                <input type="string" name="phoneNum" placeholder="phone number" required>
           <select name="Table" id="Table" required> 
-            <option value="string">table 1</option>
-            <option value="string">table 2</option>
-            <option value="string">table 3</option>
-            <option value="string">table 4</option>
-            <option value="string">table 5</option>
-            <option value="string">table 6</option> 
+          ${tables.map(table => {
+        return `<option value="string">${table.tableNum}</option>`
+      })};
           </select>
              <button type="submit">send order</button>
-            </form>`;
+     </form>`;
 
     if (!rootElement) throw new Error("no root element");
 
@@ -102,7 +83,7 @@ function renderregisterControlers(rootElement: HTMLElement | null) {
   } catch (error) {
     console.error(error);
   }
-}
+};
 
 function renderMain(
   dishes: Dishe[],
@@ -110,8 +91,7 @@ function renderMain(
   try {
     const html =
       `<div class="main">
-          <div class="dish">
-           ${dishes.map(dishe => {
+      ${dishes.map(dishe => {
         return `<div class="dish">
             <img src="${dishe.image}" alt="${dishe.name}">
             <div class="dish-text">  
@@ -119,7 +99,7 @@ function renderMain(
               <p>${dishe.description}</p>
               <p>${dishe.price}</p>
            </div>
-           <button onclick="handleAddToOrder(event)">add to order</button>
+           <button onclick="handleAddToOrder('${dishe.id}')">add to order</button>
        </div>`
       })};
           </div> 
@@ -130,18 +110,19 @@ function renderMain(
   } catch (error) {
     console.error(error);
   }
-}
+};
 
-function handleAddToOrder(event: any) {
+function handleAddToOrder(event) {
   try {
     event.preventDefault();
-    const dish = event.target.elements.dish.value;
-
+    var dish = event.target.elements.dish.value;
     orders.push(dish);
+    console.log(dish);
   } catch (error) {
     console.error(error);
   }
 };
+
 
 function handleRegisterOrder(event: any) {
   try {
@@ -157,5 +138,4 @@ function handleRegisterOrder(event: any) {
   } catch (error) {
     console.error(error);
   }
-}
 };
