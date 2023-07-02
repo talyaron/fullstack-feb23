@@ -1,66 +1,150 @@
 //entities:
 //Tables, Order, Dishes
-//return a random complex number as string
-var uid = function () {
-    return Date.now().toString(36) + Math.random().toString(36).substr(2);
-};
-//table number with number of people sitting on it
+//no need for unic ids!!
+//the table class will contain the order class
+//the table class will have the option to add or delet an order
+//the table class will have the option to open or closed the table (t-open, f-closed)
 var Table = /** @class */ (function () {
-    function Table(tableNumbe, capacity, chatch) {
-        this.tableNumbe = tableNumbe;
-        this.capacity = capacity;
-        this.chatch = chatch;
+    function Table(tableNumber, catched, order) {
+        this.tableNumber = tableNumber;
+        this.catched = catched;
     }
-    return Table;
-}());
-var Dish = /** @class */ (function () {
-    function Dish(disgName, img, price, status, description) {
-        this.disgName = disgName;
-        this.img = img;
-        this.price = price;
-        this.status = status;
-        this.description = description;
-        this.uidDishe = Number(uid());
-    }
-    return Dish;
-}());
-//all the dishes for one table
-var Order = /** @class */ (function () {
-    function Order(table, dishes, status) {
-        this.table = table;
-        this.dishes = dishes;
-        this.status = status;
-        this.uidOrder = Number(uid());
-    }
-    Order.prototype.openTable = function () {
-        //add new order
+    Table.prototype.openTable = function () {
+        //the function return that the table is catched (=true)
         try {
-            if (!this.table.tableNumbe)
+            if (!this.tableNumber)
                 throw new Error("no table catched");
-            //3 btns -> add, del, close
-            return (this.table.chatch = true);
+            this.catched = true; // the table is now open
+            // render 3 btns -> add, del, close
         }
         catch (error) {
             console.error(error);
         }
     };
-    Order.prototype.addDish = function (table, dish) {
+    //to add dish to an order, we need the specific order and the dish to add
+    Table.prototype.addDish = function (order, dish) {
         //add dish to order array
         try {
-            if (!table.chatch)
-                throw new Error("not an open table");
+            if (!order)
+                throw new Error("no order");
+            if (!dish)
+                throw new Error("not a dish");
             order.push(dish);
         }
         catch (error) {
             console.error(error);
         }
     };
-    Order.prototype.deletDish = function () {
+    Table.prototype.deletDish = function (order, dish) {
         //delet dish from order array
+        try {
+            if (!order)
+                throw new Error("cant find order");
+            if (!dish)
+                throw new Error("cant find dish");
+            order = order.filter(function (e) { return e !== dish; });
+        }
+        catch (error) {
+            console.error(error);
+        }
     };
-    Order.prototype.closeOrder = function () {
-        // calc sum of dises price
-        this.status = false;
+    Table.prototype.closeTable = function () {
+        //close the table and the order and return the calcolat of all dises price in the order (sum of the order)
+        this.catched = false;
     };
+    return Table;
+}());
+var tables = [
+    new Table(1, false),
+    new Table(2, false),
+    new Table(3, false),
+    new Table(4, true),
+];
+//the order class will contain the dish class
+var Order = /** @class */ (function () {
+    function Order(dishes) {
+        this.dishes = dishes;
+    }
     return Order;
 }());
+var ordersArray = []; //contain all the dishes in a spesific order
+//the Dish class will contain the info of the dish
+var Dish = /** @class */ (function () {
+    function Dish(dishName, img, price, description) {
+        this.dishName = dishName;
+        this.img = img;
+        this.price = price;
+        this.description = description;
+    }
+    return Dish;
+}());
+//creat some dished
+var pastaRed = new Dish("pastaRed", "https://foodhub.scene7.com/is/image/woolworthsltdprod/Easy-chicken-and-bacon-pasta:Desktop-1300x658", 26, "red pasta with bazil");
+var pastaMilk = new Dish("pastaMilk", "https://realhousemoms.com/wp-content/uploads/One-Pot-Alfredo-Pasta-RECIPE-CARD2.jpg", 26, "pasta with milk");
+var pizzaOnion = new Dish("pizzaOnion", "https://pizzatoday.com/wp-content/uploads/2020/05/OnionPizza-1.jpg", 35, "pizza with onions");
+var pizzaOliv = new Dish("pizzaOliv", "https://images.squarespace-cdn.com/content/v1/55370317e4b047f1053ee431/1546891998774-XFFPMCUA4MAQ5251Y5TA/ke17ZwdGBToddI8pDm48kEKeeVwguwXFnn1ZDuv86ikUqsxRUqqbr1mOJYKfIPR7LoDQ9mXPOjoJoqy81S2I8PaoYXhp6HxIwZIk7-Mi3Tsic-L2IOPH3Dwrhl-Ne3Z2sPGQHE4gTOo1QfbaGNmWRT3ltfHJNtU0FQBDPzwxb0xkOpdljO7Z-5qh0zg85Jnj/Loaded+Olive+Pizza?format=original", 30, "pizza with olives");
+var dishes = [pastaRed, pastaMilk, pizzaOliv, pizzaOnion]; //contain the information about all dishes
+//------view------------------------
+//renderTable --> at open screen
+function renderTable(divName) {
+    var html = tables
+        .map(function (table) {
+        return "<div class=\"table " + (table.catched ? "green-hover" : "red-hover") + "\" id=\"table" + table.tableNumber + "\">" + table.tableNumber + "</div>";
+    })
+        .join("");
+    divName.innerHTML = html;
+}
+var tablesDiv = document.querySelector(".tables");
+renderTable(tablesDiv);
+///Table Event Listener
+var thisTable;
+var tableDiv = document.querySelectorAll(".table");
+tableDiv.forEach(function (item, idx) {
+    item.addEventListener("click", function () {
+        var result = tables.find(function (_a) {
+            var tableNumber = _a.tableNumber;
+            return tableNumber === idx + 1;
+        });
+        if (!(result === null || result === void 0 ? void 0 : result.catched)) {
+            result === null || result === void 0 ? void 0 : result.openTable();
+        }
+        else
+            result === null || result === void 0 ? void 0 : result.closeTable();
+        thisTable = result;
+        renderMenu();
+    });
+});
+//--------------------------- Summary - Price ---------------------------
+function renderMenu() {
+    var _this = this;
+    console.log(thisTable);
+    tablesDiv.innerHTML = "\n      <div class=\"menu\">\n        <h2>Table number " + thisTable.tableNumber + " Menu</h2>\n        <table>\n          <tr>\n            <th>Name</th>\n            <th>Image</th>\n            <th>Price</th>\n            <th>Description</th>\n            <th>Actions</th>\n          </tr>\n          " + dishes
+        .map(function (dish) {
+        return "\n              <tr>\n                <td>" + dish.dishName + "</td>\n                <td><img class=\"dishImage\" src=\"" + dish.img + "\"></td>\n                <td>" + _this.price + "</td>\n                <td>" + dish.description + "</td>\n                <td><button onclick=\"addToOrder(" + dish.price + ")\">Add</button></td>\n              </tr>\n              ";
+    })
+        .join("") + "\n        </table>\n      </div>\n      <div id=\"summary\"></div>\n    ";
+}
+function addToOrder(price) {
+    if (thisTable) {
+        var order = new Order([]);
+        ordersArray.push(order);
+        thisTable.addDish(order.dishes, price);
+        updateSummary(price);
+        var summaryElement_1 = document.querySelector("#summary");
+        if (summaryElement_1) {
+            summaryElement_1.classList.add("added");
+            setTimeout(function () {
+                summaryElement_1.classList.remove("added");
+            }, 500);
+        }
+    }
+}
+function updateSummary(price) {
+    var summaryElement = document.querySelector("#summary");
+    if (summaryElement) {
+        var totalItems = ordersArray.length;
+        var totalPrice = ordersArray.reduce(function (sum, order) { return sum + order.dishes.length * price; }, 0);
+        summaryElement.innerHTML = "Total Items: " + totalItems + ", Total Price: $" + totalPrice;
+    }
+}
+//renderDelet --> after chosing a table and click del-btn

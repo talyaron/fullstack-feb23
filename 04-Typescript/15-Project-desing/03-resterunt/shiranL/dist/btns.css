@@ -1,0 +1,94 @@
+.table-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.table-button {
+  display: inline-block;
+  width: 120px;
+  height: 120px;
+  margin: 10px;
+  border: 2px solid #ccc;
+  border-radius: 50%;
+  background-color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+  line-height: 120px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.table-button:hover {
+  background-color: #f1f1f1;
+}
+
+#tableDetailsContainer {
+  background-color: #f2f2f2;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+#tableDetailsContainer h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: #007bff;
+}
+#tableDetailsContainer p {
+  margin-bottom: 5px;
+  color: #dc3545;
+}
+#tableDetailsContainer .table-info {
+  font-weight: bold;
+}
+#tableDetailsContainer .id-info {
+  color: #dc3545;
+}
+#tableDetailsContainer .name-info {
+  color: #28a745;
+}
+
+.openOrder-container {
+  display: flex;
+  flex-direction: row;
+}
+.openOrder-container .openOrderDishes {
+  width: 300px;
+  height: 400px;
+  border: 1px solid #28a745;
+}
+
+.MenueDiv {
+  width: 800px;
+  border: 1px solid #28a745;
+}
+.MenueDiv .disheCard {
+  width: 200px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  display: inline-block;
+  margin: 10px;
+  /* Add margin-right for spacing between cards */
+}
+.MenueDiv .disheCard .dishDetails {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.MenueDiv .disheCard .dishDetails .dishName {
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+.MenueDiv .disheCard .dishDetails .dishPrice {
+  color: #999;
+  margin-bottom: 10px;
+}
+.MenueDiv .disheCard .dishDetails .dishImage {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
