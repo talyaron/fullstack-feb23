@@ -89,16 +89,15 @@ var dishes = [pastaRed, pastaMilk, pizzaOliv, pizzaOnion]; //contain the informa
 //------view------------------------
 //renderTable --> at open screen
 function renderTable(divName) {
-    var html = tables
-        .map(function (table) {
-        return "<button class=\"table " + (table.catched ? "red-hover" : "green-hover") + "\" id=\"table" + table.tableNumber + "\">" + table.tableNumber + "</button>";
+    var html = tables.map(function (table) {
+        return "<button class=\"table " + (table.catched ? "red-hover" : "green-hover") + "\"\n       id=\"table" + table.tableNumber + "\">" + table.tableNumber + "</button>";
     })
         .join("");
     divName.innerHTML = html;
 }
 var tablesDiv = document.querySelector(".tables");
 renderTable(tablesDiv);
-///Table Event Listener
+//Table Event Listener
 var thisTable;
 var tableDiv = document.querySelectorAll(".table");
 tableDiv.forEach(function (item, idx) {
@@ -119,8 +118,7 @@ tableDiv.forEach(function (item, idx) {
 //--------------------------- Summary - Price ---------------------------
 function renderMenu() {
     console.log(thisTable);
-    tablesDiv.innerHTML = "\n      <div class=\"menu\">\n        <h2>Table number " + thisTable.tableNumber + " Menu</h2>\n        <table>\n          <tr>\n            <th>Name</th>\n            <th>Image</th>\n            <th>Price</th>\n            <th>Description</th>\n            <th>Actions</th>\n          </tr>\n          " + dishes
-        .map(function (dish) {
+    tablesDiv.innerHTML = "\n      <div class=\"menu\">\n        <h2>Table number " + thisTable.tableNumber + " Menu</h2>\n        <table>\n          <tr>\n            <th>Name</th>\n            <th>Image</th>\n            <th>Price</th>\n            <th>Description</th>\n            <th>Actions</th>\n          </tr>\n          " + dishes.map(function (dish) {
         return "\n              <tr>\n                <td>" + dish.dishName + "</td>\n                <td><img class=\"dishImage\" src=\"" + dish.img + "\"></td>\n                <td>" + dish.price + "</td>\n                <td>" + dish.description + "</td>\n                <td><button onclick=\"addToOrder(" + dish.price + ")\">Add</button></td>\n              </tr>\n              ";
     })
         .join("") + "\n        </table>\n      </div>\n      <div id=\"summary\"></div>\n    ";

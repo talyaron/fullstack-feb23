@@ -20,15 +20,15 @@ var emptyDishArray = [];
 //------------------------------------Table----------------------------------------
 var Table = /** @class */ (function () {
     function Table(numOfTable, numOfDiners) {
-        if (numOfDiners === void 0) { numOfDiners = 1; }
+        if (numOfDiners === void 0) { numOfDiners = 0; }
         this.numOfTable = numOfTable;
         this.numOfDiners = numOfDiners;
     }
     return Table;
 }());
 var tables = [];
-for (var i = 0; i < 11; i++) {
-    var newTable = new Table(i, 1);
+for (var i = 1; i < 11; i++) {
+    var newTable = new Table(i);
     tables.push(newTable);
 }
 //---------------------------------Table Order Handler-------------------------------
@@ -40,13 +40,55 @@ var TableOrderHandler = /** @class */ (function () {
     }
     return TableOrderHandler;
 }());
+var tablesOrder = [];
+tables.forEach(function (tbl) {
+    var newOrder = new TableOrderHandler(tbl, emptyDishArray);
+    tablesOrder.push(newOrder);
+});
 //-----------------------------------------function------------------------------------
-function onLoad() {
-}
 function renderTables() {
     var tablesDiv = document.querySelector("#tablesDiv");
     tables.forEach(function (table) {
-        tablesDiv.innerHTML += "\n        <div table=" + table.numOfTable + " class=\"table\">\n        <button onclick=\"addDiner\">+</button>\n        <h3 class=\"numberOfDiner\">" + table.numOfDiners + "</h3>\n        <button onclick=\"reduceDiner\">-</button>\n      </div>\n        ";
+        tablesDiv.innerHTML += "\n        <div table=" + table.numOfTable + " class=\"table\" onclick=\"openMenu(event)\" >\n        <h3 class=\"numOfTable\">" + table.numOfTable + "</h3>\n        <button onclick=\"addDiner(event)\">+</button>\n        <h3 class=\"numberOfDiner\">" + table.numOfDiners + "</h3>\n        <button onclick=\"reduceDiner(event)\">-</button>\n      </div>\n        ";
     });
 }
 renderTables();
+function addDiner(event) {
+    var numOfTable = event.target.parentNode.attributes.table.value;
+    var numOfDiners = event.target.parentNode.querySelector(".numberOfDiner");
+    numOfDiners.innerHTML++;
+    tablesOrder.find(function (table) { return table.table.numOfTable == numOfTable; }).table
+        .numOfDiners++;
+}
+function reduceDiner(event) {
+    var numOfTable = event.target.parentNode.attributes.table.value;
+    var numOfDiners = event.target.parentNode.querySelector(".numberOfDiner");
+    if (numOfDiners.innerHTML == 0)
+        return;
+    else
+        numOfDiners.innerHTML--;
+    tablesOrder.find(function (table) { return table.table.numOfTable == numOfTable; }).table
+        .numOfDiners--;
+}
+//onclick table
+function openMenu(event) {
+    var numChosenTable = event.target.attributes.table.value;
+    console.log(numChosenTable);
+    var chosenTable = tablesOrder.find(function (tbl) { return tbl.table.numOfTable == numChosenTable; });
+    console.log(chosenTable);
+    var chosenTableString = JSON.stringify(chosenTable);
+    localStorage.setItem("chosenTable", chosenTableString);
+    window.location.href = "./pages/menu.html";
+}
+function renderMenu() {
+    var menuDiv = document.querySelector("#menu");
+    dishesArray.forEach(function (dish) {
+        menuDiv.innerHTML += "\n          <div class =\"dish\" name = " + dish.dishName + "> \n          <img src=" + dish.dishImg + " alt=\"\">\n          <h3 class=\"dishName\"> " + dish.dishName + " </h3>\n          <h3> " + dish.price + "$ </h3>\n        <button onclick=\"addDishToOrderList(" + dish.dishName + ")\"><span class=\"material-symbols-outlined\"> add_box </span></button>\n          </div>\n  ";
+    });
+}
+renderMenu();
+function addDishToOrderList(dishName) {
+    var orderList = document.querySelector(".orderList");
+    var chosenDish = dishesArray.find(function (dish) { return dish.dishName == dishName; });
+    orderList.innerHTML += "\n    <div class = \"orderListItem\" name = " + chosenDish.dishName + ">\n        <img src=" + chosenDish.dishImg + " alt=\"\">\n        <h3 class=\"dishName\"> " + chosenDish.dishName + " </h3>\n        <input type=\"number\" value=\"1\" min=\"1\" placeholder=\"amount\"> </input>\n        <h3> " + chosenDish.price + "$ </h3>\n        <button onclick=\"removeDishToOrderList(" + chosenDish.dishName + ")\"><span class=\"material-symbols-outlined\"> delete </span></button>\n    </div>\n    \n    ";
+}
