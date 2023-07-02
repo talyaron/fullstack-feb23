@@ -73,7 +73,7 @@ var tables = [];
 renderregisterControlers(document.querySelector("#register"));
 function renderregisterControlers(rootElement) {
     try {
-        var html = "<form onsubmit=\"handleRegisterOrder(event)\">\n            <input type=\"string\" name=\"phoneNum\" placeholder=\"phone number\" required>\n          <select name=\"Table\" id=\"Table\" required>\n             <option value=\"string\">Table 1</option>\n             <option value=\"string\">Table 2</option>\n             <option value=\"string\">Table 3</option>\n             <option value=\"string\">Table 4</option>\n             <option value=\"string\">Table 5</option>\n             <option value=\"string\">Table 6</option>\n          </select>\n          <button type=\"submit\">send order</button>\n         </form>";
+        var html = "<form onsubmit=\"handleRegisterOrder(event)\">\n               <input type=\"string\" name=\"phoneNum\" placeholder=\"phone number\" required>\n             <select name=\"Table\" id=\"Table\" required>\n                <option value=\"string\">Table 1</option>\n                <option value=\"string\">Table 2</option>\n                <option value=\"string\">Table 3</option>\n                <option value=\"string\">Table 4</option>\n                <option value=\"string\">Table 5</option>\n                <option value=\"string\">Table 6</option>\n             </select>\n             <button type=\"submit\">send order</button>\n            </form>";
         if (!rootElement)
             throw new Error("no root element");
         rootElement.innerHTML = html;
@@ -85,7 +85,7 @@ function renderregisterControlers(rootElement) {
 function renderMain(dishes, rootElement) {
     try {
         var html = "<div class=\"main\">\n          <div class=\"dish\">\n           " + dishes.map(function (dishe) {
-            return "<div class=\"dish\">\n                      <img src=\"" + dishe.image + "\" alt=\"" + dishe.name + "\">\n                    <div class=\"dish-text\">  \n                      <h3>" + dishe.name + "</h3>\n                      <p>" + dishe.description + "</p>\n                      <p>" + dishe.price + "</p>\n                    </div>\n                   </div>";
+            return "<div class=\"dish\">\n            <img src=\"" + dishe.image + "\" alt=\"" + dishe.name + "\">\n            <div class=\"dish-text\">  \n              <h3>" + dishe.name + "</h3>\n              <p>" + dishe.description + "</p>\n              <p>" + dishe.price + "</p>\n           </div>\n       </div>";
         }) + ";\n          </div> \n       </div>";
         if (!rootElement)
             throw new Error("no root element");
