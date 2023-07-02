@@ -17,6 +17,12 @@ var dishesArray = [
     new Dish("bread", 22, "https://cdn.pixabay.com/photo/2019/05/06/14/24/bread-4183225_1280.jpg", 4),
 ];
 var emptyDishArray = [];
+function addDishToOrder(dishName, dishNumber) {
+    var newOrderDish = dishesArray.find(function (dish) { return dish.dishName == dishName; });
+    if (newOrderDish)
+        newOrderDish.dishNumber = dishNumber;
+    return newOrderDish;
+}
 //------------------------------------Table----------------------------------------
 var Table = /** @class */ (function () {
     function Table(numOfTable, numOfDiners) {
@@ -95,4 +101,14 @@ function removeDishToOrderList(event) {
     var chosenDish = event.target.parentNode.parentNode;
     chosenDish.remove();
 }
-function addOrderToList() { }
+function addOrderToList() {
+    var _a;
+    var ordersDiv = (_a = document.querySelector("#orderList")) === null || _a === void 0 ? void 0 : _a.querySelectorAll(".orderListItem");
+    ordersDiv === null || ordersDiv === void 0 ? void 0 : ordersDiv.forEach(function (item) {
+        var _a;
+        var dishOrder = addDishToOrder(item.attributes.name.value, (_a = item.querySelector("input")) === null || _a === void 0 ? void 0 : _a.valueAsNumber);
+        var chosenTable = JSON.parse(localStorage.getItem("chosenTable"));
+        chosenTable.dishesOrdered.push(dishOrder);
+    });
+    window.location.href = "./pages/menu.html";
+}

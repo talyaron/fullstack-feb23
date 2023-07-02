@@ -7,6 +7,7 @@ class Dish {
     public dishImg: string,
     public dishNumber: number = 1,
   ) {}
+
 }
 
 const dishesArray: Dish[] = [
@@ -40,6 +41,14 @@ const dishesArray: Dish[] = [
   ),
 ];
 const emptyDishArray: Dish[] = [];
+
+function addDishToOrder(dishName:string, dishNumber:number) :Dish{
+        const newOrderDish = dishesArray.find(dish => dish.dishName==dishName)
+        if(newOrderDish)
+        newOrderDish.dishNumber = dishNumber
+        return newOrderDish!;
+}
+  
 
 //------------------------------------Table----------------------------------------
 class Table {
@@ -148,4 +157,12 @@ function removeDishToOrderList(event) {
   chosenDish.remove();
 }
 
-function addOrderToList() {}
+function addOrderToList() {
+    const ordersDiv = document.querySelector("#orderList")?.querySelectorAll(".orderListItem")
+    ordersDiv?.forEach(item => {
+       const dishOrder :Dish = addDishToOrder(item.attributes.name.value , item.querySelector("input")?.valueAsNumber! ) 
+       const chosenTable :TableOrderHandler =  JSON.parse(localStorage.getItem("chosenTable")!)
+       chosenTable.dishesOrdered.push(dishOrder)
+    })
+    window.location.href = "./pages/menu.html";
+}
