@@ -1,0 +1,76 @@
+body {
+  margin: auto;
+  align-content: center;
+  background-color: antiquewhite;
+  background-image: url(./background.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  max-width: 98vw;
+}
+body .back {
+  width: 60px;
+}
+body #mainOpen {
+  text-align: center;
+}
+
+.red {
+  background-color: red;
+}
+
+.green {
+  background-color: #069b06;
+}
+
+input[type=button] {
+  border-radius: 10px;
+}
+
+input[type=button]:hover {
+  cursor: pointer;
+  background-color: aqua;
+}
+
+#tablesMap {
+  margin: 20px 0px;
+}
+#tablesMap form {
+  display: flex;
+  width: 75%;
+  margin: auto;
+  justify-content: space-around;
+  gap: 50px;
+  flex-wrap: wrap;
+}
+#tablesMap form input {
+  background-image: url(./table.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100px;
+  height: 100px;
+}
+
+#bill {
+  width: 20%;
+  height: fit-content;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  color: white;
+}
+#bill .buttons {
+  display: flex;
+  justify-content: space-around;
+}
+#bill table {
+  text-align: left;
+}
+#bill table th {
+  color: #159ed0;
+}
+#bill h4 {
+  color: #08e0e7;
+}
