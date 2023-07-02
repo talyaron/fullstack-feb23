@@ -52,26 +52,26 @@
     }
 }
 
-img{
+img {
     width: 200px;
     height: 200px;
     position: relative;
 }
 
-.menu{
+.menu {
     border: 2px solid black;
-    position:relative;
+    position: relative;
     justify-content: center;
     align-content: center;
     padding: 10px;
     margin: 10px;
 
-    h2{
-        display:flex;
+    h2 {
+        display: flex;
         justify-content: center;
     }
 
-    tr:nth-child(1){
+    tr:nth-child(1) {
         border-bottom: 2px solid red;
     }
 }
@@ -84,10 +84,15 @@ img{
     align-content: center;
     padding: 10px;
     margin: 10px;
-    transition: background-color 0.5s ease-in-out; 
-  }
-  
-  .added {
-    background-color: lightgreen; 
-  }
-  
+    transition: background-color 0.5s ease-in-out;
+}
+
+.red-hover:hover {
+    border:2px solid red;
+    color: black;
+}
+
+.green-hover:hover {
+    border:2px solid lime;
+    color: black;
+}
