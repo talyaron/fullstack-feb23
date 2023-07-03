@@ -1,6 +1,3 @@
-//input: phone number
-//צג מחיר
-//button: send order
 //menu - class
 var Dishe = /** @class */ (function () {
     function Dishe(name, price, image, description) {
@@ -8,59 +5,41 @@ var Dishe = /** @class */ (function () {
         this.price = price;
         this.image = image;
         this.description = description;
+        this.id = Math.random().toString(36).substr(2, 9);
     }
     return Dishe;
 }());
+;
 var dishes = [];
 // Create sushi dishes and add them to the menu
-var sushi1 = new Dishe('California Roll', 12.99, './dist/image/sushi3.webp', 'Fresh crab, avocado, and cucumber rolled in rice and seaweed.');
-dishes.push(sushi1);
+var sushi1 = new Dishe('California Roll', 32.99, './dist/image/sushi3.webp', 'Fresh crab, avocado, and cucumber rolled in rice and seaweed.');
 var sushi2 = new Dishe('Spicy Tuna Roll', 100.99, './dist/image/sushi.webp', 'Tuna, spicy mayo, and cucumber rolled in rice and seaweed.');
-dishes.push(sushi2);
 var sushi3 = new Dishe('Salmon Nigiri', 60.99, './dist/image/sushi2.jpg', 'Fresh salmon slices served on a bed of rice.');
-dishes.push(sushi3);
 var sushi4 = new Dishe('California Roll', 62.99, './dist/image/sushi3.webp', 'Fresh crab, avocado, and cucumber rolled in rice and seaweed.');
-dishes.push(sushi4);
 var sushi5 = new Dishe('Spicy Tuna Roll', 80.99, './dist/image/sushi.webp', 'Tuna, spicy mayo, and cucumber rolled in rice and seaweed.');
-dishes.push(sushi5);
 var sushi6 = new Dishe('Salmon Nigiri', 60.99, './dist/image/sushi2.jpg', 'Fresh salmon slices served on a bed of rice.');
-dishes.push(sushi6);
 var sushi7 = new Dishe('California Roll', 92.99, './dist/image/sushi3.webp', 'Fresh crab, avocado, and cucumber rolled in rice and seaweed.');
-dishes.push(sushi7);
 var sushi8 = new Dishe('Spicy Tuna Roll', 70.99, './dist/image/sushi.webp', 'Tuna, spicy mayo, and cucumber rolled in rice and seaweed.');
-dishes.push(sushi8);
 var sushi9 = new Dishe('Salmon Nigiri', 60.99, './dist/image/sushi2.jpg', 'Fresh salmon slices served on a bed of rice.');
-dishes.push(sushi9);
+dishes.push(sushi1, sushi2, sushi3, sushi4, sushi5, sushi6, sushi7, sushi8, sushi9);
 console.log(dishes);
 //order - class
 var Order = /** @class */ (function () {
-    function Order(tableOrder, phoneNum) {
-        this.tableOrder = tableOrder;
+    function Order(dishs, phoneNum) {
+        this.dishs = dishs;
         this.phoneNum = phoneNum;
         this.totalPayment = 0;
         this.id = Math.random().toString(36).substr(2, 9);
     }
-    //חישוב מחיר ההזמנה
-    Order.prototype.calculatePayment = function () {
-        var _this = this;
-        try {
-            if (this.tableOrder === null)
-                throw new Error();
-            this.tableOrder.forEach(function (dishe) {
-                _this.totalPayment += dishe.price;
-            });
-        }
-        catch (error) {
-            console.error(error);
-        }
-    };
     return Order;
 }());
+;
 var orders = [];
 //select teble - class
 var Table = /** @class */ (function () {
-    function Table(order) {
-        this.order = order;
+    function Table(tableNum, orders) {
+        this.tableNum = tableNum;
+        this.orders = orders;
         this.occupide = false;
         this.id = Math.random().toString(36).substr(2, 9);
     }
@@ -69,11 +48,21 @@ var Table = /** @class */ (function () {
     };
     return Table;
 }());
+;
 var tables = [];
+var table1 = new Table('table 1', []);
+var table2 = new Table('table 2', []);
+var table3 = new Table('table 3', []);
+var table4 = new Table('table 4', []);
+var table5 = new Table('table 5', []);
+var table6 = new Table('table 6', []);
+tables.push(table1, table2, table3, table4, table5, table6);
 renderregisterControlers(document.querySelector("#register"));
 function renderregisterControlers(rootElement) {
     try {
-        var html = "<form onsubmit=\"handleRegisterOrder(event)\">\n               <input type=\"string\" name=\"phoneNum\" placeholder=\"phone number\" required>\n             <select name=\"Table\" id=\"Table\" required>\n                <option value=\"string\">Table 1</option>\n                <option value=\"string\">Table 2</option>\n                <option value=\"string\">Table 3</option>\n                <option value=\"string\">Table 4</option>\n                <option value=\"string\">Table 5</option>\n                <option value=\"string\">Table 6</option>\n             </select>\n             <button type=\"submit\">send order</button>\n            </form>";
+        var html = "<form onsubmit=\"handleRegisterOrder(event)\">\n               <input type=\"string\" name=\"phoneNum\" placeholder=\"phone number\" required>\n          <select name=\"Table\" id=\"Table\" required> \n          " + tables.map(function (table) {
+            return "<option value=\"string\">" + table.tableNum + "</option>";
+        }) + ";\n          </select>\n             <button type=\"submit\">send order</button>\n     </form>\n     <form onclick=\"handleBack(event)\">\n        <input type=\"button\" id=\"back\" value=\"Back\">\n     </form>";
         if (!rootElement)
             throw new Error("no root element");
         rootElement.innerHTML = html;
@@ -82,10 +71,11 @@ function renderregisterControlers(rootElement) {
         console.error(error);
     }
 }
+;
 function renderMain(dishes, rootElement) {
     try {
-        var html = "<div class=\"main\">\n          <div class=\"dish\">\n           " + dishes.map(function (dishe) {
-            return "<div class=\"dish\">\n            <img src=\"" + dishe.image + "\" alt=\"" + dishe.name + "\">\n            <div class=\"dish-text\">  \n              <h3>" + dishe.name + "</h3>\n              <p>" + dishe.description + "</p>\n              <p>" + dishe.price + "</p>\n           </div>\n       </div>";
+        var html = "<div class=\"main\">\n      " + dishes.map(function (dishe) {
+            return "<div class=\"dish\">\n            <img src=\"" + dishe.image + "\" alt=\"" + dishe.name + "\">\n            <div class=\"dish-text\">  \n              <h3>" + dishe.name + "</h3>\n              <p>" + dishe.description + "</p>\n              <p>" + dishe.price + "</p>\n           </div>\n           <button onclick=\"handleAddToOrder('" + dishe.id + "')\">add to order</button>\n       </div>";
         }) + ";\n          </div> \n       </div>";
         if (!rootElement)
             throw new Error("no root element");
@@ -95,6 +85,19 @@ function renderMain(dishes, rootElement) {
         console.error(error);
     }
 }
+;
+function handleAddToOrder(event) {
+    try {
+        event.preventDefault();
+        var dish = event.target.elements.dish.value;
+        orders.push(dish);
+        console.log(dish);
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+;
 function handleRegisterOrder(event) {
     try {
         event.preventDefault();
@@ -102,11 +105,21 @@ function handleRegisterOrder(event) {
         var table = event.target.elements.Table.value;
         var order = new Order(table, phoneNum);
         orders.push(order);
-        var totalPayment = order.calculatePayment();
-        console.log(totalPayment);
         renderMain(dishes, document.querySelector("#main"));
     }
     catch (error) {
         console.error(error);
     }
 }
+;
+function handleBack(ev) {
+    try {
+        ev.preventDefault();
+        console.dir(ev);
+        location.href = "index.html";
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+;
