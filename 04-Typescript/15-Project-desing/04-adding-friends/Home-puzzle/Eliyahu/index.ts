@@ -36,7 +36,9 @@ function getVegetablesFromStorage() {
 
 function renderAddVegetable(rootElement: HTMLElement | null) {
     try {
-        const html = `<form onsubmit="handleAddVegetable(event)">
+        const html = `
+        <h1> Welcome to your vegetables drawer </h1>
+        <form onsubmit="handleAddVegetable(event)">
         <input type="text" name="name" placeholder="Name" required>
         <input type="url" name="image" placeholder="Image url">
         <input type="number" name="amount" placeholder="Insert amount" required>
@@ -48,6 +50,7 @@ function renderAddVegetable(rootElement: HTMLElement | null) {
         console.error(error)
     }
 }
+
 
 function renderVegetableCard(vegetable: Vegetable) {
     try {
@@ -67,7 +70,7 @@ Hurry up and buy some </p>`
         <h3>${vegetable.name}</h3>
         ${amount}
         <button onclick="handleRemoveVegetableUnit('${vegetable.id}')">I ATE ONE</button>
-        <button onclick="handleAddVegetableUnit('${vegetable.id}')">I BUY ONE</button>
+        <button onclick="handleAddVegetableUnit('${vegetable.id}')">I BOUGHT ONE</button>
         <button onclick="handleEditVegetable('${vegetable.id}')">Edit</button>
         <button onclick="handleDeleteVegetable('${vegetable.id}')">Remove</button>
     </div>`
@@ -102,9 +105,10 @@ function handleAddVegetable(ev: any) {
     try {
         ev.preventDefault()
         const name = ev.target.name.value;
-       if( duplicateChecker(name)===0){
-        return 
-       }
+        if (duplicateChecker(name) === 0) {
+            ev.target.reset()
+            return
+        }
         const image = ev.target.image.value;
         const amount = ev.target.amount.valueAsNumber
         const newVegetable = new Vegetable(name, image, amount)
@@ -119,9 +123,9 @@ function handleAddVegetable(ev: any) {
     }
 }
 
-function duplicateChecker(name:string){
-    const check = vegetables.find(vegetable=>vegetable.name === name)
-    if(check){
+function duplicateChecker(name: string) {
+    const check = vegetables.find(vegetable => vegetable.name === name)
+    if (check) {
         alert("This vegetable is already exists")
         return 0
     }
@@ -196,6 +200,11 @@ function handleSetEditVegetable(ev: any) {
         }
         if (!Number.isNaN(amount)) {
             vegetable.amount = amount;
+        }
+        if(amount<0){
+            alert("Please enter a non-negative number")
+            ev.target.reset()
+            return
         }
         vegetable.isEdit = false;
 
