@@ -1,3 +1,6 @@
+//add a button to remove one item from a vegtabel (eg: you had 5 tomatos,
+// and when you press the button "I ATE ONE",
+// you will be left with 4 tomatos) and add a button to add one vegtabel
 //modle - vegtable class
 var Vegetable = /** @class */ (function () {
     function Vegetable(name, image, quantity, id) {
@@ -65,11 +68,11 @@ function renderVegetableCard(vegetable) {
         //if we want to edit the card we check if the edit btn were clicked, when clicked turn isEdit=trou
         if (vegetable.isEdit) {
             //we want to change the DOM to an edit-form
-            return "<div class=\"card\">\n                        <img src=\"" + vegetable.image + "\">\n                        <form onsubmit=\"handleSetEdit(event)\" id=\"" + vegetable.id + "\">\n                            <input type=\"text\" name=\"name\" value=\"" + vegetable.name + "\">\n                            <input type=\"url\" name=\"image\" value=\"" + vegetable.image + "\">\n                            <input type=\"number\" name=\"quantity\" value=\"" + vegetable.quantity + "\">\n                            <br>\n                            <button onclick=\"hendelDelet('" + vegetable.id + "')\">Delet</button>\n                            <input type=\"submit\" value=\"SET\">\n                        </form>\n                    </div> ";
+            return "<div class=\"card\">\n                        <img src=\"" + vegetable.image + "\">\n                        <form onsubmit=\"handleSetEdit(event)\" id=\"" + vegetable.id + "\">\n                            <input type=\"text\" name=\"name\" value=\"" + vegetable.name + "\">\n                            <input type=\"url\" name=\"image\" value=\"" + vegetable.image + "\">\n                            \n                            <input type=\"number\" name=\"quantity\" value=\"" + vegetable.quantity + "\">\n                            \n                            <br>\n                            <button onclick=\"hendelDelet('" + vegetable.id + "')\">Delet</button>\n                            <input type=\"submit\" value=\"SET\">\n                        </form>\n                    </div> ";
         }
         else {
             //when not in edit mode
-            return "<div class=\"card\">\n                        <img src=\"" + vegetable.image + "\">\n                        <p>" + vegetable.name + "</p>\n                        <p>" + vegetable.quantity + "</p>\n                        <button onclick=\"hendelDelete('" + vegetable.id + "')\">Delet</button>\n                        <button onclick=\"handelEdit('" + vegetable.id + "')\">Edir</button>\n                    </div>";
+            return "<div class=\"card\">\n                        <img src=\"" + vegetable.image + "\">\n                        <p>" + vegetable.name + "</p>\n                        <p><button onclick=\"minosOne('" + vegetable.quantity + "')\">-</button>\n                        " + vegetable.quantity + "\n                        <button onclick=\"plusOne('" + vegetable.quantity + "')\">+</button></p>\n                        <button onclick=\"hendelDelete('" + vegetable.id + "')\">Delet</button>\n                        <button onclick=\"handelEdit('" + vegetable.id + "')\">Edir</button>\n                    </div>";
         }
     }
     catch (error) {

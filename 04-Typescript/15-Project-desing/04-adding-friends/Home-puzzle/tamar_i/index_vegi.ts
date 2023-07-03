@@ -1,3 +1,7 @@
+//add a button to remove one item from a vegtabel (eg: you had 5 tomatos,
+// and when you press the button "I ATE ONE",
+// you will be left with 4 tomatos) and add a button to add one vegtabel
+
 //modle - vegtable class
 
 class Vegetable{
@@ -77,7 +81,9 @@ function renderVegetableCard(vegetable: Vegetable){
                         <form onsubmit="handleSetEdit(event)" id="${vegetable.id}">
                             <input type="text" name="name" value="${vegetable.name}">
                             <input type="url" name="image" value="${vegetable.image}">
+                            
                             <input type="number" name="quantity" value="${vegetable.quantity}">
+                            
                             <br>
                             <button onclick="hendelDelet('${vegetable.id}')">Delet</button>
                             <input type="submit" value="SET">
@@ -88,7 +94,9 @@ function renderVegetableCard(vegetable: Vegetable){
             return `<div class="card">
                         <img src="${vegetable.image}">
                         <p>${vegetable.name}</p>
-                        <p>${vegetable.quantity}</p>
+                        <p><button onclick="minosOne('${vegetable.quantity}')">-</button>
+                        ${vegetable.quantity}
+                        <button onclick="plusOne('${vegetable.quantity}')">+</button></p>
                         <button onclick="hendelDelete('${vegetable.id}')">Delet</button>
                         <button onclick="handelEdit('${vegetable.id}')">Edir</button>
                     </div>`
