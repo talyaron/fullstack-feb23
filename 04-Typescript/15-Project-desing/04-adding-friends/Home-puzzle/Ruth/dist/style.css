@@ -1,11 +1,37 @@
 * {
   padding: 0%;
   margin: 0%;
+  font-family: sans-serif, "Times New Roman", Times, serif;
 }
 
 body {
   width: 100vw;
   height: 100vh;
+  background-color: whitesmoke;
+}
+
+#addProductBtn {
+  padding: 10px 17px;
+  margin: 15px;
+  border: 1px solid black;
+  box-shadow: 2px 5px 20px rgba(0, 0, 0, 0.189);
+  border-radius: 50px;
+  display: block;
+  position: relative;
+  left: calc(50% - 27.5px);
+  font-size: x-large;
+}
+
+#addProductForm {
+  border: 1px solid black;
+  position: relative;
+  left: calc(50% - 110px);
+  text-align: center;
+  width: 250px;
+}
+#addProductForm * {
+  padding: 5px;
+  margin: 5px;
 }
 
 .productGallery {
@@ -20,8 +46,9 @@ body {
   padding: 10px;
   border: 1px solid black;
   border-radius: 20px;
-  box-shadow: 3px 4px 2px rgba(0, 0, 0, 0.137);
+  box-shadow: 3px 4px 9px rgba(0, 0, 0, 0.137);
   text-align: center;
+  position: relative;
 }
 .productGallery .productItem img {
   width: 130px;
@@ -32,4 +59,29 @@ body {
 .productGallery .productItem #productAmount {
   display: inline-block;
   width: 20px;
+}
+.productGallery .productItem #deleteBtn {
+  position: absolute;
+  width: 20px;
+  right: 10px;
+}
+.productGallery .productItem #deleteBtn:hover {
+  cursor: pointer;
+}
+.productGallery .productItem #deleteBtn span {
+  font-size: small;
+}
+.productGallery .productItem #editProductAmount {
+  width: 40px;
+}
+.productGallery .productItem #editBtn {
+  position: absolute;
+  width: 20px;
+  right: 30px;
+}
+.productGallery .productItem #editBtn:hover {
+  cursor: pointer;
+}
+.productGallery .productItem #editBtn span {
+  font-size: small;
 }
