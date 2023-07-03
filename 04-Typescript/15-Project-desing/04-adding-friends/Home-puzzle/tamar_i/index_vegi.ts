@@ -3,7 +3,7 @@
 class Vegetable{
     id: string;
     isEdit: boolean = false;  //the defult is that we are not in edit mode
-    constructor(public name: string, public quantity: number, id?: string | null){
+    constructor(public name: string, public image:string, public quantity: number, id?: string | null){
  //if we get an id that mean we are edit the data, if not its a new data and we create a new id
         if (id) {
             this.id = id;
@@ -46,16 +46,8 @@ function getVegetableFronStorage(): Vegetable[] {
 
 //view
 
-//add a new vegetable
-
-function handleAddVegetable(ev: any){
-    
-}
-
-//show all the vegtable card on screen
+//show all the vegetable card on screen
 //render list of vegetables
-renderAllVegetables(vegetables, document.querySelector("#vegetableRoot"));
-
 //model -> controler -> view
 
 function renderAllVegetables(vegetables: Vegetable[], htmlElement: HTMLElement | null){
@@ -72,11 +64,145 @@ function renderAllVegetables(vegetables: Vegetable[], htmlElement: HTMLElement |
     }
 }
 
+renderAllVegetables(vegetables, document.querySelector("#vegetableRoot"));
+
 //render every vegetable card
-renderVegetableCard(vegetable: Vegetable){
+function renderVegetableCard(vegetable: Vegetable){
     try {
-        //if we want to edit the card
-        if (vegetable.isEdit)
+        //if we want to edit the card we check if the edit btn were clicked, when clicked turn isEdit=trou
+        if (vegetable.isEdit) {
+            //we want to change the DOM to an edit-form
+            return `<div class="card">
+                        <img src="${vegetable.image}">
+                        <form onsubmit="handleSetEdit(event)" id="${vegetable.id}">
+                            <input type="text" name="name" value="${vegetable.name}">
+                            <input type="url" name="image" value="${vegetable.image}">
+                            <input type="number" name="quantity" value="${vegetable.quantity}">
+                            <br>
+                            <button onclick="hendelDelet('${vegetable.id}')">Delet</button>
+                            <input type="submit" value="SET">
+                        </form>
+                    </div> `
+        } else {
+            //when not in edit mode
+            return `<div class="card"
+                        <img src="${vegetable.image}">
+                        <p>${vegetable.name}</p>
+                        <p>${vegetable.quantity}</p>
+                        <button onclick="hendelDelete('${vegetable.id}')">Delet</button>
+                        <button onclick="handelEdit('${vegetable.id}')">Edir</button>
+                    </div>`
+        }
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+
+//controllers
+
+//add a new vegetable
+//take the input from user and put it in varibels
+function handleAddVegetable(ev: any){
+    try {
+        ev.preventDefault(); //prevent default from work
+        const name = ev.target.name.value;
+        const image = ev.target.image.value;
+        const quantity = ev.target.quantity.value;
+        
+        //create new vegetable class
+        const newVegetable = new Vegetable(name, image, quantity);
+
+        //push the new vegetable to the array
+        vegetables.push(newVegetable);
+
+        //render the array to see all vegetables
+        renderAllVegetables(vegetables, document.querySelector('#vegetableRoot'));
+
+        //save the data to localstorage as string
+        localStorage.setItem("vegetable", JSON.stringify(vegetables))
+        
+        //reset the form
+        ev.target.reset();
+
+
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+//Delete
+//button (view (card)) -> control to delete from array -> edit model and save to loclstorage -> render the new model-view
+//the delete function get the vegetable id find its index and delete the sell in the array
+function hendelDelete(vegetableId: string){
+    try {
+        const index = vegetables.findIndex(vegetable => vegetable.id === vegetableId); //find the index
+        if (index === -1) throw new Error("could not find vegetable");
+
+        //cut the sel out the array
+        vegetables.slice(index, 1);
+
+        //save to localstorage
+        localStorage.setItem("vegetables", JSON.stringify(vegetables))
+
+        //render the new array
+        renderAllVegetables(vegetables, document.querySelector("#vegetableRoot"))
+
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+//Edit
+//enable editing
+//the function will find the card by its id and set it to edit mode (isEdit==true)
+
+function handelEdit(vegetableId: string){
+    try {
+        const vegetable = vegetables.find(vegetable => vegetable.id === vegetableId)
+        if(!vegetable) throw new Error("could not find vegetble")
+
+        //change to edit mode
+        vegetable.setEdit(true);
+
+        //render at edit mode
+        renderAllVegetables(vegetables, document.querySelector("#vegetableRoot"))
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+//handel the edit data, get it from the form -> save it to localstorage -> render the resulte
+
+function handleSetEdit(ev:any){
+    try {
+        ev.preventDefault();
+        //get the data from the form
+        const name = ev.target.name.value;
+        const image = ev.target.image.value;
+        const quantity = ev.target.quantity.value;
+        const vegetableId: string = ev.target.id;
+        
+        //find the sell in the array by its id
+        const vegetable:Vegetable|undefined = vegetables.find(vegetable => vegetable.id === vegetableId)
+        if(!vegetable) throw new Error("could not find vegetable")
+
+        //put the new data in the sell
+        vegetable.name = name;
+        vegetable.image = image;
+        vegetable.quantity = quantity;
+
+        //set off the edit mode
+        vegetable.setEdit(false)
+        //check to see the new array
+        console.log(vegetables)
+
+        //save the data in localstorage
+        localStorage.setItem("vegetable", JSON.stringify(vegetable))
+
+        //render the new data
+        renderAllVegetables(vegetables, document.querySelector("#vegetableRoot"))
+
     } catch (error) {
         console.error(error)
     }
