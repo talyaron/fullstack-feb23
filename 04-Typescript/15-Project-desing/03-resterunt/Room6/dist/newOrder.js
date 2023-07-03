@@ -62,7 +62,7 @@ function renderregisterControlers(rootElement) {
     try {
         var html = "<form onsubmit=\"handleRegisterOrder(event)\">\n               <input type=\"string\" name=\"phoneNum\" placeholder=\"phone number\" required>\n          <select name=\"Table\" id=\"Table\" required> \n          " + tables.map(function (table) {
             return "<option value=\"string\">" + table.tableNum + "</option>";
-        }) + ";\n          </select>\n             <button type=\"submit\">send order</button>\n     </form>";
+        }) + ";\n          </select>\n             <button type=\"submit\">send order</button>\n     </form>\n     <form onclick=\"handleBack(event)\">\n        <input type=\"button\" id=\"back\" value=\"Back\">\n     </form>";
         if (!rootElement)
             throw new Error("no root element");
         rootElement.innerHTML = html;
@@ -106,6 +106,17 @@ function handleRegisterOrder(event) {
         var order = new Order(table, phoneNum);
         orders.push(order);
         renderMain(dishes, document.querySelector("#main"));
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+;
+function handleBack(ev) {
+    try {
+        ev.preventDefault();
+        console.dir(ev);
+        location.href = "index.html";
     }
     catch (error) {
         console.error(error);

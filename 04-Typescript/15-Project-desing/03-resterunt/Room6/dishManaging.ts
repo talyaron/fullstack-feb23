@@ -21,10 +21,9 @@ localStorage.setItem('dishes', dishesJson);
 const dishesString = localStorage.getItem('dishes');
 if (dishesString) {
     const dishesArray = JSON.parse(dishesString);
-    dishesArray.forEach(dish => dishes.push(new Dish(dish.name, dish.price, dish.img, dish.description)));
+   const dishes = dishesArray.map(dish => {return new Dish(dish.name, dish.price, dish.img, dish.description)});
     console.log(dishes);
     renderDishes(document.querySelector("#dishes"))
-
 }
 
 
@@ -116,7 +115,7 @@ function renderDeleteDish(rootElement: HTMLElement | null, view: boolean) {
         if (view) {
             html = `<form onsubmit="handleDeleteDish(event)">
             <select name="dishes">
-            ${dishes.map((dish) => { return `<option>${dish.name}</option>` })}
+            ${dishes.map((dish) =>`<option>${dish.name}</option>`)}
             </select>
             <input type="submit" value="delete">
             </form>`
