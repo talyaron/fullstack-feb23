@@ -38,7 +38,7 @@ function getVegetablesFromStorage() {
 }
 function renderAddVegetable(rootElement) {
     try {
-        var html = "<form onsubmit=\"handleAddVegetable(event)\">\n        <input type=\"text\" name=\"name\" placeholder=\"Name\" required>\n        <input type=\"url\" name=\"image\" placeholder=\"Image url\">\n        <input type=\"number\" name=\"amount\" placeholder=\"Insert amount\" required>\n        <input type=\"submit\" value=\"ADD\">\n            </form>";
+        var html = "\n        <h1> Welcome to your vegetables drawer </h1>\n        <form onsubmit=\"handleAddVegetable(event)\">\n        <input type=\"text\" name=\"name\" placeholder=\"Name\" required>\n        <input type=\"url\" name=\"image\" placeholder=\"Image url\">\n        <input type=\"number\" name=\"amount\" placeholder=\"Insert amount\" required>\n        <input type=\"submit\" value=\"ADD\">\n            </form>";
         if (!rootElement)
             throw new Error("can't find rootElement");
         rootElement.innerHTML = html;
@@ -60,7 +60,7 @@ function renderVegetableCard(vegetable) {
             else {
                 amount = "<p class=\"att\"> You are left without a " + vegetable.name + " &#128561; </br>\nHurry up and buy some </p>";
             }
-            return "<div class=\"card\">\n        <img src=\"" + vegetable.image + "\">\n        <h3>" + vegetable.name + "</h3>\n        " + amount + "\n        <button onclick=\"handleRemoveVegetableUnit('" + vegetable.id + "')\">I ATE ONE</button>\n        <button onclick=\"handleAddVegetableUnit('" + vegetable.id + "')\">I BUY ONE</button>\n        <button onclick=\"handleEditVegetable('" + vegetable.id + "')\">Edit</button>\n        <button onclick=\"handleDeleteVegetable('" + vegetable.id + "')\">Remove</button>\n    </div>";
+            return "<div class=\"card\">\n        <img src=\"" + vegetable.image + "\">\n        <h3>" + vegetable.name + "</h3>\n        " + amount + "\n        <button onclick=\"handleRemoveVegetableUnit('" + vegetable.id + "')\">I ATE ONE</button>\n        <button onclick=\"handleAddVegetableUnit('" + vegetable.id + "')\">I BOUGHT ONE</button>\n        <button onclick=\"handleEditVegetable('" + vegetable.id + "')\">Edit</button>\n        <button onclick=\"handleDeleteVegetable('" + vegetable.id + "')\">Remove</button>\n    </div>";
         }
         else {
             return "<div class=\"card\">\n<img src=\"" + vegetable.image + "\">\n<form onsubmit=\"handleSetEditVegetable(event)\" id=\"" + vegetable.id + "\">\n<input type=\"text\" name=\"name\" placeholder=\"" + vegetable.name + "\">\n<input type=\"number\" name=\"amount\" placeholder=\"" + vegetable.amount + " unit\">\n<input type=\"submit\" value=\"SET\">\n</form>\n</div>";
@@ -86,6 +86,7 @@ function handleAddVegetable(ev) {
         ev.preventDefault();
         var name = ev.target.name.value;
         if (duplicateChecker(name) === 0) {
+            ev.target.reset();
             return;
         }
         var image = ev.target.image.value;
@@ -175,6 +176,11 @@ function handleSetEditVegetable(ev) {
         }
         if (!Number.isNaN(amount)) {
             vegetable.amount = amount;
+        }
+        if (amount < 0) {
+            alert("Please enter a non-negative number");
+            ev.target.reset();
+            return;
         }
         vegetable.isEdit = false;
         localStorage.setItem("vegetables", JSON.stringify(vegetables));

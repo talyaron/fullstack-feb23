@@ -1,8 +1,25 @@
+#main {
+  width: 80vw;
+  margin: auto;
+  text-align: center;
+  margin-top: 10px;
+}
+#main h1 {
+  font-family: "Alkatra", cursive;
+  font-size: 45px;
+}
+#main input,
+#main button {
+  padding: 5px;
+  margin: 5px;
+}
+
 .cards {
   width: 95vw;
   display: flex;
   flex-wrap: wrap;
   margin: auto;
+  justify-content: space-evenly;
 }
 
 .card {
