@@ -75,8 +75,8 @@ Hurry up and buy some </p>`
             return `<div class="card">
 <img src="${vegetable.image}">
 <form onsubmit="handleSetEditVegetable(event)" id="${vegetable.id}">
-<input type="text" name="name" placeholder="${vegetable.name}" required>
-<input type="number" name="amount" placeholder="${vegetable.amount} unit" required>
+<input type="text" name="name" placeholder="${vegetable.name}">
+<input type="number" name="amount" placeholder="${vegetable.amount} unit">
 <input type="submit" value="SET">
 </form>
 </div>`
@@ -102,6 +102,9 @@ function handleAddVegetable(ev: any) {
     try {
         ev.preventDefault()
         const name = ev.target.name.value;
+       if( duplicateChecker(name)===0){
+        return 
+       }
         const image = ev.target.image.value;
         const amount = ev.target.amount.valueAsNumber
         const newVegetable = new Vegetable(name, image, amount)
@@ -115,6 +118,15 @@ function handleAddVegetable(ev: any) {
 
     }
 }
+
+function duplicateChecker(name:string){
+    const check = vegetables.find(vegetable=>vegetable.name === name)
+    if(check){
+        alert("This vegetable is already exists")
+        return 0
+    }
+}
+
 function handleRemoveVegetableUnit(vegetableId: string) {
     try {
         const vegetable = vegetables.find(vegetable => vegetable.id === vegetableId)
@@ -179,11 +191,14 @@ function handleSetEditVegetable(ev: any) {
         const vegetableId: string = ev.target.id;
         const vegetable = vegetables.find(vegetable => vegetable.id === vegetableId)
         if (!vegetable) throw new Error("can't find vegetable")
-        vegetable.name = name;
-        vegetable.amount = amount;
+        if (name !== '') {
+            vegetable.name = name;
+        }
+        if (!Number.isNaN(amount)) {
+            vegetable.amount = amount;
+        }
         vegetable.isEdit = false;
-        console.log(vegetable);
-        
+
         localStorage.setItem("vegetables", JSON.stringify(vegetables))
         renderAllVegetables(vegetables, document.querySelector("#rootVegetable"))
 

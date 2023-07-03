@@ -63,7 +63,7 @@ function renderVegetableCard(vegetable) {
             return "<div class=\"card\">\n        <img src=\"" + vegetable.image + "\">\n        <h3>" + vegetable.name + "</h3>\n        " + amount + "\n        <button onclick=\"handleRemoveVegetableUnit('" + vegetable.id + "')\">I ATE ONE</button>\n        <button onclick=\"handleAddVegetableUnit('" + vegetable.id + "')\">I BUY ONE</button>\n        <button onclick=\"handleEditVegetable('" + vegetable.id + "')\">Edit</button>\n        <button onclick=\"handleDeleteVegetable('" + vegetable.id + "')\">Remove</button>\n    </div>";
         }
         else {
-            return "<div class=\"card\">\n<img src=\"" + vegetable.image + "\">\n<form onsubmit=\"handleSetEditVegetable(event)\" id=\"" + vegetable.id + "\">\n<input type=\"text\" name=\"name\" placeholder=\"" + vegetable.name + "\" required>\n<input type=\"number\" name=\"amount\" placeholder=\"" + vegetable.amount + " unit\" required>\n<input type=\"submit\" value=\"SET\">\n</form>\n</div>";
+            return "<div class=\"card\">\n<img src=\"" + vegetable.image + "\">\n<form onsubmit=\"handleSetEditVegetable(event)\" id=\"" + vegetable.id + "\">\n<input type=\"text\" name=\"name\" placeholder=\"" + vegetable.name + "\">\n<input type=\"number\" name=\"amount\" placeholder=\"" + vegetable.amount + " unit\">\n<input type=\"submit\" value=\"SET\">\n</form>\n</div>";
         }
     }
     catch (error) {
@@ -85,6 +85,9 @@ function handleAddVegetable(ev) {
     try {
         ev.preventDefault();
         var name = ev.target.name.value;
+        if (duplicateChecker(name) === 0) {
+            return;
+        }
         var image = ev.target.image.value;
         var amount = ev.target.amount.valueAsNumber;
         var newVegetable = new Vegetable(name, image, amount);
@@ -96,6 +99,13 @@ function handleAddVegetable(ev) {
     }
     catch (error) {
         console.error(error);
+    }
+}
+function duplicateChecker(name) {
+    var check = vegetables.find(function (vegetable) { return vegetable.name === name; });
+    if (check) {
+        alert("This vegetable is already exists");
+        return 0;
     }
 }
 function handleRemoveVegetableUnit(vegetableId) {
@@ -160,10 +170,13 @@ function handleSetEditVegetable(ev) {
         var vegetable = vegetables.find(function (vegetable) { return vegetable.id === vegetableId_1; });
         if (!vegetable)
             throw new Error("can't find vegetable");
-        vegetable.name = name;
-        vegetable.amount = amount;
+        if (name !== '') {
+            vegetable.name = name;
+        }
+        if (!Number.isNaN(amount)) {
+            vegetable.amount = amount;
+        }
         vegetable.isEdit = false;
-        console.log(vegetable);
         localStorage.setItem("vegetables", JSON.stringify(vegetables));
         renderAllVegetables(vegetables, document.querySelector("#rootVegetable"));
     }
