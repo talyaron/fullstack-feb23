@@ -60,10 +60,10 @@ function renderVegetableCard(vegetable) {
             else {
                 amount = "<p class=\"att\"> You are left without a " + vegetable.name + " &#128561; </br>\nHurry up and buy some </p>";
             }
-            return "<div class=\"card\">\n        <img src=\"" + vegetable.image + "\">\n        <h3>" + vegetable.name + "</h3>\n        " + amount + "\n        <button onclick=\"handleRemoveVegetableUnit('" + vegetable.id + "')\">I ATE ONE</button>\n        <button onclick=\"handleAddVegetableUnit('" + vegetable.id + "')\">I BOUGHT ONE</button>\n        <button onclick=\"handleEditVegetable('" + vegetable.id + "')\">Edit</button>\n        <button onclick=\"handleDeleteVegetable('" + vegetable.id + "')\">Remove</button>\n    </div>";
+            return "<div class=\"card\" style=\"background-color:" + randomColor() + ";\">\n        <img src=\"" + vegetable.image + "\">\n        <h3>" + vegetable.name + "</h3>\n        " + amount + "\n        <button onclick=\"handleRemoveVegetableUnit('" + vegetable.id + "')\">I ATE ONE</button>\n        <button onclick=\"handleAddVegetableUnit('" + vegetable.id + "')\">I BOUGHT ONE</button>\n        <button onclick=\"handleEditVegetable('" + vegetable.id + "')\">Edit</button>\n        <button onclick=\"handleDeleteVegetable('" + vegetable.id + "')\">Remove</button>\n    </div>";
         }
         else {
-            return "<div class=\"card\">\n<img src=\"" + vegetable.image + "\">\n<form onsubmit=\"handleSetEditVegetable(event)\" id=\"" + vegetable.id + "\">\n<input type=\"text\" name=\"name\" placeholder=\"" + vegetable.name + "\">\n<input type=\"number\" name=\"amount\" placeholder=\"" + vegetable.amount + " unit\">\n<input type=\"submit\" value=\"SET\">\n</form>\n</div>";
+            return "<div class=\"card\" style=\"background-color:" + randomColor() + ";\">\n<img src=\"" + vegetable.image + "\">\n<form onsubmit=\"handleSetEditVegetable(event)\" id=\"" + vegetable.id + "\">\n<input type=\"text\" name=\"name\" placeholder=\"" + vegetable.name + "\">\n<input type=\"number\" name=\"amount\" placeholder=\"" + vegetable.amount + " unit\">\n<input type=\"submit\" value=\"SET\">\n</form>\n</div>";
         }
     }
     catch (error) {
@@ -93,7 +93,6 @@ function handleAddVegetable(ev) {
         var amount = ev.target.amount.valueAsNumber;
         var newVegetable = new Vegetable(name, image, amount);
         vegetables.push(newVegetable);
-        console.log(vegetables);
         renderAllVegetables(vegetables, document.querySelector("#rootVegetable"));
         localStorage.setItem("vegetables", JSON.stringify(vegetables));
         ev.target.reset();
@@ -189,6 +188,14 @@ function handleSetEditVegetable(ev) {
     catch (error) {
         console.error(error);
     }
+}
+function randomColor() {
+    var letters = "0123456789ABCDEF";
+    var color = "#";
+    for (var i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
 }
 renderAddVegetable(document.querySelector("#main"));
 renderAllVegetables(vegetables, document.querySelector("#rootVegetable"));

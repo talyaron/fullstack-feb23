@@ -65,7 +65,7 @@ function renderVegetableCard(vegetable: Vegetable) {
                 amount = `<p class="att"> You are left without a ${vegetable.name} &#128561; </br>
 Hurry up and buy some </p>`
             }
-            return `<div class="card">
+            return `<div class="card" style="background-color:${randomColor()};">
         <img src="${vegetable.image}">
         <h3>${vegetable.name}</h3>
         ${amount}
@@ -75,7 +75,7 @@ Hurry up and buy some </p>`
         <button onclick="handleDeleteVegetable('${vegetable.id}')">Remove</button>
     </div>`
         } else {
-            return `<div class="card">
+            return `<div class="card" style="background-color:${randomColor()};">
 <img src="${vegetable.image}">
 <form onsubmit="handleSetEditVegetable(event)" id="${vegetable.id}">
 <input type="text" name="name" placeholder="${vegetable.name}">
@@ -113,7 +113,7 @@ function handleAddVegetable(ev: any) {
         const amount = ev.target.amount.valueAsNumber
         const newVegetable = new Vegetable(name, image, amount)
         vegetables.push(newVegetable)
-        console.log(vegetables);
+
         renderAllVegetables(vegetables, document.querySelector("#rootVegetable"))
         localStorage.setItem("vegetables", JSON.stringify(vegetables))
         ev.target.reset()
@@ -201,7 +201,7 @@ function handleSetEditVegetable(ev: any) {
         if (!Number.isNaN(amount)) {
             vegetable.amount = amount;
         }
-        if(amount<0){
+        if (amount < 0) {
             alert("Please enter a non-negative number")
             ev.target.reset()
             return
@@ -215,5 +215,18 @@ function handleSetEditVegetable(ev: any) {
         console.error(error)
     }
 }
+
+function randomColor() {
+    const letters = "0123456789ABCDEF";
+    let color = "#";
+    for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+
+    } return color
+}
+
+
 renderAddVegetable(document.querySelector("#main"))
 renderAllVegetables(vegetables, document.querySelector("#rootVegetable"))
+
+
