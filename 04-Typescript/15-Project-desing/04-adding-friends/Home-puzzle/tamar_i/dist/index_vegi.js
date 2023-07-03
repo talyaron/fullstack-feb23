@@ -69,7 +69,7 @@ function renderVegetableCard(vegetable) {
         }
         else {
             //when not in edit mode
-            return "<div class=\"card\"\n                        <img src=\"" + vegetable.image + "\">\n                        <p>" + vegetable.name + "</p>\n                        <p>" + vegetable.quantity + "</p>\n                        <button onclick=\"hendelDelete('" + vegetable.id + "')\">Delet</button>\n                        <button onclick=\"handelEdit('" + vegetable.id + "')\">Edir</button>\n                    </div>";
+            return "<div class=\"card\">\n                        <img src=\"" + vegetable.image + "\">\n                        <p>" + vegetable.name + "</p>\n                        <p>" + vegetable.quantity + "</p>\n                        <button onclick=\"hendelDelete('" + vegetable.id + "')\">Delet</button>\n                        <button onclick=\"handelEdit('" + vegetable.id + "')\">Edir</button>\n                    </div>";
         }
     }
     catch (error) {

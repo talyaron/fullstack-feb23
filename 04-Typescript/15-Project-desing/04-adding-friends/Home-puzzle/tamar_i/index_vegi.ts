@@ -85,7 +85,7 @@ function renderVegetableCard(vegetable: Vegetable){
                     </div> `
         } else {
             //when not in edit mode
-            return `<div class="card"
+            return `<div class="card">
                         <img src="${vegetable.image}">
                         <p>${vegetable.name}</p>
                         <p>${vegetable.quantity}</p>
