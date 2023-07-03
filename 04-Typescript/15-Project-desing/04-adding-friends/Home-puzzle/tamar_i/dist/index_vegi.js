@@ -23,8 +23,8 @@ var Vegetable = /** @class */ (function () {
     return Vegetable;
 }());
 //put all the data in array of vegetables
-var vegetables = getVegetableFronStorage(); //we dont want to zero every reloud of the page, we want to see the storage data
-function getVegetableFronStorage() {
+var vegetables = getVegetableFromStorage(); //we dont want to zero every reloud of the page, we want to see the storage data
+function getVegetableFromStorage() {
     try {
         //get vegtebles from localstorage as string
         var vegtableString = localStorage.getItem("vegtables");
@@ -32,12 +32,12 @@ function getVegetableFronStorage() {
         if (!vegtableString)
             return []; //if we dont have an array to ger we return an empty aררשט
         //convert the string to array of object
-        var vegtablesArray = JSON.parse(vegtableString);
+        var vegetablesArray = JSON.parse(vegtableString);
         //convert the array of object to array of class vegetable
-        var vegtables = vegtablesArray.map(function (vegtable) {
-            return new Vegetable(vegtable.name, vegtable.quantity, vegtable.id); //inside the inside function
+        var vegetables_1 = vegetablesArray.map(function (vegetable) {
+            return new Vegetable(vegetable.name, vegetable.image, vegetable.quantity, vegetable.id); //inside the inside function
         });
-        return vegtables; //return the array of the class
+        return vegetables_1; //return the array of the class
     }
     catch (error) { //if there an error return empry array
         console.error(error);
@@ -72,7 +72,7 @@ function renderVegetableCard(vegetable) {
         }
         else {
             //when not in edit mode
-            return "<div class=\"card\">\n                        <img src=\"" + vegetable.image + "\">\n                        <p>" + vegetable.name + "</p>\n                        <p><button onclick=\"minosOne('" + vegetable.quantity + "')\">-</button>\n                        " + vegetable.quantity + "\n                        <button onclick=\"plusOne('" + vegetable.quantity + "')\">+</button></p>\n                        <button onclick=\"hendelDelete('" + vegetable.id + "')\">Delet</button>\n                        <button onclick=\"handelEdit('" + vegetable.id + "')\">Edir</button>\n                    </div>";
+            return "<div class=\"card\">\n                        <img src=\"" + vegetable.image + "\">\n                        <p>" + vegetable.name + "</p>\n                        <p><button onclick=\"handelquntityMinosOne('" + vegetable.id + "')\">-</button>\n                        " + vegetable.quantity + "\n                        <button onclick=\"handelquntityPlusOne('" + vegetable.id + "')\">+</button></p>\n                        <button onclick=\"hendelDelete('" + vegetable.id + "')\">Delet</button>\n                        <button onclick=\"handelEdit('" + vegetable.id + "')\">Edit</button>\n                    </div>";
         }
     }
     catch (error) {
@@ -112,7 +112,7 @@ function hendelDelete(vegetableId) {
         if (index === -1)
             throw new Error("could not find vegetable");
         //cut the sel out the array
-        vegetables.slice(index, 1);
+        vegetables.splice(index, 1);
         //save to localstorage
         localStorage.setItem("vegetables", JSON.stringify(vegetables));
         //render the new array
@@ -163,6 +163,39 @@ function handleSetEdit(ev) {
         //save the data in localstorage
         localStorage.setItem("vegetable", JSON.stringify(vegetable));
         //render the new data
+        renderAllVegetables(vegetables, document.querySelector("#vegetableRoot"));
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+//minos One
+function handelquntityMinosOne(vegetableId) {
+    try {
+        var vegetable = vegetables.find(function (vegetable) { return vegetable.id === vegetableId; });
+        if (!vegetable)
+            throw new Error("could not find vegetble");
+        //tip point = 0 => dont want go under 0
+        if (vegetable.quantity === 0)
+            throw new Error("you have zero items");
+        //set the new quantity
+        vegetable.quantity--;
+        //render the new quantity
+        renderAllVegetables(vegetables, document.querySelector("#vegetableRoot"));
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+//plus One
+function handelquntityPlusOne(vegetableId) {
+    try {
+        var vegetable = vegetables.find(function (vegetable) { return vegetable.id === vegetableId; });
+        if (!vegetable)
+            throw new Error("could not find vegetble");
+        //set the new quantity
+        vegetable.quantity++;
+        //render the new quantity
         renderAllVegetables(vegetables, document.querySelector("#vegetableRoot"));
     }
     catch (error) {
