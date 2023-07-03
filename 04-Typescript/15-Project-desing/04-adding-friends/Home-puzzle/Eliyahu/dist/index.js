@@ -1,9 +1,15 @@
 var Vegetable = /** @class */ (function () {
-    function Vegetable(name, image, amount) {
+    function Vegetable(name, image, amount, id) {
         this.name = name;
         this.image = image;
         this.amount = amount;
-        this.id = "id-" + (new Date().getTime() - Math.random());
+        this.isEdit = false;
+        if (id) {
+            this.id = id;
+        }
+        else {
+            this.id = "id-" + (new Date().getTime() - Math.random());
+        }
     }
     Vegetable.prototype.ateOne = function () {
         this.amount--;
@@ -43,10 +49,22 @@ function renderAddVegetable(rootElement) {
 }
 function renderVegetableCard(vegetable) {
     try {
-        if (vegetable.image === '') {
-            vegetable.image = "https://t3.ftcdn.net/jpg/03/11/87/52/360_F_311875255_d57wDCwlZxdtOEwsnmXLHkV1r29i1R2U.jpg";
+        if (vegetable.isEdit === false) {
+            if (vegetable.image === '') {
+                vegetable.image = "https://t3.ftcdn.net/jpg/03/11/87/52/360_F_311875255_d57wDCwlZxdtOEwsnmXLHkV1r29i1R2U.jpg";
+            }
+            var amount = "";
+            if (vegetable.amount != 0) {
+                amount = "<p> " + vegetable.amount + " unit  </p>";
+            }
+            else {
+                amount = "<p class=\"att\"> You are left without a " + vegetable.name + " &#128561; </br>\nHurry up and buy some </p>";
+            }
+            return "<div class=\"card\">\n        <img src=\"" + vegetable.image + "\">\n        <h3>" + vegetable.name + "</h3>\n        " + amount + "\n        <button onclick=\"handleRemoveVegetableUnit('" + vegetable.id + "')\">I ATE ONE</button>\n        <button onclick=\"handleAddVegetableUnit('" + vegetable.id + "')\">I BUY ONE</button>\n        <button onclick=\"handleEditVegetable('" + vegetable.id + "')\">Edit</button>\n        <button onclick=\"handleDeleteVegetable('" + vegetable.id + "')\">Remove</button>\n    </div>";
         }
-        return "<div class=\"card\">\n        <img src=\"" + vegetable.image + "\">\n        <h3>" + vegetable.name + "</h3>\n        <p>" + vegetable.amount + " unit </p>\n        <button onclick=\"handleRemoveVegetableUnit('" + vegetable.id + "')\">I ATE ONE</button>\n        <button onclick=\"handleAddVegetableUnit('" + vegetable.id + "')\">I BUY ONE</button>\n        <button onclick=\"handleEditVegetable('" + vegetable.id + "')\">Edit</button>\n        <button onclick=\"handleDeleteVegetable('" + vegetable.id + "')\">Remove</button>\n    </div>\n";
+        else {
+            return "<div class=\"card\">\n<img src=\"" + vegetable.image + "\">\n<form onsubmit=\"handleSetEditVegetable(event)\" id=\"" + vegetable.id + "\">\n<input type=\"text\" name=\"name\" placeholder=\"" + vegetable.name + "\" required>\n<input type=\"number\" name=\"amount\" placeholder=\"" + vegetable.amount + " unit\" required>\n<input type=\"submit\" value=\"SET\">\n</form>\n</div>";
+        }
     }
     catch (error) {
         console.error(error);
@@ -101,6 +119,51 @@ function handleAddVegetableUnit(vegetableId) {
         if (!vegetable)
             throw new Error("can't find vegetable");
         vegetable.buyOne();
+        localStorage.setItem("vegetables", JSON.stringify(vegetables));
+        renderAllVegetables(vegetables, document.querySelector("#rootVegetable"));
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+function handleDeleteVegetable(vegetableId) {
+    try {
+        var index = vegetables.findIndex(function (vegetable) { return vegetable.id === vegetableId; });
+        if (index === -1)
+            throw new Error("can't find vegetable");
+        vegetables.splice(index, 1);
+        localStorage.setItem("vegetables", JSON.stringify(vegetables));
+        renderAllVegetables(vegetables, document.querySelector("#rootVegetable"));
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+function handleEditVegetable(vegetableId) {
+    try {
+        var vegetable = vegetables.find(function (vegetable) { return vegetable.id === vegetableId; });
+        if (!vegetable)
+            throw new Error("can't find vegetable");
+        vegetable.isEdit = true;
+        renderAllVegetables(vegetables, document.querySelector("#rootVegetable"));
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+function handleSetEditVegetable(ev) {
+    try {
+        ev.preventDefault();
+        var name = ev.target.name.value;
+        var amount = ev.target.amount.valueAsNumber;
+        var vegetableId_1 = ev.target.id;
+        var vegetable = vegetables.find(function (vegetable) { return vegetable.id === vegetableId_1; });
+        if (!vegetable)
+            throw new Error("can't find vegetable");
+        vegetable.name = name;
+        vegetable.amount = amount;
+        vegetable.isEdit = false;
+        console.log(vegetable);
         localStorage.setItem("vegetables", JSON.stringify(vegetables));
         renderAllVegetables(vegetables, document.querySelector("#rootVegetable"));
     }
