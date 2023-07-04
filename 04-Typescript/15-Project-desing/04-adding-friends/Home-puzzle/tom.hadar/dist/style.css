@@ -1,0 +1,16 @@
+.card {
+  display: flex;
+  margin: 2px 3px 4px 0px;
+  border: 2px red solid;
+  width: 30vw;
+  flex-direction: column;
+}
+.card img {
+  width: 30vw;
+}
+.card .input1 {
+  margin: 0 auto;
+}
+.card .input2 {
+  margin: 0 auto;
+}
