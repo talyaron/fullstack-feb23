@@ -16,7 +16,10 @@ class Vegetable {
 
 const vegetables: Vegetable[] = getVegetablesFromStorage();
 
-renderAllVegetables(vegetables, document.querySelector("#rootVegetables"));
+if(vegetables.length > 0){
+    renderAllVegetables(vegetables, document.querySelector("#rootVegetables"));
+}
+    
 
 function getVegetablesFromStorage():Vegetable[] {
     try {
@@ -62,7 +65,7 @@ function renderAllVegetables(vegetables:Vegetable[], htmlElement:HTMLElement | n
     try {
         if(!htmlElement) throw new Error ("no element");
         const html = vegetables.map(vegetable =>{
-            return`<p>${vegetable.kind}</p>`;
+            return`<p>${vegetable.kind}</p><img src=${vegetable.image}>`;
         }).join(' ')
 
         htmlElement.innerHTML = html
