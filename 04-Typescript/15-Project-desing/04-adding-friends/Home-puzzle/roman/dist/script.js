@@ -4,15 +4,21 @@ var Vegetable = /** @class */ (function () {
         this.name = name;
         this.amount = amount;
         this.image = image;
+        this.isEdit = false;
         if (id) {
             this.id = id;
         }
-        else
-            id = vegetables ? vegetables.length + 1 : 1;
+        else if (vegetables) {
+            this.id = vegetables.length + 1;
+        }
     }
+    Vegetable.prototype.setEdit = function (set) {
+        this.isEdit = set;
+    };
     return Vegetable;
 }());
 //view
+var form = document.querySelector(".form");
 var wrapper = document.querySelector(".renderVegs");
 var table = document.createElement("table");
 var vegetables = getVegetablesFromStorage();
@@ -34,36 +40,52 @@ var tempVeg = [
         id: "3"
     }
 ];
-localStorage.setItem("vegetables", JSON.stringify(tempVeg));
+// localStorage.setItem("vegetable", JSON.stringify(tempVeg))
+function renderForm(div) {
+    var html = " <form onsubmit=\"handleAddVegetable(event)\">\n            \n    <h2>\n    Add Vegetables\n\n    </h2>\n    <input type=\"text\" name=\"name\"  placeholder=\"Enter Name\">\n    <input type=\"text\" name=\"image\"  placeholder=\"Enter image url\">\n    <input type=\"number\" name=\"amount\"  placeholder=\"Enter amount of vegetables\">\n    <input type=\"submit\" value=\"add\">\n</form>";
+    div.innerHTML = html;
+}
+renderForm(form);
 function renderVegetables(div) {
     var html = "<table class=\"vegetables\"><tr><th>Image</th><th>Name</th><th>Amount</th><th>Buttons</th></tr>";
-    html += vegetables.map(function (vegetable) {
-        return "\n        \n        <tr>\n        <td><img class=\"vegetableImage\" src=\"" + vegetable.image + "\" alt=\"" + vegetable.name + "\" /></td>\n        <td>" + vegetable.name + "</td>\n        <td>" + vegetable.amount + "</td>\n        <td><button onclick=>Edit</button></td>\n        </tr>        \n        \n        \n    ";
-    }).join(" ");
+    html += vegetables.map(function (vegetable) { return renderVegetableList(vegetable); }).join("");
     html += "</table>";
     div.innerHTML = html;
 }
 renderVegetables(wrapper);
+function renderVegetableList(vegetable) {
+    try {
+        if (vegetable.isEdit) {
+            return " <tr>\n                  <td><img class=\"vegetableImage\" src=\"" + vegetable.image + "\" alt=\"" + vegetable.name + "\" /></td>\n                  <td><input type=\"text\" name=\"editName\" value=\"" + vegetable.name + "\"></td>\n                  <td>\n                  <input type=\"number\" name=\"editAmount\"  placeholder=\"\" value=\"" + vegetable.amount + "\"></td>\n                  <td>\n                  <button onclick=saveEdit(\"" + vegetable.id + "\")>Save</button>\n                  <button onclick=\"handleDeleteVegetable('" + vegetable.id + "')\">Delete</button>\n                  </td>\n                  </tr>   \n                  ";
+        }
+        else {
+            return "        <tr>\n        <td><img class=\"vegetableImage\" src=\"" + vegetable.image + "\" alt=\"" + vegetable.name + "\" /></td>\n        <td>" + vegetable.name + "</td>\n        <td>" + vegetable.amount + "</td>\n        <td><button onclick=handleEdit(\"" + vegetable.id + "\")>Edit</button></td>\n        </tr>   \n  ";
+        }
+    }
+    catch (error) {
+        console.error(error);
+        return "";
+    }
+}
 function handleAddVegetable(event) {
     event.preventDefault();
     var name = event.target.name.value;
     var image = event.target.image.value;
-    var amount = event.target.amount.value;
+    var amount = event.target.amount.value.toString();
     var newVegetable = new Vegetable(name, amount, image);
     vegetables.push(newVegetable);
     renderVegetables(wrapper);
-    localStorage.setItem("vegetables", JSON.stringify(vegetables));
+    localStorage.setItem("vegetable", JSON.stringify(vegetables));
 }
 function getVegetablesFromStorage() {
     try {
         //get vegetables from locastorage (string)
-        var vegetablesString = localStorage.getItem("vegetables");
-        console.log(vegetablesString);
+        var vegetablesString = localStorage.getItem("vegetable");
         if (!vegetablesString)
             return [];
         //convert string to array of objects
         var vegetableArray = JSON.parse(vegetablesString);
-        //convert array of objects to array of friends
+        //convert array of objects to array of vegetables
         var vegetables_1 = vegetableArray.map(function (vegetable) {
             return new Vegetable(vegetable.name, vegetable.amount, vegetable.image, vegetable.id);
         });
@@ -75,3 +97,50 @@ function getVegetablesFromStorage() {
     }
 }
 ;
+function handleEdit(id) {
+    try {
+        var vegetable = vegetables.find(function (vegetable) { return vegetable.id == id; });
+        //   const vegetable = vegetables.find((vegetable) => vegetable.id === id);
+        if (!vegetable)
+            throw new Error("couldnt find vegetable");
+        vegetable.setEdit(true);
+        renderVegetables(wrapper);
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+function saveEdit(id) {
+    try {
+        console.log(vegetables);
+        var editName = document.querySelector('[name="editName"]');
+        var editAmount = document.querySelector('[name="editAmount"]');
+        var name = editName.value;
+        var amount = editAmount.value;
+        var vegetable = vegetables.find(function (vegetable) { return vegetable.id == id; });
+        if (!vegetable)
+            throw new Error("couldnt find vegetable");
+        vegetable.name = name;
+        vegetable.amount = amount;
+        vegetable.setEdit(false);
+        console.log(vegetable);
+        localStorage.setItem("vegetable", JSON.stringify(vegetables));
+        renderVegetables(wrapper);
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+function handleDeleteVegetable(id) {
+    try {
+        var index = vegetables.findIndex(function (vegetable) { return vegetable.id == id; });
+        if (index === -1)
+            throw new Error("Could not find id");
+        vegetables.splice(index, 1);
+        localStorage.setItem("vegetable", JSON.stringify(vegetables));
+        renderVegetables(wrapper);
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
