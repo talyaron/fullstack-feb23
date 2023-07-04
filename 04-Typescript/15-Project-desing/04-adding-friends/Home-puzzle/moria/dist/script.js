@@ -1,5 +1,5 @@
 var Vegetable = /** @class */ (function () {
-    function Vegetable(name, image, amount) {
+    function Vegetable(name, image, amount, id) {
         this.name = name;
         this.image = image;
         this.amount = amount;

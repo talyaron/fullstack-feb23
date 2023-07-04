@@ -2,7 +2,7 @@
 class Vegetable {
     id: string
     isEdit: boolean = false;
-    constructor(public name: string, public image: string, public amount: number) {
+    constructor(public name: string, public image: string, public amount: number, id?: string | null) {
         this.id = `id-${new Date().getTime() - Math.random()}`
     }
     deleteOne() {
