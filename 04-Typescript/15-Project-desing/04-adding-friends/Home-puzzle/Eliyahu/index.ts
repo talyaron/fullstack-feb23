@@ -242,14 +242,13 @@ function randomColor() {
 
 function vegetableSearch() {
     let txtSearch = document.querySelector("#q").value
-    let re = new RegExp(`^${txtSearch}`, "i");
-    const arr: Vegetable[] = []
-    vegetables.forEach(veg => {
-        let x = re.exec(veg.name);
-        if (x?.index === 0) {
-            arr.push(veg)
+    let regexp = new RegExp(`^${txtSearch}`, "i");
+    const vegetablesFromSearch: Vegetable[] = []
+    vegetables.forEach(vegetable => {
+        if (regexp.test(vegetable.name)) {
+            vegetablesFromSearch.push(vegetable)
         }
-        renderAllVegetables(arr, document.querySelector("#rootVegetable"))
+        renderAllVegetables(vegetablesFromSearch, document.querySelector("#rootVegetable"))
     })
 }
 

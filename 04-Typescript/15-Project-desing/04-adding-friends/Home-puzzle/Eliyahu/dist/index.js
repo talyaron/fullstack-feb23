@@ -210,14 +210,13 @@ function randomColor() {
 }
 function vegetableSearch() {
     var txtSearch = document.querySelector("#q").value;
-    var re = new RegExp("^" + txtSearch, "i");
-    var arr = [];
-    vegetables.forEach(function (veg) {
-        var x = re.exec(veg.name);
-        if ((x === null || x === void 0 ? void 0 : x.index) === 0) {
-            arr.push(veg);
+    var regexp = new RegExp("^" + txtSearch, "i");
+    var vegetablesFromSearch = [];
+    vegetables.forEach(function (vegetable) {
+        if (regexp.test(vegetable.name)) {
+            vegetablesFromSearch.push(vegetable);
         }
-        renderAllVegetables(arr, document.querySelector("#rootVegetable"));
+        renderAllVegetables(vegetablesFromSearch, document.querySelector("#rootVegetable"));
     });
 }
 renderAddVegetable(document.querySelector("#main"));
