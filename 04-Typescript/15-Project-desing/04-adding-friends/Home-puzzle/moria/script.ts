@@ -28,9 +28,7 @@ function getVegetablesFromStorage(): Vegetable[] {
         const vegetablesString = localStorage.getItem("Vegetables");
         if (!vegetablesString) return [];
 
-
         const vegetablesArray = JSON.parse(vegetablesString);
-
 
         const vegetables: Vegetable[] = vegetablesArray.map((vegetable: Vegetable) => {
             return new Vegetable(vegetable.name, vegetable.image, vegetable.amount, vegetable.id);
