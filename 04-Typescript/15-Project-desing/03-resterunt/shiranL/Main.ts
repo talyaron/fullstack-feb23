@@ -53,7 +53,7 @@ function getOrdersForMainPage(): Order[] {
       return [];
     } else {
       const ordersArray = JSON.parse(ordersString);
-      const orders = ordersArray.map(order => new Order(order.table, order.dishes, order.status));
+      const orders = ordersArray.map(order => new Order(order.table, order.dishes, order.status,new Date (order.OpenTime)));
       return orders;
     }
   } catch (error) {
@@ -96,7 +96,12 @@ if(MainOrders){
   }
 }
 
-
+function hendleShowTotalByDate(){
+  window.location.href = './TotalByDate.html';
+}
+function hendleEditMenu(){
+  window.location.href = './EditMenu.html';
+}
 const MainOrders : Order[] = getOrdersForMainPage(); 
 const MainTables : Table[] = getTablesForMainPage(); 
  
