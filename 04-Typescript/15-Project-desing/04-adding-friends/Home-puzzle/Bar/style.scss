@@ -1,0 +1,29 @@
+.wrapper {
+    position: relative;
+    top: 10vh;
+    width: 520px;
+    margin: auto;
+
+    #refrigerator {
+        width: 100%;
+        display: flex;
+        gap: 10px;
+        margin: auto;
+        flex-wrap: wrap;
+
+        .vegetable{
+            width: 250px;
+            height: 300px;
+            border-radius: 10px;
+            box-shadow: 1px 1px 3px grey;
+            text-align: center;
+            background-color: whitesmoke;
+
+            img {
+                width: 230px;
+                height: 200px;
+                margin: auto;
+            }
+        }
+    }
+}

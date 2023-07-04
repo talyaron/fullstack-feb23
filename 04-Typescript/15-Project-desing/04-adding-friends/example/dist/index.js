@@ -38,7 +38,6 @@ function getFriendsFromStorage() {
         return [];
     }
 }
-;
 //view
 //input form
 // from view to model: view-control-model
@@ -63,9 +62,10 @@ function handleAddFriend(ev) {
 //model -> controler --> view
 function renderAllFriends(friends, htmlElement) {
     try {
+        debugger;
         if (!htmlElement)
             throw new Error("No element");
-        var html = friends.map(function (friend) { return renderFriendCard(friend); }).join(' ');
+        var html = friends.map(function (friend) { return renderFriendCard(friend); }).join(" ");
         htmlElement.innerHTML = html;
     }
     catch (error) {
@@ -83,11 +83,11 @@ function renderFriendCard(friend) {
     }
     catch (error) {
         console.error(error);
-        return '';
+        return "";
     }
 }
 //Delete
-//button (view (card)) -> control to delete from array -> edit model (and save to local) -> reder new model-view 
+//button (view (card)) -> control to delete from array -> edit model (and save to local) -> reder new model-view
 function handleDeleteFriend(friendId) {
     try {
         var index = friends.findIndex(function (friend) { return friend.id === friendId; });
