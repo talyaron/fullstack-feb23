@@ -16,12 +16,12 @@ class Vegetable {
 
 const vegetables: Vegetable[] = getVegetablesFromStorage();
 
-if(vegetables.length > 0){
+if (vegetables.length > 0) {
     renderAllVegetables(vegetables, document.querySelector("#rootVegetables"));
 }
-    
 
-function getVegetablesFromStorage():Vegetable[] {
+
+function getVegetablesFromStorage(): Vegetable[] {
     try {
         const vegetableString = localStorage.getItem("vegetables");
         if (!vegetableString) return [];
@@ -61,15 +61,46 @@ function handleQuantity(ev: any) {
     }
 }
 
-function renderAllVegetables(vegetables:Vegetable[], htmlElement:HTMLElement | null){
+function renderAllVegetables(vegetables: Vegetable[], htmlElement: HTMLElement | null) {
     try {
-        if(!htmlElement) throw new Error ("no element");
-        const html = vegetables.map(vegetable =>{
-            return`<p>${vegetable.kind}</p><img src=${vegetable.image}><p>${vegetable.quantity}</p>`;
-        }).join(' ')
+        if (!htmlElement) throw new Error("no element");
+        const html = vegetables.map(vegetable => renderVegCard(vegetable)).join(' ')
 
         htmlElement.innerHTML = html
     } catch (error) {
         console.error(error)
+    }
+}
+
+function renderVegCard(vegetable: Vegetable) {
+
+    try {
+
+        return `<div class="card"> 
+        <img src="${vegetable.image}">
+        <p>${vegetable.kind}</p>
+        <p>${vegetable.quantity}</p>
+        <button onclick="handleDeleteVeg('${vegetable.id}')">Delete</button>
+        </div>`
+
+    } catch (error) {
+        console.error(error)
+        return ''
+    }
+}
+
+function handleDeleteVeg(vegId: string){
+    try {
+        const index = vegetables.findIndex(vegetable => vegetable.id === vegId);
+        if(index === -1) throw new Error ("Could not find vegetable");
+
+        vegetables.splice(index,1);
+        localStorage.setItem("vegetables", JSON.stringify(vegetables))
+
+        renderAllVegetables(vegetables, document.querySelector("#rootVegetables"))
+ 
+    } catch (error) {
+        console.error(error)
+
     }
 }
