@@ -4,9 +4,7 @@ create model for vegtabel,
 
 add vegtabel and amount, and an image
 
-add a button to remove one item from a vegtabel (eg: you had 5 tomatos, and when you press the button "I ATE ONE", you will be left with 4 tomatos )
-
-add a button to add vegtabel
+add a button to remove one item from a vegtabel (eg: you had 5 tomatos, and when you press the button "I ATE ONE", you will be left with 4 tomatos ) and add a button to add one vegtabel
 
 all the data must be saved to localstorage
 

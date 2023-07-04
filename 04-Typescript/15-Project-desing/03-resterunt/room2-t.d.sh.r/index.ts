@@ -221,7 +221,7 @@ function updateSummary(price) {
   }
 }
 
-function removeDish(index) {
+function removeDish(index:any) {
   const dishList = ordersArray.flatMap((order) =>
     order.dishes.map((dish) => ({
       name: dish.dishName,
