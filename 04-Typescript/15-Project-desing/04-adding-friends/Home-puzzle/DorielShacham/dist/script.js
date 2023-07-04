@@ -62,12 +62,12 @@ function handleDeleteFridgeItem(name) {
 }
 function saveFridgeToLocalStorage() {
     localStorage.setItem("fridge", JSON.stringify(Fridge));
-} //<-- Save fridge to localStorage
+} //<-- Save fridge to localStorage as a string
 function loadFridgeFromLocalStorage() {
     var fridgeData = localStorage.getItem("fridge");
     if (fridgeData) {
         Fridge = JSON.parse(fridgeData);
         renderAllVegetables(Fridge, fridgeContainer);
     }
-} //<-- Load fridge from localStorage
+} //<-- Load fridge from localStorage after object is parsed
 window.addEventListener("load", loadFridgeFromLocalStorage); //<-- Call loadFridgeFromLocalStorage on page load (load saved new objects)
