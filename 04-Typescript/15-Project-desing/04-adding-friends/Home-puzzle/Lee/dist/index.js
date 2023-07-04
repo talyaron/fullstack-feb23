@@ -16,7 +16,9 @@ var Vegetable = /** @class */ (function () {
     return Vegetable;
 }());
 var vegetables = getVegetablesFromStorage();
-renderAllVegetables(vegetables, document.querySelector("#rootVegetables"));
+if (vegetables.length > 0) {
+    renderAllVegetables(vegetables, document.querySelector("#rootVegetables"));
+}
 function getVegetablesFromStorage() {
     try {
         var vegetableString = localStorage.getItem("vegetables");
@@ -55,7 +57,7 @@ function renderAllVegetables(vegetables, htmlElement) {
         if (!htmlElement)
             throw new Error("no element");
         var html = vegetables.map(function (vegetable) {
-            return "<p>" + vegetable.kind + "</p>";
+            return "<p>" + vegetable.kind + "</p><img src=" + vegetable.image + ">";
         }).join(' ');
         htmlElement.innerHTML = html;
     }
