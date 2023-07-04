@@ -35,7 +35,6 @@ var Order = /** @class */ (function () {
         this.idOrder = Number(Math.random());
         this.total = 0;
         this.CloseTime = null;
-        debugger;
         if (OpenTimeLocal)
             this.OpenTime = OpenTimeLocal;
         else

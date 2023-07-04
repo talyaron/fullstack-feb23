@@ -30,7 +30,6 @@ class Order {
         this.total = 0;
         
         this.CloseTime = null;
-        debugger
         if(OpenTimeLocal) this.OpenTime = OpenTimeLocal
         else this.OpenTime = new Date();
 

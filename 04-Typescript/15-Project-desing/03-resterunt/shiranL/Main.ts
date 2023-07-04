@@ -73,23 +73,23 @@ function colorByTableOrderStatus() {
   try {
     const tableButtons = document.querySelectorAll(".table-button");
 if(MainOrders){
-  debugger
+ 
     // Iterate through each table button
     tableButtons.forEach((button) => {
       const tableId = parseInt(button.innerText.split(" ")[1]); // Extract the table ID from the button text
-
+      button.style.ba = "6px solid red";
       // Find the corresponding order for the table
       const order = MainOrders.find((order) => order.table?.idTable === tableId && order.status==true);
 
       if (order) {
         // Table has an order, set button color to red
-        button.style.backgroundColor = "red";
+        button.style.border = "6px solid red";
       } else {
         // Table is available, set button color to green
-        button.style.backgroundColor = "green";
+        button.style.border = "6px solid green";
       }
     });
-}else  button.style.backgroundColor = "red";
+}else  button.style.border = "6px solid red";
 
   } catch (error) {
     console.error(error);
