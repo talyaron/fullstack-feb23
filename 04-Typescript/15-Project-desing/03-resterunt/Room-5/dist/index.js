@@ -12,12 +12,12 @@ var Tables = /** @class */ (function () {
     }
     return Tables;
 }());
-var Dishes = /** @class */ (function () {
-    function Dishes(dishName, notes) {
+var Dish = /** @class */ (function () {
+    function Dish(dishName, notes) {
         this.dishName = dishName;
         this.notes = notes;
     }
-    return Dishes;
+    return Dish;
 }());
 var Orders = /** @class */ (function () {
     function Orders(table, dish) {

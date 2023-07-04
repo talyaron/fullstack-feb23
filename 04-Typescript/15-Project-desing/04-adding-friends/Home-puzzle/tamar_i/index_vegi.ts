@@ -80,9 +80,7 @@ function renderVegetableCard(vegetable: Vegetable) {
                         <form onsubmit="handleSetEdit(event)" id="${vegetable.id}">
                             <input type="text" name="name" value="${vegetable.name}">
                             <input type="url" name="image" value="${vegetable.image}">
-                            
-                            <input type="number" name="quantity" value="${vegetable.quantity}">
-                            
+                            <input type="number" name="quantity" value="${vegetable.quantity}">                          
                             <br>
                             <button onclick="hendelDelet('${vegetable.id}')">Delet</button>
                             <input type="submit" value="SET">
@@ -90,7 +88,12 @@ function renderVegetableCard(vegetable: Vegetable) {
                     </div> `
         } else {
             //when not in edit mode
-            return `<div class="card">
+            return `<form onsubmit="handelSearch(event)">
+                        <input type="search" name="search" placeholder="search">
+                        <input type="submit" value="SEARCH">
+                        <br>
+                    </form>
+                    <div class="card">
                         <img src="${vegetable.image}">
                         <p>${vegetable.name}</p>
                         <p><button onclick="handelquntityMinosOne('${vegetable.id}')">-</button>
@@ -107,6 +110,25 @@ function renderVegetableCard(vegetable: Vegetable) {
 
 
 //controllers
+
+//search mode
+
+function handelSearch(ev:any){
+    try {
+        ev.preventDefault();
+        let str = ev.target.search.value;
+        console.log(str)
+
+        if(!str) throw new Error("no search value")
+
+        //do the search in the data and put the result in array
+        let matchAll = Array.from(RegExp.prototype[Symbol.matchAll](str));
+        console.log(matchAll)
+
+    } catch (error) {
+        console.error(error)
+    }
+}
 
 //add a new vegetable
 //take the input from user and put it in varibels
