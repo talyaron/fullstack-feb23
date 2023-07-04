@@ -14,8 +14,10 @@ class Friend {
     setEdit(set: boolean) {
         this.isEdit = set;
     }
-
 }
+
+// const someone = new Friend("Katya", "...", "....", "id-1231234")
+// const someone11 = new Friend("Katya", "...", "....")
 
 const friends: Friend[] = getFriendsFromStorage();
 

@@ -17,6 +17,8 @@ var Friend = /** @class */ (function () {
     };
     return Friend;
 }());
+// const someone = new Friend("Katya", "...", "....", "id-1231234")
+// const someone11 = new Friend("Katya", "...", "....")
 var friends = getFriendsFromStorage();
 renderAllFriends(friends, document.querySelector("#rootFriends"));
 function getFriendsFromStorage() {
