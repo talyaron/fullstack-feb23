@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./dist/style.css">
+    <script src="./dist/script.js" defer></script>
+</head>
+<body>
+    
+    <div class="wrapper">
+        <div class="container">
+        <form onsubmit="handleAddVegetable(event)">
+            
+            <h2>
+            Add Vegetables
+
+            </h2>
+            <input type="text" name="name"  placeholder="Enter Name">
+            <input type="text" name="image"  placeholder="Enter image url">
+            <input type="number" name="amount"  placeholder="Enter amount of vegetables">
+            <input type="submit" value="add">
+        </form>
+
+                
+        
+        <div class="renderVegs"></div>
+    </div>
+    </div>
+    
+</body>
+</html>

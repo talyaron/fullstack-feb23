@@ -51,7 +51,7 @@ function getOrdersForMainPage() {
         }
         else {
             var ordersArray = JSON.parse(ordersString);
-            var orders = ordersArray.map(function (order) { return new Order(order.table, order.dishes, order.status); });
+            var orders = ordersArray.map(function (order) { return new Order(order.table, order.dishes, order.status, new Date(order.OpenTime)); });
             return orders;
         }
     }
@@ -91,6 +91,12 @@ function colorByTableOrderStatus() {
     catch (error) {
         console.error(error);
     }
+}
+function hendleShowTotalByDate() {
+    window.location.href = './TotalByDate.html';
+}
+function hendleEditMenu() {
+    window.location.href = './EditMenu.html';
 }
 var MainOrders = getOrdersForMainPage();
 var MainTables = getTablesForMainPage();

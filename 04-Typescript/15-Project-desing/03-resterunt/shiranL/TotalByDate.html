@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./dist/index.js" defer></script>
+    <script src="./dist/TotalByDate.js" defer></script>
+
+    <link rel="stylesheet" href="./dist/TotalByDate.css">
+    <title>Total By Date</title>
+</head>
+<body>
+   <div class="container">
+    <form class="ShowByDate" onsubmit="ShowByDate(event)">
+        <input type="Date" name="DateToSearch" id='DateToSearch' placeholder="Choose Date" required>
+        <input type="submit" value="Search">
+    </form>
+    <div id="rootOrdes"></div>
+   </div>
+</body>
+</html>

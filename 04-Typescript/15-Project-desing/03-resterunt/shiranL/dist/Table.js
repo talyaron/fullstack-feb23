@@ -52,7 +52,7 @@ function getOrdersForTablepage() {
         }
         else {
             var ordersArray = JSON.parse(ordersString);
-            var orders = ordersArray.map(function (order) { return new Order(order.table, order.dishes, order.status); });
+            var orders = ordersArray.map(function (order) { return new Order(order.table, order.dishes, order.status, new Date(order.OpenTime)); });
             return orders;
         }
     }
@@ -246,7 +246,6 @@ function handleDeleteDish() {
 }
 function deleteDish(dishId) {
     var _a, _b;
-    debugger;
     var currentOrder = OrdersT.find(function (order) { var _a; return ((_a = order.table) === null || _a === void 0 ? void 0 : _a.idTable) === (currentTable === null || currentTable === void 0 ? void 0 : currentTable.idTable) && order.status === true; });
     if (!currentOrder) {
         throw new Error("Cant Finde Current Order");

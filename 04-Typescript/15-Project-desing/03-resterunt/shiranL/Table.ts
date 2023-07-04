@@ -47,7 +47,7 @@ function getOrdersForTablepage(): Order[] {
         return [];
       } else {
         const ordersArray = JSON.parse(ordersString);
-        const orders = ordersArray.map(order => new Order(order.table, order.dishes, order.status));
+        const orders = ordersArray.map(order => new Order(order.table, order.dishes, order.status,new Date (order.OpenTime)));
         return orders;
       }
     } catch (error) {
@@ -316,7 +316,7 @@ function handleAddDishesToOrder(event) {
     }
   }
   function deleteDish(dishId) {
-    debugger;
+   
     const currentOrder = OrdersT.find(
       (order) =>
         order.table?.idTable === currentTable?.idTable && order.status === true
