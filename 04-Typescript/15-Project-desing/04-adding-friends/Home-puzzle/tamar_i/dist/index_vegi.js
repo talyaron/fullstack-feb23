@@ -68,11 +68,11 @@ function renderVegetableCard(vegetable) {
         //if we want to edit the card we check if the edit btn were clicked, when clicked turn isEdit=trou
         if (vegetable.isEdit) {
             //we want to change the DOM to an edit-form
-            return "<div class=\"card\">\n                        <img src=\"" + vegetable.image + "\">\n                        <form onsubmit=\"handleSetEdit(event)\" id=\"" + vegetable.id + "\">\n                            <input type=\"text\" name=\"name\" value=\"" + vegetable.name + "\">\n                            <input type=\"url\" name=\"image\" value=\"" + vegetable.image + "\">\n                            \n                            <input type=\"number\" name=\"quantity\" value=\"" + vegetable.quantity + "\">\n                            \n                            <br>\n                            <button onclick=\"hendelDelet('" + vegetable.id + "')\">Delet</button>\n                            <input type=\"submit\" value=\"SET\">\n                        </form>\n                    </div> ";
+            return "<div class=\"card\">\n                        <img src=\"" + vegetable.image + "\">\n                        <form onsubmit=\"handleSetEdit(event)\" id=\"" + vegetable.id + "\">\n                            <input type=\"text\" name=\"name\" value=\"" + vegetable.name + "\">\n                            <input type=\"url\" name=\"image\" value=\"" + vegetable.image + "\">\n                            <input type=\"number\" name=\"quantity\" value=\"" + vegetable.quantity + "\">                          \n                            <br>\n                            <button onclick=\"hendelDelet('" + vegetable.id + "')\">Delet</button>\n                            <input type=\"submit\" value=\"SET\">\n                        </form>\n                    </div> ";
         }
         else {
             //when not in edit mode
-            return "<div class=\"card\">\n                        <img src=\"" + vegetable.image + "\">\n                        <p>" + vegetable.name + "</p>\n                        <p><button onclick=\"handelquntityMinosOne('" + vegetable.id + "')\">-</button>\n                        " + vegetable.quantity + "\n                        <button onclick=\"handelquntityPlusOne('" + vegetable.id + "')\">+</button></p>\n                        <button onclick=\"hendelDelete('" + vegetable.id + "')\">Delet</button>\n                        <button onclick=\"handelEdit('" + vegetable.id + "')\">Edit</button>\n                    </div>";
+            return "<form onsubmit=\"handelSearch(event)\">\n                        <input type=\"search\" name=\"search\" placeholder=\"search\">\n                        <input type=\"submit\" value=\"SEARCH\">\n                        <br>\n                    </form>\n                    <div class=\"card\">\n                        <img src=\"" + vegetable.image + "\">\n                        <p>" + vegetable.name + "</p>\n                        <p><button onclick=\"handelquntityMinosOne('" + vegetable.id + "')\">-</button>\n                        " + vegetable.quantity + "\n                        <button onclick=\"handelquntityPlusOne('" + vegetable.id + "')\">+</button></p>\n                        <button onclick=\"hendelDelete('" + vegetable.id + "')\">Delet</button>\n                        <button onclick=\"handelEdit('" + vegetable.id + "')\">Edit</button>\n                    </div>";
         }
     }
     catch (error) {
@@ -80,6 +80,22 @@ function renderVegetableCard(vegetable) {
     }
 }
 //controllers
+//search mode
+function handelSearch(ev) {
+    try {
+        ev.preventDefault();
+        var str = ev.target.search.value;
+        console.log(str);
+        if (!str)
+            throw new Error("no search value");
+        //do the search in the data and put the result in array
+        var matchAll = Array.from(RegExp.prototype[Symbol.matchAll](str));
+        console.log(matchAll);
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
 //add a new vegetable
 //take the input from user and put it in varibels
 function handleAddVegetable(ev) {
