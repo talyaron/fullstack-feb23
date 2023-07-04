@@ -65,7 +65,7 @@ function renderAllVegetables(vegetables:Vegetable[], htmlElement:HTMLElement | n
     try {
         if(!htmlElement) throw new Error ("no element");
         const html = vegetables.map(vegetable =>{
-            return`<p>${vegetable.kind}</p><img src=${vegetable.image}>`;
+            return`<p>${vegetable.kind}</p><img src=${vegetable.image}><p>${vegetable.quantity}</p>`;
         }).join(' ')
 
         htmlElement.innerHTML = html

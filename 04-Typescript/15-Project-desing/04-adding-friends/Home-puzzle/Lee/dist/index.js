@@ -57,7 +57,7 @@ function renderAllVegetables(vegetables, htmlElement) {
         if (!htmlElement)
             throw new Error("no element");
         var html = vegetables.map(function (vegetable) {
-            return "<p>" + vegetable.kind + "</p><img src=" + vegetable.image + ">";
+            return "<p>" + vegetable.kind + "</p><img src=" + vegetable.image + "><p>" + vegetable.quantity + "</p>";
         }).join(' ');
         htmlElement.innerHTML = html;
     }
