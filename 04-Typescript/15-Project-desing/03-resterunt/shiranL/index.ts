@@ -25,11 +25,14 @@ class Order {
     total:number;
     OpenTime:Date;
     CloseTime:Date | null;
-    constructor( public table: Table|undefined, public dishes: Dishe[]|undefined,public status:boolean){
+    constructor( public table: Table|undefined, public dishes: Dishe[]|undefined,public status:boolean,public OpenTimeLocal?:Date){
         this.idOrder = Number(Math.random());
         this.total = 0;
-        this.OpenTime = new Date();
+        
         this.CloseTime = null;
+        debugger
+        if(OpenTimeLocal) this.OpenTime = OpenTimeLocal
+        else this.OpenTime = new Date();
 
     }
     calcTotal(){

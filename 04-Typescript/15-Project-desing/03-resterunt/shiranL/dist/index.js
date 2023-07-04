@@ -27,14 +27,19 @@ var Dishe = /** @class */ (function () {
     return Dishe;
 }());
 var Order = /** @class */ (function () {
-    function Order(table, dishes, status) {
+    function Order(table, dishes, status, OpenTimeLocal) {
         this.table = table;
         this.dishes = dishes;
         this.status = status;
+        this.OpenTimeLocal = OpenTimeLocal;
         this.idOrder = Number(Math.random());
         this.total = 0;
-        this.OpenTime = new Date();
         this.CloseTime = null;
+        debugger;
+        if (OpenTimeLocal)
+            this.OpenTime = OpenTimeLocal;
+        else
+            this.OpenTime = new Date();
     }
     Order.prototype.calcTotal = function () {
         this.total = 0; // Reset the total to zero before calculating
