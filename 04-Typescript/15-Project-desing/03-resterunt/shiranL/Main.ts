@@ -53,7 +53,7 @@ function getOrdersForMainPage(): Order[] {
       return [];
     } else {
       const ordersArray = JSON.parse(ordersString);
-      const orders = ordersArray.map(order => new Order(order.table, order.dishes, order.status,new Date (order.OpenTime)));
+      const orders = ordersArray.map(order => new Order(order.table, order.dishes, order.status, new Date (order.OpenTime)));
       return orders;
     }
   } catch (error) {
