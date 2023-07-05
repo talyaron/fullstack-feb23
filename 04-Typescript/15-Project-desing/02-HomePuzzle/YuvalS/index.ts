@@ -5,15 +5,16 @@ const uid = function () {
     };
 
 class WorKer {
-    id: string;
-    constructor(public fullName: string) {
-        this.id = uid();
+    constructor(public fullName: string, public workerNumber:number) {
+        
     }
 }
-const worKers: WorKer[] = [
-    new WorKer("Yuval Shtaingos"),
-    new WorKer("Adi Shetach"),
-];
+const worKers: WorKer[] = [];
+worKers.push(new WorKer("Yuval Shtaingos", 1))
+worKers.push(new WorKer("Adi Shetach", 2))
+
+    
+
 
 
 class HoursDaily{
@@ -46,33 +47,31 @@ class HoursDaily{
 
 const hoursD: HoursDaily[] = [];
 
+
 //     join classes
 
-class WorkerHoursDaily {
-    constructor(public worker: WorKer, public hoursD: any) {}
-    let monthH = 0
-    hoursD.forEach(element =>{
+class WorkerHours {
+    constructor(public worker: WorKer, public hoursD: HoursDaily, public month: number) {}
+  
 
-    })
     }
 
 
-const workerHours: WorkerHoursDaily[] = [];
-
+const workerHours: WorkerHours[] = [];
 
 
 function renderRegisterWorker(rootElement: HTMLElement | null) {
     try {
       const html = `
           <form onsubmit="handleRegisterWorker(event)">
+          <h2>Register</h2>
               <label for="fullName">Full name</label>
-              <select name="fullName" id="fullName">
-            ${worKers.map((worker) => {
-              return `<option value="${worker.id}">${worker.fullName}</option>`;
-            })}
+              <input type="text" name="fullName" id='fullName' placeholder="full Name" required>
+              <label for="workerNumber">Worker Number</label>
+              <input type="text" name="workerNumber" id='workerNumber' placeholder="Worker Number" required>
             
         </select>
-              <input type="submit" value="Register">
+              <input type="submit" value="Register First Time">
           </form>`;
   
       if (!rootElement) throw new Error("No root element");
@@ -87,15 +86,13 @@ function renderRegisterWorker(rootElement: HTMLElement | null) {
 function handleRegisterWorker(ev: any) {
     try {
       ev.preventDefault();
-      const fullNameID = ev.target.fullName.value;
-      const fullName = worKers.find(
-        (worker) => worker.id === fullNameID
-      );
+      const fullName = ev.target.fullName.value;
+      const workerNumber = ev.target.workerNumber.value;
 
-      if (!fullName || !fullNameID)
+      if (!fullName || !workerNumber)
       throw new Error("Couldnt find THE WORKER");
 
-      const worker = new WorKer(fullName);
+      const worker = new WorKer(fullName, workerNumber);
   
       //add to model
       worKers.push(worker);
@@ -109,25 +106,50 @@ function handleRegisterWorker(ev: any) {
     }
   }
 
-  function handleRegisterhours(ev: any) {
+  function renderChooseWorker(rootElement: HTMLElement | null) {
     try {
-      ev.preventDefault();
-      const enterance = ev.target.enterance.value;
-      const exit = ev.target.exit.value;
-      if (!enterance || !exit)
-      throw new Error("Missing Hours");
+      const html = `
+          <form onsubmit="handleChooseWorker(event)">
+          <h2>Worker</h2>
+          <label for="Worker">Worker</label>
+          <input type="text" name="Worker" id="Worker" placeholder="Your Full Name" required>
+              
+              
+          </input>
+              <input type="submit" value="Log-in">
+          </form>`;
   
-      const hoursDay = new HoursDaily(enterance, exit);
-      hoursD.push(hoursDay);
-      const dailyhours = hoursDay.calculateDailyHoures();
-      const rootDailyhours: any = document.querySelector("#dailyhours");
-    if (rootDailyhours) rootDailyhours.innerHTML = `<h1>You Worked Today: ${dailyhours} hours</h1>`;
-    
-      
+      if (!rootElement) throw new Error("No root element");
+  
+      rootElement.innerHTML = html;
     } catch (error) {
       console.error(error);
     }
   }
+
+
+function handleChooseWorker(ev: any) {
+    try {
+      ev.preventDefault();
+      let workerChosen = ev.target.Worker.value;
+
+      const workerLg :WorKer|undefined= worKers.find(function (worker) {
+        return String(worker.fullName) === String(workerChosen);  });
+    if (!workerLg){
+        alert('Employee NOt Exists');
+        workerChosen=null;
+        throw new Error("Employee NOt Exists")}
+      
+      const rootWorkerChosen: any = document.querySelector("#greeting");
+    if (rootWorkerChosen) rootWorkerChosen.innerHTML = `<h3>Hello ${workerChosen} please enter your working hours today.</h3>`;
+      
+
+    
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 
   function renderCalculateDailyHours(rootElement: HTMLElement | null) {
     try {
@@ -147,8 +169,33 @@ function handleRegisterWorker(ev: any) {
       console.error(error);
     }
   }
+
+  function handleRegisterhours(ev: any) {
+    try {
+      ev.preventDefault();
+      const enterance = ev.target.enterance.value;
+      const exit = new Date (ev.target.exit.value);
+      if (!enterance || !exit)
+      throw new Error("Missing Hours");
+      const month = (exit.getMonth() + 1);
+      console.log(month)
+  
+      const hoursDay = new HoursDaily(enterance, exit);
+      hoursD.push(hoursDay);
+      const dailyhours = hoursDay.calculateDailyHoures();
+      const rootDailyhours: any = document.querySelector("#dailyhours");
+    if (rootDailyhours) rootDailyhours.innerHTML = `<h1>You Worked Today: ${dailyhours} hours</h1>`;
+    
+      
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  
   
 
  
   renderRegisterWorker(document.querySelector("#register"));
+  renderChooseWorker(document.querySelector("#login"));
   renderCalculateDailyHours(document.querySelector("#calculate"));

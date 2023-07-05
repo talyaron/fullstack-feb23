@@ -8,89 +8,50 @@
 var uid = function () {
     return Date.now().toString(36) + Math.random().toString(36).substr(2);
 };
-//Model
+// Model
 var Employee = /** @class */ (function () {
-    function Employee(userName, email, workerhours) {
+    function Employee(userName, email) {
         this.userName = userName;
         this.email = email;
-        this.workerhours = workerhours;
         this.id = uid();
     }
     return Employee;
 }());
-var Employees = [
-    new Employee("nave", "vnavev@gmail.com", 2),
-    new Employee("lior", "lior@gmail.com", 17)
+var employees = [
+    new Employee("nave", "vnavev@gmail.com"),
+    new Employee("lior", "lior@gmail.com"),
 ];
-var LogIn = /** @class */ (function () {
-    function LogIn(employee, hour) {
-        this.employee = employee;
-        this.hour = hour;
+var HoursDaily = /** @class */ (function () {
+    function HoursDaily(worker, entrance, exit) {
+        this.worker = worker;
+        this.entrance = entrance;
+        this.exit = exit;
         this.id = uid();
     }
-    return LogIn;
-}());
-var logIns = [
-    new LogIn(Employee.arguments, 12)
-];
-var LogOut = /** @class */ (function () {
-    function LogOut(employee, hour) {
-        this.employee = employee;
-        this.hour = hour;
-        {
-            this.id = uid();
+    HoursDaily.prototype.calculateDailyHours = function () {
+        try {
+            var exitHour = new Date(this.exit);
+            var enterHour = new Date(this.entrance);
+            var exitHourMilliS = exitHour.getTime();
+            var enterHourMilliS = enterHour.getTime();
+            console.log(exitHourMilliS, enterHourMilliS);
+            if (!enterHour || !exitHour)
+                throw new Error("Missing entrance or exit");
+            var dailyhours = (exitHourMilliS - enterHourMilliS) / 3600000;
+            console.log(dailyhours);
+            return dailyhours;
         }
-    }
-    return LogOut;
-}());
-var logOuts = [
-    new LogOut(Employee.arguments, 14)
-];
-function calculateHoursWorked() {
-    var hoursWorked = {}; // Object to store hours worked for each employee
-    var _loop_1 = function (login) {
-        var logout = logOuts.find(function (logout) { return logout.employee.id === login.employee.id; }); // Find the corresponding logout entry
-        if (logout) {
-            var hours = logout.hour - login.hour; // Calculate hours worked
-            if (hoursWorked[login.employee.id]) {
-                hoursWorked[login.employee.id] += hours; // Add hours worked to existing total for the employee
-            }
-            else {
-                hoursWorked[login.employee.id] = hours; // Set hours worked for the employee
-            }
+        catch (error) {
+            console.error(error);
+            return undefined;
         }
     };
-    // Loop through each login and logout entry and calculate hours worked for each employee
-    for (var _i = 0, logIns_1 = logIns; _i < logIns_1.length; _i++) {
-        var login = logIns_1[_i];
-        _loop_1(login);
-    }
-    return hoursWorked;
-}
-var Passanger = /** @class */ (function () {
-    // flights:Flight[] = [];
-    function Passanger(firstName, lastName, email) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.id = uid();
-    }
-    return Passanger;
+    return HoursDaily;
 }());
-//join classes
-var PassangerFlights = /** @class */ (function () {
-    function PassangerFlights(passenger, flight) {
-        this.passenger = passenger;
-        this.flight = flight;
-    }
-    return PassangerFlights;
-}());
-var passengersFlights = [];
-// view controlers
-//register user
+var hoursD = [];
 function renderRegisterUser(rootElement) {
     try {
-        var html = "\n        <form onsubmit=\"handleRegisterUser(event)\">\n            <label for=\"firstName\">First name</label>\n            <input type=\"text\" name=\"firstName\" id='firstName' placeholder=\"first name\" required>\n            <label for=\"lastName\">Last name</label>\n            <input type=\"text\" name=\"lastName\" id=\"'lastName\" placeholder=\"last name\" required>\n            <label for=\"email\">Email</label>\n            <input type=\"email\" name=\"email\" id=\"email\" required>\n            <input type=\"submit\" value=\"Register\">\n        </form>";
+        var html = " <div class=\"registers\" id=\"register\">\n        <form class=\"register\" onsubmit=\"handleRegisterUser(event)\">\n            <label for=\"firstName\">First name</label>\n            <input type=\"text\" name=\"userName\" id='firstName' placeholder=\"first name\" required>\n            <label for=\"email\">Email</label>\n            <input type=\"email\" name=\"email\" id=\"email\" placeholder=\"email\" required>\n            <input type=\"submit\" value=\"Register\">\n        </form></div>";
         if (!rootElement)
             throw new Error("No root element");
         rootElement.innerHTML = html;
@@ -99,74 +60,67 @@ function renderRegisterUser(rootElement) {
         console.error(error);
     }
 }
-//calculate
-renderRegisterUser(document.querySelector("#register"));
-renderCalculateDistance(document.querySelector("#calculate"));
-function renderLoggedUser(passenger, rootElement) {
+function renderLoggedUser(employee, rootElement) {
     try {
-        var html = "<h2>Hello " + passenger.firstName + "</h2>";
+        var html = " <div class=\"LoggedUser\" ><h2>Hello " + employee.userName + "</h2>\n    <form class=\"register\" onsubmit=\"handleTimeClock(event)\">\n    <label for=\"firstName\">First name</label>\n    <input type=\"text\" name=\"worker\" id='firstName' placeholder=\"firstname\" required>\n    <label for=\"entrance\">Entrance</label>\n    <input type=\"datetime-local\" name=\"entrance\" id=\"entrance\" required>\n    <label for=\"exit\">Exit</label>\n    <input type=\"datetime-local\" name=\"exit\" id=\"exit\" required>\n    <input type=\"submit\" value=\"Calculate\">\n</form>\n    ";
         if (!rootElement)
-            throw new Error("no root element");
+            throw new Error("No root element");
         rootElement.innerHTML = html;
     }
     catch (error) {
         console.error(error);
     }
 }
-// view->model controlers
 function handleRegisterUser(ev) {
     try {
         ev.preventDefault();
-        var firstName = ev.target.firstName.value;
-        var lastName = ev.target.lastName.value;
+        var userName = ev.target.userName.value;
         var email = ev.target.email.value;
-        var passenger = new Passanger(firstName, lastName, email);
-        //add to model
-        passengers.push(passenger);
-        //control->view
-        renderLoggedUser(passenger, document.querySelector("#register"));
-        console.log(firstName, lastName, email);
+        var employee = new Employee(userName, email);
+        // Add to model
+        employees.push(employee);
+        // Control -> View
+        renderLoggedUser(employee, document.querySelector("#calculate"));
+        console.log(userName, email);
     }
     catch (error) {
         console.error(error);
+        return undefined;
     }
 }
-function renderCalculateDistance(rootElement) {
-    try {
-        var html = "\n        <form onsubmit=\"handleCalculate(event)\">\n        <h2>From - to</h2>\n        <label for=\"from\">From</label>\n        <select name=\"from\" id=\"from\">\n            " + airports.map(function (airport) {
-            return "<option value=\"" + airport.id + "\">" + airport.name + "</option>";
-        }) + "\n            \n        </select>\n        <label for=\"to\">To</label>\n        <select name=\"to\" id=\"to\">\n        " + airports.map(function (airport) {
-            return "<option value=\"" + airport.id + "\">" + airport.name + "</option>";
-        }) + "\n        </select>\n        <input type=\"submit\" value=\"Calculate\">\n    </form>";
-        if (!rootElement)
-            throw new Error("No root element");
-        rootElement.innerHTML = html;
-    }
-    catch (error) {
-        console.error(error);
-    }
-}
-function handleCalculate(ev) {
+function handleTimeClock(ev) {
     try {
         ev.preventDefault();
-        //get from airport
-        var airportIdFrom_1 = ev.target.from.value;
-        //get to airport
-        var airportIdTo_1 = ev.target.to.value;
-        console.log(airportIdFrom_1, airportIdTo_1);
-        var airportFrom = airports.find(function (airport) { return airport.id === airportIdFrom_1; });
-        var airportTo = airports.find(function (airport) { return airport.id === airportIdTo_1; });
-        if (!airportTo || !airportFrom)
-            throw new Error("Couldnt find one of the airport");
-        var flight = new Flight(airportFrom, airportTo);
-        flights.push(flight);
-        var distance = flight.calculateDistanceInKm();
-        var rootDistance = document.querySelector("#distance");
-        if (rootDistance)
-            rootDistance.innerHTML = distance;
-        console.log(distance);
+        var worker = ev.target.worker.value;
+        var entrance = ev.target.entrance.value;
+        var exit = ev.target.exit.value;
+        var timeClockEntry = new HoursDaily(worker, entrance, exit);
+        // Add to model
+        hoursD.push(timeClockEntry);
+        // Control -> View
+        renderTimeClockToHtml(hoursD, document.querySelector("#renderCalculate"));
+        console.log(worker, entrance, exit);
+    }
+    catch (error) {
+        console.error(error);
+        return undefined;
+    }
+}
+function renderTimeClockToHtml(timeClockArr, rootElement) {
+    try {
+        var html_1 = "\n      <table id=\"timeTable\">\n          <tr>\n              <th>Worker</th>\n              <th>Entrance</th>\n              <th>Exit</th>\n              <th>Total Hours</th>\n          </tr>";
+        timeClockArr.forEach(function (element) {
+            console.log(element);
+            var totalHours = element.calculateDailyHours();
+            html_1 += "\n         <tr>\n         <td>" + element.worker + "</td>\n          <td>" + element.entrance + "</td>\n          <td>" + element.exit + "</td>\n          <td>" + totalHours + "</td>\n         </tr>";
+        });
+        html_1 += "</table>";
+        if (!rootElement)
+            throw new Error("No root element");
+        rootElement.innerHTML = html_1;
     }
     catch (error) {
         console.error(error);
     }
 }
+renderRegisterUser(document.querySelector("#calculate"));

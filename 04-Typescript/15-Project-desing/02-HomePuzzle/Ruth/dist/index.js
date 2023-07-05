@@ -131,8 +131,7 @@ function getEmployeeHours() {
 }
 function getAllUserHours() {
     var table = document.querySelector("#tableUser");
-    table.innerHTML =
-        "<table> \n        <tr> <th>User Name</th> <th>Date</th> <th>Entrance</th> <th>Leaving</th> <th>Total</th></tr>\n        " + employeesHours.map(function (empl) { return empl.hoursWork.map(function (day) { return "<tr><td>" + empl.employee.firstName + " " + empl.employee.lastName + "</td><td>" + day.getDate() + "</td><td>" + day.getEntranceTime() + "</td><td>" + day.getExitTime() + "</td><td>" + day.getTotal() + "</td></tr>"; }).join(""); }).join("") + "\n        " + employeesHours.map(function (empl) { return "<tr><td>" + empl.employee.firstName + " " + empl.employee.lastName + " Hours</td><td>" + empl.getSumWorkingHours() + "</td></tr>"; }) + "\n        </table>";
+    table.innerHTML = "<table> \n        <tr> <th>User Name</th> <th>Date</th> <th>Entrance</th> <th>Leaving</th> <th>Total</th></tr>\n        " + employeesHours.map(function (empl) { return empl.hoursWork.map(function (day) { return "<tr><td>" + empl.employee.firstName + " " + empl.employee.lastName + "</td><td>" + day.getDate() + "</td><td>" + day.getEntranceTime() + "</td><td>" + day.getExitTime() + "</td><td>" + day.getTotal() + "</td></tr>"; }).join(" "); }).join(" ") + "\n        " + employeesHours.map(function (empl) { return "<tr><td>" + empl.employee.firstName + " " + empl.employee.lastName + " Hours</td><td>" + empl.getSumWorkingHours() + "</td></tr>"; }) + "\n        </table>";
 }
 function addBtnNewUser() {
     var html = document.body;
