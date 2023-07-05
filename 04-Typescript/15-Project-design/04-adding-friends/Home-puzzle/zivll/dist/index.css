@@ -17,4 +17,12 @@
 .cards-wrapper .card button {
   margin: 10px;
   padding: 5px 10px;
+  background-color: blue;
+  color: #fff;
+  border-radius: 40px;
+  cursor: pointer;
+  border: 1px rgba(0, 0, 0, 0.505);
+}
+.cards-wrapper .card button:hover {
+  background-color: #0202c3;
 }
