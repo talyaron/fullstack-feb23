@@ -113,7 +113,16 @@ function updateInLocalStorage() {
 }
 function renderAddProductForm() {
     var root = document.querySelector(".addProductForm");
-    root.innerHTML = "\n    <form id=\"addProductForm\" onsubmit=\"handelNewProduct(event)\">\n    <label for=\"newName\"> name of product: </label>\n    <input type=\"text\" id=\"newName\" required><br>\n    <label for=\"newImgSrc\"> Image source of product: </label>\n    <input type=\"text\" id=\"newImgSrc\" required><br>\n    <label for=\"newAmount\"> Image source of product: </label>\n    <input type=\"number\" id=\"newAmount\" value=\"0\" min=\"0\"><br>\n    <button type=\"submit\">ADD</button>\n    </form>";
+    root.classList.toggle("active");
+    if (root.classList.contains("active")) {
+        var btn = document.querySelector("#addProductBtn");
+        btn.innerHTML = " x ";
+    }
+    else {
+        var btn = document.querySelector("#addProductBtn");
+        btn.innerHTML = "+";
+    }
+    root.innerHTML = "\n    <form id=\"addProductForm\" onsubmit=\"handelNewProduct(event)\">\n    <label for=\"newName\"> name of product: </label>\n    <input type=\"text\" id=\"newName\" required><br>\n    <label for=\"newImgSrc\"> Image source of product: </label>\n    <input type=\"url\" id=\"newImgSrc\" required><br>\n    <label for=\"newAmount\"> Image source of product: </label>\n    <input type=\"number\" id=\"newAmount\" value=\"0\" min=\"0\"><br>\n    <button type=\"submit\">ADD</button>\n    </form>";
 }
 function handelNewProduct(ev) {
     ev.preventDefault();
@@ -125,4 +134,17 @@ function handelNewProduct(ev) {
     renderProducts();
     var root = document.querySelector(".addProductForm");
     root.innerHTML = "";
+    root.classList.toggle("active");
+    var btn = document.querySelector("#addProductBtn");
+    btn.innerHTML = "+";
+}
+function searchProducts(event) {
+    var textToSearch = event.target.value.toLowerCase();
+    products.forEach(function (product) {
+        var element = document.querySelector("[name= \"" + product.name + "\" ]");
+        if (!product.name.toLowerCase().includes(textToSearch))
+            element.classList.add("isntFound");
+        else
+            element.classList.remove("isntFound");
+    });
 }
