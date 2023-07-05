@@ -30,15 +30,16 @@ function getOrdersForTotalByDate(): Order[] {
   }
   function renderOrderCard(order: Order){
     try {
-       
         if(!order) throw new Error("cant find rootOrdes");
         order.calcTotal();
         return `<div id="orderCard">
         <p>Date: ${order.OpenTime.toLocaleDateString()}</p>
         <p>Table Name: ${order.table?.tableName}</p>
+        <p>Order Status: <span class="order-status ${order.status ? 'open' : 'closed'}">${order.status ? 'Open' : 'Closed'}</span></p>
         <p>check Out : ${order.total}</p>
     </div>
 `
+
     } catch (error) {
         
     }
@@ -83,6 +84,8 @@ function getOrdersForTotalByDate(): Order[] {
 
         const ordersByDatehtml=ordersByDate.map(order => renderOrderCard(order)).join(' ')
         rootOrdes.innerHTML=ordersByDatehtml;
+
+     
         //Total div
         const rootToal= document.querySelector("#rootToal")
         if(!rootToal) throw new Error("cant find rootOrdes");

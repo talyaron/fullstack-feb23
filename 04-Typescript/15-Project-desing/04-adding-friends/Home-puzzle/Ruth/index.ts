@@ -192,13 +192,23 @@ function updateInLocalStorage() {
 }
 
 function renderAddProductForm() {
-  const root: HTMLDivElement = document.querySelector(".addProductForm")!;
+  const root: HTMLDivElement = document.querySelector(
+    ".addProductForm",
+  ) as HTMLDivElement;
+  root.classList.toggle("active");
+  if (root.classList.contains("active")) {
+    const btn = document.querySelector("#addProductBtn") as HTMLButtonElement;
+    btn.innerHTML = ` x `;
+  } else {
+    const btn = document.querySelector("#addProductBtn") as HTMLButtonElement;
+    btn.innerHTML = "+";
+  }
   root.innerHTML = `
     <form id="addProductForm" onsubmit="handelNewProduct(event)">
     <label for="newName"> name of product: </label>
     <input type="text" id="newName" required><br>
     <label for="newImgSrc"> Image source of product: </label>
-    <input type="text" id="newImgSrc" required><br>
+    <input type="url" id="newImgSrc" required><br>
     <label for="newAmount"> Image source of product: </label>
     <input type="number" id="newAmount" value="0" min="0"><br>
     <button type="submit">ADD</button>
@@ -216,4 +226,17 @@ function handelNewProduct(ev: any) {
   renderProducts();
   const root: HTMLDivElement = document.querySelector(".addProductForm")!;
   root.innerHTML = "";
+  root.classList.toggle("active");
+  const btn = document.querySelector("#addProductBtn") as HTMLButtonElement;
+  btn.innerHTML = "+";
+}
+
+function searchProducts(event: any) {
+  const textToSearch = event.target.value.toLowerCase();
+  products.forEach((product) => {
+    const element = document.querySelector(  `[name= "${product.name}" ]`,) as HTMLDivElement;
+    if (!product.name.toLowerCase().includes(textToSearch))
+      element.classList.add("isntFound");
+    else element.classList.remove("isntFound");
+  });
 }

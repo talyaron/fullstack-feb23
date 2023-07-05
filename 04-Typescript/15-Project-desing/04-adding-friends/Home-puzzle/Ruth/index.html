@@ -3,13 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="stylesheet" href="./dist/style.css" />
     <title>Document</title>
   </head>
   <body onload="renderProducts()  ">
+    <input id="searchInput" type="search" oninput="searchProducts(event)">
     <button id="addProductBtn" onclick="renderAddProductForm()">+</button>
-    <div class="addProductForm"></div>
+    <div class="addProductForm">
+    </div>
     <div class="productGallery" id="productGallery"></div>
     <script src="./dist/index.js"></script>
   </body>

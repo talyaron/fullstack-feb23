@@ -32,7 +32,7 @@ function renderOrderCard(order) {
         if (!order)
             throw new Error("cant find rootOrdes");
         order.calcTotal();
-        return "<div id=\"orderCard\">\n        <p>Date: " + order.OpenTime.toLocaleDateString() + "</p>\n        <p>Table Name: " + ((_a = order.table) === null || _a === void 0 ? void 0 : _a.tableName) + "</p>\n        <p>check Out : " + order.total + "</p>\n    </div>\n";
+        return "<div id=\"orderCard\">\n        <p>Date: " + order.OpenTime.toLocaleDateString() + "</p>\n        <p>Table Name: " + ((_a = order.table) === null || _a === void 0 ? void 0 : _a.tableName) + "</p>\n        <p>Order Status: <span class=\"order-status " + (order.status ? 'open' : 'closed') + "\">" + (order.status ? 'Open' : 'Closed') + "</span></p>\n        <p>check Out : " + order.total + "</p>\n    </div>\n";
     }
     catch (error) {
     }
