@@ -98,6 +98,7 @@ body {
                     scale: 1.1;
                     border-radius: 6px;
                 }
+
                 img {
                     display: flex;
                     width: 200px;
@@ -112,6 +113,13 @@ body {
                     transition: 0.3s;
                     rotate: 360deg;
                     cursor: pointer;
+                }
+
+                p{
+                    border: 2px solid black;
+                    background-color: lime;
+                    color:black;
+                    width: 80px;
                 }
             }
         }
