@@ -64,7 +64,8 @@ function renderProductCard(product: Product) {
                     <img src="${product.image}">
                     <form onsubmit="handleSetEditProduct(event)" id="${product.id}">
                         <input type="text" name="name" value="${product.name}">
-                        <input type="text" name="phoneNumber" value="${product.number}">
+                        <input type="text" name="url" value="${product.image}">
+                        <input type="text" name="number" value="${product.number}">
                         <br>
                         <button onclick="handleDeleteProduct('${product.id}')">Delete</button>
                         <input type="submit" value="SET">
