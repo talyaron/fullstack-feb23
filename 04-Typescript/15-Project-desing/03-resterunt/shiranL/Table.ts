@@ -134,7 +134,7 @@ function renderTableDetails() {
         
         if (currentTable) {
             // Assuming you have an HTML element with id "tableDetails" to display the details
-            const tableDetailsElement = document.getElementById("tableDetailsContainer");
+            const tableDetailsElement = document.querySelector("#tableDetailsContainer");
             
             if (tableDetailsElement) {
                 tableDetailsElement.innerHTML = `
@@ -254,7 +254,7 @@ function checkOut(){
   BackToMain();
 }
 function handleAddDishesToOrder(event) {
-  debugger;
+
     event.preventDefault(); // Prevent form submission
     // Get all the selected dish checkboxes
     
@@ -285,7 +285,7 @@ function handleAddDishesToOrder(event) {
         (order) =>
           order.table?.idTable === currentTable?.idTable && order.status === true
       );
-      if(!currentOrder){throw new Error("Cant Finde Current Order");
+      if(!currentOrder){throw new Error("Cant Find Current Order");
       }
       const orderDishes = currentOrder.dishes;
       
@@ -321,7 +321,7 @@ function handleAddDishesToOrder(event) {
       (order) =>
         order.table?.idTable === currentTable?.idTable && order.status === true
     );
-    if(!currentOrder){throw new Error("Cant Finde Current Order");
+    if(!currentOrder){throw new Error("Cant Find Current Order");
       }
     // Find the dish with the specified dishId in the currentOrder.dishes array
 

@@ -32,33 +32,62 @@ function renderOrderCard(order) {
         if (!order)
             throw new Error("cant find rootOrdes");
         order.calcTotal();
-        return "<div class=\"orderCard\">\n        <p>" + order.OpenTime + " " + ((_a = order.table) === null || _a === void 0 ? void 0 : _a.tableName) + "</p>\n        <p>check " + order.total + "</p>\n    </div>\n";
+        return "<div id=\"orderCard\">\n        <p>Date: " + order.OpenTime.toLocaleDateString() + "</p>\n        <p>Table Name: " + ((_a = order.table) === null || _a === void 0 ? void 0 : _a.tableName) + "</p>\n        <p>check Out : " + order.total + "</p>\n    </div>\n";
     }
     catch (error) {
     }
 }
 function ShowByDate(event) {
-    event.preventDefault();
-    var dateToSearch = event.target.DateToSearch.valueAsDate; // get date from target
-    if (OrdersForTotalByDate && dateToSearch) {
-        try {
-            debugger;
+    try {
+        event.preventDefault();
+        var dateToSearch_1 = event.target.DateToSearch.valueAsDate; // get date from target
+        if (OrdersForTotalByDate && dateToSearch_1) {
             var ordersByDate = OrdersForTotalByDate.filter(function (order) {
                 var orderDate = order.OpenTime;
-                return (orderDate.getFullYear() === dateToSearch.getFullYear() &&
-                    orderDate.getMonth() === dateToSearch.getMonth() &&
-                    orderDate.getDate() === dateToSearch.getDate());
+                order.calcTotal();
+                return (orderDate.getFullYear() === dateToSearch_1.getFullYear() &&
+                    orderDate.getMonth() === dateToSearch_1.getMonth() &&
+                    orderDate.getDate() === dateToSearch_1.getDate());
             });
-            var TotalByDate = calcTotalByDate(ordersByDate);
-            var rootOrdes = document.querySelector("#rootOrdes");
-            if (!rootOrdes)
-                throw new Error("cant find rootOrdes");
-            var html = ordersByDate.map(function (order) { return renderOrderCard(order); }).join(' ');
-            rootOrdes.innerHTML = html;
-        }
-        catch (error) {
-            console.error(error);
+            if (ordersByDate.length === 0) {
+                // if no orderes for this date
+                var rootOrdes = document.querySelector("#rootOrdes");
+                if (!rootOrdes)
+                    throw new Error("cant find rootOrdes");
+                rootOrdes.innerHTML = "";
+                var rootToal = document.querySelector("#rootToal");
+                if (!rootToal)
+                    throw new Error("cant find rootOrdes");
+                rootToal.innerHTML = "<div class=\"TotalByDate\">\n          <p> No Orders For This Date </p> </div>";
+            }
+            else {
+                // render the orders with /Total for thos day
+                var TotalByDate = calcTotalByDate(ordersByDate);
+                //orders div
+                var rootOrdes = document.querySelector("#rootOrdes");
+                if (!rootOrdes)
+                    throw new Error("cant find rootOrdes");
+                var ordersByDatehtml = ordersByDate.map(function (order) { return renderOrderCard(order); }).join(' ');
+                rootOrdes.innerHTML = ordersByDatehtml;
+                //Total div
+                var rootToal = document.querySelector("#rootToal");
+                if (!rootToal)
+                    throw new Error("cant find rootOrdes");
+                if (TotalByDate != 0) {
+                    rootToal.innerHTML = "<div class=\"TotalByDate\">\n        <p>Total Daily Profit: " + TotalByDate + " </p> </div>";
+                }
+                else {
+                    rootToal.innerHTML = "";
+                    rootOrdes.innerHTML = "";
+                }
+            }
         }
     }
+    catch (error) {
+        console.error(error);
+    }
+}
+function backHome() {
+    window.location.href = './Main.html';
 }
 var OrdersForTotalByDate = getOrdersForTotalByDate();

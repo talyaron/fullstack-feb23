@@ -4,7 +4,12 @@ class Product {
     public amount: number = 0,
     public imgSrc: string,
     public id: string = createId(),
+    public isEdit: boolean = false,
   ) {}
+
+  setEdit(set: boolean) {
+    this.isEdit = set;
+  }
 }
 
 function createId() {
@@ -24,11 +29,6 @@ const firstProducts: Product[] = [
     "tomato",
     12,
     "https://cdn.pixabay.com/photo/2022/09/05/09/50/tomatoes-7433786_1280.jpg",
-  ),
-  new Product(
-    "stawberry",
-    4,
-    "https://cdn.pixabay.com/photo/2018/04/29/11/54/strawberries-3359755_1280.jpg",
   ),
   new Product(
     "pineapplw",
@@ -51,6 +51,11 @@ const firstProducts: Product[] = [
     "https://cdn.pixabay.com/photo/2015/05/17/14/29/salad-771056_1280.jpg",
   ),
   new Product(
+    "stawberry",
+    4,
+    "https://cdn.pixabay.com/photo/2018/04/29/11/54/strawberries-3359755_1280.jpg",
+  ),
+  new Product(
     "celery",
     2,
     "https://cdn.pixabay.com/photo/2015/07/31/12/07/soup-greens-869075_1280.jpg",
@@ -71,22 +76,21 @@ const firstProducts: Product[] = [
     "https://cdn.pixabay.com/photo/2016/08/14/11/56/apples-1592588_1280.jpg",
   ),
   new Product(
-    "orange",
+    "coriander",
     9,
     "https://cdn.pixabay.com/photo/2016/03/29/01/06/cilantro-1287301_1280.jpg",
   ),
 ];
 
-const products: Product[] = getProductsFromLocalStorage();
+let products: Product[] = getProductsFromLocalStorage();
 
 function getProductsFromLocalStorage() {
   try {
     const productsString = localStorage.getItem("products");
-    if (!productsString){
-        localStorage.setItem("products", JSON.stringify(firstProducts))
-        return firstProducts;
-    } 
-    else {
+    if (!productsString) {
+      localStorage.setItem("products", JSON.stringify(firstProducts));
+      return firstProducts;
+    } else {
       const productsArray = JSON.parse(productsString);
       const products = productsArray.map((pro) => {
         return new Product(pro.name, pro.amount, pro.imgSrc);
@@ -101,17 +105,34 @@ function getProductsFromLocalStorage() {
 
 function renderProducts() {
   const html = products
-    .map(
-      (product) => `
-    <div class="productItem" name="${product.name}">
+    .map((product) => {
+      if (!product.isEdit)
+        return `
+    <div class="productItem ${product.id}" name="${product.name}">
+    <button id="deleteBtn" onclick="deleteProduct('${product.id}')" >
+    <span class="material-symbols-outlined"> delete </span></button>
+    <button id="editBtn" onclick="editProduct(event, '${product.id}')"> <span class="material-symbols-outlined"> edit </span></button>
     <img src="${product.imgSrc}" alt="">
     <h3 id="productName">${product.name}</h3>
     <button onclick="addToProduct('${product.id}')"> + </button>
     <h4 id="productAmount">${product.amount}</h4>
     <button onclick="reduceFromProduct('${product.id}')"> - </button>
     </div>
-    `,
-    )
+    `;
+      else
+        return `
+    <div class="productItem" name="${product.name}">
+    <button id="deleteBtn" onclick="deleteProduct('${product.id}')" > <span class="material-symbols-outlined"> delete </span></button>
+    <button id="editBtn" onclick="editProduct(event, '${product.id}')"> <span class="material-symbols-outlined"> edit </span></button>
+
+    <img src="${product.imgSrc}" alt="">
+    <h3 id="productName">${product.name}</h3>
+    <button onclick="addToProduct('${product.id}')"> + </button>
+    <input type="number" value = ${product.amount} id="editProductAmount"></input>
+    <button onclick="reduceFromProduct('${product.id}')"> - </button>
+    </div>
+    `;
+    })
     .join(" ");
 
   const root = document.querySelector("#productGallery") as HTMLDivElement;
@@ -135,6 +156,64 @@ function reduceFromProduct(productId: string) {
   }
 }
 
+function deleteProduct(productId: string) {
+  const indexToRemoved = products.findIndex((pro) => pro.id === productId);
+
+  products.splice(indexToRemoved, 1);
+  updateInLocalStorage();
+  renderProducts();
+}
+
+function editProduct(event: any, productId: string) {
+  try {
+    const productToEdit: Product = products.find(
+      (pro) => pro.id === productId,
+    )!;
+    if (!productToEdit) throw new Error("couldn't fined productToEdit ");
+    if (productToEdit.isEdit == true) {
+      const amountValue =
+        event.target.parentNode.parentNode.querySelector("input").value;
+      productToEdit.amount = amountValue;
+      productToEdit.setEdit(false);
+      renderProducts();
+    } else {
+      productToEdit.setEdit(true);
+      renderProducts();
+    }
+    updateInLocalStorage();
+    renderProducts();
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 function updateInLocalStorage() {
   localStorage.setItem("products", JSON.stringify(products));
+}
+
+function renderAddProductForm() {
+  const root: HTMLDivElement = document.querySelector(".addProductForm")!;
+  root.innerHTML = `
+    <form id="addProductForm" onsubmit="handelNewProduct(event)">
+    <label for="newName"> name of product: </label>
+    <input type="text" id="newName" required><br>
+    <label for="newImgSrc"> Image source of product: </label>
+    <input type="text" id="newImgSrc" required><br>
+    <label for="newAmount"> Image source of product: </label>
+    <input type="number" id="newAmount" value="0" min="0"><br>
+    <button type="submit">ADD</button>
+    </form>`;
+}
+
+function handelNewProduct(ev: any) {
+  ev.preventDefault();
+  const newName = ev.target.newName.value;
+  const newAmount = ev.target.newAmount.value;
+  const newImgSrc = ev.target.newImgSrc.value;
+
+  products = getProductsFromLocalStorage();
+  products.push(new Product(newName, newAmount, newImgSrc));
+  renderProducts();
+  const root: HTMLDivElement = document.querySelector(".addProductForm")!;
+  root.innerHTML = "";
 }

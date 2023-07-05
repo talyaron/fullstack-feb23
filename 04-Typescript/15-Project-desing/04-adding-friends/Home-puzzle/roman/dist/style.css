@@ -16,15 +16,23 @@
   margin: auto;
 }
 .wrapper .container .renderVegs {
-  width: 300px;
+  width: 500px;
   text-align: center;
   margin: auto;
   padding-top: 20px;
+}
+.wrapper .container .vegetables {
+  width: 100%;
+  margin: 0 auto;
+}
+.wrapper .container .vegetables input {
+  width: 50px;
 }
 .wrapper .container .vegetables th,
 .wrapper .container .vegetables td,
 .wrapper .container .vegetables tr {
   border: 2px solid #807e7e;
+  background-color: #f4f4f4;
 }
 .wrapper .container .vegetables .vegetableImage {
   width: 50px;

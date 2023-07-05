@@ -33,9 +33,10 @@ function getOrdersForTotalByDate(): Order[] {
        
         if(!order) throw new Error("cant find rootOrdes");
         order.calcTotal();
-        return `<div class="orderCard">
-        <p>${order.OpenTime} ${order.table?.tableName}</p>
-        <p>check ${order.total}</p>
+        return `<div id="orderCard">
+        <p>Date: ${order.OpenTime.toLocaleDateString()}</p>
+        <p>Table Name: ${order.table?.tableName}</p>
+        <p>check Out : ${order.total}</p>
     </div>
 `
     } catch (error) {
@@ -44,35 +45,64 @@ function getOrdersForTotalByDate(): Order[] {
    
   }
  function ShowByDate(event :any){
-   
+  try { 
     event.preventDefault();
     const dateToSearch : Date = event.target.DateToSearch.valueAsDate // get date from target
 
     if(OrdersForTotalByDate && dateToSearch)
     {
-        try { debugger
             const ordersByDate = OrdersForTotalByDate.filter(order => {
                 const orderDate = order.OpenTime;
+                order.calcTotal();
                 return (
+                 
                   orderDate.getFullYear() === dateToSearch.getFullYear() &&
                   orderDate.getMonth() === dateToSearch.getMonth() &&
                   orderDate.getDate() === dateToSearch.getDate()
                 );
               });
+        if(ordersByDate.length === 0){
+          // if no orderes for this date
+
+          const rootOrdes= document.querySelector("#rootOrdes")
+          if(!rootOrdes) throw new Error("cant find rootOrdes");
+          rootOrdes.innerHTML=``;
+
+          const rootToal= document.querySelector("#rootToal")
+          if(!rootToal) throw new Error("cant find rootOrdes");
+
+         rootToal.innerHTML=`<div class="TotalByDate">
+          <p> No Orders For This Date </p> </div>`;
+        }
+        else{
+           // render the orders with /Total for thos day
         const TotalByDate:number = calcTotalByDate(ordersByDate);
+        //orders div
         const rootOrdes= document.querySelector("#rootOrdes")
         if(!rootOrdes) throw new Error("cant find rootOrdes");
-        const html=ordersByDate.map(order => renderOrderCard(order)).join(' ')
-        rootOrdes.innerHTML=html;
-       
 
+        const ordersByDatehtml=ordersByDate.map(order => renderOrderCard(order)).join(' ')
+        rootOrdes.innerHTML=ordersByDatehtml;
+        //Total div
+        const rootToal= document.querySelector("#rootToal")
+        if(!rootToal) throw new Error("cant find rootOrdes");
+        if(TotalByDate !=0 ){
+       
+        rootToal.innerHTML=`<div class="TotalByDate">
+        <p>Total Daily Profit: ${TotalByDate} </p> </div>`;
+        }
+        else{
+          rootToal.innerHTML=``;
+          rootOrdes.innerHTML=``;
+        } 
+       
+      }}
     } catch (error) {
         console.error(error);
         
-    }
-       
-        
-    }
- }
-
+    }}
+ 
+function backHome(){
+  window.location.href = './Main.html';
+}
 const OrdersForTotalByDate : Order[] = getOrdersForTotalByDate();
