@@ -61,14 +61,16 @@ showVegetables(vegetables, refrigerator);
 // add a button to remove one item from a vegtabel
 // (eg: you had 5 tomatos, and when you prfess the button "I ATE ONE", you will be left with 4 tomatos)
 // and add a button to add one vegtabel
-
 function handleRemoveVegetable(vegetableID: string) {
     try {
         const vegtable = vegetables.find((vegetable) => vegetable.id === vegetableID);
         if (!vegtable) throw new Error('Could not find vegetable');
 
         const amount = vegtable.amount;
-        if (amount === 0) throw new Error('There is no more vegetables');
+        // if (amount === 0) throw new Error('There is no more vegetables');
+
+        if (amount === 0) {
+        }
 
         vegtable.amount = amount - 1;
 
@@ -79,6 +81,7 @@ function handleRemoveVegetable(vegetableID: string) {
         console.error(error);
     }
 }
+
 
 function handleAddVegetable(vegetableID: string) {
     try {
@@ -92,6 +95,23 @@ function handleAddVegetable(vegetableID: string) {
         localStorage.setItem('vegetables', JSON.stringify(vegetables));
         showVegetables(vegetables, refrigerator);
 
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+function handlNewVegetable(ev: any){
+    try {
+        ev.preventDefault();
+        // const form = ev.target;
+        const name = ev.target.elements.name.value;
+        const image = ev.target.elements.image.value;
+        const amount = ev.target.elements.amount.valueAsNumber;
+
+        const newVegetable = new Vegetable(name, image, amount);
+       vegetables.push(newVegetable);
+
+        localStorage.setItem('vegetables', JSON.stringify(vegetables));
     } catch (error) {
         console.error(error);
     }

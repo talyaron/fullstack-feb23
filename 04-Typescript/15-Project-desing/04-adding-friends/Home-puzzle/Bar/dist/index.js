@@ -48,8 +48,9 @@ function handleRemoveVegetable(vegetableID) {
         if (!vegtable)
             throw new Error('Could not find vegetable');
         var amount = vegtable.amount;
-        if (amount === 0)
-            throw new Error('There is no more vegetables');
+        // if (amount === 0) throw new Error('There is no more vegetables');
+        if (amount === 0) {
+        }
         vegtable.amount = amount - 1;
         localStorage.setItem('vegetables', JSON.stringify(vegetables));
         showVegetables(vegetables, refrigerator);
@@ -67,6 +68,21 @@ function handleAddVegetable(vegetableID) {
         vegtable.amount = amount + 1;
         localStorage.setItem('vegetables', JSON.stringify(vegetables));
         showVegetables(vegetables, refrigerator);
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+function handlNewVegetable(ev) {
+    try {
+        ev.preventDefault();
+        // const form = ev.target;
+        var name = ev.target.elements.name.value;
+        var image = ev.target.elements.image.value;
+        var amount = ev.target.elements.amount.valueAsNumber;
+        var newVegetable = new Vegetable(name, image, amount);
+        vegetables.push(newVegetable);
+        localStorage.setItem('vegetables', JSON.stringify(vegetables));
     }
     catch (error) {
         console.error(error);
