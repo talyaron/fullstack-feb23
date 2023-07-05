@@ -1,3 +1,6 @@
+//add a button to remove one item from a vegtabel (eg: you had 5 tomatos,
+// and when you press the button "I ATE ONE",
+// you will be left with 4 tomatos) and add a button to add one vegtabel
 //modle - vegtable class
 var Vegetable = /** @class */ (function () {
     function Vegetable(name, image, quantity, id) {
@@ -20,8 +23,8 @@ var Vegetable = /** @class */ (function () {
     return Vegetable;
 }());
 //put all the data in array of vegetables
-var vegetables = getVegetableFronStorage(); //we dont want to zero every reloud of the page, we want to see the storage data
-function getVegetableFronStorage() {
+var vegetables = getVegetableFromStorage(); //we dont want to zero every reloud of the page, we want to see the storage data
+function getVegetableFromStorage() {
     try {
         //get vegtebles from localstorage as string
         var vegtableString = localStorage.getItem("vegtables");
@@ -29,12 +32,12 @@ function getVegetableFronStorage() {
         if (!vegtableString)
             return []; //if we dont have an array to ger we return an empty aררשט
         //convert the string to array of object
-        var vegtablesArray = JSON.parse(vegtableString);
+        var vegetablesArray = JSON.parse(vegtableString);
         //convert the array of object to array of class vegetable
-        var vegtables = vegtablesArray.map(function (vegtable) {
-            return new Vegetable(vegtable.name, vegtable.quantity, vegtable.id); //inside the inside function
+        var vegetables_1 = vegetablesArray.map(function (vegetable) {
+            return new Vegetable(vegetable.name, vegetable.image, vegetable.quantity, vegetable.id); //inside the inside function
         });
-        return vegtables; //return the array of the class
+        return vegetables_1; //return the array of the class
     }
     catch (error) { //if there an error return empry array
         console.error(error);
@@ -44,6 +47,7 @@ function getVegetableFronStorage() {
 //view
 //show all the vegetable card on screen
 //render list of vegetables
+//render search
 //model -> controler -> view
 function renderAllVegetables(vegetables, htmlElement) {
     try {
@@ -65,11 +69,14 @@ function renderVegetableCard(vegetable) {
         //if we want to edit the card we check if the edit btn were clicked, when clicked turn isEdit=trou
         if (vegetable.isEdit) {
             //we want to change the DOM to an edit-form
-            return "<div class=\"card\">\n                        <img src=\"" + vegetable.image + "\">\n                        <form onsubmit=\"handleSetEdit(event)\" id=\"" + vegetable.id + "\">\n                            <input type=\"text\" name=\"name\" value=\"" + vegetable.name + "\">\n                            <input type=\"url\" name=\"image\" value=\"" + vegetable.image + "\">\n                            <input type=\"number\" name=\"quantity\" value=\"" + vegetable.quantity + "\">\n                            <br>\n                            <button onclick=\"hendelDelet('" + vegetable.id + "')\">Delet</button>\n                            <input type=\"submit\" value=\"SET\">\n                        </form>\n                    </div> ";
+            return "<div class=\"card\">\n                        <img src=\"" + vegetable.image + "\">\n                        <form onsubmit=\"handleSetEdit(event)\" id=\"" + vegetable.id + "\">\n                            <input type=\"text\" name=\"name\" value=\"" + vegetable.name + "\">\n                            <input type=\"url\" name=\"image\" value=\"" + vegetable.image + "\">\n                            <input type=\"number\" name=\"quantity\" value=\"" + vegetable.quantity + "\">                          \n                            <br>\n                            <button onclick=\"hendelDelet('" + vegetable.id + "')\">Delet</button>\n                            <input type=\"submit\" value=\"SET\">\n                        </form>\n                    </div> ";
         }
         else {
             //when not in edit mode
-            return "<div class=\"card\"\n                        <img src=\"" + vegetable.image + "\">\n                        <p>" + vegetable.name + "</p>\n                        <p>" + vegetable.quantity + "</p>\n                        <button onclick=\"hendelDelete('" + vegetable.id + "')\">Delet</button>\n                        <button onclick=\"handelEdit('" + vegetable.id + "')\">Edir</button>\n                    </div>";
+            // if(vegetable.image === ' '){
+            //     vegetable.image = "https://cdn.carmella.co.il/wp-content/uploads/2020/11/9012.jpg">
+            // }
+            return "<div class=\"card\">\n                        <img src=\"" + vegetable.image + "\">\n                        <p>" + vegetable.name + "</p>\n                        <p><button onclick=\"handelquntityMinosOne('" + vegetable.id + "')\">-</button>\n                        " + vegetable.quantity + "\n                        <button onclick=\"handelquntityPlusOne('" + vegetable.id + "')\">+</button></p>\n                        <button onclick=\"hendelDelete('" + vegetable.id + "')\">Delet</button>\n                        <button onclick=\"handelEdit('" + vegetable.id + "')\">Edit</button>\n                    </div>";
         }
     }
     catch (error) {
@@ -77,6 +84,25 @@ function renderVegetableCard(vegetable) {
     }
 }
 //controllers
+//search mode
+function vegetableSearch() {
+    try {
+        var searchText = document.querySelector('#search').value;
+        if (searchText === null)
+            throw new Error("element not received");
+        var regexp_1 = new RegExp("^" + searchText, 'i');
+        var searchVegetables_1 = [];
+        vegetables.forEach(function (vegetable) {
+            if (regexp_1.test(vegetable.name)) {
+                searchVegetables_1.push(vegetable);
+            }
+            renderAllVegetables(searchVegetables_1, document.querySelector('#vegetableRoot'));
+        });
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
 //add a new vegetable
 //take the input from user and put it in varibels
 function handleAddVegetable(ev) {
@@ -109,7 +135,7 @@ function hendelDelete(vegetableId) {
         if (index === -1)
             throw new Error("could not find vegetable");
         //cut the sel out the array
-        vegetables.slice(index, 1);
+        vegetables.splice(index, 1);
         //save to localstorage
         localStorage.setItem("vegetables", JSON.stringify(vegetables));
         //render the new array
@@ -160,6 +186,39 @@ function handleSetEdit(ev) {
         //save the data in localstorage
         localStorage.setItem("vegetable", JSON.stringify(vegetable));
         //render the new data
+        renderAllVegetables(vegetables, document.querySelector("#vegetableRoot"));
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+//minos One
+function handelquntityMinosOne(vegetableId) {
+    try {
+        var vegetable = vegetables.find(function (vegetable) { return vegetable.id === vegetableId; });
+        if (!vegetable)
+            throw new Error("could not find vegetble");
+        //tip point = 0 => dont want go under 0
+        if (vegetable.quantity === 0)
+            throw new Error("you have zero items");
+        //set the new quantity
+        vegetable.quantity--;
+        //render the new quantity
+        renderAllVegetables(vegetables, document.querySelector("#vegetableRoot"));
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+//plus One
+function handelquntityPlusOne(vegetableId) {
+    try {
+        var vegetable = vegetables.find(function (vegetable) { return vegetable.id === vegetableId; });
+        if (!vegetable)
+            throw new Error("could not find vegetble");
+        //set the new quantity
+        vegetable.quantity++;
+        //render the new quantity
         renderAllVegetables(vegetables, document.querySelector("#vegetableRoot"));
     }
     catch (error) {

@@ -25,11 +25,12 @@ function RenderHomePage(){
 
 function getTablesForMainPage(): Table [] {
   try {
+    debugger
       const tables: Table []  = [];
       const tablesString = localStorage.getItem('tables');
       if (!tablesString){ // if there is not table on json , create one
-          for (let index = 0; index < 15; index++) {
-              tables.push(new Table(index+1,"Table "+(index+1).toString(),4))
+          for (let index = 0; index < 16; index++) {
+              tables.push(new Table("Table "+(index+1).toString(),4,index+1,))
        ;}
        const tablesJson = JSON.stringify(tables); // save to local 
           localStorage.setItem('tables', tablesJson);
@@ -37,7 +38,7 @@ function getTablesForMainPage(): Table [] {
           //get tables from localstorage
           const tablesArray = JSON.parse(tablesString);
           tablesArray.forEach((table) => {
-                  tables.push(new Table(table.idTable, table.tableName, table.capacity));
+                  tables.push(new Table(table.tableName, table.capacity,table.idTable));
               });}
    return tables;          
    } catch (error) {
@@ -53,7 +54,7 @@ function getOrdersForMainPage(): Order[] {
       return [];
     } else {
       const ordersArray = JSON.parse(ordersString);
-      const orders = ordersArray.map(order => new Order(order.table, order.dishes, order.status));
+      const orders = ordersArray.map(order => new Order(order.table, order.dishes, order.status, new Date (order.OpenTime)));
       return orders;
     }
   } catch (error) {
@@ -73,30 +74,35 @@ function colorByTableOrderStatus() {
   try {
     const tableButtons = document.querySelectorAll(".table-button");
 if(MainOrders){
-  debugger
+ 
     // Iterate through each table button
     tableButtons.forEach((button) => {
       const tableId = parseInt(button.innerText.split(" ")[1]); // Extract the table ID from the button text
-
+      button.style.ba = "6px solid red";
       // Find the corresponding order for the table
       const order = MainOrders.find((order) => order.table?.idTable === tableId && order.status==true);
 
       if (order) {
         // Table has an order, set button color to red
-        button.style.backgroundColor = "red";
+        button.style.border = "6px solid red";
       } else {
         // Table is available, set button color to green
-        button.style.backgroundColor = "green";
+        button.style.border = "6px solid green";
       }
     });
-}else  button.style.backgroundColor = "red";
+}else  button.style.border = "6px solid red";
 
   } catch (error) {
     console.error(error);
   }
 }
 
-
+function hendleShowTotalByDate(){
+  window.location.href = './TotalByDate.html';
+}
+function hendleEditMenu(){
+  window.location.href = './EditMenu.html';
+}
 const MainOrders : Order[] = getOrdersForMainPage(); 
 const MainTables : Table[] = getTablesForMainPage(); 
  

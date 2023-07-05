@@ -20,11 +20,12 @@ function RenderHomePage() {
 }
 function getTablesForMainPage() {
     try {
+        debugger;
         var tables_1 = [];
         var tablesString = localStorage.getItem('tables');
         if (!tablesString) { // if there is not table on json , create one
-            for (var index = 0; index < 15; index++) {
-                tables_1.push(new Table(index + 1, "Table " + (index + 1).toString(), 4));
+            for (var index = 0; index < 16; index++) {
+                tables_1.push(new Table("Table " + (index + 1).toString(), 4, index + 1));
             }
             var tablesJson = JSON.stringify(tables_1); // save to local 
             localStorage.setItem('tables', tablesJson);
@@ -33,7 +34,7 @@ function getTablesForMainPage() {
             //get tables from localstorage
             var tablesArray = JSON.parse(tablesString);
             tablesArray.forEach(function (table) {
-                tables_1.push(new Table(table.idTable, table.tableName, table.capacity));
+                tables_1.push(new Table(table.tableName, table.capacity, table.idTable));
             });
         }
         return tables_1;
@@ -51,7 +52,7 @@ function getOrdersForMainPage() {
         }
         else {
             var ordersArray = JSON.parse(ordersString);
-            var orders = ordersArray.map(function (order) { return new Order(order.table, order.dishes, order.status); });
+            var orders = ordersArray.map(function (order) { return new Order(order.table, order.dishes, order.status, new Date(order.OpenTime)); });
             return orders;
         }
     }
@@ -69,28 +70,34 @@ function colorByTableOrderStatus() {
     try {
         var tableButtons = document.querySelectorAll(".table-button");
         if (MainOrders) {
-            debugger;
             // Iterate through each table button
             tableButtons.forEach(function (button) {
                 var tableId = parseInt(button.innerText.split(" ")[1]); // Extract the table ID from the button text
+                button.style.ba = "6px solid red";
                 // Find the corresponding order for the table
                 var order = MainOrders.find(function (order) { var _a; return ((_a = order.table) === null || _a === void 0 ? void 0 : _a.idTable) === tableId && order.status == true; });
                 if (order) {
                     // Table has an order, set button color to red
-                    button.style.backgroundColor = "red";
+                    button.style.border = "6px solid red";
                 }
                 else {
                     // Table is available, set button color to green
-                    button.style.backgroundColor = "green";
+                    button.style.border = "6px solid green";
                 }
             });
         }
         else
-            button.style.backgroundColor = "red";
+            button.style.border = "6px solid red";
     }
     catch (error) {
         console.error(error);
     }
+}
+function hendleShowTotalByDate() {
+    window.location.href = './TotalByDate.html';
+}
+function hendleEditMenu() {
+    window.location.href = './EditMenu.html';
 }
 var MainOrders = getOrdersForMainPage();
 var MainTables = getTablesForMainPage();
