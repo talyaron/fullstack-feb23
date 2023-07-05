@@ -23,6 +23,7 @@ const cucumber = new Vegetable('cucumber', 2, 'https://cdn.speedsize.com/8a62710
 const onion = new Vegetable('onion', 3, 'https://www.ayelethasade.co.il/wp-content/uploads/2021/07/2601-scaled-1.jpg');
 const lettuce = new Vegetable('lettuce', 7, 'https://cdn.cashcow.co.il/images/f4869ffc-f59e-4a5f-8f3e-18484a39802e_500.jpg');
 
+
 const storedVegetables = localStorage.getItem('vegetables');
 const vegetables: Vegetable[] = storedVegetables ? JSON.parse(storedVegetables) : [tomato, cucumber, onion, lettuce];
 
@@ -70,6 +71,7 @@ function handleRemoveVegetable(vegetableID: string) {
         // if (amount === 0) throw new Error('There is no more vegetables');
 
         if (amount === 0) {
+            vegetables.splice(vegetables.indexOf(vegtable), 1);
         }
 
         vegtable.amount = amount - 1;
@@ -100,18 +102,32 @@ function handleAddVegetable(vegetableID: string) {
     }
 }
 
-function handlNewVegetable(ev: any){
+function handleNewVegetable(event: Event) {
     try {
-        ev.preventDefault();
-        // const form = ev.target;
-        const name = ev.target.elements.name.value;
-        const image = ev.target.elements.image.value;
-        const amount = ev.target.elements.amount.valueAsNumber;
+        event.preventDefault();
 
-        const newVegetable = new Vegetable(name, image, amount);
-       vegetables.push(newVegetable);
+        const nameInput = document.querySelector<HTMLInputElement>('input[name="name"]');
+        const imageInput = document.querySelector<HTMLInputElement>('input[name="image"]');
+        const amountInput = document.querySelector<HTMLInputElement>('input[name="amount"]');
+
+        if (!nameInput || !imageInput || !amountInput) throw new Error('Form inputs are not found');
+
+        const name = nameInput.value;
+        const image = imageInput.value;
+        const amount = parseInt(amountInput.value, 10);
+
+        if (!name || !image || isNaN(amount)) throw new Error('Invalid form input values');
+
+        const vegetabls = new Vegetable(name, amount, image);
+        vegetables.push(vegetabls);
 
         localStorage.setItem('vegetables', JSON.stringify(vegetables));
+        showVegetables(vegetables, refrigerator);
+
+        nameInput.value = '';
+        imageInput.value = '';
+        amountInput.value = '';
+
     } catch (error) {
         console.error(error);
     }
