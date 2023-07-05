@@ -1,17 +1,23 @@
 //index ts- Model - entities:
 //Tables, Order, Dishes  
 var Table = /** @class */ (function () {
-    function Table(idTable, tableName, capacity) {
-        this.idTable = idTable;
+    function Table(tableName, capacity, idTable) {
         this.tableName = tableName;
         this.capacity = capacity;
+        if (idTable)
+            this.idTable = idTable;
+        else
+            this.idTable = Number(Math.random());
     }
     return Table;
 }());
 var DishesCategories = /** @class */ (function () {
-    function DishesCategories(categoyName) {
+    function DishesCategories(categoyName, idCategory) {
         this.categoyName = categoyName;
-        this.idDishe = Number(Math.random());
+        if (idCategory)
+            this.idCategory = idCategory;
+        else
+            this.idCategory = Number(Math.random());
     }
     return DishesCategories;
 }());
@@ -69,7 +75,7 @@ function loadMenucategories() {
         }
         else {
             var categoriesArray = JSON.parse(categoriesString);
-            var categories_2 = categoriesArray.map(function (category) { return new DishesCategories(category.categoyName); });
+            var categories_2 = categoriesArray.map(function (category) { return new DishesCategories(category.categoyName, category.idCategory); });
             return categories_2;
         }
     }
