@@ -51,6 +51,7 @@ function getVegetableFromStorage(): Vegetable[] {
 
 //show all the vegetable card on screen
 //render list of vegetables
+//render search
 //model -> controler -> view
 
 function renderAllVegetables(vegetables: Vegetable[], htmlElement: HTMLElement | null) {
@@ -80,9 +81,7 @@ function renderVegetableCard(vegetable: Vegetable) {
                         <form onsubmit="handleSetEdit(event)" id="${vegetable.id}">
                             <input type="text" name="name" value="${vegetable.name}">
                             <input type="url" name="image" value="${vegetable.image}">
-                            
-                            <input type="number" name="quantity" value="${vegetable.quantity}">
-                            
+                            <input type="number" name="quantity" value="${vegetable.quantity}">                          
                             <br>
                             <button onclick="hendelDelet('${vegetable.id}')">Delet</button>
                             <input type="submit" value="SET">
@@ -90,6 +89,9 @@ function renderVegetableCard(vegetable: Vegetable) {
                     </div> `
         } else {
             //when not in edit mode
+            // if(vegetable.image === ' '){
+            //     vegetable.image = "https://cdn.carmella.co.il/wp-content/uploads/2020/11/9012.jpg">
+            // }
             return `<div class="card">
                         <img src="${vegetable.image}">
                         <p>${vegetable.name}</p>
@@ -107,6 +109,26 @@ function renderVegetableCard(vegetable: Vegetable) {
 
 
 //controllers
+
+//search mode
+
+function vegetableSearch(){
+    try {
+        let searchText: HTMLElement|null = document.querySelector('#search').value
+        if(searchText===null) throw new Error("element not received")
+        let regexp = new RegExp(`^${searchText}`,'i'); 
+        const searchVegetables: Vegetable[] = []
+        vegetables.forEach(vegetable => {
+            if(regexp.test(vegetable.name)){
+                searchVegetables.push(vegetable)
+            }
+            renderAllVegetables(searchVegetables, document.querySelector('#vegetableRoot'))
+        })
+
+    } catch (error) {
+        console.error(error)
+    }
+}
 
 //add a new vegetable
 //take the input from user and put it in varibels

@@ -33,7 +33,6 @@ function getFriendsFromStorage() {
         var friends_1 = friendsArray.map(function (friend) {
             return new Friend(friend.name, friend.image, friend.phoneNumber, friend.id);
         });
-        return friends_1;
     }
     catch (error) {
         console.error(error);
@@ -65,9 +64,10 @@ function handleAddFriend(ev) {
 //model -> controler --> view
 function renderAllFriends(friends, htmlElement) {
     try {
+        debugger;
         if (!htmlElement)
             throw new Error("No element");
-        var html = friends.map(function (friend) { return renderFriendCard(friend); }).join(' ');
+        var html = friends.map(function (friend) { return renderFriendCard(friend); }).join(" ");
         htmlElement.innerHTML = html;
     }
     catch (error) {
