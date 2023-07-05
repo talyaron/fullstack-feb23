@@ -48,8 +48,10 @@ function handleRemoveVegetable(vegetableID) {
         if (!vegtable)
             throw new Error('Could not find vegetable');
         var amount = vegtable.amount;
-        if (amount === 0)
-            throw new Error('There is no more vegetables');
+        // if (amount === 0) throw new Error('There is no more vegetables');
+        if (amount === 0) {
+            vegetables.splice(vegetables.indexOf(vegtable), 1);
+        }
         vegtable.amount = amount - 1;
         localStorage.setItem('vegetables', JSON.stringify(vegetables));
         showVegetables(vegetables, refrigerator);
@@ -67,6 +69,31 @@ function handleAddVegetable(vegetableID) {
         vegtable.amount = amount + 1;
         localStorage.setItem('vegetables', JSON.stringify(vegetables));
         showVegetables(vegetables, refrigerator);
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+function handleNewVegetable(event) {
+    try {
+        event.preventDefault();
+        var nameInput = document.querySelector('input[name="name"]');
+        var imageInput = document.querySelector('input[name="image"]');
+        var amountInput = document.querySelector('input[name="amount"]');
+        if (!nameInput || !imageInput || !amountInput)
+            throw new Error('Form inputs are not found');
+        var name = nameInput.value;
+        var image = imageInput.value;
+        var amount = parseInt(amountInput.value, 10);
+        if (!name || !image || isNaN(amount))
+            throw new Error('Invalid form input values');
+        var vegetabls = new Vegetable(name, amount, image);
+        vegetables.push(vegetabls);
+        localStorage.setItem('vegetables', JSON.stringify(vegetables));
+        showVegetables(vegetables, refrigerator);
+        nameInput.value = '';
+        imageInput.value = '';
+        amountInput.value = '';
     }
     catch (error) {
         console.error(error);
