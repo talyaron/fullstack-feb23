@@ -174,10 +174,19 @@ function userSearch() {
     var userSearch = search.value;
     var regexp = new RegExp("^" + userSearch);
     var vegetablesFromSearch = [];
-    vegetables.forEach(function (vegetable) {
-        if (regexp.test(vegetable.name)) {
-            vegetablesFromSearch.push(vegetable);
-            renderVeagtable(vegetablesFromSearch, rootvegetables);
+    var result = vegetables.filter(function (vegetable) { return regexp.test(vegetable.name); });
+    if (result.length === 0) {
+        renderVeagtable(vegetablesFromSearch, rootvegetables);
+        throw new Error("there is no match");
+    }
+    result.forEach(function (vegetable) {
+        switch (regexp.test(vegetable.name)) {
+            case regexp.test(vegetable.name) !== null:
+                vegetablesFromSearch.push(vegetable);
+                renderVeagtable(vegetablesFromSearch, rootvegetables);
+                break;
+            case regexp.test(vegetable.name) === null:
+                throw new Error("there is no match") && alert("there is no match");
         }
     });
 }
