@@ -33,8 +33,10 @@ class Friend {
       this.id = `id-${new Date().getTime()}-${Math.random()}`;
 >>>>>>> 4f4014876ee22bcaa6299a818521bff3bb995fcb
     }
-
 }
+
+// const someone = new Friend("Katya", "...", "....", "id-1231234")
+// const someone11 = new Friend("Katya", "...", "....")
 
 const friends: Friend[] = getFriendsFromStorage();
 

@@ -73,9 +73,9 @@ function renderVegetableCard(vegetable) {
         }
         else {
             //when not in edit mode
-            // if(vegetable.image === ' '){
-            //     vegetable.image = "https://cdn.carmella.co.il/wp-content/uploads/2020/11/9012.jpg">
-            // }
+            if (vegetable.image === ' ') {
+                vegetable.image = "https://cdn.carmella.co.il/wp-content/uploads/2020/11/9012.jpg";
+            }
             return "<div class=\"card\">\n                        <img src=\"" + vegetable.image + "\">\n                        <p>" + vegetable.name + "</p>\n                        <p><button onclick=\"handelquntityMinosOne('" + vegetable.id + "')\">-</button>\n                        " + vegetable.quantity + "\n                        <button onclick=\"handelquntityPlusOne('" + vegetable.id + "')\">+</button></p>\n                        <button onclick=\"hendelDelete('" + vegetable.id + "')\">Delet</button>\n                        <button onclick=\"handelEdit('" + vegetable.id + "')\">Edit</button>\n                    </div>";
         }
     }
