@@ -103,3 +103,11 @@ header {
   color: #151414;
   margin-left: 10px;
 }
+
+.order-status {
+  color: black;
+}
+
+.open {
+  color: red;
+}

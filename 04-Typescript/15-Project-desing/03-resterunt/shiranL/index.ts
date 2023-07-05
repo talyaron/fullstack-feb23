@@ -1,14 +1,17 @@
 //index ts- Model - entities:
 //Tables, Order, Dishes  
 class Table {
-    
-    constructor(public idTable: number, public tableName : string , public capacity: number ){
+  idTable:number
+    constructor( public tableName : string , public capacity: number, idTable?: number |null){
+      if(idTable) this.idTable=idTable;
+      else  this.idTable = Number(Math.random());
     }
 }
 class DishesCategories {
-    idDishe: number;
-    constructor(public categoyName:string){
-        this.idDishe = Number(Math.random());
+    idCategory: number;
+    constructor(public categoyName:string, idCategory?: number){
+      if(idCategory) this.idCategory=idCategory;
+      else  this.idCategory = Number(Math.random());
     }
 }
 
@@ -65,7 +68,7 @@ function loadMenucategories(): DishesCategories[]{
                 
             } else {
               const categoriesArray = JSON.parse(categoriesString);
-              const  categories = categoriesArray.map(category => new DishesCategories(category.categoyName));
+              const  categories = categoriesArray.map(category => new DishesCategories(category.categoyName,category.idCategory));
               return categories;
             }
           

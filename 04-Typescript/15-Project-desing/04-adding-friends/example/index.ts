@@ -1,6 +1,7 @@
 //model
 
 class Friend {
+<<<<<<< HEAD
     id: string;
     isEdit: boolean = false;
     constructor(public name: string, public image: string, public phoneNumber: string, id?: string | null) {
@@ -13,6 +14,24 @@ class Friend {
 
     setEdit(set: boolean) {
         this.isEdit = set;
+=======
+  id: string;
+  isEdit: boolean = false;
+  constructor(
+    public name: string,
+    public image: string,
+    public phoneNumber: string,
+<<<<<<< HEAD
+    id?: string | null,
+=======
+    id?: string | null
+>>>>>>> 589377e16a074c872107f45e6350324ef7a56e40
+  ) {
+    if (id) {
+      this.id = id;
+    } else {
+      this.id = `id-${new Date().getTime()}-${Math.random()}`;
+>>>>>>> 4f4014876ee22bcaa6299a818521bff3bb995fcb
     }
 
 }
@@ -28,6 +47,7 @@ function getFriendsFromStorage(): Friend[] {
         const friendsString = localStorage.getItem("friends");
         if (!friendsString) return [];
 
+<<<<<<< HEAD
         //convert string to array of objects
         const friendsArray = JSON.parse(friendsString);
 
@@ -44,6 +64,21 @@ function getFriendsFromStorage(): Friend[] {
     }
 
 };
+=======
+    //convert array of objects to array of friends
+    const friends: Friend[] = friendsArray.map((friend: Friend) => {
+      return new Friend(
+        friend.name,
+        friend.image,
+        friend.phoneNumber,
+<<<<<<< HEAD
+        friend.id,
+=======
+        friend.id
+>>>>>>> 589377e16a074c872107f45e6350324ef7a56e40
+      );
+    });
+>>>>>>> 4f4014876ee22bcaa6299a818521bff3bb995fcb
 
 
 //view
@@ -76,9 +111,19 @@ function handleAddFriend(ev: any) {
 //model -> controler --> view
 
 function renderAllFriends(friends: Friend[], htmlElement: HTMLElement | null) {
+<<<<<<< HEAD
     try {
         if (!htmlElement) throw new Error("No element");
         const html = friends.map(friend => renderFriendCard(friend)).join(' ')
+=======
+  try {
+<<<<<<< HEAD
+=======
+    debugger;
+>>>>>>> 589377e16a074c872107f45e6350324ef7a56e40
+    if (!htmlElement) throw new Error("No element");
+    const html = friends.map((friend) => renderFriendCard(friend)).join(" ");
+>>>>>>> 4f4014876ee22bcaa6299a818521bff3bb995fcb
 
         htmlElement.innerHTML = html;
     } catch (error) {
@@ -164,6 +209,7 @@ function handleSetEditFriend(ev:any){
         const phoneNumber = ev.target.phoneNumber.value;
         const friendId:string = ev.target.id;
 
+<<<<<<< HEAD
         const friend:Friend|undefined = friends.find(friend => friend.id === friendId)
         if(!friend) throw new Error("couldnt find friend")
         friend.name = name;
@@ -178,3 +224,23 @@ function handleSetEditFriend(ev:any){
         console.error(error);
     }
 }
+=======
+    const friend: Friend | undefined = friends.find(
+<<<<<<< HEAD
+      (friend) => friend.id === friendId,
+=======
+      (friend) => friend.id === friendId
+>>>>>>> 589377e16a074c872107f45e6350324ef7a56e40
+    );
+    if (!friend) throw new Error("couldnt find friend");
+    friend.name = name;
+    friend.phoneNumber = phoneNumber;
+    friend.setEdit(false);
+    console.log(friends);
+    localStorage.setItem("friends", JSON.stringify(friends));
+    renderAllFriends(friends, document.querySelector("#rootFriends"));
+  } catch (error) {
+    console.error(error);
+  }
+}
+>>>>>>> 4f4014876ee22bcaa6299a818521bff3bb995fcb

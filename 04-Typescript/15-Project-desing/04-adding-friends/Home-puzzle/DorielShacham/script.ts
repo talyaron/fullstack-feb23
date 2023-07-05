@@ -15,7 +15,7 @@ console.log(Fridge)
 
 
 function handleObjects() {
-  const btn = document.querySelector("body > form > button");
+  const btn = document.querySelector("body > div > form > button");
   btn?.addEventListener("click", function (event) {
     event.preventDefault();
     const inputName = document.querySelector("#nameInput") as HTMLInputElement;
@@ -32,7 +32,7 @@ function handleObjects() {
     saveFridgeToLocalStorage();
   });
 }
-debugger
+// debugger
 window.addEventListener("DOMContentLoaded", function() {
   handleObjects();
 });//<-- Call handleObjects after DOM is loaded
@@ -56,10 +56,10 @@ function renderCard(fridgeItem: FridgeItem) {
     if (fridgeItem) {
       return `
           <div class="card">
-            <img src="${fridgeItem.image}">
             <p>${fridgeItem.name}</p>
             <button onclick="handleDeleteFridgeItem('${fridgeItem.name}')">Delete</button>
             <button onclick="handleEdit('${fridgeItem.name}')">Edit</button>
+            <img src="${fridgeItem.image}">
           </div>
         `; //<-- this create how the object will look
     } else { 
@@ -101,3 +101,20 @@ function loadFridgeFromLocalStorage() {
 }//<-- Load fridge from localStorage after object is parsed
 
 window.addEventListener("load", loadFridgeFromLocalStorage);//<-- Call loadFridgeFromLocalStorage on page load (load saved new objects)
+
+//regex element
+const regexInput: HTMLInputElement | null = document.querySelector("#regexInput"); // Select the regex input field
+
+function handleRegexInput() {
+  regexInput?.addEventListener("input", function () {
+    const regexPattern = new RegExp(regexInput.value, "i"); //<--  match both uppercase and lowercase letters, with i
+    const filteredFridge = Fridge.filter((item) => regexPattern.test(item.name)); // Filter the Fridge array based on the regex pattern
+console.log(filteredFridge)
+    renderAllVegetables(filteredFridge, fridgeContainer); // Render the filtered items with red border
+  });
+}
+
+window.addEventListener("DOMContentLoaded", function () {
+  handleObjects();
+  handleRegexInput(); // Call the handleRegexInput function after DOM is loaded
+});
