@@ -89,9 +89,9 @@ function renderVegetableCard(vegetable: Vegetable) {
                     </div> `
         } else {
             //when not in edit mode
-            // if(vegetable.image === ' '){
-            //     vegetable.image = "https://cdn.carmella.co.il/wp-content/uploads/2020/11/9012.jpg">
-            // }
+            if(vegetable.image === ' '){
+                vegetable.image = "https://cdn.carmella.co.il/wp-content/uploads/2020/11/9012.jpg"
+            }
             return `<div class="card">
                         <img src="${vegetable.image}">
                         <p>${vegetable.name}</p>
