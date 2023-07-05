@@ -7,7 +7,11 @@ class Friend {
     public name: string,
     public image: string,
     public phoneNumber: string,
+<<<<<<< HEAD
     id?: string | null,
+=======
+    id?: string | null
+>>>>>>> 589377e16a074c872107f45e6350324ef7a56e40
   ) {
     if (id) {
       this.id = id;
@@ -40,7 +44,11 @@ function getFriendsFromStorage(): Friend[] {
         friend.name,
         friend.image,
         friend.phoneNumber,
+<<<<<<< HEAD
         friend.id,
+=======
+        friend.id
+>>>>>>> 589377e16a074c872107f45e6350324ef7a56e40
       );
     });
 
@@ -81,6 +89,10 @@ function handleAddFriend(ev: any) {
 
 function renderAllFriends(friends: Friend[], htmlElement: HTMLElement | null) {
   try {
+<<<<<<< HEAD
+=======
+    debugger;
+>>>>>>> 589377e16a074c872107f45e6350324ef7a56e40
     if (!htmlElement) throw new Error("No element");
     const html = friends.map((friend) => renderFriendCard(friend)).join(" ");
 
@@ -163,7 +175,11 @@ function handleSetEditFriend(ev: any) {
     const friendId: string = ev.target.id;
 
     const friend: Friend | undefined = friends.find(
+<<<<<<< HEAD
       (friend) => friend.id === friendId,
+=======
+      (friend) => friend.id === friendId
+>>>>>>> 589377e16a074c872107f45e6350324ef7a56e40
     );
     if (!friend) throw new Error("couldnt find friend");
     friend.name = name;

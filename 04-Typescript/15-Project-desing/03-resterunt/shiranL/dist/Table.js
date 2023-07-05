@@ -52,7 +52,7 @@ function getOrdersForTablepage() {
         }
         else {
             var ordersArray = JSON.parse(ordersString);
-            var orders = ordersArray.map(function (order) { return new Order(order.table, order.dishes, order.status); });
+            var orders = ordersArray.map(function (order) { return new Order(order.table, order.dishes, order.status, new Date(order.OpenTime)); });
             return orders;
         }
     }
@@ -129,7 +129,7 @@ function renderTableDetails() {
         var currentTable_1 = tablesT === null || tablesT === void 0 ? void 0 : tablesT.find(function (table) { return (table === null || table === void 0 ? void 0 : table.idTable) === CurrentTableID; });
         if (currentTable_1) {
             // Assuming you have an HTML element with id "tableDetails" to display the details
-            var tableDetailsElement = document.getElementById("tableDetailsContainer");
+            var tableDetailsElement = document.querySelector("#tableDetailsContainer");
             if (tableDetailsElement) {
                 tableDetailsElement.innerHTML = "\n                    <h2>Table Details</h2>\n                    <p>Name: " + currentTable_1.tableName + "</p>\n                    <p>Capacity: " + currentTable_1.capacity + "</p>\n                ";
             }
@@ -203,7 +203,6 @@ function checkOut() {
 }
 function handleAddDishesToOrder(event) {
     var _a;
-    debugger;
     event.preventDefault(); // Prevent form submission
     // Get all the selected dish checkboxes
     var selectedDishCheckboxes = Array.from(event.target.elements.dishes).filter(function (checkbox) { return checkbox.checked; });
@@ -224,7 +223,7 @@ function handleDeleteDish() {
     try {
         var currentOrder = OrdersT.find(function (order) { var _a; return ((_a = order.table) === null || _a === void 0 ? void 0 : _a.idTable) === (currentTable === null || currentTable === void 0 ? void 0 : currentTable.idTable) && order.status === true; });
         if (!currentOrder) {
-            throw new Error("Cant Finde Current Order");
+            throw new Error("Cant Find Current Order");
         }
         var orderDishes = currentOrder.dishes;
         var dishesForm_1 = document.getElementById("DishesForm");
@@ -246,10 +245,9 @@ function handleDeleteDish() {
 }
 function deleteDish(dishId) {
     var _a, _b;
-    debugger;
     var currentOrder = OrdersT.find(function (order) { var _a; return ((_a = order.table) === null || _a === void 0 ? void 0 : _a.idTable) === (currentTable === null || currentTable === void 0 ? void 0 : currentTable.idTable) && order.status === true; });
     if (!currentOrder) {
-        throw new Error("Cant Finde Current Order");
+        throw new Error("Cant Find Current Order");
     }
     // Find the dish with the specified dishId in the currentOrder.dishes array
     var dishIndex = (_a = currentOrder.dishes) === null || _a === void 0 ? void 0 : _a.findIndex(function (dish) { return dish.idDishe === dishId; });

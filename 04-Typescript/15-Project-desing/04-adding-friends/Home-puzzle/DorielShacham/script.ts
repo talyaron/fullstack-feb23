@@ -88,7 +88,7 @@ function handleDeleteFridgeItem(name: string) {
 
 function saveFridgeToLocalStorage() {
   localStorage.setItem("fridge", JSON.stringify(Fridge));
-}//<-- Save fridge to localStorage
+}//<-- Save fridge to localStorage as a string
 
 
 function loadFridgeFromLocalStorage() {
@@ -98,6 +98,6 @@ function loadFridgeFromLocalStorage() {
     renderAllVegetables
 (Fridge, fridgeContainer);
   }
-}//<-- Load fridge from localStorage
+}//<-- Load fridge from localStorage after object is parsed
 
 window.addEventListener("load", loadFridgeFromLocalStorage);//<-- Call loadFridgeFromLocalStorage on page load (load saved new objects)
