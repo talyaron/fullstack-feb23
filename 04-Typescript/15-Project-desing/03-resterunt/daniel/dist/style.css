@@ -1,0 +1,21 @@
+tr {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+tr td {
+  border: 2px solid black;
+  gap: 3px;
+}
+
+.dish-container {
+  display: flex;
+}
+.dish-container img {
+  width: 290px;
+  margin-right: 14px;
+  margin-top: 10px;
+}
+.dish-container button {
+  margin-bottom: 20px;
+}
