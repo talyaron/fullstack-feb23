@@ -6,6 +6,8 @@ body{
     h1 {
         font-family: 'Alkatra', cursive;
         font-size: 45px;
+        text-shadow: 1px 1px 2px rgb(255, 255, 255);
+
     }
 
     width: 80vw;
@@ -17,6 +19,15 @@ body{
     button {
         padding: 5px;
         margin: 5px;
+    }
+    label{
+        color: rgb(0, 0, 0);
+        text-shadow: 1px 1px 2px rgb(255, 255, 255);
+        display: block;
+        font-size: 28px;
+        font-family: 'Alkatra', cursive;
+        font-weight: bolder;
+
     }
 }
 
@@ -31,7 +42,7 @@ body{
 .card {
     border-radius: 10px;
     width: 120px;
-    height: 360px;
+    height: 320px;
     padding: 10px;
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.694);
     margin: 20px;
@@ -54,6 +65,5 @@ body{
 
     .att {
         font-size: 13px;
-        color: red;
     }
 }

@@ -1,26 +1,38 @@
 .wrapper {
   position: relative;
-  top: 10vh;
-  width: 520px;
+  width: 1000px;
+  height: 100vh;
   margin: auto;
+  background-image: url("https://www.dailysale.co.il/images/itempics/4349_160620210846121_large.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 .wrapper #refrigerator {
-  width: 100%;
+  position: relative;
+  top: 8vh;
+  width: 35%;
   display: flex;
   gap: 10px;
   margin: auto;
   flex-wrap: wrap;
 }
 .wrapper #refrigerator .vegetable {
-  width: 250px;
-  height: 300px;
+  position: relative;
+  width: 150px;
+  height: 200px;
   border-radius: 10px;
   box-shadow: 1px 1px 3px grey;
   text-align: center;
   background-color: whitesmoke;
+  padding: 5px;
 }
 .wrapper #refrigerator .vegetable img {
-  width: 230px;
-  height: 200px;
+  width: 90%;
+  height: 60%;
   margin: auto;
+}
+.wrapper #refrigerator .vegetable .vegetable-ditels {
+  position: relative;
+  top: -4vh;
 }

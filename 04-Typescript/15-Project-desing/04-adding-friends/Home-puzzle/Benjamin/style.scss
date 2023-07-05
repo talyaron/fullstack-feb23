@@ -1,0 +1,109 @@
+body {
+    background-image: url(https://cdn.pixabay.com/photo/2021/01/26/15/48/vegetables-5951982_1280.jpg);
+    background-size: cover;
+}
+
+.wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+
+    &__title {
+        font-size: 80px;
+        font-family: fantasy;
+        text-shadow: 5px 5px rgb(99, 207, 49);
+        background: rgb(207, 238, 210);
+        background: rgb(207, 238, 210);
+        background: linear-gradient(0deg, rgba(207, 238, 210, 1) 15%, rgba(218, 176, 241, 1) 85%);
+        border-radius: 20px;
+    }
+}
+
+.root {
+    width: 80vw;
+    height: 80vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    margin: auto;
+
+    &__veggie {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background: rgb(207, 238, 210);
+        background: linear-gradient(0deg, rgba(207, 238, 210, 1) 15%, rgba(176, 212, 241, 1) 85%);
+        width: 15vw;
+        height: 34vh;
+        border-radius: 10px;
+        justify-content: space-around;
+
+        &__img {
+            width: 12vw;
+            height: 18vh;
+            border-radius: 10px;
+        }
+
+        &__btns {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+
+
+        }
+    }
+}
+
+input[type="text"] {
+    width: 60px;
+}
+
+#proceed {
+    width: 10vw;
+    height: 4vh;
+    border-radius: 10px;
+    background: rgb(207, 238, 210);
+    background: rgb(207, 238, 210);
+    position: absolute;
+    bottom: 10px;
+    left: 42vw;
+    transition: all 80ms ease-in-out;
+    cursor: pointer;
+    &:hover{
+        box-shadow: 4px 4px rgb(55, 245, 7);
+        transform: scale(1.04);
+    }
+    &:active{
+        background-color: rgb(4, 102, 4) ;
+    }
+
+}
+.btnp{
+    border-radius: 4px;
+    background-color: rgb(76, 219, 76) ;
+    cursor: pointer;
+    transition: all 80ms ease-in-out;
+    &:hover{
+        box-shadow: 2px 2px rgb(9, 101, 177);
+        transform: scale(1.04);
+    }
+    &:active{
+        background-color: rgb(4, 102, 4) ;
+    }
+}
+.btnm{
+    border-radius: 4px;
+    background-color: rgb(236, 112, 112) ;
+    cursor: pointer;
+    transition: all 80ms ease-in-out;
+    &:hover{
+        box-shadow: 2px 2px rgb(9, 101, 177);
+        transform: scale(1.04);
+    }
+    &:active{
+        background-color: rgb(238, 10, 10) ;
+    }
+}
