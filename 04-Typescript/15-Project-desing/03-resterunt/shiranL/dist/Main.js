@@ -20,11 +20,12 @@ function RenderHomePage() {
 }
 function getTablesForMainPage() {
     try {
+        debugger;
         var tables_1 = [];
         var tablesString = localStorage.getItem('tables');
         if (!tablesString) { // if there is not table on json , create one
-            for (var index = 0; index < 15; index++) {
-                tables_1.push(new Table(index + 1, "Table " + (index + 1).toString(), 4));
+            for (var index = 0; index < 16; index++) {
+                tables_1.push(new Table("Table " + (index + 1).toString(), 4, index + 1));
             }
             var tablesJson = JSON.stringify(tables_1); // save to local 
             localStorage.setItem('tables', tablesJson);
@@ -33,7 +34,7 @@ function getTablesForMainPage() {
             //get tables from localstorage
             var tablesArray = JSON.parse(tablesString);
             tablesArray.forEach(function (table) {
-                tables_1.push(new Table(table.idTable, table.tableName, table.capacity));
+                tables_1.push(new Table(table.tableName, table.capacity, table.idTable));
             });
         }
         return tables_1;

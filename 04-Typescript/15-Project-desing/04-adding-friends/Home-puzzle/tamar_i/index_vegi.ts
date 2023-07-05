@@ -75,9 +75,6 @@ function renderVegetableCard(vegetable: Vegetable) {
     try {
         //if we want to edit the card we check if the edit btn were clicked, when clicked turn isEdit=trou
         if (vegetable.isEdit) {
-            if(vegetable.image === ' '){
-                vegetable.image ="https://cdn.carmella.co.il/wp-content/uploads/2020/11/9012.jpg">
-            } 
             //we want to change the DOM to an edit-form
             return `<div class="card">
                         <img src="${vegetable.image}">
@@ -92,6 +89,9 @@ function renderVegetableCard(vegetable: Vegetable) {
                     </div> `
         } else {
             //when not in edit mode
+            // if(vegetable.image === ' '){
+            //     vegetable.image = "https://cdn.carmella.co.il/wp-content/uploads/2020/11/9012.jpg">
+            // }
             return `<div class="card">
                         <img src="${vegetable.image}">
                         <p>${vegetable.name}</p>
