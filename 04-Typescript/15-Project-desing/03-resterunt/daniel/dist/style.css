@@ -8,10 +8,14 @@ tr td {
   gap: 3px;
 }
 
-button {
-  background-color: green;
+.dish-container {
+  display: flex;
 }
-
-button.occupied {
-  background-color: red;
+.dish-container img {
+  width: 290px;
+  margin-right: 14px;
+  margin-top: 10px;
+}
+.dish-container button {
+  margin-bottom: 20px;
 }

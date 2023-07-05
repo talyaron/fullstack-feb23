@@ -9,10 +9,17 @@ tr {
     }
 }
 
-button{
-    background-color: green;
-}
 
-button.occupied{
-    background-color: red;
+.dish-container {
+    display: flex;
+
+    img{
+        width: 290px;
+        margin-right: 14px;
+        margin-top: 10px;
+    }
+    
+    button {
+        margin-bottom: 20px;
+    }
 }
