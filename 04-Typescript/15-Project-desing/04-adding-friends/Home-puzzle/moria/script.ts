@@ -131,7 +131,7 @@ function handleDeleteVegetable(vegetableId: string) {
 function handleEdit(vegetableId: string) {
     try {
         const vegetable = vegetables.find(vegetable => vegetable.id === vegetableId)
-        if (!vegetable) throw new Error("couldnt find friend")
+        if (!vegetable) throw new Error("couldnt find vegetable")
 
         vegetable.setEdit(true);
         renderAllVegetables(vegetables, rootVegetables)

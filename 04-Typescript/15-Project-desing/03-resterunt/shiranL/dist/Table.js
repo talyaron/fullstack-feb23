@@ -20,11 +20,12 @@ function getMenuForTablepage() {
 // get Tables data from json or create array
 function getTablesForTablepage() {
     try {
+        debugger;
         var tables_1 = [];
         var tablesString = localStorage.getItem('tables');
         if (!tablesString) { // if there is not table on json , create one
-            for (var index = 0; index < 5; index++) {
-                tables_1.push(new Table(index + 1, "Table " + (index + 1).toString(), 4));
+            for (var index = 0; index < 16; index++) {
+                tables_1.push(new Table("Table " + (index + 1).toString(), 4, index + 1));
             }
             var tablesJson = JSON.stringify(tables_1); // save to local 
             localStorage.setItem('tables', tablesJson);
@@ -33,7 +34,7 @@ function getTablesForTablepage() {
             //get tables from localstorage
             var tablesArray = JSON.parse(tablesString);
             tablesArray.forEach(function (table) {
-                tables_1.push(new Table(table.idTable, table.tableName, table.capacity));
+                tables_1.push(new Table(table.tableName, table.capacity, table.idTable));
             });
         }
         return tables_1;
@@ -126,7 +127,8 @@ function BackToMain() {
 // rendet curent table details
 function renderTableDetails() {
     try {
-        var currentTable_1 = tablesT === null || tablesT === void 0 ? void 0 : tablesT.find(function (table) { return (table === null || table === void 0 ? void 0 : table.idTable) === CurrentTableID; });
+        debugger;
+        var currentTable_1 = tablesT === null || tablesT === void 0 ? void 0 : tablesT.find(function (table) { return table.idTable === CurrentTableID; });
         if (currentTable_1) {
             // Assuming you have an HTML element with id "tableDetails" to display the details
             var tableDetailsElement = document.querySelector("#tableDetailsContainer");
@@ -288,7 +290,7 @@ function handleAddOrder() {
 function renderNewOrder() {
     var addOrderContainer = document.getElementById("AddOrderContainer");
     if (addOrderContainer) {
-        var html = "<button class=\"AddNewOrder\" type=\"button\" onclick=\"handleAddOrder()\">Add New Order</button>";
+        var html = "<button class=\"AddNewOrder\" type=\"button\" onclick=\"handleAddOrder()\">Add New Order</button>\n        <button class=\"AddNewOrder\" type=\"button\" onclick=\"BackToMain()\">Back To Main</button>";
         addOrderContainer.innerHTML = html;
     }
 }
