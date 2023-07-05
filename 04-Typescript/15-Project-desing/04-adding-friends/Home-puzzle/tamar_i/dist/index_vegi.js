@@ -47,6 +47,7 @@ function getVegetableFromStorage() {
 //view
 //show all the vegetable card on screen
 //render list of vegetables
+//render search
 //model -> controler -> view
 function renderAllVegetables(vegetables, htmlElement) {
     try {
@@ -67,8 +68,12 @@ function renderVegetableCard(vegetable) {
     try {
         //if we want to edit the card we check if the edit btn were clicked, when clicked turn isEdit=trou
         if (vegetable.isEdit) {
+            if (vegetable.image === ' ') {
+                vegetable.image = "https://cdn.carmella.co.il/wp-content/uploads/2020/11/9012.jpg" >
+                ;
+            }
             //we want to change the DOM to an edit-form
-            return "<div class=\"card\">\n                        <img src=\"" + vegetable.image + "\">\n                        <form onsubmit=\"handleSetEdit(event)\" id=\"" + vegetable.id + "\">\n                            <input type=\"text\" name=\"name\" value=\"" + vegetable.name + "\">\n                            <input type=\"url\" name=\"image\" value=\"" + vegetable.image + "\">\n                            \n                            <input type=\"number\" name=\"quantity\" value=\"" + vegetable.quantity + "\">\n                            \n                            <br>\n                            <button onclick=\"hendelDelet('" + vegetable.id + "')\">Delet</button>\n                            <input type=\"submit\" value=\"SET\">\n                        </form>\n                    </div> ";
+            return "<div class=\"card\">\n                        <img src=\"" + vegetable.image + "\">\n                        <form onsubmit=\"handleSetEdit(event)\" id=\"" + vegetable.id + "\">\n                            <input type=\"text\" name=\"name\" value=\"" + vegetable.name + "\">\n                            <input type=\"url\" name=\"image\" value=\"" + vegetable.image + "\">\n                            <input type=\"number\" name=\"quantity\" value=\"" + vegetable.quantity + "\">                          \n                            <br>\n                            <button onclick=\"hendelDelet('" + vegetable.id + "')\">Delet</button>\n                            <input type=\"submit\" value=\"SET\">\n                        </form>\n                    </div> ";
         }
         else {
             //when not in edit mode
@@ -80,6 +85,25 @@ function renderVegetableCard(vegetable) {
     }
 }
 //controllers
+//search mode
+function vegetableSearch() {
+    try {
+        var searchText = document.querySelector('#search').value;
+        if (searchText === null)
+            throw new Error("element not received");
+        var regexp_1 = new RegExp("^" + searchText, 'i');
+        var searchVegetables_1 = [];
+        vegetables.forEach(function (vegetable) {
+            if (regexp_1.test(vegetable.name)) {
+                searchVegetables_1.push(vegetable);
+            }
+            renderAllVegetables(searchVegetables_1, document.querySelector('#vegetableRoot'));
+        });
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
 //add a new vegetable
 //take the input from user and put it in varibels
 function handleAddVegetable(ev) {

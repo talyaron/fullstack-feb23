@@ -6,7 +6,7 @@ Fridge.push(boxOne, boxTwo, boxThree); //<--push objects to the array
 loadFridgeFromLocalStorage();
 console.log(Fridge);
 function handleObjects() {
-    var btn = document.querySelector("body > form > button");
+    var btn = document.querySelector("body > div > form > button");
     btn === null || btn === void 0 ? void 0 : btn.addEventListener("click", function (event) {
         event.preventDefault();
         var inputName = document.querySelector("#nameInput");
@@ -21,7 +21,7 @@ function handleObjects() {
         saveFridgeToLocalStorage();
     });
 }
-debugger;
+// debugger
 window.addEventListener("DOMContentLoaded", function () {
     handleObjects();
 }); //<-- Call handleObjects after DOM is loaded
@@ -39,7 +39,7 @@ function renderAllVegetables(fridgeItems, htmlElement) {
 function renderCard(fridgeItem) {
     try {
         if (fridgeItem) {
-            return "\n          <div class=\"card\">\n            <img src=\"" + fridgeItem.image + "\">\n            <p>" + fridgeItem.name + "</p>\n            <button onclick=\"handleDeleteFridgeItem('" + fridgeItem.name + "')\">Delete</button>\n            <button onclick=\"handleEdit('" + fridgeItem.name + "')\">Edit</button>\n          </div>\n        "; //<-- this create how the object will look
+            return "\n          <div class=\"card\">\n            <p>" + fridgeItem.name + "</p>\n            <button onclick=\"handleDeleteFridgeItem('" + fridgeItem.name + "')\">Delete</button>\n            <button onclick=\"handleEdit('" + fridgeItem.name + "')\">Edit</button>\n            <img src=\"" + fridgeItem.image + "\">\n          </div>\n        "; //<-- this create how the object will look
         }
         else {
             return ""; //<-- this will return no object "else"
@@ -71,3 +71,17 @@ function loadFridgeFromLocalStorage() {
     }
 } //<-- Load fridge from localStorage after object is parsed
 window.addEventListener("load", loadFridgeFromLocalStorage); //<-- Call loadFridgeFromLocalStorage on page load (load saved new objects)
+//regex element
+var regexInput = document.querySelector("#regexInput"); // Select the regex input field
+function handleRegexInput() {
+    regexInput === null || regexInput === void 0 ? void 0 : regexInput.addEventListener("input", function () {
+        var regexPattern = new RegExp(regexInput.value, "i"); //<--  match both uppercase and lowercase letters, with i
+        var filteredFridge = Fridge.filter(function (item) { return regexPattern.test(item.name); }); // Filter the Fridge array based on the regex pattern
+        console.log(filteredFridge);
+        renderAllVegetables(filteredFridge, fridgeContainer); // Render the filtered items with red border
+    });
+}
+window.addEventListener("DOMContentLoaded", function () {
+    handleObjects();
+    handleRegexInput(); // Call the handleRegexInput function after DOM is loaded
+});

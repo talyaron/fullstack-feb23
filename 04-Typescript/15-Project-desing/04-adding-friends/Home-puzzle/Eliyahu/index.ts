@@ -43,7 +43,9 @@ function renderAddVegetable(rootElement: HTMLElement | null) {
         <input type="url" name="image" placeholder="Image url">
         <input type="number" name="amount" placeholder="Insert amount" required>
         <input type="submit" value="ADD">
-            </form>`
+            </form>
+            <label for="q">You can search for vegetables here:</label>
+            <input type="search" name="q" id="q" oninput="vegetableSearch()" placeholder="Search">`
         if (!rootElement) throw new Error("can't find rootElement")
         rootElement.innerHTML = html
     } catch (error) {
@@ -67,7 +69,7 @@ Hurry up and buy some </p>`
             }
             return `<div class="card" style="background-color:${randomColor()};">
         <img src="${vegetable.image}">
-        <h3>${vegetable.name}</h3>
+        <h3>${vegetable.name.charAt(0).toUpperCase() + vegetable.name.slice(1)}</h3>
         ${amount}
         <button onclick="handleRemoveVegetableUnit('${vegetable.id}')">I ATE ONE</button>
         <button onclick="handleAddVegetableUnit('${vegetable.id}')">I BOUGHT ONE</button>
@@ -113,6 +115,7 @@ function handleAddVegetable(ev: any) {
         const amount = ev.target.amount.valueAsNumber
         const newVegetable = new Vegetable(name, image, amount)
         vegetables.push(newVegetable)
+        vegetables.sort(sortVegByName)
 
         renderAllVegetables(vegetables, document.querySelector("#rootVegetable"))
         localStorage.setItem("vegetables", JSON.stringify(vegetables))
@@ -121,6 +124,16 @@ function handleAddVegetable(ev: any) {
         console.error(error)
 
     }
+}
+
+function sortVegByName(a, b) {
+    if (a.name < b.name) {
+        return -1;
+    }
+    if (a.name > b.name) {
+        return 1;
+    }
+    return 0;
 }
 
 function duplicateChecker(name: string) {
@@ -207,6 +220,8 @@ function handleSetEditVegetable(ev: any) {
             return
         }
         vegetable.isEdit = false;
+        vegetables.sort(sortVegByName)
+
 
         localStorage.setItem("vegetables", JSON.stringify(vegetables))
         renderAllVegetables(vegetables, document.querySelector("#rootVegetable"))
@@ -225,6 +240,17 @@ function randomColor() {
     } return color
 }
 
+function vegetableSearch() {
+    let txtSearch = document.querySelector("#q").value
+    let regexp = new RegExp(`^${txtSearch}`, "i");
+    const vegetablesFromSearch: Vegetable[] = []
+    vegetables.forEach(vegetable => {
+        if (regexp.test(vegetable.name)) {
+            vegetablesFromSearch.push(vegetable)
+        }
+        renderAllVegetables(vegetablesFromSearch, document.querySelector("#rootVegetable"))
+    })
+}
 
 renderAddVegetable(document.querySelector("#main"))
 renderAllVegetables(vegetables, document.querySelector("#rootVegetable"))

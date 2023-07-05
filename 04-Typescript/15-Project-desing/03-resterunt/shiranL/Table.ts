@@ -1,6 +1,7 @@
 // get Menu data from json or create array
 function getMenuForTablepage(): Dishe[]{
     try {
+    
         const disesString = localStorage.getItem('menuDises');
         if (!disesString) {
           console.log("There are no orders");
@@ -18,11 +19,12 @@ function getMenuForTablepage(): Dishe[]{
 // get Tables data from json or create array
 function getTablesForTablepage(): Table [] {
     try {
+   debugger
         const tables: Table []  = [];
         const tablesString = localStorage.getItem('tables');
         if (!tablesString){ // if there is not table on json , create one
-            for (let index = 0; index < 5; index++) {
-                tables.push(new Table(index+1,"Table "+(index+1).toString(),4))
+            for (let index = 0; index < 16; index++) {
+                tables.push(new Table("Table "+(index+1).toString(),4,index+1))
          ;}
          const tablesJson = JSON.stringify(tables); // save to local 
             localStorage.setItem('tables', tablesJson);
@@ -30,7 +32,7 @@ function getTablesForTablepage(): Table [] {
             //get tables from localstorage
             const tablesArray = JSON.parse(tablesString);
             tablesArray.forEach((table) => {
-                    tables.push(new Table(table.idTable, table.tableName, table.capacity));
+                    tables.push(new Table( table.tableName, table.capacity,table.idTable));
                 });}
      return tables;          
      } catch (error) {
@@ -130,7 +132,8 @@ function BackToMain(){
 // rendet curent table details
 function renderTableDetails() {
     try {
-        const currentTable: Table | undefined = tablesT?.find(table => table?.idTable === CurrentTableID);
+      debugger
+        const currentTable: Table | undefined = tablesT?.find(table => table.idTable === CurrentTableID);
         
         if (currentTable) {
             // Assuming you have an HTML element with id "tableDetails" to display the details
@@ -376,7 +379,8 @@ function handleAddDishesToOrder(event) {
   function renderNewOrder(){
     const addOrderContainer = document.getElementById("AddOrderContainer");
     if (addOrderContainer) {
-        const html = `<button class="AddNewOrder" type="button" onclick="handleAddOrder()">Add New Order</button>`
+        const html = `<button class="AddNewOrder" type="button" onclick="handleAddOrder()">Add New Order</button>
+        <button class="AddNewOrder" type="button" onclick="BackToMain()">Back To Main</button>`
         addOrderContainer.innerHTML = html;
     }
   }

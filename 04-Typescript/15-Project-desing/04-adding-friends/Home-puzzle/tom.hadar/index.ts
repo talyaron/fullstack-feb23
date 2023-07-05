@@ -1,128 +1,201 @@
 
-class Friend {
-  id: string;
-  isEdit: boolean;
-  constructor(
-    public friendName: string,
-    public friendNumber: number,
-    public url: string,
-    id?: string | null
-  ) {
-    if (id) {
-      this.id = id;
-    } else {
-      this.id = `id-${new Date().getTime()}-${Math.random()}`;
+  class Vegetables {
+    id: string;
+    isEdit: boolean;
+
+    constructor(
+      public vegetablesName: string,
+      public vegetablesNumber: number,
+      public url: string,
+      id?: string | null
+    ) {
+      if (id) {
+        this.id = id;
+      } else {
+        this.id = `id-${new Date().getTime()}-${Math.random()}`;
+      }
+    }
+
+    setEdit(set: boolean) {
+      this.isEdit = set;
     }
   }
 
-  setEdit(set: boolean) {
-    this.isEdit = set;
+  const vegetables: Vegetables[] = [];
+
+  // function inputAddvegetables(event) {
+  //   try {
+  //     event.preventDefault();
+  //     const vegetablesName = event.target.elements.vegetablesName.value;
+  //     const vegetablesNumber = event.target.elements.vegetablesNumber.value;
+  //     const url = event.target.elements.url.value;
+  //     const id = event.target.elements.id;
+  //     const data = new Vegetables(vegetablesName, vegetablesNumber, url, id);
+  //     vegetables.push(data);
+  //     event.target.reset();
+  //     const root = document.querySelector("#root");
+  //     render(vegetables, root);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // }
+  function inputAddvegetables(event) {
+    try {
+      event.preventDefault();
+      const vegetablesName = event.target.elements.vegetablesName.value;
+      const vegetablesNumber = Number(event.target.elements.vegetablesNumber.value);
+      const url = event.target.elements.url.value;
+      const id = event.target.elements.id;
+      const data = new Vegetables(vegetablesName, vegetablesNumber, url, id);
+      vegetables.push(data);
+      event.target.reset();
+      const root = document.querySelector("#root");
+      render(vegetables, root);
+    } catch (error) {
+      console.error(error);
+    }
   }
-}
 
-const friends: Friend[] = [];
+  // function render(vegetables, root) {
+  //   try {
+  //     const html = vegetables
+  //       .map((vegetable) => {
+  //         if(vegetable.vegetablesNumber<=0){
+  //           vegetable.vegetablesNumber="empty"
+  //         }
+  //         if (vegetable.url === '') {
+  //           vegetable.url = "https://cdn.carmella.co.il/wp-content/uploads/2020/11/9012.jpg";
+  //         }
+  //         if (vegetable.isEdit) {
+  //           return `<div class="card">
+  //             <form onsubmit="handleSetEditvegetables(event)" id="${vegetable.id}">
+  //               <input type="text" name="url" placeholder="vegetable-url" value="${vegetable.url}">
+  //               <input class="input1" type="text" name="vegetablesName" placeholder="vegetable-name" value="${vegetable.vegetablesName}">
+  //               <input class="input2" type="number" name="vegetablesNumber" placeholder="vegetable-Number" value="${vegetable.vegetablesNumber}">
+  //               <br>
+  //               <button onclick="handleDeletevegetables('${vegetable.id}')">Delete</button>
+  //               <input type="submit" value="SET">
+  //             </form>
+  //           </div>`;
+  //         } else {
+  //           return `<div class="card">
+  //             <img src="${vegetable.url}">
+  //             <p>Name: ${vegetable.vegetablesName}</p>
+  //             <p>Number: ${vegetable.vegetablesNumber}</p>
+  //             <button onclick="addToProduct('${vegetable.id}')"> I buy one </button>
+  //             <button onclick="revToProduct('${vegetable.id}')"> I ate one </button>
+  //             <button onclick="handleDeletevegetables('${vegetable.id}')">Delete</button>
+  //             <button onclick="handleEdit('${vegetable.id}')">Edit</button>
+  //           </div>`;
+  //         }
+  //       }).join("");
 
-function inputAddFriend(event) {
-  try {
+  //     root.innerHTML = html;
+  //   } catch (error) {
+  //     console.error(error);
+  //     return "";
+  //   }
+  // }
+  function render(vegetables, root) {
+    try {
+      const html = vegetables
+        .map((vegetable) => {
+          let vegetablesNumber = vegetable.vegetablesNumber;
+          if (vegetablesNumber <= 0) {
+            vegetablesNumber = "empty";
+          }
+  
+          if (vegetable.url === '') {
+            vegetable.url = "https://cdn.carmella.co.il/wp-content/uploads/2020/11/9012.jpg";
+          }
+  
+          if (vegetable.isEdit) {
+            return `<div class="card">
+              <form class="from1" onsubmit="handleSetEditvegetables(event)" id="${vegetable.id}">
+                <input type="text" name="url" placeholder="vegetable-url" value="${vegetable.url}">
+                <input class="input1" type="text" name="vegetablesName" placeholder="vegetable-name" value="${vegetable.vegetablesName}">
+                <input class="input1" type="number" name="vegetablesNumber" placeholder="vegetable-Number" value="${vegetablesNumber}">
+                <br>
+                <button onclick="handleDeletevegetables('${vegetable.id}')">Delete</button>
+                <input class="input2" type="submit" value="SET">
+              </form>
+            </div>`;
+          } else {
+            return `<div class="card">
+              <img src="${vegetable.url}">
+              <p>Name: ${vegetable.vegetablesName}</p>
+              <p>Number: ${vegetablesNumber}</p>
+              <button onclick="addToProduct('${vegetable.id}')"> I buy one </button>
+              <button onclick="revToProduct('${vegetable.id}')"> I ate one </button>
+              <button onclick="handleDeletevegetables('${vegetable.id}')">Delete</button>
+              <button onclick="handleEdit('${vegetable.id}')">Edit</button>
+            </div>`;
+          }
+        })
+        .join("");
+  
+      root.innerHTML = html;
+    } catch (error) {
+      console.error(error);
+      return "";
+    }
+  }
+  
+
+  function handleEdit(id) {
+    const vegetable = vegetables.find((vegetable) => vegetable.id === id);
+    if (vegetable) {
+      vegetable.setEdit(true);
+      const root = document.querySelector("#root");
+      render(vegetables, root);
+    }
+  }
+
+  function handleSetEditvegetables(event) {
     event.preventDefault();
-    const friendName = event.target.elements.friendName.value;
-    const friendNumber = event.target.elements.friendNumber.value;
+    const id = event.target.id;
+    const vegetablesName = event.target.elements.vegetablesName.value;
+    const vegetablesNumber = event.target.elements.vegetablesNumber.value;
     const url = event.target.elements.url.value;
-    const id = event.target.elements.id;
-    const data = new Friend(friendName, friendNumber, url, id);
-    friends.push(data);
-    event.target.reset();
-    const root = document.querySelector("#root");
-    render(friends, root);
-  } catch (error) {
-    console.error(error);
+    const vegetable = vegetables.find((vegetable) => vegetable.id === id);
+    if (vegetable) {
+      vegetable.vegetablesName = vegetablesName;
+      vegetable.vegetablesNumber = vegetablesNumber;
+      vegetable.url = url;
+      vegetable.setEdit(false);
+      const root = document.querySelector("#root");
+      render(vegetables, root);
+    }
   }
-}
 
-function render(friends, root) {
-  try {
-    const html = friends
-      .map((friend) => {
-        if (friend.isEdit) {
-          return `<div class="card">
-        <form onsubmit="handleSetEditFriend(event)" id="${friend.id}">
-        <img src="${friend.url}">
-              <input class=input1 type="text" name="friendName" value="${friend.friendName}">
-              <input class=input2 type="text" name="friendNumber" value="${friend.friendNumber}">
-              <br>
-
-              <button onclick="handleDeleteFriend('${friend.id}')">Delete</button>
-              <input type="submit" value="SET">
-          </form>
-        </div>`;
-        } else {
-          return `<div class="card">
-          <img src="${friend.url}">
-          <p>Name: ${friend.friendName}</p>
-          <p>Number: ${friend.friendNumber}</p>
-          <button onclick="addToProduct('${friend.id}')"> + </button>
-          <button onclick="revToProduct('${friend.id}')"> - </button>
-          <button onclick="handleDeleteFriend('${friend.id}')">Delete</button>
-          <button onclick="handleEdit('${friend.id}')">Edit</button>
-        </div>`;
-        }
-      })
-      .join("");
-
-    root.innerHTML = html;
-  } catch (error) {
-    console.error(error);
-    return "";
+  function handleDeletevegetables(id) {
+    const index = vegetables.findIndex((vegetable) => vegetable.id === id);
+    if (index !== -1) {
+      vegetables.splice(index, 1);
+      const root = document.querySelector("#root");
+      render(vegetables, root);
+    }
   }
-}
 
-function handleEdit(id) {
-  const friend = friends.find((friend) => friend.id === id);
-  if (friend) {
-    friend.setEdit(true); // שינוי הערך לעריכה
-    const root = document.querySelector("#root");
-    render(friends, root);
+  function addToProduct(id) {
+    const vegetable = vegetables.find((vegetable) => vegetable.id === id);
+    if (vegetable) {
+      vegetable.vegetablesNumber++;
+      const root = document.querySelector("#root");
+      render(vegetables, root);
+      console.log(vegetable.vegetablesNumber);
+    }
   }
-}
-
-function handleSetEditFriend(event) {
-  event.preventDefault();
-  const id = event.target.id;
-  const friendName = event.target.elements.friendName.value;
-  const friendNumber = event.target.elements.friendNumber.value;
-  const friend = friends.find((friend) => friend.id === id);
-  if (friend) {
-    friend.friendName = friendName;
-    friend.friendNumber = friendNumber;
-    friend.setEdit(false); // שינוי הערך לצפייה
-    const root = document.querySelector("#root");
-    render(friends, root);
+  
+  function revToProduct(id) {
+    const vegetable = vegetables.find((vegetable) => vegetable.id === id);
+    if (vegetable) {
+      if (vegetable.vegetablesNumber <= 0) {
+        throw new Error("empty");
+      } else {
+        vegetable.vegetablesNumber--;
+      }
+      const root = document.querySelector("#root");
+      render(vegetables, root);
+    }
   }
-}
-
-function handleDeleteFriend(id) {
-  const index = friends.findIndex((friend) => friend.id === id);
-  if (index !== -1) {
-    friends.splice(index, 1);
-    const root = document.querySelector("#root");
-    render(friends, root);
-  }
-}
-
-function addToProduct(id) {
-  const friend = friends.find((friend) => friend.id === id);
-  if (friend) {
-    friend.friendNumber++;
-    const root = document.querySelector("#root");
-    render(friends, root);
-  }
-}
-
-function revToProduct(id) {
-  const friend = friends.find((friend) => friend.id === id);
-  if (friend) {
-    friend.friendNumber--;
-    const root = document.querySelector("#root");
-    render(friends, root);
-  }
-}
