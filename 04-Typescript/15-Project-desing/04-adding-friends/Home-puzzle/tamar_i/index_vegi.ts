@@ -51,6 +51,7 @@ function getVegetableFromStorage(): Vegetable[] {
 
 //show all the vegetable card on screen
 //render list of vegetables
+//render search
 //model -> controler -> view
 
 function renderAllVegetables(vegetables: Vegetable[], htmlElement: HTMLElement | null) {
@@ -74,6 +75,9 @@ function renderVegetableCard(vegetable: Vegetable) {
     try {
         //if we want to edit the card we check if the edit btn were clicked, when clicked turn isEdit=trou
         if (vegetable.isEdit) {
+            if(vegetable.image === ' '){
+                vegetable.image ="https://cdn.carmella.co.il/wp-content/uploads/2020/11/9012.jpg">
+            } 
             //we want to change the DOM to an edit-form
             return `<div class="card">
                         <img src="${vegetable.image}">
@@ -88,12 +92,7 @@ function renderVegetableCard(vegetable: Vegetable) {
                     </div> `
         } else {
             //when not in edit mode
-            return `<form onsubmit="handelSearch(event)">
-                        <input type="search" name="search" placeholder="search">
-                        <input type="submit" value="SEARCH">
-                        <br>
-                    </form>
-                    <div class="card">
+            return `<div class="card">
                         <img src="${vegetable.image}">
                         <p>${vegetable.name}</p>
                         <p><button onclick="handelquntityMinosOne('${vegetable.id}')">-</button>
@@ -113,17 +112,18 @@ function renderVegetableCard(vegetable: Vegetable) {
 
 //search mode
 
-function handelSearch(ev:any){
+function vegetableSearch(){
     try {
-        ev.preventDefault();
-        let str = ev.target.search.value;
-        console.log(str)
-
-        if(!str) throw new Error("no search value")
-
-        //do the search in the data and put the result in array
-        let matchAll = Array.from(RegExp.prototype[Symbol.matchAll](str));
-        console.log(matchAll)
+        let searchText: HTMLElement|null = document.querySelector('#search').value
+        if(searchText===null) throw new Error("element not received")
+        let regexp = new RegExp(`^${searchText}`,'i'); 
+        const searchVegetables: Vegetable[] = []
+        vegetables.forEach(vegetable => {
+            if(regexp.test(vegetable.name)){
+                searchVegetables.push(vegetable)
+            }
+            renderAllVegetables(searchVegetables, document.querySelector('#vegetableRoot'))
+        })
 
     } catch (error) {
         console.error(error)
