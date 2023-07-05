@@ -6,6 +6,7 @@
     height: 50vw;
     justify-content: space-around;
 
+<<<<<<< HEAD
     &__box1{
         width: 150px;
         height: 150px;
@@ -13,12 +14,26 @@
     }
 
     &__box2{
+=======
+    .box1{
+        width: 150px;
+        height: 150px;
+    }
+
+    .box2{
+        display: none;
+>>>>>>> 91b2efb652141def5a7fd3b580ecf06169fdffcf
         width: 150px;
         height: 150px;
         background-color: teal;
     }
 
+<<<<<<< HEAD
     &__box3{
+=======
+    .box3{
+        display: none;
+>>>>>>> 91b2efb652141def5a7fd3b580ecf06169fdffcf
         width: 150px;
         height: 150px;
         background-color: rgb(248, 10, 10);
