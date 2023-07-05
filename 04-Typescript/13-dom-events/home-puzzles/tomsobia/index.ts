@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+function changeImg(){
+    const myimge = document.querySelector(".box1").
+}
+=======
 const clun = document.querySelector("body > div > div.box1 > img");
 const originalSrc = clun.src; // שמירת הכתובת המקורית של התמונה
 
@@ -11,3 +16,4 @@ clun.addEventListener("click", () => {
   }
 });
 console.log(clun);
+>>>>>>> 91b2efb652141def5a7fd3b580ecf06169fdffcf
