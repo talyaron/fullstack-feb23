@@ -18,7 +18,7 @@ class Tables {
     }
 }
 
-class Dishes {
+class Dish {
   constructor(public dishName:string , public notes:string){
 
   }
