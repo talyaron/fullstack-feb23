@@ -1,0 +1,23 @@
+.Container{
+  width: 100vh;
+  height: 100vw;
+  background: linear-gradient(to bottom right, #333, #615e5e);
+}
+
+
+
+.players {
+  display: flex;
+  flex-wrap: wrap;
+  
+
+&__player {
+  width: 20px;
+  height: 20px;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+}
