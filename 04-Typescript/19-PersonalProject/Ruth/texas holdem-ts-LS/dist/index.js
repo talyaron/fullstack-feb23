@@ -57,8 +57,13 @@ function getDeckCardsFromLs() {
     });
 }
 get2RandomCards();
-renderAllCards();
+// renderAllCards();
 var players = [
     new Player("ruttur66")
 ];
 localStorage.setItem("players", JSON.stringify(players));
+function renderMyPannel() {
+    players[0].pCards.forEach(function (c) { return c.renderCard(document.querySelector(".myCards")); });
+    document.querySelector(".myChips").innerHTML = players[0].chips.toString();
+}
+renderMyPannel();

@@ -22,8 +22,8 @@ class Card {
     }
   }
 
-  renderCard(root = document.body.querySelector(".cards") as HTMLBodyElement) {
-    root.innerHTML += `<div class="card" name="${
+  renderCard(root = document.body.querySelector(".cards")) {
+    root!.innerHTML += `<div class="card" name="${
       this.cardNumber + this.cardSign
     }">
               <h3 class="cardN">${this.cardNumber}</h3>

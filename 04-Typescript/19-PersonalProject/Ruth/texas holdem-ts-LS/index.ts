@@ -70,7 +70,7 @@ function getDeckCardsFromLs(){
 }
 
 get2RandomCards();
-renderAllCards();
+// renderAllCards();
 
 const players:Player[] = [
   new Player("ruttur66")
@@ -78,4 +78,11 @@ const players:Player[] = [
 
 localStorage.setItem("players", JSON.stringify(players))
 
-function 
+
+function renderMyPannel(){
+  players[0].pCards.forEach(c=> c.renderCard(document.querySelector(".myCards")!))
+  document.querySelector(".myChips")!.innerHTML = players[0].chips.toString()
+  
+}
+
+renderMyPannel()

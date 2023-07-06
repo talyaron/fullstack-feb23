@@ -20,27 +20,40 @@ h1 {
 
 .cards {
   display: grid;
-  grid-template-columns:repeat(auto-Fill , minmax(150px, 1fr)) ;
-  .card {
-    width: 80px;
-    height: 110px;
-    background-color: white;
-    margin: 10px;
-    padding: 10px;
-    // text-align: center;
-    border: 5px solid rgb(255, 255, 255);
-    border-radius: 20px;
+  grid-template-columns: repeat(auto-Fill, minmax(150px, 1fr));
+}
+.myPannel{
+  position: absolute;
+  bottom:0;
+  left: calc(50% -  125px);
+  .myCards{
+    // width:  50%;
+    display: flex;
+  }
+  .myChips{
+    color: white;
+    text-align: center;
+  }
 
-    box-shadow: inset 0px 0px 0px 4px #d10101    ,
-      3px 4px 6px rgba(0, 0, 0, 0.381);
+}
+.card {
+  width: 80px;
+  height: 110px;
+  background-color: white;
+  margin: 10px;
+  padding: 10px;
+  // text-align: center;
+  border: 5px solid rgb(255, 255, 255);
+  border-radius: 20px;
 
-    h3 {
-      padding: 0px 0px 5px; 
-      font-size: xx-large;
-    }
-    img {
-      width: 60px;
-      padding: 0px 10px;
-    }
+  box-shadow: inset 0px 0px 0px 4px #d10101, 3px 4px 6px rgba(0, 0, 0, 0.381);
+
+  h3 {
+    padding: 0px 0px 5px;
+    font-size: xx-large;
+  }
+  img {
+    width: 60px;
+    padding: 0px 10px;
   }
 }
