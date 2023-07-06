@@ -12,7 +12,7 @@ var Img = /** @class */ (function () {
 var imageArray = [];
 var image1 = new Img('https://pixlr.com/images/index/remove-bg.webp', 'My image');
 var image2 = new Img('https://pixlr.com/images/index/remove-bg.webp', 'My new image');
-imageArray.push(image1);
+imageArray.push(image1, image2);
 var User = /** @class */ (function () {
     function User(name, followUp, followers, imageProfile, image) {
         this.name = name;
@@ -29,12 +29,7 @@ var bar = new User('Bar', 162, 546, 'https://pixlr.com/images/index/remove-bg.we
 var netanel = new User('Netanel', 657, 603, 'https://pixlr.com/images/index/remove-bg.webp', Img[1]);
 //view - show the user profile.
 //create a new user profile.
-createProfile(document.querySelector('#profile'));
-function createProfile(user, image, htmlElement) {
-    try {
-        var html = ;
-    }
-    catch (error) {
-        console.error(error);
-    }
-}
+//create a new post(image).
+//controller - add new user to the array.
+//add new post to the user profile.
+//show the user profile.
