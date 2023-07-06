@@ -27,7 +27,6 @@ h1 {
   background-color: white;
   margin: 10px;
   padding: 10px;
-  text-align: center;
   border: 5px solid white;
   border-radius: 20px;
   box-shadow: inset 0px 0px 0px 4px #d10101, 3px 4px 6px rgba(0, 0, 0, 0.381);
@@ -38,4 +37,5 @@ h1 {
 }
 .cards .card img {
   width: 60px;
+  padding: 0px 10px;
 }
