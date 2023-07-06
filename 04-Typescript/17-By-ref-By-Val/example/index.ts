@@ -43,3 +43,38 @@ console.log(student2021)
 
 console.log(students);
 
+// copying objects by value
+
+//shalow copy (spread operator)
+const c = { ...a, y: "test" };
+console.log(c);
+c.x = 400;
+
+console.log(c)
+console.log(a)
+
+//array;
+
+const myArray = [{ name: "Tal" }, 45];
+const myArray2 = [...myArray];
+// const myArray2 = JSON.parse(JSON.stringify(myArray));
+myArray2[1] = 100;
+myArray2[0].name = "Moshe"
+
+console.log(myArray);
+
+//sholow copy to objects in array;
+
+const students2 = students.map(s => {
+    return { ...s }
+})
+
+console.log(students2)
+students2[2].year = 2040;
+console.log(students)
+
+
+
+
+
+
