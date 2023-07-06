@@ -177,8 +177,8 @@
     }
   }
 
-  function addToProduct(id) {
-    const vegetable = vegetables.find((vegetable) => vegetable.id === id);
+  function addToProduct(id:string) {
+    const vegetable = vegetables.find(vegetable => vegetable.id === id);
     if (vegetable) {
       vegetable.vegetablesNumber++;
       const root = document.querySelector("#root");
@@ -187,7 +187,7 @@
     }
   }
   
-  function revToProduct(id) {
+  function revToProduct(id:string) {
     const vegetable = vegetables.find((vegetable) => vegetable.id === id);
     if (vegetable) {
       if (vegetable.vegetablesNumber <= 0) {
