@@ -14,7 +14,7 @@ function renderPlayers(players:Player[],playersDiv:HTMLElement|null) {
         const playerDiv = document.createElement('div');
         playerDiv.classList.add('players__player');
         playerDiv.style.backgroundColor = player.color;
-        
+        debugger;
         // Create a span element to display the player's username
         const usernameSpan = document.createElement('span');
         usernameSpan.textContent = player.userName;
@@ -35,7 +35,7 @@ function loadPlayers(){
     const playersString = localStorage.getItem('players');
             
     if (!playersString) {
-        addPlayer(players,"shiranLevy")
+        addPlayer(players,"shiran")
         addPlayer(players,"Ohad")
         addPlayer(players,"Nadav")
         addPlayer(players,"Mirit")
