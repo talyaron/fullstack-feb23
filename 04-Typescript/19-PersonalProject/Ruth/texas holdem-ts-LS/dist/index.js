@@ -52,7 +52,7 @@ function setDeckCardsInLs() {
 }
 function getDeckCardsFromLs() {
     var decksCardsStr = JSON.parse(localStorage.getItem("deckCards"));
-    decksCards = decksCardsStr.forEach(c, function (Card) {
+    decksCards = decksCardsStr.forEach(function (c) {
         new Card(c.cardNumber, c.cardSign);
     });
 }

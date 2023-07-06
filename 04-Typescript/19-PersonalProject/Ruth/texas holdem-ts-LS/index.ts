@@ -64,7 +64,7 @@ function setDeckCardsInLs() {
 }
 function getDeckCardsFromLs(){
   let decksCardsStr = JSON.parse(localStorage.getItem("deckCards")!) 
-  decksCards= decksCardsStr.forEach(c:Card=>{
+  decksCards= decksCardsStr.forEach(c=>{
     new Card(c.cardNumber, c.cardSign)
   })
 }
