@@ -3,21 +3,36 @@
 // 3) do task number 2. Store items using array of a class. create a method for rendering an image to the dom. , render all of them to the DOM
 
 class UserImg {
-    img:string | null;
+    
+    constructor(public url: string ) {
 
-    constructor(img: string | null) {
-        this.img = img;
     }
+    render() {
+        const img = document.createElement('img');
+        img.src = this.url;
+        document.getElementById('root')?.appendChild(img);
+      }
 }
 
 function UserImage() {
-    const firstImageUrl = prompt("Enter Url of an Image");
+    const urls: UserImg[] = [];  
+    
+    for (let i = 0; i < 5; i++){
+        const userUrl = prompt(`enter image url ${i + 1}`);
+        if(userUrl) {
+            const userImg = new UserImg(userUrl);
+            urls.push(userImg);
+        }
+    
+    }
 
-    const firstImage = new UserImg(firstImageUrl)
+    renderImages(urls);
 
-    const div = document.querySelector("#root");
-
-    div?.innerHTML += `<p>${firstImage.img}`
+    function renderImages(imageItems:UserImg[]){
+        imageItems.forEach((imageItem)=> {
+            imageItem.render();
+        });
+    }
 }
 
-UserImage()
+UserImage();
