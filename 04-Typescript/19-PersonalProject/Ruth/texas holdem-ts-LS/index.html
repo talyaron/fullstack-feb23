@@ -4,19 +4,22 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <script src="./dist/classes.js"defer></script>
+    <script src="./dist/classes.js" defer></script>
     <script src="./dist/index.js" defer></script>
     <link rel="stylesheet" href="./dist/style.css" />
   </head>
   <body>
     <h1>Texas Holdem</h1>
-  <div class="cards">
-  </div>
+    <div class="cards"></div>
 
-  <div class="myPannel">
-    <div class="myCards"></div>
-    <h4 class="myChips"></h4>
-  </div>
-    
+    <div class="myPannel">
+      <div class="myCards"></div>
+      <h4 class="myChips"></h4>
+    </div>
+    <div class="stage">
+      <button id="addCardToStageBtn" onclick="addCardToStage(event)">
+        add cards:
+      </button>
+    </div>
   </body>
 </html>

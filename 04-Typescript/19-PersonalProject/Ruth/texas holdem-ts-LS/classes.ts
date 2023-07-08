@@ -33,17 +33,28 @@ class Card {
 }
 
 class Player {
-    public pCards: Card[]
   constructor(
     public userName: string,
     public chips: number = 100000,
-    public isActive:boolean = true
+    public isActive: boolean = true,
+    public pCards: Card[] = get2RandomCards(),
   ) {
-    this.pCards = get2RandomCards()
+    this.pCards = this.pCards.map((c) => new Card(c.cardNumber, c.cardSign));
+
   }
 
-  setToUnActive(){
-    this.isActive = false
+  setToUnActive() {
+    this.isActive = false;
+  }
+
+  renderMyPanel() {
+    try {
+      this.pCards!.forEach((c) =>
+        c.renderCard(document.querySelector(".myCards") as HTMLElement),
+      );
+      document.querySelector(".myChips")!.innerHTML = this.chips.toString();
+    } catch (error) {
+      console.error(error);
+    }
   }
 }
-
