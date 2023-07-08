@@ -1,0 +1,92 @@
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {}
+
+body {
+    background-image: url(https://coolbackgrounds.io/images/backgrounds/index/sea-edge-79ab30e2.png);
+    background-size: cover;
+}
+
+.MainPageWrapper {
+    width: 80vw;
+    height: 90vh;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &__headline {
+        font-size: 3.5vw;
+        background: rgb(207, 238, 210);
+        background: linear-gradient(0deg, rgba(207, 238, 210, 1) 15%, rgba(176, 212, 241, 1) 85%);
+        border-radius: 20px;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+
+    }
+
+    &__suggested {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 4vw;
+        width: 100vw;
+        height: 24vh;
+        background: rgb(207, 238, 210);
+        background: linear-gradient(0deg, rgba(207, 238, 210, 1) 15%, rgba(176, 212, 241, 1) 85%);
+        box-shadow: 2px 2px grey;
+    }
+    &__lastListened{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 4vw;
+        width: 100vw;
+        height: 24vh;
+        background: rgb(207, 238, 210);
+        background: linear-gradient(0deg, rgba(207, 238, 210, 1) 15%, rgba(176, 212, 241, 1) 85%);
+        box-shadow: 2px 2px grey;
+    }
+}
+
+.song {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 10vw;
+    height: 22vh;
+    background: rgb(71, 146, 218);
+    background: linear-gradient(0deg, rgba(71, 146, 218, 1) 14%, rgba(236, 75, 102, 1) 92%);
+    border-radius: 10px;
+    transition: all 200ms ease-in-out;
+    cursor: pointer;
+
+    &:hover {
+        transform: scale(1.1);
+        box-shadow: 1px 1px green;
+    }
+
+    &__img {
+        width: 9vw;
+        height: 18vh;
+        border-radius: 10px;
+
+    }
+
+    &__title {
+        font-size: 16px;
+        font-family: fantasy;
+    }
+}
