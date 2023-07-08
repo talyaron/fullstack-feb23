@@ -80,6 +80,7 @@ hr {
   justify-content: center;
 }
 .container__ContactUs__form {
+  width: 25vw;
   border-radius: 20px;
   display: flex;
   background-color: rgba(51, 52, 38, 0.56);
@@ -87,12 +88,14 @@ hr {
   flex-direction: column;
 }
 .container__ContactUs__form__btn {
+  width: 50%;
   color: red;
   background-color: black;
   border: none;
-  padding: 8px;
-  margin: 10px;
+  padding: 2%;
+  margin: 5%;
   border-radius: 12px;
+  font-size: 50%;
 }
 .container__ContactUs__form__btn:hover {
   background-color: rgba(0, 128, 0, 0.274);
@@ -100,9 +103,8 @@ hr {
 .container__ContactUs__form input {
   border-radius: 6px;
   border: none;
-  margin: 3px;
-  padding: 7px;
-  width: 14vw;
+  padding: 0.2vw;
+  width: 50%;
 }
 .container__ContactUs__form .hr1 {
   color: yellow;
