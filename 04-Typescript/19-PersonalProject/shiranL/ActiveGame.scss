@@ -1,0 +1,21 @@
+// Define the board style
+#Board {
+    width: 10*60px;
+   
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(10, 1fr); // Adjust the number of columns as needed
+    grid-gap: 0.1px; // Gap between cells
+    background-color: #fff; // Set the background color of the board
+    //padding: 10px; // Adjust the padding as needed
+  }
+  
+  // Define the board cell style
+  .board-cell {
+     // Set the border style of the cells
+    width: 60px;
+    height: 60px;
+  
+  }
+  
+ 
