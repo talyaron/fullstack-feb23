@@ -32,6 +32,14 @@ hr {
         justify-content: space-evenly;
         flex-direction: row;
         align-items: center;
+        width: 80%;
+        margin: 0 auto;
+        border-radius: 20px;
+        background-color: rgba(255, 0, 0, 0.634);
+
+        span{
+            color: rgb(210, 210, 206);
+        }
 
         a {
             font-size: 1.6vw;
