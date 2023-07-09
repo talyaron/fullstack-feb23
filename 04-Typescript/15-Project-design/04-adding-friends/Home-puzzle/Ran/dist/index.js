@@ -14,13 +14,15 @@ var friend = [];
 // from view to model: view-control-model
 function handleAddFriend(ev) {
     try {
-        ev.preventDefualt();
+        ev.preventDefault();
         var name = ev.target.elements.name.value;
         var image = ev.target.elements.img.value;
         var phonenumber = ev.target.elements.PhoneNumber.value;
         var newFriend = new Friend(name, image, phonenumber);
         friend.push(newFriend);
         // save to localstorage
+        var newObj = structuredClone(newFriend);
+        newObj.name;
         localStorage.setItem("friend", JSON.stringify(friend));
         console.log(friend);
     }
