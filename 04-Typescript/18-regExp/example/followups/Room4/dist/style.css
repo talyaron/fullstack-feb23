@@ -1,0 +1,13 @@
+#paragraphs {
+  margin-top: 10px;
+  width: 400px;
+  height: fit-content;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+img {
+  width: 100px;
+  height: 100px;
+  border: solid 1px;
+}
