@@ -19,6 +19,9 @@ body {
   background-color: #333;
   color: #fff;
 }
+.container__nav__box {
+  padding: 20px;
+}
 
 .container__nav a {
   color: #fff;
