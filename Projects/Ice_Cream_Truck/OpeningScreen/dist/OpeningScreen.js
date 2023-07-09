@@ -36,6 +36,13 @@ function handleStartGame(ev) {
         ev.preventDefault();
         var name = ev.target.name.value;
         var player = new Player(name, 0);
+        // console.log(player);
+        var pp = JSON.stringify(player);
+        localStorage.setItem("player", pp);
+        // console.log(pp);
+        // const xx = JSON.parse(pp)
+        // console.log(xx);
+        window.open("../TheGame/theGame.html", "_self");
     }
     catch (error) {
         console.error(error);

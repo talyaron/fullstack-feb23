@@ -1,3 +1,4 @@
+
 class Player {
     id: string
     constructor(public name: string, public points: number) {
@@ -56,10 +57,19 @@ function handleStartGame(ev:any){
     ev.preventDefault()
     const name = ev.target.name.value
     const player = new Player (name,0)
+    // console.log(player);
+    const pp = JSON.stringify(player)
+    localStorage.setItem("player", pp)
+   
+    // console.log(pp);
+    // const xx = JSON.parse(pp)
+    // console.log(xx);
+
+    
+    window.open("../TheGame/theGame.html", "_self")
  } catch (error) {
     console.error(error)
  }
 }
-
 
 renderMain(document.querySelector("#main"))
