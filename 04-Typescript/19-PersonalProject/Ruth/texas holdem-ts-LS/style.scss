@@ -57,3 +57,11 @@ h1 {
     padding: 0px 10px;
   }
 }
+
+.stage{
+  display: flex;
+  flex-wrap: wrap;
+  button{
+      position: absolute;
+  }
+}

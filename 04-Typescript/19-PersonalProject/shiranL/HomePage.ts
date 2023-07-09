@@ -1,69 +1,471 @@
-function addPlayer(players: Player[],userName:string){
-
-    players.push(new Player(userName))   
-}
-function renderPlayers(players:Player[],playersDiv:HTMLElement|null) {
+//home page.ts
+// contorolers 
+function loadCharacters():Character[]|undefined{
     try {
-        // Clear the existing content inside the players div
-        if(!players || !playersDiv) throw new Error("cant find players || !playersDiv ")
-        playersDiv.innerHTML = '';
-
-        // Loop through each player and create a player element
-        players.forEach(player => {
-        // Create a new div element for the player
-        const playerDiv = document.createElement('div');
-        playerDiv.classList.add('players__player');
-        playerDiv.style.backgroundColor = player.color;
-        debugger;
-        // Create a span element to display the player's username
-        const usernameSpan = document.createElement('span');
-        usernameSpan.textContent = player.userName;
-
-        // Append the username span to the player div
-        playerDiv.appendChild(usernameSpan);
-
-        // Append the player div to the players div
-        playersDiv.appendChild(playerDiv);
-  });
-    } catch (error) {
-        console.error(error);
-        
-    }
- 
-}
-function loadPlayers(){
-    const playersString = localStorage.getItem('players');
-            
-    if (!playersString) {
-        addPlayer(players,"shiran")
-        addPlayer(players,"Ohad")
-        addPlayer(players,"Nadav")
-        addPlayer(players,"Mirit")
+        const characters: Character []  = [];
+        const charactersString = localStorage.getItem('characters');
+      if (!charactersString){ // if there is not characters on json , create new []
+         
+        characters.push(new Character("Yechiel Lasry","./dist/1.png"))
+        characters.push(new Character("Elen Gelber","./dist/2.png"))
+        characters.push(new Character("Barak Sery","./dist/3.png"))
+        characters.push(new Character("Eli Nacht","./dist/4.png"))
+        characters.push(new Character("Eli Lachmani","./dist/5.png"))
         //save to local storage
-        const plyersJson = JSON.stringify(players);
-        localStorage.setItem('players', plyersJson);
+        const charactersJson = JSON.stringify(characters);
+        localStorage.setItem('characters', charactersJson);
+        return characters;
+
+       }else{
+          //get characters from localstorage
+          const charactersArray = JSON.parse(charactersString);
+          charactersArray.forEach((character) => {
+            characters.push(new Character(character.characterName, character.characterImgPath,character.characterId.valueAsNumber));
+              });}
+   return characters;          
         
-    }else{
-        const playersArray = JSON.parse(playersString);
-        playersArray.forEach((player: any) => {
-          players.push(player);
-        });
-    } 
-      
-      
+    } catch (error) {
+      console.error(error);  
+    }
 }
-debugger
-const players:Player[]=[];
-const playersDiv:HTMLElement|null = document.querySelector('.players');
-console.log(players);
+function loadCities():City[]|undefined{
+    try {
+        const cities: City []  = [];
+        const citiesString = localStorage.getItem('cities');
+      if (!citiesString){ // if there is not characters on json , create new []
+        const hotels : Hotel[] | undefined = [];
+        
+        cities.push(new City("Ashdod",hotels,"./dist/ashdod.jpg",1))
+        cities.push(new City("Esh-David",hotels,"./dist/ashdod.jpg",2))
+        cities.push(new City("Jerusalem",hotels,"./dist/Jerusalem.jpg",3))
+        cities.push(new City("Tel-Aviv",hotels,"./dist/telAviv.jpg",4))
+        cities.push(new City("Dubai",hotels,"./dist/Dubai.jpg",5))
+        cities.push(new City("Eilat",hotels,"./dist/eilat.jpg",6))
+        cities.push(new City("ROSH Pina",hotels,"./dist/roshPina.jpg",7))
+        loadHotels(hotels);
+        loadHotelsToCities(cities,hotels);
+        //save to local storage
+        const citiesJson = JSON.stringify(cities);
+        localStorage.setItem('cities', citiesJson);
+        return cities;
 
-loadPlayers();
-console.log(players);
+       }else{
+          //get characters from localstorage
+          const citiesArray = JSON.parse(citiesString);
+          citiesArray.forEach((city) => {
+            cities.push(new City(city.cityName,city.cityHotels,city.cityId));
+              });}
+   return cities;          
+        
+    } catch (error) {
+      console.error(error);  
+    }
+}
+function loadHotels(hotels: Hotel[] | undefined){
+    try {
+       if(!hotels) throw new Error("Cant Find Hotels Array");
+       
+        const hotelsString = localStorage.getItem('hotels');
+      if (!hotelsString){ // if there is not characters on json , create new []
+        let cityId:number=1; 
+        hotels.push(new Hotel("LEONARDO",cityId,`./dist/${cityId}hotel.jpg`))
+        hotels.push(new Hotel("Clab Hotel",cityId,`./dist/${cityId}hotel.jpg`))
+        hotels.push(new Hotel("WEST",cityId,`./dist/${cityId}hotel.jpg`))
+        hotels.push(new Hotel("Orly",cityId,`./dist/${cityId}hotel.jpg`))
+        hotels.push(new Hotel("Dan Panorama",cityId,`./dist/${cityId}hotel.jpg`))
+        hotels.push(new Hotel("Megic Ninja",cityId,`./dist/${cityId}hotel.jpg`))
+        hotels.push(new Hotel("Kantry Club",cityId,`./dist/${cityId}hotel.jpg`))
+        hotels.push(new Hotel("Hotel California",cityId,`./dist/${cityId}hotel.jpg`))
+        cityId=2;
+        hotels.push(new Hotel("WEST",cityId,`./dist/${cityId}hotel.jpg`))
+        hotels.push(new Hotel("Orly",cityId,`./dist/${cityId}hotel.jpg`))
+        hotels.push(new Hotel("LEONARDO",cityId,`./dist/${cityId}hotel.jpg`))
+        hotels.push(new Hotel("Clab Hotel",cityId,`./dist/${cityId}hotel.jpg`))
+        hotels.push(new Hotel("Dan Panorama",cityId,`./dist/${cityId}hotel.jpg`))
+        hotels.push(new Hotel("Megic Ninja",cityId,`./dist/${cityId}hotel.jpg`))
+        hotels.push(new Hotel("Kantry Club",cityId,`./dist/${cityId}hotel.jpg`))
+        hotels.push(new Hotel("Hotel California",cityId,`./dist/${cityId}hotel.jpg`))
+        cityId=3;
+        hotels.push(new Hotel("Dan Ashdod",cityId,`./dist/${cityId}hotel.jpg`))
+        hotels.push(new Hotel("LEONARDO",cityId,`./dist/${cityId}hotel.jpg`))
+        hotels.push(new Hotel("WEST",cityId,`./dist/${cityId}hotel.jpg`))
+        hotels.push(new Hotel("Orly",cityId,`./dist/${cityId}hotel.jpg`))
+        hotels.push(new Hotel("Dan Panorama",cityId,`./dist/${cityId}hotel.jpg`))
+        hotels.push(new Hotel("Megic Ninja",cityId,`./dist/${cityId}hotel.jpg`))
+        hotels.push(new Hotel("Kantry Club",cityId,`./dist/${cityId}hotel.jpg`))
+        hotels.push(new Hotel("Hotel California",cityId,`./dist/${cityId}hotel.jpg`))
+        cityId=4;
+        hotels.push(new Hotel("Dan Ashdod",cityId,`./dist/${cityId}hotel.jpg`))
+        hotels.push(new Hotel("LEONARDO",cityId,`./dist/${cityId}hotel.jpg`))
+        hotels.push(new Hotel("WEST",cityId,`./dist/${cityId}hotel.jpg`))
+        hotels.push(new Hotel("Orly",cityId,`./dist/${cityId}hotel.jpg`))
+        hotels.push(new Hotel("Dan Panorama",cityId,`./dist/${cityId}hotel.jpg`))
+        hotels.push(new Hotel("Megic Ninja",cityId,`./dist/${cityId}hotel.jpg`))
+        hotels.push(new Hotel("Kantry Club",cityId,`./dist/${cityId}hotel.jpg`))
+        hotels.push(new Hotel("Hotel California",cityId,`./dist/${cityId}hotel.jpg`))
+     
+        //save to local storage
+        const hotelsJson = JSON.stringify(hotels);
+        localStorage.setItem('hotels', hotelsJson);
+       
+       }else{
+          //get characters from localstorage
+          const hotelsArray = JSON.parse(hotelsString);
+          hotelsArray.forEach((hotel) => {
+            hotels.push(new Hotel(hotel.hotelName,hotel.cityId,hotel.hotelImg,hotel.hotelId));
+              });
+            }
+        
+    } catch (error) {
+      console.error(error);  
+    }
+}
+function loadHotelsToCities(cities : City[] |undefined , hotels : Hotel[] | undefined){
+try {
+    if(!cities || !hotels) throw new Error("Cant Find cities or hotels array ;( ")
+    cities.forEach(city => {
+        const cityHotels = hotels.filter(hotel => hotel.cityId === city.cityId);
+        city.cityHotels = cityHotels;
+    });
+    
+} catch (error) {
+    console.error(error);
+    
+}
+}
+function loadJails(): Jail[] | undefined {
+    try {
+        const jails: Jail []  = [];
+        const jailsString = localStorage.getItem('jails');
+      if (!jailsString){ // if there is not characters on json , create new []
+         
+        jails.push(new Jail("Neve Tirza",""))
+        jails.push(new Jail("Ofek",""))
+        jails.push(new Jail("400",""))
+        jails.push(new Jail("Dekel",""))
+       
+        //save to local storage
+        const jailsJson = JSON.stringify(jails);
+        localStorage.setItem('jails',jailsJson);
+        return jails;
 
-// Get the players div element
+       }else{
+          //get characters from localstorage
+          const jailsArray = JSON.parse(jailsString);
+          jailsArray.forEach((jail) => {
+            jails.push(new Jail(jail.jailName, jail.jailImg, jail.jailId));
+              });}
+   return jails;          
+        
+    } catch (error) {
+      console.error(error);  
+    }
+}
+function loadQuestionGoodThings (): QuestionGoodThings[] | undefined {
+    try {
+        const goodThings: QuestionGoodThings []  = [];
+        const goodThingsString = localStorage.getItem('goodThings');
+      if (!goodThingsString){ // if there is not characters on json , create new []
+         
+        goodThings.push(new QuestionGoodThings("Kol Kore","Kol Kore for recycling on the beaches was successful Everyone wins at Bibi house, you deserve a gift!",getRandomNumber(500,700)))
+        goodThings.push(new QuestionGoodThings("Surprise","A large contractor decided to donate a hotel, take the money and use it wisely",getRandomNumber(1500,1700)))
+        goodThings.push(new QuestionGoodThings("Dog Gift","Congratulations you won a pet dog",getRandomNumber(50,100)))
+        goodThings.push(new QuestionGoodThings("Thank U","I see your effort to do for the residents of the city, get reinforcement for continued fruitful work",getRandomNumber(550,550)))
+       
+        //save to local storage
+        const goodThingsJson = JSON.stringify(goodThings);
+        localStorage.setItem('goodThings',goodThingsJson);
+        return goodThings;
+
+       }else{
+          //get characters from localstorage
+          const goodThingsArray = JSON.parse(goodThingsString);
+          goodThingsArray.forEach((good) => {
+            goodThings.push(new QuestionGoodThings(good.goodThingsTitel,good.goodThingsDescription,good.winningPrice,good.goodThingsId));
+              });}
+   return goodThings;          
+        
+    } catch (error) {
+      console.error(error);  
+    }
+}
+function loadQuestionBadThings (): QuestionBadThings[] | undefined {
+    try {
+        const badThings: QuestionBadThings []  = [];
+        const badThingsString = localStorage.getItem('badThings');
+      if (!badThingsString){ // if there is not characters on json , create new []
+         
+        badThings.push(new QuestionBadThings("Shit on your face","really not nice to shit like that in public",getRandomNumber(500,700)))
+        badThings.push(new QuestionBadThings("Stinky fish","There is an overflow from the stream, full of dead fish. The loss is on you this timec",getRandomNumber(800,1000)))
+        badThings.push(new QuestionBadThings("It stinks here","Received too many calls about trash removal this morning, Help a little with the evacuation budget",getRandomNumber(800,1000)))
+        badThings.push(new QuestionBadThings("A proud citizen","Your contribution to the city is welcomed",getRandomNumber(800,1000)))
+        
+        //save to local storage
+        const badThingsJson = JSON.stringify(badThings);
+        localStorage.setItem('badThings',badThingsJson);
+        return badThings;
+
+       }else{
+          //get characters from localstorage
+          const badThingsArray = JSON.parse(badThingsString);
+          badThingsArray.forEach((bad) => {
+            badThings.push(new QuestionBadThings(bad.bdThingsTitel,bad.badThingsDescription,bad.purchasePrice,bad.badThingsId));
+              });}
+   return badThings;          
+        
+    } catch (error) {
+      console.error(error);  
+    }
+}
+function loadBoards(): Board[]|undefined{
+    try {
+        // Load existing game boards from storage or return an empty array if none exist
+        const boardsString = localStorage.getItem('gamesBoards');
+        if (boardsString) {
+          return JSON.parse(boardsString);
+        } else {
+          return [];
+        }
+      } catch (error) {
+        console.error("Error loading game board:", error);
+        return [];
+      }
+}
+function startNewGame(boards: Board[]|undefined): void {
+    try {
+        if(!boards) throw new Error("Cant Find Boards Array");
+        
+      // Create a new board
+      const newBoard = new Board();
+      
+      // Set the game status to true
+      newBoard.gameStatus = true;
+      
+      // Add the new board to the list of boards
+      boards.push(newBoard);
+      
+      console.log('New game started!');
+    } catch (error) {
+      console.error('Error starting a new game:', error);
+    }
+}
+function saveBoards (boards: Board[]){
+    // Save the updated list of boards to local storage
+    const boardsJson = JSON.stringify(boards);
+    localStorage.setItem('gamesBoards', boardsJson);
+}
+function loadDataToBoard(board: Board|undefined): void {
+    try {
+        if (!board) throw new Error("Cant find Board");
+        
+      // Load characters and add them to the board
+      const characters: Character[] | undefined = loadCharacters();
+      
+      const players: Player[] | undefined = []
+      if (players) {
+        board.players = players;
+      }
+      // Load cities and add them to the board
+      const cities: City[] | undefined = loadCities();
+      if (cities) {
+        board.cities = cities;
+      }
+      
+      // Load hotels and add them to the board
+      const hotels: Hotel[] | undefined = [];
+      loadHotels(hotels);
+      if (hotels) {
+        board.hotels = hotels;
+      }
+      
+      // Load jails and add them to the board
+      const jails: Jail[] | undefined = loadJails();
+      if (jails) {
+        board.jails = jails;
+      }
+      
+      // Load good things and add them to the board
+      const goodThings: QuestionGoodThings[] | undefined = loadQuestionGoodThings();
+      if (goodThings) {
+        board.goodThings = goodThings;
+      }
+      
+      // Load bad things and add them to the board
+      const badThings: QuestionBadThings[] | undefined = loadQuestionBadThings();
+      if (badThings) {
+        board.badThings = badThings;
+      }
+      
+      console.log('Data loaded to the board successfully!');
+    } catch (error) {
+      console.error('Error loading data to the board:', error);
+    }
+}
+function renderHomePage(gamesBoards: Board [] | undefined, characters : Character[] | undefined) {
+    try {
+      const startNewGameHtml = document.querySelector("#chooseNumberOfPlayers");
+      if (!startNewGameHtml) throw new Error("Cannot find startNewGame HTML element");
+  
+      // Create the form element
+      const form = document.createElement("form");
+      form.classList.add("StartNewGame__numOfPlayers");
+  
+      // Create the label for the number of players input
+      const label = document.createElement("label");
+      label.textContent = "Number of Players: ";
+  
+      // Create the input element for choosing the number of players
+      const input = document.createElement("input");
+      input.type = "number";
+      input.min = "2";
+      input.max = "6";
+  
+      // Append the label and input to the form
+      form.appendChild(label);
+      form.appendChild(input);
+  
+      // Create the "Start Game" button
+      const startButton = document.createElement("button");
+      startButton.textContent = "Start Game";
+      startButton.type = "submit";
+  
+      // Add an event listener to the form's submit event
+      form.addEventListener("submit", (event) => {
+        event.preventDefault(); // Prevent the form from submitting and refreshing the page
+        const numPlayers = parseInt(input.value, 10);
+        const selectedCharacters = getSelectedCharacters(numPlayers,characters);
+        startGame(numPlayers, gamesBoards,selectedCharacters);
+      });
+  
+      // Append the button to the form
+      form.appendChild(startButton);
+  
+      // Append the form to the startNewGame HTML element
+      startNewGameHtml.appendChild(form);
+
+      // Add dropdowns for choosing characters
+    input.addEventListener("change", (event) => {
+        const numPlayers = parseInt(input.value, 10);
+        renderCharacterDropdowns(numPlayers, characters);
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  function getSelectedCharacters(numPlayers: number, characters: Character[] | undefined): Character[] {
+    const selectedCharacters: Character[] = [];
+    try {
+      for (let i = 1; i <= numPlayers; i++) {
+        const dropdown = document.querySelector(`#player${i}Character`) as HTMLSelectElement;
+        if (!dropdown) throw new Error("Cant find dropdown");
+        
+        const selectedCharacterId = dropdown.value;
+        const selectedCharacter = characters?.find((character) => character.characterId.toString() === selectedCharacterId);
+        if (selectedCharacter) {
+          selectedCharacters.push(selectedCharacter);
+        }
+      }
+    } catch (error) {
+      console.error(error);
+    }
+    return selectedCharacters;
+  }
+  
+  function renderCharacterDropdowns(numPlayers: number, characters: Character[] | undefined) {
+    try {
 
 
-// Function to render players
+        const characterSelectionHtml = document.querySelector("#characterSelection");
+        if (!characterSelectionHtml) throw new Error("Cannot find characterSelection HTML element");
+        characterSelectionHtml.innerHTML = "";
 
-// Call the renderPlayers function with the players array
-renderPlayers(players,playersDiv);
+      // Create a dropdown for each player
+      for (let i = 1; i <= numPlayers; i++) {
+        const dropdownLabel = document.createElement("label");
+        dropdownLabel.textContent = `Player ${i} Character: `;
+  
+        const dropdown = document.createElement("select");
+        dropdown.id = `player${i}Character`;
+// Add options for each character
+if (characters) {
+    characters.forEach((character) => {
+      const option = document.createElement("option");
+      option.value = character.characterId.toString();
+      option.text = character.characterName;
+      dropdown.appendChild(option);
+    });
+  }
+
+  characterSelectionHtml.appendChild(dropdownLabel);
+  characterSelectionHtml.appendChild(dropdown);
+  
+}
+} catch (error) {
+console.error(error);
+}
+}                                                                                              
+function startGame(numPlayers: number, gamesBoards: Board[] | undefined,selectedCharacters:Character[]) {
+    try {
+        debugger
+        if (!gamesBoards) throw new Error("Cannot find game board");
+        startNewGame(gamesBoards);
+        const currentGame= gamesBoards?.find(game=> game.gameStatus===true)
+        if (!currentGame) throw new Error("Cannot find game Activ Game");
+        loadDataToBoard(currentGame);
+      // Create the players
+      for (let i = 1; i <= numPlayers; i++) {
+       
+        const character = selectedCharacters[i - 1]; // Get the corresponding selected character
+        const playerName = `${character.characterName}`;
+      const player = new Player(playerName, false, true, undefined, undefined, character);
+      currentGame.players.push(player);
+        
+      }
+      debugger
+      // Navigate to the game page
+      saveBoards(gamesBoards)
+      console.log("Game started!");
+      window.location.href = "./ActiveGame.html";
+    } catch (error) {
+      console.error("Error starting the game:", error);
+    }
+  }
+  
+  // get data for new game
+  const characters : Character[] | undefined = loadCharacters();
+  const gamesBoards : Board[]| undefined = loadBoards();
+  
+  renderHomePage(gamesBoards,characters);
+  
+  
+  
+  
+  
+  
+
+
+
+//load data for dashboard
+
+// const characters : Character[] | undefined = loadCharacters();
+
+// const hotels : Hotel[] | undefined = [];
+
+// const cities : City[] |undefined=loadCities();
+// const jails : Jail[] |undefined=loadJails();
+// const goodThings : QuestionGoodThings[] |undefined =loadQuestionGoodThings();
+// const badThings : QuestionBadThings[] |undefined =loadQuestionBadThings();
+
+// const gameBords= loadBoard();
+
+
+// loadHotels(hotels);
+// loadHotelsToCities(cities,hotels);
+
+// console.log(characters);
+// console.log(cities);
+// console.log(hotels);
+// console.log(jails);
+// console.log(goodThings);
+// console.log(badThings);
+
