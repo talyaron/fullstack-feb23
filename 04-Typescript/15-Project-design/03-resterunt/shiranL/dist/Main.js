@@ -20,7 +20,6 @@ function RenderHomePage() {
 }
 function getTablesForMainPage() {
     try {
-        debugger;
         var tables_1 = [];
         var tablesString = localStorage.getItem('tables');
         if (!tablesString) { // if there is not table on json , create one

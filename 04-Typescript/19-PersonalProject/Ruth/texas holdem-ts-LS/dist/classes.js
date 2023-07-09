@@ -28,16 +28,29 @@ var Card = /** @class */ (function () {
     return Card;
 }());
 var Player = /** @class */ (function () {
-    function Player(userName, chips, isActive) {
+    function Player(userName, chips, isActive, pCards) {
         if (chips === void 0) { chips = 100000; }
         if (isActive === void 0) { isActive = true; }
+        if (pCards === void 0) { pCards = get2RandomCards(); }
         this.userName = userName;
         this.chips = chips;
         this.isActive = isActive;
-        this.pCards = get2RandomCards();
+        this.pCards = pCards;
+        this.pCards = this.pCards.map(function (c) { return new Card(c.cardNumber, c.cardSign); });
     }
     Player.prototype.setToUnActive = function () {
         this.isActive = false;
+    };
+    Player.prototype.renderMyPanel = function () {
+        try {
+            this.pCards.forEach(function (c) {
+                return c.renderCard(document.querySelector(".myCards"));
+            });
+            document.querySelector(".myChips").innerHTML = this.chips.toString();
+        }
+        catch (error) {
+            console.error(error);
+        }
     };
     return Player;
 }());

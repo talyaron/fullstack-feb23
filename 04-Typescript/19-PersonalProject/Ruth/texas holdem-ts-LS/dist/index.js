@@ -38,7 +38,10 @@ function get2RandomCards() {
     var randomCard2 = decksCards[randomNumCard2];
     decksCards.splice(randomNumCard2, 1);
     setDeckCardsInLs();
-    return [randomCard1, randomCard2];
+    return [
+        new Card(randomCard1.cardNumber, randomCard1.cardSign),
+        new Card(randomCard2.cardNumber, randomCard2.cardSign),
+    ];
 }
 function getRandomCard() {
     var randomNumCard1 = Math.round(Math.random() * decksCards.length);
@@ -52,18 +55,44 @@ function setDeckCardsInLs() {
 }
 function getDeckCardsFromLs() {
     var decksCardsStr = JSON.parse(localStorage.getItem("deckCards"));
-    decksCards = decksCardsStr.forEach(function (c) {
-        new Card(c.cardNumber, c.cardSign);
-    });
+    decksCards = decksCardsStr.map(function (c) { return new Card(c.cardNumber, c.cardSign); });
 }
-get2RandomCards();
-// renderAllCards();
-var players = [
-    new Player("ruttur66")
-];
+var firstPlayers = [new Player("ruth1")];
+var players = getPlayerFromLs() || firstPlayers;
+function getPlayerFromLs() {
+    try {
+        var playersStr = localStorage.getItem("players");
+        if (!playersStr)
+            return firstPlayers;
+        else {
+            var playersOnArrayObjs = JSON.parse(playersStr);
+            var players_1 = playersOnArrayObjs.map(function (p) { return new Player(p.userName, p.chips, p.isActive, p.pCards); });
+            return players_1;
+        }
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+// const players:Player[] =
 localStorage.setItem("players", JSON.stringify(players));
-function renderMyPannel() {
-    players[0].pCards.forEach(function (c) { return c.renderCard(document.querySelector(".myCards")); });
-    document.querySelector(".myChips").innerHTML = players[0].chips.toString();
+players[0].renderMyPanel();
+console.log(players);
+function addCardToStage(ev) {
+    var root = document.querySelector(".stage");
+    console.log(ev.target.parentNode.children.length);
+    if (ev.target.parentNode.children.length < 6) {
+        if (ev.target.parentNode.children.length > 3) {
+            var newCard = getRandomCard();
+            newCard.renderCard(root);
+        }
+        else {
+            for (var i = 0; i < 3; i++) {
+                var newCard = getRandomCard();
+                newCard.renderCard(root);
+            }
+        }
+    }
+    else
+        alert("game stopped!");
 }
-renderMyPannel();
