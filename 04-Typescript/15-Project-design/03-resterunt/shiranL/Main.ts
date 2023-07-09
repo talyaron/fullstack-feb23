@@ -25,7 +25,6 @@ function RenderHomePage(){
 
 function getTablesForMainPage(): Table [] {
   try {
-    debugger
       const tables: Table []  = [];
       const tablesString = localStorage.getItem('tables');
       if (!tablesString){ // if there is not table on json , create one

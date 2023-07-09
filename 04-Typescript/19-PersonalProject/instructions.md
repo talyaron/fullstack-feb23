@@ -1,8 +1,9 @@
 Think of a project
 
-1) 1 entity, CRUD, make it betfull with CSS.
-2) 2 eneties ,with joins, CRUD, two pages that share the model.
-3) Amazing game, with result panel and admin (CRUD players, and scores). at least 2 entites
+# Levels
+Level 1) Create a CRUD application with a single entity and enhance its appearance with CSS.
+Level 2) Expand the project to include two entities with joins, implement CRUD functionality, and design at least two pages that share the model.
+Level 3) Develop an amazing game with a result panel and an admin section. Implement CRUD operations for players and scores, and include at least two entities.
 
 # Points
 10 points for good BEM model
@@ -18,6 +19,6 @@ Level 1 = 0 points
 level 2 = 5 points
 level 3 = 10 points
 
-amaze me! 10 points
+Amaze me! 10 points
 
 
