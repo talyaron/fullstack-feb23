@@ -30,3 +30,8 @@ function login(event) {
   event.target.reset();
   window.location.href = "web.html";
 }
+
+const root = document.querySelector("#root");
+const storedData = JSON.parse(localStorage.getItem("user"));
+const lastDetails = storedData[storedData.length - 1];
+root?.innerHTML = `Hello${lastDetails.name}`;

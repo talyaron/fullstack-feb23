@@ -84,8 +84,7 @@ function renderBoard(currentGame:Board |undefined) {
   
   
   function putJailOnBoard(jail:Jail,JailIndex:number){
-
-      let cell;
+      let cell
       let jailBtn;
       let jailimg;
       let jailId;
@@ -115,10 +114,36 @@ function renderBoard(currentGame:Board |undefined) {
       jailBtn.appendChild(jailimg)
       jailBtn.appendChild(jailId)
       cell?.appendChild(jailBtn);
+      cell.name="jail"
       cell.style.backgroundColor = 'red';
   }
  
-  
+//   function putHotelOnBoard(hotel:Hotel,hotelIndex:number){
+
+//     let cell;
+//     let hotelBtn;
+//     let hotelimg;
+//     let hotellId;
+//     switch (hotelIndex) { // set jails in the corners of the board
+//       case 0:
+//         cell = document.getElementById('0-1')
+//         break;
+//       case 1:
+//           cell = document.getElementById('0-2')
+//           break;
+//       case 2:
+//           cell = document.getElementById('0-3')
+//           break;
+//       case 3:
+//             cell = document.getElementById('0-4')
+//             break;
+//     }
+
+//     hotelBtn= document.createElement('bottun')
+//     hotelBtn.classList.add('hotelBtn')
+//     hotelBtn.innerHTML=hotel.hotelName.
+//     cell.appendChild(hotelBtn)
+// }
 const gamesBoardsAGpage : Board[]| undefined = loadBoardsAGpage();
 const currentGame= gamesBoardsAGpage?.find(game=> game.gameStatus===true)
 

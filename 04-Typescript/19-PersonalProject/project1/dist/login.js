@@ -27,3 +27,7 @@ function login(event) {
     event.target.reset();
     window.location.href = "web.html";
 }
+var root = document.querySelector("#root");
+var storedData = JSON.parse(localStorage.getItem("user"));
+var lastDetails = storedData[storedData.length - 1];
+root === null || root === void 0 ? void 0 : root.innerHTML = "Hello" + lastDetails.name;
