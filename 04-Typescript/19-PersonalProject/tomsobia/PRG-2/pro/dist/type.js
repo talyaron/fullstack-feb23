@@ -26,13 +26,17 @@ function saveDetails(event) {
     var data = new Details(name, pass, email, number, id);
     Detailsarray.push(data);
     if (number < 18) {
-        var errorMessage = document.createElement("p");
-        errorMessage.textContent = "you are under age!";
-        errorMessage.style.color = "black";
-        errorMessage.style.backgroundColor = "red";
-        errorMessage.style.border = "3px solid black";
-        errorMessage.style.fontSize = "3vw";
-        event.target.appendChild(errorMessage);
+        var errorMessageExists = document.getElementById("errorMessage");
+        if (!errorMessageExists) {
+            var errorMessage = document.createElement("p");
+            errorMessage.textContent = "אתה מתחת לגיל החוקי!";
+            errorMessage.style.color = "black";
+            errorMessage.style.backgroundColor = "red";
+            errorMessage.style.border = "3px solid black";
+            errorMessage.style.fontSize = "3vw";
+            errorMessage.id = "errorMessage";
+            event.target.appendChild(errorMessage);
+        }
         return;
     }
     localStorage.setItem("user", JSON.stringify(Detailsarray));
