@@ -1,11 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>מעקב קלוריות</title>
+  <link rel="stylesheet" href="dist/clo.css">
 </head>
+
 <body>
-    
+  <header>
+    <h1>מעקב קלוריות</h1>
+  </header>
+
+  <main>
+    <form>
+      <div>
+        <label for="food">מה אכלת?</label>
+        <input type="text" id="food" name="food" required>
+      </div>
+      <div>
+        <label for="calories">כמה קלוריות?</label>
+        <input type="number" id="calories" name="calories" required>
+      </div>
+      <button type="submit">הוסף</button>
+    </form>
+
+    <div id="food-list"></div>
+
+    <div id="total-calories">
+      סך הכל קלוריות: <span id="calories-total">0</span>
+    </div>
+  </main>
+
+  <script src="dist/clo.js"></script>
 </body>
+
 </html>
