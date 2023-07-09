@@ -1,32 +1,32 @@
 class Player {
-    id:string
-    constructor (public name:string, public points:number){
+    id: string
+    constructor(public name: string, public points: number) {
     }
 }
 
 
-function renderMain(rootElement:HTMLElement|null){
+function renderMain(rootElement: HTMLElement | null) {
     try {
-        if(!rootElement) throw new Error ("can not find root elemnt")
-        const html =`
-        <h1>ICE CREAM TRUCK</h1>
+        if (!rootElement) throw new Error("can not find root elemnt")
+        const html = `
+       
         <button onclick="handleRenderInstructions()">HOW TO PLAY</button>
         <form onsubmit="handleStartGame(event)">
-        <input type="text" name="name" placeholder="Enter your name">
+        <input type="text" name="name" placeholder="Enter your name" required>
         <input type="submit" value="START">
     </form>
         `
-        rootElement.innerHTML=html
+        rootElement.innerHTML = html
     } catch (error) {
         console.error(error)
     }
 }
 
-function handleRenderInstructions(){
+function handleRenderInstructions() {
     try {
-       const root = document.querySelector("#main")
-       if(!root) throw new Error ("can not find root elemnt")
-        const html =`
+        const root = document.querySelector("#main")
+        if (!root) throw new Error("can not find root elemnt")
+        const html = `
         <h3>
         You have to make ice cream cones for the <br> customers who come to your ice cream truck. <br>
         Use the arrows to select the desired flavor. <br>
@@ -37,15 +37,29 @@ function handleRenderInstructions(){
     <h2>Be careful! </h2>
     <h3>Customers are not so patient.
         Work quickly and accurately! </h3>
-    <button onclick="handleRenderMain">BACK</button>
+    <button onclick="handleRenderMain()">BACK</button>
         `
-        root.innerHTML=html
+        root.innerHTML = html
     } catch (error) {
         console.error(error)
     }
 
 }
-// const player = new Player {}
+
+function handleRenderMain(){
+renderMain(document.querySelector("#main"))
+
+}
+
+function handleStartGame(ev:any){
+ try {
+    ev.preventDefault()
+    const name = ev.target.name.value
+    const player = new Player (name,0)
+ } catch (error) {
+    console.error(error)
+ }
+}
 
 
 renderMain(document.querySelector("#main"))
