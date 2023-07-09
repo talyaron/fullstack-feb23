@@ -14,7 +14,7 @@ var friend = [];
 // from view to model: view-control-model
 function handleAddFriend(ev) {
     try {
-        ev.preventDefualt();
+        ev.preventDefault();
         var name = ev.target.elements.name.value;
         var image = ev.target.elements.img.value;
         var phonenumber = ev.target.elements.PhoneNumber.value;

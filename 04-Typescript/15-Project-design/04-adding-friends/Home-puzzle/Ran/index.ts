@@ -16,7 +16,7 @@ const friend:Friend[]= []
 
 function handleAddFriend(ev:any) {
     try {
-        ev.preventDefualt();
+        ev.preventDefault();
         const name = ev.target.elements.name.value;
         const image  = ev.target.elements.img.value;
         const phonenumber = ev.target.elements.PhoneNumber.value;
