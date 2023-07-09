@@ -1,0 +1,74 @@
+/* Extra small devices (phones, 600px and down) */
+/* Small devices (portrait tablets and large phones, 600px and up) */
+/* Medium devices (landscape tablets, 768px and up) */
+/* Large devices (laptops/desktops, 992px and up) */
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+body {
+  background-image: url(https://coolbackgrounds.io/images/backgrounds/index/sea-edge-79ab30e2.png);
+  background-size: cover;
+}
+
+.MainPageWrapper {
+  width: 80vw;
+  height: 90vh;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.MainPageWrapper__headline {
+  font-size: 3.5vw;
+  background: #cfeed2;
+  background: linear-gradient(0deg, #cfeed2 15%, #b0d4f1 85%);
+  border-radius: 20px;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+.MainPageWrapper__suggested {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4vw;
+  width: 100vw;
+  height: 24vh;
+  background: #cfeed2;
+  background: linear-gradient(0deg, #cfeed2 15%, #b0d4f1 85%);
+  box-shadow: 2px 2px grey;
+}
+.MainPageWrapper__lastListened {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4vw;
+  width: 100vw;
+  height: 24vh;
+  background: #cfeed2;
+  background: linear-gradient(0deg, #cfeed2 15%, #b0d4f1 85%);
+  box-shadow: 2px 2px grey;
+}
+
+.song {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 10vw;
+  height: 22vh;
+  background: #4792da;
+  background: linear-gradient(0deg, #4792da 14%, #ec4b66 92%);
+  border-radius: 10px;
+  transition: all 200ms ease-in-out;
+  cursor: pointer;
+}
+.song:hover {
+  transform: scale(1.1);
+  box-shadow: 1px 1px green;
+}
+.song__img {
+  width: 9vw;
+  height: 18vh;
+  border-radius: 10px;
+}
+.song__title {
+  font-size: 16px;
+  font-family: fantasy;
+}
