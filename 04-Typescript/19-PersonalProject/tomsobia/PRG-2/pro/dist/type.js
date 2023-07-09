@@ -1,3 +1,4 @@
+// import (@sef)
 var Details = /** @class */ (function () {
     function Details(name, pass, email, number, id) {
         this.name = name;
@@ -43,7 +44,7 @@ function saveDetails(event) {
         errorMessage.remove();
     }
 }
-var root = document.querySelector("#root");
-var Detailsstring = localStorage.getItem("user");
-var details = JSON.parse(Detailsstring);
-root === null || root === void 0 ? void 0 : root.innerHTML = "Hello " + details.name;
+// const root = document.querySelector("#root");
+// const Detailsstring = localStorage.getItem("user");
+// const details = JSON.parse(Detailsstring);
+// root?.innerHTML = `Hello ${details.name}`;
