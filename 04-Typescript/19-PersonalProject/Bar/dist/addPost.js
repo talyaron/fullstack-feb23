@@ -13,4 +13,4 @@ function addNewPost(user, HTMLElement) {
         console.error(error);
     }
 }
-addNewPost(userImgArray, document.querySelector('#addPost'));
+addNewPost(usersArray, document.querySelector('#addPost'));
