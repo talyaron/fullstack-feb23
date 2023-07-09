@@ -4,6 +4,9 @@
 //Instegram Profile page.
 //MVC - Model View Controller
 //class - user, image.
+
+// import { Img } from './dist/invoice.js';
+
 class Img {
     id: string;
     constructor(public image: string, public description: string) {

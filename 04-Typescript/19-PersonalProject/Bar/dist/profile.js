@@ -3,6 +3,7 @@
 //Instegram Profile page.
 //MVC - Model View Controller
 //class - user, image.
+// import { Img } from './dist/invoice.js';
 var Img = /** @class */ (function () {
     function Img(image, description) {
         this.image = image;
