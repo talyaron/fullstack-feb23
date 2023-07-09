@@ -27,7 +27,7 @@ function saveDetails(event) {
     Detailsarray.push(data);
     if (number < 18) {
         var errorMessage = document.createElement("p");
-        errorMessage.textContent = "you are andre age!";
+        errorMessage.textContent = "you are under age!";
         errorMessage.style.color = "black";
         errorMessage.style.backgroundColor = "red";
         errorMessage.style.border = "3px solid black";
