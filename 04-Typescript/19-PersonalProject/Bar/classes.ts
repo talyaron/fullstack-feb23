@@ -56,17 +56,15 @@ class Img {
     id: string;
     constructor(
       public name: string,
-      public followUp: number,
-      public followers: number,
       public imageProfile: string,
-      public image: Img[]
+      public img: Img[]
     ) {
       this.id = Date.now().toString() + Math.random().toString(36).substr(2);
     }
   }
   
-  const bar = new User('Bar', 162, 546, 'https://pixlr.com/images/index/remove-bg.webp', [image1]);
-  const netanel = new User('Netanel', 657, 603, 'https://photoscissors.com/images/samples/3-before.jpg', [image2]);
+  const bar = new User('Bar', 'https://pixlr.com/images/index/remove-bg.webp', [image1]);
+  const netanel = new User('Netanel', 'https://photoscissors.com/images/samples/3-before.jpg', [image2]);
   
   const storedUsers = localStorage.getItem('Users');
   const usersArray: User[] = storedUsers ? JSON.parse(storedUsers) : [bar, netanel];
@@ -84,6 +82,6 @@ class Img {
   
   const storedUserImgs = localStorage.getItem('UserImgs');
   const userImgArray: UserImg[] = storedUserImgs ? JSON.parse(storedUserImgs) : [userImg1, userImg2];
-  console.log(userImgArray[userImgArray.length - 1].user.name);
+//   console.log(userImgArray[userImgArray.length - 1].user.name);
   console.log(userImgArray);
   

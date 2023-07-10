@@ -12,7 +12,7 @@ function addNewPost(users: User[], rootElement: HTMLElement | Element | null) {
         .join('')}
           </select>
           <input class="addPost__input" type="text" name="image" placeholder="Image URL" required>
-          <button class="addPost__enterNewImage">Add Post</button>
+          <button type="submit" class="addPost__enterNewImage">Add Post</button>
         </form>`;
 
     rootElement.innerHTML = html;
@@ -26,30 +26,28 @@ function addNewPost(users: User[], rootElement: HTMLElement | Element | null) {
 addNewPost(usersArray, document.querySelector('#addPost'));
 
 //add image url to the userImgArray of the user.
-function handleAdd(users: User[], event: Event) {
+function handleAdd(event: Event) {
   try {
-    if (!event.target) throw new Error('Missing target on event');
+    if (!event) throw new Error('Event is not found');
     event.preventDefault();
 
-    const target = event.target as HTMLFormElement;
-    const userId = target.user.value; // קבלת ה-ID של המשתמש הנבחר
-    const imageUrl = target.image.value; // קבלת כתובת ה-URL שהוזנה
+    const target = event.target as typeof event.target & {
+      user: { value: string };
+      image: { value: string };
+    };
 
-    const selectedUser = users.find((user) => user.id === userId); // מציאת המשתמש הנבחר לפי ה-ID
-    if (!selectedUser) throw new Error('Selected user not found');
+    const user = usersArray.find((user) => user.id === target.user.value);
+       
+    if (!user) throw new Error('User not found');
 
-    const newImage = new Img(imageUrl, ''); // יצירת אובייקט Img חדש עם כתובת ה-URL
-    selectedUser.image.push(newImage); // הוספת התמונה למערך התמונות של המשתמש
+    const image = new Img(target.image.value);
+    const userImg = new UserImg(user, [image]);
+    userImgArray.push(userImg);
 
-    const newUserImg = new UserImg(selectedUser, selectedUser.image); // יצירת אובייקט UserImg חדש עם המשתמש הנבחר ומערך התמונות המעודכן
-    userImgArray.push(newUserImg); // הוספת האובייקט החדש למערך userImgArray
+    showUserImg(document.querySelector('#profile'), userImgArray);
 
-    localStorage.setItem('UserImgs', JSON.stringify(userImgArray)); // עדכון המערך של UserImgs ב-LocalStorage
-
-    // כאן תוכלי להציג את התמונה בפרופיל, על פי הצורך שלך
+    // location.href = "profile.html"
   } catch (error) {
     console.error(error);
   }
 }
-
-
