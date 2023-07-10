@@ -1,0 +1,73 @@
+body {
+    height: 96vh;
+    align-items: center;
+}
+
+.crop {
+    width: 90vw;
+    height: 98vh;
+    overflow: hidden;
+    z-index: 1;
+    position: relative;
+}
+
+.crop img {
+    width: 120vw;
+    height: 220vh;
+    margin: -300px 0 0 90px;
+}
+
+.hands {
+    margin: auto;
+    width: 300px;
+
+    img {
+        height: 200px;
+        width: 80px;
+        position: absolute;
+        bottom: 0px;
+        z-index: 2;
+
+    }
+
+    .cone {
+        margin-left: -80px;
+    }
+
+    .spoon {
+        margin-left: 380px;
+    }
+}
+
+.iceCreams {
+    display: flex;
+    gap: 14px;
+    position: absolute;
+    bottom: 85px;
+    right: 400px;
+}
+
+.iceCream {
+    width: 80px;
+    height: 70px;
+    border-radius: 0px 0px 5px 5px;
+    border-bottom: solid 2px black;
+    border-left: solid 2px black;
+    border-right: solid 2px black;
+    z-index: 1;
+    text-align: center;
+    color: rgb(255, 255, 255);
+    text-shadow: 1px 1px 2px black;
+    font-size: large;
+    // padding: 10px 0px 0px 0px;
+    line-height: 100px;
+    &__strawberry {
+        background-color: rgb(249, 51, 51);
+    }
+    &__banana {
+        background-color: rgb(230, 255, 89);
+    }
+    &__chocolate {
+        background-color: rgb(126, 65, 0);
+    }
+}

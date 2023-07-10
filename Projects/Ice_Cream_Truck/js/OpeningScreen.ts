@@ -29,14 +29,13 @@ function handleRenderInstructions() {
         if (!root) throw new Error("can not find root elemnt")
         const html = `
         <h3>
-        You have to make ice cream cones for the <br> customers who come to your ice cream truck. <br>
+        You have to make ice cream cones for the customers who come to your ice cream truck. <br>
         Use the arrows to select the desired flavor. <br>
         Press enter to add an ice cream scoop to the cone. <br>
-        To go to customer selection press the space bar, <br> select the appropriate customer <br>
+        To go to customer selection press the space bar, <br> select the appropriate customer
         and press enter to deliver the ice cream. <br>
-    </h3>
-    <h2>Be careful! </h2>
-    <h3>Customers are not so patient.
+    Be careful! <br>
+    Customers are not so patient.<br>
         Work quickly and accurately! </h3>
     <button onclick="handleRenderMain()">BACK</button>
         `
@@ -57,16 +56,9 @@ function handleStartGame(ev:any){
     ev.preventDefault()
     const name = ev.target.name.value
     const player = new Player (name,0)
-    // console.log(player);
-    const pp = JSON.stringify(player)
-    localStorage.setItem("player", pp)
-   
-    // console.log(pp);
-    // const xx = JSON.parse(pp)
-    // console.log(xx);
-
-    
-    window.open("../TheGame/theGame.html", "_self")
+    const playerToString = JSON.stringify(player)
+    localStorage.setItem("player", playerToString)    
+    window.open("../Ice_Cream_Truck/pages/TheGame.html", "_self")
  } catch (error) {
     console.error(error)
  }

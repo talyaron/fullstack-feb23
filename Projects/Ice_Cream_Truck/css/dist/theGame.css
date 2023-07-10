@@ -1,0 +1,68 @@
+body {
+  height: 96vh;
+  align-items: center;
+}
+
+.crop {
+  width: 90vw;
+  height: 98vh;
+  overflow: hidden;
+  z-index: 1;
+  position: relative;
+}
+
+.crop img {
+  width: 120vw;
+  height: 220vh;
+  margin: -300px 0 0 90px;
+}
+
+.hands {
+  margin: auto;
+  width: 300px;
+}
+.hands img {
+  height: 200px;
+  width: 80px;
+  position: absolute;
+  bottom: 0px;
+  z-index: 2;
+}
+.hands .cone {
+  margin-left: -80px;
+}
+.hands .spoon {
+  margin-left: 380px;
+}
+
+.iceCreams {
+  display: flex;
+  gap: 14px;
+  position: absolute;
+  bottom: 85px;
+  right: 400px;
+}
+
+.iceCream {
+  width: 80px;
+  height: 70px;
+  border-radius: 0px 0px 5px 5px;
+  border-bottom: solid 2px black;
+  border-left: solid 2px black;
+  border-right: solid 2px black;
+  z-index: 1;
+  text-align: center;
+  color: white;
+  text-shadow: 1px 1px 2px black;
+  font-size: large;
+  line-height: 100px;
+}
+.iceCream__strawberry {
+  background-color: #f93333;
+}
+.iceCream__banana {
+  background-color: #e6ff59;
+}
+.iceCream__chocolate {
+  background-color: #7e4100;
+}
