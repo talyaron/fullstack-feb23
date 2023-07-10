@@ -17,22 +17,22 @@
 }
 
 #player1Panel {
-  bottom: 100px;
+  bottom: 130px;
   left: 50px;
 }
 
 #player2Panel {
-  top: 70px;
-  left: 90px;
+  top: 50px;
+  left: 100px;
 }
 
 #player3Panel {
-  top: 70px;
-  right: 90px;
+  top: 50px;
+  right: 100px;
 }
 
 #player4Panel {
-  bottom: 100px;
+  bottom: 130px;
   right: 50px;
 }
 
@@ -85,16 +85,26 @@
   height: 50px;
   padding: 5px;
   border-radius: 10px;
-  box-shadow: inset 0px 0px 0px 1px #d10101, 3px 4px 6px rgba(0, 0, 0, 0.381);
+  box-shadow: inset 0px 0px 0px 1px #d10101, -3px 4px 6px rgba(0, 0, 0, 0.381);
 }
 .myPanel__cards .card h3 {
   padding: 0px 0px 5px;
-  font-size: small;
+  font-size: medium;
 }
 .myPanel__cards .card img {
-  width: 25px;
+  width: 20px;
   align-items: center;
-  padding: 0;
+  padding: 0px 5px;
+}
+.myPanel__cards .card:nth-child(2) {
+  transform: rotate(10deg);
+  position: relative;
+  right: 10px;
+}
+.myPanel__cards .card:nth-child(1) {
+  transform: rotate(-14deg);
+  position: relative;
+  left: 8px;
 }
 .myPanel__chips {
   color: white;
