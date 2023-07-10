@@ -24,7 +24,7 @@ body {
   background-color: rgba(0, 0, 0, 0.743);
 
 
-  &__h1 {
+  h1 {
     text-align: center;
     font-size: 5vw;
     color: gold;
@@ -82,14 +82,14 @@ body {
       -moz-box-shadow: 19px 31px 35px 0px rgba(255, 255, 255, 0.63);
 
 
-      &__img {
+      &--img {
         width: 100%;
         height: 40%;
         margin-bottom: 10px;
       }
 
 
-      &__title {
+      &--title {
         font-size: 2vw;
         font-weight: bold;
         margin-bottom: 5px;
