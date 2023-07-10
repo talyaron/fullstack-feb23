@@ -31,6 +31,13 @@ hr {
   justify-content: space-evenly;
   flex-direction: row;
   align-items: center;
+  width: 80%;
+  margin: 0 auto;
+  border-radius: 20px;
+  background-color: rgba(255, 0, 0, 0.634);
+}
+.container__nav span {
+  color: #d2d2ce;
 }
 .container__nav a {
   font-size: 1.6vw;
@@ -65,7 +72,7 @@ hr {
   text-align: center;
 }
 .container img {
-  background-image: url(/pro/shelf-clip-art-others-removebg-preview.png);
+  background-image: url(/04-Typescript/19-PersonalProject/tomsobia/PRG-2/pro/shelf-clip-art-others-removebg-preview.png);
   background-size: cover;
   background-repeat: no-repeat;
   border-radius: 20px;

@@ -1,0 +1,33 @@
+*{
+  margin: 0%;
+  padding: 0%;
+}
+.container {
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+  }
+  
+  h1 {
+    text-align: center;
+    color: rgb(246, 255, 0);
+    font-size: 35px;
+  }
+ 
+  
+  form input,
+  form button {
+   
+    margin-bottom: 10px;
+  }
+  
+  form button {
+    background-color: #000000;
+    color: rgb(255, 252, 252);
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+  }
+ 
