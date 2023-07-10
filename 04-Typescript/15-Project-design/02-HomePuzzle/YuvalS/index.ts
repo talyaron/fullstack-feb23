@@ -57,8 +57,7 @@ class WorkerHours {
     }
 
 
-const workerHours: WorkerHours[] = [];
-
+const workersHours: WorkerHours[] = [];
 
 function renderRegisterWorker(rootElement: HTMLElement | null) {
     try {
