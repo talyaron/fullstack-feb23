@@ -1,0 +1,63 @@
+.wrapper {
+  position: relative;
+  width: 450px;
+  height: 90vh;
+  margin: auto;
+  color: white;
+}
+.wrapper #profile {
+  position: relative;
+  margin: auto;
+  width: 400px;
+  height: 100%;
+  background-color: black;
+  border-radius: 10px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+}
+.wrapper .userPost {
+  position: relative;
+  margin: auto;
+  margin-top: 5vh;
+  width: 400px;
+  height: 32vh;
+}
+.wrapper .userPost__name {
+  position: relative;
+  display: flex;
+  width: 350px;
+  height: 5vh;
+  margin: auto;
+  padding: 8px;
+  font-size: 20px;
+  font-weight: bold;
+}
+.wrapper .userPost__name h3 {
+  position: relative;
+  top: -1vh;
+  margin-left: 5px;
+}
+.wrapper .userPost__name img {
+  position: relative;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+.wrapper .userPost__img {
+  position: relative;
+}
+.wrapper .userPost__img img {
+  position: relative;
+  left: 5%;
+  width: 350px;
+  height: 25vh;
+  border-radius: 10px;
+  margin: auto;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+}
+.wrapper .addNewImage {
+  position: relative;
+  left: 46%;
+  top: -6vh;
+  font-size: 40px;
+  color: white;
+}

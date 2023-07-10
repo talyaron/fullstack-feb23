@@ -34,7 +34,11 @@ errow:
 bombs:
 8) disappear and dosqualifies when hit
 
-shelve:
+shelves:
 9) blink - appear and disappear all the time, when disappear the ball can fall down
 
+coins:
+10) add points
 
+color-ball:
+11) change the ball color and give him increased features of jump higher 
