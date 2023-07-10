@@ -259,12 +259,6 @@ function loadDataToBoard(board) {
         if (cities) {
             board.cities = cities;
         }
-        // Load hotels and add them to the board
-        var hotels = [];
-        loadHotels(hotels);
-        if (hotels) {
-            board.hotels = hotels;
-        }
         // Load jails and add them to the board
         var jails = loadJails();
         if (jails) {
@@ -291,12 +285,14 @@ function renderHomePage(gamesBoards, characters) {
         var startNewGameHtml = document.querySelector("#chooseNumberOfPlayers");
         if (!startNewGameHtml)
             throw new Error("Cannot find startNewGame HTML element");
+        if (!gamesBoards)
+            throw new Error("Cannot find startNewGame HTML element");
         // Create the form element
         var form = document.createElement("form");
         form.classList.add("StartNewGame__numOfPlayers");
         // Create the label for the number of players input
         var label = document.createElement("label");
-        label.textContent = "Number of Players: ";
+        label.textContent = "Enter number of players: ";
         // Create the input element for choosing the number of players
         var input_1 = document.createElement("input");
         input_1.type = "number";
@@ -320,6 +316,19 @@ function renderHomePage(gamesBoards, characters) {
         form.appendChild(startButton);
         // Append the form to the startNewGame HTML element
         startNewGameHtml.appendChild(form);
+        debugger;
+        // Check if there is an open game board
+        var openGameBoard = gamesBoards.find(function (board) { return board.gameStatus === true; });
+        if (openGameBoard) {
+            // Create the "Open Active Game" button
+            var openActiveGameButton = document.createElement("button");
+            openActiveGameButton.textContent = "Open Active Game";
+            startNewGameHtml.appendChild(openActiveGameButton);
+            openActiveGameButton.addEventListener("click", function () {
+                // Handle opening the active game
+                window.location.href = "./ActiveGame.html";
+            });
+        }
         // Add dropdowns for choosing characters
         input_1.addEventListener("change", function (event) {
             var numPlayers = parseInt(input_1.value, 10);
@@ -358,11 +367,34 @@ function renderCharacterDropdowns(numPlayers, characters) {
         if (!characterSelectionHtml)
             throw new Error("Cannot find characterSelection HTML element");
         characterSelectionHtml.innerHTML = "";
+        // Create an array to keep track of selected character IDs for each player
+        var selectedCharacters_1 = [];
         var _loop_2 = function (i) {
             var dropdownLabel = document.createElement("label");
             dropdownLabel.textContent = "Player " + i + " Character: ";
             var dropdown = document.createElement("select");
             dropdown.id = "player" + i + "Character";
+            // Add an event listener to the dropdown
+            dropdown.addEventListener("change", function (event) {
+                var selectedCharacterId = parseInt(event.target.value);
+                // Remove the selected character from other dropdowns' options
+                for (var j = 1; j <= numPlayers; j++) {
+                    if (j !== i) {
+                        var otherDropdown = document.querySelector("#player" + j + "Character");
+                        var optionToRemove = otherDropdown.querySelector("option[value=\"" + selectedCharacterId + "\"]");
+                        if (optionToRemove) {
+                            otherDropdown.removeChild(optionToRemove);
+                        }
+                    }
+                }
+                // Update the selected character for the current player
+                selectedCharacters_1[i - 1] = selectedCharacterId;
+            });
+            // Add an empty option as the default selection
+            var emptyOption = document.createElement("option");
+            emptyOption.value = "";
+            emptyOption.text = "Select a character";
+            dropdown.appendChild(emptyOption);
             // Add options for each character
             if (characters) {
                 characters.forEach(function (character) {
@@ -412,20 +444,5 @@ function startGame(numPlayers, gamesBoards, selectedCharacters) {
 // get data for new game
 var characters = loadCharacters();
 var gamesBoards = loadBoards();
+// render new game,  will render the from to choose character the btn to start game
 renderHomePage(gamesBoards, characters);
-//load data for dashboard
-// const characters : Character[] | undefined = loadCharacters();
-// const hotels : Hotel[] | undefined = [];
-// const cities : City[] |undefined=loadCities();
-// const jails : Jail[] |undefined=loadJails();
-// const goodThings : QuestionGoodThings[] |undefined =loadQuestionGoodThings();
-// const badThings : QuestionBadThings[] |undefined =loadQuestionBadThings();
-// const gameBords= loadBoard();
-// loadHotels(hotels);
-// loadHotelsToCities(cities,hotels);
-// console.log(characters);
-// console.log(cities);
-// console.log(hotels);
-// console.log(jails);
-// console.log(goodThings);
-// console.log(badThings);

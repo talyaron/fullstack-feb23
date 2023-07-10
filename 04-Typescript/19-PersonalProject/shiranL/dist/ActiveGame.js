@@ -27,7 +27,7 @@ function renderBoard(currentGame) {
     }
     // Clear previous board
     boardContainer.innerHTML = '';
-    var hotels = currentGame.hotels;
+    // const hotels=currentGame.hotels;
     var jails = currentGame.jails;
     var counter = 1; // Initialize counter
     // Create a 2D matrix for rendering the board cells
@@ -113,8 +113,33 @@ function putJailOnBoard(jail, JailIndex) {
     jailBtn.appendChild(jailimg);
     jailBtn.appendChild(jailId);
     cell === null || cell === void 0 ? void 0 : cell.appendChild(jailBtn);
+    cell.name = "jail";
     cell.style.backgroundColor = 'red';
 }
+//   function putHotelOnBoard(hotel:Hotel,hotelIndex:number){
+//     let cell;
+//     let hotelBtn;
+//     let hotelimg;
+//     let hotellId;
+//     switch (hotelIndex) { // set jails in the corners of the board
+//       case 0:
+//         cell = document.getElementById('0-1')
+//         break;
+//       case 1:
+//           cell = document.getElementById('0-2')
+//           break;
+//       case 2:
+//           cell = document.getElementById('0-3')
+//           break;
+//       case 3:
+//             cell = document.getElementById('0-4')
+//             break;
+//     }
+//     hotelBtn= document.createElement('bottun')
+//     hotelBtn.classList.add('hotelBtn')
+//     hotelBtn.innerHTML=hotel.hotelName.
+//     cell.appendChild(hotelBtn)
+// }
 var gamesBoardsAGpage = loadBoardsAGpage();
 var currentGame = gamesBoardsAGpage === null || gamesBoardsAGpage === void 0 ? void 0 : gamesBoardsAGpage.find(function (game) { return game.gameStatus === true; });
 //shape of the board

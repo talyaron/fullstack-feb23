@@ -48,7 +48,7 @@ var WorkerHours = /** @class */ (function () {
     }
     return WorkerHours;
 }());
-var workerHours = [];
+var workersHours = [];
 function renderRegisterWorker(rootElement) {
     try {
         var html = "\n          <form onsubmit=\"handleRegisterWorker(event)\">\n          <h2>Register</h2>\n              <label for=\"fullName\">Full name</label>\n              <input type=\"text\" name=\"fullName\" id='fullName' placeholder=\"full Name\" required>\n              <label for=\"workerNumber\">Worker Number</label>\n              <input type=\"text\" name=\"workerNumber\" id='workerNumber' placeholder=\"Worker Number\" required>\n            \n        </select>\n              <input type=\"submit\" value=\"Register First Time\">\n          </form>";
