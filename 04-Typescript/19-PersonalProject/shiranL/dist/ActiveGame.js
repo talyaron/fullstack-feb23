@@ -27,7 +27,7 @@ function renderBoard(currentGame) {
     }
     // Clear previous board
     boardContainer.innerHTML = '';
-    var hotels = currentGame.hotels;
+    // const hotels=currentGame.hotels;
     var jails = currentGame.jails;
     var counter = 1; // Initialize counter
     // Create a 2D matrix for rendering the board cells

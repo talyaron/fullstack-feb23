@@ -1,0 +1,16 @@
+body #root {
+  margin: auto;
+  border: 2px red solid;
+  width: 800px;
+  height: 600px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+body #root .log {
+  padding: 20px;
+  text-align: center;
+  background: url(//cdn.shopify.com/s/files/1/0802/1067/products/212.jpg?v=1557641367) no-repeat center center/cover;
+  width: 250px;
+  height: 100px;
+}
