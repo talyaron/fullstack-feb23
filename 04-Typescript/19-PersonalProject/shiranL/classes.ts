@@ -113,7 +113,7 @@ class Board {
     gameStatus:boolean;
     luckyCube:number=0;
     cities: City[];
-    hotels: Hotel[];
+   // hotels: Hotel[];
     goodThings: QuestionGoodThings[];
     badThings: QuestionBadThings[];
     players: Player[];
@@ -122,7 +122,7 @@ class Board {
   
     constructor() {
       this.cities = [];
-      this.hotels = [];
+     // this.hotels = [];
       this.goodThings = [];
       this.badThings = [];
       this.players = [];
@@ -132,10 +132,6 @@ class Board {
   
     addCity(city: City) {
       this.cities.push(city);
-    }
-  
-    addHotel(hotel: Hotel) {
-      this.hotels.push(hotel);
     }
   
     addGoodThing(goodThing: QuestionGoodThings) {
