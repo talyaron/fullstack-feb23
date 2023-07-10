@@ -1,15 +1,14 @@
-document
-    .getElementById("bmi-form")
-    .addEventListener("submit", function (event) {
-    event.preventDefault(); // מניעת התנהגות המחדש של הדפסה לדף
-    var form = document.getElementById("bmi-form");
-    var heightInput = document.getElementById("height");
-    var weightInput = document.getElementById("weight");
+var bmiForm = document.querySelector("#bmi-form");
+bmiForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    var form = document.querySelector("#bmi-form");
+    var heightInput = document.querySelector("#height");
+    var weightInput = document.querySelector("#weight");
     var height = Number(heightInput.value);
     var weight = Number(weightInput.value);
-    var bmi = calculateBMI(height, weight);
-    var category = getBMICategory(bmi);
-    alert("BMI: " + bmi + "\nCategory: " + category);
+    var bmiResult = calculateBMI(height, weight);
+    var category = getBMICategory(bmiResult);
+    alert("BMI: " + bmiResult + "\nCategory: " + category);
     form.reset();
 });
 function calculateBMI(height, weight) {
