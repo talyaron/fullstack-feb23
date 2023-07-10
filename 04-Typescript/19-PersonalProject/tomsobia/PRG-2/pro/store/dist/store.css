@@ -86,14 +86,14 @@ hr {
   justify-content: center;
   align-items: center;
 }
-.container__section__product {
+.container__section--product {
   border-radius: 20px;
   width: 13%;
   height: auto;
   margin: 7px;
   background-color: white;
 }
-.container__section__product img {
+.container__section--product img {
   width: 100%;
 }
 @media (max-width: 600px) {
