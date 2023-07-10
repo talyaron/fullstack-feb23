@@ -1,3 +1,4 @@
+// import (@sef)
 var Details = /** @class */ (function () {
     function Details(name, pass, email, number, id) {
         this.name = name;
@@ -13,9 +14,6 @@ var Details = /** @class */ (function () {
     }
     return Details;
 }());
-var Detailsarray = [];
-var Detailsstring = localStorage.getItem("user");
-console.log(Detailsarray);
 function saveDetails(event) {
     event.preventDefault();
     var name = event.target.elements.name.value;
@@ -24,18 +22,29 @@ function saveDetails(event) {
     var number = event.target.elements.number.value;
     var id = event.target.elements.id;
     var data = new Details(name, pass, email, number, id);
-    Detailsarray.push(data);
     if (number < 18) {
-        var errorMessage = document.createElement("p");
-        errorMessage.textContent = "you are andre age!";
-        errorMessage.style.color = "black";
-        errorMessage.style.backgroundColor = "red";
-        errorMessage.style.border = "3px solid black";
-        errorMessage.style.fontSize = "3vw";
-        event.target.appendChild(errorMessage);
+        var errorMessageExists = document.getElementById("errorMessage");
+        if (!errorMessageExists) {
+            var errorMessage_1 = document.createElement("p");
+            errorMessage_1.textContent = "You are under age!";
+            errorMessage_1.id = "errorMessage";
+            errorMessage_1.style.color = "black";
+            errorMessage_1.style.backgroundColor = "red";
+            errorMessage_1.style.border = "3px solid black";
+            errorMessage_1.style.fontSize = "3vw";
+            event.target.appendChild(errorMessage_1);
+        }
         return;
     }
-    localStorage.setItem("user", JSON.stringify(Detailsarray));
+    localStorage.setItem("user", JSON.stringify(data));
     event.target.reset();
     window.location.href = "TmS.html";
+    var errorMessage = document.getElementById("errorMessage");
+    if (errorMessage) {
+        errorMessage.remove();
+    }
 }
+// const root = document.querySelector("#root");
+// const Detailsstring = localStorage.getItem("user");
+// const details = JSON.parse(Detailsstring);
+// root?.innerHTML = `Hello ${details.name}`;

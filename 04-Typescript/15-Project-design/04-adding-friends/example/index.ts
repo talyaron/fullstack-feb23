@@ -45,7 +45,6 @@ function getFriendsFromStorage(): Friend[] {
         const friendsString = localStorage.getItem("friends");
         if (!friendsString) return [];
 
-<<<<<<< HEAD
         //convert string to array of objects
         const friendsArray = JSON.parse(friendsString);
 
@@ -62,17 +61,6 @@ function getFriendsFromStorage(): Friend[] {
     }
 
 };
-=======
-    //convert array of objects to array of friends
-    const friends: Friend[] = friendsArray.map((friend: Friend) => {
-      return new Friend(
-        friend.name,
-        friend.image,
-        friend.phoneNumber,
-        friend.id,
-      );
-    });
->>>>>>> 4f4014876ee22bcaa6299a818521bff3bb995fcb
 
 
 //view
@@ -105,15 +93,9 @@ function handleAddFriend(ev: any) {
 //model -> controler --> view
 
 function renderAllFriends(friends: Friend[], htmlElement: HTMLElement | null) {
-<<<<<<< HEAD
-    try {
-        if (!htmlElement) throw new Error("No element");
-        const html = friends.map(friend => renderFriendCard(friend)).join(' ')
-=======
   try {
     if (!htmlElement) throw new Error("No element");
     const html = friends.map((friend) => renderFriendCard(friend)).join(" ");
->>>>>>> 4f4014876ee22bcaa6299a818521bff3bb995fcb
 
         htmlElement.innerHTML = html;
     } catch (error) {
