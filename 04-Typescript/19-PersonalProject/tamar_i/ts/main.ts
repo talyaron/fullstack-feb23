@@ -32,7 +32,7 @@ function handelSubmit(ev: any) {
         users.push(newUser)  //save the user name in users array
         console.log(users)
 
-        localStorage.getItem('users') //sent the array to local storage
+        localStorage.setItem('users', 'newUser') //sent the array to local storage
 
         window.location.replace("../index.html")  //not sure its work!!!
 
@@ -41,4 +41,20 @@ function handelSubmit(ev: any) {
     }
 }
 
+//render the user name to the game page
+
+//get the user name from local storage as string
+const h1username = localStorage.getItem('users')
+
+if (h1username){
+    //convert it back to array
+    const usernameArray = JSON.parse(h1username)
+    console.log(usernameArray)
+
+
+}
+
+renderUserName(){
+
+}
 
