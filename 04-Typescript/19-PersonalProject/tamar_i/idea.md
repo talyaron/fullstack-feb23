@@ -9,6 +9,8 @@ Design from the bottom up -> starts on the ground and climbs up on a "brick buil
 The goal - to reach as high as possible.
 It is necessary to prevent the possibility of going out of the boundaries of the game.
 
+3 page: 1-login, 2-game , 3-higher score
+
 help: https://www.w3schools.com/graphics/game_intro.asp 
 
 model:

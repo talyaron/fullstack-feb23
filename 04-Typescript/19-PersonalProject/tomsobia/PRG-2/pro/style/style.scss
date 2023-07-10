@@ -1,58 +1,73 @@
 body {
-
     background-image: url(https://images.pexels.com/photos/941864/pexels-photo-941864.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2);
     background-position: center;
-
 }
 
-
-.continer {
+.container {
     width: 80%;
     height: auto;
     background-color: rgba(0, 0, 0, 0.548);
     margin: 0 auto;
+}
 
-    h1 {
-        width: 100%;
-        font-size: 4vw;
-        text-align: center;
-        color: #FF8066;
+.container h1 {
+    width: 100%;
+    font-size: 4vw;
+    text-align: center;
+    color: #FF8066;
+}
+
+.container__form {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    flex-direction: column;
+}
+
+.container__form--btn {
+    background-color: #FF8066;
+    border-radius: 10px;
+    font-size: 1vw;
+    padding: 1vw;
+    margin: 2vw;
+}
+
+.container__form--btn:hover {
+    background-color: darkred;
+    cursor: pointer;
+}
+
+.container__form h2 {
+    width: 100%;
+    font-size: 2vw;
+    text-align: center;
+    color: #efefef;
+}
+
+.container__form input {
+    width: 19vw;
+    height: auto;
+    margin: 2px;
+    border-radius: 10px;
+    background-color: coral;
+}
+
+@media screen and (max-width: 600px) {
+    .container {
+        width: 50%;
     }
-
-    &__form {
-        display: flex;
-        width: 100%;
-        align-items: center;
-        flex-direction: column;
-
-        .continer__form--btn {
-           background-color: #FF8066;
-           border-radius: 10px;
-           font-size: 1vw;
-           padding: 1vw;
-           margin: 2vw;
-        }
-        
-        .continer__form--btn:hover {
-            background-color: darkred;
-            cursor: pointer;
-        }
-        
-        h2 {
-            width: 100%;
-            font-size: 2vw;
-            text-align: center;
-            color: #efefef;
-        }
-
-        input {
-            width: 19vw;
-            height: auto;
-            margin: 2px;
-            border-radius: 10px;
-            background-color: coral;
-        }
-
-
+    
+    .container h1 {
+        font-size: 6vw;
+    }
+    
+    .container__form input {
+        width: 50%;
+    }
+    
+    .container__form--btn {
+        font-size: 3vw;
+        padding: 2vw;
+        margin: 4vw;
     }
 }

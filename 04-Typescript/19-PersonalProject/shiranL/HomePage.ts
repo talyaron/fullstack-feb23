@@ -35,13 +35,15 @@ function loadCities():City[]|undefined{
       if (!citiesString){ // if there is not characters on json , create new []
         const hotels : Hotel[] | undefined = [];
         
-        cities.push(new City("Ashdod",hotels,"./dist/ashdod.jpg",1))
-        cities.push(new City("Esh-David",hotels,"./dist/ashdod.jpg",2))
-        cities.push(new City("Jerusalem",hotels,"./dist/Jerusalem.jpg",3))
-        cities.push(new City("Tel-Aviv",hotels,"./dist/telAviv.jpg",4))
-        cities.push(new City("Dubai",hotels,"./dist/Dubai.jpg",5))
-        cities.push(new City("Eilat",hotels,"./dist/eilat.jpg",6))
-        cities.push(new City("ROSH Pina",hotels,"./dist/roshPina.jpg",7))
+        cities.push(new City("Rova Alef",hotels,"./dist/ashdod.jpg",1))
+        cities.push(new City("Rova Bet",hotels,"./dist/ashdod.jpg",2))
+        cities.push(new City("Rova Gimel",hotels,"./dist/Jerusalem.jpg",3))
+        cities.push(new City("Rova Daled",hotels,"./dist/telAviv.jpg",4))
+        // cities.push(new City("Rova Hey",hotels,"./dist/Dubai.jpg",5))
+        cities.push(new City("Rova CITY",hotels,"./dist/eilat.jpg",6))
+        cities.push(new City("Rova TetVav",hotels,"./dist/roshPina.jpg",7))
+        cities.push(new City("Rova YudBet",hotels,"./dist/roshPina.jpg",8))
+        cities.push(new City("Rova YudAlef",hotels,"./dist/roshPina.jpg",9))
         loadHotels(hotels);
         loadHotelsToCities(cities,hotels);
         //save to local storage
@@ -68,42 +70,40 @@ function loadHotels(hotels: Hotel[] | undefined){
         const hotelsString = localStorage.getItem('hotels');
       if (!hotelsString){ // if there is not characters on json , create new []
         let cityId:number=1; 
-        hotels.push(new Hotel("LEONARDO",cityId,`./dist/${cityId}hotel.jpg`))
-        hotels.push(new Hotel("Clab Hotel",cityId,`./dist/${cityId}hotel.jpg`))
-        hotels.push(new Hotel("WEST",cityId,`./dist/${cityId}hotel.jpg`))
-        hotels.push(new Hotel("Orly",cityId,`./dist/${cityId}hotel.jpg`))
-        hotels.push(new Hotel("Dan Panorama",cityId,`./dist/${cityId}hotel.jpg`))
-        hotels.push(new Hotel("Megic Ninja",cityId,`./dist/${cityId}hotel.jpg`))
-        hotels.push(new Hotel("Kantry Club",cityId,`./dist/${cityId}hotel.jpg`))
-        hotels.push(new Hotel("Hotel California",cityId,`./dist/${cityId}hotel.jpg`))
+        hotels.push(new Hotel("Gan Elisheva",cityId,`./dist/${cityId}hotel.jpg`))
+        hotels.push(new Hotel("WEST HOTEL",cityId,`./dist/${cityId}hotel.jpg`))
+
         cityId=2;
-        hotels.push(new Hotel("WEST",cityId,`./dist/${cityId}hotel.jpg`))
-        hotels.push(new Hotel("Orly",cityId,`./dist/${cityId}hotel.jpg`))
-        hotels.push(new Hotel("LEONARDO",cityId,`./dist/${cityId}hotel.jpg`))
-        hotels.push(new Hotel("Clab Hotel",cityId,`./dist/${cityId}hotel.jpg`))
-        hotels.push(new Hotel("Dan Panorama",cityId,`./dist/${cityId}hotel.jpg`))
-        hotels.push(new Hotel("Megic Ninja",cityId,`./dist/${cityId}hotel.jpg`))
-        hotels.push(new Hotel("Kantry Club",cityId,`./dist/${cityId}hotel.jpg`))
-        hotels.push(new Hotel("Hotel California",cityId,`./dist/${cityId}hotel.jpg`))
+        hotels.push(new Hotel("Street market",cityId,`./dist/${cityId}hotel.jpg`))
+        hotels.push(new Hotel("Revivo complex",cityId,`./dist/${cityId}hotel.jpg`))
+
         cityId=3;
-        hotels.push(new Hotel("Dan Ashdod",cityId,`./dist/${cityId}hotel.jpg`))
-        hotels.push(new Hotel("LEONARDO",cityId,`./dist/${cityId}hotel.jpg`))
-        hotels.push(new Hotel("WEST",cityId,`./dist/${cityId}hotel.jpg`))
-        hotels.push(new Hotel("Orly",cityId,`./dist/${cityId}hotel.jpg`))
-        hotels.push(new Hotel("Dan Panorama",cityId,`./dist/${cityId}hotel.jpg`))
-        hotels.push(new Hotel("Megic Ninja",cityId,`./dist/${cityId}hotel.jpg`))
-        hotels.push(new Hotel("Kantry Club",cityId,`./dist/${cityId}hotel.jpg`))
-        hotels.push(new Hotel("Hotel California",cityId,`./dist/${cityId}hotel.jpg`))
+        hotels.push(new Hotel("The Great Synagogue",cityId,`./dist/${cityId}hotel.jpg`))
+        hotels.push(new Hotel("Mikveh",cityId,`./dist/${cityId}hotel.jpg`))
+
         cityId=4;
-        hotels.push(new Hotel("Dan Ashdod",cityId,`./dist/${cityId}hotel.jpg`))
-        hotels.push(new Hotel("LEONARDO",cityId,`./dist/${cityId}hotel.jpg`))
-        hotels.push(new Hotel("WEST",cityId,`./dist/${cityId}hotel.jpg`))
-        hotels.push(new Hotel("Orly",cityId,`./dist/${cityId}hotel.jpg`))
-        hotels.push(new Hotel("Dan Panorama",cityId,`./dist/${cityId}hotel.jpg`))
-        hotels.push(new Hotel("Megic Ninja",cityId,`./dist/${cityId}hotel.jpg`))
-        hotels.push(new Hotel("Kantry Club",cityId,`./dist/${cityId}hotel.jpg`))
-        hotels.push(new Hotel("Hotel California",cityId,`./dist/${cityId}hotel.jpg`))
-     
+        hotels.push(new Hotel("Dehri bakery",cityId,`./dist/${cityId}hotel.jpg`))
+        hotels.push(new Hotel("Dehri bakery",cityId,`./dist/${cityId}hotel.jpg`))
+
+        // cityId=5;
+        // hotels.push(new Hotel("Lev Ashdod Mall",cityId,`./dist/${cityId}hotel.jpg`))
+        // hotels.push(new Hotel("Doctors House",cityId,`./dist/${cityId}hotel.jpg`))
+
+        cityId=6;
+        hotels.push(new Hotel("Ashdod Municipality",cityId,`./dist/${cityId}hotel.jpg`))
+        hotels.push(new Hotel("City garden",cityId,`./dist/${cityId}hotel.jpg`))
+        hotels.push(new Hotel("Simul Mall",cityId,`./dist/${cityId}hotel.jpg`))
+
+        cityId=7;
+        hotels.push(new Hotel("Beer Sheva beach",cityId,`./dist/${cityId}hotel.jpg`))
+        hotels.push(new Hotel("Sun Square",cityId,`./dist/${cityId}hotel.jpg`))
+        cityId=8;
+        hotels.push(new Hotel("Magic center",cityId,`./dist/${cityId}hotel.jpg`))
+        hotels.push(new Hotel("Carrefour supermarket",cityId,`./dist/${cityId}hotel.jpg`))
+        cityId=9;
+        hotels.push(new Hotel("Israel Brotherhood Synagogue",cityId,`./dist/${cityId}hotel.jpg`))
+        hotels.push(new Hotel("The beach promenade",cityId,`./dist/${cityId}hotel.jpg`))
+
         //save to local storage
         const hotelsJson = JSON.stringify(hotels);
         localStorage.setItem('hotels', hotelsJson);
@@ -406,7 +406,7 @@ console.error(error);
 }                                                                                              
 function startGame(numPlayers: number, gamesBoards: Board[] | undefined,selectedCharacters:Character[]) {
     try {
-        debugger
+        
         if (!gamesBoards) throw new Error("Cannot find game board");
         startNewGame(gamesBoards);
         const currentGame= gamesBoards?.find(game=> game.gameStatus===true)
@@ -421,7 +421,7 @@ function startGame(numPlayers: number, gamesBoards: Board[] | undefined,selected
       currentGame.players.push(player);
         
       }
-      debugger
+      
       // Navigate to the game page
       saveBoards(gamesBoards)
       console.log("Game started!");

@@ -22,4 +22,4 @@ function addNewPost(
         console.error(error);
     }
 }
-addNewPost(userImgArray, document.querySelector('#addPost'));
+addNewPost(usersArray, document.querySelector('#addPost'));
