@@ -23,7 +23,7 @@ function renderBoard(currentGame:Board |undefined) {
   
     // Clear previous board
     boardContainer.innerHTML = '';
-    const hotels=currentGame.hotels;
+    // const hotels=currentGame.hotels;
     const jails=currentGame.jails;
     let counter = 1; // Initialize counter
     // Create a 2D matrix for rendering the board cells
