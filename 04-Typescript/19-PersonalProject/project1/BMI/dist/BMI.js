@@ -1,4 +1,6 @@
-document.getElementById("bmi-form").addEventListener("submit", function (event) {
+document
+    .getElementById("bmi-form")
+    .addEventListener("submit", function (event) {
     event.preventDefault(); // מניעת התנהגות המחדש של הדפסה לדף
     var form = document.getElementById("bmi-form");
     var heightInput = document.getElementById("height");
@@ -17,15 +19,15 @@ function calculateBMI(height, weight) {
 }
 function getBMICategory(bmi) {
     if (bmi < 18.5) {
-        return 'Underweight';
+        return "Underweight";
     }
     else if (bmi < 25) {
-        return 'Normal weight';
+        return "Normal weight";
     }
     else if (bmi < 30) {
-        return 'Overweight';
+        return "Overweight";
     }
     else {
-        return 'Obese';
+        return "Obese";
     }
 }

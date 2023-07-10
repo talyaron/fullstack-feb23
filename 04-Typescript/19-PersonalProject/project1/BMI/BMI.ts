@@ -1,4 +1,6 @@
-document.getElementById("bmi-form").addEventListener("submit", function(event) {
+document
+  .getElementById("bmi-form")
+  .addEventListener("submit", function (event) {
     event.preventDefault(); // מניעת התנהגות המחדש של הדפסה לדף
 
     const form = document.getElementById("bmi-form") as HTMLFormElement;
@@ -16,20 +18,20 @@ document.getElementById("bmi-form").addEventListener("submit", function(event) {
     form.reset();
   });
 
-  function calculateBMI(height: number, weight: number): number {
-    const heightInMeters = height / 100;
-    const bmi = weight / (heightInMeters * heightInMeters);
-    return Number(bmi.toFixed(2));
-  }
+function calculateBMI(height: number, weight: number): number {
+  const heightInMeters = height / 100;
+  const bmi = weight / (heightInMeters * heightInMeters);
+  return Number(bmi.toFixed(2));
+}
 
-  function getBMICategory(bmi: number): string {
-    if (bmi < 18.5) {
-      return 'Underweight';
-    } else if (bmi < 25) {
-      return 'Normal weight';
-    } else if (bmi < 30) {
-      return 'Overweight';
-    } else {
-      return 'Obese';
-    }
+function getBMICategory(bmi: number): string {
+  if (bmi < 18.5) {
+    return "Underweight";
+  } else if (bmi < 25) {
+    return "Normal weight";
+  } else if (bmi < 30) {
+    return "Overweight";
+  } else {
+    return "Obese";
   }
+}
