@@ -1,0 +1,47 @@
+.wrapper {
+    position: $wrapper_position;
+    width: $wrapper_width;
+    height: $wrapper_height;
+    margin: $wrapper_margin;
+    color: $wrapper_color;
+
+    #addPost {
+        position: $element_position;
+        margin: $element_margin;
+        width: $element_width;
+        height: $element_height;
+        background-color: $element_background-color;
+        border-radius: $element_border-radius;
+        box-shadow: $element_box-shadow;
+        // background-color: yellow;
+
+        .addPost {
+            position: relative;
+            top: 20vh;
+            left: 25%;
+            margin-top: 10vh;
+            width: 400px;
+
+            .select {
+                position: relative;
+                top: -20vh;
+                width: 100px;
+                height: 6vh;
+                border-radius: 10px;
+                text-align: center;
+                font-size: 15px;
+                font-weight: bold;
+            }
+
+            .input {
+                position: relative;
+                height: 10vh;
+                border-radius: 20px;
+                text-align: center;
+                font-size: 15px;
+                font-weight: bold;
+            }
+
+        }
+    }
+}
