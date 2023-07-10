@@ -7,17 +7,29 @@
 //import '../ts/dist/coins';
 //import '../ts/dist/color_balls';
 //login form
-var Users = /** @class */ (function () {
-    function Users(userName) {
+var User = /** @class */ (function () {
+    //id: number;
+    function User(userName) {
         this.userName = userName;
-        this.id = Math.floor(Math.random() * 10000);
+        //this.id = Math.floor(Math.random() * 10000);
     }
-    return Users;
+    return User;
 }());
+var users = [];
+//save the usermane, send it to the local storage and open the game page
 function handelSubmit(ev) {
     try {
-        // ev.preventDefault();
+        ev.preventDefault();
         console.dir(ev);
+        var userName = ev.target.elements.username.value; //colect the user name
+        if (!userName)
+            throw new Error('user name is missing');
+        console.log(userName);
+        var newUser = new User(userName);
+        users.push(newUser); //save the user name in users array
+        console.log(users);
+        localStorage.getItem('users'); //sent the array to local storage
+        window.location.replace("../index.html"); //not sure its work!!!
     }
     catch (error) {
         console.error(error);
