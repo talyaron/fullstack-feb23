@@ -14,3 +14,6 @@ body #root .log {
   width: 250px;
   height: 100px;
 }
+body #root .log.none {
+  display: none;
+}

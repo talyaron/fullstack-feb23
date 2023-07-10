@@ -21,7 +21,7 @@ console.log(root);
 logIn();
 function logIn() {
     try {
-        var html = " <div class=\"log\"> <form onsubmit=\"handleAdd(event)\"><label for=\"worker-name\">enter your Name:</label> <br>\n        <input type=\"text\" name=\"name\" value=\"\"> <br> <br> <button>ok</button> </form> </div>";
+        var html = " <div class=\"log\"> <form onsubmit=\"handleAdd(event)\"><label for=\"worker-name\">enter your Name:</label> <br>\n        <input required type=\"text\" name=\"name\" value=\"\"> <br> <br> <button type=\"submit\">ok</button> </form> </div>";
         if (!root)
             throw new Error("no root element");
         root.innerHTML = html;
@@ -38,6 +38,15 @@ function handleAdd(ev) {
         points.push(newName);
         localStorage.setItem("points", JSON.stringify(points));
         ev.target.reset();
+        var log = document.querySelector(".log");
+        log.classList.add("none");
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+function handleEdit() {
+    try {
     }
     catch (error) {
         console.error(error);
