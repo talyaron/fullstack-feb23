@@ -1,12 +1,13 @@
 body {
     direction: ltr;
-    background-image: url(https://images.pexels.com/photos/2796105/pexels-photo-2796105.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2);
+    background-image: url("https://images.pexels.com/photos/2796105/pexels-photo-2796105.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
     font-size: 2vw;
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
     background-blend-mode: color-dodge;
 }
+
 
 hr {
     width: 80vw;
@@ -37,7 +38,7 @@ hr {
         border-radius: 20px;
         background-color: rgba(255, 0, 0, 0.634);
 
-        span{
+        span {
             color: rgb(210, 210, 206);
         }
 
@@ -79,62 +80,63 @@ hr {
             text-align: center;
         }
     }
-
+    
     img {
-        background-image: url(/04-Typescript/19-PersonalProject/tomsobia/PRG-2/pro/shelf-clip-art-others-removebg-preview.png);
-        background-size: cover;
+        background-image: url(shelf-clip-art-others-removebg-preview.png); 
+        backdrop-filter:unset ;
+        background-size:cover;
         background-repeat: no-repeat;
         border-radius: 20px;
-        border-radius: 20px;
-        max-width: 50vw;
+        width: 50vw;
         background-position: 0vw 4vw;
     }
+}
 
+@media screen and (max-width: 600px) {
+    body {
+        font-size: 2vw;
+    }
 
-    &__ContactUs {
-        display: flex;
-        width: 100%;
-        height: auto;
-        justify-content: center;
+    .container h1 {
+        font-size: 4vw;
+    }
 
-        &__form {
-            width: 25vw;
-            border-radius: 20px;
-            display: flex;
-            background-color: rgb(51 52 38 / 56%);
-            align-items: center;
-            flex-direction: column;
+    .container__nav a {
+        font-size: 2.4vw;
+    }
 
-            &__btn {
-                width: 50%;
-                color: red;
-                background-color: black;
-                border: none;
-                padding: 2%;
-                margin: 5%;
-                border-radius: 12px;
-                font-size: 50%;
-            }
+    .container a p {
+        font-size: 0.9vw;
+    }
 
-            &__btn:hover {
-                background-color: rgba(0, 128, 0, 0.274);
-            }
+    .container img {
+        max-width: 40vw;
+        max-height: 20vw;
+        background-position: 0vw 1.6vw;
+    }
 
-            input {
-                border-radius: 6px;
-                border: none;
-                padding: 0.2vw;
-                width: 50%;
-            }
+}
 
-            .hr1 {
-                color: yellow;
-            }
+@media screen and (max-width: 300px) {
+    body {
+        font-size: 3vw;
+    }
 
-            p {
-                font-size: 1.3vw;
-                color: white;
-            }
-        }
+    .container h1 {
+        font-size: 3vw;
+    }
+
+    .container__nav a {
+        font-size: 1.8vw;
+    }
+
+    .container a p {
+        font-size: 1.5vw;
+    }
+
+    .container img {
+        max-width: 25vw;
+        max-height: 12.5vw;
+        background-position: 0vw 0.8vw;
     }
 }

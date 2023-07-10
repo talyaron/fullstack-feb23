@@ -38,7 +38,7 @@ function saveDetails(event) {
     }
     localStorage.setItem("user", JSON.stringify(data));
     event.target.reset();
-    window.location.href = "TmS.html";
+    window.location.href = "../web/TmS/webTmS.html";
     var errorMessage = document.getElementById("errorMessage");
     if (errorMessage) {
         errorMessage.remove();
