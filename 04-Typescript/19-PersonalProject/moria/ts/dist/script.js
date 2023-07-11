@@ -1,7 +1,6 @@
 var Player = /** @class */ (function () {
-    function Player(playerImg, rope, id) {
+    function Player(playerImg, id) {
         this.playerImg = playerImg;
-        this.rope = rope;
         this.id = "id-" + (new Date().getTime() - Math.random());
     }
     return Player;
@@ -18,9 +17,10 @@ var root = document.querySelector("#root");
 var players = [];
 var points = [];
 console.log(root);
+logIn();
 function logIn() {
     try {
-        var html = " <div class=\"log\"><label for=\"worker-name\">enter your Name:</label> <br>\n        <input type=\"text\" name=\"name\" value=\"\"> <br>  <button>ok</button> </div>";
+        var html = " <div class=\"log\"> <form onsubmit=\"handleAdd(event)\"><label for=\"worker-name\">enter your Name:</label> <br>\n        <input required type=\"text\" name=\"name\" value=\"\"> <br> <br> <button type=\"submit\">ok</button> </form> </div>";
         if (!root)
             throw new Error("no root element");
         root.innerHTML = html;
@@ -29,4 +29,65 @@ function logIn() {
         console.error(error);
     }
 }
-logIn();
+function handleAdd(ev) {
+    try {
+        ev.preventDefault();
+        var name = ev.target.elements.name.value;
+        var newName = new Point(name, 0);
+        points.push(newName);
+        localStorage.setItem("points", JSON.stringify(points));
+        ev.target.reset();
+        var log = document.querySelector(".log");
+        log.classList.add("none");
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+function addHomer(event) {
+    try {
+        // const player =
+        var selectedPlayer = "../img/הומר.png";
+        players.push(selectedPlayer);
+        console.log(event);
+        localStorage.setItem("players", JSON.stringify(players));
+        window.location.href = "view/levels.html";
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+function addBart(event) {
+    try {
+        var selectedPlayer = "../img/בארט.png";
+        players.push(selectedPlayer);
+        console.log(event);
+        localStorage.setItem("players", JSON.stringify(players));
+        window.location.href = "view/levels.html";
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+function addLisa(event) {
+    try {
+        var selectedPlayer = "../img/ליסה.png";
+        players.push(selectedPlayer);
+        console.log(event);
+        localStorage.setItem("players", JSON.stringify(players));
+        window.location.href = "view/levels.html";
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+// const level = document.querySelector(`.level`) as HTMLElement;
+// const notAvailable = document.querySelectorAll
+//     (`.levelNotAvailable`);
+function renderPlayer(event) {
+    try {
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
