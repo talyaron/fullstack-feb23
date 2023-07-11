@@ -41,6 +41,8 @@ function handleAdd(ev) {
         ev.target.reset();
         var log = document.querySelector(".log");
         log.classList.add("none");
+        var html = " <h2>Hi " + name + ",choose your player</h2>";
+        root.innerHTML = html;
     }
     catch (error) {
         console.error(error);
@@ -108,3 +110,33 @@ function renderPlayerCard(player) {
 //     console.error(error);
 //     return ''
 // }
+var bart = document.querySelector(".bart");
+console.log(bart);
+document.addEventListener('keyup', function (event) {
+    console.log(event);
+    switch (event.key) {
+        case 'ArrowUp':
+            if (bart.style.top = bart.offsetTop - 10 + "px")
+                ;
+            break;
+        case 'ArrowDown':
+            bart.style.top = bart.offsetTop + 10 + "px";
+            break;
+        case 'ArrowLeft':
+            bart.style.left = bart.offsetLeft - 10 + "px";
+            break;
+        case 'ArrowRight':
+            bart.style.left = bart.offsetLeft + 10 + "px";
+            break;
+        case " ":
+            var urlMonster = 'url("./dist/packman-monster.png")';
+            var urlPackman = 'url("./dist/packman.png")';
+            if (bart.style.backgroundImage === urlMonster) {
+                bart.style.backgroundImage = urlPackman;
+            }
+            else {
+                bart.style.backgroundImage = urlMonster;
+            }
+            break;
+    }
+});

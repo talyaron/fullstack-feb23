@@ -45,6 +45,8 @@ function handleAdd(ev: any) {
         ev.target.reset();
         const log = document.querySelector(`.log`) as HTMLElement;
         log.classList.add("none")
+        const html = ` <h2>Hi ${name},choose your player</h2>`
+        root.innerHTML = html;
 
     } catch (error) {
         console.error(error)
@@ -120,5 +122,40 @@ function renderPlayerCard(player: Player) {
 //     return ''
 // }
 
+const bart = document.querySelector(`.bart`) as HTMLElement;
+console.log(bart);
+document.addEventListener('keyup', (event: KeyboardEvent) => {
+    console.log(event);
 
+    switch (event.key) {
+        case 'ArrowUp':
+            if
+            bart.style.top = `${bart.offsetTop - 10}px`;
+            break;
+        case 'ArrowDown':
+            bart.style.top = `${bart.offsetTop + 10}px`;
+            break;
+        case 'ArrowLeft':
+            bart.style.left = `${bart.offsetLeft - 10}px`;
+            break;
+        case 'ArrowRight':
+
+            bart.style.left = `${bart.offsetLeft + 10}px`;
+            break;
+        case " ":
+            const urlMonster = 'url("./dist/packman-monster.png")'
+            const urlPackman = 'url("./dist/packman.png")'
+
+            if (bart.style.backgroundImage === urlMonster) {
+                bart.style.backgroundImage = urlPackman;
+            } else {
+                bart.style.backgroundImage = urlMonster;
+            }
+
+            break;
+
+
+
+    }
+});
 
