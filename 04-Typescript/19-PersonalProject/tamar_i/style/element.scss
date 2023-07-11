@@ -1,0 +1,31 @@
+.redBall{
+    border-radius: 50%;
+    background-color: red;
+    border-color: red;
+    height: 5px;
+    width: 5px;
+}
+
+.bricks{
+
+    &_simulated{}
+
+}
+
+.errows{
+
+    &_right{}
+
+    &_left{}
+}
+
+.bombs{}
+
+.shelves{
+
+    &_disappeare{}
+}
+
+.colorBall{}
+
+.coins{}

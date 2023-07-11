@@ -1,0 +1,46 @@
+body {
+    .container {
+        margin: auto;
+        border: 2px red solid;
+        width: 800px;
+        height: 600px;
+        align-items: center;
+        justify-content: center;
+        display: flex;
+        z-index: -1;
+        background: url(//sugarcakes4u.co.il/wp-content/uploads/2018/03/%D7%A4%D7%A8%D7%A7%D7%98-%D7%9C%D7%91%D7%9F-1.jpg) no-repeat center center/ cover;
+
+        .player {
+            padding: 10px 10px;
+            width: 150px;
+            height: 150px;
+            margin: 15px;
+
+
+            img {
+                width: 90px;
+                height: 80px;
+
+            }
+        }
+
+        .log {
+            padding: 20px;
+            text-align: center;
+            background: url(//cdn.shopify.com/s/files/1/0802/1067/products/212.jpg?v=1557641367) no-repeat center center/ cover;
+            width: 490px;
+            height: 110px;
+            z-index: 3;
+            position: absolute;
+            top: 230px;
+            left: 500px;
+
+            &.none {
+                display: none;
+            }
+        }
+    }
+
+
+
+}

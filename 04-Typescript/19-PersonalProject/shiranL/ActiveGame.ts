@@ -23,7 +23,7 @@ function renderBoard(currentGame:Board |undefined) {
   
     // Clear previous board
     boardContainer.innerHTML = '';
-    const hotels=currentGame.hotels;
+    // const hotels=currentGame.hotels;
     const jails=currentGame.jails;
     let counter = 1; // Initialize counter
     // Create a 2D matrix for rendering the board cells
@@ -37,7 +37,7 @@ function renderBoard(currentGame:Board |undefined) {
     for (let i = 0; i < matrixSize; i++) {
       for (let j = 0; j < matrixSize; j++) {
         matrix[i][j] = document.createElement('div');
-        matrix[i][j].classList.add('board-cell');
+        matrix[i][j].classList.add('board__cell');
         matrix[i][j].id=`${i}-${j}`
         // Check if it's an outer frame cell
       // Check if it's an outer frame cell
@@ -77,17 +77,17 @@ function renderBoard(currentGame:Board |undefined) {
 
   // set jails
   let JailIndex=0
-  jails.forEach(jail=>  {putJailOnBoard(jail,JailIndex);
+  jails.forEach(jail=>{putJailOnBoard(jail,JailIndex);
     JailIndex++;  })
    
   }
   
   
-  function putJailOnBoard(jail:Jail,JailIndex:number){
+function putJailOnBoard(jail:Jail,JailIndex:number){
       let cell
-      let jailBtn;
-      let jailimg;
-      let jailId;
+      let jailBtn
+      let jailimg
+      let jailId
       switch (JailIndex) { // set jails in the corners of the board
         case 0:
           cell = document.getElementById('0-0')
@@ -102,7 +102,7 @@ function renderBoard(currentGame:Board |undefined) {
               cell = document.getElementById('9-0')
               break;
       }
-
+// create elements for jail
       jailBtn= document.createElement('bottun')
       jailBtn.classList.add('jailBtn')
       jailBtn.innerHTML=jail.jailName
@@ -118,38 +118,68 @@ function renderBoard(currentGame:Board |undefined) {
       cell.style.backgroundColor = 'red';
   }
  
-//   function putHotelOnBoard(hotel:Hotel,hotelIndex:number){
+function renderOptionsBtns(gamesBoardsAGpage : Board[]| undefined){
+  try {
+   
+    const htmlOptionsBtns= document.querySelector("#optionsBtns")
+    if(!htmlOptionsBtns) throw new Error("Cant find optionsBtns");
+    const html = `<form>
+    <input type="button" onclick="gameOver()" class="optionsBtns__Button" value="End game">
+    <input type="button" onclick="backHome()" class="optionsBtns__Button" value="Back">
+ </form>`
+    
+ htmlOptionsBtns.innerHTML=html;
+  } catch (error) {
+    console.error(error);
+    
+  }
 
-//     let cell;
-//     let hotelBtn;
-//     let hotelimg;
-//     let hotellId;
-//     switch (hotelIndex) { // set jails in the corners of the board
-//       case 0:
-//         cell = document.getElementById('0-1')
-//         break;
-//       case 1:
-//           cell = document.getElementById('0-2')
-//           break;
-//       case 2:
-//           cell = document.getElementById('0-3')
-//           break;
-//       case 3:
-//             cell = document.getElementById('0-4')
-//             break;
-//     }
+}
+function backHome(){
+  if (!gamesBoardsAGpage) throw new Error("cant find gamesBoardsAGpage");
+  saveBoardsForOpenGame(gamesBoardsAGpage)
+  console.log("Game started!");
+  window.location.href = "./HomePage.html";
+}
 
-//     hotelBtn= document.createElement('bottun')
-//     hotelBtn.classList.add('hotelBtn')
-//     hotelBtn.innerHTML=hotel.hotelName.
-//     cell.appendChild(hotelBtn)
-// }
+function gameOver(){
+  try {
+debugger
+    if(!gamesBoardsAGpage)throw new Error("cant find gamesBoardsAGpage");
+    
+    const currentGame= gamesBoardsAGpage.find(board=>board.gameStatus===true)
+    if(!currentGame)throw new Error("cant find currentGame");
+    currentGame.gameStatus=false;
+    backHome();
+    
+  } catch (error) {
+    console.error(error);
+    
+  }
+ 
+ 
+
+}
+function saveBoardsForOpenGame (boards: Board[] | undefined){
+  try {
+    if(!boards) throw new Error("Cant find boards");
+    
+    // Save the updated list of boards to local storage
+      const boardsJson = JSON.stringify(boards);
+      localStorage.setItem('gamesBoards', boardsJson);
+    
+  } catch (error) {
+    console.error(error);
+    
+  }
+ 
+}
 const gamesBoardsAGpage : Board[]| undefined = loadBoardsAGpage();
 const currentGame= gamesBoardsAGpage?.find(game=> game.gameStatus===true)
 
 //shape of the board
 renderBoard(currentGame);
-
+renderOptionsBtns(gamesBoardsAGpage);
 
 console.log(gamesBoardsAGpage);
 

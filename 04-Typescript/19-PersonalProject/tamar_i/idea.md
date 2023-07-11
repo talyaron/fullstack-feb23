@@ -9,7 +9,13 @@ Design from the bottom up -> starts on the ground and climbs up on a "brick buil
 The goal - to reach as high as possible.
 It is necessary to prevent the possibility of going out of the boundaries of the game.
 
-help: https://www.w3schools.com/graphics/game_intro.asp 
+3 page: 1-login, 2-game , 3-higher score
+
+help:
+* https://www.w3schools.com/graphics/game_intro.asp 
+* https://www.geeksforgeeks.org/    difference-between-window-location-href-window-location-replace-and-window-location-assign-in-javascript/
+
+
 
 model:
 enteties: red-ball, bricks (not move but some are simulated some are not), errows(move), bombs (not move), shelves (not move but disappeared)
@@ -32,7 +38,11 @@ errow:
 bombs:
 8) disappear and dosqualifies when hit
 
-shelve:
+shelves:
 9) blink - appear and disappear all the time, when disappear the ball can fall down
 
+coins:
+10) add points
 
+color-ball:
+11) change the ball color and give him increased features of jump higher 
