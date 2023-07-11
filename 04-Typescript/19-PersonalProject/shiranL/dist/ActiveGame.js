@@ -40,7 +40,7 @@ function renderBoard(currentGame) {
     for (var i = 0; i < matrixSize; i++) {
         for (var j = 0; j < matrixSize; j++) {
             matrix[i][j] = document.createElement('div');
-            matrix[i][j].classList.add('board-cell');
+            matrix[i][j].classList.add('board__cell');
             matrix[i][j].id = i + "-" + j;
             // Check if it's an outer frame cell
             // Check if it's an outer frame cell
@@ -102,6 +102,7 @@ function putJailOnBoard(jail, JailIndex) {
             cell = document.getElementById('9-0');
             break;
     }
+    // create elements for jail
     jailBtn = document.createElement('bottun');
     jailBtn.classList.add('jailBtn');
     jailBtn.innerHTML = jail.jailName;
@@ -116,32 +117,55 @@ function putJailOnBoard(jail, JailIndex) {
     cell.name = "jail";
     cell.style.backgroundColor = 'red';
 }
-//   function putHotelOnBoard(hotel:Hotel,hotelIndex:number){
-//     let cell;
-//     let hotelBtn;
-//     let hotelimg;
-//     let hotellId;
-//     switch (hotelIndex) { // set jails in the corners of the board
-//       case 0:
-//         cell = document.getElementById('0-1')
-//         break;
-//       case 1:
-//           cell = document.getElementById('0-2')
-//           break;
-//       case 2:
-//           cell = document.getElementById('0-3')
-//           break;
-//       case 3:
-//             cell = document.getElementById('0-4')
-//             break;
-//     }
-//     hotelBtn= document.createElement('bottun')
-//     hotelBtn.classList.add('hotelBtn')
-//     hotelBtn.innerHTML=hotel.hotelName.
-//     cell.appendChild(hotelBtn)
-// }
+function renderOptionsBtns(gamesBoardsAGpage) {
+    try {
+        var htmlOptionsBtns = document.querySelector("#optionsBtns");
+        if (!htmlOptionsBtns)
+            throw new Error("Cant find optionsBtns");
+        var html = "<form>\n    <input type=\"button\" onclick=\"gameOver()\" class=\"optionsBtns__Button\" value=\"End game\">\n    <input type=\"button\" onclick=\"backHome()\" class=\"optionsBtns__Button\" value=\"Back\">\n </form>";
+        htmlOptionsBtns.innerHTML = html;
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+function backHome() {
+    if (!gamesBoardsAGpage)
+        throw new Error("cant find gamesBoardsAGpage");
+    saveBoardsForOpenGame(gamesBoardsAGpage);
+    console.log("Game started!");
+    window.location.href = "./HomePage.html";
+}
+function gameOver() {
+    try {
+        debugger;
+        if (!gamesBoardsAGpage)
+            throw new Error("cant find gamesBoardsAGpage");
+        var currentGame_1 = gamesBoardsAGpage.find(function (board) { return board.gameStatus === true; });
+        if (!currentGame_1)
+            throw new Error("cant find currentGame");
+        currentGame_1.gameStatus = false;
+        backHome();
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+function saveBoardsForOpenGame(boards) {
+    try {
+        if (!boards)
+            throw new Error("Cant find boards");
+        // Save the updated list of boards to local storage
+        var boardsJson = JSON.stringify(boards);
+        localStorage.setItem('gamesBoards', boardsJson);
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
 var gamesBoardsAGpage = loadBoardsAGpage();
 var currentGame = gamesBoardsAGpage === null || gamesBoardsAGpage === void 0 ? void 0 : gamesBoardsAGpage.find(function (game) { return game.gameStatus === true; });
 //shape of the board
 renderBoard(currentGame);
+renderOptionsBtns(gamesBoardsAGpage);
 console.log(gamesBoardsAGpage);
