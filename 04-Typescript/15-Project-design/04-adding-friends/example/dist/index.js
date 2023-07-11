@@ -33,6 +33,7 @@ function getFriendsFromStorage() {
         var friends_1 = friendsArray.map(function (friend) {
             return new Friend(friend.name, friend.image, friend.phoneNumber, friend.id);
         });
+        return friends_1;
     }
     catch (error) {
         console.error(error);
