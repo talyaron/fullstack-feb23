@@ -24,14 +24,20 @@ form {
   font-weight: bold;
 }
 
+.redBall {
+  border-radius: 50%;
+  background-color: red;
+  border-color: red;
+  height: 5px;
+  width: 5px;
+}
+
 #h1 {
-  font-size: 100px;
+  font-size: 25px;
   text-align: center;
 }
 
-.gameArea {
-  height: 80%;
-  width: 33%;
+canvas {
   margin: auto;
   background-color: bisque;
   border-radius: 10%;
