@@ -30,7 +30,7 @@ html {
             color: white;
             width: 200px;
             height: 100px;
-            display:flex;
+            display: flex;
             position: relative;
             font-size: larger;
             font-weight: bold;
@@ -46,4 +46,9 @@ html {
             text-decoration: none;
         }
     }
+}
+.music {
+    width: 400px;
+    height: 200px;
+    display: none;
 }
