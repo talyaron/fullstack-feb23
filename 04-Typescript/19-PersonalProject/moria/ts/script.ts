@@ -20,7 +20,7 @@ function logIn() {
     try {
 
         const html = ` <div class="log"> <form onsubmit="handleAdd(event)"><label for="worker-name">enter your Name:</label> <br>
-        <input type="text" name="name" value=""> <br> <br> <button>ok</button> </form> </div>`;
+        <input required type="text" name="name" value=""> <br> <br> <button type="submit">ok</button> </form> </div>`;
         if (!root) throw new Error("no root element");
 
         root.innerHTML = html;
@@ -42,6 +42,35 @@ function handleAdd(ev: any) {
 
         localStorage.setItem("points", JSON.stringify(points))
         ev.target.reset();
+        const log = document.querySelector(`.log`) as HTMLElement;
+        log.classList.add("none")
+
+    } catch (error) {
+        console.error(error)
+    }
+}
+function addHomer(event) {
+    try {
+        // const player =
+        console.log(event)
+
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+function addBart(event) {
+    try {
+        console.log(event)
+
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+function addLisa(event) {
+    try {
+
 
     } catch (error) {
         console.error(error)
