@@ -50,7 +50,8 @@ var Player = /** @class */ (function () {
             this.pCards.forEach(function (c) {
                 return c.renderCard(document.querySelector(".myPanel__cards"));
             });
-            document.querySelector(".myPanel__chips").innerHTML = this.chips.toString();
+            document.querySelector(".myPanel__chips").innerHTML =
+                this.chips.toString();
         }
         catch (error) {
             console.error(error);
