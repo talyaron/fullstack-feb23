@@ -70,10 +70,11 @@ function startGame(){
 let myGameArea = {
     canvas: document.createElement("canvas"),
     start: function (){
-        this.canvas.width = 270;
-        this.canvas.hight = 480;
+        //this.canvas.width = 270;
+        //this.canvas.hight = 480;
         this.context = this.canvas.getContext("2d");
         const h1Div = document.querySelector('#h1')
+        if(!h1Div) throw new Error('no element chatch')
         h1Div.insertAdjacentElement("afterend", this.canvas);
     }
 }
