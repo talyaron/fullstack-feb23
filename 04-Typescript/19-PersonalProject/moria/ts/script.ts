@@ -1,6 +1,6 @@
 class Player {
     id: string
-    constructor(public playerImg: string, public rope: string, id?: string | null) {
+    constructor(public playerImg: string, id?: string | null) {
         this.id = `id-${new Date().getTime() - Math.random()}`
     }
 }
@@ -52,7 +52,12 @@ function handleAdd(ev: any) {
 function addHomer(event) {
     try {
         // const player =
+        const selectedPlayer = "../img/הומר.png";
+        players.push(selectedPlayer);
         console.log(event)
+        localStorage.setItem("players", JSON.stringify(players))
+        window.location.href = "view/levels.html";
+
 
     } catch (error) {
         console.error(error)
@@ -61,7 +66,11 @@ function addHomer(event) {
 
 function addBart(event) {
     try {
+        const selectedPlayer = "../img/בארט.png";
+        players.push(selectedPlayer);
         console.log(event)
+        localStorage.setItem("players", JSON.stringify(players))
+        window.location.href = "view/levels.html";
 
     } catch (error) {
         console.error(error)
@@ -69,6 +78,22 @@ function addBart(event) {
 }
 
 function addLisa(event) {
+    try {
+        const selectedPlayer = "../img/ליסה.png";
+        players.push(selectedPlayer);
+        console.log(event)
+        localStorage.setItem("players", JSON.stringify(players))
+        window.location.href = "view/levels.html";
+
+    } catch (error) {
+        console.error(error)
+    }
+}
+// const level = document.querySelector(`.level`) as HTMLElement;
+// const notAvailable = document.querySelectorAll
+//     (`.levelNotAvailable`);
+
+function renderPlayer(event) {
     try {
 
 

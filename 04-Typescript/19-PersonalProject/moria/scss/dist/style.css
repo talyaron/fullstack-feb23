@@ -1,3 +1,6 @@
+body {
+  font-family: sans-serif;
+}
 body .container {
   margin: auto;
   border: 2px red solid;
@@ -8,6 +11,22 @@ body .container {
   display: flex;
   z-index: -1;
   background: url(//sugarcakes4u.co.il/wp-content/uploads/2018/03/%D7%A4%D7%A8%D7%A7%D7%98-%D7%9C%D7%91%D7%9F-1.jpg) no-repeat center center/cover;
+}
+body .container .level {
+  background-color: red;
+  height: 90px;
+  width: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 20px;
+  margin: 10px;
+  background: url(//brachot.net/images/category_images/school-28949_1280.png) no-repeat center center/cover;
+  background-color: white;
+}
+body .container .notAvailable {
+  background-color: gray;
 }
 body .container .player {
   padding: 10px 10px;
@@ -32,9 +51,4 @@ body .container .log {
 }
 body .container .log.none {
   display: none;
-}
-
-.levels {
-  height: 30;
-  width: 30px;
 }
