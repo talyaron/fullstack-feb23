@@ -1,0 +1,102 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  direction: rtl;
+}
+
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  // grid-template-columns: repeat(2 1fr);
+  .logo {
+    grid-column: 1 / 3;
+    text-align: center;
+
+    img {
+      width: 200px;
+      height: auto;
+    }
+  }
+  .calculator {
+    grid-row: 2/4;
+    grid-column: 2/3;
+    display: flex;
+    justify-content: center;
+    form {
+      max-width: fit-content;
+      display: flex;
+      flex-direction: column;
+      // input {
+      //   // max-width: fit-content;
+      // }
+    }
+  }
+  .result {
+    display: grid;
+    gap: 5px;
+    grid-column: 1/2;
+    grid-row: 2/3;
+    &__total-income {
+      grid-column: 1/2;
+      display: inline-block;
+      color: green;
+    }
+    &__total-expence {
+      grid-column: 2/3;
+      color: red;
+
+      display: inline-block;
+    }
+    &__total-amount {
+      grid-column: 1/3;
+      grid-row: 2/3;
+      font-weight: bold;
+    }
+  }
+  .expenses-details {
+    grid-row: 3/4;
+    grid-column: 1/2;
+    display: flex;
+    justify-content: center;
+    table {
+      width: 70%;
+      box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.301);
+      border-radius: 10px;
+      border-collapse: collapse;
+      td {
+        padding: 7px;
+
+        &:nth-child(even) {
+          text-align: left;
+          direction: ltr;
+        }
+      }
+      thead tr {
+        width: 100%;
+        border-bottom: solid 1px rgba(0, 0, 0, 0.151);
+        position: relative;
+        cursor: pointer;
+        &:hover,
+        :active {
+          color: #0f81c7;
+        }
+
+        .collapse-icon {
+          width: 20px;
+          height: 100%;
+          position: absolute;
+          left: 5px;
+        }
+      }
+      tbody {
+        border-bottom: solid 1px rgba(0, 0, 0, 0.151);
+      }
+      tfoot {
+        td {
+          font-weight: bold;
+        }
+      }
+    }
+  }
+}
