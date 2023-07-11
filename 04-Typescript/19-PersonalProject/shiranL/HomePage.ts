@@ -35,7 +35,7 @@ function loadCities():City[]|undefined{
       if (!citiesString){ // if there is not characters on json , create new []
         const hotels : Hotel[] | undefined = [];
         
-        cities.push(new City("Rova Alef",hotels,"./dist/ashdod.jpg",1))
+        cities.push(new City("Rova Alef",hotels,"./dist/rovaA1.jpg",1))
         cities.push(new City("Rova Bet",hotels,"./dist/ashdod.jpg",2))
         cities.push(new City("Rova Gimel",hotels,"./dist/Jerusalem.jpg",3))
         cities.push(new City("Rova Daled",hotels,"./dist/telAviv.jpg",4))
@@ -139,10 +139,10 @@ function loadJails(): Jail[] | undefined {
         const jailsString = localStorage.getItem('jails');
       if (!jailsString){ // if there is not characters on json , create new []
          
-        jails.push(new Jail("Neve Tirza",""))
-        jails.push(new Jail("Ofek",""))
-        jails.push(new Jail("400",""))
-        jails.push(new Jail("Dekel",""))
+        jails.push(new Jail("Neve Tirza","./dist/jail.jpg"))
+        jails.push(new Jail("Ofek","./dist/jail.jpg"))
+        jails.push(new Jail("400","./dist/jail2.jpg"))
+        jails.push(new Jail("Dekel","./dist/jail.jpg"))
        
         //save to local storage
         const jailsJson = JSON.stringify(jails);

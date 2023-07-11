@@ -34,7 +34,7 @@ function loadCities() {
         var citiesString = localStorage.getItem('cities');
         if (!citiesString) { // if there is not characters on json , create new []
             var hotels = [];
-            cities_1.push(new City("Rova Alef", hotels, "./dist/ashdod.jpg", 1));
+            cities_1.push(new City("Rova Alef", hotels, "./dist/rovaA1.jpg", 1));
             cities_1.push(new City("Rova Bet", hotels, "./dist/ashdod.jpg", 2));
             cities_1.push(new City("Rova Gimel", hotels, "./dist/Jerusalem.jpg", 3));
             cities_1.push(new City("Rova Daled", hotels, "./dist/telAviv.jpg", 4));
@@ -131,10 +131,10 @@ function loadJails() {
         var jails_1 = [];
         var jailsString = localStorage.getItem('jails');
         if (!jailsString) { // if there is not characters on json , create new []
-            jails_1.push(new Jail("Neve Tirza", ""));
-            jails_1.push(new Jail("Ofek", ""));
-            jails_1.push(new Jail("400", ""));
-            jails_1.push(new Jail("Dekel", ""));
+            jails_1.push(new Jail("Neve Tirza", "./dist/jail.jpg"));
+            jails_1.push(new Jail("Ofek", "./dist/jail.jpg"));
+            jails_1.push(new Jail("400", "./dist/jail2.jpg"));
+            jails_1.push(new Jail("Dekel", "./dist/jail.jpg"));
             //save to local storage
             var jailsJson = JSON.stringify(jails_1);
             localStorage.setItem('jails', jailsJson);

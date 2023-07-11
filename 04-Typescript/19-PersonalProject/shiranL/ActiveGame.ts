@@ -24,7 +24,7 @@ function renderBoard(currentGame:Board |undefined) {
     // Clear previous board
     boardContainer.innerHTML = '';
     // const hotels=currentGame.hotels;
-    const jails=currentGame.jails;
+    
     let counter = 1; // Initialize counter
     // Create a 2D matrix for rendering the board cells
     const matrixSize =10; // Assuming an 11x11 matrix for demonstration
@@ -41,6 +41,7 @@ function renderBoard(currentGame:Board |undefined) {
         matrix[i][j].id=`${i}-${j}`
         // Check if it's an outer frame cell
       // Check if it's an outer frame cell
+      
       if (i === 0 || i === matrixSize - 1 || j === 0 || j === matrixSize - 1) {
         matrix[i][j].style.border = '1px solid pink';
         matrix[i][j].style.cursor = 'pointer';
@@ -52,72 +53,130 @@ function renderBoard(currentGame:Board |undefined) {
 // set the frame of the board
 //Y=o
     for (let i = 0; i < matrixSize; i++) {
-      matrix[i][matrixSize-1].value = counter;
-      matrix[i][0].textContent = counter; // Set the cell content to the counter value
+     // matrix[i][matrixSize-1].value = counter;
+      matrix[i][0].id = `cell${counter}`; // Set the cell content to the counter value
       counter++; // Increment the counter
     }
 // X = matrixSize-1
     for (let i = 1; i < matrixSize-1; i++) {
-      matrix[i][matrixSize-1].value = counter;
-      matrix[matrixSize-1][i].textContent = counter; // Set the cell content to the counter value
+    //  matrix[i][matrixSize-1].value = counter;
+      matrix[matrixSize-1][i].id = `cell${counter}`; // Set the cell content to the counter value
       counter++; // Increment the counter
     }
   //Y=matrixSize-1
   for (let i = matrixSize-1; i > 0; i--) {
-    matrix[i][matrixSize-1].value = counter;
-    matrix[i][matrixSize-1].textContent = counter; // Set the cell content to the counter value
+  //  matrix[i][matrixSize-1].value = counter;
+    matrix[i][matrixSize-1].id = `cell${counter}`; // Set the cell content to the counter value
     counter++; // Increment the counter
   }
   //x=0
   for (let i = matrixSize-1; i > 0; i--) {
-    matrix[0][i].value = counter;
-    matrix[0][i].textContent = counter; // Set the cell content to the counter value
+  //  matrix[0][i].value = counter;
+    matrix[0][i].id = `cell${counter}`; // Set the cell content to the counter value
     counter++; // Increment the counter
   }
 
   // set jails
+  const jails=currentGame.jails;
   let JailIndex=0
   jails.forEach(jail=>{putJailOnBoard(jail,JailIndex);
     JailIndex++;  })
+
+
+     // set cities
+  let cityIndex=0
+  const cities=currentGame.cities;
+  cities.forEach(city=>{putCityOnBoard(city,cityIndex);
+    cityIndex++;  })
    
   }
   
   
 function putJailOnBoard(jail:Jail,JailIndex:number){
       let cell
-      let jailBtn
-      let jailimg
-      let jailId
+     
       switch (JailIndex) { // set jails in the corners of the board
         case 0:
-          cell = document.getElementById('0-0')
+          cell = document.getElementById('cell1')
+         
           break;
         case 1:
-            cell = document.getElementById('0-9')
+            cell = document.getElementById('cell28')
+        
             break;
         case 2:
-            cell = document.getElementById('9-9')
+            cell = document.getElementById('cell19')
+           
             break;
         case 3:
-              cell = document.getElementById('9-0')
+          debugger
+              cell = document.getElementById('cell10')
+            
               break;
       }
 // create elements for jail
-      jailBtn= document.createElement('bottun')
+     
+    const  jailBtn= document.createElement('bottun')
       jailBtn.classList.add('jailBtn')
-      jailBtn.innerHTML=jail.jailName
-      jailimg= document.createElement('img')
+      jailBtn.id=`${jail.jailId}`;
+      //jailBtn.innerHTML=jail.jailName
+     const jailimg= document.createElement('img')
       jailimg.src=jail.jailImg
-      jailId =document.createElement('p')
-      jailId.innerHTML= `id:${jail.jailId}` 
-      jailId.id= jail.jailId
+  
       jailBtn.appendChild(jailimg)
-      jailBtn.appendChild(jailId)
       cell?.appendChild(jailBtn);
-      cell.name="jail"
-      cell.style.backgroundColor = 'red';
+     // cell.name="jail"
   }
+function putCityOnBoard(city:City,cityIndex:number){
+  try {
+   
+    let cell1
+    let cell2
+    let cell3
+     
+      switch (cityIndex) { // set jails in the corners of the board
+        case 0://ROVA A - get tree matrix cell to fill the city
+           cell1 = document.getElementById('cell36');
+           cell2 = document.getElementById('cell35');
+           cell3 = document.getElementById('cell34');
+          if(!cell1 || !cell2 || !cell3) throw new Error("cant find cells");
+         
+          const  cityBtn1= document.createElement('bottun')
+          cityBtn1.id=`${city.cityId}`;
+          cityBtn1.classList.add('RovaA')
+          cell1.appendChild(cityBtn1);
+          const  cityBtn2= document.createElement('bottun')
+          cityBtn2.id=`${city.cityId}`;
+          cityBtn2.classList.add('RovaA')
+          cell2.appendChild(cityBtn2);
+          const  cityBtn3= document.createElement('bottun')
+          cityBtn3.id=`${city.cityId}`;
+          cityBtn3.classList.add('RovaA')
+          cell3.appendChild(cityBtn3);
+
+           break;
+        case 1:
+          
+        case 2:
+            
+         
+        case 3:
+             
+      }
+  // create elements for city
+  
+    //   // cell2?.appendChild(cityBtn);
+    //   // cell3?.appendChild(cityBtn);
+    //  // cell.name="jail"
+      
+    } catch (error) {
+      console.error(error);
+      
+    }
+    
  
+}
+
 function renderOptionsBtns(gamesBoardsAGpage : Board[]| undefined){
   try {
    
