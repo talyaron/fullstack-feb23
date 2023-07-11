@@ -1,7 +1,7 @@
 class Player {
-    id: string
+    // id: string
     constructor(public playerImg: string, id?: string | null) {
-        this.id = `id-${new Date().getTime() - Math.random()}`
+        // this.id = `id-${new Date().getTime() - Math.random()}`
     }
 }
 class Point {
@@ -11,6 +11,7 @@ class Point {
     }
 }
 const root = document.querySelector(`#root`) as HTMLElement;
+const rootPlayer = document.querySelector(`#rootPlayer`) as HTMLElement;
 
 const players: Player[] = []
 const points: Point[] = []
@@ -79,10 +80,12 @@ function addBart(event) {
 
 function addLisa(event) {
     try {
-        const selectedPlayer = "../img/ליסה.png";
+
+        const selectedPlayer = new Player("../img/ליסה.png");
         players.push(selectedPlayer);
         console.log(event)
         localStorage.setItem("players", JSON.stringify(players))
+        renderPlayer(players, rootPlayer);
         window.location.href = "view/levels.html";
 
     } catch (error) {
@@ -93,11 +96,29 @@ function addLisa(event) {
 // const notAvailable = document.querySelectorAll
 //     (`.levelNotAvailable`);
 
-function renderPlayer(event) {
+function renderPlayer(players, htmlElement: HTMLElement | null) {
     try {
-
+        if (!htmlElement) throw new Error("No element");
+        const html = players.map(player => renderPlayerCard(player)).join(' ')
+        htmlElement.innerHTML = html;
 
     } catch (error) {
         console.error(error)
     }
 }
+
+
+function renderPlayerCard(player: Player) {
+    try {
+
+        return `<div class="card">
+                    <img src="${player.playerImg}"> </div>   
+`
+    }}
+// } catch (error) {
+//     console.error(error);
+//     return ''
+// }
+
+
+
