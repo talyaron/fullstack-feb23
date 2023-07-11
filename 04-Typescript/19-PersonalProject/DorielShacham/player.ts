@@ -4,6 +4,7 @@ export class Player{
     width: number;
     height: number;
     speed: number;
+  pCards: any;
 
     contructor(x, y){
         this.x = x;
