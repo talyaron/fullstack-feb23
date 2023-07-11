@@ -25,7 +25,7 @@ class Player {
     this.y = 250; //location start
     this.width = 20; //size of player
     this.height = 20; //size of player
-    this.lives = 3; //amount of lives
+    this.lives = 10; //amount of lives
     this.update = function () {
       if (this.lives <= 0) {
         gameOver = true;
