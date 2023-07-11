@@ -45,7 +45,24 @@ function handleAdd(ev) {
         console.error(error);
     }
 }
-function handleEdit() {
+function addHomer(event) {
+    try {
+        // const player =
+        console.log(event);
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+function addBart(event) {
+    try {
+        console.log(event);
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+function addLisa(event) {
     try {
     }
     catch (error) {

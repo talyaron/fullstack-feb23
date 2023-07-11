@@ -33,3 +33,8 @@ body .container .log {
 body .container .log.none {
   display: none;
 }
+
+.levels {
+  height: 30;
+  width: 30px;
+}
