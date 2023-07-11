@@ -1,4 +1,4 @@
-,.<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -10,19 +10,68 @@
     <script src="./dist/classes.js" defer></script>
     <script src="./dist/index.js" defer></script>
     <link rel="stylesheet" href="./dist/style.css" />
+    <link rel="stylesheet" href="./dist/players.css" />
   </head>
   <body>
-    <h1>Texas Holdem</h1>
-    <div class="cards"></div>
+    <h1>Texas Holdem Poker</h1>
+    <div class="wrapper">
+      <img class="table" src="./images/table.png" alt="">
+      <div class="stage">
+        <button id="addCardToStageBtn" onclick="addCardToStage(event)">
+          add cards:
+        </button>
+      </div>
 
-    <div class="myPannel">
-      <div class="myCards"></div>
-      <h4 class="myChips"></h4>
-    </div>
-    <div class="stage">
-      <button id="addCardToStageBtn" onclick="addCardToStage(event)">
-        add cards:
-      </button>
+      <div class="myPanel">
+        <div id="" class="myPanel__img">
+          <img src="#" alt="" />
+        </div>
+        <h4 class="myPanel__chips"></h4>
+        <div class="myPanel__cards"></div>
+      </div>
+
+      <div class="operations">
+        <button class="operations__btn operations__btn--check" onclick="handleCheck()">check</button>
+        <button class="operations__btn operations__btn--fold" onclick="handleFold()">fold</button>
+        <button class="operations__btn operations__btn--rise" onclick="handleRise()">rise</button>
+        <button class="operations__btn operations__btn--call" onclick="handleCall()">call</button>
+      </div>
+
+      <div id="player1Panel" class="playerPanel">
+        <h4 class="playerPanel__chips"></h4>
+        <div id="player1Img" class="playerPanel__img">
+          <img src="" alt="" />
+        </div>
+        <div class="playerPanel__cards"></div>
+      </div>
+      <div id="player2Panel" class="playerPanel">
+        <h4 class="playerPanel__chips"></h4>
+        <div id="player2Img" class="playerPanel__img">
+          <img src="" alt="" />
+        </div>
+        <div class="playerPanel__cards"></div>
+      </div>
+      <div id="player3Panel" class="playerPanel">
+        <h4 class="playerPanel__chips"></h4>
+        <div id="player3Img" class="playerPanel__img">
+          <img src="" alt="" />
+        </div>
+        <div class="playerPanel__cards"></div>
+      </div>
+      <div id="player4Panel" class="playerPanel">
+        <h4 class="playerPanel__chips"></h4>
+        <div id="player4Img" class="playerPanel__img">
+          <img src="" alt="" />
+        </div>
+        <div class="playerPanel__cards"></div>
+      </div>
+      <div id="dealer" class="dealer">
+        <div id="dealer" class="dealer__img">
+          <img src="./images/39bbec9fd2084b86be50641b3df5ee6f.avif" alt="" />
+        </div>
+        <h3 id="dealer__head">The dealer</h3>
+        <h4 class="dealer__chips"></h4>
+      </div>
     </div>
   </body>
 </html>
