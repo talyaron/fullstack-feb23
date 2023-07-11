@@ -225,6 +225,7 @@ function loadBoards() {
 }
 function startNewGame(boards) {
     try {
+        debugger;
         if (!boards)
             throw new Error("Cant Find Boards Array");
         // Create a new board
@@ -299,8 +300,6 @@ function renderHomePage(gamesBoards, characters) {
         input_1.min = "2";
         input_1.max = "6";
         // Append the label and input to the form
-        form.appendChild(label);
-        form.appendChild(input_1);
         // Create the "Start Game" button
         var startButton = document.createElement("button");
         startButton.textContent = "Start Game";
@@ -310,13 +309,22 @@ function renderHomePage(gamesBoards, characters) {
             event.preventDefault(); // Prevent the form from submitting and refreshing the page
             var numPlayers = parseInt(input_1.value, 10);
             var selectedCharacters = getSelectedCharacters(numPlayers, characters);
-            startGame(numPlayers, gamesBoards, selectedCharacters);
+            if (!selectedCharacters)
+                alert("Must Enter numbers of players");
+            else
+                handelStartGame(numPlayers, gamesBoards, selectedCharacters);
         });
         // Append the button to the form
+        form.appendChild(label);
+        form.appendChild(input_1);
         form.appendChild(startButton);
+        // Add dropdowns for choosing characters
+        input_1.addEventListener("change", function (event) {
+            var numPlayers = parseInt(input_1.value, 10);
+            renderCharacterDropdowns(numPlayers, characters);
+        });
         // Append the form to the startNewGame HTML element
-        startNewGameHtml.appendChild(form);
-        debugger;
+        //startNewGameHtml.appendChild(form);
         // Check if there is an open game board
         var openGameBoard = gamesBoards.find(function (board) { return board.gameStatus === true; });
         if (openGameBoard) {
@@ -329,11 +337,9 @@ function renderHomePage(gamesBoards, characters) {
                 window.location.href = "./ActiveGame.html";
             });
         }
-        // Add dropdowns for choosing characters
-        input_1.addEventListener("change", function (event) {
-            var numPlayers = parseInt(input_1.value, 10);
-            renderCharacterDropdowns(numPlayers, characters);
-        });
+        // Create the "renderCharacterDropdowns" button
+        else
+            startNewGameHtml.appendChild(form);
     }
     catch (error) {
         console.error(error);
@@ -369,6 +375,8 @@ function renderCharacterDropdowns(numPlayers, characters) {
         characterSelectionHtml.innerHTML = "";
         // Create an array to keep track of selected character IDs for each player
         var selectedCharacters_1 = [];
+        var ChractersForm = document.createElement("form");
+        ChractersForm.id = "ChractersForm";
         var _loop_2 = function (i) {
             var dropdownLabel = document.createElement("label");
             dropdownLabel.textContent = "Player " + i + " Character: ";
@@ -404,8 +412,9 @@ function renderCharacterDropdowns(numPlayers, characters) {
                     dropdown.appendChild(option);
                 });
             }
-            characterSelectionHtml.appendChild(dropdownLabel);
-            characterSelectionHtml.appendChild(dropdown);
+            ChractersForm.appendChild(dropdownLabel);
+            ChractersForm.appendChild(dropdown);
+            characterSelectionHtml.appendChild(ChractersForm);
         };
         // Create a dropdown for each player
         for (var i = 1; i <= numPlayers; i++) {
@@ -416,26 +425,43 @@ function renderCharacterDropdowns(numPlayers, characters) {
         console.error(error);
     }
 }
-function startGame(numPlayers, gamesBoards, selectedCharacters) {
+function handelStartGame(numPlayers, gamesBoards, selectedCharacters) {
     try {
+        var ChractersForm = document.querySelector("#ChractersForm");
+        if (!ChractersForm) {
+            alert("Must pic characters");
+            throw new Error("Cannot find ChractersForm");
+        }
         if (!gamesBoards)
             throw new Error("Cannot find game board");
-        startNewGame(gamesBoards);
-        var currentGame = gamesBoards === null || gamesBoards === void 0 ? void 0 : gamesBoards.find(function (game) { return game.gameStatus === true; });
-        if (!currentGame)
-            throw new Error("Cannot find game Activ Game");
-        loadDataToBoard(currentGame);
-        // Create the players
-        for (var i = 1; i <= numPlayers; i++) {
-            var character = selectedCharacters[i - 1]; // Get the corresponding selected character
-            var playerName = "" + character.characterName;
-            var player = new Player(playerName, false, true, undefined, undefined, character);
-            currentGame.players.push(player);
+        //check if there is open game befor open new one
+        var openGame = gamesBoards.find(function (board) { return board.gameStatus === true; });
+        if (openGame) {
+            alert("There is an open game already");
         }
-        // Navigate to the game page
-        saveBoards(gamesBoards);
-        console.log("Game started!");
-        window.location.href = "./ActiveGame.html";
+        else {
+            var allCharactersSelected = selectedCharacters.length === numPlayers;
+            if (!allCharactersSelected) {
+                alert("Must select characters for all players");
+                return; // Stop execution if not all characters are selected
+            }
+            startNewGame(gamesBoards);
+            var currentGame = gamesBoards === null || gamesBoards === void 0 ? void 0 : gamesBoards.find(function (game) { return game.gameStatus === true; });
+            if (!currentGame)
+                throw new Error("Cannot find Activ Game");
+            loadDataToBoard(currentGame);
+            // Create the players
+            for (var i = 1; i <= numPlayers; i++) {
+                var character = selectedCharacters[i - 1]; // Get the corresponding selected character
+                var playerName = "" + character.characterName;
+                var player = new Player(playerName, false, true, undefined, undefined, character);
+                currentGame.players.push(player);
+            }
+            // Navigate to the game page
+            saveBoards(gamesBoards);
+            console.log("Game started!");
+            window.location.href = "./ActiveGame.html";
+        }
     }
     catch (error) {
         console.error("Error starting the game:", error);
