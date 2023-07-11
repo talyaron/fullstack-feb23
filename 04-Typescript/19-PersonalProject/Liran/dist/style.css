@@ -60,7 +60,8 @@ body .screen__UI form {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 8px;
+  gap: 18px;
+  padding-bottom: 10px;
 }
 body .screen__UI form input {
   width: 80%;
@@ -79,4 +80,24 @@ body .screen__UI form input[type=text]:focus {
   background-color: white;
   color: black;
   border: none;
+}
+body .screen__UI .container {
+  width: 100%;
+  min-width: 50px;
+  padding: 20px 0;
+  padding-bottom: 50px;
+  border-radius: 10px;
+  font-size: medium;
+}
+body .screen__UI #timerDisplay {
+  margin: auto;
+  width: 92%;
+  font-family: "Roboto mono", monospace;
+  color: #8cb4c7;
+  font-size: 30px;
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
+  box-shadow: 0 0 20px rgba(6, 204, 105, 0.921);
+  justify-content: center;
 }

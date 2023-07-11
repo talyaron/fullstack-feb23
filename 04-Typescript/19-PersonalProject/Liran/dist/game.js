@@ -41,6 +41,7 @@ function getPlayerFromStorage() {
         return [];
     }
 }
+var timerRef = document.querySelector("#timerDisplay");
 function hundelSubmit(ev) {
     try {
         debugger;
@@ -55,6 +56,16 @@ function hundelSubmit(ev) {
         renderPlayer();
         renderGamePanel();
         ev.target.reset();
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+function hundelStart(ev) {
+    try {
+        debugger;
+        ev.preventDefault();
+        setInterval(displayTimer, 10);
     }
     catch (error) {
         console.error(error);
@@ -84,16 +95,28 @@ function renderLogPanel() {
         console.error(error);
     }
 }
+var _a = [0, 0, 0, 0], milliseconds = _a[0], seconds = _a[1], minutes = _a[2], hours = _a[3];
 function renderGamePanel() {
+    var _a;
     try {
+        debugger;
         var panel = document.querySelector(".screen__UI");
         if (!panel)
             throw new Error("Can't cath screen UI");
         if (!players)
             throw new Error("No players");
+        //  setInterval(displayTimer,10);
+        var int = null;
+        if (int !== null) {
+            clearInterval(int);
+        }
+        _a = [0, 0, 0, 0], milliseconds = _a[0], seconds = _a[1], minutes = _a[2], hours = _a[3];
         var player = players[(players === null || players === void 0 ? void 0 : players.length) - 1].firstName;
-        var html = "<h1>Hello " + player + "</h1>\n        <form id=\"game\" onclick=\"hundelStartt(event)\">\n            <input type=\"button\" name=\"start\" value=\"Start\">\n        </form>";
+        var html = "<h1>Hello " + player + "</h1>\n        <form id=\"game\" onclick=\"hundelStart(event)\">\n            <input type=\"button\" name=\"start\" value=\"Start\">\n        </form>\n        <div class=\"container\">\n                <div id=\"timerDisplay\">00:000</div>\n            </div>";
         panel.innerHTML = html;
+        if (!timerRef)
+            throw new Error("No clock");
+        timerRef.innerHTML = "00 : 00 : 00 : 000 ";
     }
     catch (error) {
         console.error(error);
@@ -142,7 +165,7 @@ var fighter = document.querySelector('#fighter');
 //                     }
 //                     fighter.style.transform = `scaleX(-1)`;
 //                 }
-//                 break;  
+//                 break;
 //             case ` `:
 //                 const sowrd = document.querySelector('#sowrd') as HTMLDivElement;
 //                 if (!sowrd) throw new Error("Can't cath sowrd DOM");
@@ -170,4 +193,26 @@ var fighter = document.querySelector('#fighter');
 //         console.error(error)
 //     }
 // });
+function displayTimer() {
+    debugger;
+    timerRef = document.querySelector("#timerDisplay");
+    try {
+        milliseconds += 10;
+        if (milliseconds == 1000) {
+            milliseconds = 0;
+            seconds++;
+            if (seconds == 30) {
+                seconds = 0;
+            }
+        }
+        var s = seconds < 10 ? "0" + seconds : seconds;
+        var ms = milliseconds < 10 ? "00" + milliseconds : milliseconds < 100 ? "0" + milliseconds : milliseconds;
+        if (!timerRef)
+            throw new Error("Error");
+        timerRef.innerHTML = " " + s + " : " + ms;
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
 renderLogPanel();

@@ -76,6 +76,7 @@ function getPlayerFromStorage(): Player[] | undefined {
     }
 
 }
+let timerRef = document.querySelector(`#timerDisplay`);
 
 function hundelSubmit(ev: any) {
     try {
@@ -90,6 +91,17 @@ function hundelSubmit(ev: any) {
         renderPlayer();
         renderGamePanel();
         ev.target.reset();
+
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+function hundelStart(ev: any) {
+    try {
+        debugger;
+        ev.preventDefault();
+        setInterval(displayTimer, 10);
 
     } catch (error) {
         console.error(error);
@@ -125,18 +137,36 @@ function renderLogPanel() {
     }
 
 }
+let [milliseconds, seconds, minutes, hours] = [0, 0, 0, 0];
 
 function renderGamePanel() {
     try {
+        debugger;
         const panel = document.querySelector(".screen__UI");
         if (!panel) throw new Error("Can't cath screen UI");
         if (!players) throw new Error("No players");
+
+        //  setInterval(displayTimer,10);
+        let int = null;
+        if (int !== null) {
+            clearInterval(int);
+        }
+
+        [milliseconds, seconds, minutes, hours] = [0, 0, 0, 0];
+
+
         const player = players[players?.length - 1].firstName;
         const html = `<h1>Hello ${player}</h1>
-        <form id="game" onclick="hundelStartt(event)">
+        <form id="game" onclick="hundelStart(event)">
             <input type="button" name="start" value="Start">
-        </form>`;
+        </form>
+        <div class="container">
+                <div id="timerDisplay">00:000</div>
+            </div>`;
         panel.innerHTML = html;
+        if (!timerRef) throw new Error("No clock");
+
+        timerRef.innerHTML = `00 : 00 : 00 : 000 `;
     } catch (error) {
         console.error(error)
     }
@@ -189,7 +219,7 @@ const fighter = document.querySelector('#fighter') as HTMLDivElement;
 //                     }
 //                     fighter.style.transform = `scaleX(-1)`;
 //                 }
-//                 break;  
+//                 break;
 //             case ` `:
 //                 const sowrd = document.querySelector('#sowrd') as HTMLDivElement;
 //                 if (!sowrd) throw new Error("Can't cath sowrd DOM");
@@ -226,6 +256,25 @@ const fighter = document.querySelector('#fighter') as HTMLDivElement;
 //         console.error(error)
 //     }
 // });
-
+function displayTimer() {
+    debugger;
+    timerRef = document.querySelector(`#timerDisplay`);
+    try {
+        milliseconds += 10;
+        if (milliseconds == 1000) {
+            milliseconds = 0;
+            seconds++;
+            if (seconds == 30) {
+                seconds = 0;
+            }
+        }
+        let s = seconds < 10 ? "0" + seconds : seconds;
+        let ms = milliseconds < 10 ? "00" + milliseconds : milliseconds < 100 ? "0" + milliseconds : milliseconds;
+        if (!timerRef) throw new Error("Error")
+        timerRef.innerHTML = ` ${s} : ${ms}`;
+    } catch (error) {
+        console.error(error)
+    }
+}
 
 renderLogPanel();
