@@ -30,18 +30,20 @@ var Card = /** @class */ (function () {
 }());
 //---------------------------Player--------------------
 var Player = /** @class */ (function () {
-    function Player(userName, chips, isActive, pCards) {
+    function Player(userName, imgSrc, chips, isActive, pCards) {
+        if (imgSrc === void 0) { imgSrc = ""; }
         if (chips === void 0) { chips = 100000; }
-        if (isActive === void 0) { isActive = true; }
+        if (isActive === void 0) { isActive = false; }
         if (pCards === void 0) { pCards = get2RandomCards(); }
         this.userName = userName;
+        this.imgSrc = imgSrc;
         this.chips = chips;
         this.isActive = isActive;
         this.pCards = pCards;
         this.pCards = this.pCards.map(function (c) { return new Card(c.cardNumber, c.cardSign); });
     }
-    Player.prototype.setToUnActive = function () {
-        this.isActive = false;
+    Player.prototype.setActive = function () {
+        this.isActive = !this.isActive;
     };
     Player.prototype.renderMyPanel = function () {
         try {

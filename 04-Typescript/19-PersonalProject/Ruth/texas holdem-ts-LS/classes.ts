@@ -36,16 +36,17 @@ class Card {
 class Player {
   constructor(
     public userName: string,
+    public imgSrc:string = "",
     public chips: number = 100000,
-    public isActive: boolean = true,
+    public isActive: boolean = false,
     public pCards: Card[] = get2RandomCards(),
   ) {
     this.pCards = this.pCards.map((c) => new Card(c.cardNumber, c.cardSign));
 
   }
 
-  setToUnActive() {
-    this.isActive = false;
+  setActive() {
+    this.isActive = !this.isActive;
   }
 
   renderMyPanel() {
