@@ -1,14 +1,7 @@
-// import { Player, Bullet } from './class/class'; this would work if we would not use live server and also the rest of the functions
-var canvas = document.querySelector("canvas");
-var ctx = canvas.getContext("2d");
-var playerInstance;
-var bullets = new Array();
-var bulletInterval = 0;
-var pressKeyX = "none";
-var pressKeyY = "none";
-var gameOver = false;
-var score = 0;
-var scoreInterval = 0;
+"use strict";
+exports.__esModule = true;
+exports.Bullet = exports.Player = void 0;
+//------ class Player
 var Player = /** @class */ (function () {
     function Player() {
         this.x = 150; //location start
@@ -22,10 +15,8 @@ var Player = /** @class */ (function () {
             }
         };
         this.draw = function () {
-            var playerImg = new Image();
-            playerImg.src =
-                "https://static.vecteezy.com/system/resources/previews/013/528/882/large_2x/pixel-art-planet-earth-png.png";
-            ctx.drawImage(playerImg, this.x, this.y, this.width, this.height);
+            ctx.fillStyle = "lime";
+            ctx.fillRect(this.x, this.y, this.width, this.height);
             ctx.font = "15px Arial";
             ctx.fillStyle = "white";
             ctx.fillText(this.lives.toString(), this.x + 5, this.y + 15);
@@ -52,6 +43,8 @@ var Player = /** @class */ (function () {
     };
     return Player;
 }());
+exports.Player = Player;
+//------ class Bullet
 var Bullet = /** @class */ (function () {
     function Bullet(x, y, speedX, speedY) {
         this.x = x;
@@ -66,33 +59,9 @@ var Bullet = /** @class */ (function () {
         this.y += this.speedY;
     };
     Bullet.prototype.draw = function () {
-        ctx.fillStyle = "grey";
+        ctx.fillStyle = "red";
         ctx.fillRect(this.x, this.y, this.width, this.height);
     };
     return Bullet;
 }());
-//run game 
-//@tal if your reading this and you see that
-//these functions are missing is because we cannot 
-//import/export on the live server unless we use node js....
-//{ --- these are not errors so give me +10 points ;) --- }
-function runGame() {
-    try {
-        ctx.clearRect(0, 0, 500, 500);
-        playerInstance.movePlayer();
-        runBullets();
-        addScore();
-        if (gameOver) {
-            endingMessage();
-        }
-        else {
-            requestAnimationFrame(runGame);
-        }
-    }
-    catch (error) {
-        console.error(error);
-    }
-}
-playerInstance = new Player();
-addMovementToPlayer(playerInstance);
-runGame();
+exports.Bullet = Bullet;
