@@ -2,7 +2,7 @@ function runBullets() {
   try {
     // console.log("shoots fired");
     bulletInterval++;
-    if (bulletInterval % 50 == 0) {
+    if (bulletInterval % 100 == 0) {
       let y1: number = Math.floor(Math.random() * (500 - 0)) + 0;
       let y2 = Math.floor(Math.random() * (500 - 0)) + 0;
       let x1 = Math.floor(Math.random() * (500 - 0)) + 0;
