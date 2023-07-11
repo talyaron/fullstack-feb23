@@ -1,7 +1,6 @@
 //model
 
 class Friend {
-<<<<<<< HEAD
     id: string;
     isEdit: boolean = false;
     constructor(public name: string, public image: string, public phoneNumber: string, id?: string | null) {
@@ -14,20 +13,6 @@ class Friend {
 
     setEdit(set: boolean) {
         this.isEdit = set;
-=======
-  id: string;
-  isEdit: boolean = false;
-  constructor(
-    public name: string,
-    public image: string,
-    public phoneNumber: string,
-    id?: string | null,
-  ) {
-    if (id) {
-      this.id = id;
-    } else {
-      this.id = `id-${new Date().getTime()}-${Math.random()}`;
->>>>>>> 4f4014876ee22bcaa6299a818521bff3bb995fcb
     }
 }
 
@@ -181,7 +166,6 @@ function handleSetEditFriend(ev:any){
         const phoneNumber = ev.target.phoneNumber.value;
         const friendId:string = ev.target.id;
 
-<<<<<<< HEAD
         const friend:Friend|undefined = friends.find(friend => friend.id === friendId)
         if(!friend) throw new Error("couldnt find friend")
         friend.name = name;
@@ -196,19 +180,3 @@ function handleSetEditFriend(ev:any){
         console.error(error);
     }
 }
-=======
-    const friend: Friend | undefined = friends.find(
-      (friend) => friend.id === friendId,
-    );
-    if (!friend) throw new Error("couldnt find friend");
-    friend.name = name;
-    friend.phoneNumber = phoneNumber;
-    friend.setEdit(false);
-    console.log(friends);
-    localStorage.setItem("friends", JSON.stringify(friends));
-    renderAllFriends(friends, document.querySelector("#rootFriends"));
-  } catch (error) {
-    console.error(error);
-  }
-}
->>>>>>> 4f4014876ee22bcaa6299a818521bff3bb995fcb

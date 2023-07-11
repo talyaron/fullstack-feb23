@@ -1,17 +1,23 @@
 $cellSize: 115px;
 
+.Container{
+  display: flex;
+    flex-direction: row;
+    //align-items: center;
+  
+}
 
 // Define the board style
-#Board {
+.board{
     width: 10*$cellSize;
-   margin: auto;
+    margin: auto;
     display: grid;
     grid-template-columns: repeat(10, 1fr);
     grid-template-rows: repeat(10, 1fr); 
    
-  }
+  
   // Define the board cell style
-  .board-cell {
+  &__cell {
      // Set the size cells
     width: $cellSize;
     height: $cellSize;
@@ -23,6 +29,48 @@ $cellSize: 115px;
     justify-content: center;
     font-size: 20px;
  
+
+    img{
+      width:$cellSize ;
+      height: $cellSize;
+    }
   }
   
+}
+.optionsBtns{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &__Button{
+      margin: 10px;
+      padding: 8px 16px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    
+    
+    &__Button:hover {
+      background-color: #45a049;
+    }
+    
+    &__Button:active {
+      background-color: #3e8e41;
+    }
+    }
+}
+
+.RovaA{
+
+  background-image: url('./rovaA1.jpg');
+  background-size: cover;
+  background-position: center;
+  
+  
  
+    width:$cellSize ;
+    height: $cellSize;
+  
+}
