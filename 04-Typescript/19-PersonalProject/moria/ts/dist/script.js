@@ -1,7 +1,6 @@
 var Player = /** @class */ (function () {
-    function Player(playerImg, rope, id) {
+    function Player(playerImg, id) {
         this.playerImg = playerImg;
-        this.rope = rope;
         this.id = "id-" + (new Date().getTime() - Math.random());
     }
     return Player;
@@ -45,7 +44,47 @@ function handleAdd(ev) {
         console.error(error);
     }
 }
-function handleEdit() {
+function addHomer(event) {
+    try {
+        // const player =
+        var selectedPlayer = "../img/הומר.png";
+        players.push(selectedPlayer);
+        console.log(event);
+        localStorage.setItem("players", JSON.stringify(players));
+        window.location.href = "view/levels.html";
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+function addBart(event) {
+    try {
+        var selectedPlayer = "../img/בארט.png";
+        players.push(selectedPlayer);
+        console.log(event);
+        localStorage.setItem("players", JSON.stringify(players));
+        window.location.href = "view/levels.html";
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+function addLisa(event) {
+    try {
+        var selectedPlayer = "../img/ליסה.png";
+        players.push(selectedPlayer);
+        console.log(event);
+        localStorage.setItem("players", JSON.stringify(players));
+        window.location.href = "view/levels.html";
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+// const level = document.querySelector(`.level`) as HTMLElement;
+// const notAvailable = document.querySelectorAll
+//     (`.levelNotAvailable`);
+function renderPlayer(event) {
     try {
     }
     catch (error) {

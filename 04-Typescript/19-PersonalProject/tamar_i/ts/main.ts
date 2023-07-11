@@ -1,5 +1,5 @@
 // import ts files -> https://www.educative.io/answers/how-to-import-another-typescript-file
-//import redBall from '../ts/dist/red_ball';
+//import redBall from '/red_ball';
 //import '../ts/dist/bricks';
 //import '../ts/dist/errow';
 //import '../ts/dist/bombs';
@@ -61,19 +61,22 @@ function renderUserName(){
     username.innerHTML = users.map(p => `<h1> Hellow ${p.userName}</h1>`).join(' ')
 }
 
+
 //the game start when the page load
 function startGame(){
     myGameArea.start()  //defaine the game area
+    redball =  new component() //difain the ball element
 }
 
 //the game area function
 let myGameArea = {
-    canvas: document.createElement("canvas"),
+    canvas : document.querySelector("#canvas"),
     start: function (){
-        this.canvas.width = 270;
-        this.canvas.hight = 480;
+        //this.canvas.width = 270;
+        //this.canvas.hight = 480;
         this.context = this.canvas.getContext("2d");
         const h1Div = document.querySelector('#h1')
+        if(!h1Div) throw new Error('no element chatch')
         h1Div.insertAdjacentElement("afterend", this.canvas);
     }
 }
