@@ -6,8 +6,8 @@ dialog {
   position: relative;
   justify-content: center;
   align-items: center;
-  width: 200px;
-  height: 100px;
+  width: 250px;
+  height: 200px;
   background: linear-gradient(to left, rgba(200, 0, 255, 0.8), black 50%, rgba(0, 0, 255, 0.8) 100%);
 }
 dialog button {

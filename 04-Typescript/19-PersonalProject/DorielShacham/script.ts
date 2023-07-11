@@ -35,7 +35,7 @@ class Player {
     this.draw = function () {
       const playerImg = new Image();
       playerImg.src =
-        "https://static.vecteezy.com/system/resources/previews/013/528/882/large_2x/pixel-art-planet-earth-png.png";
+        "./sprite/earth-png.png";
       ctx.drawImage(playerImg, this.x, this.y, this.width, this.height);
       ctx.font = "15px Arial";
       ctx.fillStyle = "white";
