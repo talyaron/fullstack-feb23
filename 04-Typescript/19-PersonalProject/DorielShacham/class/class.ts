@@ -1,17 +1,5 @@
-// import { Player, Bullet } from './class/class'; this would work if we would not use live server and also the rest of the functions
-
-let canvas = document.querySelector("canvas") as HTMLCanvasElement;
-let ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
-let playerInstance: Player;
-let bullets: Bullet[] = new Array();
-let bulletInterval: number = 0;
-let pressKeyX = "none";
-let pressKeyY = "none";
-let gameOver: boolean = false;
-let score: number = 0;
-let scoreInterval: number = 0;
-
-class Player {
+//------ class Player
+export class Player {
   x: number;
   y: number;
   width: number;
@@ -33,10 +21,8 @@ class Player {
     };
 
     this.draw = function () {
-      const playerImg = new Image();
-      playerImg.src =
-        "https://static.vecteezy.com/system/resources/previews/013/528/882/large_2x/pixel-art-planet-earth-png.png";
-      ctx.drawImage(playerImg, this.x, this.y, this.width, this.height);
+      ctx.fillStyle = "lime";
+      ctx.fillRect(this.x, this.y, this.width, this.height);
       ctx.font = "15px Arial";
       ctx.fillStyle = "white";
       ctx.fillText(this.lives.toString(), this.x + 5, this.y + 15);
@@ -62,7 +48,9 @@ class Player {
     this.update();
   }
 }
-class Bullet {
+
+//------ class Bullet
+export class Bullet {
   x: number;
   y: number;
   speedX: number;
@@ -82,31 +70,7 @@ class Bullet {
     this.y += this.speedY;
   }
   draw() {
-    ctx.fillStyle = "grey";
+    ctx.fillStyle = "red";
     ctx.fillRect(this.x, this.y, this.width, this.height);
   }
 }
-
-//run game 
-//@tal if your reading this and you see that
-//these functions are missing is because we cannot 
-//import/export on the live server unless we use node js....
-//{ --- these are not errors so give me +10 points ;) --- }
-function runGame() {
-  try {
-    ctx.clearRect(0, 0, 500, 500);
-    playerInstance.movePlayer();
-    runBullets();
-    addScore();
-    if (gameOver) {
-      endingMessage();
-    } else {
-      requestAnimationFrame(runGame);
-    }
-  } catch (error) {
-    console.error(error);
-  }
-}
-playerInstance = new Player();
-addMovementToPlayer(playerInstance);
-runGame();

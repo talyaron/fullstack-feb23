@@ -2,15 +2,14 @@
 @import '../style/dist/element';
 
 #h1{
-    font-size: 100px;
+    font-size: 25px;
     text-align: center;
 }
 
-.gameArea{
-    height: 80%;
-    width: 33%;
+canvas{
     margin: auto;
     background-color: bisque;
     border-radius: 10%;
 }
+
 
