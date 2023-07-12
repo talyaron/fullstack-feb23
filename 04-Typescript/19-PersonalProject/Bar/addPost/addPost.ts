@@ -1,12 +1,10 @@
-//adding nw post.
-function addNewPost(users: User[], rootElement: HTMLElement | Element | null) {
+function renderAddNewPost(users: User[], rootElement: HTMLElement | Element | null) {
   try {
     if (!rootElement) throw new Error('Root element is not found');
     const html = `
-      <form class="addPost" onsubmit="handleAdd(event, ${JSON.stringify(users)}, ${JSON.stringify(userImgArray)})">
+      <form class="addPost" onsubmit="handleAddNewPost(event)">
         <select class="addPost__select" name="user" id="user" required>
-          ${users
-        .map((user) => {
+          ${users.map((user) => {
           return `<option value="${user.id}">${user.name}</option>`;
         })
         .join('')}
@@ -17,49 +15,39 @@ function addNewPost(users: User[], rootElement: HTMLElement | Element | null) {
 
     rootElement.innerHTML = html;
 
-    localStorage.setItem('userImgArray', JSON.stringify(userImgArray));
+    localStorage.setItem('Users', JSON.stringify(usersArray));
   } catch (error) {
     console.error(error);
   }
 }
-addNewPost(usersArray, document.querySelector('#addPost'));
+renderAddNewPost(usersArray, document.querySelector('#addPost'));
 
-
-//add image url to the userImgArray of the user.
-function handleAdd(event: Event| null, users: User[], userImgArray: UserImg[]) {
+function handleAddNewPost(event: any) {
   try {
     if (!event) throw new Error('Event is not found');
 
     event.preventDefault();
-    const target = event.target as typeof event.target & {
-      user: { value: string };
-      image: { value: string };
-    };
+    const user = event.target.elements.user.value;
+    const image = event.target.elements.image.value;
 
-    const user = users.find((user) => user.id === target.user.value);
+    const selectedUser  = usersArray.find((u) => u.id === user);
 
-    if (!user) throw new Error('User is not found');
+    if (!selectedUser ) throw new Error('User not found');
 
-    const userImg = userImgArray.find((userImg) => userImg.user.id === user.id);
+    const newImg = new Img(image);
+    imagesArray.push(newImg);
 
-    if (!userImg) throw new Error('UserImg is not found');
+    selectedUser.images.push(newImg);
 
-    userImg.image.push(new Img(target.image.value));
+    saveImgToLocalStorage(imagesArray);
+    saveUserToLocalStorage(usersArray);
+    // localStorage.setItem('images', JSON.stringify(imagesArray));
+    // localStorage.setItem('users', JSON.stringify(usersArray));
 
-    // location.href = 'profile.html';
+    showPosts(document.querySelector('#posts'), usersArray);
     
   } catch (error) {
     console.error(error);
+    return error;
   }
 }
-
-// function handleToProfile(ev: any) {
-//   try {
-//       ev.preventDefault();
-//       console.dir(ev);
-
-//       location.href = "profile.html"
-//   } catch (error) {
-//       console.error(error);
-//   }
-// };

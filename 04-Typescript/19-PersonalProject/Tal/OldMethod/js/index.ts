@@ -40,5 +40,4 @@ function getDogsFromLocalStorage():Dog[]{
         console.error(error);
         return [];
     }
-   
 }
