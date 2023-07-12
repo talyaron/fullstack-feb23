@@ -19,15 +19,18 @@ addNewPost(usersArray, document.querySelector('#addPost'));
 //add image url to the userImgArray of the user.
 function handleAdd(event, users, userImgArray) {
     try {
+        if (!event)
+            throw new Error('Event is not found');
         event.preventDefault();
-        var user_1 = event.target.elements.user.value;
-        var image = event.target.elements.image.value;
-        var userImg = userImgArray.find(function (userImg) { return userImg.user.id === user_1; });
-        if (!userImg)
+        var target_1 = event.target;
+        var user_1 = users.find(function (user) { return user.id === target_1.user.value; });
+        if (!user_1)
             throw new Error('User is not found');
-        userImg.images.push(image);
-        localStorage.setItem('userImgArray', JSON.stringify(userImgArray));
-        showUserImg(document.querySelector('#profile'), userImgArray);
+        var userImg = userImgArray.find(function (userImg) { return userImg.user.id === user_1.id; });
+        if (!userImg)
+            throw new Error('UserImg is not found');
+        userImg.image.push(new Img(target_1.image.value));
+        // location.href = 'profile.html';
     }
     catch (error) {
         console.error(error);

@@ -28,22 +28,28 @@ addNewPost(usersArray, document.querySelector('#addPost'));
 //add image url to the userImgArray of the user.
 function handleAdd(event: Event| null, users: User[], userImgArray: UserImg[]) {
   try {
+    if (!event) throw new Error('Event is not found');
+
     event.preventDefault();
-    const user = event.target.elements.user.value;
-    const image = event.target.elements.image.value;
+    const target = event.target as typeof event.target & {
+      user: { value: string };
+      image: { value: string };
+    };
 
-    const userImg = userImgArray.find((userImg) => userImg.user.id === user);
+    const user = users.find((user) => user.id === target.user.value);
 
-    if (!userImg) throw new Error('User is not found');
+    if (!user) throw new Error('User is not found');
 
-    userImg.images.push(image);
+    const userImg = userImgArray.find((userImg) => userImg.user.id === user.id);
 
-    localStorage.setItem('userImgArray', JSON.stringify(userImgArray));
+    if (!userImg) throw new Error('UserImg is not found');
 
-    showUserImg(document.querySelector('#profile'), userImgArray);
+    userImg.image.push(new Img(target.image.value));
+
+    // location.href = 'profile.html';
+    
   } catch (error) {
     console.error(error);
-
   }
 }
 
