@@ -1,4 +1,3 @@
-"use strict";
 var __spreadArrays = (this && this.__spreadArrays) || function () {
     for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
     for (var r = Array(s), k = 0, i = 0; i < il; i++)
@@ -6,8 +5,6 @@ var __spreadArrays = (this && this.__spreadArrays) || function () {
             r[k] = a[j];
     return r;
 };
-exports.__esModule = true;
-var player_1 = require("./../../DorielShacham/player");
 var cardsNumber = [
     "A",
     "2",
@@ -67,7 +64,7 @@ function getDeckCardsFromLs() {
     var decksCardsStr = JSON.parse(localStorage.getItem("deckCards"));
     decksCards = decksCardsStr.map(function (c) { return new Card(c.cardNumber, c.cardSign); });
 }
-var firstPlayers = [new player_1.Player("ruth1")];
+var firstPlayers = [new Player("ruth1")];
 var players = getPlayerFromLs() || firstPlayers;
 function getPlayerFromLs() {
     try {
@@ -77,7 +74,7 @@ function getPlayerFromLs() {
         else {
             var playersOnArrayObjs = JSON.parse(playersStr);
             var players_1 = playersOnArrayObjs.map(function (p) {
-                return new player_1.Player(p.userName, p.imgSrc, p.chips, p.isActive, p.pCards);
+                return new Player(p.userName, p.imgSrc, p.chips, p.isActive, p.pCards);
             });
             return players_1;
         }
@@ -239,23 +236,26 @@ function turnOrder(players) {
     }
 }
 var users = [
-    new player_1.Player("ruth1!", "https://cdn.pixabay.com/photo/2013/05/30/18/21/cat-114782_1280.jpg"),
-    new player_1.Player("ruth0908", "https://cdn.pixabay.com/photo/2014/04/05/11/40/chess-316658_1280.jpg"),
-    new player_1.Player("ruth765", "https://cdn.pixabay.com/photo/2015/11/21/04/17/grandparents-1054311_1280.jpg"),
+    new Player("ruth1!", "https://cdn.pixabay.com/photo/2013/05/30/18/21/cat-114782_1280.jpg"),
+    new Player("ruth0908", "https://cdn.pixabay.com/photo/2014/04/05/11/40/chess-316658_1280.jpg"),
+    new Player("ruth765", "https://cdn.pixabay.com/photo/2015/11/21/04/17/grandparents-1054311_1280.jpg"),
+    new Player("ruth765", "https://cdn.pixabay.com/photo/2015/11/21/04/17/grandparents-1054311_1280.jpg"),
 ];
-console.log(users);
-turnOrder(users);
 function renderPlayersPanel(players) {
     try {
         var playersElement_1 = document.querySelectorAll(".playerPanel");
         players.forEach(function (p, i) {
-            p.pCards.forEach(function (c) {
-                return c.renderCard(document.querySelector("#player" + i + "Cards"));
-            });
-            playersElement_1[i].innerHTML = p.chips.toString();
+            console.log(playersElement_1[i]);
+            // p.pCards.forEach((c) =>
+            //   c.renderCard(document.querySelector(`#player${i+1}Cards`) as HTMLElement),
+            // );
+            playersElement_1[i].querySelector(".playerPanel__img img").src = p.imgSrc;
+            playersElement_1[i].querySelector(".playerPanel__inform__chips").innerHTML = p.chips.toString();
+            playersElement_1[i].querySelector(".playerPanel__inform__userName").textContent = p.userName;
         });
     }
     catch (error) {
         console.error(error);
     }
 }
+renderPlayersPanel(users);

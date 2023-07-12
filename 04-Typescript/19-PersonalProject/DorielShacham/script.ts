@@ -25,7 +25,7 @@ class Player {
     this.y = 250; //location start
     this.width = 20; //size of player
     this.height = 20; //size of player
-    this.lives = 3; //amount of lives
+    this.lives = 5; //amount of lives
     this.update = function () {
       if (this.lives <= 0) {
         gameOver = true;
@@ -48,16 +48,16 @@ class Player {
     this.update();
     this.draw();
     if (pressKey == "A" && this.x > 0) {
-      this.x -= 10;
+      this.x -= 20;
     }
     if (pressKey == "D" && this.x < 280) {
-      this.x += 10;
+      this.x += 20;
     }
     if (pressKey == "W" && this.y > 0) {
-      this.y -= 10;
+      this.y -= 20;
     }
     if (pressKey == "S" && this.y < 480) {
-      this.y += 10;
+      this.y += 20;
     }
     this.update();
   }

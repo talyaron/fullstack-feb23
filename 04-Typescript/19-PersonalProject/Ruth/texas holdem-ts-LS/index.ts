@@ -1,4 +1,3 @@
-import { Player } from "./../../DorielShacham/player";
 const cardsNumber = [
   "A",
   "2",
@@ -117,7 +116,7 @@ function checkStatus(cards: Card[]) {
   checkTwoOfAKind(cards);
 }
 
-function checkTwoOfAKind(cards) {
+function checkTwoOfAKind(cards:Card[]) {
   const copiedCards = [...cards];
 
   for (let i = 0; i < copiedCards.length; i++) {
@@ -273,25 +272,32 @@ const users: Player[] = [
     "ruth765",
     "https://cdn.pixabay.com/photo/2015/11/21/04/17/grandparents-1054311_1280.jpg",
   ),
-  // new Player("ruth342"),
-  // new Player("ruth995"),
-  // new Player("ruth6"),
+  new Player(
+    "ruth765",
+    "https://cdn.pixabay.com/photo/2015/11/21/04/17/grandparents-1054311_1280.jpg",
+  ),
+
 ];
 
-console.log(users);
 
-turnOrder(users);
 
 function renderPlayersPanel(players: Player[]) {
   try {
-    const playersElement = document.querySelectorAll(".playerPanel");
+    const playersElement = document.querySelectorAll(".playerPanel") as ;
     players.forEach((p, i) => {
-      p.pCards.forEach((c) =>
-        c.renderCard(document.querySelector(`#player${i}Cards`) as HTMLElement),
-      );
-      playersElement[i].innerHTML = p.chips.toString();
+      console.log(playersElement[i]);
+      
+      // p.pCards.forEach((c) =>
+      //   c.renderCard(document.querySelector(`#player${i+1}Cards`) as HTMLElement),
+      // );
+      playersElement[i].querySelector(`.playerPanel__img img`).src = p.imgSrc
+      playersElement[i].querySelector(`.playerPanel__inform__chips`).innerHTML = p.chips.toString();
+      playersElement[i].querySelector(`.playerPanel__inform__userName`).textContent = p.userName
+      
     });
   } catch (error) {
     console.error(error);
   }
 }
+
+renderPlayersPanel(users)

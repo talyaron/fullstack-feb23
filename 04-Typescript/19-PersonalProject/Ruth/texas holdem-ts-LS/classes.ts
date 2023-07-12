@@ -36,13 +36,12 @@ class Card {
 class Player {
   constructor(
     public userName: string,
-    public imgSrc:string = "",
+    public imgSrc: string = "",
     public chips: number = 100000,
     public isActive: boolean = false,
     public pCards: Card[] = get2RandomCards(),
   ) {
     this.pCards = this.pCards.map((c) => new Card(c.cardNumber, c.cardSign));
-
   }
 
   setActive() {
@@ -54,7 +53,8 @@ class Player {
       this.pCards!.forEach((c) =>
         c.renderCard(document.querySelector(".myPanel__cards") as HTMLElement),
       );
-      document.querySelector(".myPanel__chips")!.innerHTML = this.chips.toString();
+      document.querySelector(".myPanel__chips")!.innerHTML =
+        this.chips.toString();
     } catch (error) {
       console.error(error);
     }
@@ -62,6 +62,6 @@ class Player {
 }
 
 //------------------Dealer------------------------------
-class Dealer{
-  constructor(public sum:number){}
+class Dealer {
+  constructor(public sum: number) {}
 }
