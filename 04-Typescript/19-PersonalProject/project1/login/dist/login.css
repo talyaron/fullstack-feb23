@@ -12,7 +12,7 @@ form {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: -3vw;
+  margin-top: 8vw;
 }
 form input {
   width: 15vw;

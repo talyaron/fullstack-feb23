@@ -13,7 +13,7 @@ body {
   justify-content: space-between;
   border: 1px solid black;
 }
-.gallery__imgs--p i:focus {
+.gallery__imgs--p i:active {
   color: red;
 }
 .gallery__imgs img {
