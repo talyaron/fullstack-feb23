@@ -1,0 +1,56 @@
+.work-log {
+    width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 2px solid #ccc;
+    font-family: Arial, sans-serif;
+    border-spacing: 0;
+}
+
+.work-log h2 {
+    text-align: center;
+}
+
+.work-log-form label,
+.work-log-form input,
+.work-log-form button {
+    display: block;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.work-log-form button {
+    width: auto;
+    margin: 10px auto 0;
+}
+
+.work-hours-table {
+    margin-top: 20px;
+}
+
+.work-hours-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.work-hours-table th,
+.work-hours-table td {
+    padding: 8px;
+    border: 1px solid #ccc;
+    font-weight: bold;
+    text-align: center;
+}
+
+.work-hours-table th {
+    background-color: black;
+    color: white;
+}
+
+.work-hours-table th:first-child,
+.work-hours-table td:first-child {
+    text-align: left;
+}
+
+tbody {
+    background-color: #eeeeee;
+}

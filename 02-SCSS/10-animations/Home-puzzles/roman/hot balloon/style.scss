@@ -1,0 +1,65 @@
+@keyframes ballon {
+    0% {
+        right: 0;
+        top: 0;
+        // scale: (1);
+        // transform: rotate(0deg);
+        transform: scale(1) rotate(-2deg);
+    }
+
+    25% {
+        right: 80%;
+        top: 40%;
+        transform: scale(3) rotate(5deg);
+
+    }
+
+    50% {
+        right: 80%;
+        top: 40%;
+        transform: scale(3) rotate(0deg);
+
+    }
+
+    75% {
+        right: 50%;
+        top: 0;
+        transform: scale(0.5) rotate(2deg);
+    }
+
+
+    100% {
+        right: 50%;
+        top: 20%;
+        // transform: scale(3);
+        transform: scale(3) rotate(0deg);
+    }
+}
+
+
+
+.wrapper {
+    background-image: url(../img/sunny-spring-season-landscape-view_7496-789.avif);
+    background-size: cover;
+    height: 100vh;
+    position: relative;
+
+    .ballon {
+        // position: absolute;
+        // right: 30px;
+        // top:30px;
+
+
+        img {
+            height: 100px;
+            width: 100px;
+            position: absolute;
+            animation: ballon 20s;
+            animation-iteration-count: infinite;
+            animation-direction: alternate;
+            animation-timing-function: ease-in-out;
+
+        }
+
+    }
+}

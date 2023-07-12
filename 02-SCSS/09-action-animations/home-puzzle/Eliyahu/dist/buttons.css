@@ -1,0 +1,73 @@
+button {
+  border: none;
+  background-color: beige;
+}
+
+.btns {
+  transition: all 200ms;
+  user-select: none;
+  position: relative;
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 360px;
+}
+.btns__Mountain:hover {
+  font-weight: bold;
+  font-size: medium;
+  cursor: pointer;
+}
+.btns__Mountain:focus .img {
+  width: 400px;
+  height: 300px;
+  background-image: url(https://images.immediate.co.uk/production/volatile/sites/4/2021/08/mountains-7ddde89.jpg?quality=90&resize=768,574);
+  position: absolute;
+  top: -330px;
+  left: 100px;
+  box-shadow: 2px 2px 6px;
+  background-size: cover;
+}
+.btns__Flower:hover {
+  font-weight: bold;
+  font-size: medium;
+  cursor: pointer;
+}
+.btns__Flower:focus .img {
+  width: 400px;
+  height: 300px;
+  background-image: url(https://img.ltwebstatic.com/images3_pi/2022/07/28/16589962587955399e1044c33543cf29da21ccd703.webp);
+  position: absolute;
+  top: -330px;
+  left: 100px;
+  box-shadow: 2px 2px 6px;
+  background-size: cover;
+}
+.btns__Sea:hover {
+  font-weight: bold;
+  font-size: medium;
+  cursor: pointer;
+}
+.btns__Sea:focus .img {
+  width: 400px;
+  height: 300px;
+  background-image: url(https://images.pexels.com/photos/1001682/pexels-photo-1001682.jpeg?auto=compress&cs=tinysrgb&w=600);
+  position: absolute;
+  top: -330px;
+  left: 100px;
+  box-shadow: 2px 2px 6px;
+  background-size: cover;
+}
+.btns__Fish:hover {
+  font-weight: bold;
+  font-size: medium;
+  cursor: pointer;
+}
+.btns__Fish:focus .img {
+  width: 400px;
+  height: 300px;
+  background-image: url(https://media.cnn.com/api/v1/images/stellar/prod/220309153016-02-rose-veiled-fairy-wrasse-discovery.jpg?c=16x9&q=w_800,c_fill);
+  position: absolute;
+  top: -330px;
+  left: 100px;
+  box-shadow: 2px 2px 6px;
+  background-size: cover;
+}

@@ -1,0 +1,246 @@
+.wrapper {
+    width: 600px;
+    height: 600px;
+    border: 1px solid #000;
+    margin: auto;
+}
+
+$width: 160px;
+$height: 160px;
+
+.bluer {
+    position: relative;
+    top: 305px;
+    left: 380px;
+    transform: rotate(30deg);
+    z-index: 2;
+
+    img {
+        width: $width;
+        height: $height;
+    }
+}
+
+.yelowr {
+    position: relative;
+    top: 5px;
+    left: 365px;
+    transform: rotate(15deg);
+
+    img {
+        width: $width;
+        height: $height;
+    }
+}
+
+.brawnr {
+    position: relative;
+    top: -100px;
+    left: 313px;
+    transform: rotate(10deg);
+    z-index: 2;
+
+    img {
+        width: $width;
+        height: $height;
+    }
+}
+
+.greenr {
+    position: relative;
+    top: -380px;
+    left: 288px;
+    transform: rotate(2deg);
+
+    img {
+        width: 140px;
+        height: 140px;
+    }
+}
+
+.redr {
+    position: relative;
+    top: -485px;
+    left: 262px;
+    transform: rotate(-4deg);
+    z-index: 2;
+
+    img {
+        width: 100px;
+        height: 140px;
+    }
+}
+
+
+
+.bluel {
+    position: relative;
+    top: -630px;
+    left: 180px;
+    transform: rotate(-9deg);
+    z-index: 3;
+
+    img {
+        width: $width;
+        height: $height;
+    }
+}
+
+.yelowl {
+    position: relative;
+    top: -875px;
+    left: 138px;
+    transform: rotate(-12deg);
+
+    img {
+        width: $width;
+        height: $height;
+    }
+}
+
+.brawnl {
+    position: relative;
+    top: -972px;
+    left: 100px;
+    transform: rotate(-18deg);
+    z-index: 2;
+
+    img {
+        width: $width;
+        height: $height;
+    }
+}
+
+.greenl {
+    position: relative;
+    top: -1180px;
+    left: 58px;
+    transform: rotate(-22deg);
+
+
+    img {
+        width: 140px;
+        height: 140px;
+    }
+}
+
+.redl {
+    position: relative;
+    top: -1300px;
+    left: 40px;
+    transform: rotate(-30deg);
+    z-index: 1;
+
+
+    img {
+        width: 100px;
+        height: 140px;
+    }
+}
+
+
+$width: 1px;
+$height: 300px;
+
+.linebluer {
+    position: relative;
+    top: -1290px;
+    left: 395px;
+    transform: rotate(35deg);
+    width: $width;
+    height: $height;
+    border-left: 1px solid blue;
+}
+
+.lineyelowr {
+    position: relative;
+    top: -1603px;
+    left: 370px;
+    transform: rotate(25deg);
+    width: $width;
+    height: $height;
+    border-left: 1px solid rgb(255, 251, 0);
+}
+
+.linebrawnr {
+    position: relative;
+    top: -1909px;
+    left: 358px;
+    transform: rotate(21deg);
+    width: $width;
+    height: $height;
+    border-left: 1px solid brown;
+}
+
+.linegreenr {
+    position: relative;
+    top: -2218px;
+    left: 329px;
+    transform: rotate(10deg);
+    width: $width;
+    width: $width;
+    height: $height;
+    border-left: 1px solid green;
+}
+
+.lineredr {
+    position: relative;
+    top: -2520px;
+    left: 310px;
+    transform: rotate(4deg);
+    width: $width;
+    height: $height;
+    border-left: 1px solid red;
+}
+
+
+
+.linebluel {
+    position: relative;
+    top: -2819px;
+    left: 280px;
+    transform: rotate(-7deg);
+    width: $width;
+    height: $height;
+    border-left: 1px solid blue;
+}
+
+.lineyelowl {
+    position: relative;
+    top: -3116px;
+    left: 265px;
+    transform: rotate(-12deg);
+    width: $width;
+    height: $height;
+    border-left: 1px solid rgb(255, 251, 0);
+}
+
+.linebrawnl {
+    position: relative;
+    top: -3407px;
+    left: 235px;
+    transform: rotate(-23deg);
+    width: $width;
+    height: $height;
+    border-left: 1px solid brown;
+}
+
+.linegreenl {
+    position: relative;
+    top: -3699px;
+    left: 218px;
+    transform: rotate(-29deg);
+    width: $width;
+    height: $height;
+    border-left: 1px solid green;
+}
+
+.lineredl {
+    position: relative;
+    top: -3985px;
+    left: 197px;
+    transform: rotate(-37.5deg);
+    width: $width;
+    height: $height;
+    border-left: 1px solid red;
+}

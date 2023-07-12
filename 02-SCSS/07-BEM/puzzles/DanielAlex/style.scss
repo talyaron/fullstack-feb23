@@ -1,0 +1,229 @@
+*{
+    margin:0;
+    padding: 0;
+}
+
+.categories {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  padding-bottom: 10px;
+  padding-top: 185px;
+
+  &__option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    & div[class^="categories__option__img"] {
+        background-size: cover;
+        height: 140px;
+        width: 145px;
+        border: 0px solid gray;
+        border-radius: 90px;
+        background-color: rgb(231, 230, 230);
+    }
+    
+    &__text {
+    font-size: 22px;
+    margin-top: 8px;
+    }
+
+    &__img {
+    display: flex;
+
+    &--business {
+        background-image: url("./business.webp");
+    }
+
+    &--profession {
+        background-image: url("./professional.webp");
+    }
+
+    &--pet {
+        background-image: url("./pets.webp");
+    }
+
+    &--required {
+        background-image: url("./required.webp");
+    }
+
+    &--yad2 {
+        background-image: url("./yad2.webp");
+    }
+
+    &--car {
+        background-image: url("./car.webp");
+    }
+
+    &--real-estate {
+        background-image: url("./real-estate.webp");
+    }
+    }
+}
+}
+
+.container {
+    margin: auto;
+    display: flex;
+    direction: rtl;
+    box-sizing: border-box;
+    width: 1200px;
+    // padding: 9px 149px;
+    gap: 14px;
+
+    &__item {
+        border: 0px solid rgb(215, 212, 212);
+        border-radius: 14px 14px 8px 8px;
+        box-shadow: 0px 2px 3px 0px rgb(228, 228, 228);
+
+        &__img {
+            cursor: pointer;
+            box-sizing: border-box;
+            border-radius: 8px 8px 0px 0px;
+        }
+
+        &__text {
+            font-family: Rubik,sans-serif;
+            padding: 0px 8px 0px 8px;
+
+        }
+    }
+
+}
+
+<<<<<<< Updated upstream
+.topic {
+    
+    margin: auto;
+    width: 1200px;
+    height: 40px;
+    direction: rtl;
+    font-size: 24px;
+    font-family: 'Arimo', sans-serif;
+    font-weight: 100;
+    margin-bottom: 16px;
+    box-sizing: border-box;
+    padding-top: 18px;
+    margin-top: 37px;
+
+}
+
+.popularServices{
+    margin: auto;
+    width: 1200px;
+    height: 100px;
+    display: flex;
+    gap: 13px;
+    flex-direction: row;
+    direction: rtl;
+    cursor: pointer;
+    &__service{
+        display: flex;
+        flex-direction: row;
+        width: 300px;
+        height: 65px;
+        border: 0.5px solid rgb(229, 219, 219);
+        border-radius: 8px;
+        font-family: 'Arimo', sans-serif;
+        padding: 8px 14px;
+        padding-right: 10px;
+        align-items: center;
+        box-shadow:0px 2px 3px 0px rgb(228, 228, 228);
+        &__icon{
+            height: 57px;
+            width: 57px;
+            display: flex;
+            justify-content: center;
+            padding: 10px;
+            padding-right: 0;
+        }
+        &__title{  
+            flex-direction: row;          
+            &__header{
+                font-size: 14px;
+                box-sizing: border-box;
+                height: 19px;
+                margin-bottom: 0;
+                margin-top: auto;
+            }
+            &__paragraph{
+                font-size: 12px;
+                margin-bottom: auto;
+                margin-top: 0;
+            }
+        
+        }
+    }
+    
+}
+
+.head_topic{
+    margin: auto;
+    width: 1200px;
+    height: 40px;
+    direction: rtl;
+    font-size: 24px;
+    font-family: 'Arimo', sans-serif;
+    font-weight: 100;
+    margin-bottom: 16px;
+    box-sizing: border-box;  
+}
+
+.business{
+    margin: auto;
+    margin-top: 65px;
+    width: 1200px;
+    height: 125px;
+    align-items: center;
+    text-align: center;
+    display: flex;
+    gap: 8px;
+    font-family:'Arimo', sans-serif;
+    box-sizing: border-box;
+    direction: rtl;
+    background-color: hsl(180, 17%, 95%);
+    &__boxheader{
+        font-size: 30px;
+        font-weight: 600;
+        width: 200px;
+    }
+    &__container{
+        display: flex;
+        width: 1000px;
+        gap: 16px;
+        box-sizing: border-box;
+        align-items: flex-start;
+        padding: 38px;
+        &__issue{
+            display: flex;
+            flex-direction: row;
+            text-align: start;
+            box-sizing: border-box;
+            width: 300px;
+            border-radius: 8px;
+            background-color: azure;
+            padding-top: 3px;
+            box-shadow:0px 2px 3px 0px rgb(228, 228, 228);
+            cursor: pointer;
+            &__icon{
+            align-items: center;
+            margin-right: 4px;
+            width: 50px;
+            }
+            &__topic{
+            font-size: 20px;
+            padding: 4px;
+            width: 200px;
+            
+            }
+        }
+    }
+}
+
+=======
+.container{
+    display: flex;
+    flex-direction: row-reverse;
+}
+>>>>>>> Stashed changes

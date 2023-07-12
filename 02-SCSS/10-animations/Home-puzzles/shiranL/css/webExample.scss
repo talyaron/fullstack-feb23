@@ -1,0 +1,64 @@
+// vars
+$border-radius: 10px;
+
+//import
+@import "img";
+@import "btn";
+
+
+.wapper{
+    width: 450px;
+    height: 800px;
+    border-radius: 10px;
+    border: 1px solid black;
+    margin: auto;
+    position: relative;
+}
+.arrow {
+    border: solid rgb(32, 28, 90);
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+  }
+  .right {
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+  }
+
+
+  .firstLine{
+
+        display: flex;
+        flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 5px;
+    margin-left: 50px;
+    font-size: 20px;
+    color: rgb(32, 28, 90);
+    font-family: 'Rubik', sans-serif;
+
+  }
+  .IconsBer{
+    
+    width: 450px;
+    position: absolute;
+    top: 450px;
+    left: 0px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    
+    gap: 50px;
+
+    &__item{
+      width: 55px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+  }

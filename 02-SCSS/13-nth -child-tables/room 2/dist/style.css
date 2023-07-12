@@ -1,0 +1,22 @@
+body {
+  background-color: #f5dcdc;
+}
+body table {
+  margin: 20px;
+  max-width: 80%;
+  text-align: center;
+}
+body table tr:nth-child(2n) {
+  background-image: linear-gradient(to bottom right, #00eeff, #ee50f0);
+}
+body table tr:nth-child(2n+1) {
+  background-image: linear-gradient(to bottom right, #ee50f0, #00eeff);
+}
+body table tr:hover {
+  background-image: linear-gradient(to bottom right, #d76d0a, #57a6ac);
+  transform: scale(1.2);
+}
+body table th:hover {
+  rotate: 180deg;
+  transition: all 1s;
+}

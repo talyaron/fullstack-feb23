@@ -1,0 +1,129 @@
+.wrapper {
+    width: 1050px;
+    height: 1000px;
+    margin: auto;
+}
+
+$width: 200px;
+$height: 200px;
+
+.line5 {
+    width: 1050px;
+    height: 200px;
+
+    .blue {
+        position: relative;
+        left: 50px;
+
+        img {
+            width: $width;
+            height: $height;
+        }
+    }
+
+    .yelow {
+        position: relative;
+        left: 220px;
+        top: -195px;
+
+        img {
+            width: $width;
+            height: $height;
+        }
+    }
+
+    .brawn {
+        position: relative;
+        left: 400px;
+        top: -395px;
+
+        img {
+            width: $width;
+            height: $height;
+        }
+    }
+
+    .green {
+        position: relative;
+        left: 590px;
+        top: -590px;
+
+        img {
+            width: 180px;
+            height: 180px;
+        }
+    }
+
+    .red {
+        position: relative;
+        left: 800px;
+        top: -770px;
+
+        img {
+            width: 140px;
+            height: 180px;
+        }
+    }
+}
+
+
+.line4 {
+    width: 1050px;
+    height: 180px;
+    position: relative;
+    left: 100px;
+
+    .blue {
+        position: relative;
+        left: 50px;
+
+        img {
+            width: $width;
+            height: $height;
+        }
+    }
+
+    .yelow {
+        position: relative;
+        left: 220px;
+        top: -195px;
+
+        img {
+            width: $width;
+            height: $height;
+        }
+    }
+
+    .brawn {
+        position: relative;
+        left: 400px;
+        top: -395px;
+
+        img {
+            width: $width;
+            height: $height;
+        }
+    }
+
+    .green {
+        position: relative;
+        left: 590px;
+        top: -590px;
+
+        img {
+            width: 180px;
+            height: 180px;
+        }
+    }
+
+    .red {
+        position: relative;
+        left: 800px;
+        top: -770px;
+
+        img {
+            width: 140px;
+            height: 180px;
+        }
+    }
+}

@@ -1,0 +1,61 @@
+body {
+  height: 100vh;
+  width: 100vw;
+}
+
+.wrapper {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.wrapper .gameboard {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: repeat(8, 1fr);
+  border: 1px solid black;
+  height: 50em;
+  width: 50em;
+}
+.wrapper .gameboard__box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: grey;
+  position: relative;
+}
+.wrapper .gameboard__box__pawn {
+  height: 75%;
+  width: 75%;
+  background-color: red;
+  border-radius: 50%;
+  position: absolute;
+}
+.wrapper .gameboard #box0, .wrapper .gameboard #box2, .wrapper .gameboard #box4, .wrapper .gameboard #box6, .wrapper .gameboard #box22 {
+  background-color: black;
+}
+.wrapper .gameboard #box8, .wrapper .gameboard #box10, .wrapper .gameboard #box12, .wrapper .gameboard #box14, .wrapper .gameboard #box16, .wrapper .gameboard #box17, .wrapper .gameboard #box19 {
+  background-color: white;
+}
+.wrapper .gameboard #box9, .wrapper .gameboard #box11, .wrapper .gameboard #box13, .wrapper .gameboard #box15, .wrapper .gameboard #box16, .wrapper .gameboard #box18, .wrapper .gameboard #box20 {
+  background-color: black;
+}
+.wrapper .gameboard #box24, .wrapper .gameboard #box26, .wrapper .gameboard #box28, .wrapper .gameboard #box30, .wrapper .gameboard #box32, .wrapper .gameboard #box33, .wrapper .gameboard #box35 {
+  background-color: white;
+}
+.wrapper .gameboard #box25, .wrapper .gameboard #box27, .wrapper .gameboard #box29, .wrapper .gameboard #box31, .wrapper .gameboard #box32, .wrapper .gameboard #box34, .wrapper .gameboard #box36, .wrapper .gameboard #box38 {
+  background-color: black;
+}
+.wrapper .gameboard #box40, .wrapper .gameboard #box42, .wrapper .gameboard #box44, .wrapper .gameboard #box46, .wrapper .gameboard #box48, .wrapper .gameboard #box49, .wrapper .gameboard #box51 {
+  background-color: white;
+}
+.wrapper .gameboard #box41, .wrapper .gameboard #box43, .wrapper .gameboard #box45, .wrapper .gameboard #box47, .wrapper .gameboard #box48, .wrapper .gameboard #box50, .wrapper .gameboard #box52, .wrapper .gameboard #box54 {
+  background-color: black;
+}
+.wrapper .gameboard #box56, .wrapper .gameboard #box58, .wrapper .gameboard #box60, .wrapper .gameboard #box62 {
+  background-color: white;
+}
+.wrapper .gameboard #box57, .wrapper .gameboard #box59, .wrapper .gameboard #box61, .wrapper .gameboard #box63, .wrapper .gameboard #box64 {
+  background-color: black;
+}

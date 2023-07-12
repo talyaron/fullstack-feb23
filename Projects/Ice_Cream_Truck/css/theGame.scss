@@ -1,6 +1,18 @@
 body {
-    height: 96vh;
+    height: 97vh;
     align-items: center;
+    background: linear-gradient(rgb(0, 38, 250), rgb(131, 214, 255),rgb(133, 72, 3), rgb(93, 50, 1));
+
+}
+#mainName{
+    position: absolute;
+    z-index: 3;
+    width: 98vw;
+    text-align: center;
+    font-size: 29px;
+    margin-top: -25px;
+    font-family: 'Annie Use Your Telescope', cursive;
+
 }
 
 .crop {
@@ -43,13 +55,13 @@ body {
     display: flex;
     gap: 14px;
     position: absolute;
-    bottom: 85px;
-    right: 400px;
+    bottom: 14vh;
+    right: 31.2vw;
 }
 
 .iceCream {
     width: 80px;
-    height: 70px;
+    height: 80px;
     border-radius: 0px 0px 5px 5px;
     border-bottom: solid 2px black;
     border-left: solid 2px black;
@@ -59,15 +71,71 @@ body {
     color: rgb(255, 255, 255);
     text-shadow: 1px 1px 2px black;
     font-size: large;
-    // padding: 10px 0px 0px 0px;
     line-height: 100px;
+
     &__strawberry {
-        background-color: rgb(249, 51, 51);
+        background-color: #f93333;
     }
+
     &__banana {
-        background-color: rgb(230, 255, 89);
+        background-color: #e6ff59;
     }
+
     &__chocolate {
-        background-color: rgb(126, 65, 0);
+        background-color: #9c5304;
+box-shadow: 0px 0px 4px 5px rgb(255, 255, 185);   
     }
 }
+
+#lives {
+    width: 190px;
+    height: 60px;
+    position: absolute;
+    top: 12px;
+    left: 20px;
+    border-radius: 25px;
+    border: 2px solid black;
+    background-color: rgb(188, 220, 248);
+
+    img {
+        height: 50px;
+        margin: -5px;
+        margin-top: 3px;
+    }
+}
+
+.score {
+    height: 180px;
+    position: absolute;
+    top: 100px;
+    right: 10px;
+
+    img {
+        width: 130px;
+        height: 180px;
+    }
+
+    #color {
+        position: absolute;
+        top: 0px;
+        right: 0px;
+
+    }
+
+    .cover {
+        width: 130px;
+        height: 180px;
+        overflow: hidden;
+        position: absolute;
+        top: -10px;
+        right: 10px;
+    }
+
+    .cover img {
+
+        width: 130px;
+        height: 180px;
+        margin: 10px;
+    }
+}
+

@@ -1,0 +1,169 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.wrapper {
+  background-color: rgb(206, 255, 234);
+  height: 100vh;
+  position: relative;
+  text-align: center;
+  background-size: cover;
+}
+.wrapper audio {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+}
+.wrapper__red {
+  border: none;
+  -webkit-animation-name: redballoon;
+          animation-name: redballoon;
+  position: relative;
+  -webkit-animation-duration: 7s;
+          animation-duration: 7s;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  background-color: rgba(255, 0, 0, 0);
+}
+.wrapper__red img {
+  width: 200px;
+  height: 200px;
+}
+.wrapper__red:hover {
+  cursor: url(https://cur.cursors-4u.net/mechanics/mec-2/mec110.cur), auto;
+}
+.wrapper__red:focus {
+  background-image: url(./img/redconfetti.png);
+  background-size: cover;
+  border-radius: 40%;
+  -webkit-animation-name: redconfetti;
+          animation-name: redconfetti;
+  -webkit-animation-duration: 5s;
+          animation-duration: 5s;
+  -webkit-animation-iteration-count: 1;
+          animation-iteration-count: 1;
+  position: relative;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+.wrapper__red:focus img {
+  opacity: 0;
+}
+.wrapper__blue {
+  border: none;
+  -webkit-animation-name: blueballoon;
+          animation-name: blueballoon;
+  position: relative;
+  -webkit-animation-duration: 8s;
+          animation-duration: 8s;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  background-color: rgba(255, 0, 0, 0);
+}
+.wrapper__blue img {
+  width: 200px;
+  height: 200px;
+}
+.wrapper__blue:hover {
+  cursor: url(https://cur.cursors-4u.net/mechanics/mec-2/mec110.cur), auto;
+}
+.wrapper__blue:focus {
+  background-image: url(./img/blueconfetti.png);
+  background-size: cover;
+  border-radius: 50%;
+  -webkit-animation-name: blueconfetti;
+          animation-name: blueconfetti;
+  -webkit-animation-duration: 5s;
+          animation-duration: 5s;
+  -webkit-animation-iteration-count: 1;
+          animation-iteration-count: 1;
+  position: relative;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+.wrapper__blue:focus img {
+  opacity: 0;
+}
+
+@-webkit-keyframes redballoon {
+  from {
+    top: 110vh;
+  }
+  to {
+    top: -25vh;
+  }
+}
+
+@keyframes redballoon {
+  from {
+    top: 110vh;
+  }
+  to {
+    top: -25vh;
+  }
+}
+@-webkit-keyframes blueballoon {
+  from {
+    top: 110vh;
+  }
+  to {
+    top: -25vh;
+  }
+}
+@keyframes blueballoon {
+  from {
+    top: 110vh;
+  }
+  to {
+    top: -25vh;
+  }
+}
+@-webkit-keyframes redconfetti {
+  from {
+    top: 80vh;
+    width: 0px;
+    height: 0px;
+  }
+  to {
+    top: -30vh;
+    width: 250px;
+    height: 250px;
+  }
+}
+@keyframes redconfetti {
+  from {
+    top: 80vh;
+    width: 0px;
+    height: 0px;
+  }
+  to {
+    top: -30vh;
+    width: 250px;
+    height: 250px;
+  }
+}
+@-webkit-keyframes blueconfetti {
+  from {
+    top: 80vh;
+    width: 0px;
+    height: 0px;
+  }
+  to {
+    top: -30vh;
+    width: 250px;
+    height: 250px;
+  }
+}
+@keyframes blueconfetti {
+  from {
+    top: 80vh;
+    width: 0px;
+    height: 0px;
+  }
+  to {
+    top: -30vh;
+    width: 250px;
+    height: 250px;
+  }
+}/*# sourceMappingURL=stayl.css.map */

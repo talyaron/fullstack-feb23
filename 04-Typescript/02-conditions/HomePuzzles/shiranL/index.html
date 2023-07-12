@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="./scss/dist/style.css">
+    <title>Document</title>
+</head>
+<body>
+
+    <div class="wapper">
+          <label for="fname">First Name</label>
+          <input type="text" id="fname" name="firstname" placeholder="Your name..">
+      
+          <label for="lname">Last Name</label>
+          <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+
+          <label for="weight">Weight</label>
+          <input type="text" id="weight" class="height-input-field" name="weight" placeholder="Your weight..">
+
+          <label for="height">Height</label>
+          <input type="text" id="height" class="weight-input-field" name="height" placeholder="Your height..">
+      
+          <label for="gender">Gender</label>
+          <select id="gender" name="Gender">
+            <option value="male">male</option>
+            <option value="female">female</option>
+          </select>
+
+          <input type="submit" value="Submit" onclick="Myfunc()">
+
+          <form id="details" action="./action_page.html">
+            <input type="submit" value="details" />
+        </form>
+             <h3 dir="rtl" id="result"></h3>
+            <div  class="imgDiv">
+                <img id="fatIMG" src="https://img.freepik.com/free-vector/addicted-junk-food-snacks_53876-40779.jpg?w=826&t=st=1683711147~exp=1683711747~hmac=b95c357db18092a11b2ce97de38d5c85da0aad374ab0f74eedf758845e600785" alt="">
+
+                <img id="thinIMG" src="https://img.freepik.com/free-photo/funny-sporty-nerd-shows-biceps-muscles-wears-sport-gloves-shorts-has-serious-strict-expression-wants-have-strong-body-doesnt-want-be-weak-poses-against-yellow-wall_273609-39560.jpg?w=1380&t=st=1683711757~exp=1683712357~hmac=98f8461e371a0f618b6b7bbabb5ebf0b76cb80dc4a974d80f374f8607368d100" alt="">
+
+                <img id="healthyIMG" src="https://img.freepik.com/premium-vector/healthy-lifestyle-heart-emblem_81894-1059.jpg?w=996" alt="">
+
+            </div>
+      
+        
+        
+      </div>
+    <script src="./scss/dist/index.js" ></script>
+</body>
+</html>

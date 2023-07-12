@@ -1,0 +1,64 @@
+//vars
+$dadrkTeal:#00796B;
+$lightTeal:#B2DFDB;
+$primeryTeal:#009688;
+$dadrkPink:#C2185B;
+$lightPink:#F8BBD0;
+$primeryPink:#FF4081;
+
+@import "MyBottuns";
+@import "images";
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    background-image:url("https://img.freepik.com/free-vector/hand-painted-watercolor-pastel-sky-background_23-2148902029.jpg?w=826&t=st=1680271989~exp=1680272589~hmac=d8a87fbbf1238154f21fa00c7f77d63b0074f6b5d79bddff3bf83935142f0077"),;
+    background-size: cover;
+}
+.container{ 
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+}
+.wapper{
+    flex: 1;
+    padding-top: 50px;
+    border-radius: 10px;
+    width: 900px;
+    margin: 100px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    gap: 21px;
+
+    &:hover{
+        box-shadow: 5px 5px 8px blue, 10px 10px 8px red, 15px 15px 8px green;
+       }
+
+}
+
+
+.MyTestDiv{
+
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: space-between;
+    gap: 25px;
+    
+    }
+.sibling-active:hover ~ .sibling-highlight {
+    cursor: pointer;
+}
+  
+  .sibling-active:active ~ .sibling-highlight {
+    width: 600px;
+    height: 600px;
+   background-size: cover;
+    background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-SjeaKtDTIr6qLXbjvx2HISLLvA0QxF43Gw&usqp=CAU");
+    
+  }
+  
+

@@ -1,0 +1,52 @@
+body{height: 100vh; width: 100vw; }
+.wrapper{
+    height: 100vh; width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .gameboard{
+        display: grid;
+        grid-template-columns: repeat(8,1fr) ;
+        grid-template-rows: repeat(8,1fr) ;
+       border: 1px solid black;
+       &__box{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: grey;
+        position: relative;
+            &__pawn{
+                height: 75%;
+                width: 75%;
+                background-color: red;
+                border-radius: 50%;
+                position: absolute;
+            }
+       }
+        height: 50em;
+        width: 50em  ;
+        
+      
+        #box0,#box2,#box4,#box6,#box22{
+            background-color: black;}
+    
+        #box8,#box10,#box12,#box14,#box16,#box17,#box19{
+            background-color: white;}
+        #box9,#box11,#box13,#box15,#box16,#box18,#box20{
+            background-color: black;}
+        #box24,#box26,#box28,#box30,#box32,#box33,#box35{
+            background-color: white;}
+        #box25,#box27,#box29,#box31,#box32,#box34,#box36,#box38{
+            background-color: black;}
+        #box40,#box42,#box44,#box46,#box48,#box49,#box51{
+            background-color: white;}
+        #box41,#box43,#box45,#box47,#box48,#box50,#box52,#box54{
+            background-color: black;}
+        #box56,#box58,#box60,#box62{
+            background-color: white;}
+        #box57,#box59,#box61,#box63,#box64{
+            background-color: black;}
+        
+      
+    }
+}

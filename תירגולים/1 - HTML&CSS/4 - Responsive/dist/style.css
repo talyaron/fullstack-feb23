@@ -1,0 +1,34 @@
+.wrapper {
+  width: clamp(250px, 80%, 1440px);
+  width: 250px;
+}
+
+@media only screen and (min-width: 768px) {
+  .wrapper {
+    width: 500px;
+  }
+}
+
+.wrapper__topElement {
+  background: linear-gradient(55deg, #b2a9f5 49%, #05f1db 100%);
+}
+
+.wrapper__topElement--articles {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  font-size: 1.5rem;
+}
+
+@media only screen and (min-width: 768px) {
+  .wrapper__topElement--articles {
+    font-size: 2rem;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media only screen and (min-width: 1440px) {
+  .wrapper__topElement--articles {
+    font-size: 3rem;
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

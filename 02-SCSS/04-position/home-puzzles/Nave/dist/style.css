@@ -1,0 +1,88 @@
+.main {
+  background-color: white;
+  height: 100vh;
+}
+
+.baloon {
+  margin-top: 50px;
+  height: 38vh;
+  width: 110px;
+}
+
+.pink {
+  position: absolute;
+  left: 560px;
+  top: 15px;
+  transform: rotate(-41deg);
+  z-index: 2;
+}
+
+.purp {
+  position: absolute;
+  left: 575px;
+  top: 5px;
+  transform: rotate(-20deg);
+  z-index: 1;
+}
+
+.green {
+  position: absolute;
+  left: 620px;
+  transform: rotate(2deg);
+  z-index: 3;
+}
+
+.blue {
+  position: absolute;
+  left: 590px;
+  top: -5px;
+  transform: rotate(-16deg);
+  z-index: 2;
+}
+
+.orange {
+  position: absolute;
+  left: 630px;
+  top: -20px;
+  transform: rotate(-20deg);
+  z-index: 3;
+}
+
+.red {
+  position: absolute;
+  left: 640px;
+  top: -12px;
+  transform: rotate(6deg);
+  z-index: 1;
+}
+
+.pinky {
+  position: absolute;
+  left: 680px;
+  top: -12px;
+  transform: rotate(17deg);
+  z-index: 2;
+}
+
+.greeny {
+  position: absolute;
+  left: 710px;
+  transform: rotate(23deg);
+  z-index: 0;
+}
+
+.yellow {
+  position: absolute;
+  left: 725px;
+  top: 29px;
+  transform: rotate(47deg);
+  z-index: 0;
+}
+
+.bluee {
+  position: absolute;
+  left: 660px;
+  top: -2.7px;
+  transform: rotate(5deg);
+  z-index: 0;
+}

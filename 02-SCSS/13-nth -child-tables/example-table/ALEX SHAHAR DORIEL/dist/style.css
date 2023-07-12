@@ -1,0 +1,31 @@
+table {
+  margin: auto;
+  width: 900px;
+}
+
+tr:nth-child(2n+2) {
+  background-color: greenyellow;
+  text-align: left;
+}
+
+table, th, td {
+  border: 1px solid lawngreen;
+  border-collapse: collapse;
+  padding: 20px;
+}
+
+tr:nth-child(odd) {
+  background-color: forestgreen;
+}
+
+tr:hover {
+  background-color: aqua;
+  transform: scale(1.1);
+  transform-origin: center;
+  transition: 1.5s;
+}
+
+th {
+  text-align: center;
+  font-size: 25px;
+}

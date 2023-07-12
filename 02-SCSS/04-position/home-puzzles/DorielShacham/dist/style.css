@@ -1,0 +1,109 @@
+body {
+  width: 100%;
+  height: 100%;
+}
+
+.container {
+  width: 100px;
+  height: 600px;
+}
+
+.row {
+  width: 100%;
+  height: 200px;
+}
+.row .blue {
+  position: relative;
+  left: 50px;
+}
+.row .blue img {
+  width: 200px;
+  height: 200px;
+}
+.row .yellow {
+  position: relative;
+  left: 220px;
+  top: -195px;
+}
+.row .yellow img {
+  width: 200px;
+  height: 200px;
+}
+.row .brown {
+  position: relative;
+  left: 400px;
+  top: -395px;
+}
+.row .brown img {
+  width: 200px;
+  height: 200px;
+}
+.row .green {
+  position: relative;
+  left: 590px;
+  top: -590px;
+}
+.row .green img {
+  width: 180px;
+  height: 180px;
+}
+.row .red {
+  position: relative;
+  right: -800px;
+  top: -770px;
+}
+.row .red img {
+  width: 140px;
+  height: 180px;
+}
+
+.shortRow {
+  width: 100%;
+  height: 200px;
+  position: relative;
+  left: 100px;
+}
+.shortRow .blue {
+  position: relative;
+  left: 50px;
+}
+.shortRow .blue img {
+  width: 200px;
+  height: 200px;
+}
+.shortRow .yellow {
+  position: relative;
+  left: 220px;
+  top: -195px;
+}
+.shortRow .yellow img {
+  width: 200px;
+  height: 200px;
+}
+.shortRow .brown {
+  position: relative;
+  left: 400px;
+  top: -395px;
+}
+.shortRow .brown img {
+  width: 200px;
+  height: 200px;
+}
+.shortRow .green {
+  position: relative;
+  left: 590px;
+  top: -590px;
+}
+.shortRow .green img {
+  width: 180px;
+  height: 180px;
+}
+.shortRow .red {
+  position: relative;
+  left: 800px;
+  top: -770px;
+}
+.shortRow .red img {
+  width: 140px;
+  height: 180px;
+}

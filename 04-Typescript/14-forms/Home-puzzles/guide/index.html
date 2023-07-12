@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./dist/style.css">
+</head>
+<body>
+    <form onsubmit="handleImg(event)">
+        <input class="pic" placeholder="place img url" type="text" name="userImg" alt="img" required>
+        <input class="picSize" placeholder="insert size of img" type="number" name="imgSize" required>
+        <button type="submit">Submit</button>
+    </form>
+    <div id="root" class="root"></div>
+    <script src="./dist/script.js"></script>
+</body>
+</html>

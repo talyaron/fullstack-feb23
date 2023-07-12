@@ -1,0 +1,24 @@
+.wrapper {
+  width: 60vw;
+  height: 60vh;
+}
+.wrapper .box {
+  width: 12.5%;
+  height: 12.5%;
+}
+.wrapper .rows {
+  display: flex;
+}
+.wrapper .rows:nth-child(odd) .box:nth-child(odd) {
+  background-color: black;
+}
+.wrapper .rows:nth-child(even) .box:nth-child(2n) {
+  background-color: black;
+}
+.wrapper .box img {
+  opacity: 0;
+  width: 100%;
+}
+.wrapper .box:focus img {
+  opacity: 1;
+}

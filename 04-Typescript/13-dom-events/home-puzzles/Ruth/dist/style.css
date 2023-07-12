@@ -1,0 +1,18 @@
+body {
+  background-color: #bdfce7;
+  overflow: hidden;
+}
+
+.dog {
+  width: 100px;
+  position: absolute;
+  top: 30px;
+  z-index: 2;
+}
+
+.kennel {
+  width: 150px;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+}

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./dist/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+</head>
+<body>
+
+<div class="tab">
+    <button class="tablinks" onclick="openCity(event, 'river')" id="defaultOpen">image 1</button>  
+    <button class="tablinks" onclick="openCity(event, 'forest')">image 2</button>
+  <button class="tablinks" onclick="openCity(event, 'desert')">image 3</button>
+  <button class="tablinks" onclick="openCity(event, 'waterfall')">image 4</button>
+
+</div>
+
+<div id="river" class="tabcontent">
+<img class="img" src="https://historyuk.s3.eu-west-2.amazonaws.com/s3fs-public/styles/860x430/public/2022-05/The%20Amazon%20river-min.jpg?itok=7PAk-LmM">
+</div>
+
+<div id="forest" class="tabcontent">
+    <img class="img" src="https://www.eea.europa.eu/highlights/eight-facts-about-europe2019s-forest-ecosystems/image_print">
+</div>
+
+<div id="desert" class="tabcontent">
+    <img class="img" src="https://cdn.britannica.com/57/151657-050-4443534D/Camel-caravan-desert-sand-dunes-Sahara-North.jpg?w=600&q=60">
+</div>
+<div id="waterfall" class="tabcontent">
+    <img class="img" src="https://www.travelandleisure.com/thmb/kkunanwydHnsdaIIUb_I62gufSk=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/victoria-falls-zambia-zimbabwe-WATERFALLS1021-253648b330744754a59a5d7721572c97.jpg">
+</div>
+<script>
+    function openCity(evt, cityName) {
+      var i, tabcontent, tablinks;
+      tabcontent = document.getElementsByClassName("tabcontent");
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+      }
+      tablinks = document.getElementsByClassName("tablinks");
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+      }
+      document.getElementById(cityName).style.display = "block";
+      evt.currentTarget.className += " active";
+    }
+    
+    // Get the element with id="defaultOpen" and click on it
+    document.getElementById("defaultOpen").click();
+    </script>
+   
+
+</body>
+</html>

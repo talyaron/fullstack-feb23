@@ -1,0 +1,43 @@
+.clowns {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+.clowns .clown {
+  position: relative;
+}
+.clowns .clown img {
+  width: 150px;
+  height: 150px;
+}
+
+.btns {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  gap: 20px;
+  z-index: 1;
+}
+
+.Mybtn {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+  background-image: linear-gradient(to right, #7ca1f1, #DD2476);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  z-index: 2;
+}
+
+.Mybtn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+}
+
+.Mybtn:active {
+  transform: scale(0.95);
+}

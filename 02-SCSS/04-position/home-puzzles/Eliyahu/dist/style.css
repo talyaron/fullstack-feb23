@@ -1,0 +1,102 @@
+body {
+  background-color: rgba(145, 248, 214, 0.352);
+}
+
+.wrapper h1 {
+  color: #130080;
+  padding: 100px 610px 0px 0px;
+}
+.wrapper img {
+  position: absolute;
+  top: 20px;
+  left: 80px;
+  border: 6px dotted;
+  border-radius: 50%;
+  z-index: -1;
+}
+
+.bln img {
+  position: absolute;
+}
+
+.yellow img {
+  height: 140px;
+  width: 80px;
+  left: 315px;
+  top: 220px;
+  z-index: 1;
+}
+
+.red img {
+  height: 120px;
+  width: 90px;
+  left: 280px;
+  top: calc( 50vw + 40px);
+  transform: rotate(-17deg);
+}
+
+.purple img {
+  height: 140px;
+  width: 80px;
+  left: 310px;
+  transform: rotate(5deg);
+  top: 180px;
+}
+
+.pink img {
+  height: 160px;
+  width: 70px;
+  left: 355px;
+  transform: rotate(15deg);
+  top: 180px;
+}
+
+.orange img {
+  height: 120px;
+  width: 80px;
+  left: 365px;
+  top: 220px;
+  transform: rotate(15deg);
+}
+
+.green2 img {
+  height: 120px;
+  width: 85px;
+  left: 355px;
+  top: 220px;
+  transform: rotate(45deg);
+}
+
+.green img {
+  height: 140px;
+  width: 80px;
+  left: 295px;
+  top: 203px;
+  transform: rotate(-35deg);
+}
+
+.gold img {
+  height: 120px;
+  width: 50px;
+  left: 350px;
+  top: 220px;
+  transform: rotate(15deg);
+  z-index: 1;
+}
+
+.blue2 img {
+  height: 140px;
+  width: 95px;
+  left: 315px;
+  top: 192px;
+  transform: rotate(3deg);
+  z-index: 0;
+}
+
+.blue img {
+  height: 140px;
+  width: 80px;
+  left: 305px;
+  top: 215px;
+  transform: rotate(-7deg);
+}

@@ -1,0 +1,20 @@
+.wrapper {
+  display: flex;
+  background-color: beige;
+  gap: 60px;
+
+  height: 600px;
+
+
+  .box {
+    background-color: teal;
+    height: 100px;
+    // width: 100px;
+    color: white;
+    flex: 1;
+  }
+
+  .wide {
+    flex: 2;
+  }
+}

@@ -1,0 +1,17 @@
+$top: -420px;
+$left: -135px; 
+$box-shadow: 4px 4px 12px rgba(36, 35, 35, 0.426);
+$width: 700px;
+$height: 400px;
+
+@import "bottuns";
+
+.wrapper{
+    position: relative;
+    border: 2px solid rgb(83, 138, 169);
+    width: 800px;
+    height: 500px;
+    margin: auto;
+    border-radius: 10px;
+    font-family: 'Open Sans', sans-serif;
+}

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task1+2</title>
+    <link rel="stylesheet" href="./dist/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1 style="color: white; position: absolute;top: 10px; left: 400px;">CLICK THE BALLONS</h1>
+        <div class="ballonOne" onClick="boomOne()">
+            <img class="ballon first" src="https://cdn-icons-png.flaticon.com/512/1789/1789858.png">
+        </div>
+        <div class="ballonTwo" onClick="boomTwo()">
+            <img class="ballon second" src="https://cdn-icons-png.flaticon.com/512/1789/1789858.png">
+        </div>
+        <div class="ballonThree" onClick="boomThree()">
+            <img class="ballon third" src="https://cdn-icons-png.flaticon.com/512/1789/1789858.png">
+        </div>
+        <div class="ballonFour" onClick="boomFour()">
+            <img class="ballon fourth" src="https://cdn-icons-png.flaticon.com/512/1789/1789858.png">
+        </div>
+        <div class="ballonFive" onClick="boomFive()">
+            <img class="ballon fifth" src="https://cdn-icons-png.flaticon.com/512/1789/1789858.png">
+        </div>
+    </div>
+    <script>
+        function boomOne(){
+            var p = document.querySelector("body > div > div.ballonOne");
+            document.getElementsByClassName("ballon")
+                p.style.display = 'none';
+            }
+
+            function boomTwo(){
+            var p = document.querySelector("body > div > div.ballonTwo");
+            document.getElementsByClassName("ballon")
+                p.style.display = 'none';
+            }
+
+
+            function boomThree(){
+            var p = document.querySelector("body > div > div.ballonThree");
+            document.getElementsByClassName("ballon")
+                p.style.display = 'none';
+            }
+
+
+            function boomFour(){
+            var p = document.querySelector("body > div > div.ballonFour");
+            document.getElementsByClassName("ballon")
+                p.style.display = 'none';
+            }
+
+
+            function boomFive(){
+            var p = document.querySelector("body > div > div.ballonFive");
+            document.getElementsByClassName("ballon")
+                p.style.display = 'none';
+            }
+    </script>
+</body>
+</html>

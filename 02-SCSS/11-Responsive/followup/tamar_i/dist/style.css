@@ -1,0 +1,25 @@
+body {
+  display: flex;
+  gap: 5px;
+}
+
+.box {
+  width: 100px;
+  height: 100px;
+  background-color: blue;
+<<<<<<< HEAD
+  flex: 1;
+}
+
+@media only screen and (max-width: 600px) {
+  body {
+    flex-direction: column;
+  }
+
+  .box {
+    height: 100px;
+    flex: none;
+  }
+=======
+>>>>>>> main
+}

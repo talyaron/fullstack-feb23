@@ -1,0 +1,41 @@
+.Frames {
+    position: absolute;
+    left: 150px;
+    top: 30px;
+    display: block;
+
+
+    div {
+        display: none;
+        &:target {
+            display: block;
+        } 
+    }
+
+    img {
+        width: 700px;
+        height: 360px;
+       
+    }
+
+
+    }
+    
+    a :active {
+        transform  : all 0.3s ease-out ;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

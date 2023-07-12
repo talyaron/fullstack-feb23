@@ -1,0 +1,481 @@
+.wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100ch;
+  margin: auto;
+  direction: rtl;
+}
+.wrapper .rec {
+  font-family: "open sans";
+}
+.wrapper .foryou {
+  font-family: "open sans";
+  margin: auto;
+  width: 100ch;
+  height: 100px;
+  display: flex;
+  gap: 10px;
+  background-size: cover;
+}
+.wrapper .foryou__polo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  border: 0.1px solid #ebebeb;
+  border-radius: 10px;
+}
+.wrapper .foryou__polo__photo {
+  background-image: url("./171838_volkswagen-polo70tsilife-variant-jun22-hqn.jpg");
+  background-size: cover;
+  height: 100px;
+  width: 200px;
+}
+.wrapper .foryou__polo__text {
+  background-color: white;
+  color: black;
+  text-align: right;
+  font-size: 10px;
+  padding: 4px;
+}
+.wrapper .foryou__polo__text__subtext {
+  background-color: white;
+  color: black;
+  text-align: right;
+  font-size: 10px;
+  padding-right: 4px;
+}
+.wrapper .foryou__i10 {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  border: 0.1px solid #ebebeb;
+}
+.wrapper .foryou__i10__photo {
+  background-image: url("./Hyundai-Grand-i10-Nios-200120231541.jpg");
+  background-size: cover;
+  width: 200px;
+  height: 80%;
+}
+.wrapper .foryou__i10__text {
+  background-color: white;
+  color: black;
+  text-align: right;
+  font-size: 10px;
+  padding: 4px;
+}
+.wrapper .foryou__i10__text__subtext {
+  background-color: white;
+  color: black;
+  text-align: right;
+  font-size: 10px;
+  padding-right: 4px;
+}
+.wrapper .foryou__seat {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  border: 0.1px solid #ebebeb;
+}
+.wrapper .foryou__seat__photo {
+  background-image: url("./seat-ibiza-xcellence-colour-sapphire-blue.avif");
+  background-size: cover;
+  height: 80%;
+  width: 200px;
+}
+.wrapper .foryou__seat__text {
+  background-color: white;
+  color: black;
+  text-align: right;
+  font-size: 10px;
+  padding: 4px;
+}
+.wrapper .foryou__seat__text__subtext {
+  background-color: white;
+  color: black;
+  text-align: right;
+  font-size: 10px;
+  padding-right: 4px;
+}
+.wrapper .foryou__chevi {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  border: 0.1px solid #ebebeb;
+}
+.wrapper .foryou__chevi__photo {
+  background-image: url("./color-Mystic-Blue.jpg");
+  background-size: cover;
+  height: 80%;
+}
+.wrapper .foryou__chevi__text {
+  background-color: white;
+  color: black;
+  text-align: right;
+  padding: 4px;
+  font-size: 10px;
+}
+.wrapper .foryou__chevi__text__subtext {
+  background-color: white;
+  color: black;
+  text-align: right;
+  font-size: 10px;
+  padding-right: 4px;
+}
+.wrapper .pop {
+  margin-top: 100px;
+  font-family: "open sans";
+}
+.wrapper .popular {
+  font-family: "open sans";
+  margin: auto;
+  width: 100ch;
+  height: 60px;
+  display: flex;
+  gap: 10px;
+  background-size: cover;
+  direction: rtl;
+}
+.wrapper .popular__doron {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  border: 0.1px solid #ebebeb;
+  border-radius: 10px;
+}
+.wrapper .popular__doron__photo {
+  background-image: url("/02-SCSS/07-BEM/puzzles/ROOM7/Tamar/dist/doeon.png");
+  background-size: cover;
+  height: 20px;
+  width: 20px;
+  position: relative;
+  float: right;
+}
+.wrapper .popular__doron__text {
+  background-color: white;
+  color: black;
+  font-weight: bold;
+  text-align: right;
+  font-size: 10px;
+  padding: 4px;
+}
+.wrapper .popular__doron__text__subtext {
+  background-color: white;
+  color: black;
+  text-align: right;
+  font-size: 10px;
+  float: left;
+}
+.wrapper .popular__price {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  border: 0.1px solid #ebebeb;
+  border-radius: 10px;
+}
+.wrapper .popular__price__photo {
+  background-image: url("/02-SCSS/07-BEM/puzzles/ROOM7/Tamar/dist/price.png");
+  background-size: cover;
+  height: 20px;
+  width: 20px;
+  position: absolute;
+  float: left;
+  max-width: 100%;
+}
+.wrapper .popular__price__text {
+  background-color: white;
+  color: black;
+  font-weight: bold;
+  text-align: right;
+  font-size: 10px;
+  padding: 4px;
+}
+.wrapper .popular__price__text__subtext {
+  background-color: white;
+  color: black;
+  text-align: right;
+  font-size: 10px;
+  padding-right: 4px;
+}
+.wrapper .popular__cal {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  border: 0.1px solid #ebebeb;
+  border-radius: 10px;
+}
+.wrapper .popular__cal__photo {
+  background-image: url("/02-SCSS/07-BEM/puzzles/ROOM7/Tamar/dist/cal.png");
+  background-size: cover;
+  height: 20px;
+  width: 20px;
+  position: absolute;
+  float: left;
+}
+.wrapper .popular__cal__text {
+  background-color: white;
+  color: black;
+  font-weight: bold;
+  text-align: right;
+  font-size: 10px;
+  padding: 4px;
+}
+.wrapper .popular__cal__text__subtext {
+  background-color: white;
+  color: black;
+  text-align: right;
+  font-size: 10px;
+  padding-right: 4px;
+}
+.wrapper .popular__yzer {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  border: 0.1px solid #ebebeb;
+  border-radius: 10px;
+}
+.wrapper .popular__yzer__photo {
+  background-image: url("/02-SCSS/07-BEM/puzzles/ROOM7/Tamar/dist/yzer.png");
+  background-size: cover;
+  height: 50px;
+  width: 50px;
+  position: relative;
+  right: -10px;
+  top: 10px;
+  float: right;
+}
+.wrapper .popular__yzer__text {
+  background-color: white;
+  color: black;
+  font-weight: bold;
+  text-align: right;
+  font-size: 10px;
+  padding: 4px;
+}
+.wrapper .popular__yzer__text__subtext {
+  background-color: white;
+  color: black;
+  text-align: right;
+  font-size: 10px;
+  padding-right: 4px;
+}
+
+.searchheadline {
+  font-family: "open sans";
+  margin-top: 20px;
+}
+
+.search {
+  font-family: "open sans";
+  margin: auto;
+  margin-top: 20px;
+  width: 100ch;
+  height: 150px;
+  display: flex;
+  gap: 10px;
+  background-size: cover;
+}
+.search__car {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  border: 0.1px solid #ebebeb;
+  border-radius: 10px;
+}
+.search__car__photo {
+  background-image: url("https://www.yad2.co.il/home/_next/image?url=https%3A%2F%2Fassets.yad2.co.il%2Fhomepage%2Fpopular-searches%2Fvehicles.png&w=256&q=75");
+  background-size: cover;
+  height: 100px;
+  width: 200px;
+}
+.search__car__text {
+  background-color: white;
+  color: black;
+  text-align: right;
+  font-size: 10px;
+  padding: 4px;
+}
+.search__home {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  border: 0.1px solid #ebebeb;
+  border-radius: 10px;
+}
+.search__home__photo {
+  background-image: url("https://www.yad2.co.il/home/_next/image?url=https%3A%2F%2Fassets.yad2.co.il%2Fhomepage%2Fpopular-searches%2Freal-estate.png&w=256&q=75");
+  background-size: cover;
+  height: 100px;
+  width: 200px;
+}
+.search__home__text {
+  background-color: white;
+  color: black;
+  text-align: right;
+  font-size: 10px;
+  padding: 4px;
+}
+.search__buy {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  border: 0.1px solid #ebebeb;
+  border-radius: 10px;
+}
+.search__buy__photo {
+  background-image: url("https://www.yad2.co.il/home/_next/image?url=https%3A%2F%2Fassets.yad2.co.il%2Fhomepage%2Fpopular-searches%2Fproducts.png&w=256&q=75");
+  background-size: cover;
+  height: 100px;
+  width: 200px;
+}
+.search__buy__text {
+  background-color: white;
+  color: black;
+  text-align: right;
+  font-size: 10px;
+  padding: 4px;
+}
+.search__mag {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  border: 0.1px solid #ebebeb;
+  border-radius: 10px;
+}
+.search__mag__photo {
+  background-image: url("https://www.yad2.co.il/home/_next/image?url=https%3A%2F%2Fassets.yad2.co.il%2Fhomepage%2Fpopular-searches%2Fdrushim.png&w=256&q=75");
+  background-size: cover;
+  height: 100px;
+  width: 200px;
+}
+.search__mag__text {
+  background-color: white;
+  color: black;
+  text-align: right;
+  font-size: 10px;
+  padding: 4px;
+}
+
+.container {
+  direction: rtl;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+.container .header__container {
+  display: flex;
+  position: relative;
+}
+.container .logo {
+  width: 50px;
+}
+.container .nav {
+  display: flex;
+  position: absolute;
+}
+.container .banner__banner {
+  background-color: aqua;
+  gap: 20px;
+  position: relative;
+  margin-top: 120px;
+}
+
+.brief {
+  margin: auto;
+  width: 100ch;
+  height: 200px;
+  display: flex;
+  gap: 10px;
+  direction: rtl;
+}
+.brief__article {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.brief__article__nadlan {
+  background-image: url("https://www.yad2.co.il/home/_next/image?url=https%3A%2F%2Fassets.yad2.co.il%2Fhomepage%2Fleading-category-real-estate.png&w=256&q=75");
+  background-size: cover;
+  height: 100%;
+}
+.brief__article__car {
+  background-image: url("https://www.yad2.co.il/home/_next/image?url=https%3A%2F%2Fassets.yad2.co.il%2Fhomepage%2Fleading-category-vehicles.png&w=256&q=75");
+  background-size: cover;
+  height: 100%;
+}
+.brief__article__yad2 {
+  background-image: url("https://www.yad2.co.il/home/_next/image?url=https%3A%2F%2Fassets.yad2.co.il%2Fhomepage%2Fleading-category-second-hand.png&w=256&q=75");
+  background-size: cover;
+  height: 100%;
+}
+.brief__article__jobs {
+  background-image: url("https://www.yad2.co.il/home/_next/image?url=https%3A%2F%2Fassets.yad2.co.il%2Fhomepage%2Fleading-category-drushim.png&w=256&q=75");
+  background-size: cover;
+  height: 100%;
+}
+.brief__article__pet {
+  background-image: url("https://www.yad2.co.il/home/_next/image?url=https%3A%2F%2Fassets.yad2.co.il%2Fhomepage%2Fleading-category-pets.png&w=256&q=75");
+  background-size: cover;
+  height: 100%;
+}
+.brief__article__hands {
+  background-image: url("https://www.yad2.co.il/home/_next/image?url=https%3A%2F%2Fassets.yad2.co.il%2Fhomepage%2Fleading-category-professional.png&w=256&q=75");
+  background-size: cover;
+  height: 100%;
+}
+.brief__article__bsn {
+  background-image: url("https://www.yad2.co.il/home/_next/image?url=https%3A%2F%2Fassets.yad2.co.il%2Fhomepage%2Fleading-category-business.png&w=256&q=75");
+  background-size: cover;
+  height: 100%;
+}
+.brief__article__video {
+  background-image: url("./soccer.png");
+  background-size: cover;
+  height: 100%;
+}
+.brief__article__text {
+  background-color: black;
+  color: white;
+  text-align: center;
+  padding: 4px;
+}
+
+.link-tabs {
+  background-color: #F8F8F8;
+  margin: auto;
+  width: 100ch;
+  height: 200px;
+  display: flex;
+  gap: 10px;
+  direction: rtl;
+}
+.link-tabs .klicks {
+  width: 100ch;
+  margin: auto;
+  justify-content: center;
+  padding: 1rem;
+}
+.link-tabs .klicks__btn {
+  border: none;
+  margin: 5px;
+  padding: 10px;
+}
+.link-tabs .klicks__btn--ok {
+  background-color: #363636;
+}
+.link-tabs .klicks__btn--cancel {
+  background-color: orange;
+}
+.link-tabs .klicks__btn--delete {
+  background-color: red;
+}
+
+.footer {
+  background-color: #363636;
+  margin: auto;
+  width: 100ch;
+  height: 200px;
+  display: flex;
+  gap: 10px;
+  direction: rtl;
+}

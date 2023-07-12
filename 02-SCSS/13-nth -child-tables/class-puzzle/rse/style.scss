@@ -1,0 +1,61 @@
+.wrapper {
+   width: 80vw;
+   height: 500px;
+   margin: auto;
+    background-color: wheat;
+    position: relative;
+
+    button{
+        border: none;
+       
+    }
+
+}
+.firstLine {
+    height: 200px;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+   
+    }
+    .tangle {
+     
+    
+        clip-path: polygon(80% 0, 20% 0, 50% 100%);
+        background-color: black;
+        &:nth-child(odd){
+            background-color: rgb(255, 0, 0);
+       
+       
+    }
+    }
+        
+    .scndLine {
+        height: 200px;
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        position: relative;
+        top: 100px;
+       
+       
+        .tangle {
+        
+            clip-path: polygon(50% 0%, 20% 100%, 80% 100%);
+                        background-color: rgb(255, 0, 0);
+            &:nth-child(odd){
+                background-color: rgb(0, 0, 0);
+           
+           
+        }
+        }
+    }
+
+// &:nth-child(odd){
+
+//     background-color: rgb(255, 0, 0);
+// }
+// &:nth-child(){
+//     transform: rotate(180deg);
+// }
+// }
+
+// 

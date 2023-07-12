@@ -1,0 +1,119 @@
+@-webkit-keyframes fly {
+  0% {
+    top: 590px;
+    left: 40px;
+  }
+  100% {
+    top: -80px;
+    left: 70px;
+  }
+}
+@keyframes fly {
+  0% {
+    top: 590px;
+    left: 40px;
+  }
+  100% {
+    top: -80px;
+    left: 70px;
+  }
+}
+@-webkit-keyframes disappear {
+  0% {
+    opacity: 0.7;
+    width: 50px;
+  }
+  10% {
+    opacity: 1;
+    width: 60px;
+  }
+  40% {
+    opacity: 1;
+    width: 70px;
+  }
+  80% {
+    opacity: 0.7;
+    width: 80px;
+  }
+  100% {
+    opacity: 0;
+    width: 80px;
+  }
+}
+@keyframes disappear {
+  0% {
+    opacity: 0.7;
+    width: 50px;
+  }
+  10% {
+    opacity: 1;
+    width: 60px;
+  }
+  40% {
+    opacity: 1;
+    width: 70px;
+  }
+  80% {
+    opacity: 0.7;
+    width: 80px;
+  }
+  100% {
+    opacity: 0;
+    width: 80px;
+  }
+}
+body {
+  width: 100wv;
+  height: 100hv;
+  background-image: url(https://www.zavit.org.il/wp-content/uploads/2020/01/nicole-baster-unsplash-1024x683.jpg);
+  background-size: cover;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: space-around;
+}
+
+.bln {
+  display: flex;
+  border: none;
+  overflow: auto;
+  background-color: rgba(255, 255, 255, 0);
+  position: relative;
+  -webkit-animation: fly 8s 1 ease-in forwards;
+          animation: fly 8s 1 ease-in forwards;
+}
+.bln img {
+  width: 80px;
+}
+.bln:hover .bln__surprise {
+  opacity: 0.8;
+}
+.bln:hover .bln1 {
+  opacity: 0.4;
+}
+.bln:focus img {
+  opacity: 0;
+}
+.bln:focus .boom {
+  opacity: 1;
+  -webkit-animation: disappear 0.5s 1 0.4s forwards;
+          animation: disappear 0.5s 1 0.4s forwards;
+}
+.bln .boom {
+  position: absolute;
+  left: 0px;
+  opacity: 0;
+  transition-duration: 1s;
+  width: 50px;
+}
+.bln__surprise {
+  position: absolute;
+  left: 20px;
+  top: 10px;
+  opacity: 0;
+  transition-duration: 1s;
+}
+.bln__surprise img {
+  width: 50px;
+}/*# sourceMappingURL=style.css.map */

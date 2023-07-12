@@ -1,0 +1,17 @@
+.images {
+  display: flex;
+  width: 100vw;
+  gap: 2rem;
+  justify-content: center;
+}
+img {
+  max-width: 80%;
+  height: auto;
+  margin: 1%;
+}
+p {
+  text-align: center;
+}
+#imageContainer {
+  text-align: center;
+}

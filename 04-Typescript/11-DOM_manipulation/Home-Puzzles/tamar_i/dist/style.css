@@ -1,0 +1,26 @@
+body {
+  position: absolute;
+}
+
+<<<<<<< HEAD
+.conteiner {
+  width: 1000px;
+  height: 700px;
+  background-color: blue;
+  display: grid;
+  align-items: center;
+  grid-template-rows: 1fr 1fr;
+  padding: 17px;
+  grid-template-areas: "first-row" "secend-row";
+}
+
+=======
+>>>>>>> c8162fa75b2aa45c9a651d439fa2136ed0663ec0
+p {
+  background-color: yellow;
+}
+
+img {
+  height: 40%;
+  width: 20%;
+}
