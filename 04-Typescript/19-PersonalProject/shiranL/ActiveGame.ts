@@ -149,6 +149,9 @@ function putCityOnBoard(city:City,cityIndex:number){
           cityBtn1= document.createElement('bottun')
           cityBtn1.id=`${city.cityId}`;
           cityBtn1.classList.add('RovaA')
+          //add event on click to render city card
+          debugger
+          cityBtn1.addEventListener('click',()=>{renderCityCard(city.cityId)}) ;
           cell1.appendChild(cityBtn1);
           cityBtn2= document.createElement('bottun')
           cityBtn2.id=`${city.cityId}`;
@@ -167,7 +170,7 @@ function putCityOnBoard(city:City,cityIndex:number){
         cityBtn1= document.createElement('bottun')
         cityBtn1.id=`${city.cityId}`;
         cityBtn1.classList.add('RovaBet')
-        
+       
         cell1.appendChild(cityBtn1);
         cityBtn2= document.createElement('bottun')
         cityBtn2.id=`${city.cityId}`;
@@ -186,6 +189,7 @@ function putCityOnBoard(city:City,cityIndex:number){
           cityBtn1= document.createElement('bottun')
           cityBtn1.id=`${city.cityId}`;
           cityBtn1.classList.add('RovaGimel')
+         
           cell1.appendChild(cityBtn1);
           cityBtn2= document.createElement('bottun')
           cityBtn2.id=`${city.cityId}`;
@@ -294,18 +298,69 @@ function putCityOnBoard(city:City,cityIndex:number){
       }
 
       
-  // create elements for city
-  
-    //   // cell2?.appendChild(cityBtn);
-    //   // cell3?.appendChild(cityBtn);
-    //  // cell.name="jail"
-      
     } catch (error) {
       console.error(error);
-      
     }
+}
+function  renderCityCard(cityId:number){
+  try {
+    debugger
+    const dialog = document.createElement('dialog'); // Create a dialog element
+    dialog.classList.add('city-dialog'); // Add a custom CSS class for styling
+    const diaylogForm = document.createElement('form');
+    const spanClose = document.createElement('button');
+    spanClose.classList.add('close');
+    spanClose.addEventListener('click', closePopup);
+    diaylogForm.appendChild(spanClose);
+
+    const cityCard = document.createElement('div');
+    cityCard.id = `cityCard${cityId}`; 
+    cityCard.classList.add('cityCard');
+    const cityName=document.createElement('h1');
+    const cityBuyPrice=document.createElement('h2');  
+    const cityRentPrice=document.createElement('h2');
+    const owner=document.createElement('h2');
+    const city=gamesBoardsAGpage?.find(board=>board.cities.find(city=>city.cityId===cityId))?.cities.find(city=>city.cityId===cityId);   
+    if(!city) throw new Error("cant find city");  
+    cityName.innerHTML=`${city.cityName}`; 
+    cityBuyPrice.innerHTML=`Buy Price : ${city.monetaryValue}`; 
+    cityRentPrice.innerHTML=`Rent Price : ${city.rentValue}`; 
+    const ownerName=gamesBoardsAGpage?.find(board=>board.cities.find(city=>city.cityId===cityId))?.players.find(player=>player.playerId===city.cityOwner?.playerId)?.userName;
+    owner.innerHTML=`Owner : ${ownerName || "No Owner" }`;
+    if(!ownerName)
+    {
+      const buyBtn=document.createElement('button');
+      buyBtn.classList.add('buyBtn');
+      buyBtn.innerHTML=`Buy`;
+      cityCard.appendChild(buyBtn);
+      // buyBtn.addEventListener('click',()=>{buyCity(cityId,city.monetaryValue)}); 
+    }
+    else{
+      const payBtn=document.createElement('button');
+      payBtn.classList.add('payBtn');
+      payBtn.innerHTML=`Pay`;
+      cityCard.appendChild(payBtn);
+      // payBtn.addEventListener('click',()=>{payRent(cityId,city.rentValue)});
+    }
+    cityCard.appendChild(cityName);
+    cityCard.appendChild(cityBuyPrice);
+    cityCard.appendChild(cityRentPrice);
+    cityCard.appendChild(owner);
+
+    diaylogForm.appendChild(cityCard);
+    dialog.appendChild(diaylogForm);  
+
+    document.body.appendChild(dialog); // Append the dialog to the document body
+
+    dialog.showModal(); // Display the dialog as a modal
+
     
- 
+   // Generate and display the random number
+}
+catch(error)
+{
+  console.error(error);
+}
 }
 function putPlayerOnBoard(player:Player){
   try {
@@ -399,9 +454,6 @@ if (!currentCellId) throw new Error("cant find currentCellId");
     console.error(error);
     
   }
-
-  
-
 }
 
 function dropCube() {
@@ -425,26 +477,46 @@ function dropCube() {
   }
 }
 function showPopup() {
-  try { 
-    var popup = document.getElementById("popup");
-    if(!popup) throw new Error("cant find popup ");
-    popup.style.display = "block";
-    
+  try {
+    const dialog = document.createElement('dialog'); // Create a dialog element
+    dialog.classList.add('popup-dialog'); // Add a custom CSS class for styling
+
+    const spanClose = document.createElement('span');
+    spanClose.classList.add('close');
+    spanClose.addEventListener('click', closePopup);
+    spanClose.innerHTML = '&times;';
+    dialog.appendChild(spanClose);
+
+    const numDiv = document.createElement('div');
+    numDiv.id = "randomNumber";
+    numDiv.classList.add('randomNumber');
+    dialog.appendChild(numDiv);
+
+    document.body.appendChild(dialog); // Append the dialog to the document body
+
+    dialog.showModal(); // Display the dialog as a modal
+
+    generateRandomNumber();
+   // Generate and display the random number
+
+
   } catch (error) {
     console.error(error);
   }
- 
 }
+
 function closePopup() {
   try {
-    var popup = document.getElementById("popup");
-    if(!popup) throw new Error("cant find popup ");
-    popup.style.display = "none";
+
+    var dialog = document.querySelector('dialog'); // Get the dialog element
+    if (!dialog) throw new Error("Can't find dialog.");
+    dialog.close(); // Close the dialog
+    dialog.remove(); // Remove the dialog element from the DOM
   } catch (error) {
     console.error(error);
   }
-
 }
+
 
 function generateRandomNumber() {
   try {
