@@ -117,7 +117,7 @@ var Board = /** @class */ (function () {
         this.luckyCube = 0;
         this.winner = undefined;
         this.cities = [];
-        this.hotels = [];
+        // this.hotels = [];
         this.goodThings = [];
         this.badThings = [];
         this.players = [];
@@ -125,9 +125,6 @@ var Board = /** @class */ (function () {
     }
     Board.prototype.addCity = function (city) {
         this.cities.push(city);
-    };
-    Board.prototype.addHotel = function (hotel) {
-        this.hotels.push(hotel);
     };
     Board.prototype.addGoodThing = function (goodThing) {
         this.goodThings.push(goodThing);

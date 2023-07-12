@@ -1,0 +1,149 @@
+#header {
+  position: relative;
+  top: 2vh;
+  width: 400px;
+  height: 10vh;
+  display: flex;
+  justify-content: start;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.358);
+}
+
+.header {
+  position: relative;
+  width: 80px;
+  height: 10vh;
+  margin-left: 15px;
+}
+.header__user {
+  position: relative;
+  text-align: center;
+}
+.header__user--image {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: -webkit-linear-gradient(#cc4af0, #f3f06e);
+}
+.header__user--image img {
+  position: relative;
+  top: 0.5vh;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+.header__user h3 {
+  position: relative;
+  top: -1vh;
+  left: -8px;
+}
+
+#profile {
+  position: relative;
+  margin: auto;
+  width: 400px;
+  height: 70vh;
+  border-radius: 20px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+}
+
+.userPost {
+  position: relative;
+  margin: auto;
+  margin-top: 5vh;
+  width: 350px;
+  height: 32vh;
+}
+.userPost__name {
+  position: relative;
+  display: flex;
+  width: 330px;
+  height: 5vh;
+  margin: auto;
+  padding: 8px;
+  font-size: 20px;
+  font-weight: bold;
+}
+.userPost__name h3 {
+  position: relative;
+  top: -1vh;
+  margin-left: 5px;
+}
+.userPost__name img {
+  position: relative;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+.userPost__img {
+  position: relative;
+}
+.userPost__img img {
+  position: relative;
+  left: 3%;
+  width: 330px;
+  height: 25vh;
+  border-radius: 10px;
+  margin: auto;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+}
+
+.addPost {
+  position: relative;
+  top: 20vh;
+  width: 450px;
+  height: 40vh;
+}
+.addPost__select {
+  position: relative;
+  left: 35%;
+  width: 100px;
+  height: 6vh;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 15px;
+  font-weight: bold;
+  background: -webkit-linear-gradient(#cc4af0, #f3f06e);
+}
+.addPost__input {
+  position: relative;
+  top: 12vh;
+  height: 10vh;
+  border-radius: 20px;
+  text-align: center;
+  font-size: 15px;
+  font-weight: bold;
+}
+.addPost__enterNewImage {
+  position: relative;
+  top: 25vh;
+  left: -35%;
+  width: 100px;
+  height: 50px;
+  border-radius: 20px;
+  background: -webkit-linear-gradient(#cc4af0, #f3f06e);
+}
+
+.wrapper {
+  position: relative;
+  width: 400px;
+  height: 90vh;
+  margin: auto;
+  color: white;
+  background-color: black;
+  border-radius: 10px;
+}
+.wrapper .addNewImage {
+  position: relative;
+  left: 46%;
+  font-size: 40px;
+  color: white;
+}
+.wrapper .enterNewImage {
+  position: relative;
+  top: 8vh;
+  filter: blur(10px);
+  left: 46%;
+  font-size: 40px;
+  color: white;
+}

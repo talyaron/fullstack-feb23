@@ -1,3 +1,4 @@
+//---------------------------Card--------------------
 class Card {
   public cardName: string;
   public srcImgCard: string;
@@ -8,16 +9,16 @@ class Card {
   getSignCardSrc() {
     switch (this.cardSign) {
       case "heart": {
-        return "./images/heart-sign.jpg";
+        return "./images/heart-sign1.png";
       }
       case "diamond": {
-        return "./images/diamond-sign.jpg";
+        return "./images/diamond-sign1.png";
       }
       case "club": {
-        return "./images/club-sign.jpg";
+        return "./images/club-sign1.png";
       }
       case "spade": {
-        return "./images/sapad-sign.jpg";
+        return "./images/spade-sign1.png";
       }
     }
   }
@@ -31,30 +32,36 @@ class Card {
               </div>`;
   }
 }
-
+//---------------------------Player--------------------
 class Player {
   constructor(
     public userName: string,
+    public imgSrc: string = "",
     public chips: number = 100000,
-    public isActive: boolean = true,
+    public isActive: boolean = false,
     public pCards: Card[] = get2RandomCards(),
   ) {
     this.pCards = this.pCards.map((c) => new Card(c.cardNumber, c.cardSign));
-
   }
 
-  setToUnActive() {
-    this.isActive = false;
+  setActive() {
+    this.isActive = !this.isActive;
   }
 
   renderMyPanel() {
     try {
       this.pCards!.forEach((c) =>
-        c.renderCard(document.querySelector(".myCards") as HTMLElement),
+        c.renderCard(document.querySelector(".myPanel__cards") as HTMLElement),
       );
-      document.querySelector(".myChips")!.innerHTML = this.chips.toString();
+      document.querySelector(".myPanel__chips")!.innerHTML =
+        this.chips.toString();
     } catch (error) {
       console.error(error);
     }
   }
+}
+
+//------------------Dealer------------------------------
+class Dealer {
+  constructor(public sum: number) {}
 }

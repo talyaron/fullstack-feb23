@@ -11,6 +11,7 @@ function loadCharacters():Character[]|undefined{
         characters.push(new Character("Barak Sery","./dist/3.png"))
         characters.push(new Character("Eli Nacht","./dist/4.png"))
         characters.push(new Character("Eli Lachmani","./dist/5.png"))
+        characters.push(new Character("zvi zilker","./dist/5.png"))
         //save to local storage
         const charactersJson = JSON.stringify(characters);
         localStorage.setItem('characters', charactersJson);
@@ -35,7 +36,7 @@ function loadCities():City[]|undefined{
       if (!citiesString){ // if there is not characters on json , create new []
         const hotels : Hotel[] | undefined = [];
         
-        cities.push(new City("Rova Alef",hotels,"./dist/ashdod.jpg",1))
+        cities.push(new City("Rova Alef",hotels,"./dist/rovaA1.jpg",1))
         cities.push(new City("Rova Bet",hotels,"./dist/ashdod.jpg",2))
         cities.push(new City("Rova Gimel",hotels,"./dist/Jerusalem.jpg",3))
         cities.push(new City("Rova Daled",hotels,"./dist/telAviv.jpg",4))
@@ -139,10 +140,10 @@ function loadJails(): Jail[] | undefined {
         const jailsString = localStorage.getItem('jails');
       if (!jailsString){ // if there is not characters on json , create new []
          
-        jails.push(new Jail("Neve Tirza",""))
-        jails.push(new Jail("Ofek",""))
-        jails.push(new Jail("400",""))
-        jails.push(new Jail("Dekel",""))
+        jails.push(new Jail("Neve Tirza","./dist/jail.jpg"))
+        jails.push(new Jail("Ofek","./dist/jail.jpg"))
+        jails.push(new Jail("400","./dist/jail2.jpg"))
+        jails.push(new Jail("Dekel","./dist/jail.jpg"))
        
         //save to local storage
         const jailsJson = JSON.stringify(jails);
@@ -233,10 +234,11 @@ function loadBoards(): Board[]|undefined{
 }
 function startNewGame(boards: Board[]|undefined): void {
     try {
+      debugger
         if(!boards) throw new Error("Cant Find Boards Array");
-        
-      // Create a new board
-      const newBoard = new Board();
+       
+          // Create a new board
+          const newBoard = new Board();
       
       // Set the game status to true
       newBoard.gameStatus = true;
@@ -245,6 +247,9 @@ function startNewGame(boards: Board[]|undefined): void {
       boards.push(newBoard);
       
       console.log('New game started!');
+
+        
+     
     } catch (error) {
       console.error('Error starting a new game:', error);
     }
@@ -269,13 +274,6 @@ function loadDataToBoard(board: Board|undefined): void {
       const cities: City[] | undefined = loadCities();
       if (cities) {
         board.cities = cities;
-      }
-      
-      // Load hotels and add them to the board
-      const hotels: Hotel[] | undefined = [];
-      loadHotels(hotels);
-      if (hotels) {
-        board.hotels = hotels;
       }
       
       // Load jails and add them to the board
@@ -305,14 +303,14 @@ function renderHomePage(gamesBoards: Board [] | undefined, characters : Characte
     try {
       const startNewGameHtml = document.querySelector("#chooseNumberOfPlayers");
       if (!startNewGameHtml) throw new Error("Cannot find startNewGame HTML element");
-  
+      if (!gamesBoards) throw new Error("Cannot find startNewGame HTML element");
       // Create the form element
       const form = document.createElement("form");
       form.classList.add("StartNewGame__numOfPlayers");
   
       // Create the label for the number of players input
       const label = document.createElement("label");
-      label.textContent = "Number of Players: ";
+      label.textContent = "Enter number of players: ";
   
       // Create the input element for choosing the number of players
       const input = document.createElement("input");
@@ -321,9 +319,7 @@ function renderHomePage(gamesBoards: Board [] | undefined, characters : Characte
       input.max = "6";
   
       // Append the label and input to the form
-      form.appendChild(label);
-      form.appendChild(input);
-  
+ 
       // Create the "Start Game" button
       const startButton = document.createElement("button");
       startButton.textContent = "Start Game";
@@ -334,25 +330,47 @@ function renderHomePage(gamesBoards: Board [] | undefined, characters : Characte
         event.preventDefault(); // Prevent the form from submitting and refreshing the page
         const numPlayers = parseInt(input.value, 10);
         const selectedCharacters = getSelectedCharacters(numPlayers,characters);
-        startGame(numPlayers, gamesBoards,selectedCharacters);
+        if (!selectedCharacters) alert("Must Enter numbers of players")
+         else handelStartGame(numPlayers, gamesBoards,selectedCharacters);
       });
   
       // Append the button to the form
+      form.appendChild(label);
+      form.appendChild(input);
       form.appendChild(startButton);
-  
-      // Append the form to the startNewGame HTML element
-      startNewGameHtml.appendChild(form);
-
       // Add dropdowns for choosing characters
-    input.addEventListener("change", (event) => {
-        const numPlayers = parseInt(input.value, 10);
-        renderCharacterDropdowns(numPlayers, characters);
+      input.addEventListener("change", (event) => {
+       const numPlayers = parseInt(input.value, 10);
+      renderCharacterDropdowns(numPlayers, characters);
+});
+      // Append the form to the startNewGame HTML element
+      //startNewGameHtml.appendChild(form);
+
+      // Check if there is an open game board
+    const openGameBoard = gamesBoards.find((board) => board.gameStatus === true);
+
+    if (openGameBoard) {
+      // Create the "Open Active Game" button
+      const openActiveGameButton = document.createElement("button");
+      openActiveGameButton.textContent = "Open Active Game";
+      startNewGameHtml.appendChild(openActiveGameButton);
+      openActiveGameButton.addEventListener("click", () => {
+        // Handle opening the active game
+        window.location.href = "./ActiveGame.html";
       });
+       
+    }
+
+    // Create the "renderCharacterDropdowns" button
+    else startNewGameHtml.appendChild(form);
+    
+      
     } catch (error) {
       console.error(error);
     }
   }
-  function getSelectedCharacters(numPlayers: number, characters: Character[] | undefined): Character[] {
+  
+function getSelectedCharacters(numPlayers: number, characters: Character[] | undefined): Character[] {
     const selectedCharacters: Character[] = [];
     try {
       for (let i = 1; i <= numPlayers; i++) {
@@ -369,16 +387,17 @@ function renderHomePage(gamesBoards: Board [] | undefined, characters : Characte
       console.error(error);
     }
     return selectedCharacters;
-  }
-  
+  } 
   function renderCharacterDropdowns(numPlayers: number, characters: Character[] | undefined) {
     try {
-
-
-        const characterSelectionHtml = document.querySelector("#characterSelection");
-        if (!characterSelectionHtml) throw new Error("Cannot find characterSelection HTML element");
-        characterSelectionHtml.innerHTML = "";
-
+      const characterSelectionHtml = document.querySelector("#characterSelection");
+      if (!characterSelectionHtml) throw new Error("Cannot find characterSelection HTML element");
+      characterSelectionHtml.innerHTML = "";
+  
+      // Create an array to keep track of selected character IDs for each player
+      const selectedCharacters: number[] = [];
+     const ChractersForm= document.createElement("form");
+     ChractersForm.id="ChractersForm"; 
       // Create a dropdown for each player
       for (let i = 1; i <= numPlayers; i++) {
         const dropdownLabel = document.createElement("label");
@@ -386,46 +405,87 @@ function renderHomePage(gamesBoards: Board [] | undefined, characters : Characte
   
         const dropdown = document.createElement("select");
         dropdown.id = `player${i}Character`;
-// Add options for each character
-if (characters) {
-    characters.forEach((character) => {
-      const option = document.createElement("option");
-      option.value = character.characterId.toString();
-      option.text = character.characterName;
-      dropdown.appendChild(option);
-    });
-  }
-
-  characterSelectionHtml.appendChild(dropdownLabel);
-  characterSelectionHtml.appendChild(dropdown);
   
-}
-} catch (error) {
-console.error(error);
-}
-}                                                                                              
-function startGame(numPlayers: number, gamesBoards: Board[] | undefined,selectedCharacters:Character[]) {
+        // Add an event listener to the dropdown
+          dropdown.addEventListener("change", (event) => {
+          const selectedCharacterId = parseInt((event.target as HTMLSelectElement).value);
+  
+          // Remove the selected character from other dropdowns' options
+          for (let j = 1; j <= numPlayers; j++) {
+            if (j !== i) {
+              const otherDropdown = document.querySelector(`#player${j}Character`) as HTMLSelectElement;
+              const optionToRemove = otherDropdown.querySelector(`option[value="${selectedCharacterId}"]`);
+              if (optionToRemove) {
+                otherDropdown.removeChild(optionToRemove);
+              }
+            }
+          }
+          // Update the selected character for the current player
+          selectedCharacters[i - 1] = selectedCharacterId;
+        });
+  
+        // Add an empty option as the default selection
+        const emptyOption = document.createElement("option");
+        emptyOption.value = "";
+        emptyOption.text = "Select a character";
+        dropdown.appendChild(emptyOption);
+  
+        // Add options for each character
+        if (characters) {
+          characters.forEach((character) => {
+            const option = document.createElement("option");
+            option.value = character.characterId.toString();
+            option.text = character.characterName;
+            dropdown.appendChild(option);
+          });
+        }
+  
+        ChractersForm.appendChild(dropdownLabel);
+        ChractersForm.appendChild(dropdown);
+        characterSelectionHtml.appendChild(ChractersForm)
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }                                                                                    
+function handelStartGame(numPlayers: number, gamesBoards: Board[] | undefined,selectedCharacters:Character[]) {
     try {
-        
+      
+      const ChractersForm=document.querySelector("#ChractersForm")
+      if (!ChractersForm){
+        alert("Must pic characters")
+        throw new Error("Cannot find ChractersForm");
+      } 
         if (!gamesBoards) throw new Error("Cannot find game board");
+        //check if there is open game befor open new one
+        const openGame= gamesBoards.find(board=>board.gameStatus===true)
+        if(openGame)  
+         { alert("There is an open game already") }
+        else{
+          const allCharactersSelected = selectedCharacters.length === numPlayers;
+          if (!allCharactersSelected) {
+            alert("Must select characters for all players");
+            return; // Stop execution if not all characters are selected
+          }
+        
         startNewGame(gamesBoards);
         const currentGame= gamesBoards?.find(game=> game.gameStatus===true)
-        if (!currentGame) throw new Error("Cannot find game Activ Game");
+        if (!currentGame) throw new Error("Cannot find Activ Game");
         loadDataToBoard(currentGame);
       // Create the players
       for (let i = 1; i <= numPlayers; i++) {
        
         const character = selectedCharacters[i - 1]; // Get the corresponding selected character
         const playerName = `${character.characterName}`;
-      const player = new Player(playerName, false, true, undefined, undefined, character);
-      currentGame.players.push(player);
-        
+        const player = new Player(playerName, false, true, undefined, undefined, character);
+        currentGame.players.push(player);
       }
       
       // Navigate to the game page
       saveBoards(gamesBoards)
       console.log("Game started!");
       window.location.href = "./ActiveGame.html";
+    }
     } catch (error) {
       console.error("Error starting the game:", error);
     }
@@ -435,37 +495,9 @@ function startGame(numPlayers: number, gamesBoards: Board[] | undefined,selected
   const characters : Character[] | undefined = loadCharacters();
   const gamesBoards : Board[]| undefined = loadBoards();
   
+
+  // render new game,  will render the from to choose character the btn to start game
   renderHomePage(gamesBoards,characters);
   
   
   
-  
-  
-  
-
-
-
-//load data for dashboard
-
-// const characters : Character[] | undefined = loadCharacters();
-
-// const hotels : Hotel[] | undefined = [];
-
-// const cities : City[] |undefined=loadCities();
-// const jails : Jail[] |undefined=loadJails();
-// const goodThings : QuestionGoodThings[] |undefined =loadQuestionGoodThings();
-// const badThings : QuestionBadThings[] |undefined =loadQuestionBadThings();
-
-// const gameBords= loadBoard();
-
-
-// loadHotels(hotels);
-// loadHotelsToCities(cities,hotels);
-
-// console.log(characters);
-// console.log(cities);
-// console.log(hotels);
-// console.log(jails);
-// console.log(goodThings);
-// console.log(badThings);
-
