@@ -3,6 +3,13 @@ body {
   background-position: center;
 }
 
+hr {
+  background-color: white;
+  width: 17%;
+  border-radius: 20px;
+  height: 0.3vw;
+}
+
 .container {
   width: 80%;
   height: auto;
@@ -42,6 +49,7 @@ body {
   width: 19vw;
   height: auto;
   margin: 2px;
+  padding: 0.4%;
   border-radius: 10px;
   background-color: coral;
 }
