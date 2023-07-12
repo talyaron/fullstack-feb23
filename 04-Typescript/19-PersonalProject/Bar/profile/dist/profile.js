@@ -8,7 +8,7 @@ function showUserImg(HTMLElement, userImg) {
         if (!HTMLElement)
             throw new Error('Root element is not found');
         var html = userImg.map(function (userImg) {
-            return " <div class=\"userPost\">\n            <div class=\"userPost__name\">\n            <img src=\"" + userImg.user.imageProfile + "\">\n            <h3>" + userImg.user.name + "</h3>\n            </div>\n              <div class=\"userPost__img\">\n                <img src=\"" + userImg.user.imageProfile + "\">\n              </div>\n            </div>";
+            return "\n        <div class=\"userPost\">\n            <div class=\"userPost__name\">\n            <img src=\"" + userImg.user.imageProfile + "\">\n            <h3>" + userImg.user.name + "</h3>\n            </div>\n              <div class=\"userPost__img\">\n                <img src=\"" + userImg.user.imageProfile + "\">\n              </div>\n            </div>";
         }).join('');
         HTMLElement.innerHTML = html;
         localStorage.setItem('userImgArray', JSON.stringify(userImgArray));
@@ -18,6 +18,22 @@ function showUserImg(HTMLElement, userImg) {
     }
 }
 showUserImg(document.querySelector('#profile'), userImgArray);
+//creat header
+function showHeader(HTMLElement, userImg) {
+    try {
+        if (!HTMLElement)
+            throw new Error('Root element is not found');
+        var html = userImg.map(function (userImg) {
+            return "\n      <div class=\"header\">\n        <div class=\"header__user\">\n        <div class=\"header__user--image\">\n          <img src=\"" + userImg.user.imageProfile + "\">\n        </div>\n          <h3>" + userImg.user.name + "</h3>\n        </div>\n      </div>";
+        }).join('');
+        HTMLElement.innerHTML = html;
+        localStorage.setItem('userImgArray', JSON.stringify(userImgArray));
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+showHeader(document.querySelector('#header'), userImgArray);
 //view - show the user profile.
 //create a new user profile.
 //create a new post(image).

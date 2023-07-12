@@ -1,23 +1,33 @@
+body {
+  background-color: #cbddbb;
+}
 .gallery {
   &__imgs {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
-    &--p{
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        border:1px solid black;
-        i:active{
-            color: red;
-        }
+    &--p {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border: 1px solid black;
+      i:active {
+        color: red;
+      }
     }
 
     img {
-        width: 15vw;
-        height: 20vw;
-        padding-top: 2vw;
-      }
+      width: 15vw;
+      height: 20vw;
+      padding-top: 2vw;
+    }
   }
-  
+  h1 {
+    background-color: #718f54;
+    color: white;
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+      sans-serif;
+      text-align: center;
+      margin: 0px;
+  }
 }
