@@ -27,9 +27,10 @@ function addLisa(event) {
     try {
         var selectedPlayer = new Player("../img/ליסה.png");
         players.push(selectedPlayer);
-        console.log(event);
+        // console.log(selectedPlayer)
         localStorage.setItem("players", JSON.stringify(players));
-        // renderPlayer(rootPlayer);
+        // console.log(players)
+        renderPlayer(rootPlayer);
         window.location.href = "view/levels.html";
     }
     catch (error) {
@@ -43,10 +44,11 @@ function renderPlayer(htmlElement) {
     try {
         // if (!htmlElement) throw new Error("No element");
         var playerString = localStorage.getItem("players");
+        console.log(playerString);
         if (!playerString)
             return [];
         var playerArray = JSON.parse(playerString);
-        console.table(playerArray);
+        console.table(htmlElement);
         var players = playerArray.map(function (player) {
             return new Player(player.playerImg);
         });
@@ -81,7 +83,7 @@ document.addEventListener('keyup', function (event) {
             bart.style.left = bart.offsetLeft + 85 + "px";
             break;
         case " ":
-            var html = "<div class=\" \">\n                </div>\n                ";
+            var html = "<div class=\"shoot\">\n                </div>\n                ";
             rootPlayer.innerHTML = html;
             break;
     }

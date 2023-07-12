@@ -18,6 +18,22 @@ body .container .ball {
   border-radius: 50%;
   background-color: red;
   border: 1px solid black;
+  animation: ball 2s alternate;
+  position: absolute;
+}
+@keyframes ball {
+  25% {
+    top: -10px;
+  }
+  50% {
+    top: 150px;
+  }
+  75% {
+    top: 250px;
+  }
+  100% {
+    top: 350px;
+  }
 }
 body .container .shoot {
   background-color: aqua;
