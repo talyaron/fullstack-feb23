@@ -22,25 +22,30 @@ function saveDetails(event) {
     var number = event.target.elements.number.value;
     var id = event.target.elements.id;
     var data = new Details(name, pass, email, number, id);
-    if (number < 18) {
-        var errorMessageExists = document.getElementById("errorMessage");
-        if (!errorMessageExists) {
-            var errorMessage_1 = document.createElement("p");
-            errorMessage_1.textContent = "You are under age!";
-            errorMessage_1.id = "errorMessage";
-            errorMessage_1.style.borderRadius = "20px";
-            errorMessage_1.style.color = "black";
-            errorMessage_1.style.backgroundColor = "red";
-            errorMessage_1.style.border = "3px solid black";
-            errorMessage_1.style.fontSize = "3vw";
-            event.target.appendChild(errorMessage_1);
+    try {
+        if (number < 18) {
+            var errorMessageExists = document.querySelector("#errorMessage");
+            if (!errorMessageExists) {
+                var errorMessage_1 = document.createElement("p");
+                errorMessage_1.textContent = "You are under age!";
+                errorMessage_1.id = "errorMessage";
+                errorMessage_1.style.borderRadius = "20px";
+                errorMessage_1.style.color = "black";
+                errorMessage_1.style.backgroundColor = "red";
+                errorMessage_1.style.border = "3px solid black";
+                errorMessage_1.style.fontSize = "3vw";
+                event.target.appendChild(errorMessage_1);
+            }
+            return;
         }
-        return;
+    }
+    catch (error) {
+        console.error(error);
     }
     localStorage.setItem("user", JSON.stringify(data));
     event.target.reset();
     window.location.href = "../web/TmS/webTmS.html";
-    var errorMessage = document.getElementById("errorMessage");
+    var errorMessage = document.querySelector("#errorMessage");
     if (errorMessage) {
         errorMessage.remove();
     }
