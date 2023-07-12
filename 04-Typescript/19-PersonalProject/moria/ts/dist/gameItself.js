@@ -28,7 +28,8 @@ function addLisa(event) {
         var selectedPlayer = new Player("../img/ליסה.png");
         players.push(selectedPlayer);
         localStorage.setItem("players", JSON.stringify(players));
-        // window.location.href = "view/levels.html";
+        renderPlayer();
+        window.location.href = "view/levels.html";
     }
     catch (error) {
         console.error(error);
@@ -37,7 +38,7 @@ function addLisa(event) {
 // const level = document.querySelector(`.level`) as HTMLElement;
 // const notAvailable = document.querySelectorAll
 //     (`.levelNotAvailable`);
-function renderPlayer(htmlElement) {
+function renderPlayer() {
     try {
         // if (!htmlElement) throw new Error("No element");
         var playerString = localStorage.getItem("players");
@@ -45,11 +46,11 @@ function renderPlayer(htmlElement) {
         if (!playerString)
             return [];
         var playerArray = JSON.parse(playerString);
-        console.table(htmlElement);
-        // console.log(playerArray)
-        var players = playerArray.map(function (player) {
-            return new Player(player.playerImg);
-        });
+        // console.log(htmlElement)
+        console.log(playerArray);
+        // const players: Player[] = playerArray.map((player: Player) => {
+        //     return new Player(player.playerImg);
+        // })
         // renderPlayerCard(playerString)
         // const html = players.map(player => renderPlayerCard(player)).join(' ')
     }

@@ -33,7 +33,8 @@ function addLisa(event) {
         const selectedPlayer = new Player("../img/ליסה.png");
         players.push(selectedPlayer);
         localStorage.setItem("players", JSON.stringify(players))
-        // window.location.href = "view/levels.html";
+        renderPlayer()
+        window.location.href = "view/levels.html";
 
     } catch (error) {
         console.error(error)
@@ -43,7 +44,7 @@ function addLisa(event) {
 // const notAvailable = document.querySelectorAll
 //     (`.levelNotAvailable`);
 
-function renderPlayer(htmlElement: HTMLElement | null) {
+function renderPlayer() {
     try {
         // if (!htmlElement) throw new Error("No element");
         const playerString = localStorage.getItem("players");
@@ -51,11 +52,11 @@ function renderPlayer(htmlElement: HTMLElement | null) {
         if (!playerString) return [];
 
         const playerArray = JSON.parse(playerString);
-        console.table(htmlElement)
-        // console.log(playerArray)
-        const players: Player[] = playerArray.map((player: Player) => {
-            return new Player(player.playerImg);
-        })
+        // console.log(htmlElement)
+        console.log(playerArray)
+        // const players: Player[] = playerArray.map((player: Player) => {
+        //     return new Player(player.playerImg);
+        // })
         // renderPlayerCard(playerString)
 
 
@@ -93,7 +94,6 @@ document.addEventListener('keyup', (event: KeyboardEvent) => {
             bart.style.left = `${bart.offsetLeft - 85}px`;
             break;
         case 'ArrowRight':
-
             bart.style.left = `${bart.offsetLeft + 85}px`;
             break;
         case " ":
