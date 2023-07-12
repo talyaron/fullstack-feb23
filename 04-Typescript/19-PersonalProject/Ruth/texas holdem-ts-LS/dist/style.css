@@ -4,7 +4,10 @@
 }
 
 body {
-  padding: 30px;
+  width: 100vw;
+  height: 100vh;
+  background: url("https://cdn.pixabay.com/photo/2016/06/20/03/49/background-1468009_1280.png") center center fixed no-repeat;
+  background-color: #23ac08;
 }
 
 .wrapper {
@@ -12,12 +15,15 @@ body {
   height: 450px;
   background-size: cover;
   background-color: #212526;
-  border: 1px solid black;
+  border: 10px inset black;
+  box-shadow: 0px 0px 9px rgba(0, 0, 0, 0.623);
   position: relative;
+  left: calc(50% - 400px);
+  border-radius: 20px;
 }
 
 h1 {
-  color: #055b04;
+  color: #000000;
   text-align: center;
   display: block;
 }
