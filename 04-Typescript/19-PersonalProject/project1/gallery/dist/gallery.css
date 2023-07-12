@@ -13,7 +13,7 @@ body {
   justify-content: space-between;
   border: 1px solid black;
 }
-.gallery__imgs--p i:active {
+.gallery__imgs--p i:focus {
   color: red;
 }
 .gallery__imgs img {
@@ -26,4 +26,5 @@ body {
   color: white;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   text-align: center;
+  margin: 0px;
 }

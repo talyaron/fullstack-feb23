@@ -11,7 +11,7 @@ body {
       align-items: center;
       justify-content: space-between;
       border: 1px solid black;
-      i:active {
+      i:focus {
         color: red;
       }
     }
@@ -28,5 +28,6 @@ body {
     font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
       sans-serif;
       text-align: center;
+      margin: 0px;
   }
 }
