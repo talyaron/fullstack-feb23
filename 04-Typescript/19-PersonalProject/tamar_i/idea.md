@@ -15,7 +15,7 @@ help:
 * https://www.w3schools.com/graphics/game_intro.asp 
 * https://www.geeksforgeeks.org/   
 * https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Drawing_shapes difference-between-window-location-href-window-location-replace-and-window-location-assign-in-javascript/
-
+* https://www.youtube.com/watch?v=83L6B13ixQ0&ab_channel=ChrisCourses  
 
 
 model:

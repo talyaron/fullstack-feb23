@@ -10,6 +10,7 @@ function loadCharacters() {
             characters_1.push(new Character("Barak Sery", "./dist/3.png"));
             characters_1.push(new Character("Eli Nacht", "./dist/4.png"));
             characters_1.push(new Character("Eli Lachmani", "./dist/5.png"));
+            characters_1.push(new Character("zvi zilker", "./dist/5.png"));
             //save to local storage
             var charactersJson = JSON.stringify(characters_1);
             localStorage.setItem('characters', charactersJson);

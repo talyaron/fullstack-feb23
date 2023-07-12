@@ -30,7 +30,7 @@ function addFoodItem(foodItem) {
   foodName.textContent = foodItem.food;
 
   const calories = document.createElement("span");
-  calories.textContent = `${foodItem.calories} קלוריות`;
+  calories.textContent = `${foodItem.calories} calori`;
 
   listItem.appendChild(foodName);
   listItem.appendChild(calories);

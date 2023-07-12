@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./dist/index.css" />
+    <script src="./dist/script.js" defer></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <form onsubmit="handleAddingVaegtable(event)">
+      <input type="text" name="name" id="name" placeholder="vegtable-name" />
+      <input
+        type="number"
+        name="amount"
+        id="amount"
+        placeholder="vegtable-amount"
+      />
+      <input type="url" name="url" id="url" placeholder="image-url" />
+      <input type="submit" value="ADD" />
+      <input
+        type="search"
+        name="search"
+        id="search"
+        placeholder="search vegetables here"
+        oninput="userSearch()"
+      />
+    </form>
+    <div id="vegetables-cards">
+      <!-- <form action="">
+        <input type="text" name="" id="" placeholder="" /><input
+          type="number"
+          name=""
+          id=""
+          placeholder=""
+        />
+      </form> -->
+      <!-- <div class="card">
+        <img src="" alt="" />
+        <p></p>
+        <p></p>
+        <button>EDIT</button>
+      </div> -->
+    </div>
+  </body>
+</html>

@@ -11,6 +11,7 @@ function loadCharacters():Character[]|undefined{
         characters.push(new Character("Barak Sery","./dist/3.png"))
         characters.push(new Character("Eli Nacht","./dist/4.png"))
         characters.push(new Character("Eli Lachmani","./dist/5.png"))
+        characters.push(new Character("zvi zilker","./dist/5.png"))
         //save to local storage
         const charactersJson = JSON.stringify(characters);
         localStorage.setItem('characters', charactersJson);

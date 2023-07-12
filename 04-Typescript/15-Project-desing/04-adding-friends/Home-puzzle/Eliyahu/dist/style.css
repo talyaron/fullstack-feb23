@@ -1,0 +1,62 @@
+body {
+  background-image: url("https://www.thespruceeats.com/thmb/9OMcfNsUnWBlzbc_h3fBeBatFQY=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/crisperdrasersamriphoto-5f9024fb928b4fa9af6af804ecda0b78.jpg");
+  background-size: cover;
+}
+
+#main {
+  width: 80vw;
+  margin: auto;
+  text-align: center;
+  margin-top: 10px;
+}
+#main h1 {
+  font-family: "Alkatra", cursive;
+  font-size: 45px;
+  text-shadow: 1px 1px 2px white;
+}
+#main input,
+#main button {
+  padding: 5px;
+  margin: 5px;
+}
+#main label {
+  color: black;
+  text-shadow: 1px 1px 2px white;
+  display: block;
+  font-size: 28px;
+  font-family: "Alkatra", cursive;
+  font-weight: bolder;
+}
+
+.cards {
+  width: 95vw;
+  display: flex;
+  flex-wrap: wrap;
+  margin: auto;
+  justify-content: space-evenly;
+}
+
+.card {
+  border-radius: 10px;
+  width: 120px;
+  height: 320px;
+  padding: 10px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.694);
+  margin: 20px;
+  text-align: center;
+}
+.card img {
+  width: 100%;
+}
+.card button {
+  margin-bottom: 5px;
+  padding: 5px;
+  border-radius: 10px;
+}
+.card input {
+  max-width: 100px;
+  margin-bottom: 10px;
+}
+.card .att {
+  font-size: 13px;
+}

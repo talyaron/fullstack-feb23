@@ -12,7 +12,7 @@
 
 .wrapper {
     position: relative;
-    width: 450px;
+    width: 400px;
     height: 90vh;
     margin: auto;
     color: white;
@@ -22,10 +22,16 @@
     .addNewImage {
         position: relative;
         left: 46%;
-        top: -6vh;
         font-size: 40px;
         color: white;
-        // border: 1px solid white;
-        // border-radius: 50%;
+    }
+
+    .enterNewImage {
+        position: relative;
+        top: 8vh;
+        filter: blur(10px);
+        left: 46%;
+        font-size: 40px;
+        color: white;
     }
 }
