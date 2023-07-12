@@ -16,6 +16,26 @@ body .screen__game {
   background-color: black;
   height: 100%;
 }
+body .screen__game .star {
+  width: 60px;
+  height: 60px;
+  position: absolute;
+  animation: fallingStar 2.5s 2s 7 linear;
+}
+@keyframes fallingStar {
+  25% {
+    top: 25%;
+  }
+  50% {
+    top: 50%;
+  }
+  75% {
+    top: 75%;
+  }
+  100% {
+    visibility: hidden;
+  }
+}
 body .screen__game #fighter {
   position: absolute;
   width: fit-content;
@@ -30,13 +50,12 @@ body .screen__game #fighter img {
   position: absolute;
   transition: all 100ms ease-in-out;
 }
-body .screen__game #fighter #sowrd {
+body .screen__game #fighter #sword {
   height: 200px;
   width: 20px;
   left: 85px;
   top: -110px;
   position: absolute;
-  background-image: url(./greenSword.png);
   background-repeat: no-repeat;
   background-size: contain;
   transition: all 80ms ease-in-out;
@@ -63,7 +82,8 @@ body .screen__UI form {
   gap: 18px;
   padding-bottom: 10px;
 }
-body .screen__UI form input {
+body .screen__UI form input,
+body .screen__UI form select {
   width: 80%;
   margin: auto;
   border-radius: 8px;
@@ -73,10 +93,12 @@ body .screen__UI form input {
   color: white;
   font-family: fantasy;
 }
-body .screen__UI form input:hover {
+body .screen__UI form input:hover,
+body .screen__UI form select:hover {
   cursor: pointer;
 }
-body .screen__UI form input[type=text]:focus {
+body .screen__UI form input[type=text]:focus,
+body .screen__UI form select[type=text]:focus {
   background-color: white;
   color: black;
   border: none;
