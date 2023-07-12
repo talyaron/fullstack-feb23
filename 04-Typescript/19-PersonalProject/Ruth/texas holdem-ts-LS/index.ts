@@ -70,20 +70,53 @@ function getDeckCardsFromLs() {
   );
 }
 
-const firstPlayers = [new Player("ruth1")];
+const users: Player[] = [
+  new Player(
+    "ruth300290!",
+    "https://cdn.pixabay.com/photo/2013/05/30/18/21/cat-114782_1280.jpg",
+  ),
+  new Player(
+    "ruth0908",
+    "https://cdn.pixabay.com/photo/2014/04/05/11/40/chess-316658_1280.jpg",
+  ),
+  new Player(
+    "ruth765",
+    "https://cdn.pixabay.com/photo/2015/11/21/04/17/grandparents-1054311_1280.jpg",
+  ),
+  new Player(
+    "ruth5645",
+    "https://cdn.pixabay.com/photo/2015/11/21/04/17/grandparents-1054311_1280.jpg",
+  ),
+];
 
-const players: Player[] = getPlayerFromLs() || firstPlayers;
+const firstPlayers = [new Player("ruth1")].concat(users);
+
+const players: Player[] = getPlayerFromLs();
 
 function getPlayerFromLs() {
   try {
     const playersStr = localStorage.getItem("players");
-    if (!playersStr) return firstPlayers;
-    else {
+    if (!playersStr) {
+      console.log(firstPlayers);
+
+      localStorage.setItem("players", JSON.stringify(firstPlayers));
+
+      return firstPlayers;
+    } else {
       const playersOnArrayObjs = JSON.parse(playersStr);
       const players = playersOnArrayObjs.map(
         (p: any) =>
-          new Player(p.userName, p.imgSrc, p.chips, p.isActive, p.pCards),
+          new Player(
+            p.userName,
+            p.imgSrc,
+            p.chips,
+            p.isActive,
+            p.isTurn,
+            p.pCards,
+            p.allCard,
+          ),
       );
+      console.log(players);
 
       return players;
     }
@@ -92,20 +125,21 @@ function getPlayerFromLs() {
   }
 }
 
-// const players:Player[] =
-localStorage.setItem("players", JSON.stringify(players));
 players[0].renderMyPanel();
-console.log(players);
 
 function addCardToStage() {
   const root = document.querySelector(".stage") as HTMLDivElement;
   if (root.children.length < 6) {
     if (root.children.length > 3) {
       let newCard = getRandomCard();
+      players.forEach((p) => p.addCardToPlayer(newCard));
+      localStorage.setItem("players", JSON.stringify(players));
       newCard.renderCard(root);
     } else {
       for (let i = 0; i < 3; i++) {
         let newCard = getRandomCard();
+        players.forEach((p) => p.addCardToPlayer(newCard));
+        localStorage.setItem("players", JSON.stringify(players));
         newCard.renderCard(root);
       }
     }
@@ -116,7 +150,7 @@ function checkStatus(cards: Card[]) {
   checkTwoOfAKind(cards);
 }
 
-function checkTwoOfAKind(cards:Card[]) {
+function checkTwoOfAKind(cards: Card[]) {
   const copiedCards = [...cards];
 
   for (let i = 0; i < copiedCards.length; i++) {
@@ -246,58 +280,71 @@ console.log(highCard(cards));
 
 //---------------------------------------------turn-------------------------------------
 
-function turnOrder(players: Player[]) {
+function turnOrder(players:Player[]) {
   const stage = document.querySelector(".stage") as HTMLDivElement;
-  for (let i = 0; i < players.length; i++) {
+  let currentPlayerIndex = 0; // מספר השחקן הנוכחי בתור
+
+  function performTurn() {
+    const currentPlayer = players[currentPlayerIndex];
     players.map((p) => (p.isActive = false));
-    players[i].setActive();
-    addCardToStage();
-    players.forEach((p, i) =>
-      console.log(`player in ${i} index isActive =  ${p.isActive}`),
-    );
-    if (i == players.length - 1 && stage.children.length == 7) i = 0;
+    currentPlayer.setActive();
+    currentPlayer.doingTurn();
+
+    currentPlayerIndex++;
+    if (currentPlayerIndex >= players.length && stage.children.length < 6) {
+      currentPlayerIndex = 0;
+      if (stage.children.length < 6) {
+        addCardToStage();
+      }
+    }
+
+    setTimeout(performTurn, 500); // השהייה של 4 שניות לפני תור השחקן הבא
   }
+
+  performTurn(); // הפעלת התור הראשון
+  // game over
 }
-
-const users: Player[] = [
-  new Player(
-    "ruth1!",
-    "https://cdn.pixabay.com/photo/2013/05/30/18/21/cat-114782_1280.jpg",
-  ),
-  new Player(
-    "ruth0908",
-    "https://cdn.pixabay.com/photo/2014/04/05/11/40/chess-316658_1280.jpg",
-  ),
-  new Player(
-    "ruth765",
-    "https://cdn.pixabay.com/photo/2015/11/21/04/17/grandparents-1054311_1280.jpg",
-  ),
-  new Player(
-    "ruth765",
-    "https://cdn.pixabay.com/photo/2015/11/21/04/17/grandparents-1054311_1280.jpg",
-  ),
-
-];
-
-
+turnOrder(players)
 
 function renderPlayersPanel(players: Player[]) {
   try {
-    const playersElement = document.querySelectorAll(".playerPanel") as ;
+    const playersElement: NodeListOf<HTMLElement> =
+      document.querySelectorAll(".playerPanel");
     players.forEach((p, i) => {
       console.log(playersElement[i]);
-      
+
       // p.pCards.forEach((c) =>
       //   c.renderCard(document.querySelector(`#player${i+1}Cards`) as HTMLElement),
       // );
-      playersElement[i].querySelector(`.playerPanel__img img`).src = p.imgSrc
-      playersElement[i].querySelector(`.playerPanel__inform__chips`).innerHTML = p.chips.toString();
-      playersElement[i].querySelector(`.playerPanel__inform__userName`).textContent = p.userName
-      
+      (
+        playersElement[i].querySelector(
+          `.playerPanel__img img`,
+        ) as HTMLImageElement
+      ).src = p.imgSrc;
+      playersElement[i].querySelector(
+        `.playerPanel__inform__chips`,
+      )!.innerHTML = p.chips.toString();
+      playersElement[i].querySelector(
+        `.playerPanel__inform__userName`,
+      )!.textContent = p.userName;
     });
   } catch (error) {
     console.error(error);
   }
 }
 
-renderPlayersPanel(users)
+renderPlayersPanel(users);
+
+function playPokerRound() {
+  let round = new Round();
+
+  function loop() {
+    for (let i = 0; i < round.activePlayers.length; i++) {
+      let currentPlayer = round.activePlayers[i];
+      round.activePlayers.forEach((p) => (p.isActive = false));
+      currentPlayer.isActive = true;
+      setTimeout(currentPlayer.doingTurn, 3000);
+    }
+  }
+
+}
