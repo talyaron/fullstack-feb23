@@ -1,32 +1,34 @@
 
 *{
-   margin: 0;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+   
 }
  html {
     background-color: rgb(15, 215, 215);
-}
-
-.wrapper {
-    i {
-        padding-right: 10px;
-    }
-
+    
 
     .header {
-        display: block;
-        text-align: right;
+        display: flex;
+        flex-wrap: wrap;
+        text-align: center;
+        justify-content: flex-end;
         background-color: #03a1a1;
         width: 100%;
         height: 25px;
         font-size: 22px;
+        gap: 1rem;
        
     }
     
 
     .navigation {
-   display: block;
-   text-align: center;
-   justify-content: space-between;
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+    justify-content: center;
+    gap: 1rem;
     width: 100%;
     color: rgb(86, 86, 86);
     font-family: "Quicksand", sans-serif;
@@ -43,4 +45,10 @@
     height: 40px;
 }
 
+#logo {
+    
+    width: 300px;
+    height: auto;
+}
+ 
 }

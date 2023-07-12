@@ -33,6 +33,7 @@ function saveDetails(event) {
       const errorMessage = document.createElement("p");
       errorMessage.textContent = "You are under age!";
       errorMessage.id = "errorMessage";
+      errorMessage.style.borderRadius = "20px";
       errorMessage.style.color = "black";
       errorMessage.style.backgroundColor = "red";
       errorMessage.style.border = "3px solid black";
