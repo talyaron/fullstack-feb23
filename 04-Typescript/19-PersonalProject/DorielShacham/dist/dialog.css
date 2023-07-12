@@ -1,5 +1,4 @@
 dialog {
-  background-color: black;
   color: white;
   display: flex;
   flex-wrap: wrap;
@@ -8,7 +7,7 @@ dialog {
   align-items: center;
   width: 250px;
   height: 200px;
-  background: linear-gradient(to left, rgba(200, 0, 255, 0.8), black 50%, rgba(0, 0, 255, 0.8) 100%);
+  background: linear-gradient(to left, rgba(160, 0, 255, 0.8), black 50%, rgba(0, 0, 255, 0.8) 100%);
 }
 dialog button {
   position: relative;
