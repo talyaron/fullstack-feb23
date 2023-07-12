@@ -3,37 +3,38 @@
 //Instegram Profile page.
 //MVC - Model View Controller
 //class - user, image.
-function showUserImg(HTMLElement, userImg) {
+function showPosts(HTMLElement, user) {
     try {
         if (!HTMLElement)
             throw new Error('Root element is not found');
-        var html = userImg.map(function (userImg) {
-            return "\n        <div class=\"userPost\">\n            <div class=\"userPost__name\">\n            <img src=\"" + userImg.user.imageProfile + "\">\n            <h3>" + userImg.user.name + "</h3>\n            </div>\n              <div class=\"userPost__img\">\n                <img src=\"" + userImg.user.imageProfile + "\">\n              </div>\n            </div>";
+        var html = user.map(function (user) {
+            return "\n        <div class=\"userPost\">\n            <div class=\"userPost__name\">\n            <img src=\"" + user.imageProfile + "\">\n            <h3>" + user.name + "</h3>\n            </div>\n              <div class=\"userPost__img\">\n                <img src=\"" + user.images + "\">\n              </div>\n            </div>";
         }).join('');
         HTMLElement.innerHTML = html;
-        localStorage.setItem('userImgArray', JSON.stringify(userImgArray));
+        localStorage.setItem('imagesArray', JSON.stringify(imagesArray));
+        localStorage.setItem('usersArray', JSON.stringify(usersArray));
     }
     catch (error) {
         console.error(error);
     }
 }
-showUserImg(document.querySelector('#profile'), userImgArray);
+showPosts(document.querySelector('#posts'), usersArray);
 //creat header
-function showHeader(HTMLElement, userImg) {
+function showHeader(HTMLElement, user) {
     try {
         if (!HTMLElement)
             throw new Error('Root element is not found');
-        var html = userImg.map(function (userImg) {
-            return "\n      <div class=\"header\">\n        <div class=\"header__user\">\n        <div class=\"header__user--image\">\n          <img src=\"" + userImg.user.imageProfile + "\">\n        </div>\n          <h3>" + userImg.user.name + "</h3>\n        </div>\n      </div>";
+        var html = user.map(function (user) {
+            return "\n      <div class=\"header\">\n        <div class=\"header__user\">\n        <div class=\"header__user--image\">\n          <img src=\"" + user.imageProfile + "\">\n        </div>\n          <h3>" + user.name + "</h3>\n        </div>\n      </div>";
         }).join('');
         HTMLElement.innerHTML = html;
-        localStorage.setItem('userImgArray', JSON.stringify(userImgArray));
+        localStorage.setItem('usersArray', JSON.stringify(usersArray));
     }
     catch (error) {
         console.error(error);
     }
 }
-showHeader(document.querySelector('#header'), userImgArray);
+showHeader(document.querySelector('#header'), usersArray);
 //view - show the user profile.
 //create a new user profile.
 //create a new post(image).

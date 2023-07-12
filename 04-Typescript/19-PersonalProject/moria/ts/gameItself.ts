@@ -1,11 +1,12 @@
-
+const players = getPlayerFromLocalStorage()
+renderPlayers(players);
 function addHomer(event) {
     try {
         // const player =
-        const selectedPlayer = "../img/הומר.png";
+        const selectedPlayer = new Player("../img/הומר.png");
         players.push(selectedPlayer);
-        console.log(event)
-        localStorage.setItem("players", JSON.stringify(players))
+        savePlayerToLocalStorage(players)
+        console.log(players)
         window.location.href = "view/levels.html";
 
 
@@ -33,7 +34,8 @@ function addLisa(event) {
         const selectedPlayer = new Player("../img/ליסה.png");
         players.push(selectedPlayer);
         localStorage.setItem("players", JSON.stringify(players))
-        // window.location.href = "view/levels.html";
+        renderPlayer()
+        window.location.href = "view/levels.html";
 
     } catch (error) {
         console.error(error)
@@ -43,24 +45,10 @@ function addLisa(event) {
 // const notAvailable = document.querySelectorAll
 //     (`.levelNotAvailable`);
 
-function renderPlayer(htmlElement: HTMLElement | null) {
+function savePlayerToLocalStorage(players: Player[]) {
     try {
-        // if (!htmlElement) throw new Error("No element");
-        const playerString = localStorage.getItem("players");
-        // console.log(playerString)
-        if (!playerString) return [];
-
-        const playerArray = JSON.parse(playerString);
-        console.table(htmlElement)
-        // console.log(playerArray)
-        const players: Player[] = playerArray.map((player: Player) => {
-            return new Player(player.playerImg);
-        })
-        // renderPlayerCard(playerString)
-
-
-        // const html = players.map(player => renderPlayerCard(player)).join(' ')
-
+        if (!players) throw new Error("No players");
+        localStorage.setItem('players', JSON.stringify(players));
 
     } catch (error) {
         console.error(error)
@@ -68,18 +56,34 @@ function renderPlayer(htmlElement: HTMLElement | null) {
 }
 
 
-// function renderPlayerCard(player: Player) {
-//     try {
+function getPlayerFromLocalStorage(): Player[] {
+    try {
+        const playersStorage = localStorage.getItem('players');
+        if (!playersStorage) return [];
+        const playersArray = JSON.parse(playersStorage);
+        const players = playersArray.map(player => new Player(player.playersImg));
+        return players;
+    } catch (error) {
+        console.error(error);
+        return [];
+    }
 
-//         `<div class="card">
-//                     <img src="${player.playerImg}"> </div>
-// `
-//         rootPlayer.innerHTML = html;
-//     }}
-// // } catch (error) {
-// //     console.error(error);
-// //     return ''
-// // }
+}
+
+function renderPlayers(players: Player[]) {
+    try {
+        const rootPlayer = document.querySelector('#rootPlayer');
+        if (!rootPlayer) throw new Error('No Player');
+
+
+        const html = players.map(player => `<img class="bart" src="${player.playerImg}"> `).join(' ');
+        rootPlayer.innerHTML = html;
+
+    } catch (error) {
+        console.error(error);
+    }
+}
+
 
 
 const bart = document.querySelector(`.bart`) as HTMLElement;
@@ -93,7 +97,6 @@ document.addEventListener('keyup', (event: KeyboardEvent) => {
             bart.style.left = `${bart.offsetLeft - 85}px`;
             break;
         case 'ArrowRight':
-
             bart.style.left = `${bart.offsetLeft + 85}px`;
             break;
         case " ":

@@ -30,16 +30,20 @@ var Card = /** @class */ (function () {
 }());
 //---------------------------Player--------------------
 var Player = /** @class */ (function () {
-    function Player(userName, imgSrc, chips, isActive, pCards) {
+    function Player(userName, imgSrc, chips, isActive, isTurn, pCards, allCard) {
         if (imgSrc === void 0) { imgSrc = ""; }
         if (chips === void 0) { chips = 100000; }
         if (isActive === void 0) { isActive = false; }
+        if (isTurn === void 0) { isTurn = false; }
         if (pCards === void 0) { pCards = get2RandomCards(); }
+        if (allCard === void 0) { allCard = pCards; }
         this.userName = userName;
         this.imgSrc = imgSrc;
         this.chips = chips;
         this.isActive = isActive;
+        this.isTurn = isTurn;
         this.pCards = pCards;
+        this.allCard = allCard;
         this.pCards = this.pCards.map(function (c) { return new Card(c.cardNumber, c.cardSign); });
     }
     Player.prototype.setActive = function () {
@@ -57,6 +61,12 @@ var Player = /** @class */ (function () {
             console.error(error);
         }
     };
+    Player.prototype.addCardToPlayer = function (card) {
+        this.allCard.push(card);
+    };
+    Player.prototype.doingTurn = function () {
+        console.log(this.userName + " is doing somethig......");
+    };
     return Player;
 }());
 //------------------Dealer------------------------------
@@ -65,4 +75,21 @@ var Dealer = /** @class */ (function () {
         this.sum = sum;
     }
     return Dealer;
+}());
+//----------------Round--------------------------------
+var Round = /** @class */ (function () {
+    function Round(activePlayers, firstPlayer, chipsOnTable, roundNumber) {
+        if (activePlayers === void 0) { activePlayers = players; }
+        if (firstPlayer === void 0) { firstPlayer = activePlayers[0]; }
+        if (chipsOnTable === void 0) { chipsOnTable = 0; }
+        if (roundNumber === void 0) { roundNumber = 0; }
+        this.activePlayers = activePlayers;
+        this.firstPlayer = firstPlayer;
+        this.chipsOnTable = chipsOnTable;
+        this.roundNumber = roundNumber;
+    }
+    Round.prototype.setPlayers = function () {
+        this.activePlayers = this.activePlayers.filter(function (p) { return p.isActive == true; });
+    };
+    return Round;
 }());
