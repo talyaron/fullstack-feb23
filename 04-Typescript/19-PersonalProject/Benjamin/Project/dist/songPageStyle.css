@@ -20,13 +20,20 @@ body {
 }
 .songWrapper__name {
   font-size: 30px;
-  color: #245bf1;
-  font-family: cursive;
+  color: #c8e716;
+  font-family: sans-serif;
 }
 .songWrapper__artist {
-  font-size: 25px;
-  color: aquamarine;
-  font-family: monospace;
+  font-size: 14px;
+  color: black;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  text-decoration: underline;
+  transition: all 100ms ease-in-out;
+  border-radius: 15px;
+  cursor: pointer;
+}
+.songWrapper__artist:hover {
+  background-color: #97c7c7;
 }
 
 #playicon {
@@ -44,11 +51,17 @@ body {
   animation: rotate 3s infinite cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 @keyframes rotate {
-  from {
+  0% {
     transform: rotate(0turn);
+    scale: 1;
   }
-  to {
+  50% {
     transform: rotate(1turn);
+    scale: 1.5;
+  }
+  100% {
+    transform: rotate(2turn);
+    scale: 1;
   }
 }
 
@@ -76,8 +89,8 @@ body {
 }
 
 #time {
-  font-size: 20px;
-  font-family: monospace;
+  font-size: 18px;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   color: #ec1198;
   transition: all 100ms ease-in-out;
   z-index: 2;

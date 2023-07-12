@@ -7,36 +7,27 @@
     <title>Document</title>
     <link rel="stylesheet" href="./dist/mainStyle.css">
     <script src="https://kit.fontawesome.com/761340618e.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="./dist/loader.css">
+    <link rel="stylesheet" href="./dist/mainStyle.css">
 
 </head>
 
 <body>
     <div class="MainPageWrapper">
         <h1 class="MainPageWrapper__headline">MYMUSIC</h1>
-        <div class="MainPageWrapper__suggested">
-            <div class="MainPageWrapper__suggested__root"></div>
+        <input class="MainPageWrapper__songInput" oninput="handleSearch(event)" name="songInput" type="text">
+        <div id="MainPageWrapper__paragraphs"></div>
+        <div class="MainPageWrapper__suggestedCover"><button class="MainPageWrapper__suggested__scroll"></button>
+            <div class="MainPageWrapper__suggested">
+                <div class="MainPageWrapper__suggested__root"></div>
+            </div>
         </div>
+
         <div class="MainPageWrapper__lastListened">
             <div class="MainPageWrapper__lastListened__ROOT"></div>
         </div>
         <div class="loader"></div>
 
-
-
-
-
-
-
-
-
-
     </div>
-
-
-
-
-
 
     <script src="./dist/loaderCode.js"></script>
     <script src="./dist/mainCode.js"></script>

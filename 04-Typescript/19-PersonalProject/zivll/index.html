@@ -14,36 +14,54 @@
       /></logo>
       <div class="calculator">
         <form onsubmit="handleSubmit()">
-          <label for="income-amount">מה גובה ההכנסה החודשית שלך?</label>
-          <input
-            type="number"
-            name="income-amount"
-            id="income-amount"
-            required
-          />
-          <label for="expence-description">שם ההוצאה:</label>
-          <input
-            type="text"
-            name="expence-description"
-            id="expence-description"
-          />
-          <label for="categories">מה הקטגוריה המתאימה עבור ההוצאה שלך?</label>
-          <select name="categories" id="categories">
-            <option value="">תקשורת</option>
-            <option value="">תרומות</option>
-            <option value="">ביטוחים</option>
-            <option value="">חינוך</option>
-            <option value="">תחבורה</option>
-            <option value="">הלוואות</option>
-            <option value="">דיור</option>
-            <option value="">נופש</option>
-            <option value="">הוצאות מזדמנות</option>
-          </select>
-          <label for="expence-amount">מה סכום ההוצאה שלך?</label>
-          <input type="number" name="expence-amount" id="expence-amount" />
-          <label for="expiration">מהו תוקף ההוצאה שלך? (במידה ורלוונטי)</label>
-          <input type="date" name="expiration" id="expiration" />
-          <input type="submit" value="חשב" />
+          <h2>מחשבון תקציב</h2>
+          <div class="user-box">
+            <input
+              type="number"
+              name="income-amount"
+              id="income-amount"
+              required
+            />
+            <label for="income-amount">מה גובה ההכנסה החודשית שלך?</label>
+          </div>
+          <div class="user-box">
+            <input
+              type="text"
+              name="expence-description"
+              id="expence-description"
+            />
+            <label for="expence-description">שם ההוצאה:</label>
+          </div>
+          <div class="user-box">
+            <label for="categories">מה הקטגוריה המתאימה עבור ההוצאה שלך?</label>
+            <select name="categories" id="categories">
+              <option value="">תקשורת</option>
+              <option value="">תרומות</option>
+              <option value="">ביטוחים</option>
+              <option value="">חינוך</option>
+              <option value="">תחבורה</option>
+              <option value="">הלוואות</option>
+              <option value="">דיור</option>
+              <option value="">נופש</option>
+              <option value="">הוצאות מזדמנות</option>
+            </select>
+          </div>
+          <div class="user-box">
+            <input type="number" name="expence-amount" id="expence-amount" />
+            <label for="expence-amount">מה סכום ההוצאה שלך?</label>
+          </div>
+          <div class="user-box">
+            <input type="date" name="expiration" id="expiration" class="date" />
+            <label for="expiration"
+              >מהו תוקף ההוצאה שלך? (במידה ורלוונטי)</label
+            >
+          </div>
+          <a href="#" type="submit" value="חשב"
+            ><span></span>
+            <span></span>
+            <span></span>
+            <span></span>חשב</a
+          >
         </form>
       </div>
       <div class="result">
@@ -58,6 +76,44 @@
         </div>
       </div>
       <div class="expenses-details">
+        <table>
+          <thead>
+            <tr>
+              <th colspan="2">
+                תקשורת<svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="collapse-icon"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M18 12H6"
+                  />
+                </svg>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>סלקום</td>
+              <td>249&#8362;</td>
+            </tr>
+            <tr>
+              <td>יוטיוב</td>
+              <td>30&#8362;</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td>סה"כ</td>
+              <td>279&#8362;</td>
+            </tr>
+          </tfoot>
+        </table>
         <table>
           <thead>
             <tr>

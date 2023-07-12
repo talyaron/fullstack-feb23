@@ -1,0 +1,19 @@
+.gallery__imgs {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+.gallery__imgs--p {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid black;
+}
+.gallery__imgs--p i:active {
+  color: red;
+}
+.gallery__imgs img {
+  width: 15vw;
+  height: 20vw;
+  padding-top: 2vw;
+}
