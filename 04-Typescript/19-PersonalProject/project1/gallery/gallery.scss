@@ -1,0 +1,23 @@
+.gallery {
+  &__imgs {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    &--p{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border:1px solid black;
+        i:visited{
+            color: red;
+        }
+    }
+
+    img {
+        width: 15vw;
+        height: 20vw;
+        padding-top: 2vw;
+      }
+  }
+  
+}
