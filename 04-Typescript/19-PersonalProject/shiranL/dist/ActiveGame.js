@@ -140,6 +140,9 @@ function putCityOnBoard(city, cityIndex) {
                 cityBtn1 = document.createElement('bottun');
                 cityBtn1.id = "" + city.cityId;
                 cityBtn1.classList.add('RovaA');
+                //add event on click to render city card
+                debugger;
+                cityBtn1.addEventListener('click', function () { renderCityCard(city.cityId); });
                 cell1.appendChild(cityBtn1);
                 cityBtn2 = document.createElement('bottun');
                 cityBtn2.id = "" + city.cityId;
@@ -284,10 +287,60 @@ function putCityOnBoard(city, cityIndex) {
                 cell3.appendChild(cityBtn3);
                 break;
         }
-        // create elements for city
-        //   // cell2?.appendChild(cityBtn);
-        //   // cell3?.appendChild(cityBtn);
-        //  // cell.name="jail"
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+function renderCityCard(cityId) {
+    var _a, _b, _c;
+    try {
+        debugger;
+        var dialog = document.createElement('dialog'); // Create a dialog element
+        dialog.classList.add('city-dialog'); // Add a custom CSS class for styling
+        var diaylogForm = document.createElement('form');
+        var spanClose = document.createElement('button');
+        spanClose.classList.add('close');
+        spanClose.addEventListener('click', closePopup);
+        diaylogForm.appendChild(spanClose);
+        var cityCard = document.createElement('div');
+        cityCard.id = "cityCard" + cityId;
+        cityCard.classList.add('cityCard');
+        var cityName = document.createElement('h1');
+        var cityBuyPrice = document.createElement('h2');
+        var cityRentPrice = document.createElement('h2');
+        var owner = document.createElement('h2');
+        var city_1 = (_a = gamesBoardsAGpage === null || gamesBoardsAGpage === void 0 ? void 0 : gamesBoardsAGpage.find(function (board) { return board.cities.find(function (city) { return city.cityId === cityId; }); })) === null || _a === void 0 ? void 0 : _a.cities.find(function (city) { return city.cityId === cityId; });
+        if (!city_1)
+            throw new Error("cant find city");
+        cityName.innerHTML = "" + city_1.cityName;
+        cityBuyPrice.innerHTML = "Buy Price : " + city_1.monetaryValue;
+        cityRentPrice.innerHTML = "Rent Price : " + city_1.rentValue;
+        var ownerName = (_c = (_b = gamesBoardsAGpage === null || gamesBoardsAGpage === void 0 ? void 0 : gamesBoardsAGpage.find(function (board) { return board.cities.find(function (city) { return city.cityId === cityId; }); })) === null || _b === void 0 ? void 0 : _b.players.find(function (player) { var _a; return player.playerId === ((_a = city_1.cityOwner) === null || _a === void 0 ? void 0 : _a.playerId); })) === null || _c === void 0 ? void 0 : _c.userName;
+        owner.innerHTML = "Owner : " + (ownerName || "No Owner");
+        if (!ownerName) {
+            var buyBtn = document.createElement('button');
+            buyBtn.classList.add('buyBtn');
+            buyBtn.innerHTML = "Buy";
+            cityCard.appendChild(buyBtn);
+            // buyBtn.addEventListener('click',()=>{buyCity(cityId,city.monetaryValue)}); 
+        }
+        else {
+            var payBtn = document.createElement('button');
+            payBtn.classList.add('payBtn');
+            payBtn.innerHTML = "Pay";
+            cityCard.appendChild(payBtn);
+            // payBtn.addEventListener('click',()=>{payRent(cityId,city.rentValue)});
+        }
+        cityCard.appendChild(cityName);
+        cityCard.appendChild(cityBuyPrice);
+        cityCard.appendChild(cityRentPrice);
+        cityCard.appendChild(owner);
+        diaylogForm.appendChild(cityCard);
+        dialog.appendChild(diaylogForm);
+        document.body.appendChild(dialog); // Append the dialog to the document body
+        dialog.showModal(); // Display the dialog as a modal
+        // Generate and display the random number
     }
     catch (error) {
         console.error(error);
@@ -402,10 +455,21 @@ function dropCube() {
 }
 function showPopup() {
     try {
-        var popup = document.getElementById("popup");
-        if (!popup)
-            throw new Error("cant find popup ");
-        popup.style.display = "block";
+        var dialog = document.createElement('dialog'); // Create a dialog element
+        dialog.classList.add('popup-dialog'); // Add a custom CSS class for styling
+        var spanClose = document.createElement('span');
+        spanClose.classList.add('close');
+        spanClose.addEventListener('click', closePopup);
+        spanClose.innerHTML = '&times;';
+        dialog.appendChild(spanClose);
+        var numDiv = document.createElement('div');
+        numDiv.id = "randomNumber";
+        numDiv.classList.add('randomNumber');
+        dialog.appendChild(numDiv);
+        document.body.appendChild(dialog); // Append the dialog to the document body
+        dialog.showModal(); // Display the dialog as a modal
+        generateRandomNumber();
+        // Generate and display the random number
     }
     catch (error) {
         console.error(error);
@@ -413,10 +477,11 @@ function showPopup() {
 }
 function closePopup() {
     try {
-        var popup = document.getElementById("popup");
-        if (!popup)
-            throw new Error("cant find popup ");
-        popup.style.display = "none";
+        var dialog = document.querySelector('dialog'); // Get the dialog element
+        if (!dialog)
+            throw new Error("Can't find dialog.");
+        dialog.close(); // Close the dialog
+        dialog.remove(); // Remove the dialog element from the DOM
     }
     catch (error) {
         console.error(error);
