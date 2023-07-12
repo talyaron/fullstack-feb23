@@ -1,16 +1,3 @@
-class battle {
-  id: string;
-  constructor(
-    public name,
-    public pass,
-    public email,
-    public number,
-    public ?id
-  ) {
-    id = id || `id-${new Date().getTime()}-${Math.random()}`;
-  }
-}
-
 
 
 const root: HTMLElement | null = document.querySelector("#root");
