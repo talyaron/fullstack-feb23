@@ -22,7 +22,7 @@ function addFoodItem(foodItem) {
     var foodName = document.createElement("span");
     foodName.textContent = foodItem.food;
     var calories = document.createElement("span");
-    calories.textContent = foodItem.calories + " \u05E7\u05DC\u05D5\u05E8\u05D9\u05D5\u05EA";
+    calories.textContent = foodItem.calories + " calori";
     listItem.appendChild(foodName);
     listItem.appendChild(calories);
     foodList.appendChild(listItem);
