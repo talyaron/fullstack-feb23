@@ -13,13 +13,13 @@ body {
 .container__nav {
   width: 100%;
   display: flex;
-  justify-content: space-between;
   align-items: center;
   background-color: #718f54;
   color: #fff;
 }
 .container__nav__box {
-  padding: 20px;
+  padding-left: 30%;
+  justify-content: center;
 }
 
 .container__nav a {
@@ -27,13 +27,36 @@ body {
   text-decoration: none;
   padding: 10px;
   transition: background-color 0.3s ease;
+  font-family: Arial, sans-serif;
+  font-weight: bolder;
+  font-size: larger;
 }
 
 .container__nav a:hover {
-  background-color: #555;
+  background-color: #cbddbb;
 }
 
 .container__nav a:first-child {
   font-size: 1.5em;
   font-weight: bold;
+}
+
+.img {
+  height: 30vw;
+  width: 80vw;
+  padding-top: 3vw;
+  padding-left: 10%;
+}
+
+h1 {
+  position: relative;
+  left: 28%;
+  bottom: 25vw;
+  color: white;
+  font-size: 8vw;
+}
+
+.About {
+  padding-top: 0px;
+  color: white;
 }
