@@ -4,8 +4,8 @@ body {
 }
 
 hr{
-    background-color: white;
-    width: 17%;
+    background-color: rgb(255, 102, 0);
+    width: 3%;
     border-radius: 20px;
     height: 0.3vw;
 }
@@ -28,21 +28,6 @@ hr{
         width: 100%;
         align-items: center;
         flex-direction: column;
-
-
-        &--btn {
-            background-color: #FF8066;
-            border-radius: 10px;
-            font-size: 1vw;
-            padding: 1vw;
-            margin: 2vw;
-
-            &:hover {
-                background-color: darkred;
-                cursor: pointer;
-            }
-        }
-
 
         h2 {
             width: 100%;

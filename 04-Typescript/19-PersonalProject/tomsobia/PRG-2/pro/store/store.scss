@@ -97,7 +97,7 @@ hr {
             width: 13%;
             height: auto;
             margin: 7px;
-            background-color: rgb(0, 146, 251);
+            background-color: rgba(196, 196, 196, 0.877);
 
             img {
                 border-top-left-radius: 20px;
@@ -108,6 +108,7 @@ hr {
         }
     }
 
+    
 
     @media (max-width: 600px) {
         body {
