@@ -5,37 +5,35 @@ var Img = /** @class */ (function () {
     }
     return Img;
 }());
-var image1 = new Img('https://pixlr.com/images/index/remove-bg.webp');
-var image2 = new Img('https://photoscissors.com/images/samples/3-before.jpg');
+// const image1 = new Img('https://cdn.pixabay.com/photo/2015/04/19/08/32/marguerite-729510_1280.jpg');
+// const image2 = new Img('https://photoscissors.com/images/samples/3-before.jpg');
 var storedImages = localStorage.getItem('images');
-var imageArray = storedImages ? JSON.parse(storedImages) : [image1, image2];
-console.log(imageArray);
+var imagesArray = storedImages ? JSON.parse(storedImages) : [];
+console.log(imagesArray);
 //
 var User = /** @class */ (function () {
-    function User(name, imageProfile, img) {
+    function User(name, imageProfile, images) {
         this.name = name;
         this.imageProfile = imageProfile;
-        this.img = img;
+        this.images = images;
         this.id = Date.now().toString() + Math.random().toString(36).substr(2);
     }
     return User;
 }());
-var bar = new User('Bar', 'https://pixlr.com/images/index/remove-bg.webp', [image1]);
-var netanel = new User('Netanel', 'https://photoscissors.com/images/samples/3-before.jpg', [image2]);
+var bar = new User('Bar', 'https://pixlr.com/images/index/remove-bg.webp', []);
+var netanel = new User('Netanel', 'https://photoscissors.com/images/samples/3-before.jpg', []);
 var storedUsers = localStorage.getItem('Users');
 var usersArray = storedUsers ? JSON.parse(storedUsers) : [bar, netanel];
 console.log(usersArray);
 //
-var UserImg = /** @class */ (function () {
-    function UserImg(user, image) {
-        this.user = user;
-        this.image = image;
-        this.id = Date.now().toString() + Math.random().toString(36).substr(2);
-    }
-    return UserImg;
-}());
-var userImg1 = new UserImg(bar, [image1]);
-var userImg2 = new UserImg(netanel, [image2]);
-var storedUserImgs = localStorage.getItem('UserImgs');
-var userImgArray = storedUserImgs ? JSON.parse(storedUserImgs) : [userImg1, userImg2];
-console.log(userImgArray);
+// class UserImg {
+//     id: string;
+//     constructor(public user: User, public image: Img[]) {
+//         this.id = Date.now().toString() + Math.random().toString(36).substr(2);
+//     }
+// }
+// const userImg1 = new UserImg(bar, []);
+// const userImg2 = new UserImg(netanel, []);
+// const storedUserImgs = localStorage.getItem('UserImgs');
+// const userImgArray: UserImg[] = storedUserImgs ? JSON.parse(storedUserImgs) : [userImg1, userImg2];
+// console.log(userImgArray);
