@@ -214,12 +214,15 @@ document.addEventListener('keydown', function (event) {
     try {
         event.preventDefault();
         var sword = document.querySelector('#sword');
-        var newPlayer = document.querySelector('#sword');
-        if (!sword)
+        var newPlayer = document.querySelector('#newPlayer');
+        if (!sword && !newPlayer)
             throw new Error("Can't cath sword DOM");
         debugger;
         console.dir(event);
-        // if(event.target)  
+        if (event)
+            if (event.target === "input") {
+                newPlayer.innerText += event.key;
+            }
         console.log(event);
         switch (event.key || event.ctrlKey) {
             case " ":

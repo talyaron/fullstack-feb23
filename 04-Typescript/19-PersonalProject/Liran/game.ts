@@ -266,15 +266,18 @@ document.addEventListener('keyup', (event: KeyboardEvent) => {
 });
 
 
-document.addEventListener('keydown', (event: KeyboardEvent) => {
+document.addEventListener('keydown', (event: KeyboardEvent|any) => {
     try {
         event.preventDefault();
         const sword = document.querySelector('#sword') as HTMLDivElement;
-        const newPlayer = document.querySelector('#sword') as HTMLDivElement;
-        if (!sword) throw new Error("Can't cath sword DOM");
+        const newPlayer = document.querySelector('#newPlayer') as HTMLDivElement;
+        if (!sword && !newPlayer) throw new Error("Can't cath sword DOM");
         debugger;
         console.dir(event);
-        // if(event.target)  
+        if(event)
+            if (event.target === "input") {
+                newPlayer.innerText += event.key;
+            }
         console.log(event);
         switch (event.key || event.ctrlKey) {
 
