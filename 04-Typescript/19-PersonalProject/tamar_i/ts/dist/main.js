@@ -1,11 +1,5 @@
 // import ts files -> https://www.educative.io/answers/how-to-import-another-typescript-file
-//import redBall from '/red_ball';
-//import '../ts/dist/bricks';
-//import '../ts/dist/errow';
-//import '../ts/dist/bombs';
-//import '../ts/dist/shelves';
-//import '../ts/dist/coins';
-//import '../ts/dist/color_balls';
+//import {redBall} from "./dist/red_ball";
 //login form
 var User = /** @class */ (function () {
     //id: number;
@@ -50,14 +44,17 @@ function renderUserName() {
     var username = document.querySelector('#h1');
     if (!username)
         throw new Error('element not faound');
-    username.innerHTML = users.map(function (p) { return "<h1> Hellow " + p.userName + "</h1>"; }).join(' ');
+    var length = users.length;
+    console.log(length);
+    username.innerHTML = "<h1> Hellow " + users[length - 1].userName + "</h1>";
 }
 //the game start when the page load
 function startGame() {
     myGameArea.start(); //defaine the game area
-    redball = new component(); //difain the ball element
+    // redBall(75, 75)  //difain the ball element and its position
+    redBallPiece = new component(30, 30, "red", 10, 120);
 }
-//the game area function
+//the game area object contain the method start that bild the game area
 var myGameArea = {
     canvas: document.querySelector("#canvas"),
     start: function () {
@@ -70,3 +67,26 @@ var myGameArea = {
         h1Div.insertAdjacentElement("afterend", this.canvas);
     }
 };
+//the red ball function to put the ball on the screen
+var redBallPiece;
+//The components have properties and methods to control their appearances and movements
+function component(width, height, color, x, y) {
+    this.width = width;
+    this.height = height;
+    this.x = x;
+    this.y = y;
+    this.item = this.item.getContext("2d");
+    this.item.fillStyle = color;
+    this.item.fillRrct(this.x, this.y, this.width, this.height);
+}
+function redBall(xPosition, yPositin) {
+    var canvas = document.querySelector('#canvas');
+    if (!canvas)
+        throw new Error("not element catch");
+    if (canvas.getContext !== null) {
+        var ctx = canvas.getContext('2d');
+        ctx.beginPath();
+        ctx.arc(xPosition, yPositin, 50, 0, Math.PI * 2, true); //outer citcle
+        ctx.stroke();
+    }
+}
