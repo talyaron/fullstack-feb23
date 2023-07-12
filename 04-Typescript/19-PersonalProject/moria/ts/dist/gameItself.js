@@ -1,10 +1,12 @@
+var players = getPlayerFromLocalStorage();
+renderPlayers(players);
 function addHomer(event) {
     try {
         // const player =
-        var selectedPlayer = "../img/הומר.png";
+        var selectedPlayer = new Player("../img/הומר.png");
         players.push(selectedPlayer);
-        console.log(event);
-        localStorage.setItem("players", JSON.stringify(players));
+        savePlayerToLocalStorage(players);
+        console.log(players);
         window.location.href = "view/levels.html";
     }
     catch (error) {
@@ -38,37 +40,42 @@ function addLisa(event) {
 // const level = document.querySelector(`.level`) as HTMLElement;
 // const notAvailable = document.querySelectorAll
 //     (`.levelNotAvailable`);
-function renderPlayer() {
+function savePlayerToLocalStorage(players) {
     try {
-        // if (!htmlElement) throw new Error("No element");
-        var playerString = localStorage.getItem("players");
-        // console.log(playerString)
-        if (!playerString)
-            return [];
-        var playerArray = JSON.parse(playerString);
-        // console.log(htmlElement)
-        console.log(playerArray);
-        // const players: Player[] = playerArray.map((player: Player) => {
-        //     return new Player(player.playerImg);
-        // })
-        // renderPlayerCard(playerString)
-        // const html = players.map(player => renderPlayerCard(player)).join(' ')
+        if (!players)
+            throw new Error("No players");
+        localStorage.setItem('players', JSON.stringify(players));
     }
     catch (error) {
         console.error(error);
     }
 }
-// function renderPlayerCard(player: Player) {
-//     try {
-//         `<div class="card">
-//                     <img src="${player.playerImg}"> </div>
-// `
-//         rootPlayer.innerHTML = html;
-//     }}
-// // } catch (error) {
-// //     console.error(error);
-// //     return ''
-// // }
+function getPlayerFromLocalStorage() {
+    try {
+        var playersStorage = localStorage.getItem('players');
+        if (!playersStorage)
+            return [];
+        var playersArray = JSON.parse(playersStorage);
+        var players_1 = playersArray.map(function (player) { return new Player(player.playersImg); });
+        return players_1;
+    }
+    catch (error) {
+        console.error(error);
+        return [];
+    }
+}
+function renderPlayers(players) {
+    try {
+        var rootPlayer = document.querySelector('#rootPlayer');
+        if (!rootPlayer)
+            throw new Error('No Player');
+        var html = players.map(function (player) { return "<img class=\"bart\" src=\"" + player.playerImg + "\"> "; }).join(' ');
+        rootPlayer.innerHTML = html;
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
 var bart = document.querySelector(".bart");
 document.addEventListener('keyup', function (event) {
     event.stopPropagation();
