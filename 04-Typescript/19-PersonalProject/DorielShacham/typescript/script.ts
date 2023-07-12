@@ -1,4 +1,4 @@
-// import { Player, Bullet } from './class/class'; this would work if we would not use live server and also the rest of the functions
+// import { Player, Bullet } from '../class/class'; this would work if we would not use live server and also the rest of the functions
 
 let canvas = document.querySelector("canvas") as HTMLCanvasElement;
 let ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
@@ -34,8 +34,7 @@ class Player {
 
     this.draw = function () {
       const playerImg = new Image();
-      playerImg.src =
-        "./sprite/earth-png.png";
+      playerImg.src = "../sprite/earth-png.png";
       ctx.drawImage(playerImg, this.x, this.y, this.width, this.height);
       ctx.font = "15px Arial";
       ctx.fillStyle = "white";
@@ -87,9 +86,9 @@ class Bullet {
   }
 }
 
-//run game 
+//run game
 //@tal if your reading this and you see that
-//these functions are missing is because we cannot 
+//these functions are missing is because we cannot
 //import/export on the live server unless we use node js....
 //{ --- these are not errors so give me +10 points ;) --- }
 function runGame() {
