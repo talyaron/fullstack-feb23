@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FAMELI</title>
+    <link rel="stylesheet" href="./css/dist/style.css" />
+    <script src="./js/dist/script.js" defer></script>
+  </head>
+  <body>
+    <div class="wrapper">
+      <logo class="logo"
+        ><img src="./images/FAMELI.JPG" alt="FAMELI-logo"
+      /></logo>
+      <div class="calculator">
+        <form onsubmit="handleSubmit()">
+          <h2>מחשבון תקציב</h2>
+          <div class="user-box">
+            <input
+              type="number"
+              name="income-amount"
+              id="income-amount"
+              required
+            />
+            <label for="income-amount">מה גובה ההכנסה החודשית שלך?</label>
+          </div>
+          <div class="user-box">
+            <input
+              type="text"
+              name="expence-description"
+              id="expence-description"
+            />
+            <label for="expence-description">שם ההוצאה:</label>
+          </div>
+          <div class="user-box">
+            <label for="categories">מה הקטגוריה המתאימה עבור ההוצאה שלך?</label>
+            <select name="categories" id="categories">
+              <option value="">תקשורת</option>
+              <option value="">תרומות</option>
+              <option value="">ביטוחים</option>
+              <option value="">חינוך</option>
+              <option value="">תחבורה</option>
+              <option value="">הלוואות</option>
+              <option value="">דיור</option>
+              <option value="">נופש</option>
+              <option value="">הוצאות מזדמנות</option>
+            </select>
+          </div>
+          <div class="user-box">
+            <input type="number" name="expence-amount" id="expence-amount" />
+            <label for="expence-amount">מה סכום ההוצאה שלך?</label>
+          </div>
+          <div class="user-box">
+            <input type="date" name="expiration" id="expiration" class="date" />
+            <label for="expiration"
+              >מהו תוקף ההוצאה שלך? (במידה ורלוונטי)</label
+            >
+          </div>
+          <a href="#" type="submit" value="חשב"
+            ><span></span>
+            <span></span>
+            <span></span>
+            <span></span>חשב</a
+          >
+        </form>
+      </div>
+      <div class="result">
+        <div class="result__total-income">
+          <h3 class="result__total-income--title">סה"כ הכנסה</h3>
+        </div>
+        <div class="result__total-expence">
+          <h3 class="result__total-expence--title">סה"כ הוצאה</h3>
+        </div>
+        <div class="result__total-amount">
+          <h3 class="result__total-amount--title">סה"כ</h3>
+        </div>
+      </div>
+      <div class="expenses-details">
+        <table>
+          <thead>
+            <tr>
+              <th colspan="2">
+                תקשורת<svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="collapse-icon"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M18 12H6"
+                  />
+                </svg>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>סלקום</td>
+              <td>249&#8362;</td>
+            </tr>
+            <tr>
+              <td>יוטיוב</td>
+              <td>30&#8362;</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td>סה"כ</td>
+              <td>279&#8362;</td>
+            </tr>
+          </tfoot>
+        </table>
+        <table>
+          <thead>
+            <tr>
+              <th colspan="2">
+                תקשורת<svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="collapse-icon"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M18 12H6"
+                  />
+                </svg>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>סלקום</td>
+              <td>249&#8362;</td>
+            </tr>
+            <tr>
+              <td>יוטיוב</td>
+              <td>30&#8362;</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td>סה"כ</td>
+              <td>279&#8362;</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>

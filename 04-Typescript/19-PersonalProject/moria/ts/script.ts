@@ -1,7 +1,7 @@
 class Player {
-    id: string
-    constructor(public playerImg: string, public rope: string, id?: string | null) {
-        this.id = `id-${new Date().getTime() - Math.random()}`
+    // id: string
+    constructor(public playerImg: string, id?: string | null) {
+        // this.id = `id-${new Date().getTime() - Math.random()}`
     }
 }
 class Point {
@@ -11,6 +11,7 @@ class Point {
     }
 }
 const root = document.querySelector(`#root`) as HTMLElement;
+const rootPlayer = document.querySelector(`#rootPlayer`) as HTMLElement;
 
 const players: Player[] = []
 const points: Point[] = []
@@ -44,14 +45,8 @@ function handleAdd(ev: any) {
         ev.target.reset();
         const log = document.querySelector(`.log`) as HTMLElement;
         log.classList.add("none")
-
-    } catch (error) {
-        console.error(error)
-    }
-}
-function handleEdit() {
-    try {
-
+        const html = ` <h2>Hi ${name},choose your player</h2>`
+        root.innerHTML = html;
 
     } catch (error) {
         console.error(error)

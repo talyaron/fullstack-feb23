@@ -7,6 +7,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    
 
     &__img {
         width: 50vw;
@@ -23,16 +24,23 @@ body {
 
     &__name {
         font-size: 30px;
-        color: rgb(36, 91, 241);
-        font-family: cursive;
+        color: rgb(200, 231, 22);
+        font-family: sans-serif;
 
     }
 
     &__artist {
-        font-size: 25px;
-        color: aquamarine;
-        font-family: monospace;
-
+        font-size: 14px;
+        color: rgb(0, 0, 0);
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        text-decoration: underline;
+        transition: all 100ms ease-in-out;
+        border-radius: 15px;
+        cursor: pointer;
+        &:hover{
+            background-color: rgb(151, 199, 199);
+        }
+       
 
     }
 
@@ -55,14 +63,22 @@ body {
     animation: rotate 3s infinite cubic-bezier(0.175, 0.885, 0.32, 1.275);
 
     @keyframes rotate {
-        from {
+       0% {
             transform: rotate(0turn);
-
+            scale: 1;
+            
         }
 
-        to {
+        50% {
             transform: rotate(1turn);
+            scale: 1.5;
+            
         }
+        100%{
+            transform: rotate(2turn);
+            scale: 1;
+        }
+
 
     }
 }
@@ -91,8 +107,8 @@ body {
 }
 
 #time {
-    font-size: 20px;
-    font-family: monospace;
+    font-size: 18px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     color: rgb(236, 17, 152);
     transition: all 100ms ease-in-out;
     z-index: 2;
@@ -104,4 +120,5 @@ body {
     position: absolute;
     bottom: 10px;
     left: 0;
+    
 }

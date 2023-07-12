@@ -1,11 +1,12 @@
 // import ts files -> https://www.educative.io/answers/how-to-import-another-typescript-file
-//import redBall from '../ts/dist/red_ball';
+//import redBall from '/red_ball';
 //import '../ts/dist/bricks';
 //import '../ts/dist/errow';
 //import '../ts/dist/bombs';
 //import '../ts/dist/shelves';
 //import '../ts/dist/coins';
 //import '../ts/dist/color_balls';
+//----------------------------------------
 //login form
 var User = /** @class */ (function () {
     //id: number;
@@ -55,15 +56,18 @@ function renderUserName() {
 //the game start when the page load
 function startGame() {
     myGameArea.start(); //defaine the game area
+    redball = new component(); //difain the ball element
 }
 //the game area function
 var myGameArea = {
-    canvas: document.createElement("canvas"),
+    canvas: document.querySelector("#canvas"),
     start: function () {
-        this.canvas.width = 270;
-        this.canvas.hight = 480;
+        //this.canvas.width = 270;
+        //this.canvas.hight = 480;
         this.context = this.canvas.getContext("2d");
         var h1Div = document.querySelector('#h1');
+        if (!h1Div)
+            throw new Error('no element chatch');
         h1Div.insertAdjacentElement("afterend", this.canvas);
     }
 };

@@ -1,8 +1,8 @@
 var Player = /** @class */ (function () {
-    function Player(playerImg, rope, id) {
+    // id: string
+    function Player(playerImg, id) {
         this.playerImg = playerImg;
-        this.rope = rope;
-        this.id = "id-" + (new Date().getTime() - Math.random());
+        // this.id = `id-${new Date().getTime() - Math.random()}`
     }
     return Player;
 }());
@@ -15,6 +15,7 @@ var Point = /** @class */ (function () {
     return Point;
 }());
 var root = document.querySelector("#root");
+var rootPlayer = document.querySelector("#rootPlayer");
 var players = [];
 var points = [];
 console.log(root);
@@ -40,13 +41,8 @@ function handleAdd(ev) {
         ev.target.reset();
         var log = document.querySelector(".log");
         log.classList.add("none");
-    }
-    catch (error) {
-        console.error(error);
-    }
-}
-function handleEdit() {
-    try {
+        var html = " <h2>Hi " + name + ",choose your player</h2>";
+        root.innerHTML = html;
     }
     catch (error) {
         console.error(error);
