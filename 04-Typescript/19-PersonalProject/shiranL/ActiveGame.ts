@@ -50,7 +50,7 @@ function renderBoard(currentGame:Board |undefined) {
         boardContainer.appendChild( matrix[i][j]);
       }
     }
-// set the frame of the board
+  // set the frame of the board
 //Y=o
     for (let i = 0; i < matrixSize; i++) {
      // matrix[i][matrixSize-1].value = counter;
@@ -88,10 +88,13 @@ function renderBoard(currentGame:Board |undefined) {
   const cities=currentGame.cities;
   cities.forEach(city=>{putCityOnBoard(city,cityIndex);
     cityIndex++;  })
+
+        // set cities
+  const players=currentGame.players;
+  players.forEach(player=>{putPlayerOnBoard(player);
+     })
    
   }
-  
-  
 function putJailOnBoard(jail:Jail,JailIndex:number){
       let cell
      
@@ -109,7 +112,7 @@ function putJailOnBoard(jail:Jail,JailIndex:number){
            
             break;
         case 3:
-          debugger
+          
               cell = document.getElementById('cell10')
             
               break;
@@ -133,6 +136,9 @@ function putCityOnBoard(city:City,cityIndex:number){
     let cell1
     let cell2
     let cell3
+    let  cityBtn1
+    let  cityBtn2
+    let  cityBtn3
      
       switch (cityIndex) { // set jails in the corners of the board
         case 0://ROVA A - get tree matrix cell to fill the city
@@ -140,29 +146,154 @@ function putCityOnBoard(city:City,cityIndex:number){
            cell2 = document.getElementById('cell35');
            cell3 = document.getElementById('cell34');
           if(!cell1 || !cell2 || !cell3) throw new Error("cant find cells");
-         
-          const  cityBtn1= document.createElement('bottun')
+          cityBtn1= document.createElement('bottun')
           cityBtn1.id=`${city.cityId}`;
           cityBtn1.classList.add('RovaA')
           cell1.appendChild(cityBtn1);
-          const  cityBtn2= document.createElement('bottun')
+          cityBtn2= document.createElement('bottun')
           cityBtn2.id=`${city.cityId}`;
           cityBtn2.classList.add('RovaA')
           cell2.appendChild(cityBtn2);
-          const  cityBtn3= document.createElement('bottun')
+          cityBtn3= document.createElement('bottun')
           cityBtn3.id=`${city.cityId}`;
           cityBtn3.classList.add('RovaA')
           cell3.appendChild(cityBtn3);
-
-           break;
-        case 1:
-          
-        case 2:
-            
+          break;
+        case 1://Rova Bet
+        cell1 = document.getElementById('cell29');
+        cell2 = document.getElementById('cell30');
+        cell3 = document.getElementById('cell31');
+        if(!cell1 || !cell2 || !cell3) throw new Error("cant find cells");
+        cityBtn1= document.createElement('bottun')
+        cityBtn1.id=`${city.cityId}`;
+        cityBtn1.classList.add('RovaBet')
+        
+        cell1.appendChild(cityBtn1);
+        cityBtn2= document.createElement('bottun')
+        cityBtn2.id=`${city.cityId}`;
+        cityBtn2.classList.add('RovaBet')
+        cell2.appendChild(cityBtn2);
+        cityBtn3= document.createElement('bottun')
+        cityBtn3.id=`${city.cityId}`;
+        cityBtn3.classList.add('RovaBet')
+        cell3.appendChild(cityBtn3);
+          break;
+        case 2://Rova Gimel
+          cell1 = document.getElementById('cell25');
+          cell2 = document.getElementById('cell26');
+          cell3 = document.getElementById('cell27');
+          if(!cell1 || !cell2 || !cell3) throw new Error("cant find cells");
+          cityBtn1= document.createElement('bottun')
+          cityBtn1.id=`${city.cityId}`;
+          cityBtn1.classList.add('RovaGimel')
+          cell1.appendChild(cityBtn1);
+          cityBtn2= document.createElement('bottun')
+          cityBtn2.id=`${city.cityId}`;
+          cityBtn2.classList.add('RovaGimel')
+          cell2.appendChild(cityBtn2);
+          cityBtn3= document.createElement('bottun')
+          cityBtn3.id=`${city.cityId}`;
+          cityBtn3.classList.add('RovaGimel')
+          cell3.appendChild(cityBtn3);
+            break;
          
-        case 3:
+        case 3://Rova Daled
+        cell1 = document.getElementById('cell20');
+        cell2 = document.getElementById('cell21');
+        cell3 = document.getElementById('cell22');
+        if(!cell1 || !cell2 || !cell3) throw new Error("cant find cells");
+        cityBtn1= document.createElement('bottun')
+        cityBtn1.id=`${city.cityId}`;
+        cityBtn1.classList.add('RovaDaled')
+        cell1.appendChild(cityBtn1);
+        cityBtn2= document.createElement('bottun')
+        cityBtn2.id=`${city.cityId}`;
+        cityBtn2.classList.add('RovaDaled')
+        cell2.appendChild(cityBtn2);
+        cityBtn3= document.createElement('bottun')
+        cityBtn3.id=`${city.cityId}`;
+        cityBtn3.classList.add('RovaDaled')
+        cell3.appendChild(cityBtn3);
+          break;
+
+          case 4://Rova CITY
+          cell1 = document.getElementById('cell16');
+          cell2 = document.getElementById('cell17');
+          cell3 = document.getElementById('cell18');
+          if(!cell1 || !cell2 || !cell3) throw new Error("cant find cells");
+          cityBtn1= document.createElement('bottun')
+          cityBtn1.id=`${city.cityId}`;
+          cityBtn1.classList.add('RovaCITY')
+          cell1.appendChild(cityBtn1);
+          cityBtn2= document.createElement('bottun')
+          cityBtn2.id=`${city.cityId}`;
+          cityBtn2.classList.add('RovaCITY')
+          cell2.appendChild(cityBtn2);
+          cityBtn3= document.createElement('bottun')
+          cityBtn3.id=`${city.cityId}`;
+          cityBtn3.classList.add('RovaCITY')
+          cell3.appendChild(cityBtn3);
+            break;
+          
+          case 5://Rova TetVav
+          cell1 = document.getElementById('cell11');
+          cell2 = document.getElementById('cell12');
+          cell3 = document.getElementById('cell13');
+          if(!cell1 || !cell2 || !cell3) throw new Error("cant find cells");
+          cityBtn1= document.createElement('bottun')
+          cityBtn1.id=`${city.cityId}`;
+          cityBtn1.classList.add('RovaTetVav')
+          cell1.appendChild(cityBtn1);
+          cityBtn2= document.createElement('bottun')
+          cityBtn2.id=`${city.cityId}`;
+          cityBtn2.classList.add('RovaTetVav')
+          cell2.appendChild(cityBtn2);
+          cityBtn3= document.createElement('bottun')
+          cityBtn3.id=`${city.cityId}`;
+          cityBtn3.classList.add('RovaTetVav')
+          cell3.appendChild(cityBtn3);
+            break;
+
+          case 6://Rova YudBet
+          cell1 = document.getElementById('cell7');
+          cell2 = document.getElementById('cell8');
+          cell3 = document.getElementById('cell9');
+          if(!cell1 || !cell2 || !cell3) throw new Error("cant find cells");
+          cityBtn1= document.createElement('bottun')
+          cityBtn1.id=`${city.cityId}`;
+          cityBtn1.classList.add('RovaYudBet')
+          cell1.appendChild(cityBtn1);
+          cityBtn2= document.createElement('bottun')
+          cityBtn2.id=`${city.cityId}`;
+          cityBtn2.classList.add('RovaYudBet')
+          cell2.appendChild(cityBtn2);
+          cityBtn3= document.createElement('bottun')
+          cityBtn3.id=`${city.cityId}`;
+          cityBtn3.classList.add('RovaYudBet')
+          cell3.appendChild(cityBtn3);
+          break;
              
+          case 7://Rova YudAlef
+          cell1 = document.getElementById('cell2');
+          cell2 = document.getElementById('cell3');
+          cell3 = document.getElementById('cell4');
+          if(!cell1 || !cell2 || !cell3) throw new Error("cant find cells");
+          cityBtn1= document.createElement('bottun')
+          cityBtn1.id=`${city.cityId}`;
+          cityBtn1.classList.add('RovaYudAlef')
+          cell1.appendChild(cityBtn1);
+          cityBtn2= document.createElement('bottun')
+          cityBtn2.id=`${city.cityId}`;
+          cityBtn2.classList.add('RovaYudAlef')
+          cell2.appendChild(cityBtn2);
+          cityBtn3= document.createElement('bottun')
+          cityBtn3.id=`${city.cityId}`;
+          cityBtn3.classList.add('RovaYudAlef')
+          cell3.appendChild(cityBtn3);
+          break;
       }
+
+      
   // create elements for city
   
     //   // cell2?.appendChild(cityBtn);
@@ -176,7 +307,24 @@ function putCityOnBoard(city:City,cityIndex:number){
     
  
 }
-
+function putPlayerOnBoard(player:Player){
+  try {
+         const cell = document.getElementById('cell5');
+         if (!cell) throw new Error("cant find cell");
+         
+          const playerHtml=document.createElement('div')
+          playerHtml.classList.add('player')
+          playerHtml.id=`${player.playerId}`
+          playerHtml.style.backgroundImage=`url("./dist/${player.playerId}.png")`;
+          cell.appendChild(playerHtml)
+          cell.style.display = "flex"; // Set the display property to "flex"
+          cell.style.flexWrap = "wrap"; // Set the flex-wrap property to "wrap"
+      //playerStep(player.playerId)
+      
+    } catch (error) {
+      console.error(error);
+    }
+}
 function renderOptionsBtns(gamesBoardsAGpage : Board[]| undefined){
   try {
    
@@ -200,10 +348,9 @@ function backHome(){
   console.log("Game started!");
   window.location.href = "./HomePage.html";
 }
-
 function gameOver(){
   try {
-debugger
+
     if(!gamesBoardsAGpage)throw new Error("cant find gamesBoardsAGpage");
     
     const currentGame= gamesBoardsAGpage.find(board=>board.gameStatus===true)
@@ -213,11 +360,7 @@ debugger
     
   } catch (error) {
     console.error(error);
-    
   }
- 
- 
-
 }
 function saveBoardsForOpenGame (boards: Board[] | undefined){
   try {
@@ -233,12 +376,104 @@ function saveBoardsForOpenGame (boards: Board[] | undefined){
   }
  
 }
+
+function playerStep(playerId:number){
+  try {
+  const playerDiv = document.getElementById(`player${playerId}`);
+  if (!playerDiv) throw new Error("cant find playerDiv");
+  
+  const currentCell = playerDiv.parentElement; // Get the current cell of the player
+  if (!currentCell) throw new Error("cant find currentCell");
+ 
+//   // Get the next cell based on the current cell's ID
+const currentCellId = currentCell.id.match(/\d+/)
+//   const nextCellId = [currentCellId[0] - 1, currentCellId[1]]; // Move one cell up
+if (!currentCellId) throw new Error("cant find currentCellId");
+
+  const nextCell = document.getElementById(`cell${Number(currentCellId[0])+1}`);
+  if (!nextCell) throw new Error("cant find nextCell");
+  
+   nextCell.appendChild(playerDiv); // Move the player to the next cell
+  
+  } catch (error) {
+    console.error(error);
+    
+  }
+
+  
+
+}
+
+function dropCube() {
+  try {
+    var cube = document.getElementById("cubeButton");
+    if (!cube) throw new Error("Can't find cube.");
+
+    cube.style.display = "none"; // Hide the cube initially
+    setTimeout(function () {
+      if (!cube) throw new Error("Can't find cube.");
+      cube.style.display = "block"; // Show the cube after a delay
+      cube.classList.add("rotate-animation");
+      setTimeout(function () {
+        cube?.classList.remove("rotate-animation");
+        showPopup();
+        generateRandomNumber();
+      }, 2000);
+    }, 500);
+  } catch (error) {
+    console.error(error);
+  }
+}
+function showPopup() {
+  try { 
+    var popup = document.getElementById("popup");
+    if(!popup) throw new Error("cant find popup ");
+    popup.style.display = "block";
+    
+  } catch (error) {
+    console.error(error);
+  }
+ 
+}
+function closePopup() {
+  try {
+    var popup = document.getElementById("popup");
+    if(!popup) throw new Error("cant find popup ");
+    popup.style.display = "none";
+  } catch (error) {
+    console.error(error);
+  }
+
+}
+
+function generateRandomNumber() {
+  try {
+    var randomNumber = Math.floor(Math.random() * 6) + 1;
+    var randomNumberElement = document.getElementById("randomNumber");
+    if(!randomNumberElement) throw new Error("cant find randomNumberElement ");
+    randomNumberElement.textContent = randomNumber.toString();
+
+    // save value to board game
+    if(!currentGame) throw new Error("cant find current game");
+    currentGame.luckyCube=randomNumber;
+  } catch (error) {
+    console.error(error);
+  }
+}
+function renderInCells(){
+const beginCell=document.getElementById("4-1");
+const  beginDiv = document.createElement('div')
+beginDiv.classList.add('begin')
+
+beginCell?.appendChild(beginDiv);
+}
 const gamesBoardsAGpage : Board[]| undefined = loadBoardsAGpage();
 const currentGame= gamesBoardsAGpage?.find(game=> game.gameStatus===true)
 
 //shape of the board
 renderBoard(currentGame);
 renderOptionsBtns(gamesBoardsAGpage);
-
+renderInCells();
 console.log(gamesBoardsAGpage);
+
 

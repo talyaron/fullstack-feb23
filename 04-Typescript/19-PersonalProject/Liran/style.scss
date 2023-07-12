@@ -17,6 +17,16 @@ body {
             background-color: black;
             height: 100%;
 
+            .star{
+                width:60px;
+                height: 60px;
+                position: absolute;
+                animation: fallingStar 2.5s 2s 7 linear;
+                z-index: 0;
+            }
+
+              }
+
             #fighter {
                 position: absolute;
                 width: fit-content;
@@ -33,13 +43,13 @@ body {
 
                 }
 
-                #sowrd {
+                #sword {
                     height: 200px;
                     width: 20px;
                     left: 85px;
                     top: -110px;
                     position: absolute;
-                    background-image: url(./greenSword.png);
+
                     background-repeat: no-repeat;
                     background-size: contain;
                     transition: all 80ms ease-in-out;
@@ -70,9 +80,11 @@ body {
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
-                gap: 8px;
+                gap: 18px;
+                padding-bottom: 10px;
 
-                input {
+                input,
+                select {
                     width: 80%;
                     margin: auto;
                     border-radius: 8px;
@@ -94,6 +106,29 @@ body {
                 }
 
 
+            }
+
+
+            .container {
+                width: 100%;
+                min-width: 50px;
+                padding: 20px 0;
+                padding-bottom: 50px;
+                border-radius: 10px;
+                font-size: medium;
+            }
+
+            #timerDisplay {
+                margin: auto;
+                width: 92%;
+                font-family: "Roboto mono", monospace;
+                color: #8cb4c7;
+                font-size: 30px;
+                display: flex;
+                align-items: center;
+                border-radius: 5px;
+                box-shadow: 0 0 20px rgba(6, 204, 105, 0.921);
+                justify-content: center;
             }
         }
 
