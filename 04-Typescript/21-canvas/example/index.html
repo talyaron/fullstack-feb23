@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Canvas App</title>
+    <style>
+      canvas {
+        border: 1px solid #000;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="myCanvas" width="400" height="400"></canvas>
+
+    <script>
+      // Get the canvas element
+      const canvas = document.getElementById('myCanvas');
+      const context = canvas.getContext('2d');
+
+      // Draw a rectangle on the canvas
+      context.fillStyle = 'red';
+      context.fillRect(50, 50, 100, 100);
+
+      // Draw a circle on the canvas
+      context.fillStyle = 'blue';
+      context.beginPath();
+      context.arc(200, 200, 50, 0, 2 * Math.PI);
+      context.fill();
+    </script>
+  </body>
+</html>
