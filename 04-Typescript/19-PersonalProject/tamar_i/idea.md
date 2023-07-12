@@ -11,7 +11,12 @@ It is necessary to prevent the possibility of going out of the boundaries of the
 
 3 page: 1-login, 2-game , 3-higher score
 
-help: https://www.w3schools.com/graphics/game_intro.asp 
+help:
+* https://www.w3schools.com/graphics/game_intro.asp 
+* https://www.geeksforgeeks.org/   
+* https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Drawing_shapes difference-between-window-location-href-window-location-replace-and-window-location-assign-in-javascript/
+
+
 
 model:
 enteties: red-ball, bricks (not move but some are simulated some are not), errows(move), bombs (not move), shelves (not move but disappeared)

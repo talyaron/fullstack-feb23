@@ -12,7 +12,7 @@ paragraphs.push('Ut eu vehicula urna.');
 paragraphs.push('Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;');
 
 const pattern = new RegExp('(em)', 'i');
-
+&&
 function handleSearch(ev: any) {
     try {
         const searchTerms = ev.target.value;
