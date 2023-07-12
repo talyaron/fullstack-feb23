@@ -1,141 +1,82 @@
 body {
   background-color: black;
+  width: 99vw;
+  height: 98vh;
+  overflow: hidden;
 }
-
-#bord {
-  width: 98vw;
-  height: 97vh;
-  background-image: url(https://media.istockphoto.com/vectors/black-jack-table-vector-illustration-eps-10-casino-vector-id1147481668?k=20&m=1147481668&s=170667a&w=0&h=hmBWSGX21Hn52GK36qTGjw_ZkdeCV4OwgonV5Cu69QM=);
-  background-repeat: no-repeat;
-  background-size: cover;
-  position: absolute;
-  min-width: 1130px;
-}
-#bord .players {
+body .screen {
   width: 100%;
   height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0x;
+  position: relative;
 }
-#bord img {
-  width: 150px;
-  height: 150px;
+body .screen__game {
   position: absolute;
-  top: 10px;
-  left: 10px;
-}
-#bord form {
-  z-index: 2;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  position: absolute;
-  left: 62%;
-  top: 5px;
-  gap: 5px;
-}
-#bord form input:hover {
-  cursor: pointer;
+  width: 85%;
+  left: 15%;
   background-color: black;
-  color: white;
+  height: 100%;
 }
-@media only screen and (max-width: 1200px) {
-  #bord form {
-    max-width: 750px;
-    grid-template-columns: repeat(1, 1fr);
-    left: 90%;
-    top: 10px;
-    gap: 8px;
-  }
-}
-#bord .players {
+body .screen__game #fighter {
   position: absolute;
+  width: fit-content;
+  top: 75%;
+  left: 50%;
+  transition: all 80ms ease-in-out;
+}
+body .screen__game #fighter img {
+  width: 200px;
+  height: 200px;
+  background: none;
+  position: absolute;
+  transition: all 100ms ease-in-out;
+}
+body .screen__game #fighter #sowrd {
+  height: 200px;
+  width: 20px;
+  left: 85px;
+  top: -110px;
+  position: absolute;
+  background-image: url(./greenSword.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  transition: all 80ms ease-in-out;
+}
+body .screen__UI {
+  width: 15%;
+  height: 100%;
+  border-radius: 5px;
+  position: absolute;
+  left: 0;
+  background: linear-gradient(#35627a, transparent);
   display: flex;
   flex-direction: column;
   text-align: center;
-  font-weight: bold;
 }
-#bord .players__player {
-  width: 160px;
-  height: 200px;
-  position: absolute;
-  border: solid 1px black;
+body .screen__UI h1 {
+  color: #80a3b3;
 }
-#bord .players__player--dealer {
-  width: 250px;
-  top: 5px;
-  left: 40%;
-}
-#bord .players__player--1 {
-  top: 430px;
-  left: 9%;
-  rotate: 20deg;
-}
-#bord .players__player--2 {
-  top: 480px;
-  left: 21%;
-  rotate: 12deg;
-}
-#bord .players__player--3 {
-  top: 510px;
-  left: 33%;
-  rotate: 4deg;
-}
-#bord .players__player--4 {
-  top: 520px;
-  left: 45%;
-}
-#bord .players__player--5 {
-  top: 520px;
-  left: 57%;
-  rotate: -4deg;
-}
-#bord .players__player--6 {
-  top: 490px;
-  left: 69%;
-  rotate: -12deg;
-}
-#bord .players__player--7 {
-  top: 440px;
-  left: 81%;
-  rotate: -20deg;
-}
-#bord .players .cards {
+body .screen__UI form {
   width: 100%;
-  height: 80%;
-  background-color: red;
   display: flex;
-  flex-wrap: wrap;
-  position: relative;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
 }
-#bord .players .cards img {
-  position: absolute;
-}
-#bord .players form {
-  width: 100%;
-  height: 10%;
-  display: flex;
-  position: static;
-  justify-content: space-around;
-}
-#bord .players form input {
-  width: 50px;
-}
-#bord .players form input[type=number] {
-  width: 50px;
-}
-#bord .players .name {
-  width: 100%;
-  height: 10%;
-}
-#bord .players .name P {
-  position: absolute;
-  width: 100%;
-  height: 100%;
+body .screen__UI form input {
+  width: 80%;
   margin: auto;
+  border-radius: 8px;
+  box-shadow: 200px;
+  padding: 5px;
+  background-color: black;
+  color: white;
+  font-family: fantasy;
 }
-
-.card {
-  width: fit-content;
-  height: fit-content;
+body .screen__UI form input:hover {
+  cursor: pointer;
+}
+body .screen__UI form input[type=text]:focus {
+  background-color: white;
+  color: black;
+  border: none;
 }

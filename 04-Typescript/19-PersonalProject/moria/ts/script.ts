@@ -1,7 +1,7 @@
 class Player {
-    id: string
-    constructor(public playerImg: string, public rope: string, id?: string | null) {
-        this.id = `id-${new Date().getTime() - Math.random()}`
+    // id: string
+    constructor(public playerImg: string, id?: string | null) {
+        // this.id = `id-${new Date().getTime() - Math.random()}`
     }
 }
 class Point {
@@ -11,6 +11,7 @@ class Point {
     }
 }
 const root = document.querySelector(`#root`) as HTMLElement;
+const rootPlayer = document.querySelector(`#rootPlayer`) as HTMLElement;
 
 const players: Player[] = []
 const points: Point[] = []
@@ -44,6 +45,8 @@ function handleAdd(ev: any) {
         ev.target.reset();
         const log = document.querySelector(`.log`) as HTMLElement;
         log.classList.add("none")
+        const html = ` <h2>Hi ${name},choose your player</h2>`
+        root.innerHTML = html;
 
     } catch (error) {
         console.error(error)
@@ -52,7 +55,12 @@ function handleAdd(ev: any) {
 function addHomer(event) {
     try {
         // const player =
+        const selectedPlayer = "../img/הומר.png";
+        players.push(selectedPlayer);
         console.log(event)
+        localStorage.setItem("players", JSON.stringify(players))
+        window.location.href = "view/levels.html";
+
 
     } catch (error) {
         console.error(error)
@@ -61,7 +69,11 @@ function addHomer(event) {
 
 function addBart(event) {
     try {
+        const selectedPlayer = "../img/בארט.png";
+        players.push(selectedPlayer);
         console.log(event)
+        localStorage.setItem("players", JSON.stringify(players))
+        window.location.href = "view/levels.html";
 
     } catch (error) {
         console.error(error)
@@ -71,8 +83,79 @@ function addBart(event) {
 function addLisa(event) {
     try {
 
+        const selectedPlayer = new Player("../img/ליסה.png");
+        players.push(selectedPlayer);
+        console.log(event)
+        localStorage.setItem("players", JSON.stringify(players))
+        renderPlayer(players, rootPlayer);
+        window.location.href = "view/levels.html";
 
     } catch (error) {
         console.error(error)
     }
 }
+// const level = document.querySelector(`.level`) as HTMLElement;
+// const notAvailable = document.querySelectorAll
+//     (`.levelNotAvailable`);
+
+function renderPlayer(players, htmlElement: HTMLElement | null) {
+    try {
+        if (!htmlElement) throw new Error("No element");
+        const html = players.map(player => renderPlayerCard(player)).join(' ')
+        htmlElement.innerHTML = html;
+
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+
+function renderPlayerCard(player: Player) {
+    try {
+
+        return `<div class="card">
+                    <img src="${player.playerImg}"> </div>   
+`
+    }}
+// } catch (error) {
+//     console.error(error);
+//     return ''
+// }
+
+const bart = document.querySelector(`.bart`) as HTMLElement;
+console.log(bart);
+document.addEventListener('keyup', (event: KeyboardEvent) => {
+    console.log(event);
+
+    switch (event.key) {
+        case 'ArrowUp':
+            if
+            bart.style.top = `${bart.offsetTop - 10}px`;
+            break;
+        case 'ArrowDown':
+            bart.style.top = `${bart.offsetTop + 10}px`;
+            break;
+        case 'ArrowLeft':
+            bart.style.left = `${bart.offsetLeft - 10}px`;
+            break;
+        case 'ArrowRight':
+
+            bart.style.left = `${bart.offsetLeft + 10}px`;
+            break;
+        case " ":
+            const urlMonster = 'url("./dist/packman-monster.png")'
+            const urlPackman = 'url("./dist/packman.png")'
+
+            if (bart.style.backgroundImage === urlMonster) {
+                bart.style.backgroundImage = urlPackman;
+            } else {
+                bart.style.backgroundImage = urlMonster;
+            }
+
+            break;
+
+
+
+    }
+});
+
