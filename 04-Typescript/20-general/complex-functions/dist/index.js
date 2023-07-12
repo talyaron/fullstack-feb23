@@ -38,6 +38,7 @@ var Player = /** @class */ (function () {
     };
     return Player;
 }());
+//////-------------------------------------------------
 function turnsOrder(players) {
     var stageElement = document.querySelector(".stage");
     var currentPlayerIndex = 0; // מספר השחקן הנוכחי בתור

@@ -1,3 +1,4 @@
+
 //---------------------------Card--------------------
 class Card {
   public cardName: string;
@@ -9,16 +10,16 @@ class Card {
   getSignCardSrc() {
     switch (this.cardSign) {
       case "heart": {
-        return "./images/heart-sign1.png";
+        return "../images/heart-sign1.png";
       }
       case "diamond": {
-        return "./images/diamond-sign1.png";
+        return "../images/diamond-sign1.png";
       }
       case "club": {
-        return "./images/club-sign1.png";
+        return "../images/club-sign1.png";
       }
       case "spade": {
-        return "./images/spade-sign1.png";
+        return "../images/spade-sign1.png";
       }
     }
   }
@@ -38,16 +39,22 @@ class Player {
     public userName: string,
     public imgSrc: string = "",
     public chips: number = 100000,
-    public isActive: boolean = false,
-    public isTurn: boolean =false,
+    public isActive: boolean = true,
+    public isTurn: boolean = false,
     public pCards: Card[] = get2RandomCards(),
-    public allCard: Card[] = pCards,
+    public allCards: Card[] = pCards,
+    public movesInRound: PlayerMovesOption[] = [],
+    public roundNumber = movesInRound.length - 1,
   ) {
     this.pCards = this.pCards.map((c) => new Card(c.cardNumber, c.cardSign));
   }
 
   setActive() {
     this.isActive = !this.isActive;
+  }
+
+  setTurn() {
+    this.isTurn = !this.isTurn;
   }
 
   renderMyPanel() {
@@ -62,12 +69,23 @@ class Player {
     }
   }
   addCardToPlayer(card: Card) {
-    this.allCard.push(card);
+    this.allCards.push(card);
   }
 
-  doingTurn() {
+  doingTurn(activePlayers: Player[], thisIndex: number) {
     console.log(`${this.userName} is doing somethig......`);
+
+    let movesOptions:PlayerMovesOption[] = getMoveOption(activePlayers, thisIndex);
+
+    // let ChanceToBet = getChanceToBet(this)
   }
+}
+
+enum PlayerMovesOption {
+  fold = "fold",
+  check = "check",
+  rise = "rise",
+  call = "call",
 }
 
 //------------------Dealer------------------------------

@@ -68,7 +68,7 @@ var users = [
     new Player("ruth300290!", "https://cdn.pixabay.com/photo/2013/05/30/18/21/cat-114782_1280.jpg"),
     new Player("ruth0908", "https://cdn.pixabay.com/photo/2014/04/05/11/40/chess-316658_1280.jpg"),
     new Player("ruth765", "https://cdn.pixabay.com/photo/2015/11/21/04/17/grandparents-1054311_1280.jpg"),
-    new Player("ruth5645", "https://cdn.pixabay.com/photo/2015/11/21/04/17/grandparents-1054311_1280.jpg"),
+    new Player("ruth5645", "https://cdn.pixabay.com/photo/2023/06/22/02/25/motocross-8080377_1280.jpg"),
 ];
 var firstPlayers = [new Player("ruth1")].concat(users);
 var players = getPlayerFromLs();
@@ -83,7 +83,7 @@ function getPlayerFromLs() {
         else {
             var playersOnArrayObjs = JSON.parse(playersStr);
             var players_1 = playersOnArrayObjs.map(function (p) {
-                return new Player(p.userName, p.imgSrc, p.chips, p.isActive, p.isTurn, p.pCards, p.allCard);
+                return new Player(p.userName, p.imgSrc, p.chips, p.isActive, p.isTurn, p.pCards, p.allCards);
             });
             console.log(players_1);
             return players_1;
@@ -94,6 +94,24 @@ function getPlayerFromLs() {
     }
 }
 players[0].renderMyPanel();
+//---------------------------------------------render players-------------------------------------
+function renderPlayersPanel(players) {
+    try {
+        var playersElement_1 = document.querySelectorAll(".playerPanel");
+        players.forEach(function (p, i) {
+            // p.pCards.forEach((c) =>
+            //   c.renderCard(document.querySelector(`#player${i+1}Cards`) as HTMLElement),
+            // );
+            playersElement_1[i].querySelector(".playerPanel__img img").src = p.imgSrc;
+            playersElement_1[i].querySelector(".playerPanel__inform__chips").innerHTML = p.chips.toString();
+            playersElement_1[i].querySelector(".playerPanel__inform__userName").textContent = p.userName;
+        });
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+renderPlayersPanel(users);
 function addCardToStage() {
     var root = document.querySelector(".stage");
     if (root.children.length < 6) {
@@ -198,7 +216,7 @@ function checkFullHouse(cards) {
     var threeOfKindCounts = pairValues.filter(function (count) { return count === 3; }).length > 0 ? true : false;
     return pairCounts && threeOfKindCounts;
 }
-function highCard(cards) {
+function checkHighCard(cards) {
     var cardValues = {
         A: 14,
         "2": 2,
@@ -222,67 +240,41 @@ function highCard(cards) {
     });
     return temp;
 }
+function checkStraight(cards) {
+    var cardNumbers = cards.map(function (card) { return card.cardNumber; });
+    var uniqueCardNumbers = __spreadArrays(new Set(cardNumbers)); // מסננת ערכים ייחודיים
+    uniqueCardNumbers.sort(function (a, b) { return Number(a) - Number(b); }); // מיון ערכים בסדר עולה
+    var count = 0;
+    for (var i = 0; i < uniqueCardNumbers.length - 1; i++) {
+        if (Number(uniqueCardNumbers[i + 1]) - Number(uniqueCardNumbers[i]) === 1) {
+            count++;
+            if (count === 4) {
+                return true;
+            }
+        }
+        else {
+            count = 0;
+        }
+    }
+    return false;
+}
 var cards = [
     new Card("2", "heart"),
     new Card("3", "heart"),
-    new Card("1", "spade"),
+    new Card("4", "spade"),
     new Card("10", "club"),
     new Card("5", "club"),
-    new Card("8", "diamond"),
+    new Card("6", "diamond"),
 ];
-// console.log(checkTwoOfAKind(cards));
-// console.log(checkThreeOfAKind(cards));
-// console.log(checkTwoPairs(cards));
-// console.log(checkFullHouse(cards));
-console.log(highCard(cards));
-//---------------------------------------------turn-------------------------------------
-// function turnOrder(players:Player[]) {
-//   const stage = document.querySelector(".stage") as HTMLDivElement;
-//   let currentPlayerIndex = 0; // מספר השחקן הנוכחי בתור
-//   function performTurn() {
-//     const currentPlayer = players[currentPlayerIndex];
-//     players.map((p) => (p.isActive = false));
-//     currentPlayer.setActive();
-//     currentPlayer.doingTurn();
-//     currentPlayerIndex++;
-//     if (currentPlayerIndex >= players.length && stage.children.length < 6) {
-//       currentPlayerIndex = 0;
-//       if (stage.children.length < 6) {
-//         addCardToStage();
-//       }
+console.log("hi-----" + checkStraight(cards));
+// function playPokerRound() {
+//   let round = new Round();
+//   function loop() {
+//     for (let i = 0; i < round.activePlayers.length; i++) {
+//       let currentPlayer = round.activePlayers[i];
+//       round.activePlayers.forEach((p) => (p.isActive = false));
+//       currentPlayer.isActive = true;
+//       setTimeout(currentPlayer.doingTurn, 3000);
 //     }
-//     setTimeout(performTurn, 500); // השהייה של 4 שניות לפני תור השחקן הבא
 //   }
-//   performTurn(); // הפעלת התור הראשון
-//   // game over
 // }
-// turnOrder(players)
-function renderPlayersPanel(players) {
-    try {
-        var playersElement_1 = document.querySelectorAll(".playerPanel");
-        players.forEach(function (p, i) {
-            console.log(playersElement_1[i]);
-            // p.pCards.forEach((c) =>
-            //   c.renderCard(document.querySelector(`#player${i+1}Cards`) as HTMLElement),
-            // );
-            playersElement_1[i].querySelector(".playerPanel__img img").src = p.imgSrc;
-            playersElement_1[i].querySelector(".playerPanel__inform__chips").innerHTML = p.chips.toString();
-            playersElement_1[i].querySelector(".playerPanel__inform__userName").textContent = p.userName;
-        });
-    }
-    catch (error) {
-        console.error(error);
-    }
-}
-renderPlayersPanel(users);
-function playPokerRound() {
-    var round = new Round();
-    function loop() {
-        for (var i = 0; i < round.activePlayers.length; i++) {
-            var currentPlayer = round.activePlayers[i];
-            round.activePlayers.forEach(function (p) { return (p.isActive = false); });
-            currentPlayer.isActive = true;
-            setTimeout(currentPlayer.doingTurn, 3000);
-        }
-    }
-}

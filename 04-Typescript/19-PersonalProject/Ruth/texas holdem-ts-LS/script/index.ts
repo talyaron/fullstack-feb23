@@ -85,7 +85,7 @@ const users: Player[] = [
   ),
   new Player(
     "ruth5645",
-    "https://cdn.pixabay.com/photo/2015/11/21/04/17/grandparents-1054311_1280.jpg",
+    "https://cdn.pixabay.com/photo/2023/06/22/02/25/motocross-8080377_1280.jpg",
   ),
 ];
 
@@ -113,7 +113,7 @@ function getPlayerFromLs() {
             p.isActive,
             p.isTurn,
             p.pCards,
-            p.allCard,
+            p.allCards,
           ),
       );
       console.log(players);
@@ -127,6 +127,29 @@ function getPlayerFromLs() {
 
 players[0].renderMyPanel();
 
+
+//---------------------------------------------render players-------------------------------------
+
+function renderPlayersPanel(players: Player[]) {
+  try {
+    const playersElement: NodeListOf<HTMLElement> =
+      document.querySelectorAll(".playerPanel");
+      players.forEach((p, i) => {
+      // p.pCards.forEach((c) =>
+      //   c.renderCard(document.querySelector(`#player${i+1}Cards`) as HTMLElement),
+      // );
+      (playersElement[i].querySelector(`.playerPanel__img img`, ) as HTMLImageElement).src = p.imgSrc;
+      playersElement[i].querySelector(`.playerPanel__inform__chips`)!.innerHTML = p.chips.toString();
+      playersElement[i].querySelector(`.playerPanel__inform__userName`)!.textContent = p.userName;
+    });
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+renderPlayersPanel(users);
+
+
 function addCardToStage() {
   const root = document.querySelector(".stage") as HTMLDivElement;
   if (root.children.length < 6) {
@@ -134,7 +157,7 @@ function addCardToStage() {
       let newCard = getRandomCard();
       players.forEach((p) => p.addCardToPlayer(newCard));
       localStorage.setItem("players", JSON.stringify(players));
-      newCard.renderCard(root);
+      newCard.renderCard(root)!;
     } else {
       for (let i = 0; i < 3; i++) {
         let newCard = getRandomCard();
@@ -235,7 +258,7 @@ function checkFullHouse(cards: Card[]) {
   return pairCounts && threeOfKindCounts;
 }
 
-function highCard(cards: Card[]) {
+function checkHighCard(cards: Card[]) {
   const cardValues = {
     A: 14,
     "2": 2,
@@ -262,89 +285,48 @@ function highCard(cards: Card[]) {
   return temp;
 }
 
+function checkStraight(cards: Card[]): boolean {
+
+  const cardNumbers = cards.map((card) => card.cardNumber);
+  const uniqueCardNumbers = [...new Set(cardNumbers)]; // מסננת ערכים ייחודיים
+  uniqueCardNumbers.sort((a, b) => Number(a) - Number(b)); // מיון ערכים בסדר עולה
+
+  let count = 0;
+  for (let i = 0; i < uniqueCardNumbers.length - 1; i++) {
+    if (Number(uniqueCardNumbers[i + 1]) - Number(uniqueCardNumbers[i]) === 1) {
+      count++;
+      if (count === 4) {
+        return true;
+      }
+    } else {
+      count = 0;
+    }
+  }
+
+  return false;
+}
+
 let cards: Card[] = [
   new Card("2", "heart"),
   new Card("3", "heart"),
-  new Card("1", "spade"),
+  new Card("4", "spade"),
   new Card("10", "club"),
   new Card("5", "club"),
-  new Card("8", "diamond"),
+  new Card("6", "diamond"),
 ];
 
-// console.log(checkTwoOfAKind(cards));
-// console.log(checkThreeOfAKind(cards));
-// console.log(checkTwoPairs(cards));
-// console.log(checkFullHouse(cards));
+console.log("hi-----" + checkStraight(cards));
 
-console.log(highCard(cards));
 
-//---------------------------------------------turn-------------------------------------
+// function playPokerRound() {
+//   let round = new Round();
 
-function turnOrder(players:Player[]) {
-  const stage = document.querySelector(".stage") as HTMLDivElement;
-  let currentPlayerIndex = 0; // מספר השחקן הנוכחי בתור
-
-  function performTurn() {
-    const currentPlayer = players[currentPlayerIndex];
-    players.map((p) => (p.isActive = false));
-    currentPlayer.setActive();
-    currentPlayer.doingTurn();
-
-    currentPlayerIndex++;
-    if (currentPlayerIndex >= players.length && stage.children.length < 6) {
-      currentPlayerIndex = 0;
-      if (stage.children.length < 6) {
-        addCardToStage();
-      }
-    }
-
-    setTimeout(performTurn, 500); // השהייה של 4 שניות לפני תור השחקן הבא
-  }
-
-  performTurn(); // הפעלת התור הראשון
-  // game over
-}
-turnOrder(players)
-
-function renderPlayersPanel(players: Player[]) {
-  try {
-    const playersElement: NodeListOf<HTMLElement> =
-      document.querySelectorAll(".playerPanel");
-    players.forEach((p, i) => {
-      console.log(playersElement[i]);
-
-      // p.pCards.forEach((c) =>
-      //   c.renderCard(document.querySelector(`#player${i+1}Cards`) as HTMLElement),
-      // );
-      (
-        playersElement[i].querySelector(
-          `.playerPanel__img img`,
-        ) as HTMLImageElement
-      ).src = p.imgSrc;
-      playersElement[i].querySelector(
-        `.playerPanel__inform__chips`,
-      )!.innerHTML = p.chips.toString();
-      playersElement[i].querySelector(
-        `.playerPanel__inform__userName`,
-      )!.textContent = p.userName;
-    });
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-renderPlayersPanel(users);
-
-function playPokerRound() {
-  let round = new Round();
-
-  function loop() {
-    for (let i = 0; i < round.activePlayers.length; i++) {
-      let currentPlayer = round.activePlayers[i];
-      round.activePlayers.forEach((p) => (p.isActive = false));
-      currentPlayer.isActive = true;
-      setTimeout(currentPlayer.doingTurn, 3000);
-    }
-  }
-
-}
+//   function loop() {
+//     for (let i = 0; i < round.activePlayers.length; i++) {
+//       let currentPlayer = round.activePlayers[i];
+//       round.activePlayers.forEach((p) => (p.isActive = false));
+//       currentPlayer.isActive = true;
+//       setTimeout(currentPlayer.doingTurn, 3000);
+//     }
+//   }
+// }

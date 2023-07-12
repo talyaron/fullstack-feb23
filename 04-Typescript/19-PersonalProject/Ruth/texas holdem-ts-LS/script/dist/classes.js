@@ -9,16 +9,16 @@ var Card = /** @class */ (function () {
     Card.prototype.getSignCardSrc = function () {
         switch (this.cardSign) {
             case "heart": {
-                return "./images/heart-sign1.png";
+                return "../images/heart-sign1.png";
             }
             case "diamond": {
-                return "./images/diamond-sign1.png";
+                return "../images/diamond-sign1.png";
             }
             case "club": {
-                return "./images/club-sign1.png";
+                return "../images/club-sign1.png";
             }
             case "spade": {
-                return "./images/spade-sign1.png";
+                return "../images/spade-sign1.png";
             }
         }
     };
@@ -30,24 +30,31 @@ var Card = /** @class */ (function () {
 }());
 //---------------------------Player--------------------
 var Player = /** @class */ (function () {
-    function Player(userName, imgSrc, chips, isActive, isTurn, pCards, allCard) {
+    function Player(userName, imgSrc, chips, isActive, isTurn, pCards, allCards, movesInRound, roundNumber) {
         if (imgSrc === void 0) { imgSrc = ""; }
         if (chips === void 0) { chips = 100000; }
-        if (isActive === void 0) { isActive = false; }
+        if (isActive === void 0) { isActive = true; }
         if (isTurn === void 0) { isTurn = false; }
         if (pCards === void 0) { pCards = get2RandomCards(); }
-        if (allCard === void 0) { allCard = pCards; }
+        if (allCards === void 0) { allCards = pCards; }
+        if (movesInRound === void 0) { movesInRound = []; }
+        if (roundNumber === void 0) { roundNumber = movesInRound.length - 1; }
         this.userName = userName;
         this.imgSrc = imgSrc;
         this.chips = chips;
         this.isActive = isActive;
         this.isTurn = isTurn;
         this.pCards = pCards;
-        this.allCard = allCard;
+        this.allCards = allCards;
+        this.movesInRound = movesInRound;
+        this.roundNumber = roundNumber;
         this.pCards = this.pCards.map(function (c) { return new Card(c.cardNumber, c.cardSign); });
     }
     Player.prototype.setActive = function () {
         this.isActive = !this.isActive;
+    };
+    Player.prototype.setTurn = function () {
+        this.isTurn = !this.isTurn;
     };
     Player.prototype.renderMyPanel = function () {
         try {
@@ -62,13 +69,22 @@ var Player = /** @class */ (function () {
         }
     };
     Player.prototype.addCardToPlayer = function (card) {
-        this.allCard.push(card);
+        this.allCards.push(card);
     };
-    Player.prototype.doingTurn = function () {
+    Player.prototype.doingTurn = function (activePlayers, thisIndex) {
         console.log(this.userName + " is doing somethig......");
+        var movesOptions = getMoveOption(activePlayers, thisIndex);
+        // let ChanceToBet = getChanceToBet(this)
     };
     return Player;
 }());
+var PlayerMovesOption;
+(function (PlayerMovesOption) {
+    PlayerMovesOption["fold"] = "fold";
+    PlayerMovesOption["check"] = "check";
+    PlayerMovesOption["rise"] = "rise";
+    PlayerMovesOption["call"] = "call";
+})(PlayerMovesOption || (PlayerMovesOption = {}));
 //------------------Dealer------------------------------
 var Dealer = /** @class */ (function () {
     function Dealer(sum) {
