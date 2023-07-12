@@ -9,7 +9,7 @@ class Img {
 // const image2 = new Img('https://photoscissors.com/images/samples/3-before.jpg');
 
 const storedImages = localStorage.getItem('images');
-const imagesArray: Img[] = storedImages ? JSON.parse(storedImages) : [];
+const imagesArray: Img[] = getImgsFromLocalStorage();
 console.log(imagesArray);
 //
 
@@ -24,9 +24,43 @@ const bar = new User('Bar', 'https://pixlr.com/images/index/remove-bg.webp', [])
 const netanel = new User('Netanel', 'https://photoscissors.com/images/samples/3-before.jpg', []);
 
 const storedUsers = localStorage.getItem('Users');
-const usersArray: User[] = storedUsers ? JSON.parse(storedUsers) : [bar, netanel];
+const usersArray: User[] = getUsersFromLocalStorage();
 console.log(usersArray);
 //
+
+function saveImgToLocalStorage(image: Img[]){
+    localStorage.setItem('image', JSON.stringify(image));
+}
+
+function getImgsFromLocalStorage():Img[]{
+    try {
+        const imgsStorage = localStorage.getItem('imgs');
+        if(!imgsStorage) return [];
+        const imagesArray = JSON.parse(imgsStorage);
+        const imgs = imagesArray.map(img => new Img(img.image));
+        return imgs;
+    } catch (error) {
+        console.error(error);
+        return [];
+    }
+}
+//
+function saveUserToLocalStorage(user: User[]){
+    localStorage.setItem('user', JSON.stringify(user));
+}
+
+function getUsersFromLocalStorage():User[]{
+    try {
+        const usersStorage = localStorage.getItem('users');
+        if(!usersStorage) return [];
+        const usersArray = JSON.parse(usersStorage);
+        const users = usersArray.map(user => new User(user.name, user.imageProfile, user.images));
+        return users;
+    } catch (error) {
+        console.error(error);
+        return [];
+    }
+}
 
 // class UserImg {
 //     id: string;

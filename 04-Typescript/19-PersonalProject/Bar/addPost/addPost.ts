@@ -39,9 +39,10 @@ function handleAddNewPost(event: any) {
 
     selectedUser.images.push(newImg);
 
-    localStorage.setItem('images', JSON.stringify(imagesArray));
-
-    localStorage.setItem('users', JSON.stringify(usersArray));
+    saveImgToLocalStorage(imagesArray);
+    saveUserToLocalStorage(usersArray);
+    // localStorage.setItem('images', JSON.stringify(imagesArray));
+    // localStorage.setItem('users', JSON.stringify(usersArray));
 
     showPosts(document.querySelector('#posts'), usersArray);
     
