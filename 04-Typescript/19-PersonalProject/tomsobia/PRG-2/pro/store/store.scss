@@ -30,6 +30,10 @@ button {
     font-size: 0.6vw;
 }
 
+button:hover {
+    background-color: rgba(0, 128, 0, 0.76);
+}
+
 hr {
     width: 80vw;
     height: 0.3vw;
@@ -39,12 +43,7 @@ hr {
 }
 
 .container {
-    background-image: url("https://images.pexels.com/photos/11914897/pexels-photo-11914897.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2https://images.pexels.com/photos/10888787/pexels-photo-10888787.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
     font-size: 2vw;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    background-blend-mode: color-dodge;
     width: 100%;
     height: auto;
     background-color: rgba(0, 0, 0, 0.743);
@@ -66,7 +65,7 @@ hr {
         border-radius: 20px;
         background-color: rgba(255, 0, 0, 0.634);
 
-            span {
+        span {
             color: rgb(210, 210, 206);
         }
 
@@ -93,13 +92,16 @@ hr {
         align-items: center;
 
         &--product {
-            border-radius: 20px;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
             width: 13%;
             height: auto;
             margin: 7px;
             background-color: white;
 
             img {
+                border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
                 width: 100%;
             }
         }
