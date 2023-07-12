@@ -1,0 +1,31 @@
+body {
+  background-color: #cbddbb;
+}
+body h1 {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-size: 10vw;
+  margin: 0px;
+  color: white;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 8vw;
+}
+form input {
+  width: 15vw;
+  height: 2.5vw;
+  margin: 0.2vw;
+  border-radius: 20px;
+  border-color: white;
+}
+form button {
+  width: 5vw;
+  margin-top: 2vw;
+  border-radius: 20px;
+  height: 2.5vw;
+  background-color: black;
+  color: white;
+}

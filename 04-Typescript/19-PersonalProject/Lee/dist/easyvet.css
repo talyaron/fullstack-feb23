@@ -1,0 +1,41 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  background-color: #0fd7d7;
+}
+html .header {
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
+  justify-content: flex-end;
+  background-color: #03a1a1;
+  width: 100%;
+  height: 25px;
+  font-size: 22px;
+  gap: 1rem;
+}
+html .navigation {
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
+  justify-content: center;
+  gap: 1rem;
+  width: 100%;
+  color: #565656;
+  font-family: "Quicksand", sans-serif;
+  font-weight: bold;
+  font-size: 20px;
+  background-color: #bcbcbc;
+}
+html #paw {
+  width: 40px;
+  height: 40px;
+}
+html #logo {
+  width: 300px;
+  height: auto;
+}

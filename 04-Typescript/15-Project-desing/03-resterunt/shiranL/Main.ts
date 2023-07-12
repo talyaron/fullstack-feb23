@@ -25,11 +25,12 @@ function RenderHomePage(){
 
 function getTablesForMainPage(): Table [] {
   try {
+    debugger
       const tables: Table []  = [];
       const tablesString = localStorage.getItem('tables');
       if (!tablesString){ // if there is not table on json , create one
-          for (let index = 0; index < 15; index++) {
-              tables.push(new Table(index+1,"Table "+(index+1).toString(),4))
+          for (let index = 0; index < 16; index++) {
+              tables.push(new Table("Table "+(index+1).toString(),4,index+1,))
        ;}
        const tablesJson = JSON.stringify(tables); // save to local 
           localStorage.setItem('tables', tablesJson);
@@ -37,7 +38,7 @@ function getTablesForMainPage(): Table [] {
           //get tables from localstorage
           const tablesArray = JSON.parse(tablesString);
           tablesArray.forEach((table) => {
-                  tables.push(new Table(table.idTable, table.tableName, table.capacity));
+                  tables.push(new Table(table.tableName, table.capacity,table.idTable));
               });}
    return tables;          
    } catch (error) {

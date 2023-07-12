@@ -1,0 +1,124 @@
+body {
+    background-image: url(https://c4.wallpaperflare.com/wallpaper/306/908/890/spots-background-light-dark-wallpaper-preview.jpg);
+    background-size: cover;
+}
+
+.songWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+
+    &__img {
+        width: 50vw;
+        height: 60vh;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: all 200ms ease-in-out;
+
+        &:active {
+            transform: scale(1.08);
+        }
+
+    }
+
+    &__name {
+        font-size: 30px;
+        color: rgb(200, 231, 22);
+        font-family: sans-serif;
+
+    }
+
+    &__artist {
+        font-size: 14px;
+        color: rgb(0, 0, 0);
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        text-decoration: underline;
+        transition: all 100ms ease-in-out;
+        border-radius: 15px;
+        cursor: pointer;
+        &:hover{
+            background-color: rgb(151, 199, 199);
+        }
+       
+
+    }
+
+}
+
+#playicon {
+    position: relative;
+    bottom: 30vh;
+    color: rgb(146, 185, 219);
+    transition: all 100ms ease-in-out;
+
+
+}
+
+#pauseicon {
+    position: relative;
+    bottom: 30vh;
+    color: rgb(211, 81, 161);
+    transition: all 100ms ease-in-out;
+    animation: rotate 3s infinite cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+    @keyframes rotate {
+       0% {
+            transform: rotate(0turn);
+            scale: 1;
+            
+        }
+
+        50% {
+            transform: rotate(1turn);
+            scale: 1.5;
+            
+        }
+        100%{
+            transform: rotate(2turn);
+            scale: 1;
+        }
+
+
+    }
+}
+
+#progress {
+    width: 0vw;
+    height: 2vh;
+    background: rgb(71, 146, 218);
+    background: linear-gradient(0deg, rgba(71, 146, 218, 1) 14%, rgba(236, 75, 102, 1) 92%);
+    position: absolute;
+    bottom: 26vh;
+    transition: all 200ms ease-in-out;
+    border-radius: 10px;
+    z-index: 1;
+}
+
+.loaderline {
+    width: 100vw;
+    height: 2vh;
+    background-color: aliceblue;
+    position: absolute;
+    bottom: 26vh;
+    transition: all 200ms ease-in-out;
+    border-radius: 10px;
+    z-index: 0;
+}
+
+#time {
+    font-size: 18px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: rgb(236, 17, 152);
+    transition: all 100ms ease-in-out;
+    z-index: 2;
+    position: relative;
+    top: 1.2vh;
+}
+
+#MainPageWrapper__suggested__songPage {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    
+}
