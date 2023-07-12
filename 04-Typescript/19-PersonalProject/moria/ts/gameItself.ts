@@ -94,7 +94,6 @@ document.addEventListener('keyup', (event: KeyboardEvent) => {
             bart.style.left = `${bart.offsetLeft - 85}px`;
             break;
         case 'ArrowRight':
-
             bart.style.left = `${bart.offsetLeft + 85}px`;
             break;
         case " ":
