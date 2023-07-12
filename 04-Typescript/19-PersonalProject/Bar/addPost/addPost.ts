@@ -3,17 +3,17 @@ function addNewPost(users: User[], rootElement: HTMLElement | Element | null) {
   try {
     if (!rootElement) throw new Error('Root element is not found');
     const html = `
-        <form class="addPost" onsubmit="handleAdd(event)">
-          <select class="addPost__select" name="user" id="user" required>
-            ${users
+      <form class="addPost" onsubmit="handleAdd(event, ${JSON.stringify(users)}, ${JSON.stringify(userImgArray)})">
+        <select class="addPost__select" name="user" id="user" required>
+          ${users
         .map((user) => {
           return `<option value="${user.id}">${user.name}</option>`;
         })
         .join('')}
-          </select>
-          <input class="addPost__input" type="text" name="image" placeholder="Image URL" required>
-          <button class="addPost__enterNewImage">Add Post</button>
-        </form>`;
+        </select>
+        <input class="addPost__input" type="text" name="image" placeholder="Image URL" required>
+        <button class="addPost__enterNewImage" type="submit">Add Post</button>
+      </form>`;
 
     rootElement.innerHTML = html;
 
@@ -22,34 +22,38 @@ function addNewPost(users: User[], rootElement: HTMLElement | Element | null) {
     console.error(error);
   }
 }
-
 addNewPost(usersArray, document.querySelector('#addPost'));
 
+
 //add image url to the userImgArray of the user.
-function handleAdd(users: User[], event: Event) {
+function handleAdd(event: Event| null, users: User[], userImgArray: UserImg[]) {
   try {
-    if (!event.target) throw new Error('Missing target on event');
     event.preventDefault();
+    const user = event.target.elements.user.value;
+    const image = event.target.elements.image.value;
 
-    const target = event.target as HTMLFormElement;
-    const userId = target.user.value; // קבלת ה-ID של המשתמש הנבחר
-    const imageUrl = target.image.value; // קבלת כתובת ה-URL שהוזנה
+    const userImg = userImgArray.find((userImg) => userImg.user.id === user);
 
-    const selectedUser = users.find((user) => user.id === userId); // מציאת המשתמש הנבחר לפי ה-ID
-    if (!selectedUser) throw new Error('Selected user not found');
+    if (!userImg) throw new Error('User is not found');
 
-    const newImage = new Img(imageUrl, ''); // יצירת אובייקט Img חדש עם כתובת ה-URL
-    selectedUser.image.push(newImage); // הוספת התמונה למערך התמונות של המשתמש
+    userImg.images.push(image);
 
-    const newUserImg = new UserImg(selectedUser, selectedUser.image); // יצירת אובייקט UserImg חדש עם המשתמש הנבחר ומערך התמונות המעודכן
-    userImgArray.push(newUserImg); // הוספת האובייקט החדש למערך userImgArray
+    localStorage.setItem('userImgArray', JSON.stringify(userImgArray));
 
-    localStorage.setItem('UserImgs', JSON.stringify(userImgArray)); // עדכון המערך של UserImgs ב-LocalStorage
-
-    // כאן תוכלי להציג את התמונה בפרופיל, על פי הצורך שלך
+    showUserImg(document.querySelector('#profile'), userImgArray);
   } catch (error) {
     console.error(error);
+
   }
 }
 
+// function handleToProfile(ev: any) {
+//   try {
+//       ev.preventDefault();
+//       console.dir(ev);
 
+//       location.href = "profile.html"
+//   } catch (error) {
+//       console.error(error);
+//   }
+// };
