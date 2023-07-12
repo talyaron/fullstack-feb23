@@ -39,7 +39,9 @@ class Player {
     public imgSrc: string = "",
     public chips: number = 100000,
     public isActive: boolean = false,
+    public isTurn: boolean =false,
     public pCards: Card[] = get2RandomCards(),
+    public allCard: Card[] = pCards,
   ) {
     this.pCards = this.pCards.map((c) => new Card(c.cardNumber, c.cardSign));
   }
@@ -59,9 +61,30 @@ class Player {
       console.error(error);
     }
   }
+  addCardToPlayer(card: Card) {
+    this.allCard.push(card);
+  }
+
+  doingTurn() {
+    console.log(`${this.userName} is doing somethig......`);
+  }
 }
 
 //------------------Dealer------------------------------
 class Dealer {
   constructor(public sum: number) {}
+}
+
+//----------------Round--------------------------------
+class Round {
+  constructor(
+    public activePlayers: Player[] = players,
+    public firstPlayer: Player = activePlayers[0],
+    public chipsOnTable: number = 0,
+    public roundNumber: number = 0,
+  ) {}
+
+  setPlayers() {
+    this.activePlayers = this.activePlayers.filter((p) => p.isActive == true);
+  }
 }
