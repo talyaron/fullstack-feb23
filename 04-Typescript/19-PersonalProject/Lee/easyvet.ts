@@ -12,9 +12,6 @@ const clients: Client[] = [
     new Client("Cocus", "Yael Ortman", "https://thumbs.dreamstime.com/b/labrador-puppy-5857333.jpg", 2020),
     new Client("Hugo", "Netali Ortman", "https://qph.cf2.quoracdn.net/main-qimg-199d9dbd6c8b38138ed8ba833ec82162-lq", 2015)
 
-
-
-
 ]
 
 class Vaccine {
@@ -64,6 +61,4 @@ const supplies: Supply[] = [
     new Supply("Medical food 1 can", 17),
     new Supply("Ampoule Anti-flea & Tick", 47),
     new Supply("seringe", 10)
-
-
 ]
