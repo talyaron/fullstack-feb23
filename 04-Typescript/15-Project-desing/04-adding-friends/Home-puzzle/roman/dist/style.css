@@ -1,0 +1,39 @@
+.wrapper .container {
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  padding: 10px;
+  max-width: 1100px;
+  margin: auto;
+  padding: 2%;
+}
+.wrapper .container h2 {
+  text-align: center;
+  color: navy;
+}
+.wrapper .container form {
+  text-align: center;
+  margin: auto;
+}
+.wrapper .container .renderVegs {
+  width: 500px;
+  text-align: center;
+  margin: auto;
+  padding-top: 20px;
+}
+.wrapper .container .vegetables {
+  width: 100%;
+  margin: 0 auto;
+}
+.wrapper .container .vegetables input {
+  width: 50px;
+}
+.wrapper .container .vegetables th,
+.wrapper .container .vegetables td,
+.wrapper .container .vegetables tr {
+  border: 2px solid #807e7e;
+  background-color: #f4f4f4;
+}
+.wrapper .container .vegetables .vegetableImage {
+  width: 50px;
+}
