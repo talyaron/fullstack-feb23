@@ -91,7 +91,7 @@ hr {
   width: 13%;
   height: auto;
   margin: 7px;
-  background-color: #0092fb;
+  background-color: rgba(196, 196, 196, 0.877);
 }
 .container__section--product img {
   border-top-left-radius: 20px;
