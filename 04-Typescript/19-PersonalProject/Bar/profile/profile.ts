@@ -1,15 +1,16 @@
-// 1) 1 entity, CRUD, make it betfull with CSS.
-// 2) 2 eneties ,with joins, CRUD, two pages that share the model.
-
-//Instegram Profile page.
+//Instegram Posts page.
 //MVC - Model View Controller
-//class - user, image.
+
+const image = getImgsFromLocalStorage();
+// const usersArray = getUsersFromLocalStorage();
+console.log(usersArray);
 
 function showPosts(
   HTMLElement: HTMLElement | Element | null,
   user: User[]) {
   try {
     if (!HTMLElement) throw new Error('Root element is not found');
+
     const html =
       user.map((user) => {
         return `
@@ -23,19 +24,17 @@ function showPosts(
               </div>
             </div>`;
       }).join('');
-
     HTMLElement.innerHTML = html;
 
-    localStorage.setItem('imagesArray', JSON.stringify(imagesArray));
-    localStorage.setItem('usersArray', JSON.stringify(usersArray));
-
+    // saveImgToLocalStorage(imagesArray);
+    // saveUserToLocalStorage(user);
   } catch (error) {
     console.error(error);
   }
 }
 showPosts(document.querySelector('#posts'), usersArray);
 
-//creat header
+//creat header (working)
 function showHeader(
   HTMLElement: HTMLElement | Element | null,
   user: User[]) {
@@ -56,8 +55,9 @@ function showHeader(
 
     HTMLElement.innerHTML = html;
 
-    localStorage.setItem('usersArray', JSON.stringify(usersArray));
-
+    // saveImgToLocalStorage(imagse);
+    saveUserToLocalStorage(user);
+    // localStorage.setItem('usersArray', JSON.stringify(usersArray));
   } catch (error) {
     console.error(error);
   }

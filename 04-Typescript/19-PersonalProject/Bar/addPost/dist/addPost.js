@@ -1,36 +1,46 @@
+//get the users and the imagse from local storage
+var imagse = getImgsFromLocalStorage();
+var users = getUsersFromLocalStorage();
+console.log(imagesArray);
+// <input class="addPost__enterNewImage" type="submit">Add Post>
+//Add new post and render
 function renderAddNewPost(users, rootElement) {
     try {
         if (!rootElement)
             throw new Error('Root element is not found');
-        var html = "\n      <form class=\"addPost\" onsubmit=\"handleAddNewPost(event)\">\n        <select class=\"addPost__select\" name=\"user\" id=\"user\" required>\n          " + users.map(function (user) {
+        var html = "\n      <form class=\"addPost\" onsubmit=\"handleAddNewPost(event)\">\n        <select class=\"addPost__select\" name=\"userId\" id=\"user\" required>\n          " + users.map(function (user) {
             return "<option value=\"" + user.id + "\">" + user.name + "</option>";
         })
-            .join('') + "\n        </select>\n        <input class=\"addPost__input\" type=\"text\" name=\"image\" placeholder=\"Image URL\" required>\n        <button class=\"addPost__enterNewImage\" type=\"submit\">Add Post</button>\n      </form>";
+            .join('') + "\n        </select>\n        <input class=\"addPost__input\" type=\"text\" name=\"image\" placeholder=\"Image URL\" required>\n        <input class=\"addPost__enterNewImage\" type=\"submit\" value=\"ADD\">\n        </form>";
         rootElement.innerHTML = html;
-        localStorage.setItem('Users', JSON.stringify(usersArray));
+        // localStorage.setItem('Users', JSON.stringify(usersArray));
     }
     catch (error) {
         console.error(error);
     }
 }
 renderAddNewPost(usersArray, document.querySelector('#addPost'));
-function handleAddNewPost(event) {
+//get the new post from the form, and add it to the user.
+//render it in 'showPosts'.
+//is not working.
+function handleAddNewPost(ev) {
     try {
-        if (!event)
+        // debugger;
+        if (!ev)
             throw new Error('Event is not found');
-        event.preventDefault();
-        var user_1 = event.target.elements.user.value;
-        var image = event.target.elements.image.value;
-        var selectedUser = usersArray.find(function (u) { return u.id === user_1; });
+        ev.preventDefault();
+        var userId_1 = ev.target.elements.userId.value;
+        var image = ev.target.elements.image.value;
+        var selectedUser = usersArray.find(function (u) { return u.id === userId_1; });
         if (!selectedUser)
             throw new Error('User not found');
         var newImg = new Img(image);
-        imagesArray.push(newImg);
         selectedUser.images.push(newImg);
+        console.log(usersArray);
         saveImgToLocalStorage(imagesArray);
         saveUserToLocalStorage(usersArray);
-        // localStorage.setItem('images', JSON.stringify(imagesArray));
-        // localStorage.setItem('users', JSON.stringify(usersArray));
+        console.log(usersArray);
+        //render the new post in 'showPosts'
         showPosts(document.querySelector('#posts'), usersArray);
     }
     catch (error) {
@@ -38,3 +48,4 @@ function handleAddNewPost(event) {
         return error;
     }
 }
+handleAddNewPost(event);

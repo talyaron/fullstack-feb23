@@ -1,8 +1,8 @@
-// 1) 1 entity, CRUD, make it betfull with CSS.
-// 2) 2 eneties ,with joins, CRUD, two pages that share the model.
-//Instegram Profile page.
+//Instegram Posts page.
 //MVC - Model View Controller
-//class - user, image.
+var image = getImgsFromLocalStorage();
+// const usersArray = getUsersFromLocalStorage();
+console.log(usersArray);
 function showPosts(HTMLElement, user) {
     try {
         if (!HTMLElement)
@@ -11,15 +11,15 @@ function showPosts(HTMLElement, user) {
             return "\n        <div class=\"userPost\">\n            <div class=\"userPost__name\">\n            <img src=\"" + user.imageProfile + "\">\n            <h3>" + user.name + "</h3>\n            </div>\n              <div class=\"userPost__img\">\n                <img src=\"" + user.images + "\">\n              </div>\n            </div>";
         }).join('');
         HTMLElement.innerHTML = html;
-        localStorage.setItem('imagesArray', JSON.stringify(imagesArray));
-        localStorage.setItem('usersArray', JSON.stringify(usersArray));
+        // saveImgToLocalStorage(imagesArray);
+        // saveUserToLocalStorage(user);
     }
     catch (error) {
         console.error(error);
     }
 }
 showPosts(document.querySelector('#posts'), usersArray);
-//creat header
+//creat header (working)
 function showHeader(HTMLElement, user) {
     try {
         if (!HTMLElement)
@@ -28,7 +28,9 @@ function showHeader(HTMLElement, user) {
             return "\n      <div class=\"header\">\n        <div class=\"header__user\">\n        <div class=\"header__user--image\">\n          <img src=\"" + user.imageProfile + "\">\n        </div>\n          <h3>" + user.name + "</h3>\n        </div>\n      </div>";
         }).join('');
         HTMLElement.innerHTML = html;
-        localStorage.setItem('usersArray', JSON.stringify(usersArray));
+        // saveImgToLocalStorage(imagse);
+        saveUserToLocalStorage(user);
+        // localStorage.setItem('usersArray', JSON.stringify(usersArray));
     }
     catch (error) {
         console.error(error);
