@@ -13,10 +13,11 @@ body {
 }
 
 hr {
-    background-color: rgb(255, 102, 0);
-    width: 3%;
+    background-color: rgba(246, 66, 66, 0.541);
+    width: 7vw;
+    margin: 5px;
     border-radius: 20px;
-    height: 0.3vw;
+    height: 0.5vw;
 }
 
 .container {
@@ -52,7 +53,7 @@ hr {
             margin: 2px;
             padding: 0.4%;
             border-radius: 10px;
-            background-color: coral;
+            background-color: #D5F929;
         }
 
     }

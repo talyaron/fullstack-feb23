@@ -183,6 +183,7 @@ function loadQuestionGoodThings() {
 }
 function loadQuestionBadThings() {
     try {
+        debugger;
         var badThings_1 = [];
         var badThingsString = localStorage.getItem('badThings');
         if (!badThingsString) { // if there is not characters on json , create new []
@@ -271,6 +272,7 @@ function loadDataToBoard(board) {
         if (goodThings) {
             board.goodThings = goodThings;
         }
+        debugger;
         // Load bad things and add them to the board
         var badThings = loadQuestionBadThings();
         if (badThings) {
