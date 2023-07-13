@@ -11,18 +11,15 @@ function calculateAlcohol(): void {
   const alcohol: number = Number(
     (document.querySelector("#alcohol") as HTMLInputElement).value
   );
-
   const ratio: number = gender === "male" ? 0.68 : 0.55;
   const totalAlcohol: number = drinks * alcohol;
   const estimatedBAC: number = totalAlcohol / (weight * ratio);
-
   const result: HTMLElement|null = document.querySelector("#result");
-  result.textContent = `הכמות המשוערת של אלכוהול בדם שלך היא: ${estimatedBAC.toFixed(
-    2
-  )} %`;
-  } catch (error) {
-    console.error(error);
-  }
+  result.textContent = `הכמות המשוערת של אלכוהול בדם שלך היא: ${estimatedBAC.toFixed(2)} %`;
+
+} catch (error) {
+  console.error(error);
+}
 
 }
 
