@@ -1,4 +1,4 @@
-const players = getPlayerFromLocalStorage()
+const players: Player[] = getPlayerFromLocalStorage()
 renderPlayers(players);
 function addHomer(event) {
     try {
@@ -7,7 +7,7 @@ function addHomer(event) {
         players.push(selectedPlayer);
         savePlayerToLocalStorage(players)
         console.log(players)
-        window.location.href = "view/levels.html";
+        // window.location.href = "view/levels.html";
 
 
     } catch (error) {
@@ -15,39 +15,38 @@ function addHomer(event) {
     }
 }
 
-function addBart(event) {
-    try {
-        const selectedPlayer = "../img/בארט.png";
-        players.push(selectedPlayer);
-        console.log(event)
-        localStorage.setItem("players", JSON.stringify(players))
-        window.location.href = "view/levels.html";
+// function addBart(event) {
+//     try {
+//         const selectedPlayer = "../img/בארט.png";
+//         players.push(selectedPlayer);
+//         console.log(event)
+//         localStorage.setItem("players", JSON.stringify(players))
+//         window.location.href = "view/levels.html";
 
-    } catch (error) {
-        console.error(error)
-    }
-}
+//     } catch (error) {
+//         console.error(error)
+//     }
+// }
 
-function addLisa(event) {
-    try {
+// function addLisa(event) {
+//     try {
 
-        const selectedPlayer = new Player("../img/ליסה.png");
-        players.push(selectedPlayer);
-        localStorage.setItem("players", JSON.stringify(players))
-        renderPlayer()
-        window.location.href = "view/levels.html";
+//         const selectedPlayer = new Player("../img/ליסה.png");
+//         players.push(selectedPlayer);
+//         localStorage.setItem("players", JSON.stringify(players))
+//         renderPlayer()
+//         window.location.href = "view/levels.html";
 
-    } catch (error) {
-        console.error(error)
-    }
-}
+//     } catch (error) {
+//         console.error(error)
+//     }
+// }
 // const level = document.querySelector(`.level`) as HTMLElement;
 // const notAvailable = document.querySelectorAll
 //     (`.levelNotAvailable`);
 
 function savePlayerToLocalStorage(players: Player[]) {
     try {
-        if (!players) throw new Error("No players");
         localStorage.setItem('players', JSON.stringify(players));
 
     } catch (error) {
