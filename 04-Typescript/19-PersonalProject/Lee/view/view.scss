@@ -6,10 +6,15 @@
     font-family: "Quicksand", sans-serif;
     letter-spacing: 1px;
     font-size: 17px;
+    
 }
 
 body {
-    overflow: hidden;
+  
+
+    img {
+        margin-top: 1rem;
+    }
 
     nav {
         height: 6rem;
@@ -143,4 +148,29 @@ body {
     
 }
 }
+
+.container {
+    &__img {
+        width: 100vw;
+        height: auto;
+    }
+}
+
+.main {
+    
+    &__img {
+       
+        width: 100vw;
+        padding-top: 9.2rem;
+    }
+}
+
+.footer {
+
+    background-color: darkgray;
+    width: 100vw;
+    height: 50px;
+   
+}
+   
 }
