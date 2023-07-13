@@ -65,30 +65,31 @@ hr {
             text-align: center;
             color: white;
         }
-    }
 
-    a {
-        display: flex;
-        flex-direction: column-reverse;
-        align-items: center;
-        text-decoration: none;
 
-        p {
-            width: 30%;
-            color: white;
-            font-size: 1.2vw;
-            text-align: center;
+        a {
+            display: flex;
+            flex-direction: column-reverse;
+            align-items: center;
+            text-decoration: none;
+
+            p {
+                width: 30%;
+                color: white;
+                font-size: 1.2vw;
+                text-align: center;
+            }
         }
-    }
-    
-    img {
-        background-image: url(dist/shelf-clip-art-others-removebg-preview.png); 
-        backdrop-filter:unset ;
-        background-size:cover;
-        background-repeat: no-repeat;
-        border-radius: 20px;
-        width: 50vw;
-        background-position: 0vw 4vw;
+
+        img {
+            background-image: url(shelfpreview.png);
+            backdrop-filter: unset;
+            background-size: cover;
+            background-repeat: no-repeat;
+            border-radius: 20px;
+            width: 50vw;
+            background-position: 0vw 4vw;
+        }
     }
 }
 
