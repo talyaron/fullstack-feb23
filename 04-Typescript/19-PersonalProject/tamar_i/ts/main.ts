@@ -9,6 +9,14 @@ class User {
     }
 }
 
+class Point{
+    constructor(public point:number){}
+}
+
+class UserPoint{
+    constructor(public user:User, public points:Point){}
+}
+
 class Ball {
     constructor(){}
 }
@@ -34,6 +42,8 @@ class Coin{
 }
 
 const users: User[] = [];
+const points: Point[] = [];
+const userPoints: UserPoint[] = [];
 
 //---------------------handel----------------
 //save the usermane, send it to the local storage and open the game page

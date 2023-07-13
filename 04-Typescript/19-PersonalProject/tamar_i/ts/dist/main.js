@@ -8,6 +8,19 @@ var User = /** @class */ (function () {
     }
     return User;
 }());
+var Point = /** @class */ (function () {
+    function Point(point) {
+        this.point = point;
+    }
+    return Point;
+}());
+var UserPoint = /** @class */ (function () {
+    function UserPoint(user, points) {
+        this.user = user;
+        this.points = points;
+    }
+    return UserPoint;
+}());
 var Ball = /** @class */ (function () {
     function Ball() {
     }
@@ -39,6 +52,8 @@ var Coin = /** @class */ (function () {
     return Coin;
 }());
 var users = [];
+var points = [];
+var userPoints = [];
 //---------------------handel----------------
 //save the usermane, send it to the local storage and open the game page
 function handelSubmit(ev) {

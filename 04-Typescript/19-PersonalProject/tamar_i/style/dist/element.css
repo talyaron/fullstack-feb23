@@ -4,7 +4,7 @@
   border-color: red;
   height: 19px;
   width: 19px;
-  position: relative;
+  position: absolute;
   top: 93%;
   left: 50%;
   animation: jump 0.5s linear alternate infinite;
@@ -14,7 +14,7 @@
   height: 20px;
   width: 100px;
   background-color: rgba(225, 49, 70, 0.483);
-  position: relative;
+  position: absolute;
 }
 
 .bricks_solid {
@@ -46,7 +46,7 @@
 }
 
 .bomb {
-  position: relative;
+  position: absolute;
   background-color: black;
   height: 20px;
   width: 20px;
@@ -57,7 +57,7 @@
   width: 40px;
   height: 10px;
   background-color: burlywood;
-  position: relative;
+  position: absolute;
 }
 
 .shelves_solid {
@@ -74,6 +74,7 @@
   background-color: green;
   height: 20px;
   width: 20px;
+  position: absolute;
 }
 
 .coins {
@@ -81,6 +82,7 @@
   background-color: gold;
   height: 20px;
   width: 20px;
+  position: absolute;
 }
 
 @keyframes jump {
