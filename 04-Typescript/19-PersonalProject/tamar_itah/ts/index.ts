@@ -19,6 +19,7 @@ class Word {
     constructor(public enWord:string, public heWord:string){}
 }
 
+const words: Word[]=[]
 
 //---------------------handel----------------
 //login form
@@ -66,3 +67,18 @@ function renderUserName() {
     const length: number = users.length
     username.innerHTML = `<h1> Hellow ${users[length - 1].userName}</h1>`
 }
+
+//add form
+function renderAdd(){
+    const htmlroot = document.querySelector('#root')
+    if(!htmlroot) throw new Error("no root element");
+    const toHtml = `<form onsubmit="hendelAddsubmit(event)">
+                        <input type="text" name="newEnWord" placeholder="Please Insert a New English Word" required>
+                        <input type="text" name="interpretation" placeholder="Please provide the meaning of the word" required>
+                        <button type="submit">Submit</button>
+                    </form>`
+    
+}
+
+//move to game
+function renderPlay(){}

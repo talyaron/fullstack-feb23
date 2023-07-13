@@ -14,6 +14,7 @@ var Word = /** @class */ (function () {
     }
     return Word;
 }());
+var words = [];
 //---------------------handel----------------
 //login form
 //save the usermane, send it to the local storage and open the game page
@@ -54,3 +55,12 @@ function renderUserName() {
     var length = users.length;
     username.innerHTML = "<h1> Hellow " + users[length - 1].userName + "</h1>";
 }
+//add form
+function renderAdd() {
+    var htmlroot = document.querySelector('#root');
+    if (!htmlroot)
+        throw new Error("no root element");
+    var toHtml = "<form onsubmit=\"hendelAddsubmit(event)\">\n                        <input type=\"text\" name=\"newEnWord\" placeholder=\"Please Insert a New English Word\" required>\n                        <input type=\"text\" name=\"interpretation\" placeholder=\"Please provide the meaning of the word\" required>\n                        <button type=\"submit\">Submit</button>\n                    </form>";
+}
+//move to game
+function renderPlay() { }
