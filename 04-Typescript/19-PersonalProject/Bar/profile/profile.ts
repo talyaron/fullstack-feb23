@@ -5,76 +5,64 @@
 //MVC - Model View Controller
 //class - user, image.
 
-// function showUserImg(
-//     HTMLElement: HTMLElement | Element | null,
-//     userImg: UserImg[]) {
-//     try {
-//         if (!HTMLElement) throw new Error('Root element is not found');
-//         const html =
-//             userImg.map((userImg) => {
-//             return ` <div class="userPost">
-//             <div class="userPost__name">
-//             <img src="${userImg.user.imageProfile}">
-//             <h3>${userImg.user.name}</h3>
-//             </div>
-//               <div class="userPost__img">
-//                 <img src="${userImg.user.imageProfile}">
-//               </div>
-//             </div>`;
-//             }).join('');
-//         HTMLElement.innerHTML = html;
-
-//         localStorage.setItem('userImgArray', JSON.stringify(userImgArray));
-
-//     } catch (error) {
-//         console.error(error);
-//     }
-// }
-// showUserImg(document.querySelector('#profile'), userImgArray);
-
-function showUserImg(HTMLElement: HTMLElement | Element | null, imageArray: Img[]) {
+function showPosts(
+  HTMLElement: HTMLElement | Element | null,
+  user: User[]) {
   try {
     if (!HTMLElement) throw new Error('Root element is not found');
-    const html = imageArray
-      .map((image) => {
+    const html =
+      user.map((user) => {
         return `
-          <div class="userPost">
+        <div class="userPost">
             <div class="userPost__name">
-              <img src="${image.user.imageProfile}">
-              <h3>${image.user.name}</h3>
+            <img src="${user.imageProfile}">
+            <h3>${user.name}</h3>
             </div>
-            <div class="userPost__img">
-              ${image.image.map((img) => `<img src="${img.image}">`).join('')}
-            </div>
-          </div>
-        `;
-      })
-      .join('');
+              <div class="userPost__img">
+                <img src="${user.images}">
+              </div>
+            </div>`;
+      }).join('');
+
     HTMLElement.innerHTML = html;
+
+    localStorage.setItem('imagesArray', JSON.stringify(imagesArray));
+    localStorage.setItem('usersArray', JSON.stringify(usersArray));
+
   } catch (error) {
     console.error(error);
   }
 }
+showPosts(document.querySelector('#posts'), usersArray);
 
-// הוספת פוסט חדש למערך imageArray
-const newImage = new Img(imageUrl, '');
-imageArray.push(newImage);
+//creat header
+function showHeader(
+  HTMLElement: HTMLElement | Element | null,
+  user: User[]) {
+  try {
+    if (!HTMLElement) throw new Error('Root element is not found');
+    const html =
+      user.map((user) => {
+        return `
+      <div class="header">
+        <div class="header__user">
+        <div class="header__user--image">
+          <img src="${user.imageProfile}">
+        </div>
+          <h3>${user.name}</h3>
+        </div>
+      </div>`;
+      }).join('');
 
-// קריאה לפונקציה showUserImg עם המערך המעודכן
-showUserImg(document.querySelector('#profile'), imageArray);
+    HTMLElement.innerHTML = html;
 
-// עדכון המידע ב-LocalStorage
-localStorage.setItem('images', JSON.stringify(imageArray));
+    localStorage.setItem('usersArray', JSON.stringify(usersArray));
 
-
-// הוספת פוסט חדש למערך userImgArray
-const newUserImg = new UserImg(selectedUser, [newImage]);
-userImgArray.push(newUserImg);
-
-// קריאה לפונקציה showUserImg עם הפוסט המעודכן
-showUserImg(document.querySelector('#profile'), userImgArray);
-
-
+  } catch (error) {
+    console.error(error);
+  }
+}
+showHeader(document.querySelector('#header'), usersArray);
 
 //view - show the user profile.
 //create a new user profile.

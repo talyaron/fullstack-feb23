@@ -15,7 +15,8 @@ help:
 * https://www.w3schools.com/graphics/game_intro.asp 
 * https://www.geeksforgeeks.org/   
 * https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Drawing_shapes difference-between-window-location-href-window-location-replace-and-window-location-assign-in-javascript/
-
+* canvas taturial: https://www.youtube.com/watch?v=83L6B13ixQ0&ab_channel=ChrisCourses  
+* import ts files -> https://www.educative.io/answers/how-to-import-another-typescript-file
 
 
 model:

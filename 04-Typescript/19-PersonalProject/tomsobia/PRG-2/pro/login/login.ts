@@ -26,13 +26,14 @@ function saveDetails(event) {
   const number = event.target.elements.number.value;
   const id = event.target.elements.id;
   const data: Details = new Details(name, pass, email, number, id);
-
+try {
   if (number < 18) {
-    const errorMessageExists = document.getElementById("errorMessage");
+    const errorMessageExists = document.querySelector("#errorMessage");
     if (!errorMessageExists) {
       const errorMessage = document.createElement("p");
       errorMessage.textContent = "You are under age!";
       errorMessage.id = "errorMessage";
+      errorMessage.style.borderRadius = "20px";
       errorMessage.style.color = "black";
       errorMessage.style.backgroundColor = "red";
       errorMessage.style.border = "3px solid black";
@@ -41,12 +42,15 @@ function saveDetails(event) {
     }
     return;
   }
+} catch (error) {
+  console.error(error);
+}
 
   localStorage.setItem(`user`, JSON.stringify(data));
   event.target.reset();
   window.location.href = "../web/TmS/webTmS.html";
 
-  const errorMessage = document.getElementById("errorMessage");
+  const errorMessage = document.querySelector("#errorMessage");
   if (errorMessage) {
     errorMessage.remove();
   }
