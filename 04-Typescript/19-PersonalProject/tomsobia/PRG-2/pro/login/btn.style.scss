@@ -117,3 +117,15 @@ button::before {
         transform: translate(0 , -91%);
     }
 }
+@media (max-width: 600px) {
+    button {
+        font-size: 1.3vw;
+    }
+}
+
+
+@media (max-width: 300px) {
+    button {
+        font-size: 1vw;
+    }
+}
