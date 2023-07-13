@@ -84,3 +84,29 @@ function renderUserName() {
 
 //---------------controllers---------------------------------
 
+
+//the red ball function to put the ball on the screen
+let redBallPiece;
+
+//The components have properties and methods to control their appearances and movements
+function component(width:number, height:number, color:string, x:number, y:number){
+    this.width = width;
+    this.height = height;
+    this.x = x;
+    this.y = y;
+    this.item = this.item.getContext("2d");
+    this.item.fillStyle = color;
+    this.item.fillRrct(this.x, this.y, this.width, this.height);
+}
+
+function redBall(xPosition:number, yPositin: number) {
+    const canvas = document.querySelector('#canvas')
+    if (!canvas) throw new Error("not element catch");
+    
+    if (canvas.getContext !== null) {
+        const ctx = canvas.getContext('2d');
+        ctx.beginPath()
+        ctx.arc(xPosition, yPositin, 50, 0, Math.PI * 2, true) //outer citcle
+        ctx.stroke()
+    }
+}
