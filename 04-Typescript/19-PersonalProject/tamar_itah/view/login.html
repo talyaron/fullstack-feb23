@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style/dist/style.css">
+    <script src="../ts/dist/index.js" defer></script>
+    <title>login</title>
+</head>
+
+<body>
+    <div class="wrapper">
+        <form onsubmit="handelSubmit(event)">
+            <h1 class="h1login">WELCOME PLAYER</h1>
+            <label class="label">please select your User Name</label>
+            <select name="name" id="name">
+                <option value="ofir">Ofir</option>
+                <option value="sivan">Sivan</option>
+                <option value="eliya">Eliya</option>
+            </select>
+            <button type="submit">Submit</button>
+        </form>
+        <br>
+        <br>
+        <br>
+        <h4>If you are a new user plaese sign up here</h4>
+        <form onsubmit="handelSignUp(event)">
+            <input type="text" id="newname" required>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+
+</html>
