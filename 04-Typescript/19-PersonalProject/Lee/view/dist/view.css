@@ -4,14 +4,22 @@
   color: #fff;
   font-family: "Quicksand", sans-serif;
   letter-spacing: 1px;
-  font-size: 17px;
+  font-size: 20px;
 }
 
-body {
-  overflow: hidden;
+html {
+  height: 100%;
 }
-body nav {
-  height: 6rem;
+html body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+html body img {
+  margin-top: 1rem;
+}
+html body nav {
+  height: 4rem;
   width: 100vw;
   display: flex;
   position: fixed;
@@ -19,16 +27,16 @@ body nav {
   background-color: #03a1a1;
   box-shadow: 0 3px 20px rgba(0, 0, 0, 0.2);
 }
-body nav .logo {
-  padding: 3vh 3vw;
+html body nav .logo {
+  padding: 1vh 5vw;
   text-align: left;
   width: 20vw;
 }
-body nav .logo img {
+html body nav .logo img {
   height: auto;
-  width: 20rem;
+  width: 22rem;
 }
-body nav .nav__links {
+html body nav .nav__links {
   width: 60vw;
   display: flex;
   pad: 0 0.7vw;
@@ -38,57 +46,57 @@ body nav .nav__links {
   font-weight: bold;
   font-size: larger;
 }
-body nav .nav__links li a {
+html body nav .nav__links li a {
   margin: 0 0.7vw;
   text-decoration: none;
   transform: all ease-in-out 350ms;
   padding: 10px;
 }
-body nav .nav__links li a:hover {
+html body nav .nav__links li a:hover {
   background-color: #5cc4c4;
   padding: 10px;
   border-radius: 50px;
 }
-body nav .nav__links li a:hover::before {
+html body nav .nav__links li a:hover::before {
   width: 80%;
 }
-body nav .nav__links li {
+html body nav .nav__links li {
   position: relative;
 }
-body nav .nav__links li:nth-child(1) {
+html body nav .nav__links li:nth-child(1) {
   transition: all 0.5s ease 0.2s;
 }
-body nav .nav__links li:nth-child(2) {
+html body nav .nav__links li:nth-child(2) {
   transition: all 0.5s ease 0.4s;
 }
-body nav .nav__links li:nth-child(3) {
+html body nav .nav__links li:nth-child(3) {
   transition: all 0.5s ease 0.6s;
 }
-body nav .nav__links li:nth-child(4) {
+html body nav .nav__links li:nth-child(4) {
   transition: all 0.5s ease 0.7s;
 }
-body nav .nav__links li:nth-child(5) {
+html body nav .nav__links li:nth-child(5) {
   transition: all 0.5s ease 0.8s;
 }
-body nav .nav__links li:nth-child(6) {
+html body nav .nav__links li:nth-child(6) {
   transition: all 0.5s ease 1s;
 }
-body nav .hamburger div {
+html body nav .hamburger div {
   width: 30px;
   height: 3px;
   background: #fff;
   margin: 5px;
   transform: all 0.3s ease;
 }
-body nav .hamburger {
+html body nav .hamburger {
   display: none;
 }
 @media (max-width: 800px) {
-  body nav nav {
+  html body nav nav {
     position: fixed;
     z-index: 3;
   }
-  body nav .hamburger {
+  html body nav .hamburger {
     display: block;
     position: absolute;
     cursor: pointer;
@@ -98,7 +106,7 @@ body nav .hamburger {
     z-index: 2;
     transition: all 0.7s ease;
   }
-  body nav .nav__links {
+  html body nav .nav__links {
     background: #03a1a1;
     position: fixed;
     opacity: 1;
@@ -110,8 +118,26 @@ body nav .hamburger {
     pointer-events: none;
     padding-top: 1rem;
   }
-  body nav .nav__links.open {
+  html body nav .nav__links.open {
     clip-path: circle(1000px at 90% -10%);
     pointer-events: all;
   }
+}
+html body .container__img {
+  width: 100vw;
+  height: auto;
+}
+html body .main__img {
+  width: 100vw;
+  padding-top: 7rem;
+}
+html body footer {
+  background-color: darkgray;
+  width: 100vw;
+  height: 10px;
+  padding-bottom: 15px;
+  margin-top: auto;
+}
+html body footer i {
+  padding-left: 0.4rem;
 }
