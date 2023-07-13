@@ -15,6 +15,10 @@ class User {
 
 const users: User[]=[]
 
+class Word {
+    constructor(public enWord:string, public heWord:string){}
+}
+
 
 //---------------------handel----------------
 //login form

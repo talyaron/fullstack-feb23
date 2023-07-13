@@ -7,6 +7,13 @@ var User = /** @class */ (function () {
     return User;
 }());
 var users = [];
+var Word = /** @class */ (function () {
+    function Word(enWord, heWord) {
+        this.enWord = enWord;
+        this.heWord = heWord;
+    }
+    return Word;
+}());
 //---------------------handel----------------
 //login form
 //save the usermane, send it to the local storage and open the game page
