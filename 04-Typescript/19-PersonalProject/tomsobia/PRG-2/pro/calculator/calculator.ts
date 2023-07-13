@@ -16,7 +16,7 @@ function calculateAlcohol(): void {
   const totalAlcohol: number = drinks * alcohol;
   const estimatedBAC: number = totalAlcohol / (weight * ratio);
 
-  const result: HTMLElement = document.querySelector("#result");
+  const result: HTMLElement|null = document.querySelector("#result");
   result.textContent = `הכמות המשוערת של אלכוהול בדם שלך היא: ${estimatedBAC.toFixed(
     2
   )} %`;
