@@ -94,6 +94,117 @@ function renderBoard(currentGame) {
     players.forEach(function (player) {
         putPlayerOnBoard(player);
     });
+    debugger;
+    // set Good surprises
+    setGoodSurprises();
+    // set bad surprises
+    setBadSurprises();
+    setBadBTNForRandom(currentGame.badThings);
+}
+function setGoodSurprises() {
+    try {
+        //create button for each cell
+        var goodS1 = document.createElement('button');
+        goodS1.classList.add('goodS');
+        var goodS2 = document.createElement('button');
+        goodS2.classList.add('goodS');
+        var goodS3 = document.createElement('button');
+        goodS3.classList.add('goodS');
+        var goodS4 = document.createElement('button');
+        goodS4.classList.add('goodS');
+        var cell1 = document.getElementById('cell33');
+        if (!cell1)
+            throw new Error("cant find cell33");
+        cell1.appendChild(goodS1);
+        var cell2 = document.getElementById('cell24');
+        if (!cell2)
+            throw new Error("cant find cell24");
+        cell2.appendChild(goodS2);
+        var cell3 = document.getElementById('cell15');
+        if (!cell3)
+            throw new Error("cant find cell15");
+        cell3.appendChild(goodS3);
+        var cell4 = document.getElementById('cell6');
+        if (!cell4)
+            throw new Error("cant find cell6");
+        cell4.appendChild(goodS4);
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+function setBadSurprises() {
+    try {
+        //create button for each cell
+        var BadS1 = document.createElement('button');
+        BadS1.classList.add('BadS');
+        var BadS2 = document.createElement('button');
+        BadS2.classList.add('BadS');
+        var BadS3 = document.createElement('button');
+        BadS3.classList.add('BadS');
+        var cell1 = document.getElementById('cell32');
+        if (!cell1)
+            throw new Error("cant find cell32");
+        cell1.appendChild(BadS1);
+        var cell2 = document.getElementById('cell23');
+        if (!cell2)
+            throw new Error("cant find cell23");
+        cell2.appendChild(BadS2);
+        var cell3 = document.getElementById('cell14');
+        if (!cell3)
+            throw new Error("cant find cell14");
+        cell3.appendChild(BadS3);
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+function setBadBTNForRandom(badThings) {
+    //on click btn will render random suprise
+    try {
+        var bads = document.getElementById('2-6');
+        if (!bads)
+            throw new Error("canf find cell 2-6");
+        var BadThings = document.createElement('button');
+        BadThings.classList.add('BadThings');
+        BadThings.addEventListener('click', function () { RandomBadSuprise(badThings); });
+        bads.appendChild(BadThings);
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+function RandomBadSuprise(badThings) {
+    // Get a random bad thing from the array
+    var randomBadThing = badThings[Math.floor(Math.random() * badThings.length)];
+    // Create a dialog element
+    var dialog = document.createElement('dialog');
+    dialog.classList.add('dialog-card');
+    // Create title element
+    debugger;
+    var title = document.createElement('h3');
+    title.innerText = randomBadThing.badThingsTitel;
+    dialog.appendChild(title);
+    // Create description element
+    var description = document.createElement('p');
+    description.innerText = randomBadThing.badThingsDescription;
+    dialog.appendChild(description);
+    // Create purchase price element
+    var purchasePrice = document.createElement('p');
+    purchasePrice.innerText = 'Purchase Price: ' + randomBadThing.purchasePrice.toString();
+    dialog.appendChild(purchasePrice);
+    // Create close button
+    var closeButton = document.createElement('button');
+    closeButton.innerText = 'Close';
+    closeButton.addEventListener('click', function () {
+        // Close the dialog when the close button is clicked
+        dialog.close();
+    });
+    dialog.appendChild(closeButton);
+    // Append the dialog to the document body
+    document.body.appendChild(dialog);
+    // Show the dialog
+    dialog.showModal();
 }
 function putJailOnBoard(jail, JailIndex) {
     var cell;
@@ -115,7 +226,6 @@ function putJailOnBoard(jail, JailIndex) {
     var jailBtn = document.createElement('bottun');
     jailBtn.classList.add('jailBtn');
     jailBtn.id = "" + jail.jailId;
-    //jailBtn.innerHTML=jail.jailName
     var jailimg = document.createElement('img');
     jailimg.src = jail.jailImg;
     jailBtn.appendChild(jailimg);
@@ -130,8 +240,8 @@ function putCityOnBoard(city, cityIndex) {
         var cityBtn1 = void 0;
         var cityBtn2 = void 0;
         var cityBtn3 = void 0;
-        switch (cityIndex) { // set jails in the corners of the board
-            case 0: //ROVA A - get tree matrix cell to fill the city
+        switch (cityIndex) { // set cities in the corners of the board
+            case 0: //ROVA A - get 3 matrix cell to fill the city
                 cell1 = document.getElementById('cell36');
                 cell2 = document.getElementById('cell35');
                 cell3 = document.getElementById('cell34');
@@ -140,9 +250,6 @@ function putCityOnBoard(city, cityIndex) {
                 cityBtn1 = document.createElement('bottun');
                 cityBtn1.id = "" + city.cityId;
                 cityBtn1.classList.add('RovaA');
-                //add event on click to render city card
-                debugger;
-                cityBtn1.addEventListener('click', function () { renderCityCard(city.cityId); });
                 cell1.appendChild(cityBtn1);
                 cityBtn2 = document.createElement('bottun');
                 cityBtn2.id = "" + city.cityId;
@@ -287,6 +394,10 @@ function putCityOnBoard(city, cityIndex) {
                 cell3.appendChild(cityBtn3);
                 break;
         }
+        //add event on click to render city card
+        cityBtn1.addEventListener('click', function () { renderCityCard(city.cityId); });
+        cityBtn2.addEventListener('click', function () { renderCityCard(city.cityId); });
+        cityBtn3.addEventListener('click', function () { renderCityCard(city.cityId); });
     }
     catch (error) {
         console.error(error);
@@ -295,17 +406,16 @@ function putCityOnBoard(city, cityIndex) {
 function renderCityCard(cityId) {
     var _a, _b, _c;
     try {
-        debugger;
         var dialog = document.createElement('dialog'); // Create a dialog element
-        dialog.classList.add('city-dialog'); // Add a custom CSS class for styling
+        dialog.classList.add('cityDialog'); // Add a custom CSS class for styling
         var diaylogForm = document.createElement('form');
-        var spanClose = document.createElement('button');
-        spanClose.classList.add('close');
-        spanClose.addEventListener('click', closePopup);
-        diaylogForm.appendChild(spanClose);
-        var cityCard = document.createElement('div');
-        cityCard.id = "cityCard" + cityId;
-        cityCard.classList.add('cityCard');
+        diaylogForm.classList.add('cityDialog__cityCardForm');
+        diaylogForm.id = "cityCard" + cityId;
+        var btnClose = document.createElement('button');
+        btnClose.classList.add('closeCityDialog');
+        btnClose.innerHTML = 'X';
+        btnClose.addEventListener('click', closePopup);
+        diaylogForm.appendChild(btnClose);
         var cityName = document.createElement('h1');
         var cityBuyPrice = document.createElement('h2');
         var cityRentPrice = document.createElement('h2');
@@ -318,25 +428,24 @@ function renderCityCard(cityId) {
         cityRentPrice.innerHTML = "Rent Price : " + city_1.rentValue;
         var ownerName = (_c = (_b = gamesBoardsAGpage === null || gamesBoardsAGpage === void 0 ? void 0 : gamesBoardsAGpage.find(function (board) { return board.cities.find(function (city) { return city.cityId === cityId; }); })) === null || _b === void 0 ? void 0 : _b.players.find(function (player) { var _a; return player.playerId === ((_a = city_1.cityOwner) === null || _a === void 0 ? void 0 : _a.playerId); })) === null || _c === void 0 ? void 0 : _c.userName;
         owner.innerHTML = "Owner : " + (ownerName || "No Owner");
+        diaylogForm.appendChild(cityName);
+        diaylogForm.appendChild(cityBuyPrice);
+        diaylogForm.appendChild(cityRentPrice);
+        diaylogForm.appendChild(owner);
         if (!ownerName) {
             var buyBtn = document.createElement('button');
             buyBtn.classList.add('buyBtn');
             buyBtn.innerHTML = "Buy";
-            cityCard.appendChild(buyBtn);
+            diaylogForm.appendChild(buyBtn);
             // buyBtn.addEventListener('click',()=>{buyCity(cityId,city.monetaryValue)}); 
         }
         else {
             var payBtn = document.createElement('button');
             payBtn.classList.add('payBtn');
             payBtn.innerHTML = "Pay";
-            cityCard.appendChild(payBtn);
+            diaylogForm.appendChild(payBtn);
             // payBtn.addEventListener('click',()=>{payRent(cityId,city.rentValue)});
         }
-        cityCard.appendChild(cityName);
-        cityCard.appendChild(cityBuyPrice);
-        cityCard.appendChild(cityRentPrice);
-        cityCard.appendChild(owner);
-        diaylogForm.appendChild(cityCard);
         dialog.appendChild(diaylogForm);
         document.body.appendChild(dialog); // Append the dialog to the document body
         dialog.showModal(); // Display the dialog as a modal
@@ -503,10 +612,11 @@ function generateRandomNumber() {
         console.error(error);
     }
 }
-function renderInCells() {
+function renderInCell() {
     var beginCell = document.getElementById("4-1");
     var beginDiv = document.createElement('div');
     beginDiv.classList.add('begin');
+    ss;
     beginCell === null || beginCell === void 0 ? void 0 : beginCell.appendChild(beginDiv);
 }
 var gamesBoardsAGpage = loadBoardsAGpage();
@@ -514,5 +624,5 @@ var currentGame = gamesBoardsAGpage === null || gamesBoardsAGpage === void 0 ? v
 //shape of the board
 renderBoard(currentGame);
 renderOptionsBtns(gamesBoardsAGpage);
-renderInCells();
+renderInCell();
 console.log(gamesBoardsAGpage);

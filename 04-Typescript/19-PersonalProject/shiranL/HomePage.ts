@@ -192,6 +192,7 @@ function loadQuestionGoodThings (): QuestionGoodThings[] | undefined {
 }
 function loadQuestionBadThings (): QuestionBadThings[] | undefined {
     try {
+      debugger
         const badThings: QuestionBadThings []  = [];
         const badThingsString = localStorage.getItem('badThings');
       if (!badThingsString){ // if there is not characters on json , create new []
@@ -287,7 +288,7 @@ function loadDataToBoard(board: Board|undefined): void {
       if (goodThings) {
         board.goodThings = goodThings;
       }
-      
+      debugger
       // Load bad things and add them to the board
       const badThings: QuestionBadThings[] | undefined = loadQuestionBadThings();
       if (badThings) {

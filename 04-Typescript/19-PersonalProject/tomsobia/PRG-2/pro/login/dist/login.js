@@ -29,10 +29,12 @@ function saveDetails(event) {
                 var errorMessage_1 = document.createElement("p");
                 errorMessage_1.textContent = "You are under age!";
                 errorMessage_1.id = "errorMessage";
+                errorMessage_1.style.marginTop = "7px";
+                errorMessage_1.style.padding = "7px";
                 errorMessage_1.style.borderRadius = "20px";
-                errorMessage_1.style.color = "black";
+                errorMessage_1.style.color = "#D5F929";
                 errorMessage_1.style.backgroundColor = "red";
-                errorMessage_1.style.border = "3px solid black";
+                errorMessage_1.style.border = "3px solid #D5F929";
                 errorMessage_1.style.fontSize = "3vw";
                 event.target.appendChild(errorMessage_1);
             }

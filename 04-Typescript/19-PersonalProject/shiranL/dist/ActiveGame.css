@@ -170,3 +170,77 @@
   background-size: cover;
   background-position: center;
 }
+
+.cityDialog {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 400px;
+  border-radius: 5px;
+  border: none;
+}
+.cityDialog__cityCardForm {
+  display: flex;
+  flex-direction: column;
+}
+.cityDialog__cityCardForm .closeCityDialog {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  color: #b10606;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 5px;
+  /* Increase the padding */
+}
+.cityDialog__cityCardForm h1 {
+  margin-top: 0;
+  font-size: 24px;
+  font-weight: bold;
+}
+.cityDialog__cityCardForm h2 {
+  margin: 10px 0;
+  font-size: 18px;
+}
+.cityDialog__cityCardForm .buyBtn,
+.cityDialog__cityCardForm .payBtn {
+  background-color: #007bff;
+  color: #ffffff;
+  padding: 10px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 16px;
+  text-align: center;
+  margin-top: 10px;
+}
+.cityDialog__cityCardForm .buyBtn:hover,
+.cityDialog__cityCardForm .payBtn:hover {
+  background-color: #0056b3;
+}
+
+.goodS {
+  width: 120px;
+  height: 120px;
+  background-image: url("./GoodSurprises.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.BadS {
+  width: 120px;
+  height: 120px;
+  background-image: url("./Bads.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.BadThings {
+  width: 120px;
+  height: 120px;
+  background-image: url("./happyS.jpg");
+  background-size: cover;
+  background-position: center;
+}
