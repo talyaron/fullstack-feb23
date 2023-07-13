@@ -31,22 +31,11 @@ form {
   height: 19px;
   width: 19px;
   position: relative;
-  top: 94%;
+  top: 93%;
   left: 50%;
   animation: jump 0.5s linear alternate infinite;
 }
 
-@keyframes jump {
-  0% {
-    transform: translate3d(0, 0, 0);
-  }
-  40% {
-    transform: translate3d(0, 30%, 0);
-  }
-  100% {
-    transform: translate3d(0, 100%, 0);
-  }
-}
 .brick {
   height: 20px;
   width: 100px;
@@ -65,24 +54,26 @@ form {
 }
 
 .errow {
-  background-color: black;
-  position: relative;
+  background-color: brown;
+  position: absolute;
   height: 20px;
   width: 35px;
 }
 
-.errows_right {
+.errows_rightToLeft {
   clip-path: polygon(52% 11%, 39% 37%, 100% 41%, 100% 57%, 39% 65%, 50% 90%, 0% 50%);
   top: 300px;
+  animation: moveRight 5s linear infinite;
 }
 
-.errows_left {
+.errows_leftToRight {
   clip-path: polygon(0 47%, 58% 43%, 49% 18%, 100% 50%, 51% 89%, 59% 66%, 0 65%);
+  animation: moveLeft 5s linear infinite;
 }
 
 .bomb {
   position: relative;
-  background-color: rgba(96, 15, 24, 0.957);
+  background-color: black;
   height: 20px;
   width: 20px;
   clip-path: polygon(0% 15%, 15% 15%, 15% 0%, 85% 0%, 85% 15%, 100% 15%, 100% 85%, 85% 85%, 85% 100%, 15% 100%, 15% 85%, 0% 85%);
@@ -101,6 +92,7 @@ form {
 
 .shelves_disapear {
   top: 250px;
+  animation: blink 5s infinite;
 }
 
 .colorBall {
@@ -117,6 +109,44 @@ form {
   width: 20px;
 }
 
+@keyframes jump {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  40% {
+    transform: translate3d(0, 30%, 0);
+  }
+  100% {
+    transform: translate3d(0, 100%, 0);
+  }
+}
+@keyframes moveRight {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+@keyframes moveLeft {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 #h1 {
   font-size: 25px;
   text-align: center;
@@ -126,10 +156,11 @@ form {
   background-color: bisque;
   border-radius: 2%;
   height: 80%;
-  width: 40%;
+  width: 50%;
   padding-left: 0;
   padding-right: 0;
   margin-left: auto;
   margin-right: auto;
   display: block;
+  position: relative;
 }

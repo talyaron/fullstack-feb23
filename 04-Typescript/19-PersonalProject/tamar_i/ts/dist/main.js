@@ -79,3 +79,26 @@ function renderUserName() {
     username.innerHTML = "<h1> Hellow " + users[length - 1].userName + "</h1>";
 }
 //---------------controllers---------------------------------
+//the red ball function to put the ball on the screen
+var redBallPiece;
+//The components have properties and methods to control their appearances and movements
+function component(width, height, color, x, y) {
+    this.width = width;
+    this.height = height;
+    this.x = x;
+    this.y = y;
+    this.item = this.item.getContext("2d");
+    this.item.fillStyle = color;
+    this.item.fillRrct(this.x, this.y, this.width, this.height);
+}
+function redBall(xPosition, yPositin) {
+    var canvas = document.querySelector('#canvas');
+    if (!canvas)
+        throw new Error("not element catch");
+    if (canvas.getContext !== null) {
+        var ctx = canvas.getContext('2d');
+        ctx.beginPath();
+        ctx.arc(xPosition, yPositin, 50, 0, Math.PI * 2, true); //outer citcle
+        ctx.stroke();
+    }
+}
