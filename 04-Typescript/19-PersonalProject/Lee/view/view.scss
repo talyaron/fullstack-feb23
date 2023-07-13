@@ -5,19 +5,24 @@
     color: #fff;
     font-family: "Quicksand", sans-serif;
     letter-spacing: 1px;
-    font-size: 17px;
-    
+    font-size: 20px;   
 }
+
+html {
+    height: 100%;
 
 body {
   
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
 
     img {
         margin-top: 1rem;
     }
 
     nav {
-        height: 6rem;
+        height: 4rem;
         width: 100vw;
         display: flex;
         position: fixed;
@@ -28,15 +33,14 @@ body {
     
 
     .logo {
-        padding: 3vh 3vw;
+        // padding: 2vh 2vw;
         text-align: left;
         width: 20vw;
-    }
 
-    .logo img {
-        height: auto;
-        width: 20rem;
-     
+        img {
+            height: auto;
+            width: 22rem;
+        }
     }
 
     .nav__links {
@@ -73,9 +77,6 @@ body {
     .nav__links li {
         position: relative;
 
-        // &:hover {
-        //     width: 80%;
-        // }
 
         &:nth-child(1){
             transition: all 0.5s ease 0.2s;
@@ -161,16 +162,23 @@ body {
     &__img {
        
         width: 100vw;
-        padding-top: 9.2rem;
+        padding-top:7rem;
     }
 }
 
-.footer {
+footer {
 
     background-color: darkgray;
     width: 100vw;
-    height: 50px;
+    height: 10px;
+    padding-bottom: 15px;
+    margin-top: auto;
+
+    i {
+        padding-left: .4rem;
+    }
    
 }
    
+}
 }
