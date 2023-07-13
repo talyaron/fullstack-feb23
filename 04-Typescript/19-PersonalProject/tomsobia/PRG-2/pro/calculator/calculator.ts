@@ -1,5 +1,6 @@
 function calculateAlcohol(): void {
-  const gender: string = (document.querySelector("#gender") as HTMLSelectElement)
+  try {
+    const gender: string = (document.querySelector("#gender") as HTMLSelectElement)
     .value;
   const weight: number = Number(
     (document.querySelector("#weight") as HTMLInputElement).value
@@ -19,5 +20,9 @@ function calculateAlcohol(): void {
   result.textContent = `הכמות המשוערת של אלכוהול בדם שלך היא: ${estimatedBAC.toFixed(
     2
   )} %`;
+  } catch (error) {
+    console.error(error);
+  }
+
 }
 
