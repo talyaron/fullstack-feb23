@@ -28,6 +28,7 @@ html body nav {
   box-shadow: 0 3px 20px rgba(0, 0, 0, 0.2);
 }
 html body nav .logo {
+  padding: 1vh 5vw;
   text-align: left;
   width: 20vw;
 }
