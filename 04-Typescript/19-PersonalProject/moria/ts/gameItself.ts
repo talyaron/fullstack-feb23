@@ -1,59 +1,5 @@
-const players: Player[] = getPlayerFromLocalStorage()
-renderPlayers(players);
-function addHomer(event) {
-    try {
-        // const player =
-        const selectedPlayer = new Player("../img/הומר.png");
-        players.push(selectedPlayer);
-        savePlayerToLocalStorage(players)
-        console.log(players)
-        // window.location.href = "view/levels.html";
 
-
-    } catch (error) {
-        console.error(error)
-    }
-}
-
-// function addBart(event) {
-//     try {
-//         const selectedPlayer = "../img/בארט.png";
-//         players.push(selectedPlayer);
-//         console.log(event)
-//         localStorage.setItem("players", JSON.stringify(players))
-//         window.location.href = "view/levels.html";
-
-//     } catch (error) {
-//         console.error(error)
-//     }
-// }
-
-// function addLisa(event) {
-//     try {
-
-//         const selectedPlayer = new Player("../img/ליסה.png");
-//         players.push(selectedPlayer);
-//         localStorage.setItem("players", JSON.stringify(players))
-//         renderPlayer()
-//         window.location.href = "view/levels.html";
-
-//     } catch (error) {
-//         console.error(error)
-//     }
-// }
-// const level = document.querySelector(`.level`) as HTMLElement;
-// const notAvailable = document.querySelectorAll
-//     (`.levelNotAvailable`);
-
-function savePlayerToLocalStorage(players: Player[]) {
-    try {
-        localStorage.setItem('players', JSON.stringify(players));
-
-    } catch (error) {
-        console.error(error)
-    }
-}
-
+// import { Player } from ;
 
 function getPlayerFromLocalStorage(): Player[] {
     try {
@@ -69,13 +15,14 @@ function getPlayerFromLocalStorage(): Player[] {
 
 }
 
-function renderPlayers(players: Player[]) {
+function renderPlayers(selectedPlayer: Player) {
+    console.log(selectedPlayer);
+
     try {
-        const rootPlayer = document.querySelector('#rootPlayer');
-        if (!rootPlayer) throw new Error('No Player');
+        const rootPlayer = document.querySelector('#rootPlayer') as HTMLElement;
+        const html = players.map(player =>
+            `<img class="bart" src="${player.playerImg}"> `).join(' ');
 
-
-        const html = players.map(player => `<img class="bart" src="${player.playerImg}"> `).join(' ');
         rootPlayer.innerHTML = html;
 
     } catch (error) {
