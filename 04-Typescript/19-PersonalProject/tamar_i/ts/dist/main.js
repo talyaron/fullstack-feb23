@@ -8,37 +8,51 @@ var User = /** @class */ (function () {
     }
     return User;
 }());
-var Ball = /** @class */ (function () {
-    function Ball() {
+var Point = /** @class */ (function () {
+    function Point(points) {
+        this.points = points;
+    } //caunt the points
+    Point.prototype.addPoints = function (point) {
+        return point++;
+    };
+    return Point;
+}());
+var UserPoint = /** @class */ (function () {
+    function UserPoint(user, points) {
+        this.user = user;
+        this.points = points;
     }
+    return UserPoint;
+}());
+//--------
+var Ball = /** @class */ (function () {
+    function Ball(positionX, positionY) {
+        this.positionX = positionX;
+        this.positionY = positionY;
+    } //whant to know it potiosin evry step so could move it
     return Ball;
 }());
-var brick = /** @class */ (function () {
-    function brick() {
-    }
-    return brick;
+var daynamicElement = /** @class */ (function () {
+    function daynamicElement(explow, positionX, positionY) {
+        this.explow = explow;
+        this.positionX = positionX;
+        this.positionY = positionY;
+    } //the item(bomb/errow) & its position so if the ball at the same position can exeute somthing
+    return daynamicElement;
 }());
-var Errow = /** @class */ (function () {
-    function Errow() {
-    }
-    return Errow;
-}());
-var Nomb = /** @class */ (function () {
-    function Nomb() {
-    }
-    return Nomb;
-}());
-var Shelve = /** @class */ (function () {
-    function Shelve() {
-    }
-    return Shelve;
-}());
-var Coin = /** @class */ (function () {
-    function Coin() {
-    }
-    return Coin;
+var staticElement = /** @class */ (function () {
+    function staticElement(name, positionX, positionY) {
+        this.name = name;
+        this.positionX = positionX;
+        this.positionY = positionY;
+    } //the item(brick/coin/shelve) & its position so if the ball at the same position can exeute somthing
+    return staticElement;
 }());
 var users = [];
+var points = [];
+var userPoints = [];
+var staticElementPositions = [];
+var daynamicElementPositions = [];
 //---------------------handel----------------
 //save the usermane, send it to the local storage and open the game page
 function handelSubmit(ev) {
@@ -79,3 +93,38 @@ function renderUserName() {
     username.innerHTML = "<h1> Hellow " + users[length - 1].userName + "</h1>";
 }
 //---------------controllers---------------------------------
+//the red ball function to put the ball on the screen
+var redBallPiece;
+//The components have properties and methods to control their appearances and movements
+function component(width, height, color, x, y) {
+    this.width = width;
+    this.height = height;
+    this.x = x;
+    this.y = y;
+    this.item = this.item.getContext("2d");
+    this.item.fillStyle = color;
+    this.item.fillRrct(this.x, this.y, this.width, this.height);
+}
+function redBall(xPosition, yPositin) {
+    var canvas = document.querySelector('#canvas');
+    if (!canvas)
+        throw new Error("not element catch");
+    if (canvas.getContext !== null) {
+        var ctx = canvas.getContext('2d');
+        ctx.beginPath();
+        ctx.arc(xPosition, yPositin, 50, 0, Math.PI * 2, true); //outer citcle
+        ctx.stroke();
+    }
+}
+//when a know element appear save its position
+function savePosition(name, x, y) {
+    try {
+        if (!name || !x || !y)
+            throw New;
+        Error('no element');
+        var ;
+    }
+    catch (error) {
+        console.error(error);
+    }
+}

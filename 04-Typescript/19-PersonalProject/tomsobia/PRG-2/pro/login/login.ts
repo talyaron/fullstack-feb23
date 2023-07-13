@@ -33,10 +33,12 @@ try {
       const errorMessage = document.createElement("p");
       errorMessage.textContent = "You are under age!";
       errorMessage.id = "errorMessage";
+      errorMessage.style.marginTop = "7px";
+      errorMessage.style.padding= "7px"
       errorMessage.style.borderRadius = "20px";
-      errorMessage.style.color = "black";
+      errorMessage.style.color = "#D5F929";
       errorMessage.style.backgroundColor = "red";
-      errorMessage.style.border = "3px solid black";
+      errorMessage.style.border = "3px solid #D5F929";
       errorMessage.style.fontSize = "3vw";
       event.target.appendChild(errorMessage);
     }

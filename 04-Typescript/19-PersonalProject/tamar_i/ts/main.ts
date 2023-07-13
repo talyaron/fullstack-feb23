@@ -9,31 +9,34 @@ class User {
     }
 }
 
+class Point{
+    constructor(public points:number){} //caunt the points
+    addPoints(point:number) {
+        return point++
+    }
+}
+
+class UserPoint{
+    constructor(public user:User, public points:Point){}
+}
+//--------
 class Ball {
-    constructor(){}
+    constructor(public positionX:number, public positionY:number){} //whant to know it potiosin evry step so could move it
 }
 
-class brick{
-    constructor(){}
+class daynamicElement{
+    constructor(public explow:boolean, public positionX:number, public positionY:number){} //the item(bomb/errow) & its position so if the ball at the same position can exeute somthing
 }
 
-class Errow{
-    constructor(){}
-}
-
-class Nomb{
-    constructor(){}
-}
-
-class Shelve{
-    constructor(){}
-}
-
-class Coin{
-    constructor(){}
+class staticElement{
+    constructor(public name:string, public positionX:number, public positionY:number){} //the item(brick/coin/shelve) & its position so if the ball at the same position can exeute somthing
 }
 
 const users: User[] = [];
+const points: Point[] = [];
+const userPoints: UserPoint[] = [];
+const staticElementPositions: staticElement[] = [];
+const daynamicElementPositions: daynamicElement[] = [];
 
 //---------------------handel----------------
 //save the usermane, send it to the local storage and open the game page
@@ -108,5 +111,15 @@ function redBall(xPosition:number, yPositin: number) {
         ctx.beginPath()
         ctx.arc(xPosition, yPositin, 50, 0, Math.PI * 2, true) //outer citcle
         ctx.stroke()
+    }
+}
+
+//when a know element appear save its position
+function savePosition(name:string, x: number, y: number){
+    try {
+        if(!name || !x || !y) throw New Error('no element')
+        const 
+    } catch (error) {
+        console.error(error)
     }
 }
