@@ -1,4 +1,4 @@
-const pointer = document.querySelector<HTMLSpanElement>("#pointer");
+const pointer = document.querySelector("#pointer") as HTMLSpanElement;
 
 window.addEventListener("mousemove", (event: MouseEvent) => {
   pointer.style = `
