@@ -1,30 +1,25 @@
-//get the users and the imagse from local storage
-const imagse = getImgsFromLocalStorage();
-const users = getUsersFromLocalStorage();
+//get the users and the imagse from local storage.
+// console.log(imagesArray);
 
-console.log(imagesArray);
-
-
-// <input class="addPost__enterNewImage" type="submit">Add Post>
-//Add new post and render
+//create a new post(image).
+//Error free.
 function renderAddNewPost(users: User[], rootElement: HTMLElement | Element | null) {
   try {
     if (!rootElement) throw new Error('Root element is not found');
     const html = `
       <form class="addPost" onsubmit="handleAddNewPost(event)">
-        <select class="addPost__select" name="userId" id="user" required>
-          ${users.map((user) => {
-      return `<option value="${user.id}">${user.name}</option>`;
-    })
+        <select class="addPost__select" name="user" id="userId" required>
+          ${users
+        .map((user) => {
+          return `<option value="${user.id}">${user.name}</option>`;
+        })
         .join('')}
         </select>
         <input class="addPost__input" type="text" name="image" placeholder="Image URL" required>
-        <input class="addPost__enterNewImage" type="submit" value="ADD">
-        </form>`;
-        
-    rootElement.innerHTML = html;
+        <button class="addPost__enterNewImage" type="submit">Add Post</button>
+      </form>`;
 
-    // localStorage.setItem('Users', JSON.stringify(usersArray));
+    rootElement.innerHTML = html;
   } catch (error) {
     console.error(error);
   }
@@ -33,32 +28,38 @@ renderAddNewPost(usersArray, document.querySelector('#addPost'));
 
 //get the new post from the form, and add it to the user.
 //render it in 'showPosts'.
-//is not working.
-function handleAddNewPost(ev: Event | any) {
+//Error free.
+function handleAddNewPost(event: Event | any) {
   try {
-    // debugger;
-    if (!ev) throw new Error('Event is not found');
-    ev.preventDefault();
-    const userId = ev.target.elements.userId.value;
-    const image = ev.target.elements.image.value;
+    if (!event) throw new Error('Event is not found');
+    event.preventDefault();
+    const userId = event.target.elements.userId.value;
+    const image = event.target.elements.image.value;
 
-    const selectedUser:User|undefined = usersArray.find((u) => u.id === userId);
+    // const user: User | undefined = usersArray.find((u) => u.id === userId);
+    const selectedUserImg: UsersImg | undefined = usersImgArray.find((userImg) => userImg.user.id === userId);
 
-    if (!selectedUser) throw new Error('User not found');
 
+    // if (!user) throw new Error('User not found');
+    if (!selectedUserImg) throw new Error('User not found');
+
+
+    // const newImg = new Img(image);
+    // user.images.push(newImg);
     const newImg = new Img(image);
-    selectedUser.images.push(newImg);
-    console.log(usersArray)
+    selectedUserImg.image.push(newImg);
 
     saveImgToLocalStorage(imagesArray);
     saveUserToLocalStorage(usersArray);
-    console.log(usersArray);
+    saveUsersImgToLocalStorage(usersImgArray);
 
     //render the new post in 'showPosts'
     showPosts(document.querySelector('#posts'), usersArray);
+
+    //move to the profile page.
+    window.location.href = '../profile/profile.html';
   } catch (error) {
     console.error(error);
     return error;
   }
 }
-handleAddNewPost(event);

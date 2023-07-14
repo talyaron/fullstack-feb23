@@ -12,24 +12,46 @@
 //
 //MVC - Model View Controller
 //class - user, image.
-
-// getImgsFromLocalStorage();
-// getUsersFromLocalStorage();
-
 class Img {
     id: string;
     constructor(public image: string) {
         this.id = Date.now().toString() + Math.random().toString(36).substr(2);
     }
 }
-
-// const image1 = new Img('https://cdn.pixabay.com/photo/2015/04/19/08/32/marguerite-729510_1280.jpg');
-// const image2 = new Img('https://photoscissors.com/images/samples/3-before.jpg');
-
 const imagesArray: Img[] = getImgsFromLocalStorage();
 // imagesArray.push();
-console.log(imagesArray);
-//
+// console.log(imagesArray);
+
+class User {
+    id: string;
+    constructor(public name: string, public imageProfile: string, public images: Img[]) {
+        this.id = Date.now().toString() + Math.random().toString(36).substr(2);
+    }
+}
+const usersArray: User[] = getUsersFromLocalStorage();
+if (usersArray.length === 0) {
+    const bar = new User('Bar', 'https://pixlr.com/images/index/remove-bg.webp', []);
+    const netanel = new User('Netanel', 'https://photoscissors.com/images/samples/3-before.jpg', []);
+    usersArray.push(bar, netanel);
+   
+}
+
+//join the user to the imagse.
+class UsersImg {
+    id: string;
+    constructor(public user: User, public image: Img[]) {
+        this.id = Date.now().toString() + Math.random().toString(36).substr(2);
+    }
+}
+const usersImgArray: UsersImg[] = getUsersImgFromLocalStorage();
+usersArray.map(user => {
+    const userImg = new UsersImg(user, user.images);
+    usersImgArray.push(userImg);
+});
+console.log(usersImgArray);
+
+
+//Image local storage
 function saveImgToLocalStorage(image: Img[]) {
     localStorage.setItem('imagesArray', JSON.stringify(image));
 }
@@ -46,25 +68,8 @@ function getImgsFromLocalStorage(): Img[] {
         return [];
     }
 }
-//
 
-class User {
-    id: string;
-    constructor(public name: string, public imageProfile: string, public images: Img[]) {
-        this.id = Date.now().toString() + Math.random().toString(36).substr(2);
-    }
-}
-
-const usersArray: User[] = getUsersFromLocalStorage();
-if (usersArray.length === 0) {
-    const bar = new User('Bar', 'https://pixlr.com/images/index/remove-bg.webp', []);
-    const netanel = new User('Netanel', 'https://photoscissors.com/images/samples/3-before.jpg', []);
-    usersArray.push(bar, netanel);
-   
-}
-console.log(usersArray);
-//
-
+//User local storage
 function saveUserToLocalStorage(user: User[]) {
     localStorage.setItem('usersArray', JSON.stringify(user));
 }
@@ -87,16 +92,28 @@ function getUsersFromLocalStorage(): User[] {
     }
 }
 
-// class UserImg {
-//     id: string;
-//     constructor(public user: User, public image: Img[]) {
-//         this.id = Date.now().toString() + Math.random().toString(36).substr(2);
-//     }
-// }
 
-// const userImg1 = new UserImg(bar, []);
-// const userImg2 = new UserImg(netanel, []);
+function saveUsersImgToLocalStorage(usersImg: UsersImg[]) {
+    localStorage.setItem('usersImgArray', JSON.stringify(usersImg));
+}
 
-// const storedUserImgs = localStorage.getItem('UserImgs');
-// const userImgArray: UserImg[] = storedUserImgs ? JSON.parse(storedUserImgs) : [userImg1, userImg2];
-// console.log(userImgArray);
+function getUsersImgFromLocalStorage(): UsersImg[] {
+    try {
+        const usersImgStorage = localStorage.getItem('usersImgArray');
+        console.log(usersImgStorage)
+
+        if (!usersImgStorage) return [];
+
+        const usersImgArray = JSON.parse(usersImgStorage);
+        console.log(usersImgArray)
+
+        if(!usersImgArray) throw new Error('Users not found');
+        if(!Array.isArray(usersImgArray)) throw new Error('usersImgArray is not array');
+
+        const usersImg = usersImgArray.map(usersImg => new UsersImg(usersImg.user, usersImg.image));
+        return usersImg;
+    } catch (error) {
+        console.error(error);
+        return [];
+    }
+}
