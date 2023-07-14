@@ -28,20 +28,20 @@ html body nav {
   box-shadow: 0 3px 20px rgba(0, 0, 0, 0.2);
 }
 html body nav .logo {
-  padding: 1vh 5vw;
-  text-align: left;
+  padding: -2vh 7vw;
   width: 20vw;
 }
 html body nav .logo img {
-  height: auto;
-  width: 22rem;
+  height: 12rem;
+  width: 20rem;
 }
 html body nav .nav__links {
   width: 60vw;
   display: flex;
+  gap: 1.7rem;
   pad: 0 0.7vw;
-  justify-content: space-between;
   align-items: center;
+  justify-content: center;
   list-style: none;
   font-weight: bold;
   font-size: larger;
@@ -116,11 +116,12 @@ html body nav .hamburger {
     clip-path: circle(50px at 90% -20%);
     transition: all 1s ease-out;
     pointer-events: none;
-    padding-top: 1rem;
+    padding-top: 1.3rem;
   }
   html body nav .nav__links.open {
     clip-path: circle(1000px at 90% -10%);
     pointer-events: all;
+    gap: 5rem;
   }
 }
 html body .container__img {
@@ -139,5 +140,5 @@ html body footer {
   margin-top: auto;
 }
 html body footer i {
-  padding-left: 0.4rem;
+  padding-left: 0.3rem;
 }

@@ -33,22 +33,22 @@ body {
     
 
     .logo {
-        padding: 1vh 5vw;
-        text-align: left;
+        padding: -2vh 7vw;
         width: 20vw;
 
         img {
-            height: auto;
-            width: 22rem;
+            height: 12rem;
+            width: 20rem;
         }
     }
 
     .nav__links {
         width: 60vw;
         display: flex;
+        gap: 1.7rem;
         pad: 0 0.7vw;
-        justify-content: space-between;
         align-items: center;
+        justify-content: center;
         list-style: none;
         font-weight: bold;
         font-size: larger;
@@ -138,13 +138,14 @@ body {
             clip-path: circle(50px at 90% -20%);
             transition: all 1s ease-out;
             pointer-events: none;
-            padding-top: 1rem;
+            padding-top: 1.3rem;
 
         }
 
         .nav__links.open {
             clip-path: circle(1000px at 90% -10%);
             pointer-events: all;
+            gap: 5rem;
         }
     
 }
@@ -175,7 +176,7 @@ footer {
     margin-top: auto;
 
     i {
-        padding-left: .4rem;
+        padding-left: .3rem;
     }
    
 }

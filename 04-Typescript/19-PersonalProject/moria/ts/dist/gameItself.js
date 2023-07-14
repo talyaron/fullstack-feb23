@@ -1,25 +1,21 @@
-// import { Player } from ;
+getPlayerFromLocalStorage();
 function getPlayerFromLocalStorage() {
     try {
         var playersStorage = localStorage.getItem('players');
         if (!playersStorage)
             return [];
         var playersArray = JSON.parse(playersStorage);
-        var players = playersArray.map(function (player) { return new Player(player.playersImg); });
-        return players;
+        renderPlayers(playersArray[0]);
     }
     catch (error) {
         console.error(error);
         return [];
     }
 }
-function renderPlayers(selectedPlayer) {
-    console.log(selectedPlayer);
+function renderPlayers(player) {
     try {
-        var rootPlayer = document.querySelector('#rootPlayer');
-        var html = players.map(function (player) {
-            return "<img class=\"bart\" src=\"" + player.playerImg + "\"> ";
-        }).join(' ');
+        var rootPlayer = document.querySelector('#container__player');
+        var html = "<img class=\"bart\" src=\"" + player.playerImg + "\"> ";
         rootPlayer.innerHTML = html;
     }
     catch (error) {
@@ -27,20 +23,22 @@ function renderPlayers(selectedPlayer) {
     }
 }
 var bart = document.querySelector(".bart");
-document.addEventListener('keyup', function (event) {
+var shoot = document.querySelector("#container__shoot");
+document.addEventListener('keydown', function (event) {
     event.stopPropagation();
-    // console.dir(player)
-    // console.log(event.key)
     switch (event.key) {
         case 'ArrowLeft':
-            bart.style.left = bart.offsetLeft - 85 + "px";
+            bart.style.left = bart.offsetLeft - 25 + "px";
             break;
         case 'ArrowRight':
-            bart.style.left = bart.offsetLeft + 85 + "px";
+            bart.style.left = bart.offsetLeft + 25 + "px";
             break;
-        case " ":
-            var html = "<div class=\"shoot\">\n                </div>\n                ";
-            rootPlayer.innerHTML = html;
-            break;
+        // case " ":
+        //     const html = `<div class="shoot">
+        //         </div>
+        //         `
+        //     shoot.innerHTML = html;
+        //     break;
     }
 });
+var containerBall = document.querySelector("#container__ball");

@@ -1,13 +1,12 @@
 
-// import { Player } from ;
 
-function getPlayerFromLocalStorage(): Player[] {
+getPlayerFromLocalStorage()
+function getPlayerFromLocalStorage() {
     try {
         const playersStorage = localStorage.getItem('players');
         if (!playersStorage) return [];
         const playersArray = JSON.parse(playersStorage);
-        const players = playersArray.map(player => new Player(player.playersImg));
-        return players;
+        renderPlayers(playersArray[0])
     } catch (error) {
         console.error(error);
         return [];
@@ -15,15 +14,14 @@ function getPlayerFromLocalStorage(): Player[] {
 
 }
 
-function renderPlayers(selectedPlayer: Player) {
-    console.log(selectedPlayer);
-
+function renderPlayers(player: Player) {
     try {
-        const rootPlayer = document.querySelector('#rootPlayer') as HTMLElement;
-        const html = players.map(player =>
-            `<img class="bart" src="${player.playerImg}"> `).join(' ');
+        const rootPlayer = document.querySelector('#container__player') as HTMLElement;
+        const html =
+            `<img class="bart" src="${player.playerImg}"> `;
 
         rootPlayer.innerHTML = html;
+
 
     } catch (error) {
         console.error(error);
@@ -33,28 +31,22 @@ function renderPlayers(selectedPlayer: Player) {
 
 
 const bart = document.querySelector(`.bart`) as HTMLElement;
-document.addEventListener('keyup', (event: KeyboardEvent) => {
+const shoot = document.querySelector(`#container__shoot`) as HTMLElement;
+document.addEventListener('keydown', (event: KeyboardEvent) => {
     event.stopPropagation();
-    // console.dir(player)
-    // console.log(event.key)
     switch (event.key) {
-
         case 'ArrowLeft':
-            bart.style.left = `${bart.offsetLeft - 85}px`;
+            bart.style.left = `${bart.offsetLeft - 25}px`;
             break;
         case 'ArrowRight':
-            bart.style.left = `${bart.offsetLeft + 85}px`;
+            bart.style.left = `${bart.offsetLeft + 25}px`;
             break;
-        case " ":
-            const html = `<div class="shoot">
-                </div>
-                `
-            rootPlayer.innerHTML = html;
-            break;
-
-
-
-
-
+        // case " ":
+        //     const html = `<div class="shoot">
+        //         </div>
+        //         `
+        //     shoot.innerHTML = html;
+        //     break;
     }
 });
+const containerBall = document.querySelector(`#container__ball`) as HTMLElement;
