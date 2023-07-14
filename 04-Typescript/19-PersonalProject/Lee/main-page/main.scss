@@ -45,6 +45,7 @@ body {
     .nav__links {
         width: 60vw;
         display: flex;
+        gap: 1.7rem;
         pad: 0 0.7vw;
         align-items: center;
         justify-content: center;
@@ -144,7 +145,7 @@ body {
         .nav__links.open {
             clip-path: circle(1000px at 90% -10%);
             pointer-events: all;
-            gap: 7rem;
+            gap: 5rem;
         }
     
 }
