@@ -33,13 +33,12 @@ body {
     
 
     .logo {
-        padding: 1vh 5vw;
-        text-align: left;
+        padding: -2vh 7vw;
         width: 20vw;
 
         img {
-            height: auto;
-            width: 22rem;
+            height: 12rem;
+            width: 20rem;
         }
     }
 
@@ -47,8 +46,8 @@ body {
         width: 60vw;
         display: flex;
         pad: 0 0.7vw;
-        justify-content: space-between;
         align-items: center;
+        justify-content: center;
         list-style: none;
         font-weight: bold;
         font-size: larger;
@@ -138,13 +137,14 @@ body {
             clip-path: circle(50px at 90% -20%);
             transition: all 1s ease-out;
             pointer-events: none;
-            padding-top: 1rem;
+            padding-top: 1.3rem;
 
         }
 
         .nav__links.open {
             clip-path: circle(1000px at 90% -10%);
             pointer-events: all;
+            gap: 7rem;
         }
     
 }
