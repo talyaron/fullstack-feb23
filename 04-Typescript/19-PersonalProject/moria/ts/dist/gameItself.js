@@ -24,20 +24,21 @@ function renderPlayers(player) {
 }
 var bart = document.querySelector(".bart");
 var shoot = document.querySelector("#container__shoot");
-document.addEventListener('keyup', function (event) {
+document.addEventListener('keydown', function (event) {
     event.stopPropagation();
-    // console.dir(player)
-    // console.log(event.key)
     switch (event.key) {
         case 'ArrowLeft':
-            bart.style.left = bart.offsetLeft - 85 + "px";
+            bart.style.left = bart.offsetLeft - 25 + "px";
             break;
         case 'ArrowRight':
-            bart.style.left = bart.offsetLeft + 85 + "px";
+            bart.style.left = bart.offsetLeft + 25 + "px";
             break;
-        case " ":
-            var html = "<div class=\"shoot\">\n                </div>\n                ";
-            shoot.innerHTML = html;
-            break;
+        // case " ":
+        //     const html = `<div class="shoot">
+        //         </div>
+        //         `
+        //     shoot.innerHTML = html;
+        //     break;
     }
 });
+var containerBall = document.querySelector("#container__ball");

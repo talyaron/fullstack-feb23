@@ -22,6 +22,7 @@ function renderPlayers(player: Player) {
 
         rootPlayer.innerHTML = html;
 
+
     } catch (error) {
         console.error(error);
     }
@@ -31,28 +32,21 @@ function renderPlayers(player: Player) {
 
 const bart = document.querySelector(`.bart`) as HTMLElement;
 const shoot = document.querySelector(`#container__shoot`) as HTMLElement;
-document.addEventListener('keyup', (event: KeyboardEvent) => {
+document.addEventListener('keydown', (event: KeyboardEvent) => {
     event.stopPropagation();
-    // console.dir(player)
-    // console.log(event.key)
     switch (event.key) {
-
         case 'ArrowLeft':
-            bart.style.left = `${bart.offsetLeft - 85}px`;
+            bart.style.left = `${bart.offsetLeft - 25}px`;
             break;
         case 'ArrowRight':
-            bart.style.left = `${bart.offsetLeft + 85}px`;
+            bart.style.left = `${bart.offsetLeft + 25}px`;
             break;
-        case " ":
-            const html = `<div class="shoot">
-                </div>
-                `
-            shoot.innerHTML = html;
-            break;
-
-
-
-
-
+        // case " ":
+        //     const html = `<div class="shoot">
+        //         </div>
+        //         `
+        //     shoot.innerHTML = html;
+        //     break;
     }
 });
+const containerBall = document.querySelector(`#container__ball`) as HTMLElement;

@@ -12,14 +12,13 @@ body .container {
   z-index: -1;
   background: url(//sugarcakes4u.co.il/wp-content/uploads/2018/03/%D7%A4%D7%A8%D7%A7%D7%98-%D7%9C%D7%91%D7%9F-1.jpg) no-repeat center center/cover;
 }
-body .container__ball {
+body .container #container__ball {
   width: 100px;
   height: 100px;
   border-radius: 50%;
   background-color: red;
   border: 1px solid black;
-  animation: ball 8s infinite;
-  position: absolute;
+  position: relative;
 }
 @keyframes ball {
   10% {
