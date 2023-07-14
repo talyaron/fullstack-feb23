@@ -16,11 +16,12 @@ function getPlayerFromLocalStorage() {
 
 function renderPlayers(player: Player) {
     try {
-        const rootPlayer = document.querySelector('#rootPlayer') as HTMLElement;
+        const rootPlayer = document.querySelector('#container__player') as HTMLElement;
         const html =
             `<img class="bart" src="${player.playerImg}"> `;
 
         rootPlayer.innerHTML = html;
+
 
     } catch (error) {
         console.error(error);
@@ -29,29 +30,23 @@ function renderPlayers(player: Player) {
 
 
 
-// const bart = document.querySelector(`.bart`) as HTMLElement;
-// document.addEventListener('keyup', (event: KeyboardEvent) => {
-//     event.stopPropagation();
-//     // console.dir(player)
-//     // console.log(event.key)
-//     switch (event.key) {
-
-//         case 'ArrowLeft':
-//             bart.style.left = `${bart.offsetLeft - 85}px`;
-//             break;
-//         case 'ArrowRight':
-//             bart.style.left = `${bart.offsetLeft + 85}px`;
-//             break;
-//         case " ":
-//             const html = `<div class="shoot">
-//                 </div>
-//                 `
-//             rootPlayer.innerHTML = html;
-//             break;
-
-
-
-
-
-//     }
-// });
+const bart = document.querySelector(`.bart`) as HTMLElement;
+const shoot = document.querySelector(`#container__shoot`) as HTMLElement;
+document.addEventListener('keydown', (event: KeyboardEvent) => {
+    event.stopPropagation();
+    switch (event.key) {
+        case 'ArrowLeft':
+            bart.style.left = `${bart.offsetLeft - 25}px`;
+            break;
+        case 'ArrowRight':
+            bart.style.left = `${bart.offsetLeft + 25}px`;
+            break;
+        // case " ":
+        //     const html = `<div class="shoot">
+        //         </div>
+        //         `
+        //     shoot.innerHTML = html;
+        //     break;
+    }
+});
+const containerBall = document.querySelector(`#container__ball`) as HTMLElement;

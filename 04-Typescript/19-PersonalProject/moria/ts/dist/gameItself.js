@@ -14,7 +14,7 @@ function getPlayerFromLocalStorage() {
 }
 function renderPlayers(player) {
     try {
-        var rootPlayer = document.querySelector('#rootPlayer');
+        var rootPlayer = document.querySelector('#container__player');
         var html = "<img class=\"bart\" src=\"" + player.playerImg + "\"> ";
         rootPlayer.innerHTML = html;
     }
@@ -22,23 +22,23 @@ function renderPlayers(player) {
         console.error(error);
     }
 }
-// const bart = document.querySelector(`.bart`) as HTMLElement;
-// document.addEventListener('keyup', (event: KeyboardEvent) => {
-//     event.stopPropagation();
-//     // console.dir(player)
-//     // console.log(event.key)
-//     switch (event.key) {
-//         case 'ArrowLeft':
-//             bart.style.left = `${bart.offsetLeft - 85}px`;
-//             break;
-//         case 'ArrowRight':
-//             bart.style.left = `${bart.offsetLeft + 85}px`;
-//             break;
-//         case " ":
-//             const html = `<div class="shoot">
-//                 </div>
-//                 `
-//             rootPlayer.innerHTML = html;
-//             break;
-//     }
-// });
+var bart = document.querySelector(".bart");
+var shoot = document.querySelector("#container__shoot");
+document.addEventListener('keydown', function (event) {
+    event.stopPropagation();
+    switch (event.key) {
+        case 'ArrowLeft':
+            bart.style.left = bart.offsetLeft - 25 + "px";
+            break;
+        case 'ArrowRight':
+            bart.style.left = bart.offsetLeft + 25 + "px";
+            break;
+        // case " ":
+        //     const html = `<div class="shoot">
+        //         </div>
+        //         `
+        //     shoot.innerHTML = html;
+        //     break;
+    }
+});
+var containerBall = document.querySelector("#container__ball");
