@@ -61,8 +61,6 @@ function addHomer() {
         players.push(selectedPlayer);
         savePlayerToLocalStorage(players)
         console.log(players)
-        getPlayerFromLocalStorage();
-
         window.location.href = "view/levels.html";
 
 
@@ -77,8 +75,6 @@ function addBart() {
         players.push(selectedPlayer);
         savePlayerToLocalStorage(players)
         console.log(players)
-        getPlayerFromLocalStorage();
-
         window.location.href = "view/levels.html";
 
     } catch (error) {
@@ -91,13 +87,8 @@ function addLisa() {
 
         const selectedPlayer = new Player("../img/lisa.png");
         players.push(selectedPlayer);
-        // localStorage.setItem("players", JSON.stringify(players))
-        // renderPlayer()
-        // window.location.href = "view/levels.html";
         savePlayerToLocalStorage(players)
         console.log(players)
-        getPlayerFromLocalStorage();
-
         window.location.href = "view/levels.html";
 
     } catch (error) {
