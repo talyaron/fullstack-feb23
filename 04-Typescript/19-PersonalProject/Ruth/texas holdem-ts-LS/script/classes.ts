@@ -44,6 +44,7 @@ class Player {
     public pCards: Card[] = get2RandomCards(),
     public allCards: Card[] = pCards,
     public movesInRound: PlayerMovesOption[] = [],
+    public lastBet: number = 0,
     public roundNumber = movesInRound.length - 1,
   ) {
     this.pCards = this.pCards.map((c) => new Card(c.cardNumber, c.cardSign));
@@ -79,6 +80,7 @@ class Player {
 
     // let ChanceToBet = getChanceToBet(this)
   }
+
 }
 
 enum PlayerMovesOption {

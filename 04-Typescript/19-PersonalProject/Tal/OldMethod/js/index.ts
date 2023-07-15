@@ -10,7 +10,7 @@ class Dog {
     }
 }
 
-const dogs:Dog[] = getDogsFromLocalStorage();
+const dogs: Dog[] = getDogsFromLocalStorage();
 console.log(dogs);
 
 function handleAddDog(ev) {
@@ -25,14 +25,14 @@ function handleAddDog(ev) {
     window.location.href = './second.html';
 }
 
-function saveDogToLocalStorage(dogs:Dog[]){
+function saveDogToLocalStorage(dogs: Dog[]) {
     localStorage.setItem('dogs', JSON.stringify(dogs));
 }
 
-function getDogsFromLocalStorage():Dog[]{
+function getDogsFromLocalStorage(): Dog[] {
     try {
         const dogsStorage = localStorage.getItem('dogs');
-        if(!dogsStorage) return [];
+        if (!dogsStorage) return [];
         const dogsArray = JSON.parse(dogsStorage);
         const dogs = dogsArray.map(dog => new Dog(dog.name, dog.age));
         return dogs;

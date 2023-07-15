@@ -1,7 +1,7 @@
-var bmiForm = document.querySelector("#bmi-form");
+var bmiForm = document.querySelector("#BMI");
 bmiForm.addEventListener("submit", function (event) {
     event.preventDefault();
-    var form = document.querySelector("#bmi-form");
+    var form = document.querySelector("#BMI");
     var heightInput = document.querySelector("#height");
     var weightInput = document.querySelector("#weight");
     var height = Number(heightInput.value);
