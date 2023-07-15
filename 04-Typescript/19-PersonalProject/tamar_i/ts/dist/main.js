@@ -1,5 +1,4 @@
 //----------------------class & object------------------
-//login form
 var User = /** @class */ (function () {
     //id: number;
     function User(userName) {
@@ -24,7 +23,7 @@ var UserPoint = /** @class */ (function () {
     }
     return UserPoint;
 }());
-//--------
+//--------------------
 var Ball = /** @class */ (function () {
     function Ball(positionX, positionY) {
         this.positionX = positionX;
@@ -54,6 +53,7 @@ var userPoints = [];
 var staticElementPositions = [];
 var daynamicElementPositions = [];
 //---------------------handel----------------
+//login form
 //save the usermane, send it to the local storage and open the game page
 function handelSubmit(ev) {
     try {
@@ -92,39 +92,54 @@ function renderUserName() {
     var length = users.length;
     username.innerHTML = "<h1> Hellow " + users[length - 1].userName + "</h1>";
 }
-//---------------controllers---------------------------------
-//the red ball function to put the ball on the screen
-var redBallPiece;
-//The components have properties and methods to control their appearances and movements
-function component(width, height, color, x, y) {
-    this.width = width;
-    this.height = height;
-    this.x = x;
-    this.y = y;
-    this.item = this.item.getContext("2d");
-    this.item.fillStyle = color;
-    this.item.fillRrct(this.x, this.y, this.width, this.height);
-}
-function redBall(xPosition, yPositin) {
-    var canvas = document.querySelector('#canvas');
-    if (!canvas)
-        throw new Error("not element catch");
-    if (canvas.getContext !== null) {
-        var ctx = canvas.getContext('2d');
-        ctx.beginPath();
-        ctx.arc(xPosition, yPositin, 50, 0, Math.PI * 2, true); //outer citcle
-        ctx.stroke();
-    }
-}
-//when a know element appear save its position
-function savePosition(name, x, y) {
+//render new static elemnt
+function renderSolidBrick() {
     try {
-        if (!name || !x || !y)
-            throw New;
-        Error('no element');
-        var ;
+        var el = document.querySelector('#bricks_solid');
+        if (!el)
+            throw new Error("no elmnt");
+        var newElm = brick();
+        el.setAttribute('style', 'left:newElm.positionX');
+        el.setAttribute('style', 'top:newElm.positionY');
     }
     catch (error) {
         console.error(error);
     }
 }
+renderSolidBrick();
+//---------------controllers---------------------------------
+//creat static elements
+function coin() {
+    var positionX = Math.floor(Math.random() * 1000);
+    console.log(positionX);
+    var positionY = Math.floor(Math.random() * 1000);
+    console.log(positionY);
+    var newElm = new staticElement("coin", positionX, positionY);
+    console.log(newElm);
+    staticElementPositions.push(newElm);
+    console.log(staticElementPositions);
+}
+function brick() {
+    var positionX = Math.floor(Math.random() * 1000);
+    var positionY = Math.floor(Math.random() * 1000);
+    var newElm = new staticElement("brick", positionX, positionY);
+    staticElementPositions.push(newElm);
+    return newElm;
+}
+function shelve() {
+    var positionX = Math.floor(Math.random() * 1000);
+    var positionY = Math.floor(Math.random() * 1000);
+    var newElm = new staticElement("shelve", positionX, positionY);
+    staticElementPositions.push(newElm);
+}
+//when a new element appear it save its position
+// function savePosition(name:string, x: number, y: number){
+//     try {
+//         if(!name || !x || !y) throw new Error('no element')
+//         const newpos = 
+//     } catch (error) {
+//         console.error(error)
+//     }
+// }
+var text = function coin() { };
+console.log(text);

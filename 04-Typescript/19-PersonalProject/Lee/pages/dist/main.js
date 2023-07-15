@@ -1,21 +1,42 @@
 var Patient = /** @class */ (function () {
-    function Patient(name, owner, phone, image, birthYear) {
+    function Patient(name, owner, phone, image, birthYear, id) {
         this.name = name;
         this.owner = owner;
         this.phone = phone;
         this.image = image;
         this.birthYear = birthYear;
-        this.id = "id-" + Math.random();
+        this.isEdit = false;
+        if (id) {
+            this.id = id;
+        }
+        else {
+            this.id = "" + Math.random();
+        }
     }
+    Patient.prototype.setEdit = function (set) {
+        this.isEdit = set;
+    };
     return Patient;
 }());
-var patients = [
-    new Patient("Nella", "Judith Dekel", "0501111111", "https://www.instagram.com/p/CX-9-hdIUFd/?img_index=1", 2021),
-    new Patient("Jango", "Linor Monir", "0502222222", "https://media.istockphoto.com/id/1259203799/photo/portrait-of-a-young-happy-belgian-shepherd-dog-malinois-posing-outdoors.jpg?s=612x612&w=0&k=20&c=yxDw11q_2NAgrUdm0AuBkqY1UnY9MKmtiaoeWOgHNRg=", 2022),
-    new Patient("Dubi", "Barak Ortman", "0501020120", "https://www.thesprucepets.com/thmb/DRKAoOkKeWmh5SMzDvapRfnZpn0=/4984x0/filters:no_upscale():strip_icc()/1_BlackPuppy-5ba50070c9e77c0082221c54.jpg", 2021),
-    new Patient("Cocus", "Yael Ortman", "0501122121", "https://thumbs.dreamstime.com/b/labrador-puppy-5857333.jpg", 2020),
-    new Patient("Hugo", "Netali Ortman", "0501234567", "https://qph.cf2.quoracdn.net/main-qimg-199d9dbd6c8b38138ed8ba833ec82162-lq", 2015)
-];
+var patients = getPatientsFromStorage();
+function getPatientsFromStorage() {
+    try {
+        var patientsString = localStorage.getItem("patients");
+        if (!patientsString)
+            return [];
+        var patientsArray = JSON.parse(patientsString);
+        var patients_1 = patientsArray.map(function (patient) {
+            return new Patient(patient.name, patient.owner, patient.phone, patient.image, patient.birthYear, patient.id);
+        });
+        return patients_1;
+    }
+    catch (error) {
+        console.error(error);
+        return [];
+    }
+}
+;
+renderAllPatients(patients, document.querySelector('#rootPatients'));
 function handleAddPatients(ev) {
     try {
         ev.preventDefault();
@@ -26,6 +47,59 @@ function handleAddPatients(ev) {
         var birthYear = ev.target.elements.birthYear.value;
         var newPatient = new Patient(name, owner, phone, image, birthYear);
         patients.push(newPatient);
+        renderAllPatients(patients, document.querySelector('#rootPatients'));
+        localStorage.setItem("patients", JSON.stringify(patients));
+        ev.target.reset();
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+function renderAllPatients(patients, htmlElement) {
+    try {
+        if (!htmlElement)
+            throw new Error("No element");
+        var html = patients.map(function (patient) { return renderPatientCard(patient); }).join(' ');
+        htmlElement.innerHTML = html;
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+function renderPatientCard(patient) {
+    try {
+        if (patient.isEdit) {
+            return "<div class=\"card\">\n        <img src=\"" + patient.image + "\">\n        <p><label id=\"name\">Name: <input type=\"text\" value=\"" + patient.name + "\"></input></label><br>\n        <label>Owner: " + patient.owner + "</label><br>\n        <label>Tel: " + patient.phone + "</label><br>\n        <label>Birth Year: " + patient.birthYear + "</label><br>\n        <button onclick=\"handleRemovePatient('" + patient.id + "')\">Remove</button>\n        <button>Set</button></p>\n        </div>\n       ";
+        }
+        else {
+            return "<div class=\"card\">\n        <img src=\"" + patient.image + "\">\n        <p><label id=\"name\">Name: " + patient.name + "</label><br>\n        <label>Owner: " + patient.owner + "</label><br>\n        <label>Tel: " + patient.phone + "</label><br>\n        <label>Birth Year: " + patient.birthYear + "</label><br>\n        <button onclick=\"handleRemovePatient('" + patient.id + "')\">Remove</button>\n        <button onclick=\"handleEdit('" + patient.id + "')\">Edit</button></p>\n        </div>\n       ";
+        }
+    }
+    catch (error) {
+        console.error(error);
+        return '';
+    }
+}
+function handleRemovePatient(patientId) {
+    try {
+        var index = patients.findIndex(function (patient) { return patient.id === patientId; });
+        if (index === -1)
+            throw new Error("Could not find patient");
+        patients.splice(index, 1);
+        localStorage.setItem("patients", JSON.stringify(patients));
+        renderAllPatients(patients, document.querySelector("#rootPatients"));
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+function handleEdit(patientId) {
+    try {
+        var patient = patients.find(function (patient) { return patient.id === patientId; });
+        if (!patient)
+            throw new Error("Couldn't find patient");
+        patient.setEdit(true);
+        renderAllPatients(patients, document.querySelector("#rootPatients"));
     }
     catch (error) {
         console.error(error);

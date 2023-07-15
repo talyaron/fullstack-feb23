@@ -1,5 +1,4 @@
-// import (@sef)
-
+//קלאס
 class Details {
   id: string;
 
@@ -17,6 +16,9 @@ class Details {
     }
   }
 }
+//
+
+const DetailsArray: Details[] = [];
 
 function saveDetails(event) {
   event.preventDefault();
@@ -26,6 +28,8 @@ function saveDetails(event) {
   const number = event.target.elements.number.value;
   const id = event.target.elements.id;
   const data: Details = new Details(name, pass, email, number, id);
+  DetailsArray.push(data);
+  console.log(DetailsArray);
 try {
   if (number < 18) {
     const errorMessageExists = document.querySelector("#errorMessage");
@@ -48,17 +52,20 @@ try {
   console.error(error);
 }
 
+//שומר את הפרטים ומעביר דף
   localStorage.setItem(`user`, JSON.stringify(data));
+  console.log(localStorage);
   event.target.reset();
   window.location.href = "../web/TmS/webTmS.html";
+//
+//
 
+
+//זורק הערה אם אתה מתחת לגיל
   const errorMessage = document.querySelector("#errorMessage");
   if (errorMessage) {
     errorMessage.remove();
   }
 }
+//
 
-// const root = document.querySelector("#root");
-// const Detailsstring = localStorage.getItem("user");
-// const details = JSON.parse(Detailsstring);
-// root?.innerHTML = `Hello ${details.name}`;

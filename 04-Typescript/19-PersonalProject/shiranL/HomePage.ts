@@ -192,7 +192,7 @@ function loadQuestionGoodThings (): QuestionGoodThings[] | undefined {
 }
 function loadQuestionBadThings (): QuestionBadThings[] | undefined {
     try {
-      debugger
+      
         const badThings: QuestionBadThings []  = [];
         const badThingsString = localStorage.getItem('badThings');
       if (!badThingsString){ // if there is not characters on json , create new []
@@ -319,8 +319,6 @@ function renderHomePage(gamesBoards: Board [] | undefined, characters : Characte
       input.min = "2";
       input.max = "6";
   
-      // Append the label and input to the form
- 
       // Create the "Start Game" button
       const startButton = document.createElement("button");
       startButton.textContent = "Start Game";
@@ -344,10 +342,7 @@ function renderHomePage(gamesBoards: Board [] | undefined, characters : Characte
        const numPlayers = parseInt(input.value, 10);
       renderCharacterDropdowns(numPlayers, characters);
 });
-      // Append the form to the startNewGame HTML element
-      //startNewGameHtml.appendChild(form);
-
-      // Check if there is an open game board
+    // Check if there is an open game board
     const openGameBoard = gamesBoards.find((board) => board.gameStatus === true);
 
     if (openGameBoard) {
@@ -359,18 +354,14 @@ function renderHomePage(gamesBoards: Board [] | undefined, characters : Characte
         // Handle opening the active game
         window.location.href = "./ActiveGame.html";
       });
-       
     }
-
-    // Create the "renderCharacterDropdowns" button
+   // Append the form to the startNewGame HTML element  
     else startNewGameHtml.appendChild(form);
     
-      
     } catch (error) {
       console.error(error);
     }
   }
-  
 function getSelectedCharacters(numPlayers: number, characters: Character[] | undefined): Character[] {
     const selectedCharacters: Character[] = [];
     try {
@@ -454,18 +445,25 @@ function handelStartGame(numPlayers: number, gamesBoards: Board[] | undefined,se
       
       const ChractersForm=document.querySelector("#ChractersForm")
       if (!ChractersForm){
-        alert("Must pic characters")
         throw new Error("Cannot find ChractersForm");
       } 
         if (!gamesBoards) throw new Error("Cannot find game board");
         //check if there is open game befor open new one
         const openGame= gamesBoards.find(board=>board.gameStatus===true)
-        if(openGame)  
-         { alert("There is an open game already") }
+        if(openGame) 
+         {
+          // dialog alert
+
+          alert("There is an open game already") }
         else{
           const allCharactersSelected = selectedCharacters.length === numPlayers;
           if (!allCharactersSelected) {
-            alert("Must select characters for all players");
+            const dialog = document.createElement('dialog'); 
+            dialog.id = 'dialog'; 
+            dialog.innerHTML = 'Must select characters for all players';
+            dialog.addEventListener('click', () => dialog.close());
+            document.body.appendChild(dialog);
+            dialog.showModal();
             return; // Stop execution if not all characters are selected
           }
         
@@ -493,7 +491,9 @@ function handelStartGame(numPlayers: number, gamesBoards: Board[] | undefined,se
   }
   
   // get data for new game
+  
   const characters : Character[] | undefined = loadCharacters();
+  
   const gamesBoards : Board[]| undefined = loadBoards();
   
 

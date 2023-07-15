@@ -1,154 +1,154 @@
-$cellSize: 120px;
-$playerSize: 35px;
-.Container{
-  display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    //align-items: center;
-  
+:root {
+  --cellSize: 120px;
+  --playerSize: 35px;
+  --fontsize: 20px;
 }
 
-// Define the board style
-.board{
-    width: 10*$cellSize;
-    margin: auto;
-    display: grid;
-    grid-template-columns: repeat(10, 1fr);
-    grid-template-rows: repeat(10, 1fr); 
-   
-  
-  // Define the board cell style
-  &__cell {
-     // Set the size cells
-    width: $cellSize;
-    height: $cellSize;
-   
-    
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: 20px;
- 
-
-    img{
-      width:$cellSize ;
-      height: $cellSize;
-    }
+@media only screen and (max-width: 900px) {
+  :root {
+    --cellSize: 75px;
+    --playerSize: 25px;
+    --fontsize: 15px;
   }
-  
-}
-.optionsBtns{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    &__Button{
-      margin: 10px;
-      padding: 8px 16px;
-      background-color: #4CAF50;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-    
-    
-    &__Button:hover {
-      background-color: #45a049;
-    }
-    
-    &__Button:active {
-      background-color: #3e8e41;
-    }
-    }
 }
 
-.RovaA{
+@media only screen and (max-width: 600px) {
+  :root {
+    --cellSize: 40px;
+    --playerSize: 20px;
+    --fontsize: 10px;
+  }
+}
 
+.Container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.board {
+  width: calc(10 * var(--cellSize));
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(10, 1fr);
+}
+
+.board__cell {
+  width: var(--cellSize);
+  height: var(--cellSize);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--fontsize);
+}
+
+.board__cell img {
+  width: var(--cellSize);
+  height: var(--cellSize);
+}
+
+.optionsBtns {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.optionsBtns__Button {
+  margin: 10px;
+  padding: 8px 16px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.optionsBtns__Button:hover {
+  background-color: #45a049;
+}
+
+.optionsBtns__Button:active {
+  background-color: #3e8e41;
+}
+
+.RovaA {
   background-image: url('./rovaA1.jpg');
   background-size: cover;
   background-position: center;
-  width:$cellSize ;
-  height: $cellSize;
-  
+  width: var(--cellSize);
+  height: var(--cellSize);
 }
-.RovaBet{
 
+.RovaBet {
   background-image: url('./rovabet.jpg');
   background-size: cover;
   background-position: center;
-  width:$cellSize ;
-  height: $cellSize;
-  
+  width: var(--cellSize);
+  height: var(--cellSize);
 }
-.RovaGimel{
 
+.RovaGimel {
   background-image: url('./rovaGimel.jpg');
   background-size: cover;
   background-position: center;
-  width:$cellSize ;
-  height: $cellSize;
-  
+  width: var(--cellSize);
+  height: var(--cellSize);
 }
-.RovaDaled{
 
+.RovaDaled {
   background-image: url('./RovaDaled.jpg');
   background-size: cover;
   background-position: center;
-  width:$cellSize ;
-  height: $cellSize;
-  
+  width: var(--cellSize);
+  height: var(--cellSize);
 }
 
-.RovaCITY{
-
+.RovaCITY {
   background-image: url('./RovaCITY.jpg');
   background-size: cover;
   background-position: center;
-  width:$cellSize ;
-  height: $cellSize;
-  
+  width: var(--cellSize);
+  height: var(--cellSize);
 }
-.RovaTetVav{
 
+.RovaTetVav {
   background-image: url('./RovaTetVav.jpg');
   background-size: cover;
   background-position: center;
-  width:$cellSize ;
-  height: $cellSize;
-  
+  width: var(--cellSize);
+  height: var(--cellSize);
 }
-.RovaYudBet{
 
+.RovaYudBet {
   background-image: url('./RovaYudBet.jpg');
   background-size: cover;
   background-position: center;
-  width:$cellSize ;
-  height: $cellSize;
-  
+  width: var(--cellSize);
+  height: var(--cellSize);
 }
-.RovaYudAlef{
 
+.RovaYudAlef {
   background-image: url('./RovaYudAlef.jpg');
   background-size: cover;
   background-position: center;
-  width:$cellSize ;
-  height: $cellSize;
-  
+  width: var(--cellSize);
+  height: var(--cellSize);
 }
 
-.player{
-  width:$playerSize;
-  height:$playerSize;
-  //background-image: url("6.png");
+.player {
+  width: var(--playerSize);
+  height: var(--playerSize);
   background-size: cover;
   background-position: center;
 
 }
+
 #cubeButton {
-  width: 175px;
-  height: 175px;
-  background-image: url("./cube.png");
+  width: var(--cellSize);
+  height: var(--cellSize);
+  background-image: url('./cube.png');
   background-size: cover;
   background-position: center;
   border: none;
@@ -180,7 +180,7 @@ $playerSize: 35px;
 .close {
   color: #d70b0b;
   float: right;
-  font-size: 28px;
+  font-size: var(--fontsize);
   font-weight: bold;
   cursor: pointer;
 }
@@ -191,93 +191,100 @@ $playerSize: 35px;
   text-decoration: none;
   cursor: pointer;
 }
-.begin{
-  width: 75px;
-  height: 75px;
-  background-image: url("./start.png");
+
+.begin {
+  width: 100%;
+  height: 100%;
+  background-image: url('./start.png');
   background-size: cover;
   background-position: center;
 }
 
 .cityDialog {
-  // position: fixed;
-  // top: 50%;
-  // left: 50%;
-  // transform: translate(-50%, -50%);
-  // z-index: 9999;
-  //background-color: #ffffff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transform: translate(-50%, -50%);
+  z-index: 9999;
   padding: 20px;
   width: 400px;
   border-radius: 5px;
   border: none;
-
-  &__cityCardForm {
-    display: flex;
-    flex-direction: column;
-
-    .closeCityDialog {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      background: none;
-      border: none;
-      color: #b10606;
-      font-size: 20px;
-      font-weight: bold;
-      cursor: pointer;
-      padding: 5px; /* Increase the padding */
-    }
-
-    h1 {
-      margin-top: 0;
-      font-size: 24px;
-      font-weight: bold;
-    }
-
-    h2 {
-      margin: 10px 0;
-      font-size: 18px;
-    }
-
-    .buyBtn,
-    .payBtn {
-      background-color: #007bff;
-      color: #ffffff;
-      padding: 10px;
-      border: none;
-      border-radius: 3px;
-      cursor: pointer;
-      font-size: 16px;
-      text-align: center;
-      margin-top: 10px;
-
-      &:hover {
-        background-color: #0056b3;
-      }
-    }
-  }
 }
 
-.goodS{
-  width: $cellSize;
-  height: $cellSize;
-  background-image: url("./GoodSurprises.jpg");
-  background-size: cover;
-  background-position: center;
+.cityDialog__cityCardForm {
+  display: flex;
+  flex-direction: column;
 }
-.BadS{
-  width: $cellSize;
-  height: $cellSize;
-  background-image: url("./Bads.jpg");
-  background-size: cover;
-  background-position: center;
+
+.cityDialog .closeCityDialog {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  color: #b10606;
+  font-size: var(--fontsize);
+  font-weight: bold;
+  cursor: pointer;
+  padding: 5px;
 }
-.BadThings{
-  width: $cellSize;
-  height: $cellSize;
-  background-image: url("./happyS.jpg");
+
+.cityDialog h1 {
+  margin-top: 0;
+  font-size: calc(var(--fontsize) * 2);
+  font-weight: bold;
+}
+
+.cityDialog h2 {
+  margin: 10px 0;
+  font-size: calc(var(--fontsize) * 1.5);
+}
+
+.cityDialog .buyBtn,
+.cityDialog .payBtn {
+  background-color: #007bff;
+  color: #ffffff;
+  padding: 10px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: var(--fontsize);
+  text-align: center;
+  margin-top: 10px;
+}
+
+.cityDialog .buyBtn:hover {
+  background-color: #0056b3;
+}
+
+.goodS {
+  width: var(--cellSize);
+  height: var(--cellSize);
+  background-image: url('./GoodSurprises.jpg');
   background-size: cover;
   background-position: center;
 }
 
+.BadS {
+  width: var(--cellSize);
+  height: var(--cellSize);
+  background-image: url('./Bads.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.BadThings {
+  border: none;
+  width: var(--cellSize);
+  height: var(--cellSize);
+  background-image: url('./penalty.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.GoodThings {
+  border: none;
+  width: var(--cellSize);
+  height: var(--cellSize);
+  background-image: url('./happyS.jpg');
+  background-size: cover;
+  background-position: center;
+}
