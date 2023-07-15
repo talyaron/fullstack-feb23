@@ -15,14 +15,25 @@
 <body>
     <form onsubmit="handleAddPatients(event)">
         <h2>Add a New Member to Our Family</h2>
-        <input type="text" name="name" placeholder="Member Name">
-        <input type="text" name="owner" placeholder="Owner">
-        <input type="tel" name="phone" placeholder="Enter phone number">
-        <input type="url" name="image" placeholder="Enter image address">
-        <input type="number" name="birthYear" placeholder="Year of Birth">
+        <label for="name">Name:
+            <input type="text" name="name" placeholder="Member Name">
+        </label>
+        <label for="owner">Owner:
+            <input type="text" name="owner" placeholder="Owner">
+        </label>
+        <label for="phone">Phone number:
+            <input type="tel" name="phone" placeholder="Enter phone number">
+        </label>
+        <label for="image">Picture
+            <input type="url" name="image" placeholder="Enter image address">
+        </label>
+        <label for="birthYear">Birth Year
+            <input type="number" name="birthYear" placeholder="Year of Birth">
+        </label>
         <input id="add" type="submit" value="ADD">
     </form>
 
     <div id="rootPatients"></div>
 </body>
+
 </html>

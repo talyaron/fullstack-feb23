@@ -11,14 +11,29 @@ class Patient {
 }
 
 
+const patients: Patient[] = getPatientsFromStorage();
 
-const patients: Patient[] = [
-    new Patient("Nella", "Judith Dekel", "0501111111", "https://www.letsgetpet.com/wp-content/uploads/2021/02/chat-tricolore.jpeg", 2021),
-    new Patient("Jango", "Linor Monir", "0502222222", "https://media.istockphoto.com/id/1259203799/photo/portrait-of-a-young-happy-belgian-shepherd-dog-malinois-posing-outdoors.jpg?s=612x612&w=0&k=20&c=yxDw11q_2NAgrUdm0AuBkqY1UnY9MKmtiaoeWOgHNRg=", 2022),
-    new Patient("Dubi", "Barak Ortman", "0501020120", "https://www.thesprucepets.com/thmb/DRKAoOkKeWmh5SMzDvapRfnZpn0=/4984x0/filters:no_upscale():strip_icc()/1_BlackPuppy-5ba50070c9e77c0082221c54.jpg", 2021),
-    new Patient("Cocus", "Yael Ortman", "0501122121", "https://thumbs.dreamstime.com/b/labrador-puppy-5857333.jpg", 2020),
-    new Patient("Hugo", "Netali Ortman", "0501234567", "https://qph.cf2.quoracdn.net/main-qimg-199d9dbd6c8b38138ed8ba833ec82162-lq", 2015)
-]
+function getPatientsFromStorage(): Patient[] {
+    try {
+        const patientsString = localStorage.getItem("patients");
+        if (!patientsString) return [];
+
+        const patientsArray = JSON.parse(patientsString)
+
+        const patients: Patient[] = patientsArray.map((patient: Patient) => {
+            return new Patient(patient.name, patient.owner, patient.phone, patient.image, patient.birthYear, patient.id)
+        })
+
+        return patients
+
+    } catch (error) {
+        console.error(error)
+        return []
+
+    }
+};
+
+
 
 renderAllPatients(patients, document.querySelector('#rootPatients'))
 
@@ -63,10 +78,32 @@ function renderPatientCard(patient: Patient) {
     try {
         return `<div class="card">
         <img src="${patient.image}">
-        <p>${patient.name}<br>${patient.owner}<br>${patient.phone}</p>
+        <p><label id="name">Name: ${patient.name}</label><br>
+        <label>Owner: ${patient.owner}</label><br>
+        <label>Tel: ${patient.phone}</label><br>
+        <label>Birth Year: ${patient.birthYear}</label><br>
+        <button onclick="handleRemovePatient('${patient.id}')">Remove</button></p>
+        </div>
        `
     } catch (error) {
+        console.error(error)
         return ''
+    }
+}
+
+function handleRemovePatient(patientId:string) {
+    try {
+        const index = patients.findIndex(patient => patient.id === patientId);
+        if (index === -1) throw new Error ("Could not find patient");
+
+        patients.splice(index, 1);
+        localStorage.setItem("patients", JSON.stringify(patients));
+
+        renderAllPatients(patients, document.querySelector("#rootPatients"))
+
+    } catch (error) {
+        console.error(error);
+        
     }
 }
 
