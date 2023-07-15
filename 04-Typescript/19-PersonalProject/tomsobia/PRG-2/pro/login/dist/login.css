@@ -26,6 +26,8 @@ hr {
   margin: 0 auto;
 }
 .container h1 {
+  -webkit-animation: focus-in-contract-bck 5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  animation: focus-in-contract-bck 5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
   width: 100%;
   font-size: 4vw;
   text-align: center;
@@ -54,7 +56,8 @@ hr {
 
 @media screen and (max-width: 600px) {
   .container {
-    width: 50%;
+    width: 100%;
+    height: max-content;
   }
 
   h1 {
@@ -69,5 +72,39 @@ hr {
     font-size: 3vw;
     padding: 2vw;
     margin: 4vw;
+  }
+}
+@-webkit-keyframes focus-in-contract-bck {
+  0% {
+    letter-spacing: 1em;
+    -webkit-transform: translateZ(300px);
+    transform: translateZ(300px);
+    -webkit-filter: blur(12px);
+    filter: blur(12px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateZ(12px);
+    transform: translateZ(12px);
+    -webkit-filter: blur(0);
+    filter: blur(0);
+    opacity: 1;
+  }
+}
+@keyframes h1 {
+  0% {
+    letter-spacing: 1em;
+    -webkit-transform: translateZ(300px);
+    transform: translateZ(300px);
+    -webkit-filter: blur(12px);
+    filter: blur(12px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateZ(12px);
+    transform: translateZ(12px);
+    -webkit-filter: blur(0);
+    filter: blur(0);
+    opacity: 1;
   }
 }
