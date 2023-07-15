@@ -63,10 +63,8 @@ function renderPatientCard(patient: Patient) {
     try {
         return `<div class="card">
         <img src="${patient.image}">
-        <p>${patient.name}</p>
-        <p>${patient.owner}</p>
-        <p>${patient.phone}</p>
-        `
+        <p>${patient.name}<br>${patient.owner}<br>${patient.phone}</p>
+       `
     } catch (error) {
         return ''
     }
