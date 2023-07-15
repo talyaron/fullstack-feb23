@@ -72,8 +72,8 @@ function hendelAddWordsubmit(ev) {
             console.log(words);
             localStorage.setItem('words', JSON.stringify(words)); //sent the array to local storage as string
         }
-        // enWord.reset()
-        // inter.reset()
+        var form = document.querySelector('form');
+        form.reset();
     }
     catch (error) {
         console.error(error);
@@ -94,8 +94,8 @@ function heandelDelWord(ev) {
             console.log(words);
             localStorage.setItem('words', JSON.stringify(words)); //sent theuppdate array to local storage as string
         }
-        // enWord.reset()
-        // inter.reset()
+        var form = document.querySelector('form');
+        form.reset();
     }
     catch (error) {
         console.error(error);
@@ -132,4 +132,5 @@ function renderBack() {
     window.location.replace("./index.html");
 }
 //move to game
-function renderPlay() { }
+function renderPlay() {
+}

@@ -89,9 +89,10 @@ function hendelAddWordsubmit(ev: any) {
 
             localStorage.setItem('words', JSON.stringify(words)) //sent the array to local storage as string
         } 
+        
+        const form = document.querySelector('form')!
+        form.reset()
 
-        // enWord.reset()
-        // inter.reset()
         
     } catch (error) {
         console.error(error)
@@ -118,8 +119,8 @@ function heandelDelWord(ev:any){ //delete the word from array
             localStorage.setItem('words', JSON.stringify(words)) //sent theuppdate array to local storage as string
         } 
 
-        // enWord.reset()
-        // inter.reset()
+        const form = document.querySelector('form')!
+        form.reset()
         
     } catch (error) {
         console.error(error)
@@ -174,4 +175,6 @@ function renderBack() {
 }
 
 //move to game
-function renderPlay() { }
+function renderPlay() { 
+    
+}
