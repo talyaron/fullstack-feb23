@@ -1,8 +1,8 @@
-const bmiForm:any= document.querySelector("#bmi-form");
+const bmiForm:any= document.querySelector("#BMI");
 bmiForm.addEventListener("submit", function (event) {
   event.preventDefault();
 
-  const form = document.querySelector("#bmi-form") as HTMLFormElement;
+  const form = document.querySelector("#BMI") as HTMLFormElement;
   const heightInput = document.querySelector("#height") as HTMLInputElement;
   const weightInput = document.querySelector("#weight") as HTMLInputElement;
 

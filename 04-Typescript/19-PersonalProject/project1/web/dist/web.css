@@ -4,25 +4,22 @@ body {
   padding: 0;
   background-color: #cbddbb;
 }
-
-.container {
+body .container {
   width: 100%;
   margin: 0 auto;
 }
-
-.container__nav {
+body .container .container__nav {
   width: 100%;
   display: flex;
   align-items: center;
   background-color: #718f54;
   color: #fff;
 }
-.container__nav__box {
+body .container .container__nav--box {
   padding-left: 30%;
   justify-content: center;
 }
-
-.container__nav a {
+body .container .container__nav--box a {
   color: #fff;
   text-decoration: none;
   padding: 10px;
@@ -31,31 +28,22 @@ body {
   font-weight: bolder;
   font-size: larger;
 }
-
-.container__nav a:hover {
+body .container .container__nav--box a:hover {
   background-color: #cbddbb;
 }
-
-.container__nav a:first-child {
-  font-size: 1.5em;
-  font-weight: bold;
-}
-
-.img {
+body .container .container__img {
   height: 30vw;
   width: 60vw;
   padding-top: 2vw;
 }
-
-h1 {
+body .container h1 {
   position: relative;
   left: 28%;
   bottom: 25vw;
   color: white;
   font-size: 8vw;
 }
-
-.About {
+body .container .container__about {
   padding-top: 0px;
   color: white;
 }

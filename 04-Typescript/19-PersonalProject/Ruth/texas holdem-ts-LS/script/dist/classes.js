@@ -30,7 +30,7 @@ var Card = /** @class */ (function () {
 }());
 //---------------------------Player--------------------
 var Player = /** @class */ (function () {
-    function Player(userName, imgSrc, chips, isActive, isTurn, pCards, allCards, movesInRound, roundNumber) {
+    function Player(userName, imgSrc, chips, isActive, isTurn, pCards, allCards, movesInRound, lastBet, roundNumber) {
         if (imgSrc === void 0) { imgSrc = ""; }
         if (chips === void 0) { chips = 100000; }
         if (isActive === void 0) { isActive = true; }
@@ -38,6 +38,7 @@ var Player = /** @class */ (function () {
         if (pCards === void 0) { pCards = get2RandomCards(); }
         if (allCards === void 0) { allCards = pCards; }
         if (movesInRound === void 0) { movesInRound = []; }
+        if (lastBet === void 0) { lastBet = 0; }
         if (roundNumber === void 0) { roundNumber = movesInRound.length - 1; }
         this.userName = userName;
         this.imgSrc = imgSrc;
@@ -47,6 +48,7 @@ var Player = /** @class */ (function () {
         this.pCards = pCards;
         this.allCards = allCards;
         this.movesInRound = movesInRound;
+        this.lastBet = lastBet;
         this.roundNumber = roundNumber;
         this.pCards = this.pCards.map(function (c) { return new Card(c.cardNumber, c.cardSign); });
     }

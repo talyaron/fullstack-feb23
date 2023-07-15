@@ -1,6 +1,5 @@
 
 //----------------------class & object------------------
-//login form
 
 class User {
     //id: number;
@@ -9,27 +8,27 @@ class User {
     }
 }
 
-class Point{
-    constructor(public points:number){} //caunt the points
-    addPoints(point:number) {
+class Point {
+    constructor(public points: number) { } //caunt the points
+    addPoints(point: number) {
         return point++
     }
 }
 
-class UserPoint{
-    constructor(public user:User, public points:Point){}
+class UserPoint {
+    constructor(public user: User, public points: Point) { }
 }
-//--------
+//--------------------
 class Ball {
-    constructor(public positionX:number, public positionY:number){} //whant to know it potiosin evry step so could move it
+    constructor(public positionX: number, public positionY: number) { } //whant to know it potiosin evry step so could move it
 }
 
-class daynamicElement{
-    constructor(public explow:boolean, public positionX:number, public positionY:number){} //the item(bomb/errow) & its position so if the ball at the same position can exeute somthing
+class daynamicElement {
+    constructor(public explow: boolean, public positionX: number, public positionY: number) { } //the item(bomb/errow) & its position so if the ball at the same position can exeute somthing
 }
 
-class staticElement{
-    constructor(public name:string, public positionX:number, public positionY:number){} //the item(brick/coin/shelve) & its position so if the ball at the same position can exeute somthing
+class staticElement {
+    constructor(public name: string, public positionX: number, public positionY: number) { } //the item(brick/coin/shelve) & its position so if the ball at the same position can exeute somthing
 }
 
 const users: User[] = [];
@@ -39,6 +38,7 @@ const staticElementPositions: staticElement[] = [];
 const daynamicElementPositions: daynamicElement[] = [];
 
 //---------------------handel----------------
+//login form
 //save the usermane, send it to the local storage and open the game page
 function handelSubmit(ev: any) {
     try {
@@ -65,7 +65,6 @@ function handelSubmit(ev: any) {
 
 //-----------------reander--------------------------------
 //render the user name to the game page
-
 //get the user name from local storage as string
 const h1username = localStorage.getItem('users')
 
@@ -85,41 +84,63 @@ function renderUserName() {
     username.innerHTML = `<h1> Hellow ${users[length - 1].userName}</h1>`
 }
 
-//---------------controllers---------------------------------
-
-
-//the red ball function to put the ball on the screen
-let redBallPiece;
-
-//The components have properties and methods to control their appearances and movements
-function component(width:number, height:number, color:string, x:number, y:number){
-    this.width = width;
-    this.height = height;
-    this.x = x;
-    this.y = y;
-    this.item = this.item.getContext("2d");
-    this.item.fillStyle = color;
-    this.item.fillRrct(this.x, this.y, this.width, this.height);
-}
-
-function redBall(xPosition:number, yPositin: number) {
-    const canvas = document.querySelector('#canvas')
-    if (!canvas) throw new Error("not element catch");
-    
-    if (canvas.getContext !== null) {
-        const ctx = canvas.getContext('2d');
-        ctx.beginPath()
-        ctx.arc(xPosition, yPositin, 50, 0, Math.PI * 2, true) //outer citcle
-        ctx.stroke()
-    }
-}
-
-//when a know element appear save its position
-function savePosition(name:string, x: number, y: number){
+//render new static elemnt
+function renderSolidBrick() {
     try {
-        if(!name || !x || !y) throw New Error('no element')
-        const 
+        const el = document.querySelector('#bricks_solid')
+        if (!el) throw new Error("no elmnt");
+        const newElm = brick();
+        el.setAttribute('style', 'left:newElm.positionX')
+        el.setAttribute('style', 'top:newElm.positionY')
+
     } catch (error) {
         console.error(error)
     }
 }
+
+renderSolidBrick();
+
+
+//---------------controllers---------------------------------
+
+//creat static elements
+function coin() {
+    const positionX: number = Math.floor(Math.random() * 1000)
+    console.log(positionX)
+    const positionY: number = Math.floor(Math.random() * 1000)
+    console.log(positionY)
+    const newElm = new staticElement("coin", positionX, positionY)
+    console.log(newElm)
+    staticElementPositions.push(newElm)
+    console.log(staticElementPositions)
+}
+
+
+function brick() {
+    const positionX: number = Math.floor(Math.random() * 1000)
+    const positionY: number = Math.floor(Math.random() * 1000)
+    const newElm = new staticElement("brick", positionX, positionY)
+    staticElementPositions.push(newElm)
+    return newElm;
+}
+
+function shelve() {
+    const positionX: number = Math.floor(Math.random() * 1000)
+    const positionY: number = Math.floor(Math.random() * 1000)
+    const newElm = new staticElement("shelve", positionX, positionY)
+    staticElementPositions.push(newElm)
+}
+
+//when a new element appear it save its position
+// function savePosition(name:string, x: number, y: number){
+//     try {
+//         if(!name || !x || !y) throw new Error('no element')
+//         const newpos = 
+//     } catch (error) {
+//         console.error(error)
+//     }
+// }
+
+
+const text = function coin();
+console.log(text);

@@ -1,10 +1,16 @@
+//get the users and the imagse from local storage.
+// console.log(imagesArray);
+
+//create a new post(image).
+//Error free.
 function renderAddNewPost(users: User[], rootElement: HTMLElement | Element | null) {
   try {
     if (!rootElement) throw new Error('Root element is not found');
     const html = `
       <form class="addPost" onsubmit="handleAddNewPost(event)">
-        <select class="addPost__select" name="user" id="user" required>
-          ${users.map((user) => {
+        <select class="addPost__select" name="user" id="userId" required>
+          ${users
+        .map((user) => {
           return `<option value="${user.id}">${user.name}</option>`;
         })
         .join('')}
@@ -14,38 +20,44 @@ function renderAddNewPost(users: User[], rootElement: HTMLElement | Element | nu
       </form>`;
 
     rootElement.innerHTML = html;
-
-    localStorage.setItem('Users', JSON.stringify(usersArray));
   } catch (error) {
     console.error(error);
   }
 }
 renderAddNewPost(usersArray, document.querySelector('#addPost'));
 
-function handleAddNewPost(event: any) {
+//get the new post from the form, and add it to the user.
+//render it in 'showPosts'.
+//Error free.
+function handleAddNewPost(event: Event | any) {
   try {
     if (!event) throw new Error('Event is not found');
-
     event.preventDefault();
-    const user = event.target.elements.user.value;
+    const userId = event.target.elements.userId.value;
     const image = event.target.elements.image.value;
 
-    const selectedUser  = usersArray.find((u) => u.id === user);
+    // const user: User | undefined = usersArray.find((u) => u.id === userId);
+    const selectedUserImg: UsersImg | undefined = usersImgArray.find((userImg) => userImg.user.id === userId);
 
-    if (!selectedUser ) throw new Error('User not found');
 
+    // if (!user) throw new Error('User not found');
+    if (!selectedUserImg) throw new Error('User not found');
+
+
+    // const newImg = new Img(image);
+    // user.images.push(newImg);
     const newImg = new Img(image);
-    imagesArray.push(newImg);
-
-    selectedUser.images.push(newImg);
+    selectedUserImg.image.push(newImg);
 
     saveImgToLocalStorage(imagesArray);
     saveUserToLocalStorage(usersArray);
-    // localStorage.setItem('images', JSON.stringify(imagesArray));
-    // localStorage.setItem('users', JSON.stringify(usersArray));
+    saveUsersImgToLocalStorage(usersImgArray);
 
+    //render the new post in 'showPosts'
     showPosts(document.querySelector('#posts'), usersArray);
-    
+
+    //move to the profile page.
+    window.location.href = '../profile/profile.html';
   } catch (error) {
     console.error(error);
     return error;
