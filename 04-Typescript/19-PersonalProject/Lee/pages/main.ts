@@ -1,5 +1,6 @@
 class Patient {
     id: string;
+    isEdit: boolean = false;
     constructor(public name: string, public owner: string, public phone: string, public image: string, public birthYear: number, id?: string | null) {
         if (id) {
             this.id = id;
@@ -7,6 +8,10 @@ class Patient {
 
             this.id = `${Math.random()}`
         }
+    }
+
+    setEdit(set: boolean) {
+        this.isEdit = set;
     }
 }
 
@@ -76,31 +81,60 @@ function renderAllPatients(patients: Patient[], htmlElement: HTMLElement | null)
 
 function renderPatientCard(patient: Patient) {
     try {
-        return `<div class="card">
+
+        if (patient.isEdit) {
+            return `<div class="card">
+        <img src="${patient.image}">
+        <p><label id="name">Name: <input type="text" value="${patient.name}"></input></label><br>
+        <label>Owner: ${patient.owner}</label><br>
+        <label>Tel: ${patient.phone}</label><br>
+        <label>Birth Year: ${patient.birthYear}</label><br>
+        <button onclick="handleRemovePatient('${patient.id}')">Remove</button>
+        <button>Set</button></p>
+        </div>
+       `
+        } else {
+            return `<div class="card">
         <img src="${patient.image}">
         <p><label id="name">Name: ${patient.name}</label><br>
         <label>Owner: ${patient.owner}</label><br>
         <label>Tel: ${patient.phone}</label><br>
         <label>Birth Year: ${patient.birthYear}</label><br>
-        <button onclick="handleRemovePatient('${patient.id}')">Remove</button></p>
+        <button onclick="handleRemovePatient('${patient.id}')">Remove</button>
+        <button onclick="handleEdit('${patient.id}')">Edit</button></p>
         </div>
        `
+        }
     } catch (error) {
         console.error(error)
         return ''
     }
 }
 
-function handleRemovePatient(patientId:string) {
+function handleRemovePatient(patientId: string) {
     try {
         const index = patients.findIndex(patient => patient.id === patientId);
-        if (index === -1) throw new Error ("Could not find patient");
+        if (index === -1) throw new Error("Could not find patient");
 
         patients.splice(index, 1);
         localStorage.setItem("patients", JSON.stringify(patients));
 
         renderAllPatients(patients, document.querySelector("#rootPatients"))
 
+    } catch (error) {
+        console.error(error);
+
+    }
+}
+
+function handleEdit(patientId: string) {
+    try {
+        const patient = patients.find(patient=> patient.id === patientId)
+        if(!patient) throw new Error("Couldn't find patient")
+
+        patient.setEdit(true);
+        renderAllPatients(patients, document.querySelector("#rootPatients"))
+        
     } catch (error) {
         console.error(error);
         
