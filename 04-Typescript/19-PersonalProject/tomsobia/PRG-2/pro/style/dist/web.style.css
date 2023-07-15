@@ -31,6 +31,8 @@ hr {
   justify-content: space-evenly;
   flex-direction: row;
   align-items: center;
+<<<<<<< HEAD
+=======
   width: 80%;
   margin: 0 auto;
   border-radius: 20px;
@@ -38,6 +40,7 @@ hr {
 }
 .container__nav span {
   color: #d2d2ce;
+>>>>>>> 75a64492dae336481a89fa1bda69043756a1807a
 }
 .container__nav a {
   font-size: 1.6vw;

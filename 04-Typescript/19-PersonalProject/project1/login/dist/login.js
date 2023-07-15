@@ -30,4 +30,4 @@ function login(event) {
 var root = document.querySelector("#root");
 var storedData = JSON.parse(localStorage.getItem("user"));
 var lastDetails = storedData[storedData.length - 1];
-root === null || root === void 0 ? void 0 : root.innerHTML = "Hello " + lastDetails.name;
+root.innerHTML = "Hello " + lastDetails.name;

@@ -16,6 +16,9 @@ class Product {
 
 }
 
+<<<<<<< HEAD
+const products: Product[] = [];
+=======
 const products: Product[] = getProductsFromStorage();
 renderAllProducts(products, document.querySelector("#rootProducts"));
 
@@ -44,6 +47,7 @@ function getProductsFromStorage(): Product[] {
       return [];
     }
   }
+>>>>>>> 75a64492dae336481a89fa1bda69043756a1807a
 
 
 // from view to model: view-control-model
@@ -57,7 +61,11 @@ function handleAddProduct(ev: any) {
 
         const newProduct = new Product(name, image, number);
         products.push(newProduct);
+<<<<<<< HEAD
+        renderAllProducts(products, document.querySelector("#rootProduct"))
+=======
         renderAllProducts(products, document.querySelector("#rootProducts"))
+>>>>>>> 75a64492dae336481a89fa1bda69043756a1807a
 
         //save to localStorage
 
@@ -91,8 +99,13 @@ function renderProductCard(product: Product) {
                     <img src="${product.image}">
                     <form onsubmit="handleSetEditProduct(event)" id="${product.id}">
                         <input type="text" name="name" value="${product.name}">
+<<<<<<< HEAD
+                        <input type="text" name="url" value="${product.image}">
+                        <input type="text" name="number" value="${product.number}">
+=======
                         <input type="url" name="image" value="${product.image}">
                         <input type="number" name="number" value="${product.number}">
+>>>>>>> 75a64492dae336481a89fa1bda69043756a1807a
                         <br>
                         <button onclick="handleDeleteProduct('${product.id}')">Delete</button>
                         <input type="submit" value="SET">
@@ -105,7 +118,11 @@ function renderProductCard(product: Product) {
         <p>${product.name}</p>
         <p>${product.number}</p>
         <button onclick="handleDeleteProduct('${product.id}')">Delete</button>
+<<<<<<< HEAD
+        <button onclick="handleEdit('${product.id}')">Edit</button>
+=======
         <button onclick="handle_Edit('${product.id}')">Edit</button>
+>>>>>>> 75a64492dae336481a89fa1bda69043756a1807a
     </div>
 `
         }
@@ -116,6 +133,8 @@ function renderProductCard(product: Product) {
         return ''
     }
 }
+<<<<<<< HEAD
+=======
 
 //delete
 
@@ -172,3 +191,4 @@ function handle_Edit(productId: string) {
     }
   }
   
+>>>>>>> 75a64492dae336481a89fa1bda69043756a1807a
