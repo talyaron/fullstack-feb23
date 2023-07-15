@@ -53,7 +53,7 @@ function renderAllPatients(patients, htmlElement) {
 }
 function renderPatientCard(patient) {
     try {
-        return "<div class=\"card\">\n        <img src=\"" + patient.image + "\">\n        <p>" + patient.name + "</p>\n        <p>" + patient.owner + "</p>\n        ";
+        return "<div class=\"card\">\n        <img src=\"" + patient.image + "\">\n        <p>" + patient.name + "</p>\n        <p>" + patient.owner + "</p>\n        <p>" + patient.phone + "</p>\n        ";
     }
     catch (error) {
         return '';

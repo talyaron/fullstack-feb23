@@ -65,6 +65,7 @@ function renderPatientCard(patient: Patient) {
         <img src="${patient.image}">
         <p>${patient.name}</p>
         <p>${patient.owner}</p>
+        <p>${patient.phone}</p>
         `
     } catch (error) {
         return ''
