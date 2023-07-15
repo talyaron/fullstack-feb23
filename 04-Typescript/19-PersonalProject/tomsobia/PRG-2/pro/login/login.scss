@@ -7,7 +7,6 @@
 body {
     background-image: url(https://images.pexels.com/photos/941864/pexels-photo-941864.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2);
     background-position: center;
-    background-size: cover;
     background-repeat: no-repeat;
 
 }
@@ -27,8 +26,8 @@ hr {
     margin: 0 auto;
 
     h1 {
-        -webkit-animation: focus-in-contract-bck 5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-        animation: focus-in-contract-bck 5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+        -webkit-animation: focus-in-contract-bck 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+        animation: focus-in-contract-bck 4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
         width: 100%;
         font-size: 4vw;
         text-align: center;
@@ -56,7 +55,10 @@ hr {
             border-radius: 10px;
             background-color: #D5F929;
         }
-
+        input[type]{
+            font-size: 1.2vw;
+          }
+        
     }
 }
 
@@ -71,13 +73,40 @@ hr {
     }
 
     input {
-        width: 50%;
+        width: 100%;
     }
+    input[type]{
+        font-size: 1.2vw;
+      }
 
     .container__form--btn {
         font-size: 3vw;
         padding: 2vw;
         margin: 4vw;
+    }
+}
+@media screen and (max-width: 300px) {
+    .container {
+        width: 100%;
+        height: max-content;
+    }
+
+    h1 {
+        font-size: 3vw;
+    }
+
+    input {
+        padding: 5vw;
+        width: 100%;
+    }
+    input[type]{
+        font-size: 1.2vw;
+      }
+
+    .container__form--btn {
+        font-size: 2vw;
+        padding: 2vw;
+        margin: 1vw;
     }
 }
 
