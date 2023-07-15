@@ -1,4 +1,4 @@
-// import (@sef)
+//קלאס
 var Details = /** @class */ (function () {
     function Details(name, pass, email, number, id) {
         this.name = name;
@@ -14,6 +14,8 @@ var Details = /** @class */ (function () {
     }
     return Details;
 }());
+//
+var DetailsArray = [];
 function saveDetails(event) {
     event.preventDefault();
     var name = event.target.elements.name.value;
@@ -22,6 +24,8 @@ function saveDetails(event) {
     var number = event.target.elements.number.value;
     var id = event.target.elements.id;
     var data = new Details(name, pass, email, number, id);
+    DetailsArray.push(data);
+    console.log(DetailsArray);
     try {
         if (number < 18) {
             var errorMessageExists = document.querySelector("#errorMessage");
@@ -44,15 +48,17 @@ function saveDetails(event) {
     catch (error) {
         console.error(error);
     }
+    //שומר את הפרטים ומעביר דף
     localStorage.setItem("user", JSON.stringify(data));
+    console.log(localStorage);
     event.target.reset();
     window.location.href = "../web/TmS/webTmS.html";
+    //
+    //
+    //זורק הערה אם אתה מתחת לגיל
     var errorMessage = document.querySelector("#errorMessage");
     if (errorMessage) {
         errorMessage.remove();
     }
 }
-// const root = document.querySelector("#root");
-// const Detailsstring = localStorage.getItem("user");
-// const details = JSON.parse(Detailsstring);
-// root?.innerHTML = `Hello ${details.name}`;
+//
