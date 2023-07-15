@@ -11,25 +11,21 @@ body {
   border-radius: 4px;
   background-color: #718f54;
 }
-
-.form-group {
+.container__form {
   margin-bottom: 20px;
 }
-
-.form-group label {
+.container__form label {
   display: block;
   margin-bottom: 5px;
   font-weight: bold;
 }
-
-.form-group input[type=text] {
+.container__form input {
   width: 80%;
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 4px;
 }
-
-.form-group input[type=submit] {
+.container__form button {
   background-color: #4caf50;
   color: white;
   padding: 10px 20px;
