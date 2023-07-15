@@ -12,22 +12,37 @@
 </head>
 
 <body>
+    <div class="loader"></div>
     <div class="MainPageWrapper">
         <h1 class="MainPageWrapper__headline">MYMUSIC</h1>
         <input class="MainPageWrapper__songInput" oninput="handleSearch(event)" name="songInput" type="text">
+        <h1 class="MainPageWrapper__sectiontxt">SUGGESTED</h1>
         <div id="MainPageWrapper__paragraphs"></div>
-        <div class="MainPageWrapper__suggestedCover"><button class="MainPageWrapper__suggested__scroll"></button>
+        <div class="MainPageWrapper__suggestedCover"><button
+                class="MainPageWrapper__suggested__scrollR"></button><button
+                class="MainPageWrapper__suggested__scrollL"></button>
+
+
             <div class="MainPageWrapper__suggested">
                 <div class="MainPageWrapper__suggested__root"></div>
             </div>
         </div>
+        <h1 class="MainPageWrapper__sectiontxt">Last Listened</h1>
 
         <div class="MainPageWrapper__lastListened">
             <div class="MainPageWrapper__lastListened__ROOT"></div>
         </div>
-        <div class="loader"></div>
+    </div>
+    <div class="add">
+        <h1 class="add__feautering">FEAUTERING</h1>
+        <h2 class="add__headline">Calvin Harris - My Way</h2>
+        <img class="add__bigimg" src="https://upload.wikimedia.org/wikipedia/en/5/51/My_Way_Calvin_Harris.jpg" alt="">
+        <img class="add__lilimg" onclick="handleadd()" src="https://upload.wikimedia.org/wikipedia/en/5/51/My_Way_Calvin_Harris.jpg" alt="">
 
     </div>
+    <div onclick="shuffle(songsArr)" class="shuffle">
+        <div id="suffle__loader"></div>
+        <i class="fas fa-shuffle fa-lg shuffle" style="color: #083030;"></i></div>
 
     <script src="./dist/loaderCode.js"></script>
     <script src="./dist/mainCode.js"></script>

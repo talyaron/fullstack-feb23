@@ -1,4 +1,4 @@
-.loader{
+.loader {
     position: fixed;
     top: 0;
     left: 0;
@@ -11,25 +11,29 @@
     background: linear-gradient(0deg, rgba(207, 238, 210, 1) 15%, rgba(176, 212, 241, 1) 85%);
     transition: opacity 0.75s, visibility 0.75s;
 }
-.loader-hidden{
+
+.loader-hidden {
     opacity: 0;
     visibility: hidden;
 }
-.loader::after{
+
+.loader::after {
     content: "";
     width: 100px;
     height: 100px;
-    border: 20px solid rgb(63, 53, 53);   
+    border: 20px solid rgb(63, 53, 53);
     border-radius: 50%;
     border-top-color: aquamarine;
     animation: loading 1s ease infinite;
 }
-@keyframes loading{
-    from{
+
+@keyframes loading {
+    from {
         transform: rotate(0turn);
 
     }
-    to{
+
+    to {
         transform: rotate(1turn);
     }
 }
