@@ -133,4 +133,12 @@ function renderBack() {
 }
 //move to game
 function renderPlay() {
+    var h1Instructions = document.querySelector('#h1');
+    var instractions = "Match the word with its meaning <div id=\"score\">your scor:" +  + "</div>";
+    h1Instructions.innerHTML = instractions;
+    var htmlroot = document.querySelector('#root');
+    if (!htmlroot)
+        throw new Error("no root element");
+    var toHtml = "\n                <div class=\"wrapper\">\n                    <div class=\"cards\">\n                        <div id=\"c1\" class=\"card c1\"></div>\n                        <div id=\"c2\" class=\"card c2\"></div>\n                        <div id=\"c3\" class=\"card c3\"></div>\n                        <div id=\"c4\" class=\"card c4\"></div>\n                        \n                    </div>\n                    <button id=\"finish\" class=\"btnF\">Finish</button>\n                </div>\n                 ";
+    htmlroot.innerHTML = toHtml;
 }

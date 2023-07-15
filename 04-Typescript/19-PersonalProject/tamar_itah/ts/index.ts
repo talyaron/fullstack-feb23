@@ -175,6 +175,24 @@ function renderBack() {
 }
 
 //move to game
-function renderPlay() { 
+function renderPlay() {
+    const h1Instructions =  document.querySelector('#h1')!
+    const instractions = `Match the word with its meaning <div id="score">your scor:${}</div>`
+    h1Instructions.innerHTML = instractions
     
+    const htmlroot = document.querySelector('#root')
+    if (!htmlroot) throw new Error("no root element");
+    const toHtml =`
+                <div class="wrapper">
+                    <div class="cards">
+                        <div id="c1" class="card c1"></div>
+                        <div id="c2" class="card c2"></div>
+                        <div id="c3" class="card c3"></div>
+                        <div id="c4" class="card c4"></div>
+                        
+                    </div>
+                    <button id="finish" class="btnF">Finish</button>
+                </div>
+                 `;
+    htmlroot.innerHTML = toHtml
 }
