@@ -177,8 +177,13 @@
     }
   }
 
+<<<<<<< HEAD
   function addToProduct(id:string) {
     const vegetable = vegetables.find(vegetable => vegetable.id === id);
+=======
+  function addToProduct(id) {
+    const vegetable = vegetables.find((vegetable) => vegetable.id === id);
+>>>>>>> 75a64492dae336481a89fa1bda69043756a1807a
     if (vegetable) {
       vegetable.vegetablesNumber++;
       const root = document.querySelector("#root");
@@ -187,7 +192,11 @@
     }
   }
   
+<<<<<<< HEAD
   function revToProduct(id:string) {
+=======
+  function revToProduct(id) {
+>>>>>>> 75a64492dae336481a89fa1bda69043756a1807a
     const vegetable = vegetables.find((vegetable) => vegetable.id === id);
     if (vegetable) {
       if (vegetable.vegetablesNumber <= 0) {

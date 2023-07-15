@@ -1,5 +1,4 @@
-// import (@sef)
-
+//קלאס
 class Details {
   id: string;
 
@@ -17,6 +16,9 @@ class Details {
     }
   }
 }
+//
+
+const DetailsArray: Details[] = [];
 
 function saveDetails(event) {
   event.preventDefault();
@@ -26,34 +28,44 @@ function saveDetails(event) {
   const number = event.target.elements.number.value;
   const id = event.target.elements.id;
   const data: Details = new Details(name, pass, email, number, id);
-
+  DetailsArray.push(data);
+  console.log(DetailsArray);
+try {
   if (number < 18) {
-    const errorMessageExists = document.getElementById("errorMessage");
+    const errorMessageExists = document.querySelector("#errorMessage");
     if (!errorMessageExists) {
       const errorMessage = document.createElement("p");
       errorMessage.textContent = "You are under age!";
       errorMessage.id = "errorMessage";
+      errorMessage.style.marginTop = "7px";
+      errorMessage.style.padding= "7px"
       errorMessage.style.borderRadius = "20px";
-      errorMessage.style.color = "black";
+      errorMessage.style.color = "#D5F929";
       errorMessage.style.backgroundColor = "red";
-      errorMessage.style.border = "3px solid black";
+      errorMessage.style.border = "3px solid #D5F929";
       errorMessage.style.fontSize = "3vw";
       event.target.appendChild(errorMessage);
     }
     return;
   }
+} catch (error) {
+  console.error(error);
+}
 
+//שומר את הפרטים ומעביר דף
   localStorage.setItem(`user`, JSON.stringify(data));
+  console.log(localStorage);
   event.target.reset();
   window.location.href = "../web/TmS/webTmS.html";
+//
+//
 
-  const errorMessage = document.getElementById("errorMessage");
+
+//זורק הערה אם אתה מתחת לגיל
+  const errorMessage = document.querySelector("#errorMessage");
   if (errorMessage) {
     errorMessage.remove();
   }
 }
+//
 
-// const root = document.querySelector("#root");
-// const Detailsstring = localStorage.getItem("user");
-// const details = JSON.parse(Detailsstring);
-// root?.innerHTML = `Hello ${details.name}`;

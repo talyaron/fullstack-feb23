@@ -17,6 +17,7 @@ class User {
     workingHours: Hour[]=[];
     constructor(public userName: string) {}
 
+<<<<<<< HEAD
     getMonthlyWorkHours(monthDays: number){
         let totalMinutes = 0;
         for(const hour of this.workingHours){
@@ -39,6 +40,16 @@ class User {
         const [hours, minutes] = timeInString.split(":");
         const totalMinutes = parseInt(hours) * 60 + parseInt(minutes);
         return totalMinutes;
+=======
+    getTotalWorkHours() :string{
+        let totalMinutes = 0;
+        for(const hour of this.workingHours){
+            totalMinutes += hour.convertTimeStringToMinutes(hour.exit) - hour.convertTimeStringToMinutes(hour.enctrance)
+
+        }
+        const hourInstance = new Hour(" ", " ");
+        return hourInstance.convertMinutesToString(totalMinutes);
+>>>>>>> 75a64492dae336481a89fa1bda69043756a1807a
     }
 }
 
@@ -72,11 +83,19 @@ function addUser(){
     const userSelect = document.querySelector("#user-select") as HTMLSelectElement;
     const nameInput = document.querySelector("#name-input") as HTMLInputElement;
     const entranceInput = document.querySelector("#entrance-input") as HTMLInputElement;
+<<<<<<< HEAD
     const exitInput = document.querySelector("#exit-input") as HTMLInputElement;
 
     const name = nameInput.value;
     const entrance = entranceInput.value;
     const exit = exitInput.value;
+=======
+    const exitinput = document.querySelector("#exit-input") as HTMLInputElement;
+
+    const name = nameInput.value;
+    const entrance = entranceInput.value;
+    const exit = exitinput.value;
+>>>>>>> 75a64492dae336481a89fa1bda69043756a1807a
 
 
     if(name && entrance && exit) {
@@ -93,7 +112,11 @@ function addUser(){
 
         nameInput.value = '';
         entranceInput.value = '';
+<<<<<<< HEAD
         exitInput.value = '';
+=======
+        exitinput.value = '';
+>>>>>>> 75a64492dae336481a89fa1bda69043756a1807a
     }
 }
 
@@ -105,8 +128,13 @@ const hourArray:Hour[] = [];
 
 class Hour {
     id: string;
+<<<<<<< HEAD
     constructor(public entrance: string, public exit:string){
         const entranceTime = this.convertTimeStringToMinutes(entrance);
+=======
+    constructor(public enctrance: string, public exit:string){
+        const entranceTime = this.convertTimeStringToMinutes(enctrance);
+>>>>>>> 75a64492dae336481a89fa1bda69043756a1807a
         const exitime = this.convertTimeStringToMinutes(exit);
         const totalTime = exitime - entranceTime;
         this.id = this.convertMinutesToString(totalTime);
@@ -126,15 +154,19 @@ class Hour {
     }
 }
 
+<<<<<<< HEAD
 const addUserBtn = document.querySelector("#add-user-btn") as HTMLButtonElement;
 if(addUserBtn){
     addUserBtn.addEventListener("click", addUser);
 }
 
+=======
+>>>>>>> 75a64492dae336481a89fa1bda69043756a1807a
 
 const submitBtn = document.querySelector("#submit-btn") as HTMLButtonElement;
 
 if(submitBtn) {
+<<<<<<< HEAD
     submitBtn.addEventListener("click", calculateMonthlyWorkHours);
 }
 
@@ -153,10 +185,30 @@ function calculateMonthlyWorkHours(){
         resultDiv.textContent = `Monthly work hours for ${selectedUserName}: ${monthlyWorkHours}`;
     }
 
+=======
+    submitBtn.addEventListener("click", displayUserWorkHours);
+}
+
+function displayUserWorkHours(){
+    const userSelect = document.querySelector("#user-select") as HTMLSelectElement;
+    const selectedUserName = userSelect.value;
+    const resultDiv = document.querySelector("#result") as HTMLDivElement;
+
+    if(selectedUserName) {
+        const user = userArray.find((u) => u.userName === selectedUserName);
+        if (user) {
+            const totalWorkHours = user.getTotalWorkHours();
+            resultDiv.textContent = `User: ${selectedUserName}, Total hours worked:${totalWorkHours}`
+        }
+    }else {
+        resultDiv.textContent = "";
+    }
+>>>>>>> 75a64492dae336481a89fa1bda69043756a1807a
 }
 
 
 
+<<<<<<< HEAD
 
 
 
@@ -186,3 +238,5 @@ function calculateMonthlyWorkHours(){
 
 
 
+=======
+>>>>>>> 75a64492dae336481a89fa1bda69043756a1807a

@@ -6,7 +6,10 @@ var Vegetable = /** @class */ (function () {
         this.kind = kind;
         this.image = image;
         this.quantity = quantity;
+<<<<<<< HEAD
         this.isEdit = false;
+=======
+>>>>>>> 75a64492dae336481a89fa1bda69043756a1807a
         if (id) {
             this.id = id;
         }
@@ -14,9 +17,12 @@ var Vegetable = /** @class */ (function () {
             this.id = "id-" + new Date().getTime() + "-" + Math.random();
         }
     }
+<<<<<<< HEAD
     Vegetable.prototype.setEdit = function (set) {
         this.isEdit = set;
     };
+=======
+>>>>>>> 75a64492dae336481a89fa1bda69043756a1807a
     return Vegetable;
 }());
 var vegetables = getVegetablesFromStorage();
@@ -69,6 +75,7 @@ function renderAllVegetables(vegetables, htmlElement) {
 }
 function renderVegCard(vegetable) {
     try {
+<<<<<<< HEAD
         debugger;
         if (vegetable.isEdit) {
             return "<form  class=\"card\" onsubmit=\"handleSet(event)\" id=\"" + vegetable.id + "\">\n        <img src=\"" + vegetable.image + "\">\n        <input type=\"text\" name=\"kind\" value=\"" + vegetable.kind + "\">\n        <input type=\"text\" name=\"quantity\" value=\"" + vegetable.quantity + "\">\n        \n        <button onclick=\"handleDeleteVeg('" + vegetable.id + "')\">Delete</button>\n        <input type=\"submit\" value=\"SET\">\n    </form>";
@@ -76,12 +83,16 @@ function renderVegCard(vegetable) {
         else {
             return "<form  class=\"card\" id=\"" + vegetable.id + "\">\n            <img src=\"" + vegetable.image + "\">\n            <p>" + vegetable.kind + "</p>\n            <p>" + vegetable.quantity + "</p>\n        \n        <button onclick=\"handleDeleteVeg('" + vegetable.id + "')\">Delete</button>\n        <button onclick=\"handleEdit('" + vegetable.id + "')\">Edit</button>\n       \n    </form>";
         }
+=======
+        return "<div class=\"card\"> \n        <img src=\"" + vegetable.image + "\">\n        <p>" + vegetable.kind + "</p>\n        <p>" + vegetable.quantity + "</p>\n        <button onclick=\"handleDeleteVeg('" + vegetable.id + "')\">Delete</button>\n        </div>";
+>>>>>>> 75a64492dae336481a89fa1bda69043756a1807a
     }
     catch (error) {
         console.error(error);
         return '';
     }
 }
+<<<<<<< HEAD
 function handleSet(ev) {
     try {
         debugger;
@@ -103,6 +114,8 @@ function handleSet(ev) {
         console.error(error);
     }
 }
+=======
+>>>>>>> 75a64492dae336481a89fa1bda69043756a1807a
 function handleDeleteVeg(vegId) {
     try {
         var index = vegetables.findIndex(function (vegetable) { return vegetable.id === vegId; });
@@ -116,6 +129,7 @@ function handleDeleteVeg(vegId) {
         console.error(error);
     }
 }
+<<<<<<< HEAD
 function handleEdit(vegetableId) {
     try {
         debugger;
@@ -129,3 +143,5 @@ function handleEdit(vegetableId) {
         console.error(error);
     }
 }
+=======
+>>>>>>> 75a64492dae336481a89fa1bda69043756a1807a

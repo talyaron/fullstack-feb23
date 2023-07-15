@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 body {
   background-image: url(https://blog.strauss-group.com/he/wp-content/uploads/sites/7/2017/07/refr-main.jpg);
   background-repeat: no-repeat;
@@ -7,6 +8,14 @@ body {
 
 h1 {
   font-size: 50px;
+=======
+.conteiner {
+  background-image: url(https://blog.strauss-group.com/he/wp-content/uploads/sites/7/2017/07/refr-main.jpg);
+  height: 100vh;
+  background-repeat: no-repeat;
+  flex-wrap: wrap;
+  flex-direction: row;
+>>>>>>> 75a64492dae336481a89fa1bda69043756a1807a
 }
 
 .card {

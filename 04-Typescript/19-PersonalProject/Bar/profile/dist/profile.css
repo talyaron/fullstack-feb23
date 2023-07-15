@@ -38,11 +38,11 @@
   left: -8px;
 }
 
-#profile {
+#posts {
   position: relative;
   margin: auto;
   width: 400px;
-  height: 70vh;
+  height: 120vh;
   border-radius: 20px;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
 }

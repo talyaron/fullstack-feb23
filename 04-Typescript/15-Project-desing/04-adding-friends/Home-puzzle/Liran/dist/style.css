@@ -1,11 +1,15 @@
+<<<<<<< HEAD
 body {
   height: 98vh;
 }
 
+=======
+>>>>>>> 75a64492dae336481a89fa1bda69043756a1807a
 .card {
   border-radius: 20px;
   padding: 20px;
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.464);
+<<<<<<< HEAD
   width: 180px;
   align-content: center;
   height: 250px;
@@ -33,12 +37,24 @@ body {
 
 input {
   width: 80px;
+=======
+  width: 300px;
+}
+.card img {
+  width: 100%;
+}
+
+button {
+  width: fit-content;
+  height: fit-content;
+>>>>>>> 75a64492dae336481a89fa1bda69043756a1807a
 }
 
 form {
   display: flex;
   justify-content: center;
   gap: 5px;
+<<<<<<< HEAD
   height: fit-content;
 }
 
@@ -52,4 +68,6 @@ form {
   justify-content: space-evenly;
   flex-wrap: wrap;
   height: 100%;
+=======
+>>>>>>> 75a64492dae336481a89fa1bda69043756a1807a
 }

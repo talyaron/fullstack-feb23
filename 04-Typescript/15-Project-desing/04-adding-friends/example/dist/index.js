@@ -62,7 +62,10 @@ function handleAddFriend(ev) {
 //model -> controler --> view
 function renderAllFriends(friends, htmlElement) {
     try {
+<<<<<<< HEAD
         debugger;
+=======
+>>>>>>> 75a64492dae336481a89fa1bda69043756a1807a
         if (!htmlElement)
             throw new Error("No element");
         var html = friends.map(function (friend) { return renderFriendCard(friend); }).join(" ");

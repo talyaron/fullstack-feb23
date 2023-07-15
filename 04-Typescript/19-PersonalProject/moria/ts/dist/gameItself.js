@@ -1,88 +1,44 @@
-function addHomer(event) {
+getPlayerFromLocalStorage();
+function getPlayerFromLocalStorage() {
     try {
-        // const player =
-        var selectedPlayer = "../img/הומר.png";
-        players.push(selectedPlayer);
-        console.log(event);
-        localStorage.setItem("players", JSON.stringify(players));
-        window.location.href = "view/levels.html";
-    }
-    catch (error) {
-        console.error(error);
-    }
-}
-function addBart(event) {
-    try {
-        var selectedPlayer = "../img/בארט.png";
-        players.push(selectedPlayer);
-        console.log(event);
-        localStorage.setItem("players", JSON.stringify(players));
-        window.location.href = "view/levels.html";
-    }
-    catch (error) {
-        console.error(error);
-    }
-}
-function addLisa(event) {
-    try {
-        var selectedPlayer = new Player("../img/ליסה.png");
-        players.push(selectedPlayer);
-        console.log(event);
-        localStorage.setItem("players", JSON.stringify(players));
-        // renderPlayer(rootPlayer);
-        window.location.href = "view/levels.html";
-    }
-    catch (error) {
-        console.error(error);
-    }
-}
-// const level = document.querySelector(`.level`) as HTMLElement;
-// const notAvailable = document.querySelectorAll
-//     (`.levelNotAvailable`);
-function renderPlayer(htmlElement) {
-    try {
-        // if (!htmlElement) throw new Error("No element");
-        var playerString = localStorage.getItem("players");
-        if (!playerString)
+        var playersStorage = localStorage.getItem('players');
+        if (!playersStorage)
             return [];
-        var playerArray = JSON.parse(playerString);
-        console.table(playerArray);
-        var players = playerArray.map(function (player) {
-            return new Player(player.playerImg);
-        });
-        // renderPlayerCard(playerString)
-        // const html = players.map(player => renderPlayerCard(player)).join(' ')
+        var playersArray = JSON.parse(playersStorage);
+        renderPlayers(playersArray[0]);
+    }
+    catch (error) {
+        console.error(error);
+        return [];
+    }
+}
+function renderPlayers(player) {
+    try {
+        var rootPlayer = document.querySelector('#container__player');
+        var html = "<img class=\"bart\" src=\"" + player.playerImg + "\"> ";
+        rootPlayer.innerHTML = html;
     }
     catch (error) {
         console.error(error);
     }
 }
-// function renderPlayerCard(player: Player) {
-//     try {
-//         `<div class="card">
-//                     <img src="${player.playerImg}"> </div>
-// `
-//         rootPlayer.innerHTML = html;
-//     }}
-// // } catch (error) {
-// //     console.error(error);
-// //     return ''
-// // }
 var bart = document.querySelector(".bart");
-document.addEventListener('keyup', function (event) {
+var shoot = document.querySelector("#container__shoot");
+document.addEventListener('keydown', function (event) {
     event.stopPropagation();
-    // console.dir(player)
-    // console.log(event.key)
     switch (event.key) {
         case 'ArrowLeft':
-            bart.style.left = bart.offsetLeft - 85 + "px";
+            bart.style.left = bart.offsetLeft - 25 + "px";
             break;
         case 'ArrowRight':
-            bart.style.left = bart.offsetLeft + 85 + "px";
+            bart.style.left = bart.offsetLeft + 25 + "px";
             break;
-        case " ":
-            var html = "<div class=\" \">\n                </div>\n                ";
-            rootPlayer.innerHTML = html;
-            break;
+        // case " ":
+        //     const html = `<div class="shoot">
+        //         </div>
+        //         `
+        //     shoot.innerHTML = html;
+        //     break;
     }
 });
+var containerBall = document.querySelector("#container__ball");

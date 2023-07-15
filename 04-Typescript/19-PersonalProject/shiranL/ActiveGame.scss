@@ -1,8 +1,9 @@
-$cellSize: 115px;
-
+$cellSize: 120px;
+$playerSize: 35px;
 .Container{
   display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     //align-items: center;
   
 }
@@ -67,10 +68,216 @@ $cellSize: 115px;
   background-image: url('./rovaA1.jpg');
   background-size: cover;
   background-position: center;
-  
-  
- 
-    width:$cellSize ;
-    height: $cellSize;
+  width:$cellSize ;
+  height: $cellSize;
   
 }
+.RovaBet{
+
+  background-image: url('./rovabet.jpg');
+  background-size: cover;
+  background-position: center;
+  width:$cellSize ;
+  height: $cellSize;
+  
+}
+.RovaGimel{
+
+  background-image: url('./rovaGimel.jpg');
+  background-size: cover;
+  background-position: center;
+  width:$cellSize ;
+  height: $cellSize;
+  
+}
+.RovaDaled{
+
+  background-image: url('./RovaDaled.jpg');
+  background-size: cover;
+  background-position: center;
+  width:$cellSize ;
+  height: $cellSize;
+  
+}
+
+.RovaCITY{
+
+  background-image: url('./RovaCITY.jpg');
+  background-size: cover;
+  background-position: center;
+  width:$cellSize ;
+  height: $cellSize;
+  
+}
+.RovaTetVav{
+
+  background-image: url('./RovaTetVav.jpg');
+  background-size: cover;
+  background-position: center;
+  width:$cellSize ;
+  height: $cellSize;
+  
+}
+.RovaYudBet{
+
+  background-image: url('./RovaYudBet.jpg');
+  background-size: cover;
+  background-position: center;
+  width:$cellSize ;
+  height: $cellSize;
+  
+}
+.RovaYudAlef{
+
+  background-image: url('./RovaYudAlef.jpg');
+  background-size: cover;
+  background-position: center;
+  width:$cellSize ;
+  height: $cellSize;
+  
+}
+
+.player{
+  width:$playerSize;
+  height:$playerSize;
+  //background-image: url("6.png");
+  background-size: cover;
+  background-position: center;
+
+}
+#cubeButton {
+  width: 175px;
+  height: 175px;
+  background-image: url("./cube.png");
+  background-size: cover;
+  background-position: center;
+  border: none;
+  background-color: white;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.rotate-animation {
+  animation: rotate 2s;
+  position: relative;
+  transform-origin: center;
+}
+
+@keyframes rotate {
+  0% {
+    transform: translate(-50%, -50%) rotateY(0deg) scale(1);
+  }
+  50% {
+    transform: translate(-50%, -50%) rotateY(180deg) scale(1.5);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotateY(360deg) scale(1);
+  }
+}
+
+.close {
+  color: #d70b0b;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+.begin{
+  width: 75px;
+  height: 75px;
+  background-image: url("./start.png");
+  background-size: cover;
+  background-position: center;
+}
+
+.cityDialog {
+  // position: fixed;
+  // top: 50%;
+  // left: 50%;
+  // transform: translate(-50%, -50%);
+  // z-index: 9999;
+  //background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 400px;
+  border-radius: 5px;
+  border: none;
+
+  &__cityCardForm {
+    display: flex;
+    flex-direction: column;
+
+    .closeCityDialog {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: none;
+      border: none;
+      color: #b10606;
+      font-size: 20px;
+      font-weight: bold;
+      cursor: pointer;
+      padding: 5px; /* Increase the padding */
+    }
+
+    h1 {
+      margin-top: 0;
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    h2 {
+      margin: 10px 0;
+      font-size: 18px;
+    }
+
+    .buyBtn,
+    .payBtn {
+      background-color: #007bff;
+      color: #ffffff;
+      padding: 10px;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+      font-size: 16px;
+      text-align: center;
+      margin-top: 10px;
+
+      &:hover {
+        background-color: #0056b3;
+      }
+    }
+  }
+}
+
+.goodS{
+  width: $cellSize;
+  height: $cellSize;
+  background-image: url("./GoodSurprises.jpg");
+  background-size: cover;
+  background-position: center;
+}
+.BadS{
+  width: $cellSize;
+  height: $cellSize;
+  background-image: url("./Bads.jpg");
+  background-size: cover;
+  background-position: center;
+}
+.BadThings{
+  width: $cellSize;
+  height: $cellSize;
+  background-image: url("./happyS.jpg");
+  background-size: cover;
+  background-position: center;
+}
+

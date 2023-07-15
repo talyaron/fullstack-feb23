@@ -11,6 +11,7 @@ function loadCharacters():Character[]|undefined{
         characters.push(new Character("Barak Sery","./dist/3.png"))
         characters.push(new Character("Eli Nacht","./dist/4.png"))
         characters.push(new Character("Eli Lachmani","./dist/5.png"))
+        characters.push(new Character("zvi zilker","./dist/5.png"))
         //save to local storage
         const charactersJson = JSON.stringify(characters);
         localStorage.setItem('characters', charactersJson);
@@ -191,6 +192,7 @@ function loadQuestionGoodThings (): QuestionGoodThings[] | undefined {
 }
 function loadQuestionBadThings (): QuestionBadThings[] | undefined {
     try {
+      debugger
         const badThings: QuestionBadThings []  = [];
         const badThingsString = localStorage.getItem('badThings');
       if (!badThingsString){ // if there is not characters on json , create new []
@@ -286,7 +288,7 @@ function loadDataToBoard(board: Board|undefined): void {
       if (goodThings) {
         board.goodThings = goodThings;
       }
-      
+      debugger
       // Load bad things and add them to the board
       const badThings: QuestionBadThings[] | undefined = loadQuestionBadThings();
       if (badThings) {

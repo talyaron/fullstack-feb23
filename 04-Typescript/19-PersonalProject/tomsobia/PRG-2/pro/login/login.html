@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="dist/login.css">
+    <link rel="stylesheet" href="dist/btn.style.css">
     <title>TmS</title>
 </head>
 
@@ -14,13 +15,15 @@
         <form onsubmit="saveDetails(event)" class="container__form">
             <h2>Put your Details</h2>
             <input type="text" name="name" placeholder="name">
-            <hr>
             <input type="password" name="pass" placeholder="password">
-            <hr>
             <input type="email" name="email" placeholder="email">
-            <hr>
             <input type="number" name="number" placeholder="age">
-            <button class="container__form--btn" type="submit">click here</button>
+            <hr>
+            <button type="submit" style="--content: 'click me!';" href="https://twitter.com/kamildyrek">
+                <div class="left"></div>
+                click me!
+                <div class="right"></div>
+            </button>
         </form>
     </div>
     <script src="dist/login.js"></script>

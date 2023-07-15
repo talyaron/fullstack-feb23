@@ -3,7 +3,7 @@ game:
 A red ball bounces through an obstacle course.
 Can get points by collecting coins.
 Can get increased features by collecting "color change". 
-The obstacles are challenging: climbing ladders, jumping between disappearing bricks, moving on moving shelves.
+The obstacles are challenging: climbing ladders, jumping between bricks, and blinking shelves.
 You have to be careful of bombs, arrows, simulated (not solid) bricks, not falling doun. 
 Design from the bottom up -> starts on the ground and climbs up on a "brick building".
 The goal - to reach as high as possible.
@@ -15,7 +15,8 @@ help:
 * https://www.w3schools.com/graphics/game_intro.asp 
 * https://www.geeksforgeeks.org/   
 * https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Drawing_shapes difference-between-window-location-href-window-location-replace-and-window-location-assign-in-javascript/
-
+* canvas taturial: https://www.youtube.com/watch?v=83L6B13ixQ0&ab_channel=ChrisCourses  
+* import ts files -> https://www.educative.io/answers/how-to-import-another-typescript-file
 
 
 model:

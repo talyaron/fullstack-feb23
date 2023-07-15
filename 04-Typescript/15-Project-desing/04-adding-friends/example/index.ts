@@ -22,10 +22,14 @@ class Friend {
     public image: string,
     public phoneNumber: string,
 <<<<<<< HEAD
+<<<<<<< HEAD
     id?: string | null,
 =======
     id?: string | null
 >>>>>>> 589377e16a074c872107f45e6350324ef7a56e40
+=======
+    id?: string | null,
+>>>>>>> 75a64492dae336481a89fa1bda69043756a1807a
   ) {
     if (id) {
       this.id = id;
@@ -72,10 +76,14 @@ function getFriendsFromStorage(): Friend[] {
         friend.image,
         friend.phoneNumber,
 <<<<<<< HEAD
+<<<<<<< HEAD
         friend.id,
 =======
         friend.id
 >>>>>>> 589377e16a074c872107f45e6350324ef7a56e40
+=======
+        friend.id,
+>>>>>>> 75a64492dae336481a89fa1bda69043756a1807a
       );
     });
 >>>>>>> 4f4014876ee22bcaa6299a818521bff3bb995fcb
@@ -118,9 +126,12 @@ function renderAllFriends(friends: Friend[], htmlElement: HTMLElement | null) {
 =======
   try {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     debugger;
 >>>>>>> 589377e16a074c872107f45e6350324ef7a56e40
+=======
+>>>>>>> 75a64492dae336481a89fa1bda69043756a1807a
     if (!htmlElement) throw new Error("No element");
     const html = friends.map((friend) => renderFriendCard(friend)).join(" ");
 >>>>>>> 4f4014876ee22bcaa6299a818521bff3bb995fcb
@@ -227,10 +238,14 @@ function handleSetEditFriend(ev:any){
 =======
     const friend: Friend | undefined = friends.find(
 <<<<<<< HEAD
+<<<<<<< HEAD
       (friend) => friend.id === friendId,
 =======
       (friend) => friend.id === friendId
 >>>>>>> 589377e16a074c872107f45e6350324ef7a56e40
+=======
+      (friend) => friend.id === friendId,
+>>>>>>> 75a64492dae336481a89fa1bda69043756a1807a
     );
     if (!friend) throw new Error("couldnt find friend");
     friend.name = name;
