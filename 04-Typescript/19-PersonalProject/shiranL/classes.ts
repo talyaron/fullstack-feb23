@@ -83,9 +83,8 @@ static counter = 0;
 playerId:number;
 color:string;
 jailIndex:number=0;
-indexX:number=0;
-indexY:number=0;
-Pbank:number=0;
+cellId:string='cell5';
+Pbank:number=1500;
 character:Character | undefined;
 constructor(public userName:string,public isJail:boolean,public status:boolean,
      playerId?:number,color?:string,character?:Character)
@@ -109,7 +108,9 @@ private assignColor(): string {
 }
 }
 class Board {
+    static counter = 0;
     boardID:number;
+    startDate:Date=new Date();  
     gameStatus:boolean;
     luckyCube:number=0;
     cities: City[];
@@ -120,13 +121,46 @@ class Board {
     jails: Jail[]; // Changed to an array
     winner:Player|undefined=undefined;
   
-    constructor() {
-      this.cities = [];
-     // this.hotels = [];
-      this.goodThings = [];
-      this.badThings = [];
-      this.players = [];
-      this.jails = [];
+    constructor(bordId?:number,startdate?:Date,gameStatus?:boolean,luckyCube?:number,
+        cities?:City[],goodThings?:QuestionGoodThings[],badThings?:QuestionBadThings[],
+        players?:Player[],jails?:Jail[]) {
+        if(bordId)  
+            this.boardID=bordId;
+        else
+            this.boardID=++Board.counter;
+        if(startdate)
+            this.startDate=startdate;
+        else    
+            this.startDate=new Date();
+        if(gameStatus)
+            this.gameStatus=gameStatus;
+        else    
+            this.gameStatus=false;
+        if(luckyCube)
+            this.luckyCube=luckyCube;
+        else    
+            this.luckyCube=0;
+        if(cities)
+            this.cities=cities;
+        else    
+            this.cities=[];
+        if(goodThings)
+            this.goodThings=goodThings;
+        else    
+            this.goodThings=[];
+        if(badThings)
+            this.badThings=badThings;
+        else    
+            this.badThings=[];
+        if(players)
+            this.players=players;
+        else    
+            this.players=[];
+        if(jails) 
+            this.jails=jails;
+        else    
+            this.jails=[];
+
       
     }
   
