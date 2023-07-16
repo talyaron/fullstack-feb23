@@ -226,7 +226,6 @@ function loadBoards() {
 }
 function startNewGame(boards) {
     try {
-        debugger;
         if (!boards)
             throw new Error("Cant Find Boards Array");
         // Create a new board
@@ -271,7 +270,6 @@ function loadDataToBoard(board) {
         if (goodThings) {
             board.goodThings = goodThings;
         }
-        debugger;
         // Load bad things and add them to the board
         var badThings = loadQuestionBadThings();
         if (badThings) {
