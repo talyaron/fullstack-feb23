@@ -14,23 +14,131 @@ body {
   flex-direction: column;
   align-items: center;
 }
+.MainPageWrapper__darkback {
+  width: 1vw;
+  height: 2.2vh;
+  background-color: black;
+  border-radius: 50%;
+  cursor: pointer;
+  position: absolute;
+  top: 2vh;
+  left: 4vw;
+  animation: fade ease-in 0.5s;
+}
+.MainPageWrapper__darkback:hover {
+  opacity: 0.6;
+}
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.MainPageWrapper__darktheme {
+  position: absolute;
+  top: 3vh;
+  left: 2.8vw;
+  font-size: small;
+  animation: fade ease-in 0.5s;
+}
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.MainPageWrapper__Lightback {
+  width: 1.5vw;
+  height: 3.2vh;
+  background-color: #fff1f1;
+  border-radius: 50%;
+  cursor: pointer;
+  display: none;
+  transition: all 200ms ease-in-out;
+  animation: fade ease-in 0.5s;
+  position: absolute;
+  top: 2vh;
+  left: 4vw;
+}
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.MainPageWrapper__Lightback:hover {
+  opacity: 0.6;
+}
+.MainPageWrapper__Lighttheme {
+  position: absolute;
+  top: 6vh;
+  left: 2.4vw;
+  display: none;
+  color: aliceblue;
+  transition: all 200ms ease-in-out;
+  animation: fade ease-in 0.5s;
+}
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 .MainPageWrapper__headline {
   font-size: 3.5vw;
   background: #cfeed2;
   background: linear-gradient(0deg, #cfeed2 15%, #b0d4f1 85%);
   border-radius: 20px;
   font-family: fantasy;
+  animation: fade ease-in 0.5s;
+}
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 .MainPageWrapper__sectiontxt {
-  font-family: monospace;
+  background: #7adace;
+  background: radial-gradient(circle, #7adace 19%, #9ce894 41%, #8b9aed 58%, rgba(248, 248, 255, 0) 100%);
+  font-family: fantasy;
+  border-radius: 10px;
   color: #c4307e;
+  animation: fade ease-in 1s;
+}
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 .MainPageWrapper__suggestedCover {
   height: 24vh;
   width: 100vw;
-  background: #cfeed2;
-  background: linear-gradient(0deg, #cfeed2 15%, #b0d4f1 85%);
+  background: #47daa0;
+  background: radial-gradient(circle, #47daa0 14%, #4b5cec 84%);
   box-shadow: 2px 2px grey;
+  animation: fade ease-in 1s;
+}
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 .MainPageWrapper__suggested {
   display: flex;
@@ -40,6 +148,15 @@ body {
   width: 100vw;
   height: 24vh;
   transition: all 100ms ease-in-out;
+  animation: fade ease-in 1s;
+}
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 .MainPageWrapper__suggested__scrollR {
   position: absolute;
@@ -53,6 +170,15 @@ body {
   background: #cfeed2;
   background: linear-gradient(0deg, #5bc465 15%, #b0d4f1 85%);
   opacity: 0.5;
+  animation: fade ease-in 1s;
+}
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 .MainPageWrapper__suggested__scrollR:active {
   transform: scale(1.1);
@@ -70,6 +196,15 @@ body {
   background: #cfeed2;
   background: linear-gradient(0deg, #5bc465 15%, #b0d4f1 85%);
   opacity: 0.5;
+  animation: fade ease-in 1s;
+}
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 .MainPageWrapper__suggested__scrollL:active {
   transform: scale(1.1);
@@ -79,10 +214,19 @@ body {
   gap: 4vw;
   width: 100vw;
   height: 24vh;
-  background: #cfeed2;
-  background: linear-gradient(0deg, #cfeed2 15%, #b0d4f1 85%);
+  background: #4792da;
+  background: radial-gradient(circle, #4792da 14%, #ec4bad 92%);
   box-shadow: 2px 2px grey;
   justify-content: center;
+  animation: fade ease-in 1.5s;
+}
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 .MainPageWrapper__lastListened__ROOT {
   gap: 4vw;
@@ -92,6 +236,15 @@ body {
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  animation: fade ease-in 1.5s;
+}
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 .MainPageWrapper__songInput {
   font-family: monospace;
@@ -102,6 +255,15 @@ body {
   background: radial-gradient(circle, #4792da 14%, #ec4b66 92%);
   margin-bottom: 4vh;
   cursor: pointer;
+  animation: fade ease-in 0.5s;
+}
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .song {
@@ -160,6 +322,15 @@ body {
   border-radius: 20px;
   margin-top: 6vh;
   margin-bottom: 2vh;
+  animation: fade ease-in 2s;
+}
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 .add__feautering {
   font-size: 30;
@@ -205,7 +376,89 @@ body {
   transition: all 100ms ease-in-out;
   cursor: pointer;
   border-top: 10px blue;
+  animation: fade ease-in 2s;
+}
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 .shuffle:hover {
   transform: scale(0.6) rotate(1turn);
+}
+
+#arrow-right {
+  position: absolute;
+  right: 0.6vw;
+  top: 47vh;
+  z-index: 1;
+  animation: fade ease-in 2s;
+}
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.lovedSongsSection {
+  height: 24vh;
+  width: 120vw;
+  background: #47daa0;
+  background: radial-gradient(circle, #47daa0 14%, #4b5cec 84%);
+  box-shadow: 2px 2px grey;
+  position: absolute;
+  left: 0;
+  animation: fade ease-in 2s;
+}
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.lovedSongsSectionRoot {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4vw;
+  width: 100vw;
+  height: 24vh;
+  transition: all 100ms ease-in-out;
+  padding-left: 1vw;
+  animation: fade ease-in 2s;
+}
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.lovedTXT {
+  font-family: fantasy;
+  font-size: 40px;
+  color: #dd1b1b;
+  position: relative;
+  left: 46.5vw;
+  margin-bottom: 0;
+  animation: fade ease-in 2s;
+}
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

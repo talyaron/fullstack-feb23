@@ -15,15 +15,16 @@ body {
 .cards {
   display: inline-grid;
   gap: 20px 100px;
-  grid-template-areas: "c1 c2" "c1 c3" "btnF c4";
+  grid-template-areas: ". c1 ." "c2 c3 c4";
 }
 
 .card {
-  height: 200px;
-  width: 120px;
+  height: 120px;
+  width: 150px;
   border: 1px solid sandybrown;
   border-radius: 15px;
   font-size: 20px;
+  text-align: center;
 }
 
 .c1 {

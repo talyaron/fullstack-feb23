@@ -1,3 +1,19 @@
+@mixin fadein($delay) {
+    animation: fade ease-in $delay;
+
+    @keyframes fade {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+}
+
+
+
 body {
     background-image: url(https://coolbackgrounds.io/images/backgrounds/index/sea-edge-79ab30e2.png);
     background-size: cover;
@@ -14,6 +30,61 @@ body {
     flex-direction: column;
     align-items: center;
 
+    &__darkback {
+        width: 1vw;
+        height: 2.2vh;
+        background-color: black;
+        border-radius: 50%;
+        cursor: pointer;
+
+        &:hover {
+            opacity: 0.6;
+        }
+
+        position: absolute;
+        top: 2vh;
+        left: 4vw;
+        @include fadein(0.5s);
+    }
+
+    &__darktheme {
+        position: absolute;
+        top: 3vh;
+        left: 2.8vw;
+        font-size: small;
+        @include fadein(0.5s);
+    }
+
+    &__Lightback {
+        width: 1.5vw;
+        height: 3.2vh;
+        background-color: rgb(255, 241, 241);
+        border-radius: 50%;
+        cursor: pointer;
+        display: none;
+        transition: all 200ms ease-in-out;
+        @include fadein(0.5s);
+
+        &:hover {
+            opacity: 0.6;
+        }
+
+        position: absolute;
+        top: 2vh;
+        left: 4vw;
+    }
+
+    &__Lighttheme {
+        position: absolute;
+        top: 6vh;
+        left: 2.4vw;
+        display: none;
+        color: aliceblue;
+        transition: all 200ms ease-in-out;
+        @include fadein(0.5s);
+
+
+    }
 
     &__headline {
         font-size: 3.5vw;
@@ -21,21 +92,27 @@ body {
         background: linear-gradient(0deg, rgba(207, 238, 210, 1) 15%, rgba(176, 212, 241, 1) 85%);
         border-radius: 20px;
         font-family: fantasy;
+        @include fadein(0.5s);
 
 
     }
 
     &__sectiontxt {
-        font-family: monospace;
+        background: rgb(122, 218, 206);
+        background: radial-gradient(circle, rgba(122, 218, 206, 1) 19%, rgba(156, 232, 148, 1) 41%, rgba(139, 154, 237, 1) 58%, rgba(248, 248, 255, 0) 100%);
+        font-family: fantasy;
+        border-radius: 10px;
         color: rgb(196, 48, 126);
+        @include fadein(1s);
     }
 
     &__suggestedCover {
         height: 24vh;
         width: 100vw;
-        background: rgb(207, 238, 210);
-        background: linear-gradient(0deg, rgba(207, 238, 210, 1) 15%, rgba(176, 212, 241, 1) 85%);
+        background: rgb(71, 218, 160);
+        background: radial-gradient(circle, rgba(71, 218, 160, 1) 14%, rgba(75, 92, 236, 1) 84%);
         box-shadow: 2px 2px grey;
+        @include fadein(1s);
     }
 
     &__suggested {
@@ -46,6 +123,7 @@ body {
         width: 100vw;
         height: 24vh;
         transition: all 100ms ease-in-out;
+        @include fadein(1s);
 
         &__scrollR {
             position: absolute;
@@ -59,6 +137,7 @@ body {
             background: rgb(207, 238, 210);
             background: linear-gradient(0deg, rgb(91, 196, 101) 15%, rgba(176, 212, 241, 1) 85%);
             opacity: 0.5;
+            @include fadein(1s);
 
             &:active {
                 transform: scale(1.1);
@@ -78,6 +157,7 @@ body {
             background: rgb(207, 238, 210);
             background: linear-gradient(0deg, rgb(91, 196, 101) 15%, rgba(176, 212, 241, 1) 85%);
             opacity: 0.5;
+            @include fadein(1s);
 
             &:active {
                 transform: scale(1.1);
@@ -90,10 +170,11 @@ body {
         gap: 4vw;
         width: 100vw;
         height: 24vh;
-        background: rgb(207, 238, 210);
-        background: linear-gradient(0deg, rgba(207, 238, 210, 1) 15%, rgba(176, 212, 241, 1) 85%);
+        background: rgb(71, 146, 218);
+        background: radial-gradient(circle, rgba(71, 146, 218, 1) 14%, rgba(236, 75, 173, 1) 92%);
         box-shadow: 2px 2px grey;
         justify-content: center;
+        @include fadein(1.5s);
 
         &__ROOT {
 
@@ -104,6 +185,8 @@ body {
             flex-direction: row;
             justify-content: center;
             align-items: center;
+            @include fadein(1.5s);
+
         }
     }
 
@@ -116,6 +199,8 @@ body {
         background: radial-gradient(circle, rgba(71, 146, 218, 1) 14%, rgba(236, 75, 102, 1) 92%);
         margin-bottom: 4vh;
         cursor: pointer;
+        @include fadein(0.5s);
+
 
     }
 
@@ -183,6 +268,8 @@ body {
     border-radius: 20px;
     margin-top: 6vh;
     margin-bottom: 2vh;
+    @include fadein(2s);
+
 
     &__feautering {
         font-size: 30;
@@ -236,8 +323,56 @@ body {
     transition: all 100ms ease-in-out;
     cursor: pointer;
     border-top: 10px blue;
+    @include fadein(2s);
+
 
     &:hover {
         transform: scale(0.6) rotate(1turn);
     }
+}
+
+#arrow-right {
+    position: absolute;
+    right: 0.6vw;
+    top: 47vh;
+    z-index: 1;
+    @include fadein(2s);
+
+}
+
+.lovedSongsSection {
+    height: 24vh;
+    width: 120vw;
+    background: rgb(71, 218, 160);
+    background: radial-gradient(circle, rgba(71, 218, 160, 1) 14%, rgba(75, 92, 236, 1) 84%);
+    box-shadow: 2px 2px grey;
+    position: absolute;
+    left: 0;
+    @include fadein(2s);
+
+
+}
+
+.lovedSongsSectionRoot {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 4vw;
+    width: 100vw;
+    height: 24vh;
+    transition: all 100ms ease-in-out;
+    padding-left: 1vw;
+    @include fadein(2s);
+
+}
+
+.lovedTXT {
+    font-family: fantasy;
+    font-size: 40px;
+    color: rgb(221, 27, 27);
+    position: relative;
+    left: 46.5vw;
+    margin-bottom: 0;
+    @include fadein(2s);
+
 }
