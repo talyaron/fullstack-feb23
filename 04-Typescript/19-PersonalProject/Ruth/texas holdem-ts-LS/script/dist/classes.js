@@ -30,7 +30,7 @@ var Card = /** @class */ (function () {
 }());
 //---------------------------Player--------------------
 var Player = /** @class */ (function () {
-    function Player(userName, imgSrc, chips, isActive, isTurn, pCards, allCards, movesInRound, lastBet, roundNumber) {
+    function Player(userName, imgSrc, chips, isActive, isTurn, pCards, allCards, movesInRound, lastBet, roundNumber, turnNumber) {
         if (imgSrc === void 0) { imgSrc = ""; }
         if (chips === void 0) { chips = 100000; }
         if (isActive === void 0) { isActive = true; }
@@ -40,6 +40,7 @@ var Player = /** @class */ (function () {
         if (movesInRound === void 0) { movesInRound = []; }
         if (lastBet === void 0) { lastBet = 0; }
         if (roundNumber === void 0) { roundNumber = movesInRound.length - 1; }
+        if (turnNumber === void 0) { turnNumber = Player.playerCount++; }
         this.userName = userName;
         this.imgSrc = imgSrc;
         this.chips = chips;
@@ -50,6 +51,7 @@ var Player = /** @class */ (function () {
         this.movesInRound = movesInRound;
         this.lastBet = lastBet;
         this.roundNumber = roundNumber;
+        this.turnNumber = turnNumber;
         this.pCards = this.pCards.map(function (c) { return new Card(c.cardNumber, c.cardSign); });
     }
     Player.prototype.setActive = function () {
@@ -76,8 +78,45 @@ var Player = /** @class */ (function () {
     Player.prototype.doingTurn = function (activePlayers, thisIndex) {
         console.log(this.userName + " is doing somethig......");
         var movesOptions = getMoveOption(activePlayers, thisIndex);
-        // let ChanceToBet = getChanceToBet(this)
+        var pointOfOptionalSet = getPointOfOptionalSet(this);
+        var sizeOfBet = getSizeOfBet(pointOfOptionalSet, this.chips);
+        chooseMove(activePlayers, movesOptions, sizeOfBet, pointOfOptionalSet, this);
     };
+    Player.prototype.checkMove = function (players) {
+        {
+            this.movesInRound.push(PlayerMovesOption.check);
+            this.lastBet = 0;
+        }
+        localStorage.setItem("players", JSON.stringify(players));
+        //התור יעבור לבא אחריו
+    };
+    Player.prototype.foldMove = function (players) {
+        this.movesInRound.push(PlayerMovesOption.fold);
+        this.lastBet = 0;
+        this.isActive = false;
+        localStorage.setItem("players", JSON.stringify(players));
+        //התור יעבור לבא אחריו
+    };
+    Player.prototype.callMove = function (players, currentPlayerIndex) {
+        this.movesInRound.push(PlayerMovesOption.call);
+        var betToCall = riseBetSizeInThisRound(players, currentPlayerIndex);
+        this.lastBet = betToCall;
+        dealerMoney += betToCall;
+        this.chips = this.chips - betToCall;
+        localStorage.setItem("players", JSON.stringify(players));
+        localStorage.setItem("dealerMoney", JSON.stringify(dealerMoney));
+    };
+    Player.prototype.riseMove = function (players, currentPlayerIndex, sizeOfBet) {
+        var currentPlayer = players[currentPlayerIndex];
+        this.movesInRound.push(PlayerMovesOption.rise);
+        this.lastBet = sizeOfBet;
+        dealerMoney += sizeOfBet;
+        this.chips -= sizeOfBet;
+        localStorage.setItem("players", JSON.stringify(players));
+        localStorage.setItem("dealerMoney", JSON.stringify(dealerMoney));
+        //התור יעבור לבא אחריו
+    };
+    Player.playerCount = 0;
     return Player;
 }());
 var PlayerMovesOption;

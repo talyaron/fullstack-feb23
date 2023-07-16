@@ -193,47 +193,39 @@ function renderPlay() {
     h1Instructions.innerHTML = instractions
 
     //call the random word function
-    const ranArr = randomWord()
+
 
     const htmlroot = document.querySelector('#cards')
     if (!htmlroot) throw new Error("no root element");
     console.log(htmlroot)
 
-    const optiomArr: string[] = []
 
-    optiomArr[0] = `<div id="c1" class="card c1">${ranArr[0].enWord}</div>
-                    <div id="c2" class="card c2">${ranArr[1].heWord}</div>
-                    <div id="c3" class="card c3">${ranArr[2].heWord}</div>
-                    <div id="c4" class="card c4">${ranArr[3].heWord}</div>  
-                    `;
-    optiomArr[1] = `<div id="c1" class="card c1">${ranArr[0].enWord}</div>
-                    <div id="c2" class="card c2">${ranArr[1].heWord}</div>
-                    <div id="c3" class="card c3">${ranArr[3].heWord}</div>
-                    <div id="c4" class="card c4">${ranArr[2].heWord}</div>  
-                    `;
-    optiomArr[2] = `<div id="c1" class="card c1">${ranArr[0].enWord}</div>
-                    <div id="c2" class="card c2">${ranArr[2].heWord}</div>
-                    <div id="c3" class="card c3">${ranArr[1].heWord}</div>
-                    <div id="c4" class="card c4">${ranArr[3].heWord}</div>  
-                    `;
-    optiomArr[3] = `<div id="c1" class="card c1">${ranArr[0].enWord}</div>
-                    <div id="c2" class="card c2">${ranArr[2].heWord}</div>
-                    <div id="c3" class="card c3">${ranArr[3].heWord}</div>
-                    <div id="c4" class="card c4">${ranArr[1].heWord}</div>  
-                    `;
-    optiomArr[4] = `<div id="c1" class="card c1">${ranArr[0].enWord}</div>
-                    <div id="c2" class="card c2">${ranArr[3].heWord}</div>
-                    <div id="c3" class="card c3">${ranArr[1].heWord}</div>
-                    <div id="c4" class="card c4">${ranArr[2].heWord}</div>  
-                    `;
-    optiomArr[5] = `<div id="c1" class="card c1">${ranArr[0].enWord}</div>
-                    <div id="c2" class="card c2">${ranArr[3].heWord}</div>
-                    <div id="c3" class="card c3">${ranArr[2].heWord}</div>
-                    <div id="c4" class="card c4">${ranArr[1].heWord}</div>  
-                    `;
-    const toHtml = optiomArr[Math.floor(Math.random()*5)]
+    //view + data binding
 
-    htmlroot.innerHTML = toHtml
+    //render the cards in random order
+
+    //create a function whcih return the cards in random order
+
+    //fisrst step: create an array with the cards
+    //second step: get 3 random cards from the array
+    //third step: selct one random card from the 3 and put it in the first place
+    //fourth step: put the other 2 cards in the second and third place
+    //fifth step: put thei first card on the diaply
+    //sixth step: put the other 3 cards in random order on the display and show only the Hebrew options.
+
+    const randomWords = randomWord(words);
+
+
+    const firstWord = randomWords[0],
+
+    //randomized words
+    const randomWardsToDisplay = randomWord(randomWords)
+
+    //display all words in random order
+    const htmlWordsToSelect = randomWardsToDisplay.map(word => `<div class="card">${word.heWord}</div>`).join(' ')
+    const htmlWordInEnglish = `<div class="card">${firstWord.enWord}</div>`
+
+    htmlroot.innerHTML = htmlWordsToSelect + "<br>" + htmlWordInEnglish
 }
 
 //finish the game
@@ -243,20 +235,21 @@ function renderFinish() {
 
 //contrilers
 //make the random select words
-function randomWord() {
-    const length = words.length;
-    const randomWordArr: Word[] = [];
-    let i: number;
-    const randomArr: number[] = [];
+function randomWord(words: Word[]) {
 
-    for (i = 0; i < 3; i++) {
-        const random: number = Math.floor(Math.random() * length);
+    const randomWordArr: Word[] = [];
+    const _words = JSON.parse((JSON.stringify(words)));
+
+
+    while (randomWordArr.length < 3) {
+        const random: number = Math.floor(Math.random() * _words.length);
         console.log(random)
-        if (!(randomArr.find(e => e === random))) {
-            randomWordArr[i] = words[random]
-        }
+        randomWordArr.push(_words[random]);
+        _words.splice(random, 1);
+
     }
-    console.log(randomWordArr)
+    console.log(randomWordArr);
+
 
     return randomWordArr;
 }
