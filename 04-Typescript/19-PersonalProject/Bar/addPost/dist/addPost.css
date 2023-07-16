@@ -1,12 +1,13 @@
 .addPost {
   position: relative;
   top: 20vh;
-  width: 450px;
+  max-width: 250px;
   height: 40vh;
+  margin: auto;
 }
 .addPost__select {
   position: relative;
-  left: 35%;
+  left: 50px;
   width: 100px;
   height: 6vh;
   border-radius: 10px;
@@ -27,7 +28,7 @@
 .addPost__enterNewImage {
   position: relative;
   top: 25vh;
-  left: -35%;
+  left: 50px;
   width: 100px;
   height: 50px;
   border-radius: 20px;
