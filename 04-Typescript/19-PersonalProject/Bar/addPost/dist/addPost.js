@@ -1,7 +1,4 @@
-//get the users and the imagse from local storage.
-// console.log(imagesArray);
 //create a new post(image).
-//Error free.
 function renderAddNewPost(users, rootElement) {
     try {
         if (!rootElement)
@@ -20,7 +17,6 @@ function renderAddNewPost(users, rootElement) {
 renderAddNewPost(usersArray, document.querySelector('#addPost'));
 //get the new post from the form, and add it to the user.
 //render it in 'showPosts'.
-//Error free.
 function handleAddNewPost(event) {
     try {
         if (!event)

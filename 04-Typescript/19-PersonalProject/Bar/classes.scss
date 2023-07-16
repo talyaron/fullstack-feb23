@@ -1,19 +1,10 @@
-//#Element
-// $element_position: relative;
-// $element_margin: auto;
-// $element_width: 400px;
-// $element_height: 100%;
-// $element_background-color: black;
-// $element_border-radius: 10px;
-// $element_box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
-
 @import './profile/profile.scss';
 @import './addPost/addPost.scss';
 
 .wrapper {
     position: relative;
-    width: 400px;
-    height: 150vh;
+    max-width: 1200px;
+    height: 100vh;
     margin: auto;
     color: white;
     background-color: black;
@@ -35,3 +26,5 @@
         color: white;
     }
 }
+
+//breakpoint - 735px
