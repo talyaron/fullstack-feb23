@@ -62,13 +62,14 @@ form {
 
 .errows_rightToLeft {
   clip-path: polygon(52% 11%, 39% 37%, 100% 41%, 100% 57%, 39% 65%, 50% 90%, 0% 50%);
-  top: 300px;
+  top: 50%;
   animation: moveRight 5s linear infinite;
 }
 
 .errows_leftToRight {
   clip-path: polygon(0 47%, 58% 43%, 49% 18%, 100% 50%, 51% 89%, 59% 66%, 0 65%);
   animation: moveLeft 5s linear infinite;
+  top: 33%;
 }
 
 .bomb {
@@ -111,6 +112,14 @@ form {
   position: absolute;
 }
 
+.endStage {
+  position: absolute;
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+  background-color: cadetblue;
+  height: 20px;
+  width: 20px;
+}
+
 @keyframes jump {
   0% {
     transform: translate3d(0, 0, 0);
@@ -124,18 +133,18 @@ form {
 }
 @keyframes moveRight {
   0% {
-    transform: translateX(100%);
+    transform: translateX(66vh);
   }
   100% {
-    transform: translateX(0%);
+    transform: translateX();
   }
 }
 @keyframes moveLeft {
   0% {
-    transform: translateX(-100%);
+    transform: translateX();
   }
   100% {
-    transform: translateX(0%);
+    transform: translateX(66vh);
   }
 }
 @keyframes blink {

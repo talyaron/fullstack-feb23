@@ -36,22 +36,17 @@ function handleAddNewPost(event: Event | any) {
     const userId = event.target.elements.userId.value;
     const image = event.target.elements.image.value;
 
-    // const user: User | undefined = usersArray.find((u) => u.id === userId);
-    const selectedUserImg: UsersImg | undefined = usersImgArray.find((userImg) => userImg.user.id === userId);
+    const user: User | undefined = usersArray.find((u) => u.id === userId);
 
+    if (!user) throw new Error('User not found');
 
-    // if (!user) throw new Error('User not found');
-    if (!selectedUserImg) throw new Error('User not found');
-
-
-    // const newImg = new Img(image);
-    // user.images.push(newImg);
     const newImg = new Img(image);
-    selectedUserImg.image.push(newImg);
+    user.imagse.push(newImg);
 
     saveImgToLocalStorage(imagesArray);
     saveUserToLocalStorage(usersArray);
     saveUsersImgToLocalStorage(usersImgArray);
+    console.log(usersArray);
 
     //render the new post in 'showPosts'
     showPosts(document.querySelector('#posts'), usersArray);

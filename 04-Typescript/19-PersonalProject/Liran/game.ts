@@ -1,7 +1,8 @@
 interface Star {
     name: string,
     imageUrl: string,
-    value: number
+    value: number,
+    functionDuration: number | null;
 }
 
 interface Sword {
@@ -19,13 +20,13 @@ const swords: Sword[] = [
 
 
 const stars: Star[] = [
-    { name: "blueStar", imageUrl: "./blueStar.jpg", value: 1 },
-    { name: "colorStar", imageUrl: "./colorStar.jpg", value: 20 },
-    { name: "greenStar", imageUrl: "./greenStar.png", value: 1 },
-    { name: "lightStar", imageUrl: "./lightStar.jpg", value: 1 },
-    { name: "rainbowStar", imageUrl: "./rainbowStar.jpg", value: 10 },
-    { name: "superStar", imageUrl: "./superStar.jpg", value: 15 },
-    { name: "yellowStar", imageUrl: "./yellowStar.jpg", value: 1 }
+    { name: "blueStar", imageUrl: "./blueStar.jpg", value: 1, functionDuration: null },
+    { name: "colorStar", imageUrl: "./colorStar2.png", value: 20, functionDuration: null },
+    { name: "greenStar", imageUrl: "./greenStar.png", value: 1, functionDuration: null },
+    { name: "lightStar", imageUrl: "./lightStar.jpg", value: 1, functionDuration: null },
+    { name: "rainbowStar", imageUrl: "./rainbowStar.jpg", value: 10, functionDuration: null },
+    { name: "superStar", imageUrl: "./superStar.jpg", value: 15, functionDuration: null },
+    { name: "yellowStar", imageUrl: "./yellowStar.jpg", value: 1, functionDuration: null }
 
 ]
 
@@ -34,21 +35,53 @@ localStorage.setItem("stars", JSON.stringify(stars));
 
 class Player {
     id: string;
-    numOfGames: number;
-    record: number;
-    currentScore: number;
+    numOfGames: number = 0;
+    record: number = 0;
+    currentScore: number = 0;
+    isActive: boolean;
     constructor(public firstName: string,
         public lastName: string,
+        public swordColor: string,
         id?: string | null,
         numOfGames?: number | undefined,
         record?: number | undefined,
-        currentScore?: number | undefined
+        currentScore?: number | undefined,
+        isActive?: boolean | undefined
     ) {
-        this.id = `id-${new Date().getTime()}-${Math.random()}`;
+        this.id = (id) ? `id-${new Date().getTime()}-${Math.random()}` : this.id;
+        this.record = (record !== undefined) ? record : this.record;
+        this.numOfGames = (numOfGames !== undefined) ? numOfGames : this.numOfGames;
+        this.currentScore = (currentScore !== undefined) ? currentScore : this.currentScore;
+        this.isActive = (isActive !== undefined) ? isActive : this.isActive;
+    }
+
+    updateScore(starValue: number) {
+        try {
+            this.currentScore += starValue;
+        } catch (error) {
+            console.error(error)
+        }
+    }
+
+    setIsActive(set: boolean) {
+        this.isActive = set;
     }
 }
 
 const players: Player[] | undefined = getPlayerFromStorage();
+debugger;
+if (players !== undefined && players.length > 0) {
+    if (players[players?.length - 1].isActive) {
+        renderPlayer(players[players.length - 1].swordColor);
+        renderGamePanel();
+    }
+    else
+    renderLogPanel();
+
+
+}
+else
+    renderLogPanel();
 
 function getPlayerFromStorage(): Player[] | undefined {
     try {
@@ -59,13 +92,16 @@ function getPlayerFromStorage(): Player[] | undefined {
         const storageArray = JSON.parse(storageString);
         //convert array of objects to array of Card | Player
         const plyers: Player[] = storageArray.map((player: Player) => {
+
             return new Player(
                 player.firstName,
                 player.lastName,
+                player.swordColor,
                 player.id,
                 player.numOfGames,
                 player.record,
-                player.currentScore
+                player.currentScore,
+                player.isActive
             );
         });
         return plyers;
@@ -76,7 +112,6 @@ function getPlayerFromStorage(): Player[] | undefined {
     }
 
 }
-let timerRef = document.querySelector(`#timerDisplay`);
 
 function hundelSubmit(ev: any) {
     try {
@@ -85,10 +120,11 @@ function hundelSubmit(ev: any) {
         const firstName = ev.target.firstName.value;
         const lastName = ev.target.lastName.value;
         const selectSword = document.querySelector("#swordList") || new HTMLSelectElement();
-        let swordColor;
+        let swordColor: string;
         if (!selectSword) throw new Error("Can't cath sword List");
         swordColor = selectSword.value;
-        const player = new Player(firstName, lastName);
+        const player = new Player(firstName, lastName, swordColor);
+        player.setIsActive(true);
         if (!player) throw new Error("Player missing info")
         players?.push(player)
         localStorage.setItem("players", JSON.stringify(players));
@@ -101,26 +137,84 @@ function hundelSubmit(ev: any) {
     }
 }
 
+let timeIntervalID: number;
+
 function hundelStart(ev: any) {
     try {
-
         ev.preventDefault();
+        debugger;
+        const operation = ev.target.name
+        switch (operation) {
+            case "start":
+                // const pageRef = document.querySelector("#highScorePage") as HTMLElement;
+                // if (!pageRef) throw new Error("Missing page ref");
+                // pageRef.style.pointerEvents = "none";
+                const button = document.getElementById("startGame") as any;
+                if (!button) throw new Error("No start game button");
+                button.disabled = true;
+                timeIntervalID = setInterval(displayTimer, 10);
+                renderStars(document.querySelector(`.screen__game`)); break;
+            case "leave":
+                if (players) {
+                    players[players?.length - 1].setIsActive(false);
+                    localStorage.setItem("players", JSON.stringify(players));
+                    location.href = "./scoreTable.html";
+                }
 
-        setInterval(displayTimer, 10);
-        renderStars(document.querySelector(`.screen__game`));
+        }
 
     } catch (error) {
         console.error(error);
     }
 }
 
+function renderGameScreen(end: boolean, screen: HTMLElement) {
+    try {
+        if (!screen) throw new Error("No game screen to render");
+        if (end) {
+            if (players === undefined) throw new Error("No players")
+            const player = players[players?.length - 1];
+            screen.innerHTML = `<div class="screen__end screen__end--img"></div>
+            <h1 class="screen__end screen__end--finalScore" id="finalScoreBord">Final Score: ${player.currentScore}</h1>`
+            endOfGame(player);
+
+        }
+    } catch (error) {
+        console.error(error)
+    }
+}
+
 function renderStars(screen: HTMLDivElement | null) {
     try {
+        if (!screen) throw new Error("Can't catch game screen");
 
-        if (!screen) throw new Error("Can't cath game screen");
-        const html = stars.map(star => renderStar(star)).join(' ');
-        screen.innerHTML += html;
-        animateStars();
+        const element = document.querySelector(".screen__game");
+        if (!element) throw new Error("Can't catch game screen");
+
+        const rect = element.getBoundingClientRect();
+
+        stars.forEach(star => {
+            const starElement = document.createElement('img');
+            starElement.src = `./dist/${star.imageUrl}`;
+            starElement.id = star.name;
+            starElement.classList.add('star');
+            starElement.style.top = '-100px';
+            starElement.style.visibility = "visibile";
+            starElement.style.left = `${Math.random() * ((rect.y + rect.width) - rect.y) + rect.y}px`;
+
+            screen?.appendChild(starElement);
+
+            starElement.addEventListener('animationend', () => {
+                // starElement.style.left = `${Math.random() * ((rect.y + rect.width) - rect.y) + rect.y}px`;
+                // starElement.style.animationDuration = `${Math.random() * (3 - 1.5) + 1.5}s`;
+                console.log(`Animation iteration ended for ${star.name}`);
+            });
+
+            starElement.style.animationDuration = `${Math.random() * (3 - 1.5) + 1.5}s`;
+            starElement.style.animationPlayState = 'running';
+        });
+
+        checkOverlapInBackground();
     } catch (error) {
         console.error(error);
     }
@@ -128,15 +222,14 @@ function renderStars(screen: HTMLDivElement | null) {
 
 function renderStar(star: Star | undefined) {
     try {
-        debugger;
+
         if (!star) throw new Error('start is required');
         const screen = document.querySelector(`.screen__game`)
         if (!screen) throw new Error("Can't cath game screen");
         const rect = screen.getBoundingClientRect();
-        const top = "-15%";
-        const left = Math.random() * 100;
-        console.log(left);
-        return `<img src="./dist/${star.imageUrl}" name="${star.name}" class="star"; style="top:${top}; left:${left}%;">`
+        const top = "-100px";
+        const left = Math.random() * ((rect.y + (rect.width - 100)) - rect.y) + rect.y;
+        return `<img src="./dist/${star.imageUrl}" id="${star.name}" class="star"; style="top:${top}; left:${left}px;">`
     } catch (error) {
         console.error(error)
     }
@@ -166,7 +259,7 @@ function renderLogPanel() {
     try {
         const panel = document.querySelector(".screen__UI");
         if (!panel) throw new Error("Can't cath screen UI");
-        const html = `<h1>Hello</h1>
+        const html = `<h1>Welcome</h1>
         <form id="newPlayer" onsubmit="hundelSubmit(event)">
             <input type="text" name="firstName" placeholder="First Name" required>
             <input type="text" name="lastName" placeholder="Last Name" required>
@@ -177,7 +270,10 @@ function renderLogPanel() {
                 <option style="color:white" value="whiteSword">White sword</option>
             </select> 
             <input type="submit" name="submit" value="Go">
-        </form>`;
+        </form>
+        <a href="./instructions.html">Game Instructions</a>`;
+        
+        
         panel.innerHTML = html;
     } catch (error) {
         console.error(error)
@@ -188,12 +284,9 @@ let [milliseconds, seconds, minutes, hours] = [0, 0, 0, 0];
 
 function renderGamePanel() {
     try {
-
         const panel = document.querySelector(".screen__UI");
         if (!panel) throw new Error("Can't cath screen UI");
         if (!players) throw new Error("No players");
-
-        //  setInterval(displayTimer,10);
 
 
         [milliseconds, seconds, minutes, hours] = [0, 0, 0, 0];
@@ -202,15 +295,20 @@ function renderGamePanel() {
         const player = players[players?.length - 1].firstName;
         const html = `<h1>Hello ${player}</h1>
         <form id="game" onclick="hundelStart(event)">
-            <input type="button" name="start" value="Start">
+        <input type="button" name="start" id="startGame" value="Start">
+        <input type="button" name="leave" id="exit" value="Exit">
         </form>
         <div class="container">
                 <div id="timerDisplay">00:000</div>
-            </div>`;
+            </div>
+            <a href="./scoreTable.html">High Scored Table</a>
+            <a href="./instructions.html">Game Instructions</a>`;
+
         panel.innerHTML = html;
+        const timerRef = document.querySelector(`#timerDisplay`);
         if (!timerRef) throw new Error("No clock");
 
-        timerRef.innerHTML = `00 : 00 : 00 : 000 `;
+        timerRef.innerHTML = `00 : 000 `;
     } catch (error) {
         console.error(error)
     }
@@ -219,116 +317,197 @@ function renderGamePanel() {
 
 const fighter = document.querySelector('#fighter') as HTMLDivElement;
 
-document.addEventListener('keyup', (event: KeyboardEvent) => {
+
+document.addEventListener('keydown', (event: KeyboardEvent | any) => {
     try {
-        //if arrow up go up. if arrow down go down...
-        event.preventDefault();
-        console.log(event);
-        const element = document.querySelector(".screen__game");
-        if (!element) throw new Error("Can't cath game screen");
-        const rect = element.getBoundingClientRect();
 
-        switch (event.key || event.ctrlKey) {
-            case 'ArrowLeft':
-                if (event.shiftKey == true) {
-                    fighter.style.left = `${fighter.offsetLeft - 80}px`;
-                } else {
-                    if ((fighter.offsetLeft - 40) >= rect.y + 80) {
-                        fighter.style.left = `${fighter.offsetLeft - 40}px`;
-                    }
-                    fighter.style.transform = `scaleX(1)`;
-
-                }
-                break;
-            case 'ArrowRight':
-                if (event.shiftKey == true) {
-                    fighter.style.left = `${fighter.offsetLeft + 80}px`;
-                } else {
-                    if ((fighter.offsetLeft + 40) <= rect.y - 70 + rect.width) {
-                        fighter.style.left = `${fighter.offsetLeft + 40}px`;
-                    }
-                    fighter.style.transform = `scaleX(-1)`;
-                }
-                break;
-            case ` `:
-                const sword = document.querySelector('#sword') as HTMLDivElement;
-                if (!sword) throw new Error("Can't cath sword DOM");
-                sword.style.rotate = `0deg`;
-                sword.style.top = `-110px`;
-                sword.style.left = `90px`;
-
-
-        }
-
-    } catch (error) {
-        console.error(error)
-    }
-});
-
-
-document.addEventListener('keydown', (event: KeyboardEvent|any) => {
-    try {
         event.preventDefault();
         const sword = document.querySelector('#sword') as HTMLDivElement;
         const newPlayer = document.querySelector('#newPlayer') as HTMLDivElement;
+        const element = document.querySelector(".screen__game");
+        if (!element) throw new Error("Can't cath game screen");
         if (!sword && !newPlayer) throw new Error("Can't cath sword DOM");
-        debugger;
+        const rect = element.getBoundingClientRect();
         console.dir(event);
-        if(event)
-            if (event.target === "input") {
-                newPlayer.innerText += event.key;
+        const key = event.key;
+        const reg = new RegExp(/^[a-zA-Z]+$/)
+        if (event && (event.target.name == "firstName" || event.target.name == "lastName" && event.key)) {
+            if (event.target.name == "firstName") {
+                if (key !== undefined && key.length == 1 && reg.test(key)) {
+                    newPlayer[0].value += event.key;
+                }
+                else if (key == "Backspace") {
+                    if (newPlayer[0].value.length > 0) {
+                        const str: string = newPlayer[0].value;
+                        newPlayer[0].value = str.substring(0, str.length - 1);
+                    }
+                }
             }
-        console.log(event);
-        switch (event.key || event.ctrlKey) {
+            if (event.target.name == "lastName" && event.key) {
+                if (key !== undefined && key.length == 1 && reg.test(key)) {
+                    newPlayer[1].value += event.key;
+                }
+                else if (key == "Backspace") {
+                    if (newPlayer[1].value.length > 0) {
+                        const str: string = newPlayer[1].value;
+                        newPlayer[1].value = str.substring(0, str.length - 1);
+                    }
+                }
+            }
+        }
+        else {
 
-            case ` `:
-                sword.style.rotate = `-65deg`;
-                sword.style.top = `${sword.offsetTop + 30}px`;
-                sword.style.left = `${sword.offsetLeft - 60}px`;
+            switch (event.key || event.ctrlKey || event.target.name) {
+                case 'ArrowLeft':
+                    if (event.shiftKey == true) {
+                        if ((fighter.offsetLeft - 80) >= (rect.x - 190))
+                            fighter.style.left = `${fighter.offsetLeft - 80}px`;
+                    } else {
+                        if ((fighter.offsetLeft - 40) >= (rect.x - 190)) {
+                            fighter.style.left = `${fighter.offsetLeft - 40}px`;
+                        }
+                        fighter.style.transform = `scaleX(1)`;
+
+                    }
+                    break;
+                case 'ArrowRight':
+                    if (event.shiftKey == true) {
+
+                        if ((fighter.offsetLeft + 80) <= rect.right - 300)
+                            fighter.style.left = `${fighter.offsetLeft + 80}px`;
+                    } else {
+                        if ((fighter.offsetLeft + 40) <= (rect.right - 300)) {
+                            fighter.style.left = `${fighter.offsetLeft + 40}px`;
+                        }
+                        fighter.style.transform = `scaleX(-1)`;
+                    }
+                    break;
+                case ` `:
+                    sword.style.rotate = `-90deg`;
+                    sword.style.top = `-30px`;
+                    sword.style.left = `18px`;
+                    setTimeout(function () {
+                        sword.style.rotate = `0deg`;
+                        sword.style.top = `-110px`;
+                        sword.style.left = `85px`;
+                    }, 100);
+
+            }
 
         }
+
 
     } catch (error) {
         console.error(error)
     }
 });
-function displayTimer() {
 
+function displayTimer() {
     const timerRef = document.querySelector(`#timerDisplay`) as HTMLDivElement;
     try {
-        console.dir(timerRef);
         milliseconds += 10;
         if (milliseconds == 1000) {
             milliseconds = 0;
             seconds++;
             if (seconds == 60) {
-                seconds = 0;
+                milliseconds = 0;
+                renderGameScreen(true, document.querySelector(`.screen__end`) as HTMLDivElement)
             }
         }
-        if (seconds == 50) timerRef.style.boxShadow = "0 0 20px rgba(242, 6, 6, 0.921)"
+        if (seconds == 50) timerRef.style.boxShadow = "0 0 20px rgba(242, 6, 6, 0.921)";
         let s = seconds < 10 ? "0" + seconds : seconds;
         let ms = milliseconds < 10 ? "00" + milliseconds : milliseconds < 100 ? "0" + milliseconds : milliseconds;
-        if (!timerRef) throw new Error("Error")
+        if (!timerRef) throw new Error("Error");
         timerRef.innerHTML = ` ${s} : ${ms}`;
     } catch (error) {
         console.error(error)
     }
 }
 
-function animateStars() {
-    const fallingStar = [
-        {visibilty: "visible"},
-        { top:"25%" },
-        { top: "50%" },
-        { top: "75%" },
-        { top: "110%" },
-        { visbility: "hidden" }];
-      
-      const fallingStarTiming = {
-        duration: 2000,
-        iterations: 2,
-    };
-      
+function animateStars(star: Star, rect: DOMRect) {
+    try {
+        const s = document.getElementById(star.name);
+        if (!s) throw new Error("star missing");
+
+        s.style.animationDelay = `${Math.random() * (3 - 1.5) + 1.5}s`;
+        s.style.left = `${Math.random() * ((rect.y + rect.width) - rect.y) + rect.y}px`;
+        s.style.animationDuration = `${Math.random() * (3 - 1.5) + 1.5}s`;
+        s.style.animationPlayState = "running";
+    } catch (error) {
+        console.error(error);
+    }
+
+
+
+}
+function checkOverlapInBackground(): void {
+    try {
+        const element = document.querySelector(".screen__game");
+        const elementsToCheck = document.querySelectorAll('.star');
+        const mainElement = document.getElementById('fighter') as HTMLElement;
+        const interval = 50;
+        setInterval(() => {
+            elementsToCheck.forEach((element) => {
+                if (checkOverlap(mainElement, element)) {
+                    const elementDiv = document.getElementById(`${element.id}`) as HTMLElement;
+                    const boom = document.getElementById('boom') as HTMLElement;
+                    boom.style.left = `${elementDiv?.offsetLeft}px`;
+                    boom.style.top = `${elementDiv?.offsetTop}px`;
+                    boom.style.visibility = "visible";
+                    elementDiv.style.visibility = "hidden";
+                    if (players === undefined) throw new Error(`no players`);
+                    const currPlayer = players[players?.length - 1];
+                    const starHit = stars.find(star => star.name === element.id);
+                    if (!starHit) throw new Error(`star not found by id: ${element.id}`);
+                    currPlayer.updateScore(starHit.value);
+                    console.log(`hit ${element.id}, curren score is:${currPlayer.currentScore}`);
+
+                    setTimeout(function () {
+                        boom.style.left = `0px`;
+                        boom.style.top = `0px`;
+                        boom.style.visibility = "hidden";
+                    }, 500)
+                    setTimeout(function () {
+                        elementDiv.style.visibility = "visible";
+                    }, 1200)
+
+
+                    // Add your custom logic here   
+                }
+            });
+        }, interval);
+    } catch (error) {
+        console.error(error);
+    }
 }
 
-renderLogPanel();
+function checkOverlap(element1: HTMLElement, element2: any): boolean {
+    const rect1 = element1.getBoundingClientRect();
+    const rect2 = element2.getBoundingClientRect();
+
+    return (
+        rect1.left < rect2.right &&
+        rect1.right > rect2.left &&
+        rect1.top < rect2.bottom &&
+        rect1.bottom > rect2.top
+    );
+}
+
+function endOfGame(player: Player) {
+    try {
+        clearInterval(timeIntervalID);
+        debugger;
+        player.numOfGames++;
+        debugger;
+        player.record = (player.record < player.currentScore ? player.currentScore : player.record);
+        player.currentScore = 0;
+        localStorage.setItem("players", JSON.stringify(players));
+        setTimeout(function () {
+            location.href = "scoreTable.html";
+        }, 6000)
+    } catch (error) {
+
+    }
+}
+
+
