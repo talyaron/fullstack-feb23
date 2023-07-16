@@ -420,13 +420,7 @@ function displayTimer() {
             }
         }
         if (seconds === 50) {
-            const backgroundMusic = document.querySelector(`#backgroundMusic`) as HTMLAudioElement;
-            if (!backgroundMusic) throw new Error("Error with background music file");
-            backgroundMusic.pause();
-            backgroundMusic.currentTime = 0;
-            const audio = document.querySelector(`#countDown`) as HTMLAudioElement;
-            debugger;
-            audio.play();
+            countDownMusic();
             timerRef.style.boxShadow = "0 0 20px rgba(242, 6, 6, 0.921)";
         }
         let s = seconds < 10 ? "0" + seconds : seconds;
@@ -473,9 +467,8 @@ function checkOverlapInBackground(): void {
                     if ((elementDiv.style.visibility === "")) {
                         const boom = document.getElementById('boom') as HTMLElement;
                         if (!boom) throw new Error(`boom img not found`);
-                        const boomSound = document.querySelector(`#explosion`) as HTMLAudioElement;
+                        const boomSound = new Audio("./dist/boomSound.mp3")
                         if (!boomSound) throw new Error(`boom sound not found`);
-                        boomSound.pause();
                         boomSound.play();
                         boom.style.left = `${elementDiv?.offsetLeft}px`;
                         boom.style.top = `${elementDiv?.offsetTop}px`;
@@ -536,5 +529,15 @@ function endOfGame(player: Player) {
 
     }
 }
+
+function countDownMusic() { 
+    const backgroundMusic = document.querySelector(`#backgroundMusic`) as HTMLAudioElement;
+    if (!backgroundMusic) throw new Error("Error with background music file");
+    backgroundMusic.pause();
+    backgroundMusic.currentTime = 0;
+    const audio = document.querySelector(`#countDown`) as HTMLAudioElement;
+    audio.play();
+}
+
 
 
