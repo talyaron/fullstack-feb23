@@ -35,6 +35,8 @@ class Card {
 }
 //---------------------------Player--------------------
 class Player {
+  static playerCount = 0;
+
   constructor(
     public userName: string,
     public imgSrc: string = "",
@@ -46,6 +48,7 @@ class Player {
     public movesInRound: PlayerMovesOption[] = [],
     public lastBet: number = 0,
     public roundNumber = movesInRound.length - 1,
+    public turnNumber: number = Player.playerCount ++
   ) {
     this.pCards = this.pCards.map((c) => new Card(c.cardNumber, c.cardSign));
   }
@@ -76,11 +79,56 @@ class Player {
   doingTurn(activePlayers: Player[], thisIndex: number) {
     console.log(`${this.userName} is doing somethig......`);
 
-    let movesOptions:PlayerMovesOption[] = getMoveOption(activePlayers, thisIndex);
+    let movesOptions = getMoveOption(activePlayers, thisIndex);
+    let pointOfOptionalSet = getPointOfOptionalSet(this)
+    let sizeOfBet = getSizeOfBet(pointOfOptionalSet, this.chips)
 
-    // let ChanceToBet = getChanceToBet(this)
+    chooseMove(activePlayers, movesOptions, sizeOfBet, pointOfOptionalSet, this)
+}
+
+  checkMove(players: Player[]) {
+     {
+      this.movesInRound.push(PlayerMovesOption.check);
+      this.lastBet = 0;
+    }
+    localStorage.setItem("players", JSON.stringify(players));
+    //התור יעבור לבא אחריו
   }
 
+  foldMove(players: Player[]) {
+    this.movesInRound.push(PlayerMovesOption.fold);
+    this.lastBet = 0;
+    this.isActive = false;
+  
+    localStorage.setItem("players", JSON.stringify(players));
+    //התור יעבור לבא אחריו
+  }
+
+  callMove(players: Player[], currentPlayerIndex: number) {
+      this.movesInRound.push(PlayerMovesOption.call);
+      const betToCall = riseBetSizeInThisRound(players, currentPlayerIndex);
+
+      this.lastBet = betToCall;
+      dealerMoney += betToCall;
+      this.chips = this.chips - betToCall;
+  
+      localStorage.setItem("players", JSON.stringify(players));
+      localStorage.setItem("dealerMoney", JSON.stringify(dealerMoney));
+  }
+
+  riseMove(players: Player[], currentPlayerIndex: number, sizeOfBet: number) {
+    const currentPlayer = players[currentPlayerIndex];
+    this.movesInRound.push(PlayerMovesOption.rise);
+
+    this.lastBet = sizeOfBet;
+    dealerMoney += sizeOfBet;
+    this.chips -=  sizeOfBet;
+  
+    localStorage.setItem("players", JSON.stringify(players));
+    localStorage.setItem("dealerMoney", JSON.stringify(dealerMoney));
+
+    //התור יעבור לבא אחריו
+  }
 }
 
 enum PlayerMovesOption {
