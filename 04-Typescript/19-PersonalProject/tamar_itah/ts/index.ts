@@ -134,6 +134,10 @@ function heandelDelWord(ev: any) { //delete the word from array
     }
 }
 
+function heandelPlay() {
+    window.location.replace("./game.html")  //move to game page
+}
+
 //-----------------reander--------------------------------
 
 //render the user name to the game page
@@ -183,29 +187,52 @@ function renderBack() {
 
 //move to game
 function renderPlay() {
-    window.location.replace("./game.html")  //move to game page
-    
     const h1Instructions = document.querySelector('#instruction')!
     const instractions = `Match the word with its meaning 
                         <div id="score">your scor:${}</div>`  //show the score of the user un this game
     h1Instructions.innerHTML = instractions
 
     //call the random word function
-    const ranArr = randomWord() 
+    const ranArr = randomWord()
 
     const htmlroot = document.querySelector('#cards')
     if (!htmlroot) throw new Error("no root element");
-    const toHtml = `
-                <div class="wrapper">
-                    <div class="cards">
-                        <div id="c1" class="card c1">${ranArr[Math.floor(Math.random()*3)].enWord}</div>
-                        <div id="c2" class="card c2">${ranArr[Math.floor(Math.random()*3)].heWord}</div>
-                        <div id="c3" class="card c3">${ranArr[Math.floor(Math.random()*3)].heWord}</div>
-                        <div id="c4" class="card c4">${ranArr[Math.floor(Math.random()*3)].heWord}</div>                        
-                    </div>
-                    <button id="finish" class="btnF" onclick="renderFinish()">Finish</button>
-                </div>
-                 `;
+    console.log(htmlroot)
+
+    const optiomArr: string[] = []
+
+    optiomArr[0] = `<div id="c1" class="card c1">${ranArr[0].enWord}</div>
+                    <div id="c2" class="card c2">${ranArr[1].heWord}</div>
+                    <div id="c3" class="card c3">${ranArr[2].heWord}</div>
+                    <div id="c4" class="card c4">${ranArr[3].heWord}</div>  
+                    `;
+    optiomArr[1] = `<div id="c1" class="card c1">${ranArr[0].enWord}</div>
+                    <div id="c2" class="card c2">${ranArr[1].heWord}</div>
+                    <div id="c3" class="card c3">${ranArr[3].heWord}</div>
+                    <div id="c4" class="card c4">${ranArr[2].heWord}</div>  
+                    `;
+    optiomArr[2] = `<div id="c1" class="card c1">${ranArr[0].enWord}</div>
+                    <div id="c2" class="card c2">${ranArr[2].heWord}</div>
+                    <div id="c3" class="card c3">${ranArr[1].heWord}</div>
+                    <div id="c4" class="card c4">${ranArr[3].heWord}</div>  
+                    `;
+    optiomArr[3] = `<div id="c1" class="card c1">${ranArr[0].enWord}</div>
+                    <div id="c2" class="card c2">${ranArr[2].heWord}</div>
+                    <div id="c3" class="card c3">${ranArr[3].heWord}</div>
+                    <div id="c4" class="card c4">${ranArr[1].heWord}</div>  
+                    `;
+    optiomArr[4] = `<div id="c1" class="card c1">${ranArr[0].enWord}</div>
+                    <div id="c2" class="card c2">${ranArr[3].heWord}</div>
+                    <div id="c3" class="card c3">${ranArr[1].heWord}</div>
+                    <div id="c4" class="card c4">${ranArr[2].heWord}</div>  
+                    `;
+    optiomArr[5] = `<div id="c1" class="card c1">${ranArr[0].enWord}</div>
+                    <div id="c2" class="card c2">${ranArr[3].heWord}</div>
+                    <div id="c3" class="card c3">${ranArr[2].heWord}</div>
+                    <div id="c4" class="card c4">${ranArr[1].heWord}</div>  
+                    `;
+    const toHtml = optiomArr[Math.floor(Math.random()*5)]
+
     htmlroot.innerHTML = toHtml
 }
 
@@ -220,7 +247,7 @@ function randomWord() {
     const length = words.length;
     const randomWordArr: Word[] = [];
     let i: number;
-    const randomArr: number[] =[];
+    const randomArr: number[] = [];
 
     for (i = 0; i < 3; i++) {
         const random: number = Math.floor(Math.random() * length);
