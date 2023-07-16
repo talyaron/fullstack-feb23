@@ -11,11 +11,13 @@ body {
 }
 
 hr {
-  background-color: rgba(246, 66, 66, 0.541);
+  background-color: rgba(248, 248, 248, 0.541);
   width: 7vw;
   margin: 5px;
   border-radius: 20px;
   height: 0.5vw;
+  -webkit-animation: focus-in-contract-bck 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  animation: focus-in-contract-bck 4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
 
 .container {
@@ -27,8 +29,7 @@ hr {
 .container h1 {
   -webkit-animation: focus-in-contract-bck 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
   animation: focus-in-contract-bck 4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-  width: 100%;
-  font-size: 4vw;
+  font-size: 5vw;
   text-align: center;
   color: #FF8066;
 }
@@ -39,10 +40,12 @@ hr {
   flex-direction: column;
 }
 .container__form h2 {
+  -webkit-animation: focus-in-contract-bck 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  animation: focus-in-contract-bck 4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
   width: 100%;
-  font-size: 2vw;
+  font-size: 4vw;
   text-align: center;
-  color: #efefef;
+  color: #ede052;
 }
 .container__form input {
   width: 19vw;
@@ -107,7 +110,6 @@ hr {
 }
 @-webkit-keyframes focus-in-contract-bck {
   0% {
-    letter-spacing: 1em;
     -webkit-transform: translateZ(300px);
     transform: translateZ(300px);
     -webkit-filter: blur(12px);
@@ -122,9 +124,8 @@ hr {
     opacity: 1;
   }
 }
-@keyframes h1 {
+@keyframes focus-in-contract-bck {
   0% {
-    letter-spacing: 1em;
     -webkit-transform: translateZ(300px);
     transform: translateZ(300px);
     -webkit-filter: blur(12px);

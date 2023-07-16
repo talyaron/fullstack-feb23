@@ -4,10 +4,6 @@
 
 class Vegetable {
     id: string;
-<<<<<<< HEAD
-    isEdit: boolean = false;
-=======
->>>>>>> 75a64492dae336481a89fa1bda69043756a1807a
     constructor(public kind: string, public image: string, public quantity: number, id?: string | null) {
         if (id) {
             this.id = id;
@@ -15,13 +11,6 @@ class Vegetable {
             this.id = `id-${new Date().getTime()}-${Math.random()}`;
         }
     }
-<<<<<<< HEAD
-
-    setEdit(set: boolean) {
-        this.isEdit = set;
-    }
-=======
->>>>>>> 75a64492dae336481a89fa1bda69043756a1807a
 }
 
 
@@ -86,32 +75,6 @@ function renderAllVegetables(vegetables: Vegetable[], htmlElement: HTMLElement |
 function renderVegCard(vegetable: Vegetable) {
 
     try {
-<<<<<<< HEAD
-        debugger
-        if (vegetable.isEdit) {
-            return  `<form  class="card" onsubmit="handleSet(event)" id="${vegetable.id}">
-        <img src="${vegetable.image}">
-        <input type="text" name="kind" value="${vegetable.kind}">
-        <input type="text" name="quantity" value="${vegetable.quantity}">
-        
-        <button onclick="handleDeleteVeg('${vegetable.id}')">Delete</button>
-        <input type="submit" value="SET">
-    </form>`
-
-
-        } else {
-            return `<form  class="card" id="${vegetable.id}">
-            <img src="${vegetable.image}">
-            <p>${vegetable.kind}</p>
-            <p>${vegetable.quantity}</p>
-        
-        <button onclick="handleDeleteVeg('${vegetable.id}')">Delete</button>
-        <button onclick="handleEdit('${vegetable.id}')">Edit</button>
-       
-    </form>`
-        }
-
-=======
 
         return `<div class="card"> 
         <img src="${vegetable.image}">
@@ -119,53 +82,11 @@ function renderVegCard(vegetable: Vegetable) {
         <p>${vegetable.quantity}</p>
         <button onclick="handleDeleteVeg('${vegetable.id}')">Delete</button>
         </div>`
->>>>>>> 75a64492dae336481a89fa1bda69043756a1807a
 
     } catch (error) {
         console.error(error)
         return ''
     }
-<<<<<<< HEAD
-
-}
-function handleSet(ev:any){
-    try {
-        debugger
-    ev.preventDefault();
-    const quantity = ev.target.quantity.value;
-    const kind = ev.target.kind.value;
-    const vegId: string = ev.target.id;
-
-    const vegi: Vegetable | undefined = vegetables.find(
-      (vegi) => vegi.id === vegId
-    );
-    if (!vegi) throw new Error("couldnt find friend");
-    vegi.kind = kind;
-    vegi.quantity = quantity;
-    vegi.setEdit(false);
-    console.log(vegi);
-    localStorage.setItem("vegetables", JSON.stringify(vegetables));
-    renderAllVegetables(vegetables, document.querySelector("#rootVegetables"));
-       
-
-
-    } catch (error) {
-        console.error(error);
-        
-    }
-}
-
-function handleDeleteVeg(vegId: string) {
-    try {
-        const index = vegetables.findIndex(vegetable => vegetable.id === vegId);
-        if (index === -1) throw new Error("Could not find vegetable");
-
-        vegetables.splice(index, 1);
-        localStorage.setItem("vegetables", JSON.stringify(vegetables))
-
-        renderAllVegetables(vegetables, document.querySelector("#rootVegetables"))
-
-=======
 }
 
 function handleDeleteVeg(vegId: string){
@@ -178,27 +99,8 @@ function handleDeleteVeg(vegId: string){
 
         renderAllVegetables(vegetables, document.querySelector("#rootVegetables"))
  
->>>>>>> 75a64492dae336481a89fa1bda69043756a1807a
     } catch (error) {
         console.error(error)
 
     }
-<<<<<<< HEAD
-}
-
-function handleEdit(vegetableId:string){
-    try {
-        debugger
-        const vegetable = vegetables.find(vegetable => vegetable.id === vegetableId)
-        if(!vegetable) throw new Error ("Could not find vegetable")
-       
-
-        vegetable.setEdit(true);
-        renderAllVegetables(vegetables, document.querySelector("#rootVegetables"))
-    } catch (error) {
-        console.error(error)
-        
-    }
-=======
->>>>>>> 75a64492dae336481a89fa1bda69043756a1807a
 }

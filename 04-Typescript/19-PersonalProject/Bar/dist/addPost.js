@@ -13,8 +13,4 @@ function addNewPost(user, HTMLElement) {
         console.error(error);
     }
 }
-<<<<<<< HEAD
-addNewPost(userImgArray, document.querySelector('#addPost'));
-=======
 addNewPost(usersArray, document.querySelector('#addPost'));
->>>>>>> 75a64492dae336481a89fa1bda69043756a1807a
