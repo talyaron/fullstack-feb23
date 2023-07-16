@@ -183,7 +183,6 @@ function loadQuestionGoodThings() {
 }
 function loadQuestionBadThings() {
     try {
-        debugger;
         var badThings_1 = [];
         var badThingsString = localStorage.getItem('badThings');
         if (!badThingsString) { // if there is not characters on json , create new []
@@ -227,7 +226,6 @@ function loadBoards() {
 }
 function startNewGame(boards) {
     try {
-        debugger;
         if (!boards)
             throw new Error("Cant Find Boards Array");
         // Create a new board
@@ -272,7 +270,6 @@ function loadDataToBoard(board) {
         if (goodThings) {
             board.goodThings = goodThings;
         }
-        debugger;
         // Load bad things and add them to the board
         var badThings = loadQuestionBadThings();
         if (badThings) {
@@ -302,7 +299,6 @@ function renderHomePage(gamesBoards, characters) {
         input_1.type = "number";
         input_1.min = "2";
         input_1.max = "6";
-        // Append the label and input to the form
         // Create the "Start Game" button
         var startButton = document.createElement("button");
         startButton.textContent = "Start Game";
@@ -326,8 +322,6 @@ function renderHomePage(gamesBoards, characters) {
             var numPlayers = parseInt(input_1.value, 10);
             renderCharacterDropdowns(numPlayers, characters);
         });
-        // Append the form to the startNewGame HTML element
-        //startNewGameHtml.appendChild(form);
         // Check if there is an open game board
         var openGameBoard = gamesBoards.find(function (board) { return board.gameStatus === true; });
         if (openGameBoard) {
@@ -340,7 +334,7 @@ function renderHomePage(gamesBoards, characters) {
                 window.location.href = "./ActiveGame.html";
             });
         }
-        // Create the "renderCharacterDropdowns" button
+        // Append the form to the startNewGame HTML element  
         else
             startNewGameHtml.appendChild(form);
     }
@@ -432,7 +426,6 @@ function handelStartGame(numPlayers, gamesBoards, selectedCharacters) {
     try {
         var ChractersForm = document.querySelector("#ChractersForm");
         if (!ChractersForm) {
-            alert("Must pic characters");
             throw new Error("Cannot find ChractersForm");
         }
         if (!gamesBoards)
@@ -440,12 +433,18 @@ function handelStartGame(numPlayers, gamesBoards, selectedCharacters) {
         //check if there is open game befor open new one
         var openGame = gamesBoards.find(function (board) { return board.gameStatus === true; });
         if (openGame) {
+            // dialog alert
             alert("There is an open game already");
         }
         else {
             var allCharactersSelected = selectedCharacters.length === numPlayers;
             if (!allCharactersSelected) {
-                alert("Must select characters for all players");
+                var dialog_1 = document.createElement('dialog');
+                dialog_1.id = 'dialog';
+                dialog_1.innerHTML = 'Must select characters for all players';
+                dialog_1.addEventListener('click', function () { return dialog_1.close(); });
+                document.body.appendChild(dialog_1);
+                dialog_1.showModal();
                 return; // Stop execution if not all characters are selected
             }
             startNewGame(gamesBoards);

@@ -31,7 +31,7 @@ function login(event) {
   window.location.href = "../web/web.html";
 }
 
-const root = document.querySelector("#root");
+const root: Element | null= document.querySelector("#root");
 const storedData = JSON.parse(localStorage.getItem("user"));
 const lastDetails = storedData[storedData.length - 1];
-root?.innerHTML = `Hello ${lastDetails.name}`;
+root.innerHTML = `Hello ${lastDetails.name}`;

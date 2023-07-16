@@ -1,3 +1,39 @@
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
 //Active Game ts .......
 function loadBoardsAGpage() {
     try {
@@ -16,6 +52,7 @@ function loadBoardsAGpage() {
     }
 }
 function renderBoard(currentGame) {
+    // Get the board container element 
     var boardContainer = document.getElementById('Board');
     if (!boardContainer) {
         console.error('Board container not found');
@@ -75,6 +112,7 @@ function renderBoard(currentGame) {
         matrix[0][i].id = "cell" + counter; // Set the cell content to the counter value
         counter++; // Increment the counter
     }
+    //set all the cells in the board  
     // set jails
     var jails = currentGame.jails;
     var JailIndex = 0;
@@ -94,24 +132,29 @@ function renderBoard(currentGame) {
     players.forEach(function (player) {
         putPlayerOnBoard(player);
     });
-    debugger;
     // set Good surprises
     setGoodSurprises();
     // set bad surprises
     setBadSurprises();
-    setBadBTNForRandom(currentGame.badThings);
+    // set random suprise btn 
+    setBadBtnForRandom(currentGame.badThings);
+    setGoodBtnForRandom(currentGame.goodThings);
 }
 function setGoodSurprises() {
     try {
         //create button for each cell
         var goodS1 = document.createElement('button');
         goodS1.classList.add('goodS');
+        goodS1.id = 'goodS1';
         var goodS2 = document.createElement('button');
         goodS2.classList.add('goodS');
+        goodS2.id = 'goodS2';
         var goodS3 = document.createElement('button');
         goodS3.classList.add('goodS');
+        goodS3.id = 'goodS3';
         var goodS4 = document.createElement('button');
         goodS4.classList.add('goodS');
+        goodS4.id = 'goodS4';
         var cell1 = document.getElementById('cell33');
         if (!cell1)
             throw new Error("cant find cell33");
@@ -138,10 +181,13 @@ function setBadSurprises() {
         //create button for each cell
         var BadS1 = document.createElement('button');
         BadS1.classList.add('BadS');
+        BadS1.id = 'BadS1';
         var BadS2 = document.createElement('button');
         BadS2.classList.add('BadS');
+        BadS2.id = 'BadS2';
         var BadS3 = document.createElement('button');
         BadS3.classList.add('BadS');
+        BadS3.id = 'BadS1';
         var cell1 = document.getElementById('cell32');
         if (!cell1)
             throw new Error("cant find cell32");
@@ -159,14 +205,15 @@ function setBadSurprises() {
         console.error(error);
     }
 }
-function setBadBTNForRandom(badThings) {
+function setBadBtnForRandom(badThings) {
     //on click btn will render random suprise
     try {
-        var bads = document.getElementById('2-6');
+        var bads = document.getElementById('2-7');
         if (!bads)
-            throw new Error("canf find cell 2-6");
+            throw new Error("canf find cell 2-7");
         var BadThings = document.createElement('button');
         BadThings.classList.add('BadThings');
+        BadThings.disabled = true;
         BadThings.addEventListener('click', function () { RandomBadSuprise(badThings); });
         bads.appendChild(BadThings);
     }
@@ -181,7 +228,6 @@ function RandomBadSuprise(badThings) {
     var dialog = document.createElement('dialog');
     dialog.classList.add('dialog-card');
     // Create title element
-    debugger;
     var title = document.createElement('h3');
     title.innerText = randomBadThing.badThingsTitel;
     dialog.appendChild(title);
@@ -206,6 +252,58 @@ function RandomBadSuprise(badThings) {
     // Show the dialog
     dialog.showModal();
 }
+function setGoodBtnForRandom(goodThings) {
+    //on click btn will render random suprise
+    try {
+        var goods = document.getElementById('2-2');
+        if (!goods)
+            throw new Error("canf find cell 2-2");
+        var GoodThings = document.createElement('button');
+        GoodThings.classList.add('GoodThings');
+        GoodThings.disabled = true;
+        GoodThings.addEventListener('click', function () { RandomGoodSuprise(goodThings); });
+        goods.appendChild(GoodThings);
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+function RandomGoodSuprise(goodThings) {
+    try {
+        // Get a random bad thing from the array  
+        var randomGoodThing = goodThings[Math.floor(Math.random() * goodThings.length)];
+        // Create a dialog element  
+        var dialog_1 = document.createElement('dialog');
+        dialog_1.classList.add('dialog-card');
+        // Create title element 
+        var title = document.createElement('h3');
+        title.innerText = randomGoodThing.goodThingsTitel;
+        dialog_1.appendChild(title);
+        // Create description element 
+        var description = document.createElement('p');
+        description.innerText = randomGoodThing.goodThingsDescription;
+        dialog_1.appendChild(description);
+        // Create purchase price element
+        var winPrice = document.createElement('p');
+        winPrice.innerText = 'Purchase Price: ' + randomGoodThing.winningPrice.toString();
+        dialog_1.appendChild(winPrice);
+        // Create close button
+        var closeButton = document.createElement('button');
+        closeButton.innerText = 'Close';
+        closeButton.addEventListener('click', function () {
+            // Close the dialog when the close button is clicked
+            dialog_1.close();
+        });
+        dialog_1.appendChild(closeButton);
+        // Append the dialog to the document body 
+        document.body.appendChild(dialog_1);
+        // Show the dialog
+        dialog_1.showModal();
+    }
+    catch (error) {
+        Error(error);
+    }
+}
 function putJailOnBoard(jail, JailIndex) {
     var cell;
     switch (JailIndex) { // set jails in the corners of the board
@@ -225,7 +323,7 @@ function putJailOnBoard(jail, JailIndex) {
     // create elements for jail
     var jailBtn = document.createElement('bottun');
     jailBtn.classList.add('jailBtn');
-    jailBtn.id = "" + jail.jailId;
+    jailBtn.id = "jail" + jail.jailId;
     var jailimg = document.createElement('img');
     jailimg.src = jail.jailImg;
     jailBtn.appendChild(jailimg);
@@ -252,7 +350,7 @@ function putCityOnBoard(city, cityIndex) {
                 cityBtn1.classList.add('RovaA');
                 cell1.appendChild(cityBtn1);
                 cityBtn2 = document.createElement('bottun');
-                cityBtn2.id = "" + city.cityId;
+                cityBtn2.id = "city" + city.cityId;
                 cityBtn2.classList.add('RovaA');
                 cell2.appendChild(cityBtn2);
                 cityBtn3 = document.createElement('bottun');
@@ -432,20 +530,21 @@ function renderCityCard(cityId) {
         diaylogForm.appendChild(cityBuyPrice);
         diaylogForm.appendChild(cityRentPrice);
         diaylogForm.appendChild(owner);
-        if (!ownerName) {
-            var buyBtn = document.createElement('button');
-            buyBtn.classList.add('buyBtn');
-            buyBtn.innerHTML = "Buy";
-            diaylogForm.appendChild(buyBtn);
-            // buyBtn.addEventListener('click',()=>{buyCity(cityId,city.monetaryValue)}); 
-        }
-        else {
-            var payBtn = document.createElement('button');
-            payBtn.classList.add('payBtn');
-            payBtn.innerHTML = "Pay";
-            diaylogForm.appendChild(payBtn);
-            // payBtn.addEventListener('click',()=>{payRent(cityId,city.rentValue)});
-        }
+        // if(!ownerName)
+        // {
+        //   const buyBtn=document.createElement('button');
+        //   buyBtn.classList.add('buyBtn');
+        //   buyBtn.innerHTML=`Buy`;
+        //   diaylogForm.appendChild(buyBtn);
+        //   // buyBtn.addEventListener('click',()=>{buyCity(cityId,city.monetaryValue)}); 
+        // }
+        // else{
+        //   const payBtn=document.createElement('button');
+        //   payBtn.classList.add('payBtn');
+        //   payBtn.innerHTML=`Pay`;
+        //   diaylogForm.appendChild(payBtn);
+        //   // payBtn.addEventListener('click',()=>{payRent(cityId,city.rentValue)});
+        // }
         dialog.appendChild(diaylogForm);
         document.body.appendChild(dialog); // Append the dialog to the document body
         dialog.showModal(); // Display the dialog as a modal
@@ -457,16 +556,17 @@ function renderCityCard(cityId) {
 }
 function putPlayerOnBoard(player) {
     try {
-        var cell = document.getElementById('cell5');
+        var cell = document.getElementById("" + player.cellId);
         if (!cell)
             throw new Error("cant find cell");
-        var playerHtml = document.createElement('div');
-        playerHtml.classList.add('player');
-        playerHtml.id = "" + player.playerId;
-        playerHtml.style.backgroundImage = "url(\"./dist/" + player.playerId + ".png\")";
-        cell.appendChild(playerHtml);
         cell.style.display = "flex"; // Set the display property to "flex"
         cell.style.flexWrap = "wrap"; // Set the flex-wrap property to "wrap"
+        var playerHtml = document.createElement('div');
+        playerHtml.classList.add('player');
+        playerHtml.id = "player" + player.playerId;
+        playerHtml.style.backgroundImage = "url(\"./dist/" + player.playerId + ".png\")";
+        playerHtml.style.zIndex = "999";
+        cell.appendChild(playerHtml);
         //playerStep(player.playerId)
     }
     catch (error) {
@@ -475,10 +575,11 @@ function putPlayerOnBoard(player) {
 }
 function renderOptionsBtns(gamesBoardsAGpage) {
     try {
+        var currentGame_1 = gamesBoardsAGpage === null || gamesBoardsAGpage === void 0 ? void 0 : gamesBoardsAGpage.find(function (board) { return board.gameStatus === true; });
         var htmlOptionsBtns = document.querySelector("#optionsBtns");
         if (!htmlOptionsBtns)
             throw new Error("Cant find optionsBtns");
-        var html = "<form>\n    <input type=\"button\" onclick=\"gameOver()\" class=\"optionsBtns__Button\" value=\"End game\">\n    <input type=\"button\" onclick=\"backHome()\" class=\"optionsBtns__Button\" value=\"Back\">\n </form>";
+        var html = "<form>\n    <input type=\"button\" onclick=\"play()\" class=\"optionsBtns__Button\" value=\"Start Game\">\n    <input type=\"button\" onclick=\"gameOver()\" class=\"optionsBtns__Button\" value=\"End game\">\n    <input type=\"button\" onclick=\"backHome()\" class=\"optionsBtns__Button\" value=\"Back\">\n </form>";
         htmlOptionsBtns.innerHTML = html;
     }
     catch (error) {
@@ -496,10 +597,10 @@ function gameOver() {
     try {
         if (!gamesBoardsAGpage)
             throw new Error("cant find gamesBoardsAGpage");
-        var currentGame_1 = gamesBoardsAGpage.find(function (board) { return board.gameStatus === true; });
-        if (!currentGame_1)
+        var currentGame_2 = gamesBoardsAGpage.find(function (board) { return board.gameStatus === true; });
+        if (!currentGame_2)
             throw new Error("cant find currentGame");
-        currentGame_1.gameStatus = false;
+        currentGame_2.gameStatus = false;
         backHome();
     }
     catch (error) {
@@ -531,7 +632,10 @@ function playerStep(playerId) {
         //   const nextCellId = [currentCellId[0] - 1, currentCellId[1]]; // Move one cell up
         if (!currentCellId)
             throw new Error("cant find currentCellId");
-        var nextCell = document.getElementById("cell" + (Number(currentCellId[0]) + 1));
+        var nextCellId = Number(currentCellId[0]) + 1;
+        if (nextCellId === 36)
+            nextCellId = 1;
+        var nextCell = document.getElementById("cell" + Number(nextCellId));
         if (!nextCell)
             throw new Error("cant find nextCell");
         nextCell.appendChild(playerDiv); // Move the player to the next cell
@@ -542,21 +646,32 @@ function playerStep(playerId) {
 }
 function dropCube() {
     try {
-        var cube = document.getElementById("cubeButton");
-        if (!cube)
+        var cube_1 = document.getElementById("cubeButton");
+        if (!cube_1)
             throw new Error("Can't find cube.");
-        cube.style.display = "none"; // Hide the cube initially
+        cube_1.classList.add("rotate-animation");
+        showPopup();
+        saveLuckeyCube();
         setTimeout(function () {
-            if (!cube)
-                throw new Error("Can't find cube.");
-            cube.style.display = "block"; // Show the cube after a delay
-            cube.classList.add("rotate-animation");
-            setTimeout(function () {
-                cube === null || cube === void 0 ? void 0 : cube.classList.remove("rotate-animation");
-                showPopup();
-                generateRandomNumber();
-            }, 2000);
-        }, 500);
+            cube_1.classList.remove("rotate-animation");
+        }, 2000);
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+function saveLuckeyCube() {
+    try {
+        if (!gamesBoardsAGpage)
+            throw new Error("cant find gamesBoardsAGpage");
+        var currentGame_3 = gamesBoardsAGpage.find(function (board) { return board.gameStatus === true; });
+        if (!currentGame_3)
+            throw new Error("cant find currentGame");
+        var luckeyCube = document.getElementById("randomNumber");
+        if (!luckeyCube)
+            throw new Error("Can't find luckeyCube.");
+        currentGame_3.luckyCube = Number(luckeyCube.textContent);
+        console.log(currentGame_3.luckyCube);
     }
     catch (error) {
         console.error(error);
@@ -571,14 +686,14 @@ function showPopup() {
         spanClose.addEventListener('click', closePopup);
         spanClose.innerHTML = '&times;';
         dialog.appendChild(spanClose);
+        var randNumber = getRandomNumber(1, 6);
         var numDiv = document.createElement('div');
         numDiv.id = "randomNumber";
         numDiv.classList.add('randomNumber');
+        numDiv.textContent = randNumber.toString();
         dialog.appendChild(numDiv);
         document.body.appendChild(dialog); // Append the dialog to the document body
         dialog.showModal(); // Display the dialog as a modal
-        generateRandomNumber();
-        // Generate and display the random number
     }
     catch (error) {
         console.error(error);
@@ -596,33 +711,183 @@ function closePopup() {
         console.error(error);
     }
 }
-function generateRandomNumber() {
-    try {
-        var randomNumber = Math.floor(Math.random() * 6) + 1;
-        var randomNumberElement = document.getElementById("randomNumber");
-        if (!randomNumberElement)
-            throw new Error("cant find randomNumberElement ");
-        randomNumberElement.textContent = randomNumber.toString();
-        // save value to board game
-        if (!currentGame)
-            throw new Error("cant find current game");
-        currentGame.luckyCube = randomNumber;
-    }
-    catch (error) {
-        console.error(error);
-    }
-}
-function renderInCell() {
+function renderIBeginCell() {
     var beginCell = document.getElementById("4-1");
     var beginDiv = document.createElement('div');
     beginDiv.classList.add('begin');
-    ss;
     beginCell === null || beginCell === void 0 ? void 0 : beginCell.appendChild(beginDiv);
+}
+// function play() {
+//   try {
+//     // for each player in the game need to let player on his turn to drop cube and make step as the number he get
+//     if(!gamesBoardsAGpage) throw new Error("cant find gamesBoardsAGpage");
+//     const currentGame= gamesBoardsAGpage.find(board=>board.gameStatus===true)
+//     if(!currentGame) throw new Error("cant find currentGame");
+//     // map the players with status true to the game
+//     const players=currentGame.players.filter(player=>player.status===true);
+//     players.forEach(player=>
+//       {
+//         console.log(player.playerId);
+//         //Make the cube available to the user
+//         const cube = document.getElementById('cubeButton')as HTMLButtonElement;;
+//         if (!cube) throw new Error("cant find cube");
+//         cube.disabled = false;
+//         cube.style.border= '1px solid green'
+//        // alert('drop the cube')
+//         setTimeout(() => {
+//   }, 4000);
+//           if(currentGame.luckyCube!=0){
+//             closePopup();
+//             for (let index = 1; index <= currentGame.luckyCube; index++) {
+//               playerStep(player.playerId);
+//             }
+//           const newCellId=document.getElementById(`player${player.playerId}`); 
+//           if(!newCellId) throw new Error("cant find newCellId");
+//           const newParentCellId=newCellId.parentNode;
+//           if(!newParentCellId) throw new Error("cant find newCellId");
+//           player.cellId=newParentCellId.id;
+//           currentGame.luckyCube=0;
+//           cube.disabled = true;
+//           cube.style.border= 'none'
+//           }
+//           else alert (`${player.playerId} did not drop cube`)
+//       })
+//   }
+//   catch (error) 
+//   {
+//     console.error(error);
+//   }
+// }
+function play() {
+    try {
+        if (!gamesBoardsAGpage)
+            throw new Error("Can't find gamesBoardsAGpage");
+        var currentGame_4 = gamesBoardsAGpage.find(function (board) { return board.gameStatus === true; });
+        if (!currentGame_4)
+            throw new Error("Can't find currentGame");
+        var players_1 = currentGame_4.players.filter(function (player) { return player.status === true; });
+        // Define a function to wrap the player's turn logic in a Promise
+        function playPlayerTurn(player) {
+            return new Promise(function (resolve, reject) {
+                console.log(player.playerId);
+                var cube = document.getElementById('cubeButton');
+                if (!cube)
+                    throw new Error("Can't find cube");
+                cube.disabled = false;
+                cube.style.border = '1px solid green';
+                // Resolve the Promise when the player drops the cube (e.g., on a button click event)
+                cube.addEventListener('click', function () {
+                    cube.disabled = true;
+                    cube.style.border = 'none';
+                    resolve(void 0);
+                });
+            });
+        }
+        // Define an async function to iterate over the players and wait for each turn to finish
+        function iteratePlayers() {
+            return __awaiter(this, void 0, void 0, function () {
+                var _i, players_2, currentPlayer, index, newCell, parentCell, cellButton;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0:
+                            if (!(players_1.length > 1)) return [3 /*break*/, 7];
+                            _i = 0, players_2 = players_1;
+                            _a.label = 1;
+                        case 1:
+                            if (!(_i < players_2.length)) return [3 /*break*/, 6];
+                            currentPlayer = players_2[_i];
+                            _a.label = 2;
+                        case 2:
+                            _a.trys.push([2, , 4, 5]);
+                            return [4 /*yield*/, playPlayerTurn(currentPlayer)];
+                        case 3:
+                            _a.sent();
+                            if (!currentGame_4)
+                                throw new Error("cant find currentGame");
+                            // Continue with the remaining logic for the player's turn
+                            if (currentGame_4.luckyCube !== 0) {
+                                for (index = 1; index <= currentGame_4.luckyCube; index++) {
+                                    playerStep(currentPlayer.playerId);
+                                }
+                                newCell = document.getElementById("player" + currentPlayer.playerId);
+                                if (!newCell)
+                                    throw new Error("Can't find newCell");
+                                parentCell = newCell.parentNode;
+                                if (!parentCell)
+                                    throw new Error("cant find Cell");
+                                currentPlayer.cellId = parentCell.id;
+                                currentGame_4.luckyCube = 0;
+                                cellButton = parentCell.firstChild;
+                                if (!cellButton)
+                                    throw new Error("cant find ceel btn");
+                                console.log(cellButton.classList);
+                                if (cellButton.classList.contains('RovaAlef')) {
+                                    console.log(currentPlayer.playerId + " arrived at a city");
+                                }
+                                else if (cellButton.classList.contains('RovaBet')) {
+                                    console.log(currentPlayer.playerId + " arrived at a city");
+                                }
+                                else if (cellButton.classList.contains('RovaGimel')) {
+                                    console.log(currentPlayer.playerId + " arrived at a city");
+                                }
+                                else if (cellButton.classList.contains('RovaCity')) {
+                                    console.log(currentPlayer.playerId + " arrived at a city");
+                                }
+                                else if (cellButton.classList.contains('RovaYudAlef')) {
+                                    console.log(currentPlayer.playerId + " arrived at a city");
+                                }
+                                else if (cellButton.classList.contains('RovaYudBet')) {
+                                    console.log(currentPlayer.playerId + " arrived at a city");
+                                }
+                                else if (cellButton.classList.contains('RovaTetVav')) {
+                                    console.log(currentPlayer.playerId + " arrived at a city");
+                                }
+                                // Handle city-related logic
+                            }
+                            else if (cellButton.classList.contains('jail')) {
+                                console.log(currentPlayer.playerId + " arrived at a jail");
+                                // Handle jail-related logic
+                            }
+                            else if (cellButton.classList.contains('goodS')) {
+                                console.log(currentPlayer.playerId + " arrived at a good surprise");
+                                // Handle good surprise logic
+                            }
+                            else {
+                                console.log(currentPlayer.playerId + " arrived at a regular cell");
+                                // Handle regular cell logic
+                            }
+                            return [3 /*break*/, 5];
+                        case 4: return [7 /*endfinally*/];
+                        case 5:
+                            _i++;
+                            return [3 /*break*/, 1];
+                        case 6:
+                            try { }
+                            catch (error) {
+                                console.error(error);
+                            }
+                            return [3 /*break*/, 0];
+                        case 7:
+                            players_1 = players_1.filter(function (player) { return player.status === true; });
+                            return [2 /*return*/];
+                    }
+                });
+            });
+        }
+    }
+    // Call the async function to start the iteration over players
+    finally {
+    }
+    // Call the async function to start the iteration over players
+    iteratePlayers();
+}
+try { }
+catch (error) {
+    console.error(error);
 }
 var gamesBoardsAGpage = loadBoardsAGpage();
 var currentGame = gamesBoardsAGpage === null || gamesBoardsAGpage === void 0 ? void 0 : gamesBoardsAGpage.find(function (game) { return game.gameStatus === true; });
 //shape of the board
-renderBoard(currentGame);
 renderOptionsBtns(gamesBoardsAGpage);
-renderInCell();
-console.log(gamesBoardsAGpage);
+renderBoard(currentGame);
+renderIBeginCell();
