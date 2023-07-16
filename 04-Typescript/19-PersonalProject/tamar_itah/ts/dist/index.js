@@ -147,40 +147,41 @@ function renderPlay() {
     var instractions = "Match the word with its meaning \n                        <div id=\"score\">your scor:" +  + "</div>"; //show the score of the user un this game
     h1Instructions.innerHTML = instractions;
     //call the random word function
-    var ranArr = randomWord();
     var htmlroot = document.querySelector('#cards');
     if (!htmlroot)
         throw new Error("no root element");
     console.log(htmlroot);
-    var optiomArr = [];
-    optiomArr[0] = "<div id=\"c1\" class=\"card c1\">" + ranArr[0].enWord + "</div>\n                    <div id=\"c2\" class=\"card c2\">" + ranArr[1].heWord + "</div>\n                    <div id=\"c3\" class=\"card c3\">" + ranArr[2].heWord + "</div>\n                    <div id=\"c4\" class=\"card c4\">" + ranArr[3].heWord + "</div>  \n                    ";
-    optiomArr[1] = "<div id=\"c1\" class=\"card c1\">" + ranArr[0].enWord + "</div>\n                    <div id=\"c2\" class=\"card c2\">" + ranArr[1].heWord + "</div>\n                    <div id=\"c3\" class=\"card c3\">" + ranArr[3].heWord + "</div>\n                    <div id=\"c4\" class=\"card c4\">" + ranArr[2].heWord + "</div>  \n                    ";
-    optiomArr[2] = "<div id=\"c1\" class=\"card c1\">" + ranArr[0].enWord + "</div>\n                    <div id=\"c2\" class=\"card c2\">" + ranArr[2].heWord + "</div>\n                    <div id=\"c3\" class=\"card c3\">" + ranArr[1].heWord + "</div>\n                    <div id=\"c4\" class=\"card c4\">" + ranArr[3].heWord + "</div>  \n                    ";
-    optiomArr[3] = "<div id=\"c1\" class=\"card c1\">" + ranArr[0].enWord + "</div>\n                    <div id=\"c2\" class=\"card c2\">" + ranArr[2].heWord + "</div>\n                    <div id=\"c3\" class=\"card c3\">" + ranArr[3].heWord + "</div>\n                    <div id=\"c4\" class=\"card c4\">" + ranArr[1].heWord + "</div>  \n                    ";
-    optiomArr[4] = "<div id=\"c1\" class=\"card c1\">" + ranArr[0].enWord + "</div>\n                    <div id=\"c2\" class=\"card c2\">" + ranArr[3].heWord + "</div>\n                    <div id=\"c3\" class=\"card c3\">" + ranArr[1].heWord + "</div>\n                    <div id=\"c4\" class=\"card c4\">" + ranArr[2].heWord + "</div>  \n                    ";
-    optiomArr[5] = "<div id=\"c1\" class=\"card c1\">" + ranArr[0].enWord + "</div>\n                    <div id=\"c2\" class=\"card c2\">" + ranArr[3].heWord + "</div>\n                    <div id=\"c3\" class=\"card c3\">" + ranArr[2].heWord + "</div>\n                    <div id=\"c4\" class=\"card c4\">" + ranArr[1].heWord + "</div>  \n                    ";
-    var toHtml = optiomArr[Math.floor(Math.random() * 5)];
-    htmlroot.innerHTML = toHtml;
+    //view + data binding
+    //render the cards in random order
+    //create a function whcih return the cards in random order
+    //fisrst step: create an array with the cards
+    //second step: get 3 random cards from the array
+    //third step: selct one random card from the 3 and put it in the first place
+    //fourth step: put the other 2 cards in the second and third place
+    //fifth step: put thei first card on the diaply
+    //sixth step: put the other 3 cards in random order on the display and show only the Hebrew options.
+    var randomWords = randomWord(words);
+    var firstWord = randomWords[0];
+    //randomized words
+    var randomWardsToDisplay = randomWord(randomWords);
+    //display all words in random order
+    var htmlWordsToSelect = randomWardsToDisplay.map(function (word) { return "<div class=\"card\">" + word.heWord + "</div>"; }).join(' ');
+    var htmlWordInEnglish = "<div class=\"card\">" + firstWord.enWord + "</div>";
+    htmlroot.innerHTML = htmlWordsToSelect + "<br>" + htmlWordInEnglish;
 }
 //finish the game
 function renderFinish() {
 }
 //contrilers
 //make the random select words
-function randomWord() {
-    var length = words.length;
+function randomWord(words) {
     var randomWordArr = [];
-    var i;
-    var randomArr = [];
-    var _loop_1 = function () {
-        var random = Math.floor(Math.random() * length);
+    var _words = JSON.parse((JSON.stringify(words)));
+    while (randomWordArr.length < 3) {
+        var random = Math.floor(Math.random() * _words.length);
         console.log(random);
-        if (!(randomArr.find(function (e) { return e === random; }))) {
-            randomWordArr[i] = words[random];
-        }
-    };
-    for (i = 0; i < 3; i++) {
-        _loop_1();
+        randomWordArr.push(_words[random]);
+        _words.splice(random, 1);
     }
     console.log(randomWordArr);
     return randomWordArr;
