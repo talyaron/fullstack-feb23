@@ -35,7 +35,7 @@ function displayScoreboard() {
     scores.forEach(function (_a) {
         var user = _a[0], score = _a[1];
         var listItem = document.createElement("li");
-        listItem.textContent = user + ":  " + score;
+        listItem.textContent = user + ": Won " + score + "$";
         scoreboardDiv.appendChild(listItem);
     });
 }
