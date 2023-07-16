@@ -1,40 +1,40 @@
 
 let dealerMoney = 0
-function turnOrder(players) {
-  const stage = document.querySelector(".stage") as HTMLDivElement;
-  let currentPlayerIndex = 0;
+// function turnOrder(players) {
+//   const stage = document.querySelector(".stage") as HTMLDivElement;
+//   let currentPlayerIndex = 0;
 
-  performTurn(players, stage, currentPlayerIndex);
-}
+//   performTurn(players, stage, currentPlayerIndex);
+// }
 
-function performTurn(
-  players: Player[],
-  stage: HTMLElement,
-  currentPlayerIndex: number,
-) {
-  try {
-    const currentPlayer = players[currentPlayerIndex];
-    let activePlayers = players.filter((p) => p.isActive === true);
+// function performTurn(
+//   players: Player[],
+//   stage: HTMLElement,
+//   currentPlayerIndex: number,
+// ) {
+//   try {
+//     const currentPlayer = players[currentPlayerIndex];
+//     let activePlayers = players.filter((p) => p.isActive === true);
 
-    activePlayers.map((p) => (p.isTurn = false));
-    currentPlayer.setActive();
-    currentPlayer.isTurn = true;
-    currentPlayer.doingTurn(activePlayers, currentPlayerIndex); ///התור
+//     activePlayers.map((p) => (p.isTurn = false));
+//     currentPlayer.setActive();
+//     currentPlayer.isTurn = true;
+//     currentPlayer.doingTurn(activePlayers, currentPlayerIndex); ///התור
 
-    currentPlayerIndex++;
+//     currentPlayerIndex++;
 
-    if (currentPlayerIndex >= players.length && stage.children.length < 6) {
-      currentPlayerIndex = 0;
-      if (stage.children.length < 6) {
-        addCardToStage();
-      }
-    }
+//     if (currentPlayerIndex >= players.length && stage.children.length < 6) {
+//       currentPlayerIndex = 0;
+//       if (stage.children.length < 6) {
+//         addCardToStage();
+//       }
+//     }
 
-    setTimeout(() => performTurn(players, stage, currentPlayerIndex), 500);
-  } catch (error) {
-    console.error(error);
-  }
-}
+//     setTimeout(() => performTurn(players, stage, currentPlayerIndex), 500);
+//   } catch (error) {
+//     console.error(error);
+//   }
+// }
 
 // turnOrder(players);
 
@@ -199,7 +199,7 @@ function getSizeOfBet(
 
 let counterTurn  = 0
 let indexInArray = 0
-function realPLayersOrderTurn(players:Player[]){
+function turnOrder(players:Player[]){
   if( indexInArray == 0 ){
    players[0].checkMove(players) 
    indexInArray++
