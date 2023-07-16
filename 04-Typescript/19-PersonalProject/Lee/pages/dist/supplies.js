@@ -37,7 +37,7 @@ function getProductsFromLocalStorage() {
         else {
             var productsArray = JSON.parse(productsString);
             var products_1 = productsArray.map(function (pro) {
-                return new Product(pro.name, pro.amount, pro.imgSrc);
+                return new Product(pro.name, pro.amount, pro.imgSrc, pro.price);
             });
             return products_1;
         }
@@ -117,15 +117,16 @@ function renderAddProductForm() {
         var btn = document.querySelector("#addProductBtn");
         btn.innerHTML = "+";
     }
-    root.innerHTML = "\n      <form id=\"addProductForm\" onsubmit=\"handelNewProduct(event)\">\n      <label for=\"newName\"> name of product: </label>\n      <input type=\"text\" id=\"newName\" required><br>\n      <label for=\"newImgSrc\"> Image source of product: </label>\n      <input type=\"url\" id=\"newImgSrc\" required><br>\n      <label for=\"newAmount\"> Image source of product: </label>\n      <input type=\"number\" id=\"newAmount\" value=\"0\" min=\"0\"><br>\n      <button type=\"submit\">ADD</button>\n      </form>";
+    root.innerHTML = "\n      <form id=\"addProductForm\" onsubmit=\"handelNewProduct(event)\">\n      <label for=\"newName\"> name of product: </label>\n      <input type=\"text\" id=\"newName\" required><br>\n      <label for=\"newImgSrc\"> Image source of product: </label>\n      <input type=\"url\" id=\"newImgSrc\" required><br>\n      <label for=\"newAmount\"> Image source of product: </label>\n      <input type=\"number\" id=\"newAmount\" value=\"0\" min=\"0\"><br>\n      <label for=\"newPrice\"> name of product: </label>\n      <input type=\"text\" id=\"newPrice\" required><br>\n      <button type=\"submit\">ADD</button>\n      </form>";
 }
 function handelNewProduct(ev) {
     ev.preventDefault();
     var newName = ev.target.newName.value;
     var newAmount = ev.target.newAmount.value;
     var newImgSrc = ev.target.newImgSrc.value;
+    var newPrice = ev.target.newPrice.value;
     products = getProductsFromLocalStorage();
-    products.push(new Product(newName, newAmount, newImgSrc));
+    products.push(new Product(newName, newAmount, newImgSrc, newPrice));
     renderProducts();
     var root = document.querySelector(".addProductForm");
     root.innerHTML = "";
