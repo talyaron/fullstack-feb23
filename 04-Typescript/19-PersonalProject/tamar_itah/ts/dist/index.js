@@ -14,7 +14,14 @@ var Word = /** @class */ (function () {
     }
     return Word;
 }());
-var words = [];
+var words = [
+    new Word('book', 'סֵפֶר'),
+    new Word('adventure', 'הַרפַּתקָה'),
+    new Word('center', 'מֶרְכָּז'),
+    new Word('earth', 'כַּדוּר הָאָרֶץ'),
+    new Word('volcano', 'הַר גַעַשׁ'),
+    new Word('Mountain', 'הַר'),
+];
 //---------------------handel----------------
 //login form
 //save the usermane, send it to the local storage and open the game page
@@ -101,6 +108,9 @@ function heandelDelWord(ev) {
         console.error(error);
     }
 }
+function heandelPlay() {
+    window.location.replace("./game.html"); //move to game page
+}
 //-----------------reander--------------------------------
 //render the user name to the game page
 //get the user name from local storage as string
@@ -133,12 +143,45 @@ function renderBack() {
 }
 //move to game
 function renderPlay() {
-    var h1Instructions = document.querySelector('#h1');
-    var instractions = "Match the word with its meaning <div id=\"score\">your scor:" +  + "</div>";
+    var h1Instructions = document.querySelector('#instruction');
+    var instractions = "Match the word with its meaning \n                        <div id=\"score\">your scor:" +  + "</div>"; //show the score of the user un this game
     h1Instructions.innerHTML = instractions;
-    var htmlroot = document.querySelector('#root');
+    //call the random word function
+    var ranArr = randomWord();
+    var htmlroot = document.querySelector('#cards');
     if (!htmlroot)
         throw new Error("no root element");
-    var toHtml = "\n                <div class=\"wrapper\">\n                    <div class=\"cards\">\n                        <div id=\"c1\" class=\"card c1\"></div>\n                        <div id=\"c2\" class=\"card c2\"></div>\n                        <div id=\"c3\" class=\"card c3\"></div>\n                        <div id=\"c4\" class=\"card c4\"></div>\n                        \n                    </div>\n                    <button id=\"finish\" class=\"btnF\">Finish</button>\n                </div>\n                 ";
+    console.log(htmlroot);
+    var optiomArr = [];
+    optiomArr[0] = "<div id=\"c1\" class=\"card c1\">" + ranArr[0].enWord + "</div>\n                    <div id=\"c2\" class=\"card c2\">" + ranArr[1].heWord + "</div>\n                    <div id=\"c3\" class=\"card c3\">" + ranArr[2].heWord + "</div>\n                    <div id=\"c4\" class=\"card c4\">" + ranArr[3].heWord + "</div>  \n                    ";
+    optiomArr[1] = "<div id=\"c1\" class=\"card c1\">" + ranArr[0].enWord + "</div>\n                    <div id=\"c2\" class=\"card c2\">" + ranArr[1].heWord + "</div>\n                    <div id=\"c3\" class=\"card c3\">" + ranArr[3].heWord + "</div>\n                    <div id=\"c4\" class=\"card c4\">" + ranArr[2].heWord + "</div>  \n                    ";
+    optiomArr[2] = "<div id=\"c1\" class=\"card c1\">" + ranArr[0].enWord + "</div>\n                    <div id=\"c2\" class=\"card c2\">" + ranArr[2].heWord + "</div>\n                    <div id=\"c3\" class=\"card c3\">" + ranArr[1].heWord + "</div>\n                    <div id=\"c4\" class=\"card c4\">" + ranArr[3].heWord + "</div>  \n                    ";
+    optiomArr[3] = "<div id=\"c1\" class=\"card c1\">" + ranArr[0].enWord + "</div>\n                    <div id=\"c2\" class=\"card c2\">" + ranArr[2].heWord + "</div>\n                    <div id=\"c3\" class=\"card c3\">" + ranArr[3].heWord + "</div>\n                    <div id=\"c4\" class=\"card c4\">" + ranArr[1].heWord + "</div>  \n                    ";
+    optiomArr[4] = "<div id=\"c1\" class=\"card c1\">" + ranArr[0].enWord + "</div>\n                    <div id=\"c2\" class=\"card c2\">" + ranArr[3].heWord + "</div>\n                    <div id=\"c3\" class=\"card c3\">" + ranArr[1].heWord + "</div>\n                    <div id=\"c4\" class=\"card c4\">" + ranArr[2].heWord + "</div>  \n                    ";
+    optiomArr[5] = "<div id=\"c1\" class=\"card c1\">" + ranArr[0].enWord + "</div>\n                    <div id=\"c2\" class=\"card c2\">" + ranArr[3].heWord + "</div>\n                    <div id=\"c3\" class=\"card c3\">" + ranArr[2].heWord + "</div>\n                    <div id=\"c4\" class=\"card c4\">" + ranArr[1].heWord + "</div>  \n                    ";
+    var toHtml = optiomArr[Math.floor(Math.random() * 5)];
     htmlroot.innerHTML = toHtml;
+}
+//finish the game
+function renderFinish() {
+}
+//contrilers
+//make the random select words
+function randomWord() {
+    var length = words.length;
+    var randomWordArr = [];
+    var i;
+    var randomArr = [];
+    var _loop_1 = function () {
+        var random = Math.floor(Math.random() * length);
+        console.log(random);
+        if (!(randomArr.find(function (e) { return e === random; }))) {
+            randomWordArr[i] = words[random];
+        }
+    };
+    for (i = 0; i < 3; i++) {
+        _loop_1();
+    }
+    console.log(randomWordArr);
+    return randomWordArr;
 }

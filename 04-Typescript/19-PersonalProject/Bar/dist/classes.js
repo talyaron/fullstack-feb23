@@ -23,10 +23,10 @@ var imagesArray = getImgsFromLocalStorage();
 // imagesArray.push();
 // console.log(imagesArray);
 var User = /** @class */ (function () {
-    function User(name, imageProfile, images) {
+    function User(name, imageProfile, imagse) {
         this.name = name;
         this.imageProfile = imageProfile;
-        this.images = images;
+        this.imagse = imagse;
         this.id = Date.now().toString() + Math.random().toString(36).substr(2);
     }
     return User;
@@ -37,21 +37,21 @@ if (usersArray.length === 0) {
     var netanel = new User('Netanel', 'https://photoscissors.com/images/samples/3-before.jpg', []);
     usersArray.push(bar, netanel);
 }
-//join the user to the imagse.
+//creat class how join the user to his imagse.
 var UsersImg = /** @class */ (function () {
-    function UsersImg(user, image) {
+    function UsersImg(user) {
         this.user = user;
-        this.image = image;
         this.id = Date.now().toString() + Math.random().toString(36).substr(2);
     }
     return UsersImg;
 }());
 var usersImgArray = getUsersImgFromLocalStorage();
-usersArray.map(function (user) {
-    var userImg = new UsersImg(user, user.images);
-    usersImgArray.push(userImg);
-});
-console.log(usersImgArray);
+if (usersImgArray.length === 0) {
+    var barImg = new UsersImg([usersArray[0]]);
+    var netanelImg = new UsersImg([usersArray[1]]);
+    usersImgArray.push(barImg, netanelImg);
+}
+;
 //Image local storage
 function saveImgToLocalStorage(image) {
     localStorage.setItem('imagesArray', JSON.stringify(image));
@@ -86,7 +86,7 @@ function getUsersFromLocalStorage() {
             throw new Error('Users not found');
         if (!Array.isArray(usersArray_1))
             throw new Error('usersArray is not array');
-        var users = usersArray_1.map(function (user) { return new User(user.name, user.imageProfile, user.images); });
+        var users = usersArray_1.map(function (user) { return new User(user.name, user.imageProfile, user.imagse); });
         return users;
     }
     catch (error) {
@@ -109,7 +109,7 @@ function getUsersImgFromLocalStorage() {
             throw new Error('Users not found');
         if (!Array.isArray(usersImgArray_1))
             throw new Error('usersImgArray is not array');
-        var usersImg = usersImgArray_1.map(function (usersImg) { return new UsersImg(usersImg.user, usersImg.image); });
+        var usersImg = usersImgArray_1.map(function (usersImg) { return new UsersImg(usersImg.user); });
         return usersImg;
     }
     catch (error) {
