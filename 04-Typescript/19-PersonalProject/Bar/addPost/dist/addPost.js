@@ -1,41 +1,52 @@
-//adding nw post.
-function addNewPost(users, rootElement) {
+//get the users and the imagse from local storage.
+// console.log(imagesArray);
+//create a new post(image).
+//Error free.
+function renderAddNewPost(users, rootElement) {
     try {
         if (!rootElement)
             throw new Error('Root element is not found');
-        var html = "\n        <form class=\"addPost\" onsubmit=\"handleAdd(event)\">\n          <select class=\"addPost__select\" name=\"user\" id=\"user\" required>\n            " + users
+        var html = "\n      <form class=\"addPost\" onsubmit=\"handleAddNewPost(event)\">\n        <select class=\"addPost__select\" name=\"user\" id=\"userId\" required>\n          " + users
             .map(function (user) {
             return "<option value=\"" + user.id + "\">" + user.name + "</option>";
         })
-            .join('') + "\n          </select>\n          <input class=\"addPost__input\" type=\"text\" name=\"image\" placeholder=\"Image URL\" required>\n          <button class=\"addPost__enterNewImage\">Add Post</button>\n        </form>";
+            .join('') + "\n        </select>\n        <input class=\"addPost__input\" type=\"text\" name=\"image\" placeholder=\"Image URL\" required>\n        <button class=\"addPost__enterNewImage\" type=\"submit\">Add Post</button>\n      </form>";
         rootElement.innerHTML = html;
-        localStorage.setItem('userImgArray', JSON.stringify(userImgArray));
     }
     catch (error) {
         console.error(error);
     }
 }
-addNewPost(usersArray, document.querySelector('#addPost'));
-//add image url to the userImgArray of the user.
-function handleAdd(users, event) {
+renderAddNewPost(usersArray, document.querySelector('#addPost'));
+//get the new post from the form, and add it to the user.
+//render it in 'showPosts'.
+//Error free.
+function handleAddNewPost(event) {
     try {
-        if (!event.target)
-            throw new Error('Missing target on event');
+        if (!event)
+            throw new Error('Event is not found');
         event.preventDefault();
-        var target = event.target;
-        var userId_1 = target.user.value; // קבלת ה-ID של המשתמש הנבחר
-        var imageUrl = target.image.value; // קבלת כתובת ה-URL שהוזנה
-        var selectedUser = users.find(function (user) { return user.id === userId_1; }); // מציאת המשתמש הנבחר לפי ה-ID
-        if (!selectedUser)
-            throw new Error('Selected user not found');
-        var newImage = new Img(imageUrl, ''); // יצירת אובייקט Img חדש עם כתובת ה-URL
-        selectedUser.image.push(newImage); // הוספת התמונה למערך התמונות של המשתמש
-        var newUserImg = new UserImg(selectedUser, selectedUser.image); // יצירת אובייקט UserImg חדש עם המשתמש הנבחר ומערך התמונות המעודכן
-        userImgArray.push(newUserImg); // הוספת האובייקט החדש למערך userImgArray
-        localStorage.setItem('UserImgs', JSON.stringify(userImgArray)); // עדכון המערך של UserImgs ב-LocalStorage
-        // כאן תוכלי להציג את התמונה בפרופיל, על פי הצורך שלך
+        var userId_1 = event.target.elements.userId.value;
+        var image = event.target.elements.image.value;
+        // const user: User | undefined = usersArray.find((u) => u.id === userId);
+        var selectedUserImg = usersImgArray.find(function (userImg) { return userImg.user.id === userId_1; });
+        // if (!user) throw new Error('User not found');
+        if (!selectedUserImg)
+            throw new Error('User not found');
+        // const newImg = new Img(image);
+        // user.images.push(newImg);
+        var newImg = new Img(image);
+        selectedUserImg.image.push(newImg);
+        saveImgToLocalStorage(imagesArray);
+        saveUserToLocalStorage(usersArray);
+        saveUsersImgToLocalStorage(usersImgArray);
+        //render the new post in 'showPosts'
+        showPosts(document.querySelector('#posts'), usersArray);
+        //move to the profile page.
+        window.location.href = '../profile/profile.html';
     }
     catch (error) {
         console.error(error);
+        return error;
     }
 }

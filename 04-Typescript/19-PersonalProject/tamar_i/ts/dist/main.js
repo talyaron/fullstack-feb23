@@ -1,12 +1,4 @@
-// import ts files -> https://www.educative.io/answers/how-to-import-another-typescript-file
-//import redBall from '../ts/dist/red_ball';
-//import '../ts/dist/bricks';
-//import '../ts/dist/errow';
-//import '../ts/dist/bombs';
-//import '../ts/dist/shelves';
-//import '../ts/dist/coins';
-//import '../ts/dist/color_balls';
-//login form
+//----------------------class & object------------------
 var User = /** @class */ (function () {
     //id: number;
     function User(userName) {
@@ -15,7 +7,53 @@ var User = /** @class */ (function () {
     }
     return User;
 }());
+var Point = /** @class */ (function () {
+    function Point(points) {
+        this.points = points;
+    } //caunt the points
+    Point.prototype.addPoints = function (point) {
+        return point++;
+    };
+    return Point;
+}());
+var UserPoint = /** @class */ (function () {
+    function UserPoint(user, points) {
+        this.user = user;
+        this.points = points;
+    }
+    return UserPoint;
+}());
+//--------------------
+var Ball = /** @class */ (function () {
+    function Ball(positionX, positionY) {
+        this.positionX = positionX;
+        this.positionY = positionY;
+    } //whant to know it potiosin evry step so could move it
+    return Ball;
+}());
+var daynamicElement = /** @class */ (function () {
+    function daynamicElement(explow, positionX, positionY) {
+        this.explow = explow;
+        this.positionX = positionX;
+        this.positionY = positionY;
+    } //the item(bomb/errow) & its position so if the ball at the same position can exeute somthing
+    return daynamicElement;
+}());
+var staticElement = /** @class */ (function () {
+    function staticElement(name, positionX, positionY) {
+        this.name = name;
+        this.positionX = positionX;
+        this.positionY = positionY;
+    } //the item(brick/coin/shelve) & its position so if the ball at the same position can exeute somthing
+    return staticElement;
+}());
 var users = [];
+var points = [];
+var userPoints = [];
+var staticElementPositions = [];
+var daynamicElementPositions = [];
+//---------------------handel----------------
+//login form
 //save the usermane, send it to the local storage and open the game page
 function handelSubmit(ev) {
     try {
@@ -29,12 +67,13 @@ function handelSubmit(ev) {
         users.push(newUser); //save the user name in users array
         console.log(users);
         localStorage.setItem('users', JSON.stringify(users)); //sent the array to local storage as string
-        window.location.replace("../index.html"); //not sure its work!!!
+        window.location.replace("../index.html"); // its work!!!
     }
     catch (error) {
         console.error(error);
     }
 }
+//-----------------reander--------------------------------
 //render the user name to the game page
 //get the user name from local storage as string
 var h1username = localStorage.getItem('users');
@@ -50,20 +89,57 @@ function renderUserName() {
     var username = document.querySelector('#h1');
     if (!username)
         throw new Error('element not faound');
-    username.innerHTML = users.map(function (p) { return "<h1> Hellow " + p.userName + "</h1>"; }).join(' ');
+    var length = users.length;
+    username.innerHTML = "<h1> Hellow " + users[length - 1].userName + "</h1>";
 }
-//the game start when the page load
-function startGame() {
-    myGameArea.start(); //defaine the game area
-}
-//the game area function
-var myGameArea = {
-    canvas: document.createElement("canvas"),
-    start: function () {
-        this.canvas.width = 270;
-        this.canvas.hight = 480;
-        this.context = this.canvas.getContext("2d");
-        var h1Div = document.querySelector('#h1');
-        h1Div.insertAdjacentElement("afterend", this.canvas);
+//render new static elemnt
+function renderSolidBrick() {
+    try {
+        var el = document.querySelector('#bricks_solid');
+        if (!el)
+            throw new Error("no elmnt");
+        var newElm = brick();
+        el.setAttribute('style', 'left:newElm.positionX');
+        el.setAttribute('style', 'top:newElm.positionY');
     }
-};
+    catch (error) {
+        console.error(error);
+    }
+}
+renderSolidBrick();
+//---------------controllers---------------------------------
+//creat static elements
+function coin() {
+    var positionX = Math.floor(Math.random() * 1000);
+    console.log(positionX);
+    var positionY = Math.floor(Math.random() * 1000);
+    console.log(positionY);
+    var newElm = new staticElement("coin", positionX, positionY);
+    console.log(newElm);
+    staticElementPositions.push(newElm);
+    console.log(staticElementPositions);
+}
+function brick() {
+    var positionX = Math.floor(Math.random() * 1000);
+    var positionY = Math.floor(Math.random() * 1000);
+    var newElm = new staticElement("brick", positionX, positionY);
+    staticElementPositions.push(newElm);
+    return newElm;
+}
+function shelve() {
+    var positionX = Math.floor(Math.random() * 1000);
+    var positionY = Math.floor(Math.random() * 1000);
+    var newElm = new staticElement("shelve", positionX, positionY);
+    staticElementPositions.push(newElm);
+}
+//when a new element appear it save its position
+// function savePosition(name:string, x: number, y: number){
+//     try {
+//         if(!name || !x || !y) throw new Error('no element')
+//         const newpos = 
+//     } catch (error) {
+//         console.error(error)
+//     }
+// }
+var text = function coin() { };
+console.log(text);

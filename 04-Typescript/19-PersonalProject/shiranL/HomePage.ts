@@ -11,6 +11,7 @@ function loadCharacters():Character[]|undefined{
         characters.push(new Character("Barak Sery","./dist/3.png"))
         characters.push(new Character("Eli Nacht","./dist/4.png"))
         characters.push(new Character("Eli Lachmani","./dist/5.png"))
+        characters.push(new Character("zvi zilker","./dist/5.png"))
         //save to local storage
         const charactersJson = JSON.stringify(characters);
         localStorage.setItem('characters', charactersJson);
@@ -35,7 +36,7 @@ function loadCities():City[]|undefined{
       if (!citiesString){ // if there is not characters on json , create new []
         const hotels : Hotel[] | undefined = [];
         
-        cities.push(new City("Rova Alef",hotels,"./dist/ashdod.jpg",1))
+        cities.push(new City("Rova Alef",hotels,"./dist/rovaA1.jpg",1))
         cities.push(new City("Rova Bet",hotels,"./dist/ashdod.jpg",2))
         cities.push(new City("Rova Gimel",hotels,"./dist/Jerusalem.jpg",3))
         cities.push(new City("Rova Daled",hotels,"./dist/telAviv.jpg",4))
@@ -139,10 +140,10 @@ function loadJails(): Jail[] | undefined {
         const jailsString = localStorage.getItem('jails');
       if (!jailsString){ // if there is not characters on json , create new []
          
-        jails.push(new Jail("Neve Tirza",""))
-        jails.push(new Jail("Ofek",""))
-        jails.push(new Jail("400",""))
-        jails.push(new Jail("Dekel",""))
+        jails.push(new Jail("Neve Tirza","./dist/jail.jpg"))
+        jails.push(new Jail("Ofek","./dist/jail.jpg"))
+        jails.push(new Jail("400","./dist/jail2.jpg"))
+        jails.push(new Jail("Dekel","./dist/jail.jpg"))
        
         //save to local storage
         const jailsJson = JSON.stringify(jails);
@@ -191,6 +192,7 @@ function loadQuestionGoodThings (): QuestionGoodThings[] | undefined {
 }
 function loadQuestionBadThings (): QuestionBadThings[] | undefined {
     try {
+      
         const badThings: QuestionBadThings []  = [];
         const badThingsString = localStorage.getItem('badThings');
       if (!badThingsString){ // if there is not characters on json , create new []
@@ -286,7 +288,7 @@ function loadDataToBoard(board: Board|undefined): void {
       if (goodThings) {
         board.goodThings = goodThings;
       }
-      
+      debugger
       // Load bad things and add them to the board
       const badThings: QuestionBadThings[] | undefined = loadQuestionBadThings();
       if (badThings) {
@@ -317,8 +319,6 @@ function renderHomePage(gamesBoards: Board [] | undefined, characters : Characte
       input.min = "2";
       input.max = "6";
   
-      // Append the label and input to the form
- 
       // Create the "Start Game" button
       const startButton = document.createElement("button");
       startButton.textContent = "Start Game";
@@ -342,10 +342,7 @@ function renderHomePage(gamesBoards: Board [] | undefined, characters : Characte
        const numPlayers = parseInt(input.value, 10);
       renderCharacterDropdowns(numPlayers, characters);
 });
-      // Append the form to the startNewGame HTML element
-      //startNewGameHtml.appendChild(form);
-
-      // Check if there is an open game board
+    // Check if there is an open game board
     const openGameBoard = gamesBoards.find((board) => board.gameStatus === true);
 
     if (openGameBoard) {
@@ -357,18 +354,14 @@ function renderHomePage(gamesBoards: Board [] | undefined, characters : Characte
         // Handle opening the active game
         window.location.href = "./ActiveGame.html";
       });
-       
     }
-
-    // Create the "renderCharacterDropdowns" button
+   // Append the form to the startNewGame HTML element  
     else startNewGameHtml.appendChild(form);
     
-      
     } catch (error) {
       console.error(error);
     }
   }
-  
 function getSelectedCharacters(numPlayers: number, characters: Character[] | undefined): Character[] {
     const selectedCharacters: Character[] = [];
     try {
@@ -452,18 +445,25 @@ function handelStartGame(numPlayers: number, gamesBoards: Board[] | undefined,se
       
       const ChractersForm=document.querySelector("#ChractersForm")
       if (!ChractersForm){
-        alert("Must pic characters")
         throw new Error("Cannot find ChractersForm");
       } 
         if (!gamesBoards) throw new Error("Cannot find game board");
         //check if there is open game befor open new one
         const openGame= gamesBoards.find(board=>board.gameStatus===true)
-        if(openGame)  
-         { alert("There is an open game already") }
+        if(openGame) 
+         {
+          // dialog alert
+
+          alert("There is an open game already") }
         else{
           const allCharactersSelected = selectedCharacters.length === numPlayers;
           if (!allCharactersSelected) {
-            alert("Must select characters for all players");
+            const dialog = document.createElement('dialog'); 
+            dialog.id = 'dialog'; 
+            dialog.innerHTML = 'Must select characters for all players';
+            dialog.addEventListener('click', () => dialog.close());
+            document.body.appendChild(dialog);
+            dialog.showModal();
             return; // Stop execution if not all characters are selected
           }
         
@@ -491,7 +491,9 @@ function handelStartGame(numPlayers: number, gamesBoards: Board[] | undefined,se
   }
   
   // get data for new game
+  
   const characters : Character[] | undefined = loadCharacters();
+  
   const gamesBoards : Board[]| undefined = loadBoards();
   
 

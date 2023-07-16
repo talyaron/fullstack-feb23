@@ -16,6 +16,7 @@ function loadBoardsAGpage() {
     }
 }
 function renderBoard(currentGame) {
+    // Get the board container element 
     var boardContainer = document.getElementById('Board');
     if (!boardContainer) {
         console.error('Board container not found');
@@ -28,7 +29,6 @@ function renderBoard(currentGame) {
     // Clear previous board
     boardContainer.innerHTML = '';
     // const hotels=currentGame.hotels;
-    var jails = currentGame.jails;
     var counter = 1; // Initialize counter
     // Create a 2D matrix for rendering the board cells
     var matrixSize = 10; // Assuming an 11x11 matrix for demonstration
@@ -54,75 +54,488 @@ function renderBoard(currentGame) {
     // set the frame of the board
     //Y=o
     for (var i = 0; i < matrixSize; i++) {
-        matrix[i][matrixSize - 1].value = counter;
-        matrix[i][0].textContent = counter; // Set the cell content to the counter value
+        // matrix[i][matrixSize-1].value = counter;
+        matrix[i][0].id = "cell" + counter; // Set the cell content to the counter value
         counter++; // Increment the counter
     }
     // X = matrixSize-1
     for (var i = 1; i < matrixSize - 1; i++) {
-        matrix[i][matrixSize - 1].value = counter;
-        matrix[matrixSize - 1][i].textContent = counter; // Set the cell content to the counter value
+        //  matrix[i][matrixSize-1].value = counter;
+        matrix[matrixSize - 1][i].id = "cell" + counter; // Set the cell content to the counter value
         counter++; // Increment the counter
     }
     //Y=matrixSize-1
     for (var i = matrixSize - 1; i > 0; i--) {
-        matrix[i][matrixSize - 1].value = counter;
-        matrix[i][matrixSize - 1].textContent = counter; // Set the cell content to the counter value
+        //  matrix[i][matrixSize-1].value = counter;
+        matrix[i][matrixSize - 1].id = "cell" + counter; // Set the cell content to the counter value
         counter++; // Increment the counter
     }
     //x=0
     for (var i = matrixSize - 1; i > 0; i--) {
-        matrix[0][i].value = counter;
-        matrix[0][i].textContent = counter; // Set the cell content to the counter value
+        //  matrix[0][i].value = counter;
+        matrix[0][i].id = "cell" + counter; // Set the cell content to the counter value
         counter++; // Increment the counter
     }
+    //set all the cells in the board  
     // set jails
+    var jails = currentGame.jails;
     var JailIndex = 0;
     jails.forEach(function (jail) {
         putJailOnBoard(jail, JailIndex);
         JailIndex++;
     });
+    // set cities
+    var cityIndex = 0;
+    var cities = currentGame.cities;
+    cities.forEach(function (city) {
+        putCityOnBoard(city, cityIndex);
+        cityIndex++;
+    });
+    // set cities
+    var players = currentGame.players;
+    players.forEach(function (player) {
+        putPlayerOnBoard(player);
+    });
+    // set Good surprises
+    setGoodSurprises();
+    // set bad surprises
+    setBadSurprises();
+    // set random suprise btn 
+    setBadBtnForRandom(currentGame.badThings);
+    setGoodBtnForRandom(currentGame.goodThings);
+}
+function setGoodSurprises() {
+    try {
+        //create button for each cell
+        var goodS1 = document.createElement('button');
+        goodS1.classList.add('goodS');
+        var goodS2 = document.createElement('button');
+        goodS2.classList.add('goodS');
+        var goodS3 = document.createElement('button');
+        goodS3.classList.add('goodS');
+        var goodS4 = document.createElement('button');
+        goodS4.classList.add('goodS');
+        var cell1 = document.getElementById('cell33');
+        if (!cell1)
+            throw new Error("cant find cell33");
+        cell1.appendChild(goodS1);
+        var cell2 = document.getElementById('cell24');
+        if (!cell2)
+            throw new Error("cant find cell24");
+        cell2.appendChild(goodS2);
+        var cell3 = document.getElementById('cell15');
+        if (!cell3)
+            throw new Error("cant find cell15");
+        cell3.appendChild(goodS3);
+        var cell4 = document.getElementById('cell6');
+        if (!cell4)
+            throw new Error("cant find cell6");
+        cell4.appendChild(goodS4);
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+function setBadSurprises() {
+    try {
+        //create button for each cell
+        var BadS1 = document.createElement('button');
+        BadS1.classList.add('BadS');
+        var BadS2 = document.createElement('button');
+        BadS2.classList.add('BadS');
+        var BadS3 = document.createElement('button');
+        BadS3.classList.add('BadS');
+        var cell1 = document.getElementById('cell32');
+        if (!cell1)
+            throw new Error("cant find cell32");
+        cell1.appendChild(BadS1);
+        var cell2 = document.getElementById('cell23');
+        if (!cell2)
+            throw new Error("cant find cell23");
+        cell2.appendChild(BadS2);
+        var cell3 = document.getElementById('cell14');
+        if (!cell3)
+            throw new Error("cant find cell14");
+        cell3.appendChild(BadS3);
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+function setBadBtnForRandom(badThings) {
+    //on click btn will render random suprise
+    try {
+        var bads = document.getElementById('2-7');
+        if (!bads)
+            throw new Error("canf find cell 2-7");
+        var BadThings = document.createElement('button');
+        BadThings.classList.add('BadThings');
+        BadThings.disabled = true;
+        BadThings.addEventListener('click', function () { RandomBadSuprise(badThings); });
+        bads.appendChild(BadThings);
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+function RandomBadSuprise(badThings) {
+    // Get a random bad thing from the array
+    var randomBadThing = badThings[Math.floor(Math.random() * badThings.length)];
+    // Create a dialog element
+    var dialog = document.createElement('dialog');
+    dialog.classList.add('dialog-card');
+    // Create title element
+    var title = document.createElement('h3');
+    title.innerText = randomBadThing.badThingsTitel;
+    dialog.appendChild(title);
+    // Create description element
+    var description = document.createElement('p');
+    description.innerText = randomBadThing.badThingsDescription;
+    dialog.appendChild(description);
+    // Create purchase price element
+    var purchasePrice = document.createElement('p');
+    purchasePrice.innerText = 'Purchase Price: ' + randomBadThing.purchasePrice.toString();
+    dialog.appendChild(purchasePrice);
+    // Create close button
+    var closeButton = document.createElement('button');
+    closeButton.innerText = 'Close';
+    closeButton.addEventListener('click', function () {
+        // Close the dialog when the close button is clicked
+        dialog.close();
+    });
+    dialog.appendChild(closeButton);
+    // Append the dialog to the document body
+    document.body.appendChild(dialog);
+    // Show the dialog
+    dialog.showModal();
+}
+function setGoodBtnForRandom(goodThings) {
+    //on click btn will render random suprise
+    try {
+        var goods = document.getElementById('2-2');
+        if (!goods)
+            throw new Error("canf find cell 2-2");
+        var GoodThings = document.createElement('button');
+        GoodThings.classList.add('GoodThings');
+        GoodThings.disabled = true;
+        GoodThings.addEventListener('click', function () { RandomGoodSuprise(goodThings); });
+        goods.appendChild(GoodThings);
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+function RandomGoodSuprise(goodThings) {
+    try {
+        // Get a random bad thing from the array  
+        var randomGoodThing = goodThings[Math.floor(Math.random() * goodThings.length)];
+        // Create a dialog element  
+        var dialog_1 = document.createElement('dialog');
+        dialog_1.classList.add('dialog-card');
+        // Create title element 
+        var title = document.createElement('h3');
+        title.innerText = randomGoodThing.goodThingsTitel;
+        dialog_1.appendChild(title);
+        // Create description element 
+        var description = document.createElement('p');
+        description.innerText = randomGoodThing.goodThingsDescription;
+        dialog_1.appendChild(description);
+        // Create purchase price element
+        var winPrice = document.createElement('p');
+        winPrice.innerText = 'Purchase Price: ' + randomGoodThing.winningPrice.toString();
+        dialog_1.appendChild(winPrice);
+        // Create close button
+        var closeButton = document.createElement('button');
+        closeButton.innerText = 'Close';
+        closeButton.addEventListener('click', function () {
+            // Close the dialog when the close button is clicked
+            dialog_1.close();
+        });
+        dialog_1.appendChild(closeButton);
+        // Append the dialog to the document body 
+        document.body.appendChild(dialog_1);
+        // Show the dialog
+        dialog_1.showModal();
+    }
+    catch (error) {
+        Error(error);
+    }
 }
 function putJailOnBoard(jail, JailIndex) {
     var cell;
-    var jailBtn;
-    var jailimg;
-    var jailId;
     switch (JailIndex) { // set jails in the corners of the board
         case 0:
-            cell = document.getElementById('0-0');
+            cell = document.getElementById('cell1');
             break;
         case 1:
-            cell = document.getElementById('0-9');
+            cell = document.getElementById('cell28');
             break;
         case 2:
-            cell = document.getElementById('9-9');
+            cell = document.getElementById('cell19');
             break;
         case 3:
-            cell = document.getElementById('9-0');
+            cell = document.getElementById('cell10');
             break;
     }
     // create elements for jail
-    jailBtn = document.createElement('bottun');
+    var jailBtn = document.createElement('bottun');
     jailBtn.classList.add('jailBtn');
-    jailBtn.innerHTML = jail.jailName;
-    jailimg = document.createElement('img');
+    jailBtn.id = "jail" + jail.jailId;
+    var jailimg = document.createElement('img');
     jailimg.src = jail.jailImg;
-    jailId = document.createElement('p');
-    jailId.innerHTML = "id:" + jail.jailId;
-    jailId.id = jail.jailId;
     jailBtn.appendChild(jailimg);
-    jailBtn.appendChild(jailId);
     cell === null || cell === void 0 ? void 0 : cell.appendChild(jailBtn);
-    cell.name = "jail";
-    cell.style.backgroundColor = 'red';
+    // cell.name="jail"
+}
+function putCityOnBoard(city, cityIndex) {
+    try {
+        var cell1 = void 0;
+        var cell2 = void 0;
+        var cell3 = void 0;
+        var cityBtn1 = void 0;
+        var cityBtn2 = void 0;
+        var cityBtn3 = void 0;
+        switch (cityIndex) { // set cities in the corners of the board
+            case 0: //ROVA A - get 3 matrix cell to fill the city
+                cell1 = document.getElementById('cell36');
+                cell2 = document.getElementById('cell35');
+                cell3 = document.getElementById('cell34');
+                if (!cell1 || !cell2 || !cell3)
+                    throw new Error("cant find cells");
+                cityBtn1 = document.createElement('bottun');
+                cityBtn1.id = "" + city.cityId;
+                cityBtn1.classList.add('RovaA');
+                cell1.appendChild(cityBtn1);
+                cityBtn2 = document.createElement('bottun');
+                cityBtn2.id = "" + city.cityId;
+                cityBtn2.classList.add('RovaA');
+                cell2.appendChild(cityBtn2);
+                cityBtn3 = document.createElement('bottun');
+                cityBtn3.id = "" + city.cityId;
+                cityBtn3.classList.add('RovaA');
+                cell3.appendChild(cityBtn3);
+                break;
+            case 1: //Rova Bet
+                cell1 = document.getElementById('cell29');
+                cell2 = document.getElementById('cell30');
+                cell3 = document.getElementById('cell31');
+                if (!cell1 || !cell2 || !cell3)
+                    throw new Error("cant find cells");
+                cityBtn1 = document.createElement('bottun');
+                cityBtn1.id = "" + city.cityId;
+                cityBtn1.classList.add('RovaBet');
+                cell1.appendChild(cityBtn1);
+                cityBtn2 = document.createElement('bottun');
+                cityBtn2.id = "" + city.cityId;
+                cityBtn2.classList.add('RovaBet');
+                cell2.appendChild(cityBtn2);
+                cityBtn3 = document.createElement('bottun');
+                cityBtn3.id = "" + city.cityId;
+                cityBtn3.classList.add('RovaBet');
+                cell3.appendChild(cityBtn3);
+                break;
+            case 2: //Rova Gimel
+                cell1 = document.getElementById('cell25');
+                cell2 = document.getElementById('cell26');
+                cell3 = document.getElementById('cell27');
+                if (!cell1 || !cell2 || !cell3)
+                    throw new Error("cant find cells");
+                cityBtn1 = document.createElement('bottun');
+                cityBtn1.id = "" + city.cityId;
+                cityBtn1.classList.add('RovaGimel');
+                cell1.appendChild(cityBtn1);
+                cityBtn2 = document.createElement('bottun');
+                cityBtn2.id = "" + city.cityId;
+                cityBtn2.classList.add('RovaGimel');
+                cell2.appendChild(cityBtn2);
+                cityBtn3 = document.createElement('bottun');
+                cityBtn3.id = "" + city.cityId;
+                cityBtn3.classList.add('RovaGimel');
+                cell3.appendChild(cityBtn3);
+                break;
+            case 3: //Rova Daled
+                cell1 = document.getElementById('cell20');
+                cell2 = document.getElementById('cell21');
+                cell3 = document.getElementById('cell22');
+                if (!cell1 || !cell2 || !cell3)
+                    throw new Error("cant find cells");
+                cityBtn1 = document.createElement('bottun');
+                cityBtn1.id = "" + city.cityId;
+                cityBtn1.classList.add('RovaDaled');
+                cell1.appendChild(cityBtn1);
+                cityBtn2 = document.createElement('bottun');
+                cityBtn2.id = "" + city.cityId;
+                cityBtn2.classList.add('RovaDaled');
+                cell2.appendChild(cityBtn2);
+                cityBtn3 = document.createElement('bottun');
+                cityBtn3.id = "" + city.cityId;
+                cityBtn3.classList.add('RovaDaled');
+                cell3.appendChild(cityBtn3);
+                break;
+            case 4: //Rova CITY
+                cell1 = document.getElementById('cell16');
+                cell2 = document.getElementById('cell17');
+                cell3 = document.getElementById('cell18');
+                if (!cell1 || !cell2 || !cell3)
+                    throw new Error("cant find cells");
+                cityBtn1 = document.createElement('bottun');
+                cityBtn1.id = "" + city.cityId;
+                cityBtn1.classList.add('RovaCITY');
+                cell1.appendChild(cityBtn1);
+                cityBtn2 = document.createElement('bottun');
+                cityBtn2.id = "" + city.cityId;
+                cityBtn2.classList.add('RovaCITY');
+                cell2.appendChild(cityBtn2);
+                cityBtn3 = document.createElement('bottun');
+                cityBtn3.id = "" + city.cityId;
+                cityBtn3.classList.add('RovaCITY');
+                cell3.appendChild(cityBtn3);
+                break;
+            case 5: //Rova TetVav
+                cell1 = document.getElementById('cell11');
+                cell2 = document.getElementById('cell12');
+                cell3 = document.getElementById('cell13');
+                if (!cell1 || !cell2 || !cell3)
+                    throw new Error("cant find cells");
+                cityBtn1 = document.createElement('bottun');
+                cityBtn1.id = "" + city.cityId;
+                cityBtn1.classList.add('RovaTetVav');
+                cell1.appendChild(cityBtn1);
+                cityBtn2 = document.createElement('bottun');
+                cityBtn2.id = "" + city.cityId;
+                cityBtn2.classList.add('RovaTetVav');
+                cell2.appendChild(cityBtn2);
+                cityBtn3 = document.createElement('bottun');
+                cityBtn3.id = "" + city.cityId;
+                cityBtn3.classList.add('RovaTetVav');
+                cell3.appendChild(cityBtn3);
+                break;
+            case 6: //Rova YudBet
+                cell1 = document.getElementById('cell7');
+                cell2 = document.getElementById('cell8');
+                cell3 = document.getElementById('cell9');
+                if (!cell1 || !cell2 || !cell3)
+                    throw new Error("cant find cells");
+                cityBtn1 = document.createElement('bottun');
+                cityBtn1.id = "" + city.cityId;
+                cityBtn1.classList.add('RovaYudBet');
+                cell1.appendChild(cityBtn1);
+                cityBtn2 = document.createElement('bottun');
+                cityBtn2.id = "" + city.cityId;
+                cityBtn2.classList.add('RovaYudBet');
+                cell2.appendChild(cityBtn2);
+                cityBtn3 = document.createElement('bottun');
+                cityBtn3.id = "" + city.cityId;
+                cityBtn3.classList.add('RovaYudBet');
+                cell3.appendChild(cityBtn3);
+                break;
+            case 7: //Rova YudAlef
+                cell1 = document.getElementById('cell2');
+                cell2 = document.getElementById('cell3');
+                cell3 = document.getElementById('cell4');
+                if (!cell1 || !cell2 || !cell3)
+                    throw new Error("cant find cells");
+                cityBtn1 = document.createElement('bottun');
+                cityBtn1.id = "" + city.cityId;
+                cityBtn1.classList.add('RovaYudAlef');
+                cell1.appendChild(cityBtn1);
+                cityBtn2 = document.createElement('bottun');
+                cityBtn2.id = "" + city.cityId;
+                cityBtn2.classList.add('RovaYudAlef');
+                cell2.appendChild(cityBtn2);
+                cityBtn3 = document.createElement('bottun');
+                cityBtn3.id = "" + city.cityId;
+                cityBtn3.classList.add('RovaYudAlef');
+                cell3.appendChild(cityBtn3);
+                break;
+        }
+        //add event on click to render city card
+        cityBtn1.addEventListener('click', function () { renderCityCard(city.cityId); });
+        cityBtn2.addEventListener('click', function () { renderCityCard(city.cityId); });
+        cityBtn3.addEventListener('click', function () { renderCityCard(city.cityId); });
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+function renderCityCard(cityId) {
+    var _a, _b, _c;
+    try {
+        var dialog = document.createElement('dialog'); // Create a dialog element
+        dialog.classList.add('cityDialog'); // Add a custom CSS class for styling
+        var diaylogForm = document.createElement('form');
+        diaylogForm.classList.add('cityDialog__cityCardForm');
+        diaylogForm.id = "cityCard" + cityId;
+        var btnClose = document.createElement('button');
+        btnClose.classList.add('closeCityDialog');
+        btnClose.innerHTML = 'X';
+        btnClose.addEventListener('click', closePopup);
+        diaylogForm.appendChild(btnClose);
+        var cityName = document.createElement('h1');
+        var cityBuyPrice = document.createElement('h2');
+        var cityRentPrice = document.createElement('h2');
+        var owner = document.createElement('h2');
+        var city_1 = (_a = gamesBoardsAGpage === null || gamesBoardsAGpage === void 0 ? void 0 : gamesBoardsAGpage.find(function (board) { return board.cities.find(function (city) { return city.cityId === cityId; }); })) === null || _a === void 0 ? void 0 : _a.cities.find(function (city) { return city.cityId === cityId; });
+        if (!city_1)
+            throw new Error("cant find city");
+        cityName.innerHTML = "" + city_1.cityName;
+        cityBuyPrice.innerHTML = "Buy Price : " + city_1.monetaryValue;
+        cityRentPrice.innerHTML = "Rent Price : " + city_1.rentValue;
+        var ownerName = (_c = (_b = gamesBoardsAGpage === null || gamesBoardsAGpage === void 0 ? void 0 : gamesBoardsAGpage.find(function (board) { return board.cities.find(function (city) { return city.cityId === cityId; }); })) === null || _b === void 0 ? void 0 : _b.players.find(function (player) { var _a; return player.playerId === ((_a = city_1.cityOwner) === null || _a === void 0 ? void 0 : _a.playerId); })) === null || _c === void 0 ? void 0 : _c.userName;
+        owner.innerHTML = "Owner : " + (ownerName || "No Owner");
+        diaylogForm.appendChild(cityName);
+        diaylogForm.appendChild(cityBuyPrice);
+        diaylogForm.appendChild(cityRentPrice);
+        diaylogForm.appendChild(owner);
+        // if(!ownerName)
+        // {
+        //   const buyBtn=document.createElement('button');
+        //   buyBtn.classList.add('buyBtn');
+        //   buyBtn.innerHTML=`Buy`;
+        //   diaylogForm.appendChild(buyBtn);
+        //   // buyBtn.addEventListener('click',()=>{buyCity(cityId,city.monetaryValue)}); 
+        // }
+        // else{
+        //   const payBtn=document.createElement('button');
+        //   payBtn.classList.add('payBtn');
+        //   payBtn.innerHTML=`Pay`;
+        //   diaylogForm.appendChild(payBtn);
+        //   // payBtn.addEventListener('click',()=>{payRent(cityId,city.rentValue)});
+        // }
+        dialog.appendChild(diaylogForm);
+        document.body.appendChild(dialog); // Append the dialog to the document body
+        dialog.showModal(); // Display the dialog as a modal
+        // Generate and display the random number
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+function putPlayerOnBoard(player) {
+    try {
+        var cell = document.getElementById("" + player.cellId);
+        if (!cell)
+            throw new Error("cant find cell");
+        var playerHtml = document.createElement('div');
+        playerHtml.classList.add('player');
+        playerHtml.id = "player" + player.playerId;
+        playerHtml.style.backgroundImage = "url(\"./dist/" + player.playerId + ".png\")";
+        cell.appendChild(playerHtml);
+        cell.style.display = "flex"; // Set the display property to "flex"
+        cell.style.flexWrap = "wrap"; // Set the flex-wrap property to "wrap"
+        //playerStep(player.playerId)
+    }
+    catch (error) {
+        console.error(error);
+    }
 }
 function renderOptionsBtns(gamesBoardsAGpage) {
     try {
+        var currentGame_1 = gamesBoardsAGpage === null || gamesBoardsAGpage === void 0 ? void 0 : gamesBoardsAGpage.find(function (board) { return board.gameStatus === true; });
         var htmlOptionsBtns = document.querySelector("#optionsBtns");
         if (!htmlOptionsBtns)
             throw new Error("Cant find optionsBtns");
-        var html = "<form>\n    <input type=\"button\" onclick=\"gameOver()\" class=\"optionsBtns__Button\" value=\"End game\">\n    <input type=\"button\" onclick=\"backHome()\" class=\"optionsBtns__Button\" value=\"Back\">\n </form>";
+        var html = "<form>\n    <input type=\"button\" onclick=\"play()\" class=\"optionsBtns__Button\" value=\"Start Game\">\n    <input type=\"button\" onclick=\"gameOver()\" class=\"optionsBtns__Button\" value=\"End game\">\n    <input type=\"button\" onclick=\"backHome()\" class=\"optionsBtns__Button\" value=\"Back\">\n </form>";
         htmlOptionsBtns.innerHTML = html;
     }
     catch (error) {
@@ -138,13 +551,12 @@ function backHome() {
 }
 function gameOver() {
     try {
-        debugger;
         if (!gamesBoardsAGpage)
             throw new Error("cant find gamesBoardsAGpage");
-        var currentGame_1 = gamesBoardsAGpage.find(function (board) { return board.gameStatus === true; });
-        if (!currentGame_1)
+        var currentGame_2 = gamesBoardsAGpage.find(function (board) { return board.gameStatus === true; });
+        if (!currentGame_2)
             throw new Error("cant find currentGame");
-        currentGame_1.gameStatus = false;
+        currentGame_2.gameStatus = false;
         backHome();
     }
     catch (error) {
@@ -163,9 +575,129 @@ function saveBoardsForOpenGame(boards) {
         console.error(error);
     }
 }
+function playerStep(playerId) {
+    try {
+        var playerDiv = document.getElementById("player" + playerId);
+        if (!playerDiv)
+            throw new Error("cant find playerDiv");
+        var currentCell = playerDiv.parentElement; // Get the current cell of the player
+        if (!currentCell)
+            throw new Error("cant find currentCell");
+        //   // Get the next cell based on the current cell's ID
+        var currentCellId = currentCell.id.match(/\d+/);
+        //   const nextCellId = [currentCellId[0] - 1, currentCellId[1]]; // Move one cell up
+        if (!currentCellId)
+            throw new Error("cant find currentCellId");
+        var nextCellId = Number(currentCellId[0]) + 1;
+        if (nextCellId === 36)
+            nextCellId = 1;
+        var nextCell = document.getElementById("cell" + Number(nextCellId));
+        if (!nextCell)
+            throw new Error("cant find nextCell");
+        nextCell.appendChild(playerDiv); // Move the player to the next cell
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+function dropCube() {
+    try {
+        var cube_1 = document.getElementById("cubeButton");
+        if (!cube_1)
+            throw new Error("Can't find cube.");
+        cube_1.classList.add("rotate-animation");
+        showPopup();
+        saveLuckeyCube();
+        setTimeout(function () {
+            cube_1.classList.remove("rotate-animation");
+        }, 2000);
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+function saveLuckeyCube() {
+    try {
+        if (!gamesBoardsAGpage)
+            throw new Error("cant find gamesBoardsAGpage");
+        var currentGame_3 = gamesBoardsAGpage.find(function (board) { return board.gameStatus === true; });
+        if (!currentGame_3)
+            throw new Error("cant find currentGame");
+        var luckeyCube = document.getElementById("randomNumber");
+        if (!luckeyCube)
+            throw new Error("Can't find luckeyCube.");
+        currentGame_3.luckyCube = Number(luckeyCube.textContent);
+        console.log(currentGame_3.luckyCube);
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+function showPopup() {
+    try {
+        var dialog = document.createElement('dialog'); // Create a dialog element
+        dialog.classList.add('popup-dialog'); // Add a custom CSS class for styling
+        var spanClose = document.createElement('span');
+        spanClose.classList.add('close');
+        spanClose.addEventListener('click', closePopup);
+        spanClose.innerHTML = '&times;';
+        dialog.appendChild(spanClose);
+        var randNumber = getRandomNumber(1, 6);
+        var numDiv = document.createElement('div');
+        numDiv.id = "randomNumber";
+        numDiv.classList.add('randomNumber');
+        numDiv.textContent = randNumber.toString();
+        dialog.appendChild(numDiv);
+        document.body.appendChild(dialog); // Append the dialog to the document body
+        dialog.showModal(); // Display the dialog as a modal
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+function closePopup() {
+    try {
+        var dialog = document.querySelector('dialog'); // Get the dialog element
+        if (!dialog)
+            throw new Error("Can't find dialog.");
+        dialog.close(); // Close the dialog
+        dialog.remove(); // Remove the dialog element from the DOM
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+function renderIBeginCell() {
+    var beginCell = document.getElementById("4-1");
+    var beginDiv = document.createElement('div');
+    beginDiv.classList.add('begin');
+    beginCell === null || beginCell === void 0 ? void 0 : beginCell.appendChild(beginDiv);
+}
+function play() {
+    try {
+        // for each player in the game need to let player on his turn to drop cube and make step as the number he get
+        if (!gamesBoardsAGpage)
+            throw new Error("cant find gamesBoardsAGpage");
+        var currentGame_4 = gamesBoardsAGpage.find(function (board) { return board.gameStatus === true; });
+        if (!currentGame_4)
+            throw new Error("cant find currentGame");
+        // map the players with status true to the game
+        var players = currentGame_4.players.filter(function (player) { return player.playerStatus === true; });
+        if (!players)
+            throw new Error("cant find players");
+        var cube = document.getElementById("cubeButton");
+        if (!cube)
+            throw new Error("cant find cube");
+        cube.disabled = false;
+        cube.style.border = "1px solid green";
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
 var gamesBoardsAGpage = loadBoardsAGpage();
 var currentGame = gamesBoardsAGpage === null || gamesBoardsAGpage === void 0 ? void 0 : gamesBoardsAGpage.find(function (game) { return game.gameStatus === true; });
 //shape of the board
-renderBoard(currentGame);
 renderOptionsBtns(gamesBoardsAGpage);
-console.log(gamesBoardsAGpage);
+renderBoard(currentGame);
+renderIBeginCell();

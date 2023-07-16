@@ -1,11 +1,9 @@
-/* Extra small devices (phones, 600px and down) */
-/* Small devices (portrait tablets and large phones, 600px and up) */
-/* Medium devices (landscape tablets, 768px and up) */
-/* Large devices (laptops/desktops, 992px and up) */
-/* Extra large devices (large laptops and desktops, 1200px and up) */
 body {
   background-image: url(https://coolbackgrounds.io/images/backgrounds/index/sea-edge-79ab30e2.png);
   background-size: cover;
+  overflow: hidden;
+  overflow-y: scroll;
+  transition: all 100ms ease-in-out;
 }
 
 .MainPageWrapper {
@@ -21,7 +19,18 @@ body {
   background: #cfeed2;
   background: linear-gradient(0deg, #cfeed2 15%, #b0d4f1 85%);
   border-radius: 20px;
-  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-family: fantasy;
+}
+.MainPageWrapper__sectiontxt {
+  font-family: monospace;
+  color: #c4307e;
+}
+.MainPageWrapper__suggestedCover {
+  height: 24vh;
+  width: 100vw;
+  background: #cfeed2;
+  background: linear-gradient(0deg, #cfeed2 15%, #b0d4f1 85%);
+  box-shadow: 2px 2px grey;
 }
 .MainPageWrapper__suggested {
   display: flex;
@@ -30,20 +39,69 @@ body {
   gap: 4vw;
   width: 100vw;
   height: 24vh;
+  transition: all 100ms ease-in-out;
+}
+.MainPageWrapper__suggested__scrollR {
+  position: absolute;
+  right: 0;
+  top: 45vh;
+  width: 2vw;
+  height: 4vh;
+  border-radius: 50%;
+  z-index: 2;
+  cursor: pointer;
   background: #cfeed2;
-  background: linear-gradient(0deg, #cfeed2 15%, #b0d4f1 85%);
-  box-shadow: 2px 2px grey;
+  background: linear-gradient(0deg, #5bc465 15%, #b0d4f1 85%);
+  opacity: 0.5;
+}
+.MainPageWrapper__suggested__scrollR:active {
+  transform: scale(1.1);
+  opacity: 1;
+}
+.MainPageWrapper__suggested__scrollL {
+  position: absolute;
+  left: 0;
+  top: 45vh;
+  width: 2vw;
+  height: 4vh;
+  border-radius: 50%;
+  z-index: 2;
+  cursor: pointer;
+  background: #cfeed2;
+  background: linear-gradient(0deg, #5bc465 15%, #b0d4f1 85%);
+  opacity: 0.5;
+}
+.MainPageWrapper__suggested__scrollL:active {
+  transform: scale(1.1);
+  opacity: 1;
 }
 .MainPageWrapper__lastListened {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
   gap: 4vw;
   width: 100vw;
   height: 24vh;
   background: #cfeed2;
   background: linear-gradient(0deg, #cfeed2 15%, #b0d4f1 85%);
   box-shadow: 2px 2px grey;
+  justify-content: center;
+}
+.MainPageWrapper__lastListened__ROOT {
+  gap: 4vw;
+  width: 100vw;
+  height: 24vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.MainPageWrapper__songInput {
+  font-family: monospace;
+  width: 20vw;
+  height: 4vh;
+  border-radius: 10px;
+  background: #4792da;
+  background: radial-gradient(circle, #4792da 14%, #ec4b66 92%);
+  margin-bottom: 4vh;
+  cursor: pointer;
 }
 
 .song {
@@ -71,4 +129,83 @@ body {
 .song__title {
   font-size: 16px;
   font-family: fantasy;
+}
+
+.found {
+  border-radius: 10px;
+  width: 10vw;
+  height: 2vh;
+  background-color: aquamarine;
+  cursor: pointer;
+  transition: all 100ms ease-in-out;
+}
+.found:hover {
+  transform: scale(1.1);
+}
+
+.MainPageWrapper__suggested__root {
+  transition: transform 0.3s ease-in-out;
+  transform: translateX(0);
+}
+
+.add {
+  width: 60vw;
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+  background: #4792da;
+  background: radial-gradient(circle, #4792da 14%, #ec4b66 92%);
+  margin: auto;
+  align-items: center;
+  border-radius: 20px;
+  margin-top: 6vh;
+  margin-bottom: 2vh;
+}
+.add__feautering {
+  font-size: 30;
+  color: aqua;
+  margin: 0;
+  font-family: fantasy;
+}
+.add__headline {
+  font-size: 40px;
+  color: deeppink;
+  margin: 0;
+}
+.add__bigimg {
+  opacity: 0.6;
+  width: 18vw;
+  z-index: 0;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.add__lilimg {
+  position: relative;
+  width: 14vw;
+  bottom: 33vh;
+  z-index: 1;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 100ms ease-in-out;
+}
+.add__lilimg:hover {
+  transform: scale(1.05);
+}
+
+.shuffle {
+  width: 10vw;
+  height: 20vh;
+  margin: auto;
+  background: #4792da;
+  background: radial-gradient(circle, #4792da 14%, #5eec4b 92%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  transition: all 100ms ease-in-out;
+  cursor: pointer;
+  border-top: 10px blue;
+}
+.shuffle:hover {
+  transform: scale(0.6) rotate(1turn);
 }

@@ -1,161 +1,136 @@
 body {
     background-color: black;
-}
+    width: 99vw;
+    height: 98vh;
+    overflow: hidden;
 
-#bord {
-    width: 98vw;
-    height: 97vh;
-    background-image: url(https://media.istockphoto.com/vectors/black-jack-table-vector-illustration-eps-10-casino-vector-id1147481668?k=20&m=1147481668&s=170667a&w=0&h=hmBWSGX21Hn52GK36qTGjw_ZkdeCV4OwgonV5Cu69QM=);
-    background-repeat: no-repeat;
-    background-size: cover;
-    position: absolute;
-    min-width: 1130px;
-
-    .players {
+    .screen {
         width: 100%;
         height: 100%;
-        position: absolute;
-        top: 0;
-        left: 0x;
-    }
+        position: relative;
 
-    img {
-        width: 150px;
-        height: 150px;
-        position: absolute;
-        top: 10px;
-        left: 10px;
-    }
+        &__game {
 
-    form {
-        z-index: 2;
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        position: absolute;
-        left: 62%;
-        top: 5px;
-        gap: 5px;
-
-
-
-        input:hover {
-            cursor: pointer;
-            background-color: black;
-            color: white;
-        }
-
-
-        @media only screen and (max-width: 1200px) {
-            max-width: 750px;
-            grid-template-columns: repeat(1, 1fr);
-            left: 90%;
-            top: 10px;
-            gap: 8px;
-        }
-
-
-        @media only screen and (min-width: 1130px) {}
-    }
-
-    .players{
-        position: absolute;
-        display: flex;
-        flex-direction: column;
-        text-align: center;
-        font-weight: bold;
-        &__player{
-            width: 160px;
-            height: 200px;
-            // background-color: red;
             position: absolute;
-            border: solid 1px black;
+            width: 85%;
+            left: 15%;
+            background-color: black;
+            height: 100%;
 
-            &--dealer{
-                width: 250px;
-                top:5px;
-                left: 40%;
-            }
-            
-            &--1{
-                top:430px;
-                left: 9%;
-                rotate: 20deg;
-
-            }
-            &--2{
-                top:480px;
-                left: 21%;
-                rotate: 12deg;
-            }
-            &--3{
-                top:510px;
-                left: 33%;
-                rotate: 4deg;
-            }     
-            &--4{
-                top:520px;
-                left: 45%;
-            }
-            &--5{
-                top:520px;
-                left: 57%;
-                rotate: -4deg;
-            }
-            &--6{
-                top:490px;
-                left: 69%;
-                rotate: -12deg;
-
-            }
-            &--7{
-                top:440px;
-                left: 81%;
-                rotate: -20deg;
-            }
-        }
-
-        .cards{
-            width: 100%;
-            height: 80%;
-            background-color: red;
-            display: flex;
-            flex-wrap: wrap;
-            position: relative;
-
-            img{
+            .star{
+                width:60px;
+                height: 60px;
                 position: absolute;
+                animation: fallingStar 2.5s 2s 7 linear;
+                z-index: 0;
             }
-        }
 
-        form{
-            width: 100%;
-            height:10% ;
-            display: flex;
-            position:static;
-            justify-content: space-around;
-            input{
+              }
 
-                &[type = "number"]{
-                    width: 50px;
+            #fighter {
+                position: absolute;
+                width: fit-content;
+                top: 75%;
+                left: 50%;
+                transition: all 80ms ease-in-out;
+
+                img {
+                    width: 200px;
+                    height: 200px;
+                    background: none;
+                    position: absolute;
+                    transition: all 100ms ease-in-out;
+
                 }
-                width: 50px;
+
+                #sword {
+                    height: 200px;
+                    width: 20px;
+                    left: 85px;
+                    top: -110px;
+                    position: absolute;
+
+                    background-repeat: no-repeat;
+                    background-size: contain;
+                    transition: all 80ms ease-in-out;
+
+                }
             }
+
         }
 
-        .name{
-            width: 100%;
-            height: 10%;
-            P{
-                position: absolute;
+        &__UI {
+            width: 15%;
+            height: 100%;
+            border-radius: 5px;
+            position: absolute;
+            left: 0;
+            background: linear-gradient(rgb(53, 98, 122), transparent);
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+
+            h1 {
+                color: rgb(128, 163, 179);
+
+            }
+
+            form {
                 width: 100%;
-                height: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                gap: 18px;
+                padding-bottom: 10px;
+
+                input,
+                select {
+                    width: 80%;
+                    margin: auto;
+                    border-radius: 8px;
+                    box-shadow: 200px;
+                    padding: 5px;
+                    background-color: black;
+                    color: white;
+                    font-family: fantasy;
+
+                    &:hover {
+                        cursor: pointer;
+                    }
+
+                    &[type="text"]:focus {
+                        background-color: white;
+                        color: black;
+                        border: none;
+                    }
+                }
+
+
+            }
+
+
+            .container {
+                width: 100%;
+                min-width: 50px;
+                padding: 20px 0;
+                padding-bottom: 50px;
+                border-radius: 10px;
+                font-size: medium;
+            }
+
+            #timerDisplay {
                 margin: auto;
+                width: 92%;
+                font-family: "Roboto mono", monospace;
+                color: #8cb4c7;
+                font-size: 30px;
+                display: flex;
+                align-items: center;
+                border-radius: 5px;
+                box-shadow: 0 0 20px rgba(6, 204, 105, 0.921);
+                justify-content: center;
             }
         }
-    }
-}
 
-.card {
-    width: fit-content;
-    height: fit-content;
+    }
 }

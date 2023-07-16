@@ -1,7 +1,7 @@
 class Player {
-    id: string
-    constructor(public playerImg: string, public rope: string, id?: string | null) {
-        this.id = `id-${new Date().getTime() - Math.random()}`
+    // id: string
+    constructor(public playerImg: string, id?: string | null) {
+        // this.id = `id-${new Date().getTime() - Math.random()}`
     }
 }
 class Point {
@@ -11,23 +11,23 @@ class Point {
     }
 }
 const root = document.querySelector(`#root`) as HTMLElement;
+const rootPlayer = document.querySelector(`#rootPlayer`) as HTMLElement;
 
-const players: Player[] = []
 const points: Point[] = []
-console.log(root);
-logIn()
-function logIn() {
-    try {
 
-        const html = ` <div class="log"> <form onsubmit="handleAdd(event)"><label for="worker-name">enter your Name:</label> <br>
-        <input required type="text" name="name" value=""> <br> <br> <button type="submit">ok</button> </form> </div>`;
-        if (!root) throw new Error("no root element");
+// logIn()
+// function logIn() {
+//     try {
 
-        root.innerHTML = html;
-    } catch (error) {
-        console.error(error);
-    }
-}
+//         const html = ` <div class="log"> <form onsubmit="handleAdd(event)"><label for="worker-name">enter your Name:</label> <br>
+//         <input required type="text" name="name" value=""> <br> <br> <button type="submit">ok</button> </form> </div>`;
+//         if (!root) throw new Error("no root element");
+
+//         root.innerHTML = html;
+//     } catch (error) {
+//         console.error(error);
+//     }
+// }
 
 
 
@@ -44,14 +44,60 @@ function handleAdd(ev: any) {
         ev.target.reset();
         const log = document.querySelector(`.log`) as HTMLElement;
         log.classList.add("none")
+        const html = ` <h2>Hi ${name},choose your player</h2>`
+        root.innerHTML = html;
 
     } catch (error) {
         console.error(error)
     }
 }
-function handleEdit() {
+const players: Player[] = []
+
+
+function addHomer() {
+    try {
+        // const player =
+        const selectedPlayer = new Player("../img/homer.png");
+        players.push(selectedPlayer);
+        savePlayerToLocalStorage(players)
+        console.log(players)
+        window.location.href = "view/levels.html";
+
+
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+function addBart() {
+    try {
+        const selectedPlayer = new Player("../img/bart.png");
+        players.push(selectedPlayer);
+        savePlayerToLocalStorage(players)
+        console.log(players)
+        window.location.href = "view/levels.html";
+
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+function addLisa() {
     try {
 
+        const selectedPlayer = new Player("../img/lisa.png");
+        players.push(selectedPlayer);
+        savePlayerToLocalStorage(players)
+        console.log(players)
+        window.location.href = "view/levels.html";
+
+    } catch (error) {
+        console.error(error)
+    }
+}
+function savePlayerToLocalStorage(players: Player[]) {
+    try {
+        localStorage.setItem('players', JSON.stringify(players));
 
     } catch (error) {
         console.error(error)

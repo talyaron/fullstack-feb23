@@ -1,39 +1,22 @@
-// 1) 1 entity, CRUD, make it betfull with CSS.
-// 2) 2 eneties ,with joins, CRUD, two pages that share the model.
-//Instegram Profile page.
+//Instegram Posts page.
 //MVC - Model View Controller
-//class - user, image.
-// function showUserImg(
-//     HTMLElement: HTMLElement | Element | null,
-//     userImg: UserImg[]) {
-//     try {
-//         if (!HTMLElement) throw new Error('Root element is not found');
-//         const html =
-//             userImg.map((userImg) => {
-//             return ` <div class="userPost">
-//             <div class="userPost__name">
-//             <img src="${userImg.user.imageProfile}">
-//             <h3>${userImg.user.name}</h3>
-//             </div>
-//               <div class="userPost__img">
-//                 <img src="${userImg.user.imageProfile}">
-//               </div>
-//             </div>`;
-//             }).join('');
-//         HTMLElement.innerHTML = html;
-//         localStorage.setItem('userImgArray', JSON.stringify(userImgArray));
-//     } catch (error) {
-//         console.error(error);
-//     }
-// }
-// showUserImg(document.querySelector('#profile'), userImgArray);
-function showUserImg(HTMLElement, imageArray) {
+var image = getImgsFromLocalStorage();
+var user = getUsersFromLocalStorage();
+var usersImg = getUsersImgFromLocalStorage();
+// console.log(usersArray);
+//Error free.
+function showPosts(HTMLElement, users) {
     try {
         if (!HTMLElement)
             throw new Error('Root element is not found');
-        var html = imageArray
-            .map(function (image) {
-            return "\n          <div class=\"userPost\">\n            <div class=\"userPost__name\">\n              <img src=\"" + image.user.imageProfile + "\">\n              <h3>" + image.user.name + "</h3>\n            </div>\n            <div class=\"userPost__img\">\n              " + image.image.map(function (img) { return "<img src=\"" + img.image + "\">"; }).join('') + "\n            </div>\n          </div>\n        ";
+        var html = users
+            .map(function (user) {
+            var postsHtml = user.images
+                .map(function (img) {
+                return "\n              <div class=\"userPost\">\n                <div class=\"userPost__name\">\n                  <img src=\"" + user.imageProfile + "\">\n                  <h3>" + user.name + "</h3>\n                </div>\n                <div class=\"userPost__img\">\n                  <img src=\"" + img.image + "\">\n                </div>\n                <div class=\"userPost__buttons\">\n                <button class=\"deleteBtn\" onclick=\"handleDeletePost('" + user.id + "')\">Delete</button>\n                <button class=\"editBtn\" onclick=\"handleEditPost('" + user.id + "')\">Edit</button>\n              </div>\n              </div>";
+            })
+                .join('');
+            return postsHtml;
         })
             .join('');
         HTMLElement.innerHTML = html;
@@ -42,21 +25,51 @@ function showUserImg(HTMLElement, imageArray) {
         console.error(error);
     }
 }
-// הוספת פוסט חדש למערך imageArray
-var newImage = new Img(imageUrl, '');
-imageArray.push(newImage);
-// קריאה לפונקציה showUserImg עם המערך המעודכן
-showUserImg(document.querySelector('#profile'), imageArray);
-// עדכון המידע ב-LocalStorage
-localStorage.setItem('images', JSON.stringify(imageArray));
-// הוספת פוסט חדש למערך userImgArray
-var newUserImg = new UserImg(selectedUser, [newImage]);
-userImgArray.push(newUserImg);
-// קריאה לפונקציה showUserImg עם הפוסט המעודכן
-showUserImg(document.querySelector('#profile'), userImgArray);
+showPosts(document.querySelector('#posts'), usersArray);
 //view - show the user profile.
-//create a new user profile.
-//create a new post(image).
-//controller - add new user to the array.
-//add new post to the user profile.
-//show the user profile.
+//creat header (working)
+//Error free.
+function showHeader(HTMLElement, user) {
+    try {
+        if (!HTMLElement)
+            throw new Error('Root element is not found');
+        var html = user.map(function (user) {
+            return "\n      <div class=\"header\">\n        <div class=\"header__user\">\n        <div class=\"header__user--image\">\n          <img src=\"" + user.imageProfile + "\">\n        </div>\n          <h3>" + user.name + "</h3>\n        </div>\n      </div>";
+        }).join('');
+        HTMLElement.innerHTML = html;
+        // saveUserToLocalStorage(usersArray);
+        saveUsersImgToLocalStorage(usersImgArray);
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+showHeader(document.querySelector('#header'), usersArray);
+// function handleDeletePost(userId: string, postId: string) {
+//   try {
+//     const user = usersArray.find((user) => user.id === userId);
+//     if (!user) throw new Error('User not found');
+//     const postIndex = user.images.findIndex((img) => img.id === postId);
+//     if (postIndex === -1) throw new Error('Post not found');
+//     user.images.splice(postIndex, 1);
+//     saveUserToLocalStorage(usersArray);
+//     showPosts(document.querySelector('#posts'), usersArray);
+//   } catch (error) {
+//     console.error(error);
+//   }
+// }
+// function handleEditPost(userId: string, postId: string) {
+//   try {
+//     const user = usersArray.find((user) => user.id === userId);
+//     if (!user) throw new Error('User not found');
+//     const post = user.images.find((img) => img.id === postId);
+//     if (!post) throw new Error('Post not found');
+//     const newImage = prompt('Enter new image URL', post.image);
+//     if (!newImage) return;
+//     post.image = newImage;
+//     saveUserToLocalStorage(usersArray);
+//     showPosts(document.querySelector('#posts'), usersArray);
+//   } catch (error) {
+//     console.error(error);
+//   }
+// }
