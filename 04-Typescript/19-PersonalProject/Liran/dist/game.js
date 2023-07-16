@@ -42,7 +42,6 @@ var Player = /** @class */ (function () {
     return Player;
 }());
 var players = getPlayerFromStorage();
-debugger;
 if (players !== undefined && players.length > 0) {
     if (players[(players === null || players === void 0 ? void 0 : players.length) - 1].isActive) {
         renderPlayer(players[players.length - 1].swordColor);
@@ -99,7 +98,6 @@ var timeIntervalID;
 function hundelStart(ev) {
     try {
         ev.preventDefault();
-        debugger;
         var operation = ev.target.name;
         switch (operation) {
             case "start":
@@ -156,7 +154,7 @@ function renderStars(screen) {
             starElement.classList.add('star');
             starElement.style.top = '-100px';
             starElement.style.visibility = "visibile";
-            starElement.style.left = Math.random() * ((rect_1.y + rect_1.width) - rect_1.y) + rect_1.y + "px";
+            starElement.style.left = Math.random() * ((rect_1.y + rect_1.width - 60) - (rect_1.y + 60)) + (rect_1.y + 60) + "px";
             screen === null || screen === void 0 ? void 0 : screen.appendChild(starElement);
             starElement.addEventListener('animationend', function () {
                 // starElement.style.left = `${Math.random() * ((rect.y + rect.width) - rect.y) + rect.y}px`;
@@ -376,10 +374,7 @@ function checkOverlapInBackground() {
             elementsToCheck_1.forEach(function (element) {
                 if (checkOverlap(mainElement_1, element)) {
                     var elementDiv_1 = document.getElementById("" + element.id);
-                    var boom_1 = document.getElementById('boom');
-                    boom_1.style.left = (elementDiv_1 === null || elementDiv_1 === void 0 ? void 0 : elementDiv_1.offsetLeft) + "px";
-                    boom_1.style.top = (elementDiv_1 === null || elementDiv_1 === void 0 ? void 0 : elementDiv_1.offsetTop) + "px";
-                    boom_1.style.visibility = "visible";
+                    console.dir(elementDiv_1);
                     //elementDiv.style.visibility = "hidden";
                     if (players === undefined)
                         throw new Error("no players");
@@ -390,24 +385,29 @@ function checkOverlapInBackground() {
                     var star = document.getElementById("" + starHit.name);
                     if (!star)
                         throw new Error("star not found by id: " + element.id);
-                    if ((elementDiv_1.style.visibility === "visible")) {
+                    if ((elementDiv_1.style.visibility === "")) {
+                        var boom_1 = document.getElementById('boom');
+                        if (!boom_1)
+                            throw new Error("boom img not found");
+                        boom_1.style.left = (elementDiv_1 === null || elementDiv_1 === void 0 ? void 0 : elementDiv_1.offsetLeft) + "px";
+                        boom_1.style.top = (elementDiv_1 === null || elementDiv_1 === void 0 ? void 0 : elementDiv_1.offsetTop) + "px";
+                        boom_1.style.visibility = "visible";
                         currPlayer.updateScore(starHit.value);
                         elementDiv_1.style.visibility = "hidden";
+                        var scorePanel = document.getElementById('score');
+                        if (!scorePanel)
+                            throw new Error("scorePanel not found");
+                        scorePanel.innerHTML = "<p>" + currPlayer.currentScore + "</p>";
+                        console.log("hit " + element.id + ", curren score is:" + currPlayer.currentScore);
+                        setTimeout(function () {
+                            boom_1.style.left = "0px";
+                            boom_1.style.top = "0px";
+                            boom_1.style.visibility = "hidden";
+                        }, 200);
+                        setTimeout(function () {
+                            elementDiv_1.style.visibility = "";
+                        }, 1000);
                     }
-                    console.log("hit " + element.id + ", curren score is:" + currPlayer.currentScore);
-                    var scorePanel = document.getElementById('score');
-                    if (!scorePanel)
-                        throw new Error("scorePanel not found");
-                    scorePanel.innerHTML = "<p>" + currPlayer.currentScore + "</p>";
-                    setTimeout(function () {
-                        boom_1.style.left = "0px";
-                        boom_1.style.top = "0px";
-                        boom_1.style.visibility = "hidden";
-                    }, 100);
-                    setTimeout(function () {
-                        elementDiv_1.style.visibility = "visible";
-                    }, 1200);
-                    // Add your custom logic here   
                 }
             });
         }, interval);
@@ -419,7 +419,6 @@ function checkOverlapInBackground() {
 function checkOverlap(element1, element2) {
     var rect1 = element1.getBoundingClientRect();
     var rect2 = element2.getBoundingClientRect();
-    debugger;
     return (rect1.left < rect2.right &&
         rect1.right > rect2.left &&
         rect1.top < rect2.bottom &&
@@ -428,9 +427,7 @@ function checkOverlap(element1, element2) {
 function endOfGame(player) {
     try {
         clearInterval(timeIntervalID);
-        debugger;
         player.numOfGames++;
-        debugger;
         player.record = (player.record < player.currentScore ? player.currentScore : player.record);
         player.currentScore = 0;
         if (players === undefined)

@@ -64,7 +64,7 @@ class Product {
       } else {
         const productsArray = JSON.parse(productsString);
         const products = productsArray.map((pro) => {
-          return new Product(pro.name, pro.amount, pro.imgSrc);
+          return new Product(pro.name, pro.amount, pro.imgSrc, pro.price);
         });
         return products;
       }
@@ -182,6 +182,8 @@ class Product {
       <input type="url" id="newImgSrc" required><br>
       <label for="newAmount"> Image source of product: </label>
       <input type="number" id="newAmount" value="0" min="0"><br>
+      <label for="newPrice"> name of product: </label>
+      <input type="text" id="newPrice" required><br>
       <button type="submit">ADD</button>
       </form>`;
   }
@@ -191,9 +193,10 @@ class Product {
     const newName = ev.target.newName.value;
     const newAmount = ev.target.newAmount.value;
     const newImgSrc = ev.target.newImgSrc.value;
+    const newPrice = ev.target.newPrice.value;
   
     products = getProductsFromLocalStorage();
-    products.push(new Product(newName, newAmount, newImgSrc));
+    products.push(new Product(newName, newAmount, newImgSrc, newPrice));
     renderProducts();
     const root: HTMLDivElement = document.querySelector(".addProductForm")!;
     root.innerHTML = "";
