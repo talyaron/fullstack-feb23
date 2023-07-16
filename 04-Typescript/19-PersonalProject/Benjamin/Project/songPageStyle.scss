@@ -133,6 +133,11 @@ body {
     left: 2vw;
     top: 2vw;
     cursor: pointer;
+    transition: all 100ms ease-in-out;
+    &:hover{
+        background-color: aqua;
+        transform: scale(1.1) rotate(20deg);
+    }
     &:active{
         transform: scale(1.2);
     }
@@ -146,6 +151,11 @@ body {
     color: rgb(14, 83, 60);
     text-decoration: none;
     font-size: 20px;
+    transition: all 200ms ease-in-out;
+    border-radius: 10px;
+    &:hover{
+        background-color: aqua;
+    }
 }
 .headline{
     font-size: 2vw;
@@ -161,4 +171,16 @@ body {
         &:hover{
             transform: scale(1.02);
         }
+}
+#heart{
+    width: 20px;
+    position: absolute;
+    top: 4vh;
+    left: 42vw;
+    transition: all 100ms ease-in-out;
+    cursor: pointer;
+    &:hover{
+        transform: scale(1.04) rotate(20deg);
+        color: rgb(238, 102, 68);
+    }
 }

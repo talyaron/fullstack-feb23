@@ -1,6 +1,6 @@
 
 class songs {
-  constructor(public id: string, public name: string, public artist: string, public src: string, public img: string, public wiki: string) { }
+  constructor(public id: string, public name: string, public artist: string, public src: string, public img: string, public wiki: string,  public love:boolean) { }
 
   static newIdGenerator() {
     return `${Math.floor(Math.random() * 1000)}`;
@@ -8,28 +8,31 @@ class songs {
 }
 
 const songsArr: songs[] = [
-  new songs(songs.newIdGenerator(), "Dancin", "Aaron Smith", "dist/songs/Aaron Smith - Dancin (KRONO Remix) (3).mp3", "https://i.ytimg.com/vi/0XFudmaObLI/maxresdefault.jpg", "https://en.wikipedia.org/wiki/Aaron_Smith_(DJ)"),
-  new songs(songs.newIdGenerator(), "Waiting for love", "Avicci", "dist/songs/Avicii - Waiting For Love (1).mp3", "https://upload.wikimedia.org/wikipedia/he/8/81/Avicii%27s_Waiting_For_Love%2C_Cover_Artwork.png", "https://en.wikipedia.org/wiki/Avicii"),
-  new songs(songs.newIdGenerator(), "Reckoning Song", "Asaf Avidan", "dist/songs/Asaf Avidan & The Mojos - One Day - Reckoning Song (Wankelmut Remix)t.mp3", "https://yt3.googleusercontent.com/ytc/AGIKgqNc058OG6oxMZgjeT77qEE6VbGeIioFlKfVm_INAA=s900-c-k-c0x00ffffff-no-rj", "https://en.wikipedia.org/wiki/Asaf_Avidan"),
-  new songs(songs.newIdGenerator(), "Creep", "Radiohead", "dist/songs/Creep.mp3", "https://i.ytimg.com/vi/XFkzRNyygfk/maxresdefault.jpg", "https://en.wikipedia.org/wiki/Radiohead"),
-  new songs(songs.newIdGenerator(), "Ain't no sunshine", "Bill Withers", "dist/songs/Bill Withers - Ain't No Sunshine (Official Audio).mp3", "https://images.genius.com/55c4517a908f24d569ceb37c401f09a0.620x620x1.jpg", "https://en.wikipedia.org/wiki/Bill_Withers"),
-  new songs(songs.newIdGenerator(), "i'm still standing", "Elton John", "dist/songs/Elton John - I'm Still Standing.mp3", "https://upload.wikimedia.org/wikipedia/en/6/69/Elton_John_StillStanding.jpg", "https://en.wikipedia.org/wiki/Elton_John"),
-  new songs(songs.newIdGenerator(), "Just the two of us", "Grover Washington", "dist/songs/Grover Washington Jr. feat. Bill Withers - Just The Two of Us [HQ].mp3", "https://www.blackpast.org/wp-content/uploads/Grover-Washington-Jr.jpg", "https://en.wikipedia.org/wiki/Grover_Washington_Jr."),
-  new songs(songs.newIdGenerator(), "Its a man's world", "James Brown", "dist/songs/James Brown - It's A Man's Man's Man's World.mp3", "https://cdn.britannica.com/34/197534-050-83C616C4/James-Brown-1991.jpg", "https://en.wikipedia.org/wiki/James_Brown"),
-  new songs(songs.newIdGenerator(), "Shut up my mom's calling", "Hotel Ugly", "dist/songs/Shut up My Moms Calling.mp3", "https://cdns-images.dzcdn.net/images/artist/9de827881f210a6bdd597e1410f11c59/500x500.jpg", "https://www.instagram.com/hotelugly/?hl=en"),
-  new songs(songs.newIdGenerator(), "Smells like teen spirit", "Nirvana", "dist/songs/Smells Like Teen Spirit.mp3", "https://i.scdn.co/image/ab67616d0000b273e175a19e530c898d167d39bf", "https://en.wikipedia.org/wiki/Nirvana_(band)"),
-  new songs(songs.newIdGenerator(), "This Love", "Maroon 5", "dist/songs/This Love.mp3", "https://media.npr.org/assets/music/news/2010/09/maroon-e9cb8c5b25b4d1f3e68aa26e6a0ce51cf2ae59d8-s1100-c50.jpg", "https://en.wikipedia.org/wiki/Maroon_5"),
-  new songs(songs.newIdGenerator(), "My Way", "Calvin Harris", "dist/songs/calvin harris - my way.mp3", "https://upload.wikimedia.org/wikipedia/en/5/51/My_Way_Calvin_Harris.jpg", "https://en.wikipedia.org/wiki/Calvin_Harris"),
-  new songs(songs.newIdGenerator(), "בן 30", "עומר אדם", "dist/songs/עומר אדם - בן 30 (Prod. By Gil Vain).mp3", "https://i1.sndcdn.com/artworks-wnPr7R4tjwnzBSIj-MJk02g-t500x500.jpg", "https://he.wikipedia.org/wiki/%D7%A2%D7%95%D7%9E%D7%A8_%D7%90%D7%93%D7%9D"),
-  new songs(songs.newIdGenerator(), "ככה עדיף לי", "יסמין מועלם", "dist/songs/יסמין מועלם - ככה עדיף לי (Prod. Amir ve Ben).mp3", "https://ynet-pic1.yit.co.il/picserver5/wcm_upload/2023/06/04/HkMN30RYLn/404737.jpg", "https://he.wikipedia.org/wiki/%D7%99%D7%A1%D7%9E%D7%99%D7%9F_%D7%9E%D7%95%D7%A2%D7%9C%D7%9D"),
-  new songs(songs.newIdGenerator(), "505", "Arctic Monkeys", "dist/songs/505.mp3", "https://upload.wikimedia.org/wikipedia/commons/e/e7/%22AM%22_%28Arctic_Monkeys%29.jpg", "https://he.wikipedia.org/wiki/%D7%90%D7%A8%D7%A7%D7%98%D7%99%D7%A7_%D7%9E%D7%90%D7%A0%D7%A7%D7%99%D7%96"),
-  new songs(songs.newIdGenerator(), "Way down we go", "Kaleo", "dist/songs/KALEO - Way Down We Go (Official Music Video).mp3", "https://upload.wikimedia.org/wikipedia/en/a/a1/KaleoWayDownWeGo.jpg", "https://en.wikipedia.org/wiki/Kaleo_(band)"),
-  new songs(songs.newIdGenerator(), "Billie Jean", "Michael Jackson", "dist/songs/Michael Jackson - Billie Jean (Official Video).mp3", "https://imgs.smoothradio.com/images/224840?width=2480&crop=1_1&signature=coh17sFPwlsyi0gj9FdZWvlLMFQ=", "https://en.wikipedia.org/wiki/Michael_Jackson"),
-  new songs(songs.newIdGenerator(), "Withiout Me", "Eminem", "dist/songs/Eminem - Without Me (Official Music Video).mp3", "https://c.files.bbci.co.uk/4E04/production/_127627991_eminemgettyimages.jpg", "https://en.wikipedia.org/wiki/Eminem"),
-  new songs(songs.newIdGenerator(), "Lucid Dreams", "Juice WRLD ", "dist/songs/Juice WRLD - Lucid Dreams (Directed by Cole Bennett).mp3", "https://nypost.com/wp-content/uploads/sites/2/2019/05/juice-wrld-1a.jpg?quality=75&strip=all", "https://en.wikipedia.org/wiki/Juice_Wrld"),
+  new songs(songs.newIdGenerator(), "Dancin", "Aaron Smith", "dist/songs/Aaron Smith - Dancin (KRONO Remix) (3).mp3", "https://i.ytimg.com/vi/0XFudmaObLI/maxresdefault.jpg", "https://en.wikipedia.org/wiki/Aaron_Smith_(DJ)", false),
+  new songs(songs.newIdGenerator(), "Waiting for love", "Avicci", "dist/songs/Avicii - Waiting For Love (1).mp3", "https://upload.wikimedia.org/wikipedia/he/8/81/Avicii%27s_Waiting_For_Love%2C_Cover_Artwork.png", "https://en.wikipedia.org/wiki/Avicii", false),
+  new songs(songs.newIdGenerator(), "Reckoning Song", "Asaf Avidan", "dist/songs/Asaf Avidan & The Mojos - One Day - Reckoning Song (Wankelmut Remix)t.mp3", "https://yt3.googleusercontent.com/ytc/AGIKgqNc058OG6oxMZgjeT77qEE6VbGeIioFlKfVm_INAA=s900-c-k-c0x00ffffff-no-rj", "https://en.wikipedia.org/wiki/Asaf_Avidan", false),
+  new songs(songs.newIdGenerator(), "Creep", "Radiohead", "dist/songs/Creep.mp3", "https://i.ytimg.com/vi/XFkzRNyygfk/maxresdefault.jpg", "https://en.wikipedia.org/wiki/Radiohead", false),
+  new songs(songs.newIdGenerator(), "Ain't no sunshine", "Bill Withers", "dist/songs/Bill Withers - Ain't No Sunshine (Official Audio).mp3", "https://images.genius.com/55c4517a908f24d569ceb37c401f09a0.620x620x1.jpg", "https://en.wikipedia.org/wiki/Bill_Withers", false),
+  new songs(songs.newIdGenerator(), "i'm still standing", "Elton John", "dist/songs/Elton John - I'm Still Standing.mp3", "https://upload.wikimedia.org/wikipedia/en/6/69/Elton_John_StillStanding.jpg", "https://en.wikipedia.org/wiki/Elton_John", false),
+  new songs(songs.newIdGenerator(), "Just the two of us", "Grover Washington", "dist/songs/Grover Washington Jr. feat. Bill Withers - Just The Two of Us [HQ].mp3", "https://www.blackpast.org/wp-content/uploads/Grover-Washington-Jr.jpg", "https://en.wikipedia.org/wiki/Grover_Washington_Jr.", false),
+  new songs(songs.newIdGenerator(), "Its a man's world", "James Brown", "dist/songs/James Brown - It's A Man's Man's Man's World.mp3", "https://cdn.britannica.com/34/197534-050-83C616C4/James-Brown-1991.jpg", "https://en.wikipedia.org/wiki/James_Brown", false),
+  new songs(songs.newIdGenerator(), "Shut up my mom's calling", "Hotel Ugly", "dist/songs/Shut up My Moms Calling.mp3", "https://cdns-images.dzcdn.net/images/artist/9de827881f210a6bdd597e1410f11c59/500x500.jpg", "https://www.instagram.com/hotelugly/?hl=en", false),
+  new songs(songs.newIdGenerator(), "Smells like teen spirit", "Nirvana", "dist/songs/Smells Like Teen Spirit.mp3", "https://i.scdn.co/image/ab67616d0000b273e175a19e530c898d167d39bf", "https://en.wikipedia.org/wiki/Nirvana_(band)", false),
+  new songs(songs.newIdGenerator(), "This Love", "Maroon 5", "dist/songs/This Love.mp3", "https://media.npr.org/assets/music/news/2010/09/maroon-e9cb8c5b25b4d1f3e68aa26e6a0ce51cf2ae59d8-s1100-c50.jpg", "https://en.wikipedia.org/wiki/Maroon_5", false),
+  new songs(songs.newIdGenerator(), "My Way", "Calvin Harris", "dist/songs/calvin harris - my way.mp3", "https://upload.wikimedia.org/wikipedia/en/5/51/My_Way_Calvin_Harris.jpg", "https://en.wikipedia.org/wiki/Calvin_Harris", false),
+  new songs(songs.newIdGenerator(), "בן 30", "עומר אדם", "dist/songs/עומר אדם - בן 30 (Prod. By Gil Vain).mp3", "https://i1.sndcdn.com/artworks-wnPr7R4tjwnzBSIj-MJk02g-t500x500.jpg", "https://he.wikipedia.org/wiki/%D7%A2%D7%95%D7%9E%D7%A8_%D7%90%D7%93%D7%9D", false),
+  new songs(songs.newIdGenerator(), "ככה עדיף לי", "יסמין מועלם", "dist/songs/יסמין מועלם - ככה עדיף לי (Prod. Amir ve Ben).mp3", "https://ynet-pic1.yit.co.il/picserver5/wcm_upload/2023/06/04/HkMN30RYLn/404737.jpg", "https://he.wikipedia.org/wiki/%D7%99%D7%A1%D7%9E%D7%99%D7%9F_%D7%9E%D7%95%D7%A2%D7%9C%D7%9D", false),
+  new songs(songs.newIdGenerator(), "505", "Arctic Monkeys", "dist/songs/505.mp3", "https://upload.wikimedia.org/wikipedia/commons/e/e7/%22AM%22_%28Arctic_Monkeys%29.jpg", "https://he.wikipedia.org/wiki/%D7%90%D7%A8%D7%A7%D7%98%D7%99%D7%A7_%D7%9E%D7%90%D7%A0%D7%A7%D7%99%D7%96", false),
+  new songs(songs.newIdGenerator(), "Way down we go", "Kaleo", "dist/songs/KALEO - Way Down We Go (Official Music Video).mp3", "https://upload.wikimedia.org/wikipedia/en/a/a1/KaleoWayDownWeGo.jpg", "https://en.wikipedia.org/wiki/Kaleo_(band)", false),
+  new songs(songs.newIdGenerator(), "Billie Jean", "Michael Jackson", "dist/songs/Michael Jackson - Billie Jean (Official Video).mp3", "https://imgs.smoothradio.com/images/224840?width=2480&crop=1_1&signature=coh17sFPwlsyi0gj9FdZWvlLMFQ=", "https://en.wikipedia.org/wiki/Michael_Jackson", false),
+  new songs(songs.newIdGenerator(), "Withiout Me", "Eminem", "dist/songs/Eminem - Without Me (Official Music Video).mp3", "https://c.files.bbci.co.uk/4E04/production/_127627991_eminemgettyimages.jpg", "https://en.wikipedia.org/wiki/Eminem", false),
+  new songs(songs.newIdGenerator(), "Lucid Dreams", "Juice WRLD ", "dist/songs/Juice WRLD - Lucid Dreams (Directed by Cole Bennett).mp3", "https://nypost.com/wp-content/uploads/sites/2/2019/05/juice-wrld-1a.jpg?quality=75&strip=all", "https://en.wikipedia.org/wiki/Juice_Wrld", false),
 
 ];
 const paragraphs: string[] = [];
+const heartIcon = document.querySelector("#heart") as HTMLElement;
+const lovedSongsSectionRoot = document.querySelector(".lovedSongsSectionRoot") as HTMLElement;
+
 songsArr.forEach(song => {
   paragraphs.push(`${song.artist}-${song.name}`)
 })
@@ -66,6 +69,7 @@ let lastListenedArr: songs[] = [];
 SongPageGenerator(selectedSong)
 function SongPageGenerator(song) {
   try {
+    heartRed(song.love)
     const SongsRoot = document.querySelector(".SongPageRoot") as HTMLDivElement;
 
 
@@ -81,11 +85,11 @@ function SongPageGenerator(song) {
         `;
     SongsRoot.innerHTML += songHTML;
     lastListenedGenerator(song);
+    
   } catch (error) {
     console.error(error);
   }
 }
-
 
 
 const playicon: HTMLDivElement | null = document.querySelector("#playicon")
@@ -154,7 +158,7 @@ image?.addEventListener("click", () => {
 // this function get the lastListenedSongs which is an Array with the last 6 songs, from the local storage and parses it back into an object it creates a new Array and shifts it if
 // the aray is longer then 6 songs. then it calls the createLastListenedHTML function with the new songsArray.
 function lastListenedGenerator(song: songs) {
-  debugger;
+
   try {
     const storedSongs = localStorage.getItem('lastListenedSongs');
     console.log(storedSongs)
@@ -316,16 +320,85 @@ if (scrollBTNL && suggestedRoot) {
   });
 }
 //function that handle the click on the add in the main page and redirecting the site to the song page
-function handleadd(){
+function handleadd() {
   const addSong = songsArr[11];
   handleSongClick(addSong.id)
 }
 //function that transfer the site to the main page while clicking the icon
-function mymusictohome(){
-  window.location.href= "main.html"
+function mymusictohome() {
+  window.location.href = "main.html"
 }
-//
-function shuffle(arr){
+//playing a random song from the songs array
+function shuffle(arr) {
   const random = arr[Math.floor(Math.random() * arr.length)];
   handleSongClick(random.id)
 }
+//changing the background to dark
+function darkTheme() {
+  document.body.style.backgroundImage = "url(https://images.pexels.com/photos/998641/pexels-photo-998641.jpeg?cs=srgb&dl=pexels-francesco-ungaro-998641.jpg&fm=jpg)"
+  lightThemeOption()
+}
+const Lightback = document.querySelector(".MainPageWrapper__Lightback") as HTMLElement;
+const Lighttheme = document.querySelector(".MainPageWrapper__Lighttheme") as HTMLElement;
+
+function lightThemeOption() {
+  Lightback.style.display = "block"
+  Lighttheme.style.display = "block"
+}
+
+
+function refreshPage() {
+  location.reload();
+}
+
+
+
+const lovedSongs = JSON.parse(localStorage.getItem('lovedSongs') || '[]');
+let loveCounter = 0;
+
+function handleLove() {
+  if (loveCounter % 2 === 0) {
+    heartIcon.style.color = "red";
+    loveCounter++;
+    addLoved();
+  } else {
+    heartIcon.style.color = "grey";
+    loveCounter++;
+  }
+}
+
+function addLoved() {
+  const selectedSong = localStorage.getItem("selectedSong");
+  if (selectedSong) {
+    const lovedSong = JSON.parse(selectedSong);
+    lovedSong.love = "true"
+    lovedSongs.push(lovedSong);
+    localStorage.setItem('lovedSongs', JSON.stringify(lovedSongs));
+  }
+}
+console.log(lovedSongs)
+function heartRed(love){
+  if(love===true){
+    heartIcon.style.color = "red";
+  }
+  else{
+    heartIcon.style.color = "grey";
+  }
+
+}
+lovedSongsSectionGenerator()
+
+  function lovedSongsSectionGenerator() {
+    try {
+      const songsMappedAndJoin = lovedSongs
+        .map(
+          song =>
+            `<div class="song" onclick="handleSongClick(${song.id})"><div class="song__title">${song.artist} - ${song.name}</div><img class="song__img" src="${song.img}" alt=""></div>`
+        )
+        .join('');
+
+      lovedSongsSectionRoot.innerHTML = songsMappedAndJoin;
+    } catch (error) {
+      console.error(error);
+    }
+  }

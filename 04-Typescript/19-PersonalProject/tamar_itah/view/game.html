@@ -7,16 +7,11 @@
     <script src="../ts/dist/index.js" defer></script>
     <title>Game</title>
 </head>
-<body>
-    <div id="instruction">Match the word with its meaning</div>
-    <div id="score">your scor:</div>
+<body onload="renderPlay()">
+    <div id="h1"></div>
+    <div id="instruction"></div>
     <div class="wrapper">
-        <div class="cards" id="cards">
-            <div id="c1" class="card c1"></div>
-            <div id="c2" class="card c2"></div>
-            <div id="c3" class="card c3"></div>
-            <div id="c4" class="card c4"></div>                        
-        </div>
+        <div class="cards" id="cards"></div>
         <br>
         <button id="finish" class="btnF" onclick="renderFinish()">Finish</button>
     </div>  

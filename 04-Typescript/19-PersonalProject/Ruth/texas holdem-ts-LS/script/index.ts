@@ -1,3 +1,4 @@
+
 const cardsNumber = [
   "A",
   "2",
@@ -70,6 +71,8 @@ function getDeckCardsFromLs() {
   );
 }
 
+const myPlayer: Player = new Player("ruth1");
+
 const users: Player[] = [
   new Player(
     "ruth300290!",
@@ -89,7 +92,8 @@ const users: Player[] = [
   ),
 ];
 
-const firstPlayers = [new Player("ruth1")].concat(users);
+users.unshift(myPlayer);
+const firstPlayers:Player[] = users;
 
 const players: Player[] = getPlayerFromLs();
 
@@ -114,6 +118,10 @@ function getPlayerFromLs() {
             p.isTurn,
             p.pCards,
             p.allCards,
+            p.movesInRound,
+            p.lastBet,
+            p.roundNumber,
+            p.turnNumber,
           ),
       );
       console.log(players);
@@ -174,4 +182,3 @@ function addCardToStage() {
     }
   } else alert("game stopped!");
 }
-

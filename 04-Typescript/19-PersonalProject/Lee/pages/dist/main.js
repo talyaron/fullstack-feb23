@@ -69,10 +69,10 @@ function renderAllPatients(patients, htmlElement) {
 function renderPatientCard(patient) {
     try {
         if (patient.isEdit) {
-            return "<div class=\"card\">\n        <img src=\"" + patient.image + "\">\n        <form onsubmit=\"handleSetEditPatient(event)\" id=\"" + patient.id + "\">\n        <label id=\"name\"> Name: <input type=\"text\" name=\"name\" value=\"" + patient.name + "\"></input></label><br>\n        <label>Owner: <input type=\"text\" name=\"owner\" value=\"" + patient.owner + "\"></input></label><br>\n        <label>Tel: <input type=\"text\" name=\"phone\" value=\"" + patient.phone + "\"></input></label><br>\n        <label>Birth Year: <input type=\"text\" name=\"birthYear\" value=\"" + patient.birthYear + "\"></input></label><br>\n        <button onclick=\"handleRemovePatient('" + patient.id + "')\">Remove</button>\n        <input type=\"submit\" value=\"SET\">\n        </div>\n       ";
+            return "<div class=\"card\">\n        <img src=\"" + patient.image + "\">\n        <form onsubmit=\"handleSetEditPatient(event)\" id=\"" + patient.id + "\">\n        <label> Name: <input type=\"text\" name=\"name\" value=\"" + patient.name + "\"></input></label><br>\n        <label>Owner: <input type=\"text\" name=\"owner\" value=\"" + patient.owner + "\"></input></label><br>\n        <label>Phone: <input type=\"text\" name=\"phone\" value=\"" + patient.phone + "\"></input></label><br>\n        <label>Birth Year: <input type=\"text\" name=\"birthYear\" value=\"" + patient.birthYear + "\"></input></label><br>\n        <button onclick=\"handleRemovePatient('" + patient.id + "')\">Remove</button>\n        <input type=\"submit\" value=\"SET\">\n        </div>\n       ";
         }
         else {
-            return "<div class=\"card\">\n        <img src=\"" + patient.image + "\">\n        <p><label id=\"name\">Name: " + patient.name + "</label><br>\n        <label>Owner: " + patient.owner + "</label><br>\n        <label>Tel: " + patient.phone + "</label><br>\n        <label>Birth Year: " + patient.birthYear + "</label><br>\n        <button onclick=\"handleRemovePatient('" + patient.id + "')\">Remove</button>\n        <button onclick=\"handleEdit('" + patient.id + "')\">Edit</button></p>\n        </div>\n       ";
+            return "<div class=\"card\">\n        <img src=\"" + patient.image + "\">\n        <p><label id=\"name\">Name: " + patient.name + "</label><br>\n        <label>Owner: " + patient.owner + "</label><br>\n        <label>Phone: " + patient.phone + "</label><br>\n        <label>Birth Year: " + patient.birthYear + "</label><br>\n        <button onclick=\"handleRemovePatient('" + patient.id + "')\">Remove</button>\n        <button onclick=\"handleEdit('" + patient.id + "')\">Edit</button></p>\n        </div>\n       ";
         }
     }
     catch (error) {
@@ -133,7 +133,6 @@ var Vaccine = /** @class */ (function () {
     function Vaccine(vacName, price) {
         this.vacName = vacName;
         this.price = price;
-        // this.id = uid();
     }
     return Vaccine;
 }());
@@ -151,7 +150,6 @@ var Treatment = /** @class */ (function () {
     function Treatment(treatName, price) {
         this.treatName = treatName;
         this.price = price;
-        // this.id = uid();
     }
     return Treatment;
 }());
@@ -166,12 +164,28 @@ var Supply = /** @class */ (function () {
     function Supply(supName, price) {
         this.supName = supName;
         this.price = price;
-        // this.id = uid();
     }
     return Supply;
 }());
 var supplies = [
-    new Supply("Medical food 1 can", 17),
+    new Supply("Medical food can", 17),
     new Supply("Ampoule Anti-flea & Tick", 47),
     new Supply("seringe", 10)
 ];
+//join classes
+var PatientVaccine = /** @class */ (function () {
+    function PatientVaccine(patient, vacName, price) {
+        this.patient = patient;
+        this.vacName = vacName;
+        this.price = price;
+    }
+    return PatientVaccine;
+}());
+var PatientTeatment = /** @class */ (function () {
+    function PatientTeatment(patient, treatName, price) {
+        this.patient = patient;
+        this.treatName = treatName;
+        this.price = price;
+    }
+    return PatientTeatment;
+}());

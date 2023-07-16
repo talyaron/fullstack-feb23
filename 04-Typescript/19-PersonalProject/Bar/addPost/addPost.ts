@@ -1,8 +1,4 @@
-//get the users and the imagse from local storage.
-// console.log(imagesArray);
-
 //create a new post(image).
-//Error free.
 function renderAddNewPost(users: User[], rootElement: HTMLElement | Element | null) {
   try {
     if (!rootElement) throw new Error('Root element is not found');
@@ -28,7 +24,6 @@ renderAddNewPost(usersArray, document.querySelector('#addPost'));
 
 //get the new post from the form, and add it to the user.
 //render it in 'showPosts'.
-//Error free.
 function handleAddNewPost(event: Event | any) {
   try {
     if (!event) throw new Error('Event is not found');
@@ -36,22 +31,17 @@ function handleAddNewPost(event: Event | any) {
     const userId = event.target.elements.userId.value;
     const image = event.target.elements.image.value;
 
-    // const user: User | undefined = usersArray.find((u) => u.id === userId);
-    const selectedUserImg: UsersImg | undefined = usersImgArray.find((userImg) => userImg.user.id === userId);
+    const user: User | undefined = usersArray.find((u) => u.id === userId);
 
+    if (!user) throw new Error('User not found');
 
-    // if (!user) throw new Error('User not found');
-    if (!selectedUserImg) throw new Error('User not found');
-
-
-    // const newImg = new Img(image);
-    // user.images.push(newImg);
     const newImg = new Img(image);
-    selectedUserImg.image.push(newImg);
+    user.imagse.push(newImg);
 
     saveImgToLocalStorage(imagesArray);
     saveUserToLocalStorage(usersArray);
     saveUsersImgToLocalStorage(usersImgArray);
+    console.log(usersArray);
 
     //render the new post in 'showPosts'
     showPosts(document.querySelector('#posts'), usersArray);

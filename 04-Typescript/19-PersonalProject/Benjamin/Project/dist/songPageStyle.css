@@ -113,6 +113,11 @@ body {
   left: 2vw;
   top: 2vw;
   cursor: pointer;
+  transition: all 100ms ease-in-out;
+}
+#homeicon:hover {
+  background-color: aqua;
+  transform: scale(1.1) rotate(20deg);
 }
 #homeicon:active {
   transform: scale(1.2);
@@ -126,6 +131,11 @@ body {
   color: #0e533c;
   text-decoration: none;
   font-size: 20px;
+  transition: all 200ms ease-in-out;
+  border-radius: 10px;
+}
+.download:hover {
+  background-color: aqua;
 }
 
 .headline {
@@ -142,4 +152,17 @@ body {
 }
 .headline:hover {
   transform: scale(1.02);
+}
+
+#heart {
+  width: 20px;
+  position: absolute;
+  top: 4vh;
+  left: 42vw;
+  transition: all 100ms ease-in-out;
+  cursor: pointer;
+}
+#heart:hover {
+  transform: scale(1.04) rotate(20deg);
+  color: #ee6644;
 }

@@ -5,18 +5,17 @@ const image: Img[] = getImgsFromLocalStorage();
 const user: User[] = getUsersFromLocalStorage();
 const usersImg: UsersImg[] = getUsersImgFromLocalStorage();
 
-// console.log(usersArray);
-//Error free.
+//render the new post in 'showPosts'
 function showPosts(
   HTMLElement: HTMLElement | null,
-  users: User[]
+  users: User[],
 ) {
   try {
     if (!HTMLElement) throw new Error('Root element is not found');
 
     const html = users
       .map((user) => {
-        const postsHtml = user.images
+        const postsHtml = user.imagse
           .map((img) => {
             return `
               <div class="userPost">
@@ -28,10 +27,15 @@ function showPosts(
                   <img src="${img.image}">
                 </div>
                 <div class="userPost__buttons">
-                <button class="deleteBtn" onclick="handleDeletePost('${user.id}')">Delete</button>
-                <button class="editBtn" onclick="handleEditPost('${user.id}')">Edit</button>
-              </div>
-              </div>`;
+                <button class="userPost__buttons__deleteBtn" onclick="handleDeletePost('${img.id}')">Delete</button>
+                
+                  <div class="userPost__buttons__editBtn">
+                    <input type="text" id="imageURL_${user.id}_${img.id}" value="${img.image}">
+                    <button onclick="handleSetEditPost(event, '${user.id}', '${img.id}')">Save</button>
+                  </div>
+
+                </div>
+               </div>`;
           })
           .join('');
 
@@ -46,9 +50,7 @@ function showPosts(
 }
 showPosts(document.querySelector('#posts'), usersArray);
 
-//view - show the user profile.
-//creat header (working)
-//Error free.
+//render the header.
 function showHeader(
   HTMLElement: HTMLElement | Element | null,
   user: User[]) {
@@ -69,7 +71,6 @@ function showHeader(
 
     HTMLElement.innerHTML = html;
 
-    // saveUserToLocalStorage(usersArray);
     saveUsersImgToLocalStorage(usersImgArray);
   } catch (error) {
     console.error(error);
@@ -77,38 +78,47 @@ function showHeader(
 }
 showHeader(document.querySelector('#header'), usersArray);
 
-// function handleDeletePost(userId: string, postId: string) {
-//   try {
-//     const user = usersArray.find((user) => user.id === userId);
-//     if (!user) throw new Error('User not found');
+//delete post.
+function handleDeletePost(imageId: string) {
+  try {
+    const user: User | undefined = usersArray.find((user) => user.imagse.some((img) => img.id === imageId));
+    if (!user) throw new Error('User or image not found');
 
-//     const postIndex = user.images.findIndex((img) => img.id === postId);
-//     if (postIndex === -1) throw new Error('Post not found');
+    const imageIndex: number = user.imagse.findIndex((img) => img.id === imageId);
+    if (imageIndex === -1) throw new Error('Image not found');
 
-//     user.images.splice(postIndex, 1);
-//     saveUserToLocalStorage(usersArray);
-//     showPosts(document.querySelector('#posts'), usersArray);
-    
-//   } catch (error) {
-//     console.error(error);
-//   }
-// }
+    user.imagse.splice(imageIndex, 1);
 
-// function handleEditPost(userId: string, postId: string) {
-//   try {
-//     const user = usersArray.find((user) => user.id === userId);
-//     if (!user) throw new Error('User not found');
+    saveImgToLocalStorage(imagesArray);
+    saveUserToLocalStorage(usersArray);
+    saveUsersImgToLocalStorage(usersImgArray);
 
-//     const post = user.images.find((img) => img.id === postId);
-//     if (!post) throw new Error('Post not found');
+    showPosts(document.querySelector('#posts'), usersArray);
+  } catch (error) {
+    console.error(error);
+  }
+}
 
-//     const newImage = prompt('Enter new image URL', post.image);
-//     if (!newImage) return;
+//edit post.
+function handleSetEditPost(ev, userId, imageId) {
+  try {
+    ev.preventDefault();
+    const imageUrl = ev.target.previousElementSibling.value;
 
-//     post.image = newImage;
-//     saveUserToLocalStorage(usersArray);
-//     showPosts(document.querySelector('#posts'), usersArray);
-//   } catch (error) {
-//     console.error(error);
-//   }
-// }
+    const user = usersArray.find((user) => user.id === userId);
+    if (!user) throw new Error('User not found');
+
+    const image = user.imagse.find((img) => img.id === imageId);
+    if (!image) throw new Error('Image not found');
+
+    image.image = imageUrl;
+
+    saveImgToLocalStorage(imagesArray);
+    saveUserToLocalStorage(usersArray);
+    saveUsersImgToLocalStorage(usersImgArray);
+
+    showPosts(document.querySelector('#posts'), usersArray);
+  } catch (error) {
+    console.error(error);
+  }
+}

@@ -134,6 +134,10 @@ function heandelDelWord(ev: any) { //delete the word from array
     }
 }
 
+function heandelPlay() {
+    window.location.replace("./game.html")  //move to game page
+}
+
 //-----------------reander--------------------------------
 
 //render the user name to the game page
@@ -183,30 +187,41 @@ function renderBack() {
 
 //move to game
 function renderPlay() {
-    window.location.replace("./game.html")  //move to game page
-    
     const h1Instructions = document.querySelector('#instruction')!
     const instractions = `Match the word with its meaning 
                         <div id="score">your scor:${}</div>`  //show the score of the user un this game
     h1Instructions.innerHTML = instractions
 
     //call the random word function
-    const ranArr = randomWord() 
+
 
     const htmlroot = document.querySelector('#cards')
     if (!htmlroot) throw new Error("no root element");
-    const toHtml = `
-                <div class="wrapper">
-                    <div class="cards">
-                        <div id="c1" class="card c1">${ranArr[Math.floor(Math.random()*3)].enWord}</div>
-                        <div id="c2" class="card c2">${ranArr[Math.floor(Math.random()*3)].heWord}</div>
-                        <div id="c3" class="card c3">${ranArr[Math.floor(Math.random()*3)].heWord}</div>
-                        <div id="c4" class="card c4">${ranArr[Math.floor(Math.random()*3)].heWord}</div>                        
-                    </div>
-                    <button id="finish" class="btnF" onclick="renderFinish()">Finish</button>
-                </div>
-                 `;
-    htmlroot.innerHTML = toHtml
+    console.log(htmlroot)
+
+
+    //view + data binding
+    //render the cards in random order
+    //create a function whcih return the cards in random order
+    //fisrst step: create an array with the cards
+    //second step: get 3 random cards from the array
+    //third step: selct one random card from the 3 and put it in the first place
+    //fourth step: put the other 2 cards in the second and third place
+    //fifth step: put thei first card on the diaply
+    //sixth step: put the other 3 cards in random order on the display and show only the Hebrew options.
+
+    const randomWords = randomWord(words);
+
+    const firstWord = randomWords[0],
+
+    //randomized words
+    const randomWardsToDisplay = randomWord(randomWords)
+
+    //display all words in random order
+    const htmlWordsToSelect = randomWardsToDisplay.map(word => `<div class="chose card c${numOfCard()}">${word.heWord}</div>`).join(' ')
+    const htmlWordInEnglish = `<div class="card c1" >${firstWord.enWord}</div>`
+
+    htmlroot.innerHTML = htmlWordsToSelect + "<br>" + htmlWordInEnglish
 }
 
 //finish the game
@@ -214,22 +229,36 @@ function renderFinish() {
 
 }
 
-//contrilers
-//make the random select words
-function randomWord() {
-    const length = words.length;
-    const randomWordArr: Word[] = [];
-    let i: number;
-    const randomArr: number[] =[];
 
-    for (i = 0; i < 3; i++) {
-        const random: number = Math.floor(Math.random() * length);
+//-------------------------------------contrilers--------------------
+//make the random select words
+function randomWord(words: Word[]) {
+
+    const randomWordArr: Word[] = [];
+    const _words = JSON.parse((JSON.stringify(words)));
+
+
+    while (randomWordArr.length < 3) {
+        const random: number = Math.floor(Math.random() * _words.length);
         console.log(random)
-        if (!(randomArr.find(e => e === random))) {
-            randomWordArr[i] = words[random]
-        }
+        randomWordArr.push(_words[random]);
+        _words.splice(random, 1);
+
     }
-    console.log(randomWordArr)
+    console.log(randomWordArr);
 
     return randomWordArr;
 }
+
+let numberOfCard: number = 1
+function numOfCard(): number | undefined {
+    try {
+        numberOfCard++
+        return numberOfCard
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+//eveant lisiner to mouse click -> to chose the right ansear
+const c = document.querySelector('.chose')

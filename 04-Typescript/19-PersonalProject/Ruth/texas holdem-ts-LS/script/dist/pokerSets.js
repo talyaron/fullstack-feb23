@@ -22,7 +22,7 @@ var __spreadArrays = (this && this.__spreadArrays) || function () {
 //     checkStraightFlush(cards);
 //     checkFourOfAKind(cards);
 //     checkFullHouse(cards);
-//     checkFlush(cards);  
+//     checkFlush(cards);
 //     checkStraight(cards);
 //     checkThreeOfAKind(cards);
 //     checkTwoPairs(cards);
@@ -132,9 +132,7 @@ function checkStraight(cards) {
     }
 }
 function checkRoyalStraight(cards) {
-    var cardsNumbers = cards.map(function (card) {
-        return getCardNumberValue(card.cardNumber);
-    });
+    var cardsNumbers = cards.map(function (card) { return getCardNumberValue(card.cardNumber); });
     var sortedCardsNumbers = cardsNumbers.sort();
     if (sortedCardsNumbers.includes(10) &&
         sortedCardsNumbers.includes(11) &&

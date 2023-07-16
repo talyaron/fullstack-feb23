@@ -86,9 +86,9 @@ function renderPatientCard(patient: Patient) {
             return `<div class="card">
         <img src="${patient.image}">
         <form onsubmit="handleSetEditPatient(event)" id="${patient.id}">
-        <label id="name"> Name: <input type="text" name="name" value="${patient.name}"></input></label><br>
+        <label> Name: <input type="text" name="name" value="${patient.name}"></input></label><br>
         <label>Owner: <input type="text" name="owner" value="${patient.owner}"></input></label><br>
-        <label>Tel: <input type="text" name="phone" value="${patient.phone}"></input></label><br>
+        <label>Phone: <input type="text" name="phone" value="${patient.phone}"></input></label><br>
         <label>Birth Year: <input type="text" name="birthYear" value="${patient.birthYear}"></input></label><br>
         <button onclick="handleRemovePatient('${patient.id}')">Remove</button>
         <input type="submit" value="SET">
@@ -99,7 +99,7 @@ function renderPatientCard(patient: Patient) {
         <img src="${patient.image}">
         <p><label id="name">Name: ${patient.name}</label><br>
         <label>Owner: ${patient.owner}</label><br>
-        <label>Tel: ${patient.phone}</label><br>
+        <label>Phone: ${patient.phone}</label><br>
         <label>Birth Year: ${patient.birthYear}</label><br>
         <button onclick="handleRemovePatient('${patient.id}')">Remove</button>
         <button onclick="handleEdit('${patient.id}')">Edit</button></p>
@@ -174,17 +174,9 @@ function handleSetEditPatient(ev: any) {
     }
 }
 
-
-
-
-
-
-
-
 class Vaccine {
     id: string;
     constructor(public vacName: string, public price: number) {
-        // this.id = uid();
     }
 }
 
@@ -203,7 +195,6 @@ const Vaccines: Vaccine[] = [
 class Treatment {
     id: string;
     constructor(public treatName: string, public price: number) {
-        // this.id = uid();
     }
 }
 
@@ -219,13 +210,26 @@ const treatments: Treatment[] = [
 class Supply {
     id: string;
     constructor(public supName: string, public price: number) {
-        // this.id = uid();
     }
 }
 
 
 const supplies: Supply[] = [
-    new Supply("Medical food 1 can", 17),
+    new Supply("Medical food can", 17),
     new Supply("Ampoule Anti-flea & Tick", 47),
     new Supply("seringe", 10)
 ]
+
+//join classes
+
+class PatientVaccine {
+    constructor(public patient: Patient, public vacName: Vaccine, public price: Vaccine) {
+
+    }
+}
+
+class PatientTeatment {
+    constructor(public patient: Patient, public treatName: Treatment, public price: Treatment) {
+        
+    }
+}

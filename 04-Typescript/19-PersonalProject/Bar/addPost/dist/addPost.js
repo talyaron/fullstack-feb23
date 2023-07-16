@@ -1,7 +1,4 @@
-//get the users and the imagse from local storage.
-// console.log(imagesArray);
 //create a new post(image).
-//Error free.
 function renderAddNewPost(users, rootElement) {
     try {
         if (!rootElement)
@@ -20,7 +17,6 @@ function renderAddNewPost(users, rootElement) {
 renderAddNewPost(usersArray, document.querySelector('#addPost'));
 //get the new post from the form, and add it to the user.
 //render it in 'showPosts'.
-//Error free.
 function handleAddNewPost(event) {
     try {
         if (!event)
@@ -28,18 +24,15 @@ function handleAddNewPost(event) {
         event.preventDefault();
         var userId_1 = event.target.elements.userId.value;
         var image = event.target.elements.image.value;
-        // const user: User | undefined = usersArray.find((u) => u.id === userId);
-        var selectedUserImg = usersImgArray.find(function (userImg) { return userImg.user.id === userId_1; });
-        // if (!user) throw new Error('User not found');
-        if (!selectedUserImg)
+        var user = usersArray.find(function (u) { return u.id === userId_1; });
+        if (!user)
             throw new Error('User not found');
-        // const newImg = new Img(image);
-        // user.images.push(newImg);
         var newImg = new Img(image);
-        selectedUserImg.image.push(newImg);
+        user.imagse.push(newImg);
         saveImgToLocalStorage(imagesArray);
         saveUserToLocalStorage(usersArray);
         saveUsersImgToLocalStorage(usersImgArray);
+        console.log(usersArray);
         //render the new post in 'showPosts'
         showPosts(document.querySelector('#posts'), usersArray);
         //move to the profile page.

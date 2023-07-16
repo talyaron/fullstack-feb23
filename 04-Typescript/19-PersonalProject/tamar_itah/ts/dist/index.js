@@ -108,6 +108,9 @@ function heandelDelWord(ev) {
         console.error(error);
     }
 }
+function heandelPlay() {
+    window.location.replace("./game.html"); //move to game page
+}
 //-----------------reander--------------------------------
 //render the user name to the game page
 //get the user name from local storage as string
@@ -140,38 +143,58 @@ function renderBack() {
 }
 //move to game
 function renderPlay() {
-    window.location.replace("./game.html"); //move to game page
     var h1Instructions = document.querySelector('#instruction');
     var instractions = "Match the word with its meaning \n                        <div id=\"score\">your scor:" +  + "</div>"; //show the score of the user un this game
     h1Instructions.innerHTML = instractions;
     //call the random word function
-    var ranArr = randomWord();
     var htmlroot = document.querySelector('#cards');
     if (!htmlroot)
         throw new Error("no root element");
-    var toHtml = "\n                <div class=\"wrapper\">\n                    <div class=\"cards\">\n                        <div id=\"c1\" class=\"card c1\">" + ranArr[Math.floor(Math.random() * 3)].enWord + "</div>\n                        <div id=\"c2\" class=\"card c2\">" + ranArr[Math.floor(Math.random() * 3)].heWord + "</div>\n                        <div id=\"c3\" class=\"card c3\">" + ranArr[Math.floor(Math.random() * 3)].heWord + "</div>\n                        <div id=\"c4\" class=\"card c4\">" + ranArr[Math.floor(Math.random() * 3)].heWord + "</div>                        \n                    </div>\n                    <button id=\"finish\" class=\"btnF\" onclick=\"renderFinish()\">Finish</button>\n                </div>\n                 ";
-    htmlroot.innerHTML = toHtml;
+    console.log(htmlroot);
+    //view + data binding
+    //render the cards in random order
+    //create a function whcih return the cards in random order
+    //fisrst step: create an array with the cards
+    //second step: get 3 random cards from the array
+    //third step: selct one random card from the 3 and put it in the first place
+    //fourth step: put the other 2 cards in the second and third place
+    //fifth step: put thei first card on the diaply
+    //sixth step: put the other 3 cards in random order on the display and show only the Hebrew options.
+    var randomWords = randomWord(words);
+    var firstWord = randomWords[0];
+    //randomized words
+    var randomWardsToDisplay = randomWord(randomWords);
+    //display all words in random order
+    var htmlWordsToSelect = randomWardsToDisplay.map(function (word) { return "<div class=\"chose card c" + numOfCard() + "\">" + word.heWord + "</div>"; }).join(' ');
+    var htmlWordInEnglish = "<div class=\"card c1\" >" + firstWord.enWord + "</div>";
+    htmlroot.innerHTML = htmlWordsToSelect + "<br>" + htmlWordInEnglish;
 }
 //finish the game
 function renderFinish() {
 }
-//contrilers
+//-------------------------------------contrilers--------------------
 //make the random select words
-function randomWord() {
-    var length = words.length;
+function randomWord(words) {
     var randomWordArr = [];
-    var i;
-    var randomArr = [];
-    var _loop_1 = function () {
-        var random = Math.floor(Math.random() * length);
+    var _words = JSON.parse((JSON.stringify(words)));
+    while (randomWordArr.length < 3) {
+        var random = Math.floor(Math.random() * _words.length);
         console.log(random);
-        if (!(randomArr.find(function (e) { return e === random; }))) {
-            randomWordArr[i] = words[random];
-        }
-    };
-    for (i = 0; i < 3; i++) {
-        _loop_1();
+        randomWordArr.push(_words[random]);
+        _words.splice(random, 1);
     }
     console.log(randomWordArr);
     return randomWordArr;
 }
+var numberOfCard = 1;
+function numOfCard() {
+    try {
+        numberOfCard++;
+        return numberOfCard;
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+//eveant lisiner to mouse click -> to chose the right ansear
+var c = document.querySelector('.chose');
