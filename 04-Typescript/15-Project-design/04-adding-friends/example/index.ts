@@ -78,9 +78,9 @@ function handleAddFriend(ev: any) {
 //model -> controler --> view
 
 function renderAllFriends(friends: Friend[], htmlElement: HTMLElement | null) {
-  try {
-    if (!htmlElement) throw new Error("No element");
-    const html = friends.map((friend) => renderFriendCard(friend)).join(" ");
+    try {
+        if (!htmlElement) throw new Error("No element");
+        const html = friends.map((friend) => renderFriendCard(friend)).join(" ");
 
         htmlElement.innerHTML = html;
     } catch (error) {
@@ -110,11 +110,8 @@ function renderFriendCard(friend: Friend) {
         <p>${friend.phoneNumber}</p>
         <button onclick="handleDeleteFriend('${friend.id}')">Delete</button>
         <button onclick="handleEdit('${friend.id}')">Edit</button>
-    </div>
-`
+    </div>`
         }
-
-
     } catch (error) {
         console.error(error);
         return ''
@@ -159,15 +156,15 @@ function handleEdit(friendId: string) {
     }
 }
 
-function handleSetEditFriend(ev:any){
+function handleSetEditFriend(ev: any) {
     try {
         ev.preventDefault();
         const name = ev.target.name.value;
         const phoneNumber = ev.target.phoneNumber.value;
-        const friendId:string = ev.target.id;
+        const friendId: string = ev.target.id;
 
-        const friend:Friend|undefined = friends.find(friend => friend.id === friendId)
-        if(!friend) throw new Error("couldnt find friend")
+        const friend: Friend | undefined = friends.find(friend => friend.id === friendId)
+        if (!friend) throw new Error("couldnt find friend")
         friend.name = name;
         friend.phoneNumber = phoneNumber
         friend.setEdit(false)

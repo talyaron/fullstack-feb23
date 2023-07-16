@@ -1,30 +1,33 @@
 var dealerMoney = 0;
-function turnOrder(players) {
-    var stage = document.querySelector(".stage");
-    var currentPlayerIndex = 0;
-    performTurn(players, stage, currentPlayerIndex);
-}
-function performTurn(players, stage, currentPlayerIndex) {
-    try {
-        var currentPlayer = players[currentPlayerIndex];
-        var activePlayers = players.filter(function (p) { return p.isActive === true; });
-        activePlayers.map(function (p) { return (p.isTurn = false); });
-        currentPlayer.setActive();
-        currentPlayer.isTurn = true;
-        currentPlayer.doingTurn(activePlayers, currentPlayerIndex); ///התור
-        currentPlayerIndex++;
-        if (currentPlayerIndex >= players.length && stage.children.length < 6) {
-            currentPlayerIndex = 0;
-            if (stage.children.length < 6) {
-                addCardToStage();
-            }
-        }
-        setTimeout(function () { return performTurn(players, stage, currentPlayerIndex); }, 500);
-    }
-    catch (error) {
-        console.error(error);
-    }
-}
+// function turnOrder(players) {
+//   const stage = document.querySelector(".stage") as HTMLDivElement;
+//   let currentPlayerIndex = 0;
+//   performTurn(players, stage, currentPlayerIndex);
+// }
+// function performTurn(
+//   players: Player[],
+//   stage: HTMLElement,
+//   currentPlayerIndex: number,
+// ) {
+//   try {
+//     const currentPlayer = players[currentPlayerIndex];
+//     let activePlayers = players.filter((p) => p.isActive === true);
+//     activePlayers.map((p) => (p.isTurn = false));
+//     currentPlayer.setActive();
+//     currentPlayer.isTurn = true;
+//     currentPlayer.doingTurn(activePlayers, currentPlayerIndex); ///התור
+//     currentPlayerIndex++;
+//     if (currentPlayerIndex >= players.length && stage.children.length < 6) {
+//       currentPlayerIndex = 0;
+//       if (stage.children.length < 6) {
+//         addCardToStage();
+//       }
+//     }
+//     setTimeout(() => performTurn(players, stage, currentPlayerIndex), 500);
+//   } catch (error) {
+//     console.error(error);
+//   }
+// }
 // turnOrder(players);
 function getMoveOption(activePlayers, thisIndex) {
     var thisPlayer = activePlayers[thisIndex];
@@ -147,7 +150,7 @@ function getSizeOfBet(pointOfOptionalSet, playerChips) {
 // }
 var counterTurn = 0;
 var indexInArray = 0;
-function realPLayersOrderTurn(players) {
+function turnOrder(players) {
     if (indexInArray == 0) {
         players[0].checkMove(players);
         indexInArray++;
