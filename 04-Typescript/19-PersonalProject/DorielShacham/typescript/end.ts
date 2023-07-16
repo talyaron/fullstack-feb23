@@ -6,6 +6,7 @@ function endingMessage() {
     ) as HTMLDialogElement;
     endGameMessage.innerHTML = `
         <h3>Earth exploded!</h3>
+        <h3>You saved ${score} humans</h3>
         <form method="dialog">
           <button id="retryButton">Retry</button>
         </form>
