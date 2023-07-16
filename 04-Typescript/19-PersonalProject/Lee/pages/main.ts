@@ -85,12 +85,13 @@ function renderPatientCard(patient: Patient) {
         if (patient.isEdit) {
             return `<div class="card">
         <img src="${patient.image}">
-        <p><label id="name">Name: <input type="text" value="${patient.name}"></input></label><br>
-        <label>Owner: ${patient.owner}</label><br>
-        <label>Tel: ${patient.phone}</label><br>
-        <label>Birth Year: ${patient.birthYear}</label><br>
+        <form onsubmit="handleSetEditPatient(event)" id="${patient.id}">
+        <label id="name"> Name: <input type="text" name="name" value="${patient.name}"></input></label><br>
+        <label>Owner: <input type="text" name="owner" value="${patient.owner}"></input></label><br>
+        <label>Tel: <input type="text" name="phone" value="${patient.phone}"></input></label><br>
+        <label>Birth Year: <input type="text" name="birthYear" value="${patient.birthYear}"></input></label><br>
         <button onclick="handleRemovePatient('${patient.id}')">Remove</button>
-        <button>Set</button></p>
+        <input type="submit" value="SET">
         </div>
        `
         } else {
@@ -129,17 +130,55 @@ function handleRemovePatient(patientId: string) {
 
 function handleEdit(patientId: string) {
     try {
-        const patient = patients.find(patient=> patient.id === patientId)
-        if(!patient) throw new Error("Couldn't find patient")
+        const patient = patients.find(patient => patient.id === patientId)
+        if (!patient) throw new Error("Couldn't find patient")
 
         patient.setEdit(true);
         renderAllPatients(patients, document.querySelector("#rootPatients"))
-        
+
     } catch (error) {
         console.error(error);
-        
+
     }
 }
+
+function handleSetEditPatient(ev: any) {
+    try {
+        ev.preventDefault();
+        const name = ev.target.name.value;
+        const owner = ev.target.owner.value;
+        const phone = ev.target.phone.value;
+        const birthYear = ev.target.birthYear.value;
+        const patientId: string = ev.target.id;
+
+        const patient:Patient|undefined = patients.find(patient => patient.id === patientId)
+        if(!patient) throw new Error("Could not find patient")
+        
+        patient.name = name;
+        patient.owner = owner;
+        patient.phone = phone;
+        patient.birthYear = birthYear;
+        patient.setEdit(false)
+        console.log(patients)
+
+        localStorage.setItem("patients", JSON.stringify(patients))
+        renderAllPatients(patients, document.querySelector("#rootPatients"));
+
+        
+
+
+
+    } catch (error) {
+        console.error(error)
+
+    }
+}
+
+
+
+
+
+
 
 
 class Vaccine {
