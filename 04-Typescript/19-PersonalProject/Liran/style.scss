@@ -17,7 +17,6 @@ body {
             background-color: black;
             height: 100%;
 
-
             .star {
                 width: 60px;
                 height: 60px;
@@ -90,13 +89,30 @@ body {
             border-radius: 5px;
             position: absolute;
             left: 0;
+            
             background: linear-gradient(rgb(53, 98, 122), transparent);
             display: flex;
             flex-direction: column;
             text-align: center;
+            
 
             h1 {
                 color: rgb(128, 163, 179);
+
+            }
+
+            #score{
+                width: 80%;
+                height: 70px;
+                margin: 0 auto 10%;
+               box-shadow: 0 0 20px rgba(6, 201, 204, 0.921);
+               background: linear-gradient(rgb(4, 15, 21), transparent);
+               border-radius: 30px;
+
+               p{
+                color: white;
+                font-size: 2.2 rem;
+               }
 
             }
 
