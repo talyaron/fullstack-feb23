@@ -57,7 +57,7 @@ function handleStartGame(ev:any){
     const name = ev.target.name.value
     const player = new Player (name,0)
     const playerToString = JSON.stringify(player)
-    localStorage.setItem("player", playerToString)    
+    localStorage.setItem("player", playerToString);
     window.open("../Ice_Cream_Truck/pages/TheGame.html", "_self")
  } catch (error) {
     console.error(error)

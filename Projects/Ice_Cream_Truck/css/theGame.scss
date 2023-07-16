@@ -4,6 +4,18 @@ body {
     background: linear-gradient(rgb(0, 38, 250), rgb(131, 214, 255),rgb(133, 72, 3), rgb(93, 50, 1));
 
 }
+#main{
+    width: 33%;
+    position: fixed;
+    left: 33%;
+    top: 20%;
+    font-size: 45px;
+    text-align: center;
+    z-index: 3;
+    text-shadow: 2px 2px 10px yellow;
+    
+}
+
 #mainName{
     position: absolute;
     z-index: 3;
@@ -122,13 +134,13 @@ box-shadow: 0px 0px 4px 5px rgb(255, 255, 185);
 
     }
 
-    .cover {
+    #cover {
         width: 130px;
-        height: 180px;
+        // height: 25px;
         overflow: hidden;
         position: absolute;
-        top: -10px;
-        right: 10px;
+        right: 0px;
+        top: 0px;
     }
 
     .cover img {
@@ -136,6 +148,14 @@ box-shadow: 0px 0px 4px 5px rgb(255, 255, 185);
         width: 130px;
         height: 180px;
         margin: 10px;
+    }
+}
+
+#costumers{
+    position: absolute;
+    bottom: 2px;
+    img{
+        height: 300px;
     }
 }
 

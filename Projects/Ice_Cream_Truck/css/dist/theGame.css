@@ -4,6 +4,17 @@ body {
   background: linear-gradient(#0026fa, #83d6ff, #854803, #5d3201);
 }
 
+#main {
+  width: 33%;
+  position: fixed;
+  left: 33%;
+  top: 20%;
+  font-size: 45px;
+  text-align: center;
+  z-index: 3;
+  text-shadow: 2px 2px 10px yellow;
+}
+
 #mainName {
   position: absolute;
   z-index: 3;
@@ -110,16 +121,23 @@ body {
   top: 0px;
   right: 0px;
 }
-.score .cover {
+.score #cover {
   width: 130px;
-  height: 180px;
   overflow: hidden;
   position: absolute;
-  top: -10px;
-  right: 10px;
+  right: 0px;
+  top: 0px;
 }
 .score .cover img {
   width: 130px;
   height: 180px;
   margin: 10px;
+}
+
+#costumers {
+  position: absolute;
+  bottom: 2px;
+}
+#costumers img {
+  height: 300px;
 }
