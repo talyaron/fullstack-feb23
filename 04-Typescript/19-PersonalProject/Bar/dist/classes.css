@@ -1,8 +1,9 @@
 #header {
   position: relative;
   top: 2vh;
-  width: 400px;
+  max-width: 1200px;
   height: 10vh;
+  margin-bottom: 2vh;
   display: flex;
   justify-content: start;
   border-bottom: 1px solid rgba(255, 255, 255, 0.358);
@@ -13,6 +14,7 @@
   width: 80px;
   height: 10vh;
   margin-left: 15px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
 }
 .header__user {
   position: relative;
@@ -38,26 +40,28 @@
   left: -8px;
 }
 
-#profile {
+#posts {
   position: relative;
-  margin: auto;
-  width: 400px;
-  height: 70vh;
+  display: flex;
+  max-width: 1200px;
+  height: 80%;
   border-radius: 20px;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+  flex-wrap: wrap;
+  justify-content: baseline;
 }
 
 .userPost {
   position: relative;
-  margin: auto;
   margin-top: 5vh;
-  width: 350px;
+  margin: 18px;
+  max-width: 350px;
   height: 32vh;
 }
 .userPost__name {
   position: relative;
   display: flex;
-  width: 330px;
+  max-width: 330px;
   height: 5vh;
   margin: auto;
   padding: 8px;
@@ -87,16 +91,55 @@
   margin: auto;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
 }
+.userPost__buttons {
+  position: relative;
+}
+.userPost__buttons__deleteBtn {
+  position: relative;
+  left: 10px;
+}
+.userPost__buttons__editBtn {
+  position: relative;
+  top: -31vh;
+  left: 200px;
+}
+.userPost__buttons__editBtn input {
+  max-width: 50px;
+}
 
+@media only screen and (max-width: 735px) {
+  .userPost__name {
+    max-width: 250px;
+    height: 3vh;
+    font-size: 15px;
+  }
+  .userPost__name img {
+    width: 30px;
+    height: 30px;
+  }
+  .userPost__img img {
+    width: 230px;
+    height: 15vh;
+  }
+  .userPost__buttons {
+    position: relative;
+  }
+  .userPost__buttons__editBtn {
+    position: relative;
+    top: -2vh;
+    left: 110px;
+  }
+}
 .addPost {
   position: relative;
   top: 20vh;
-  width: 450px;
+  max-width: 250px;
   height: 40vh;
+  margin: auto;
 }
 .addPost__select {
   position: relative;
-  left: 35%;
+  left: 50px;
   width: 100px;
   height: 6vh;
   border-radius: 10px;
@@ -117,21 +160,27 @@
 .addPost__enterNewImage {
   position: relative;
   top: 25vh;
-  left: -35%;
+  left: 50px;
   width: 100px;
   height: 50px;
   border-radius: 20px;
   background: -webkit-linear-gradient(#cc4af0, #f3f06e);
 }
 
+.display {
+  display: none;
+}
+
 .wrapper {
   position: relative;
-  width: 400px;
-  height: 90vh;
+  max-width: 1200px;
+  height: 100vh;
   margin: auto;
   color: white;
   background-color: black;
   border-radius: 10px;
+  font-family: "Black Ops One", cursive;
+  font-family: "Nunito Sans", sans-serif;
 }
 .wrapper .addNewImage {
   position: relative;
@@ -141,7 +190,7 @@
 }
 .wrapper .enterNewImage {
   position: relative;
-  top: 8vh;
+  bottom: 2vh;
   filter: blur(10px);
   left: 46%;
   font-size: 40px;

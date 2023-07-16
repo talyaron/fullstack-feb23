@@ -27,6 +27,8 @@ hr {
   color: gold;
 }
 .container__nav {
+  -webkit-animation: tracking-in-expand-fwd-top 1s cubic-bezier(0.445, 0.05, 0.55, 0.95) both;
+  animation: tracking-in-expand-fwd-top 1s cubic-bezier(0.445, 0.05, 0.55, 0.95) both;
   display: flex;
   justify-content: space-evenly;
   flex-direction: row;
@@ -37,7 +39,7 @@ hr {
   background-color: rgba(255, 0, 0, 0.634);
 }
 .container__nav span {
-  color: #d2d2ce;
+  color: white;
 }
 .container__nav a {
   font-size: 1.6vw;
@@ -59,20 +61,22 @@ hr {
   text-align: center;
   color: white;
 }
-.container a {
+.container__Ourspecial a {
   display: flex;
   flex-direction: column-reverse;
   align-items: center;
   text-decoration: none;
 }
-.container a p {
+.container__Ourspecial a p {
   width: 30%;
   color: white;
   font-size: 1.2vw;
   text-align: center;
 }
-.container img {
-  background-image: url(dist/shelf-clip-art-others-removebg-preview.png);
+.container__Ourspecial img {
+  -webkit-animation: text-focus-in 1s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
+  animation: text-focus-in 1s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
+  background-image: url(shelfpreview.png);
   backdrop-filter: unset;
   background-size: cover;
   background-repeat: no-repeat;
@@ -101,7 +105,6 @@ hr {
   .container img {
     max-width: 40vw;
     max-height: 20vw;
-    background-position: 0vw 1.6vw;
   }
 }
 @media screen and (max-width: 300px) {
@@ -124,6 +127,29 @@ hr {
   .container img {
     max-width: 25vw;
     max-height: 12.5vw;
-    background-position: 0vw 0.8vw;
+  }
+}
+@-webkit-keyframes text-focus-in {
+  0% {
+    -webkit-filter: blur(12px);
+    filter: blur(12px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-filter: blur(0px);
+    filter: blur(0px);
+    opacity: 1;
+  }
+}
+@keyframes text-focus-in {
+  0% {
+    -webkit-filter: blur(12px);
+    filter: blur(12px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-filter: blur(0px);
+    filter: blur(0px);
+    opacity: 1;
   }
 }
