@@ -1,14 +1,11 @@
-const pointer = document.querySelector<HTMLSpanElement>("#pointer");
+const pointer = document.querySelector("#pointer") as HTMLSpanElement;
 
 window.addEventListener("mousemove", (event: MouseEvent) => {
-  pointer.style = `
-    transform: translate(${event.clientX - 50}px, ${event.clientY - 50}px);
-  `;
+  pointer.style.transform = `translate(${event.clientX - 50}px, ${event.clientY - 50}px)`;
 });
 
 window.addEventListener("load", (event) => {
-  pointer.style = `
-    transform: translate(-50px, -50px);
-    top: 50%; left: 50%;
-  `;
+  pointer.style.transform = "translate(-50px, -50px)";
+  pointer.style.top = "0%";
+  pointer.style.left = "0%";
 });

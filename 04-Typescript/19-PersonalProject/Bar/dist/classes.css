@@ -38,11 +38,11 @@
   left: -8px;
 }
 
-#profile {
+#posts {
   position: relative;
   margin: auto;
   width: 400px;
-  height: 70vh;
+  height: 120vh;
   border-radius: 20px;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
 }
@@ -124,10 +124,14 @@
   background: -webkit-linear-gradient(#cc4af0, #f3f06e);
 }
 
+.display {
+  display: none;
+}
+
 .wrapper {
   position: relative;
   width: 400px;
-  height: 90vh;
+  height: 150vh;
   margin: auto;
   color: white;
   background-color: black;
@@ -141,7 +145,7 @@
 }
 .wrapper .enterNewImage {
   position: relative;
-  top: 8vh;
+  bottom: 2vh;
   filter: blur(10px);
   left: 46%;
   font-size: 40px;

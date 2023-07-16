@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,8 +8,22 @@
     <script src="../ts/dist/main.js" defer></script>
     <title>main game</title>
 </head>
-<body onload="startGame()">
+
+<body>
     <div id="h1"></div>
-    <canvas id="canvas"></canvas>
+    <div class="canvas">
+        <div id="redball" class="redball"></div>
+        <div id="bricks_solid" class="bricks_solid brick"></div>
+        <div id="bricks_simulated" class="bricks_simulated brick"></div>
+        <div id="errowR" class="errow errows_leftToRight"></div>
+        <div id="errowL" class="errow errows_rightToLeft"></div>
+        <div id="bomb" class="bomb"></div>
+        <div id="shelves" class="shalve shelves_solid"></div>
+        <div id="shelves" class="shalve shelves_disapear"></div>
+        <div id="colorBall" class="colorBall"></div>
+        <div id="coins" class="coins"></div>
+        <div id="endStage" class="endStage"></div>
+    </div>
 </body>
+
 </html>
