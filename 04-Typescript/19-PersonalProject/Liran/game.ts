@@ -20,13 +20,13 @@ const swords: Sword[] = [
 
 
 const stars: Star[] = [
-    { name: "blueStar", imageUrl: "./blueStar.jpg", value: 1, functionDuration: null },
-    { name: "colorStar", imageUrl: "./colorStar2.png", value: 20, functionDuration: null },
-    { name: "greenStar", imageUrl: "./greenStar.png", value: 1, functionDuration: null },
-    { name: "lightStar", imageUrl: "./lightStar.jpg", value: 1, functionDuration: null },
+    { name: "blueStar", imageUrl: "./blueStar.jpg", value: 2, functionDuration: null },
+    { name: "goldStar", imageUrl: "./goldStar.jpg", value: 25, functionDuration: null },
+    { name: "greenStar", imageUrl: "./greenStar.png", value: 2, functionDuration: null },
+    { name: "lightStar", imageUrl: "./lightStar.jpg", value: 2, functionDuration: null },
     { name: "rainbowStar", imageUrl: "./rainbowStar.jpg", value: 10, functionDuration: null },
     { name: "superStar", imageUrl: "./superStar.jpg", value: 15, functionDuration: null },
-    { name: "yellowStar", imageUrl: "./yellowStar.jpg", value: 1, functionDuration: null }
+    { name: "yellowStar", imageUrl: "./yellowStar.jpg", value: 2, functionDuration: null }
 
 ]
 
@@ -48,7 +48,7 @@ class Player {
         currentScore?: number | undefined,
         isActive?: boolean | undefined
     ) {
-        this.id = (id) ? `id-${new Date().getTime()}-${Math.random()}` : this.id;
+        this.id = (id === undefined) ? `id-${new Date().getTime()}-${Math.random()}` : this.id;
         this.record = (record !== undefined) ? record : this.record;
         this.numOfGames = (numOfGames !== undefined) ? numOfGames : this.numOfGames;
         this.currentScore = (currentScore !== undefined) ? currentScore : this.currentScore;
@@ -123,6 +123,7 @@ function hundelSubmit(ev: any) {
         let swordColor: string;
         if (!selectSword) throw new Error("Can't cath sword List");
         swordColor = selectSword.value;
+        debugger;
         const player = new Player(firstName, lastName, swordColor);
         player.setIsActive(true);
         if (!player) throw new Error("Player missing info")
@@ -142,16 +143,16 @@ let timeIntervalID: number;
 function hundelStart(ev: any) {
     try {
         ev.preventDefault();
-        
+
         const operation = ev.target.name
         switch (operation) {
             case "start":
-                // const pageRef = document.querySelector("#highScorePage") as HTMLElement;
-                // if (!pageRef) throw new Error("Missing page ref");
-                // pageRef.style.pointerEvents = "none";
                 const button = document.getElementById("startGame") as any;
                 if (!button) throw new Error("No start game button");
                 button.disabled = true;
+                const backgroundMusic = document.querySelector(`#backgroundMusic`) as HTMLAudioElement;
+                if (!backgroundMusic) throw new Error("Error with background music file");
+                backgroundMusic.play();
                 timeIntervalID = setInterval(displayTimer, 10);
                 renderStars(document.querySelector(`.screen__game`)); break;
             case "leave":
@@ -168,17 +169,17 @@ function hundelStart(ev: any) {
     }
 }
 
-function renderGameScreen(end: boolean, screen: HTMLElement) {
+function renderEndGameScreen(end: boolean, screen: HTMLElement) {
     try {
         if (!screen) throw new Error("No game screen to render");
-        if (end) {
-            if (players === undefined) throw new Error("No players")
-            const player = players[players?.length - 1];
-            screen.innerHTML = `<div class="screen__end screen__end--img"></div>
-            <h1 class="screen__end screen__end--finalScore" id="finalScoreBord">Final Score: ${player.currentScore}</h1>`
-            endOfGame(player);
 
-        }
+        if (players === undefined) throw new Error("No players")
+        const player = players[players?.length - 1];
+        screen.innerHTML = `<div class="screen__end screen__end--img"></div>
+            <h1 class="screen__end screen__end--finalScore" id="finalScoreBord">Final Score: ${player.currentScore}</h1>`;
+        console.log(`renderEndofGame player score: ${player.currentScore}`)
+        endOfGame(player);
+
     } catch (error) {
         console.error(error)
     }
@@ -187,11 +188,12 @@ function renderGameScreen(end: boolean, screen: HTMLElement) {
 function renderStars(screen: HTMLDivElement | null) {
     try {
         if (!screen) throw new Error("Can't catch game screen");
+        if (players === undefined) throw new Error("Can't catch game screen");
+        players[players?.length - 1].currentScore = 0;
+        // const element = document.querySelector(".screen__game");
+        //if (!element) throw new Error("Can't catch game screen");
 
-        const element = document.querySelector(".screen__game");
-        if (!element) throw new Error("Can't catch game screen");
-
-        const rect = element.getBoundingClientRect();
+        const rect = screen.getBoundingClientRect();
 
         stars.forEach(star => {
             const starElement = document.createElement('img');
@@ -200,17 +202,18 @@ function renderStars(screen: HTMLDivElement | null) {
             starElement.classList.add('star');
             starElement.style.top = '-100px';
             starElement.style.visibility = "visibile";
-            starElement.style.left = `${Math.random() * ((rect.y + rect.width - 60) - (rect.y+60)) + (rect.y+60)}px`;
+            starElement.style.left = `${Math.random() * ((rect.y + rect.width - 60) - (rect.y + 60)) + (rect.y + 60)}px`;
 
             screen?.appendChild(starElement);
 
-            starElement.addEventListener('animationend', () => {
-                // starElement.style.left = `${Math.random() * ((rect.y + rect.width) - rect.y) + rect.y}px`;
-                // starElement.style.animationDuration = `${Math.random() * (3 - 1.5) + 1.5}s`;
-                console.log(`Animation iteration ended for ${star.name}`);
+            starElement.addEventListener('animationiteration', () => {
+                starElement.style.top = '-100px';
+                if (starElement.style.visibility = 'hidden')
+                    starElement.style.visibility = '';
+                starElement.style.left = `${Math.random() * ((rect.y + rect.width - 60) - (rect.y + 60)) + (rect.y + 60)}px`;
+                starElement.style.animationDelay = `${Math.random() * 2000}`
             });
-
-            starElement.style.animationDuration = `${Math.random() * (3 - 1.5) + 1.5}s`;
+            starElement.style.animationDuration = `${Math.random() * (2.5 - 1.5) + 1.5}s`;
             starElement.style.animationPlayState = 'running';
         });
 
@@ -301,7 +304,9 @@ function renderGamePanel() {
         <div class="container">
                 <div id="timerDisplay">00:000</div>
             </div>
-            <div id="score"></div>
+            <div id="score">
+            <p>0</p>
+            </div>
             <a href="./scoreTable.html">High Scored Table</a>
             <a href="./instructions.html">Game Instructions</a>`;
 
@@ -329,7 +334,6 @@ document.addEventListener('keydown', (event: KeyboardEvent | any) => {
         if (!element) throw new Error("Can't cath game screen");
         if (!sword && !newPlayer) throw new Error("Can't cath sword DOM");
         const rect = element.getBoundingClientRect();
-        console.dir(event);
         const key = event.key;
         const reg = new RegExp(/^[a-zA-Z]+$/)
         if (event && (event.target.name == "firstName" || event.target.name == "lastName" && event.key)) {
@@ -412,10 +416,19 @@ function displayTimer() {
             seconds++;
             if (seconds == 60) {
                 milliseconds = 0;
-                renderGameScreen(true, document.querySelector(`.screen__end`) as HTMLDivElement)
+                renderEndGameScreen(true, document.querySelector(`.screen__end`) as HTMLDivElement)
             }
         }
-        if (seconds == 50) timerRef.style.boxShadow = "0 0 20px rgba(242, 6, 6, 0.921)";
+        if (seconds === 50) {
+            const backgroundMusic = document.querySelector(`#backgroundMusic`) as HTMLAudioElement;
+            if (!backgroundMusic) throw new Error("Error with background music file");
+            backgroundMusic.pause();
+            backgroundMusic.currentTime = 0;
+            const audio = document.querySelector(`#countDown`) as HTMLAudioElement;
+            debugger;
+            audio.play();
+            timerRef.style.boxShadow = "0 0 20px rgba(242, 6, 6, 0.921)";
+        }
         let s = seconds < 10 ? "0" + seconds : seconds;
         let ms = milliseconds < 10 ? "00" + milliseconds : milliseconds < 100 ? "0" + milliseconds : milliseconds;
         if (!timerRef) throw new Error("Error");
@@ -429,10 +442,8 @@ function animateStars(star: Star, rect: DOMRect) {
     try {
         const s = document.getElementById(star.name);
         if (!s) throw new Error("star missing");
-
-        s.style.animationDelay = `${Math.random() * (3 - 1.5) + 1.5}s`;
         s.style.left = `${Math.random() * ((rect.y + rect.width) - rect.y) + rect.y}px`;
-        s.style.animationDuration = `${Math.random() * (3 - 1.5) + 1.5}s`;
+        s.style.animationDuration = `${Math.random() * (2.5 - 1.5) + 1.5}s`;
         s.style.animationPlayState = "running";
     } catch (error) {
         console.error(error);
@@ -441,6 +452,7 @@ function animateStars(star: Star, rect: DOMRect) {
 
 
 }
+
 function checkOverlapInBackground(): void {
     try {
         const element = document.querySelector(".screen__game");
@@ -451,7 +463,6 @@ function checkOverlapInBackground(): void {
             elementsToCheck.forEach((element) => {
                 if (checkOverlap(mainElement, element)) {
                     const elementDiv = document.getElementById(`${element.id}`) as HTMLElement;
-                    console.dir(elementDiv);
                     //elementDiv.style.visibility = "hidden";
                     if (players === undefined) throw new Error(`no players`);
                     const currPlayer = players[players?.length - 1];
@@ -461,7 +472,11 @@ function checkOverlapInBackground(): void {
                     if (!star) throw new Error(`star not found by id: ${element.id}`);
                     if ((elementDiv.style.visibility === "")) {
                         const boom = document.getElementById('boom') as HTMLElement;
-                        if(!boom)throw new Error(`boom img not found`);
+                        if (!boom) throw new Error(`boom img not found`);
+                        const boomSound = document.querySelector(`#explosion`) as HTMLAudioElement;
+                        if (!boomSound) throw new Error(`boom sound not found`);
+                        boomSound.pause();
+                        boomSound.play();
                         boom.style.left = `${elementDiv?.offsetLeft}px`;
                         boom.style.top = `${elementDiv?.offsetTop}px`;
                         boom.style.visibility = "visible";
@@ -470,17 +485,14 @@ function checkOverlapInBackground(): void {
                         const scorePanel = document.getElementById('score');
                         if (!scorePanel) throw new Error(`scorePanel not found`);
                         scorePanel.innerHTML = `<p>${currPlayer.currentScore}</p>`
-                        console.log(`hit ${element.id}, curren score is:${currPlayer.currentScore}`);
                         setTimeout(function () {
                             boom.style.left = `0px`;
                             boom.style.top = `0px`;
                             boom.style.visibility = "hidden";
                         }, 200)
-                        setTimeout(function () {
-                            elementDiv.style.visibility = "";
-                        }, 1000)
+
                     }
-                    
+
                 }
             });
         }, interval);
@@ -492,7 +504,7 @@ function checkOverlapInBackground(): void {
 function checkOverlap(element1: HTMLElement, element2: any): boolean {
     const rect1 = element1.getBoundingClientRect();
     const rect2 = element2.getBoundingClientRect();
-    
+
     return (
         rect1.left < rect2.right &&
         rect1.right > rect2.left &&
@@ -503,24 +515,18 @@ function checkOverlap(element1: HTMLElement, element2: any): boolean {
 
 function endOfGame(player: Player) {
     try {
+        console.log(`endofGame player score: ${player.currentScore}`)
         clearInterval(timeIntervalID);
-        
+        const scorePanel = document.getElementById('score');
+        if (!scorePanel) throw new Error(`scorePanel not found`);
+        scorePanel.innerHTML = `<p>${player.currentScore}</p>`
         player.numOfGames++;
-        
         player.record = (player.record < player.currentScore ? player.currentScore : player.record);
-        player.currentScore = 0;
+        // player.currentScore = 0;
         if (players === undefined) throw new Error("Missing players")
         localStorage.setItem("players", JSON.stringify(players));
-        const highScore = players?.findIndex(p => p.record >= player.record && p.id !== player.id);
-        // if (highScore == -1) {
-        //     setTimeout(function () {
-        //         alert("Great job! You got a new record");
-        //         location.href = "scoreTable.html";
-        //     }, 4000)
-        // }
-        // else {
-
-        // }
+        const highScore = players?.findIndex(p => p.record >= player.record);
+        debugger;
         setTimeout(function () {
             if (highScore == -1)
                 alert("Great job! You got a new record");
