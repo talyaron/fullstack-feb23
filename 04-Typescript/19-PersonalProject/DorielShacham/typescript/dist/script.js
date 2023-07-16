@@ -1,4 +1,3 @@
-// import { Player, Bullet } from '../class/class'; this would work if we would not use live server and also the rest of the functions
 var canvas = document.querySelector("canvas");
 var ctx = canvas.getContext("2d");
 var playerInstance;
@@ -11,7 +10,7 @@ var score = 0;
 var scoreInterval = 0;
 var Player = /** @class */ (function () {
     function Player() {
-        this.x = 150; //location start
+        this.x = 250; //location start
         this.y = 250; //location start
         this.width = 20; //size of player
         this.height = 20; //size of player
@@ -72,9 +71,7 @@ var Bullet = /** @class */ (function () {
 }());
 //run game
 //@tal if your reading this and you see that
-//these functions are missing is because we cannot
-//import/export on the live server unless we use node js....
-//{ --- these are not errors so give me +10 points ;) --- }
+//these functions are missing is because i did not use the export/import (VITE) i used the old way }
 function runGame() {
     try {
         ctx.clearRect(0, 0, 500, 500);
