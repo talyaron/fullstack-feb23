@@ -1,0 +1,140 @@
+/* Base styles */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  h2 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  p {
+    font-size: 16px;
+    margin-bottom: 5px;
+  }
+  
+  /* Table details */
+  
+  .tableDetails-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Open order container */
+  
+  .openOrder-container {
+    margin-top: 20px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .openOrderDishes {
+    margin-bottom: 20px;
+    
+  }
+  
+  .MenuForm {
+    border: 1px solid red;
+    overflow: hidden; /* Added overflow property to contain the floated elements */
+  }
+  
+  .disheCard {
+    width: 200px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    float: left; /* Added float property to make the cards float */
+    margin-right: 20px; /* Added margin-right to create spacing between cards */
+    margin-bottom: 20px; /* Added margin-bottom to create spacing between rows */
+    position: relative; /* Added position property for better control */
+  }
+  
+  .disheCard:nth-child(4n) {
+    margin-right: 0; /* Clear margin-right for the last card in each row */
+  }
+  
+  .disheCard::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  
+  
+  
+  .dishName {
+    font-weight: bold;
+  }
+  
+  .dishPrice {
+    font-size: 14px;
+    color: #777;
+  }
+  
+  .dishImage {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+  }
+  
+  .openOrderTotal {
+    font-weight: bold;
+  }
+  
+  .optionBtnsOrderDish {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+  }
+  
+  /* Add order container */
+  
+  .AddOrder-container {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .AddNewOrder {
+    padding: 10px 20px;
+    background-color: #4285f4;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .AddNewOrder:hover {
+    background-color: #3367d6;
+  }
+  
+  /* General button styles */
+  
+  button {
+    padding: 10px 20px;
+    background-color: #f5f5f5;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #e5e5e5;
+  }
+  
+  
+  
