@@ -1,0 +1,65 @@
+body {
+  background-color: black;
+  background-repeat: no-repeat;
+  width: 98vw;
+  height: 95vh;
+  overflow: hidden;
+}
+
+.wrapper {
+  background: linear-gradient(#35627a, transparent);
+  font-family: fantasy;
+  margin: auto;
+  width: 75vw;
+  display: flex;
+  height: fit-content;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 100px;
+  animation: enterText 10s;
+}
+.wrapper p {
+  text-align: center;
+  font-size: 3.2rem;
+  color: rgba(195, 214, 252, 0.271);
+}
+.wrapper table {
+  width: 70%;
+  align-self: center;
+  color: white;
+  letter-spacing: 0rem;
+  font-size: 2.5rem;
+  text-align: center;
+  border: none;
+}
+.wrapper table td {
+  font-size: 1.1rem;
+}
+.wrapper table th,
+.wrapper table td {
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  width: 50%;
+  padding-bottom: 12px;
+  border: none;
+}
+.wrapper table tr:hover {
+  background-color: rgba(0, 0, 0, 0.34);
+  color: rgba(118, 144, 237, 0.779);
+  border-radius: 20px;
+  box-shadow: 2px;
+  transform: scale(1.1);
+  transition: transform 1s ease-in-out;
+}
+.wrapper a {
+  margin: auto;
+  margin-top: 10%;
+  font-size: 1.5rem;
+  text-decoration: none;
+  color: #6a8b9d;
+}
+.wrapper a:hover {
+  transform: scale(1.6rem);
+  color: #f4f4f5;
+  transition: all 1s ease-in-out;
+  transform: scale(1.2);
+}

@@ -1,5 +1,3 @@
-// import { Player, Bullet } from '../class/class'; this would work if we would not use live server and also the rest of the functions
-
 let canvas = document.querySelector("canvas") as HTMLCanvasElement;
 let ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
 let playerInstance: Player;
@@ -21,7 +19,7 @@ class Player {
   draw: () => void;
 
   constructor() {
-    this.x = 150; //location start
+    this.x = 250; //location start
     this.y = 250; //location start
     this.width = 20; //size of player
     this.height = 20; //size of player
@@ -88,9 +86,7 @@ class Bullet {
 
 //run game
 //@tal if your reading this and you see that
-//these functions are missing is because we cannot
-//import/export on the live server unless we use node js....
-//{ --- these are not errors so give me +10 points ;) --- }
+//these functions are missing is because i did not use the export/import (VITE) i used the old way }
 function runGame() {
   try {
     ctx.clearRect(0, 0, 500, 500);

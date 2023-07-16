@@ -19,7 +19,25 @@ canvas {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+
+    animation: backgroundAnimation 10s infinite alternate;
 }
+
+@keyframes backgroundAnimation {
+    0% {
+        background-size: 98% 98%;
+    }
+
+    50% {
+        background-size: 102% 102%;
+    }
+
+    100% {
+        background-size: 98% 98%;
+    }
+}
+
+
 .music {
     width: 400px;
     height: 200px;

@@ -24,7 +24,7 @@ const imagesArray: Img[] = getImgsFromLocalStorage();
 
 class User {
     id: string;
-    constructor(public name: string, public imageProfile: string, public images: Img[]) {
+    constructor(public name: string, public imageProfile: string, public imagse: Img[]) {
         this.id = Date.now().toString() + Math.random().toString(36).substr(2);
     }
 }
@@ -33,22 +33,21 @@ if (usersArray.length === 0) {
     const bar = new User('Bar', 'https://pixlr.com/images/index/remove-bg.webp', []);
     const netanel = new User('Netanel', 'https://photoscissors.com/images/samples/3-before.jpg', []);
     usersArray.push(bar, netanel);
-   
 }
 
-//join the user to the imagse.
+//creat class how join the user to his imagse.
 class UsersImg {
     id: string;
-    constructor(public user: User, public image: Img[]) {
+    constructor(public user: User[]) {
         this.id = Date.now().toString() + Math.random().toString(36).substr(2);
     }
 }
 const usersImgArray: UsersImg[] = getUsersImgFromLocalStorage();
-usersArray.map(user => {
-    const userImg = new UsersImg(user, user.images);
-    usersImgArray.push(userImg);
-});
-console.log(usersImgArray);
+if (usersImgArray.length === 0) {
+    const barImg = new UsersImg([usersArray[0]]);
+    const netanelImg = new UsersImg([usersArray[1]]);
+    usersImgArray.push(barImg, netanelImg);
+};
 
 
 //Image local storage
@@ -76,15 +75,18 @@ function saveUserToLocalStorage(user: User[]) {
 
 function getUsersFromLocalStorage(): User[] {
     try {
-    
         const usersStorage = localStorage.getItem('usersArray');
         console.log(usersStorage)
+
         if (!usersStorage) return [];
+
         const usersArray = JSON.parse(usersStorage);
         console.log(usersArray)
+
         if(!usersArray) throw new Error('Users not found');
         if(!Array.isArray(usersArray)) throw new Error('usersArray is not array');
-        const users = usersArray.map(user => new User(user.name, user.imageProfile, user.images));
+
+        const users = usersArray.map(user => new User(user.name, user.imageProfile, user.imagse));
         return users;
     } catch (error) {
         console.error(error);
@@ -110,7 +112,7 @@ function getUsersImgFromLocalStorage(): UsersImg[] {
         if(!usersImgArray) throw new Error('Users not found');
         if(!Array.isArray(usersImgArray)) throw new Error('usersImgArray is not array');
 
-        const usersImg = usersImgArray.map(usersImg => new UsersImg(usersImg.user, usersImg.image));
+        const usersImg = usersImgArray.map(usersImg => new UsersImg(usersImg.user));
         return usersImg;
     } catch (error) {
         console.error(error);
