@@ -5,6 +5,7 @@ var Patient = /** @class */ (function () {
         this.phone = phone;
         this.image = image;
         this.birthYear = birthYear;
+        this.isEdit = false;
         if (id) {
             this.id = id;
         }
@@ -12,6 +13,9 @@ var Patient = /** @class */ (function () {
             this.id = "" + Math.random();
         }
     }
+    Patient.prototype.setEdit = function (set) {
+        this.isEdit = set;
+    };
     return Patient;
 }());
 var patients = getPatientsFromStorage();
@@ -64,7 +68,12 @@ function renderAllPatients(patients, htmlElement) {
 }
 function renderPatientCard(patient) {
     try {
-        return "<div class=\"card\">\n        <img src=\"" + patient.image + "\">\n        <p><label id=\"name\">Name: " + patient.name + "</label><br>\n        <label>Owner: " + patient.owner + "</label><br>\n        <label>Tel: " + patient.phone + "</label><br>\n        <label>Birth Year: " + patient.birthYear + "</label><br>\n        <button onclick=\"handleRemovePatient('" + patient.id + "')\">Remove</button></p>\n        </div>\n       ";
+        if (patient.isEdit) {
+            return "<div class=\"card\">\n        <img src=\"" + patient.image + "\">\n        <p><label id=\"name\">Name: <input type=\"text\" value=\"" + patient.name + "\"></input></label><br>\n        <label>Owner: " + patient.owner + "</label><br>\n        <label>Tel: " + patient.phone + "</label><br>\n        <label>Birth Year: " + patient.birthYear + "</label><br>\n        <button onclick=\"handleRemovePatient('" + patient.id + "')\">Remove</button>\n        <button>Set</button></p>\n        </div>\n       ";
+        }
+        else {
+            return "<div class=\"card\">\n        <img src=\"" + patient.image + "\">\n        <p><label id=\"name\">Name: " + patient.name + "</label><br>\n        <label>Owner: " + patient.owner + "</label><br>\n        <label>Tel: " + patient.phone + "</label><br>\n        <label>Birth Year: " + patient.birthYear + "</label><br>\n        <button onclick=\"handleRemovePatient('" + patient.id + "')\">Remove</button>\n        <button onclick=\"handleEdit('" + patient.id + "')\">Edit</button></p>\n        </div>\n       ";
+        }
     }
     catch (error) {
         console.error(error);
@@ -78,6 +87,18 @@ function handleRemovePatient(patientId) {
             throw new Error("Could not find patient");
         patients.splice(index, 1);
         localStorage.setItem("patients", JSON.stringify(patients));
+        renderAllPatients(patients, document.querySelector("#rootPatients"));
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+function handleEdit(patientId) {
+    try {
+        var patient = patients.find(function (patient) { return patient.id === patientId; });
+        if (!patient)
+            throw new Error("Couldn't find patient");
+        patient.setEdit(true);
         renderAllPatients(patients, document.querySelector("#rootPatients"));
     }
     catch (error) {

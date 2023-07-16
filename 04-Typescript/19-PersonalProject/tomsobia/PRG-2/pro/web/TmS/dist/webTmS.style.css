@@ -27,6 +27,8 @@ hr {
   color: gold;
 }
 .container__nav {
+  -webkit-animation: tracking-in-expand-fwd-top 1s cubic-bezier(0.445, 0.05, 0.55, 0.95) both;
+  animation: tracking-in-expand-fwd-top 1s cubic-bezier(0.445, 0.05, 0.55, 0.95) both;
   display: flex;
   justify-content: space-evenly;
   flex-direction: row;
@@ -72,6 +74,8 @@ hr {
   text-align: center;
 }
 .container__Ourspecial img {
+  -webkit-animation: text-focus-in 1s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
+  animation: text-focus-in 1s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
   background-image: url(shelfpreview.png);
   backdrop-filter: unset;
   background-size: cover;
@@ -123,5 +127,29 @@ hr {
   .container img {
     max-width: 25vw;
     max-height: 12.5vw;
+  }
+}
+@-webkit-keyframes text-focus-in {
+  0% {
+    -webkit-filter: blur(12px);
+    filter: blur(12px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-filter: blur(0px);
+    filter: blur(0px);
+    opacity: 1;
+  }
+}
+@keyframes text-focus-in {
+  0% {
+    -webkit-filter: blur(12px);
+    filter: blur(12px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-filter: blur(0px);
+    filter: blur(0px);
+    opacity: 1;
   }
 }

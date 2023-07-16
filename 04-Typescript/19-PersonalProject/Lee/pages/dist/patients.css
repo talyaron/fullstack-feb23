@@ -44,7 +44,8 @@ html body .card {
   text-align: center;
 }
 html body .card button {
-  width: 140px;
+  width: 130px;
+  height: 25px;
   background-color: #94c8c8;
   border-radius: 7px;
 }
@@ -52,6 +53,8 @@ html body .card p {
   background-color: #4fb6b6;
   box-sizing: content-box;
   border-radius: 5px;
+  border-bottom-right-radius: 7px;
+  border-bottom-left-radius: 7px;
 }
 html body .card img {
   width: 100%;

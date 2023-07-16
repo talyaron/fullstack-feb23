@@ -14,32 +14,6 @@ class Vegetable{
     }
 }
 
-<<<<<<< HEAD
-const vegetables: Vegetable[] = getVegetablesFromStorage();
-const vegetablesNames: string[] = [];
-vegetables.forEach(veg =>{
-  if(veg !== undefined)
-  vegetablesNames.push(veg.name)
-})
-
-  function getVegetablesFromStorage(): Vegetable[] {
-        try {
-            debugger;
-
-          //get friends from locastorage (string)
-          const vegetablestring = localStorage.getItem("vegetables");
-          // const vegetableNamesstring = localStorage.getItem("vegetablesNames");
-          if (!vegetablestring) return [];
-          // if (!vegetableNamesstring) return [];
-      
-          //convert string to array of objects
-          const vegetablesArray = JSON.parse(vegetablestring);
-          // const vegetablesNamesArray = JSON.parse(vegetableNamesstring);
-      
-          //convert array of objects to array of friends
-          const vegetables: Vegetable[] = vegetablesArray.map((vegetable: Vegetable) => {
-            return  new Vegetable(
-=======
   const vegetables: Vegetable[] = getVegetablesFromStorage();
 
   function getVegetablesFromStorage(): Vegetable[] {
@@ -55,20 +29,13 @@ vegetables.forEach(veg =>{
           //convert array of objects to array of friends
           const vegetables: Vegetable[] = vegetablesArray.map((vegetable: Vegetable) => {
             return new Vegetable(
->>>>>>> 75a64492dae336481a89fa1bda69043756a1807a
               vegetable.name,
               vegetable.image,
               vegetable.quantity,
               vegetable.id
             );
           });
-<<<<<<< HEAD
-          debugger;
-          renderAllVegetables(vegetables, document.querySelector("#rootVegetables"));
-
-=======
       
->>>>>>> 75a64492dae336481a89fa1bda69043756a1807a
           return vegetables;
         } catch (error) {
           console.error(error);
@@ -79,26 +46,6 @@ vegetables.forEach(veg =>{
       function handleAddVegetable(ev: any) {
             try {
               ev.preventDefault();
-<<<<<<< HEAD
-              debugger;
-              const name = ev.target.elements.name.value;
-              const image = ev.target.elements.image.value;
-              const quantity = ev.target.elements.quantity.value;
-              if(vegetablesNames.find(vegetable => vegetable == name)){
-                alert(`${name} Already in your refrigerator`)
-              }
-              else{
-                const newVegetable = new Vegetable(name, image, quantity);
-                vegetables.push(newVegetable);
-                vegetablesNames.push(name);
-                renderAllVegetables(vegetables, document.querySelector("#rootVegetables"));
-                
-                //save to localStorage
-            
-                localStorage.setItem("vegetables", JSON.stringify(vegetables));
-              }
-
-=======
               
               const name = ev.target.elements.name.value;
               const image = ev.target.elements.image.value;
@@ -111,7 +58,6 @@ vegetables.forEach(veg =>{
               //save to localStorage
           
               localStorage.setItem("vegetables", JSON.stringify(vegetables));
->>>>>>> 75a64492dae336481a89fa1bda69043756a1807a
               ev.target.reset();
             } catch (error) {
               console.error(error);
@@ -123,11 +69,7 @@ vegetables.forEach(veg =>{
               ev.preventDefault();
               debugger;
               console.dir(ev)
-<<<<<<< HEAD
-              // if(ev.currentTarget.)
-=======
               if(ev.currentTarget.)
->>>>>>> 75a64492dae336481a89fa1bda69043756a1807a
               const nameForSearch = ev.target.elements.search.value;
               if(vegetables.includes(nameForSearch))
               renderSpecificVegetables(nameForSearch, document.querySelector("#rootVegetables"));
@@ -147,11 +89,7 @@ vegetables.forEach(veg =>{
               if (!htmlElement) throw new Error("No element");
               let html = ``;
             //   const html = vegetables.map((vegetable) => renderVegetableCard(vegetable)).join(" ");
-<<<<<<< HEAD
-            const regex = RegExp(`${vegetable}`,'g');
-=======
             const regex = RegExp(`*${vegetable}*`,'g');
->>>>>>> 75a64492dae336481a89fa1bda69043756a1807a
                         //   const html = vegetables.map((vegetable) => renderVegetableCard(vegetable)).join(" ");
             vegetables.forEach(vegetable =>{
                 if(regex.test(vegetable.name))
@@ -181,16 +119,6 @@ vegetables.forEach(veg =>{
                 try {
                   if (vegetable.isEdit) {
                     return `<div class="card">
-<<<<<<< HEAD
-                    <form onsubmit="handleSetEditVegetable(event)" id="${vegetable.id}">
-                                      <img src="${vegetable.image}">
-                                      <input type="text" name="name" value="${vegetable.name}">
-                                      <input type="text" name="quantity" value="${vegetable.quantity}">
-                                      <div class="buttons">
-                                      <button onclick="handleDeleteVegetable('${vegetable.id}')">Delete</button>
-                                      <input type="submit" value="SET">
-                                      </div>
-=======
                                   <img src="${vegetable.image}">
                                   <form onsubmit="handleSetEditVegetable(event)" id="${vegetable.id}">
                                       <input type="text" name="name" value="${vegetable.name}">
@@ -198,7 +126,6 @@ vegetables.forEach(veg =>{
                                       <br>
                                       <button onclick="handleDeleteVegetable('${vegetable.id}')">Delete</button>
                                       <input type="submit" value="SET">
->>>>>>> 75a64492dae336481a89fa1bda69043756a1807a
                                   </form>
                               </div>
                               `;
@@ -207,17 +134,8 @@ vegetables.forEach(veg =>{
                       <img src="${vegetable.image}">
                       <p>${vegetable.name}</p>
                       <p>${vegetable.quantity}</p>
-<<<<<<< HEAD
-                      <div class="buttons">
                       <button onclick="handleDeleteVegetable('${vegetable.id}')">Delete</button>
                       <button onclick="handleEdit('${vegetable.id}')">Edit</button>
-                      <button onclick="handleEat('${vegetable.id}')">Eat</button>
-                      <button onclick="handleBuy('${vegetable.id}')">Buy</button>
-                      </div>
-=======
-                      <button onclick="handleDeleteVegetable('${vegetable.id}')">Delete</button>
-                      <button onclick="handleEdit('${vegetable.id}')">Edit</button>
->>>>>>> 75a64492dae336481a89fa1bda69043756a1807a
                   </div>
               `;
                   }
@@ -252,49 +170,6 @@ vegetables.forEach(veg =>{
                       if (!vegetable) throw new Error("couldnt find friend");
                   
                       vegetable.setEdit(true);
-<<<<<<< HEAD
-                         //save to localStorage
-          
-                      localStorage.setItem("vegetables", JSON.stringify(vegetables));
-                      renderAllVegetables(vegetables, document.querySelector("#rootVegetables"));
-                    } catch (error) {
-                      console.error(error);
-                    }
-                  }
-
-                  function handleEat(vegetableId: string) {
-                    try {
-                      const vegetable = vegetables.find((vegetable) => vegetable.id === vegetableId);
-                      if (!vegetable) throw new Error("couldnt find friend");
-                      if (vegetable.quantity == 0)
-                      {
-                        alert(`No more ${vegetable.name}, you need to buy`)
-                      }
-                      else{
-
-                        vegetable.quantity--;
-                           //save to localStorage
-            
-                         localStorage.setItem("vegetables", JSON.stringify(vegetables));
-                        renderAllVegetables(vegetables, document.querySelector("#rootVegetables"));
-                      }
-                  
-                    } catch (error) {
-                      console.error(error);
-                    }
-                  }
-
-                  function handleBuy(vegetableId: string) {
-                    try {
-                      const vegetable = vegetables.find((vegetable) => vegetable.id === vegetableId);
-                      if (!vegetable) throw new Error("couldnt find friend");
-                  
-                      vegetable.quantity++;
-                         //save to localStorage
-          
-                      localStorage.setItem("vegetables", JSON.stringify(vegetables));
-=======
->>>>>>> 75a64492dae336481a89fa1bda69043756a1807a
                       renderAllVegetables(vegetables, document.querySelector("#rootVegetables"));
                     } catch (error) {
                       console.error(error);
@@ -322,39 +197,6 @@ vegetables.forEach(veg =>{
                       console.error(error);
                     }
                   }
-<<<<<<< HEAD
-
-                  function autocompleteMatch(input) {
-                    if (input == '') {
-                      return [];
-                    }
-                    var reg = new RegExp(input)
-                    return vegetablesNames.filter(function(term) {
-                      if (term.match(reg)) {
-                        return term;
-                      }
-                    });
-                  }
-                  
-                  function showResults(val) {
-                    try {
-                      debugger;
-                      const res = document.getElementById("result");
-                      if(!res)throw new Error("no result div")
-                       res.innerHTML = '';
-                       let list = '';
-                       let terms = autocompleteMatch(val);
-                       for (let i=0; i<terms.length; i++) {
-                         list += '<li>' + terms[i] + '</li>';
-                       }
-                       res.innerHTML = '<ul>' + list + '</ul>';
-                      
-                    } catch (error) {
-                      
-                    }
-                  }
-=======
->>>>>>> 75a64492dae336481a89fa1bda69043756a1807a
 // //model
 
 // class Friend {
