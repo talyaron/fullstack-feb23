@@ -77,6 +77,18 @@ body .screen__UI {
 body .screen__UI h1 {
   color: #80a3b3;
 }
+body .screen__UI #score {
+  width: 80%;
+  height: 70px;
+  margin: 0 auto 10%;
+  box-shadow: 0 0 20px rgba(6, 201, 204, 0.921);
+  background: linear-gradient(#040f15, transparent);
+  border-radius: 30px;
+}
+body .screen__UI #score p {
+  color: white;
+  font-size: 2.2 rem;
+}
 body .screen__UI form {
   width: 100%;
   display: flex;

@@ -69,14 +69,14 @@ class Player {
 }
 
 const players: Player[] | undefined = getPlayerFromStorage();
-debugger;
+
 if (players !== undefined && players.length > 0) {
     if (players[players?.length - 1].isActive) {
         renderPlayer(players[players.length - 1].swordColor);
         renderGamePanel();
     }
     else
-    renderLogPanel();
+        renderLogPanel();
 
 
 }
@@ -142,7 +142,7 @@ let timeIntervalID: number;
 function hundelStart(ev: any) {
     try {
         ev.preventDefault();
-        debugger;
+        
         const operation = ev.target.name
         switch (operation) {
             case "start":
@@ -200,7 +200,7 @@ function renderStars(screen: HTMLDivElement | null) {
             starElement.classList.add('star');
             starElement.style.top = '-100px';
             starElement.style.visibility = "visibile";
-            starElement.style.left = `${Math.random() * ((rect.y + rect.width) - rect.y) + rect.y}px`;
+            starElement.style.left = `${Math.random() * ((rect.y + rect.width - 60) - (rect.y+60)) + (rect.y+60)}px`;
 
             screen?.appendChild(starElement);
 
@@ -272,8 +272,8 @@ function renderLogPanel() {
             <input type="submit" name="submit" value="Go">
         </form>
         <a href="./instructions.html">Game Instructions</a>`;
-        
-        
+
+
         panel.innerHTML = html;
     } catch (error) {
         console.error(error)
@@ -301,6 +301,7 @@ function renderGamePanel() {
         <div class="container">
                 <div id="timerDisplay">00:000</div>
             </div>
+            <div id="score"></div>
             <a href="./scoreTable.html">High Scored Table</a>
             <a href="./instructions.html">Game Instructions</a>`;
 
@@ -444,35 +445,42 @@ function checkOverlapInBackground(): void {
     try {
         const element = document.querySelector(".screen__game");
         const elementsToCheck = document.querySelectorAll('.star');
-        const mainElement = document.getElementById('fighter') as HTMLElement;
+        const mainElement = document.getElementById('sword') as HTMLElement;
         const interval = 50;
         setInterval(() => {
             elementsToCheck.forEach((element) => {
                 if (checkOverlap(mainElement, element)) {
                     const elementDiv = document.getElementById(`${element.id}`) as HTMLElement;
-                    const boom = document.getElementById('boom') as HTMLElement;
-                    boom.style.left = `${elementDiv?.offsetLeft}px`;
-                    boom.style.top = `${elementDiv?.offsetTop}px`;
-                    boom.style.visibility = "visible";
-                    elementDiv.style.visibility = "hidden";
+                    console.dir(elementDiv);
+                    //elementDiv.style.visibility = "hidden";
                     if (players === undefined) throw new Error(`no players`);
                     const currPlayer = players[players?.length - 1];
                     const starHit = stars.find(star => star.name === element.id);
                     if (!starHit) throw new Error(`star not found by id: ${element.id}`);
-                    currPlayer.updateScore(starHit.value);
-                    console.log(`hit ${element.id}, curren score is:${currPlayer.currentScore}`);
-
-                    setTimeout(function () {
-                        boom.style.left = `0px`;
-                        boom.style.top = `0px`;
-                        boom.style.visibility = "hidden";
-                    }, 500)
-                    setTimeout(function () {
-                        elementDiv.style.visibility = "visible";
-                    }, 1200)
-
-
-                    // Add your custom logic here   
+                    const star = document.getElementById(`${starHit.name}`)
+                    if (!star) throw new Error(`star not found by id: ${element.id}`);
+                    if ((elementDiv.style.visibility === "")) {
+                        const boom = document.getElementById('boom') as HTMLElement;
+                        if(!boom)throw new Error(`boom img not found`);
+                        boom.style.left = `${elementDiv?.offsetLeft}px`;
+                        boom.style.top = `${elementDiv?.offsetTop}px`;
+                        boom.style.visibility = "visible";
+                        currPlayer.updateScore(starHit.value);
+                        elementDiv.style.visibility = "hidden"
+                        const scorePanel = document.getElementById('score');
+                        if (!scorePanel) throw new Error(`scorePanel not found`);
+                        scorePanel.innerHTML = `<p>${currPlayer.currentScore}</p>`
+                        console.log(`hit ${element.id}, curren score is:${currPlayer.currentScore}`);
+                        setTimeout(function () {
+                            boom.style.left = `0px`;
+                            boom.style.top = `0px`;
+                            boom.style.visibility = "hidden";
+                        }, 200)
+                        setTimeout(function () {
+                            elementDiv.style.visibility = "";
+                        }, 1000)
+                    }
+                    
                 }
             });
         }, interval);
@@ -484,7 +492,7 @@ function checkOverlapInBackground(): void {
 function checkOverlap(element1: HTMLElement, element2: any): boolean {
     const rect1 = element1.getBoundingClientRect();
     const rect2 = element2.getBoundingClientRect();
-
+    
     return (
         rect1.left < rect2.right &&
         rect1.right > rect2.left &&
@@ -496,15 +504,28 @@ function checkOverlap(element1: HTMLElement, element2: any): boolean {
 function endOfGame(player: Player) {
     try {
         clearInterval(timeIntervalID);
-        debugger;
+        
         player.numOfGames++;
-        debugger;
+        
         player.record = (player.record < player.currentScore ? player.currentScore : player.record);
         player.currentScore = 0;
+        if (players === undefined) throw new Error("Missing players")
         localStorage.setItem("players", JSON.stringify(players));
+        const highScore = players?.findIndex(p => p.record >= player.record && p.id !== player.id);
+        // if (highScore == -1) {
+        //     setTimeout(function () {
+        //         alert("Great job! You got a new record");
+        //         location.href = "scoreTable.html";
+        //     }, 4000)
+        // }
+        // else {
+
+        // }
         setTimeout(function () {
+            if (highScore == -1)
+                alert("Great job! You got a new record");
             location.href = "scoreTable.html";
-        }, 6000)
+        }, 5000)
     } catch (error) {
 
     }

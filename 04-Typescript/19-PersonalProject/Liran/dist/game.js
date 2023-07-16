@@ -42,7 +42,6 @@ var Player = /** @class */ (function () {
     return Player;
 }());
 var players = getPlayerFromStorage();
-debugger;
 if (players !== undefined && players.length > 0) {
     if (players[(players === null || players === void 0 ? void 0 : players.length) - 1].isActive) {
         renderPlayer(players[players.length - 1].swordColor);
@@ -99,7 +98,6 @@ var timeIntervalID;
 function hundelStart(ev) {
     try {
         ev.preventDefault();
-        debugger;
         var operation = ev.target.name;
         switch (operation) {
             case "start":
@@ -156,7 +154,7 @@ function renderStars(screen) {
             starElement.classList.add('star');
             starElement.style.top = '-100px';
             starElement.style.visibility = "visibile";
-            starElement.style.left = Math.random() * ((rect_1.y + rect_1.width) - rect_1.y) + rect_1.y + "px";
+            starElement.style.left = Math.random() * ((rect_1.y + rect_1.width - 60) - (rect_1.y + 60)) + (rect_1.y + 60) + "px";
             screen === null || screen === void 0 ? void 0 : screen.appendChild(starElement);
             starElement.addEventListener('animationend', function () {
                 // starElement.style.left = `${Math.random() * ((rect.y + rect.width) - rect.y) + rect.y}px`;
@@ -236,7 +234,7 @@ function renderGamePanel() {
             throw new Error("No players");
         _a = [0, 0, 0, 0], milliseconds = _a[0], seconds = _a[1], minutes = _a[2], hours = _a[3];
         var player = players[(players === null || players === void 0 ? void 0 : players.length) - 1].firstName;
-        var html = "<h1>Hello " + player + "</h1>\n        <form id=\"game\" onclick=\"hundelStart(event)\">\n        <input type=\"button\" name=\"start\" id=\"startGame\" value=\"Start\">\n        <input type=\"button\" name=\"leave\" id=\"exit\" value=\"Exit\">\n        </form>\n        <div class=\"container\">\n                <div id=\"timerDisplay\">00:000</div>\n            </div>\n            <a href=\"./scoreTable.html\">High Scored Table</a>\n            <a href=\"./instructions.html\">Game Instructions</a>";
+        var html = "<h1>Hello " + player + "</h1>\n        <form id=\"game\" onclick=\"hundelStart(event)\">\n        <input type=\"button\" name=\"start\" id=\"startGame\" value=\"Start\">\n        <input type=\"button\" name=\"leave\" id=\"exit\" value=\"Exit\">\n        </form>\n        <div class=\"container\">\n                <div id=\"timerDisplay\">00:000</div>\n            </div>\n            <div id=\"score\"></div>\n            <a href=\"./scoreTable.html\">High Scored Table</a>\n            <a href=\"./instructions.html\">Game Instructions</a>";
         panel.innerHTML = html;
         var timerRef = document.querySelector("#timerDisplay");
         if (!timerRef)
@@ -370,34 +368,46 @@ function checkOverlapInBackground() {
     try {
         var element = document.querySelector(".screen__game");
         var elementsToCheck_1 = document.querySelectorAll('.star');
-        var mainElement_1 = document.getElementById('fighter');
+        var mainElement_1 = document.getElementById('sword');
         var interval = 50;
         setInterval(function () {
             elementsToCheck_1.forEach(function (element) {
                 if (checkOverlap(mainElement_1, element)) {
                     var elementDiv_1 = document.getElementById("" + element.id);
-                    var boom_1 = document.getElementById('boom');
-                    boom_1.style.left = (elementDiv_1 === null || elementDiv_1 === void 0 ? void 0 : elementDiv_1.offsetLeft) + "px";
-                    boom_1.style.top = (elementDiv_1 === null || elementDiv_1 === void 0 ? void 0 : elementDiv_1.offsetTop) + "px";
-                    boom_1.style.visibility = "visible";
-                    elementDiv_1.style.visibility = "hidden";
+                    console.dir(elementDiv_1);
+                    //elementDiv.style.visibility = "hidden";
                     if (players === undefined)
                         throw new Error("no players");
                     var currPlayer = players[(players === null || players === void 0 ? void 0 : players.length) - 1];
                     var starHit = stars.find(function (star) { return star.name === element.id; });
                     if (!starHit)
                         throw new Error("star not found by id: " + element.id);
-                    currPlayer.updateScore(starHit.value);
-                    console.log("hit " + element.id + ", curren score is:" + currPlayer.currentScore);
-                    setTimeout(function () {
-                        boom_1.style.left = "0px";
-                        boom_1.style.top = "0px";
-                        boom_1.style.visibility = "hidden";
-                    }, 500);
-                    setTimeout(function () {
-                        elementDiv_1.style.visibility = "visible";
-                    }, 1200);
-                    // Add your custom logic here   
+                    var star = document.getElementById("" + starHit.name);
+                    if (!star)
+                        throw new Error("star not found by id: " + element.id);
+                    if ((elementDiv_1.style.visibility === "")) {
+                        var boom_1 = document.getElementById('boom');
+                        if (!boom_1)
+                            throw new Error("boom img not found");
+                        boom_1.style.left = (elementDiv_1 === null || elementDiv_1 === void 0 ? void 0 : elementDiv_1.offsetLeft) + "px";
+                        boom_1.style.top = (elementDiv_1 === null || elementDiv_1 === void 0 ? void 0 : elementDiv_1.offsetTop) + "px";
+                        boom_1.style.visibility = "visible";
+                        currPlayer.updateScore(starHit.value);
+                        elementDiv_1.style.visibility = "hidden";
+                        var scorePanel = document.getElementById('score');
+                        if (!scorePanel)
+                            throw new Error("scorePanel not found");
+                        scorePanel.innerHTML = "<p>" + currPlayer.currentScore + "</p>";
+                        console.log("hit " + element.id + ", curren score is:" + currPlayer.currentScore);
+                        setTimeout(function () {
+                            boom_1.style.left = "0px";
+                            boom_1.style.top = "0px";
+                            boom_1.style.visibility = "hidden";
+                        }, 200);
+                        setTimeout(function () {
+                            elementDiv_1.style.visibility = "";
+                        }, 1000);
+                    }
                 }
             });
         }, interval);
@@ -417,15 +427,26 @@ function checkOverlap(element1, element2) {
 function endOfGame(player) {
     try {
         clearInterval(timeIntervalID);
-        debugger;
         player.numOfGames++;
-        debugger;
         player.record = (player.record < player.currentScore ? player.currentScore : player.record);
         player.currentScore = 0;
+        if (players === undefined)
+            throw new Error("Missing players");
         localStorage.setItem("players", JSON.stringify(players));
+        var highScore_1 = players === null || players === void 0 ? void 0 : players.findIndex(function (p) { return p.record >= player.record && p.id !== player.id; });
+        // if (highScore == -1) {
+        //     setTimeout(function () {
+        //         alert("Great job! You got a new record");
+        //         location.href = "scoreTable.html";
+        //     }, 4000)
+        // }
+        // else {
+        // }
         setTimeout(function () {
+            if (highScore_1 == -1)
+                alert("Great job! You got a new record");
             location.href = "scoreTable.html";
-        }, 6000);
+        }, 5000);
     }
     catch (error) {
     }
