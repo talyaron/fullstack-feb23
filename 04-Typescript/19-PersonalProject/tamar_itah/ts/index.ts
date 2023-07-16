@@ -19,7 +19,14 @@ class Word {
     constructor(public enWord: string, public heWord: string) { }
 }
 
-const words: Word[] = []
+const words: Word[] = [
+    new Word('book', 'סֵפֶר'),
+    new Word('adventure', 'הַרפַּתקָה'),
+    new Word('center', 'מֶרְכָּז'),
+    new Word('earth', 'כַּדוּר הָאָרֶץ'),
+    new Word('volcano', 'הַר גַעַשׁ'),
+    new Word('Mountain', 'הַר'),
+]
 
 //---------------------handel----------------
 //login form
@@ -88,18 +95,18 @@ function hendelAddWordsubmit(ev: any) {
             console.log(words)
 
             localStorage.setItem('words', JSON.stringify(words)) //sent the array to local storage as string
-        } 
-        
+        }
+
         const form = document.querySelector('form')!
         form.reset()
 
-        
+
     } catch (error) {
         console.error(error)
     }
 }
 
-function heandelDelWord(ev:any){ //delete the word from array
+function heandelDelWord(ev: any) { //delete the word from array
     try {
         ev.preventDefault()
         console.dir(ev)
@@ -113,15 +120,15 @@ function heandelDelWord(ev:any){ //delete the word from array
         console.log(exist)
 
         if (exist !== -1) {  //if faund the mistack
-            words.splice(exist,1)
+            words.splice(exist, 1)
             console.log(words)
 
             localStorage.setItem('words', JSON.stringify(words)) //sent theuppdate array to local storage as string
-        } 
+        }
 
         const form = document.querySelector('form')!
         form.reset()
-        
+
     } catch (error) {
         console.error(error)
     }
@@ -176,23 +183,53 @@ function renderBack() {
 
 //move to game
 function renderPlay() {
-    const h1Instructions =  document.querySelector('#h1')!
-    const instractions = `Match the word with its meaning <div id="score">your scor:${}</div>`
-    h1Instructions.innerHTML = instractions
+    window.location.replace("./game.html")  //move to game page
     
-    const htmlroot = document.querySelector('#root')
+    const h1Instructions = document.querySelector('#instruction')!
+    const instractions = `Match the word with its meaning 
+                        <div id="score">your scor:${}</div>`  //show the score of the user un this game
+    h1Instructions.innerHTML = instractions
+
+    //call the random word function
+    const ranArr = randomWord() 
+
+    const htmlroot = document.querySelector('#cards')
     if (!htmlroot) throw new Error("no root element");
-    const toHtml =`
+    const toHtml = `
                 <div class="wrapper">
                     <div class="cards">
-                        <div id="c1" class="card c1"></div>
-                        <div id="c2" class="card c2"></div>
-                        <div id="c3" class="card c3"></div>
-                        <div id="c4" class="card c4"></div>
-                        
+                        <div id="c1" class="card c1">${ranArr[Math.floor(Math.random()*3)].enWord}</div>
+                        <div id="c2" class="card c2">${ranArr[Math.floor(Math.random()*3)].heWord}</div>
+                        <div id="c3" class="card c3">${ranArr[Math.floor(Math.random()*3)].heWord}</div>
+                        <div id="c4" class="card c4">${ranArr[Math.floor(Math.random()*3)].heWord}</div>                        
                     </div>
-                    <button id="finish" class="btnF">Finish</button>
+                    <button id="finish" class="btnF" onclick="renderFinish()">Finish</button>
                 </div>
                  `;
     htmlroot.innerHTML = toHtml
+}
+
+//finish the game
+function renderFinish() {
+
+}
+
+//contrilers
+//make the random select words
+function randomWord() {
+    const length = words.length;
+    const randomWordArr: Word[] = [];
+    let i: number;
+    const randomArr: number[] =[];
+
+    for (i = 0; i < 3; i++) {
+        const random: number = Math.floor(Math.random() * length);
+        console.log(random)
+        if (!(randomArr.find(e => e === random))) {
+            randomWordArr[i] = words[random]
+        }
+    }
+    console.log(randomWordArr)
+
+    return randomWordArr;
 }
