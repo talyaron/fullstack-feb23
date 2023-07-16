@@ -2,7 +2,8 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #cbddbb;
+
+  background-color: #dc7bf982;
 
   .container {
     width: 100%;
@@ -25,13 +26,15 @@ body {
       width: 100%;
       display: flex;
       align-items: center;
-      background-color: #718f54;
-      color: #fff;
+      background-color: rgba(192, 25, 230, 0.651);
+      ;
+      color: #6d0e82;
       justify-content: space-evenly;
       flex-direction: column-reverse;
 
       span {
         font-size: 1.4vw;
+        color: rgba(255, 255, 255, 0.808);
       }
 
       &--box {
@@ -48,7 +51,7 @@ body {
           font-size: 1.5vw;
 
           &:hover {
-            background-color: #cbddbb;
+            background-color: #9900ff;
           }
         }
       }
