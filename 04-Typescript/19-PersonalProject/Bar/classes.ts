@@ -27,10 +27,10 @@ class User {
 }
 const usersArray: User[] = getUsersFromLocalStorage();
 if (usersArray.length === 0) {
-    const bar = new User('Bar', 'https://pixlr.com/images/index/remove-bg.webp', []);
-    const netanel = new User('Netanel', 'https://burst.shopify.com/photos/person-holds-a-book-over-a-stack-and-turns-the-page/download', []);
-    const shir = new User('Shir', 'https://photoscissors.com/images/samples/3-before.jpg', []);
-    const ahava = new User('Ahava', 'https://imgv3.fotor.com/images/cover-photo-image/a-beautiful-girl-with-gray-hair-and-lucxy-neckless-generated-by-Fotor-AI.jpg', []);
+    const bar = new User('Bar', 'https://cdn.pixabay.com/photo/2017/09/01/21/53/sunglasses-2705642_640.jpg', []);
+    const netanel = new User('Netanel', 'https://cdn.pixabay.com/photo/2017/08/01/01/33/beanie-2562646_640.jpg', []);
+    const shir = new User('Shir', 'https://cdn.pixabay.com/photo/2016/12/19/21/36/woman-1919143_640.jpg', []);
+    const ahava = new User('Ahava', 'https://cdn.pixabay.com/photo/2018/03/12/12/32/woman-3219507_640.jpg', []);
     usersArray.push(bar, netanel, shir, ahava);
 }
 
@@ -49,7 +49,7 @@ if (usersImgArray.length === 0) {
     const ahavaImg = new UsersImg([usersArray[3]]);
     usersImgArray.push(barImg, netanelImg, shirImg, ahavaImg);
 };
-
+console.log(usersImgArray);
 
 //Image local storage
 function saveImgToLocalStorage(image: Img[]) {
@@ -59,9 +59,12 @@ function saveImgToLocalStorage(image: Img[]) {
 function getImgsFromLocalStorage(): Img[] {
     try {
         const imgsStorage = localStorage.getItem('imagesArray');
+
         if (!imgsStorage) return [];
+
         const imagesArray = JSON.parse(imgsStorage);
         const imgs = imagesArray.map(img => new Img(img.image));
+
         return imgs;
     } catch (error) {
         console.error(error);
@@ -77,12 +80,10 @@ function saveUserToLocalStorage(user: User[]) {
 function getUsersFromLocalStorage(): User[] {
     try {
         const usersStorage = localStorage.getItem('usersArray');
-        console.log(usersStorage)
 
         if (!usersStorage) return [];
 
         const usersArray = JSON.parse(usersStorage);
-        console.log(usersArray)
 
         if(!usersArray) throw new Error('Users not found');
         if(!Array.isArray(usersArray)) throw new Error('usersArray is not array');
@@ -103,12 +104,10 @@ function saveUsersImgToLocalStorage(usersImg: UsersImg[]) {
 function getUsersImgFromLocalStorage(): UsersImg[] {
     try {
         const usersImgStorage = localStorage.getItem('usersImgArray');
-        console.log(usersImgStorage)
 
         if (!usersImgStorage) return [];
 
         const usersImgArray = JSON.parse(usersImgStorage);
-        console.log(usersImgArray)
 
         if(!usersImgArray) throw new Error('Users not found');
         if(!Array.isArray(usersImgArray)) throw new Error('usersImgArray is not array');
