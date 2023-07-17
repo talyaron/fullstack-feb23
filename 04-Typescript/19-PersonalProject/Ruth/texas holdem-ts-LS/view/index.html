@@ -24,35 +24,38 @@
         </button>
       </div>
 
-      <div class="myPanel">
+      <div id="player0Panel" class="myPanel">
         <div id="" class="myPanel__img">
           <img src="#" alt="" />
         </div>
         <h4 class="myPanel__chips"></h4>
         <div class="myPanel__cards"></div>
+        <div id = "myTurnInput" class="playerPanel__inputChips">
+          <!-- <img src="../images/casino-chip.png" alt="" /> -->
+        </div>
       </div>
 
       <div class="operations">
         <button
           class="operations__btn operations__btn--check"
-          onclick="handleCheck()">
+          onclick="myPlayerHandleCheck()">
           check
         </button>
         <button
           class="operations__btn operations__btn--fold"
-          onclick="handleFold()">
+          onclick="myPlayerHandleFold()">
           fold
         </button>
         <button
-          class="operations__btn operations__btn--rise"
-          onclick="handleRise()">
-          rise
-        </button>
-        <button
-          class="operations__btn operations__btn--call"
-          onclick="handleCall()">
-          call
-        </button>
+        class="operations__btn operations__btn--call"
+        onclick="myPlayerHandleCall()">
+        call
+      </button>
+      <button
+        class="operations__btn operations__btn--rise"
+        onclick="myPlayerHandleRise()">
+        rise
+      </button>
       </div>
 
       <!-- -----1------- -->
@@ -66,12 +69,12 @@
           <div class="playerPanel__inform__chips" id="player1Chips"></div>
         </div>
         <div class="playerPanel__inputChips">
-          <img src="../images/casino-chip.png" alt="" />
-          <h4></h4>
+          <!-- <img src="../images/casino-chip.png" alt="" />
+          <h4></h4> -->
         </div>
       </div>
       <!-- -----2------- -->
-      <div id="player2Panel" class="playerPanel">
+      <div id="player2Panel" class="playerPanel ">
         <div id="player2Img" class="playerPanel__img">
           <img src="" alt="" />
         </div>
@@ -81,8 +84,8 @@
           <div class="playerPanel__inform__chips" id="player2Chips"></div>
         </div>
         <div class="playerPanel__inputChips">
-          <img src="../images/casino-chip.png" alt="" />
-          <h4></h4>
+          <!-- <img src="../images/casino-chip.png" alt="" />
+          <h4></h4> -->
         </div>
       </div>
       <!-- ------3------ -->
@@ -96,8 +99,8 @@
           <div class="playerPanel__inform__chips" id="player3Chips"></div>
         </div>
         <div class="playerPanel__inputChips">
-          <img src="../images/casino-chip.png" alt="" />
-          <h4></h4>
+          <!-- <img src="../images/casino-chip.png" alt="" />
+          <h4></h4> -->
         </div>
       </div>
       <!-- -----4----- -->
@@ -111,8 +114,8 @@
           <div class="playerPanel__inform__chips" id="player4Chips"></div>
         </div>
         <div class="playerPanel__inputChips">
-          <img src="../images/casino-chip.png" alt="" />
-          <h4></h4>
+          <!-- <img src="../images/casino-chip.png" alt="" />
+          <h4></h4> -->
         </div>
       </div>
 
