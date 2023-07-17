@@ -31,14 +31,13 @@ var dealerMoney = 0;
 // turnOrder(players);
 function getMoveOption(activePlayers, thisIndex) {
     var thisPlayer = activePlayers[thisIndex];
-    // let lastPlyersRiseIndex = activePlayers.findIndex(
-    //   (p) => p.movesInRound[length - 1] === PlayerMovesOption.call,
-    // );
-    // if (lastPlyersRiseIndex === -1 || lastPlyersRiseIndex == thisIndex) {
-    //   return ["rise", "check"];
-    // } else {
-    //   return ["fold", "rise", "call"];
-    // }
+    var lastPlyersRiseIndex = activePlayers.findIndex(function (p) { return p.movesInRound[length - 1] === PlayerMovesOption.call; });
+    if (lastPlyersRiseIndex === -1 || lastPlyersRiseIndex == thisIndex) {
+        return ["rise", "check"];
+    }
+    else {
+        return ["fold", "rise", "call"];
+    }
     for (var i = thisIndex; i >= 0; i--) {
         if (activePlayers[i].movesInRound[length - 1] === PlayerMovesOption.rise) {
             return ["fold", "rise", "call"];
@@ -197,3 +196,5 @@ function myTurn(players) {
     console.log((myPlayer === null || myPlayer === void 0 ? void 0 : myPlayer.userName) + " is doing somethig......");
     playTheButton(myOption);
 }
+
+
