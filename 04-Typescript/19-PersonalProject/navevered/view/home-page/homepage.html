@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>home Page</title>
+    <link rel="stylesheet" href="../../css/dist/homepage.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="./dist/homepage.js"defer></script>
+  </head>
+
+<body>
+  <div class="allheader"> 
+  <div dir="rtl" class="header">
+    <img class="logo" src="../../css/dist/banky-low-resolution-logo-white-on-black-background-removebg-preview.png">
+    <img class="menu-button" src="../../css/dist/more.svg" active="false" onclick="toggleMenu()">
+     <nav class="nav" id="nav">
+      
+      <a href="../home-page/homepage.html">עמוד הבית</a>
+       <a href="../home/Income.html">הוצאות</a>
+       <a href="../home/expenses.html">הכנסות</a>
+       <a href="../home/profit.html">הרווח שלי</a>
+       <a href="../home-page/homepage.html#about-us">קצת עלינו</a>
+       <a href="../home-page/homepage.html#contact">יצירת קשר</a>
+    
+    </nav>
+    
+    <a href="../register/register.html">
+      <img class="user" src="../../css/dist/user.svg" alt="">
+    </a>
+   
+
+   
+  </div>
+</div>
+<div class="popup" id="popup">
+</div>
+<div class="row">
+   
+    <div class="columna">
+        <h1 class="heading"> BANKY   עם    <br> תתחיל לשלוט בכסף שלך  </h1> 
+    
+    <h2 class="h2">תכנון. אסטרטגיה.  תוצאות
+        
+    </h2>
+    <p class="p">לתאום פגישת יעוץ עם מומחה השאירו איימיל
+    </p>
+    <form dir="rtl" class="form" id="login-form">
+      <input type="email" id="email-input" placeholder="איימיל" required>
+      <button type="submit" class="submit">שליחה</button>
+    </form>
+   
+        
+        </div>
+  
+    <div class="column1">
+        <img src="8432-removebg-preview.png" class="hero" alt="">
+    </div>
+
+    
+
+    </div>
+    <section dir="rtl" class="about-us" id="about-us">
+      <div class="container">
+        <div class="content-wrapper">
+          <div class="text">
+            <h2>קצת על התוכנה</h2>
+            <p>התוכנה שלנו מנהלת את ההוצאות וההכנסות שלך. באמצעותה תוכל להזין נתונים לפי קטגוריות ולקבל דוח רווח לפי חודש, שנה ושנתיים.</p>
+            <p>ניתן להוסיף מספר קטגוריות כגון מזון, בילויים, חשבונות ועוד ולעקוב אחר ההוצאות וההכנסות בצורה ממוקדת ונוחה.</p>
+            <a href="../register/register.html" class="start-button"> להרשמה > </a>
+          </div>
+          <div class="image">
+            <img src="5867-removebg-preview.png" alt="Our Image">
+          </div>
+        </div>
+      </div>
+    </section>
+
+   <section dir="rtl" class="core-values">
+  <div class="container">
+    <h2 class="title">איך אנחנו יכולים לעזור לך?</h2>
+    <hr class="separator" color="#FEC94E;">
+    <div class="values">
+      <div class="value">
+        <img src="money.svg" class="value_icon" alt="">
+        <h3>ניהול כספים יעיל</h3>
+        <p>ניהול תקציבים, חשבוניות ודוחות בצורה יעילה ונוחה.</p>
+      </div>
+      <div class="value">
+        <img src="cost.svg" class="value_icon" alt="">
+        <h3>שליטה מוחלטת</h3>
+        <p>שליטה מוחלטת על ההוצאות וההכנסות שלך בצורה ידידותית ומותאמת אישית.</p>
+      </div>
+      <div class="value">
+        <img src="data-backup.svg" class="value_icon" alt="">
+        <h3>סנכרון מרכזי</h3>
+        <p>סנכרון אוטומטי של הנתונים בין מכשירים, שתוכל להיות מעודכן תמיד.</p>
+      </div>
+      <div class="value">
+        <img src="report.svg" class="value_icon" alt="">
+        <h3>דיווח מדויק</h3>
+        <p>דיווח מדויק ובזמן על היתרה, הוצאות, הכנסות ושאר מידע כספי חשוב.</p>
+      </div>
+    </div>
+  </div>
+  <a href="../register/register.html" class="start-button "> להרשמה > </a>
+</section>
+<div dir="rtl" class="contact" id="contact">
+  <h1 class="heading">     רוצים שנציג יצור אתכם קשר?</h1> 
+  <p class="contact_p"> מלאו את הטופס כאן למטה ונחזור אליכם בהקדם</p>
+    <div class="contactUs"> 
+      <form dir="rtl" class="form Contact" id="login-form">
+        <input type="text" id="input" placeholder="שם מלא" required>
+        <input type="tel" id="input" placeholder="טלפון" required>
+        <input type="email" id="input" placeholder="איימיל" required>
+        <button type="submit" class="submit">שליחה</button>
+    </div>
+  </div>
+  <footer class="footer">
+    <div dir="rtl" class="footer-container">
+      <div class="column">
+        <h4>מפת האתר</h4>
+        <nav class="nav Foter" id="nav">
+          <a href="../home-page/homepage.html">עמוד הבית</a>
+          <a href="../home/dashboard.html">הוצאות</a>
+          <a href="#Sport">הכנסות</a>
+          <a href="#Reel">הרווח שלי</a>
+          <a href="#Worklife">קצת עלינו</a>
+          <a href="#Travel">יצירת קשר</a>
+        </nav>
+      </div>
+      <div class="column">
+        <h4>הירשמו לניוזלייטר שלנו</h4>
+        <p>הצטרפו לרשימת התפוצה שלנו ותהיו מעודכנים בחידושים נוספים!</p>
+        <form>
+          <input type="email" placeholder="כתובת מייל" required>
+          <button type="submit">תרשמו אותי!</button>
+        </form>
+      </div>
+      <div class="column">
+        <h4>"מקסם את העושר שלך  ללא מאמץ"
+        </h4>
+        <img class="logo fot" src="../../css/dist/banky-low-resolution-logo-white-on-black-background-removebg-preview.png">
+        
+      </div>
+    </div>
+  </footer>
+       
+        
+</body>
+</html> 
