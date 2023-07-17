@@ -48,7 +48,6 @@ function handleAdd(ev) {
 var players = [];
 function addHomer() {
     try {
-        // const player =
         var selectedPlayer = new Player("../img/homer.png");
         players.push(selectedPlayer);
         savePlayerToLocalStorage(players);
@@ -71,9 +70,9 @@ function addBart() {
         console.error(error);
     }
 }
-function addLisa() {
+function addMaggie() {
     try {
-        var selectedPlayer = new Player("../img/lisa.png");
+        var selectedPlayer = new Player("../img/Maggie.png");
         players.push(selectedPlayer);
         savePlayerToLocalStorage(players);
         console.log(players);

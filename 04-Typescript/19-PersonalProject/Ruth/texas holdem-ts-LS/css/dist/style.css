@@ -68,6 +68,13 @@ h1 {
 .operations__btn--cheack, .operations__btn--call {
   background-color: #23ac08;
 }
+.operations__btn--rangeInput {
+  position: absolute;
+  right: -135px;
+  transform: rotate(270deg);
+  width: 200px;
+  height: 0;
+}
 
 .stage {
   position: absolute;

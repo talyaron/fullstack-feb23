@@ -219,9 +219,11 @@ function renderPlay() {
 
     //display all words in random order
     const htmlWordsToSelect = randomWardsToDisplay.map(word => `<div class="chose card c${numOfCard()}">${word.heWord}</div>`).join(' ')
-    const htmlWordInEnglish = `<div class="card c1" >${firstWord.enWord}</div>`
+    const htmlWordInEnglish = `<div id="c1" class="card c1" data-correct-hebrew="${firstWord.heWord}">${firstWord.enWord}</div>`;
 
     htmlroot.innerHTML = htmlWordsToSelect + "<br>" + htmlWordInEnglish
+
+    htmlroot.addEventListener('click', checkAnswer);
 }
 
 //finish the game
@@ -260,5 +262,27 @@ function numOfCard(): number | undefined {
     }
 }
 
-//eveant lisiner to mouse click -> to chose the right ansear
-const c = document.querySelector('.chose')
+//function work at eveant lisiner mouse click ocure on one -> to chose the right ansear
+function checkAnswer(event:any) {
+    const selectedCard = event.target;
+    const selectedHebrewWord = selectedCard.innerText;
+    console.log(selectedHebrewWord)
+
+    const englishWordCard = document.querySelector('#c1')!;
+    console.log(englishWordCard)
+
+    const correctHebrewWord = englishWordCard.getAttribute('data-correct-hebrew');
+    console.log("correctHebrewWord is:", correctHebrewWord)
+  
+    if (selectedHebrewWord === correctHebrewWord) {
+      // The user selected the correct Hebrew word
+      console.log('Correct answer!');
+      //  updating the score 
+    } else {
+      // The user selected the wrong Hebrew word
+      console.log('Wrong answer!');
+      // displaying an error message
+    }
+  }
+  
+
