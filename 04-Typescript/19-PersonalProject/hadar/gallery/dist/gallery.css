@@ -1,6 +1,6 @@
 body {
   background-color: #cbddbb;
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
 body .gallery__imgs {
   display: flex;
@@ -22,13 +22,13 @@ body .gallery__imgs--p {
 body .gallery__imgs--p i {
   font-size: 1vw;
 }
-body .gallery__imgs--p i:active {
+body .gallery__imgs--p i:hover {
   color: red;
 }
 body .h1 {
   display: flex;
+  justify-content: center;
   background-color: #718f54;
-  flex-direction: column;
   align-items: center;
 }
 body h1 {
@@ -39,5 +39,5 @@ body h1 {
 }
 body a {
   color: white;
-  font-size: 2vw;
+  font-size: 1vw;
 }

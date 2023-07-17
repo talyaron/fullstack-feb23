@@ -107,7 +107,21 @@
   max-width: 50px;
 }
 
-@media only screen and (max-width: 735px) {
+@media only screen and (max-width: 1130px) {
+  .userPost {
+    left: 15%;
+  }
+}
+@media only screen and (max-width: 950px) {
+  .userPost {
+    left: 5%;
+  }
+}
+@media only screen and (max-width: 800px) {
+  .userPost {
+    left: 0;
+    margin: 8px;
+  }
   .userPost__name {
     max-width: 250px;
     height: 3vh;
@@ -128,5 +142,50 @@
     position: relative;
     top: -2vh;
     left: 110px;
+  }
+}
+@media only screen and (max-width: 770px) {
+  .userPost {
+    left: 15%;
+    height: 15vh;
+  }
+}
+@media only screen and (max-width: 530px) {
+  .userPost {
+    left: 5%;
+  }
+  .userPost__img img {
+    width: 200px;
+    height: 10vh;
+  }
+  .userPost__buttons {
+    position: relative;
+  }
+  .userPost__buttons__editBtn {
+    position: relative;
+    top: -2vh;
+    left: 90px;
+  }
+}
+@media only screen and (max-width: 460px) {
+  .userPost {
+    left: 5%;
+  }
+  .userPost__img img {
+    width: 180px;
+    height: 8vh;
+  }
+  .userPost__buttons {
+    position: relative;
+  }
+  .userPost__buttons__editBtn {
+    position: relative;
+    top: -2.2vh;
+    left: 70px;
+  }
+}
+@media only screen and (max-width: 420px) {
+  .userPost {
+    left: 20%;
   }
 }

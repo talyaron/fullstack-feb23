@@ -1,4 +1,3 @@
-
 const cardsNumber = [
   "A",
   "2",
@@ -71,12 +70,12 @@ function getDeckCardsFromLs() {
   );
 }
 
-const myPlayer: Player = new Player("ruth1");
+const myPlayer: Player = new Player("ruth1", "#", "myPlayer");
 
 const users: Player[] = [
   new Player(
-    "ruth300290!",
-    "https://cdn.pixabay.com/photo/2013/05/30/18/21/cat-114782_1280.jpg",
+    "ruth765",
+    "https://cdn.pixabay.com/photo/2015/11/21/04/17/grandparents-1054311_1280.jpg",
   ),
   new Player(
     "ruth0908",
@@ -92,8 +91,8 @@ const users: Player[] = [
   ),
 ];
 
-users.unshift(myPlayer);
-const firstPlayers:Player[] = users;
+// users.unshift(myPlayer);
+const firstPlayers: Player[] = [myPlayer].concat(users);
 
 const players: Player[] = getPlayerFromLs();
 
@@ -113,6 +112,7 @@ function getPlayerFromLs() {
           new Player(
             p.userName,
             p.imgSrc,
+            p.id,
             p.chips,
             p.isActive,
             p.isTurn,
@@ -124,7 +124,6 @@ function getPlayerFromLs() {
             p.turnNumber,
           ),
       );
-      console.log(players);
 
       return players;
     }
@@ -181,4 +180,11 @@ function addCardToStage() {
       }
     }
   } else alert("game stopped!");
+}
+
+function createID() {
+  return String(Date.now().toString(32) + Math.random().toString(16)).replace(
+    /\./g,
+    "",
+  );
 }
