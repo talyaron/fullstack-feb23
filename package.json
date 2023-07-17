@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "sass": "^1.63.4"
+    "sass": "^1.63.4",
+    "vanilla": "^0.0.5"
   }
 }
