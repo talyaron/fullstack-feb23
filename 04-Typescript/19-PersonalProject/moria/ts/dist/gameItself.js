@@ -27,14 +27,21 @@ function renderPlayers(player) {
 }
 var bart = document.querySelector(".bart");
 var shoot = document.querySelector("#container__shoot");
+var container = document.querySelector('#container');
 document.addEventListener('keydown', function (event) {
     event.stopPropagation();
+    var bartRect = bart.getBoundingClientRect(); // משיג את גבולות ה־<div> של השחקן
+    var containerRect = container.getBoundingClientRect(); // משיג את גבולות ה־<div> המכיל
     switch (event.key) {
         case 'ArrowLeft':
-            bart.style.left = bart.offsetLeft - 25 + "px";
+            if (bartRect.left > containerRect.left) {
+                bart.style.left = bart.offsetLeft - 25 + "px";
+            }
             break;
         case 'ArrowRight':
-            bart.style.left = bart.offsetLeft + 25 + "px";
+            if (bartRect.right < containerRect.right) {
+                bart.style.left = bart.offsetLeft + 25 + "px";
+            }
             break;
     }
 });
@@ -60,7 +67,6 @@ function updateTargetPosition() {
 }
 // בדיקת מיקום ה-DIV המקור ועדכון מיקום ה-DIV היעד בכל שינוי
 setInterval(updateTargetPosition, 100);
-var container = document.querySelector('#container');
 var ball = document.querySelector('#container__ball');
 var life = document.querySelector('#container__life');
 var images = life.querySelectorAll('.b');

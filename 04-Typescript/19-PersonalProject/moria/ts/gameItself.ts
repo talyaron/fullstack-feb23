@@ -34,16 +34,23 @@ function renderPlayers(player) {
 
 const bart = document.querySelector(`.bart`) as HTMLElement;
 const shoot = document.querySelector(`#container__shoot`) as HTMLElement;
+const container = document.querySelector('#container') as HTMLElement;
 document.addEventListener('keydown', (event: KeyboardEvent) => {
     event.stopPropagation();
+    const bartRect = bart.getBoundingClientRect(); // משיג את גבולות ה־<div> של השחקן
+    const containerRect = container.getBoundingClientRect(); // משיג את גבולות ה־<div> המכיל
+
     switch (event.key) {
         case 'ArrowLeft':
-            bart.style.left = `${bart.offsetLeft - 25}px`;
+            if (bartRect.left > containerRect.left) {
+                bart.style.left = `${bart.offsetLeft - 25}px`;
+            }
             break;
         case 'ArrowRight':
-            bart.style.left = `${bart.offsetLeft + 25}px`;
+            if (bartRect.right < containerRect.right) {
+                bart.style.left = `${bart.offsetLeft + 25}px`;
+            }
             break;
-
     }
 });
 
@@ -80,7 +87,7 @@ setInterval(updateTargetPosition, 100);
 
 
 
-const container = document.querySelector('#container') as HTMLElement;
+
 const ball = document.querySelector('#container__ball') as HTMLElement;
 const life = document.querySelector('#container__life') as HTMLElement;
 const images = life.querySelectorAll('.b');
