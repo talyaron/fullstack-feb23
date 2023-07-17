@@ -133,8 +133,9 @@ function handleCollision() {
             shoot.classList.add("none");
             ball.classList.add("none");
             var gameOver = document.querySelector('#container__gameOver');
-            var html = " <h1>game over</h1> <br>  <a href=\"/levels.html\">back</a>";
+            var html = " <h1>game over</h1>   ";
             gameOver.innerHTML = html;
+            window.location.href = "levels.html";
         }
     }
 }

@@ -168,8 +168,12 @@ function handleCollision() {
             shoot.classList.add("none")
             ball.classList.add("none")
             const gameOver = document.querySelector('#container__gameOver') as HTMLElement;
-            const html = ` <h1>game over</h1> <br>  <a href="/levels.html">back</a>`
+            const html = ` <h1>game over</h1>   `
             gameOver.innerHTML = html;
+
+            window.location.href = "levels.html";
+
+
         }
 
     }
