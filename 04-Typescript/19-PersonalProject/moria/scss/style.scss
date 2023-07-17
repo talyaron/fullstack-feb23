@@ -1,5 +1,10 @@
 body {
     font-family: sans-serif;
+    overflow: hidden;
+
+    .position {
+        position: relative;
+    }
 
     #container {
         margin: auto;
@@ -11,7 +16,37 @@ body {
         display: flex;
         z-index: -1;
         background: url(//sugarcakes4u.co.il/wp-content/uploads/2018/03/%D7%A4%D7%A8%D7%A7%D7%98-%D7%9C%D7%91%D7%9F-1.jpg) no-repeat center center/ cover;
-        position: relative;
+
+        &__life {
+            width: 100px;
+            height: 50px;
+            border: 2px solid black;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+
+            .b {
+                width: 30px;
+                position: absolute;
+                top: 3px;
+                left: 10px;
+                display: flex;
+                justify-content: space-between;
+            }
+
+            #s {
+                left: 5px;
+            }
+
+            #f {
+                left: 35px;
+            }
+
+            #c {
+                left: 65px;
+            }
+        }
+
 
         &__ball {
             position: absolute;
@@ -22,56 +57,7 @@ body {
             border: 1px black solid;
         }
 
-        // @keyframes ball {
-        //     10% {
-        //         top: -7px;
-        //     }
 
-        //     20% {
-        //         top: 10px;
-        //         left: 320px;
-        //     }
-
-        //     30% {
-        //         top: 450px;
-        //         left: 250px;
-        //     }
-
-        //     40% {
-        //         top: 40px;
-        //         left: 870px;
-        //     }
-
-        //     50% {
-        //         top: -10px;
-        //         left: 600px;
-        //     }
-
-        //     60% {
-        //         top: 50px;
-        //         left: 400px;
-        //     }
-
-        //     70% {
-        //         top: 80px;
-        //         left: 800px;
-        //     }
-
-        //     80% {
-        //         top: -10px;
-        //         left: 400px;
-        //     }
-
-        //     90% {
-        //         top: -10px;
-        //         left: 600px;
-        //     }
-
-        //     100% {
-        //         top: -10px;
-        //         left: 600px;
-        //     }
-        // }
 
         &__shoot {
             display: none;

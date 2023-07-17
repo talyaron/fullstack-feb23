@@ -1,6 +1,7 @@
 //Instegram Posts page.
 //MVC - Model View Controller
 
+//get the data from the local storage.
 const image: Img[] = getImgsFromLocalStorage();
 const user: User[] = getUsersFromLocalStorage();
 const usersImg: UsersImg[] = getUsersImgFromLocalStorage();
@@ -12,6 +13,7 @@ function showPosts(
 ) {
   try {
     if (!HTMLElement) throw new Error('Root element is not found');
+    if (!users) throw new Error('Users not found');
 
     const html = users
       .map((user) => {
@@ -46,6 +48,7 @@ function showPosts(
     HTMLElement.innerHTML = html;
   } catch (error) {
     console.error(error);
+    return error;
   }
 }
 showPosts(document.querySelector('#posts'), usersArray);
@@ -56,6 +59,8 @@ function showHeader(
   user: User[]) {
   try {
     if (!HTMLElement) throw new Error('Root element is not found');
+    if (!user) throw new Error('Users not found');
+
     const html =
       user.map((user) => {
         return `
@@ -74,6 +79,7 @@ function showHeader(
     saveUsersImgToLocalStorage(usersImgArray);
   } catch (error) {
     console.error(error);
+    return error;
   }
 }
 showHeader(document.querySelector('#header'), usersArray);
@@ -82,9 +88,11 @@ showHeader(document.querySelector('#header'), usersArray);
 function handleDeletePost(imageId: string) {
   try {
     const user: User | undefined = usersArray.find((user) => user.imagse.some((img) => img.id === imageId));
+  
     if (!user) throw new Error('User or image not found');
 
     const imageIndex: number = user.imagse.findIndex((img) => img.id === imageId);
+
     if (imageIndex === -1) throw new Error('Image not found');
 
     user.imagse.splice(imageIndex, 1);
@@ -96,6 +104,7 @@ function handleDeletePost(imageId: string) {
     showPosts(document.querySelector('#posts'), usersArray);
   } catch (error) {
     console.error(error);
+    return error;
   }
 }
 
@@ -120,5 +129,6 @@ function handleSetEditPost(ev, userId, imageId) {
     showPosts(document.querySelector('#posts'), usersArray);
   } catch (error) {
     console.error(error);
+    return error;
   }
 }

@@ -5,9 +5,9 @@
 // 10 beutifull and accurate design - v
 // 10 reponsive - v
 // 10 clear code - v
-// 10 clear structure. -
+// 10 clear structure. - v
 // 20 using MVC - v
-// 10 trycatch with good exceptions -
+// 10 trycatch with good exceptions - v
 // 10 error free - v
 //
 //class - user, image.
@@ -30,10 +30,10 @@ var User = /** @class */ (function () {
 }());
 var usersArray = getUsersFromLocalStorage();
 if (usersArray.length === 0) {
-    var bar = new User('Bar', 'https://pixlr.com/images/index/remove-bg.webp', []);
-    var netanel = new User('Netanel', 'https://burst.shopify.com/photos/person-holds-a-book-over-a-stack-and-turns-the-page/download', []);
-    var shir = new User('Shir', 'https://photoscissors.com/images/samples/3-before.jpg', []);
-    var ahava = new User('Ahava', 'https://imgv3.fotor.com/images/cover-photo-image/a-beautiful-girl-with-gray-hair-and-lucxy-neckless-generated-by-Fotor-AI.jpg', []);
+    var bar = new User('Bar', 'https://cdn.pixabay.com/photo/2017/09/01/21/53/sunglasses-2705642_640.jpg', []);
+    var netanel = new User('Netanel', 'https://cdn.pixabay.com/photo/2017/08/01/01/33/beanie-2562646_640.jpg', []);
+    var shir = new User('Shir', 'https://cdn.pixabay.com/photo/2016/12/19/21/36/woman-1919143_640.jpg', []);
+    var ahava = new User('Ahava', 'https://cdn.pixabay.com/photo/2018/03/12/12/32/woman-3219507_640.jpg', []);
     usersArray.push(bar, netanel, shir, ahava);
 }
 //creat class how join the user to his imagse.
@@ -53,6 +53,7 @@ if (usersImgArray.length === 0) {
     usersImgArray.push(barImg, netanelImg, shirImg, ahavaImg);
 }
 ;
+console.log(usersImgArray);
 //Image local storage
 function saveImgToLocalStorage(image) {
     localStorage.setItem('imagesArray', JSON.stringify(image));
@@ -78,11 +79,9 @@ function saveUserToLocalStorage(user) {
 function getUsersFromLocalStorage() {
     try {
         var usersStorage = localStorage.getItem('usersArray');
-        console.log(usersStorage);
         if (!usersStorage)
             return [];
         var usersArray_1 = JSON.parse(usersStorage);
-        console.log(usersArray_1);
         if (!usersArray_1)
             throw new Error('Users not found');
         if (!Array.isArray(usersArray_1))
@@ -102,11 +101,9 @@ function saveUsersImgToLocalStorage(usersImg) {
 function getUsersImgFromLocalStorage() {
     try {
         var usersImgStorage = localStorage.getItem('usersImgArray');
-        console.log(usersImgStorage);
         if (!usersImgStorage)
             return [];
         var usersImgArray_1 = JSON.parse(usersImgStorage);
-        console.log(usersImgArray_1);
         if (!usersImgArray_1)
             throw new Error('Users not found');
         if (!Array.isArray(usersImgArray_1))
