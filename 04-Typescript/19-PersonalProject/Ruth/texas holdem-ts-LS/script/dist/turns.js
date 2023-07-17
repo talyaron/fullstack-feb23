@@ -31,12 +31,22 @@ var dealerMoney = 0;
 // turnOrder(players);
 function getMoveOption(activePlayers, thisIndex) {
     var thisPlayer = activePlayers[thisIndex];
-    var lastPlyersRiseIndex = activePlayers.findIndex(function (p) { return p.movesInRound[length - 1] === PlayerMovesOption.call; });
-    if (lastPlyersRiseIndex === -1 || lastPlyersRiseIndex == thisIndex) {
-        return ["rise", "check"];
-    }
-    else {
-        return ["fold", "rise", "call"];
+    // let lastPlyersRiseIndex = activePlayers.findIndex(
+    //   (p) => p.movesInRound[length - 1] === PlayerMovesOption.call,
+    // );
+    // if (lastPlyersRiseIndex === -1 || lastPlyersRiseIndex == thisIndex) {
+    //   return ["rise", "check"];
+    // } else {
+    //   return ["fold", "rise", "call"];
+    // }
+    for (var i = thisIndex; i >= 0; i--) {
+        if (activePlayers[i].movesInRound[length - 1] === PlayerMovesOption.rise) {
+            return ["fold", "rise", "call"];
+        }
+        if (i == 0)
+            i = activePlayers.length;
+        if (i == thisIndex)
+            return ["rise", "check"];
     }
 }
 function getPointOfOptionalSet(thisPlayer) {
@@ -154,6 +164,9 @@ var counterTurn = 0;
 var indexInArray = 0;
 function turnOrder(activePlayers) {
     var players = activePlayers.filter(function (p) { return p.isActive === true; });
+    players.forEach(function (p) {
+        console.log(p.movesInRound);
+    });
     if (players[indexInArray].id == "myPlayer") {
         indexInArray++;
         counterTurn++;
@@ -162,7 +175,7 @@ function turnOrder(activePlayers) {
     else {
         indexInArray++;
         counterTurn++;
-        // document.querySelectorAll("button").forEach((button) => {button.disabled = true})
+        document.querySelectorAll("button").forEach(function (button) { button.disabled = true; });
         if (counterTurn < 4 || indexInArray < players.length) {
             players[indexInArray].doingTurn(players, indexInArray);
             if (players[indexInArray].lastBet > 0) {
@@ -183,46 +196,4 @@ function myTurn(players) {
     var myOption = getMoveOption(players, myPlayerIndex);
     console.log((myPlayer === null || myPlayer === void 0 ? void 0 : myPlayer.userName) + " is doing somethig......");
     playTheButton(myOption);
-}
-function playTheButton(myOption) {
-    document.querySelectorAll('button').forEach(function (button) {
-        button.disabled = false;
-    });
-    if (myOption.length == 2) { //check or rise{
-        document.querySelector(".operations__btn--call").disabled = true;
-        document.querySelector(".operations__btn--fold").disabled = true;
-        document.querySelector(".operations__btn--rise").disabled = false;
-        document.querySelector(".operations__btn--check").disabled = false;
-    }
-    else { //call or rise or fold
-        document.querySelector(".operations__btn--call").disabled = false;
-        document.querySelector(".operations__btn--fold").disabled = false;
-        document.querySelector(".operations__btn--rise").disabled = false;
-        document.querySelector(".operations__btn--check").disabled = true;
-    }
-}
-function myPlayerHandleCheck() {
-    var myPlayer = players.find(function (p) { return p.id == "myPlayer"; });
-    myPlayer === null || myPlayer === void 0 ? void 0 : myPlayer.checkMove(players);
-    turnOrder(players);
-}
-function myPlayerHandleFold() {
-    var myPlayer = players.find(function (p) { return p.id == "myPlayer"; });
-    myPlayer === null || myPlayer === void 0 ? void 0 : myPlayer.foldMove(players);
-    turnOrder(players);
-}
-function myPlayerHandleRise() {
-    var myPlayer = players.find(function (p) { return p.id == "myPlayer"; });
-    var inputSizeToBet = Number(prompt("Enter your bet here:"));
-    while (isNaN(inputSizeToBet)) {
-        inputSizeToBet = Number(prompt("Enter again your bet here in number:"));
-    }
-    myPlayer === null || myPlayer === void 0 ? void 0 : myPlayer.riseMove(players, inputSizeToBet);
-    turnOrder(players);
-}
-function myPlayerHandleCall() {
-    var myPlayer = players.find(function (p) { return p.id == "myPlayer"; });
-    var myPlayerIndex = players.findIndex(function (p) { return p.id == "myPlayer"; });
-    myPlayer === null || myPlayer === void 0 ? void 0 : myPlayer.callMove(players, myPlayerIndex);
-    turnOrder(players);
 }
