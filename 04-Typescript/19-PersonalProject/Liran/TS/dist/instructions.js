@@ -21,7 +21,8 @@ var instructions = [
     "'←': Move left",
     "'→': Move right",
     "'Space bar': Use space bar to hit with your sword",
-    "'Shift': While holding shift, you can Move faster "
+    "'Shift': While holding shift, you can Move faster ",
+    "Game Length: 60S"
 ];
 function renderInstructions() {
     try {
@@ -49,7 +50,7 @@ function renderStarsList() {
         if (!starsList)
             throw new Error("No stars");
         starsList.forEach(function (star) {
-            htmlText_2 += "<tr>\n            <th>\n                <img src=\"./dist/" + star.imageUrl + "\" alt=\"\">\n            </th>\n            <th>" + star.name + "</th>\n            <th>" + star.value + " points</th>\n        </tr>";
+            htmlText_2 += "<tr>\n            <th>\n                <img src=\"" + star.imageUrl + "\" alt=\"\">\n            </th>\n            <th>" + star.name + "</th>\n            <th>" + star.value + " points</th>\n        </tr>";
         });
         root.innerHTML += htmlText_2 + " +</table>";
     }

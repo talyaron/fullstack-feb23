@@ -56,7 +56,7 @@ function checkActivePlayer() {
 
 function leavePage(seconds: number) {
     setTimeout(function () {
-        location.href = "./game.html";
+        location.href = "../HTML/game.html";
     }, seconds * 1000)
 }
 renderTable();

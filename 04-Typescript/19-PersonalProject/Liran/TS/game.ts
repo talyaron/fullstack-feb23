@@ -11,25 +11,24 @@ interface Sword {
 }
 
 const swords: Sword[] = [
-    { color: "blueSword", image: "./blueSword" },
-    { color: "blueSword", image: "./blueSword" },
-    { color: "blueSword", image: "./blueSword" },
-    { color: "blueSword", image: "./blueSword" }
+    { color: "blueSword", image: "../TS/dist/blueSword.png" },
+    { color: "greenSword", image: "../TS/dist/greenSword.png" },
+    { color: "redSword", image: "../TS/dist/redSword.png" },
+    { color: "whiteSword", image: "../TS/dist/whiteSword.png" }
 ]
 
 
 
 const stars: Star[] = [
-    { name: "blueStar", imageUrl: "./blueStar.jpg", value: 2, functionDuration: null },
-    { name: "goldStar", imageUrl: "./goldStar.jpg", value: 25, functionDuration: null },
-    { name: "greenStar", imageUrl: "./greenStar.png", value: 2, functionDuration: null },
-    { name: "lightStar", imageUrl: "./lightStar.jpg", value: 2, functionDuration: null },
-    { name: "rainbowStar", imageUrl: "./rainbowStar.jpg", value: 10, functionDuration: null },
-    { name: "superStar", imageUrl: "./superStar.jpg", value: 15, functionDuration: null },
-    { name: "yellowStar", imageUrl: "./yellowStar.jpg", value: 2, functionDuration: null }
+    { name: "blueStar", imageUrl: "../TS/dist/blueStar.jpg", value: 2, functionDuration: null },
+    { name: "goldStar", imageUrl: "../TS/dist/goldStar.jpg", value: 25, functionDuration: null },
+    { name: "greenStar", imageUrl: "../TS/dist/greenStar.png", value: 2, functionDuration: null },
+    { name: "lightStar", imageUrl: "../TS/dist/lightStar.jpg", value: 2, functionDuration: null },
+    { name: "rainbowStar", imageUrl: "../TS/dist/rainbowStar.jpg", value: 10, functionDuration: null },
+    { name: "superStar", imageUrl: "../TS/dist/superStar.jpg", value: 15, functionDuration: null },
+    { name: "yellowStar", imageUrl: "../TS/dist/yellowStar.jpg", value: 2, functionDuration: null }
 
 ]
-
 localStorage.setItem("stars", JSON.stringify(stars));
 
 
@@ -119,11 +118,11 @@ function hundelSubmit(ev: any) {
         ev.preventDefault();
         const firstName = ev.target.firstName.value;
         const lastName = ev.target.lastName.value;
-        const selectSword = document.querySelector("#swordList") || new HTMLSelectElement();
+        const selectSword: HTMLSelectElement = document.querySelector("#swordList") || new HTMLSelectElement();
         let swordColor: string;
         if (!selectSword) throw new Error("Can't cath sword List");
         swordColor = selectSword.value;
-        debugger;
+
         const player = new Player(firstName, lastName, swordColor);
         player.setIsActive(true);
         if (!player) throw new Error("Player missing info")
@@ -159,7 +158,7 @@ function hundelStart(ev: any) {
                 if (players) {
                     players[players?.length - 1].setIsActive(false);
                     localStorage.setItem("players", JSON.stringify(players));
-                    location.href = "./scoreTable.html";
+                    location.href = "../HTML/scoreTable.html";
                 }
 
         }
@@ -197,7 +196,7 @@ function renderStars(screen: HTMLDivElement | null) {
 
         stars.forEach(star => {
             const starElement = document.createElement('img');
-            starElement.src = `./dist/${star.imageUrl}`;
+            starElement.src = `${star.imageUrl}`;
             starElement.id = star.name;
             starElement.classList.add('star');
             starElement.style.top = '-100px';
@@ -232,7 +231,7 @@ function renderStar(star: Star | undefined) {
         const rect = screen.getBoundingClientRect();
         const top = "-100px";
         const left = Math.random() * ((rect.y + (rect.width - 100)) - rect.y) + rect.y;
-        return `<img src="./dist/${star.imageUrl}" id="${star.name}" class="star"; style="top:${top}; left:${left}px;">`
+        return `<img src="${star.imageUrl}" id="${star.name}" class="star"; style="top:${top}; left:${left}px;">`
     } catch (error) {
         console.error(error)
     }
@@ -242,15 +241,19 @@ function renderPlayer(swordColor: string) {
     try {
         const player = document.querySelector("#fighter");
         if (!player) throw new Error("Can't cath fighter DOM");
-        let imgUrl: string = "";
-        switch (swordColor) {
-            case "blueSword": imgUrl = "./dist/blueSword.png"; break;
-            case "greenSword": imgUrl = "./dist/greenSword.png"; break;
-            case "redSword": imgUrl = "./dist/redSword.png"; break;
-            case "whiteSword": imgUrl = "./dist/whiteSword.png";
-        }
-        const html = `<div id="sword" style="background-image: url(${imgUrl});"></div>
-        <img src="./dist/fighter.jpg">`;
+        let imgUrl: string | undefined = "";
+        if (swords == undefined) throw new Error("No swords");
+
+        const s = swords.find(sword => sword.color === swordColor);
+        if (s === undefined) throw new Error(`sword color ${swordColor} not exist`);
+        // switch (swordColor) {
+        //     case "blueSword": imgUrl = s =   break;
+        //     case "greenSword": imgUrl = "greenSword.png"; break;
+        //     case "redSword": imgUrl = "redSword.png"; break;
+        //     case "whiteSword": imgUrl = "whiteSword.png";
+        // }
+        const html = `<div id="sword" style="background-image: url(${s.image});"></div>
+        <img src="../TS/dist/fighter.jpg">`;
         player.innerHTML = html;
     } catch (error) {
         console.error(error)
@@ -274,7 +277,7 @@ function renderLogPanel() {
             </select> 
             <input type="submit" name="submit" value="Go">
         </form>
-        <a href="./instructions.html">Game Instructions</a>`;
+        <a href="../HTML/instructions.html">Game Instructions</a>`;
 
 
         panel.innerHTML = html;
@@ -307,8 +310,8 @@ function renderGamePanel() {
             <div id="score">
             <p>0</p>
             </div>
-            <a href="./scoreTable.html">High Scored Table</a>
-            <a href="./instructions.html">Game Instructions</a>`;
+            <a href="../HTML/scoreTable.html">High Scored Table</a>
+            <a href="../HTML/instructions.html">Game Instructions</a>`;
 
         panel.innerHTML = html;
         const timerRef = document.querySelector(`#timerDisplay`);
@@ -335,7 +338,7 @@ document.addEventListener('keydown', (event: KeyboardEvent | any) => {
         if (!sword && !newPlayer) throw new Error("Can't cath sword DOM");
         const rect = element.getBoundingClientRect();
         const key = event.key;
-        const reg = new RegExp(/^[a-zA-Z]+$/)
+        const reg = new RegExp(/^[a-zA-Z]+$/);
         if (event && (event.target.name == "firstName" || event.target.name == "lastName" && event.key)) {
             if (event.target.name == "firstName") {
                 if (key !== undefined && key.length == 1 && reg.test(key)) {
@@ -449,6 +452,7 @@ function animateStars(star: Star, rect: DOMRect) {
 
 function checkOverlapInBackground(): void {
     try {
+
         const element = document.querySelector(".screen__game");
         const elementsToCheck = document.querySelectorAll('.star');
         const mainElement = document.getElementById('sword') as HTMLElement;
@@ -467,9 +471,10 @@ function checkOverlapInBackground(): void {
                     if ((elementDiv.style.visibility === "")) {
                         const boom = document.getElementById('boom') as HTMLElement;
                         if (!boom) throw new Error(`boom img not found`);
-                        const boomSound = new Audio("./dist/boomSound.mp3")
+                        const boomSound = new Audio("../TS/dist/boomSound.mp3")
                         if (!boomSound) throw new Error(`boom sound not found`);
                         boomSound.play();
+
                         boom.style.left = `${elementDiv?.offsetLeft}px`;
                         boom.style.top = `${elementDiv?.offsetTop}px`;
                         boom.style.visibility = "visible";
@@ -519,18 +524,18 @@ function endOfGame(player: Player) {
         if (players === undefined) throw new Error("Missing players")
         localStorage.setItem("players", JSON.stringify(players));
         const highScore = players?.findIndex(p => p.record >= player.record);
-        debugger;
+
         setTimeout(function () {
             if (highScore == -1)
                 alert("Great job! You got a new record");
-            location.href = "scoreTable.html";
+            location.href = "../HTML/scoreTable.html";
         }, 5000)
     } catch (error) {
 
     }
 }
 
-function countDownMusic() { 
+function countDownMusic() {
     const backgroundMusic = document.querySelector(`#backgroundMusic`) as HTMLAudioElement;
     if (!backgroundMusic) throw new Error("Error with background music file");
     backgroundMusic.pause();

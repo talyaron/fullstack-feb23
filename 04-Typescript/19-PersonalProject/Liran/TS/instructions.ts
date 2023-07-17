@@ -25,7 +25,8 @@ const instructions: string[] = [
     "'←': Move left",
     "'→': Move right",
     "'Space bar': Use space bar to hit with your sword",
-    "'Shift': While holding shift, you can Move faster "
+    "'Shift': While holding shift, you can Move faster ",
+    "Game Length: 60S"
 
 
 ]
@@ -56,14 +57,14 @@ function renderStarsList() {
         starsList.forEach(star => {
             htmlText += `<tr>
             <th>
-                <img src="./dist/${star.imageUrl}" alt="">
+                <img src="${star.imageUrl}" alt="">
             </th>
             <th>${star.name}</th>
             <th>${star.value} points</th>
         </tr>`;
         })
         root.innerHTML += `${htmlText} +</table>`;
-            } catch (error) {
+    } catch (error) {
         console.error(error)
     }
 }

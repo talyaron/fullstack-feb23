@@ -1,17 +1,17 @@
 var swords = [
-    { color: "blueSword", image: "./blueSword" },
-    { color: "blueSword", image: "./blueSword" },
-    { color: "blueSword", image: "./blueSword" },
-    { color: "blueSword", image: "./blueSword" }
+    { color: "blueSword", image: "../TS/dist/blueSword.png" },
+    { color: "greenSword", image: "../TS/dist/greenSword.png" },
+    { color: "redSword", image: "../TS/dist/redSword.png" },
+    { color: "whiteSword", image: "../TS/dist/whiteSword.png" }
 ];
 var stars = [
-    { name: "blueStar", imageUrl: "./blueStar.jpg", value: 2, functionDuration: null },
-    { name: "goldStar", imageUrl: "./goldStar.jpg", value: 25, functionDuration: null },
-    { name: "greenStar", imageUrl: "./greenStar.png", value: 2, functionDuration: null },
-    { name: "lightStar", imageUrl: "./lightStar.jpg", value: 2, functionDuration: null },
-    { name: "rainbowStar", imageUrl: "./rainbowStar.jpg", value: 10, functionDuration: null },
-    { name: "superStar", imageUrl: "./superStar.jpg", value: 15, functionDuration: null },
-    { name: "yellowStar", imageUrl: "./yellowStar.jpg", value: 2, functionDuration: null }
+    { name: "blueStar", imageUrl: "../TS/dist/blueStar.jpg", value: 2, functionDuration: null },
+    { name: "goldStar", imageUrl: "../TS/dist/goldStar.jpg", value: 25, functionDuration: null },
+    { name: "greenStar", imageUrl: "../TS/dist/greenStar.png", value: 2, functionDuration: null },
+    { name: "lightStar", imageUrl: "../TS/dist/lightStar.jpg", value: 2, functionDuration: null },
+    { name: "rainbowStar", imageUrl: "../TS/dist/rainbowStar.jpg", value: 10, functionDuration: null },
+    { name: "superStar", imageUrl: "../TS/dist/superStar.jpg", value: 15, functionDuration: null },
+    { name: "yellowStar", imageUrl: "../TS/dist/yellowStar.jpg", value: 2, functionDuration: null }
 ];
 localStorage.setItem("stars", JSON.stringify(stars));
 var Player = /** @class */ (function () {
@@ -80,7 +80,6 @@ function hundelSubmit(ev) {
         if (!selectSword)
             throw new Error("Can't cath sword List");
         swordColor = selectSword.value;
-        debugger;
         var player = new Player(firstName, lastName, swordColor);
         player.setIsActive(true);
         if (!player)
@@ -117,7 +116,7 @@ function hundelStart(ev) {
                 if (players) {
                     players[(players === null || players === void 0 ? void 0 : players.length) - 1].setIsActive(false);
                     localStorage.setItem("players", JSON.stringify(players));
-                    location.href = "./scoreTable.html";
+                    location.href = "../HTML/scoreTable.html";
                 }
         }
     }
@@ -152,7 +151,7 @@ function renderStars(screen) {
         var rect_1 = screen.getBoundingClientRect();
         stars.forEach(function (star) {
             var starElement = document.createElement('img');
-            starElement.src = "./dist/" + star.imageUrl;
+            starElement.src = "" + star.imageUrl;
             starElement.id = star.name;
             starElement.classList.add('star');
             starElement.style.top = '-100px';
@@ -185,7 +184,7 @@ function renderStar(star) {
         var rect = screen.getBoundingClientRect();
         var top = "-100px";
         var left = Math.random() * ((rect.y + (rect.width - 100)) - rect.y) + rect.y;
-        return "<img src=\"./dist/" + star.imageUrl + "\" id=\"" + star.name + "\" class=\"star\"; style=\"top:" + top + "; left:" + left + "px;\">";
+        return "<img src=\"" + star.imageUrl + "\" id=\"" + star.name + "\" class=\"star\"; style=\"top:" + top + "; left:" + left + "px;\">";
     }
     catch (error) {
         console.error(error);
@@ -197,19 +196,18 @@ function renderPlayer(swordColor) {
         if (!player)
             throw new Error("Can't cath fighter DOM");
         var imgUrl = "";
-        switch (swordColor) {
-            case "blueSword":
-                imgUrl = "./dist/blueSword.png";
-                break;
-            case "greenSword":
-                imgUrl = "./dist/greenSword.png";
-                break;
-            case "redSword":
-                imgUrl = "./dist/redSword.png";
-                break;
-            case "whiteSword": imgUrl = "./dist/whiteSword.png";
-        }
-        var html = "<div id=\"sword\" style=\"background-image: url(" + imgUrl + ");\"></div>\n        <img src=\"./dist/fighter.jpg\">";
+        if (swords == undefined)
+            throw new Error("No swords");
+        var s = swords.find(function (sword) { return sword.color === swordColor; });
+        if (s === undefined)
+            throw new Error("sword color " + swordColor + " not exist");
+        // switch (swordColor) {
+        //     case "blueSword": imgUrl = s =   break;
+        //     case "greenSword": imgUrl = "greenSword.png"; break;
+        //     case "redSword": imgUrl = "redSword.png"; break;
+        //     case "whiteSword": imgUrl = "whiteSword.png";
+        // }
+        var html = "<div id=\"sword\" style=\"background-image: url(" + s.image + ");\"></div>\n        <img src=\"../TS/dist/fighter.jpg\">";
         player.innerHTML = html;
     }
     catch (error) {
@@ -221,7 +219,7 @@ function renderLogPanel() {
         var panel = document.querySelector(".screen__UI");
         if (!panel)
             throw new Error("Can't cath screen UI");
-        var html = "<h1>Welcome</h1>\n        <form id=\"newPlayer\" onsubmit=\"hundelSubmit(event)\">\n            <input type=\"text\" name=\"firstName\" placeholder=\"First Name\" required>\n            <input type=\"text\" name=\"lastName\" placeholder=\"Last Name\" required>\n            <select id=\"swordList\">\n                <option style=\"color:blue\" value=\"blueSword\">Blue sword</option>\n                <option style=\"color:green\" value=\"greenSword\">Green sword</option>\n                <option style=\"color:red\" value=\"redSword\">Red sword</option>\n                <option style=\"color:white\" value=\"whiteSword\">White sword</option>\n            </select> \n            <input type=\"submit\" name=\"submit\" value=\"Go\">\n        </form>\n        <a href=\"./instructions.html\">Game Instructions</a>";
+        var html = "<h1>Welcome</h1>\n        <form id=\"newPlayer\" onsubmit=\"hundelSubmit(event)\">\n            <input type=\"text\" name=\"firstName\" placeholder=\"First Name\" required>\n            <input type=\"text\" name=\"lastName\" placeholder=\"Last Name\" required>\n            <select id=\"swordList\">\n                <option style=\"color:blue\" value=\"blueSword\">Blue sword</option>\n                <option style=\"color:green\" value=\"greenSword\">Green sword</option>\n                <option style=\"color:red\" value=\"redSword\">Red sword</option>\n                <option style=\"color:white\" value=\"whiteSword\">White sword</option>\n            </select> \n            <input type=\"submit\" name=\"submit\" value=\"Go\">\n        </form>\n        <a href=\"../HTML/instructions.html\">Game Instructions</a>";
         panel.innerHTML = html;
     }
     catch (error) {
@@ -239,7 +237,7 @@ function renderGamePanel() {
             throw new Error("No players");
         _a = [0, 0, 0, 0], milliseconds = _a[0], seconds = _a[1], minutes = _a[2], hours = _a[3];
         var player = players[(players === null || players === void 0 ? void 0 : players.length) - 1].firstName;
-        var html = "<h1>Hello " + player + "</h1>\n        <form id=\"game\" onclick=\"hundelStart(event)\">\n        <input type=\"button\" name=\"start\" id=\"startGame\" value=\"Start\">\n        <input type=\"button\" name=\"leave\" id=\"exit\" value=\"Exit\">\n        </form>\n        <div class=\"container\">\n                <div id=\"timerDisplay\">00:000</div>\n            </div>\n            <div id=\"score\">\n            <p>0</p>\n            </div>\n            <a href=\"./scoreTable.html\">High Scored Table</a>\n            <a href=\"./instructions.html\">Game Instructions</a>";
+        var html = "<h1>Hello " + player + "</h1>\n        <form id=\"game\" onclick=\"hundelStart(event)\">\n        <input type=\"button\" name=\"start\" id=\"startGame\" value=\"Start\">\n        <input type=\"button\" name=\"leave\" id=\"exit\" value=\"Exit\">\n        </form>\n        <div class=\"container\">\n                <div id=\"timerDisplay\">00:000</div>\n            </div>\n            <div id=\"score\">\n            <p>0</p>\n            </div>\n            <a href=\"../HTML/scoreTable.html\">High Scored Table</a>\n            <a href=\"../HTML/instructions.html\">Game Instructions</a>";
         panel.innerHTML = html;
         var timerRef = document.querySelector("#timerDisplay");
         if (!timerRef)
@@ -393,7 +391,7 @@ function checkOverlapInBackground() {
                         var boom_1 = document.getElementById('boom');
                         if (!boom_1)
                             throw new Error("boom img not found");
-                        var boomSound = new Audio("./dist/boomSound.mp3");
+                        var boomSound = new Audio("../TS/dist/boomSound.mp3");
                         if (!boomSound)
                             throw new Error("boom sound not found");
                         boomSound.play();
@@ -443,11 +441,10 @@ function endOfGame(player) {
             throw new Error("Missing players");
         localStorage.setItem("players", JSON.stringify(players));
         var highScore_1 = players === null || players === void 0 ? void 0 : players.findIndex(function (p) { return p.record >= player.record; });
-        debugger;
         setTimeout(function () {
             if (highScore_1 == -1)
                 alert("Great job! You got a new record");
-            location.href = "scoreTable.html";
+            location.href = "../HTML/scoreTable.html";
         }, 5000);
     }
     catch (error) {

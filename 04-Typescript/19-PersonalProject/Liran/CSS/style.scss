@@ -106,7 +106,7 @@ body {
                 background: linear-gradient(rgb(4, 15, 21), transparent);
                 border-radius: 30px;
 
-                p{
+                p {
                     color: white;
                     width: 100%;
                     height: fit-content;
@@ -147,7 +147,9 @@ body {
                         color: black;
                         border: none;
                     }
+                    
                 }
+                
 
                 input[type="button"]:hover {
                     background-color: white;
@@ -184,7 +186,7 @@ body {
                 text-decoration: none;
                 color: rgb(106, 139, 157);
                 padding-top: 20px;
-                
+
             }
 
             a:hover {
