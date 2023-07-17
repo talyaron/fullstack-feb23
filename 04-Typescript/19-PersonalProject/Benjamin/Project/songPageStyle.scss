@@ -1,12 +1,16 @@
 body {
     background-image: url(https://c4.wallpaperflare.com/wallpaper/306/908/890/spots-background-light-dark-wallpaper-preview.jpg);
     background-size: cover;
+    overflow: hidden;
+    transition: all 100ms ease-in-out;
 }
 
 .songWrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-bottom: 28vh;
+    
 
     &__img {
         width: 50vw;
@@ -23,16 +27,23 @@ body {
 
     &__name {
         font-size: 30px;
-        color: rgb(36, 91, 241);
-        font-family: cursive;
+        color: rgb(200, 231, 22);
+        font-family: sans-serif;
 
     }
 
     &__artist {
-        font-size: 25px;
-        color: aquamarine;
-        font-family: monospace;
-
+        font-size: 14px;
+        color: rgb(0, 0, 0);
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        text-decoration: underline;
+        transition: all 100ms ease-in-out;
+        border-radius: 15px;
+        cursor: pointer;
+        &:hover{
+            background-color: rgb(151, 199, 199);
+        }
+       
 
     }
 
@@ -55,14 +66,22 @@ body {
     animation: rotate 3s infinite cubic-bezier(0.175, 0.885, 0.32, 1.275);
 
     @keyframes rotate {
-        from {
+       0% {
             transform: rotate(0turn);
-
+            scale: 1;
+            
         }
 
-        to {
+        50% {
             transform: rotate(1turn);
+            scale: 1.5;
+            
         }
+        100%{
+            transform: rotate(2turn);
+            scale: 1;
+        }
+
 
     }
 }
@@ -77,6 +96,8 @@ body {
     transition: all 200ms ease-in-out;
     border-radius: 10px;
     z-index: 1;
+   
+    
 }
 
 .loaderline {
@@ -91,17 +112,75 @@ body {
 }
 
 #time {
-    font-size: 20px;
-    font-family: monospace;
-    color: rgb(236, 17, 152);
+    font-size: 18px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: rgb(31, 13, 24);
     transition: all 100ms ease-in-out;
     z-index: 2;
     position: relative;
     top: 1.2vh;
+    margin-top: 2vh;
 }
 
 #MainPageWrapper__suggested__songPage {
     position: absolute;
     bottom: 10px;
     left: 0;
+    
+}
+#homeicon{
+    position: absolute;
+    left: 2vw;
+    top: 2vw;
+    cursor: pointer;
+    transition: all 100ms ease-in-out;
+    &:hover{
+        background-color: aqua;
+        transform: scale(1.1) rotate(20deg);
+    }
+    &:active{
+        transform: scale(1.2);
+    }
+
+}
+.download{
+    position: absolute;
+    left: 4vw;
+    top: 1.4vw;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: rgb(14, 83, 60);
+    text-decoration: none;
+    font-size: 20px;
+    transition: all 200ms ease-in-out;
+    border-radius: 10px;
+    &:hover{
+        background-color: aqua;
+    }
+}
+.headline{
+    font-size: 2vw;
+        background: rgb(207, 238, 210);
+        background: linear-gradient(0deg, rgba(207, 238, 210, 1) 15%, rgba(176, 212, 241, 1) 85%);
+        border-radius: 10px;
+        font-family: fantasy;
+        position: absolute;
+        top: 0;
+        right: 3vw;
+        cursor: pointer;
+        transition: all 100ms ease-in-out;
+        &:hover{
+            transform: scale(1.02);
+        }
+}
+#heart{
+    width: 20px;
+    position: absolute;
+    top: 4vh;
+    left: 42vw;
+    transition: all 100ms ease-in-out;
+    cursor: pointer;
+    &:hover{
+        transform: scale(1.04) rotate(20deg);
+        color: rgb(238, 102, 68);
+    }
 }

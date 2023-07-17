@@ -1,7 +1,14 @@
 body {
-    .container {
+    font-family: sans-serif;
+    overflow: hidden;
+
+    .position {
+        position: relative;
+    }
+
+    #container {
         margin: auto;
-        border: 2px red solid;
+        border: 2px gray solid;
         width: 800px;
         height: 600px;
         align-items: center;
@@ -9,6 +16,130 @@ body {
         display: flex;
         z-index: -1;
         background: url(//sugarcakes4u.co.il/wp-content/uploads/2018/03/%D7%A4%D7%A8%D7%A7%D7%98-%D7%9C%D7%91%D7%9F-1.jpg) no-repeat center center/ cover;
+
+        &__gameOver {
+            font-size: 40px;
+            color: yellow;
+            -webkit-text-stroke-width: 3px;
+            -webkit-text-stroke-color: black;
+
+            a {
+                text-decoration: none;
+                border: black 2px solid;
+                padding: 10px;
+                font-size: 20;
+                color: black;
+            }
+        }
+
+        &__life {
+            width: 100px;
+            height: 50px;
+            border: 2px solid black;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+
+            .b {
+                width: 30px;
+                position: absolute;
+                top: 3px;
+                left: 10px;
+                display: flex;
+                justify-content: space-between;
+            }
+
+
+
+            #s {
+                left: 5px;
+            }
+
+            #f {
+                left: 35px;
+            }
+
+            #c {
+                left: 65px;
+            }
+        }
+
+
+        &__ball {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: red;
+            border-radius: 50%;
+            border: 1px black solid;
+        }
+
+
+
+        &__shoot {
+            display: none;
+            background: url(rope.png) no-repeat center center/ cover;
+            width: 50px;
+            height: 70px;
+            animation: rope 0.5s infinite;
+            position: absolute;
+            // transition: opacity 2s;
+        }
+
+        .show {
+            display: block;
+        }
+
+        @keyframes rope {
+            25% {
+                top: 350px;
+            }
+
+            50% {
+                top: 250px;
+            }
+
+            75% {
+                top: 150px;
+            }
+
+            100% {
+                top: -10px;
+            }
+        }
+
+        .bart {
+            position: absolute;
+            top: 470px;
+            width: 90px;
+
+        }
+
+        h2 {
+            position: absolute;
+            top: 120px;
+            left: 600px;
+
+
+        }
+
+        .level {
+            background-color: red;
+            height: 90px;
+            width: 90px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 20px;
+            margin: 10px;
+            background: url(//brachot.net/images/category_images/school-28949_1280.png) no-repeat center center/ cover;
+            background-color: white;
+        }
+
+        .notAvailable {
+            background-color: gray;
+        }
 
         .player {
             padding: 10px 10px;
@@ -24,23 +155,25 @@ body {
             }
         }
 
-        .log {
-            padding: 20px;
-            text-align: center;
-            background: url(//cdn.shopify.com/s/files/1/0802/1067/products/212.jpg?v=1557641367) no-repeat center center/ cover;
-            width: 490px;
-            height: 110px;
-            z-index: 3;
-            position: absolute;
-            top: 230px;
-            left: 500px;
 
-            &.none {
-                display: none;
+        #root {
+            .log {
+                padding: 20px;
+                text-align: center;
+                background: url(//cdn.shopify.com/s/files/1/0802/1067/products/212.jpg?v=1557641367) no-repeat center center/ cover;
+                width: 490px;
+                height: 110px;
+                z-index: 3;
+                position: absolute;
+                top: 230px;
+                left: 500px;
+
+
             }
         }
     }
 
-
-
+    .none {
+        display: none;
+    }
 }

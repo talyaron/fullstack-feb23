@@ -10,22 +10,23 @@ paragraphs.push('Nam blandit, felis ut dapibus tempus, dui massa luctus purus, q
 paragraphs.push('Ut eu vehicula urna.');
 paragraphs.push('Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;');
 var pattern = new RegExp('(em)', 'i');
-function handleSearch(ev) {
-    try {
-        var searchTerms = ev.target.value;
-        var pattern_1 = new RegExp(searchTerms, 'i');
-        var foundParagraphs = paragraphs.map(function (paragraph, i) {
-            var isMatch = pattern_1.test(paragraph);
-            if (isMatch) {
-                return paragraph;
+    &&
+        function handleSearch(ev) {
+            try {
+                var searchTerms = ev.target.value;
+                var pattern_1 = new RegExp(searchTerms, 'i');
+                var foundParagraphs = paragraphs.map(function (paragraph, i) {
+                    var isMatch = pattern_1.test(paragraph);
+                    if (isMatch) {
+                        return paragraph;
+                    }
+                }).filter(function (paragraph) { return paragraph !== undefined; });
+                renderParagraphs(foundParagraphs, document.querySelector('#paragraphs'));
             }
-        }).filter(function (paragraph) { return paragraph !== undefined; });
-        renderParagraphs(foundParagraphs, document.querySelector('#paragraphs'));
-    }
-    catch (error) {
-        console.error(error);
-    }
-}
+            catch (error) {
+                console.error(error);
+            }
+        };
 function renderParagraphs(paragraphs, htmlElement) {
     try {
         if (!htmlElement)

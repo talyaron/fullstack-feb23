@@ -1,31 +1,32 @@
-//#Element
-// $element_position: relative;
-// $element_margin: auto;
-// $element_width: 400px;
-// $element_height: 100%;
-// $element_background-color: black;
-// $element_border-radius: 10px;
-// $element_box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
-
 @import './profile/profile.scss';
 @import './addPost/addPost.scss';
 
 .wrapper {
     position: relative;
-    width: 450px;
-    height: 90vh;
+    max-width: 1200px;
+    height: 100vh;
     margin: auto;
     color: white;
     background-color: black;
     border-radius: 10px;
+    font-family: 'Black Ops One', cursive;
+    font-family: 'Nunito Sans', sans-serif;
 
     .addNewImage {
         position: relative;
         left: 46%;
-        top: -6vh;
         font-size: 40px;
         color: white;
-        // border: 1px solid white;
-        // border-radius: 50%;
+    }
+
+    .enterNewImage {
+        position: relative;
+        bottom: 2vh;
+        filter: blur(10px);
+        left: 46%;
+        font-size: 40px;
+        color: white;
     }
 }
+
+//breakpoint - 735px

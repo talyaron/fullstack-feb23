@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Shantell+Sans:wght@300&display=swap"
+        rel="stylesheet">
+    <title>Document</title>
+    <script src="./dist/supplies.js" defer></script>
+    <link rel="stylesheet" href="./dist/supplies.css">
+</head>
+<body onload="renderProducts()  ">
+    <input id="searchInput" type="search" oninput="searchProducts(event)">
+    <button id="addProductBtn" onclick="renderAddProductForm()">+</button>
+    <div class="addProductForm">
+    </div>
+    <div class="productGallery" id="productGallery"></div> 
+</body>
+</html>

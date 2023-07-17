@@ -10,6 +10,7 @@ function loadCharacters() {
             characters_1.push(new Character("Barak Sery", "./dist/3.png"));
             characters_1.push(new Character("Eli Nacht", "./dist/4.png"));
             characters_1.push(new Character("Eli Lachmani", "./dist/5.png"));
+            characters_1.push(new Character("zvi zilker", "./dist/5.png"));
             //save to local storage
             var charactersJson = JSON.stringify(characters_1);
             localStorage.setItem('characters', charactersJson);
@@ -34,7 +35,7 @@ function loadCities() {
         var citiesString = localStorage.getItem('cities');
         if (!citiesString) { // if there is not characters on json , create new []
             var hotels = [];
-            cities_1.push(new City("Rova Alef", hotels, "./dist/ashdod.jpg", 1));
+            cities_1.push(new City("Rova Alef", hotels, "./dist/rovaA1.jpg", 1));
             cities_1.push(new City("Rova Bet", hotels, "./dist/ashdod.jpg", 2));
             cities_1.push(new City("Rova Gimel", hotels, "./dist/Jerusalem.jpg", 3));
             cities_1.push(new City("Rova Daled", hotels, "./dist/telAviv.jpg", 4));
@@ -131,10 +132,10 @@ function loadJails() {
         var jails_1 = [];
         var jailsString = localStorage.getItem('jails');
         if (!jailsString) { // if there is not characters on json , create new []
-            jails_1.push(new Jail("Neve Tirza", ""));
-            jails_1.push(new Jail("Ofek", ""));
-            jails_1.push(new Jail("400", ""));
-            jails_1.push(new Jail("Dekel", ""));
+            jails_1.push(new Jail("Neve Tirza", "./dist/jail.jpg"));
+            jails_1.push(new Jail("Ofek", "./dist/jail.jpg"));
+            jails_1.push(new Jail("400", "./dist/jail2.jpg"));
+            jails_1.push(new Jail("Dekel", "./dist/jail.jpg"));
             //save to local storage
             var jailsJson = JSON.stringify(jails_1);
             localStorage.setItem('jails', jailsJson);
@@ -225,7 +226,6 @@ function loadBoards() {
 }
 function startNewGame(boards) {
     try {
-        debugger;
         if (!boards)
             throw new Error("Cant Find Boards Array");
         // Create a new board
@@ -299,7 +299,6 @@ function renderHomePage(gamesBoards, characters) {
         input_1.type = "number";
         input_1.min = "2";
         input_1.max = "6";
-        // Append the label and input to the form
         // Create the "Start Game" button
         var startButton = document.createElement("button");
         startButton.textContent = "Start Game";
@@ -323,8 +322,6 @@ function renderHomePage(gamesBoards, characters) {
             var numPlayers = parseInt(input_1.value, 10);
             renderCharacterDropdowns(numPlayers, characters);
         });
-        // Append the form to the startNewGame HTML element
-        //startNewGameHtml.appendChild(form);
         // Check if there is an open game board
         var openGameBoard = gamesBoards.find(function (board) { return board.gameStatus === true; });
         if (openGameBoard) {
@@ -337,7 +334,7 @@ function renderHomePage(gamesBoards, characters) {
                 window.location.href = "./ActiveGame.html";
             });
         }
-        // Create the "renderCharacterDropdowns" button
+        // Append the form to the startNewGame HTML element  
         else
             startNewGameHtml.appendChild(form);
     }
@@ -429,7 +426,6 @@ function handelStartGame(numPlayers, gamesBoards, selectedCharacters) {
     try {
         var ChractersForm = document.querySelector("#ChractersForm");
         if (!ChractersForm) {
-            alert("Must pic characters");
             throw new Error("Cannot find ChractersForm");
         }
         if (!gamesBoards)
@@ -437,12 +433,18 @@ function handelStartGame(numPlayers, gamesBoards, selectedCharacters) {
         //check if there is open game befor open new one
         var openGame = gamesBoards.find(function (board) { return board.gameStatus === true; });
         if (openGame) {
+            // dialog alert
             alert("There is an open game already");
         }
         else {
             var allCharactersSelected = selectedCharacters.length === numPlayers;
             if (!allCharactersSelected) {
-                alert("Must select characters for all players");
+                var dialog_1 = document.createElement('dialog');
+                dialog_1.id = 'dialog';
+                dialog_1.innerHTML = 'Must select characters for all players';
+                dialog_1.addEventListener('click', function () { return dialog_1.close(); });
+                document.body.appendChild(dialog_1);
+                dialog_1.showModal();
                 return; // Stop execution if not all characters are selected
             }
             startNewGame(gamesBoards);

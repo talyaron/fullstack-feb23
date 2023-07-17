@@ -1,0 +1,223 @@
+body {
+  max-width: 100vw;
+}
+
+.wrapper .header,
+.wrapper .nav {
+  max-width: 90%;
+  margin: auto;
+}
+.wrapper .header {
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 10px;
+  background-color: #FFFFFF;
+  border-bottom: 1px solid #F5F6F5;
+  padding: 30px 0;
+}
+.wrapper .header__logo {
+  display: flex;
+  flex-wrap: nowrap;
+  font-size: 2em;
+  font-weight: bold;
+  color: red;
+}
+.wrapper .header__logo span {
+  color: #594bb4;
+}
+.wrapper .header__logo a:link {
+  text-decoration: none;
+}
+.wrapper .header__logo a:visited {
+  color: red;
+}
+.wrapper .header__logo a:hover {
+  transform: scale(1.1);
+}
+.wrapper .header__logo a:active {
+  color: #e60000;
+}
+.wrapper .header__search form {
+  display: flex;
+  flex-wrap: nowrap;
+  position: relative;
+}
+.wrapper .header__search-input {
+  background-color: #f5f6f5;
+  border: none;
+  font-size: 2em;
+  width: 12ch;
+}
+.wrapper .header__search-btn {
+  font-size: 1em;
+  color: #27272E;
+  font-family: FontAwesome, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  background: none;
+  border: none;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+}
+.wrapper .header__title {
+  color: #27272E;
+  white-space: nowrap;
+  font-family: "Roboto Condensed", sans-serif;
+}
+.wrapper .header__links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.wrapper .header__links__item {
+  display: inline-block;
+  margin-right: 10px;
+}
+.wrapper .header__links__item i {
+  font-size: 20px;
+  color: #594bb4;
+}
+.wrapper .header__links__item:hover {
+  transform: scale(1.2);
+}
+.wrapper .nav {
+  padding: 20px 0;
+  font-family: "Roboto Condensed", sans-serif;
+  border-bottom: 1px solid #F5F6F5;
+}
+.wrapper .nav__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+.wrapper .nav__item {
+  margin-right: 10px;
+}
+.wrapper .nav__link {
+  text-decoration: none;
+  color: #27272E;
+  padding: 5px;
+}
+.wrapper .nav__link:hover {
+  background-color: #333;
+  color: #fff;
+}
+
+.products {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  text-align: center;
+  padding: 30px 0;
+  border-bottom: 1px solid #F5F6F5;
+}
+.products__item {
+  width: 250px;
+  height: 250px;
+  border: 1px solid #27272E;
+  padding: 10px;
+  line-height: 1.3rem;
+  z-index: 100;
+  position: relative;
+  background-color: #fafafa;
+  overflow: hidden;
+  filter: drop-shadow(3px 3px 3px #27272E);
+  border-radius: 5px;
+}
+.products__item-img {
+  text-align: center;
+  width: auto;
+  height: 50%;
+  transform: rotate(80deg);
+  position: relative;
+  top: -20px;
+  z-index: 1;
+  mix-blend-mode: multiply;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.products__item-img:hover {
+  transform: rotate(80deg) scale(2);
+}
+.products__item-name {
+  font-family: "Times New Roman", Times, serif;
+  font-weight: 800;
+  font-size: larger;
+  z-index: 100;
+  position: relative;
+  color: #594bb4;
+}
+.products__item-description {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", serif;
+  font-size: 1rem;
+  z-index: 100;
+  position: relative;
+}
+.products__item-price {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 10px;
+}
+.products__item-price span {
+  font-weight: bold;
+  font-size: larger;
+  color: red;
+}
+.products .product {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 300px;
+  width: 80vw;
+  margin: auto;
+  direction: rtl;
+  align-items: center;
+}
+.products .product__text {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: baseline;
+  gap: 10px;
+  position: relative;
+  text-align: right;
+}
+.products .product__text-name {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+.products .product__text-description, .products .product__text-price {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-size: medium;
+}
+.products .product__text-price span {
+  color: red;
+  font-weight: bold;
+}
+.products .product__btn-add {
+  width: fit-content;
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 10px;
+  position: absolute;
+  bottom: 0;
+  font-weight: bold;
+}
+.products .product__btn-add:hover {
+  background-color: #cc0000;
+}
+.products .product__img {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  width: 100%;
+  height: 100%;
+}

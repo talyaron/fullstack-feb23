@@ -7,19 +7,13 @@ body {
   width: 100px;
   height: 100px;
   background-color: blue;
-<<<<<<< HEAD
-  flex: 1;
 }
-
 @media only screen and (max-width: 600px) {
-  body {
+  .box body {
     flex-direction: column;
   }
-
-  .box {
+  .box .box {
     height: 100px;
     flex: none;
   }
-=======
->>>>>>> main
 }
