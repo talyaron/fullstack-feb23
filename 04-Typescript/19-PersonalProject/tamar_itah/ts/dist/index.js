@@ -166,8 +166,9 @@ function renderPlay() {
     var randomWardsToDisplay = randomWord(randomWords);
     //display all words in random order
     var htmlWordsToSelect = randomWardsToDisplay.map(function (word) { return "<div class=\"chose card c" + numOfCard() + "\">" + word.heWord + "</div>"; }).join(' ');
-    var htmlWordInEnglish = "<div class=\"card c1\" >" + firstWord.enWord + "</div>";
+    var htmlWordInEnglish = "<div id=\"c1\" class=\"card c1\" data-correct-hebrew=\"" + firstWord.heWord + "\">" + firstWord.enWord + "</div>";
     htmlroot.innerHTML = htmlWordsToSelect + "<br>" + htmlWordInEnglish;
+    htmlroot.addEventListener('click', checkAnswer);
 }
 //finish the game
 function renderFinish() {
@@ -196,5 +197,23 @@ function numOfCard() {
         console.error(error);
     }
 }
-//eveant lisiner to mouse click -> to chose the right ansear
-var c = document.querySelector('.chose');
+//function work at eveant lisiner mouse click ocure on one -> to chose the right ansear
+function checkAnswer(event) {
+    var selectedCard = event.target;
+    var selectedHebrewWord = selectedCard.innerText;
+    console.log(selectedHebrewWord);
+    var englishWordCard = document.querySelector('#c1');
+    console.log(englishWordCard);
+    var correctHebrewWord = englishWordCard.getAttribute('data-correct-hebrew');
+    console.log("correctHebrewWord is:", correctHebrewWord);
+    if (selectedHebrewWord === correctHebrewWord) {
+        // The user selected the correct Hebrew word
+        console.log('Correct answer!');
+        //  updating the score 
+    }
+    else {
+        // The user selected the wrong Hebrew word
+        console.log('Wrong answer!');
+        // displaying an error message
+    }
+}

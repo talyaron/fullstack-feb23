@@ -80,22 +80,22 @@ function renderExpencesTable(expences) {
         var htmlHeadersTable = userCategories_1
             .map(function (category) {
             // `<tr><td>${expence.name}</td><td>${expence.amount}&#8362;</td></tr>`
-            return "<tr class=\"thead\">\n          <th colspan=\"2\">\n            " + category + "<svg\n              xmlns=\"http://www.w3.org/2000/svg\"\n              fill=\"none\"\n              viewBox=\"0 0 24 24\"\n              stroke-width=\"1.5\"\n              stroke=\"currentColor\"\n              class=\"collapse-icon\"\n            >\n              <path\n                stroke-linecap=\"round\"\n                stroke-linejoin=\"round\"\n                d=\"M18 12H6\"\n              />\n            </svg>\n          </th>\n        </tr>\n        <tr id=\"" + category + "\">\n";
+            return "<tr class=\"thead\">\n          <th colspan=\"2\">\n            " + category + "<svg\n              xmlns=\"http://www.w3.org/2000/svg\"\n              fill=\"none\"\n              viewBox=\"0 0 24 24\"\n              stroke-width=\"1.5\"\n              stroke=\"currentColor\"\n              class=\"collapse-icon\"\n            >\n              <path\n                stroke-linecap=\"round\"\n                stroke-linejoin=\"round\"\n                d=\"M18 12H6\"\n              />\n            </svg>\n          </th>\n        </tr><tbody id=\"" + category + "\"></tbody>";
         })
             .join(" ");
         rootExpencesTable.innerHTML = "<table>" + htmlHeadersTable + "</table>";
-        var htmlBodyTable_1 = expences
-            .map(function (expence) {
-            return "<td>" + expence.name + "</td><td>" + expence.amount + "&#8362;</td></tr>";
-        })
-            .join(" ");
         userCategories_1.forEach(function (category) {
             var html = document.querySelector("#" + category);
+            var htmlCreateTr = document.createElement("tr");
+            console.log(htmlCreateTr);
             if (!html)
                 throw new Error("html not found");
-            html.innerHTML = "" + htmlBodyTable_1;
+            expences.forEach(function (expence) {
+                if (expence.category === category) {
+                    html.innerHTML += "<tr class=\"tbody\"><td>" + expence.name + "</td><td>" + expence.amount + "&#8362;</td></tr>";
+                }
+            });
         });
-        // rootExpencesTable.innerHTML = `<table>${htmlBodyTable}</table>`;
     }
     catch (error) {
         console.error(error);
@@ -221,3 +221,27 @@ loadPage();
 renderExpenceCalculator();
 // revoke expences table (if such) when loading or refreshing page
 renderExpencesTable(expences);
+var accordion = document.querySelectorAll(".thead");
+accordion.forEach(function (head) {
+    head.addEventListener("click", function (ev) {
+        var _a;
+        head.classList.toggle("active");
+        console.dir(head);
+        var nextElementSibling = (_a = head.parentElement) === null || _a === void 0 ? void 0 : _a.nextElementSibling;
+        if (!nextElementSibling)
+            throw new Error("nextElementSibling not found");
+        if (nextElementSibling.classList.contains("off")) {
+            nextElementSibling.classList.remove("off");
+        }
+        else {
+            nextElementSibling.classList.add("off");
+            debugger;
+            var svg = head.childNodes[1];
+            var newSvg = document.createElement("svg");
+            var newSvgString = document.createTextNode("<svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"1.5\" stroke=\"currentColor\" class=\"w-6 h-6\">\n      <path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M12 6v12m6-6H6\" />\n    </svg>");
+            newSvg.appendChild(newSvgString);
+            svg.replaceChild(newSvg, svg.childNodes[1]);
+            // console.dir(head.childNodes[1].childNodes[1]);
+        }
+    });
+});
