@@ -1,5 +1,6 @@
 //Instegram Posts page.
 //MVC - Model View Controller
+//get the data from the local storage.
 var image = getImgsFromLocalStorage();
 var user = getUsersFromLocalStorage();
 var usersImg = getUsersImgFromLocalStorage();
@@ -8,6 +9,8 @@ function showPosts(HTMLElement, users) {
     try {
         if (!HTMLElement)
             throw new Error('Root element is not found');
+        if (!users)
+            throw new Error('Users not found');
         var html = users
             .map(function (user) {
             var postsHtml = user.imagse
@@ -22,6 +25,7 @@ function showPosts(HTMLElement, users) {
     }
     catch (error) {
         console.error(error);
+        return error;
     }
 }
 showPosts(document.querySelector('#posts'), usersArray);
@@ -30,6 +34,8 @@ function showHeader(HTMLElement, user) {
     try {
         if (!HTMLElement)
             throw new Error('Root element is not found');
+        if (!user)
+            throw new Error('Users not found');
         var html = user.map(function (user) {
             return "\n      <div class=\"header\">\n        <div class=\"header__user\">\n        <div class=\"header__user--image\">\n          <img src=\"" + user.imageProfile + "\">\n        </div>\n          <h3>" + user.name + "</h3>\n        </div>\n      </div>";
         }).join('');
@@ -38,6 +44,7 @@ function showHeader(HTMLElement, user) {
     }
     catch (error) {
         console.error(error);
+        return error;
     }
 }
 showHeader(document.querySelector('#header'), usersArray);
@@ -58,6 +65,7 @@ function handleDeletePost(imageId) {
     }
     catch (error) {
         console.error(error);
+        return error;
     }
 }
 //edit post.
@@ -79,5 +87,6 @@ function handleSetEditPost(ev, userId, imageId) {
     }
     catch (error) {
         console.error(error);
+        return error;
     }
 }

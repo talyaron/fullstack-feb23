@@ -201,11 +201,8 @@ function renderPlay() {
 
 
     //view + data binding
-
     //render the cards in random order
-
     //create a function whcih return the cards in random order
-
     //fisrst step: create an array with the cards
     //second step: get 3 random cards from the array
     //third step: selct one random card from the 3 and put it in the first place
@@ -215,17 +212,18 @@ function renderPlay() {
 
     const randomWords = randomWord(words);
 
-
     const firstWord = randomWords[0],
 
     //randomized words
     const randomWardsToDisplay = randomWord(randomWords)
 
     //display all words in random order
-    const htmlWordsToSelect = randomWardsToDisplay.map(word => `<div class="card">${word.heWord}</div>`).join(' ')
-    const htmlWordInEnglish = `<div class="card">${firstWord.enWord}</div>`
+    const htmlWordsToSelect = randomWardsToDisplay.map(word => `<div class="chose card c${numOfCard()}">${word.heWord}</div>`).join(' ')
+    const htmlWordInEnglish = `<div id="c1" class="card c1" data-correct-hebrew="${firstWord.heWord}">${firstWord.enWord}</div>`;
 
     htmlroot.innerHTML = htmlWordsToSelect + "<br>" + htmlWordInEnglish
+
+    htmlroot.addEventListener('click', checkAnswer);
 }
 
 //finish the game
@@ -233,7 +231,8 @@ function renderFinish() {
 
 }
 
-//contrilers
+
+//-------------------------------------contrilers--------------------
 //make the random select words
 function randomWord(words: Word[]) {
 
@@ -250,6 +249,40 @@ function randomWord(words: Word[]) {
     }
     console.log(randomWordArr);
 
-
     return randomWordArr;
 }
+
+let numberOfCard: number = 1
+function numOfCard(): number | undefined {
+    try {
+        numberOfCard++
+        return numberOfCard
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+//function work at eveant lisiner mouse click ocure on one -> to chose the right ansear
+function checkAnswer(event:any) {
+    const selectedCard = event.target;
+    const selectedHebrewWord = selectedCard.innerText;
+    console.log(selectedHebrewWord)
+
+    const englishWordCard = document.querySelector('#c1')!;
+    console.log(englishWordCard)
+
+    const correctHebrewWord = englishWordCard.getAttribute('data-correct-hebrew');
+    console.log("correctHebrewWord is:", correctHebrewWord)
+  
+    if (selectedHebrewWord === correctHebrewWord) {
+      // The user selected the correct Hebrew word
+      console.log('Correct answer!');
+      //  updating the score 
+    } else {
+      // The user selected the wrong Hebrew word
+      console.log('Wrong answer!');
+      // displaying an error message
+    }
+  }
+  
+

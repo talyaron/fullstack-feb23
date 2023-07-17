@@ -1,6 +1,10 @@
 body {
     font-family: sans-serif;
 
+    .position {
+        position: relative;
+    }
+
     #container {
         margin: auto;
         border: 2px gray solid;
@@ -12,64 +16,54 @@ body {
         z-index: -1;
         background: url(//sugarcakes4u.co.il/wp-content/uploads/2018/03/%D7%A4%D7%A8%D7%A7%D7%98-%D7%9C%D7%91%D7%9F-1.jpg) no-repeat center center/ cover;
 
+        &__life {
+            width: 100px;
+            height: 50px;
+            border: 2px solid black;
+            position: absolute;
+            top: 10px;
+            left: 10px;
 
-        // @keyframes ball {
-        //     10% {
-        //         top: -7px;
-        //     }
+            .b {
+                width: 30px;
+                position: absolute;
+                top: 3px;
+                left: 10px;
+                display: flex;
+                justify-content: space-between;
+            }
 
-        //     20% {
-        //         top: 10px;
-        //         left: 320px;
-        //     }
+            #s {
+                left: 5px;
+            }
 
-        //     30% {
-        //         top: 450px;
-        //         left: 250px;
-        //     }
+            #f {
+                left: 35px;
+            }
 
-        //     40% {
-        //         top: 40px;
-        //         left: 870px;
-        //     }
+            #c {
+                left: 65px;
+            }
+        }
 
-        //     50% {
-        //         top: -10px;
-        //         left: 600px;
-        //     }
 
-        //     60% {
-        //         top: 50px;
-        //         left: 400px;
-        //     }
+        &__ball {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: red;
+            border-radius: 50%;
+            border: 1px black solid;
+        }
 
-        //     70% {
-        //         top: 80px;
-        //         left: 800px;
-        //     }
 
-        //     80% {
-        //         top: -10px;
-        //         left: 400px;
-        //     }
-
-        //     90% {
-        //         top: -10px;
-        //         left: 600px;
-        //     }
-
-        //     100% {
-        //         top: -10px;
-        //         left: 600px;
-        //     }
-        // }
 
         &__shoot {
             display: none;
             background: url(rope.png) no-repeat center center/ cover;
             width: 50px;
             height: 70px;
-            animation: rope 1s infinite;
+            animation: rope 0.5s infinite;
             position: absolute;
             // transition: opacity 2s;
         }

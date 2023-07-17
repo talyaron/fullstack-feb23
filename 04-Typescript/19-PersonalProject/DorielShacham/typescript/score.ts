@@ -30,7 +30,7 @@ function displayScoreboard() {
 
   scores.forEach(([user, score]) => {
     const listItem = document.createElement("li");
-    listItem.textContent = `${user}:  ${score}`;
+    listItem.textContent = `${user}: Won ${score}$`;
     scoreboardDiv.appendChild(listItem);
   });
 }

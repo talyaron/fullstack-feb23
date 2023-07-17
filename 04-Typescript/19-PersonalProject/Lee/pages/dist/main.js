@@ -133,7 +133,6 @@ var Vaccine = /** @class */ (function () {
     function Vaccine(vacName, price) {
         this.vacName = vacName;
         this.price = price;
-        // this.id = uid();
     }
     return Vaccine;
 }());
@@ -151,7 +150,6 @@ var Treatment = /** @class */ (function () {
     function Treatment(treatName, price) {
         this.treatName = treatName;
         this.price = price;
-        // this.id = uid();
     }
     return Treatment;
 }());
@@ -166,7 +164,6 @@ var Supply = /** @class */ (function () {
     function Supply(supName, price) {
         this.supName = supName;
         this.price = price;
-        // this.id = uid();
     }
     return Supply;
 }());
@@ -175,3 +172,20 @@ var supplies = [
     new Supply("Ampoule Anti-flea & Tick", 47),
     new Supply("seringe", 10)
 ];
+//join classes
+var PatientVaccine = /** @class */ (function () {
+    function PatientVaccine(patient, vacName, price) {
+        this.patient = patient;
+        this.vacName = vacName;
+        this.price = price;
+    }
+    return PatientVaccine;
+}());
+var PatientTeatment = /** @class */ (function () {
+    function PatientTeatment(patient, treatName, price) {
+        this.patient = patient;
+        this.treatName = treatName;
+        this.price = price;
+    }
+    return PatientTeatment;
+}());

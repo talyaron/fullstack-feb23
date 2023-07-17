@@ -244,4 +244,3 @@ var cards = [
     new Card("3", "heart"),
     new Card("3", "heart"),
 ];
-var newPlayer = new Player("ruth7", "", 100000, true, true, cards);

@@ -38,6 +38,15 @@ function getMoveOption(activePlayers, thisIndex) {
     else {
         return ["fold", "rise", "call"];
     }
+    for (var i = thisIndex; i >= 0; i--) {
+        if (activePlayers[i].movesInRound[length - 1] === PlayerMovesOption.rise) {
+            return ["fold", "rise", "call"];
+        }
+        if (i == 0)
+            i = activePlayers.length;
+        if (i == thisIndex)
+            return ["rise", "check"];
+    }
 }
 function getPointOfOptionalSet(thisPlayer) {
     var thisPCards = thisPlayer.allCards;
@@ -80,24 +89,26 @@ function getLastRisePLayer(players, currentPlayerIndex) {
 }
 function chooseMove(players, movesOptions, sizeOfBet, pointOfOptionalSet, player) {
     var movesOptionsLength = movesOptions.length;
-    if (movesOptionsLength === 2) { //check or rise
+    if (movesOptionsLength === 2) {
+        //check or rise
         var randomNumToMove = Math.round(Math.random() * 1);
         var randomMove = movesOptions[randomNumToMove];
         if (pointOfOptionalSet < 2)
             player.checkMove(players);
         if (pointOfOptionalSet == 2) {
             if (randomMove === "rise") {
-                player.riseMove(players, player.turnNumber, sizeOfBet);
+                player.riseMove(players, sizeOfBet);
             }
             else {
                 player.checkMove(players);
             }
         }
         if (pointOfOptionalSet >= 3) {
-            player.riseMove(players, player.turnNumber, sizeOfBet);
+            player.riseMove(players, sizeOfBet);
         }
     }
-    if (movesOptionsLength == 3) { //rise or call or fold
+    if (movesOptionsLength == 3) {
+        //rise or call or fold
         var randomNumToMove = Math.round(Math.random() * 2);
         var randomMove = movesOptions[randomNumToMove];
         var lastBetSize = riseBetSizeInThisRound(players, player.turnNumber);
@@ -113,7 +124,7 @@ function chooseMove(players, movesOptions, sizeOfBet, pointOfOptionalSet, player
                 player.callMove(players, lastBetSize);
             }
             if (randomMove == "rise" && lastBetSize <= sizeOfBet) {
-                player.riseMove(players, player.turnNumber, sizeOfBet);
+                player.riseMove(players, sizeOfBet);
             }
             else {
                 player.foldMove(players);
@@ -124,7 +135,7 @@ function chooseMove(players, movesOptions, sizeOfBet, pointOfOptionalSet, player
                 player.callMove(players, player.turnNumber);
             }
             else
-                player.riseMove(players, player.turnNumber, sizeOfBet);
+                player.riseMove(players, sizeOfBet);
         }
     }
 }
@@ -150,22 +161,40 @@ function getSizeOfBet(pointOfOptionalSet, playerChips) {
 // }
 var counterTurn = 0;
 var indexInArray = 0;
-function turnOrder(players) {
-    if (indexInArray == 0) {
-        players[0].checkMove(players);
+function turnOrder(activePlayers) {
+    var players = activePlayers.filter(function (p) { return p.isActive === true; });
+    players.forEach(function (p) {
+        console.log(p.movesInRound);
+    });
+    if (players[indexInArray].id == "myPlayer") {
         indexInArray++;
         counterTurn++;
+        myTurn(players);
     }
     else {
-        if (counterTurn < 4 && indexInArray < players.length) {
+        indexInArray++;
+        counterTurn++;
+        document.querySelectorAll("button").forEach(function (button) { button.disabled = true; });
+        if (counterTurn < 4 || indexInArray < players.length) {
             players[indexInArray].doingTurn(players, indexInArray);
             if (players[indexInArray].lastBet > 0) {
                 counterTurn = 0;
             }
-            indexInArray++;
-            counterTurn++;
         }
-        else
+        else {
+            addCardToStage();
             counterTurn = 0;
+            indexInArray = 0;
+        }
     }
 }
+turnOrder(players);
+function myTurn(players) {
+    var myPlayer = players.find(function (p) { return p.id == "myPlayer"; });
+    var myPlayerIndex = players.findIndex(function (p) { return p.id == "myPlayer"; });
+    var myOption = getMoveOption(players, myPlayerIndex);
+    console.log((myPlayer === null || myPlayer === void 0 ? void 0 : myPlayer.userName) + " is doing somethig......");
+    playTheButton(myOption);
+}
+
+

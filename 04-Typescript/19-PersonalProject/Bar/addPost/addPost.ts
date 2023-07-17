@@ -2,6 +2,8 @@
 function renderAddNewPost(users: User[], rootElement: HTMLElement | Element | null) {
   try {
     if (!rootElement) throw new Error('Root element is not found');
+    if (!users) throw new Error('Users not found');
+
     const html = `
       <form class="addPost" onsubmit="handleAddNewPost(event)">
         <select class="addPost__select" name="user" id="userId" required>
@@ -18,6 +20,7 @@ function renderAddNewPost(users: User[], rootElement: HTMLElement | Element | nu
     rootElement.innerHTML = html;
   } catch (error) {
     console.error(error);
+    return error;
   }
 }
 renderAddNewPost(usersArray, document.querySelector('#addPost'));
@@ -37,6 +40,8 @@ function handleAddNewPost(event: Event | any) {
 
     const newImg = new Img(image);
     user.imagse.push(newImg);
+    
+    if (!newImg) throw new Error('Image not found');
 
     saveImgToLocalStorage(imagesArray);
     saveUserToLocalStorage(usersArray);

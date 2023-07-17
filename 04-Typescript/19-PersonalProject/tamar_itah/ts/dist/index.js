@@ -165,14 +165,15 @@ function renderPlay() {
     //randomized words
     var randomWardsToDisplay = randomWord(randomWords);
     //display all words in random order
-    var htmlWordsToSelect = randomWardsToDisplay.map(function (word) { return "<div class=\"card\">" + word.heWord + "</div>"; }).join(' ');
-    var htmlWordInEnglish = "<div class=\"card\">" + firstWord.enWord + "</div>";
+    var htmlWordsToSelect = randomWardsToDisplay.map(function (word) { return "<div class=\"chose card c" + numOfCard() + "\">" + word.heWord + "</div>"; }).join(' ');
+    var htmlWordInEnglish = "<div id=\"c1\" class=\"card c1\" data-correct-hebrew=\"" + firstWord.heWord + "\">" + firstWord.enWord + "</div>";
     htmlroot.innerHTML = htmlWordsToSelect + "<br>" + htmlWordInEnglish;
+    htmlroot.addEventListener('click', checkAnswer);
 }
 //finish the game
 function renderFinish() {
 }
-//contrilers
+//-------------------------------------contrilers--------------------
 //make the random select words
 function randomWord(words) {
     var randomWordArr = [];
@@ -185,4 +186,34 @@ function randomWord(words) {
     }
     console.log(randomWordArr);
     return randomWordArr;
+}
+var numberOfCard = 1;
+function numOfCard() {
+    try {
+        numberOfCard++;
+        return numberOfCard;
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+//function work at eveant lisiner mouse click ocure on one -> to chose the right ansear
+function checkAnswer(event) {
+    var selectedCard = event.target;
+    var selectedHebrewWord = selectedCard.innerText;
+    console.log(selectedHebrewWord);
+    var englishWordCard = document.querySelector('#c1');
+    console.log(englishWordCard);
+    var correctHebrewWord = englishWordCard.getAttribute('data-correct-hebrew');
+    console.log("correctHebrewWord is:", correctHebrewWord);
+    if (selectedHebrewWord === correctHebrewWord) {
+        // The user selected the correct Hebrew word
+        console.log('Correct answer!');
+        //  updating the score 
+    }
+    else {
+        // The user selected the wrong Hebrew word
+        console.log('Wrong answer!');
+        // displaying an error message
+    }
 }
