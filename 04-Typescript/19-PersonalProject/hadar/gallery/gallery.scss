@@ -34,7 +34,7 @@ body {
 
   .h1 {
     display: flex;
-    justify-content: center;
+    // justify-content: center;
     background-color: #718f54;
     align-items: center;
   }
@@ -44,9 +44,12 @@ body {
     text-align: center;
     margin: 0;
     font-size: 5vw;
+    padding-left: 35vw;
   }
 a{
   color: white;
-  font-size: 1vw;
+  font-size: 2.5vw;
+  padding-left: 2vw;
+  
 }
 }
