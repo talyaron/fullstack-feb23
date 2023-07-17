@@ -5,9 +5,9 @@
 // 10 beutifull and accurate design - v
 // 10 reponsive - v
 // 10 clear code - v
-// 10 clear structure. -
+// 10 clear structure. - v
 // 20 using MVC - v
-// 10 trycatch with good exceptions -
+// 10 trycatch with good exceptions - v
 // 10 error free - v
 //
 //class - user, image.
