@@ -1,0 +1,60 @@
+.main-container {
+  height: 100vh;
+  width: 100vw;
+  background-image: url(https://static6.depositphotos.com/1043073/597/i/600/depositphotos_5972344-stock-photo-calculation-of-incomes.jpg);
+  background-size: cover;
+  background-position: center;
+}
+
+.container {
+  width: 75vw;
+  height: 15vh;
+  background-color: rgba(255, 255, 255, 0.89);
+  border-radius: 0px 0px 15px 15px;
+  box-shadow: rgba(0, 0, 0, 0.27);
+}
+
+.welcome {
+  padding-top: 7vh;
+  font-size: 55px;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: black;
+  font-family: "Assistant", sans-serif;
+  background-color: rgba(255, 255, 255, 0.89);
+}
+
+.Registration {
+  padding-bottom: 2vh;
+  font-family: "Assistant", sans-serif;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: black;
+  background-color: rgba(255, 255, 255, 0.89);
+}
+
+.registration-input {
+  font-family: "Assistant", sans-serif;
+  height: 4.5vh;
+  border: 1px solid black;
+  border-radius: 0%;
+  padding-left: 5px;
+}
+
+.registration-button {
+  font-family: "Assistant", sans-serif;
+  padding: 10px 20px 10px 20px;
+}
+
+.registration-button:hover {
+  background-color: black;
+}
+
+.button {
+  font-family: "Assistant", sans-serif;
+  background-color: #f6ff00;
+  color: black;
+  border: none;
+  padding: 10px;
+  margin-left: 10px;
+  margin-top: -10px;
+  cursor: pointer;
+}
