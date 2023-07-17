@@ -39,13 +39,23 @@ let dealerMoney = 0;
 
 function getMoveOption(activePlayers: Player[], thisIndex: number) {
   const thisPlayer = activePlayers[thisIndex];
-  let lastPlyersRiseIndex = activePlayers.findIndex(
-    (p) => p.movesInRound[length - 1] === PlayerMovesOption.call,
-  );
-  if (lastPlyersRiseIndex === -1 || lastPlyersRiseIndex == thisIndex) {
-    return ["rise", "check"];
-  } else {
-    return ["fold", "rise", "call"];
+
+
+  // let lastPlyersRiseIndex = activePlayers.findIndex(
+  //   (p) => p.movesInRound[length - 1] === PlayerMovesOption.call,
+  // );
+  // if (lastPlyersRiseIndex === -1 || lastPlyersRiseIndex == thisIndex) {
+  //   return ["rise", "check"];
+  // } else {
+  //   return ["fold", "rise", "call"];
+  // }
+
+  for (let i = thisIndex ; i >= 0 ; i--){
+    if(activePlayers[i].movesInRound[length - 1] === PlayerMovesOption.rise){
+      return ["fold", "rise", "call"];
+    }
+    if (i == 0 ) i= activePlayers.length
+    if (i== thisIndex) return ["rise", "check"];
   }
 }
 
@@ -185,17 +195,20 @@ let counterTurn = 0;
 let indexInArray = 0;
 function turnOrder(activePlayers: Player[]) {/////----------------------------הוא מדלג על השחקן השני קבוע!!------------------------------------------------------
   let players = activePlayers.filter((p) => p.isActive === true);
-
+  players.forEach(p=> {console.log(p.movesInRound);
+  })
+  
   if (players[indexInArray].id == "myPlayer") {
     indexInArray++;
     counterTurn++;
     myTurn(players)
-
+    
+    
   } else {
     indexInArray++;
     counterTurn++;
+    document.querySelectorAll("button").forEach((button) => {button.disabled = true})
 
-    // document.querySelectorAll("button").forEach((button) => {button.disabled = true})
     if (counterTurn < 4 || indexInArray < players.length) {
       players[indexInArray].doingTurn(players, indexInArray);
       
@@ -220,60 +233,12 @@ function myTurn(players: Player[]) {
   const myOption = getMoveOption(players, myPlayerIndex);
 
 console.log(`${myPlayer?.userName} is doing somethig......`);
-
-
-  playTheButton(myOption)
-}
-
-function playTheButton(myOption:string[]){
-document.querySelectorAll('button').forEach(button => {
-button.disabled = false;
-})
-  if (myOption.length == 2 ){//check or rise{
-    (document.querySelector(".operations__btn--call")as HTMLButtonElement).disabled = true;
-    (document.querySelector(".operations__btn--fold")as HTMLButtonElement).disabled = true;
-    (document.querySelector(".operations__btn--rise")as HTMLButtonElement).disabled = false;
-    (document.querySelector(".operations__btn--check")as HTMLButtonElement).disabled = false;
-  }
-  else{//call or rise or fold
-    (document.querySelector(".operations__btn--call")as HTMLButtonElement).disabled = false;
-    (document.querySelector(".operations__btn--fold")as HTMLButtonElement).disabled = false;
-    (document.querySelector(".operations__btn--rise")as HTMLButtonElement).disabled = false;
-    (document.querySelector(".operations__btn--check")as HTMLButtonElement).disabled = true;
-    
-  }
-}
-
-
-function myPlayerHandleCheck(){
-  const myPlayer = players.find((p) => p.id == "myPlayer");
-  myPlayer?.checkMove(players)
-
-  turnOrder(players)
+playTheButton(myOption)
 
 }
-function myPlayerHandleFold(){
-  const myPlayer = players.find((p) => p.id == "myPlayer");
-  myPlayer?.foldMove(players)
 
-  turnOrder(players)
-}
 
-function myPlayerHandleRise(){
-  const myPlayer = players.find((p) => p.id == "myPlayer");
-  let inputSizeToBet:number = Number(prompt("Enter your bet here:"))
-  while(isNaN(inputSizeToBet)){
-    inputSizeToBet = Number(prompt("Enter again your bet here in number:"))
-  }
-  myPlayer?.riseMove(players, inputSizeToBet)
 
-  turnOrder(players)
-}
 
-function myPlayerHandleCall(){
-  const myPlayer = players.find((p) => p.id == "myPlayer");
-  const myPlayerIndex = players.findIndex((p) => p.id == "myPlayer");
-  myPlayer?.callMove(players, myPlayerIndex)
 
-  turnOrder(players)
-}
+

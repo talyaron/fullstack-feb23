@@ -11,6 +11,7 @@
     <script src="../script/dist/index.js" defer></script>
     <script src="../script/dist/turns.js" defer></script>
     <script src="../script/dist/pokerSets.js" defer></script>
+    <script src="../script/dist/moves.js" defer></script>
     <link rel="stylesheet" href="../css/dist/style.css" />
     <link rel="stylesheet" href="../css/dist/players.css" />
   </head>
@@ -30,7 +31,7 @@
         </div>
         <h4 class="myPanel__chips"></h4>
         <div class="myPanel__cards"></div>
-        <div id = "myTurnInput" class="playerPanel__inputChips">
+        <div id="myTurnInput" class="playerPanel__inputChips">
           <!-- <img src="../images/casino-chip.png" alt="" /> -->
         </div>
       </div>
@@ -47,15 +48,15 @@
           fold
         </button>
         <button
-        class="operations__btn operations__btn--call"
-        onclick="myPlayerHandleCall()">
-        call
-      </button>
-      <button
-        class="operations__btn operations__btn--rise"
-        onclick="myPlayerHandleRise()">
-        rise
-      </button>
+          class="operations__btn operations__btn--call"
+          onclick="myPlayerHandleCall()">
+          call
+        </button>
+        <button
+          class="operations__btn operations__btn--rise"
+          onclick="myPlayerHandleRise()">
+          rise
+        </button>
       </div>
 
       <!-- -----1------- -->
@@ -74,7 +75,7 @@
         </div>
       </div>
       <!-- -----2------- -->
-      <div id="player2Panel" class="playerPanel ">
+      <div id="player2Panel" class="playerPanel">
         <div id="player2Img" class="playerPanel__img">
           <img src="" alt="" />
         </div>
@@ -91,7 +92,9 @@
       <!-- ------3------ -->
       <div id="player3Panel" class="playerPanel">
         <div id="player3Img" class="playerPanel__img">
-          <img src="https://cdn.pixabay.com/photo/2023/07/05/04/45/european-shorthair-8107433_1280.jpg" alt="" />
+          <img
+            src="https://cdn.pixabay.com/photo/2023/07/05/04/45/european-shorthair-8107433_1280.jpg"
+            alt="" />
         </div>
         <div id="player3Cards" class="playerPanel__cards"></div>
         <div class="playerPanel__inform">
@@ -106,7 +109,9 @@
       <!-- -----4----- -->
       <div id="player4Panel" class="playerPanel">
         <div id="player4Img" class="playerPanel__img">
-          <img src="https://cdn.pixabay.com/photo/2023/07/05/04/45/european-shorthair-8107433_1280.jpg" alt="" />
+          <img
+            src="https://cdn.pixabay.com/photo/2023/07/05/04/45/european-shorthair-8107433_1280.jpg"
+            alt="" />
         </div>
         <div id="player4Cards" class="playerPanel__cards"></div>
         <div class="playerPanel__inform">
