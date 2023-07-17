@@ -1,4 +1,3 @@
-
 // sets----------------------------------------------------------------
 // Royal Flush
 // Straight Flush
@@ -238,14 +237,4 @@ function getCardNumberValue(cardNumber: string): number {
     return -1;
   }
 }
-
-let cards: Card[] = [
-  new Card("10", "heart"),
-  new Card("J", "heart"),
-  new Card("A", "heart"),
-  new Card("K", "heart"),
-  new Card("Q", "club"),
-  new Card("3", "heart"),
-  new Card("3", "heart"),
-];
 

@@ -31,22 +31,17 @@ var dealerMoney = 0;
 // turnOrder(players);
 function getMoveOption(activePlayers, thisIndex) {
     var thisPlayer = activePlayers[thisIndex];
-    var lastPlyersRiseIndex = activePlayers.findIndex(function (p) { return p.movesInRound[length - 1] === PlayerMovesOption.call; });
-    if (lastPlyersRiseIndex === -1 || lastPlyersRiseIndex == thisIndex) {
-        return ["rise", "check"];
-    }
-    else {
-        return ["fold", "rise", "call"];
-    }
-    for (var i = thisIndex; i >= 0; i--) {
-        if (activePlayers[i].movesInRound[length - 1] === PlayerMovesOption.rise) {
+    for (var j = thisIndex; j >= 0; j--) {
+        if (activePlayers[j].movesInRound[length - 1] == PlayerMovesOption.rise) {
             return ["fold", "rise", "call"];
         }
-        if (i == 0)
-            i = activePlayers.length;
-        if (i == thisIndex)
-            return ["rise", "check"];
     }
+    for (var i = activePlayers.length - 1; i > thisIndex; i--) {
+        if (activePlayers[i].movesInRound[length - 1] == PlayerMovesOption.rise) {
+            return ["fold", "rise", "call"];
+        }
+    }
+    return ["rise", "check"];
 }
 function getPointOfOptionalSet(thisPlayer) {
     var thisPCards = thisPlayer.allCards;
@@ -61,7 +56,6 @@ function getPointOfOptionalSet(thisPlayer) {
         checkStraightFlush(thisPCards),
         checkRoyalFlush(thisPCards),
     ];
-    console.log(setsResult);
     var maxPointsSet = 0;
     setsResult.forEach(function (res, i) {
         if (res === true)
@@ -155,17 +149,13 @@ function getSizeOfBet(pointOfOptionalSet, playerChips) {
     }
     return randomNum;
 }
-// function realPlayerTurn(players:Player[]){
-//  let moveOption  = getMoveOption(players, 0)
-// //להפעיל כפתורים בהתאמה עם איוונטים
-// }
 var counterTurn = 0;
 var indexInArray = 0;
 function turnOrder(activePlayers) {
+    /////----------------------------הוא מדלג על השחקן השני קבוע!!------------------------------------------------------
     var players = activePlayers.filter(function (p) { return p.isActive === true; });
-    players.forEach(function (p) {
-        console.log(p.movesInRound);
-    });
+    console.log(players);
+    console.log(indexInArray);
     if (players[indexInArray].id == "myPlayer") {
         indexInArray++;
         counterTurn++;
@@ -174,16 +164,21 @@ function turnOrder(activePlayers) {
     else {
         indexInArray++;
         counterTurn++;
-        document.querySelectorAll("button").forEach(function (button) { button.disabled = true; });
-        if (counterTurn < 4 || indexInArray < players.length) {
+        document.querySelectorAll("button").forEach(function (button) {
+            button.disabled = true;
+        });
+        if (counterTurn < 5 && indexInArray < players.length) {
             players[indexInArray].doingTurn(players, indexInArray);
             if (players[indexInArray].lastBet > 0) {
                 counterTurn = 0;
             }
         }
-        else {
+        else if (counterTurn < 5) {
             addCardToStage();
             counterTurn = 0;
+            indexInArray = 0;
+        }
+        else {
             indexInArray = 0;
         }
     }
@@ -194,7 +189,6 @@ function myTurn(players) {
     var myPlayerIndex = players.findIndex(function (p) { return p.id == "myPlayer"; });
     var myOption = getMoveOption(players, myPlayerIndex);
     console.log((myPlayer === null || myPlayer === void 0 ? void 0 : myPlayer.userName) + " is doing somethig......");
+    console.log(myOption);
     playTheButton(myOption);
 }
-
-

@@ -1,15 +1,17 @@
 ///-----------------------myPlayerMoves--------------------
 function playTheButton(myOption) {
-    document.querySelectorAll('button').forEach(function (button) {
+    document.querySelectorAll("button").forEach(function (button) {
         button.disabled = false;
     });
-    if (myOption.length == 2) { //check or rise{
+    if (myOption.length == 2) {
+        //check or rise{
         document.querySelector(".operations__btn--call").disabled = true;
         document.querySelector(".operations__btn--fold").disabled = true;
         document.querySelector(".operations__btn--rise").disabled = false;
         document.querySelector(".operations__btn--check").disabled = false;
     }
-    else { //call or rise or fold
+    else {
+        //call or rise or fold
         document.querySelector(".operations__btn--call").disabled = false;
         document.querySelector(".operations__btn--fold").disabled = false;
         document.querySelector(".operations__btn--rise").disabled = false;

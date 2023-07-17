@@ -74,13 +74,18 @@ class Player {
   }
 
   renderTurn() {
-    const divID = this.turnNumber
+    const divID = this.turnNumber;
     console.log(divID);
-    
-    const root = document.getElementById(`player${divID}Panel`) as HTMLDivElement
+
+    const root = document.getElementById(
+      `player${divID}Panel`,
+    ) as HTMLDivElement;
     console.log(root);
-    
-    const input = this.lastBet > 0 ? this.lastBet.toString() : this.movesInRound[this.movesInRound.length-1]; 
+
+    const input =
+      this.lastBet > 0
+        ? this.lastBet.toString()
+        : this.movesInRound[this.movesInRound.length - 1];
 
     root.querySelector(".playerPanel__inputChips")!.innerHTML = ` 
   <img src="../images/casino-chip.png" alt="" />
@@ -95,12 +100,13 @@ class Player {
   doingTurn(activePlayers: Player[], thisIndex: number) {
     console.log(`${this.userName} is doing somethig......`);
     let movesOptions = getMoveOption(activePlayers, thisIndex);
+    console.log(movesOptions);
     let pointOfOptionalSet = getPointOfOptionalSet(this);
     let sizeOfBet = getSizeOfBet(pointOfOptionalSet, this.chips);
 
     chooseMove(
       activePlayers,
-      movesOptions,
+      movesOptions!,
       sizeOfBet,
       pointOfOptionalSet,
       this,
@@ -113,7 +119,7 @@ class Player {
       this.lastBet = 0;
     }
     localStorage.setItem("players", JSON.stringify(players));
-    this.renderTurn()
+    this.renderTurn();
 
     turnOrder(players);
   }
@@ -124,7 +130,7 @@ class Player {
     this.isActive = false;
 
     localStorage.setItem("players", JSON.stringify(players));
-    this.renderTurn()
+    this.renderTurn();
 
     turnOrder(players);
   }
@@ -139,7 +145,7 @@ class Player {
 
     localStorage.setItem("players", JSON.stringify(players));
     localStorage.setItem("dealerMoney", JSON.stringify(dealerMoney));
-    this.renderTurn()
+    this.renderTurn();
 
     turnOrder(players);
   }
@@ -153,7 +159,7 @@ class Player {
 
     localStorage.setItem("players", JSON.stringify(players));
     localStorage.setItem("dealerMoney", JSON.stringify(dealerMoney));
-    this.renderTurn()
+    this.renderTurn();
 
     turnOrder(players);
   }
