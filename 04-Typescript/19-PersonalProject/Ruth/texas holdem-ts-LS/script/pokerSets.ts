@@ -249,6 +249,3 @@ let cards: Card[] = [
   new Card("3", "heart"),
 ];
 
-const newPlayer = new Player("ruth7", "", 100000, true, true, cards);
-
-

@@ -71,7 +71,7 @@ function getDeckCardsFromLs() {
   );
 }
 
-const myPlayer: Player = new Player("ruth1");
+const myPlayer: Player = new Player("ruth1","#", "myPlayer")
 
 const users: Player[] = [
   new Player(
@@ -92,8 +92,8 @@ const users: Player[] = [
   ),
 ];
 
-users.unshift(myPlayer);
-const firstPlayers:Player[] = users;
+// users.unshift(myPlayer);
+const firstPlayers:Player[] = [myPlayer].concat(users);
 
 const players: Player[] = getPlayerFromLs();
 
@@ -113,6 +113,7 @@ function getPlayerFromLs() {
           new Player(
             p.userName,
             p.imgSrc,
+            p.id,
             p.chips,
             p.isActive,
             p.isTurn,
@@ -182,3 +183,14 @@ function addCardToStage() {
     }
   } else alert("game stopped!");
 }
+
+
+function createID() {
+  return String(Date.now().toString(32) + Math.random().toString(16)).replace(
+    /\./g,
+    "",
+  );
+}
+
+
+
