@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alcohol Calculator for Events</title>
+  <link rel="stylesheet" href="dist/cal.eve.css">
+</head>
+<body>
+  <div class="calculator">
+    <input type="text" id="numOfPeople" placeholder="Enter number of people">
+    <select id="eventType">
+      <option value="group">Group of Friends</option>
+      <option value="wedding">Wedding</option>
+      <option value="birthday">Birthday Party</option>
+    </select>
+    <button onclick="calculate()">Calculate</button>
+    <div id="result"></div>
+  </div>
+  <script src="dist/cal.eve.js"></script>
+</body>
+</html>
