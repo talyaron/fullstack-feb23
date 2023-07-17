@@ -15,15 +15,29 @@ body .gallery__imgs img {
 body .gallery__imgs--p {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   border: 1px solid black;
+  padding: 2px;
+}
+body .gallery__imgs--p i {
+  font-size: 1vw;
 }
 body .gallery__imgs--p i:active {
   color: red;
 }
-body h1 {
+body .h1 {
+  display: flex;
   background-color: #718f54;
+  flex-direction: column;
+  align-items: center;
+}
+body h1 {
   color: white;
   text-align: center;
   margin: 0;
+  font-size: 5vw;
+}
+body a {
+  color: white;
+  font-size: 2vw;
 }

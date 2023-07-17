@@ -1,6 +1,9 @@
 body {
   font-family: sans-serif;
 }
+body .position {
+  position: relative;
+}
 body #container {
   margin: auto;
   border: 2px gray solid;
@@ -12,12 +15,45 @@ body #container {
   z-index: -1;
   background: url(//sugarcakes4u.co.il/wp-content/uploads/2018/03/%D7%A4%D7%A8%D7%A7%D7%98-%D7%9C%D7%91%D7%9F-1.jpg) no-repeat center center/cover;
 }
+body #container__life {
+  width: 100px;
+  height: 50px;
+  border: 2px solid black;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+body #container__life .b {
+  width: 30px;
+  position: absolute;
+  top: 3px;
+  left: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+body #container__life #s {
+  left: 5px;
+}
+body #container__life #f {
+  left: 35px;
+}
+body #container__life #c {
+  left: 65px;
+}
+body #container__ball {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background: red;
+  border-radius: 50%;
+  border: 1px black solid;
+}
 body #container__shoot {
   display: none;
   background: url(rope.png) no-repeat center center/cover;
   width: 50px;
   height: 70px;
-  animation: rope 1s infinite;
+  animation: rope 0.5s infinite;
   position: absolute;
 }
 body #container .show {

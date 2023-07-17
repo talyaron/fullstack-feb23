@@ -17,11 +17,15 @@ function renderPlayers(player) {
         var rootPlayer = document.querySelector('#container__player');
         var html = "<img class=\"bart\" src=\"" + player.playerImg + "\"> ";
         rootPlayer.innerHTML = html;
+        var life = document.querySelector('#container__life');
+        var img = "<img id=\"s\" class=\"b\" src=\"" + player.playerImg + "\"> <img id=\"f\" class=\"b\" src=\"" + player.playerImg + "\"> <img id=\"c\" class=\"b\" src=\"" + player.playerImg + "\">";
+        life.innerHTML = img;
     }
     catch (error) {
         console.error(error);
     }
 }
+// const ball = document.querySelector("canvas") as HTMLCanvasElement;
 var bart = document.querySelector(".bart");
 var shoot = document.querySelector("#container__shoot");
 document.addEventListener('keydown', function (event) {
@@ -47,51 +51,56 @@ function handleKeyUp(event) {
         shoot.classList.remove('show');
     }
 }
-var ball = document.querySelector("canvas");
-var context = ball.getContext("2d");
-var x = 200;
-var y = 300;
-var FPS = 100;
-var radius = 50;
-var xSpeed = 1;
-var ySpeed = 2;
-function clear() {
-    context.clearRect(0, 0, ball.width, ball.height);
+setInterval(updatePosition, 10);
+function updatePosition() {
+    var playerLocation = bart.getBoundingClientRect();
+    var playerLocationTop = playerLocation.top;
+    var playerLocationLeft = playerLocation.left;
+    shoot.style.top = playerLocationTop + "px";
+    shoot.style.left = playerLocationLeft + "px";
 }
-function draw() {
-    context.beginPath();
-    context.arc(x, y, radius, 0, 2 * Math.PI);
-    context.closePath();
-    context.fillStyle = "red";
-    context.fill();
+var ball = document.querySelector("#container__ball");
+var container = document.querySelector("#container");
+var ballX = 0;
+var ballY = 0;
+var ballSpeedX = 2;
+var ballSpeedY = 2;
+function moveBall() {
+    ballX += ballSpeedX;
+    ballY += ballSpeedY;
+    var containerWidth = container.offsetWidth;
+    var containerHeight = container.offsetHeight;
+    var ballSize = ball.offsetWidth;
+    if (ballX + ballSize >= containerWidth || ballX <= 0) {
+        ballSpeedX *= -1;
+    }
+    if (ballY + ballSize >= containerHeight || ballY <= 0) {
+        ballSpeedY *= -1;
+    }
+    ball.style.left = ballX + 'px';
+    ball.style.top = ballY + 'px';
+    requestAnimationFrame(moveBall);
 }
-function update() {
-    x = x + xSpeed;
-    y = y + ySpeed;
-    var borderRight = (x + radius >= ball.width);
-    var borderLeft = (x - radius <= 0);
-    var borderUp = (y + radius >= ball.height);
-    var borderDown = (y - radius <= 0);
-    if (borderRight) {
-        x = ball.width - radius;
-        xSpeed = -xSpeed;
-    }
-    if (borderLeft) {
-        x = 0 + radius;
-        xSpeed = -xSpeed;
-    }
-    if (borderUp) {
-        y = ball.height - radius;
-        ySpeed = -ySpeed;
-    }
-    if (borderDown) {
-        y = 0 + radius;
-        ySpeed = -ySpeed;
+moveBall();
+setInterval(up, 10);
+function up() {
+    var playerLocation = bart.getBoundingClientRect();
+    var ballLocation = ball.getBoundingClientRect();
+    if (playerLocation.right > ballLocation.left &&
+        playerLocation.left < ballLocation.right &&
+        playerLocation.bottom > ballLocation.top &&
+        playerLocation.top < ballLocation.bottom) {
+        console.log('התנגשות בין div1 ל-div2');
     }
 }
-function animation() {
-    clear();
-    draw();
-    update();
+setInterval(u, 10);
+function u() {
+    var ropeLocation = shoot.getBoundingClientRect();
+    var ballLocation = ball.getBoundingClientRect();
+    if (ropeLocation.right > ballLocation.left &&
+        ropeLocation.left < ballLocation.right &&
+        ropeLocation.bottom > ballLocation.top &&
+        ropeLocation.top < ballLocation.bottom) {
+        console.log('התנגשות בין div1 ל-div2');
+    }
 }
-window.setInterval(animation, 1000 / FPS);

@@ -334,7 +334,7 @@ function putCityOnBoard(city:City,cityIndex:number){
            cell3 = document.getElementById('cell34');
           if(!cell1 || !cell2 || !cell3) throw new Error("cant find cells");
           cityBtn1= document.createElement('bottun')
-          cityBtn1.id=`${city.cityId}`;
+          cityBtn1.id=`city${city.cityId}`;
           cityBtn1.classList.add('RovaA')
           cell1.appendChild(cityBtn1);
           cityBtn2= document.createElement('bottun')
@@ -352,16 +352,16 @@ function putCityOnBoard(city:City,cityIndex:number){
         cell3 = document.getElementById('cell31');
         if(!cell1 || !cell2 || !cell3) throw new Error("cant find cells");
         cityBtn1= document.createElement('bottun')
-        cityBtn1.id=`${city.cityId}`;
+        cityBtn1.id=`city${city.cityId}`;
         cityBtn1.classList.add('RovaBet')
        
         cell1.appendChild(cityBtn1);
         cityBtn2= document.createElement('bottun')
-        cityBtn2.id=`${city.cityId}`;
+        cityBtn2.id=`city${city.cityId}`;
         cityBtn2.classList.add('RovaBet')
         cell2.appendChild(cityBtn2);
         cityBtn3= document.createElement('bottun')
-        cityBtn3.id=`${city.cityId}`;
+        cityBtn3.id=`city${city.cityId}`;
         cityBtn3.classList.add('RovaBet')
         cell3.appendChild(cityBtn3);
           break;
@@ -371,16 +371,16 @@ function putCityOnBoard(city:City,cityIndex:number){
           cell3 = document.getElementById('cell27');
           if(!cell1 || !cell2 || !cell3) throw new Error("cant find cells");
           cityBtn1= document.createElement('bottun')
-          cityBtn1.id=`${city.cityId}`;
+          cityBtn1.id=`city${city.cityId}`;
           cityBtn1.classList.add('RovaGimel')
          
           cell1.appendChild(cityBtn1);
           cityBtn2= document.createElement('bottun')
-          cityBtn2.id=`${city.cityId}`;
+          cityBtn2.id=`city${city.cityId}`;
           cityBtn2.classList.add('RovaGimel')
           cell2.appendChild(cityBtn2);
           cityBtn3= document.createElement('bottun')
-          cityBtn3.id=`${city.cityId}`;
+          cityBtn3.id=`city${city.cityId}`;
           cityBtn3.classList.add('RovaGimel')
           cell3.appendChild(cityBtn3);
             break;
@@ -391,15 +391,15 @@ function putCityOnBoard(city:City,cityIndex:number){
         
         if(!cell1 || !cell2 || !cell3) throw new Error("cant find cells");
         cityBtn1= document.createElement('bottun')
-        cityBtn1.id=`${city.cityId}`;
+        cityBtn1.id=`city${city.cityId}`;
         cityBtn1.classList.add('RovaDaled')
         cell1.appendChild(cityBtn1);
         cityBtn2= document.createElement('bottun')
-        cityBtn2.id=`${city.cityId}`;
+        cityBtn2.id=`city${city.cityId}`;
         cityBtn2.classList.add('RovaDaled')
         cell2.appendChild(cityBtn2);
         cityBtn3= document.createElement('bottun')
-        cityBtn3.id=`${city.cityId}`;
+        cityBtn3.id=`city${city.cityId}`;
         cityBtn3.classList.add('RovaDaled')
         cell3.appendChild(cityBtn3);
           break;
@@ -409,15 +409,15 @@ function putCityOnBoard(city:City,cityIndex:number){
           cell3 = document.getElementById('cell18');
           if(!cell1 || !cell2 || !cell3) throw new Error("cant find cells");
           cityBtn1= document.createElement('bottun')
-          cityBtn1.id=`${city.cityId}`;
+          cityBtn1.id=`city${city.cityId}`;
           cityBtn1.classList.add('RovaCITY')
           cell1.appendChild(cityBtn1);
           cityBtn2= document.createElement('bottun')
-          cityBtn2.id=`${city.cityId}`;
+          cityBtn2.id=`city${city.cityId}`;
           cityBtn2.classList.add('RovaCITY')
           cell2.appendChild(cityBtn2);
           cityBtn3= document.createElement('bottun')
-          cityBtn3.id=`${city.cityId}`;
+          cityBtn3.id=`city${city.cityId}`;
           cityBtn3.classList.add('RovaCITY')
           cell3.appendChild(cityBtn3);
             break;
@@ -427,15 +427,15 @@ function putCityOnBoard(city:City,cityIndex:number){
           cell3 = document.getElementById('cell13');
           if(!cell1 || !cell2 || !cell3) throw new Error("cant find cells");
           cityBtn1= document.createElement('bottun')
-          cityBtn1.id=`${city.cityId}`;
+          cityBtn1.id=`city${city.cityId}`;
           cityBtn1.classList.add('RovaTetVav')
           cell1.appendChild(cityBtn1);
           cityBtn2= document.createElement('bottun')
-          cityBtn2.id=`${city.cityId}`;
+          cityBtn2.id=`city${city.cityId}`;
           cityBtn2.classList.add('RovaTetVav')
           cell2.appendChild(cityBtn2);
           cityBtn3= document.createElement('bottun')
-          cityBtn3.id=`${city.cityId}`;
+          cityBtn3.id=`city${city.cityId}`;
           cityBtn3.classList.add('RovaTetVav')
           cell3.appendChild(cityBtn3);
             break;
@@ -445,15 +445,15 @@ function putCityOnBoard(city:City,cityIndex:number){
           cell3 = document.getElementById('cell9');
           if(!cell1 || !cell2 || !cell3) throw new Error("cant find cells");
           cityBtn1= document.createElement('bottun')
-          cityBtn1.id=`${city.cityId}`;
+          cityBtn1.id=`city${city.cityId}`;
           cityBtn1.classList.add('RovaYudBet')
           cell1.appendChild(cityBtn1);
           cityBtn2= document.createElement('bottun')
-          cityBtn2.id=`${city.cityId}`;
+          cityBtn2.id=`city${city.cityId}`;
           cityBtn2.classList.add('RovaYudBet')
           cell2.appendChild(cityBtn2);
           cityBtn3= document.createElement('bottun')
-          cityBtn3.id=`${city.cityId}`;
+          cityBtn3.id=`city${city.cityId}`;
           cityBtn3.classList.add('RovaYudBet')
           cell3.appendChild(cityBtn3);
           break;   
@@ -463,15 +463,15 @@ function putCityOnBoard(city:City,cityIndex:number){
           cell3 = document.getElementById('cell4');
           if(!cell1 || !cell2 || !cell3) throw new Error("cant find cells");
           cityBtn1= document.createElement('bottun')
-          cityBtn1.id=`${city.cityId}`;
+          cityBtn1.id=`city${city.cityId}`;
           cityBtn1.classList.add('RovaYudAlef')
           cell1.appendChild(cityBtn1);
           cityBtn2= document.createElement('bottun')
-          cityBtn2.id=`${city.cityId}`;
+          cityBtn2.id=`city${city.cityId}`;
           cityBtn2.classList.add('RovaYudAlef')
           cell2.appendChild(cityBtn2);
           cityBtn3= document.createElement('bottun')
-          cityBtn3.id=`${city.cityId}`;
+          cityBtn3.id=`city${city.cityId}`;
           cityBtn3.classList.add('RovaYudAlef')
           cell3.appendChild(cityBtn3);
           break;
@@ -718,154 +718,203 @@ const  beginDiv = document.createElement('div')
 beginDiv.classList.add('begin')
 beginCell?.appendChild(beginDiv);
 }
+
+
 // function play() {
 //   try {
-    
-//     // for each player in the game need to let player on his turn to drop cube and make step as the number he get
-//     if(!gamesBoardsAGpage) throw new Error("cant find gamesBoardsAGpage");
-//     const currentGame= gamesBoardsAGpage.find(board=>board.gameStatus===true)
-//     if(!currentGame) throw new Error("cant find currentGame");
-//     // map the players with status true to the game
-//     const players=currentGame.players.filter(player=>player.status===true);
-//     players.forEach(player=>
-//       {
-//         console.log(player.playerId);
-        
-//         //Make the cube available to the user
-//         const cube = document.getElementById('cubeButton')as HTMLButtonElement;;
-//         if (!cube) throw new Error("cant find cube");
-//         cube.disabled = false;
-//         cube.style.border= '1px solid green'
-//        // alert('drop the cube')
+//     if (!gamesBoardsAGpage) throw new Error("Can't find gamesBoardsAGpage");
+//     const currentGame = gamesBoardsAGpage.find((board) => board.gameStatus === true);
+//     if (!currentGame) throw new Error("Can't find currentGame");
 
-//         setTimeout(() => {
-//   }, 4000);
-        
-       
-//           if(currentGame.luckyCube!=0){
-//             closePopup();
+//     let players = currentGame.players.filter((player) => player.status === true);
+
+//     // Define a function to wrap the player's turn logic in a Promise
+//     function playPlayerTurn(player) {
+//       return new Promise((resolve, reject) => {
+//         const cube = document.getElementById('cubeButton') as HTMLButtonElement;
+//         if (!cube) throw new Error("Can't find cube");
+
+//         cube.disabled = false;
+//         cube.style.border = '1px solid green';
+
+//         // Resolve the Promise when the player drops the cube (e.g., on a button click event)
+//         cube.addEventListener('click', () => {
+//           cube.disabled = true;
+//           cube.style.border = 'none';
+
+//           // Rest of the turn logic...
+//           if (!currentGame) throw new Error("Can't find currentGame");
+//           // Continue with the remaining logic for the player's turn
+//           if (currentGame.luckyCube !== 0) {
+//             console.log(`Player ${player.playerId} is playing`);
+            
 //             for (let index = 1; index <= currentGame.luckyCube; index++) {
 //               playerStep(player.playerId);
 //             }
-//           const newCellId=document.getElementById(`player${player.playerId}`); 
-         
-//           if(!newCellId) throw new Error("cant find newCellId");
-//           const newParentCellId=newCellId.parentNode;
-//           if(!newParentCellId) throw new Error("cant find newCellId");
-//           player.cellId=newParentCellId.id;
-          
-//           currentGame.luckyCube=0;
-//           cube.disabled = true;
-//           cube.style.border= 'none'
+//             const newCell = document.getElementById(`player${player.playerId}`);
+//             if (!newCell) throw new Error("Can't find newCell");
+//             const parentCell = newCell.parentNode as HTMLDivElement;
+//             if (!parentCell) throw new Error("Can't find parentCell");
 
+//             player.cellId = parentCell.id;
+//             currentGame.luckyCube = 0;
+
+//             const cellButton = parentCell.firstChild as HTMLButtonElement;
+//             if (!cellButton) throw new Error("Can't find cellButton");
+
+//             // Check if arrived at a city
+//             if (cellButton.classList.contains('RovaA') || cellButton.classList.contains('RovaBet') || cellButton.classList.contains('RovaGimel') || cellButton.classList.contains('RovaDaled') || cellButton.classList.contains('RovaCITY') || cellButton.classList.contains('RovaTetVav') || cellButton.classList.contains('RovaYudBet') || cellButton.classList.contains('RovaYudAlef')) {
+//               rendercityCardRentOrBuy(Number(cellButton.id.match(/\d+/)), player.playerId);
+//               console.log(player.Pbank);
+//             }
 //           }
-//           else alert (`${player.playerId} did not drop cube`)
-  
 
-//       })
-//   }
-//   catch (error) 
-//   {
+//           resolve(void 0);
+//         });
+//       });
+//     }
+
+//     // Define an async function to iterate over the players and wait for each turn to finish
+//     async function iteratePlayers() {
+//       while (players.length > 1) {
+//         for (const currentPlayer of players) {
+//           try {
+//             console.log(`Player: ${currentPlayer.playerId}`);
+//             await playPlayerTurn(currentPlayer);
+//           } catch (error) {
+//             console.error(error);
+//           }
+//         }
+//         players = players.filter((player) => player.status === true);
+//       }
+      
+//       if (players.length === 1) {
+//         console.log(`Player ${players[0].playerId} is the winner!`);
+//       } else {
+//         console.log("The game has ended with no winner.");
+//       }
+//     }
+
+//     // Call the async function to start the iteration over players
+//     iteratePlayers().catch((error) => console.error(error));
+//   } catch (error) {
 //     console.error(error);
 //   }
 // }
 
-function play() {
+function Play(){
+  
+}
+
+function buyCity(cityId: number, playerId: number) {
+  if (!gamesBoardsAGpage) throw new Error("Can't find gamesBoardsAGpage");
+  const currentGame = gamesBoardsAGpage.find((board) => board.gameStatus === true);
+  if (!currentGame) throw new Error("Can't find currentGame");
+
+  const city = currentGame.cities.find((city) => city.cityId === cityId);
+  if (!city) throw new Error("Can't find city");
+
+  const player = currentGame.players.find((player) => player.playerId === playerId);
+  if (!player) throw new Error("Can't find player");
+
+  if (player.Pbank < city.monetaryValue) throw new Error("Player doesn't have enough money");
+
+  player.Pbank -= city.monetaryValue;
+  city.cityOwner = player;
+  console.log(player.Pbank);
+}
+
+function payRent(cityId: number, playerId: number) {
+  if (!gamesBoardsAGpage) throw new Error("Can't find gamesBoardsAGpage");
+  const currentGame = gamesBoardsAGpage.find((board) => board.gameStatus === true);
+  if (!currentGame) throw new Error("Can't find currentGame");
+
+  const city = currentGame.cities.find((city) => city.cityId === cityId);
+  if (!city) throw new Error("Can't find city");
+
+  const player = currentGame.players.find((player) => player.playerId === playerId);
+  if (!player) throw new Error("Can't find player");
+
+  if (player.Pbank < city.rentValue) throw new Error("Player doesn't have enough money");
+
+  player.Pbank -= city.rentValue;
+
+  if (!city.cityOwner) throw new Error("Can't find cityOwner");
+  city.cityOwner.Pbank += city.rentValue;
+
+  console.log(player.Pbank);
+  console.log(city.cityOwner?.Pbank);
+}
+
+function rendercityCardRentOrBuy(cityId, playerId) {
   try {
-    if (!gamesBoardsAGpage) throw new Error("Can't find gamesBoardsAGpage");
-    const currentGame = gamesBoardsAGpage.find((board) => board.gameStatus === true);
-    if (!currentGame) throw new Error("Can't find currentGame");
+    // If the city has an owner, render pay rent; else, render buy city or pick a good gift
+    const city = gamesBoardsAGpage
+      ?.find((board) => board.cities.find((city) => city.cityId === cityId))
+      ?.cities.find((city) => city.cityId === cityId);
 
-    let players = currentGame.players.filter((player) => player.status === true);
+    if (!city) throw new Error("Can't find city");
 
-    // Define a function to wrap the player's turn logic in a Promise
-    function playPlayerTurn(player) {
-      return new Promise((resolve, reject) => {
-        console.log(player.playerId);
+    const dialog = document.createElement('dialog');
+    dialog.classList.add('cityDialog');
 
-        const cube = document.getElementById('cubeButton') as HTMLButtonElement;
-        if (!cube) throw new Error("Can't find cube");
+    const dialogForm = document.createElement('form');
+    dialogForm.classList.add('cityDialog__cityCardForm');
+    dialogForm.id = `cityCard${cityId}`;
 
-        cube.disabled = false;
-        cube.style.border = '1px solid green';
+    // Prevent form submission
+    dialogForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+    });
 
-        // Resolve the Promise when the player drops the cube (e.g., on a button click event)
-        cube.addEventListener('click', () => {
-          cube.disabled = true;
-          cube.style.border = 'none';
-          resolve(void 0);
-        });
+    const btnClose = document.createElement('button');
+    btnClose.classList.add('closeCityDialog');
+    btnClose.innerHTML = 'X';
+    btnClose.addEventListener('click', () => {
+      dialog.close();
+    });
+    dialogForm.appendChild(btnClose);
+
+    const cityName = document.createElement('h1');
+    cityName.innerHTML = `${city.cityName}`;
+    dialogForm.appendChild(cityName);
+
+    const cityBuyPrice = document.createElement('h2');
+    cityBuyPrice.innerHTML = `Buy Price: ${city.monetaryValue}`;
+    dialogForm.appendChild(cityBuyPrice);
+
+    const cityRentPrice = document.createElement('h2');
+    cityRentPrice.innerHTML = `Rent Price: ${city.rentValue}`;
+    dialogForm.appendChild(cityRentPrice);
+
+    const owner = document.createElement('h2');
+    owner.innerHTML = `Owner: ${city.cityOwner?.userName || 'No Owner'}`;
+    dialogForm.appendChild(owner);
+
+    if (city.cityOwner) {
+      const payBtn = document.createElement('button');
+      payBtn.classList.add('payBtn');
+      payBtn.innerHTML = `Pay`;
+      payBtn.addEventListener('click', () => {
+        payRent(cityId, playerId);
+        dialog.close();
       });
-    }
-    // Define an async function to iterate over the players and wait for each turn to finish
-    async function iteratePlayers() {
-      while (players.length > 1) {
-        for (const currentPlayer of players) {
-          try {
-            await playPlayerTurn(currentPlayer);
-            if(!currentGame) throw new Error("cant find currentGame");  
-            // Continue with the remaining logic for the player's turn
-            if (currentGame.luckyCube !== 0) {
-             
-              for (let index = 1; index <= currentGame.luckyCube; index++) {
-                playerStep(currentPlayer.playerId);
-              }
-              const newCell = document.getElementById(`player${currentPlayer.playerId}`);
-              if (!newCell) throw new Error("Can't find newCell");
-              const parentCell=newCell.parentNode;
-               if (!parentCell) throw new Error("cant find Cell");
-
-               currentPlayer.cellId = parentCell.id;
-               currentGame.luckyCube = 0;
-
-
-              const cellButton = parentCell.firstChild;
-              if(!cellButton)throw new Error("cant find ceel btn");
-              
-         
-             console.log(cellButton.classList);
-
-             if (cellButton.classList.contains('RovaAlef')) {
-              console.log(`${currentPlayer.playerId} arrived at a city`);}
-            else if (cellButton.classList.contains('RovaBet')) {
-                console.log(`${currentPlayer.playerId} arrived at a city`);}
-            else if (cellButton.classList.contains('RovaGimel')) {
-                  console.log(`${currentPlayer.playerId} arrived at a city`);}
-            else if (cellButton.classList.contains('RovaCity')) {
-                    console.log(`${currentPlayer.playerId} arrived at a city`);}
-            else if (cellButton.classList.contains('RovaYudAlef')) {
-                      console.log(`${currentPlayer.playerId} arrived at a city`);}
-            else if (cellButton.classList.contains('RovaYudBet')) {
-                        console.log(`${currentPlayer.playerId} arrived at a city`);}
-            else if (cellButton.classList.contains('RovaTetVav')) {
-                          console.log(`${currentPlayer.playerId} arrived at a city`);}
-              // Handle city-related logic
-            } else if (cellButton.classList.contains('jail')) {
-              console.log(`${currentPlayer.playerId} arrived at a jail`);
-              // Handle jail-related logic
-            } else if (cellButton.classList.contains('goodS')) {
-              console.log(`${currentPlayer.playerId} arrived at a good surprise`);
-              // Handle good surprise logic
-            } else {
-              console.log(`${currentPlayer.playerId} arrived at a regular cell`);
-              // Handle regular cell logic
-            }
-             
-              
-
-             
-            }
-            
-          } catch (error) {
-            console.error(error);
-          }
-        }
-        players = players.filter((player) => player.status === true);
-      }
+      dialogForm.appendChild(payBtn);
+    } else {
+      const buyBtn = document.createElement('button');
+      buyBtn.classList.add('buyBtn');
+      buyBtn.innerHTML = `Buy`;
+      buyBtn.addEventListener('click', () => {
+        buyCity(cityId, playerId);
+        dialog.close();
+      });
+      dialogForm.appendChild(buyBtn);
     }
 
-    // Call the async function to start the iteration over players
-    iteratePlayers();
+    dialog.appendChild(dialogForm);
+    document.body.appendChild(dialog);
+
+    dialog.showModal();
   } catch (error) {
     console.error(error);
   }

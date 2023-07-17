@@ -56,7 +56,6 @@ const players: Player[] = []
 
 function addHomer() {
     try {
-        // const player =
         const selectedPlayer = new Player("../img/homer.png");
         players.push(selectedPlayer);
         savePlayerToLocalStorage(players)
@@ -82,10 +81,10 @@ function addBart() {
     }
 }
 
-function addLisa() {
+function addMaggie() {
     try {
 
-        const selectedPlayer = new Player("../img/lisa.png");
+        const selectedPlayer = new Player("../img/Maggie.png");
         players.push(selectedPlayer);
         savePlayerToLocalStorage(players)
         console.log(players)

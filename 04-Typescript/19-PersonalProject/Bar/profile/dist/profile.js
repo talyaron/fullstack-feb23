@@ -3,8 +3,7 @@
 var image = getImgsFromLocalStorage();
 var user = getUsersFromLocalStorage();
 var usersImg = getUsersImgFromLocalStorage();
-// console.log(usersArray);
-//Error free.
+//render the new post in 'showPosts'
 function showPosts(HTMLElement, users) {
     try {
         if (!HTMLElement)
@@ -13,7 +12,7 @@ function showPosts(HTMLElement, users) {
             .map(function (user) {
             var postsHtml = user.imagse
                 .map(function (img) {
-                return "\n              <div class=\"userPost\">\n                <div class=\"userPost__name\">\n                  <img src=\"" + user.imageProfile + "\">\n                  <h3>" + user.name + "</h3>\n                </div>\n                <div class=\"userPost__img\">\n                  <img src=\"" + img.image + "\">\n                </div>\n                <div class=\"userPost__buttons\">\n                <button class=\"deleteBtn\" onclick=\"handleDeletePost('" + img.id + "')\">Delete</button>\n                <button class=\"editBtn\" onclick=\"handleEditPost('" + img.id + "')\">Edit</button>\n              </div>\n              </div>";
+                return "\n              <div class=\"userPost\">\n                <div class=\"userPost__name\">\n                  <img src=\"" + user.imageProfile + "\">\n                  <h3>" + user.name + "</h3>\n                </div>\n                <div class=\"userPost__img\">\n                  <img src=\"" + img.image + "\">\n                </div>\n                <div class=\"userPost__buttons\">\n                <button class=\"userPost__buttons__deleteBtn\" onclick=\"handleDeletePost('" + img.id + "')\">Delete</button>\n                \n                  <div class=\"userPost__buttons__editBtn\">\n                    <input type=\"text\" id=\"imageURL_" + user.id + "_" + img.id + "\" value=\"" + img.image + "\">\n                    <button onclick=\"handleSetEditPost(event, '" + user.id + "', '" + img.id + "')\">Save</button>\n                  </div>\n\n                </div>\n               </div>";
             })
                 .join('');
             return postsHtml;
@@ -26,9 +25,7 @@ function showPosts(HTMLElement, users) {
     }
 }
 showPosts(document.querySelector('#posts'), usersArray);
-//view - show the user profile.
-//creat header (working)
-//Error free.
+//render the header.
 function showHeader(HTMLElement, user) {
     try {
         if (!HTMLElement)
@@ -37,7 +34,6 @@ function showHeader(HTMLElement, user) {
             return "\n      <div class=\"header\">\n        <div class=\"header__user\">\n        <div class=\"header__user--image\">\n          <img src=\"" + user.imageProfile + "\">\n        </div>\n          <h3>" + user.name + "</h3>\n        </div>\n      </div>";
         }).join('');
         HTMLElement.innerHTML = html;
-        // saveUserToLocalStorage(usersArray);
         saveUsersImgToLocalStorage(usersImgArray);
     }
     catch (error) {
@@ -64,24 +60,22 @@ function handleDeletePost(imageId) {
         console.error(error);
     }
 }
-// //edit post.
 //edit post.
-function handleEditPost(imageId) {
+function handleSetEditPost(ev, userId, imageId) {
     try {
-        var user_2 = usersArray.find(function (user) { return user.imagse.some(function (img) { return img.id === imageId; }); });
+        ev.preventDefault();
+        var imageUrl = ev.target.previousElementSibling.value;
+        var user_2 = usersArray.find(function (user) { return user.id === userId; });
         if (!user_2)
-            throw new Error('User or image not found');
+            throw new Error('User not found');
         var image_1 = user_2.imagse.find(function (img) { return img.id === imageId; });
         if (!image_1)
             throw new Error('Image not found');
-        var newImageURL = prompt('Enter new image URL:');
-        if (newImageURL) {
-            image_1.image = newImageURL;
-            saveImgToLocalStorage(imagesArray);
-            saveUserToLocalStorage(usersArray);
-            saveUsersImgToLocalStorage(usersImgArray);
-            showPosts(document.querySelector('#posts'), usersArray);
-        }
+        image_1.image = imageUrl;
+        saveImgToLocalStorage(imagesArray);
+        saveUserToLocalStorage(usersArray);
+        saveUsersImgToLocalStorage(usersImgArray);
+        showPosts(document.querySelector('#posts'), usersArray);
     }
     catch (error) {
         console.error(error);
