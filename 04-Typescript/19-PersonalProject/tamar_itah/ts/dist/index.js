@@ -165,14 +165,14 @@ function renderPlay() {
     //randomized words
     var randomWardsToDisplay = randomWord(randomWords);
     //display all words in random order
-    var htmlWordsToSelect = randomWardsToDisplay.map(function (word) { return "<div class=\"card\">" + word.heWord + "</div>"; }).join(' ');
-    var htmlWordInEnglish = "<div class=\"card\">" + firstWord.enWord + "</div>";
+    var htmlWordsToSelect = randomWardsToDisplay.map(function (word) { return "<div class=\"chose card c" + numOfCard() + "\">" + word.heWord + "</div>"; }).join(' ');
+    var htmlWordInEnglish = "<div class=\"card c1\" >" + firstWord.enWord + "</div>";
     htmlroot.innerHTML = htmlWordsToSelect + "<br>" + htmlWordInEnglish;
 }
 //finish the game
 function renderFinish() {
 }
-//contrilers
+//-------------------------------------contrilers--------------------
 //make the random select words
 function randomWord(words) {
     var randomWordArr = [];
@@ -186,3 +186,15 @@ function randomWord(words) {
     console.log(randomWordArr);
     return randomWordArr;
 }
+var numberOfCard = 1;
+function numOfCard() {
+    try {
+        numberOfCard++;
+        return numberOfCard;
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+//eveant lisiner to mouse click -> to chose the right ansear
+var c = document.querySelector('.chose');

@@ -1,16 +1,15 @@
 // 1) 1 entity, CRUD, make it betfull with CSS.
 // 2) 2 eneties ,with joins, CRUD, two pages that share the model.
 // # Points
-// 10 good BEM model
-// 10 beutifull and accurate design
-// 10 reponsive
-// 10 clear code
-// 10 clear structure.
-// 20 using MVC
-// 10 trycatch with good exceptions
-// 10 error free
+// 10 good BEM model - v
+// 10 beutifull and accurate design - v
+// 10 reponsive - v
+// 10 clear code - v
+// 10 clear structure. -
+// 20 using MVC - v
+// 10 trycatch with good exceptions -
+// 10 error free - v
 //
-//MVC - Model View Controller
 //class - user, image.
 class Img {
     id: string;
@@ -19,8 +18,6 @@ class Img {
     }
 }
 const imagesArray: Img[] = getImgsFromLocalStorage();
-// imagesArray.push();
-// console.log(imagesArray);
 
 class User {
     id: string;
@@ -31,8 +28,10 @@ class User {
 const usersArray: User[] = getUsersFromLocalStorage();
 if (usersArray.length === 0) {
     const bar = new User('Bar', 'https://pixlr.com/images/index/remove-bg.webp', []);
-    const netanel = new User('Netanel', 'https://photoscissors.com/images/samples/3-before.jpg', []);
-    usersArray.push(bar, netanel);
+    const netanel = new User('Netanel', 'https://burst.shopify.com/photos/person-holds-a-book-over-a-stack-and-turns-the-page/download', []);
+    const shir = new User('Shir', 'https://photoscissors.com/images/samples/3-before.jpg', []);
+    const ahava = new User('Ahava', 'https://imgv3.fotor.com/images/cover-photo-image/a-beautiful-girl-with-gray-hair-and-lucxy-neckless-generated-by-Fotor-AI.jpg', []);
+    usersArray.push(bar, netanel, shir, ahava);
 }
 
 //creat class how join the user to his imagse.
@@ -46,7 +45,9 @@ const usersImgArray: UsersImg[] = getUsersImgFromLocalStorage();
 if (usersImgArray.length === 0) {
     const barImg = new UsersImg([usersArray[0]]);
     const netanelImg = new UsersImg([usersArray[1]]);
-    usersImgArray.push(barImg, netanelImg);
+    const shirImg = new UsersImg([usersArray[2]]);
+    const ahavaImg = new UsersImg([usersArray[3]]);
+    usersImgArray.push(barImg, netanelImg, shirImg, ahavaImg);
 };
 
 
@@ -94,7 +95,7 @@ function getUsersFromLocalStorage(): User[] {
     }
 }
 
-
+//usersImg local storage
 function saveUsersImgToLocalStorage(usersImg: UsersImg[]) {
     localStorage.setItem('usersImgArray', JSON.stringify(usersImg));
 }

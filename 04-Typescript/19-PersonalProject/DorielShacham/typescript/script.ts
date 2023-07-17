@@ -47,13 +47,13 @@ class Player {
     if (pressKey == "A" && this.x > 0) {
       this.x -= 20;
     }
-    if (pressKey == "D" && this.x < 280) {
+    if (pressKey == "D" && this.x < 460) {
       this.x += 20;
     }
     if (pressKey == "W" && this.y > 0) {
       this.y -= 20;
     }
-    if (pressKey == "S" && this.y < 480) {
+    if (pressKey == "S" && this.y < 460) {
       this.y += 20;
     }
     this.update();
@@ -96,12 +96,14 @@ function runGame() {
     if (gameOver) {
       endingMessage();
     } else {
+      displayScoreboard();
       requestAnimationFrame(runGame);
     }
   } catch (error) {
     console.error(error);
   }
 }
+
 playerInstance = new Player();
 addMovementToPlayer(playerInstance);
 runGame();

@@ -11,7 +11,16 @@ body {
         display: flex;
         z-index: -1;
         background: url(//sugarcakes4u.co.il/wp-content/uploads/2018/03/%D7%A4%D7%A8%D7%A7%D7%98-%D7%9C%D7%91%D7%9F-1.jpg) no-repeat center center/ cover;
+        position: relative;
 
+        &__ball {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: red;
+            border-radius: 50%;
+            border: 1px black solid;
+        }
 
         // @keyframes ball {
         //     10% {
@@ -69,7 +78,7 @@ body {
             background: url(rope.png) no-repeat center center/ cover;
             width: 50px;
             height: 70px;
-            animation: rope 1s infinite;
+            animation: rope 0.5s infinite;
             position: absolute;
             // transition: opacity 2s;
         }

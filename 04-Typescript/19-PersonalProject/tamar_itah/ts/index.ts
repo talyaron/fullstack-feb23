@@ -201,11 +201,8 @@ function renderPlay() {
 
 
     //view + data binding
-
     //render the cards in random order
-
     //create a function whcih return the cards in random order
-
     //fisrst step: create an array with the cards
     //second step: get 3 random cards from the array
     //third step: selct one random card from the 3 and put it in the first place
@@ -215,15 +212,14 @@ function renderPlay() {
 
     const randomWords = randomWord(words);
 
-
     const firstWord = randomWords[0],
 
     //randomized words
     const randomWardsToDisplay = randomWord(randomWords)
 
     //display all words in random order
-    const htmlWordsToSelect = randomWardsToDisplay.map(word => `<div class="card">${word.heWord}</div>`).join(' ')
-    const htmlWordInEnglish = `<div class="card">${firstWord.enWord}</div>`
+    const htmlWordsToSelect = randomWardsToDisplay.map(word => `<div class="chose card c${numOfCard()}">${word.heWord}</div>`).join(' ')
+    const htmlWordInEnglish = `<div class="card c1" >${firstWord.enWord}</div>`
 
     htmlroot.innerHTML = htmlWordsToSelect + "<br>" + htmlWordInEnglish
 }
@@ -233,7 +229,8 @@ function renderFinish() {
 
 }
 
-//contrilers
+
+//-------------------------------------contrilers--------------------
 //make the random select words
 function randomWord(words: Word[]) {
 
@@ -250,6 +247,18 @@ function randomWord(words: Word[]) {
     }
     console.log(randomWordArr);
 
-
     return randomWordArr;
 }
+
+let numberOfCard: number = 1
+function numOfCard(): number | undefined {
+    try {
+        numberOfCard++
+        return numberOfCard
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+//eveant lisiner to mouse click -> to chose the right ansear
+const c = document.querySelector('.chose')

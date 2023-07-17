@@ -174,17 +174,9 @@ function handleSetEditPatient(ev: any) {
     }
 }
 
-
-
-
-
-
-
-
 class Vaccine {
     id: string;
     constructor(public vacName: string, public price: number) {
-        // this.id = uid();
     }
 }
 
@@ -203,7 +195,6 @@ const Vaccines: Vaccine[] = [
 class Treatment {
     id: string;
     constructor(public treatName: string, public price: number) {
-        // this.id = uid();
     }
 }
 
@@ -219,7 +210,6 @@ const treatments: Treatment[] = [
 class Supply {
     id: string;
     constructor(public supName: string, public price: number) {
-        // this.id = uid();
     }
 }
 
@@ -229,3 +219,17 @@ const supplies: Supply[] = [
     new Supply("Ampoule Anti-flea & Tick", 47),
     new Supply("seringe", 10)
 ]
+
+//join classes
+
+class PatientVaccine {
+    constructor(public patient: Patient, public vacName: Vaccine, public price: Vaccine) {
+
+    }
+}
+
+class PatientTeatment {
+    constructor(public patient: Patient, public treatName: Treatment, public price: Treatment) {
+        
+    }
+}

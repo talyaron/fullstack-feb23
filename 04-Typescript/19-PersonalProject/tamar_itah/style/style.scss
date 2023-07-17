@@ -15,7 +15,7 @@ body{
 
 .cards{
     display: inline-grid;
-    gap: 20px 100px;
+    gap: 30px 70px;
     grid-template-areas:
      '. c1 .'
      'c2 c3 c4'
@@ -28,6 +28,7 @@ body{
     border-radius: 15px;
     font-size: 20px;
     text-align: center;
+    background-color: rgb(230, 200, 156);
 }
 
 .c1{
@@ -37,17 +38,15 @@ body{
 
 .c2{
     grid-area: c2;
-    background-color: rgb(230, 200, 156);
+
 }
 
 .c3{
     grid-area: c3;
-    background-color: rgb(230, 200, 156);
 }
 
 .c4{
     grid-area: c4;
-    background-color: rgb(230, 200, 156);
 }
 
 .btnF{
