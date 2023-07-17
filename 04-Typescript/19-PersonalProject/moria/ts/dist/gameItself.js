@@ -25,7 +25,6 @@ function renderPlayers(player) {
         console.error(error);
     }
 }
-// const ball = document.querySelector("canvas") as HTMLCanvasElement;
 var bart = document.querySelector(".bart");
 var shoot = document.querySelector("#container__shoot");
 document.addEventListener('keydown', function (event) {
@@ -51,20 +50,6 @@ function handleKeyUp(event) {
         shoot.classList.remove('show');
     }
 }
-// setInterval(updatePosition, 10);
-// function updatePosition() {
-//     const playerLocation = bart.getBoundingClientRect();
-//     const playerLocationTop = playerLocation.top;
-//     const playerLocationLeft = playerLocation.left;
-//     shoot.style.top = `${playerLocationTop}px`;
-//     shoot.style.left = `${playerLocationLeft}px`;
-// }
-// קביעת אלמנטים DIV
-// עדכון מיקום ה-DIV היעד לפי מיקום ה-DIV המקור
-// קביעת אלמנטים DIV
-// const sourceDiv = document.getElementById('source-div');
-// const shoot = document.getElementById('target-div');
-// בדיקת מיקום ה-DIV המקור ועדכון מיקום ה-DIV היעד בכל שינוי
 function updateTargetPosition() {
     var sourceRect = bart.getBoundingClientRect();
     var targetRect = shoot.getBoundingClientRect();
@@ -75,52 +60,8 @@ function updateTargetPosition() {
 }
 // בדיקת מיקום ה-DIV המקור ועדכון מיקום ה-DIV היעד בכל שינוי
 setInterval(updateTargetPosition, 100);
-// const ball = document.querySelector(`#container__ball`) as HTMLElement;
-// const container = document.querySelector(`#container`) as HTMLElement;
-// let ballX = 0;
-// let ballY = 0;
-// let ballSpeedX = 5;
-// let ballSpeedY = 5;
-// let shouldStop = false;
-// function moveBall() {
-//     ballX += ballSpeedX;
-//     ballY += ballSpeedY;
-//     const containerWidth = container.offsetWidth;
-//     const containerHeight = container.offsetHeight;
-//     const ballSize = ball.offsetWidth;
-//     if (ballX + ballSize >= containerWidth || ballX <= 0) {
-//         ballSpeedX *= -1;
-//     }
-//     if (ballY + ballSize >= containerHeight || ballY <= 0) {
-//         ballSpeedY *= -1;
-//     }
-//     ball.style.left = ballX + 'px';
-//     ball.style.top = ballY + 'px';
-//     requestAnimationFrame(moveBall);
-// }
-// moveBall();
-// setInterval(up, 10);
-// function up() {
-//     const playerLocation = bart.getBoundingClientRect();
-//     const ballLocation = ball.getBoundingClientRect();
-//     if (
-//         playerLocation.right > ballLocation.left &&
-//         playerLocation.left < ballLocation.right &&
-//         playerLocation.bottom > ballLocation.top &&
-//         playerLocation.top < ballLocation.bottom
-//     ) {
-//         const life = document.querySelector('#container__life') as HTMLElement;
-//         const images = life.querySelectorAll('.b');
-//         if (images.length > 0) {
-//             const imageToRemove = images[0];
-//             life.removeChild(imageToRemove);
-//         }
-//         console.log("l")
-//     }
-// }
-var container = document.querySelector("#container");
+var container = document.querySelector('#container');
 var ball = document.querySelector('#container__ball');
-var player = document.querySelector('#player');
 var life = document.querySelector('#container__life');
 var images = life.querySelectorAll('.b');
 var collisionCount = 0;
@@ -152,7 +93,7 @@ function moveBall() {
 moveBall();
 function handleCollision() {
     if (collisionCount >= 3) {
-        console.log("המשחק נגמר");
+        // console.log("המשחק נגמר");
         gameEnded = true;
         return;
     }
@@ -180,8 +121,14 @@ function handleCollision() {
             }, 1000);
         }
         else if (collisionCount === 3) {
-            console.log("המשחק נגמר");
             gameEnded = true;
+            life.classList.add("none");
+            bart.classList.add("none");
+            shoot.classList.add("none");
+            ball.classList.add("none");
+            var gameOver = document.querySelector('#container__gameOver');
+            var html = " <h1>game over</h1> <br>  <a href=\"/levels.html\">back</a>";
+            gameOver.innerHTML = html;
         }
     }
 }
@@ -198,6 +145,21 @@ function u() {
         ropeLocation.left < ballLocation.right &&
         ropeLocation.bottom > ballLocation.top &&
         ropeLocation.top < ballLocation.bottom) {
-        console.log('התנגשות בין div1 ל-div2');
+        ball.style.display = 'none';
+        // יצירת שני כדורים קטנים
+        var smallBall1 = document.createElement('div');
+        smallBall1.className = 'small-ball';
+        smallBall1.style.width = '50px';
+        smallBall1.style.height = '50px';
+        smallBall1.style.borderRadius = '50%';
+        smallBall1.style.background = 'red';
+        var smallBall2 = document.createElement('div');
+        smallBall2.className = 'small-ball';
+        smallBall2.style.width = '50px';
+        smallBall2.style.height = '50px';
+        smallBall2.style.borderRadius = '50%';
+        smallBall2.style.background = 'blue';
+        container.appendChild(smallBall1);
+        container.appendChild(smallBall2);
     }
 }

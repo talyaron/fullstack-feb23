@@ -1,0 +1,114 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>profit</title>
+    <link rel="stylesheet" href="../../css/dist/homepage.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="../home-page/dist/homepage.js"defer></script>
+    <script src="../../ts/dist/dashboard.js" defer></script>
+    
+  </head>
+
+<body>
+    <div class="allheader"> 
+        <div dir="rtl" class="header">
+          <img class="logo" src="../../css/dist/banky-low-resolution-logo-white-on-black-background-removebg-preview.png">
+          <img class="menu-button" src="../../css/dist/more.svg" active="false" onclick="toggleMenu()">
+           <nav class="nav" id="nav">
+            
+            <a href="../home-page/homepage.html">עמוד הבית</a>
+             <a href="../home/Income.html">הוצאות</a>
+             <a href="../home/expenses.html">הכנסות</a>
+             <a href="../home/profit.html">הרווח שלי</a>
+             <a href="../home-page/homepage.html#about-us">קצת עלינו</a>
+             <a href="../home-page/homepage.html#contact">יצירת קשר</a>
+          
+          </nav>
+          
+          <a href="../register/register.html">
+            <img class="user" src="../../css/dist/user.svg" alt="">
+          </a>
+         
+      
+         
+        </div>
+      </div>
+      <div class="popup" id="popup">
+      </div>
+  
+
+  <h1>מעקב אחר ההכנסות שלך בעמוד זה ></h1>
+    
+  <div id="revenues">
+      <h2>הכנס את ההכנסות שלך כאן</h2>
+      
+      <form id="incomeForm">
+          <label for="שכר-פנסיה">שכר מעבודה או קצבת פנסיה:</label>
+          <select id="salary-pension-frequency" name="salary-pension-frequency">
+              <option value="חודשי">חודשי</option>
+              <option value="אחת לחודשיים">אחת לחודשיים</option>
+              <option value="שנתי">שנתי</option>
+          </select>
+          <input type="number" id="salary-pension-amount" name="salary-pension-amount" placeholder="הכנס סכום">
+          <br><br>
+          
+          <label for="gov-support">קצבאות ותמיכות מהממשלה:</label>
+          <select id="gov-support-frequency" name="gov-support-frequency">
+              <option value="חודשי">חודשי</option>
+              <option value="אחת לחודשיים">אחת לחודשיים</option>
+              <option value="שנתי">שנתי</option>
+          </select>
+          <input type="number" id="gov-support-amount" name="gov-support-amount" placeholder="הכנס סכום">
+          <br><br>
+          
+          <label for="rental-income">הכנסה משכירות:</label>
+          <select id="rental-income-frequency" name="rental-income-frequency">
+              <option value="חודשי">חודשי</option>
+              <option value="אחת לחודשיים">אחת לחודשיים</option>
+              <option value="שנתי">שנתי</option>
+          </select>
+          <input type="number" id="rental-income-amount" name="rental-income-amount" placeholder="הכנס סכום">
+          <br><br>
+          
+          <label for="other-support">תמיכה נוספת:</label>
+          <select id="other-support-frequency" name="other-support-frequency">
+              <option value="חודשי">חודשי</option>
+              <option value="אחת לחודשיים">אחת לחודשיים</option>
+              <option value="שנתי">שנתי</option>
+          </select>
+          <input type="number" id="other-support-amount" name="other-support-amount" placeholder="הכנס סכום">
+          <br><br>
+          
+          <label for="gifts-bonuses">מתנות ובנוסים</label>
+          <select id="gifts-bonuses-frequency" name="gifts-bonuses-frequency">
+              <option value="חודשי">חודשי</option>
+              <option value="אחת לחודשיים">אחת לחודשיים</option>
+              <option value="שנתי">שנתי</option>
+          </select>
+          <input type="number" id="gifts-bonuses-amount" name="gifts-bonuses-amount" placeholder="הכנס סכום">
+          <br><br>
+          
+          <label for="other-income">Did we forget something? Income Name:</label>
+          <input type="text" id="other-income-name" name="other-income-name" placeholder="Enter income name">
+          <select id="other-income-frequency" name="other-income-frequency">
+              <option value="חודשי">חודשי</option>
+              <option value="אחת לחודשיים">אחת לחודשיים</option>
+              <option value="שנתי">שנתי</option>
+          </select>
+          <input type="number" id="other-income-amount" name="other-income-amount" placeholder="הכנס סכום">
+          <br><br>
+          
+          <input type="submit" id="submitBtn" value="Submit">
+</form>
+</div>
+<div id="result"></div>
+  
+  
+</body>
+</html>

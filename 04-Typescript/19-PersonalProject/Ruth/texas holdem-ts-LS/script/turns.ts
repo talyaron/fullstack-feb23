@@ -1,4 +1,3 @@
-
 let dealerMoney = 0;
 // function turnOrder(players) {
 //   const stage = document.querySelector(".stage") as HTMLDivElement;
@@ -41,23 +40,17 @@ let dealerMoney = 0;
 function getMoveOption(activePlayers: Player[], thisIndex: number) {
   const thisPlayer = activePlayers[thisIndex];
 
-
-  let lastPlyersRiseIndex = activePlayers.findIndex(
-    (p) => p.movesInRound[length - 1] === PlayerMovesOption.call,
-  );
-  if (lastPlyersRiseIndex === -1 || lastPlyersRiseIndex == thisIndex) {
-    return ["rise", "check"];
-  } else {
-    return ["fold", "rise", "call"];
-  }
-
-  for (let i = thisIndex ; i >= 0 ; i--){
-    if(activePlayers[i].movesInRound[length - 1] === PlayerMovesOption.rise){
+  for (var j = thisIndex; j >= 0; j--) {
+    if (activePlayers[j].movesInRound[length - 1] == PlayerMovesOption.rise) {
       return ["fold", "rise", "call"];
     }
-    if (i == 0 ) i= activePlayers.length
-    if (i== thisIndex) return ["rise", "check"];
   }
+  for (var i = activePlayers.length - 1; i > thisIndex; i--) {
+    if (activePlayers[i].movesInRound[length - 1] == PlayerMovesOption.rise) {
+      return ["fold", "rise", "call"];
+    }
+  }
+  return ["rise", "check"];
 }
 
 function getPointOfOptionalSet(thisPlayer: Player) {
@@ -73,7 +66,6 @@ function getPointOfOptionalSet(thisPlayer: Player) {
     checkStraightFlush(thisPCards)!,
     checkRoyalFlush(thisPCards)!,
   ];
-  console.log(setsResult);
 
   let maxPointsSet: number = 0;
   setsResult.forEach((res, i) => {
@@ -98,7 +90,7 @@ function getLastRisePLayer(players: Player[], currentPlayerIndex: number) {
   const round = currentPlayer.movesInRound.length;
   let playerRiseLastInThisRound;
   players.forEach((p) => {
-    if (p.movesInRound[round -1] == PlayerMovesOption.rise) {
+    if (p.movesInRound[round - 1] == PlayerMovesOption.rise) {
       playerRiseLastInThisRound = p;
     }
   });
@@ -113,7 +105,6 @@ function chooseMove(
   player: Player,
 ) {
   const movesOptionsLength = movesOptions.length;
-
   if (movesOptionsLength === 2) {
     //check or rise
 
@@ -186,40 +177,36 @@ function getSizeOfBet(pointOfOptionalSet: number, playerChips: number) {
   return randomNum;
 }
 
-// function realPlayerTurn(players:Player[]){
-//  let moveOption  = getMoveOption(players, 0)
-// //להפעיל כפתורים בהתאמה עם איוונטים
-
-// }
-
 let counterTurn = 0;
 let indexInArray = 0;
-function turnOrder(activePlayers: Player[]) {/////----------------------------הוא מדלג על השחקן השני קבוע!!------------------------------------------------------
+function turnOrder(activePlayers: Player[]) {
+  /////----------------------------הוא מדלג על השחקן השני קבוע!!------------------------------------------------------
   let players = activePlayers.filter((p) => p.isActive === true);
-  players.forEach(p=> {console.log(p.movesInRound);
-  })
-  
+  console.log(players);
+  console.log(indexInArray);
+
   if (players[indexInArray].id == "myPlayer") {
     indexInArray++;
     counterTurn++;
-    myTurn(players)
-    
-    
+    myTurn(players);
   } else {
     indexInArray++;
     counterTurn++;
-    document.querySelectorAll("button").forEach((button) => {button.disabled = true})
 
-    if (counterTurn < 4 || indexInArray < players.length) {
+    document.querySelectorAll("button").forEach((button) => {
+      button.disabled = true;
+    });
+
+    if (counterTurn < 5 && indexInArray < players.length) {
       players[indexInArray].doingTurn(players, indexInArray);
-      
       if (players[indexInArray].lastBet > 0) {
         counterTurn = 0;
       }
-
-    } else {
-      addCardToStage()
+    } else if (counterTurn < 5) {
+      addCardToStage();
       counterTurn = 0;
+      indexInArray = 0;
+    } else {
       indexInArray = 0;
     }
   }
@@ -227,19 +214,14 @@ function turnOrder(activePlayers: Player[]) {/////----------------------------ה
 
 turnOrder(players);
 
-
 function myTurn(players: Player[]) {
   const myPlayer = players.find((p) => p.id == "myPlayer");
   const myPlayerIndex = players.findIndex((p) => p.id == "myPlayer");
+
   const myOption = getMoveOption(players, myPlayerIndex);
 
-console.log(`${myPlayer?.userName} is doing somethig......`);
-playTheButton(myOption)
+  console.log(`${myPlayer?.userName} is doing somethig......`);
+  console.log(myOption);
 
+  playTheButton(myOption!);
 }
-
-
-
-
-
-
