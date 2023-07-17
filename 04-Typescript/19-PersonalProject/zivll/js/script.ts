@@ -139,24 +139,22 @@ function renderExpencesTable(expences: Expence[]) {
               />
             </svg>
           </th>
-        </tr>
-        <tr id="${category}">
-`
+        </tr><tbody id="${category}"></tbody>`
       )
       .join(` `);
     rootExpencesTable.innerHTML = `<table>${htmlHeadersTable}</table>`;
-    const htmlBodyTable = expences
-      .map(
-        (expence) =>
-          `<td>${expence.name}</td><td>${expence.amount}&#8362;</td></tr>`
-      )
-      .join(` `);
     userCategories.forEach((category) => {
       const html = document.querySelector(`#${category}`);
+      const htmlCreateTr = document.createElement(`tr`);
+      console.log(htmlCreateTr);
+
       if (!html) throw new Error(`html not found`);
-      html.innerHTML = `${htmlBodyTable}`;
+      expences.forEach((expence) => {
+        if (expence.category === category) {
+          html.innerHTML += `<tr class="tbody"><td>${expence.name}</td><td>${expence.amount}&#8362;</td></tr>`;
+        }
+      });
     });
-    // rootExpencesTable.innerHTML = `<table>${htmlBodyTable}</table>`;
   } catch (error) {
     console.error(error);
   }
@@ -279,6 +277,32 @@ loadPage();
 
 // revoke expence calculator when loading page
 renderExpenceCalculator();
-
 // revoke expences table (if such) when loading or refreshing page
 renderExpencesTable(expences);
+
+const accordion = document.querySelectorAll(`.thead`);
+
+accordion.forEach((head) => {
+  head.addEventListener(`click`, (ev) => {
+    head.classList.toggle(`active`);
+    console.dir(head);
+    const nextElementSibling = head.parentElement?.nextElementSibling;
+    if (!nextElementSibling) throw new Error(`nextElementSibling not found`);
+    if (nextElementSibling.classList.contains(`off`)) {
+      nextElementSibling.classList.remove(`off`);
+    } else {
+      nextElementSibling.classList.add(`off`);
+      debugger;
+      const svg = head.childNodes[1];
+      const newSvg = document.createElement(`svg`);
+      const newSvgString =
+        document.createTextNode(`<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6" />
+    </svg>`);
+      newSvg.appendChild(newSvgString);
+      svg.replaceChild(newSvg, svg.childNodes[1]);
+
+      // console.dir(head.childNodes[1].childNodes[1]);
+    }
+  });
+});
