@@ -30,8 +30,9 @@ var Card = /** @class */ (function () {
 }());
 //---------------------------Player--------------------
 var Player = /** @class */ (function () {
-    function Player(userName, imgSrc, chips, isActive, isTurn, pCards, allCards, movesInRound, lastBet, roundNumber, turnNumber) {
+    function Player(userName, imgSrc, id, chips, isActive, isTurn, pCards, allCards, movesInRound, lastBet, roundNumber, turnNumber) {
         if (imgSrc === void 0) { imgSrc = ""; }
+        if (id === void 0) { id = createID(); }
         if (chips === void 0) { chips = 100000; }
         if (isActive === void 0) { isActive = true; }
         if (isTurn === void 0) { isTurn = false; }
@@ -43,6 +44,7 @@ var Player = /** @class */ (function () {
         if (turnNumber === void 0) { turnNumber = Player.playerCount++; }
         this.userName = userName;
         this.imgSrc = imgSrc;
+        this.id = id;
         this.chips = chips;
         this.isActive = isActive;
         this.isTurn = isTurn;
@@ -72,6 +74,14 @@ var Player = /** @class */ (function () {
             console.error(error);
         }
     };
+    Player.prototype.renderTurn = function () {
+        var divID = this.turnNumber;
+        console.log(divID);
+        var root = document.getElementById("player" + divID + "Panel");
+        console.log(root);
+        var input = this.lastBet > 0 ? this.lastBet.toString() : this.movesInRound[this.movesInRound.length - 1];
+        root.querySelector(".playerPanel__inputChips").innerHTML = " \n  <img src=\"../images/casino-chip.png\" alt=\"\" />\n  <h4>" + input + "</h4>\n  ";
+    };
     Player.prototype.addCardToPlayer = function (card) {
         this.allCards.push(card);
     };
@@ -88,14 +98,16 @@ var Player = /** @class */ (function () {
             this.lastBet = 0;
         }
         localStorage.setItem("players", JSON.stringify(players));
-        //התור יעבור לבא אחריו
+        this.renderTurn();
+        turnOrder(players);
     };
     Player.prototype.foldMove = function (players) {
         this.movesInRound.push(PlayerMovesOption.fold);
         this.lastBet = 0;
         this.isActive = false;
         localStorage.setItem("players", JSON.stringify(players));
-        //התור יעבור לבא אחריו
+        this.renderTurn();
+        turnOrder(players);
     };
     Player.prototype.callMove = function (players, currentPlayerIndex) {
         this.movesInRound.push(PlayerMovesOption.call);
@@ -105,16 +117,18 @@ var Player = /** @class */ (function () {
         this.chips = this.chips - betToCall;
         localStorage.setItem("players", JSON.stringify(players));
         localStorage.setItem("dealerMoney", JSON.stringify(dealerMoney));
+        this.renderTurn();
+        turnOrder(players);
     };
-    Player.prototype.riseMove = function (players, currentPlayerIndex, sizeOfBet) {
-        var currentPlayer = players[currentPlayerIndex];
+    Player.prototype.riseMove = function (players, sizeOfBet) {
         this.movesInRound.push(PlayerMovesOption.rise);
         this.lastBet = sizeOfBet;
         dealerMoney += sizeOfBet;
         this.chips -= sizeOfBet;
         localStorage.setItem("players", JSON.stringify(players));
         localStorage.setItem("dealerMoney", JSON.stringify(dealerMoney));
-        //התור יעבור לבא אחריו
+        this.renderTurn();
+        turnOrder(players);
     };
     Player.playerCount = 0;
     return Player;
