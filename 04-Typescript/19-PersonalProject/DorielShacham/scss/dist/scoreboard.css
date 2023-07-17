@@ -5,16 +5,16 @@ html {
 html #scoreboard {
   position: relative;
   display: flex;
+  flex-wrap: wrap;
   z-index: -1;
-  width: auto;
-  height: auto;
+  width: 400px;
+  height: 400px;
   justify-content: center;
   align-items: center;
 }
 html #scoreboard li {
   font-size: larger;
   font-weight: bolder;
-  text-decoration: double;
   list-style: none;
   justify-content: center;
   padding: 10px;

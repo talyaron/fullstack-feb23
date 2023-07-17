@@ -1,39 +1,3 @@
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [op[0] & 2, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
 //Active Game ts .......
 function loadBoardsAGpage() {
     try {
@@ -717,253 +681,174 @@ function renderIBeginCell() {
     beginDiv.classList.add('begin');
     beginCell === null || beginCell === void 0 ? void 0 : beginCell.appendChild(beginDiv);
 }
-function play() {
-    try {
-        if (!gamesBoardsAGpage)
-            throw new Error("Can't find gamesBoardsAGpage");
-        var currentGame_4 = gamesBoardsAGpage.find(function (board) { return board.gameStatus === true; });
-        if (!currentGame_4)
-            throw new Error("Can't find currentGame");
-        var players_1 = currentGame_4.players.filter(function (player) { return player.status === true; });
-        // Define a function to wrap the player's turn logic in a Promise
-        function playPlayerTurn(player) {
-            return new Promise(function (resolve, reject) {
-                console.log(player.playerId);
-                var cube = document.getElementById('cubeButton');
-                if (!cube)
-                    throw new Error("Can't find cube");
-                cube.disabled = false;
-                cube.style.border = '1px solid green';
-                // Resolve the Promise when the player drops the cube (e.g., on a button click event)
-                cube.addEventListener('click', function () {
-                    cube.disabled = true;
-                    cube.style.border = 'none';
-                    resolve(void 0);
-                });
-            });
-        }
-        // Define an async function to iterate over the players and wait for each turn to finish
-        function iteratePlayers() {
-            return __awaiter(this, void 0, void 0, function () {
-                var _i, players_2, currentPlayer, index, newCell, parentCell, cellButton, cityId, cityId, cityId, cityId, cityId, cityId, cityId, error_1;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0:
-                            if (!(players_1.length > 1)) return [3 /*break*/, 7];
-                            _i = 0, players_2 = players_1;
-                            _a.label = 1;
-                        case 1:
-                            if (!(_i < players_2.length)) return [3 /*break*/, 6];
-                            currentPlayer = players_2[_i];
-                            _a.label = 2;
-                        case 2:
-                            _a.trys.push([2, 4, , 5]);
-                            return [4 /*yield*/, playPlayerTurn(currentPlayer)];
-                        case 3:
-                            _a.sent();
-                            if (!currentGame_4)
-                                throw new Error("cant find currentGame");
-                            // Continue with the remaining logic for the player's turn
-                            if (currentGame_4.luckyCube !== 0) {
-                                for (index = 1; index <= currentGame_4.luckyCube; index++) {
-                                    playerStep(currentPlayer.playerId);
-                                }
-                                newCell = document.getElementById("player" + currentPlayer.playerId);
-                                if (!newCell)
-                                    throw new Error("Can't find newCell");
-                                parentCell = newCell.parentNode;
-                                if (!parentCell)
-                                    throw new Error("cant find Cell");
-                                currentPlayer.cellId = parentCell.id;
-                                currentGame_4.luckyCube = 0;
-                                cellButton = parentCell.firstChild;
-                                if (!cellButton)
-                                    throw new Error("cant find ceel btn");
-                                console.log(cellButton.classList);
-                                if (cellButton.classList.contains('RovaAlef')) {
-                                    debugger;
-                                    console.log(currentPlayer.playerId + " arrived at a RovaAlef");
-                                    console.log("" + cellButton.id);
-                                    cityId = Number(cellButton.id.toString().match(/\d+/));
-                                    rendercityCardRentOtBuy(cityId, currentPlayer.playerId);
-                                }
-                                else if (cellButton.classList.contains('RovaBet')) {
-                                    console.log(currentPlayer.playerId + " arrived at a RovaBet");
-                                    console.log("" + cellButton.id);
-                                    cityId = Number(cellButton.id.toString().match(/\d+/));
-                                    rendercityCardRentOtBuy(cityId, currentPlayer.playerId);
-                                }
-                                else if (cellButton.classList.contains('RovaGimel')) {
-                                    console.log(currentPlayer.playerId + " arrived at a RovaGimel");
-                                    console.log("" + cellButton.id);
-                                    cityId = Number(cellButton.id.toString().match(/\d+/));
-                                    rendercityCardRentOtBuy(cityId, currentPlayer.playerId);
-                                }
-                                else if (cellButton.classList.contains('RovaCITY')) {
-                                    console.log(currentPlayer.playerId + " arrived at a RovaCITY");
-                                    console.log("" + cellButton.id);
-                                    cityId = Number(cellButton.id.toString().match(/\d+/));
-                                    rendercityCardRentOtBuy(cityId, currentPlayer.playerId);
-                                }
-                                else if (cellButton.classList.contains('RovaYudAlef')) {
-                                    console.log(currentPlayer.playerId + " arrived at a RovaYudAlef");
-                                    console.log("" + cellButton.id);
-                                    cityId = Number(cellButton.id.toString().match(/\d+/));
-                                    rendercityCardRentOtBuy(cityId, currentPlayer.playerId);
-                                }
-                                else if (cellButton.classList.contains('RovaYudBet')) {
-                                    console.log(currentPlayer.playerId + " arrived at a RovaYudBet");
-                                    console.log("" + cellButton.id);
-                                    cityId = Number(cellButton.id.toString().match(/\d+/));
-                                    rendercityCardRentOtBuy(cityId, currentPlayer.playerId);
-                                }
-                                else if (cellButton.classList.contains('RovaTetVav')) {
-                                    console.log(currentPlayer.playerId + " arrived at a RovaTetVav");
-                                    console.log("" + cellButton.id);
-                                    cityId = Number(cellButton.id.toString().match(/\d+/));
-                                    rendercityCardRentOtBuy(cityId, currentPlayer.playerId);
-                                }
-                                // Handle city-related logic
-                                else if (cellButton.classList.contains('jailBtn')) {
-                                    console.log(currentPlayer.playerId + " arrived at a jail");
-                                    // Handle jail-related logic
-                                }
-                                else if (cellButton.classList.contains('goodS')) {
-                                    console.log(currentPlayer.playerId + " arrived at a good surprise");
-                                    // Handle good surprise logic
-                                }
-                                else if (cellButton.classList.contains('BadS')) {
-                                    console.log("" + cellButton.id);
-                                    console.log(currentPlayer.playerId + " arrived at a bad surprise");
-                                }
-                                else {
-                                    debugger;
-                                    console.log(currentPlayer.playerId + " arrived at a regular cell");
-                                    // Handle regular cell logic
-                                }
-                            }
-                            return [3 /*break*/, 5];
-                        case 4:
-                            error_1 = _a.sent();
-                            console.error(error_1);
-                            return [3 /*break*/, 5];
-                        case 5:
-                            _i++;
-                            return [3 /*break*/, 1];
-                        case 6:
-                            players_1 = players_1.filter(function (player) { return player.status === true; });
-                            return [3 /*break*/, 0];
-                        case 7: return [2 /*return*/];
-                    }
-                });
-            });
-        }
-        // Call the async function to start the iteration over players
-        iteratePlayers();
-    }
-    catch (error) {
-        console.error(error);
-    }
+// function play() {
+//   try {
+//     if (!gamesBoardsAGpage) throw new Error("Can't find gamesBoardsAGpage");
+//     const currentGame = gamesBoardsAGpage.find((board) => board.gameStatus === true);
+//     if (!currentGame) throw new Error("Can't find currentGame");
+//     let players = currentGame.players.filter((player) => player.status === true);
+//     // Define a function to wrap the player's turn logic in a Promise
+//     function playPlayerTurn(player) {
+//       return new Promise((resolve, reject) => {
+//         const cube = document.getElementById('cubeButton') as HTMLButtonElement;
+//         if (!cube) throw new Error("Can't find cube");
+//         cube.disabled = false;
+//         cube.style.border = '1px solid green';
+//         // Resolve the Promise when the player drops the cube (e.g., on a button click event)
+//         cube.addEventListener('click', () => {
+//           cube.disabled = true;
+//           cube.style.border = 'none';
+//           // Rest of the turn logic...
+//           if (!currentGame) throw new Error("Can't find currentGame");
+//           // Continue with the remaining logic for the player's turn
+//           if (currentGame.luckyCube !== 0) {
+//             console.log(`Player ${player.playerId} is playing`);
+//             for (let index = 1; index <= currentGame.luckyCube; index++) {
+//               playerStep(player.playerId);
+//             }
+//             const newCell = document.getElementById(`player${player.playerId}`);
+//             if (!newCell) throw new Error("Can't find newCell");
+//             const parentCell = newCell.parentNode as HTMLDivElement;
+//             if (!parentCell) throw new Error("Can't find parentCell");
+//             player.cellId = parentCell.id;
+//             currentGame.luckyCube = 0;
+//             const cellButton = parentCell.firstChild as HTMLButtonElement;
+//             if (!cellButton) throw new Error("Can't find cellButton");
+//             // Check if arrived at a city
+//             if (cellButton.classList.contains('RovaA') || cellButton.classList.contains('RovaBet') || cellButton.classList.contains('RovaGimel') || cellButton.classList.contains('RovaDaled') || cellButton.classList.contains('RovaCITY') || cellButton.classList.contains('RovaTetVav') || cellButton.classList.contains('RovaYudBet') || cellButton.classList.contains('RovaYudAlef')) {
+//               rendercityCardRentOrBuy(Number(cellButton.id.match(/\d+/)), player.playerId);
+//               console.log(player.Pbank);
+//             }
+//           }
+//           resolve(void 0);
+//         });
+//       });
+//     }
+//     // Define an async function to iterate over the players and wait for each turn to finish
+//     async function iteratePlayers() {
+//       while (players.length > 1) {
+//         for (const currentPlayer of players) {
+//           try {
+//             console.log(`Player: ${currentPlayer.playerId}`);
+//             await playPlayerTurn(currentPlayer);
+//           } catch (error) {
+//             console.error(error);
+//           }
+//         }
+//         players = players.filter((player) => player.status === true);
+//       }
+//       if (players.length === 1) {
+//         console.log(`Player ${players[0].playerId} is the winner!`);
+//       } else {
+//         console.log("The game has ended with no winner.");
+//       }
+//     }
+//     // Call the async function to start the iteration over players
+//     iteratePlayers().catch((error) => console.error(error));
+//   } catch (error) {
+//     console.error(error);
+//   }
+// }
+function Play() {
 }
 function buyCity(cityId, playerId) {
-    var _a, _b;
     if (!gamesBoardsAGpage)
         throw new Error("Can't find gamesBoardsAGpage");
     var currentGame = gamesBoardsAGpage.find(function (board) { return board.gameStatus === true; });
     if (!currentGame)
         throw new Error("Can't find currentGame");
-    // get only numbers from cityId
-    var cityIdNumer = Number(cityId.toString().match(/\d+/));
-    var city = (_a = gamesBoardsAGpage === null || gamesBoardsAGpage === void 0 ? void 0 : gamesBoardsAGpage.find(function (board) { return board.cities.find(function (city) { return city.cityId === cityIdNumer; }); })) === null || _a === void 0 ? void 0 : _a.cities.find(function (city) { return city.cityId === cityIdNumer; });
+    var city = currentGame.cities.find(function (city) { return city.cityId === cityId; });
     if (!city)
-        throw new Error("cant find city");
-    var playerIdNumber = Number(playerId.toString().match(/\d+/));
-    var player = (_b = gamesBoardsAGpage === null || gamesBoardsAGpage === void 0 ? void 0 : gamesBoardsAGpage.find(function (board) { return board.players.find(function (player) { return player.playerId === playerId; }); })) === null || _b === void 0 ? void 0 : _b.players.find(function (player) { return player.playerId === playerId; });
+        throw new Error("Can't find city");
+    var player = currentGame.players.find(function (player) { return player.playerId === playerId; });
     if (!player)
-        throw new Error("cant find player");
+        throw new Error("Can't find player");
     if (player.Pbank < city.monetaryValue)
-        throw new Error("player dont have enough money");
+        throw new Error("Player doesn't have enough money");
     player.Pbank -= city.monetaryValue;
     city.cityOwner = player;
     console.log(player.Pbank);
 }
 function payRent(cityId, playerId) {
-    var _a, _b, _c;
+    var _a;
     if (!gamesBoardsAGpage)
         throw new Error("Can't find gamesBoardsAGpage");
     var currentGame = gamesBoardsAGpage.find(function (board) { return board.gameStatus === true; });
     if (!currentGame)
         throw new Error("Can't find currentGame");
-    // get only numbers from cityId
-    var cityIdNumer = Number(cityId.toString().match(/\d+/));
-    var city = (_a = gamesBoardsAGpage === null || gamesBoardsAGpage === void 0 ? void 0 : gamesBoardsAGpage.find(function (board) { return board.cities.find(function (city) { return city.cityId === cityIdNumer; }); })) === null || _a === void 0 ? void 0 : _a.cities.find(function (city) { return city.cityId === cityIdNumer; });
+    var city = currentGame.cities.find(function (city) { return city.cityId === cityId; });
     if (!city)
-        throw new Error("cant find city");
-    var playerIdNumber = Number(playerId.toString().match(/\d+/));
-    var player = (_b = gamesBoardsAGpage === null || gamesBoardsAGpage === void 0 ? void 0 : gamesBoardsAGpage.find(function (board) { return board.players.find(function (player) { return player.playerId === playerId; }); })) === null || _b === void 0 ? void 0 : _b.players.find(function (player) { return player.playerId === playerId; });
+        throw new Error("Can't find city");
+    var player = currentGame.players.find(function (player) { return player.playerId === playerId; });
     if (!player)
-        throw new Error("cant find player");
+        throw new Error("Can't find player");
     if (player.Pbank < city.rentValue)
-        throw new Error("player dont have enough money");
+        throw new Error("Player doesn't have enough money");
     player.Pbank -= city.rentValue;
     if (!city.cityOwner)
-        throw new Error("cant find cityOwner");
+        throw new Error("Can't find cityOwner");
     city.cityOwner.Pbank += city.rentValue;
     console.log(player.Pbank);
-    console.log((_c = city.cityOwner) === null || _c === void 0 ? void 0 : _c.Pbank);
+    console.log((_a = city.cityOwner) === null || _a === void 0 ? void 0 : _a.Pbank);
 }
-function rendercityCardRentOtBuy(cityId, playerId) {
+function rendercityCardRentOrBuy(cityId, playerId) {
     var _a, _b;
     try {
-        // if city have owner render pay rent
-        // else render buy city or pic a good gift
-        var cityIdNumer_1 = Number(cityId.toString().match(/\d+/));
-        var city = (_a = gamesBoardsAGpage === null || gamesBoardsAGpage === void 0 ? void 0 : gamesBoardsAGpage.find(function (board) { return board.cities.find(function (city) { return city.cityId === cityIdNumer_1; }); })) === null || _a === void 0 ? void 0 : _a.cities.find(function (city) { return city.cityId === cityIdNumer_1; });
+        // If the city has an owner, render pay rent; else, render buy city or pick a good gift
+        var city = (_a = gamesBoardsAGpage === null || gamesBoardsAGpage === void 0 ? void 0 : gamesBoardsAGpage.find(function (board) { return board.cities.find(function (city) { return city.cityId === cityId; }); })) === null || _a === void 0 ? void 0 : _a.cities.find(function (city) { return city.cityId === cityId; });
         if (!city)
-            throw new Error("cant find city");
-        // crear city card dialog
-        var dialog = document.createElement('dialog'); // Create a dialog element
-        dialog.classList.add('cityDialog'); // Add a custom CSS class for styling
-        var diaylogForm = document.createElement('form');
-        diaylogForm.classList.add('cityDialog__cityCardForm');
-        diaylogForm.id = "cityCard" + cityId;
+            throw new Error("Can't find city");
+        var dialog_2 = document.createElement('dialog');
+        dialog_2.classList.add('cityDialog');
+        var dialogForm = document.createElement('form');
+        dialogForm.classList.add('cityDialog__cityCardForm');
+        dialogForm.id = "cityCard" + cityId;
+        // Prevent form submission
+        dialogForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+        });
         var btnClose = document.createElement('button');
         btnClose.classList.add('closeCityDialog');
         btnClose.innerHTML = 'X';
-        btnClose.addEventListener('click', closePopup);
-        diaylogForm.appendChild(btnClose);
+        btnClose.addEventListener('click', function () {
+            dialog_2.close();
+        });
+        dialogForm.appendChild(btnClose);
         var cityName = document.createElement('h1');
-        var cityBuyPrice = document.createElement('h2');
-        var cityRentPrice = document.createElement('h2');
-        var owner = document.createElement('h2');
         cityName.innerHTML = "" + city.cityName;
-        cityBuyPrice.innerHTML = "Buy Price : " + city.monetaryValue;
-        cityRentPrice.innerHTML = "Rent Price : " + city.rentValue;
-        var ownerName = (_b = city.cityOwner) === null || _b === void 0 ? void 0 : _b.userName;
-        owner.innerHTML = "Owner : " + (ownerName || "No Owner");
+        dialogForm.appendChild(cityName);
+        var cityBuyPrice = document.createElement('h2');
+        cityBuyPrice.innerHTML = "Buy Price: " + city.monetaryValue;
+        dialogForm.appendChild(cityBuyPrice);
+        var cityRentPrice = document.createElement('h2');
+        cityRentPrice.innerHTML = "Rent Price: " + city.rentValue;
+        dialogForm.appendChild(cityRentPrice);
+        var owner = document.createElement('h2');
+        owner.innerHTML = "Owner: " + (((_b = city.cityOwner) === null || _b === void 0 ? void 0 : _b.userName) || 'No Owner');
+        dialogForm.appendChild(owner);
         if (city.cityOwner) {
-            //render city card with pay rent
-            var buyBtn = document.createElement('button');
-            buyBtn.classList.add('buyBtn');
-            buyBtn.innerHTML = "Buy";
-            buyBtn.addEventListener('click', function () { buyCity(cityId, playerId); });
-            diaylogForm.appendChild(buyBtn);
-        }
-        else {
-            //render city card with buy city or pic a good gift
             var payBtn = document.createElement('button');
             payBtn.classList.add('payBtn');
             payBtn.innerHTML = "Pay";
-            payBtn.addEventListener('click', function () { payRent(cityId, playerId); });
-            diaylogForm.appendChild(payBtn);
+            payBtn.addEventListener('click', function () {
+                payRent(cityId, playerId);
+                dialog_2.close();
+            });
+            dialogForm.appendChild(payBtn);
         }
-        diaylogForm.appendChild(cityName);
-        diaylogForm.appendChild(cityBuyPrice);
-        diaylogForm.appendChild(cityRentPrice);
-        diaylogForm.appendChild(owner);
-        dialog.appendChild(diaylogForm);
-        document.body.appendChild(dialog); // Append the dialog to the document body  
-        dialog.showModal(); // Display the dialog as a modal
+        else {
+            var buyBtn = document.createElement('button');
+            buyBtn.classList.add('buyBtn');
+            buyBtn.innerHTML = "Buy";
+            buyBtn.addEventListener('click', function () {
+                buyCity(cityId, playerId);
+                dialog_2.close();
+            });
+            dialogForm.appendChild(buyBtn);
+        }
+        dialog_2.appendChild(dialogForm);
+        document.body.appendChild(dialog_2);
+        dialog_2.showModal();
     }
     catch (error) {
         console.error(error);
