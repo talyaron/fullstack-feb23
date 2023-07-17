@@ -79,7 +79,9 @@ var Player = /** @class */ (function () {
         console.log(divID);
         var root = document.getElementById("player" + divID + "Panel");
         console.log(root);
-        var input = this.lastBet > 0 ? this.lastBet.toString() : this.movesInRound[this.movesInRound.length - 1];
+        var input = this.lastBet > 0
+            ? this.lastBet.toString()
+            : this.movesInRound[this.movesInRound.length - 1];
         root.querySelector(".playerPanel__inputChips").innerHTML = " \n  <img src=\"../images/casino-chip.png\" alt=\"\" />\n  <h4>" + input + "</h4>\n  ";
     };
     Player.prototype.addCardToPlayer = function (card) {
@@ -88,6 +90,7 @@ var Player = /** @class */ (function () {
     Player.prototype.doingTurn = function (activePlayers, thisIndex) {
         console.log(this.userName + " is doing somethig......");
         var movesOptions = getMoveOption(activePlayers, thisIndex);
+        console.log(movesOptions);
         var pointOfOptionalSet = getPointOfOptionalSet(this);
         var sizeOfBet = getSizeOfBet(pointOfOptionalSet, this.chips);
         chooseMove(activePlayers, movesOptions, sizeOfBet, pointOfOptionalSet, this);
