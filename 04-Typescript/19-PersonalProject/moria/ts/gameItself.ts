@@ -205,8 +205,7 @@ function u() {
 
         container.appendChild(smallBall1);
         container.appendChild(smallBall2);
-        moveSmallBall(smallBall1);
-        moveSmallBall(smallBall2);
+
 
     }
 }

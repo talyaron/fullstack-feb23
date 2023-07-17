@@ -161,7 +161,5 @@ function u() {
         smallBall2.style.background = 'blue';
         container.appendChild(smallBall1);
         container.appendChild(smallBall2);
-        moveSmallBall(smallBall1);
-        moveSmallBall(smallBall2);
     }
 }
