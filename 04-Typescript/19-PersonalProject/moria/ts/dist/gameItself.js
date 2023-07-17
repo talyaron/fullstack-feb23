@@ -203,6 +203,79 @@ function u() {
             }
             smallBall2_1.style.left = smallBall2X_1 + 'px';
             smallBall2_1.style.top = smallBall2Y_1 + 'px';
+            // גדחייבדגי
+            function handleCollision() {
+                if (collisionCount >= 3) {
+                    // console.log("המשחק נגמר");
+                    gameEnded = true;
+                    return;
+                }
+                var playerLocation = bart.getBoundingClientRect();
+                var smallBall1Location = smallBall1_1.getBoundingClientRect();
+                var smallBall2Location = smallBall2_1.getBoundingClientRect();
+                if (playerLocation.right > smallBall1Location.left &&
+                    playerLocation.left < smallBall1Location.right &&
+                    playerLocation.bottom > smallBall1Location.top &&
+                    playerLocation.top < smallBall1Location.bottom ||
+                    playerLocation.right > smallBall2Location.left &&
+                        playerLocation.left < smallBall2Location.right &&
+                        playerLocation.bottom > smallBall2Location.top &&
+                        playerLocation.top < smallBall2Location.bottom) {
+                    var imageToRemove = images[collisionCount];
+                    if (imageToRemove) {
+                        life.removeChild(imageToRemove);
+                    }
+                    collisionCount++;
+                    if (collisionCount === 1) {
+                        canMoveBall = false;
+                        setTimeout(function () {
+                            canMoveBall = true;
+                        }, 1000);
+                    }
+                    else if (collisionCount === 2) {
+                        canMoveBall = false;
+                        setTimeout(function () {
+                            canMoveBall = true;
+                        }, 1000);
+                    }
+                    else if (collisionCount === 3) {
+                        gameEnded = true;
+                        life.classList.add("none");
+                        bart.classList.add("none");
+                        shoot.classList.add("none");
+                        ball.classList.add("none");
+                        var gameOver = document.querySelector('#container__gameOver');
+                        var html = " <h1>game over</h1> <br>  <a href=\"/levels.html\">back</a>";
+                        gameOver.innerHTML = html;
+                    }
+                }
+            }
+            setInterval(function () {
+                if (canMoveBall) {
+                    handleCollision();
+                }
+            }, 10);
+            // setInterval(s, 10);
+            // function s() {
+            //     const ropeLocation = shoot.getBoundingClientRect();
+            //     const smallBall1Location = smallBall1.getBoundingClientRect();
+            //     const smallBall2Location = smallBall2.getBoundingClientRect();
+            //     if (
+            //         ropeLocation.right > smallBall1Location.left &&
+            //         ropeLocation.left < smallBall1Location.right &&
+            //         ropeLocation.bottom > smallBall1Location.top &&
+            //         ropeLocation.top < smallBall1Location.bottom
+            //     ) {
+            //         smallBall1.style.display = 'none';
+            //     }
+            //     if (
+            //         ropeLocation.right > smallBall2Location.left &&
+            //         ropeLocation.left < smallBall2Location.right &&
+            //         ropeLocation.bottom > smallBall2Location.top &&
+            //         ropeLocation.top < smallBall2Location.bottom
+            //     ) {
+            //         smallBall2.style.display = 'none';
+            //     }
             requestAnimationFrame(updateBallsPosition);
         }
         // Start updating the positions of the balls
