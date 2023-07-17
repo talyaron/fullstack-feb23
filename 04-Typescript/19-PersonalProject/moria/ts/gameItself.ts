@@ -186,21 +186,28 @@ function u() {
         ropeLocation.bottom > ballLocation.top &&
         ropeLocation.top < ballLocation.bottom
     ) {
+        ball.style.display = 'none';
+
+        // יצירת שני כדורים קטנים
         const smallBall1 = document.createElement('div');
         smallBall1.className = 'small-ball';
         smallBall1.style.width = '50px';
         smallBall1.style.height = '50px';
+        smallBall1.style.borderRadius = '50%';
+        smallBall1.style.background = 'red';
+
         const smallBall2 = document.createElement('div');
         smallBall2.className = 'small-ball';
         smallBall2.style.width = '50px';
         smallBall2.style.height = '50px';
+        smallBall2.style.borderRadius = '50%';
+        smallBall2.style.background = 'blue';
 
-        // הוספת הכדור הקטן לתוך ה-DIV של הכדור הראשי
-        ball.appendChild(smallBall1);
+        container.appendChild(smallBall1);
+        container.appendChild(smallBall2);
+        moveSmallBall(smallBall1);
+        moveSmallBall(smallBall2);
 
-        // שינוי מיקום הכדור הראשי לצפוף
-        ball.style.width = '10px';
-        ball.style.height = '10px';
     }
 }
 
