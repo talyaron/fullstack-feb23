@@ -146,20 +146,66 @@ function u() {
         ropeLocation.bottom > ballLocation.top &&
         ropeLocation.top < ballLocation.bottom) {
         ball.style.display = 'none';
-        // יצירת שני כדורים קטנים
-        var smallBall1 = document.createElement('div');
-        smallBall1.className = 'small-ball';
-        smallBall1.style.width = '50px';
-        smallBall1.style.height = '50px';
-        smallBall1.style.borderRadius = '50%';
-        smallBall1.style.background = 'red';
-        var smallBall2 = document.createElement('div');
-        smallBall2.className = 'small-ball';
-        smallBall2.style.width = '50px';
-        smallBall2.style.height = '50px';
-        smallBall2.style.borderRadius = '50%';
-        smallBall2.style.background = 'blue';
-        container.appendChild(smallBall1);
-        container.appendChild(smallBall2);
+        var container_1 = document.querySelector('#container');
+        var smallBall1_1 = document.createElement('div');
+        var smallBall2_1 = document.createElement('div');
+        smallBall1_1.style.position = "absolute";
+        smallBall2_1.style.position = "absolute";
+        // smallBall2.style.margin = "20px"
+        // Set up the properties for smallBall1
+        smallBall1_1.className = 'small-ball';
+        smallBall1_1.style.width = '50px';
+        smallBall1_1.style.height = '50px';
+        smallBall1_1.style.borderRadius = '50%';
+        smallBall1_1.style.background = 'red';
+        container_1.appendChild(smallBall1_1);
+        // Set up the properties for smallBall2
+        smallBall2_1.className = 'small-ball';
+        smallBall2_1.style.width = '50px';
+        smallBall2_1.style.height = '50px';
+        smallBall2_1.style.borderRadius = '50%';
+        smallBall2_1.style.background = 'blue';
+        container_1.appendChild(smallBall2_1);
+        // Set initial positions for the balls
+        var smallBall1X_1 = 0;
+        var smallBall1Y_1 = 0;
+        var smallBall2X_1 = 0;
+        var smallBall2Y_1 = 0;
+        // Set initial speeds for the balls
+        var smallBall1SpeedX_1 = 2;
+        var smallBall1SpeedY_1 = 2;
+        var smallBall2SpeedX_1 = 3;
+        var smallBall2SpeedY_1 = 3;
+        // Function to update the positions of the balls
+        function updateBallsPosition() {
+            var containerWidth = container_1.offsetWidth;
+            var containerHeight = container_1.offsetHeight;
+            var smallBallSize = smallBall1_1.offsetWidth;
+            // Update the position of smallBall1
+            smallBall1X_1 += smallBall1SpeedX_1;
+            smallBall1Y_1 += smallBall1SpeedY_1;
+            if (smallBall1X_1 + smallBallSize >= containerWidth || smallBall1X_1 <= 0) {
+                smallBall1SpeedX_1 *= -1;
+            }
+            if (smallBall1Y_1 + smallBallSize >= containerHeight || smallBall1Y_1 <= 0) {
+                smallBall1SpeedY_1 *= -1;
+            }
+            smallBall1_1.style.left = smallBall1X_1 + 'px';
+            smallBall1_1.style.top = smallBall1Y_1 + 'px';
+            // Update the position of smallBall2
+            smallBall2X_1 += smallBall2SpeedX_1;
+            smallBall2Y_1 += smallBall2SpeedY_1;
+            if (smallBall2X_1 + smallBallSize >= containerWidth || smallBall2X_1 <= 0) {
+                smallBall2SpeedX_1 *= -1;
+            }
+            if (smallBall2Y_1 + smallBallSize >= containerHeight || smallBall2Y_1 <= 0) {
+                smallBall2SpeedY_1 *= -1;
+            }
+            smallBall2_1.style.left = smallBall2X_1 + 'px';
+            smallBall2_1.style.top = smallBall2Y_1 + 'px';
+            requestAnimationFrame(updateBallsPosition);
+        }
+        // Start updating the positions of the balls
+        updateBallsPosition();
     }
 }
