@@ -150,6 +150,31 @@
   z-index: 999;
 }
 
+.playersStatus__player {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #f2f2f2;
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+  width: 300px;
+}
+.playersStatus__player .playersStatus__player__id {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+.playersStatus__player .playersStatus__player__name {
+  margin-bottom: 5px;
+}
+.playersStatus__player .playersStatus__player__bank {
+  margin-bottom: 5px;
+}
+.playersStatus__player .playersStatus__player__cell {
+  margin-bottom: 5px;
+}
+
 #cubeButton {
   display: none;
   width: var(--cellSize);
@@ -159,10 +184,6 @@
   background-position: center;
   border: none;
   background-color: white;
-  position: fixed;
-  top: 20%;
-  left: 30%;
-  transform: translate(-50%, -50%);
 }
 
 .rotate-animation {
@@ -291,4 +312,9 @@
 .currentPlayer {
   border: 2px solid green;
   transform: scale(1.2);
+}
+
+.cityOwner {
+  border: 5px solid red;
+  transform: scale(1.1);
 }
