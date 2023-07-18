@@ -1,4 +1,4 @@
-var scorePlayers = getPlayerFromStorage();
+var scorePlayers = getPlayerFromStorage("table");
 debugger;
 function renderTable(table) {
     try {

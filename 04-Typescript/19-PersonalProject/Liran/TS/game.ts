@@ -63,16 +63,17 @@ class Player {
         }
     }
 
-    setIsActive(set: boolean) {  // to stay log in or new register panel
+    setIsActive(set: boolean) {  // to stay log in when exiting page
         this.isActive = set;
     }
 
-    setInGame(set: boolean) {  // to stay log in or new register panel
+    setInGame(set: boolean) {
         this.inGame = set;
     }
 }
 
-const players: Player[] | undefined = getPlayerFromStorage();
+const players: Player[] | undefined = getPlayerFromStorage("players");
+const scoreTable: Player[] | undefined = getPlayerFromStorage("table");
 
 if (players !== undefined && players.length > 0) {
     if (players[players?.length - 1].isActive) {
@@ -85,10 +86,10 @@ if (players !== undefined && players.length > 0) {
 else
     renderLogPanel(document.querySelector(".screen__UI"));
 
-function getPlayerFromStorage(): Player[] | undefined {
+function getPlayerFromStorage(item: string): Player[] | undefined {
     try {
-
-        const storageString = localStorage.getItem("players");
+        
+        const storageString = localStorage.getItem(`${item}`);
         if (!storageString) throw new Error("No such name in local storage");
         //convert string to array of objects
         const storageArray = JSON.parse(storageString);
@@ -145,7 +146,7 @@ let timeIntervalID: number;
 function hundelStart(ev: any) {
     try {
         ev.preventDefault();
-        debugger;
+        
         const operation = ev.target.name
         switch (operation) {
             case "start":
@@ -157,8 +158,8 @@ function hundelStart(ev: any) {
                 const backgroundMusic = document.querySelector(`#backgroundMusic`) as HTMLAudioElement;
                 if (!backgroundMusic) throw new Error("Error with background music file");
                 timeIntervalID = setInterval(displayTimer, 10);
-                renderStars(document.querySelector(`.screen__game`)); 
-                backgroundMusic.play();break;
+                renderStars(document.querySelector(`.screen__game`));
+                backgroundMusic.play(); break;
             case "leave":
                 if (players) {
                     players[players?.length - 1].setIsActive(false);
@@ -251,15 +252,8 @@ function renderPlayer(swordColor: string) {
             if (!player) throw new Error("Can't cath fighter DOM");
             let imgUrl: string | undefined = "";
             if (swords == undefined) throw new Error("No swords");
-
             const s = swords.find(sword => sword.color === swordColor);
             if (s === undefined) throw new Error(`sword color ${swordColor} not exist`);
-            // switch (swordColor) {
-            //     case "blueSword": imgUrl = s =   break;
-            //     case "greenSword": imgUrl = "greenSword.png"; break;
-            //     case "redSword": imgUrl = "redSword.png"; break;
-            //     case "whiteSword": imgUrl = "whiteSword.png";
-            // }
             const html = `<div id="sword" style="background-image: url(${s.image});"></div>
             <img src="../TS/dist/fighter.jpg">`;
             player.innerHTML = html;
@@ -291,7 +285,7 @@ function renderLogPanel(panel: HTMLElement | null) {
             </form>
             <a href="../HTML/instructions.html">Game Instructions</a>
             <a href="../HTML/scoreTable.html">High Scored Table</a>`;
-    
+
             panel.innerHTML = html;
         }
     } catch (error) {
@@ -299,16 +293,15 @@ function renderLogPanel(panel: HTMLElement | null) {
     }
 
 }
-let [milliseconds, seconds, minutes, hours] = [0, 0, 0, 0];
 
-function renderGamePanel(panel:HTMLElement | null) {
+
+function renderGamePanel(panel: HTMLElement | null) {
     try {
         const locationPath = location.href;
         const seperate = locationPath.split(`/`);
         if (!(seperate[seperate.length - 1] !== "game.html")) {
             if (!panel) throw new Error("Can't cath screen UI");
             if (!players) throw new Error("No players");
-            [milliseconds, seconds, minutes, hours] = [0, 0, 0, 0];
             const player = players[players?.length - 1].firstName;
             const html = `<h1>Hello ${player}</h1>
             <form id="game" onclick="hundelStart(event)">
@@ -336,86 +329,53 @@ function renderGamePanel(panel:HTMLElement | null) {
 
 }
 
-// const control =
 
 function listenTokeyDown(event: KeyboardEvent | any) {
     try {
         event.preventDefault();
         const fighter = document.querySelector('#fighter') as HTMLDivElement;
         const sword = document.querySelector('#sword') as HTMLDivElement;
-        const newPlayer = document.querySelector('#newPlayer') as HTMLDivElement;
         const element = document.querySelector(".screen__game");
         if (!element) throw new Error("Can't cath game screen");
-        if (!sword && !newPlayer) throw new Error("Can't cath sword DOM");
+        if (!sword) throw new Error("Can't cath sword DOM");
         const rect = element.getBoundingClientRect();
         const key = event.key;
-        const reg = new RegExp(/^[a-zA-Z]+$/);
-        if (event && (event.target.name == "firstName" || event.target.name == "lastName" && event.key)) {
-            if (event.target.name == "firstName") {
-                if (key !== undefined && key.length == 1 && reg.test(key)) {
-                    newPlayer[0].value += event.key;
-                }
-                else if (key == "Backspace") {
-                    if (newPlayer[0].value.length > 0) {
-                        const str: string = newPlayer[0].value;
-                        newPlayer[0].value = str.substring(0, str.length - 1);
+        
+        switch (event.key || event.ctrlKey || event.target.name) {
+            case 'ArrowLeft':
+                if (event.shiftKey == true) {
+                    if ((fighter.offsetLeft - 80) >= (rect.x - 190))
+                        fighter.style.left = `${fighter.offsetLeft - 80}px`;
+                } else {
+                    if ((fighter.offsetLeft - 40) >= (rect.x - 190)) {
+                        fighter.style.left = `${fighter.offsetLeft - 40}px`;
                     }
+                    fighter.style.transform = `scaleX(1)`;
+
                 }
-            }
-            if (event.target.name == "lastName" && event.key) {
-                if (key !== undefined && key.length == 1 && reg.test(key)) {
-                    newPlayer[1].value += event.key;
-                }
-                else if (key == "Backspace") {
-                    if (newPlayer[1].value.length > 0) {
-                        const str: string = newPlayer[1].value;
-                        newPlayer[1].value = str.substring(0, str.length - 1);
+                break;
+            case 'ArrowRight':
+                if (event.shiftKey == true) {
+
+                    if ((fighter.offsetLeft + 80) <= rect.right - 300)
+                        fighter.style.left = `${fighter.offsetLeft + 80}px`;
+                } else {
+                    if ((fighter.offsetLeft + 40) <= (rect.right - 300)) {
+                        fighter.style.left = `${fighter.offsetLeft + 40}px`;
                     }
+                    fighter.style.transform = `scaleX(-1)`;
                 }
-            }
+                break;
+            case ` `:
+                sword.style.rotate = `-90deg`;
+                sword.style.top = `-30px`;
+                sword.style.left = `18px`;
+                setTimeout(function () {
+                    sword.style.rotate = `0deg`;
+                    sword.style.top = `-110px`;
+                    sword.style.left = `85px`;
+                }, 100);
         }
-        else {
-
-            switch (event.key || event.ctrlKey || event.target.name) {
-                case 'ArrowLeft':
-                    if (event.shiftKey == true) {
-                        if ((fighter.offsetLeft - 80) >= (rect.x - 190))
-                            fighter.style.left = `${fighter.offsetLeft - 80}px`;
-                    } else {
-                        if ((fighter.offsetLeft - 40) >= (rect.x - 190)) {
-                            fighter.style.left = `${fighter.offsetLeft - 40}px`;
-                        }
-                        fighter.style.transform = `scaleX(1)`;
-
-                    }
-                    break;
-                case 'ArrowRight':
-                    if (event.shiftKey == true) {
-
-                        if ((fighter.offsetLeft + 80) <= rect.right - 300)
-                            fighter.style.left = `${fighter.offsetLeft + 80}px`;
-                    } else {
-                        if ((fighter.offsetLeft + 40) <= (rect.right - 300)) {
-                            fighter.style.left = `${fighter.offsetLeft + 40}px`;
-                        }
-                        fighter.style.transform = `scaleX(-1)`;
-                    }
-                    break;
-                case ` `:
-                    sword.style.rotate = `-90deg`;
-                    sword.style.top = `-30px`;
-                    sword.style.left = `18px`;
-                    setTimeout(function () {
-                        sword.style.rotate = `0deg`;
-                        sword.style.top = `-110px`;
-                        sword.style.left = `85px`;
-                    }, 100);
-
-            }
-
-        }
-
-
     } catch (error) {
         console.error(error)
     }
@@ -423,21 +383,22 @@ function listenTokeyDown(event: KeyboardEvent | any) {
 }
 
 
+let [milliseconds, seconds] = [0, 0];
 function displayTimer() {
     const timerRef = document.querySelector(`#timerDisplay`) as HTMLDivElement;
     try {
         milliseconds += 10;
-        if (milliseconds == 1000) {
+        if (milliseconds == 1000) {  //full second, reset value
             milliseconds = 0;
             seconds++;
-            if (seconds == 60) {
+            if (seconds == 60) {  // end of game
                 milliseconds = 0;
                 renderEndGameScreen(true, document.querySelector(`.screen__end`) as HTMLDivElement)
             }
         }
-        if (seconds === 50) {
+        if (seconds === 50) { // count down, last 10 seconds
             countDownMusic();
-            timerRef.style.boxShadow = "0 0 20px rgba(242, 6, 6, 0.921)";
+            timerRef.style.boxShadow = "0 0 20px rgba(242, 6, 6, 0.921)"; // change timer background color
         }
         let s = seconds < 10 ? "0" + seconds : seconds;
         let ms = milliseconds < 10 ? "00" + milliseconds : milliseconds < 100 ? "0" + milliseconds : milliseconds;
@@ -448,7 +409,7 @@ function displayTimer() {
     }
 }
 
-function animateStars(star: Star, rect: DOMRect) {
+function animateStars(star: Star, rect: DOMRect) {  // sets random values for duration and position left, and active animation
     try {
         const s = document.getElementById(star.name);
         if (!s) throw new Error("star missing");
@@ -458,41 +419,36 @@ function animateStars(star: Star, rect: DOMRect) {
     } catch (error) {
         console.error(error);
     }
-
-
-
 }
 
 function checkOverlapInBackground(): void {
     try {
 
-        const element = document.querySelector(".screen__game");
-        const elementsToCheck = document.querySelectorAll('.star');
+        const starsToCheck = document.querySelectorAll('.star');
         const mainElement = document.getElementById('sword') as HTMLElement;
         const interval = 50;
         setInterval(() => {
-            elementsToCheck.forEach((element) => {
-                if (checkOverlap(mainElement, element)) {
-                    const elementDiv = document.getElementById(`${element.id}`) as HTMLElement;
-                    //elementDiv.style.visibility = "hidden";
+            starsToCheck.forEach((starToCheck) => {
+                if (checkOverlap(mainElement, starToCheck)) {
+                    const starDiv = document.getElementById(`${starToCheck.id}`) as HTMLElement; //cath specific star html element
                     if (players === undefined) throw new Error(`no players`);
                     const currPlayer = players[players?.length - 1];
-                    const starHit = stars.find(star => star.name === element.id);
-                    if (!starHit) throw new Error(`star not found by id: ${element.id}`);
+                    const starHit = stars.find(star => star.name === starToCheck.id);
+                    if (!starHit) throw new Error(`star not found by id: ${starToCheck.id}`);
                     const star = document.getElementById(`${starHit.name}`)
-                    if (!star) throw new Error(`star not found by id: ${element.id}`);
-                    if ((elementDiv.style.visibility === "")) {
+                    if (!star) throw new Error(`star not found by id: ${starToCheck.id}`);
+                    if ((starDiv.style.visibility === "")) {
                         const boom = document.getElementById('boom') as HTMLElement;
                         if (!boom) throw new Error(`boom img not found`);
                         const boomSound = new Audio("../TS/dist/boomSound.mp3")
                         if (!boomSound) throw new Error(`boom sound not found`);
                         boomSound.play();
-                        boom.style.left = `${elementDiv?.offsetLeft}px`;
-                        boom.style.top = `${elementDiv?.offsetTop}px`;
+                        boom.style.left = `${starDiv?.offsetLeft}px`;
+                        boom.style.top = `${starDiv?.offsetTop}px`;
                         boom.style.visibility = "visible";
-                        if(currPlayer.inGame)
+                        if (currPlayer.inGame)
                             currPlayer.updateScore(starHit.value);
-                        elementDiv.style.visibility = "hidden"
+                        starDiv.style.visibility = "hidden"
                         const scorePanel = document.getElementById('score');
                         if (!scorePanel) throw new Error(`scorePanel not found`);
                         scorePanel.innerHTML = `<p>${currPlayer.currentScore}</p>`
@@ -501,9 +457,7 @@ function checkOverlapInBackground(): void {
                             boom.style.top = `0px`;
                             boom.style.visibility = "hidden";
                         }, 200)
-
                     }
-
                 }
             });
         }, interval);
@@ -512,41 +466,85 @@ function checkOverlapInBackground(): void {
     }
 }
 
-function checkOverlap(element1: HTMLElement, element2: any): boolean {
-    const rect1 = element1.getBoundingClientRect();
-    const rect2 = element2.getBoundingClientRect();
+function checkOverlap(sword: HTMLElement, star: any): boolean {
 
-    return (
-        rect1.left < rect2.right &&
-        rect1.right > rect2.left &&
-        rect1.top < rect2.bottom &&
-        rect1.bottom > rect2.top
-    );
+    try {
+        const rect1 = sword.getBoundingClientRect();
+        const rect2 = star.getBoundingClientRect();
+        return (
+            rect1.left < rect2.right &&
+            rect1.right > rect2.left &&
+            rect1.top < rect2.bottom &&
+            rect1.bottom > rect2.top
+        );
+    } catch (error) {
+        console.error(error)
+        return false;
+    }
 }
 
-function endOfGame(player: Player) {
+function endOfGame(player: Player) {   // kill listener events, clock intervals and update player setting
     try {
         console.log(`endofGame player score: ${player.currentScore}`)
         clearInterval(timeIntervalID);
-        removeEventListener('keydown', listenTokeyDown)
-        const scorePanel = document.getElementById('score');
-        if (!scorePanel) throw new Error(`scorePanel not found`);
-        scorePanel.innerHTML = `<p>${player.currentScore}</p>`
-        player.numOfGames++;
-        player.record = (player.record < player.currentScore ? player.currentScore : player.record);
-        // player.currentScore = 0;
-        if (players === undefined) throw new Error("Missing players")
-        players[players.length - 1].setInGame(false);
-        localStorage.setItem("players", JSON.stringify(players));
-        const highScore = players?.findIndex(p => p.record >= player.record);
-
+        removeEventListener('keydown', listenTokeyDown);
+        updateScoreOnScreen(player, document.getElementById('score'));
+        updatePlayer(player);
+        addGameResultToTable(player);
+        debugger;
+        if (scoreTable === undefined) throw new Error("Missing players");
+        const highScore = scoreTable?.findIndex(p => p.record <= player.currentScore);
         setTimeout(function () {
-            if (highScore == -1)
+            if (highScore == 0)
                 alert("Great job! You got a new record");
             location.href = "../HTML/scoreTable.html";
         }, 5000)
     } catch (error) {
 
+    }
+}
+
+function addGameResultToTable(player:Player) {
+    try {
+        if (!player) throw new Error("No player");
+        const tempPlayer = playerShallowCopy(player);
+        if (tempPlayer === undefined) throw new Error("Shallow copy failed");
+        scoreTable?.push(tempPlayer)
+        localStorage.setItem("table", JSON.stringify(scoreTable))
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+function playerShallowCopy(player: Player): Player | undefined{
+    try {
+        const fName = player.firstName;
+        const sName = player.lastName;
+        const record = player.currentScore;
+        const color = player.swordColor;
+        return (new Player(fName, sName, color, null,undefined,record,record,undefined))
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+function updatePlayer(player: Player) {
+    try {
+        player.numOfGames++;
+        player.record = (player.record < player.currentScore ? player.currentScore : player.record);
+        player.setInGame(false);
+        localStorage.setItem("players", JSON.stringify(players));
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+function updateScoreOnScreen(player: Player, scorePanel: HTMLElement | null) {
+    try {
+        if (!scorePanel) throw new Error(`scorePanel not found`);
+        scorePanel.innerHTML = `<p>${player.currentScore}</p>`
+    } catch (error) {
+        console.error(error)
     }
 }
 

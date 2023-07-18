@@ -1,16 +1,13 @@
-function addScore() {
+function addScore(username) {
     try {
-        var username = localStorage.getItem("username");
-        var previousScore = localStorage.getItem(username) || 0;
         scoreInterval++;
         if (scoreInterval % 1 === 0) {
-            score++;
+            ctx.font = "20px Arial";
+            ctx.fillStyle = "blueviolet";
+            ctx.fillText("Score: " + score, 5, 30);
+            // Update the score in localStorage
+            localStorage.setItem(username, score++);
         }
-        ctx.font = "20px Arial";
-        ctx.fillStyle = "blueviolet";
-        ctx.fillText("Score: " + score, 5, 30);
-        // Update the score in localStorage
-        localStorage.setItem(username, Number(previousScore) + score);
     }
     catch (error) {
         if (!addScore)
@@ -35,7 +32,7 @@ function displayScoreboard() {
     scores.forEach(function (_a) {
         var user = _a[0], score = _a[1];
         var listItem = document.createElement("li");
-        listItem.textContent = user + ": Won " + score + "$";
+        listItem.textContent = user + ": Saved " + score + " humans";
         scoreboardDiv.appendChild(listItem);
     });
 }

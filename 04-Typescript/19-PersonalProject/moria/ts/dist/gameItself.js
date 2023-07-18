@@ -135,7 +135,7 @@ function handleCollision() {
             var gameOver = document.querySelector('#container__gameOver');
             var html = " <h1>game over</h1>   ";
             gameOver.innerHTML = html;
-            window.location.href = "levels.html";
+            // window.location.href = "levels.html"; 
         }
     }
 }
