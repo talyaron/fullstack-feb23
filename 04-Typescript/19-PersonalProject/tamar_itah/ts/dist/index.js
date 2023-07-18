@@ -1,9 +1,11 @@
 //model (classes)
 var User = /** @class */ (function () {
-    function User(userName) {
+    function User(userName, points, id) {
+        if (points === void 0) { points = 0; }
+        if (id === void 0) { id = Math.random() * 6 + Date.now(); }
         this.userName = userName;
-        this.points = 0;
-        this.id = Math.random() * 6 + Date.now();
+        this.points = points;
+        this.id = id;
     }
     return User;
 }());
@@ -29,13 +31,14 @@ var words = [
 function handelSubmit(ev) {
     try {
         ev.preventDefault();
-        console.dir(ev);
+        fromStorage(); // Amir
         var newUserName = ev.target.elements.newname.value; //colect the user name
         if (!newUserName)
             throw new Error('user name is missing');
         console.log(newUserName);
         var newUser = new User(newUserName);
-        users.push(newUser); //save the user name in users array
+        console.log(newUser);
+        users.push(newUser); //add the new user into users array
         console.log(users);
         localStorage.setItem('users', JSON.stringify(users)); //sent the array to local storage as string
         window.location.replace("./index.html"); // its work!!!
@@ -95,6 +98,7 @@ function heandelPlay() {
     window.location.replace("./game.html"); //move to game page
 }
 function hendelFinish() {
+    localStorage.setItem('users', JSON.stringify(users)); //sent the array to local storage as string
     window.location.replace("./finish.html");
 }
 function hendelLogOn() {
@@ -103,21 +107,12 @@ function hendelLogOn() {
 //-----------------reander--------------------------------
 //render the user name to the game page
 //get the user name from local storage as string
-var h1username = localStorage.getItem('users');
-if (h1username) {
-    //convert it back to array of classes
-    var usernameArray = JSON.parse(h1username);
-    console.log("usernameArray:", usernameArray);
-    usernameArray.forEach(function (user) { return users.push(new User(user.userName)); });
-    console.log("users array:", users);
-    renderUserName();
-}
 function renderUserName() {
     try {
         var username = document.querySelector('#h1');
         if (!username)
             throw new Error('element not faound');
-        var length = users.length; //the last user un the array == currect player
+        var length = users.length; //the last user in the array == currect player
         username.innerHTML = "<h1> Hello " + users[length - 1].userName + "</h1>";
     }
     catch (error) {
@@ -137,9 +132,9 @@ function renderBack() {
 }
 //move to game
 function renderPlay() {
+    console.log("users:", users);
     var h1Instructions = document.querySelector('#instruction');
-    var currentUser = currentPlayer();
-    var instractions = "Match the word with its meaning \n                        <div id=\"score\">your score: " + currentUser.points + "</div>"; //show the score/points of the player
+    var instractions = "Match the word with its meaning \n                        <div id=\"score\">your score: " + users[users.length - 1].points + "</div>"; //show the score/points of the player
     h1Instructions.innerHTML = instractions;
     //call the random word function
     var htmlroot = document.querySelector('#cards');
@@ -193,12 +188,34 @@ function renderFinish() {
     var end = document.querySelector('#end');
     if (!end)
         throw new Error("no element");
-    var currentUser = currentPlayer();
-    var finalScore = currentUser.points;
-    var htmlend = "<h2>Good Job! your fainal score is " + finalScore + "</h2>\n                    <br>\n                    <button onClick=\"hendelLogOn()\">Play Again</button>";
+    var htmlend = "<h2>Good Job " + users[users.length - 1].userName + "! your final score is " + users[users.length - 1].points + "</h2>\n                    <br>\n                    <button onClick=\"hendelLogOn()\">Play Again</button>";
     end.innerHTML = htmlend;
 }
-//-------------------------------------contrilers--------------------
+//-------------------------------------controlers--------------------
+function OnLoadFinish() {
+    fromStorage();
+    renderFinish();
+}
+function OnLoadLogin() {
+}
+function OnLoadGame() {
+    fromStorage();
+    renderPlay();
+}
+function OnLoadIndex() {
+    fromStorage();
+    renderUserName();
+}
+function fromStorage() {
+    var users_string = localStorage.getItem('users');
+    if (users_string) {
+        //convert it back to array of classes
+        var users_array = JSON.parse(users_string);
+        //console.log("usernameArray of object:", usernameArray)
+        users_array.forEach(function (user) { return users.push(new User(user.userName, user.points, user.id)); });
+        console.log("users array of classes:", users);
+    }
+}
 //make the random select words
 function randomWord(words) {
     var randomWordArr = [];
@@ -256,17 +273,18 @@ function checkAnswer(event) {
 }
 //add point for right choise
 function updateScore() {
-    var currentUser = currentPlayer(); //is it by reference or by value?
-    currentUser.points++;
-    console.log("currentUser.points:", currentUser.points);
+    //const currentUser = users[users.length-1];
+    //currentUser.points++ //Amir: comment
+    users[users.length - 1].points++;
+    console.log("currentUser.points:", users[users.length - 1].points);
     console.log("users array:", users);
 }
-function currentPlayer() {
-    var length = users.length;
-    var currentUser = users[length - 1];
-    console.log("currentUser:", currentUser);
-    return currentUser;
-}
+// function currentPlayer(users_array:User[]) {
+//     const length = users_array.length
+//     const currentUser: User = users_array[length - 1]
+//     console.log("currentUser:", currentUser)
+//     return currentUser
+// }
 function dissapear() {
     var htmlmassege = document.querySelector('#massege');
     if (!htmlmassege)
