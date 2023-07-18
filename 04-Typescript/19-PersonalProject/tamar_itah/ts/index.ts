@@ -1,18 +1,22 @@
 //model (classes)
-
 class User {
+    id: number;
     level: number;
     constructor(public userName: string) {
         this.level = 0
+        this.id = Math.random()*6 + Date.now()
     }
 
     //the method take the last score saved in loclstorage and add it to the level 
-    // lastScore(){
-    //     const lastScore:number = localStorage.getItem()
-    //     return this.level+=lastScore 
+    // lastScore() {
+    //     const userstring = localStorage.getItem('users')!
+    //     const userArr = JSON.parse(userstring)
+    //     const lastScore = userArr.find(user => user.id?user.level:0)
+    //     return this.level += lastScore
     // }
 }
 
+let selectedId // current user id which is that latest that pushed into the list
 const users: User[] = []
 
 class Word {
@@ -41,8 +45,10 @@ function handelSubmit(ev: any) {
         console.log(userName)
 
         const newUser = new User(userName)
+        selectedId = newUser.id;
         users.push(newUser)  //save the user name in users array
         console.log(users)
+        console.log('selectedId:',newUser.id)
 
         localStorage.setItem('users', JSON.stringify(users)) //sent the array to local storage as string
 
@@ -188,13 +194,23 @@ function renderBack() {
 //move to game
 function renderPlay() {
     const h1Instructions = document.querySelector('#instruction')!
+
+    //call the users from storage as string to cillect his level
+    // const points = localStorage.getItem('users')
+    // if (points) {
+    //     //convert it bace to array
+    //     const userPoints = JSON.parse(points)
+    //     console.log('userPoints:',userPoints)
+    //     console.log("numberOfCard:", numberOfCard)
+    //     // userPoints.forEach(user => users.push(new User(user.level)))
+    //     // console.log(users)
+    // }
+
     const instractions = `Match the word with its meaning 
-                        <div id="score">your scor:${}</div>`  //show the score of the user un this game
+                        <div id="score">your score:${}</div>`  //show the score of the user un this game
     h1Instructions.innerHTML = instractions
 
     //call the random word function
-
-
     const htmlroot = document.querySelector('#cards')
     if (!htmlroot) throw new Error("no root element");
     console.log(htmlroot)
@@ -212,7 +228,7 @@ function renderPlay() {
 
     const randomWords = randomWord(words);
 
-    const firstWord = randomWords[0],
+    const firstWord = randomWords[0]
 
     //randomized words
     const randomWardsToDisplay = randomWord(randomWords)
@@ -224,6 +240,11 @@ function renderPlay() {
     htmlroot.innerHTML = htmlWordsToSelect + "<br>" + htmlWordInEnglish
 
     htmlroot.addEventListener('click', checkAnswer);
+}
+
+//show messige for wrong anser
+function rendermessage(x:number) {
+    if(x===1) return 
 }
 
 //finish the game
@@ -253,36 +274,72 @@ function randomWord(words: Word[]) {
 }
 
 let numberOfCard: number = 1
+console.log("numberOfCard:", numberOfCard)
 function numOfCard(): number | undefined {
     try {
-        numberOfCard++
+        if (numberOfCard < 4) {
+            numberOfCard++
+        } else {
+            numberOfCard = 2
+        }
         return numberOfCard
     } catch (error) {
         console.error(error)
     }
+
 }
 
 //function work at eveant lisiner mouse click ocure on one -> to chose the right ansear
-function checkAnswer(event:any) {
+function checkAnswer(event: any) {
     const selectedCard = event.target;
+    //console.log(selectedCard)
     const selectedHebrewWord = selectedCard.innerText;
-    console.log(selectedHebrewWord)
+    //console.log(selectedHebrewWord)
 
     const englishWordCard = document.querySelector('#c1')!;
-    console.log(englishWordCard)
+    //console.log(englishWordCard)
 
     const correctHebrewWord = englishWordCard.getAttribute('data-correct-hebrew');
     console.log("correctHebrewWord is:", correctHebrewWord)
-  
+
     if (selectedHebrewWord === correctHebrewWord) {
-      // The user selected the correct Hebrew word
-      console.log('Correct answer!');
-      //  updating the score 
+        // The user selected the correct Hebrew word
+        console.log('Correct answer!');
+        console.log('id = ', this.id);
+        addScore();
+        rendermessage(1)
+        renderPlay()
+        //  updating the score 
     } else {
-      // The user selected the wrong Hebrew word
-      console.log('Wrong answer!');
-      // displaying an error message
+        // The user selected the wrong Hebrew word
+        console.log('Wrong answer!');
+        // displaying an error message
+        rendermessage(0)
+        renderPlay()
     }
-  }
-  
+}
+
+//add point for right choise
+function addScore() {
+    console.log("id =", selectedId)
+    const usersArrString = localStorage.getItem('users')!
+    const usersArr = JSON.parse(usersArrString)
+    const userindex = usersArr.findIndex(user => user.id === selectedId)
+    console.log("userindex:", userindex)
+    users[userindex].level = users[userindex].level + 1;
+
+    // try {
+    //     let score = document.querySelector('#score')
+    //     if (!score) throw new Error("no element");
+
+    //     const addPoints = userpoint++;
+    //     console.log("addPoints:", addPoints)
+    //     localStorage.setItem('users', JSON.stringify(users))
+
+    //     return addPoints
+    // } catch (error) {
+    //     console.error(error)
+    // }
+}
+
 
