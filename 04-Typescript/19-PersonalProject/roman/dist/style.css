@@ -83,28 +83,69 @@ body {
 .wrapper .header__links__item:hover {
   transform: scale(1.2);
 }
+.wrapper .header .cartIcon {
+  color: #27272E;
+}
+.wrapper .header .cartIcon #cartNumElm {
+  color: red;
+  font-weight: bold;
+  font-size: 10px;
+  position: relative;
+  right: 0;
+  bottom: 10px;
+  justify-self: end;
+}
 .wrapper .nav {
   padding: 20px 0;
   font-family: "Roboto Condensed", sans-serif;
   border-bottom: 1px solid #F5F6F5;
 }
-.wrapper .nav__list {
+.wrapper .nav .nav__list {
   list-style: none;
   margin: 0;
   padding: 0;
   display: flex;
 }
-.wrapper .nav__item {
-  margin-right: 10px;
-}
-.wrapper .nav__link {
+.wrapper .nav .nav__link {
   text-decoration: none;
   color: #27272E;
   padding: 5px;
 }
-.wrapper .nav__link:hover {
+.wrapper .nav .nav__link:hover {
   background-color: #333;
   color: #fff;
+}
+.wrapper .popup {
+  display: none;
+  width: fit-content;
+  height: fit-content;
+  background-color: #f2f2f2;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.wrapper .popup__name, .wrapper .popup__txt {
+  margin: 0;
+}
+.wrapper .popup__name {
+  font-size: 20px;
+  font-weight: bold;
+  color: #594bb4;
+}
+.wrapper .popup__txt {
+  font-style: oblique;
+}
+.wrapper .popup__btn {
+  margin: 0 auto;
+  width: fit-content;
 }
 
 .products {
@@ -191,6 +232,7 @@ body {
 .products .product__text-name {
   font-size: 1.5rem;
   font-weight: bold;
+  color: #594bb4;
 }
 .products .product__text-description, .products .product__text-price {
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
@@ -221,3 +263,45 @@ body {
   width: 100%;
   height: 100%;
 }
+.products .cart {
+  position: relative;
+  padding-bottom: 40px;
+}
+.products .cart table {
+  border-bottom: #F5F6F5 1px solid;
+}
+.products .cart td {
+  padding: 10px;
+}
+.products .cart__image {
+  height: 100px;
+}
+.products .cart button.checkout-btn {
+  width: fit-content;
+  position: absolute;
+  bottom: 0;
+}
+
+/* Media Query for Mobile Devices */
+@media (max-width: 480px) {
+  body .header__search {
+    display: none;
+  }
+  body .nav__list {
+    display: flex;
+    width: 100%;
+    text-align: center;
+    flex-direction: column;
+    font-size: 1.5rem;
+    gap: 10px;
+  }
+}
+/* Media Query for low resolution  Tablets, Ipads */
+@media (min-width: 481px) and (max-width: 767px) {
+  body {
+    background-color: yellow;
+  }
+}
+/* Media Query for Tablets Ipads portrait mode */
+/* Media Query for Laptops and Desktops */
+/* Media Query for Large screens */
