@@ -509,7 +509,7 @@ function  renderCityCard(cityId:number){
     cityName.innerHTML=`${city.cityName}`; 
     cityBuyPrice.innerHTML=`Buy Price : ${city.monetaryValue}`; 
     cityRentPrice.innerHTML=`Rent Price : ${city.rentValue}`; 
-    debugger
+  
     const ownerName=city.cityOwner?.userName;
     owner.innerHTML=`Owner : ${ownerName || "No Owner" }`;
     
@@ -843,8 +843,8 @@ function buyCity(cityId: number, playerId: number) {
   if (player.Pbank < city.monetaryValue) throw new Error("Player doesn't have enough money");
 
   player.Pbank -= city.monetaryValue;
-  city.cityOwner = player;
-  console.log(`player : ${city.cityOwner.playerId}${player.Pbank}`);
+  city.cityOwner = player; 
+  console.log(`player ${city.cityOwner.playerId}: pBank ${player.Pbank}`);
   console.log(currentGame);
   
 }
@@ -867,12 +867,12 @@ function payRent(cityId: number, playerId: number) {
   if (!city.cityOwner) throw new Error("Can't find cityOwner");
   city.cityOwner.Pbank += city.rentValue;
 
-  console.log(player.Pbank);
-  console.log(city.cityOwner?.Pbank);
+  console.log(`player pay ${player.playerId}:${player.Pbank}`);
+  console.log(`player get ${city.cityOwner?.playerId} :${city.cityOwner?.Pbank}`);
 }
 
 function rendercityCardRentOrBuy(cityId, playerId) {
-  try {debugger
+  try {
 
     // If the city has an owner, render pay rent; else, render buy city or pick a good gift
     const city = currentGame?.cities.find((city) => city.cityId === cityId);

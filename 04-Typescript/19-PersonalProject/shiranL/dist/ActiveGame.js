@@ -526,7 +526,6 @@ function renderCityCard(cityId) {
         cityName.innerHTML = "" + city.cityName;
         cityBuyPrice.innerHTML = "Buy Price : " + city.monetaryValue;
         cityRentPrice.innerHTML = "Rent Price : " + city.rentValue;
-        debugger;
         var ownerName = (_a = city.cityOwner) === null || _a === void 0 ? void 0 : _a.userName;
         owner.innerHTML = "Owner : " + (ownerName || "No Owner");
         diaylogForm.appendChild(cityName);
@@ -858,11 +857,11 @@ function buyCity(cityId, playerId) {
         throw new Error("Player doesn't have enough money");
     player.Pbank -= city.monetaryValue;
     city.cityOwner = player;
-    console.log("player : " + city.cityOwner.playerId + player.Pbank);
+    console.log("player " + city.cityOwner.playerId + ": pBank " + player.Pbank);
     console.log(currentGame);
 }
 function payRent(cityId, playerId) {
-    var _a;
+    var _a, _b;
     if (!gamesBoardsAGpage)
         throw new Error("Can't find gamesBoardsAGpage");
     var currentGame = gamesBoardsAGpage.find(function (board) { return board.gameStatus === true; });
@@ -880,13 +879,12 @@ function payRent(cityId, playerId) {
     if (!city.cityOwner)
         throw new Error("Can't find cityOwner");
     city.cityOwner.Pbank += city.rentValue;
-    console.log(player.Pbank);
-    console.log((_a = city.cityOwner) === null || _a === void 0 ? void 0 : _a.Pbank);
+    console.log("player pay " + player.playerId + ":" + player.Pbank);
+    console.log("player get " + ((_a = city.cityOwner) === null || _a === void 0 ? void 0 : _a.playerId) + " :" + ((_b = city.cityOwner) === null || _b === void 0 ? void 0 : _b.Pbank));
 }
 function rendercityCardRentOrBuy(cityId, playerId) {
     var _a;
     try {
-        debugger;
         // If the city has an owner, render pay rent; else, render buy city or pick a good gift
         var city = currentGame === null || currentGame === void 0 ? void 0 : currentGame.cities.find(function (city) { return city.cityId === cityId; });
         if (!city)
