@@ -113,6 +113,14 @@ function heandelPlay() {
     window.location.replace("./game.html")  //move to game page
 }
 
+function hendelFinish(){
+    window.location.replace("./finish.html")
+}
+
+function hendelLogOn(){
+    window.location.replace("./login.html")
+}
+
 //-----------------reander--------------------------------
 
 //render the user name to the game page
@@ -176,7 +184,9 @@ function renderPlay() {
     //call the random word function
     const htmlroot = document.querySelector('#cards')
     if (!htmlroot) throw new Error("no root element");
-    console.log(htmlroot)
+    console.log("htmlroot:",htmlroot)
+    console.log("users:",users)
+    console.log("words:",words)
 
 
     //view + data binding
@@ -230,16 +240,15 @@ function rendermessage(x: number) {
 //finish the game
 function renderFinish() {
     const end = document.querySelector('#end')
-    const finish = document.querySelector('#finish')
-    if (!end || !finish) throw new Error("no element");
+    if (!end) throw new Error("no element");
 
     const currentUser = currentPlayer()
     const finalScore = currentUser.points
 
-    const htmlfinish = ' '
-
-    const htmlend = `Good Job! your fainal score is ${finalScore}`
-    end.innerHTML = htmlend + htmlfinish
+    const htmlend = `<h2>Good Job! your fainal score is ${finalScore}</h2>
+                    <br>
+                    <button onClick="hendelLogOn()">Play Again</button>`
+    end.innerHTML = htmlend 
 
 }
 

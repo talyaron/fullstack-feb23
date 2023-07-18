@@ -94,6 +94,12 @@ function heandelDelWord(ev) {
 function heandelPlay() {
     window.location.replace("./game.html"); //move to game page
 }
+function hendelFinish() {
+    window.location.replace("./finish.html");
+}
+function hendelLogOn() {
+    window.location.replace("./login.html");
+}
 //-----------------reander--------------------------------
 //render the user name to the game page
 //get the user name from local storage as string
@@ -139,7 +145,9 @@ function renderPlay() {
     var htmlroot = document.querySelector('#cards');
     if (!htmlroot)
         throw new Error("no root element");
-    console.log(htmlroot);
+    console.log("htmlroot:", htmlroot);
+    console.log("users:", users);
+    console.log("words:", words);
     //view + data binding
     //render the cards in random order
     //create a function whcih return the cards in random order
@@ -183,14 +191,12 @@ function rendermessage(x) {
 //finish the game
 function renderFinish() {
     var end = document.querySelector('#end');
-    var finish = document.querySelector('#finish');
-    if (!end || !finish)
+    if (!end)
         throw new Error("no element");
     var currentUser = currentPlayer();
     var finalScore = currentUser.points;
-    var htmlfinish = ' ';
-    var htmlend = "Good Job! your fainal score is " + finalScore;
-    end.innerHTML = htmlend + htmlfinish;
+    var htmlend = "<h2>Good Job! your fainal score is " + finalScore + "</h2>\n                    <br>\n                    <button onClick=\"hendelLogOn()\">Play Again</button>";
+    end.innerHTML = htmlend;
 }
 //-------------------------------------contrilers--------------------
 //make the random select words
