@@ -8,9 +8,16 @@ html body {
   font-size: 18px;
   font-weight: bold;
 }
+html body .logo {
+  display: flex;
+  position: relative;
+  top: -10rem;
+  left: 1.2rem;
+  height: 10px;
+}
 html body form {
   border-radius: 15px;
-  margin: 2rem;
+  margin: 5rem;
   padding: 2rem;
 }
 html body form h2 {
