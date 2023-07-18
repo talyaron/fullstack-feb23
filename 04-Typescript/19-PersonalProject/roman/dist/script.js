@@ -72,7 +72,7 @@ var Cart = /** @class */ (function () {
     Cart.prototype.renderCart = function () {
         var tableHTML = '<div class="cart"><h2>Cart</h2><table><tr><th>Image:</th><th>Name:</th><th>Amount:</th><th>Price</th><th>Edit:</th></tr>';
         tableHTML += this.items.map(function (item) {
-            return "\n            <tr>\n            <td><img class=\"cart__image\" src='" + item.img + "'></td>\n            <td>" + item.brand + " " + item.name + "</td>\n            <td>" + item.amount + " \n\n          </td>\n            <td>" + item.price * item.amount + "</td><td>   <button onclick=\"addToCart('" + item.id + "')\">\n            <i class=\"fa-solid fa-plus  item-ctrl\"></i></button>\n\n            <button onclick=\"removeFromCart('" + item.id + "')\">\n            <i class=\"fa-solid fa-minus item-minus item-ctrl\"></i> </button></td></tr>";
+            return "\n            <tr>\n            <td><img class=\"cart__image\" src='" + item.img + "'></td>\n            <td>" + item.brand + " " + item.name + "</td>\n            <td>" + item.amount + " \n\n          </td>\n            <td>" + item.price + "</td><td>   <button onclick=\"addToCart('" + item.id + "')\">\n            <i class=\"fa-solid fa-plus  item-ctrl\"></i></button>\n\n            <button onclick=\"removeFromCart('" + item.id + "')\">\n            <i class=\"fa-solid fa-minus item-minus item-ctrl\"></i> </button></td></tr>";
         }).join("");
         tableHTML += "\n        </table><p>Summary items: " + this.getSumAmount() + "</p><p>Summary price: " + this.getSum() + "</p>\n        <button class=\"checkout-btn\">Checkout</button></div>";
         productsDiv.innerHTML = tableHTML;
@@ -100,6 +100,7 @@ var productsDiv = document.querySelector(".products");
 var navDiv = document.querySelector(".nav");
 var wrapperDiv = document.querySelector(".wrapper");
 var cartNum = document.querySelector('#cartNumElm');
+//Render all products
 function renderProductsPage(elm) {
     try {
         if (!elm)
@@ -107,7 +108,7 @@ function renderProductsPage(elm) {
         if (!products)
             throw new Error('no products');
         var html = products.map(function (item) {
-            return "\n            <div class=\"products__item\" id=\"" + item.id + "\" onclick=\"renderProductPage(event.target.id)\">\n            <div class=\"products__item-img\" id=\"" + item.id + "\" style=\"background-image: url(" + item.img + ")\"></div>\n            <div class=\"products__item-name\"id=\"" + item.id + "\" >" + item.name + "</div>\n            <div class=\"products__item-description\" id=\"" + item.id + "\">" + item.description + "</div>\n            <div class=\"products__item-price\" id=\"" + item.id + "\">Price: <span>" + item.price + "</span> \u20AA</div>\n          </div>";
+            return "\n            <div class=\"products__item\" id=\"" + item.id + "\" onclick=\"renderProductPage(event.target.id)\">\n            <div class=\"products__item-img\" id=\"" + item.id + "\" style=\"background-image: url('" + item.img + "')\"></div>\n            <div class=\"products__item-name\"id=\"" + item.id + "\" >" + item.name + "</div>\n            <div class=\"products__item-description\" id=\"" + item.id + "\">" + item.description + "</div>\n            <div class=\"products__item-price\" id=\"" + item.id + "\">Price: <span>" + item.price + "</span> \u20AA</div>\n          </div>";
         }).join(" ");
         elm.innerHTML = html;
     }
@@ -115,6 +116,7 @@ function renderProductsPage(elm) {
         console.error(error);
     }
 }
+//Navigation Render
 navDiv.addEventListener("click", function (event) {
     try {
         if (!event) {
@@ -145,6 +147,8 @@ function renderCategoryPage(category, divElement) {
         // if (!divElement) throw new Error('no divElement')
         if (!products)
             throw new Error('no products');
+        if (!divElement)
+            throw new Error('no div element');
         var filteredCategory = products.filter(function (cat) {
             return cat.category === category.slice(0, -1);
         });
@@ -184,26 +188,6 @@ renderProductsPage(productsDiv);
 // function renderCartPage() {
 //     cart.renderCart();
 // }
-//control
-function addToCart(id) {
-    // console.log(id);
-    var product = products.find(function (product) { return product.id === id; });
-    var txt = "<p class=\"popup__name\">" + product.name + "</p><p class=\"popup__txt\">successfully added to cart</p>";
-    // var tmp = cart.items.find(product => product.id === id)
-    // console.log(cart.items)
-    var cartDiv = wrapperDiv === null || wrapperDiv === void 0 ? void 0 : wrapperDiv.querySelector('.cart');
-    if (!cartDiv) {
-        cart.addItem(product);
-        renderPopup(txt);
-        renderCartNumber(cartNum);
-    }
-    else {
-        // console.log('cartdiv');
-        cart.addItem(product);
-        cart.renderCart();
-        renderCartNumber(cartNum);
-    }
-}
 function renderPopup(message) {
     var existingPopup = wrapperDiv === null || wrapperDiv === void 0 ? void 0 : wrapperDiv.querySelector('.popup');
     if (existingPopup) {
@@ -229,28 +213,66 @@ function renderPopup(message) {
         }, 3000);
     }
 }
-function removeFromCart(id) {
+//control
+function addToCart(id) {
+    // console.log(id);
     var product = products.find(function (product) { return product.id === id; });
-    cart.removeItem(product);
-    cart.renderCart();
-    renderCartNumber(cartNum);
-    if (cart.items.length == 0) {
-        console.log("test");
-        renderProductsPage(productsDiv);
+    var txt = "<p class=\"popup__name\">" + product.name + "</p><p class=\"popup__txt\">successfully added to cart</p>";
+    // var tmp = cart.items.find(product => product.id === id)
+    // console.log(cart.items)
+    var cartDiv = wrapperDiv === null || wrapperDiv === void 0 ? void 0 : wrapperDiv.querySelector('.cart');
+    if (!cartDiv) {
+        cart.addItem(product);
+        renderPopup(txt);
+        renderCartNumber(cartNum);
+    }
+    else {
+        // console.log('cartdiv');
+        cart.addItem(product);
+        cart.renderCart();
+        renderCartNumber(cartNum);
+    }
+}
+function removeFromCart(id) {
+    try {
+        var product = products.find(function (product) { return product.id === id; });
+        if (!product) {
+            throw new Error("Product with ID " + id + " not found.");
+        }
+        cart.removeItem(product);
+        cart.renderCart();
+        renderCartNumber(cartNum);
+        if (cart.items.length === 0) {
+            renderProductsPage(productsDiv);
+        }
+    }
+    catch (error) {
+        console.error(error);
     }
 }
 function saveProductsToLocalStorage(products) {
-    localStorage.setItem("Products", JSON.stringify(products));
+    try {
+        localStorage.setItem("Products", JSON.stringify(products));
+    }
+    catch (error) {
+        console.error("Error saving products to local storage:", error);
+    }
 }
 function getProductsFromStorage() {
-    var productsString = localStorage.getItem("Products");
-    if (!productsString)
+    try {
+        var productsString = localStorage.getItem("Products");
+        if (!productsString)
+            return [];
+        var productsArray = JSON.parse(productsString);
+        var products_1 = productsArray.map(function (product) {
+            return new Product(product.name, product.brand, product.category, product.price, product.description, product.img, product.id);
+        });
+        return products_1;
+    }
+    catch (error) {
+        console.error(error);
         return [];
-    var productsArray = JSON.parse(productsString);
-    var products = productsArray.map(function (product) {
-        return new Product(product.name, product.brand, product.category, product.price, product.description, product.img, product.id);
-    });
-    return products;
+    }
 }
 function renderCartNumber(cartNum) {
     var number = cart.getSumAmount().toString();
