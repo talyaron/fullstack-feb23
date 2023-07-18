@@ -1,5 +1,6 @@
 let canvas = document.querySelector("canvas") as HTMLCanvasElement;
 let ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
+let playerUserName = localStorage.getItem("username") as string;
 let playerInstance: Player;
 let bullets: Bullet[] = new Array();
 let bulletInterval: number = 0;
@@ -92,7 +93,7 @@ function runGame() {
     ctx.clearRect(0, 0, 500, 500);
     playerInstance.movePlayer();
     runBullets();
-    addScore();
+    addScore(playerUserName);
     if (gameOver) {
       endingMessage();
     } else {
@@ -104,6 +105,16 @@ function runGame() {
   }
 }
 
+
 playerInstance = new Player();
+playerUserName = (() => {
+  const curname = localStorage.getItem("username") as string
+  let i = 0
+  let finalName = curname;
+  while(!!localStorage.getItem(finalName)){
+   finalName = curname + (i++)
+  }
+  return finalName
+})()
 addMovementToPlayer(playerInstance);
 runGame();

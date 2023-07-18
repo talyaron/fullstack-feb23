@@ -9,12 +9,19 @@ html {
     font-family: "Quicksand", sans-serif;
     font-size: 18px;
     font-weight: bold;
+
+    .logo {
+       display: flex;
+       position: relative;
+       top: -10rem;
+       left: 1.2rem;
+       height: 10px;
+    }
    
 
 form {
-    // border: 2px solid rgb(76, 76, 76);
     border-radius: 15px;
-    margin: 2rem;
+    margin: 5rem;
     padding: 2rem;
 
     h2 {

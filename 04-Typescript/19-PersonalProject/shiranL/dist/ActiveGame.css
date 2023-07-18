@@ -71,6 +71,13 @@
   background-color: #3e8e41;
 }
 
+.jailBtn {
+  background-size: cover;
+  background-position: center;
+  width: var(--cellSize);
+  height: var(--cellSize);
+}
+
 .RovaA {
   background-image: url("./rovaA1.jpg");
   background-size: cover;
@@ -140,9 +147,11 @@
   height: var(--playerSize);
   background-size: cover;
   background-position: center;
+  z-index: 999;
 }
 
 #cubeButton {
+  display: none;
   width: var(--cellSize);
   height: var(--cellSize);
   background-image: url("./cube.png");
@@ -196,59 +205,38 @@
   background-position: center;
 }
 
-.cityDialog {
-  transform: translate(-50%, -50%);
-  z-index: 9999;
+.dialog-card {
   padding: 20px;
   width: 400px;
   border-radius: 5px;
   border: none;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
-
-.cityDialog__cityCardForm {
-  display: flex;
-  flex-direction: column;
-}
-
-.cityDialog .closeCityDialog {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background: none;
-  border: none;
-  color: #b10606;
-  font-size: var(--fontsize);
+.dialog-card h3 {
+  font-size: 18px;
   font-weight: bold;
-  cursor: pointer;
-  padding: 5px;
+  margin: 0;
 }
-
-.cityDialog h1 {
-  margin-top: 0;
-  font-size: calc(var(--fontsize) * 2);
-  font-weight: bold;
-}
-
-.cityDialog h2 {
+.dialog-card p {
+  font-size: 20px;
   margin: 10px 0;
-  font-size: calc(var(--fontsize) * 1.5);
 }
-
-.cityDialog .buyBtn,
-.cityDialog .payBtn {
+.dialog-card button {
+  padding: 8px 16px;
+  margin: 15px;
   background-color: #007bff;
-  color: #ffffff;
-  padding: 10px;
+  color: #fff;
   border: none;
-  border-radius: 3px;
+  border-radius: 4px;
   cursor: pointer;
-  font-size: var(--fontsize);
-  text-align: center;
-  margin-top: 10px;
+  font-size: 14px;
 }
-
-.cityDialog .buyBtn:hover {
+.dialog-card button:hover {
   background-color: #0056b3;
+}
+.dialog-card button:focus {
+  outline: none;
 }
 
 .goodS {
@@ -283,4 +271,24 @@
   background-image: url("./happyS.jpg");
   background-size: cover;
   background-position: center;
+}
+
+@keyframes enlarge {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(2);
+  }
+}
+.enlarge-animation {
+  animation-name: enlarge;
+  animation-duration: 3s;
+  animation-timing-function: ease;
+  animation-fill-mode: forwards;
+}
+
+.currentPlayer {
+  border: 2px solid green;
+  transform: scale(1.2);
 }
