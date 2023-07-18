@@ -45,7 +45,8 @@ var Player = /** @class */ (function () {
     };
     return Player;
 }());
-var players = getPlayerFromStorage();
+var players = getPlayerFromStorage("players");
+var scoreTable = getPlayerFromStorage("table");
 if (players !== undefined && players.length > 0) {
     if (players[(players === null || players === void 0 ? void 0 : players.length) - 1].isActive) {
         renderPlayer(players[players.length - 1].swordColor);
@@ -56,9 +57,9 @@ if (players !== undefined && players.length > 0) {
 }
 else
     renderLogPanel(document.querySelector(".screen__UI"));
-function getPlayerFromStorage() {
+function getPlayerFromStorage(item) {
     try {
-        var storageString = localStorage.getItem("players");
+        var storageString = localStorage.getItem("" + item);
         if (!storageString)
             throw new Error("No such name in local storage");
         //convert string to array of objects
@@ -102,7 +103,6 @@ var timeIntervalID;
 function hundelStart(ev) {
     try {
         ev.preventDefault();
-        debugger;
         var operation = ev.target.name;
         switch (operation) {
             case "start":
@@ -270,7 +270,6 @@ function listenTokeyDown(event) {
             throw new Error("Can't cath sword DOM");
         var rect = element.getBoundingClientRect();
         var key = event.key;
-        debugger;
         switch (event.key || event.ctrlKey || event.target.name) {
             case 'ArrowLeft':
                 if (event.shiftKey == true) {
@@ -422,16 +421,44 @@ function endOfGame(player) {
         removeEventListener('keydown', listenTokeyDown);
         updateScoreOnScreen(player, document.getElementById('score'));
         updatePlayer(player);
-        if (players === undefined)
+        addGameResultToTable(player);
+        debugger;
+        if (scoreTable === undefined)
             throw new Error("Missing players");
-        var highScore_1 = players === null || players === void 0 ? void 0 : players.findIndex(function (p) { return p.record >= player.record; });
+        var highScore_1 = scoreTable === null || scoreTable === void 0 ? void 0 : scoreTable.findIndex(function (p) { return p.record <= player.currentScore; });
         setTimeout(function () {
-            if (highScore_1 == -1)
+            if (highScore_1 == 0)
                 alert("Great job! You got a new record");
             location.href = "../HTML/scoreTable.html";
         }, 5000);
     }
     catch (error) {
+    }
+}
+function addGameResultToTable(player) {
+    try {
+        if (!player)
+            throw new Error("No player");
+        var tempPlayer = playerShallowCopy(player);
+        if (tempPlayer === undefined)
+            throw new Error("Shallow copy failed");
+        scoreTable === null || scoreTable === void 0 ? void 0 : scoreTable.push(tempPlayer);
+        localStorage.setItem("table", JSON.stringify(scoreTable));
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+function playerShallowCopy(player) {
+    try {
+        var fName = player.firstName;
+        var sName = player.lastName;
+        var record = player.currentScore;
+        var color = player.swordColor;
+        return (new Player(fName, sName, color, null, undefined, record, record, undefined));
+    }
+    catch (error) {
+        console.error(error);
     }
 }
 function updatePlayer(player) {
