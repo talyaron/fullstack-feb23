@@ -172,6 +172,8 @@ function loadQuestionGoodThings (): QuestionGoodThings[] | undefined {
         goodThings.push(new QuestionGoodThings("Surprise","A large contractor decided to donate a hotel, take the money and use it wisely",getRandomNumber(1500,1700)))
         goodThings.push(new QuestionGoodThings("Dog Gift","Congratulations you won a pet dog",getRandomNumber(50,100)))
         goodThings.push(new QuestionGoodThings("Thank U","I see your effort to do for the residents of the city, get reinforcement for continued fruitful work",getRandomNumber(550,550)))
+        goodThings.push(new QuestionGoodThings("Wow!","Run for mayor! The city needs a mayor like you,Here is help with the propaganda budget",getRandomNumber(550,1000)))
+        goodThings.push(new QuestionGoodThings("A proud citizen","You helped an elderly man cross the road safely. Get an assessment!",getRandomNumber(750,1000)))
        
         //save to local storage
         const goodThingsJson = JSON.stringify(goodThings);
@@ -201,6 +203,7 @@ function loadQuestionBadThings (): QuestionBadThings[] | undefined {
         badThings.push(new QuestionBadThings("Stinky fish","There is an overflow from the stream, full of dead fish. The loss is on you this timec",getRandomNumber(800,1000)))
         badThings.push(new QuestionBadThings("It stinks here","Received too many calls about trash removal this morning, Help a little with the evacuation budget",getRandomNumber(800,1000)))
         badThings.push(new QuestionBadThings("A proud citizen","Your contribution to the city is welcomed",getRandomNumber(800,1000)))
+        badThings.push(new QuestionBadThings("shame","That's how it is in a democracy.. everyone pays taxes",getRandomNumber(1000,1200)))
         
         //save to local storage
         const badThingsJson = JSON.stringify(badThings);
@@ -211,7 +214,7 @@ function loadQuestionBadThings (): QuestionBadThings[] | undefined {
           //get characters from localstorage
           const badThingsArray = JSON.parse(badThingsString);
           badThingsArray.forEach((bad) => {
-            badThings.push(new QuestionBadThings(bad.bdThingsTitel,bad.badThingsDescription,bad.purchasePrice,bad.badThingsId));
+            badThings.push(new QuestionBadThings(bad.badThingsTitel,bad.badThingsDescription,bad.purchasePrice,bad.badThingsId));
               });}
    return badThings;          
         
@@ -292,6 +295,7 @@ function loadDataToBoard(board: Board|undefined): void {
       // Load bad things and add them to the board
       const badThings: QuestionBadThings[] | undefined = loadQuestionBadThings();
       if (badThings) {
+        debugger
         board.badThings = badThings;
       }
       

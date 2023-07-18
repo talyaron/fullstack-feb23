@@ -27,7 +27,6 @@ body .gallery__imgs--p i:hover {
 }
 body .h1 {
   display: flex;
-  justify-content: center;
   background-color: #718f54;
   align-items: center;
 }
@@ -36,8 +35,10 @@ body h1 {
   text-align: center;
   margin: 0;
   font-size: 5vw;
+  padding-left: 35vw;
 }
 body a {
   color: white;
-  font-size: 1vw;
+  font-size: 2.5vw;
+  padding-left: 2vw;
 }
