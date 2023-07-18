@@ -112,7 +112,7 @@ function renderUserName() {
         if (!username)
             throw new Error('element not faound');
         var length = users.length; //the last user un the array == currect player
-        username.innerHTML = "<h1> Hellow " + users[length - 1].userName + "</h1>";
+        username.innerHTML = "<h1> Hello " + users[length - 1].userName + "</h1>";
     }
     catch (error) {
         console.error(error);
@@ -133,7 +133,7 @@ function renderBack() {
 function renderPlay() {
     var h1Instructions = document.querySelector('#instruction');
     var currentUser = currentPlayer();
-    var instractions = "Match the word with its meaning \n                        <div id=\"score\">your score:" + currentUser.points + "</div>"; //show the score/points of the player
+    var instractions = "Match the word with its meaning \n                        <div id=\"score\">your score: " + currentUser.points + "</div>"; //show the score/points of the player
     h1Instructions.innerHTML = instractions;
     //call the random word function
     var htmlroot = document.querySelector('#cards');
@@ -166,12 +166,14 @@ function rendermessage(x) {
         if (!htmlmassege)
             throw new Error("no element");
         if (x === 1) {
-            var html = "<div class=\"massege\">Correct answer!</div>";
+            var html = "<div id=\"correct\" class=\"massege\">Correct answer!</div>";
             htmlmassege.innerHTML = html;
+            setTimeout(dissapear, 1000);
         }
         if (x === 0) {
-            var html = "<div class=\"massege\">Wrong answer!</div>";
+            var html = "<div id=\"wrong\" class=\"massege\">Wrong answer!</div>";
             htmlmassege.innerHTML = html;
+            setTimeout(dissapear, 1000);
         }
     }
     catch (error) {
@@ -258,4 +260,11 @@ function currentPlayer() {
     var currentUser = users[length - 1];
     console.log("currentUser:", currentUser);
     return currentUser;
+}
+function dissapear() {
+    var htmlmassege = document.querySelector('#massege');
+    if (!htmlmassege)
+        throw new Error("no element");
+    var html = "";
+    htmlmassege.innerHTML = html;
 }

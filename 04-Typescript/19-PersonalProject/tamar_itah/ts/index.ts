@@ -133,7 +133,7 @@ function renderUserName() {
         const username = document.querySelector('#h1')
         if (!username) throw new Error('element not faound')
         const length: number = users.length  //the last user un the array == currect player
-        username.innerHTML = `<h1> Hellow ${users[length - 1].userName}</h1>`
+        username.innerHTML = `<h1> Hello ${users[length - 1].userName}</h1>`
     } catch (error) {
         console.error(error)
     }
@@ -170,7 +170,7 @@ function renderPlay() {
     const h1Instructions = document.querySelector('#instruction')!
     const currentUser = currentPlayer()
     const instractions = `Match the word with its meaning 
-                        <div id="score">your score:${currentUser.points}</div>`  //show the score/points of the player
+                        <div id="score">your score: ${currentUser.points}</div>`  //show the score/points of the player
     h1Instructions.innerHTML = instractions
 
     //call the random word function
@@ -212,14 +212,16 @@ function rendermessage(x: number) {
         if (!htmlmassege) throw new Error("no element");
 
         if (x === 1) {
-            const html = `<div class="massege">Correct answer!</div>`
+            const html = `<div id="correct" class="massege">Correct answer!</div>`
             htmlmassege.innerHTML = html
+            setTimeout(dissapear, 1000)
         }
         if (x === 0) {
-            const html = `<div class="massege">Wrong answer!</div>`
+            const html = `<div id="wrong" class="massege">Wrong answer!</div>`
             htmlmassege.innerHTML = html
+            setTimeout(dissapear, 1000)
         }
-        
+
     } catch (error) {
         console.error(error)
     }
@@ -229,14 +231,14 @@ function rendermessage(x: number) {
 function renderFinish() {
     const end = document.querySelector('#end')
     const wrapper = document.querySelector('.wrapper')
-    if(!end || !wrapper) throw new Error("no element");
+    if (!end || !wrapper) throw new Error("no element");
 
     const currentUser = currentPlayer()
     const finalScore = currentUser.points
 
     const htmlWrapper = ' '
 
-    const htmlend =`Good Job! your fainal score is ${finalScore}`
+    const htmlend = `Good Job! your fainal score is ${finalScore}`
     end.innerHTML = htmlend + htmlWrapper
 
 }
@@ -297,7 +299,7 @@ function checkAnswer(event: any) {
         //  updating the score
         updateScore();
         rendermessage(1)
-        renderPlay() 
+        renderPlay()
     } else {
         // The user selected the wrong Hebrew word
         console.log('Wrong answer!');
@@ -321,4 +323,11 @@ function currentPlayer() {
     const currentUser: User = users[length - 1]
     console.log("currentUser:", currentUser)
     return currentUser
+}
+
+function dissapear(){
+    const htmlmassege = document.querySelector('#massege')
+    if (!htmlmassege) throw new Error("no element");
+    const html = ``
+            htmlmassege.innerHTML = html
 }
