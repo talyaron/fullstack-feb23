@@ -1,8 +1,12 @@
 function renderHowtoImg(htmlElement) {
     try {
-        var imageHowTo_1 = document.querySelector("#imageHowTo");
-        var html = "<div id=\"imageHowTo\">\n        <img src=\"./dist/imges/HowTo.png\" alt=\"\">\n    </div>";
-        imageHowTo_1.innerHTML = html;
+        var imageHowTo = document.querySelector("#imageHowTo");
+        var html = "\n        <img id=\"imageH\" src=\"./dist/imges/HowTo.png\" alt=\"\">";
+        imageHowTo.innerHTML = html;
+        var imageH_1 = document.querySelector("#imageH");
+        imageH_1.addEventListener("click", function () {
+            imageH_1.remove();
+        });
     }
     catch (error) {
         console.error(error);
@@ -12,7 +16,4 @@ function handleHowtoImg(ev) {
     ev.preventDefault();
     renderHowtoImg(document.querySelector("#imageHowTo"));
 }
-var imageHowTo = document.querySelector("#imageHowTo");
-imageHowTo.addEventListener("click", function (event) {
-    imageHowTo.remove();
-});
+removeImage(document.querySelector("#imageH"));

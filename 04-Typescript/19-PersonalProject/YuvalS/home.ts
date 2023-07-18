@@ -1,18 +1,20 @@
 function renderHowtoImg(htmlElement: HTMLElement | null){
 try {
     const imageHowTo = document.querySelector("#imageHowTo") as HTMLDivElement;
-      const html =  `<div id="imageHowTo">
-        <img src="./dist/imges/HowTo.png" alt="">
-    </div>`
+      const html =  `
+        <img id="imageH" src="./dist/imges/HowTo.png" alt="">`
     imageHowTo.innerHTML = html;
+    const imageH = document.querySelector("#imageH") as HTMLDivElement;
+    imageH.addEventListener("click", function () {
+            imageH.remove();
+          });
+
 } catch (error) {
     console.error(error)
 }
 }
 
 
-    
-    
 
 
 function handleHowtoImg(ev:any) {
@@ -21,7 +23,4 @@ function handleHowtoImg(ev:any) {
 }
 
 
-const imageHowTo = document.querySelector("#imageHowTo") as HTMLDivElement;
-imageHowTo.addEventListener("click", function (event) {
-        imageHowTo.remove()
-        });
+removeImage(document.querySelector("#imageH"))
