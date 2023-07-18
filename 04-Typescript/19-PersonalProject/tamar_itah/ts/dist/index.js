@@ -183,14 +183,14 @@ function rendermessage(x) {
 //finish the game
 function renderFinish() {
     var end = document.querySelector('#end');
-    var wrapper = document.querySelector('.wrapper');
-    if (!end || !wrapper)
+    var finish = document.querySelector('#finish');
+    if (!end || !finish)
         throw new Error("no element");
     var currentUser = currentPlayer();
     var finalScore = currentUser.points;
-    var htmlWrapper = ' ';
+    var htmlfinish = ' ';
     var htmlend = "Good Job! your fainal score is " + finalScore;
-    end.innerHTML = htmlend + htmlWrapper;
+    end.innerHTML = htmlend + htmlfinish;
 }
 //-------------------------------------contrilers--------------------
 //make the random select words

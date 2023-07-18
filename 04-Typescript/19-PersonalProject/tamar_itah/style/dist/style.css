@@ -62,6 +62,10 @@ body {
   font-size: 20px;
 }
 
+#massege {
+  height: 25px;
+}
+
 #correct {
   color: blue;
 }

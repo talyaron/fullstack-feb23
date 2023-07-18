@@ -230,16 +230,16 @@ function rendermessage(x: number) {
 //finish the game
 function renderFinish() {
     const end = document.querySelector('#end')
-    const wrapper = document.querySelector('.wrapper')
-    if (!end || !wrapper) throw new Error("no element");
+    const finish = document.querySelector('#finish')
+    if (!end || !finish) throw new Error("no element");
 
     const currentUser = currentPlayer()
     const finalScore = currentUser.points
 
-    const htmlWrapper = ' '
+    const htmlfinish = ' '
 
     const htmlend = `Good Job! your fainal score is ${finalScore}`
-    end.innerHTML = htmlend + htmlWrapper
+    end.innerHTML = htmlend + htmlfinish
 
 }
 
