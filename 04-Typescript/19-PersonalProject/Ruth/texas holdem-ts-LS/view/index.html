@@ -12,6 +12,7 @@
     <script src="../script/dist/index.js" defer></script>
     <script src="../script/dist/turns.js" defer></script>
     <script src="../script/dist/pokerSets.js" defer></script>
+    <script src="../script/dist/win.js" defer></script>
     <link rel="stylesheet" href="../css/dist/style.css" />
     <link rel="stylesheet" href="../css/dist/players.css" />
   </head>
@@ -20,16 +21,14 @@
     <div class="wrapper">
       <img class="table" src="../images/table.png" alt="" />
       <div class="stage">
-        <button id="addCardToStageBtn" onclick="addCardToStage()">
-          add cards:
-        </button>
+       
       </div>
       
-      <div id="player0Panel" class="myPanel">
-        <div id="" class="myPanel__img">
+      <div id="player0Panel" class="myPanel ">
+        <div id="" class="myPanel__img playerPanel__img">
           <img src="#" alt="" />
         </div>
-        <h4 class="myPanel__chips"></h4>
+        <h4 class="myPanel__chips chipsPlayer"></h4>
         <div class="myPanel__cards"></div>
         <div id="myTurnInput" class="playerPanel__inputChips">
           <!-- <img src="../images/casino-chip.png" alt="" /> -->
@@ -67,7 +66,7 @@
         <div id="player1Cards" class="playerPanel__cards"></div>
         <div class="playerPanel__inform">
           <h5 class="playerPanel__inform__userName" id="player1Name"></h5>
-          <div class="playerPanel__inform__chips" id="player1Chips"></div>
+          <div class="playerPanel__inform__chips chipsPlayer" id="player1Chips"></div>
         </div>
         <div class="playerPanel__inputChips">
           <!-- <img src="../images/casino-chip.png" alt="" />
@@ -82,9 +81,9 @@
         <div id="player2Cards" class="playerPanel__cards"></div>
         <div class="playerPanel__inform">
           <h5 class="playerPanel__inform__userName" id="player2Name"></h5>
-          <div class="playerPanel__inform__chips" id="player2Chips"></div>
+          <div class="playerPanel__inform__chips chipsPlayer" id="player2Chips"></div>
         </div>
-        <div class="playerPanel__inputChips">
+        <div class="playerPanel__inputChips  ">
           <!-- <img src="../images/casino-chip.png" alt="" />
           <h4></h4> -->
         </div>
@@ -99,7 +98,7 @@
         <div id="player3Cards" class="playerPanel__cards"></div>
         <div class="playerPanel__inform">
           <h5 class="playerPanel__inform__userName" id="player3Name"></h5>
-          <div class="playerPanel__inform__chips" id="player3Chips"></div>
+          <div class="playerPanel__inform__chips  chipsPlayer" id="player3Chips"></div>
         </div>
         <div class="playerPanel__inputChips">
           <!-- <img src="../images/casino-chip.png" alt="" />
@@ -116,7 +115,7 @@
         <div id="player4Cards" class="playerPanel__cards"></div>
         <div class="playerPanel__inform">
           <h5 class="playerPanel__inform__userName" id="player4Name"></h5>
-          <div class="playerPanel__inform__chips" id="player4Chips"></div>
+          <div class="playerPanel__inform__chips  chipsPlayer" id="player4Chips"></div>
         </div>
         <div class="playerPanel__inputChips">
           <!-- <img src="../images/casino-chip.png" alt="" />
