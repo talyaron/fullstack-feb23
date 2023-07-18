@@ -8,6 +8,11 @@ html body {
   font-size: 18px;
   font-weight: bold;
 }
+html body .logo {
+  display: flex;
+  width: 200px;
+  height: 10px;
+}
 html body form {
   border: 2px solid #4c4c4c;
   border-radius: 15px;

@@ -1,22 +1,13 @@
 //model (classes)
 class User {
     id: number;
-    level: number;
+    points: number;
     constructor(public userName: string) {
-        this.level = 0
-        this.id = Math.random()*6 + Date.now()
+        this.points = 0
+        this.id = Math.random() * 6 + Date.now()
     }
-
-    //the method take the last score saved in loclstorage and add it to the level 
-    // lastScore() {
-    //     const userstring = localStorage.getItem('users')!
-    //     const userArr = JSON.parse(userstring)
-    //     const lastScore = userArr.find(user => user.id?user.level:0)
-    //     return this.level += lastScore
-    // }
 }
 
-let selectedId // current user id which is that latest that pushed into the list
 const users: User[] = []
 
 class Word {
@@ -32,34 +23,12 @@ const words: Word[] = [
     new Word('Mountain', 'הַר'),
 ]
 
+
 //---------------------handel----------------
 //login form
 //save the usermane, send it to the local storage and open the game page
+
 function handelSubmit(ev: any) {
-    try {
-        ev.preventDefault()
-        console.dir(ev)
-
-        const userName = ev.target.elements.name.value;  //colect the user name
-        if (!userName) throw new Error('user name is missing')
-        console.log(userName)
-
-        const newUser = new User(userName)
-        selectedId = newUser.id;
-        users.push(newUser)  //save the user name in users array
-        console.log(users)
-        console.log('selectedId:',newUser.id)
-
-        localStorage.setItem('users', JSON.stringify(users)) //sent the array to local storage as string
-
-        window.location.replace("./index.html")  // its work!!!
-
-    } catch (error) {
-        console.error(error);
-    }
-}
-
-function handelSignUp(ev: any) {
     try {
         ev.preventDefault()
         console.dir(ev)
@@ -151,19 +120,24 @@ function heandelPlay() {
 const h1username = localStorage.getItem('users')
 
 if (h1username) {
-    //convert it back to array
+    //convert it back to array of classes
     const usernameArray = JSON.parse(h1username)
-    console.log(usernameArray)
+    console.log("usernameArray:", usernameArray)
     usernameArray.forEach(user => users.push(new User(user.userName)))
-    console.log(users)
+    console.log("users array:", users)
     renderUserName()
 }
 
 function renderUserName() {
-    const username = document.querySelector('#h1')
-    if (!username) throw new Error('element not faound')
-    const length: number = users.length
-    username.innerHTML = `<h1> Hellow ${users[length - 1].userName}</h1>`
+    try {
+        const username = document.querySelector('#h1')
+        if (!username) throw new Error('element not faound')
+        const length: number = users.length  //the last user un the array == currect player
+        username.innerHTML = `<h1> Hello ${users[length - 1].userName}</h1>`
+    } catch (error) {
+        console.error(error)
+    }
+
 }
 
 //the Add form
@@ -194,20 +168,9 @@ function renderBack() {
 //move to game
 function renderPlay() {
     const h1Instructions = document.querySelector('#instruction')!
-
-    //call the users from storage as string to cillect his level
-    // const points = localStorage.getItem('users')
-    // if (points) {
-    //     //convert it bace to array
-    //     const userPoints = JSON.parse(points)
-    //     console.log('userPoints:',userPoints)
-    //     console.log("numberOfCard:", numberOfCard)
-    //     // userPoints.forEach(user => users.push(new User(user.level)))
-    //     // console.log(users)
-    // }
-
+    const currentUser = currentPlayer()
     const instractions = `Match the word with its meaning 
-                        <div id="score">your score:${}</div>`  //show the score of the user un this game
+                        <div id="score">your score: ${currentUser.points}</div>`  //show the score/points of the player
     h1Instructions.innerHTML = instractions
 
     //call the random word function
@@ -243,12 +206,40 @@ function renderPlay() {
 }
 
 //show messige for wrong anser
-function rendermessage(x:number) {
-    if(x===1) return 
+function rendermessage(x: number) {
+    try {
+        const htmlmassege = document.querySelector('#massege')
+        if (!htmlmassege) throw new Error("no element");
+
+        if (x === 1) {
+            const html = `<div id="correct" class="massege">Correct answer!</div>`
+            htmlmassege.innerHTML = html
+            setTimeout(dissapear, 1000)
+        }
+        if (x === 0) {
+            const html = `<div id="wrong" class="massege">Wrong answer!</div>`
+            htmlmassege.innerHTML = html
+            setTimeout(dissapear, 1000)
+        }
+
+    } catch (error) {
+        console.error(error)
+    }
 }
 
 //finish the game
 function renderFinish() {
+    const end = document.querySelector('#end')
+    const finish = document.querySelector('#finish')
+    if (!end || !finish) throw new Error("no element");
+
+    const currentUser = currentPlayer()
+    const finalScore = currentUser.points
+
+    const htmlfinish = ' '
+
+    const htmlend = `Good Job! your fainal score is ${finalScore}`
+    end.innerHTML = htmlend + htmlfinish
 
 }
 
@@ -305,11 +296,10 @@ function checkAnswer(event: any) {
     if (selectedHebrewWord === correctHebrewWord) {
         // The user selected the correct Hebrew word
         console.log('Correct answer!');
-        console.log('id = ', this.id);
-        addScore();
+        //  updating the score
+        updateScore();
         rendermessage(1)
         renderPlay()
-        //  updating the score 
     } else {
         // The user selected the wrong Hebrew word
         console.log('Wrong answer!');
@@ -320,26 +310,24 @@ function checkAnswer(event: any) {
 }
 
 //add point for right choise
-function addScore() {
-    console.log("id =", selectedId)
-    const usersArrString = localStorage.getItem('users')!
-    const usersArr = JSON.parse(usersArrString)
-    const userindex = usersArr.findIndex(user => user.id === selectedId)
-    console.log("userindex:", userindex)
-    users[userindex].level = users[userindex].level + 1;
+function updateScore() {
+    const currentUser = currentPlayer();  //is it by reference or by value?
+    currentUser.points++
 
-    // try {
-    //     let score = document.querySelector('#score')
-    //     if (!score) throw new Error("no element");
-
-    //     const addPoints = userpoint++;
-    //     console.log("addPoints:", addPoints)
-    //     localStorage.setItem('users', JSON.stringify(users))
-
-    //     return addPoints
-    // } catch (error) {
-    //     console.error(error)
-    // }
+    console.log("currentUser.points:", currentUser.points)
+    console.log("users array:", users)
 }
 
+function currentPlayer() {
+    const length = users.length
+    const currentUser: User = users[length - 1]
+    console.log("currentUser:", currentUser)
+    return currentUser
+}
 
+function dissapear(){
+    const htmlmassege = document.querySelector('#massege')
+    if (!htmlmassege) throw new Error("no element");
+    const html = ``
+            htmlmassege.innerHTML = html
+}

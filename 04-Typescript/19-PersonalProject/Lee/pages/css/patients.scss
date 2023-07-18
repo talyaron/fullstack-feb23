@@ -8,6 +8,12 @@ html {
     font-family: "Quicksand", sans-serif;
     font-size: 18px;
     font-weight: bold;
+
+    .logo {
+        display: flex;
+        width: 200px;
+        height: 10px;
+    }
    
 
 form {

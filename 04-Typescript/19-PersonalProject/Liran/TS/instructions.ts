@@ -5,9 +5,7 @@ function getStarsFromStorage(): Star[] | undefined {
 
         const storageString = localStorage.getItem("stars");
         if (!storageString) throw new Error("No such name in local storage");
-        //convert string to array of objects
         const storageArray = JSON.parse(storageString);
-        //convert array of objects to array of Card | Player
         const stars: Star[] = storageArray.map((star: Star) => {
 
             return { name: star.name, imageUrl: star.imageUrl, value: star.value, functionDuration: star.functionDuration };
@@ -21,23 +19,19 @@ function getStarsFromStorage(): Star[] | undefined {
 
 }
 
-const instructions: string[] = [
+const instructionsList: string[] = [  
     "'←': Move left",
     "'→': Move right",
     "'Space bar': Use space bar to hit with your sword",
     "'Shift': While holding shift, you can Move faster ",
-    "Game Length: 60S"
-
-
+    "Game Length: 60s"
 ]
 
-function renderInstructions() {
+function renderInstructionsList(root: HTMLElement | null) {
     try {
-        debugger
-        const root = document.querySelector("#text");
-        if (!root) throw new Error("No root for instructions");
+        if (!root) throw new Error("No root for instructionsList");
         let htmlText = `<p style="color: rgb(106, 139, 157);">Control</p>`
-        instructions.forEach(instruction => {
+        instructionsList.forEach(instruction => {
             htmlText += `<p>${instruction}</p>`;
         })
         root.innerHTML += htmlText;
@@ -46,11 +40,9 @@ function renderInstructions() {
     }
 }
 
-function renderStarsList() {
+function renderStarsList(root: HTMLElement | null) {
     try {
-        debugger
-        const root = document.querySelector("#stars");
-        if (!root) throw new Error("No root for instructions");
+        if (!root) throw new Error("No root for instructionsList");
         let htmlText = ` <p style="color: rgb(106, 139, 157);">Charecters</p>
         <table>`
         if (!starsList) throw new Error("No stars");
@@ -68,5 +60,5 @@ function renderStarsList() {
         console.error(error)
     }
 }
-renderInstructions();
-renderStarsList();
+renderInstructionsList(document.querySelector("#text"));
+renderStarsList(document.querySelector("#stars"));
