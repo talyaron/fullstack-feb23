@@ -78,7 +78,7 @@ class Cart {
     clearCart(): void {
         this.items = [];
     }
-    renderCart(): void {
+    renderCart(div): void {
         let tableHTML = '<div class="cart"><h2>Cart</h2><table><tr><th>Image:</th><th>Name:</th><th>Amount:</th><th>Price</th><th>Edit:</th></tr>';
         tableHTML += this.items.map(item => {
             return `
@@ -100,7 +100,7 @@ class Cart {
         </table><p>Summary items: ${this.getSumAmount()}</p><p>Summary price: ${this.getSum()}</p>
         <button class="checkout-btn">Checkout</button></div>`;
 
-        productsDiv.innerHTML = tableHTML;
+        div.innerHTML = tableHTML;
         renderCartNumber(cartNum)
     }
 }
@@ -201,7 +201,7 @@ const products: Product[] = getProductsFromStorage();
 const productsDiv: HTMLElement | null = document.querySelector(".products");
 const navDiv: HTMLElement | any = document.querySelector(".nav");
 const wrapperDiv: HTMLDivElement | null = document.querySelector(".wrapper");
-const cartNum = document.querySelector('#cartNumElm');
+const cartNum: HTMLDivElement | null = document.querySelector('#cartNumElm');
 
 
 
@@ -334,62 +334,67 @@ renderProductsPage(productsDiv)
 
 
 function renderPopup(message: string): void {
+    try {
+        if (!wrapperDiv) throw new Error('no div element')
+        const existingPopup: HTMLElement | null = wrapperDiv.querySelector('.popup');
 
-    const existingPopup: HTMLElement | null | undefined = wrapperDiv?.querySelector('.popup');
+        if (existingPopup) {
+            // If a popup already exists, update its message
+            existingPopup.textContent = message;
+        } else {
+            // Create a new popup 
+            const popupDiv = document.createElement('div');
+            popupDiv.classList.add('popup');
+            popupDiv.innerHTML = message;
 
+            const btn = document.createElement("button");
+            btn.innerHTML = "Go to Cart";
+            btn.classList.add("popup__btn");
+            btn.addEventListener("click", () => {
+                cart.renderCart(productsDiv);
+            });
+            popupDiv.appendChild(btn);
 
+            wrapperDiv.appendChild(popupDiv);
 
-    if (existingPopup) {
-        // If a popup already exists, update its message
-        existingPopup.textContent = message;
-    } else {
-        // Create a new popup 
-        const popupDiv = document.createElement('div');
-        popupDiv.classList.add('popup');
-        popupDiv.innerHTML = message;
-        const btn = document.createElement("button");
-        btn.innerHTML = "Go to Cart";
-        btn.classList.add("popup__btn");
-        btn.addEventListener("click", () => {
-            cart.renderCart();
-        });
-        popupDiv.appendChild(btn);
-        wrapperDiv?.appendChild(popupDiv);
-
-        // Automatically remove the popup after a certain time (e.g., 3 seconds)
-        setTimeout(() => {
-            popupDiv.remove();
-        }, 3000);
+            // Automatically remove the popup after a certain time (e.g., 3 seconds)
+            setTimeout(() => {
+                popupDiv.remove();
+            }, 3000);
+        }
+    } catch (error) {
+        console.error("Error rendering popup:", error);
     }
 }
+
 
 
 
 //control
 
-function addToCart(id) {
-
-    // console.log(id);
-    const product = products.find(product => product.id === id);
-    const txt = `<p class="popup__name">${product.name}</p><p class="popup__txt">successfully added to cart</p>`
-    // var tmp = cart.items.find(product => product.id === id)
-    // console.log(cart.items)
-    const cartDiv: HTMLElement | null | undefined = wrapperDiv?.querySelector('.cart');
-    if (!cartDiv) {
+function addToCart(id: string): void {
+    try {
+      const product = products.find((product) => product.id === id);
+      if (!product) throw new Error('product id not found.');
+      if (!wrapperDiv) throw new Error('no wrapper div')
+      const txt = `<p class="popup__name">${product.name}</p><p class="popup__txt">successfully added to cart</p>`;
+      const cartDiv = wrapperDiv.querySelector('.cart');
+      
+      
+      if (!cartDiv) {
         cart.addItem(product);
         renderPopup(txt);
         renderCartNumber(cartNum);
-    } else {
-        // console.log('cartdiv');
+      } else {
         cart.addItem(product);
-        cart.renderCart();
-        renderCartNumber(cartNum)
+        cart.renderCart(productsDiv);
+        renderCartNumber(cartNum);
+      }
+    } catch (error) {
+      console.error("Error adding to cart:", error);
     }
-
-
-
-}
-
+  }
+  
 
 
 
@@ -397,31 +402,31 @@ function addToCart(id) {
 
 function removeFromCart(id: string): void {
     try {
-      const product = products.find((product) => product.id === id);
-      if (!product) {
-        throw new Error(`Product with ID ${id} not found.`);
-      }
-  
-      cart.removeItem(product);
-      cart.renderCart();
-      renderCartNumber(cartNum);
-  
-      if (cart.items.length === 0) {
-        renderProductsPage(productsDiv);
-      }
+        const product = products.find((product) => product.id === id);
+        if (!product) {
+            throw new Error(`Product with ID ${id} not found.`);
+        }
+
+        cart.removeItem(product);
+        cart.renderCart(productsDiv);
+        renderCartNumber(cartNum);
+
+        if (cart.items.length === 0) {
+            renderProductsPage(productsDiv);
+        }
     } catch (error) {
-      console.error(error);
+        console.error(error);
     }
-  }
-  
+}
+
 
 function saveProductsToLocalStorage(products: Product[]): void {
     try {
-      localStorage.setItem("Products", JSON.stringify(products));
+        localStorage.setItem("Products", JSON.stringify(products));
     } catch (error) {
-      console.error("Error saving products to local storage:", error);
+        console.error("Error saving products to local storage:", error);
     }
-  }
+}
 
 function getProductsFromStorage() {
     try {
@@ -456,5 +461,5 @@ function renderCartNumber(cartNum: HTMLElement | null): void {
 
 
 document.querySelector('.cartIcon')?.addEventListener('click', () => {
-    cart.renderCart()
+    cart.renderCart(productsDiv)
 });
