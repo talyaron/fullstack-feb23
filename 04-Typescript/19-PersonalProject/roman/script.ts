@@ -88,7 +88,7 @@ class Cart {
             <td>${item.amount} 
 
           </td>
-            <td>${item.price * item.amount}</td><td>   <button onclick="addToCart('${item.id}')">
+            <td>${item.price}</td><td>   <button onclick="addToCart('${item.id}')">
             <i class="fa-solid fa-plus  item-ctrl"></i></button>
 
             <button onclick="removeFromCart('${item.id}')">
@@ -197,20 +197,24 @@ const products: Product[] = getProductsFromStorage();
 
 
 //view
+
 const productsDiv: HTMLElement | null = document.querySelector(".products");
 const navDiv: HTMLElement | any = document.querySelector(".nav");
 const wrapperDiv: HTMLDivElement | null = document.querySelector(".wrapper");
 const cartNum = document.querySelector('#cartNumElm');
 
 
-function renderProductsPage(elm) {
+
+//Render all products
+
+function renderProductsPage(elm: HTMLElement | null) {
     try {
         if (!elm) throw new Error('no div element')
         if (!products) throw new Error('no products')
         var html = products.map(item => {
             return `
             <div class="products__item" id="${item.id}" onclick="renderProductPage(event.target.id)">
-            <div class="products__item-img" id="${item.id}" style="background-image: url(${item.img})"></div>
+            <div class="products__item-img" id="${item.id}" style="background-image: url('${item.img}')"></div>
             <div class="products__item-name"id="${item.id}" >${item.name}</div>
             <div class="products__item-description" id="${item.id}">${item.description}</div>
             <div class="products__item-price" id="${item.id}">Price: <span>${item.price}</span> ₪</div>
@@ -224,6 +228,8 @@ function renderProductsPage(elm) {
         console.error(error)
     }
 }
+
+//Navigation Render
 navDiv.addEventListener("click", (event: Event) => {
     try {
         if (!event) {
@@ -257,6 +263,7 @@ function renderCategoryPage(category, divElement) {
         if (!category) throw new Error('no category')
         // if (!divElement) throw new Error('no divElement')
         if (!products) throw new Error('no products')
+        if (!divElement) throw new Error('no div element')
 
         var filteredCategory = products.filter(cat => {
             return cat.category === category.slice(0, -1)
@@ -326,39 +333,10 @@ renderProductsPage(productsDiv)
 
 
 
-
-
-
-
-//control
-
-function addToCart(id) {
-    
-    // console.log(id);
-    const product = products.find(product => product.id === id);
-    const txt = `<p class="popup__name">${product.name}</p><p class="popup__txt">successfully added to cart</p>`
-    // var tmp = cart.items.find(product => product.id === id)
-    // console.log(cart.items)
-    const cartDiv: HTMLElement | null | undefined = wrapperDiv?.querySelector('.cart');
-    if (!cartDiv) {
-        cart.addItem(product);
-        renderPopup(txt);
-        renderCartNumber(cartNum);
-    } else {
-        // console.log('cartdiv');
-        cart.addItem(product);
-        cart.renderCart();
-        renderCartNumber(cartNum)
-    }
-
-
-
-}
-
 function renderPopup(message: string): void {
 
     const existingPopup: HTMLElement | null | undefined = wrapperDiv?.querySelector('.popup');
-    
+
 
 
     if (existingPopup) {
@@ -386,48 +364,97 @@ function renderPopup(message: string): void {
 }
 
 
-function removeFromCart(id) {
+
+//control
+
+function addToCart(id) {
+
+    // console.log(id);
     const product = products.find(product => product.id === id);
-    cart.removeItem(product)
-    cart.renderCart()
-    renderCartNumber(cartNum)
-    if (cart.items.length == 0) {
-        console.log("test")
-        renderProductsPage(productsDiv)
+    const txt = `<p class="popup__name">${product.name}</p><p class="popup__txt">successfully added to cart</p>`
+    // var tmp = cart.items.find(product => product.id === id)
+    // console.log(cart.items)
+    const cartDiv: HTMLElement | null | undefined = wrapperDiv?.querySelector('.cart');
+    if (!cartDiv) {
+        cart.addItem(product);
+        renderPopup(txt);
+        renderCartNumber(cartNum);
+    } else {
+        // console.log('cartdiv');
+        cart.addItem(product);
+        cart.renderCart();
+        renderCartNumber(cartNum)
     }
-}
 
-function saveProductsToLocalStorage(products: Product[]) {
-    localStorage.setItem("Products", JSON.stringify(products));
-}
 
-function getProductsFromStorage() {
-    let productsString = localStorage.getItem("Products");
-    if (!productsString) return [];
-    const productsArray = JSON.parse(productsString);
-    const products: Product[] = productsArray.map((product: Product) => {
-        return new Product(product.name, product.brand, product.category, product.price, product.description, product.img, product.id);
-    })
-
-    return products;
 
 }
 
 
 
 
-function renderCartNumber(cartNum: HTMLElement | null):void {
-    
-    var number = cart.getSumAmount().toString();
-    
-     
-    if ( cartNum) {
-      cartNum.innerHTML = number;
+
+
+function removeFromCart(id: string): void {
+    try {
+      const product = products.find((product) => product.id === id);
+      if (!product) {
+        throw new Error(`Product with ID ${id} not found.`);
+      }
+  
+      cart.removeItem(product);
+      cart.renderCart();
+      renderCartNumber(cartNum);
+  
+      if (cart.items.length === 0) {
+        renderProductsPage(productsDiv);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  
+
+function saveProductsToLocalStorage(products: Product[]): void {
+    try {
+      localStorage.setItem("Products", JSON.stringify(products));
+    } catch (error) {
+      console.error("Error saving products to local storage:", error);
     }
   }
 
+function getProductsFromStorage() {
+    try {
 
-  document.querySelector('.cartIcon')?.addEventListener('click', () => {
+        const productsString = localStorage.getItem("Products");
+        if (!productsString) return [];
+        const productsArray = JSON.parse(productsString);
+        const products: Product[] = productsArray.map((product: Product) => {
+            return new Product(product.name, product.brand, product.category, product.price, product.description, product.img, product.id);
+        })
+
+        return products;
+
+    } catch (error) {
+        console.error(error);
+        return [];
+    }
+}
+
+
+
+
+function renderCartNumber(cartNum: HTMLElement | null): void {
+
+    var number = cart.getSumAmount().toString();
+
+
+    if (cartNum) {
+        cartNum.innerHTML = number;
+    }
+}
+
+
+document.querySelector('.cartIcon')?.addEventListener('click', () => {
     cart.renderCart()
-  });
-  
+});
