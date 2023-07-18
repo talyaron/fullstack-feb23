@@ -22,7 +22,7 @@ var __spreadArrays = (this && this.__spreadArrays) || function () {
 //     checkStraightFlush(cards);
 //     checkFourOfAKind(cards);
 //     checkFullHouse(cards);
-//     checkFlush(cards);  
+//     checkFlush(cards);
 //     checkStraight(cards);
 //     checkThreeOfAKind(cards);
 //     checkTwoPairs(cards);
@@ -132,9 +132,7 @@ function checkStraight(cards) {
     }
 }
 function checkRoyalStraight(cards) {
-    var cardsNumbers = cards.map(function (card) {
-        return getCardNumberValue(card.cardNumber);
-    });
+    var cardsNumbers = cards.map(function (card) { return getCardNumberValue(card.cardNumber); });
     var sortedCardsNumbers = cardsNumbers.sort();
     if (sortedCardsNumbers.includes(10) &&
         sortedCardsNumbers.includes(11) &&
@@ -237,13 +235,3 @@ function getCardNumberValue(cardNumber) {
         return -1;
     }
 }
-var cards = [
-    new Card("10", "heart"),
-    new Card("J", "heart"),
-    new Card("A", "heart"),
-    new Card("K", "heart"),
-    new Card("Q", "club"),
-    new Card("3", "heart"),
-    new Card("3", "heart"),
-];
-var newPlayer = new Player("ruth7", "", 100000, true, true, cards);

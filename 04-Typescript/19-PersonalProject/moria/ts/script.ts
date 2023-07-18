@@ -15,19 +15,19 @@ const rootPlayer = document.querySelector(`#rootPlayer`) as HTMLElement;
 
 const points: Point[] = []
 
-// logIn()
-// function logIn() {
-//     try {
+logIn()
+function logIn() {
+    try {
 
-//         const html = ` <div class="log"> <form onsubmit="handleAdd(event)"><label for="worker-name">enter your Name:</label> <br>
-//         <input required type="text" name="name" value=""> <br> <br> <button type="submit">ok</button> </form> </div>`;
-//         if (!root) throw new Error("no root element");
+        const html = ` <div class="log"> <form onsubmit="handleAdd(event)"><label for="worker-name">enter your Name:</label> <br>
+        <input required type="text" name="name" value=""> <br> <br> <button type="submit">ok</button> </form> </div>`;
+        if (!root) throw new Error("no root element");
 
-//         root.innerHTML = html;
-//     } catch (error) {
-//         console.error(error);
-//     }
-// }
+        root.innerHTML = html;
+    } catch (error) {
+        console.error(error);
+    }
+}
 
 
 
@@ -56,7 +56,6 @@ const players: Player[] = []
 
 function addHomer() {
     try {
-        // const player =
         const selectedPlayer = new Player("../img/homer.png");
         players.push(selectedPlayer);
         savePlayerToLocalStorage(players)
@@ -82,10 +81,10 @@ function addBart() {
     }
 }
 
-function addLisa() {
+function addMaggie() {
     try {
 
-        const selectedPlayer = new Player("../img/lisa.png");
+        const selectedPlayer = new Player("../img/Maggie.png");
         players.push(selectedPlayer);
         savePlayerToLocalStorage(players)
         console.log(players)

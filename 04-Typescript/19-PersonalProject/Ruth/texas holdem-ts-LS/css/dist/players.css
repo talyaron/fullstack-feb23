@@ -154,3 +154,7 @@
   color: white;
   text-align: center;
 }
+.myPanel #myTurnInput {
+  width: 81px;
+  height: 31px;
+}

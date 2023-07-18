@@ -1,16 +1,11 @@
 //model (classes)
-
 class User {
-    level: number;
+    id: number;
+    points: number;
     constructor(public userName: string) {
-        this.level = 0
+        this.points = 0
+        this.id = Math.random() * 6 + Date.now()
     }
-
-    //the method take the last score saved in loclstorage and add it to the level 
-    // lastScore(){
-    //     const lastScore:number = localStorage.getItem()
-    //     return this.level+=lastScore 
-    // }
 }
 
 const users: User[] = []
@@ -28,32 +23,12 @@ const words: Word[] = [
     new Word('Mountain', 'הַר'),
 ]
 
+
 //---------------------handel----------------
 //login form
 //save the usermane, send it to the local storage and open the game page
+
 function handelSubmit(ev: any) {
-    try {
-        ev.preventDefault()
-        console.dir(ev)
-
-        const userName = ev.target.elements.name.value;  //colect the user name
-        if (!userName) throw new Error('user name is missing')
-        console.log(userName)
-
-        const newUser = new User(userName)
-        users.push(newUser)  //save the user name in users array
-        console.log(users)
-
-        localStorage.setItem('users', JSON.stringify(users)) //sent the array to local storage as string
-
-        window.location.replace("./index.html")  // its work!!!
-
-    } catch (error) {
-        console.error(error);
-    }
-}
-
-function handelSignUp(ev: any) {
     try {
         ev.preventDefault()
         console.dir(ev)
@@ -145,19 +120,24 @@ function heandelPlay() {
 const h1username = localStorage.getItem('users')
 
 if (h1username) {
-    //convert it back to array
+    //convert it back to array of classes
     const usernameArray = JSON.parse(h1username)
-    console.log(usernameArray)
+    console.log("usernameArray:", usernameArray)
     usernameArray.forEach(user => users.push(new User(user.userName)))
-    console.log(users)
+    console.log("users array:", users)
     renderUserName()
 }
 
 function renderUserName() {
-    const username = document.querySelector('#h1')
-    if (!username) throw new Error('element not faound')
-    const length: number = users.length
-    username.innerHTML = `<h1> Hellow ${users[length - 1].userName}</h1>`
+    try {
+        const username = document.querySelector('#h1')
+        if (!username) throw new Error('element not faound')
+        const length: number = users.length  //the last user un the array == currect player
+        username.innerHTML = `<h1> Hello ${users[length - 1].userName}</h1>`
+    } catch (error) {
+        console.error(error)
+    }
+
 }
 
 //the Add form
@@ -188,75 +168,166 @@ function renderBack() {
 //move to game
 function renderPlay() {
     const h1Instructions = document.querySelector('#instruction')!
+    const currentUser = currentPlayer()
     const instractions = `Match the word with its meaning 
-                        <div id="score">your scor:${}</div>`  //show the score of the user un this game
+                        <div id="score">your score: ${currentUser.points}</div>`  //show the score/points of the player
     h1Instructions.innerHTML = instractions
 
     //call the random word function
-    const ranArr = randomWord()
-
     const htmlroot = document.querySelector('#cards')
     if (!htmlroot) throw new Error("no root element");
     console.log(htmlroot)
 
-    const optiomArr: string[] = []
 
-    optiomArr[0] = `<div id="c1" class="card c1">${ranArr[0].enWord}</div>
-                    <div id="c2" class="card c2">${ranArr[1].heWord}</div>
-                    <div id="c3" class="card c3">${ranArr[2].heWord}</div>
-                    <div id="c4" class="card c4">${ranArr[3].heWord}</div>  
-                    `;
-    optiomArr[1] = `<div id="c1" class="card c1">${ranArr[0].enWord}</div>
-                    <div id="c2" class="card c2">${ranArr[1].heWord}</div>
-                    <div id="c3" class="card c3">${ranArr[3].heWord}</div>
-                    <div id="c4" class="card c4">${ranArr[2].heWord}</div>  
-                    `;
-    optiomArr[2] = `<div id="c1" class="card c1">${ranArr[0].enWord}</div>
-                    <div id="c2" class="card c2">${ranArr[2].heWord}</div>
-                    <div id="c3" class="card c3">${ranArr[1].heWord}</div>
-                    <div id="c4" class="card c4">${ranArr[3].heWord}</div>  
-                    `;
-    optiomArr[3] = `<div id="c1" class="card c1">${ranArr[0].enWord}</div>
-                    <div id="c2" class="card c2">${ranArr[2].heWord}</div>
-                    <div id="c3" class="card c3">${ranArr[3].heWord}</div>
-                    <div id="c4" class="card c4">${ranArr[1].heWord}</div>  
-                    `;
-    optiomArr[4] = `<div id="c1" class="card c1">${ranArr[0].enWord}</div>
-                    <div id="c2" class="card c2">${ranArr[3].heWord}</div>
-                    <div id="c3" class="card c3">${ranArr[1].heWord}</div>
-                    <div id="c4" class="card c4">${ranArr[2].heWord}</div>  
-                    `;
-    optiomArr[5] = `<div id="c1" class="card c1">${ranArr[0].enWord}</div>
-                    <div id="c2" class="card c2">${ranArr[3].heWord}</div>
-                    <div id="c3" class="card c3">${ranArr[2].heWord}</div>
-                    <div id="c4" class="card c4">${ranArr[1].heWord}</div>  
-                    `;
-    const toHtml = optiomArr[Math.floor(Math.random()*5)]
+    //view + data binding
+    //render the cards in random order
+    //create a function whcih return the cards in random order
+    //fisrst step: create an array with the cards
+    //second step: get 3 random cards from the array
+    //third step: selct one random card from the 3 and put it in the first place
+    //fourth step: put the other 2 cards in the second and third place
+    //fifth step: put thei first card on the diaply
+    //sixth step: put the other 3 cards in random order on the display and show only the Hebrew options.
 
-    htmlroot.innerHTML = toHtml
+    const randomWords = randomWord(words);
+
+    const firstWord = randomWords[0]
+
+    //randomized words
+    const randomWardsToDisplay = randomWord(randomWords)
+
+    //display all words in random order
+    const htmlWordsToSelect = randomWardsToDisplay.map(word => `<div class="chose card c${numOfCard()}">${word.heWord}</div>`).join(' ')
+    const htmlWordInEnglish = `<div id="c1" class="card c1" data-correct-hebrew="${firstWord.heWord}">${firstWord.enWord}</div>`;
+
+    htmlroot.innerHTML = htmlWordsToSelect + "<br>" + htmlWordInEnglish
+
+    htmlroot.addEventListener('click', checkAnswer);
+}
+
+//show messige for wrong anser
+function rendermessage(x: number) {
+    try {
+        const htmlmassege = document.querySelector('#massege')
+        if (!htmlmassege) throw new Error("no element");
+
+        if (x === 1) {
+            const html = `<div id="correct" class="massege">Correct answer!</div>`
+            htmlmassege.innerHTML = html
+            setTimeout(dissapear, 1000)
+        }
+        if (x === 0) {
+            const html = `<div id="wrong" class="massege">Wrong answer!</div>`
+            htmlmassege.innerHTML = html
+            setTimeout(dissapear, 1000)
+        }
+
+    } catch (error) {
+        console.error(error)
+    }
 }
 
 //finish the game
 function renderFinish() {
+    const end = document.querySelector('#end')
+    const finish = document.querySelector('#finish')
+    if (!end || !finish) throw new Error("no element");
+
+    const currentUser = currentPlayer()
+    const finalScore = currentUser.points
+
+    const htmlfinish = ' '
+
+    const htmlend = `Good Job! your fainal score is ${finalScore}`
+    end.innerHTML = htmlend + htmlfinish
 
 }
 
-//contrilers
-//make the random select words
-function randomWord() {
-    const length = words.length;
-    const randomWordArr: Word[] = [];
-    let i: number;
-    const randomArr: number[] = [];
 
-    for (i = 0; i < 3; i++) {
-        const random: number = Math.floor(Math.random() * length);
+//-------------------------------------contrilers--------------------
+//make the random select words
+function randomWord(words: Word[]) {
+
+    const randomWordArr: Word[] = [];
+    const _words = JSON.parse((JSON.stringify(words)));
+
+
+    while (randomWordArr.length < 3) {
+        const random: number = Math.floor(Math.random() * _words.length);
         console.log(random)
-        if (!(randomArr.find(e => e === random))) {
-            randomWordArr[i] = words[random]
-        }
+        randomWordArr.push(_words[random]);
+        _words.splice(random, 1);
+
     }
-    console.log(randomWordArr)
+    console.log(randomWordArr);
 
     return randomWordArr;
+}
+
+let numberOfCard: number = 1
+console.log("numberOfCard:", numberOfCard)
+function numOfCard(): number | undefined {
+    try {
+        if (numberOfCard < 4) {
+            numberOfCard++
+        } else {
+            numberOfCard = 2
+        }
+        return numberOfCard
+    } catch (error) {
+        console.error(error)
+    }
+
+}
+
+//function work at eveant lisiner mouse click ocure on one -> to chose the right ansear
+function checkAnswer(event: any) {
+    const selectedCard = event.target;
+    //console.log(selectedCard)
+    const selectedHebrewWord = selectedCard.innerText;
+    //console.log(selectedHebrewWord)
+
+    const englishWordCard = document.querySelector('#c1')!;
+    //console.log(englishWordCard)
+
+    const correctHebrewWord = englishWordCard.getAttribute('data-correct-hebrew');
+    console.log("correctHebrewWord is:", correctHebrewWord)
+
+    if (selectedHebrewWord === correctHebrewWord) {
+        // The user selected the correct Hebrew word
+        console.log('Correct answer!');
+        //  updating the score
+        updateScore();
+        rendermessage(1)
+        renderPlay()
+    } else {
+        // The user selected the wrong Hebrew word
+        console.log('Wrong answer!');
+        // displaying an error message
+        rendermessage(0)
+        renderPlay()
+    }
+}
+
+//add point for right choise
+function updateScore() {
+    const currentUser = currentPlayer();  //is it by reference or by value?
+    currentUser.points++
+
+    console.log("currentUser.points:", currentUser.points)
+    console.log("users array:", users)
+}
+
+function currentPlayer() {
+    const length = users.length
+    const currentUser: User = users[length - 1]
+    console.log("currentUser:", currentUser)
+    return currentUser
+}
+
+function dissapear(){
+    const htmlmassege = document.querySelector('#massege')
+    if (!htmlmassege) throw new Error("no element");
+    const html = ``
+            htmlmassege.innerHTML = html
 }

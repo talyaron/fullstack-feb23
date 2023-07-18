@@ -2,7 +2,8 @@
 var User = /** @class */ (function () {
     function User(userName) {
         this.userName = userName;
-        this.level = 0;
+        this.points = 0;
+        this.id = Math.random() * 6 + Date.now();
     }
     return User;
 }());
@@ -26,24 +27,6 @@ var words = [
 //login form
 //save the usermane, send it to the local storage and open the game page
 function handelSubmit(ev) {
-    try {
-        ev.preventDefault();
-        console.dir(ev);
-        var userName = ev.target.elements.name.value; //colect the user name
-        if (!userName)
-            throw new Error('user name is missing');
-        console.log(userName);
-        var newUser = new User(userName);
-        users.push(newUser); //save the user name in users array
-        console.log(users);
-        localStorage.setItem('users', JSON.stringify(users)); //sent the array to local storage as string
-        window.location.replace("./index.html"); // its work!!!
-    }
-    catch (error) {
-        console.error(error);
-    }
-}
-function handelSignUp(ev) {
     try {
         ev.preventDefault();
         console.dir(ev);
@@ -116,19 +99,24 @@ function heandelPlay() {
 //get the user name from local storage as string
 var h1username = localStorage.getItem('users');
 if (h1username) {
-    //convert it back to array
+    //convert it back to array of classes
     var usernameArray = JSON.parse(h1username);
-    console.log(usernameArray);
+    console.log("usernameArray:", usernameArray);
     usernameArray.forEach(function (user) { return users.push(new User(user.userName)); });
-    console.log(users);
+    console.log("users array:", users);
     renderUserName();
 }
 function renderUserName() {
-    var username = document.querySelector('#h1');
-    if (!username)
-        throw new Error('element not faound');
-    var length = users.length;
-    username.innerHTML = "<h1> Hellow " + users[length - 1].userName + "</h1>";
+    try {
+        var username = document.querySelector('#h1');
+        if (!username)
+            throw new Error('element not faound');
+        var length = users.length; //the last user un the array == currect player
+        username.innerHTML = "<h1> Hello " + users[length - 1].userName + "</h1>";
+    }
+    catch (error) {
+        console.error(error);
+    }
 }
 //the Add form
 function renderAdd() {
@@ -144,44 +132,139 @@ function renderBack() {
 //move to game
 function renderPlay() {
     var h1Instructions = document.querySelector('#instruction');
-    var instractions = "Match the word with its meaning \n                        <div id=\"score\">your scor:" +  + "</div>"; //show the score of the user un this game
+    var currentUser = currentPlayer();
+    var instractions = "Match the word with its meaning \n                        <div id=\"score\">your score: " + currentUser.points + "</div>"; //show the score/points of the player
     h1Instructions.innerHTML = instractions;
     //call the random word function
-    var ranArr = randomWord();
     var htmlroot = document.querySelector('#cards');
     if (!htmlroot)
         throw new Error("no root element");
     console.log(htmlroot);
-    var optiomArr = [];
-    optiomArr[0] = "<div id=\"c1\" class=\"card c1\">" + ranArr[0].enWord + "</div>\n                    <div id=\"c2\" class=\"card c2\">" + ranArr[1].heWord + "</div>\n                    <div id=\"c3\" class=\"card c3\">" + ranArr[2].heWord + "</div>\n                    <div id=\"c4\" class=\"card c4\">" + ranArr[3].heWord + "</div>  \n                    ";
-    optiomArr[1] = "<div id=\"c1\" class=\"card c1\">" + ranArr[0].enWord + "</div>\n                    <div id=\"c2\" class=\"card c2\">" + ranArr[1].heWord + "</div>\n                    <div id=\"c3\" class=\"card c3\">" + ranArr[3].heWord + "</div>\n                    <div id=\"c4\" class=\"card c4\">" + ranArr[2].heWord + "</div>  \n                    ";
-    optiomArr[2] = "<div id=\"c1\" class=\"card c1\">" + ranArr[0].enWord + "</div>\n                    <div id=\"c2\" class=\"card c2\">" + ranArr[2].heWord + "</div>\n                    <div id=\"c3\" class=\"card c3\">" + ranArr[1].heWord + "</div>\n                    <div id=\"c4\" class=\"card c4\">" + ranArr[3].heWord + "</div>  \n                    ";
-    optiomArr[3] = "<div id=\"c1\" class=\"card c1\">" + ranArr[0].enWord + "</div>\n                    <div id=\"c2\" class=\"card c2\">" + ranArr[2].heWord + "</div>\n                    <div id=\"c3\" class=\"card c3\">" + ranArr[3].heWord + "</div>\n                    <div id=\"c4\" class=\"card c4\">" + ranArr[1].heWord + "</div>  \n                    ";
-    optiomArr[4] = "<div id=\"c1\" class=\"card c1\">" + ranArr[0].enWord + "</div>\n                    <div id=\"c2\" class=\"card c2\">" + ranArr[3].heWord + "</div>\n                    <div id=\"c3\" class=\"card c3\">" + ranArr[1].heWord + "</div>\n                    <div id=\"c4\" class=\"card c4\">" + ranArr[2].heWord + "</div>  \n                    ";
-    optiomArr[5] = "<div id=\"c1\" class=\"card c1\">" + ranArr[0].enWord + "</div>\n                    <div id=\"c2\" class=\"card c2\">" + ranArr[3].heWord + "</div>\n                    <div id=\"c3\" class=\"card c3\">" + ranArr[2].heWord + "</div>\n                    <div id=\"c4\" class=\"card c4\">" + ranArr[1].heWord + "</div>  \n                    ";
-    var toHtml = optiomArr[Math.floor(Math.random() * 5)];
-    htmlroot.innerHTML = toHtml;
+    //view + data binding
+    //render the cards in random order
+    //create a function whcih return the cards in random order
+    //fisrst step: create an array with the cards
+    //second step: get 3 random cards from the array
+    //third step: selct one random card from the 3 and put it in the first place
+    //fourth step: put the other 2 cards in the second and third place
+    //fifth step: put thei first card on the diaply
+    //sixth step: put the other 3 cards in random order on the display and show only the Hebrew options.
+    var randomWords = randomWord(words);
+    var firstWord = randomWords[0];
+    //randomized words
+    var randomWardsToDisplay = randomWord(randomWords);
+    //display all words in random order
+    var htmlWordsToSelect = randomWardsToDisplay.map(function (word) { return "<div class=\"chose card c" + numOfCard() + "\">" + word.heWord + "</div>"; }).join(' ');
+    var htmlWordInEnglish = "<div id=\"c1\" class=\"card c1\" data-correct-hebrew=\"" + firstWord.heWord + "\">" + firstWord.enWord + "</div>";
+    htmlroot.innerHTML = htmlWordsToSelect + "<br>" + htmlWordInEnglish;
+    htmlroot.addEventListener('click', checkAnswer);
+}
+//show messige for wrong anser
+function rendermessage(x) {
+    try {
+        var htmlmassege = document.querySelector('#massege');
+        if (!htmlmassege)
+            throw new Error("no element");
+        if (x === 1) {
+            var html = "<div id=\"correct\" class=\"massege\">Correct answer!</div>";
+            htmlmassege.innerHTML = html;
+            setTimeout(dissapear, 1000);
+        }
+        if (x === 0) {
+            var html = "<div id=\"wrong\" class=\"massege\">Wrong answer!</div>";
+            htmlmassege.innerHTML = html;
+            setTimeout(dissapear, 1000);
+        }
+    }
+    catch (error) {
+        console.error(error);
+    }
 }
 //finish the game
 function renderFinish() {
+    var end = document.querySelector('#end');
+    var finish = document.querySelector('#finish');
+    if (!end || !finish)
+        throw new Error("no element");
+    var currentUser = currentPlayer();
+    var finalScore = currentUser.points;
+    var htmlfinish = ' ';
+    var htmlend = "Good Job! your fainal score is " + finalScore;
+    end.innerHTML = htmlend + htmlfinish;
 }
-//contrilers
+//-------------------------------------contrilers--------------------
 //make the random select words
-function randomWord() {
-    var length = words.length;
+function randomWord(words) {
     var randomWordArr = [];
-    var i;
-    var randomArr = [];
-    var _loop_1 = function () {
-        var random = Math.floor(Math.random() * length);
+    var _words = JSON.parse((JSON.stringify(words)));
+    while (randomWordArr.length < 3) {
+        var random = Math.floor(Math.random() * _words.length);
         console.log(random);
-        if (!(randomArr.find(function (e) { return e === random; }))) {
-            randomWordArr[i] = words[random];
-        }
-    };
-    for (i = 0; i < 3; i++) {
-        _loop_1();
+        randomWordArr.push(_words[random]);
+        _words.splice(random, 1);
     }
     console.log(randomWordArr);
     return randomWordArr;
+}
+var numberOfCard = 1;
+console.log("numberOfCard:", numberOfCard);
+function numOfCard() {
+    try {
+        if (numberOfCard < 4) {
+            numberOfCard++;
+        }
+        else {
+            numberOfCard = 2;
+        }
+        return numberOfCard;
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+//function work at eveant lisiner mouse click ocure on one -> to chose the right ansear
+function checkAnswer(event) {
+    var selectedCard = event.target;
+    //console.log(selectedCard)
+    var selectedHebrewWord = selectedCard.innerText;
+    //console.log(selectedHebrewWord)
+    var englishWordCard = document.querySelector('#c1');
+    //console.log(englishWordCard)
+    var correctHebrewWord = englishWordCard.getAttribute('data-correct-hebrew');
+    console.log("correctHebrewWord is:", correctHebrewWord);
+    if (selectedHebrewWord === correctHebrewWord) {
+        // The user selected the correct Hebrew word
+        console.log('Correct answer!');
+        //  updating the score
+        updateScore();
+        rendermessage(1);
+        renderPlay();
+    }
+    else {
+        // The user selected the wrong Hebrew word
+        console.log('Wrong answer!');
+        // displaying an error message
+        rendermessage(0);
+        renderPlay();
+    }
+}
+//add point for right choise
+function updateScore() {
+    var currentUser = currentPlayer(); //is it by reference or by value?
+    currentUser.points++;
+    console.log("currentUser.points:", currentUser.points);
+    console.log("users array:", users);
+}
+function currentPlayer() {
+    var length = users.length;
+    var currentUser = users[length - 1];
+    console.log("currentUser:", currentUser);
+    return currentUser;
+}
+function dissapear() {
+    var htmlmassege = document.querySelector('#massege');
+    if (!htmlmassege)
+        throw new Error("no element");
+    var html = "";
+    htmlmassege.innerHTML = html;
 }

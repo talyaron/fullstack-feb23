@@ -1,5 +1,5 @@
-body{
-    background-image:url(); 
+body {
+    background-image: url();
     position: relative;
     height: 100vh;
     background-repeat: no-repeat;
@@ -7,71 +7,116 @@ body{
 }
 
 //the game view
-.wrapper{
+.wrapper {
     position: relative;
     text-align: center;
     margin: 20px auto;
+    top: 20px;
 }
 
-.cards{
+.cards {
     display: inline-grid;
-    gap: 20px 100px;
+    gap: 30px 70px;
     grid-template-areas:
-     '. c1 .'
-     'c2 c3 c4'
+        ". c1 ."
+        "c2 c3 c4";
 }
 
-.card{
+.card {
     height: 120px;
     width: 150px;
     border: 1px solid sandybrown;
     border-radius: 15px;
-    font-size: 20px;
+    font-size: 30px;
     text-align: center;
+    background-color: rgb(230, 200, 156);
+    vertical-align: middle;
+    line-height: 120px;
 }
 
-.c1{
+.c1 {
     grid-area: c1;
     background-color: goldenrod;
 }
 
-.c2{
+.c2 {
     grid-area: c2;
-    background-color: rgb(230, 200, 156);
 }
 
-.c3{
+.c3 {
     grid-area: c3;
-    background-color: rgb(230, 200, 156);
 }
 
-.c4{
+.c4 {
     grid-area: c4;
-    background-color: rgb(230, 200, 156);
 }
 
-.btnF{
+.btnF {
     grid-area: btnF;
-   display: inherit;
-   background-color: rgb(217, 138, 82);
-   color: bisque;
-   font-size: 20px;
-   border-radius: 25%;
-   border: 0px;
+    display: inherit;
+    background-color: rgb(217, 138, 82);
+    color: bisque;
+    font-size: 20px;
+    border-radius: 25%;
+    border: 0px;
 }
 
+#instruction {
+    font-size: 20px;
+}
+
+#massege{
+    height: 25px;
+}
+#correct {
+    color: blue;
+}
+
+#wrong {
+    color: red;
+}
 
 //responsive
-// @media only screen and (min-width: 1024px) and (max-hight: 600px) {
-//     .cards{
-//         gap: 20px 100px;
-//     }
-// }
+@media only screen and (max-width: 1024px) {
+    .cards {
+        gap: 20px 100px;
+    }
+}
 
-// @media only screen and (max-width: 1024px) {
+@media only screen and (max-width: 800px) {
+    //for tablet
+    .cards {
+        gap: 15px 40px;
+    }
 
-// }
+    .card {
+        height: 60px;
+        width: 80px;
+        font-size: 20px;
+        line-height: 60px;
+    }
 
-// @media only screen and (max-width: 600px) {
+    .btnF {
+        font-size: 15px;
+    }
+}
 
-// }
+@media only screen and (max-width: 500px) {
+    //for mobile phones
+    .cards {
+        gap: 5px 20px;
+    }
+
+    .card {
+        height: 60px;
+        width: 80px;
+        font-size: 15px;
+        line-height: 60px;
+    }
+
+    .btnF {
+        display: inline;
+        align-items: center;
+    }
+}
+
