@@ -12,6 +12,14 @@ html body {
   height: 100vh;
   padding: 10px;
 }
+html body .logo {
+  width: 5rem;
+  display: flex;
+  position: relative;
+  top: 28rem;
+  right: 8rem;
+  height: 5px;
+}
 html body h1 {
   text-align: center;
   text-shadow: 2px 3px 10px rgba(0, 0, 0, 0.5);
@@ -44,7 +52,7 @@ html body .addProductForm {
   box-shadow: 2px 5px 9px rgba(0, 0, 0, 0.162);
   left: calc(50% - 125px);
   text-align: center;
-  width: 250px;
+  width: 220px;
   padding: 10px;
   background-color: white;
 }
