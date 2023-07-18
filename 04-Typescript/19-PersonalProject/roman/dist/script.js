@@ -70,9 +70,9 @@ var Cart = /** @class */ (function () {
         this.items = [];
     };
     Cart.prototype.renderCart = function (div) {
-        var tableHTML = '<div class="cart"><h2>Cart</h2><table><tr><th>Image:</th><th>Name:</th><th>Amount:</th><th>Price</th><th>Edit:</th></tr>';
+        var tableHTML = '<div class="cart"><h2>Cart</h2><table class="cart__table"><tr><th>Image:</th><th>Name:</th><th>Amount:</th><th>Price</th><th>Edit:</th></tr>';
         tableHTML += this.items.map(function (item) {
-            return "\n            <tr>\n            <td><img class=\"cart__image\" src='" + item.img + "'></td>\n            <td>" + item.brand + " " + item.name + "</td>\n            <td>" + item.amount + " \n\n          </td>\n            <td>" + item.price + "</td><td>   <button onclick=\"addToCart('" + item.id + "')\">\n            <i class=\"fa-solid fa-plus  item-ctrl\"></i></button>\n\n            <button onclick=\"removeFromCart('" + item.id + "')\">\n            <i class=\"fa-solid fa-minus item-minus item-ctrl\"></i> </button></td></tr>";
+            return "\n            <tr>\n            <td><img class=\"cart__image\" src='" + item.img + "'></td>\n            <td>" + item.brand + " " + item.name + "</td>\n            <td class=\"cart__amount\">" + item.amount + " \n\n          </td>\n            <td class=\"cart__price\">" + item.price + "</td><td>   <button onclick=\"addToCart('" + item.id + "')\">\n            <i class=\"fa-solid fa-plus  item-ctrl\"></i></button>\n\n            <button onclick=\"removeFromCart('" + item.id + "')\">\n            <i class=\"fa-solid fa-minus item-minus item-ctrl\"></i> </button></td></tr>";
         }).join("");
         tableHTML += "\n        </table><p>Summary items: " + this.getSumAmount() + "</p><p>Summary price: " + this.getSum() + "</p>\n        <button class=\"checkout-btn\">Checkout</button></div>";
         div.innerHTML = tableHTML;
@@ -287,9 +287,9 @@ function getProductsFromStorage() {
     }
 }
 function renderCartNumber(cartNum) {
-    var number = cart.getSumAmount().toString();
+    var _number = cart.getSumAmount().toString();
     if (cartNum) {
-        cartNum.innerHTML = number;
+        cartNum.innerHTML = _number;
     }
 }
 (_a = document.querySelector('.cartIcon')) === null || _a === void 0 ? void 0 : _a.addEventListener('click', function () {

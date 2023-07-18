@@ -304,53 +304,69 @@ body {
   border-collapse: collapse;
   height: fit-content;
 }
-.wrapper .expenses-table table td {
+.wrapper .expenses-table td {
   padding: 7px;
   height: 40px;
+  text-align: center;
 }
-.wrapper .expenses-table table td:nth-child(even) {
+.wrapper .expenses-table td:nth-child(3) {
+  width: 75px;
   text-align: left;
-  direction: ltr;
 }
-.wrapper .expenses-table table .thead {
+.wrapper .expenses-table td .edit {
+  cursor: pointer;
+  color: #0f81c7;
+  width: 30px;
+  height: auto;
+}
+.wrapper .expenses-table td .delete {
+  cursor: pointer;
+  color: red;
+  width: 30px;
+  height: auto;
+}
+.wrapper .expenses-table .thead {
   transition: 0.4s;
   position: relative;
   cursor: pointer;
 }
-.wrapper .expenses-table table .thead:hover,
-.wrapper .expenses-table table .thead :active {
+.wrapper .expenses-table .thead:hover,
+.wrapper .expenses-table .thead :active {
   background-color: #ccc;
   color: #0f81c7;
 }
-.wrapper .expenses-table table .active {
+.wrapper .expenses-table .active {
   background-color: #ccc;
   color: #0f81c7;
 }
-.wrapper .expenses-table table .off {
+.wrapper .expenses-table .off {
   display: none;
 }
-.wrapper .expenses-table table .thead,
-.wrapper .expenses-table table tr {
+.wrapper .expenses-table .thead,
+.wrapper .expenses-table tr {
   width: 100%;
   border-bottom: solid 1px rgba(0, 0, 0, 0.151);
   height: 40px;
 }
-.wrapper .expenses-table table .thead .collapse-icon,
-.wrapper .expenses-table table tr .collapse-icon {
+.wrapper .expenses-table .thead .collapse-icon,
+.wrapper .expenses-table tr .collapse-icon {
   width: 20px;
   height: 100%;
   position: absolute;
   left: 5px;
   top: 0;
 }
-.wrapper .expenses-table table tbody {
+.wrapper .expenses-table tbody {
   border-bottom: solid 1px rgba(0, 0, 0, 0.151);
 }
-.wrapper .expenses-table table tbody .tbody {
+.wrapper .expenses-table tbody:nth-child(even) {
+  background-color: #eeeeeeb6;
+}
+.wrapper .expenses-table tbody:nth-child(even) .tbody {
   transition: max-height 0.2s ease-out;
   overflow: hidden;
   width: 100%;
 }
-.wrapper .expenses-table table .tfoot td {
+.wrapper .expenses-table tbody .tfoot td {
   font-weight: bold;
 }

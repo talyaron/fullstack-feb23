@@ -79,16 +79,16 @@ class Cart {
         this.items = [];
     }
     renderCart(div): void {
-        let tableHTML = '<div class="cart"><h2>Cart</h2><table><tr><th>Image:</th><th>Name:</th><th>Amount:</th><th>Price</th><th>Edit:</th></tr>';
+        let tableHTML = '<div class="cart"><h2>Cart</h2><table class="cart__table"><tr><th>Image:</th><th>Name:</th><th>Amount:</th><th>Price</th><th>Edit:</th></tr>';
         tableHTML += this.items.map(item => {
             return `
             <tr>
             <td><img class="cart__image" src='${item.img}'></td>
             <td>${item.brand} ${item.name}</td>
-            <td>${item.amount} 
+            <td class="cart__amount">${item.amount} 
 
           </td>
-            <td>${item.price}</td><td>   <button onclick="addToCart('${item.id}')">
+            <td class="cart__price">${item.price}</td><td>   <button onclick="addToCart('${item.id}')">
             <i class="fa-solid fa-plus  item-ctrl"></i></button>
 
             <button onclick="removeFromCart('${item.id}')">
@@ -451,11 +451,11 @@ function getProductsFromStorage() {
 
 function renderCartNumber(cartNum: HTMLElement | null): void {
 
-    var number = cart.getSumAmount().toString();
+    var _number = cart.getSumAmount().toString();
 
 
     if (cartNum) {
-        cartNum.innerHTML = number;
+        cartNum.innerHTML = _number;
     }
 }
 
