@@ -10,6 +10,7 @@ body {
   position: relative;
   text-align: center;
   margin: 20px auto;
+  top: 20px;
 }
 
 .cards {
@@ -23,9 +24,11 @@ body {
   width: 150px;
   border: 1px solid sandybrown;
   border-radius: 15px;
-  font-size: 20px;
+  font-size: 30px;
   text-align: center;
   background-color: #e6c89c;
+  vertical-align: middle;
+  line-height: 120px;
 }
 
 .c1 {
@@ -53,4 +56,59 @@ body {
   font-size: 20px;
   border-radius: 25%;
   border: 0px;
+}
+
+#instruction {
+  font-size: 20px;
+}
+
+#massege {
+  height: 25px;
+}
+
+#correct {
+  color: blue;
+}
+
+#wrong {
+  color: red;
+}
+
+@media only screen and (max-width: 1024px) {
+  .cards {
+    gap: 20px 100px;
+  }
+}
+@media only screen and (max-width: 800px) {
+  .cards {
+    gap: 15px 40px;
+  }
+
+  .card {
+    height: 60px;
+    width: 80px;
+    font-size: 20px;
+    line-height: 60px;
+  }
+
+  .btnF {
+    font-size: 15px;
+  }
+}
+@media only screen and (max-width: 500px) {
+  .cards {
+    gap: 5px 20px;
+  }
+
+  .card {
+    height: 60px;
+    width: 80px;
+    font-size: 15px;
+    line-height: 60px;
+  }
+
+  .btnF {
+    display: inline;
+    align-items: center;
+  }
 }
