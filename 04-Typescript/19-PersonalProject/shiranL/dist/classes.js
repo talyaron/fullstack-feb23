@@ -90,7 +90,7 @@ var Player = /** @class */ (function () {
         this.status = status;
         this.jailIndex = 0;
         this.cellId = 'cell5';
-        this.Pbank = 1500;
+        this.Pbank = 800;
         if (playerId)
             this.playerId = playerId;
         else

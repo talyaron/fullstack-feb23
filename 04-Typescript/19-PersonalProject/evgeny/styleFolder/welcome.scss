@@ -1,0 +1,18 @@
+body{background-color: aquamarine;}
+
+
+.welcomePage{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    background-color: aqua;
+    &__login{
+        margin: 1rem;
+    }
+    &__register{
+        margin: 1rem;
+    }
+
+}
+

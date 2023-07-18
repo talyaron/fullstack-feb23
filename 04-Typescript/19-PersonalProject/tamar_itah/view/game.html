@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,13 +8,19 @@
     <script src="../ts/dist/index.js" defer></script>
     <title>Game</title>
 </head>
-<body onload="renderPlay()">
-    <div id="h1"></div>
-    <div id="instruction"></div>
+
+<body onload="OnLoadGame()">
     <div class="wrapper">
-        <div class="cards" id="cards"></div>
-        <br>
-        <button id="finish" class="btnF" onclick="renderFinish()">Finish</button>
-    </div>  
+        <div id="h1"></div>
+        <div id="instruction"></div>
+        <div class="wrapper">
+            <div id="massege"></div>
+            <div class="cards" id="cards"></div>
+            <br>
+            <br>
+            <button id="finish" class="btnF" onclick="hendelFinish()">Finish</button>
+        </div>
+    </div>
 </body>
+
 </html>
