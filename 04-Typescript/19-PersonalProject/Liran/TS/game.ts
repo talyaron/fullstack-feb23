@@ -38,6 +38,7 @@ class Player {
     record: number = 0;
     currentScore: number = 0;
     isActive: boolean;
+    inGame: boolean = false;
     constructor(public firstName: string,
         public lastName: string,
         public swordColor: string,
@@ -62,8 +63,12 @@ class Player {
         }
     }
 
-    setIsActive(set: boolean) {
+    setIsActive(set: boolean) {  // to stay log in or new register panel
         this.isActive = set;
+    }
+
+    setInGame(set: boolean) {  // to stay log in or new register panel
+        this.inGame = set;
     }
 }
 
@@ -72,15 +77,13 @@ const players: Player[] | undefined = getPlayerFromStorage();
 if (players !== undefined && players.length > 0) {
     if (players[players?.length - 1].isActive) {
         renderPlayer(players[players.length - 1].swordColor);
-        renderGamePanel();
+        renderGamePanel(document.querySelector(".screen__UI"));
     }
     else
-        renderLogPanel();
-
-
+        renderLogPanel(document.querySelector(".screen__UI"));
 }
 else
-    renderLogPanel();
+    renderLogPanel(document.querySelector(".screen__UI"));
 
 function getPlayerFromStorage(): Player[] | undefined {
     try {
@@ -129,7 +132,7 @@ function hundelSubmit(ev: any) {
         players?.push(player)
         localStorage.setItem("players", JSON.stringify(players));
         renderPlayer(swordColor);
-        renderGamePanel();
+        renderGamePanel(document.querySelector(".screen__UI"));
         ev.target.reset();
 
     } catch (error) {
@@ -142,18 +145,20 @@ let timeIntervalID: number;
 function hundelStart(ev: any) {
     try {
         ev.preventDefault();
-
+        debugger;
         const operation = ev.target.name
         switch (operation) {
             case "start":
                 const button = document.getElementById("startGame") as any;
                 if (!button) throw new Error("No start game button");
                 button.disabled = true;
+                if (players === undefined) throw new Error("No register player");
+                players[players.length - 1].setInGame(true);
                 const backgroundMusic = document.querySelector(`#backgroundMusic`) as HTMLAudioElement;
                 if (!backgroundMusic) throw new Error("Error with background music file");
-                backgroundMusic.play();
                 timeIntervalID = setInterval(displayTimer, 10);
-                renderStars(document.querySelector(`.screen__game`)); break;
+                renderStars(document.querySelector(`.screen__game`)); 
+                backgroundMusic.play();break;
             case "leave":
                 if (players) {
                     players[players?.length - 1].setIsActive(false);
@@ -239,48 +244,56 @@ function renderStar(star: Star | undefined) {
 
 function renderPlayer(swordColor: string) {
     try {
-        const player = document.querySelector("#fighter");
-        if (!player) throw new Error("Can't cath fighter DOM");
-        let imgUrl: string | undefined = "";
-        if (swords == undefined) throw new Error("No swords");
+        const locationPath = location.href;
+        const seperate = locationPath.split(`/`);
+        if (!(seperate[seperate.length - 1] !== "game.html")) {
+            const player = document.querySelector("#fighter");
+            if (!player) throw new Error("Can't cath fighter DOM");
+            let imgUrl: string | undefined = "";
+            if (swords == undefined) throw new Error("No swords");
 
-        const s = swords.find(sword => sword.color === swordColor);
-        if (s === undefined) throw new Error(`sword color ${swordColor} not exist`);
-        // switch (swordColor) {
-        //     case "blueSword": imgUrl = s =   break;
-        //     case "greenSword": imgUrl = "greenSword.png"; break;
-        //     case "redSword": imgUrl = "redSword.png"; break;
-        //     case "whiteSword": imgUrl = "whiteSword.png";
-        // }
-        const html = `<div id="sword" style="background-image: url(${s.image});"></div>
-        <img src="../TS/dist/fighter.jpg">`;
-        player.innerHTML = html;
+            const s = swords.find(sword => sword.color === swordColor);
+            if (s === undefined) throw new Error(`sword color ${swordColor} not exist`);
+            // switch (swordColor) {
+            //     case "blueSword": imgUrl = s =   break;
+            //     case "greenSword": imgUrl = "greenSword.png"; break;
+            //     case "redSword": imgUrl = "redSword.png"; break;
+            //     case "whiteSword": imgUrl = "whiteSword.png";
+            // }
+            const html = `<div id="sword" style="background-image: url(${s.image});"></div>
+            <img src="../TS/dist/fighter.jpg">`;
+            player.innerHTML = html;
+            document.addEventListener('keydown', listenTokeyDown);
+        }
     } catch (error) {
         console.error(error)
     }
 
 }
 
-function renderLogPanel() {
+function renderLogPanel(panel: HTMLElement | null) {
     try {
-        const panel = document.querySelector(".screen__UI");
-        if (!panel) throw new Error("Can't cath screen UI");
-        const html = `<h1>Welcome</h1>
-        <form id="newPlayer" onsubmit="hundelSubmit(event)">
-            <input type="text" name="firstName" placeholder="First Name" required>
-            <input type="text" name="lastName" placeholder="Last Name" required>
-            <select id="swordList">
-                <option style="color:blue" value="blueSword">Blue sword</option>
-                <option style="color:green" value="greenSword">Green sword</option>
-                <option style="color:red" value="redSword">Red sword</option>
-                <option style="color:white" value="whiteSword">White sword</option>
-            </select> 
-            <input type="submit" name="submit" value="Go">
-        </form>
-        <a href="../HTML/instructions.html">Game Instructions</a>`;
-
-
-        panel.innerHTML = html;
+        const locationPath = location.href;
+        const seperate = locationPath.split(`/`);
+        if (!(seperate[seperate.length - 1] !== "game.html")) {
+            if (!panel) throw new Error("Can't cath screen UI");
+            const html = `<h1>Welcome</h1>
+            <form id="newPlayer" onsubmit="hundelSubmit(event)">
+                <input type="text" name="firstName" placeholder="First Name" required>
+                <input type="text" name="lastName" placeholder="Last Name" required>
+                <select id="swordList">
+                    <option style="color:blue" value="blueSword">Blue sword</option>
+                    <option style="color:green" value="greenSword">Green sword</option>
+                    <option style="color:red" value="redSword">Red sword</option>
+                    <option style="color:white" value="whiteSword">White sword</option>
+                </select> 
+                <input type="submit" name="submit" value="Go">
+            </form>
+            <a href="../HTML/instructions.html">Game Instructions</a>
+            <a href="../HTML/scoreTable.html">High Scored Table</a>`;
+    
+            panel.innerHTML = html;
+        }
     } catch (error) {
         console.error(error)
     }
@@ -288,49 +301,47 @@ function renderLogPanel() {
 }
 let [milliseconds, seconds, minutes, hours] = [0, 0, 0, 0];
 
-function renderGamePanel() {
+function renderGamePanel(panel:HTMLElement | null) {
     try {
-        const panel = document.querySelector(".screen__UI");
-        if (!panel) throw new Error("Can't cath screen UI");
-        if (!players) throw new Error("No players");
+        const locationPath = location.href;
+        const seperate = locationPath.split(`/`);
+        if (!(seperate[seperate.length - 1] !== "game.html")) {
+            if (!panel) throw new Error("Can't cath screen UI");
+            if (!players) throw new Error("No players");
+            [milliseconds, seconds, minutes, hours] = [0, 0, 0, 0];
+            const player = players[players?.length - 1].firstName;
+            const html = `<h1>Hello ${player}</h1>
+            <form id="game" onclick="hundelStart(event)">
+            <input type="button" name="start" id="startGame" value="Start">
+            <input type="button" name="leave" id="exit" value="Exit">
+            </form>
+            <div class="container">
+                    <div id="timerDisplay">00:000</div>
+                </div>
+                <div id="score">
+                <p>0</p>
+                </div>
+                <a href="../HTML/scoreTable.html">High Scored Table</a>
+                <a href="../HTML/instructions.html">Game Instructions</a>`;
 
+            panel.innerHTML = html;
+            const timerRef = document.querySelector(`#timerDisplay`);
+            if (!timerRef) throw new Error("No clock");
 
-        [milliseconds, seconds, minutes, hours] = [0, 0, 0, 0];
-
-
-        const player = players[players?.length - 1].firstName;
-        const html = `<h1>Hello ${player}</h1>
-        <form id="game" onclick="hundelStart(event)">
-        <input type="button" name="start" id="startGame" value="Start">
-        <input type="button" name="leave" id="exit" value="Exit">
-        </form>
-        <div class="container">
-                <div id="timerDisplay">00:000</div>
-            </div>
-            <div id="score">
-            <p>0</p>
-            </div>
-            <a href="../HTML/scoreTable.html">High Scored Table</a>
-            <a href="../HTML/instructions.html">Game Instructions</a>`;
-
-        panel.innerHTML = html;
-        const timerRef = document.querySelector(`#timerDisplay`);
-        if (!timerRef) throw new Error("No clock");
-
-        timerRef.innerHTML = `00 : 000 `;
+            timerRef.innerHTML = `00 : 000 `;
+        }
     } catch (error) {
         console.error(error)
     }
 
 }
 
-const fighter = document.querySelector('#fighter') as HTMLDivElement;
+// const control =
 
-
-document.addEventListener('keydown', (event: KeyboardEvent | any) => {
+function listenTokeyDown(event: KeyboardEvent | any) {
     try {
-
         event.preventDefault();
+        const fighter = document.querySelector('#fighter') as HTMLDivElement;
         const sword = document.querySelector('#sword') as HTMLDivElement;
         const newPlayer = document.querySelector('#newPlayer') as HTMLDivElement;
         const element = document.querySelector(".screen__game");
@@ -408,7 +419,9 @@ document.addEventListener('keydown', (event: KeyboardEvent | any) => {
     } catch (error) {
         console.error(error)
     }
-});
+
+}
+
 
 function displayTimer() {
     const timerRef = document.querySelector(`#timerDisplay`) as HTMLDivElement;
@@ -474,16 +487,16 @@ function checkOverlapInBackground(): void {
                         const boomSound = new Audio("../TS/dist/boomSound.mp3")
                         if (!boomSound) throw new Error(`boom sound not found`);
                         boomSound.play();
-
                         boom.style.left = `${elementDiv?.offsetLeft}px`;
                         boom.style.top = `${elementDiv?.offsetTop}px`;
                         boom.style.visibility = "visible";
-                        currPlayer.updateScore(starHit.value);
+                        if(currPlayer.inGame)
+                            currPlayer.updateScore(starHit.value);
                         elementDiv.style.visibility = "hidden"
                         const scorePanel = document.getElementById('score');
                         if (!scorePanel) throw new Error(`scorePanel not found`);
                         scorePanel.innerHTML = `<p>${currPlayer.currentScore}</p>`
-                        setTimeout(function () {
+                        setTimeout(function () { // to hide explosin gif
                             boom.style.left = `0px`;
                             boom.style.top = `0px`;
                             boom.style.visibility = "hidden";
@@ -515,6 +528,7 @@ function endOfGame(player: Player) {
     try {
         console.log(`endofGame player score: ${player.currentScore}`)
         clearInterval(timeIntervalID);
+        removeEventListener('keydown', listenTokeyDown)
         const scorePanel = document.getElementById('score');
         if (!scorePanel) throw new Error(`scorePanel not found`);
         scorePanel.innerHTML = `<p>${player.currentScore}</p>`
@@ -522,6 +536,7 @@ function endOfGame(player: Player) {
         player.record = (player.record < player.currentScore ? player.currentScore : player.record);
         // player.currentScore = 0;
         if (players === undefined) throw new Error("Missing players")
+        players[players.length - 1].setInGame(false);
         localStorage.setItem("players", JSON.stringify(players));
         const highScore = players?.findIndex(p => p.record >= player.record);
 
