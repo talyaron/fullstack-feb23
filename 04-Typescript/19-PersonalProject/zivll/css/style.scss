@@ -332,49 +332,65 @@ body {
       border-radius: 10px;
       border-collapse: collapse;
       height: fit-content;
-      td {
-        padding: 7px;
-        height: 40px;
-        // text-align: center;
-        &:nth-child(even) {
-          text-align: left;
-          direction: ltr;
-        }
+    }
+    td {
+      padding: 7px;
+      height: 40px;
+      text-align: center;
+      &:nth-child(3) {
+        width: 75px;
+        text-align: left;
       }
-      .thead {
-        transition: 0.4s;
-        position: relative;
+
+      .edit {
         cursor: pointer;
-        &:hover,
-        :active {
-          background-color: #ccc;
-          color: #0f81c7;
-        }
+        color: #0f81c7;
+        width: 30px;
+        height: auto;
       }
-      .active {
+      .delete {
+        cursor: pointer;
+        color: red;
+        width: 30px;
+        height: auto;
+      }
+    }
+    .thead {
+      transition: 0.4s;
+      position: relative;
+      cursor: pointer;
+      &:hover,
+      :active {
         background-color: #ccc;
         color: #0f81c7;
       }
-      .off {
-        display: none;
-      }
-      .thead,
-      tr {
-        width: 100%;
-        border-bottom: solid 1px rgba(0, 0, 0, 0.151);
+    }
+    .active {
+      background-color: #ccc;
+      color: #0f81c7;
+    }
+    .off {
+      display: none;
+    }
+    .thead,
+    tr {
+      width: 100%;
+      border-bottom: solid 1px rgba(0, 0, 0, 0.151);
 
-        height: 40px;
+      height: 40px;
 
-        .collapse-icon {
-          width: 20px;
-          height: 100%;
-          position: absolute;
-          left: 5px;
-          top: 0;
-        }
+      .collapse-icon {
+        width: 20px;
+        height: 100%;
+        position: absolute;
+        left: 5px;
+        top: 0;
       }
-      tbody {
-        border-bottom: solid 1px rgba(0, 0, 0, 0.151);
+    }
+    tbody {
+      border-bottom: solid 1px rgba(0, 0, 0, 0.151);
+      &:nth-child(even) {
+        background-color: #eeeeeeb6;
         .tbody {
           transition: max-height 0.2s ease-out;
           overflow: hidden;
