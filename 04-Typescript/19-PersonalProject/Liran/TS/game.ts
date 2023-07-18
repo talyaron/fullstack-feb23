@@ -88,7 +88,7 @@ else
 
 function getPlayerFromStorage(item: string): Player[] | undefined {
     try {
-        debugger;
+        
         const storageString = localStorage.getItem(`${item}`);
         if (!storageString) throw new Error("No such name in local storage");
         //convert string to array of objects
@@ -146,7 +146,7 @@ let timeIntervalID: number;
 function hundelStart(ev: any) {
     try {
         ev.preventDefault();
-        debugger;
+        
         const operation = ev.target.name
         switch (operation) {
             case "start":
@@ -340,7 +340,7 @@ function listenTokeyDown(event: KeyboardEvent | any) {
         if (!sword) throw new Error("Can't cath sword DOM");
         const rect = element.getBoundingClientRect();
         const key = event.key;
-        debugger;
+        
         switch (event.key || event.ctrlKey || event.target.name) {
             case 'ArrowLeft':
                 if (event.shiftKey == true) {
@@ -491,10 +491,11 @@ function endOfGame(player: Player) {   // kill listener events, clock intervals 
         updateScoreOnScreen(player, document.getElementById('score'));
         updatePlayer(player);
         addGameResultToTable(player);
-        if (players === undefined) throw new Error("Missing players");
-        const highScore = players?.findIndex(p => p.record >= player.record);
+        debugger;
+        if (scoreTable === undefined) throw new Error("Missing players");
+        const highScore = scoreTable?.findIndex(p => p.record <= player.currentScore);
         setTimeout(function () {
-            if (highScore == -1)
+            if (highScore == 0)
                 alert("Great job! You got a new record");
             location.href = "../HTML/scoreTable.html";
         }, 5000)

@@ -59,7 +59,6 @@ else
     renderLogPanel(document.querySelector(".screen__UI"));
 function getPlayerFromStorage(item) {
     try {
-        debugger;
         var storageString = localStorage.getItem("" + item);
         if (!storageString)
             throw new Error("No such name in local storage");
@@ -104,7 +103,6 @@ var timeIntervalID;
 function hundelStart(ev) {
     try {
         ev.preventDefault();
-        debugger;
         var operation = ev.target.name;
         switch (operation) {
             case "start":
@@ -272,7 +270,6 @@ function listenTokeyDown(event) {
             throw new Error("Can't cath sword DOM");
         var rect = element.getBoundingClientRect();
         var key = event.key;
-        debugger;
         switch (event.key || event.ctrlKey || event.target.name) {
             case 'ArrowLeft':
                 if (event.shiftKey == true) {
@@ -425,11 +422,12 @@ function endOfGame(player) {
         updateScoreOnScreen(player, document.getElementById('score'));
         updatePlayer(player);
         addGameResultToTable(player);
-        if (players === undefined)
+        debugger;
+        if (scoreTable === undefined)
             throw new Error("Missing players");
-        var highScore_1 = players === null || players === void 0 ? void 0 : players.findIndex(function (p) { return p.record >= player.record; });
+        var highScore_1 = scoreTable === null || scoreTable === void 0 ? void 0 : scoreTable.findIndex(function (p) { return p.record <= player.currentScore; });
         setTimeout(function () {
-            if (highScore_1 == -1)
+            if (highScore_1 == 0)
                 alert("Great job! You got a new record");
             location.href = "../HTML/scoreTable.html";
         }, 5000);
