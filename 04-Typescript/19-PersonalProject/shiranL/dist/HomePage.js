@@ -202,7 +202,7 @@ function loadQuestionBadThings() {
             //get characters from localstorage
             var badThingsArray = JSON.parse(badThingsString);
             badThingsArray.forEach(function (bad) {
-                badThings_1.push(new QuestionBadThings(bad.bdThingsTitel, bad.badThingsDescription, bad.purchasePrice, bad.badThingsId));
+                badThings_1.push(new QuestionBadThings(bad.badThingsTitel, bad.badThingsDescription, bad.purchasePrice, bad.badThingsId));
             });
         }
         return badThings_1;
@@ -276,6 +276,7 @@ function loadDataToBoard(board) {
         // Load bad things and add them to the board
         var badThings = loadQuestionBadThings();
         if (badThings) {
+            debugger;
             board.badThings = badThings;
         }
         console.log('Data loaded to the board successfully!');
