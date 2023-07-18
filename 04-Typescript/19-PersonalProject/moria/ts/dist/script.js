@@ -17,17 +17,18 @@ var Point = /** @class */ (function () {
 var root = document.querySelector("#root");
 var rootPlayer = document.querySelector("#rootPlayer");
 var points = [];
-// logIn()
-// function logIn() {
-//     try {
-//         const html = ` <div class="log"> <form onsubmit="handleAdd(event)"><label for="worker-name">enter your Name:</label> <br>
-//         <input required type="text" name="name" value=""> <br> <br> <button type="submit">ok</button> </form> </div>`;
-//         if (!root) throw new Error("no root element");
-//         root.innerHTML = html;
-//     } catch (error) {
-//         console.error(error);
-//     }
-// }
+logIn();
+function logIn() {
+    try {
+        var html = " <div class=\"log\"> <form onsubmit=\"handleAdd(event)\"><label for=\"worker-name\">enter your Name:</label> <br>\n        <input required type=\"text\" name=\"name\" value=\"\"> <br> <br> <button type=\"submit\">ok</button> </form> </div>";
+        if (!root)
+            throw new Error("no root element");
+        root.innerHTML = html;
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
 function handleAdd(ev) {
     try {
         ev.preventDefault();

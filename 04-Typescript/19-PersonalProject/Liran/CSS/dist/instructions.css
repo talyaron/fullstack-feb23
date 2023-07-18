@@ -54,3 +54,6 @@ body {
 #wrapper #stars {
   margin-top: 5%;
 }
+#wrapper #stars .instructions {
+  color: #6a8b9d;
+}

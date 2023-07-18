@@ -101,6 +101,8 @@ function renderBoard(currentGame:Board |undefined) {
 // set random suprise btn 
   setBadBtnForRandom(currentGame.badThings);
   setGoodBtnForRandom(currentGame.goodThings);
+  putCubeOnBoard();
+  renderOptionsBtns(gamesBoardsAGpage);
    
   }
   function setGoodSurprises(){ 
@@ -235,7 +237,9 @@ function setGoodBtnForRandom(goodThings:QuestionGoodThings[]){
     const goods= document.getElementById('2-2');
     if(!goods) throw new Error("canf find cell 2-2");
     const GoodThings=document.createElement('button')
-    GoodThings.classList.add('GoodThings')  
+    GoodThings.classList.add('GoodThings') 
+    GoodThings.id='GoodThingsBt'
+
     GoodThings.disabled=true;  
     GoodThings.addEventListener('click',()=>{RandomGoodSuprise(goodThings)})
     goods.appendChild(GoodThings);
@@ -306,16 +310,15 @@ function putJailOnBoard(jail:Jail,JailIndex:number){
               break;
       }
 // create elements for jail
+
+if(!cell) throw new Error("cant find cell");  
      
     const  jailBtn= document.createElement('bottun')
       jailBtn.classList.add('jailBtn')
       jailBtn.id=`jail${jail.jailId}`;
-     const jailimg= document.createElement('img')
-      jailimg.src=jail.jailImg
-  
-      jailBtn.appendChild(jailimg)
-      cell?.appendChild(jailBtn);
-     // cell.name="jail"
+      jailBtn.style.backgroundImage = `url('${jail.jailImg}')`;
+      cell.appendChild(jailBtn);
+     
   }
 function putCityOnBoard(city:City,cityIndex:number){
   try {
@@ -485,65 +488,6 @@ function putCityOnBoard(city:City,cityIndex:number){
       console.error(error);
     }
 }
-function  renderCityCard(cityId:number){
-  try {
-    
-    const dialog = document.createElement('dialog'); // Create a dialog element
-    dialog.classList.add('cityDialog'); // Add a custom CSS class for styling
-    const diaylogForm = document.createElement('form');
-    diaylogForm.classList.add('cityDialog__cityCardForm')
-    diaylogForm.id=`cityCard${cityId}`;
-    const btnClose = document.createElement('button');
-    btnClose.classList.add('closeCityDialog');
-    btnClose.innerHTML='X'
-    btnClose.addEventListener('click', closePopup);
-    diaylogForm.appendChild(btnClose);
-
-    const cityName=document.createElement('h1');
-    const cityBuyPrice=document.createElement('h2');  
-    const cityRentPrice=document.createElement('h2');
-    const owner=document.createElement('h2');
-    const city=gamesBoardsAGpage?.find(board=>board.cities.find(city=>city.cityId===cityId))?.cities.find(city=>city.cityId===cityId);   
-    if(!city) throw new Error("cant find city");  
-    cityName.innerHTML=`${city.cityName}`; 
-    cityBuyPrice.innerHTML=`Buy Price : ${city.monetaryValue}`; 
-    cityRentPrice.innerHTML=`Rent Price : ${city.rentValue}`; 
-    const ownerName=gamesBoardsAGpage?.find(board=>board.cities.find(city=>city.cityId===cityId))?.players.find(player=>player.playerId===city.cityOwner?.playerId)?.userName;
-    owner.innerHTML=`Owner : ${ownerName || "No Owner" }`;
-    
-    diaylogForm.appendChild(cityName);
-    diaylogForm.appendChild(cityBuyPrice);
-    diaylogForm.appendChild(cityRentPrice);
-    diaylogForm.appendChild(owner);
-    // if(!ownerName)
-    // {
-    //   const buyBtn=document.createElement('button');
-    //   buyBtn.classList.add('buyBtn');
-    //   buyBtn.innerHTML=`Buy`;
-    //   diaylogForm.appendChild(buyBtn);
-    //   // buyBtn.addEventListener('click',()=>{buyCity(cityId,city.monetaryValue)}); 
-    // }
-    // else{
-    //   const payBtn=document.createElement('button');
-    //   payBtn.classList.add('payBtn');
-    //   payBtn.innerHTML=`Pay`;
-    //   diaylogForm.appendChild(payBtn);
-    //   // payBtn.addEventListener('click',()=>{payRent(cityId,city.rentValue)});
-    // }
-    dialog.appendChild(diaylogForm);  
-
-    document.body.appendChild(dialog); // Append the dialog to the document body
-
-    dialog.showModal(); // Display the dialog as a modal
-
-    
-   // Generate and display the random number
-}
-catch(error)
-{
-  console.error(error);
-}
-}
 function putPlayerOnBoard(player:Player){
   try {
          const cell = document.getElementById( `${player.cellId}`);
@@ -566,13 +510,36 @@ function putPlayerOnBoard(player:Player){
       console.error(error);
     }
 }
+function putCubeOnBoard() {
+  try {
+    const cell = document.getElementById('3-4');
+    if (!cell) throw new Error("Can't find cell '3-4'");
+
+    // Get the cube button element
+    const cubeButton = document.getElementById('cubeButton');
+    if (!cubeButton) throw new Error("Can't find cube button");
+
+    // Remove the cube button from its current parent
+    const currentParent = cubeButton.parentElement;
+    if (currentParent) currentParent.removeChild(cubeButton);
+
+    // Append the cube button to the desired cell
+    cell.appendChild(cubeButton);
+
+    // Show the cube button
+    cubeButton.style.display = 'block';
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 function renderOptionsBtns(gamesBoardsAGpage : Board[]| undefined){
   try {
    const currentGame= gamesBoardsAGpage?.find(board=>board.gameStatus===true);
-    const htmlOptionsBtns= document.querySelector("#optionsBtns")
+    const htmlOptionsBtns= document.getElementById('4-7')
     if(!htmlOptionsBtns) throw new Error("Cant find optionsBtns");
     const html = `<form>
-    <input type="button" onclick="play()" class="optionsBtns__Button" value="Start Game">
+    <input type="button" id='IDplay' onclick="play()" class="optionsBtns__Button" value="Start Game">
     <input type="button" onclick="gameOver()" class="optionsBtns__Button" value="End game">
     <input type="button" onclick="backHome()" class="optionsBtns__Button" value="Back">
  </form>`
@@ -594,12 +561,10 @@ function gameOver(){
   try {
 
     if(!gamesBoardsAGpage)throw new Error("cant find gamesBoardsAGpage");
-    
     const currentGame= gamesBoardsAGpage.find(board=>board.gameStatus===true)
     if(!currentGame)throw new Error("cant find currentGame");
     currentGame.gameStatus=false;
     backHome();
-    
   } catch (error) {
     console.error(error);
   }
@@ -618,9 +583,9 @@ function saveBoardsForOpenGame (boards: Board[] | undefined){
   }
  
 }
-function playerStep(playerId:number){
+function playerStep(playerId:number,hasLandedOnCity:boolean){
   try {
-    
+  if(!currentGame) throw new Error("cant find currentGame");  
   const playerDiv = document.getElementById(`player${playerId}`);
   if (!playerDiv) throw new Error("cant find playerDiv");
   
@@ -637,12 +602,155 @@ if(nextCellId===36)
 nextCellId=1;
   const nextCell = document.getElementById(`cell${Number(nextCellId)}`);
   if (!nextCell) throw new Error("cant find nextCell");
+ 
   
    nextCell.appendChild(playerDiv); // Move the player to the next cell
-  
+   if (hasLandedOnCity){
+   
+    const cellId = getCityIdFromPosition(nextCell);
+    const cellName =nextCell.firstChild?.id.replace(/\d+/g, ''); // Replace with your logic to get the cityId
+    if (!cellName) throw new Error("cant find cellName"); 
+    // if have class list RovaA| rovaBet| rovaGimel| rovaDaled| rovaCITY| rovaTetVav| rovaYudBet| rovaYudAlef 
+    if (cellName==='city') {
+      rendercityCardRentOrBuy(cellId, playerId);
+    }
+    else if(cellName==='jail'){ 
+      // if user in jail he cant play for one turn
+
+      //find the jail
+      const jail = currentGame.jails.find((jail) => jail.jailId === cellId);
+      if (!jail) throw new Error("cant find jail"); 
+      //find the player
+      const player = currentGame.players.find((player) => player.playerId === playerId);
+      if (!player) throw new Error("cant find player"); 
+      //check if player have jail card
+      if(player.isJail===true){
+        player.isJail=false;
+        return;
+      }
+      else{
+        player.isJail=true;
+        renderJailCard(jail,playerId);
+      }
+      
+    }
+    else if(cellName==='goodS'){
+      
+      const goodS=document.getElementById('GoodThingsBt');
+      if(!goodS) throw new Error("cant find GoodThingsBtn");  
+      goodS.classList.add('enlarge-animation');
+
+        setTimeout(() => {
+          goodS.classList.remove('enlarge-animation');
+        }, 3000);
+        if(!currentGame) throw new Error("cant find currentGame");  
+        const goodsId = Math.floor(Math.random() * (currentGame.goodThings.length - 1)) + 1;
+        rendergoodsCard(goodsId, playerId);
+    }
+    else if(cellName==='BadS'){
+      const badsId = Math.floor(Math.random() * (currentGame.badThings.length - 1)) + 1;
+      renderBadsCard(badsId, playerId);
+    }
+   }
   } catch (error) {
     console.error(error);
     
+  }
+}
+function renderJailCard(jail:Jail,playerID){
+try {
+  if(!currentGame) throw new Error("cant find currentGame");
+  if(!jail) throw new Error("cant find jail");  
+  const dialog = document.createElement('dialog'); // Create a dialog element 
+  dialog.classList.add('dialog-card'); // Add a custom CSS class for styling
+  const spanClose = document.createElement('span');
+  spanClose.classList.add('close'); 
+  spanClose.addEventListener('click', closePopup);  
+  spanClose.innerHTML = 'stay in jail for one turn';  
+  dialog.appendChild(spanClose);  
+  const title = document.createElement('h3'); 
+  title.innerText = jail.jailName; 
+  dialog.appendChild(title);  
+  const description = document.createElement('p');  
+   
+  const purchasePrice = document.createElement('p');  
+  purchasePrice.innerText = 'Purchase Price: ' + jail.earlyReleaseCost.toString(); 
+  dialog.appendChild(purchasePrice);  
+  //add btn to pay for early release  
+  const payBtn = document.createElement('button');  
+  payBtn.innerText = 'Pay'; 
+  payBtn.addEventListener('click', () => {  
+    // Close the dialog when the close button is clicked  
+    dialog.close(); 
+    //remove player from jail 
+    const player = currentGame.players.find((player) => player.playerId === playerID);  
+    if (!player) throw new Error("cant find player"); 
+    player.isJail=false;  
+    player.Pbank-=jail.earlyReleaseCost;
+    alert(`you paid ${jail.earlyReleaseCost} to get out of jail`); 
+    //if player bank is less then 0 he lost the game
+    playerIfLose(playerID);
+   
+  });
+  dialog.appendChild(payBtn); 
+  document.body.appendChild(dialog);  
+  dialog.showModal(); 
+
+
+} catch (error) {
+  console.error(error);  
+}
+
+}
+function checkPlayerPbank(playerID:number){
+  if(!currentGame) throw new Error("cant find currentGame");  
+  const player=currentGame.players.find(player=>player.playerId===playerID);  
+  if(!player) throw new Error("cant find player");  
+  if(player.Pbank<=0)
+    return false
+  else
+    return true
+}
+function playerIfLose(playerID:number){
+  debugger
+  try {
+    if(!currentGame) throw new Error("cant find currentGame");
+    const isPlayerLose=checkPlayerPbank(playerID);
+    if(!isPlayerLose){
+      const playerDiv = document.getElementById(`player${playerID}`);
+      if (!playerDiv) throw new Error("cant find playerDiv");
+      playerDiv.style.display = "none"; // Set the display property to "flex"
+      playerDiv.style.flexWrap = "wrap"; // Set the flex-wrap property to "wrap"
+      //remove player from players list
+      const player = currentGame.players.find((player) => player.playerId === playerID);
+      if (!player) throw new Error("cant find player"); 
+      player.status=false;
+      //check if there is only one player left
+      const players = currentGame.players.filter((player) => player.status === true);
+      if(players.length===1){
+        //end game
+        alert(`Game Over, the winner is player ${players[0].playerId} : ${players[0].userName}`);
+        gameOver();
+      }
+    } 
+
+
+  } catch (error) {
+    console.error(error);
+  }
+}
+ 
+function getCityIdFromPosition( nextCell: HTMLElement){
+  try {
+   if(!nextCell.firstChild) throw new Error("cant find nextCell.firstChild");
+   
+    const nextCellId = nextCell.firstChild.id.match(/\d+/); 
+   
+    // Get the city ID from the cell's first child ID 
+    if (!nextCellId) throw new Error("cant find cityId");
+    return Number(nextCellId[0]);
+  } catch (error) {
+    console.error(error);
   }
 }
 function dropCube() {
@@ -677,11 +785,11 @@ function saveLuckeyCube(){
 function showPopup() {
   try {
     const dialog = document.createElement('dialog'); // Create a dialog element
-    dialog.classList.add('popup-dialog'); // Add a custom CSS class for styling
+    dialog.classList.add('dialog-card'); // Add a custom CSS class for styling
     const spanClose = document.createElement('span');
     spanClose.classList.add('close');
     spanClose.addEventListener('click', closePopup);
-    spanClose.innerHTML = '&times;';
+    spanClose.innerHTML = 'X';
     dialog.appendChild(spanClose);
     const randNumber=getRandomNumber(1,6);
 
@@ -719,91 +827,108 @@ beginDiv.classList.add('begin')
 beginCell?.appendChild(beginDiv);
 }
 
-
-// function play() {
-//   try {
-//     if (!gamesBoardsAGpage) throw new Error("Can't find gamesBoardsAGpage");
-//     const currentGame = gamesBoardsAGpage.find((board) => board.gameStatus === true);
-//     if (!currentGame) throw new Error("Can't find currentGame");
-
-//     let players = currentGame.players.filter((player) => player.status === true);
-
-//     // Define a function to wrap the player's turn logic in a Promise
-//     function playPlayerTurn(player) {
-//       return new Promise((resolve, reject) => {
-//         const cube = document.getElementById('cubeButton') as HTMLButtonElement;
-//         if (!cube) throw new Error("Can't find cube");
-
-//         cube.disabled = false;
-//         cube.style.border = '1px solid green';
-
-//         // Resolve the Promise when the player drops the cube (e.g., on a button click event)
-//         cube.addEventListener('click', () => {
-//           cube.disabled = true;
-//           cube.style.border = 'none';
-
-//           // Rest of the turn logic...
-//           if (!currentGame) throw new Error("Can't find currentGame");
-//           // Continue with the remaining logic for the player's turn
-//           if (currentGame.luckyCube !== 0) {
-//             console.log(`Player ${player.playerId} is playing`);
-            
-//             for (let index = 1; index <= currentGame.luckyCube; index++) {
-//               playerStep(player.playerId);
-//             }
-//             const newCell = document.getElementById(`player${player.playerId}`);
-//             if (!newCell) throw new Error("Can't find newCell");
-//             const parentCell = newCell.parentNode as HTMLDivElement;
-//             if (!parentCell) throw new Error("Can't find parentCell");
-
-//             player.cellId = parentCell.id;
-//             currentGame.luckyCube = 0;
-
-//             const cellButton = parentCell.firstChild as HTMLButtonElement;
-//             if (!cellButton) throw new Error("Can't find cellButton");
-
-//             // Check if arrived at a city
-//             if (cellButton.classList.contains('RovaA') || cellButton.classList.contains('RovaBet') || cellButton.classList.contains('RovaGimel') || cellButton.classList.contains('RovaDaled') || cellButton.classList.contains('RovaCITY') || cellButton.classList.contains('RovaTetVav') || cellButton.classList.contains('RovaYudBet') || cellButton.classList.contains('RovaYudAlef')) {
-//               rendercityCardRentOrBuy(Number(cellButton.id.match(/\d+/)), player.playerId);
-//               console.log(player.Pbank);
-//             }
-//           }
-
-//           resolve(void 0);
-//         });
-//       });
-//     }
-
-//     // Define an async function to iterate over the players and wait for each turn to finish
-//     async function iteratePlayers() {
-//       while (players.length > 1) {
-//         for (const currentPlayer of players) {
-//           try {
-//             console.log(`Player: ${currentPlayer.playerId}`);
-//             await playPlayerTurn(currentPlayer);
-//           } catch (error) {
-//             console.error(error);
-//           }
-//         }
-//         players = players.filter((player) => player.status === true);
-//       }
-      
-//       if (players.length === 1) {
-//         console.log(`Player ${players[0].playerId} is the winner!`);
-//       } else {
-//         console.log("The game has ended with no winner.");
-//       }
-//     }
-
-//     // Call the async function to start the iteration over players
-//     iteratePlayers().catch((error) => console.error(error));
-//   } catch (error) {
-//     console.error(error);
-//   }
-// }
-
-function Play(){
+function play() {
+  try {
   
+    // hide play btn 
+    const playBtn = document.getElementById('IDplay');  
+    if (!playBtn) throw new Error("Can't find playBtn."); 
+    playBtn.style.display = 'none'; 
+
+ // show cube btn 
+  const cube = document.getElementById('cubeButton') as HTMLButtonElement;
+  if (!cube) throw new Error("Can't find cube."); 
+  cube.style.display = 'block';
+    
+
+    if (!gamesBoardsAGpage) throw new Error("Can't find gamesBoardsAGpage");
+    const currentGame = gamesBoardsAGpage.find((board) => board.gameStatus === true);
+    if (!currentGame) throw new Error("Can't find currentGame");
+
+    let players = currentGame.players.filter((player) => player.status === true);
+      //get current players status game
+      renderPlayersStatusGame();
+
+    // Define a function to wrap the player's turn logic in a Promise
+    function playPlayerTurn(player) {
+      return new Promise((resolve, reject) => {
+        const cube = document.getElementById('cubeButton') as HTMLButtonElement;
+        if (!cube) throw new Error("Can't find cube");
+
+        cube.disabled = false;
+        cube.style.display = 'block';
+        cube.style.border = '2px solid green';
+        cube.innerHTML = 'Press Me';
+        cube.value = 'Drop the cube';
+       
+
+        const playerDiv = document.getElementById(`player${player.playerId}`);
+        if (!playerDiv) throw new Error("Can't find playerDiv");
+
+        playerDiv.classList.add('currentPlayer');
+
+        // Resolve the Promise when the player drops the cube (e.g., on a button click event)
+        cube.addEventListener('click', () => {
+          cube.disabled = true; 
+          cube.style.display = 'none'; 
+          cube.style.border = 'none';
+          playerDiv.classList.remove('currentPlayer');
+          resolve(void 0);
+        });
+      });
+    }
+
+    // Define an async function to iterate over the players and wait for each turn to finish
+    async function iteratePlayers() {
+      while (players.length > 1) {
+        for (const currentPlayer of players) {
+          try {
+            console.log(`Player: ${currentPlayer.playerId}`);
+            await playPlayerTurn(currentPlayer);
+            if (!currentGame) throw new Error("Can't find currentGame");
+          // Continue with the remaining logic for the player's turn
+          if (currentGame.luckyCube !== 0) {
+            console.log(`Player ${currentPlayer.playerId} is playing`);
+            
+            for (let index = 1; index <= currentGame.luckyCube; index++) {
+              if(index===currentGame.luckyCube)
+              playerStep(currentPlayer.playerId,true);
+              else
+              playerStep(currentPlayer.playerId,false);
+            }
+           
+            const newCell = document.getElementById(`player${currentPlayer.playerId}`);
+            if (!newCell) throw new Error("Can't find newCell");
+            const parentCell = newCell.parentNode as HTMLDivElement;
+            if (!parentCell) throw new Error("Can't find parentCell");
+
+            currentPlayer.cellId = parentCell.id;
+            currentGame.luckyCube = 0;
+
+            const cellButton = parentCell.firstChild as HTMLButtonElement;
+            if (!cellButton) throw new Error("Can't find cellButton");
+
+          }
+            
+          } catch (error) {
+            console.error(error);
+          }
+        }
+        players = players.filter((player) => player.status === true);
+      }
+      
+      if (players.length === 1) {
+        console.log(`Player ${players[0].playerId} is the winner!`);
+      } else {
+        console.log("The game has ended with no winner.");
+      }
+    }
+
+    // Call the async function to start the iteration over players
+    iteratePlayers().catch((error) => console.error(error));
+  } catch (error) {
+    console.error(error);
+  }
 }
 
 function buyCity(cityId: number, playerId: number) {
@@ -817,11 +942,27 @@ function buyCity(cityId: number, playerId: number) {
   const player = currentGame.players.find((player) => player.playerId === playerId);
   if (!player) throw new Error("Can't find player");
 
-  if (player.Pbank < city.monetaryValue) throw new Error("Player doesn't have enough money");
-
   player.Pbank -= city.monetaryValue;
-  city.cityOwner = player;
-  console.log(player.Pbank);
+  playerIfLose(player.playerId);
+  if (checkPlayerPbank(player.playerId)){
+    city.cityOwner = player; 
+    console.log(`player ${city.cityOwner.playerId}: pBank ${player.Pbank}`);
+    console.log(currentGame);
+    alert(`Congratulations! You are now the owner of ${city.cityName}. Your Pbank balance is ${player.Pbank}.`);
+  }
+  
+// border color to city have owner
+debugger
+  const cityBtn = document.getElementById(`city${cityId}`);
+  if (!cityBtn) throw new Error("Can't find cityBtn"); 
+  // find class
+  const cityClass = cityBtn.classList[0];
+  // add border color to city have owner
+  const cityBtns = document.querySelectorAll(`.${cityClass}`);
+  cityBtns.forEach((cityBtn) => {
+    cityBtn.classList.add('cityOwner');
+  });
+  renderPlayersStatusGame();
 }
 
 function payRent(cityId: number, playerId: number) {
@@ -838,28 +979,74 @@ function payRent(cityId: number, playerId: number) {
   if (player.Pbank < city.rentValue) throw new Error("Player doesn't have enough money");
 
   player.Pbank -= city.rentValue;
-
+  playerIfLose(player.playerId);
   if (!city.cityOwner) throw new Error("Can't find cityOwner");
   city.cityOwner.Pbank += city.rentValue;
 
-  console.log(player.Pbank);
-  console.log(city.cityOwner?.Pbank);
+  console.log(`player pay ${player.playerId}:${player.Pbank}`);
+  console.log(`player get ${city.cityOwner?.playerId} :${city.cityOwner?.Pbank}`);
+
+
+  renderPlayersStatusGame();
+}
+function  renderCityCard(cityId:number){
+  try {
+    
+    const dialog = document.createElement('dialog'); // Create a dialog element
+    dialog.classList.add('dialog-card'); // Add a custom CSS class for styling
+    const diaylogForm = document.createElement('form');
+    diaylogForm.id=`cityCard${cityId}`;
+    const btnClose = document.createElement('button');
+   
+    btnClose.innerHTML='close'
+    btnClose.addEventListener('click', closePopup);
+    diaylogForm.appendChild(btnClose);
+
+    const cityName=document.createElement('h1');
+    const cityBuyPrice=document.createElement('h2');  
+    const cityRentPrice=document.createElement('h2');
+    const owner=document.createElement('h2');
+    if (!currentGame) throw new Error("cant find currentGame");
+    const city=currentGame.cities.find(city=>city.cityId===cityId);  
+    if(!city) throw new Error("cant find city");  
+    cityName.innerHTML=`${city.cityName}`; 
+    cityBuyPrice.innerHTML=`Buy Price : ${city.monetaryValue}`; 
+    cityRentPrice.innerHTML=`Rent Price : ${city.rentValue}`; 
+  
+    const ownerName=city.cityOwner?.userName;
+    owner.innerHTML=`Owner : ${ownerName || "No Owner" }`;
+    
+    diaylogForm.appendChild(cityName);
+    diaylogForm.appendChild(cityBuyPrice);
+    diaylogForm.appendChild(cityRentPrice);
+    diaylogForm.appendChild(owner);
+    dialog.appendChild(diaylogForm);  
+
+    document.body.appendChild(dialog); // Append the dialog to the document body
+
+    dialog.showModal(); // Display the dialog as a modal
+
+}
+catch(error)
+{
+  console.error(error);
+}
 }
 
 function rendercityCardRentOrBuy(cityId, playerId) {
   try {
+    if(!currentGame) throw new Error("Can't find currentGame"); 
+
     // If the city has an owner, render pay rent; else, render buy city or pick a good gift
-    const city = gamesBoardsAGpage
-      ?.find((board) => board.cities.find((city) => city.cityId === cityId))
-      ?.cities.find((city) => city.cityId === cityId);
+    const city = currentGame.cities.find((city) => city.cityId === cityId);
 
     if (!city) throw new Error("Can't find city");
 
     const dialog = document.createElement('dialog');
-    dialog.classList.add('cityDialog');
+    dialog.classList.add('dialog-card');
 
     const dialogForm = document.createElement('form');
-    dialogForm.classList.add('cityDialog__cityCardForm');
+   
     dialogForm.id = `cityCard${cityId}`;
 
     // Prevent form submission
@@ -867,13 +1054,6 @@ function rendercityCardRentOrBuy(cityId, playerId) {
       e.preventDefault();
     });
 
-    const btnClose = document.createElement('button');
-    btnClose.classList.add('closeCityDialog');
-    btnClose.innerHTML = 'X';
-    btnClose.addEventListener('click', () => {
-      dialog.close();
-    });
-    dialogForm.appendChild(btnClose);
 
     const cityName = document.createElement('h1');
     cityName.innerHTML = `${city.cityName}`;
@@ -909,6 +1089,18 @@ function rendercityCardRentOrBuy(cityId, playerId) {
         dialog.close();
       });
       dialogForm.appendChild(buyBtn);
+        // Render choose present button
+        // pic random present from goodThings
+        const goodsId = Math.floor(Math.random() * (currentGame.goodThings.length - 1)) + 1;
+        const choosePresentBtn = document.createElement('button');
+        choosePresentBtn.classList.add('choosePresentBtn');
+        choosePresentBtn.innerHTML = `Choose Present`;
+        choosePresentBtn.addEventListener('click', () => {
+        rendergoodsCard(goodsId,playerId)
+          
+          dialog.close();
+        });
+        dialogForm.appendChild(choosePresentBtn);
     }
 
     dialog.appendChild(dialogForm);
@@ -920,13 +1112,141 @@ function rendercityCardRentOrBuy(cityId, playerId) {
   }
 }
 
+function rendergoodsCard(goodsId,playerId){
+try {
 
+  if(!currentGame) throw new Error("Can't find gamesBoardsAGpage"); 
+
+  const goods = currentGame.goodThings.find((good) => good.goodThingsId === goodsId); 
+  if (!goods) throw new Error("Can't find goods");
+
+  const dialog = document.createElement('dialog');  
+  dialog.classList.add('dialog-card');  
+  // Create title element 
+  const title = document.createElement('h3'); 
+  title.innerText = goods.goodThingsTitel;  
+  dialog.appendChild(title);  
+  // Create description element
+  const description = document.createElement('p');  
+  description.innerText = goods.goodThingsDescription;  
+  dialog.appendChild(description);  
+  // Create purchase price element  
+  const winPrice = document.createElement('p'); 
+  winPrice.innerText = 'Purchase Price: ' + goods.winningPrice.toString();  
+  dialog.appendChild(winPrice); 
+  // Create close button  
+  const closeButton = document.createElement('button'); 
+  closeButton.innerText = 'Close';  
+  closeButton.addEventListener('click', () => { 
+    // Close the dialog when the close button is clicked  
+    dialog.close(); 
+    })  
+  dialog.appendChild(closeButton);  
+  // Append the dialog to the document body 
+  document.body.appendChild(dialog);  
+  // Show the dialog  
+  dialog.showModal(); 
+
+  const player = currentGame.players.find((player) => player.playerId === playerId); 
+  if (!player) throw new Error("Can't find player");  
+  player.Pbank += goods.winningPrice; 
+  console.log(`player ${player.playerId}: pBank ${player.Pbank}`);  
+  console.log(currentGame); 
+  renderPlayersStatusGame();
+
+  
+} catch (error) {
+  console.error(error);
+  
+}
+
+
+}
+function renderBadsCard(BadsId,playerId){
+  try {
+    
+    if(!currentGame) throw new Error("Can't find gamesBoardsAGpage"); 
+  
+    const bads = currentGame.badThings.find((bad) => bad.badThingsId === BadsId); 
+    if (!bads) throw new Error("Can't find bads");
+  
+    const dialog = document.createElement('dialog');  
+    dialog.classList.add('dialog-card');  
+    // Create title element 
+    const title = document.createElement('h3'); 
+    title.innerText = bads.badThingsTitel;  
+    dialog.appendChild(title);  
+    // Create description element
+    const description = document.createElement('p');  
+    description.innerText = bads.badThingsDescription;  
+    dialog.appendChild(description);  
+    // Create purchase price element  
+    const finePrice = document.createElement('p'); 
+    finePrice.innerText = 'fine Price: ' + bads.purchasePrice.toString();  
+    dialog.appendChild(finePrice); 
+    // Create close button  
+    const closeButton = document.createElement('button'); 
+    closeButton.innerText = 'Close';  
+    closeButton.addEventListener('click', () => { 
+      // Close the dialog when the close button is clicked  
+      dialog.close(); 
+      })  
+    dialog.appendChild(closeButton);  
+    // Append the dialog to the document body 
+    document.body.appendChild(dialog);  
+    // Show the dialog  
+    dialog.showModal(); 
+  
+    const player = currentGame.players.find((player) => player.playerId === playerId); 
+    if (!player) throw new Error("Can't find player");  
+    player.Pbank -= bads.purchasePrice; 
+    playerIfLose(player.playerId);
+    console.log(` אחרי קנסplayer ${player.playerId}: pBank ${player.Pbank}`);  
+    console.log(currentGame); 
+    renderPlayersStatusGame()
+  
+    
+  } catch (error) {
+    console.error(error);
+    
+  }
+  
+  
+  }
+
+function renderPlayersStatusGame(){
+try {
+  
+  const htmlPlayersStatusGame= document.getElementById('7-4') ;
+
+  if(!htmlPlayersStatusGame) throw new Error("cant find playersStatus");  
+  htmlPlayersStatusGame.innerHTML = "";
+
+  const players = currentGame?.players.filter(player=>player.status===true);
+  if(!players) throw new Error("Cant find players");  
+  players.forEach(player => {
+    const html = `<div class="playersStatus__player"> 
+    <div class="playersStatus__player__id">Player ${player.playerId}</div>  
+    <div class="playersStatus__player__name">Player ${player.userName}</div>  
+    <div class="playersStatus__player__bank">Bank: ${player.Pbank}</div>  
+    <div class="playersStatus__player__cell">Cell: ${player.cellId}</div> 
+    </div>`;  
+    htmlPlayersStatusGame.innerHTML += html;  
+  });
+
+  
+} catch (error) {
+  console.error(error);
+  
+}
+
+}
 
 const gamesBoardsAGpage : Board[]| undefined = loadBoardsAGpage();
 const currentGame= gamesBoardsAGpage?.find(game=> game.gameStatus===true)
 
 //shape of the board
-renderOptionsBtns(gamesBoardsAGpage);
+
 renderBoard(currentGame);
 
 renderIBeginCell();
