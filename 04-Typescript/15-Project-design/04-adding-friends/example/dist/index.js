@@ -80,7 +80,7 @@ function renderFriendCard(friend) {
             return "<div class=\"card\">\n                    <img src=\"" + friend.image + "\">\n                    <form onsubmit=\"handleSetEditFriend(event)\" id=\"" + friend.id + "\">\n                        <input type=\"text\" name=\"name\" value=\"" + friend.name + "\">\n                        <input type=\"text\" name=\"phoneNumber\" value=\"" + friend.phoneNumber + "\">\n                        <br>\n                        <button onclick=\"handleDeleteFriend('" + friend.id + "')\">Delete</button>\n                        <input type=\"submit\" value=\"SET\">\n                    </form>\n                </div>\n                ";
         }
         else {
-            return "<div class=\"card\">\n        <img src=\"" + friend.image + "\">\n        <p>" + friend.name + "</p>\n        <p>" + friend.phoneNumber + "</p>\n        <button onclick=\"handleDeleteFriend('" + friend.id + "')\">Delete</button>\n        <button onclick=\"handleEdit('" + friend.id + "')\">Edit</button>\n    </div>\n";
+            return "<div class=\"card\">\n        <img src=\"" + friend.image + "\">\n        <p>" + friend.name + "</p>\n        <p>" + friend.phoneNumber + "</p>\n        <button onclick=\"handleDeleteFriend('" + friend.id + "')\">Delete</button>\n        <button onclick=\"handleEdit('" + friend.id + "')\">Edit</button>\n    </div>";
         }
     }
     catch (error) {

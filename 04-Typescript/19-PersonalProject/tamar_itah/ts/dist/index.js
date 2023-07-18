@@ -2,7 +2,8 @@
 var User = /** @class */ (function () {
     function User(userName) {
         this.userName = userName;
-        this.level = 0;
+        this.points = 0;
+        this.id = Math.random() * 6 + Date.now();
     }
     return User;
 }());
@@ -26,24 +27,6 @@ var words = [
 //login form
 //save the usermane, send it to the local storage and open the game page
 function handelSubmit(ev) {
-    try {
-        ev.preventDefault();
-        console.dir(ev);
-        var userName = ev.target.elements.name.value; //colect the user name
-        if (!userName)
-            throw new Error('user name is missing');
-        console.log(userName);
-        var newUser = new User(userName);
-        users.push(newUser); //save the user name in users array
-        console.log(users);
-        localStorage.setItem('users', JSON.stringify(users)); //sent the array to local storage as string
-        window.location.replace("./index.html"); // its work!!!
-    }
-    catch (error) {
-        console.error(error);
-    }
-}
-function handelSignUp(ev) {
     try {
         ev.preventDefault();
         console.dir(ev);
@@ -116,19 +99,24 @@ function heandelPlay() {
 //get the user name from local storage as string
 var h1username = localStorage.getItem('users');
 if (h1username) {
-    //convert it back to array
+    //convert it back to array of classes
     var usernameArray = JSON.parse(h1username);
-    console.log(usernameArray);
+    console.log("usernameArray:", usernameArray);
     usernameArray.forEach(function (user) { return users.push(new User(user.userName)); });
-    console.log(users);
+    console.log("users array:", users);
     renderUserName();
 }
 function renderUserName() {
-    var username = document.querySelector('#h1');
-    if (!username)
-        throw new Error('element not faound');
-    var length = users.length;
-    username.innerHTML = "<h1> Hellow " + users[length - 1].userName + "</h1>";
+    try {
+        var username = document.querySelector('#h1');
+        if (!username)
+            throw new Error('element not faound');
+        var length = users.length; //the last user un the array == currect player
+        username.innerHTML = "<h1> Hello " + users[length - 1].userName + "</h1>";
+    }
+    catch (error) {
+        console.error(error);
+    }
 }
 //the Add form
 function renderAdd() {
@@ -144,7 +132,8 @@ function renderBack() {
 //move to game
 function renderPlay() {
     var h1Instructions = document.querySelector('#instruction');
-    var instractions = "Match the word with its meaning \n                        <div id=\"score\">your scor:" +  + "</div>"; //show the score of the user un this game
+    var currentUser = currentPlayer();
+    var instractions = "Match the word with its meaning \n                        <div id=\"score\">your score: " + currentUser.points + "</div>"; //show the score/points of the player
     h1Instructions.innerHTML = instractions;
     //call the random word function
     var htmlroot = document.querySelector('#cards');
@@ -165,14 +154,45 @@ function renderPlay() {
     //randomized words
     var randomWardsToDisplay = randomWord(randomWords);
     //display all words in random order
-    var htmlWordsToSelect = randomWardsToDisplay.map(function (word) { return "<div class=\"card\">" + word.heWord + "</div>"; }).join(' ');
-    var htmlWordInEnglish = "<div class=\"card\">" + firstWord.enWord + "</div>";
+    var htmlWordsToSelect = randomWardsToDisplay.map(function (word) { return "<div class=\"chose card c" + numOfCard() + "\">" + word.heWord + "</div>"; }).join(' ');
+    var htmlWordInEnglish = "<div id=\"c1\" class=\"card c1\" data-correct-hebrew=\"" + firstWord.heWord + "\">" + firstWord.enWord + "</div>";
     htmlroot.innerHTML = htmlWordsToSelect + "<br>" + htmlWordInEnglish;
+    htmlroot.addEventListener('click', checkAnswer);
+}
+//show messige for wrong anser
+function rendermessage(x) {
+    try {
+        var htmlmassege = document.querySelector('#massege');
+        if (!htmlmassege)
+            throw new Error("no element");
+        if (x === 1) {
+            var html = "<div id=\"correct\" class=\"massege\">Correct answer!</div>";
+            htmlmassege.innerHTML = html;
+            setTimeout(dissapear, 1000);
+        }
+        if (x === 0) {
+            var html = "<div id=\"wrong\" class=\"massege\">Wrong answer!</div>";
+            htmlmassege.innerHTML = html;
+            setTimeout(dissapear, 1000);
+        }
+    }
+    catch (error) {
+        console.error(error);
+    }
 }
 //finish the game
 function renderFinish() {
+    var end = document.querySelector('#end');
+    var finish = document.querySelector('#finish');
+    if (!end || !finish)
+        throw new Error("no element");
+    var currentUser = currentPlayer();
+    var finalScore = currentUser.points;
+    var htmlfinish = ' ';
+    var htmlend = "Good Job! your fainal score is " + finalScore;
+    end.innerHTML = htmlend + htmlfinish;
 }
-//contrilers
+//-------------------------------------contrilers--------------------
 //make the random select words
 function randomWord(words) {
     var randomWordArr = [];
@@ -185,4 +205,66 @@ function randomWord(words) {
     }
     console.log(randomWordArr);
     return randomWordArr;
+}
+var numberOfCard = 1;
+console.log("numberOfCard:", numberOfCard);
+function numOfCard() {
+    try {
+        if (numberOfCard < 4) {
+            numberOfCard++;
+        }
+        else {
+            numberOfCard = 2;
+        }
+        return numberOfCard;
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+//function work at eveant lisiner mouse click ocure on one -> to chose the right ansear
+function checkAnswer(event) {
+    var selectedCard = event.target;
+    //console.log(selectedCard)
+    var selectedHebrewWord = selectedCard.innerText;
+    //console.log(selectedHebrewWord)
+    var englishWordCard = document.querySelector('#c1');
+    //console.log(englishWordCard)
+    var correctHebrewWord = englishWordCard.getAttribute('data-correct-hebrew');
+    console.log("correctHebrewWord is:", correctHebrewWord);
+    if (selectedHebrewWord === correctHebrewWord) {
+        // The user selected the correct Hebrew word
+        console.log('Correct answer!');
+        //  updating the score
+        updateScore();
+        rendermessage(1);
+        renderPlay();
+    }
+    else {
+        // The user selected the wrong Hebrew word
+        console.log('Wrong answer!');
+        // displaying an error message
+        rendermessage(0);
+        renderPlay();
+    }
+}
+//add point for right choise
+function updateScore() {
+    var currentUser = currentPlayer(); //is it by reference or by value?
+    currentUser.points++;
+    console.log("currentUser.points:", currentUser.points);
+    console.log("users array:", users);
+}
+function currentPlayer() {
+    var length = users.length;
+    var currentUser = users[length - 1];
+    console.log("currentUser:", currentUser);
+    return currentUser;
+}
+function dissapear() {
+    var htmlmassege = document.querySelector('#massege');
+    if (!htmlmassege)
+        throw new Error("no element");
+    var html = "";
+    htmlmassege.innerHTML = html;
 }

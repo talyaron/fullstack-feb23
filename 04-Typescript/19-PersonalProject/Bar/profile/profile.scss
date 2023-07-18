@@ -1,8 +1,9 @@
 #header {
     position: relative;
     top: 2vh;
-    width: 400px;
+    max-width: 1200px;
     height: 10vh;
+    margin-bottom: 2vh;
     display: flex;
     justify-content: start;
     border-bottom: 1px solid rgba(255, 255, 255, 0.358);
@@ -13,7 +14,7 @@
     width: 80px;
     height: 10vh;
     margin-left: 15px;
-    // box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
 
     &__user {
         position: relative;
@@ -45,24 +46,26 @@
 
 #posts {
     position: relative;
-    margin: auto;
-    width: 400px;
-    height: 120vh;
+    display: flex;
+    max-width: 1200px;
+    height: 80%;
     border-radius: 20px;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+    flex-wrap: wrap;
+    justify-content: baseline;
 }
 
 .userPost {
     position: relative;
-    margin: auto;
     margin-top: 5vh;
-    width: 350px;
+    margin: 18px;
+    max-width: 350px;
     height: 32vh;
 
     &__name {
         position: relative;
         display: flex;
-        width: 330px;
+        max-width: 330px;
         height: 5vh;
         margin: auto;
         padding: 8px;
@@ -95,5 +98,130 @@
             margin: auto;
             box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
         }
+    }
+
+    &__buttons {
+        position: relative;
+
+        &__deleteBtn {
+            position: relative;
+            left: 10px;
+        }
+
+        &__editBtn {
+            position: relative;
+            top: -31vh;
+            left: 200px;
+
+            input {
+                max-width: 50px;
+            }
+        }
+    }
+}
+
+//breakpoint
+
+// 1130
+@media only screen and (max-width: 1130px) {
+    .userPost {
+        left: 15%;
+    }
+}
+
+@media only screen and (max-width: 950px) {
+    .userPost {
+        left: 5%;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    .userPost {
+        left: 0;
+        margin: 8px;
+    
+        &__name {
+            max-width: 250px;
+            height: 3vh;
+            font-size: 15px;
+    
+            img {
+                width: 30px;
+                height: 30px;
+            }
+        }
+    
+        &__img {
+            img {
+                width: 230px;
+                height: 15vh;
+            }
+        }
+
+        &__buttons {
+            position: relative;
+            &__editBtn {
+                position: relative;
+                top: -2vh;
+                left: 110px;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 770px) {
+    .userPost {
+        left: 15%;
+        height: 15vh;
+    }
+}
+
+@media only screen and (max-width: 530px) {
+    .userPost {
+        left: 5%;
+
+        &__img {
+            img {
+                width: 200px;
+                height: 10vh;
+            }
+        }
+
+        &__buttons {
+            position: relative;
+            &__editBtn {
+                position: relative;
+                top: -2vh;
+                left: 90px;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 460px) {
+    .userPost {
+        left: 5%;
+
+        &__img {
+            img {
+                width: 180px;
+                height: 8vh;
+            }
+        }
+
+        &__buttons {
+            position: relative;
+            &__editBtn {
+                position: relative;
+                top: -2.2vh;
+                left: 70px;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 420px) {
+    .userPost {
+        left: 20%;
     }
 }

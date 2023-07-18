@@ -1,11 +1,10 @@
-//get the users and the imagse from local storage.
-// console.log(imagesArray);
 //create a new post(image).
-//Error free.
 function renderAddNewPost(users, rootElement) {
     try {
         if (!rootElement)
             throw new Error('Root element is not found');
+        if (!users)
+            throw new Error('Users not found');
         var html = "\n      <form class=\"addPost\" onsubmit=\"handleAddNewPost(event)\">\n        <select class=\"addPost__select\" name=\"user\" id=\"userId\" required>\n          " + users
             .map(function (user) {
             return "<option value=\"" + user.id + "\">" + user.name + "</option>";
@@ -15,12 +14,12 @@ function renderAddNewPost(users, rootElement) {
     }
     catch (error) {
         console.error(error);
+        return error;
     }
 }
 renderAddNewPost(usersArray, document.querySelector('#addPost'));
 //get the new post from the form, and add it to the user.
 //render it in 'showPosts'.
-//Error free.
 function handleAddNewPost(event) {
     try {
         if (!event)
@@ -33,6 +32,8 @@ function handleAddNewPost(event) {
             throw new Error('User not found');
         var newImg = new Img(image);
         user.imagse.push(newImg);
+        if (!newImg)
+            throw new Error('Image not found');
         saveImgToLocalStorage(imagesArray);
         saveUserToLocalStorage(usersArray);
         saveUsersImgToLocalStorage(usersImgArray);

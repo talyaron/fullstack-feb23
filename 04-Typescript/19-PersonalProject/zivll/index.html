@@ -22,72 +22,18 @@
       <div class="forms">
         <div class="calculators">
           <h2>מחשבון תקציב</h2>
-          <form class="income-calculator" onsubmit="handleIncomeSubmit()">
+          <form class="income-calculator" onsubmit="handleIncomeSubmit(event)">
             <h3>הכנסה חודשית</h3>
             <div class="user-box">
-              <input
-                type="number"
-                name="income-amount"
-                id="income-amount"
-                required
-              />
+              <input type="number" name="income" id="income" required />
               <label for="income-amount">מה גובה ההכנסה החודשית שלך?</label>
             </div>
-            <a href="#" type="submit" value="ADD"
-              ><span></span>
-              <span></span>
-              <span></span>
-              <span></span>הוסף</a
-            >
+            <input type="submit" value="הוסף" />
           </form>
-          <form onsubmit="handleExpenceSubmit()">
-            <h3>הוצאות חודשיות</h3>
-            <div class="user-box">
-              <input
-                type="text"
-                name="expence-description"
-                id="expence-description"
-              />
-              <label for="expence-description">שם ההוצאה:</label>
-            </div>
-            <div class="user-box">
-              <label for="categories"
-                >מה הקטגוריה המתאימה עבור ההוצאה שלך?</label
-              >
-              <select name="categories" id="categories">
-                <option value="">תקשורת</option>
-                <option value="">תרומות</option>
-                <option value="">ביטוחים</option>
-                <option value="">חינוך</option>
-                <option value="">תחבורה</option>
-                <option value="">הלוואות</option>
-                <option value="">דיור</option>
-                <option value="">נופש</option>
-                <option value="">הוצאות מזדמנות</option>
-              </select>
-            </div>
-            <div class="user-box">
-              <input type="number" name="expence-amount" id="expence-amount" />
-              <label for="expence-amount">מה סכום ההוצאה שלך?</label>
-            </div>
-            <div class="user-box">
-              <input
-                type="date"
-                name="expiration"
-                id="expiration"
-                class="date"
-              />
-              <label for="expiration"
-                >מהו תוקף ההוצאה שלך? (במידה ורלוונטי)</label
-              >
-            </div>
-            <a href="#" type="submit" value="ADD"
-              ><span></span>
-              <span></span>
-              <span></span>
-              <span></span>הוסף</a
-            >
-          </form>
+          <form
+            onsubmit="handleExpenceSubmit(event)"
+            id="expences-calculators"
+          ></form>
         </div>
       </div>
       <div class="result">
@@ -146,105 +92,7 @@
           <p class="total-number total-number--balance">0&#8362;</p>
         </div>
       </div>
-      <div class="expenses-details">
-        <table>
-          <tr class="thead">
-            <th colspan="2">
-              תקשורת<svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-                class="collapse-icon"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M18 12H6"
-                />
-              </svg>
-            </th>
-          </tr>
-
-          <tr>
-            <td>סלקום</td>
-            <td>249&#8362;</td>
-          </tr>
-          <tr>
-            <td>יוטיוב</td>
-            <td>30&#8362;</td>
-          </tr>
-          <tr class="tfoot">
-            <td>סה"כ</td>
-            <td>279&#8362;</td>
-          </tr>
-          <tr class="thead">
-            <th colspan="2">
-              תקשורת<svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-                class="collapse-icon"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M18 12H6"
-                />
-              </svg>
-            </th>
-          </tr>
-          <tr>
-            <td>סלקום</td>
-            <td>249&#8362;</td>
-          </tr>
-          <tr>
-            <td>יוטיוב</td>
-            <td>30&#8362;</td>
-          </tr>
-
-          <tr class="tfoot">
-            <td>סה"כ</td>
-            <td>279&#8362;</td>
-          </tr>
-
-          <tr class="thead">
-            <th colspan="2">
-              תקשורת<svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-                class="collapse-icon"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M18 12H6"
-                />
-              </svg>
-            </th>
-          </tr>
-
-          <tr>
-            <td>סלקום</td>
-            <td>249&#8362;</td>
-          </tr>
-          <tr>
-            <td>יוטיוב</td>
-            <td>30&#8362;</td>
-          </tr>
-
-          <tr class="tfoot">
-            <td>סה"כ</td>
-            <td>279&#8362;</td>
-          </tr>
-        </table>
-      </div>
+      <div class="expenses-table" id="expences-table"></div>
     </div>
   </body>
 </html>
