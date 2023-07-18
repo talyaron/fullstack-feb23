@@ -1,5 +1,6 @@
 var canvas = document.querySelector("canvas");
 var ctx = canvas.getContext("2d");
+var playerUserName = localStorage.getItem("username");
 var playerInstance;
 var bullets = new Array();
 var bulletInterval = 0;
@@ -77,7 +78,7 @@ function runGame() {
         ctx.clearRect(0, 0, 500, 500);
         playerInstance.movePlayer();
         runBullets();
-        addScore();
+        addScore(playerUserName);
         if (gameOver) {
             endingMessage();
         }
@@ -91,5 +92,14 @@ function runGame() {
     }
 }
 playerInstance = new Player();
+playerUserName = (function () {
+    var curname = localStorage.getItem("username");
+    var i = 0;
+    var finalName = curname;
+    while (!!localStorage.getItem(finalName)) {
+        finalName = curname + (i++);
+    }
+    return finalName;
+})();
 addMovementToPlayer(playerInstance);
 runGame();
