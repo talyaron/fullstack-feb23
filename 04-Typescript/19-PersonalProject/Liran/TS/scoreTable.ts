@@ -1,22 +1,20 @@
-const scorePlayers: Player[] | undefined = getPlayerFromStorage();
-
-function renderTable() {
+const scorePlayers: Player[] | undefined = getPlayerFromStorage("table");
+debugger;
+function renderTable(table: HTMLElement | null) {
     try {
-        debugger;
         if (scorePlayers == undefined) throw new Error("Empty player List");
         scorePlayers.sort(compare);
         const sortedList: Player[] = scorePlayers;
-        const table = document.querySelector('#scoreTable')
         if (!table) throw new Error("Can't catch Table Element");
         let html = `<tr>
             <th>Name</th>
-            <th style="text-align: center;">Score</th>
+            <th>Score</th>
             </tr>
             `;
-        for (let i = 0; i < Math.min(10, sortedList.length); i++) {
+        for (let i = 0; i < Math.min(10, sortedList.length); i++) { // presenting only top 10 records
             html += `<tr>
             <td>${sortedList[i].firstName.toUpperCase()} ${sortedList[i].lastName.toUpperCase()}</td>
-            <td style="text-align: center;letter-spacing: 0rem;">${sortedList[i].record}</td>
+            <td>${sortedList[i].record}</td>
             </tr>`;
         }
 
@@ -32,32 +30,19 @@ function renderTable() {
 
 }
 
-function compare(a: Player, b: Player) {
+function compare(a: Player, b: Player) {    //comparing for sorting players by "record" value
     if (a.record > b.record) {
         return -1;
     }
-    if (a.record < b.record) {
-        return 1;
-    }
-    return 0;
+    return 1;
 }
 
 
-function checkActivePlayer() {
-    try {
-
-
-
-    } catch (error) {
-        console.error(error);
-    }
-
-}
-
-function leavePage(seconds: number) {
+function leavePage(seconds: number) {   //exiting page
     setTimeout(function () {
         location.href = "../HTML/game.html";
     }, seconds * 1000)
 }
-renderTable();
-checkActivePlayer();
+
+
+renderTable(document.querySelector('#scoreTable'));

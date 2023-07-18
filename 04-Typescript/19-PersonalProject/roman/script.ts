@@ -10,7 +10,8 @@ class Product {
         public price: number,
         public description: string,
         public img: URL | string,
-        public id?: string) {
+        public id?: string,
+        public amount: number = 1) {
         if (id) {
             this.id = id
         } else {
@@ -23,53 +24,86 @@ class Product {
 }
 
 class Cart {
-    private items: string[];
+    public items: Product[];
 
     constructor() {
         this.items = [];
     }
 
     addItem(product: Product): void {
-        console.log(product)
-        this.items.push(product);
+        const hasItem = this.items.find(item => item === product)
+        if (!hasItem) {
+            this.items.push(product);
+        } else if (hasItem.amount < 1) {
+            hasItem.amount = 1;
+        } else {
+            hasItem.amount++;
+        }
+
     }
 
-    removeItem(item: string): void {
-        const index = this.items.indexOf(item);
-        if (index !== -1) {
-            this.items.splice(index, 1);
+    removeItem(item: Product): void {
+        // console.log(item.amount)
+        if (item.amount && item.amount > 1) {
+            item.amount--;
+        } else {
+
+            const index = this.items.indexOf(item);
+            if (index !== -1) {
+                this.items.splice(index, 1);
+            }
         }
     }
+    getSum() {
+        let sum = 0;
+        this.items.forEach(function (item) {
+            sum += item.price * item.amount;
+        })
 
-    getItems(): string[] {
+        return sum;
+    }
+    getSumAmount() {
+        let sum = 0;
+        this.items.forEach(function (item) {
+            sum += item.amount;
+        })
+
+        return sum;
+    }
+
+    getItems(): Product[] {
         return this.items;
     }
 
     clearCart(): void {
         this.items = [];
     }
-    renderCart(): string {
-        let tableHTML = '<h2>Cart</h2><br><table><tr><th>Image:</th><th>Name:</th><th>Amount:</th><th>Price</th><th>Remove</th></tr>';
+    renderCart(div): void {
+        let tableHTML = '<div class="cart"><h2>Cart</h2><table><tr><th>Image:</th><th>Name:</th><th>Amount:</th><th>Price</th><th>Edit:</th></tr>';
         tableHTML += this.items.map(item => {
             return `
-            <tr><td><img src='${item.img}'></td><td>${item.brand} ${item.name}</td><td></td><td>${item.price}</td><td><button onclick="removeFromCart('${item.id}')">Remove</button></td></tr>`
+            <tr>
+            <td><img class="cart__image" src='${item.img}'></td>
+            <td>${item.brand} ${item.name}</td>
+            <td>${item.amount} 
+
+          </td>
+            <td>${item.price}</td><td>   <button onclick="addToCart('${item.id}')">
+            <i class="fa-solid fa-plus  item-ctrl"></i></button>
+
+            <button onclick="removeFromCart('${item.id}')">
+            <i class="fa-solid fa-minus item-minus item-ctrl"></i> </button></td></tr>`
 
         }).join("")
-        //  
-        //     <tr>
-        //       <td class="products__item" id="${item.id}" onclick="renderProductPage(event.target.id)">
-        //         <div class="products__item-img" id="${item.id}" style="background-image: url(${item.img})"></div>
-        //         <div class="products__item-name" id="${item.id}">${item.name}</div>
-        //         <div class="products__item-description" id="${item.id}">${item.description}</div>
-        //         <div class="products__item-price" id="${item.id}">Price: <span>${item.price}</span> ₪</div>
-        //       </td>
-        //     </tr>
-        //   `;
-        // }
-        tableHTML += '</table>';
-    
-        productsDiv.innerHTML = tableHTML;
-}}
+
+        tableHTML += `
+        </table><p>Summary items: ${this.getSumAmount()}</p><p>Summary price: ${this.getSum()}</p>
+        <button class="checkout-btn">Checkout</button></div>`;
+
+        div.innerHTML = tableHTML;
+        renderCartNumber(cartNum)
+    }
+}
 const cart = new Cart;
 
 const db: Product[] = [
@@ -163,18 +197,24 @@ const products: Product[] = getProductsFromStorage();
 
 
 //view
+
 const productsDiv: HTMLElement | null = document.querySelector(".products");
-const navDiv: HTMLElement | null = document.querySelector(".nav");
+const navDiv: HTMLElement | any = document.querySelector(".nav");
+const wrapperDiv: HTMLDivElement | null = document.querySelector(".wrapper");
+const cartNum: HTMLDivElement | null = document.querySelector('#cartNumElm');
 
 
-function renderProductsPage(elm) {
+
+//Render all products
+
+function renderProductsPage(elm: HTMLElement | null) {
     try {
         if (!elm) throw new Error('no div element')
         if (!products) throw new Error('no products')
         var html = products.map(item => {
             return `
             <div class="products__item" id="${item.id}" onclick="renderProductPage(event.target.id)">
-            <div class="products__item-img" id="${item.id}" style="background-image: url(${item.img})"></div>
+            <div class="products__item-img" id="${item.id}" style="background-image: url('${item.img}')"></div>
             <div class="products__item-name"id="${item.id}" >${item.name}</div>
             <div class="products__item-description" id="${item.id}">${item.description}</div>
             <div class="products__item-price" id="${item.id}">Price: <span>${item.price}</span> ₪</div>
@@ -188,6 +228,8 @@ function renderProductsPage(elm) {
         console.error(error)
     }
 }
+
+//Navigation Render
 navDiv.addEventListener("click", (event: Event) => {
     try {
         if (!event) {
@@ -205,7 +247,8 @@ navDiv.addEventListener("click", (event: Event) => {
                 renderCategoryPage(value, productsDiv);
                 break;
             default:
-                throw new Error('Invalid category value');
+                // console.log('default')
+                break;
         }
     } catch (error) {
         console.error(error);
@@ -220,6 +263,7 @@ function renderCategoryPage(category, divElement) {
         if (!category) throw new Error('no category')
         // if (!divElement) throw new Error('no divElement')
         if (!products) throw new Error('no products')
+        if (!divElement) throw new Error('no div element')
 
         var filteredCategory = products.filter(cat => {
             return cat.category === category.slice(0, -1)
@@ -282,54 +326,140 @@ function renderProductPage(productId) {
 renderProductsPage(productsDiv)
 
 
-// function renderCartPage(){
-//   console.log(cart)
-//   var html = cart.items.map(item => {
-//     return `
-//     <div class="products__item" id="${item.id}" onclick="renderProductPage(event.target.id)">
-//     <div class="products__item-img" id="${item.id}"style="background-image: url(${item.img})"></div>
-//     <div class="products__item-name"id="${item.id}">${item.name}</div>
-//     <div class="products__item-description"id="${item.id}">${item.description}</div>
-//     <div class="products__item-price"id="${item.id}">Price: <span>${item.price}</span> ₪</div>
-//   </div>`
-// }).join(" ")
-// productsDiv.innerHTML = html;
+
+// function renderCartPage() {
+//     cart.renderCart();
 // }
 
 
-function addToCart(id) {
-    console.log(id);
-    const product = products.find(product => product.id === id);
-    cart.addItem(product)
-    cart.renderCart()
 
-}
-function removeFromCart(id) {
-    const product = products.find(product => product.id === id);
-    cart.removeItem(product)
-    cart.renderCart()
+function renderPopup(message: string): void {
+    try {
+        if (!wrapperDiv) throw new Error('no div element')
+        const existingPopup: HTMLElement | null = wrapperDiv.querySelector('.popup');
+
+        if (existingPopup) {
+            // If a popup already exists, update its message
+            existingPopup.textContent = message;
+        } else {
+            // Create a new popup 
+            const popupDiv = document.createElement('div');
+            popupDiv.classList.add('popup');
+            popupDiv.innerHTML = message;
+
+            const btn = document.createElement("button");
+            btn.innerHTML = "Go to Cart";
+            btn.classList.add("popup__btn");
+            btn.addEventListener("click", () => {
+                cart.renderCart(productsDiv);
+            });
+            popupDiv.appendChild(btn);
+
+            wrapperDiv.appendChild(popupDiv);
+
+            // Automatically remove the popup after a certain time (e.g., 3 seconds)
+            setTimeout(() => {
+                popupDiv.remove();
+            }, 3000);
+        }
+    } catch (error) {
+        console.error("Error rendering popup:", error);
+    }
 }
 
-function saveProductsToLocalStorage(products: Product[]) {
-    localStorage.setItem("Products", JSON.stringify(products));
+
+
+
+//control
+
+function addToCart(id: string): void {
+    try {
+      const product = products.find((product) => product.id === id);
+      if (!product) throw new Error('product id not found.');
+      if (!wrapperDiv) throw new Error('no wrapper div')
+      const txt = `<p class="popup__name">${product.name}</p><p class="popup__txt">successfully added to cart</p>`;
+      const cartDiv = wrapperDiv.querySelector('.cart');
+      
+      
+      if (!cartDiv) {
+        cart.addItem(product);
+        renderPopup(txt);
+        renderCartNumber(cartNum);
+      } else {
+        cart.addItem(product);
+        cart.renderCart(productsDiv);
+        renderCartNumber(cartNum);
+      }
+    } catch (error) {
+      console.error("Error adding to cart:", error);
+    }
+  }
+  
+
+
+
+
+
+function removeFromCart(id: string): void {
+    try {
+        const product = products.find((product) => product.id === id);
+        if (!product) {
+            throw new Error(`Product with ID ${id} not found.`);
+        }
+
+        cart.removeItem(product);
+        cart.renderCart(productsDiv);
+        renderCartNumber(cartNum);
+
+        if (cart.items.length === 0) {
+            renderProductsPage(productsDiv);
+        }
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+
+function saveProductsToLocalStorage(products: Product[]): void {
+    try {
+        localStorage.setItem("Products", JSON.stringify(products));
+    } catch (error) {
+        console.error("Error saving products to local storage:", error);
+    }
 }
 
 function getProductsFromStorage() {
-    let productsString = localStorage.getItem("Products");
-    if (!productsString) return [];
-    const productsArray = JSON.parse(productsString);
-    const products: Product[] = productsArray.map((product: Product) => {
-        return new Product(product.name, product.brand, product.category, product.price, product.description, product.img, product.id);
-    })
+    try {
 
-    return products;
+        const productsString = localStorage.getItem("Products");
+        if (!productsString) return [];
+        const productsArray = JSON.parse(productsString);
+        const products: Product[] = productsArray.map((product: Product) => {
+            return new Product(product.name, product.brand, product.category, product.price, product.description, product.img, product.id);
+        })
 
+        return products;
+
+    } catch (error) {
+        console.error(error);
+        return [];
+    }
 }
 
 
 
 
-// restartButton.addEventListener('click', startGame)
-//control
+function renderCartNumber(cartNum: HTMLElement | null): void {
+
+    var number = cart.getSumAmount().toString();
 
 
+    if (cartNum) {
+        cartNum.innerHTML = number;
+    }
+}
+
+
+document.querySelector('.cartIcon')?.addEventListener('click', () => {
+    cart.renderCart(productsDiv)
+});
