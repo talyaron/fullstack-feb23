@@ -171,7 +171,7 @@ function handleCollision() {
             const html = ` <h1>game over</h1>   `
             gameOver.innerHTML = html;
 
-            window.location.href = "levels.html";
+            // window.location.href = "levels.html"; 
 
 
         }
