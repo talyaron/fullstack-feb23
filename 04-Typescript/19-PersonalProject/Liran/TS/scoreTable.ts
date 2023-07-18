@@ -1,4 +1,4 @@
-const scorePlayers: Player[] | undefined = getPlayerFromStorage();
+const scorePlayers: Player[] | undefined = getPlayerFromStorage("table");
 debugger;
 function renderTable(table: HTMLElement | null) {
     try {
