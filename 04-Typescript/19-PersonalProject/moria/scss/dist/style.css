@@ -156,8 +156,8 @@ body .none {
   }
 
   #container {
-    height: 2500px;
-    width: 1400px;
+    height: 600px;
+    width: 700px;
     display: grid;
     align-items: center;
     justify-content: center;
@@ -166,25 +166,15 @@ body .none {
   .player {
     height: 850px;
     width: 850px;
-    transform: rotate(90deg);
   }
 
   .log {
     display: none;
   }
 
-  levels {
-    transform: rotate(90deg);
-  }
-
   .bart {
-    transform: rotate(90deg);
     top: 100px;
     left: 200px;
-  }
-
-  .show {
-    transform: rotate(90deg);
   }
 
   @keyframes rope {
@@ -208,8 +198,8 @@ body .none {
   }
 
   #container {
-    height: 2500px;
-    width: 1400px;
+    height: 550px;
+    width: 550px;
     display: grid;
     align-items: center;
     justify-content: center;
@@ -218,25 +208,15 @@ body .none {
   .player {
     height: 850px;
     width: 850px;
-    transform: rotate(90deg);
   }
 
   .log {
     display: none;
   }
 
-  levels {
-    transform: rotate(90deg);
-  }
-
   .bart {
-    transform: rotate(90deg);
     top: 100px;
     left: 200px;
-  }
-
-  .show {
-    transform: rotate(90deg);
   }
 
   @keyframes rope {
@@ -260,8 +240,8 @@ body .none {
   }
 
   #container {
-    height: 2500px;
-    width: 1400px;
+    height: 600px;
+    width: 400px;
     display: grid;
     align-items: center;
     justify-content: center;
@@ -270,25 +250,15 @@ body .none {
   .player {
     height: 850px;
     width: 850px;
-    transform: rotate(90deg);
   }
 
   .log {
     display: none;
   }
 
-  levels {
-    transform: rotate(90deg);
-  }
-
   .bart {
-    transform: rotate(90deg);
     top: 100px;
     left: 200px;
-  }
-
-  .show {
-    transform: rotate(180deg);
   }
 
   @keyframes rope {
