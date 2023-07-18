@@ -2,12 +2,11 @@
 var User = /** @class */ (function () {
     function User(userName) {
         this.userName = userName;
-        this.level = 0;
+        this.points = 0;
         this.id = Math.random() * 6 + Date.now();
     }
     return User;
 }());
-var selectedId; // current user id which is that latest that pushed into the list
 var users = [];
 var Word = /** @class */ (function () {
     function Word(enWord, heWord) {
@@ -28,26 +27,6 @@ var words = [
 //login form
 //save the usermane, send it to the local storage and open the game page
 function handelSubmit(ev) {
-    try {
-        ev.preventDefault();
-        console.dir(ev);
-        var userName = ev.target.elements.name.value; //colect the user name
-        if (!userName)
-            throw new Error('user name is missing');
-        console.log(userName);
-        var newUser = new User(userName);
-        selectedId = newUser.id;
-        users.push(newUser); //save the user name in users array
-        console.log(users);
-        console.log('selectedId:', newUser.id);
-        localStorage.setItem('users', JSON.stringify(users)); //sent the array to local storage as string
-        window.location.replace("./index.html"); // its work!!!
-    }
-    catch (error) {
-        console.error(error);
-    }
-}
-function handelSignUp(ev) {
     try {
         ev.preventDefault();
         console.dir(ev);
@@ -120,19 +99,24 @@ function heandelPlay() {
 //get the user name from local storage as string
 var h1username = localStorage.getItem('users');
 if (h1username) {
-    //convert it back to array
+    //convert it back to array of classes
     var usernameArray = JSON.parse(h1username);
-    console.log(usernameArray);
+    console.log("usernameArray:", usernameArray);
     usernameArray.forEach(function (user) { return users.push(new User(user.userName)); });
-    console.log(users);
+    console.log("users array:", users);
     renderUserName();
 }
 function renderUserName() {
-    var username = document.querySelector('#h1');
-    if (!username)
-        throw new Error('element not faound');
-    var length = users.length;
-    username.innerHTML = "<h1> Hellow " + users[length - 1].userName + "</h1>";
+    try {
+        var username = document.querySelector('#h1');
+        if (!username)
+            throw new Error('element not faound');
+        var length = users.length; //the last user un the array == currect player
+        username.innerHTML = "<h1> Hellow " + users[length - 1].userName + "</h1>";
+    }
+    catch (error) {
+        console.error(error);
+    }
 }
 //the Add form
 function renderAdd() {
@@ -148,17 +132,8 @@ function renderBack() {
 //move to game
 function renderPlay() {
     var h1Instructions = document.querySelector('#instruction');
-    //call the users from storage as string to cillect his level
-    // const points = localStorage.getItem('users')
-    // if (points) {
-    //     //convert it bace to array
-    //     const userPoints = JSON.parse(points)
-    //     console.log('userPoints:',userPoints)
-    //     console.log("numberOfCard:", numberOfCard)
-    //     // userPoints.forEach(user => users.push(new User(user.level)))
-    //     // console.log(users)
-    // }
-    var instractions = "Match the word with its meaning \n                        <div id=\"score\">your score:" +  + "</div>"; //show the score of the user un this game
+    var currentUser = currentPlayer();
+    var instractions = "Match the word with its meaning \n                        <div id=\"score\">your score:" + currentUser.points + "</div>"; //show the score/points of the player
     h1Instructions.innerHTML = instractions;
     //call the random word function
     var htmlroot = document.querySelector('#cards');
@@ -186,11 +161,34 @@ function renderPlay() {
 }
 //show messige for wrong anser
 function rendermessage(x) {
-    if (x === 1)
-        return;
+    try {
+        var htmlmassege = document.querySelector('#massege');
+        if (!htmlmassege)
+            throw new Error("no element");
+        if (x === 1) {
+            var html = "<div class=\"massege\">Correct answer!</div>";
+            htmlmassege.innerHTML = html;
+        }
+        if (x === 0) {
+            var html = "<div class=\"massege\">Wrong answer!</div>";
+            htmlmassege.innerHTML = html;
+        }
+    }
+    catch (error) {
+        console.error(error);
+    }
 }
 //finish the game
 function renderFinish() {
+    var end = document.querySelector('#end');
+    var wrapper = document.querySelector('.wrapper');
+    if (!end || !wrapper)
+        throw new Error("no element");
+    var currentUser = currentPlayer();
+    var finalScore = currentUser.points;
+    var htmlWrapper = ' ';
+    var htmlend = "Good Job! your fainal score is " + finalScore;
+    end.innerHTML = htmlend + htmlWrapper;
 }
 //-------------------------------------contrilers--------------------
 //make the random select words
@@ -235,11 +233,10 @@ function checkAnswer(event) {
     if (selectedHebrewWord === correctHebrewWord) {
         // The user selected the correct Hebrew word
         console.log('Correct answer!');
-        console.log('id = ', this.id);
-        addScore();
+        //  updating the score
+        updateScore();
         rendermessage(1);
         renderPlay();
-        //  updating the score 
     }
     else {
         // The user selected the wrong Hebrew word
@@ -250,21 +247,15 @@ function checkAnswer(event) {
     }
 }
 //add point for right choise
-function addScore() {
-    console.log("id =", selectedId);
-    var usersArrString = localStorage.getItem('users');
-    var usersArr = JSON.parse(usersArrString);
-    var userindex = usersArr.findIndex(function (user) { return user.id === selectedId; });
-    console.log("userindex:", userindex);
-    users[userindex].level = users[userindex].level + 1;
-    // try {
-    //     let score = document.querySelector('#score')
-    //     if (!score) throw new Error("no element");
-    //     const addPoints = userpoint++;
-    //     console.log("addPoints:", addPoints)
-    //     localStorage.setItem('users', JSON.stringify(users))
-    //     return addPoints
-    // } catch (error) {
-    //     console.error(error)
-    // }
+function updateScore() {
+    var currentUser = currentPlayer(); //is it by reference or by value?
+    currentUser.points++;
+    console.log("currentUser.points:", currentUser.points);
+    console.log("users array:", users);
+}
+function currentPlayer() {
+    var length = users.length;
+    var currentUser = users[length - 1];
+    console.log("currentUser:", currentUser);
+    return currentUser;
 }
