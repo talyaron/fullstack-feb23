@@ -69,13 +69,13 @@ var Cart = /** @class */ (function () {
     Cart.prototype.clearCart = function () {
         this.items = [];
     };
-    Cart.prototype.renderCart = function () {
+    Cart.prototype.renderCart = function (div) {
         var tableHTML = '<div class="cart"><h2>Cart</h2><table><tr><th>Image:</th><th>Name:</th><th>Amount:</th><th>Price</th><th>Edit:</th></tr>';
         tableHTML += this.items.map(function (item) {
             return "\n            <tr>\n            <td><img class=\"cart__image\" src='" + item.img + "'></td>\n            <td>" + item.brand + " " + item.name + "</td>\n            <td>" + item.amount + " \n\n          </td>\n            <td>" + item.price + "</td><td>   <button onclick=\"addToCart('" + item.id + "')\">\n            <i class=\"fa-solid fa-plus  item-ctrl\"></i></button>\n\n            <button onclick=\"removeFromCart('" + item.id + "')\">\n            <i class=\"fa-solid fa-minus item-minus item-ctrl\"></i> </button></td></tr>";
         }).join("");
         tableHTML += "\n        </table><p>Summary items: " + this.getSumAmount() + "</p><p>Summary price: " + this.getSum() + "</p>\n        <button class=\"checkout-btn\">Checkout</button></div>";
-        productsDiv.innerHTML = tableHTML;
+        div.innerHTML = tableHTML;
         renderCartNumber(cartNum);
     };
     return Cart;
@@ -189,48 +189,60 @@ renderProductsPage(productsDiv);
 //     cart.renderCart();
 // }
 function renderPopup(message) {
-    var existingPopup = wrapperDiv === null || wrapperDiv === void 0 ? void 0 : wrapperDiv.querySelector('.popup');
-    if (existingPopup) {
-        // If a popup already exists, update its message
-        existingPopup.textContent = message;
+    try {
+        if (!wrapperDiv)
+            throw new Error('no div element');
+        var existingPopup = wrapperDiv.querySelector('.popup');
+        if (existingPopup) {
+            // If a popup already exists, update its message
+            existingPopup.textContent = message;
+        }
+        else {
+            // Create a new popup 
+            var popupDiv_1 = document.createElement('div');
+            popupDiv_1.classList.add('popup');
+            popupDiv_1.innerHTML = message;
+            var btn = document.createElement("button");
+            btn.innerHTML = "Go to Cart";
+            btn.classList.add("popup__btn");
+            btn.addEventListener("click", function () {
+                cart.renderCart(productsDiv);
+            });
+            popupDiv_1.appendChild(btn);
+            wrapperDiv.appendChild(popupDiv_1);
+            // Automatically remove the popup after a certain time (e.g., 3 seconds)
+            setTimeout(function () {
+                popupDiv_1.remove();
+            }, 3000);
+        }
     }
-    else {
-        // Create a new popup 
-        var popupDiv_1 = document.createElement('div');
-        popupDiv_1.classList.add('popup');
-        popupDiv_1.innerHTML = message;
-        var btn = document.createElement("button");
-        btn.innerHTML = "Go to Cart";
-        btn.classList.add("popup__btn");
-        btn.addEventListener("click", function () {
-            cart.renderCart();
-        });
-        popupDiv_1.appendChild(btn);
-        wrapperDiv === null || wrapperDiv === void 0 ? void 0 : wrapperDiv.appendChild(popupDiv_1);
-        // Automatically remove the popup after a certain time (e.g., 3 seconds)
-        setTimeout(function () {
-            popupDiv_1.remove();
-        }, 3000);
+    catch (error) {
+        console.error("Error rendering popup:", error);
     }
 }
 //control
 function addToCart(id) {
-    // console.log(id);
-    var product = products.find(function (product) { return product.id === id; });
-    var txt = "<p class=\"popup__name\">" + product.name + "</p><p class=\"popup__txt\">successfully added to cart</p>";
-    // var tmp = cart.items.find(product => product.id === id)
-    // console.log(cart.items)
-    var cartDiv = wrapperDiv === null || wrapperDiv === void 0 ? void 0 : wrapperDiv.querySelector('.cart');
-    if (!cartDiv) {
-        cart.addItem(product);
-        renderPopup(txt);
-        renderCartNumber(cartNum);
+    try {
+        var product = products.find(function (product) { return product.id === id; });
+        if (!product)
+            throw new Error('product id not found.');
+        if (!wrapperDiv)
+            throw new Error('no wrapper div');
+        var txt = "<p class=\"popup__name\">" + product.name + "</p><p class=\"popup__txt\">successfully added to cart</p>";
+        var cartDiv = wrapperDiv.querySelector('.cart');
+        if (!cartDiv) {
+            cart.addItem(product);
+            renderPopup(txt);
+            renderCartNumber(cartNum);
+        }
+        else {
+            cart.addItem(product);
+            cart.renderCart(productsDiv);
+            renderCartNumber(cartNum);
+        }
     }
-    else {
-        // console.log('cartdiv');
-        cart.addItem(product);
-        cart.renderCart();
-        renderCartNumber(cartNum);
+    catch (error) {
+        console.error("Error adding to cart:", error);
     }
 }
 function removeFromCart(id) {
@@ -240,7 +252,7 @@ function removeFromCart(id) {
             throw new Error("Product with ID " + id + " not found.");
         }
         cart.removeItem(product);
-        cart.renderCart();
+        cart.renderCart(productsDiv);
         renderCartNumber(cartNum);
         if (cart.items.length === 0) {
             renderProductsPage(productsDiv);
@@ -281,5 +293,5 @@ function renderCartNumber(cartNum) {
     }
 }
 (_a = document.querySelector('.cartIcon')) === null || _a === void 0 ? void 0 : _a.addEventListener('click', function () {
-    cart.renderCart();
+    cart.renderCart(productsDiv);
 });
