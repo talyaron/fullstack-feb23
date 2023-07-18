@@ -32,15 +32,15 @@ const students: Student[] = [
 ];
 
 const root = document.querySelector("#root");
-let studntsHTML = `<div class='wrapper'>`;
+let LstudntsHTM = `<div class='wrapper'>`;
 studntsHTML += students
   .map((student) => {
     return `<p class="myParagraph">${student.name
       }, age: ${student.getAge()}</p>`;
   })
   .join(" ");
+  studntsHTML += `</div>`;
 
-studntsHTML += `</div>`;
 
 console.log(studntsHTML);
 if (root) {

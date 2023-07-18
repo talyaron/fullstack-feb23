@@ -1,0 +1,464 @@
+body {
+  background-image: url(https://coolbackgrounds.io/images/backgrounds/index/sea-edge-79ab30e2.png);
+  background-size: cover;
+  overflow: hidden;
+  overflow-y: scroll;
+  transition: all 100ms ease-in-out;
+}
+
+.MainPageWrapper {
+  width: 80vw;
+  height: 90vh;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.MainPageWrapper__darkback {
+  width: 1vw;
+  height: 2.2vh;
+  background-color: black;
+  border-radius: 50%;
+  cursor: pointer;
+  position: absolute;
+  top: 2vh;
+  left: 4vw;
+  animation: fade ease-in 0.5s;
+}
+.MainPageWrapper__darkback:hover {
+  opacity: 0.6;
+}
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.MainPageWrapper__darktheme {
+  position: absolute;
+  top: 3vh;
+  left: 2.8vw;
+  font-size: small;
+  animation: fade ease-in 0.5s;
+}
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.MainPageWrapper__Lightback {
+  width: 1.5vw;
+  height: 3.2vh;
+  background-color: #fff1f1;
+  border-radius: 50%;
+  cursor: pointer;
+  display: none;
+  transition: all 200ms ease-in-out;
+  animation: fade ease-in 0.5s;
+  position: absolute;
+  top: 2vh;
+  left: 4vw;
+}
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.MainPageWrapper__Lightback:hover {
+  opacity: 0.6;
+}
+.MainPageWrapper__Lighttheme {
+  position: absolute;
+  top: 6vh;
+  left: 2.4vw;
+  display: none;
+  color: aliceblue;
+  transition: all 200ms ease-in-out;
+  animation: fade ease-in 0.5s;
+}
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.MainPageWrapper__headline {
+  font-size: 3.5vw;
+  background: #cfeed2;
+  background: linear-gradient(0deg, #cfeed2 15%, #b0d4f1 85%);
+  border-radius: 20px;
+  font-family: fantasy;
+  animation: fade ease-in 0.5s;
+}
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.MainPageWrapper__sectiontxt {
+  background: #7adace;
+  background: radial-gradient(circle, #7adace 19%, #9ce894 41%, #8b9aed 58%, rgba(248, 248, 255, 0) 100%);
+  font-family: fantasy;
+  border-radius: 10px;
+  color: #c4307e;
+  animation: fade ease-in 1s;
+}
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.MainPageWrapper__suggestedCover {
+  height: 24vh;
+  width: 100vw;
+  background: #47daa0;
+  background: radial-gradient(circle, #47daa0 14%, #4b5cec 84%);
+  box-shadow: 2px 2px grey;
+  animation: fade ease-in 1s;
+}
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.MainPageWrapper__suggested {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4vw;
+  width: 100vw;
+  height: 24vh;
+  transition: all 100ms ease-in-out;
+  animation: fade ease-in 1s;
+}
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.MainPageWrapper__suggested__scrollR {
+  position: absolute;
+  right: 0;
+  top: 45vh;
+  width: 2vw;
+  height: 4vh;
+  border-radius: 50%;
+  z-index: 2;
+  cursor: pointer;
+  background: #cfeed2;
+  background: linear-gradient(0deg, #5bc465 15%, #b0d4f1 85%);
+  opacity: 0.5;
+  animation: fade ease-in 1s;
+}
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.MainPageWrapper__suggested__scrollR:active {
+  transform: scale(1.1);
+  opacity: 1;
+}
+.MainPageWrapper__suggested__scrollL {
+  position: absolute;
+  left: 0;
+  top: 45vh;
+  width: 2vw;
+  height: 4vh;
+  border-radius: 50%;
+  z-index: 2;
+  cursor: pointer;
+  background: #cfeed2;
+  background: linear-gradient(0deg, #5bc465 15%, #b0d4f1 85%);
+  opacity: 0.5;
+  animation: fade ease-in 1s;
+}
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.MainPageWrapper__suggested__scrollL:active {
+  transform: scale(1.1);
+  opacity: 1;
+}
+.MainPageWrapper__lastListened {
+  gap: 4vw;
+  width: 100vw;
+  height: 24vh;
+  background: #4792da;
+  background: radial-gradient(circle, #4792da 14%, #ec4bad 92%);
+  box-shadow: 2px 2px grey;
+  justify-content: center;
+  animation: fade ease-in 1.5s;
+}
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.MainPageWrapper__lastListened__ROOT {
+  gap: 4vw;
+  width: 100vw;
+  height: 24vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  animation: fade ease-in 1.5s;
+}
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.MainPageWrapper__songInput {
+  font-family: monospace;
+  width: 20vw;
+  height: 4vh;
+  border-radius: 10px;
+  background: #4792da;
+  background: radial-gradient(circle, #4792da 14%, #ec4b66 92%);
+  margin-bottom: 4vh;
+  cursor: pointer;
+  animation: fade ease-in 0.5s;
+}
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.song {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 10vw;
+  height: 22vh;
+  background: #4792da;
+  background: linear-gradient(0deg, #4792da 14%, #ec4b66 92%);
+  border-radius: 10px;
+  transition: all 200ms ease-in-out;
+  cursor: pointer;
+}
+.song:hover {
+  transform: scale(1.1);
+  box-shadow: 1px 1px green;
+}
+.song__img {
+  width: 9vw;
+  height: 18vh;
+  border-radius: 10px;
+}
+.song__title {
+  font-size: 16px;
+  font-family: fantasy;
+}
+
+.found {
+  border-radius: 10px;
+  width: 10vw;
+  height: 2vh;
+  background-color: aquamarine;
+  cursor: pointer;
+  transition: all 100ms ease-in-out;
+}
+.found:hover {
+  transform: scale(1.1);
+}
+
+.MainPageWrapper__suggested__root {
+  transition: transform 0.3s ease-in-out;
+  transform: translateX(0);
+}
+
+.add {
+  width: 60vw;
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+  background: #4792da;
+  background: radial-gradient(circle, #4792da 14%, #ec4b66 92%);
+  margin: auto;
+  align-items: center;
+  border-radius: 20px;
+  margin-top: 6vh;
+  margin-bottom: 2vh;
+  animation: fade ease-in 2s;
+}
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.add__feautering {
+  font-size: 30;
+  color: aqua;
+  margin: 0;
+  font-family: fantasy;
+}
+.add__headline {
+  font-size: 40px;
+  color: deeppink;
+  margin: 0;
+}
+.add__bigimg {
+  opacity: 0.6;
+  width: 18vw;
+  z-index: 0;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.add__lilimg {
+  position: relative;
+  width: 14vw;
+  bottom: 33vh;
+  z-index: 1;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 100ms ease-in-out;
+}
+.add__lilimg:hover {
+  transform: scale(1.05);
+}
+
+.shuffle {
+  width: 10vw;
+  height: 20vh;
+  margin: auto;
+  background: #4792da;
+  background: radial-gradient(circle, #4792da 14%, #5eec4b 92%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  transition: all 100ms ease-in-out;
+  cursor: pointer;
+  border-top: 10px blue;
+  animation: fade ease-in 2s;
+}
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.shuffle:hover {
+  transform: scale(0.6) rotate(1turn);
+}
+
+#arrow-right {
+  position: absolute;
+  right: 0.6vw;
+  top: 47vh;
+  z-index: 1;
+  animation: fade ease-in 2s;
+}
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.lovedSongsSection {
+  height: 24vh;
+  width: 120vw;
+  background: #47daa0;
+  background: radial-gradient(circle, #47daa0 14%, #4b5cec 84%);
+  box-shadow: 2px 2px grey;
+  position: absolute;
+  left: 0;
+  animation: fade ease-in 2s;
+}
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.lovedSongsSectionRoot {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4vw;
+  width: 100vw;
+  height: 24vh;
+  transition: all 100ms ease-in-out;
+  padding-left: 1vw;
+  animation: fade ease-in 2s;
+}
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.lovedTXT {
+  font-family: fantasy;
+  font-size: 40px;
+  color: #dd1b1b;
+  position: relative;
+  left: 46.5vw;
+  margin-bottom: 0;
+  animation: fade ease-in 2s;
+}
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

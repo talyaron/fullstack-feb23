@@ -1,0 +1,323 @@
+:root {
+  --cellSize: 120px;
+  --playerSize: 35px;
+  --fontsize: 20px;
+}
+
+@media only screen and (max-width: 900px) {
+  :root {
+    --cellSize: 75px;
+    --playerSize: 25px;
+    --fontsize: 15px;
+  }
+}
+@media only screen and (max-width: 600px) {
+  :root {
+    --cellSize: 40px;
+    --playerSize: 20px;
+    --fontsize: 10px;
+  }
+}
+.Container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.board {
+  width: calc(10 * var(--cellSize));
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(10, 1fr);
+}
+
+.board__cell {
+  width: var(--cellSize);
+  height: var(--cellSize);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--fontsize);
+}
+
+.board__cell img {
+  width: var(--cellSize);
+  height: var(--cellSize);
+}
+
+.optionsBtns {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.optionsBtns__Button {
+  margin: 10px;
+  padding: 8px 16px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.optionsBtns__Button:hover {
+  background-color: #45a049;
+}
+
+.optionsBtns__Button:active {
+  background-color: #3e8e41;
+}
+
+.jailBtn {
+  background-size: cover;
+  background-position: center;
+  width: var(--cellSize);
+  height: var(--cellSize);
+}
+
+.RovaA {
+  background-image: url("./rovaA1.jpg");
+  background-size: cover;
+  background-position: center;
+  width: var(--cellSize);
+  height: var(--cellSize);
+}
+
+.RovaBet {
+  background-image: url("./rovabet.jpg");
+  background-size: cover;
+  background-position: center;
+  width: var(--cellSize);
+  height: var(--cellSize);
+}
+
+.RovaGimel {
+  background-image: url("./rovaGimel.jpg");
+  background-size: cover;
+  background-position: center;
+  width: var(--cellSize);
+  height: var(--cellSize);
+}
+
+.RovaDaled {
+  background-image: url("./RovaDaled.jpg");
+  background-size: cover;
+  background-position: center;
+  width: var(--cellSize);
+  height: var(--cellSize);
+}
+
+.RovaCITY {
+  background-image: url("./RovaCITY.jpg");
+  background-size: cover;
+  background-position: center;
+  width: var(--cellSize);
+  height: var(--cellSize);
+}
+
+.RovaTetVav {
+  background-image: url("./RovaTetVav.jpg");
+  background-size: cover;
+  background-position: center;
+  width: var(--cellSize);
+  height: var(--cellSize);
+}
+
+.RovaYudBet {
+  background-image: url("./RovaYudBet.jpg");
+  background-size: cover;
+  background-position: center;
+  width: var(--cellSize);
+  height: var(--cellSize);
+}
+
+.RovaYudAlef {
+  background-image: url("./RovaYudAlef.jpg");
+  background-size: cover;
+  background-position: center;
+  width: var(--cellSize);
+  height: var(--cellSize);
+}
+
+.player {
+  width: var(--playerSize);
+  height: var(--playerSize);
+  background-size: cover;
+  background-position: center;
+  z-index: 999;
+}
+
+.playersStatus__player {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #f2f2f2;
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+  width: 300px;
+}
+.playersStatus__player .playersStatus__player__id {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+.playersStatus__player .playersStatus__player__name {
+  margin-bottom: 5px;
+}
+.playersStatus__player .playersStatus__player__bank {
+  margin-bottom: 5px;
+}
+.playersStatus__player .playersStatus__player__cell {
+  margin-bottom: 5px;
+}
+.playersStatus__player .playersStatus__player__isJail {
+  margin-bottom: 5px;
+}
+
+#cubeButton {
+  display: none;
+  width: var(--cellSize);
+  height: var(--cellSize);
+  background-image: url("./cube.png");
+  background-size: cover;
+  background-position: center;
+  border: none;
+  background-color: white;
+}
+
+.rotate-animation {
+  animation: rotate 2s;
+  position: relative;
+  transform-origin: center;
+}
+
+@keyframes rotate {
+  0% {
+    transform: translate(-50%, -50%) rotateY(0deg) scale(1);
+  }
+  50% {
+    transform: translate(-50%, -50%) rotateY(180deg) scale(1.5);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotateY(360deg) scale(1);
+  }
+}
+.close {
+  color: #d70b0b;
+  float: right;
+  font-size: var(--fontsize);
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.begin {
+  width: 100%;
+  height: 100%;
+  background-image: url("./start.png");
+  background-size: cover;
+  background-position: center;
+}
+
+.dialog-card {
+  padding: 20px;
+  width: 400px;
+  border-radius: 5px;
+  border: none;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+.dialog-card h3 {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0;
+}
+.dialog-card p {
+  font-size: 20px;
+  margin: 10px 0;
+}
+.dialog-card button {
+  padding: 8px 16px;
+  margin: 15px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+.dialog-card button:hover {
+  background-color: #0056b3;
+}
+.dialog-card button:focus {
+  outline: none;
+}
+
+.goodS {
+  width: var(--cellSize);
+  height: var(--cellSize);
+  background-image: url("./GoodSurprises.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.BadS {
+  width: var(--cellSize);
+  height: var(--cellSize);
+  background-image: url("./Bads.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.BadThings {
+  border: none;
+  width: var(--cellSize);
+  height: var(--cellSize);
+  background-image: url("./penalty.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.GoodThings {
+  border: none;
+  width: var(--cellSize);
+  height: var(--cellSize);
+  background-image: url("./happyS.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+@keyframes enlarge {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(2);
+  }
+}
+.enlarge-animation {
+  animation-name: enlarge;
+  animation-duration: 3s;
+  animation-timing-function: ease;
+  animation-fill-mode: forwards;
+}
+
+.currentPlayer {
+  border: 2px solid green;
+  transform: scale(1.2);
+}
+
+.cityOwner {
+  border: 5px solid red;
+  transform: scale(1.1);
+}

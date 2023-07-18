@@ -1,0 +1,13 @@
+header {
+  display: flex;
+  margin: 1rem;
+  justify-content: space-around;
+}
+header :nth-child(n):hover {
+  background-color: aqua;
+}
+
+main {
+  height: 80vh;
+  background-color: bisque;
+}

@@ -1,0 +1,407 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  direction: rtl;
+  font-family: sans-serif;
+  color: #444;
+}
+
+.wrapper {
+  margin-bottom: 100px;
+  display: grid;
+  grid-template-columns: 60% 1fr;
+  // grid-template-columns: repeat(2 1fr);
+  .header {
+    grid-column: 1 / 3;
+    margin-bottom: 80px;
+    height: 120px;
+    // border-bottom: 1px solid #444;
+    .logo {
+      margin-top: 30px;
+      gap: 20px;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      text-align: center;
+
+      // position: fixed;
+      background-color: #fff;
+
+      img {
+        // width: 100px;
+        // border: 1px solid #0f81c7;
+        // border-radius: 100px;
+        height: 100px;
+      }
+    }
+  }
+  .forms {
+    grid-row: 2/4;
+    grid-column: 2/3;
+    display: flex;
+    justify-content: center;
+    .calculators {
+      height: fit-content;
+      width: 400px;
+      padding: 40px;
+      box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
+      border-radius: 10px;
+      background: linear-gradient(#141e30, #243b55);
+      h2 {
+        margin: 0 0 30px;
+        padding: 0;
+        color: #fff;
+        text-align: center;
+      }
+      .income-calculator {
+        margin-bottom: 30px;
+      }
+      form {
+        padding: 20px;
+        border: 1px solid #fff;
+        border-radius: 10px;
+        h3 {
+          color: #fff;
+          margin-bottom: 20px;
+        }
+        a {
+          position: relative;
+          display: inline-block;
+          padding: 10px 20px;
+          color: #fff;
+          font-size: 18px;
+          font-weight: bold;
+          text-decoration: none;
+          text-transform: uppercase;
+          overflow: hidden;
+          transition: 0.5s;
+          margin-top: 5px;
+          letter-spacing: 4px;
+          background-color: #03e9f4;
+          border-radius: 5px;
+          &:hover {
+            background: #03e9f4;
+            color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 5px #03e9f4, 0 0 25px #03e9f4, 0 0 50px #03e9f4,
+              0 0 100px #03e9f4;
+          }
+          span {
+            position: absolute;
+            display: block;
+          }
+          span:nth-child(1) {
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #03e9f4);
+            animation: btn-anim1 1s linear infinite;
+          }
+
+          span:nth-child(2) {
+            top: -100%;
+            right: 0;
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(180deg, transparent, #03e9f4);
+            animation: btn-anim2 1s linear infinite;
+            animation-delay: 0.25s;
+          }
+
+          span:nth-child(3) {
+            bottom: 0;
+            right: -100%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(270deg, transparent, #03e9f4);
+            animation: btn-anim3 1s linear infinite;
+            animation-delay: 0.5s;
+          }
+
+          span:nth-child(4) {
+            bottom: -100%;
+            left: 0;
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(360deg, transparent, #03e9f4);
+            animation: btn-anim4 1s linear infinite;
+            animation-delay: 0.75s;
+          }
+        }
+        input[type="submit" i] {
+          position: relative;
+          display: inline-block;
+          padding: 10px 20px;
+          color: #fff;
+          font-size: 18px;
+          font-weight: bold;
+          text-decoration: none;
+          text-transform: uppercase;
+          overflow: hidden;
+          transition: 0.5s;
+          margin-top: 5px;
+          letter-spacing: 4px;
+          background-color: #03e9f4;
+          border-radius: 5px;
+          border: none;
+          &:hover {
+            cursor: pointer;
+            background: #03e9f4;
+            color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 5px #03e9f4, 0 0 25px #03e9f4, 0 0 50px #03e9f4,
+              0 0 100px #03e9f4;
+          }
+        }
+        .user-box {
+          position: relative;
+
+          input[type="date"]::-webkit-calendar-picker-indicator {
+            // color: rgba(0, 0, 0, 0);
+            opacity: 1;
+            display: block;
+            background: url(https://mywildalberta.ca/images/GFX-MWA-Parks-Reservations.png)
+              no-repeat;
+            width: 20px;
+            height: 20px;
+            border-width: thin;
+          }
+          input[type="date" i] {
+            margin-top: 20px;
+          }
+
+          input {
+            width: 100%;
+            padding: 10px 0;
+            font-size: 16px;
+            color: #fff;
+            margin-bottom: 30px;
+            border: none;
+            border-bottom: 1px solid #fff;
+            outline: none;
+            background: transparent;
+            &:focus ~ label,
+            :valid ~ label {
+              top: -20px;
+              left: 0;
+              color: #03e9f4;
+              font-size: 12px;
+            }
+          }
+          label {
+            position: absolute;
+            top: 0;
+            right: 0;
+            padding: 10px 0;
+            font-size: 16px;
+            color: #fff;
+            pointer-events: none;
+            transition: 0.5s;
+          }
+          select {
+            margin-top: 40px;
+            margin-bottom: 30px;
+            background-color: transparent;
+            color: #fff;
+            border-radius: 10px;
+            padding: 5px;
+            font-size: 1.1rem;
+            border: 1px solid #fff;
+            cursor: pointer;
+            option {
+              color: #fff;
+              background: #243b55;
+              border-radius: 2px;
+            }
+          }
+        }
+      }
+    }
+    @keyframes btn-anim1 {
+      0% {
+        left: -100%;
+      }
+      50%,
+      100% {
+        left: 100%;
+      }
+    }
+    @keyframes btn-anim2 {
+      0% {
+        top: -100%;
+      }
+      50%,
+      100% {
+        top: 100%;
+      }
+    }
+    @keyframes btn-anim3 {
+      0% {
+        right: -100%;
+      }
+      50%,
+      100% {
+        right: 100%;
+      }
+    }
+    @keyframes btn-anim4 {
+      0% {
+        bottom: -100%;
+      }
+      50%,
+      100% {
+        bottom: 100%;
+      }
+    }
+  }
+  .result {
+    padding: 40px;
+    display: flex;
+    justify-content: space-between;
+    .income-icon {
+      width: 100px;
+      height: 100px;
+      color: #0f81c7;
+    }
+    .expense-icon {
+      width: 100px;
+      height: 100px;
+      color: #0f81c7;
+    }
+
+    .balance-icon {
+      width: 100px;
+      height: 100px;
+      color: #0f81c7;
+    }
+
+    &__total-income {
+      text-align: center;
+      grid-column: 1/2;
+      display: inline-block;
+      // color: green;
+    }
+    &__total-expence {
+      text-align: center;
+
+      grid-column: 2/3;
+      // color: red;
+
+      display: inline-block;
+    }
+    &__total-amount {
+      text-align: center;
+
+      grid-column: 1/3;
+      grid-row: 2/3;
+      font-weight: bold;
+    }
+    .total-number {
+      font-size: 2rem;
+      font-weight: bold;
+      direction: ltr;
+    }
+    .total-number--income {
+      color: green;
+    }
+    .total-number--expence {
+      color: red;
+    }
+    .total-number--balance {
+      font-weight: bold;
+      // font-size: 2.3rem;
+    }
+  }
+  .expenses-table {
+    grid-row: 3;
+    grid-column: 1;
+    display: flex;
+    // flex-wrap: wrap;
+    // gap: 20px;
+    justify-content: center;
+    table {
+      width: 500px;
+      font-size: 1.3rem;
+      box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.301);
+      border-radius: 10px;
+      border-collapse: collapse;
+      height: fit-content;
+    }
+    td {
+      padding: 7px;
+      height: 40px;
+      text-align: center;
+      &:nth-child(3) {
+        width: 75px;
+        text-align: left;
+      }
+
+      .edit {
+        cursor: pointer;
+        color: #0f81c7;
+        width: 30px;
+        height: auto;
+      }
+      .delete {
+        cursor: pointer;
+        color: red;
+        width: 30px;
+        height: auto;
+      }
+    }
+    .thead {
+      transition: 0.4s;
+      position: relative;
+      cursor: pointer;
+      &:hover,
+      :active {
+        background-color: #ccc;
+        color: #0f81c7;
+      }
+    }
+    .active {
+      background-color: #ccc;
+      color: #0f81c7;
+    }
+    .off {
+      display: none;
+    }
+    .thead,
+    tr {
+      width: 100%;
+      border-bottom: solid 1px rgba(0, 0, 0, 0.151);
+
+      height: 40px;
+
+      .collapse-icon {
+        width: 20px;
+        height: 100%;
+        position: absolute;
+        left: 5px;
+        top: 0;
+      }
+    }
+    tbody {
+      border-bottom: solid 1px rgba(0, 0, 0, 0.151);
+      &:nth-child(even) {
+        background-color: #eeeeeeb6;
+        .tbody {
+          transition: max-height 0.2s ease-out;
+          overflow: hidden;
+          width: 100%;
+        }
+      }
+      .tfoot {
+        td {
+          font-weight: bold;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,168 @@
+body {
+  background-image: url(https://c4.wallpaperflare.com/wallpaper/306/908/890/spots-background-light-dark-wallpaper-preview.jpg);
+  background-size: cover;
+  overflow: hidden;
+  transition: all 100ms ease-in-out;
+}
+
+.songWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 28vh;
+}
+.songWrapper__img {
+  width: 50vw;
+  height: 60vh;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 200ms ease-in-out;
+}
+.songWrapper__img:active {
+  transform: scale(1.08);
+}
+.songWrapper__name {
+  font-size: 30px;
+  color: #c8e716;
+  font-family: sans-serif;
+}
+.songWrapper__artist {
+  font-size: 14px;
+  color: black;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  text-decoration: underline;
+  transition: all 100ms ease-in-out;
+  border-radius: 15px;
+  cursor: pointer;
+}
+.songWrapper__artist:hover {
+  background-color: #97c7c7;
+}
+
+#playicon {
+  position: relative;
+  bottom: 30vh;
+  color: #92b9db;
+  transition: all 100ms ease-in-out;
+}
+
+#pauseicon {
+  position: relative;
+  bottom: 30vh;
+  color: #d351a1;
+  transition: all 100ms ease-in-out;
+  animation: rotate 3s infinite cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+@keyframes rotate {
+  0% {
+    transform: rotate(0turn);
+    scale: 1;
+  }
+  50% {
+    transform: rotate(1turn);
+    scale: 1.5;
+  }
+  100% {
+    transform: rotate(2turn);
+    scale: 1;
+  }
+}
+
+#progress {
+  width: 0vw;
+  height: 2vh;
+  background: #4792da;
+  background: linear-gradient(0deg, #4792da 14%, #ec4b66 92%);
+  position: absolute;
+  bottom: 26vh;
+  transition: all 200ms ease-in-out;
+  border-radius: 10px;
+  z-index: 1;
+}
+
+.loaderline {
+  width: 100vw;
+  height: 2vh;
+  background-color: aliceblue;
+  position: absolute;
+  bottom: 26vh;
+  transition: all 200ms ease-in-out;
+  border-radius: 10px;
+  z-index: 0;
+}
+
+#time {
+  font-size: 18px;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  color: #1f0d18;
+  transition: all 100ms ease-in-out;
+  z-index: 2;
+  position: relative;
+  top: 1.2vh;
+  margin-top: 2vh;
+}
+
+#MainPageWrapper__suggested__songPage {
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+}
+
+#homeicon {
+  position: absolute;
+  left: 2vw;
+  top: 2vw;
+  cursor: pointer;
+  transition: all 100ms ease-in-out;
+}
+#homeicon:hover {
+  background-color: aqua;
+  transform: scale(1.1) rotate(20deg);
+}
+#homeicon:active {
+  transform: scale(1.2);
+}
+
+.download {
+  position: absolute;
+  left: 4vw;
+  top: 1.4vw;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  color: #0e533c;
+  text-decoration: none;
+  font-size: 20px;
+  transition: all 200ms ease-in-out;
+  border-radius: 10px;
+}
+.download:hover {
+  background-color: aqua;
+}
+
+.headline {
+  font-size: 2vw;
+  background: #cfeed2;
+  background: linear-gradient(0deg, #cfeed2 15%, #b0d4f1 85%);
+  border-radius: 10px;
+  font-family: fantasy;
+  position: absolute;
+  top: 0;
+  right: 3vw;
+  cursor: pointer;
+  transition: all 100ms ease-in-out;
+}
+.headline:hover {
+  transform: scale(1.02);
+}
+
+#heart {
+  width: 20px;
+  position: absolute;
+  top: 4vh;
+  left: 42vw;
+  transition: all 100ms ease-in-out;
+  cursor: pointer;
+}
+#heart:hover {
+  transform: scale(1.04) rotate(20deg);
+  color: #ee6644;
+}

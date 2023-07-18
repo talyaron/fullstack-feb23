@@ -1,0 +1,92 @@
+body {
+    margin: auto;
+    align-content: center;
+    background-color: antiquewhite;
+    background-image: url(./background.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    max-width: 98vw;
+
+    .back {
+        width: 60px;
+    }
+
+    #mainOpen {
+        text-align: center;
+
+
+    }
+}
+
+
+.red {
+    background-color: red;
+
+}
+
+.green {
+    background-color: rgb(6, 155, 6);
+}
+
+input[type=button] {
+    border-radius: 10px;
+}
+
+input[type=button]:hover {
+    cursor: pointer;
+    background-color: aqua;
+}
+
+#tablesMap {
+    margin: 20px 0px;
+
+    form {
+
+        display: flex;
+        width: 75%;
+        margin: auto;
+        justify-content: space-around;
+        gap: 50px;
+        flex-wrap: wrap;
+
+        input {
+            background-image: url(./table.png);
+            background-repeat: no-repeat;
+            background-size: cover;
+            width: 100px;
+            height: 100px;
+        }
+    }
+}
+
+#bill {
+    width: 20%;
+    height: fit-content;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    color: white;
+    .buttons {
+        display: flex;
+        justify-content: space-around;
+    }
+
+    table {
+        text-align: left;
+
+        th {
+            color: rgb(21, 158, 208);
+        }
+
+
+    }
+
+    h4 {
+        color: rgb(8, 224, 231);
+ 
+    }
+
+}

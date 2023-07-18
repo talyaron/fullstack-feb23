@@ -1,0 +1,32 @@
+@import './profile/profile.scss';
+@import './addPost/addPost.scss';
+
+.wrapper {
+    position: relative;
+    max-width: 1200px;
+    height: 100vh;
+    margin: auto;
+    color: white;
+    background-color: black;
+    border-radius: 10px;
+    font-family: 'Black Ops One', cursive;
+    font-family: 'Nunito Sans', sans-serif;
+
+    .addNewImage {
+        position: relative;
+        left: 46%;
+        font-size: 40px;
+        color: white;
+    }
+
+    .enterNewImage {
+        position: relative;
+        bottom: 2vh;
+        filter: blur(10px);
+        left: 46%;
+        font-size: 40px;
+        color: white;
+    }
+}
+
+//breakpoint - 735px

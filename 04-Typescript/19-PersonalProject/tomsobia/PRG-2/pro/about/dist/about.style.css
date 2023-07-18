@@ -1,0 +1,51 @@
+body {
+  background-image: url(https://images.pexels.com/photos/8941369/pexels-photo-8941369.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2);
+  background-position: center;
+  background-repeat: no-repeat;
+  font-family: "Cabin", sans-serif;
+  font-family: "Roboto Condensed", sans-serif;
+}
+
+.box {
+  background-image: url(https://images.pexels.com/photos/235985/pexels-photo-235985.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: rgba(255, 252, 252, 0.832);
+  border-radius: 10px;
+  padding: 5px;
+  margin: 8% 10% 1% 10%;
+  box-shadow: 19px 21px 15px 10px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 19px 21px 15px 10px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 19px 21px 15px 10px rgba(0, 0, 0, 0.5);
+}
+
+.box p {
+  margin: 2% 2% 0;
+  font-size: 2.4rem;
+  text-align: initial;
+  font-weight: 700;
+  color: #d9d4d4;
+}
+
+@media (max-width: 600px) {
+  .box {
+    margin: 5% 5% 1% 5%;
+  }
+
+  .box p {
+    font-size: 1.4rem;
+    text-align: justify;
+  }
+}
+@media (max-width: 300px) {
+  .box {
+    margin: 5% 5% 1% 5%;
+  }
+
+  .box p {
+    text-align: start;
+    font-size: 0.8rem;
+    text-align: inherit;
+  }
+}
