@@ -72,7 +72,8 @@ class Player {
     }
 }
 
-const players: Player[] | undefined = getPlayerFromStorage();
+const players: Player[] | undefined = getPlayerFromStorage("players");
+const scoreTable: Player[] | undefined = getPlayerFromStorage("table");
 
 if (players !== undefined && players.length > 0) {
     if (players[players?.length - 1].isActive) {
@@ -85,10 +86,10 @@ if (players !== undefined && players.length > 0) {
 else
     renderLogPanel(document.querySelector(".screen__UI"));
 
-function getPlayerFromStorage(): Player[] | undefined {
+function getPlayerFromStorage(item: string): Player[] | undefined {
     try {
-
-        const storageString = localStorage.getItem("players");
+        debugger;
+        const storageString = localStorage.getItem(`${item}`);
         if (!storageString) throw new Error("No such name in local storage");
         //convert string to array of objects
         const storageArray = JSON.parse(storageString);
@@ -489,6 +490,7 @@ function endOfGame(player: Player) {   // kill listener events, clock intervals 
         removeEventListener('keydown', listenTokeyDown);
         updateScoreOnScreen(player, document.getElementById('score'));
         updatePlayer(player);
+        addGameResultToTable(player);
         if (players === undefined) throw new Error("Missing players");
         const highScore = players?.findIndex(p => p.record >= player.record);
         setTimeout(function () {
@@ -498,6 +500,30 @@ function endOfGame(player: Player) {   // kill listener events, clock intervals 
         }, 5000)
     } catch (error) {
 
+    }
+}
+
+function addGameResultToTable(player:Player) {
+    try {
+        if (!player) throw new Error("No player");
+        const tempPlayer = playerShallowCopy(player);
+        if (tempPlayer === undefined) throw new Error("Shallow copy failed");
+        scoreTable?.push(tempPlayer)
+        localStorage.setItem("table", JSON.stringify(scoreTable))
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+function playerShallowCopy(player: Player): Player | undefined{
+    try {
+        const fName = player.firstName;
+        const sName = player.lastName;
+        const record = player.currentScore;
+        const color = player.swordColor;
+        return (new Player(fName, sName, color, null,undefined,record,record,undefined))
+    } catch (error) {
+        console.error(error)
     }
 }
 

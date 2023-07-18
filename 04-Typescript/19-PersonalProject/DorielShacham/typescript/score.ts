@@ -1,17 +1,15 @@
-function addScore() {
+function addScore(username) {
   try {
-    const username = localStorage.getItem("username") as string;
-    const previousScore = localStorage.getItem(username) || 0;
     scoreInterval++;
     if (scoreInterval % 1 === 0) {
-      score++;
-    }
-    ctx.font = "20px Arial";
-    ctx.fillStyle = "blueviolet";
-    ctx.fillText("Score: " + score, 5, 30);
+      ctx.font = "20px Arial";
+      ctx.fillStyle = "blueviolet";
+      ctx.fillText("Score: " + score, 5, 30);
 
-    // Update the score in localStorage
-    localStorage.setItem(username, Number(previousScore) + score);
+      // Update the score in localStorage
+      localStorage.setItem(username, score++);
+    }
+    
   } catch (error) {
     if (!addScore) throw new Error("Score has stopped working");
     console.error(error);
@@ -30,7 +28,7 @@ function displayScoreboard() {
 
   scores.forEach(([user, score]) => {
     const listItem = document.createElement("li");
-    listItem.textContent = `${user}: Won ${score}$`;
+    listItem.textContent = `${user}: Saved ${score} humans`;
     scoreboardDiv.appendChild(listItem);
   });
 }
