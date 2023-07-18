@@ -170,7 +170,9 @@ function renderPlay() {
 
     //call the random word function
     const htmlroot = document.querySelector('#cards')
+
     if (!htmlroot) throw new Error("no root element");
+
     console.log("htmlroot:",htmlroot)
     console.log("users:",users)
     console.log("words:",words)
@@ -193,12 +195,23 @@ function renderPlay() {
     const randomWardsToDisplay = randomWord(randomWords)
 
     //display all words in random order
-    const htmlWordsToSelect = randomWardsToDisplay.map(word => `<div class="chose card c${numOfCard()}">${word.heWord}</div>`).join(' ')
+    const htmlWordsToSelect = randomWardsToDisplay.map(word => `<div class="card c${numOfCard()}">${word.heWord}</div>`).join(' ')
     const htmlWordInEnglish = `<div id="c1" class="card c1" data-correct-hebrew="${firstWord.heWord}">${firstWord.enWord}</div>`;
 
     htmlroot.innerHTML = htmlWordsToSelect + "<br>" + htmlWordInEnglish
 
-    htmlroot.addEventListener('click', checkAnswer);
+    const htmlc2 = document.querySelector('.c2')
+    const htmlc3 = document.querySelector('.c3')
+    const htmlc4 = document.querySelector('.c4')
+    
+    if (!htmlc2) throw new Error("htmlc2 no root element");
+    if (!htmlc3) throw new Error("htmlc3 no root element");
+    if (!htmlc4) throw new Error("htmlc4 no root element");
+
+    //htmlroot.addEventListener('click', checkAnswer);
+    htmlc2.addEventListener('click', checkAnswer);
+    htmlc3.addEventListener('click', checkAnswer);
+    htmlc4.addEventListener('click', checkAnswer);
 }
 
 //show messige for wrong anser
@@ -300,7 +313,7 @@ function numOfCard(): number | undefined {
 
 }
 
-//function work at eveant lisiner mouse click ocure on one -> to chose the right ansear
+//function work at eveant lisiner mouse click ocure on one -> to chose the right answer
 function checkAnswer(event: any) {
     const selectedCard = event.target;
     //console.log(selectedCard)
