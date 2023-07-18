@@ -11,9 +11,26 @@ header {
   margin: 0px;
 }
 
-h1 {
-  margin: 0;
+.h1 {
+  display: flex;
+  background-color: #718f54;
+  align-items: center;
 }
+
+h1 {
+  color: white;
+  text-align: center;
+  margin: 0;
+  font-size: 5vw;
+  padding-left: 29vw;
+}
+a{
+color: white;
+font-size: 2.5vw;
+padding-left: 2vw;
+
+}
+
 
 main {
   padding: 20px;
