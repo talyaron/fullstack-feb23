@@ -53,7 +53,6 @@ body {
                 top: 73%;
                 left: 50%;
                 transition: all 80ms ease-in-out;
-                
 
                 img {
                     width: 200px;
@@ -61,7 +60,6 @@ body {
                     background: none;
                     position: absolute;
                     transition: all 100ms ease-in-out;
-
                 }
 
                 #sword {
@@ -72,15 +70,9 @@ body {
                     position: absolute;
                     background-repeat: no-repeat;
                     background-size: contain;
-                    // transition: all linear;
-                    // transform: translateX(-65deg);
                 }
             }
-
-
-
         }
-
 
         &__UI {
             width: 15%;
@@ -148,9 +140,9 @@ body {
                         color: black;
                         border: none;
                     }
-                    
+
                 }
-                
+
 
                 input[type="button"]:hover {
                     background-color: white;
