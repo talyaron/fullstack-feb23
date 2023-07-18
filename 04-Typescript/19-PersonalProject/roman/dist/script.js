@@ -1,7 +1,9 @@
 //model
+var _a;
 var Product = /** @class */ (function () {
     // id: string;
-    function Product(name, brand, category, price, description, img, id) {
+    function Product(name, brand, category, price, description, img, id, amount) {
+        if (amount === void 0) { amount = 1; }
         this.name = name;
         this.brand = brand;
         this.category = category;
@@ -9,6 +11,7 @@ var Product = /** @class */ (function () {
         this.description = description;
         this.img = img;
         this.id = id;
+        this.amount = amount;
         if (id) {
             this.id = id;
         }
@@ -23,14 +26,42 @@ var Cart = /** @class */ (function () {
         this.items = [];
     }
     Cart.prototype.addItem = function (product) {
-        console.log(product);
-        this.items.push(product);
+        var hasItem = this.items.find(function (item) { return item === product; });
+        if (!hasItem) {
+            this.items.push(product);
+        }
+        else if (hasItem.amount < 1) {
+            hasItem.amount = 1;
+        }
+        else {
+            hasItem.amount++;
+        }
     };
     Cart.prototype.removeItem = function (item) {
-        var index = this.items.indexOf(item);
-        if (index !== -1) {
-            this.items.splice(index, 1);
+        // console.log(item.amount)
+        if (item.amount && item.amount > 1) {
+            item.amount--;
         }
+        else {
+            var index = this.items.indexOf(item);
+            if (index !== -1) {
+                this.items.splice(index, 1);
+            }
+        }
+    };
+    Cart.prototype.getSum = function () {
+        var sum = 0;
+        this.items.forEach(function (item) {
+            sum += item.price * item.amount;
+        });
+        return sum;
+    };
+    Cart.prototype.getSumAmount = function () {
+        var sum = 0;
+        this.items.forEach(function (item) {
+            sum += item.amount;
+        });
+        return sum;
     };
     Cart.prototype.getItems = function () {
         return this.items;
@@ -39,23 +70,13 @@ var Cart = /** @class */ (function () {
         this.items = [];
     };
     Cart.prototype.renderCart = function () {
-        var tableHTML = '<h2>Cart</h2><br><table><tr><th>Image:</th><th>Name:</th><th>Amount:</th><th>Price</th><th>Remove</th></tr>';
+        var tableHTML = '<div class="cart"><h2>Cart</h2><table><tr><th>Image:</th><th>Name:</th><th>Amount:</th><th>Price</th><th>Edit:</th></tr>';
         tableHTML += this.items.map(function (item) {
-            return "\n            <tr><td><img src='" + item.img + "'></td><td>" + item.brand + " " + item.name + "</td><td></td><td>" + item.price + "</td><td><button onclick=\"removeFromCart('" + item.id + "')\">Remove</button></td></tr>";
+            return "\n            <tr>\n            <td><img class=\"cart__image\" src='" + item.img + "'></td>\n            <td>" + item.brand + " " + item.name + "</td>\n            <td>" + item.amount + " \n\n          </td>\n            <td>" + item.price + "</td><td>   <button onclick=\"addToCart('" + item.id + "')\">\n            <i class=\"fa-solid fa-plus  item-ctrl\"></i></button>\n\n            <button onclick=\"removeFromCart('" + item.id + "')\">\n            <i class=\"fa-solid fa-minus item-minus item-ctrl\"></i> </button></td></tr>";
         }).join("");
-        //  
-        //     <tr>
-        //       <td class="products__item" id="${item.id}" onclick="renderProductPage(event.target.id)">
-        //         <div class="products__item-img" id="${item.id}" style="background-image: url(${item.img})"></div>
-        //         <div class="products__item-name" id="${item.id}">${item.name}</div>
-        //         <div class="products__item-description" id="${item.id}">${item.description}</div>
-        //         <div class="products__item-price" id="${item.id}">Price: <span>${item.price}</span> ₪</div>
-        //       </td>
-        //     </tr>
-        //   `;
-        // }
-        tableHTML += '</table>';
+        tableHTML += "\n        </table><p>Summary items: " + this.getSumAmount() + "</p><p>Summary price: " + this.getSum() + "</p>\n        <button class=\"checkout-btn\">Checkout</button></div>";
         productsDiv.innerHTML = tableHTML;
+        renderCartNumber(cartNum);
     };
     return Cart;
 }());
@@ -77,6 +98,9 @@ var products = getProductsFromStorage();
 //view
 var productsDiv = document.querySelector(".products");
 var navDiv = document.querySelector(".nav");
+var wrapperDiv = document.querySelector(".wrapper");
+var cartNum = document.querySelector('#cartNumElm');
+//Render all products
 function renderProductsPage(elm) {
     try {
         if (!elm)
@@ -84,7 +108,7 @@ function renderProductsPage(elm) {
         if (!products)
             throw new Error('no products');
         var html = products.map(function (item) {
-            return "\n            <div class=\"products__item\" id=\"" + item.id + "\" onclick=\"renderProductPage(event.target.id)\">\n            <div class=\"products__item-img\" id=\"" + item.id + "\" style=\"background-image: url(" + item.img + ")\"></div>\n            <div class=\"products__item-name\"id=\"" + item.id + "\" >" + item.name + "</div>\n            <div class=\"products__item-description\" id=\"" + item.id + "\">" + item.description + "</div>\n            <div class=\"products__item-price\" id=\"" + item.id + "\">Price: <span>" + item.price + "</span> \u20AA</div>\n          </div>";
+            return "\n            <div class=\"products__item\" id=\"" + item.id + "\" onclick=\"renderProductPage(event.target.id)\">\n            <div class=\"products__item-img\" id=\"" + item.id + "\" style=\"background-image: url('" + item.img + "')\"></div>\n            <div class=\"products__item-name\"id=\"" + item.id + "\" >" + item.name + "</div>\n            <div class=\"products__item-description\" id=\"" + item.id + "\">" + item.description + "</div>\n            <div class=\"products__item-price\" id=\"" + item.id + "\">Price: <span>" + item.price + "</span> \u20AA</div>\n          </div>";
         }).join(" ");
         elm.innerHTML = html;
     }
@@ -92,6 +116,7 @@ function renderProductsPage(elm) {
         console.error(error);
     }
 }
+//Navigation Render
 navDiv.addEventListener("click", function (event) {
     try {
         if (!event) {
@@ -107,7 +132,8 @@ navDiv.addEventListener("click", function (event) {
                 renderCategoryPage(value, productsDiv);
                 break;
             default:
-                throw new Error('Invalid category value');
+                // console.log('default')
+                break;
         }
     }
     catch (error) {
@@ -121,6 +147,8 @@ function renderCategoryPage(category, divElement) {
         // if (!divElement) throw new Error('no divElement')
         if (!products)
             throw new Error('no products');
+        if (!divElement)
+            throw new Error('no div element');
         var filteredCategory = products.filter(function (cat) {
             return cat.category === category.slice(0, -1);
         });
@@ -157,42 +185,101 @@ function renderProductPage(productId) {
     }
 }
 renderProductsPage(productsDiv);
-// function renderCartPage(){
-//   console.log(cart)
-//   var html = cart.items.map(item => {
-//     return `
-//     <div class="products__item" id="${item.id}" onclick="renderProductPage(event.target.id)">
-//     <div class="products__item-img" id="${item.id}"style="background-image: url(${item.img})"></div>
-//     <div class="products__item-name"id="${item.id}">${item.name}</div>
-//     <div class="products__item-description"id="${item.id}">${item.description}</div>
-//     <div class="products__item-price"id="${item.id}">Price: <span>${item.price}</span> ₪</div>
-//   </div>`
-// }).join(" ")
-// productsDiv.innerHTML = html;
+// function renderCartPage() {
+//     cart.renderCart();
 // }
+function renderPopup(message) {
+    var existingPopup = wrapperDiv === null || wrapperDiv === void 0 ? void 0 : wrapperDiv.querySelector('.popup');
+    if (existingPopup) {
+        // If a popup already exists, update its message
+        existingPopup.textContent = message;
+    }
+    else {
+        // Create a new popup 
+        var popupDiv_1 = document.createElement('div');
+        popupDiv_1.classList.add('popup');
+        popupDiv_1.innerHTML = message;
+        var btn = document.createElement("button");
+        btn.innerHTML = "Go to Cart";
+        btn.classList.add("popup__btn");
+        btn.addEventListener("click", function () {
+            cart.renderCart();
+        });
+        popupDiv_1.appendChild(btn);
+        wrapperDiv === null || wrapperDiv === void 0 ? void 0 : wrapperDiv.appendChild(popupDiv_1);
+        // Automatically remove the popup after a certain time (e.g., 3 seconds)
+        setTimeout(function () {
+            popupDiv_1.remove();
+        }, 3000);
+    }
+}
+//control
 function addToCart(id) {
-    console.log(id);
+    // console.log(id);
     var product = products.find(function (product) { return product.id === id; });
-    cart.addItem(product);
-    cart.renderCart();
+    var txt = "<p class=\"popup__name\">" + product.name + "</p><p class=\"popup__txt\">successfully added to cart</p>";
+    // var tmp = cart.items.find(product => product.id === id)
+    // console.log(cart.items)
+    var cartDiv = wrapperDiv === null || wrapperDiv === void 0 ? void 0 : wrapperDiv.querySelector('.cart');
+    if (!cartDiv) {
+        cart.addItem(product);
+        renderPopup(txt);
+        renderCartNumber(cartNum);
+    }
+    else {
+        // console.log('cartdiv');
+        cart.addItem(product);
+        cart.renderCart();
+        renderCartNumber(cartNum);
+    }
 }
 function removeFromCart(id) {
-    var product = products.find(function (product) { return product.id === id; });
-    cart.removeItem(product);
-    cart.renderCart();
+    try {
+        var product = products.find(function (product) { return product.id === id; });
+        if (!product) {
+            throw new Error("Product with ID " + id + " not found.");
+        }
+        cart.removeItem(product);
+        cart.renderCart();
+        renderCartNumber(cartNum);
+        if (cart.items.length === 0) {
+            renderProductsPage(productsDiv);
+        }
+    }
+    catch (error) {
+        console.error(error);
+    }
 }
 function saveProductsToLocalStorage(products) {
-    localStorage.setItem("Products", JSON.stringify(products));
+    try {
+        localStorage.setItem("Products", JSON.stringify(products));
+    }
+    catch (error) {
+        console.error("Error saving products to local storage:", error);
+    }
 }
 function getProductsFromStorage() {
-    var productsString = localStorage.getItem("Products");
-    if (!productsString)
+    try {
+        var productsString = localStorage.getItem("Products");
+        if (!productsString)
+            return [];
+        var productsArray = JSON.parse(productsString);
+        var products_1 = productsArray.map(function (product) {
+            return new Product(product.name, product.brand, product.category, product.price, product.description, product.img, product.id);
+        });
+        return products_1;
+    }
+    catch (error) {
+        console.error(error);
         return [];
-    var productsArray = JSON.parse(productsString);
-    var products = productsArray.map(function (product) {
-        return new Product(product.name, product.brand, product.category, product.price, product.description, product.img, product.id);
-    });
-    return products;
+    }
 }
-// restartButton.addEventListener('click', startGame)
-//control
+function renderCartNumber(cartNum) {
+    var number = cart.getSumAmount().toString();
+    if (cartNum) {
+        cartNum.innerHTML = number;
+    }
+}
+(_a = document.querySelector('.cartIcon')) === null || _a === void 0 ? void 0 : _a.addEventListener('click', function () {
+    cart.renderCart();
+});

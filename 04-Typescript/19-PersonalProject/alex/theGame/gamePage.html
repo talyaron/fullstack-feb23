@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./dist/gameStyle.css">
+</head>
+<body>
+    <header>
+        <h1>Rock Paper Scissors</h1>
+    </header>
+    <form onsubmit="handleSubmit(event)">
+        <input type="text" name="player" onkeyup="handleInput(event)" required>
+        <input type="reset" value="Reset">
+        <button type="submit">Send</button>
+    </form>
+    <div id="root"></div>
+    <script src="./dist/gameControls.js"></script>
+</body>
+</html>
