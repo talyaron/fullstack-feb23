@@ -149,9 +149,9 @@ body {
 
 
     .nav__item {
-      // margin-right: 10px;
-      
-     
+      margin: 5px;
+
+
     }
 
     .nav__link {
@@ -181,9 +181,9 @@ body {
     text-align: center;
     display: flex;
     flex-direction: column;
-    gap:15px;
+    gap: 15px;
     // justify-content: space-between
-    
+
 
     &__name,
     &__txt {
@@ -194,14 +194,15 @@ body {
     &__name {
       font-size: 20px;
       font-weight: bold;
-      color:$secondaryColor
+      color: $secondaryColor
     }
 
     &__txt {
       // padding: 10px 5px;
       font-style: oblique;
     }
-    &__btn{
+
+    &__btn {
       margin: 0 auto;
       width: fit-content;
     }
@@ -363,17 +364,22 @@ body {
     position: relative;
     padding-bottom: 40px;
 
-    table {
+    &__table {
       border-bottom: #F5F6F5 1px solid;
-    }
 
-    td {
-      padding: 10px;
+      td {
+        padding: 10px;
+
+      }
     }
 
     &__image {
       height: 100px;
 
+    }
+    &__amount,&__price{
+      color: $primaryColor;
+      font-weight: bold;
     }
 
     button.checkout-btn {
@@ -390,46 +396,47 @@ body {
 /* Media Query for Mobile Devices */
 @media (max-width: 480px) {
   body {
-     .header__search{
+    .header__search {
       display: none;
-     }
-     .nav__list {
+    }
+
+    .nav__list {
       display: flex;
       width: 100%;
       text-align: center;
       flex-direction: column;
       font-size: 1.5rem;
       gap: 10px;
-      
-          
-     }
+
+
+    }
   }
 }
 
-/* Media Query for low resolution  Tablets, Ipads */
-@media (min-width: 481px) and (max-width: 767px) {
-  body {
-      background-color: yellow;
-  }
-}
+// /* Media Query for low resolution  Tablets, Ipads */
+// @media (min-width: 481px) and (max-width: 767px) {
+//   body {
+//       // background-color: yellow;
+//   }
+// }
 
-/* Media Query for Tablets Ipads portrait mode */
-@media (min-width: 768px) and (max-width: 1024px){
-  body {
-      // background-color: blue;
-  }
-}
+// /* Media Query for Tablets Ipads portrait mode */
+// @media (min-width: 768px) and (max-width: 1024px){
+//   body {
+//       // background-color: blue;
+//   }
+// }
 
-/* Media Query for Laptops and Desktops */
-@media (min-width: 1025px) and (max-width: 1280px){
-  body {
-      // background-color: green;
-  }
-}
+// /* Media Query for Laptops and Desktops */
+// @media (min-width: 1025px) and (max-width: 1280px){
+//   body {
+//       // background-color: green;
+//   }
+// }
 
-/* Media Query for Large screens */
-@media (min-width: 1281px) {
-  body {
-      // background-color: white;
-  }
-}
+// /* Media Query for Large screens */
+// @media (min-width: 1281px) {
+//   body {
+//       // background-color: white;
+//   }
+// }
