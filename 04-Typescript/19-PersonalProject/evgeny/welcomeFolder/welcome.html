@@ -5,21 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     
-    <link rel="stylesheet" href="../styleFolder/dist/welcome.css">
+
+    <link rel="stylesheet" href="../styleFolder/dist/mainCss.css">
 </head>
 <body>
-    <header> <h1>welcome to your fitness app</h1></header>
-    <div class="welcomePage">
-        <form onsubmit="userLogin(event)">
-            <input type="text" name="Username" placeholder="Username">
-            <input type="password" name="Password" placeholder="Password">
-            <input type="submit"  value="login">
-            
-        </form>
+    <div class="wrapper">
 
-       
-       <a href="register.html" class="welcomepage__register">register</a>
+        <header> <h1 id="welcomeText">welcome to your fitness app</h1></header>
 
+        <div class="welcomePage">
+            <form onsubmit="userLogin(event)">
+                <input type="text" name="Username" placeholder="Username" id="welcomePage__userName">
+                <input type="password" name="Password" placeholder="Password" id="welcomePage__password">
+                <input type="submit"  value="login" id="welcomePage__loginBtn">
+                
+            </form>
+    
+            <div class="welcomePage__register">
+    
+                <div id="welcomePage__register__text"><h3>not a user yet?</h3></div>
+                <a href="../Register/register.html" class="welcomePage__register__btn">register</a>
+            </div>
+    
+        </div>
+        
     </div>
     
     <script src="../dist/Register-login.js"></script>
