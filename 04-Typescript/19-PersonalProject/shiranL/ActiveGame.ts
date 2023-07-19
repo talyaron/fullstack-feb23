@@ -683,15 +683,16 @@ try {
     
     //remove player from jail 
     const player = currentGame.players.find((player) => player.playerId === playerID); 
-    debugger 
+     
     if (!player) throw new Error("cant find player"); 
     player.isJail=false;  
     player.Pbank-=jail.earlyReleaseCost;
     alert(`you paid ${jail.earlyReleaseCost} to get out of jail`); 
     dialog.close(); 
     //if player bank is less then 0 he lost the game
-    playerIfLose(playerID);
+   
     renderPlayersStatusGame();
+    playerIfLose(playerID);
    
   });
   dialog.appendChild(payBtn); 
@@ -715,7 +716,7 @@ function checkPlayerPbank(playerID:number){
 }
 function playerIfLose(playerID:number){
   try {
-    debugger
+    
     if(!currentGame) throw new Error("cant find currentGame");
     const isPlayerLose=checkPlayerPbank(playerID);
     if(!isPlayerLose){
@@ -727,6 +728,7 @@ function playerIfLose(playerID:number){
       const player = currentGame.players.find((player) => player.playerId === playerID);
       if (!player) throw new Error("cant find player"); 
       player.status=false;
+      alert(`player ${playerID} : ${player.userName} lost the game`); 
       //check if there is only one player left
       const players = currentGame.players.filter((player) => player.status === true);
       if(players.length===1){
@@ -867,18 +869,17 @@ function play() {
         cube.innerHTML = 'Press Me';
         cube.value = 'Drop the cube';
        
-
         const playerDiv = document.getElementById(`player${player.playerId}`);
         if (!playerDiv) throw new Error("Can't find playerDiv");
-
         playerDiv.classList.add('currentPlayer');
-
+      
         // Resolve the Promise when the player drops the cube (e.g., on a button click event)
         cube.addEventListener('click', () => {
           cube.disabled = true; 
           cube.style.display = 'none'; 
           cube.style.border = 'none';
           playerDiv.classList.remove('currentPlayer');
+        renderPlayersStatusGame();
           resolve(void 0);
         });
       });
@@ -942,6 +943,7 @@ function play() {
 }
 
 function buyCity(cityId: number, playerId: number) {
+ 
   if (!gamesBoardsAGpage) throw new Error("Can't find gamesBoardsAGpage");
   const currentGame = gamesBoardsAGpage.find((board) => board.gameStatus === true);
   if (!currentGame) throw new Error("Can't find currentGame");
@@ -953,26 +955,41 @@ function buyCity(cityId: number, playerId: number) {
   if (!player) throw new Error("Can't find player");
 
   player.Pbank -= city.monetaryValue;
-  playerIfLose(player.playerId);
-  if (checkPlayerPbank(player.playerId)){
-    city.cityOwner = player; 
-    console.log(`player ${city.cityOwner.playerId}: pBank ${player.Pbank}`);
-    console.log(currentGame);
-    alert(`Congratulations! You are now the owner of ${city.cityName}. Your Pbank balance is ${player.Pbank}.`);
-  }
-  
-// border color to city have owner
+ 
 
-  const cityBtn = document.getElementById(`city${cityId}`);
-  if (!cityBtn) throw new Error("Can't find cityBtn"); 
-  // find class
-  const cityClass = cityBtn.classList[0];
-  // add border color to city have owner
-  const cityBtns = document.querySelectorAll(`.${cityClass}`);
-  cityBtns.forEach((cityBtn) => {
-    cityBtn.classList.add('cityOwner');
+  if (!checkPlayerPbank(player.playerId)) {
+    // Ask for confirmation before buying the city
+    const confirmation = window.confirm(`Are you sure you want to buy ${city.cityName}? This action will deduct ${city.monetaryValue} from your Pbank balance. and u will lose?`);
+
+    if (confirmation) {
+      renderPlayersStatusGame();  
+      playerIfLose(player.playerId);
+    }else{
+      player.Pbank += city.monetaryValue;
+    }
+  } 
+  else{
+    city.cityOwner = player;
+    console.log(`player ${player.playerId} buy ${city.cityName}`);
+    alert(`player ${player.playerId} buy ${city.cityName}`);
+    
+      city.cityOwner = player;
+      const cityBtn = document.getElementById(`city${cityId}`);
+      if (!cityBtn) throw new Error("Can't find cityBtn"); 
+      // find class
+      const cityClass = cityBtn.classList[0];
+      // add border color to city have owner
+      const cityBtns = document.querySelectorAll(`.${cityClass}`);
+      cityBtns.forEach((cityBtn) => {
+      cityBtn.classList.add('cityOwner');
+      renderPlayersStatusGame();
   });
-  renderPlayersStatusGame();
+
+  }
+     
+      
+    
+  
 }
 
 function payRent(cityId: number, playerId: number) {
@@ -987,7 +1004,7 @@ function payRent(cityId: number, playerId: number) {
   if (!player) throw new Error("Can't find player");
 
   player.Pbank -= city.rentValue;
-  playerIfLose(player.playerId);
+ 
   if (!city.cityOwner) throw new Error("Can't find cityOwner");
   city.cityOwner.Pbank += city.rentValue;
 
@@ -996,6 +1013,7 @@ function payRent(cityId: number, playerId: number) {
 
 
   renderPlayersStatusGame();
+  playerIfLose(player.playerId);
 }
 function  renderCityCard(cityId:number){
   try {
@@ -1078,15 +1096,27 @@ function rendercityCardRentOrBuy(cityId, playerId) {
     const owner = document.createElement('h2');
     owner.innerHTML = `Owner: ${city.cityOwner?.userName || 'No Owner'}`;
     dialogForm.appendChild(owner);
-
+    debugger
     if (city.cityOwner) {
       
       if (city.cityOwner.playerId === playerId) {
-        debugger
-        //render good things card
-        const goodsId = Math.floor(Math.random() * (currentGame.goodThings.length - 1)) + 1;
-        dialog.close();
-        rendergoodsCard(goodsId, playerId);
+        dialog.remove();
+        const pUserIsOwner = document.createElement('p'); 
+        pUserIsOwner.innerHTML = `You are the owner of this city`;
+
+        const getGift = document.createElement('button');
+        getGift.classList.add('getGift');
+        getGift.innerHTML = `Get Gift`;
+        getGift.addEventListener('click', () => {
+          
+          dialog.close();
+          const goodsId = Math.floor(Math.random() * (currentGame.goodThings.length - 1)) + 1;  
+          rendergoodsCard(goodsId, playerId);
+          
+          
+        });
+        dialogForm.appendChild(pUserIsOwner);
+        dialogForm.appendChild(getGift);
         
       }
       else {
@@ -1179,11 +1209,10 @@ try {
   
 }
 
-
 }
 function renderBadsCard(BadsId,playerId){
   try {
-    debugger
+    
     if(!currentGame) throw new Error("Can't find gamesBoardsAGpage"); 
   
     const bads = currentGame.badThings.find((bad) => bad.badThingsId === BadsId); 
@@ -1219,10 +1248,10 @@ function renderBadsCard(BadsId,playerId){
     const player = currentGame.players.find((player) => player.playerId === playerId); 
     if (!player) throw new Error("Can't find player");  
     player.Pbank -= bads.purchasePrice; 
-    playerIfLose(player.playerId);
-    console.log(` אחרי קנסplayer ${player.playerId}: pBank ${player.Pbank}`);  
-    console.log(currentGame); 
+    console.log(`after pay player ${player.playerId}: pBank ${player.Pbank}`);  
+  
     renderPlayersStatusGame()
+    playerIfLose(player.playerId);  
   
     
   } catch (error) {
@@ -1244,7 +1273,7 @@ try {
   const players = currentGame?.players.filter(player=>player.status===true);
   if(!players) throw new Error("Cant find players");  
   players.forEach(player => {
-    const html = `<div class="playersStatus__player"> 
+    const html = `<div class="playersStatus__player" id='playerStatus${player.playerId}'> 
     <div class="playersStatus__player__id">Player ${player.playerId}</div>  
     <div class="playersStatus__player__name">Player ${player.userName}</div>  
     <div class="playersStatus__player__bank">Bank: ${player.Pbank}</div>  

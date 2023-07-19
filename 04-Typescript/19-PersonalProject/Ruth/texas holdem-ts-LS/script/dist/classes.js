@@ -1,8 +1,10 @@
 //---------------------------Card--------------------
 var Card = /** @class */ (function () {
-    function Card(cardNumber, cardSign) {
+    function Card(cardNumber, cardSign, partOfSet) {
+        if (partOfSet === void 0) { partOfSet = false; }
         this.cardNumber = cardNumber;
         this.cardSign = cardSign;
+        this.partOfSet = partOfSet;
         this.cardName = this.cardNumber + "-" + cardSign;
         this.srcImgCard = this.getSignCardSrc();
     }
@@ -24,7 +26,10 @@ var Card = /** @class */ (function () {
     };
     Card.prototype.renderCard = function (root) {
         if (root === void 0) { root = document.body.querySelector(".cards"); }
-        root.innerHTML += "<div class=\"card\" name=\"" + (this.cardNumber + this.cardSign) + "\">\n              <h3 class=\"cardN\">" + this.cardNumber + "</h3>\n              <img class=\"cardS\" src=\"" + this.srcImgCard + "\"  alt=\"\">\n              </div>";
+        root.innerHTML += this.getHtmlRenderCard();
+    };
+    Card.prototype.getHtmlRenderCard = function () {
+        return "<div class=\"card\" name=\"" + (this.cardNumber + this.cardSign) + "\">\n              <h3 class=\"cardN\">" + this.cardNumber + "</h3>\n              <img class=\"cardS\" src=\"" + this.srcImgCard + "\"  alt=\"\">\n              </div>";
     };
     return Card;
 }());
@@ -58,15 +63,31 @@ var Player = /** @class */ (function () {
     }
     Player.prototype.setActive = function () {
         this.isActive = !this.isActive;
+        if (!this.isActive) {
+            var thisImgDiv = document.querySelectorAll(".playerPanel__img")[this.turnNumber];
+            thisImgDiv.classList.add("panelIsntActive");
+        }
     };
     Player.prototype.setTurn = function () {
         this.isTurn = !this.isTurn;
+        if (this.isTurn) {
+            var thisImgDiv = document.querySelectorAll(".playerPanel__img")[this.turnNumber];
+            console.log(thisImgDiv);
+            thisImgDiv.classList.add("panelInTurn");
+        }
+        else {
+            var thisImgDiv = document.querySelectorAll(".playerPanel__img")[this.turnNumber];
+            console.log(thisImgDiv);
+            thisImgDiv.classList.remove("panelInTurn");
+        }
     };
     Player.prototype.renderMyPanel = function () {
         try {
             this.pCards.forEach(function (c) {
                 return c.renderCard(document.querySelector(".myPanel__cards"));
             });
+            document.querySelector(".myPanel__img img").src =
+                this.imgSrc;
             document.querySelector(".myPanel__chips").innerHTML =
                 this.chips.toString();
         }
@@ -76,9 +97,7 @@ var Player = /** @class */ (function () {
     };
     Player.prototype.renderTurn = function () {
         var divID = this.turnNumber;
-        console.log(divID);
         var root = document.getElementById("player" + divID + "Panel");
-        console.log(root);
         var input = this.lastBet > 0
             ? this.lastBet.toString()
             : this.movesInRound[this.movesInRound.length - 1];
@@ -89,10 +108,14 @@ var Player = /** @class */ (function () {
     };
     Player.prototype.doingTurn = function (activePlayers, thisIndex) {
         console.log(this.userName + " is doing somethig......");
+        activePlayers.forEach(function (p) {
+            p.isTurn = true;
+            p.setTurn();
+        });
+        this.setTurn();
         var movesOptions = getMoveOption(activePlayers, thisIndex);
-        console.log(movesOptions);
         var pointOfOptionalSet = getPointOfOptionalSet(this);
-        var sizeOfBet = getSizeOfBet(pointOfOptionalSet, this.chips);
+        var sizeOfBet = getSizeOfBet(pointOfOptionalSet, this.chips, thisIndex);
         chooseMove(activePlayers, movesOptions, sizeOfBet, pointOfOptionalSet, this);
     };
     Player.prototype.checkMove = function (players) {
@@ -102,36 +125,48 @@ var Player = /** @class */ (function () {
         }
         localStorage.setItem("players", JSON.stringify(players));
         this.renderTurn();
-        turnOrder(players);
+        delayedTurnOrder(players);
     };
     Player.prototype.foldMove = function (players) {
         this.movesInRound.push(PlayerMovesOption.fold);
         this.lastBet = 0;
-        this.isActive = false;
+        this.setActive();
         localStorage.setItem("players", JSON.stringify(players));
         this.renderTurn();
-        turnOrder(players);
+        delayedTurnOrder(players);
     };
     Player.prototype.callMove = function (players, currentPlayerIndex) {
         this.movesInRound.push(PlayerMovesOption.call);
         var betToCall = riseBetSizeInThisRound(players, currentPlayerIndex);
         this.lastBet = betToCall;
-        dealerMoney += betToCall;
+        diler.setDilersChips(betToCall);
         this.chips = this.chips - betToCall;
         localStorage.setItem("players", JSON.stringify(players));
-        localStorage.setItem("dealerMoney", JSON.stringify(dealerMoney));
+        localStorage.setItem("dilersChips", JSON.stringify(diler.dilersChips));
         this.renderTurn();
-        turnOrder(players);
+        this.renderThisChipsAgain();
+        delayedTurnOrder(players);
     };
     Player.prototype.riseMove = function (players, sizeOfBet) {
         this.movesInRound.push(PlayerMovesOption.rise);
         this.lastBet = sizeOfBet;
-        dealerMoney += sizeOfBet;
         this.chips -= sizeOfBet;
+        diler.setDilersChips(sizeOfBet);
         localStorage.setItem("players", JSON.stringify(players));
-        localStorage.setItem("dealerMoney", JSON.stringify(dealerMoney));
+        localStorage.setItem("dilersChips", JSON.stringify(diler.dilersChips));
         this.renderTurn();
-        turnOrder(players);
+        this.renderThisChipsAgain();
+        delayedTurnOrder(players);
+    };
+    Player.prototype.renderThisChipsAgain = function () {
+        try {
+            var playerElement = document.querySelector("#player" + this.turnNumber + "Panel");
+            playerElement.querySelector(".chipsPlayer").innerHTML =
+                this.chips.toString();
+        }
+        catch (error) {
+            console.error(error);
+        }
     };
     Player.playerCount = 0;
     return Player;
@@ -150,6 +185,15 @@ var Dealer = /** @class */ (function () {
     }
     return Dealer;
 }());
+var diler = {
+    dilersChips: 0,
+    setDilersChips: function (betSize) {
+        diler.dilersChips += betSize;
+        document.querySelector(".dealer__chips").innerHTML =
+            diler.dilersChips.toString();
+        localStorage.setItem("dilersChips", JSON.stringify(diler.dilersChips));
+    }
+};
 //----------------Round--------------------------------
 var Round = /** @class */ (function () {
     function Round(activePlayers, firstPlayer, chipsOnTable, roundNumber) {

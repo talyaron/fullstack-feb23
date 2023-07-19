@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./dist/style.css">
+    <link rel="stylesheet" href="./dist/edit.css">
+    <link rel="stylesheet" href="./view/game/dist/game.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="./dist/edit.js" defer></script>
+    <script src="./dist/home.js" defer></script>
+    <script src="./dist/game.js" defer></script>
+    <!-- <a href="./view/game/game.html">Game</a> -->
+    <title>Person Project</title>
+</head>
+<body>
+    
+    <div class="home-page">
+        <form onclick="handleUserDetails(event)">
+            <div class="home-page__details">
+                <div class="details__nameInput">
+                    <label for="name">User name:</label>
+                    <input type="text" name="name" id="name" placeholder="Type your name">   
+                </div>
+                <div class="details__coins">
+                    <label for="coins">Coins:</label>
+                    <span id="coinsValue">0</span>
+                </div>
+                <img src="./images/Jake.png" alt="JakeImg">
+                <div class="details__buttons">
+                    <a id="backBtn" href="./view/edit/edit.html">Edit</a>
+                    <button id="submit">Submit</button>
+                </div>
+                <!-- <div class="home-page__start-game">
+                        <a href="./view/game/game.html" id="start-game">GAME</a>
+                </div> -->
+            </div>
+        </form>
+</div>
+        
+        <!-- <form onclick="handleUserEdit(event)">
+            <div class="home-page__editUser">
+                <div class="editUser__imagesGame">
+                    <div class="editUser__modelImage">
+                        <img src="./images/actor1.png" alt="actor1">
+                    </div>
+                    <div class="editUser__otherImages">
+                        <img src="./images/actor2.png" alt="actor2">
+                        <img src="./images/actor3.png" alt="actor3">
+                        <img src="./images/actor4.png" alt="actor4">
+                    </div>
+                </div>
+                <div class="home-page__backBtn">
+                    <button>Go back to home page</button>
+                </div>
+                <div class="home-page__doneBtn">
+                    <button id="doneBtn">Done</button>
+                </div>
+            </div>
+        </form> -->
+    
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <form onclick="handleUserDetails(event)"> -->
+    <!-- <div class="home-page">
+        <div class="home-page__details">
+            <div class="details__nameInput">
+                <label for="name">User name:</label>
+                <input type="text" name="name" id="name" placeholder="Type your name">   
+            </div>
+            <div class="details__ageInput">
+                <label for="age">Age</label>
+                <input type="number" name="age" id="age" placeholder="Type your age">
+            </div>
+            <div class="details__coins">
+                <label for="coins">Coins:</label>
+                <span id="coinsValue">0</span>
+            </div>
+            <i class="details__icon fa fa-plus-square-o"></i>
+            <div class="details__buttons">
+                <button id="edit">Edit</button>
+                <button id="submit">Submit</button>
+            </div>
+        </div>
+        <div class="home-page__start-game">
+            <button id="start-game">START GAME</button>
+        </div>
+    </div> -->
+<!-- </form> -->

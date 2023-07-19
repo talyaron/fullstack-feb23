@@ -16,18 +16,6 @@ var __spreadArrays = (this && this.__spreadArrays) || function () {
             r[k] = a[j];
     return r;
 };
-//main function
-// function checkStatus(cards: Card[]) {
-//     checkRoyalFlush(cards);
-//     checkStraightFlush(cards);
-//     checkFourOfAKind(cards);
-//     checkFullHouse(cards);
-//     checkFlush(cards);
-//     checkStraight(cards);
-//     checkThreeOfAKind(cards);
-//     checkTwoPairs(cards);
-//     checkPair(cards);
-//   }
 //royal flush
 function checkRoyalFlush(cards) {
     try {
@@ -179,7 +167,7 @@ function checkTwoPairs(cards) {
 function checkPair(cards) {
     var copiedCards = __spreadArrays(cards);
     var _loop_4 = function (i) {
-        var tempArray = copiedCards.slice(i + 1);
+        var tempArray = copiedCards.slice(i);
         var sameNumberCards = tempArray.filter(function (card) { return card.cardNumber === copiedCards[i].cardNumber; });
         if (sameNumberCards.length == 1) {
             return { value: true };
@@ -191,6 +179,179 @@ function checkPair(cards) {
             return state_4.value;
     }
     return false;
+}
+function getPair(cards) {
+    var cardCounts = {};
+    var duplicateCards;
+    cards.forEach(function (card) {
+        var cardNumber = card.cardNumber;
+        if (cardCounts[cardNumber]) {
+            duplicateCards = [cardCounts[cardNumber], card];
+        }
+        else {
+            cardCounts[cardNumber] = card;
+        }
+    });
+    return duplicateCards;
+}
+function getTwoPairs(cards) {
+    var cardCounts = {};
+    cards.forEach(function (card) {
+        var cardNumber = card.cardNumber;
+        if (cardCounts[cardNumber]) {
+            cardCounts[cardNumber].push(card);
+        }
+        else {
+            cardCounts[cardNumber] = [card];
+        }
+    });
+    var twoPairs = Object.values(cardCounts).filter(function (group) { return group.length === 2; });
+    if (twoPairs.length === 2) {
+        return __spreadArrays(twoPairs[0], twoPairs[1]);
+    }
+    return null;
+}
+function getFullHouse(cards) {
+    var cardCounts = {};
+    cards.forEach(function (card) {
+        var cardNumber = card.cardNumber;
+        if (cardCounts[cardNumber]) {
+            cardCounts[cardNumber].push(card);
+        }
+        else {
+            cardCounts[cardNumber] = [card];
+        }
+    });
+    var twoOfAKind = null;
+    var threeOfAKind = null;
+    Object.values(cardCounts).forEach(function (group) {
+        if (group.length === 2) {
+            twoOfAKind = group;
+        }
+        else if (group.length === 3) {
+            threeOfAKind = group;
+        }
+    });
+    if (twoOfAKind && threeOfAKind) {
+        return __spreadArrays(twoOfAKind, threeOfAKind);
+    }
+    return null;
+}
+function getThreeOfKind(cards) {
+    var cardCounts = {};
+    cards.forEach(function (card) {
+        var cardNumber = card.cardNumber;
+        if (cardCounts[cardNumber]) {
+            cardCounts[cardNumber].push(card);
+        }
+        else {
+            cardCounts[cardNumber] = [card];
+        }
+    });
+    var threeOfAKind = Object.values(cardCounts).find(function (group) { return group.length === 3; });
+    if (threeOfAKind) {
+        return threeOfAKind;
+    }
+    return null;
+}
+function getFourOfAKind(cards) {
+    var cardCounts = {};
+    cards.forEach(function (card) {
+        var cardNumber = card.cardNumber;
+        if (cardCounts[cardNumber]) {
+            cardCounts[cardNumber].push(card);
+        }
+        else {
+            cardCounts[cardNumber] = [card];
+        }
+    });
+    var fourOfAKind = Object.values(cardCounts).find(function (group) { return group.length === 4; });
+    if (fourOfAKind) {
+        return fourOfAKind;
+    }
+    return null;
+}
+function getFlush(cards) {
+    var signCounts = {};
+    // Iterate through the cards and group them by cardSign
+    cards.forEach(function (card) {
+        var cardSign = card.cardSign;
+        if (signCounts[cardSign]) {
+            signCounts[cardSign].push(card);
+        }
+        else {
+            signCounts[cardSign] = [card];
+        }
+    });
+    // Find five of a kind (if any)
+    var fiveOfAKind = Object.values(signCounts).find(function (group) { return group.length === 5; });
+    // Check if we found five of a kind
+    if (fiveOfAKind) {
+        return fiveOfAKind;
+    }
+    // If no five of a kind found, return null
+    return null;
+}
+function getStraight(cards) {
+    var sortedCards = cards.slice().sort(function (a, b) {
+        var valueA = getCardNumberValue(a.cardNumber);
+        var valueB = getCardNumberValue(b.cardNumber);
+        return valueA - valueB;
+    });
+    var highestStraight = null;
+    var currentStraight = [sortedCards[0]];
+    for (var i = 1; i < sortedCards.length; i++) {
+        var currentValue = getCardNumberValue(sortedCards[i].cardNumber);
+        var prevValue = getCardNumberValue(sortedCards[i - 1].cardNumber);
+        if (currentValue === prevValue + 1) {
+            currentStraight.push(sortedCards[i]);
+        }
+        else if (currentValue !== prevValue) {
+            currentStraight = [sortedCards[i]];
+        }
+        if (currentStraight.length === 5 &&
+            (!highestStraight || getCardNumberValue(currentStraight[4].cardNumber) > getCardNumberValue(highestStraight[4].cardNumber))) {
+            highestStraight = currentStraight;
+        }
+    }
+    if (highestStraight && highestStraight.length > 5) {
+        highestStraight = highestStraight.slice(highestStraight.length - 5);
+    }
+    return highestStraight;
+}
+function areRoyalNumbers(cards) {
+    var validNumbers = new Set(["10", "J", "Q", "K", "A"]);
+    return cards.every(function (card) { return validNumbers.has(card.cardNumber); });
+}
+function areAllSameSign(cards) {
+    var sign = cards[0].cardSign;
+    return cards.every(function (card) { return card.cardSign === sign; });
+}
+function getRoyalFlush(cards) {
+    if (cards.length !== 5 || !areRoyalNumbers(cards) || !areAllSameSign(cards)) {
+        return null;
+    }
+    var sortedCards = cards.slice().sort(function (a, b) {
+        var valueA = getCardNumberValue(a.cardNumber);
+        var valueB = getCardNumberValue(b.cardNumber);
+        return valueA - valueB;
+    });
+    if (getCardNumberValue(sortedCards[0].cardNumber) === 10 &&
+        getCardNumberValue(sortedCards[1].cardNumber) === 11 &&
+        getCardNumberValue(sortedCards[2].cardNumber) === 12 &&
+        getCardNumberValue(sortedCards[3].cardNumber) === 13 &&
+        getCardNumberValue(sortedCards[4].cardNumber) === 14) {
+        return sortedCards;
+    }
+    return null;
+}
+function getStraightFlash(cards) {
+    if (getFlush(cards) != null && getStraight(cards) != null) {
+        if (getFlush(getStraight(cards)) != null) {
+            return getStraight(getFlush(getStraight(cards)));
+        }
+    }
+    return null;
 }
 //high card
 function getHighCard(cards) {
@@ -235,3 +396,13 @@ function getCardNumberValue(cardNumber) {
         return -1;
     }
 }
+var cardsArr = [
+    new Card("2", "heart"),
+    new Card("2", "heart"),
+    new Card("4", "heart"),
+    new Card("5", "heart"),
+    new Card("a", "heart"),
+    new Card("9", "club"),
+    new Card("9", "diamond"),
+];
+console.log(getTwoPairs(cardsArr));

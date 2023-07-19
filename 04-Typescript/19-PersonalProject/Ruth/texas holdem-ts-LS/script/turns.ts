@@ -1,52 +1,21 @@
-let dealerMoney = 0;
-// function turnOrder(players) {
-//   const stage = document.querySelector(".stage") as HTMLDivElement;
-//   let currentPlayerIndex = 0;
 
-//   performTurn(players, stage, currentPlayerIndex);
-// }
-
-// function performTurn(
-//   players: Player[],
-//   stage: HTMLElement,
-//   currentPlayerIndex: number,
-// ) {
-//   try {
-//     const currentPlayer = players[currentPlayerIndex];
-//     let activePlayers = players.filter((p) => p.isActive === true);
-
-//     activePlayers.map((p) => (p.isTurn = false));
-//     currentPlayer.setActive();
-//     currentPlayer.isTurn = true;
-//     currentPlayer.doingTurn(activePlayers, currentPlayerIndex); ///התור
-
-//     currentPlayerIndex++;
-
-//     if (currentPlayerIndex >= players.length && stage.children.length < 6) {
-//       currentPlayerIndex = 0;
-//       if (stage.children.length < 6) {
-//         addCardToStage();
-//       }
-//     }
-
-//     setTimeout(() => performTurn(players, stage, currentPlayerIndex), 500);
-//   } catch (error) {
-//     console.error(error);
-//   }
-// }
-
-// turnOrder(players);
 
 function getMoveOption(activePlayers: Player[], thisIndex: number) {
   const thisPlayer = activePlayers[thisIndex];
 
-  for (var j = thisIndex; j >= 0; j--) {
-    if (activePlayers[j].movesInRound[length - 1] == PlayerMovesOption.rise) {
+  for (var j = thisIndex - 1; j >= 0; j--) {
+    if (
+      activePlayers[j].movesInRound[activePlayers[j].movesInRound.length - 1] ==
+      PlayerMovesOption.rise
+    ) {
       return ["fold", "rise", "call"];
     }
   }
   for (var i = activePlayers.length - 1; i > thisIndex; i--) {
-    if (activePlayers[i].movesInRound[length - 1] == PlayerMovesOption.rise) {
+    if (
+      activePlayers[i].movesInRound[activePlayers[i].movesInRound.length - 1] ==
+      PlayerMovesOption.rise
+    ) {
       return ["fold", "rise", "call"];
     }
   }
@@ -55,6 +24,8 @@ function getMoveOption(activePlayers: Player[], thisIndex: number) {
 
 function getPointOfOptionalSet(thisPlayer: Player) {
   const thisPCards = thisPlayer.allCards;
+  console.log(thisPCards);
+
   const setsResult: boolean[] = [
     checkPair(thisPCards)!,
     checkTwoPairs(thisPCards)!,
@@ -88,7 +59,8 @@ function riseBetSizeInThisRound(players: Player[], currentPlayerIndex: number) {
 function getLastRisePLayer(players: Player[], currentPlayerIndex: number) {
   const currentPlayer = players[currentPlayerIndex];
   const round = currentPlayer.movesInRound.length;
-  let playerRiseLastInThisRound;
+
+  let playerRiseLastInThisRound: Player | undefined;
   players.forEach((p) => {
     if (p.movesInRound[round - 1] == PlayerMovesOption.rise) {
       playerRiseLastInThisRound = p;
@@ -131,7 +103,10 @@ function chooseMove(
 
     let randomNumToMove = Math.round(Math.random() * 2);
     let randomMove = movesOptions[randomNumToMove];
-    let lastBetSize = riseBetSizeInThisRound(players, player.turnNumber);
+    let lastBetSize = riseBetSizeInThisRound(
+      players,
+      players.findIndex((p) => p.id === player.id),
+    );
 
     if (pointOfOptionalSet < 2)
       if (randomMove == "call" && lastBetSize <= sizeOfBet) {
@@ -159,7 +134,11 @@ function chooseMove(
   }
 }
 
-function getSizeOfBet(pointOfOptionalSet: number, playerChips: number) {
+function getSizeOfBet(
+  pointOfOptionalSet: number,
+  playerChips: number,
+  thisIndex: number,
+) {
   let randomNum = 0;
   if (pointOfOptionalSet < 2) {
     randomNum = Math.round(Math.random() * (0.05 * playerChips));
@@ -174,54 +153,87 @@ function getSizeOfBet(pointOfOptionalSet: number, playerChips: number) {
     randomNum = Math.round(Math.random() * (0.8 * playerChips));
   }
 
+  // if ( randomNum < riseBetSizeInThisRound(players, thisIndex))return 0;
   return randomNum;
 }
 
 let counterTurn = 0;
 let indexInArray = 0;
-function turnOrder(activePlayers: Player[]) {
-  /////----------------------------הוא מדלג על השחקן השני קבוע!!------------------------------------------------------
-  let players = activePlayers.filter((p) => p.isActive === true);
-  console.log(players);
-  console.log(indexInArray);
-
-  if (players[indexInArray].id == "myPlayer") {
-    indexInArray++;
-    counterTurn++;
-    myTurn(players);
-  } else {
-    indexInArray++;
-    counterTurn++;
-
-    document.querySelectorAll("button").forEach((button) => {
-      button.disabled = true;
-    });
-
-    if (counterTurn < 5 && indexInArray < players.length) {
-      players[indexInArray].doingTurn(players, indexInArray);
-      if (players[indexInArray].lastBet > 0) {
-        counterTurn = 0;
-      }
-    } else if (counterTurn < 5) {
-      addCardToStage();
-      counterTurn = 0;
-      indexInArray = 0;
-    } else {
-      indexInArray = 0;
-    }
-  }
-}
-
-turnOrder(players);
 
 function myTurn(players: Player[]) {
   const myPlayer = players.find((p) => p.id == "myPlayer");
   const myPlayerIndex = players.findIndex((p) => p.id == "myPlayer");
 
+  players.forEach((p) => {
+    p.isTurn = true;
+    p.setTurn();
+  });
+  myPlayer!.setTurn();
+
+  const sound = new Audio("../sound/service-bell-ring-14610.mp3");
+  sound.play();
   const myOption = getMoveOption(players, myPlayerIndex);
 
-  console.log(`${myPlayer?.userName} is doing somethig......`);
-  console.log(myOption);
+  console.log(`${myPlayer?.userName} is doing something......`);
 
   playTheButton(myOption!);
+}
+
+
+
+
+
+let index = 0;
+let indexInRound = 0;
+function turnOrder(players: Player[]) {
+  players = players.filter((p) => p.isActive === true);
+  let playersLen = players.length;
+  (
+    document.querySelectorAll("button") as NodeListOf<HTMLButtonElement>
+  ).forEach((button) => {
+    button.disabled = "false";
+  });
+
+  if (indexInRound == playersLen) {
+    indexInRound = 0;
+    index = 0;
+    addCardToStage();
+  }
+  if (index == playersLen +1) {
+    index = 0;
+  }
+  if (index >= playersLen + 1) {
+    index = playersLen;
+  }
+  if (playersLen == 1) {
+    addCardToStage();
+  }
+  if (indexInRound >= playersLen) {
+    indexInRound = playersLen-1;
+  }
+  if (index < playersLen + 1) {
+    index++;
+    indexInRound++;
+
+    if (players[index - 1].id == "myPlayer") {
+      console.log(players[index - 1]);
+      myTurn(players);
+    }
+    if (players[index - 1].id != "myPlayer") {
+      players[index - 1].doingTurn(players, index - 1);
+    }
+
+    if (players[index - 1].lastBet! > 0) indexInRound = 0;
+  }
+}
+
+function beginnerTurn() {
+  turnOrder(players);
+
+}
+
+function delayedTurnOrder(players: Player[]) {
+  setTimeout(() => {
+    turnOrder(players);
+  }, 3000);
 }

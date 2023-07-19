@@ -1,7 +1,7 @@
 ///-----------------------myPlayerMoves--------------------
 function playTheButton(myOption) {
-    document.querySelectorAll("button").forEach(function (button) {
-        button.disabled = false;
+    document.querySelectorAll(".operations__btn").forEach(function (button) {
+        button.disabled = "false";
     });
     if (myOption.length == 2) {
         //check or rise{
@@ -21,12 +21,12 @@ function playTheButton(myOption) {
 function myPlayerHandleCheck() {
     var myPlayer = players.find(function (p) { return p.id == "myPlayer"; });
     myPlayer === null || myPlayer === void 0 ? void 0 : myPlayer.checkMove(players);
-    turnOrder(players);
+    delayedTurnOrder(players);
 }
 function myPlayerHandleFold() {
     var myPlayer = players.find(function (p) { return p.id == "myPlayer"; });
     myPlayer === null || myPlayer === void 0 ? void 0 : myPlayer.foldMove(players);
-    turnOrder(players);
+    delayedTurnOrder(players);
 }
 function myPlayerHandleRise() {
     var myPlayer = players.find(function (p) { return p.id == "myPlayer"; });
@@ -35,12 +35,12 @@ function myPlayerHandleRise() {
         inputSizeToBet = Number(prompt("Enter again your bet here in number:"));
     }
     myPlayer === null || myPlayer === void 0 ? void 0 : myPlayer.riseMove(players, inputSizeToBet);
-    turnOrder(players);
+    delayedTurnOrder(players);
 }
 function myPlayerHandleCall() {
     var myPlayer = players.find(function (p) { return p.id == "myPlayer"; });
     var myPlayerIndex = players.findIndex(function (p) { return p.id == "myPlayer"; });
     myPlayer === null || myPlayer === void 0 ? void 0 : myPlayer.callMove(players, myPlayerIndex);
-    turnOrder(players);
+    delayedTurnOrder(players);
 }
 //------------------------

@@ -6,10 +6,32 @@ body {
 
 }
 
+.h1 {
+  display: flex;
+  background-color: #718f54;
+  align-items: center;
+}
+
+h1 {
+  color: white;
+  text-align: center;
+  margin: 0;
+  font-size: 5vw;
+  padding-left: 29vw;
+}
+
+a {
+  color: white;
+  font-size: 2.5vw;
+  padding-left: 2vw;
+
+}
+
+
 .container {
   width: 30%;
   margin: 0 auto;
-  margin-top: 10vw;
+  margin-top: 3vw;
   padding: 2vw;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -41,7 +63,7 @@ body {
   }
 
   button[type="submit"] {
-    background-color:#718f547c;
+    background-color: #718f547c;
     color: white;
     padding: 0.5vw;
     border: none;
@@ -50,7 +72,7 @@ body {
   }
 
   button:hover {
-    background-color: #6e03e7ae;
+    background-color: #34e703ae;
     color: rgb(0, 0, 0);
 
   }

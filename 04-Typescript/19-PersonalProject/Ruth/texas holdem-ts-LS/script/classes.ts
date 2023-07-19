@@ -1,8 +1,9 @@
 //---------------------------Card--------------------
+
 class Card {
   public cardName: string;
   public srcImgCard: string;
-  constructor(public cardNumber: string, public cardSign: string) {
+  constructor(public cardNumber: string, public cardSign: string ,public partOfSet:boolean = false ) {
     this.cardName = `${this.cardNumber}-${cardSign}`;
     this.srcImgCard = this.getSignCardSrc() as string;
   }
@@ -24,9 +25,11 @@ class Card {
   }
 
   renderCard(root = document.body.querySelector(".cards")) {
-    root!.innerHTML += `<div class="card" name="${
-      this.cardNumber + this.cardSign
-    }">
+    root!.innerHTML += this.getHtmlRenderCard();
+  }
+
+  getHtmlRenderCard() {
+    return `<div class="card" name="${this.cardNumber + this.cardSign}">
               <h3 class="cardN">${this.cardNumber}</h3>
               <img class="cardS" src="${this.srcImgCard}"  alt="">
               </div>`;
@@ -55,10 +58,30 @@ class Player {
 
   setActive() {
     this.isActive = !this.isActive;
+    if (!this.isActive) {
+      const thisImgDiv = document.querySelectorAll(".playerPanel__img")[
+        this.turnNumber
+      ] as HTMLDivElement;
+      thisImgDiv.classList.add("panelIsntActive");
+    }
   }
 
   setTurn() {
     this.isTurn = !this.isTurn;
+    if (this.isTurn) {
+      const thisImgDiv = document.querySelectorAll(".playerPanel__img")[
+        this.turnNumber
+      ] as HTMLDivElement;
+      console.log(thisImgDiv);
+
+      thisImgDiv.classList.add("panelInTurn");
+    } else {
+      const thisImgDiv = document.querySelectorAll(".playerPanel__img")[
+        this.turnNumber
+      ] as HTMLDivElement;
+      console.log(thisImgDiv);
+      thisImgDiv.classList.remove("panelInTurn");
+    }
   }
 
   renderMyPanel() {
@@ -66,6 +89,9 @@ class Player {
       this.pCards!.forEach((c) =>
         c.renderCard(document.querySelector(".myPanel__cards") as HTMLElement),
       );
+
+      (document.querySelector(".myPanel__img img") as HTMLImageElement).src =
+        this.imgSrc;
       document.querySelector(".myPanel__chips")!.innerHTML =
         this.chips.toString();
     } catch (error) {
@@ -75,12 +101,10 @@ class Player {
 
   renderTurn() {
     const divID = this.turnNumber;
-    console.log(divID);
 
     const root = document.getElementById(
       `player${divID}Panel`,
     ) as HTMLDivElement;
-    console.log(root);
 
     const input =
       this.lastBet > 0
@@ -99,10 +123,14 @@ class Player {
 
   doingTurn(activePlayers: Player[], thisIndex: number) {
     console.log(`${this.userName} is doing somethig......`);
+    activePlayers.forEach((p) => {
+      p.isTurn = true;
+      p.setTurn();
+    });
+    this.setTurn();
     let movesOptions = getMoveOption(activePlayers, thisIndex);
-    console.log(movesOptions);
     let pointOfOptionalSet = getPointOfOptionalSet(this);
-    let sizeOfBet = getSizeOfBet(pointOfOptionalSet, this.chips);
+    let sizeOfBet = getSizeOfBet(pointOfOptionalSet, this.chips, thisIndex);
 
     chooseMove(
       activePlayers,
@@ -121,18 +149,18 @@ class Player {
     localStorage.setItem("players", JSON.stringify(players));
     this.renderTurn();
 
-    turnOrder(players);
+    delayedTurnOrder(players);
   }
 
   foldMove(players: Player[]) {
     this.movesInRound.push(PlayerMovesOption.fold);
     this.lastBet = 0;
-    this.isActive = false;
+    this.setActive();
 
     localStorage.setItem("players", JSON.stringify(players));
     this.renderTurn();
 
-    turnOrder(players);
+    delayedTurnOrder(players);
   }
 
   callMove(players: Player[], currentPlayerIndex: number) {
@@ -140,28 +168,43 @@ class Player {
     const betToCall = riseBetSizeInThisRound(players, currentPlayerIndex);
 
     this.lastBet = betToCall;
-    dealerMoney += betToCall;
+    diler.setDilersChips(betToCall);
     this.chips = this.chips - betToCall;
 
     localStorage.setItem("players", JSON.stringify(players));
-    localStorage.setItem("dealerMoney", JSON.stringify(dealerMoney));
+    localStorage.setItem("dilersChips", JSON.stringify(diler.dilersChips));
     this.renderTurn();
 
-    turnOrder(players);
+    this.renderThisChipsAgain();
+    delayedTurnOrder(players);
   }
 
   riseMove(players: Player[], sizeOfBet: number) {
     this.movesInRound.push(PlayerMovesOption.rise);
 
     this.lastBet = sizeOfBet;
-    dealerMoney += sizeOfBet;
     this.chips -= sizeOfBet;
+    diler.setDilersChips(sizeOfBet);
 
     localStorage.setItem("players", JSON.stringify(players));
-    localStorage.setItem("dealerMoney", JSON.stringify(dealerMoney));
+    localStorage.setItem("dilersChips", JSON.stringify(diler.dilersChips));
     this.renderTurn();
 
-    turnOrder(players);
+    this.renderThisChipsAgain();
+    delayedTurnOrder(players);
+  }
+
+  renderThisChipsAgain() {
+    try {
+      const playerElement = document.querySelector(
+        `#player${this.turnNumber}Panel`,
+      ) as HTMLElement;
+
+      playerElement.querySelector(`.chipsPlayer`)!.innerHTML =
+        this.chips.toString();
+    } catch (error) {
+      console.error(error);
+    }
   }
 }
 
@@ -176,6 +219,19 @@ enum PlayerMovesOption {
 class Dealer {
   constructor(public sum: number) {}
 }
+
+const diler = {
+  dilersChips: 0,
+
+  setDilersChips(betSize: number) {
+    diler.dilersChips += betSize;
+
+    document.querySelector(".dealer__chips")!.innerHTML =
+      diler.dilersChips.toString();
+
+    localStorage.setItem("dilersChips", JSON.stringify(diler.dilersChips));
+  },
+};
 
 //----------------Round--------------------------------
 class Round {

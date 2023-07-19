@@ -9,17 +9,23 @@ html {
     font-size: 18px;
     font-weight: bold;
 
-    .logo {
-        display: flex;
-        width: 200px;
-        height: 10px;
-    }
+    
+        .logo {
+            display: flex;
+            position: static;
+            height: 10px;
+            justify-content: center;
+           
+        }
+
+    
    
 
 form {
     border: 2px solid rgb(76, 76, 76);
     border-radius: 15px;
-    margin: 2rem;
+    margin-top: 4rem;
+    margin-bottom: 10rem;
     padding: 2rem;
 
     h2 {

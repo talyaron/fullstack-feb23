@@ -17,6 +17,18 @@ body {
         z-index: -1;
         background: url(//sugarcakes4u.co.il/wp-content/uploads/2018/03/%D7%A4%D7%A8%D7%A7%D7%98-%D7%9C%D7%91%D7%9F-1.jpg) no-repeat center center/ cover;
 
+        &__smallBall1,
+        &__smallBall2 {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            position: absolute;
+            background: red;
+            display: none;
+
+
+        }
+
         &__gameOver {
             font-size: 40px;
             color: yellow;
@@ -40,7 +52,7 @@ body {
             top: 10px;
             left: 10px;
 
-            .b {
+            .Photos {
                 width: 30px;
                 position: absolute;
                 top: 3px;
@@ -51,15 +63,15 @@ body {
 
 
 
-            #s {
+            #image1 {
                 left: 5px;
             }
 
-            #f {
+            #image2 {
                 left: 35px;
             }
 
-            #c {
+            #image3 {
                 left: 65px;
             }
         }
@@ -205,8 +217,8 @@ body {
     }
 
     #container {
-        height: 2500px;
-        width: 1400px;
+        height: 600px;
+        width: 700px;
         display: grid;
         align-items: center;
         justify-content: center;
@@ -216,7 +228,7 @@ body {
     .player {
         height: 850px;
         width: 850px;
-        transform: rotate(90deg);
+
 
     }
 
@@ -224,19 +236,15 @@ body {
         display: none;
     }
 
-    levels {
-        transform: rotate(90deg);
-    }
+
 
     .bart {
-        transform: rotate(90deg);
+
         top: 100px;
         left: 200px;
     }
 
-    .show {
-        transform: rotate(90deg);
-    }
+
 
     @keyframes rope {
         25% {
@@ -266,8 +274,8 @@ body {
     }
 
     #container {
-        height: 2500px;
-        width: 1400px;
+        height: 550px;
+        width: 550px;
         display: grid;
         align-items: center;
         justify-content: center;
@@ -277,7 +285,7 @@ body {
     .player {
         height: 850px;
         width: 850px;
-        transform: rotate(90deg);
+
 
     }
 
@@ -285,19 +293,15 @@ body {
         display: none;
     }
 
-    levels {
-        transform: rotate(90deg);
-    }
+
 
     .bart {
-        transform: rotate(90deg);
+
         top: 100px;
         left: 200px;
     }
 
-    .show {
-        transform: rotate(90deg);
-    }
+
 
     @keyframes rope {
         25% {
@@ -324,8 +328,8 @@ body {
     }
 
     #container {
-        height: 2500px;
-        width: 1400px;
+        height: 600px;
+        width: 400px;
         display: grid;
         align-items: center;
         justify-content: center;
@@ -335,7 +339,7 @@ body {
     .player {
         height: 850px;
         width: 850px;
-        transform: rotate(90deg);
+
 
     }
 
@@ -343,19 +347,14 @@ body {
         display: none;
     }
 
-    levels {
-        transform: rotate(90deg);
-    }
 
     .bart {
-        transform: rotate(90deg);
+
         top: 100px;
         left: 200px;
     }
 
-    .show {
-        transform: rotate(180deg);
-    }
+
 
     @keyframes rope {
         25% {

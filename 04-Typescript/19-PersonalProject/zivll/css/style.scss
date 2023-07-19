@@ -4,12 +4,17 @@
   padding: 0;
 }
 body {
+  display: flex;
+  justify-content: center;
+  width: 100vw;
   direction: rtl;
   font-family: sans-serif;
   color: #444;
 }
 
 .wrapper {
+  width: 100%;
+  padding: 0 90px;
   margin-bottom: 100px;
   display: grid;
   grid-template-columns: 60% 1fr;
@@ -161,7 +166,13 @@ body {
         }
         .user-box {
           position: relative;
-
+          .fill-input {
+            top: -20px;
+            left: 0;
+            color: #03e9f4;
+            font-size: 12px;
+            // position: relative;
+          }
           input[type="date"]::-webkit-calendar-picker-indicator {
             // color: rgba(0, 0, 0, 0);
             opacity: 1;
@@ -261,7 +272,7 @@ body {
     }
   }
   .result {
-    padding: 40px;
+    padding: 40px 0;
     display: flex;
     justify-content: space-between;
     .income-icon {
@@ -325,6 +336,17 @@ body {
     // flex-wrap: wrap;
     // gap: 20px;
     justify-content: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .excel-download {
+      gap: 15px;
+      margin-top: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+    }
     table {
       width: 500px;
       font-size: 1.3rem;
@@ -400,6 +422,45 @@ body {
       .tfoot {
         td {
           font-weight: bold;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 1300px) {
+  body {
+    // display: flex;
+    // justify-content: center;
+    .wrapper {
+      padding: 0;
+      margin-bottom: 100px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      // max-width: 80%;
+      .header {
+        width: 90%;
+      }
+      .result {
+        margin-top: 50px;
+        svg {
+          margin: 20px 0;
+        }
+        .total-number {
+          font-size: 1.5rem;
+        }
+      }
+      .forms {
+        .calculators {
+          width: 360px;
+          padding: 20px;
+        }
+      }
+      .expenses-table {
+        table {
+          width: 350px;
         }
       }
     }

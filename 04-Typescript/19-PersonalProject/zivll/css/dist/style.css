@@ -5,12 +5,17 @@
 }
 
 body {
+  display: flex;
+  justify-content: center;
+  width: 100vw;
   direction: rtl;
   font-family: sans-serif;
   color: #444;
 }
 
 .wrapper {
+  width: 100%;
+  padding: 0 90px;
   margin-bottom: 100px;
   display: grid;
   grid-template-columns: 60% 1fr;
@@ -153,6 +158,12 @@ body {
 .wrapper .forms .calculators form .user-box {
   position: relative;
 }
+.wrapper .forms .calculators form .user-box .fill-input {
+  top: -20px;
+  left: 0;
+  color: #03e9f4;
+  font-size: 12px;
+}
 .wrapper .forms .calculators form .user-box input[type=date]::-webkit-calendar-picker-indicator {
   opacity: 1;
   display: block;
@@ -241,7 +252,7 @@ body {
   }
 }
 .wrapper .result {
-  padding: 40px;
+  padding: 40px 0;
   display: flex;
   justify-content: space-between;
 }
@@ -295,6 +306,17 @@ body {
   grid-column: 1;
   display: flex;
   justify-content: center;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.wrapper .expenses-table .excel-download {
+  gap: 15px;
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
 }
 .wrapper .expenses-table table {
   width: 500px;
@@ -369,4 +391,34 @@ body {
 }
 .wrapper .expenses-table tbody .tfoot td {
   font-weight: bold;
+}
+
+@media only screen and (max-width: 1300px) {
+  body .wrapper {
+    padding: 0;
+    margin-bottom: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  body .wrapper .header {
+    width: 90%;
+  }
+  body .wrapper .result {
+    margin-top: 50px;
+  }
+  body .wrapper .result svg {
+    margin: 20px 0;
+  }
+  body .wrapper .result .total-number {
+    font-size: 1.5rem;
+  }
+  body .wrapper .forms .calculators {
+    width: 360px;
+    padding: 20px;
+  }
+  body .wrapper .expenses-table table {
+    width: 350px;
+  }
 }

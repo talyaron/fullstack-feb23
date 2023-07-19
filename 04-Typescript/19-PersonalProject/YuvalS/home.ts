@@ -23,4 +23,3 @@ function handleHowtoImg(ev:any) {
 }
 
 
-removeImage(document.querySelector("#imageH"))
