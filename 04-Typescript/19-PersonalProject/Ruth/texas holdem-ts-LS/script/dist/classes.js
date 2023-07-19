@@ -1,8 +1,10 @@
 //---------------------------Card--------------------
 var Card = /** @class */ (function () {
-    function Card(cardNumber, cardSign) {
+    function Card(cardNumber, cardSign, partOfSet) {
+        if (partOfSet === void 0) { partOfSet = false; }
         this.cardNumber = cardNumber;
         this.cardSign = cardSign;
+        this.partOfSet = partOfSet;
         this.cardName = this.cardNumber + "-" + cardSign;
         this.srcImgCard = this.getSignCardSrc();
     }
@@ -24,7 +26,10 @@ var Card = /** @class */ (function () {
     };
     Card.prototype.renderCard = function (root) {
         if (root === void 0) { root = document.body.querySelector(".cards"); }
-        root.innerHTML += "<div class=\"card\" name=\"" + (this.cardNumber + this.cardSign) + "\">\n              <h3 class=\"cardN\">" + this.cardNumber + "</h3>\n              <img class=\"cardS\" src=\"" + this.srcImgCard + "\"  alt=\"\">\n              </div>";
+        root.innerHTML += this.getHtmlRenderCard();
+    };
+    Card.prototype.getHtmlRenderCard = function () {
+        return "<div class=\"card\" name=\"" + (this.cardNumber + this.cardSign) + "\">\n              <h3 class=\"cardN\">" + this.cardNumber + "</h3>\n              <img class=\"cardS\" src=\"" + this.srcImgCard + "\"  alt=\"\">\n              </div>";
     };
     return Card;
 }());
@@ -137,7 +142,7 @@ var Player = /** @class */ (function () {
         diler.setDilersChips(betToCall);
         this.chips = this.chips - betToCall;
         localStorage.setItem("players", JSON.stringify(players));
-        localStorage.setItem("dealerMoney", JSON.stringify(diler.dilersChips));
+        localStorage.setItem("dilersChips", JSON.stringify(diler.dilersChips));
         this.renderTurn();
         this.renderThisChipsAgain();
         delayedTurnOrder(players);

@@ -158,6 +158,12 @@ body {
 .wrapper .forms .calculators form .user-box {
   position: relative;
 }
+.wrapper .forms .calculators form .user-box .fill-input {
+  top: -20px;
+  left: 0;
+  color: #03e9f4;
+  font-size: 12px;
+}
 .wrapper .forms .calculators form .user-box input[type=date]::-webkit-calendar-picker-indicator {
   opacity: 1;
   display: block;
