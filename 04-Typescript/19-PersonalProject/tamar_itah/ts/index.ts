@@ -268,10 +268,10 @@ function renderFinish() {
 
         const htmlend = `<h2>Good Job ${users[users.length - 1].userName}! your final score is ${users[users.length - 1].points}</h2>
                     <br>
-                    <button onClick="hendelLogOn()">Play Again</button>`
+                    <button class="btnF2" onClick="hendelLogOn()">Play Again</button>`
 
-        const htmltablehead = `<div>Last Games Scores:</div>
-                                                <table><thead><tr><th>player name</th><th>player score</th></tr></thead></table>`
+        const htmltablehead = `<h3>Last Games Scores:</h3>
+                                                <table><thead><tr><th id="hth">player name</th><th>player score</th></tr></thead></table>`
         const htmltablebody = users.reverse().map(user => `<table><tbody><tr><th>${user.userName}</th><th>${user.points}</th></tr></tbody></table>`).join(' ')
 
         end.innerHTML = htmlend + htmltablehead + htmltablebody

@@ -19,6 +19,10 @@ body {
 
 }
 
+h2{
+    color:lavenderblush
+}
+
 h4 {
     font-size: 26px;
 }
@@ -87,6 +91,13 @@ h4 {
     position: relative;
 }
 
+.btnF2{
+    background-color: rgb(64, 219, 142);
+    border-radius: 50%;
+    height: 35px;
+    width: 100px;
+}
+
 #score {
     color: crimson;
     font-size: 25px;
@@ -111,16 +122,21 @@ h4 {
     margin-top: 20px; /* Add some top margin to separate from the header */
 }
 
+#hth{
+    width: 350px;
+}
 
 th,
 td {
-    border: 1px solid lightskyblue;
+    border: 3px solid lightskyblue;
     padding: 8px; /* Add padding to space out content from the borders */
     text-align: center; /* Center the text in the cells */
 }
 
 table, th, td{
        width: 300px;
+       font-weight: bolder;
+       background-color: aquamarine;
 } 
 
 
