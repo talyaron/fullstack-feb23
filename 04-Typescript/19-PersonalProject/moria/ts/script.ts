@@ -6,7 +6,7 @@ class Player {
 }
 class Point {
     id: string
-    constructor(public name: string, public amount: number, id?: string | null) {
+    constructor(public name: string, id?: string | null) {
         this.id = `id-${new Date().getTime() - Math.random()}`
     }
 }
@@ -15,19 +15,19 @@ const rootPlayer = document.querySelector(`#rootPlayer`) as HTMLElement;
 
 const points: Point[] = []
 
-// logIn()
-// function logIn() {
-//     try {
+logIn()
+function logIn() {
+    try {
 
-//         const html = ` <div class="log"> <form onsubmit="handleAdd(event)"><label for="worker-name">enter your Name:</label> <br>
-//         <input required type="text" name="name" value=""> <br> <br> <button type="submit">ok</button> </form> </div>`;
-//         if (!root) throw new Error("no root element");
+        const html = ` <div class="log"> <form onsubmit="handleAdd(event)"><label for="worker-name">enter your Name:</label> <br>
+        <input required type="text" name="name" value=""> <br> <br> <button type="submit">ok</button> </form> </div>`;
+        if (!root) throw new Error("no root element");
 
-//         root.innerHTML = html;
-//     } catch (error) {
-//         console.error(error);
-//     }
-// }
+        root.innerHTML = html;
+    } catch (error) {
+        console.error(error);
+    }
+}
 
 
 
@@ -36,7 +36,7 @@ function handleAdd(ev: any) {
         ev.preventDefault();
         const name = ev.target.elements.name.value;
 
-        const newName = new Point(name, 0);
+        const newName = new Point(name);
         points.push(newName);
 
 

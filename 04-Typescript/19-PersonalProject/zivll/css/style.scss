@@ -4,12 +4,17 @@
   padding: 0;
 }
 body {
+  display: flex;
+  justify-content: center;
+  width: 100vw;
   direction: rtl;
   font-family: sans-serif;
   color: #444;
 }
 
 .wrapper {
+  width: 100%;
+  padding: 0 90px;
   margin-bottom: 100px;
   display: grid;
   grid-template-columns: 60% 1fr;
@@ -261,7 +266,7 @@ body {
     }
   }
   .result {
-    padding: 40px;
+    padding: 40px 0;
     display: flex;
     justify-content: space-between;
     .income-icon {
@@ -325,6 +330,17 @@ body {
     // flex-wrap: wrap;
     // gap: 20px;
     justify-content: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .excel-download {
+      gap: 15px;
+      margin-top: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+    }
     table {
       width: 500px;
       font-size: 1.3rem;
@@ -332,49 +348,65 @@ body {
       border-radius: 10px;
       border-collapse: collapse;
       height: fit-content;
-      td {
-        padding: 7px;
-        height: 40px;
-        // text-align: center;
-        &:nth-child(even) {
-          text-align: left;
-          direction: ltr;
-        }
+    }
+    td {
+      padding: 7px;
+      height: 40px;
+      text-align: center;
+      &:nth-child(3) {
+        width: 75px;
+        text-align: left;
       }
-      .thead {
-        transition: 0.4s;
-        position: relative;
+
+      .edit {
         cursor: pointer;
-        &:hover,
-        :active {
-          background-color: #ccc;
-          color: #0f81c7;
-        }
+        color: #0f81c7;
+        width: 30px;
+        height: auto;
       }
-      .active {
+      .delete {
+        cursor: pointer;
+        color: red;
+        width: 30px;
+        height: auto;
+      }
+    }
+    .thead {
+      transition: 0.4s;
+      position: relative;
+      cursor: pointer;
+      &:hover,
+      :active {
         background-color: #ccc;
         color: #0f81c7;
       }
-      .off {
-        display: none;
-      }
-      .thead,
-      tr {
-        width: 100%;
-        border-bottom: solid 1px rgba(0, 0, 0, 0.151);
+    }
+    .active {
+      background-color: #ccc;
+      color: #0f81c7;
+    }
+    .off {
+      display: none;
+    }
+    .thead,
+    tr {
+      width: 100%;
+      border-bottom: solid 1px rgba(0, 0, 0, 0.151);
 
-        height: 40px;
+      height: 40px;
 
-        .collapse-icon {
-          width: 20px;
-          height: 100%;
-          position: absolute;
-          left: 5px;
-          top: 0;
-        }
+      .collapse-icon {
+        width: 20px;
+        height: 100%;
+        position: absolute;
+        left: 5px;
+        top: 0;
       }
-      tbody {
-        border-bottom: solid 1px rgba(0, 0, 0, 0.151);
+    }
+    tbody {
+      border-bottom: solid 1px rgba(0, 0, 0, 0.151);
+      &:nth-child(even) {
+        background-color: #eeeeeeb6;
         .tbody {
           transition: max-height 0.2s ease-out;
           overflow: hidden;
@@ -384,6 +416,45 @@ body {
       .tfoot {
         td {
           font-weight: bold;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 1300px) {
+  body {
+    // display: flex;
+    // justify-content: center;
+    .wrapper {
+      padding: 0;
+      margin-bottom: 100px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      // max-width: 80%;
+      .header {
+        width: 90%;
+      }
+      .result {
+        margin-top: 50px;
+        svg {
+          margin: 20px 0;
+        }
+        .total-number {
+          font-size: 1.5rem;
+        }
+      }
+      .forms {
+        .calculators {
+          width: 360px;
+          padding: 20px;
+        }
+      }
+      .expenses-table {
+        table {
+          width: 350px;
         }
       }
     }

@@ -163,6 +163,8 @@ function loadQuestionGoodThings() {
             goodThings_1.push(new QuestionGoodThings("Surprise", "A large contractor decided to donate a hotel, take the money and use it wisely", getRandomNumber(1500, 1700)));
             goodThings_1.push(new QuestionGoodThings("Dog Gift", "Congratulations you won a pet dog", getRandomNumber(50, 100)));
             goodThings_1.push(new QuestionGoodThings("Thank U", "I see your effort to do for the residents of the city, get reinforcement for continued fruitful work", getRandomNumber(550, 550)));
+            goodThings_1.push(new QuestionGoodThings("Wow!", "Run for mayor! The city needs a mayor like you,Here is help with the propaganda budget", getRandomNumber(550, 1000)));
+            goodThings_1.push(new QuestionGoodThings("A proud citizen", "You helped an elderly man cross the road safely. Get an assessment!", getRandomNumber(750, 1000)));
             //save to local storage
             var goodThingsJson = JSON.stringify(goodThings_1);
             localStorage.setItem('goodThings', goodThingsJson);
@@ -190,6 +192,7 @@ function loadQuestionBadThings() {
             badThings_1.push(new QuestionBadThings("Stinky fish", "There is an overflow from the stream, full of dead fish. The loss is on you this timec", getRandomNumber(800, 1000)));
             badThings_1.push(new QuestionBadThings("It stinks here", "Received too many calls about trash removal this morning, Help a little with the evacuation budget", getRandomNumber(800, 1000)));
             badThings_1.push(new QuestionBadThings("A proud citizen", "Your contribution to the city is welcomed", getRandomNumber(800, 1000)));
+            badThings_1.push(new QuestionBadThings("shame", "That's how it is in a democracy.. everyone pays taxes", getRandomNumber(1000, 1200)));
             //save to local storage
             var badThingsJson = JSON.stringify(badThings_1);
             localStorage.setItem('badThings', badThingsJson);
@@ -199,7 +202,7 @@ function loadQuestionBadThings() {
             //get characters from localstorage
             var badThingsArray = JSON.parse(badThingsString);
             badThingsArray.forEach(function (bad) {
-                badThings_1.push(new QuestionBadThings(bad.bdThingsTitel, bad.badThingsDescription, bad.purchasePrice, bad.badThingsId));
+                badThings_1.push(new QuestionBadThings(bad.badThingsTitel, bad.badThingsDescription, bad.purchasePrice, bad.badThingsId));
             });
         }
         return badThings_1;
@@ -273,6 +276,7 @@ function loadDataToBoard(board) {
         // Load bad things and add them to the board
         var badThings = loadQuestionBadThings();
         if (badThings) {
+            debugger;
             board.badThings = badThings;
         }
         console.log('Data loaded to the board successfully!');

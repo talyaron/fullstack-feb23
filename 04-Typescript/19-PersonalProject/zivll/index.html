@@ -5,7 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>FAMELI</title>
     <link rel="stylesheet" href="./css/dist/style.css" />
-    <script src="./js/dist/script.js" defer></script>
+    <!-- <script src="./js/dist/script.js" defer></script> -->
+    <script src="./js/dist/new-script.js" defer></script>
+    <script
+      type="text/javascript"
+      src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"
+      defer
+    ></script>
   </head>
   <body>
     <div class="wrapper">
@@ -38,7 +44,7 @@
       </div>
       <div class="result">
         <div class="result__total-income">
-          <h2 class="result__total-income--title">סה"כ הכנסה</h2>
+          <h2 class="result__total-income--title">הכנסה</h2>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -56,7 +62,7 @@
           <p class="total-number total-number--income">0&#8362;</p>
         </div>
         <div class="result__total-expence">
-          <h2 class="result__total-expence--title">סה"כ הוצאה</h2>
+          <h2 class="result__total-expence--title">הוצאה</h2>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"

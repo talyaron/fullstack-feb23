@@ -1,5 +1,4 @@
-// נגדיר את האירוע בעזרת JavaScript
-const icons = document.querySelectorAll(".gallery__imgs--p i");
+const icons:any = document.querySelectorAll(".gallery__imgs--p i");
 
 icons.forEach((icon) => {
   icon.addEventListener("click", () => {

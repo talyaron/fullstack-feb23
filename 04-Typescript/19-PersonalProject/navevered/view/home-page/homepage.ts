@@ -30,7 +30,7 @@ function renderpopUpMenu(rootElement: HTMLElement | null) {
 
     if (menu_button.getAttribute("active") == "false") {
       html = `
-      <ul id="popupList">
+      <ul dir="rtl" id="popupList">
       <li><a href="../home-page/homepage.html">עמוד הבית</a></li>
       <li> <a href="../home/Income.html">הוצאות</a></li>
       <li> <a href="../home/expenses.html">הכנסות</a></li>

@@ -1,3 +1,4 @@
+
 const cardsNumber = [
   "A",
   "2",
@@ -39,10 +40,10 @@ function renderAllCards() {
 }
 
 function get2RandomCards() {
-  const randomNumCard1 = Math.round(Math.random() * decksCards.length);
+  const randomNumCard1 = Math.floor(Math.random() * decksCards.length);
   const randomCard1: Card = decksCards[randomNumCard1];
   decksCards.splice(randomNumCard1, 1);
-  const randomNumCard2 = Math.round(Math.random() * decksCards.length);
+  const randomNumCard2 = Math.floor(Math.random() * decksCards.length);
   const randomCard2: Card = decksCards[randomNumCard2];
   decksCards.splice(randomNumCard2, 1);
   setDeckCardsInLs();
@@ -70,7 +71,7 @@ function getDeckCardsFromLs() {
   );
 }
 
-const myPlayer: Player = new Player("ruth1", "#", "myPlayer");
+const myPlayer: Player = new Player("ruth1", "https://cdn.pixabay.com/photo/2021/03/12/07/00/woman-6088905_1280.jpg", "myPlayer");
 
 const users: Player[] = [
   new Player(
@@ -164,9 +165,10 @@ function renderPlayersPanel(players: Player[]) {
 renderPlayersPanel(users);
 
 function addCardToStage() {
+  
   const root = document.querySelector(".stage") as HTMLDivElement;
-  if (root.children.length < 6) {
-    if (root.children.length > 3) {
+  if (root.children.length < 5) {
+    if (root.children.length > 2) {
       let newCard = getRandomCard();
       players.forEach((p) => p.addCardToPlayer(newCard));
       localStorage.setItem("players", JSON.stringify(players));
@@ -179,7 +181,7 @@ function addCardToStage() {
         newCard.renderCard(root);
       }
     }
-  } else alert("game stopped!");
+  } else  window.location.href = ("../view/endingGame.html")
 }
 
 function createID() {
@@ -188,3 +190,4 @@ function createID() {
     "",
   );
 }
+

@@ -1,4 +1,4 @@
-const bmiForm:any= document.querySelector("#BMI");
+const bmiForm: any = document.querySelector("#BMI");
 bmiForm.addEventListener("submit", function (event) {
   event.preventDefault();
 
@@ -6,13 +6,21 @@ bmiForm.addEventListener("submit", function (event) {
   const heightInput = document.querySelector("#height") as HTMLInputElement;
   const weightInput = document.querySelector("#weight") as HTMLInputElement;
 
-  const height = Number(heightInput.value);
-  const weight = Number(weightInput.value);
+  try {
+    const height = Number(heightInput.value);
+    const weight = Number(weightInput.value);
 
-  const bmiResult = calculateBMI(height, weight);
-  const category = getBMICategory(bmiResult);
+    if (isNaN(height) || isNaN(weight) || height <= 0 || weight <= 0) {
+      throw new Error("Invalid input. Please enter valid numbers for height and weight.");
+    }
 
-  alert(`BMI: ${bmiResult}\nCategory: ${category}`);
+    const bmiResult = calculateBMI(height, weight);
+    const category = getBMICategory(bmiResult);
+
+    alert(`BMI: ${bmiResult}\nCategory: ${category}`);
+  } catch (error) {
+    alert(`An error occurred: ${error.message}`);
+  }
 
   form.reset();
 });
