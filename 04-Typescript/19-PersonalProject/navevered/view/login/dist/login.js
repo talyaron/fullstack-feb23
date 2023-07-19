@@ -1,17 +1,38 @@
-var loginForm = document.querySelector("#login-form");
-loginForm.addEventListener("submit", handleLoginFormSubmit);
+function loadUsersFromLocal() {
+    try {
+        var userString = localStorage.getItem("users");
+        if (userString)
+            return JSON.parse(userString);
+        else
+            return [];
+    }
+    catch (error) {
+        console.error(error);
+        return [];
+    }
+}
+var User = /** @class */ (function () {
+    function User(name, email, password) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+    }
+    return User;
+}());
+var usersLoginPage = loadUsersFromLocal();
 function handleLoginFormSubmit(event) {
     event.preventDefault();
-    var emailInput = document.querySelector("#email-input");
-    var passwordInput = document.querySelector("#password-input");
-    var email = emailInput.value;
-    var password = passwordInput.value;
-    var user = JSON.parse(localStorage.getItem("user"));
-    if (user && user.email === email && user.password === password) {
-        // Redirect to the main system page
-        window.location.href = "../home/profit.html";
+    try {
+        debugger;
+        if (User && User === User && usersLoginPage) {
+            // Redirect to the registration page
+            window.location.href = "../home-page/homepage.html";
+        }
+        else {
+            alert("Invalid email or password. Please try again.");
+        }
     }
-    else {
-        alert("Invalid email or password. Please try again.");
+    catch (error) {
+        console.error('An error occurred:', error);
     }
 }

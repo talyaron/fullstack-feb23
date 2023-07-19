@@ -2,15 +2,6 @@
 var uid = function () {
     return Date.now().toString(36) + Math.random().toString(36).substr(2);
 };
-var User = /** @class */ (function () {
-    function User(name, email, password) {
-        this.name = name;
-        this.email = email;
-        this.password = password;
-        this.id = uid();
-    }
-    return User;
-}());
 // Income entity
 var Income = /** @class */ (function () {
     function Income(amount, source, date) {
