@@ -12,15 +12,21 @@ window.onload = function () {
 // create game board
 function makeBoard() {
     var _a;
-    for (var r = 0; r < height; r++) {
-        for (var c = 0; c < width; c++) {
-            //<span id = "0-0" class = "tile"></span> for all the tiles
-            var tile = document.createElement("span");
-            tile.id = r.toString() + "-" + c.toString();
-            tile.classList.add("tile");
-            tile.innerText = "";
-            (_a = document.querySelector("#board")) === null || _a === void 0 ? void 0 : _a.appendChild(tile);
+    try {
+        for (var r = 0; r < height; r++) {
+            for (var c = 0; c < width; c++) {
+                //<span id = "0-0" class = "tile"></span> for all the tiles
+                var tile = document.createElement("span");
+                tile.id = r.toString() + "-" + c.toString();
+                tile.classList.add("tile");
+                tile.innerText = "";
+                (_a = document.querySelector("#board")) === null || _a === void 0 ? void 0 : _a.appendChild(tile);
+            }
         }
+    }
+    catch (error) {
+        console.log(error);
+        return;
     }
 }
 //create key-board

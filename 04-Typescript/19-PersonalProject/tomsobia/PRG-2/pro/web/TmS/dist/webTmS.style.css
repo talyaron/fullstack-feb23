@@ -57,7 +57,7 @@ hr {
   flex-direction: column;
   justify-content: space-evenly;
 }
-.container__Ourspecial__p1 {
+.container__Ourspecial--p1 {
   text-align: center;
   color: white;
 }
