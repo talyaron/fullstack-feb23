@@ -1,16 +1,15 @@
 // 1) 1 entity, CRUD, make it betfull with CSS.
 // 2) 2 eneties ,with joins, CRUD, two pages that share the model.
 // # Points
-// 10 good BEM model
-// 10 beutifull and accurate design
-// 10 reponsive
-// 10 clear code
-// 10 clear structure.
-// 20 using MVC
-// 10 trycatch with good exceptions
-// 10 error free
+// 10 good BEM model - v
+// 10 beutifull and accurate design - v
+// 10 reponsive - v
+// 10 clear code - v
+// 10 clear structure. - v
+// 20 using MVC - v
+// 10 trycatch with good exceptions - v
+// 10 error free - v
 //
-//MVC - Model View Controller
 //class - user, image.
 var Img = /** @class */ (function () {
     function Img(image) {
@@ -20,8 +19,6 @@ var Img = /** @class */ (function () {
     return Img;
 }());
 var imagesArray = getImgsFromLocalStorage();
-// imagesArray.push();
-// console.log(imagesArray);
 var User = /** @class */ (function () {
     function User(name, imageProfile, imagse) {
         this.name = name;
@@ -33,9 +30,11 @@ var User = /** @class */ (function () {
 }());
 var usersArray = getUsersFromLocalStorage();
 if (usersArray.length === 0) {
-    var bar = new User('Bar', 'https://pixlr.com/images/index/remove-bg.webp', []);
-    var netanel = new User('Netanel', 'https://photoscissors.com/images/samples/3-before.jpg', []);
-    usersArray.push(bar, netanel);
+    var bar = new User('Bar', 'https://cdn.pixabay.com/photo/2017/09/01/21/53/sunglasses-2705642_640.jpg', []);
+    var netanel = new User('Netanel', 'https://cdn.pixabay.com/photo/2017/08/01/01/33/beanie-2562646_640.jpg', []);
+    var shir = new User('Shir', 'https://cdn.pixabay.com/photo/2016/12/19/21/36/woman-1919143_640.jpg', []);
+    var ahava = new User('Ahava', 'https://cdn.pixabay.com/photo/2018/03/12/12/32/woman-3219507_640.jpg', []);
+    usersArray.push(bar, netanel, shir, ahava);
 }
 //creat class how join the user to his imagse.
 var UsersImg = /** @class */ (function () {
@@ -49,9 +48,12 @@ var usersImgArray = getUsersImgFromLocalStorage();
 if (usersImgArray.length === 0) {
     var barImg = new UsersImg([usersArray[0]]);
     var netanelImg = new UsersImg([usersArray[1]]);
-    usersImgArray.push(barImg, netanelImg);
+    var shirImg = new UsersImg([usersArray[2]]);
+    var ahavaImg = new UsersImg([usersArray[3]]);
+    usersImgArray.push(barImg, netanelImg, shirImg, ahavaImg);
 }
 ;
+console.log(usersImgArray);
 //Image local storage
 function saveImgToLocalStorage(image) {
     localStorage.setItem('imagesArray', JSON.stringify(image));
@@ -77,11 +79,9 @@ function saveUserToLocalStorage(user) {
 function getUsersFromLocalStorage() {
     try {
         var usersStorage = localStorage.getItem('usersArray');
-        console.log(usersStorage);
         if (!usersStorage)
             return [];
         var usersArray_1 = JSON.parse(usersStorage);
-        console.log(usersArray_1);
         if (!usersArray_1)
             throw new Error('Users not found');
         if (!Array.isArray(usersArray_1))
@@ -94,17 +94,16 @@ function getUsersFromLocalStorage() {
         return [];
     }
 }
+//usersImg local storage
 function saveUsersImgToLocalStorage(usersImg) {
     localStorage.setItem('usersImgArray', JSON.stringify(usersImg));
 }
 function getUsersImgFromLocalStorage() {
     try {
         var usersImgStorage = localStorage.getItem('usersImgArray');
-        console.log(usersImgStorage);
         if (!usersImgStorage)
             return [];
         var usersImgArray_1 = JSON.parse(usersImgStorage);
-        console.log(usersImgArray_1);
         if (!usersImgArray_1)
             throw new Error('Users not found');
         if (!Array.isArray(usersImgArray_1))

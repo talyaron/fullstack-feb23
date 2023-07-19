@@ -60,6 +60,19 @@
   }
 }
 
+.panelInTurn{
+  img{
+    box-shadow: 0px 0px 15px 5px #ffe1ba;
+  }
+}
+
+.panelIsntActive{
+  img{
+    box-shadow: 0px 0px 15px 5px #c53333;
+    filter: brightness(0.2);
+  }
+}
+
 #player1Panel {
   bottom: 130px;
   left: 50px;
@@ -130,10 +143,16 @@
   margin: 5px;
   position: absolute;
   &__img {
-    width: 50px;
-    height: 40px;
+    position: relative;
+    left: calc(50% - 40px);
+    top: 50px;
     img {
-      width: 45px;
+      width: 80px;
+      height: 80px;
+
+      border-radius: 100%;
+      border: ridge 2px rgb(160, 121, 3);
+      object-fit: cover;
     }
   }
   &__cards {
@@ -170,6 +189,14 @@
   }
   &__chips {
     color: white;
+    background-color: rgba(0, 0, 0, 0.411);
+    border-radius: 10px;
     text-align: center;
+    z-index: 4;
+  }
+
+  #myTurnInput{
+   width: 81px;
+   height: 31px;
   }
 }

@@ -7,9 +7,8 @@ var Player = /** @class */ (function () {
     return Player;
 }());
 var Point = /** @class */ (function () {
-    function Point(name, amount, id) {
+    function Point(name, id) {
         this.name = name;
-        this.amount = amount;
         this.id = "id-" + (new Date().getTime() - Math.random());
     }
     return Point;
@@ -17,22 +16,23 @@ var Point = /** @class */ (function () {
 var root = document.querySelector("#root");
 var rootPlayer = document.querySelector("#rootPlayer");
 var points = [];
-// logIn()
-// function logIn() {
-//     try {
-//         const html = ` <div class="log"> <form onsubmit="handleAdd(event)"><label for="worker-name">enter your Name:</label> <br>
-//         <input required type="text" name="name" value=""> <br> <br> <button type="submit">ok</button> </form> </div>`;
-//         if (!root) throw new Error("no root element");
-//         root.innerHTML = html;
-//     } catch (error) {
-//         console.error(error);
-//     }
-// }
+logIn();
+function logIn() {
+    try {
+        var html = " <div class=\"log\"> <form onsubmit=\"handleAdd(event)\"><label for=\"worker-name\">enter your Name:</label> <br>\n        <input required type=\"text\" name=\"name\" value=\"\"> <br> <br> <button type=\"submit\">ok</button> </form> </div>";
+        if (!root)
+            throw new Error("no root element");
+        root.innerHTML = html;
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
 function handleAdd(ev) {
     try {
         ev.preventDefault();
         var name = ev.target.elements.name.value;
-        var newName = new Point(name, 0);
+        var newName = new Point(name);
         points.push(newName);
         localStorage.setItem("points", JSON.stringify(points));
         ev.target.reset();
@@ -48,7 +48,6 @@ function handleAdd(ev) {
 var players = [];
 function addHomer() {
     try {
-        // const player =
         var selectedPlayer = new Player("../img/homer.png");
         players.push(selectedPlayer);
         savePlayerToLocalStorage(players);
@@ -71,9 +70,9 @@ function addBart() {
         console.error(error);
     }
 }
-function addLisa() {
+function addMaggie() {
     try {
-        var selectedPlayer = new Player("../img/lisa.png");
+        var selectedPlayer = new Player("../img/Maggie.png");
         players.push(selectedPlayer);
         savePlayerToLocalStorage(players);
         console.log(players);

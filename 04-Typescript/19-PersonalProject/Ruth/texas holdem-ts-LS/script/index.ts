@@ -40,10 +40,10 @@ function renderAllCards() {
 }
 
 function get2RandomCards() {
-  const randomNumCard1 = Math.round(Math.random() * decksCards.length);
+  const randomNumCard1 = Math.floor(Math.random() * decksCards.length);
   const randomCard1: Card = decksCards[randomNumCard1];
   decksCards.splice(randomNumCard1, 1);
-  const randomNumCard2 = Math.round(Math.random() * decksCards.length);
+  const randomNumCard2 = Math.floor(Math.random() * decksCards.length);
   const randomCard2: Card = decksCards[randomNumCard2];
   decksCards.splice(randomNumCard2, 1);
   setDeckCardsInLs();
@@ -71,12 +71,12 @@ function getDeckCardsFromLs() {
   );
 }
 
-const myPlayer: Player = new Player("ruth1");
+const myPlayer: Player = new Player("ruth1", "https://cdn.pixabay.com/photo/2021/03/12/07/00/woman-6088905_1280.jpg", "myPlayer");
 
 const users: Player[] = [
   new Player(
-    "ruth300290!",
-    "https://cdn.pixabay.com/photo/2013/05/30/18/21/cat-114782_1280.jpg",
+    "ruth765",
+    "https://cdn.pixabay.com/photo/2015/11/21/04/17/grandparents-1054311_1280.jpg",
   ),
   new Player(
     "ruth0908",
@@ -92,8 +92,8 @@ const users: Player[] = [
   ),
 ];
 
-users.unshift(myPlayer);
-const firstPlayers:Player[] = users;
+// users.unshift(myPlayer);
+const firstPlayers: Player[] = [myPlayer].concat(users);
 
 const players: Player[] = getPlayerFromLs();
 
@@ -113,6 +113,7 @@ function getPlayerFromLs() {
           new Player(
             p.userName,
             p.imgSrc,
+            p.id,
             p.chips,
             p.isActive,
             p.isTurn,
@@ -124,7 +125,6 @@ function getPlayerFromLs() {
             p.turnNumber,
           ),
       );
-      console.log(players);
 
       return players;
     }
@@ -165,9 +165,10 @@ function renderPlayersPanel(players: Player[]) {
 renderPlayersPanel(users);
 
 function addCardToStage() {
+  
   const root = document.querySelector(".stage") as HTMLDivElement;
-  if (root.children.length < 6) {
-    if (root.children.length > 3) {
+  if (root.children.length < 5) {
+    if (root.children.length > 2) {
       let newCard = getRandomCard();
       players.forEach((p) => p.addCardToPlayer(newCard));
       localStorage.setItem("players", JSON.stringify(players));
@@ -180,5 +181,13 @@ function addCardToStage() {
         newCard.renderCard(root);
       }
     }
-  } else alert("game stopped!");
+  } else  window.location.href = ("../view/endingGame.html")
 }
+
+function createID() {
+  return String(Date.now().toString(32) + Math.random().toString(16)).replace(
+    /\./g,
+    "",
+  );
+}
+

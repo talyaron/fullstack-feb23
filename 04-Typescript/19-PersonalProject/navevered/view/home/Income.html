@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>income</title>
+    <link rel="stylesheet" href="../../css/dist/homepage.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../home-page/dist/homepage.js"defer></script>
+    <script src="../../ts/dist/dashboard.js" defer></script>
+
+
+    
+  </head>
+
+<body >
+    <div class="allheader"> 
+        <div dir="rtl" class="header">
+          <img class="logo" src="../../css/dist/banky-low-resolution-logo-white-on-black-background-removebg-preview.png">
+          <img class="menu-button" src="../../css/dist/more.svg" active="false" onclick="toggleMenu()">
+           <nav class="nav" id="nav">
+            
+            <a href="../home-page/homepage.html">עמוד הבית</a>
+             <a href="../home/Income.html"> הכנסות </a>
+             <a href="../home/expenses.html">הוצאות</a>
+             <a href="../home/profit.html">הרווח שלי</a>
+             <a href="../home-page/homepage.html#about-us">קצת עלינו</a>
+             <a href="../home-page/homepage.html#contact">יצירת קשר</a>
+          
+          </nav>
+          
+          <a href="../register/register.html">
+            <img class="user" src="../../css/dist/user.svg" alt="">
+          </a>
+         
+      
+         
+        </div>
+      </div>
+      <div class="popup" id="popup">
+      </div>
+  
+      <div dir="rtl" class="row">
+        <div class="columna">
+  <h1 class="heading">מעקב אחר ההכנסות שלך בעמוד אחד </h1>
+    
+  <div class="label" id="revenues">
+      <h2 class="h2">הכנס את ההכנסות שלך כאן</h2>
+      
+      <form id="incomeForm">
+        <label id="salaryPensionLabel" for="שכר-פנסיה">שכר מעבודה\פנסיה:</label>
+        <select class="select" id="salary-pension-frequency" name="salary-pension-frequency">
+          <option value="חודשי">חודשי</option>
+          <option value="אחת לחודשיים">אחת לחודשיים</option>
+          <option value="שנתי">שנתי</option>
+        </select>
+        <input type="number" id="salary-pension-amount" name="salary-pension-amount" placeholder="הכנס סכום">
+        <br><br>
+      
+        <label id="govSupportLabel" for="gov-support">קצבאות מהממשלה:</label>
+        <select class="select" id="gov-support-frequency" name="gov-support-frequency">
+          <option value="חודשי">חודשי</option>
+          <option value="אחת לחודשיים">אחת לחודשיים</option>
+          <option value="שנתי">שנתי</option>
+        </select>
+        <input type="number" id="gov-support-amount" name="gov-support-amount" placeholder="הכנס סכום">
+        <br><br>
+      
+        <label id="rentalIncomeLabel" for="rental-income">הכנסה משכירות:</label>
+        <select class="select" id="rental-income-frequency" name="rental-income-frequency">
+          <option value="חודשי">חודשי</option>
+          <option value="אחת לחודשיים">אחת לחודשיים</option>
+          <option value="שנתי">שנתי</option>
+        </select>
+        <input type="number" id="rental-income-amount" name="rental-income-amount" placeholder="הכנס סכום">
+        <br><br>
+      
+        <label id="otherSupportLabel" for="other-support">תמיכה נוספת:</label>
+        <select class="select" id="other-support-frequency" name="other-support-frequency">
+          <option value="חודשי">חודשי</option>
+          <option value="אחת לחודשיים">אחת לחודשיים</option>
+          <option value="שנתי">שנתי</option>
+        </select>
+        <input type="number" id="other-support-amount" name="other-support-amount" placeholder="הכנס סכום">
+        <br><br>
+      
+        <label id="giftsBonusesLabel" for="gifts-bonuses">מתנות ובנוסים</label>
+        <select class="select" id="gifts-bonuses-frequency" name="gifts-bonuses-frequency">
+          <option value="חודשי">חודשי</option>
+          <option value="אחת לחודשיים">אחת לחודשיים</option>
+          <option value="שנתי">שנתי</option>
+        </select>
+        <input type="number" id="gifts-bonuses-amount" name="gifts-bonuses-amount" placeholder="הכנס סכום">
+        <br><br>
+      
+        <label id="otherIncomeLabel" for="other-income">שכחנו משהו?  הכנסה בהתאמה אישית:</label>
+        <input type="text" id="other-income-name" name="other-income-name" placeholder=" שם הכנסה ">
+        <select class="select" id="other-income-frequency" name="other-income-frequency">
+          <option value="חודשי">חודשי</option>
+          <option value="אחת לחודשיים">אחת לחודשיים</option>
+          <option value="שנתי">שנתי</option>
+        </select>
+        <input type="number" id="other-income-amount" name="other-income-amount" placeholder="הכנס סכום">
+        <br><br>
+      
+        <input type="submit" class="submit_full" id="submitBtnIncome" value="חשב סכום הכנסות ">
+      </form>
+      
+</div>
+<div id="rootName"></div>
+<div id="result"></div>
+<div id="incomeTable"></div>
+<canvas id="chartElement"></canvas>
+
+
+
+</div>
+<footer class="footer">
+    <div dir="rtl" class="footer-container">
+      <div class="column">
+        <h4>מפת האתר</h4>
+        <nav class="nav Foter" id="nav">
+          <a href="../home-page/homepage.html">עמוד הבית</a>
+       <a href="../home/Income.html"> הכנסות</a>
+       <a href="../home/expenses.html">הוצאות</a>
+       <a href="../home/profit.html">הרווח שלי</a>
+       <a href="../home-page/homepage.html#about-us">קצת עלינו</a>
+       <a href="../home-page/homepage.html#contact">יצירת קשר</a>
+        </nav>
+      </div>
+      <div class="column">
+        <h4>הירשמו לניוזלייטר שלנו</h4>
+        <p>הצטרפו לרשימת התפוצה שלנו ותהיו מעודכנים בחידושים נוספים!</p>
+        <form>
+          <input type="email" placeholder="כתובת מייל" required>
+          <button type="submit">תרשמו אותי!</button>
+        </form>
+      </div>
+      <div class="column">
+        <h4>"מקסם את העושר שלך  ללא מאמץ"
+        </h4>
+        <img class="logo fot" src="../../css/dist/banky-low-resolution-logo-white-on-black-background-removebg-preview.png">
+        
+      </div>
+    </div>
+  </footer>
+  
+</body>
+</html>

@@ -5,16 +5,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" media="screen and (max-width:600px)" href="../scss/responsive.scss">
     <link rel="stylesheet" href="../scss/dist/style.css">
     <script src="../ts/dist/gameItself.js" defer></script>
     <script src="../ts/dist/script.js" defer></script>
 </head>
 
 <body>
-    <div id="container">
+    <div class="position" id="container">
+        <div id="container__life"></div>
         <div id="container__player"></div>
         <div id="container__shoot"></div>
-        <canvas width="800" height="600"></canvas>
+        <div id="container__ball"></div>
+        <div id="container__gameOver"></div>
+
 
     </div>
 

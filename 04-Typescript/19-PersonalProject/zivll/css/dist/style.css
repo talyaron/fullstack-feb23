@@ -31,7 +31,7 @@ body {
   background-color: #fff;
 }
 .wrapper .header .logo img {
-  height: 75px;
+  height: 100px;
 }
 .wrapper .forms {
   grid-row: 2/4;
@@ -125,6 +125,30 @@ body {
   background: linear-gradient(360deg, transparent, #03e9f4);
   animation: btn-anim4 1s linear infinite;
   animation-delay: 0.75s;
+}
+.wrapper .forms .calculators form input[type=submit i] {
+  position: relative;
+  display: inline-block;
+  padding: 10px 20px;
+  color: #fff;
+  font-size: 18px;
+  font-weight: bold;
+  text-decoration: none;
+  text-transform: uppercase;
+  overflow: hidden;
+  transition: 0.5s;
+  margin-top: 5px;
+  letter-spacing: 4px;
+  background-color: #03e9f4;
+  border-radius: 5px;
+  border: none;
+}
+.wrapper .forms .calculators form input[type=submit i]:hover {
+  cursor: pointer;
+  background: #03e9f4;
+  color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 5px #03e9f4, 0 0 25px #03e9f4, 0 0 50px #03e9f4, 0 0 100px #03e9f4;
 }
 .wrapper .forms .calculators form .user-box {
   position: relative;
@@ -255,6 +279,7 @@ body {
 .wrapper .result .total-number {
   font-size: 2rem;
   font-weight: bold;
+  direction: ltr;
 }
 .wrapper .result .total-number--income {
   color: green;
@@ -262,13 +287,16 @@ body {
 .wrapper .result .total-number--expence {
   color: red;
 }
-.wrapper .expenses-details {
+.wrapper .result .total-number--balance {
+  font-weight: bold;
+}
+.wrapper .expenses-table {
   grid-row: 3;
   grid-column: 1;
   display: flex;
   justify-content: center;
 }
-.wrapper .expenses-details table {
+.wrapper .expenses-table table {
   width: 500px;
   font-size: 1.3rem;
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.301);
@@ -276,39 +304,69 @@ body {
   border-collapse: collapse;
   height: fit-content;
 }
-.wrapper .expenses-details table td {
+.wrapper .expenses-table td {
   padding: 7px;
   height: 40px;
+  text-align: center;
 }
-.wrapper .expenses-details table td:nth-child(even) {
+.wrapper .expenses-table td:nth-child(3) {
+  width: 75px;
   text-align: left;
-  direction: ltr;
 }
-.wrapper .expenses-details table .thead {
+.wrapper .expenses-table td .edit {
+  cursor: pointer;
+  color: #0f81c7;
+  width: 30px;
+  height: auto;
+}
+.wrapper .expenses-table td .delete {
+  cursor: pointer;
+  color: red;
+  width: 30px;
+  height: auto;
+}
+.wrapper .expenses-table .thead {
+  transition: 0.4s;
   position: relative;
   cursor: pointer;
 }
-.wrapper .expenses-details table .thead:hover,
-.wrapper .expenses-details table .thead :active {
+.wrapper .expenses-table .thead:hover,
+.wrapper .expenses-table .thead :active {
+  background-color: #ccc;
   color: #0f81c7;
 }
-.wrapper .expenses-details table .thead,
-.wrapper .expenses-details table tr {
+.wrapper .expenses-table .active {
+  background-color: #ccc;
+  color: #0f81c7;
+}
+.wrapper .expenses-table .off {
+  display: none;
+}
+.wrapper .expenses-table .thead,
+.wrapper .expenses-table tr {
   width: 100%;
   border-bottom: solid 1px rgba(0, 0, 0, 0.151);
   height: 40px;
 }
-.wrapper .expenses-details table .thead .collapse-icon,
-.wrapper .expenses-details table tr .collapse-icon {
+.wrapper .expenses-table .thead .collapse-icon,
+.wrapper .expenses-table tr .collapse-icon {
   width: 20px;
   height: 100%;
   position: absolute;
   left: 5px;
   top: 0;
 }
-.wrapper .expenses-details table tbody {
+.wrapper .expenses-table tbody {
   border-bottom: solid 1px rgba(0, 0, 0, 0.151);
 }
-.wrapper .expenses-details table .tfoot td {
+.wrapper .expenses-table tbody:nth-child(even) {
+  background-color: #eeeeeeb6;
+}
+.wrapper .expenses-table tbody:nth-child(even) .tbody {
+  transition: max-height 0.2s ease-out;
+  overflow: hidden;
+  width: 100%;
+}
+.wrapper .expenses-table tbody .tfoot td {
   font-weight: bold;
 }
