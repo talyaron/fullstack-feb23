@@ -1,0 +1,41 @@
+body {
+  font-family: sans-serif;
+}
+body .table {
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  background: green;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+body .main {
+  position: absolute;
+  top: -10px;
+  left: 200px;
+  border: grey 2px solid;
+  background: rgba(128, 128, 128, 0.372);
+}
+body .main .dish {
+  border: gray solid 2px;
+  background: rgba(128, 128, 128, 0.205);
+}
+body ul {
+  position: absolute;
+  top: 60px;
+  left: 550px;
+  margin: 0 80px;
+}
+body ul li {
+  list-style: none;
+}
+body ul #add {
+  margin-top: 10px;
+}
+body .check {
+  width: 30%;
+  position: relative;
+  top: -460px;
+  left: 900px;
+}
