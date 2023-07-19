@@ -493,9 +493,9 @@ function endOfGame(player: Player) {   // kill listener events, clock intervals 
         addGameResultToTable(player);
         debugger;
         if (scoreTable === undefined) throw new Error("Missing players");
-        const highScore = scoreTable?.findIndex(p => p.record <= player.currentScore);
+        const highScore = scoreTable?.findIndex(p => p.record > player.currentScore);
         setTimeout(function () {
-            if (highScore == 0)
+            if (highScore == -1)
                 alert("Great job! You got a new record");
             location.href = "../HTML/scoreTable.html";
         }, 5000)
