@@ -119,7 +119,7 @@ function renderAddProductForm() {
         var btn = document.querySelector("#addProductBtn");
         btn.innerHTML = "+";
     }
-    root.innerHTML = "\n      <form id=\"addProductForm\" onsubmit=\"handelNewProduct(event)\">\n      <label for=\"newName\"> name of product: </label>\n      <input type=\"text\" id=\"newName\" required><br>\n      <label for=\"newImgSrc\"> Image source of product: </label>\n      <input type=\"url\" id=\"newImgSrc\" required><br>\n      <label for=\"newAmount\"> Image address: </label>\n      <input type=\"number\" id=\"newAmount\" value=\"0\" min=\"0\"><br>\n      <label for=\"newPrice\"> Price: </label><br>\n      <input type=\"text\" id=\"newPrice\" required>\n      <br><button type=\"submit\">ADD</button>\n      </form>";
+    root.innerHTML = "\n      <form id=\"addProductForm\" onsubmit=\"handelNewProduct(event)\">\n      <label for=\"newName\"> name of product: </label>\n      <input type=\"text\" id=\"newName\" required><br>\n      <label for=\"newImgSrc\"> Image address: </label>\n      <input type=\"url\" id=\"newImgSrc\" required><br>\n      <label for=\"newAmount\"> Amount: </label>\n      <input type=\"number\" id=\"newAmount\" value=\"0\" min=\"0\"><br>\n      <label for=\"newPrice\"> Price: </label><br>\n      <input type=\"text\" id=\"newPrice\" required>\n      <br><button type=\"submit\">ADD</button>\n      </form>";
 }
 function handelNewProduct(ev) {
     ev.preventDefault();
