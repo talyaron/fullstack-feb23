@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../scss/dist/home.css" />
+    <link rel="stylesheet" href="../scss/dist/edit.css" />
+    <link rel="stylesheet" href="../scss/dist/gameS.css" />
+    <link rel="stylesheet" href="../scss/dist/gameE.css" />
+    <script src="../js/dist/home.js" defer></script>
+    <script src="../js/dist/edit.js" defer></script>
+    <script src="../js/dist/gameS.js" defer></script>
+    <script src="../js/dist/gameE.js" defer></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <title>Home</title>
+  </head>
+  <body>
+    <div class="home-page">
+      <form onclick="handleUserDetails(event)">
+        <div class="home-page__details">
+          <div class="details__nameInput">
+            <input
+              type="text"
+              name="name"
+              id="name"
+              placeholder="Type your name"
+              required
+            />
+            <button type="submit" class="btn-list">
+              <i class="fa fa-plus"></i>
+            </button>
+          </div>
+          <div class="details__container">
+            <ul></ul>
+          </div>
+          <div class="details__characters-container">
+            <img id="character-image" src="" alt="" />
+          </div>
+          <div class="details__coins">
+            <label for="coins">Coins:</label>
+            <span id="coinsValue">0</span>
+          </div>
+          <img id="characterImage" src="" alt="" />
+          <div class="details__buttons">
+            <a id="editBtn" href="../view/edit.html">Edit</a>
+            <button id="submit">Submit</button>
+          </div>
+        </div>
+        <div class="home-page__tap-to-play">
+          <a href="../view/gameS.html" id="tap-to-play">Tap to play</a>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
