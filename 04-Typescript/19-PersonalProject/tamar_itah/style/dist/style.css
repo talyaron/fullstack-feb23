@@ -1,0 +1,191 @@
+body {
+  position: relative;
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#body_login {
+  background-image: url(https://media.istockphoto.com/id/1144516771/photo/misty-letters-float-up-from-open-book-words-are-magic.jpg?s=612x612&w=0&k=20&c=DhXfL4UVaONm61jXApYcDNgtyIJMJ5Iuqk6iUQ_RJIA=);
+}
+
+#body_index {
+  background-image: url(https://media.istockphoto.com/id/1163788069/vector/vector-set-of-white-cubes-3d-square-boxes-under-different-angles-paper-style-rotated.jpg?s=612x612&w=0&k=20&c=CCwDdFN2X37QtLg1vtfb3oUpgrh2-EiJ-_BwqrUYD8Y=);
+}
+
+#body_game {
+  background-image: url(https://media.istockphoto.com/id/1420962747/vector/falling-letters-of-english-language-pastel-flying-words-of-latin-alphabet-foreign-languages.jpg?s=612x612&w=0&k=20&c=ow1bSpjNhWHoYFFtEsBHvQIVCEbNeBX77KcF8qL0eKE=);
+}
+
+h2 {
+  color: lavenderblush;
+}
+
+h4 {
+  font-size: 26px;
+}
+
+#h4i {
+  color: white;
+}
+
+.wrapper {
+  position: relative;
+  text-align: center;
+  margin: 20px 50px;
+  top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.cards {
+  display: inline-grid;
+  height: 300px;
+  gap: 30px 70px;
+  grid-template-areas: ". c1 ." "c2 c3 c4";
+}
+
+.card {
+  height: 120px;
+  width: 150px;
+  border: 1px solid sandybrown;
+  border-radius: 15px;
+  font-size: 30px;
+  text-align: center;
+  background-color: #e6c89c;
+  vertical-align: middle;
+  line-height: 120px;
+  box-shadow: 6px 6px 10px yellow;
+}
+
+.c1 {
+  grid-area: c1;
+  background-color: goldenrod;
+}
+
+.c2:hover,
+.c3:hover,
+.c4:hover {
+  font-size: 39px;
+}
+
+.c2 {
+  grid-area: c2;
+}
+
+.c3 {
+  grid-area: c3;
+}
+
+.c4 {
+  grid-area: c4;
+}
+
+.btnF {
+  display: inherit;
+  background-color: #d98a52;
+  color: #170ff1;
+  font-size: 20px;
+  border-radius: 40%;
+  border: 0px;
+  position: relative;
+}
+
+.btnF2 {
+  background-color: #40db8e;
+  border-radius: 50%;
+  height: 35px;
+  width: 100px;
+}
+
+#score {
+  color: crimson;
+  font-size: 25px;
+}
+
+#instruction {
+  font-size: 20px;
+}
+
+#massege {
+  height: 25px;
+}
+
+#correct {
+  color: aqua;
+  font-size: larger;
+}
+
+#wrong {
+  color: red;
+}
+
+.tableOfScores {
+  margin-top: 20px;
+  /* Add some top margin to separate from the header */
+}
+
+#hth {
+  width: 350px;
+}
+
+th,
+td {
+  padding: 8px;
+  /* Add padding to space out content from the borders */
+  text-align: center;
+  /* Center the text in the cells */
+}
+
+table,
+th,
+td {
+  width: 300px;
+  font-weight: bolder;
+  background-color: aquamarine;
+}
+
+table {
+  border: 3px solid lightskyblue;
+}
+
+@media only screen and (max-width: 1024px) {
+  .cards {
+    gap: 20px 100px;
+  }
+}
+@media only screen and (max-width: 800px) {
+  .cards {
+    gap: 15px 40px;
+  }
+
+  .card {
+    height: 60px;
+    width: 80px;
+    font-size: 20px;
+    line-height: 60px;
+  }
+
+  .btnF {
+    font-size: 15px;
+  }
+}
+@media only screen and (max-width: 500px) {
+  .cards {
+    gap: 5px 20px;
+  }
+
+  .card {
+    height: 60px;
+    width: 80px;
+    font-size: 15px;
+    line-height: 60px;
+  }
+
+  .btnF {
+    display: inline;
+    align-items: center;
+  }
+}

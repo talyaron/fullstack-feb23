@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="dist/login.css">
+    <link rel="stylesheet" href="dist/btn.style.css">
+    <title>TmS</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1>welcome to TmS store</h1>
+        <form onsubmit="saveDetails(event)" class="container__form">
+            <h2>Put your Details</h2>
+            <input type="text" name="name" placeholder="name">
+            <input type="password" name="pass" placeholder="password">
+            <input type="email" name="email" placeholder="email">
+            <input type="number" name="number" placeholder="age">
+            <hr>
+            <button type="submit" style="--content: 'click me!';" href="https://twitter.com/kamildyrek">
+                <div class="left"></div>
+                click me!
+                <div class="right"></div>
+            </button>
+        </form>
+    </div>
+    <script src="dist/login.js"></script>
+</body>
+
+</html>

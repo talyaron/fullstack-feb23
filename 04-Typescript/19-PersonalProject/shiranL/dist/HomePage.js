@@ -10,6 +10,7 @@ function loadCharacters() {
             characters_1.push(new Character("Barak Sery", "./dist/3.png"));
             characters_1.push(new Character("Eli Nacht", "./dist/4.png"));
             characters_1.push(new Character("Eli Lachmani", "./dist/5.png"));
+            characters_1.push(new Character("zvi zilker", "./dist/5.png"));
             //save to local storage
             var charactersJson = JSON.stringify(characters_1);
             localStorage.setItem('characters', charactersJson);
@@ -34,7 +35,7 @@ function loadCities() {
         var citiesString = localStorage.getItem('cities');
         if (!citiesString) { // if there is not characters on json , create new []
             var hotels = [];
-            cities_1.push(new City("Rova Alef", hotels, "./dist/ashdod.jpg", 1));
+            cities_1.push(new City("Rova Alef", hotels, "./dist/rovaA1.jpg", 1));
             cities_1.push(new City("Rova Bet", hotels, "./dist/ashdod.jpg", 2));
             cities_1.push(new City("Rova Gimel", hotels, "./dist/Jerusalem.jpg", 3));
             cities_1.push(new City("Rova Daled", hotels, "./dist/telAviv.jpg", 4));
@@ -131,10 +132,10 @@ function loadJails() {
         var jails_1 = [];
         var jailsString = localStorage.getItem('jails');
         if (!jailsString) { // if there is not characters on json , create new []
-            jails_1.push(new Jail("Neve Tirza", ""));
-            jails_1.push(new Jail("Ofek", ""));
-            jails_1.push(new Jail("400", ""));
-            jails_1.push(new Jail("Dekel", ""));
+            jails_1.push(new Jail("Neve Tirza", "./dist/jail.jpg"));
+            jails_1.push(new Jail("Ofek", "./dist/jail.jpg"));
+            jails_1.push(new Jail("400", "./dist/jail2.jpg"));
+            jails_1.push(new Jail("Dekel", "./dist/jail.jpg"));
             //save to local storage
             var jailsJson = JSON.stringify(jails_1);
             localStorage.setItem('jails', jailsJson);
@@ -162,6 +163,8 @@ function loadQuestionGoodThings() {
             goodThings_1.push(new QuestionGoodThings("Surprise", "A large contractor decided to donate a hotel, take the money and use it wisely", getRandomNumber(1500, 1700)));
             goodThings_1.push(new QuestionGoodThings("Dog Gift", "Congratulations you won a pet dog", getRandomNumber(50, 100)));
             goodThings_1.push(new QuestionGoodThings("Thank U", "I see your effort to do for the residents of the city, get reinforcement for continued fruitful work", getRandomNumber(550, 550)));
+            goodThings_1.push(new QuestionGoodThings("Wow!", "Run for mayor! The city needs a mayor like you,Here is help with the propaganda budget", getRandomNumber(550, 1000)));
+            goodThings_1.push(new QuestionGoodThings("A proud citizen", "You helped an elderly man cross the road safely. Get an assessment!", getRandomNumber(750, 1000)));
             //save to local storage
             var goodThingsJson = JSON.stringify(goodThings_1);
             localStorage.setItem('goodThings', goodThingsJson);
@@ -189,6 +192,7 @@ function loadQuestionBadThings() {
             badThings_1.push(new QuestionBadThings("Stinky fish", "There is an overflow from the stream, full of dead fish. The loss is on you this timec", getRandomNumber(800, 1000)));
             badThings_1.push(new QuestionBadThings("It stinks here", "Received too many calls about trash removal this morning, Help a little with the evacuation budget", getRandomNumber(800, 1000)));
             badThings_1.push(new QuestionBadThings("A proud citizen", "Your contribution to the city is welcomed", getRandomNumber(800, 1000)));
+            badThings_1.push(new QuestionBadThings("shame", "That's how it is in a democracy.. everyone pays taxes", getRandomNumber(1000, 1200)));
             //save to local storage
             var badThingsJson = JSON.stringify(badThings_1);
             localStorage.setItem('badThings', badThingsJson);
@@ -198,7 +202,7 @@ function loadQuestionBadThings() {
             //get characters from localstorage
             var badThingsArray = JSON.parse(badThingsString);
             badThingsArray.forEach(function (bad) {
-                badThings_1.push(new QuestionBadThings(bad.bdThingsTitel, bad.badThingsDescription, bad.purchasePrice, bad.badThingsId));
+                badThings_1.push(new QuestionBadThings(bad.badThingsTitel, bad.badThingsDescription, bad.purchasePrice, bad.badThingsId));
             });
         }
         return badThings_1;
@@ -259,12 +263,6 @@ function loadDataToBoard(board) {
         if (cities) {
             board.cities = cities;
         }
-        // Load hotels and add them to the board
-        var hotels = [];
-        loadHotels(hotels);
-        if (hotels) {
-            board.hotels = hotels;
-        }
         // Load jails and add them to the board
         var jails = loadJails();
         if (jails) {
@@ -278,6 +276,7 @@ function loadDataToBoard(board) {
         // Load bad things and add them to the board
         var badThings = loadQuestionBadThings();
         if (badThings) {
+            debugger;
             board.badThings = badThings;
         }
         console.log('Data loaded to the board successfully!');
@@ -291,20 +290,19 @@ function renderHomePage(gamesBoards, characters) {
         var startNewGameHtml = document.querySelector("#chooseNumberOfPlayers");
         if (!startNewGameHtml)
             throw new Error("Cannot find startNewGame HTML element");
+        if (!gamesBoards)
+            throw new Error("Cannot find startNewGame HTML element");
         // Create the form element
         var form = document.createElement("form");
         form.classList.add("StartNewGame__numOfPlayers");
         // Create the label for the number of players input
         var label = document.createElement("label");
-        label.textContent = "Number of Players: ";
+        label.textContent = "Enter number of players: ";
         // Create the input element for choosing the number of players
         var input_1 = document.createElement("input");
         input_1.type = "number";
         input_1.min = "2";
         input_1.max = "6";
-        // Append the label and input to the form
-        form.appendChild(label);
-        form.appendChild(input_1);
         // Create the "Start Game" button
         var startButton = document.createElement("button");
         startButton.textContent = "Start Game";
@@ -314,17 +312,35 @@ function renderHomePage(gamesBoards, characters) {
             event.preventDefault(); // Prevent the form from submitting and refreshing the page
             var numPlayers = parseInt(input_1.value, 10);
             var selectedCharacters = getSelectedCharacters(numPlayers, characters);
-            startGame(numPlayers, gamesBoards, selectedCharacters);
+            if (!selectedCharacters)
+                alert("Must Enter numbers of players");
+            else
+                handelStartGame(numPlayers, gamesBoards, selectedCharacters);
         });
         // Append the button to the form
+        form.appendChild(label);
+        form.appendChild(input_1);
         form.appendChild(startButton);
-        // Append the form to the startNewGame HTML element
-        startNewGameHtml.appendChild(form);
         // Add dropdowns for choosing characters
         input_1.addEventListener("change", function (event) {
             var numPlayers = parseInt(input_1.value, 10);
             renderCharacterDropdowns(numPlayers, characters);
         });
+        // Check if there is an open game board
+        var openGameBoard = gamesBoards.find(function (board) { return board.gameStatus === true; });
+        if (openGameBoard) {
+            // Create the "Open Active Game" button
+            var openActiveGameButton = document.createElement("button");
+            openActiveGameButton.textContent = "Open Active Game";
+            startNewGameHtml.appendChild(openActiveGameButton);
+            openActiveGameButton.addEventListener("click", function () {
+                // Handle opening the active game
+                window.location.href = "./ActiveGame.html";
+            });
+        }
+        // Append the form to the startNewGame HTML element  
+        else
+            startNewGameHtml.appendChild(form);
     }
     catch (error) {
         console.error(error);
@@ -358,11 +374,36 @@ function renderCharacterDropdowns(numPlayers, characters) {
         if (!characterSelectionHtml)
             throw new Error("Cannot find characterSelection HTML element");
         characterSelectionHtml.innerHTML = "";
+        // Create an array to keep track of selected character IDs for each player
+        var selectedCharacters_1 = [];
+        var ChractersForm = document.createElement("form");
+        ChractersForm.id = "ChractersForm";
         var _loop_2 = function (i) {
             var dropdownLabel = document.createElement("label");
             dropdownLabel.textContent = "Player " + i + " Character: ";
             var dropdown = document.createElement("select");
             dropdown.id = "player" + i + "Character";
+            // Add an event listener to the dropdown
+            dropdown.addEventListener("change", function (event) {
+                var selectedCharacterId = parseInt(event.target.value);
+                // Remove the selected character from other dropdowns' options
+                for (var j = 1; j <= numPlayers; j++) {
+                    if (j !== i) {
+                        var otherDropdown = document.querySelector("#player" + j + "Character");
+                        var optionToRemove = otherDropdown.querySelector("option[value=\"" + selectedCharacterId + "\"]");
+                        if (optionToRemove) {
+                            otherDropdown.removeChild(optionToRemove);
+                        }
+                    }
+                }
+                // Update the selected character for the current player
+                selectedCharacters_1[i - 1] = selectedCharacterId;
+            });
+            // Add an empty option as the default selection
+            var emptyOption = document.createElement("option");
+            emptyOption.value = "";
+            emptyOption.text = "Select a character";
+            dropdown.appendChild(emptyOption);
             // Add options for each character
             if (characters) {
                 characters.forEach(function (character) {
@@ -372,8 +413,9 @@ function renderCharacterDropdowns(numPlayers, characters) {
                     dropdown.appendChild(option);
                 });
             }
-            characterSelectionHtml.appendChild(dropdownLabel);
-            characterSelectionHtml.appendChild(dropdown);
+            ChractersForm.appendChild(dropdownLabel);
+            ChractersForm.appendChild(dropdown);
+            characterSelectionHtml.appendChild(ChractersForm);
         };
         // Create a dropdown for each player
         for (var i = 1; i <= numPlayers; i++) {
@@ -384,26 +426,48 @@ function renderCharacterDropdowns(numPlayers, characters) {
         console.error(error);
     }
 }
-function startGame(numPlayers, gamesBoards, selectedCharacters) {
+function handelStartGame(numPlayers, gamesBoards, selectedCharacters) {
     try {
+        var ChractersForm = document.querySelector("#ChractersForm");
+        if (!ChractersForm) {
+            throw new Error("Cannot find ChractersForm");
+        }
         if (!gamesBoards)
             throw new Error("Cannot find game board");
-        startNewGame(gamesBoards);
-        var currentGame = gamesBoards === null || gamesBoards === void 0 ? void 0 : gamesBoards.find(function (game) { return game.gameStatus === true; });
-        if (!currentGame)
-            throw new Error("Cannot find game Activ Game");
-        loadDataToBoard(currentGame);
-        // Create the players
-        for (var i = 1; i <= numPlayers; i++) {
-            var character = selectedCharacters[i - 1]; // Get the corresponding selected character
-            var playerName = "" + character.characterName;
-            var player = new Player(playerName, false, true, undefined, undefined, character);
-            currentGame.players.push(player);
+        //check if there is open game befor open new one
+        var openGame = gamesBoards.find(function (board) { return board.gameStatus === true; });
+        if (openGame) {
+            // dialog alert
+            alert("There is an open game already");
         }
-        // Navigate to the game page
-        saveBoards(gamesBoards);
-        console.log("Game started!");
-        window.location.href = "./ActiveGame.html";
+        else {
+            var allCharactersSelected = selectedCharacters.length === numPlayers;
+            if (!allCharactersSelected) {
+                var dialog_1 = document.createElement('dialog');
+                dialog_1.id = 'dialog';
+                dialog_1.innerHTML = 'Must select characters for all players';
+                dialog_1.addEventListener('click', function () { return dialog_1.close(); });
+                document.body.appendChild(dialog_1);
+                dialog_1.showModal();
+                return; // Stop execution if not all characters are selected
+            }
+            startNewGame(gamesBoards);
+            var currentGame = gamesBoards === null || gamesBoards === void 0 ? void 0 : gamesBoards.find(function (game) { return game.gameStatus === true; });
+            if (!currentGame)
+                throw new Error("Cannot find Activ Game");
+            loadDataToBoard(currentGame);
+            // Create the players
+            for (var i = 1; i <= numPlayers; i++) {
+                var character = selectedCharacters[i - 1]; // Get the corresponding selected character
+                var playerName = "" + character.characterName;
+                var player = new Player(playerName, false, true, undefined, undefined, character);
+                currentGame.players.push(player);
+            }
+            // Navigate to the game page
+            saveBoards(gamesBoards);
+            console.log("Game started!");
+            window.location.href = "./ActiveGame.html";
+        }
     }
     catch (error) {
         console.error("Error starting the game:", error);
@@ -412,20 +476,5 @@ function startGame(numPlayers, gamesBoards, selectedCharacters) {
 // get data for new game
 var characters = loadCharacters();
 var gamesBoards = loadBoards();
+// render new game,  will render the from to choose character the btn to start game
 renderHomePage(gamesBoards, characters);
-//load data for dashboard
-// const characters : Character[] | undefined = loadCharacters();
-// const hotels : Hotel[] | undefined = [];
-// const cities : City[] |undefined=loadCities();
-// const jails : Jail[] |undefined=loadJails();
-// const goodThings : QuestionGoodThings[] |undefined =loadQuestionGoodThings();
-// const badThings : QuestionBadThings[] |undefined =loadQuestionBadThings();
-// const gameBords= loadBoard();
-// loadHotels(hotels);
-// loadHotelsToCities(cities,hotels);
-// console.log(characters);
-// console.log(cities);
-// console.log(hotels);
-// console.log(jails);
-// console.log(goodThings);
-// console.log(badThings);

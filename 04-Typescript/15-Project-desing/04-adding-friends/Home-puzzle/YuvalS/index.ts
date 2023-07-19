@@ -82,6 +82,10 @@ function renderProductCard(product: Product) {
     </div>
 `
         }
+<<<<<<< HEAD
+=======
+        
+>>>>>>> 739c24e868222afd020880edb0b95cbe98262c5d
 
 
     } catch (error) {
@@ -89,3 +93,7 @@ function renderProductCard(product: Product) {
         return ''
     }
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 739c24e868222afd020880edb0b95cbe98262c5d

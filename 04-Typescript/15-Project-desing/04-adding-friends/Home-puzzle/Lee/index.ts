@@ -4,7 +4,10 @@
 
 class Vegetable {
     id: string;
+<<<<<<< HEAD
     isEdit: boolean = false;
+=======
+>>>>>>> 739c24e868222afd020880edb0b95cbe98262c5d
     constructor(public kind: string, public image: string, public quantity: number, id?: string | null) {
         if (id) {
             this.id = id;
@@ -12,10 +15,13 @@ class Vegetable {
             this.id = `id-${new Date().getTime()}-${Math.random()}`;
         }
     }
+<<<<<<< HEAD
 
     setEdit(set: boolean) {
         this.isEdit = set;
     }
+=======
+>>>>>>> 739c24e868222afd020880edb0b95cbe98262c5d
 }
 
 
@@ -80,6 +86,7 @@ function renderAllVegetables(vegetables: Vegetable[], htmlElement: HTMLElement |
 function renderVegCard(vegetable: Vegetable) {
 
     try {
+<<<<<<< HEAD
         debugger
         if (vegetable.isEdit) {
             return  `<form  class="card" onsubmit="handleSet(event)" id="${vegetable.id}">
@@ -104,11 +111,21 @@ function renderVegCard(vegetable: Vegetable) {
     </form>`
         }
 
+=======
+
+        return `<div class="card"> 
+        <img src="${vegetable.image}">
+        <p>${vegetable.kind}</p>
+        <p>${vegetable.quantity}</p>
+        <button onclick="handleDeleteVeg('${vegetable.id}')">Delete</button>
+        </div>`
+>>>>>>> 739c24e868222afd020880edb0b95cbe98262c5d
 
     } catch (error) {
         console.error(error)
         return ''
     }
+<<<<<<< HEAD
 
 }
 function handleSet(ev:any){
@@ -148,10 +165,25 @@ function handleDeleteVeg(vegId: string) {
 
         renderAllVegetables(vegetables, document.querySelector("#rootVegetables"))
 
+=======
+}
+
+function handleDeleteVeg(vegId: string){
+    try {
+        const index = vegetables.findIndex(vegetable => vegetable.id === vegId);
+        if(index === -1) throw new Error ("Could not find vegetable");
+
+        vegetables.splice(index,1);
+        localStorage.setItem("vegetables", JSON.stringify(vegetables))
+
+        renderAllVegetables(vegetables, document.querySelector("#rootVegetables"))
+ 
+>>>>>>> 739c24e868222afd020880edb0b95cbe98262c5d
     } catch (error) {
         console.error(error)
 
     }
+<<<<<<< HEAD
 }
 
 function handleEdit(vegetableId:string){
@@ -167,4 +199,6 @@ function handleEdit(vegetableId:string){
         console.error(error)
         
     }
+=======
+>>>>>>> 739c24e868222afd020880edb0b95cbe98262c5d
 }

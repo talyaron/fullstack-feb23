@@ -174,6 +174,7 @@ function userSearch() {
     var userSearch = search.value;
     var regexp = new RegExp("^" + userSearch);
     var vegetablesFromSearch = [];
+<<<<<<< HEAD
     var result = vegetables.filter(function (vegetable) { return regexp.test(vegetable.name); });
     if (result.length === 0) {
         renderVeagtable(vegetablesFromSearch, rootvegetables);
@@ -187,6 +188,12 @@ function userSearch() {
                 break;
             case regexp.test(vegetable.name) === null:
                 throw new Error("there is no match") && alert("there is no match");
+=======
+    vegetables.forEach(function (vegetable) {
+        if (regexp.test(vegetable.name)) {
+            vegetablesFromSearch.push(vegetable);
+            renderVeagtable(vegetablesFromSearch, rootvegetables);
+>>>>>>> 739c24e868222afd020880edb0b95cbe98262c5d
         }
     });
 }

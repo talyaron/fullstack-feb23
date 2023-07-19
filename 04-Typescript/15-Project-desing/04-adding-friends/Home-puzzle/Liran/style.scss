@@ -1,10 +1,14 @@
+<<<<<<< HEAD
 body{
     height: 98vh;
 }
+=======
+>>>>>>> 739c24e868222afd020880edb0b95cbe98262c5d
 .card{
     border-radius: 20px;
     padding: 20px;
     box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.464);
+<<<<<<< HEAD
     width: 180px;
     align-content: center;
     height: 250px;
@@ -38,11 +42,25 @@ body{
     input{
         width: 80px;
     }
+=======
+    width: 300px;
+    
+    img{
+        width: 100%;
+    }
+}
+
+button {
+    width: fit-content;
+    height: fit-content;
+}
+>>>>>>> 739c24e868222afd020880edb0b95cbe98262c5d
 
 form{
     display: flex;
     justify-content: center;
     gap: 5px;
+<<<<<<< HEAD
     height: fit-content;
 
 }
@@ -57,4 +75,6 @@ form{
     justify-content: space-evenly;
     flex-wrap: wrap;
     height: 100%;
+=======
+>>>>>>> 739c24e868222afd020880edb0b95cbe98262c5d
 }

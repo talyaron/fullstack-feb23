@@ -89,9 +89,8 @@ var Player = /** @class */ (function () {
         this.isJail = isJail;
         this.status = status;
         this.jailIndex = 0;
-        this.indexX = 0;
-        this.indexY = 0;
-        this.Pbank = 0;
+        this.cellId = 'cell5';
+        this.Pbank = 800;
         if (playerId)
             this.playerId = playerId;
         else
@@ -113,21 +112,49 @@ var Player = /** @class */ (function () {
     return Player;
 }());
 var Board = /** @class */ (function () {
-    function Board() {
+    function Board(bordId, startdate, gameStatus, luckyCube, cities, goodThings, badThings, players, jails) {
+        this.startDate = new Date();
         this.luckyCube = 0;
         this.winner = undefined;
-        this.cities = [];
-        this.hotels = [];
-        this.goodThings = [];
-        this.badThings = [];
-        this.players = [];
-        this.jails = [];
+        if (bordId)
+            this.boardID = bordId;
+        else
+            this.boardID = ++Board.counter;
+        if (startdate)
+            this.startDate = startdate;
+        else
+            this.startDate = new Date();
+        if (gameStatus)
+            this.gameStatus = gameStatus;
+        else
+            this.gameStatus = false;
+        if (luckyCube)
+            this.luckyCube = luckyCube;
+        else
+            this.luckyCube = 0;
+        if (cities)
+            this.cities = cities;
+        else
+            this.cities = [];
+        if (goodThings)
+            this.goodThings = goodThings;
+        else
+            this.goodThings = [];
+        if (badThings)
+            this.badThings = badThings;
+        else
+            this.badThings = [];
+        if (players)
+            this.players = players;
+        else
+            this.players = [];
+        if (jails)
+            this.jails = jails;
+        else
+            this.jails = [];
     }
     Board.prototype.addCity = function (city) {
         this.cities.push(city);
-    };
-    Board.prototype.addHotel = function (hotel) {
-        this.hotels.push(hotel);
     };
     Board.prototype.addGoodThing = function (goodThing) {
         this.goodThings.push(goodThing);
@@ -141,6 +168,7 @@ var Board = /** @class */ (function () {
     Board.prototype.addJail = function (jail) {
         this.jails.push(jail);
     };
+    Board.counter = 0;
     return Board;
 }());
 function getRandomNumber(min, max) {
