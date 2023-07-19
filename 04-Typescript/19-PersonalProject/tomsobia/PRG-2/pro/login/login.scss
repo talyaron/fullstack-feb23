@@ -59,10 +59,11 @@ hr {
             border-radius: 10px;
             background-color: #D5F929;
         }
-        input[type]{
+
+        input[type] {
             font-size: 1.2vw;
-          }
-        
+        }
+
     }
 }
 
@@ -79,9 +80,10 @@ hr {
     input {
         width: 100%;
     }
-    input[type]{
+
+    input[type] {
         font-size: 1.2vw;
-      }
+    }
 
     .container__form--btn {
         font-size: 3vw;
@@ -89,6 +91,7 @@ hr {
         margin: 4vw;
     }
 }
+
 @media screen and (max-width: 300px) {
     .container {
         width: 100%;
@@ -103,9 +106,10 @@ hr {
         padding: 5vw;
         width: 100%;
     }
-    input[type]{
+
+    input[type] {
         font-size: 1.2vw;
-      }
+    }
 
     .container__form--btn {
         font-size: 2vw;

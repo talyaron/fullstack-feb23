@@ -14,20 +14,32 @@ var Details = /** @class */ (function () {
 }());
 var Detailsarray = [];
 var Detailsstring = localStorage.getItem("user");
-console.log(Detailsarray);
+if (Detailsstring) {
+    var storedData = JSON.parse(Detailsstring);
+    Detailsarray.push.apply(Detailsarray, storedData);
+}
 function login(event) {
     event.preventDefault();
-    var name = event.target.elements.name.value;
-    var pass = event.target.elements.pass.value;
-    var email = event.target.elements.email.value;
-    var id = event.target.elements.id;
-    var data = new Details(name, pass, email, id);
-    Detailsarray.push(data);
-    localStorage.setItem("user", JSON.stringify(Detailsarray));
-    event.target.reset();
-    window.location.href = "../web/web.html";
+    try {
+        var name = event.target.elements.name.value;
+        var pass = event.target.elements.pass.value;
+        var email = event.target.elements.email.value;
+        var id = event.target.elements.id.value;
+        var data = new Details(name, pass, email, id);
+        Detailsarray.push(data);
+        localStorage.setItem("user", JSON.stringify(Detailsarray));
+        event.target.reset();
+        window.location.href = "../web/web.html";
+    }
+    catch (error) {
+        console.error("An error occurred:", error);
+    }
 }
 var root = document.querySelector("#root");
-var storedData = JSON.parse(localStorage.getItem("user"));
-var lastDetails = storedData[storedData.length - 1];
-root.innerHTML = "Hello " + lastDetails.name;
+if (Detailsarray.length > 0) {
+    var lastDetails = Detailsarray[Detailsarray.length - 1];
+    root.innerHTML = "Hello " + lastDetails.name;
+}
+else {
+    root.innerHTML = "No user details available.";
+}

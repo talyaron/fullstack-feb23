@@ -1,18 +1,16 @@
 var Word = /** @class */ (function () {
-    function Word(height, word) {
-        this.height = height;
+    function Word(word) {
         this.word = word;
     }
     return Word;
 }());
-var word = getWordFromLS();
-console.log(word);
+var Words = getWordFromLS();
 function renderinputs(htmlElement) {
     try {
         htmlElement = document.querySelector("#forms");
         if (!htmlElement)
             throw new Error("No element");
-        var html = "<div class=\"input\">\n<form onsubmit=\"handleMyInput(event)\">\n    <label for=\"height\">How many guesses</label>\n    <input type=\"number\" name=\"height\" placeholder=\"Guesses\" required>\n    <label for=\"word\">What is the word</label>\n    <input type=\"text\" name=\"word\" placeholder=\"Word\" required>\n    <input type=\"submit\" value=\"START GAME\">\n</form>\n</div>";
+        var html = "<div class=\"input\">\n<form onsubmit=\"handleAddWord(event)\">\n    <label for=\"words\">Insert words</label>\n    <input type=\"text\" name=\"word\" placeholder=\"Word\" required>\n    <input type=\"submit\" value=\"ADD\">\n    </form>\n    <form onsubmit=\"handleStartGame(event)\">\n    <input type=\"submit\" value=\"START GAME\">\n</form>\n</div>";
         htmlElement.innerHTML = html;
     }
     catch (error) {
@@ -20,46 +18,55 @@ function renderinputs(htmlElement) {
     }
 }
 renderinputs(document.querySelector("#forms"));
-function handleMyInput(ev) {
+function handleAddWord(ev) {
     try {
         ev.preventDefault();
-        var height_1 = ev.target.height.value;
-        if (height_1 < 1)
-            alert("not enough guesses");
-        var myword_1 = ev.target.word.value;
-        var newWord = new Word(height_1, myword_1);
-        saveWordToLS(newWord);
-        makeBoard();
+        var inputWord = ev.target.word.value;
+        if (inputWord.length !== 5) {
+            alert("Must be 5 letters");
+            return;
+        }
+        var newWord = new Word(inputWord);
+        Words.push(newWord);
+        saveWordToLS(Words);
+        console.log(Words);
+        ev.target.reset();
     }
     catch (error) {
         console.error(error);
     }
 }
-function saveWordToLS(word) {
-    localStorage.setItem('word', JSON.stringify(word));
+function handleStartGame(ev) {
+    makeBoard();
+    handleInputFromUserGame();
+}
+function saveWordToLS(words) {
+    localStorage.setItem('words', JSON.stringify(words));
 }
 function getWordFromLS() {
     try {
-        var wordStorage = localStorage.getItem('word');
-        if (!wordStorage)
-            throw new Error("no word");
-        var word_1 = JSON.parse(wordStorage);
-        return word_1;
+        var WordsStorage = localStorage.getItem('words');
+        if (!WordsStorage)
+            return [];
+        var wordsArr = JSON.parse(WordsStorage);
+        var Words_1 = wordsArr.map(function (word) { return new Word(word.word); });
+        return Words_1;
     }
     catch (error) {
         console.error(error);
-        throw new Error("no word");
+        return [];
     }
 }
-var height = word.height;
-var myword = word.word;
-var width = myword.length;
-console.log(height);
-console.log(myword);
-console.log(width);
+console.log(Words);
+var height = 6;
+// let myword = Words[Math.floor(Math.random() * Words.length)].toUpperCase()
+var width = 5;
 var row = 0; //current guess atempt
 var col = 0; // current letter for that attempt
 var gameOver = false;
+var wordObj = Words[Math.floor(Math.random() * Words.length)];
+var myword = wordObj.word.toLocaleUpperCase();
+console.log(myword);
 // window.onload = function () {
 //     makeBoard();
 // }
@@ -119,9 +126,11 @@ for (var i = 0; i < keyboard.length; i++) {
     document.body.appendChild(keyboardRow);
 }
 //handle input from user
-document.addEventListener("keyup", function (ev) {
-    handleInput(ev);
-});
+function handleInputFromUserGame() {
+    document.addEventListener("keyup", function (ev) {
+        handleInput(ev);
+    });
+}
 function processKey() {
     var ev = { "code": this.id };
     handleInput(ev);
