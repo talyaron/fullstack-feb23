@@ -3,13 +3,12 @@
   margin: auto;
   display: flex;
   justify-content: center;
-  background-color: rgb(216, 246, 172);
+  background-color: rgb(165, 248, 0);
   color: black;
   cursor: pointer;
   transition: 0.2s;
 //   when hovering over the button, the background color will be gray instead
   &:hover {
-    background-color: rgb(165, 248, 0);
     transform: scale(1.1);
   }
 
