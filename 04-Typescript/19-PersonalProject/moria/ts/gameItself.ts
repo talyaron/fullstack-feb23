@@ -14,6 +14,7 @@ function getPlayerFromLocalStorage() {
 
 }
 
+
 function renderPlayers(player) {
     try {
         const rootPlayer = document.querySelector('#container__player') as HTMLElement;
@@ -70,14 +71,20 @@ function handleKeyUp(event) {
 }
 
 function updateTargetPosition() {
-    const sourceRect = bart.getBoundingClientRect();
-    const targetRect = shoot.getBoundingClientRect();
+    try {
+        const sourceRect = bart.getBoundingClientRect();
+        const targetRect = shoot.getBoundingClientRect();
 
-    const offsetX = sourceRect.left - targetRect.left;
-    const offsetY = sourceRect.top - targetRect.top;
+        const offsetX = sourceRect.left - targetRect.left;
+        const offsetY = sourceRect.top - targetRect.top;
 
-    shoot.style.left = parseFloat(getComputedStyle(shoot).left) + offsetX + 'px';
-    shoot.style.top = parseFloat(getComputedStyle(shoot).top) + offsetY + 'px';
+        shoot.style.left = parseFloat(getComputedStyle(shoot).left) + offsetX + 'px';
+        shoot.style.top = parseFloat(getComputedStyle(shoot).top) + offsetY + 'px';
+    } catch (error) {
+        console.error(error)
+    }
+
+
 }
 
 setInterval(updateTargetPosition, 100);
@@ -206,27 +213,34 @@ setInterval(ballAndShootCollision, 10);
 
 
 function ballAndShootCollision() {
-    const ropeLocation = shoot.getBoundingClientRect();
-    const ballLocation = ball.getBoundingClientRect();
-    if (
-        ropeLocation.right > ballLocation.left &&
-        ropeLocation.left < ballLocation.right &&
-        ropeLocation.bottom > ballLocation.top &&
-        ropeLocation.top < ballLocation.bottom
-    ) {
+    try {
+        const ropeLocation = shoot.getBoundingClientRect();
+        const ballLocation = ball.getBoundingClientRect();
+        if (
+            ropeLocation.right > ballLocation.left &&
+            ropeLocation.left < ballLocation.right &&
+            ropeLocation.bottom > ballLocation.top &&
+            ropeLocation.top < ballLocation.bottom
+        ) {
 
-        const smallBall1 = document.querySelector('#container__smallBall1') as HTMLElement;
-        const smallBall2 = document.querySelector('#container__smallBall2') as HTMLElement;
+            const smallBall1 = document.querySelector('#container__smallBall1') as HTMLElement;
+            const smallBall2 = document.querySelector('#container__smallBall2') as HTMLElement;
 
-        ball.style.display = 'none';
-        smallBall1.style.display = 'block';
-        smallBall2.style.display = 'block';
+            ball.style.display = 'none';
+            smallBall1.style.display = 'block';
+            smallBall2.style.display = 'block';
 
 
-        // Start updating the positions of the balls
-        updateBallsPosition();
+            // Start updating the positions of the balls
+            updateBallsPosition();
+        }
+    } catch (error) {
+        console.error(error)
     }
+
+
 }
+
 
 // Set initial positions for the balls
 let smallBall1X = 0;
@@ -242,105 +256,117 @@ let smallBall2SpeedY = 3;
 
 // Function to update the positions of the balls
 function updateBallsPosition() {
-    const smallBall1 = document.querySelector('#container__smallBall1') as HTMLElement;
-    const smallBall2 = document.querySelector('#container__smallBall2') as HTMLElement;
+    try {
+        const smallBall1 = document.querySelector('#container__smallBall1') as HTMLElement;
+        const smallBall2 = document.querySelector('#container__smallBall2') as HTMLElement;
 
-    const containerWidth = container.offsetWidth;
-    const containerHeight = container.offsetHeight;
-    const smallBallSize = smallBall1.offsetWidth;
+        const containerWidth = container.offsetWidth;
+        const containerHeight = container.offsetHeight;
+        const smallBallSize = smallBall1.offsetWidth;
 
-    // Update the position of smallBall1
-    smallBall1X += smallBall1SpeedX;
-    smallBall1Y += smallBall1SpeedY;
+        // Update the position of smallBall1
+        smallBall1X += smallBall1SpeedX;
+        smallBall1Y += smallBall1SpeedY;
 
-    if (smallBall1X + smallBallSize >= containerWidth || smallBall1X <= 0) {
-        smallBall1SpeedX *= -1;
+        if (smallBall1X + smallBallSize >= containerWidth || smallBall1X <= 0) {
+            smallBall1SpeedX *= -1;
+        }
+
+        if (smallBall1Y + smallBallSize >= containerHeight || smallBall1Y <= 0) {
+            smallBall1SpeedY *= -1;
+        }
+
+        smallBall1.style.left = smallBall1X + 'px';
+        smallBall1.style.top = smallBall1Y + 'px';
+
+        // Update the position of smallBall2
+        smallBall2X += smallBall2SpeedX;
+        smallBall2Y += smallBall2SpeedY;
+
+        if (smallBall2X + smallBallSize >= containerWidth || smallBall2X <= 0) {
+            smallBall2SpeedX *= -1;
+        }
+
+        if (smallBall2Y + smallBallSize >= containerHeight || smallBall2Y <= 0) {
+            smallBall2SpeedY *= -1;
+        }
+
+        smallBall2.style.left = smallBall2X + 'px';
+        smallBall2.style.top = smallBall2Y + 'px';
+        // גדחייבדגי
+        handleCollision()
+        requestAnimationFrame(updateBallsPosition);
+
+    } catch (error) {
+        console.error(error)
     }
 
-    if (smallBall1Y + smallBallSize >= containerHeight || smallBall1Y <= 0) {
-        smallBall1SpeedY *= -1;
-    }
-
-    smallBall1.style.left = smallBall1X + 'px';
-    smallBall1.style.top = smallBall1Y + 'px';
-
-    // Update the position of smallBall2
-    smallBall2X += smallBall2SpeedX;
-    smallBall2Y += smallBall2SpeedY;
-
-    if (smallBall2X + smallBallSize >= containerWidth || smallBall2X <= 0) {
-        smallBall2SpeedX *= -1;
-    }
-
-    if (smallBall2Y + smallBallSize >= containerHeight || smallBall2Y <= 0) {
-        smallBall2SpeedY *= -1;
-    }
-
-    smallBall2.style.left = smallBall2X + 'px';
-    smallBall2.style.top = smallBall2Y + 'px';
-    // גדחייבדגי
-    handleCollision()
-    requestAnimationFrame(updateBallsPosition);
 
 }
 
 
 function handleCollision() {
-    let collisionCount = 0;
-    let gameEnded = false;
+    try {
+        let collisionCount = 0;
+        let gameEnded = false;
 
-    if (collisionCount >= 3) {
-        // console.log("המשחק נגמר");
-        gameEnded = true;
-        return;
-    }
-    const smallBall1 = document.querySelector('#container__smallBall1') as HTMLElement;
-    const smallBall2 = document.querySelector('#container__smallBall2') as HTMLElement;
-
-
-    const playerLocation = bart.getBoundingClientRect();
-    const smallBall1Location = smallBall1.getBoundingClientRect();
-    const smallBall2Location = smallBall2.getBoundingClientRect();
-
-    if (
-        playerLocation.right > smallBall1Location.left &&
-        playerLocation.left < smallBall1Location.right &&
-        playerLocation.bottom > smallBall1Location.top &&
-        playerLocation.top < smallBall1Location.bottom ||
-        playerLocation.right > smallBall2Location.left &&
-        playerLocation.left < smallBall2Location.right &&
-        playerLocation.bottom > smallBall2Location.top &&
-        playerLocation.top < smallBall2Location.bottom
-    ) {
-        const imageToRemove = images[collisionCount];
-        if (imageToRemove) {
-            life.removeChild(imageToRemove);
-        }
-
-        collisionCount++;
-
-        if (collisionCount === 1) {
-            canMoveBall = false;
-            setTimeout(() => {
-                canMoveBall = true;
-            }, 1000);
-        } else if (collisionCount === 2) {
-            canMoveBall = false;
-            setTimeout(() => {
-                canMoveBall = true;
-            }, 1000);
-        } else if (collisionCount === 3) {
+        if (collisionCount >= 3) {
+            // console.log("המשחק נגמר");
             gameEnded = true;
-            life.classList.add("none")
-            bart.classList.add("none")
-            shoot.classList.add("none")
-            ball.classList.add("none")
-            const gameOver = document.querySelector('#container__gameOver') as HTMLElement;
-            const html = ` <h1>game over</h1> <br>  <a href="/levels.html">back</a>`
-            gameOver.innerHTML = html;
+            return;
         }
+        const smallBall1 = document.querySelector('#container__smallBall1') as HTMLElement;
+        const smallBall2 = document.querySelector('#container__smallBall2') as HTMLElement;
 
+
+        const playerLocation = bart.getBoundingClientRect();
+        const smallBall1Location = smallBall1.getBoundingClientRect();
+        const smallBall2Location = smallBall2.getBoundingClientRect();
+
+        if (
+            playerLocation.right > smallBall1Location.left &&
+            playerLocation.left < smallBall1Location.right &&
+            playerLocation.bottom > smallBall1Location.top &&
+            playerLocation.top < smallBall1Location.bottom ||
+            playerLocation.right > smallBall2Location.left &&
+            playerLocation.left < smallBall2Location.right &&
+            playerLocation.bottom > smallBall2Location.top &&
+            playerLocation.top < smallBall2Location.bottom
+        ) {
+            const imageToRemove = images[collisionCount];
+            if (imageToRemove) {
+                life.removeChild(imageToRemove);
+            }
+
+            collisionCount++;
+
+            if (collisionCount === 1) {
+                canMoveBall = false;
+                setTimeout(() => {
+                    canMoveBall = true;
+                }, 1000);
+            } else if (collisionCount === 2) {
+                canMoveBall = false;
+                setTimeout(() => {
+                    canMoveBall = true;
+                }, 1000);
+            } else if (collisionCount === 3) {
+                gameEnded = true;
+                life.classList.add("none")
+                bart.classList.add("none")
+                shoot.classList.add("none")
+                ball.classList.add("none")
+                const gameOver = document.querySelector('#container__gameOver') as HTMLElement;
+                const html = ` <h1>game over</h1> <br>  <a href="/levels.html">back</a>`
+                gameOver.innerHTML = html;
+            }
+
+        }
+    } catch (error) {
+        console.error(error)
     }
+
+
 }
 
 setInterval(() => {

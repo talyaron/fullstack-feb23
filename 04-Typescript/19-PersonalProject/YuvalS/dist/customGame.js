@@ -1,4 +1,10 @@
-var Words = ["yuval"];
+var Word = /** @class */ (function () {
+    function Word(word) {
+        this.word = word;
+    }
+    return Word;
+}());
+var Words = getWordFromLS();
 function renderinputs(htmlElement) {
     try {
         htmlElement = document.querySelector("#forms");
@@ -15,12 +21,14 @@ renderinputs(document.querySelector("#forms"));
 function handleAddWord(ev) {
     try {
         ev.preventDefault();
-        var myword_1 = ev.target.word.value;
-        if (myword_1.length !== 5) {
+        var inputWord = ev.target.word.value;
+        if (inputWord.length !== 5) {
             alert("Must be 5 letters");
             return;
         }
-        Words.push(myword_1);
+        var newWord = new Word(inputWord);
+        Words.push(newWord);
+        saveWordToLS(Words);
         console.log(Words);
         ev.target.reset();
     }
@@ -32,30 +40,33 @@ function handleStartGame(ev) {
     makeBoard();
     handleInputFromUserGame();
 }
-// function saveWordToLS(Words){
-//     localStorage.setItem('Words', JSON.stringify(Words));
-// }
-// function getWordFromLS(){
-//     try {
-//         const WordsStorage = localStorage.getItem('Words');
-//         if(!WordsStorage) return 
-//         const Words = JSON.parse(WordsStorage);
-//         return Words;
-//     } catch (error) {
-//         console.error(error);
-//         return [];
-//     }
-// }
+function saveWordToLS(words) {
+    localStorage.setItem('words', JSON.stringify(words));
+}
+function getWordFromLS() {
+    try {
+        var WordsStorage = localStorage.getItem('words');
+        if (!WordsStorage)
+            return [];
+        var wordsArr = JSON.parse(WordsStorage);
+        var Words_1 = wordsArr.map(function (word) { return new Word(word.word); });
+        return Words_1;
+    }
+    catch (error) {
+        console.error(error);
+        return [];
+    }
+}
 console.log(Words);
 var height = 6;
-var myword = Words[Math.floor(Math.random() * Words.length)].toUpperCase();
+// let myword = Words[Math.floor(Math.random() * Words.length)].toUpperCase()
 var width = 5;
-console.log(height);
-console.log(myword);
-console.log(width);
 var row = 0; //current guess atempt
 var col = 0; // current letter for that attempt
 var gameOver = false;
+var wordObj = Words[Math.floor(Math.random() * Words.length)];
+var myword = wordObj.word.toLocaleUpperCase();
+console.log(myword);
 // window.onload = function () {
 //     makeBoard();
 // }
