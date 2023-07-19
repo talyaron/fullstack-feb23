@@ -229,7 +229,7 @@ function ballAndShootCollision() {
             ball.style.display = 'none';
             smallBall1.style.display = 'block';
             smallBall2.style.display = 'block';
-
+            setInterval(shootBalls, 10);
 
             // Start updating the positions of the balls
             updateBallsPosition();
@@ -294,7 +294,7 @@ function updateBallsPosition() {
         smallBall2.style.left = smallBall2X + 'px';
         smallBall2.style.top = smallBall2Y + 'px';
         // גדחייבדגי
-        handleCollision()
+
         requestAnimationFrame(updateBallsPosition);
 
     } catch (error) {
@@ -359,45 +359,67 @@ function handleCollision() {
                 const gameOver = document.querySelector('#container__gameOver') as HTMLElement;
                 const html = ` <h1>game over</h1> <br>  <a href="/levels.html">back</a>`
                 gameOver.innerHTML = html;
+
             }
 
         }
+
+
     } catch (error) {
         console.error(error)
     }
 
 
 }
+// setInterval(() => {
+//     if (canMoveBall) {
+//         handleCollision();
+//     }
+// }, 10);
 
-setInterval(() => {
-    if (canMoveBall) {
-        handleCollision();
+
+
+
+function shootBalls() {
+    const smallBall1 = document.querySelector('#container__smallBall1') as HTMLElement;
+    const smallBall2 = document.querySelector('#container__smallBall2') as HTMLElement;
+    const ropeLocation = shoot.getBoundingClientRect();
+    const smallBall1Location = smallBall1.getBoundingClientRect();
+    const smallBall2Location = smallBall2.getBoundingClientRect();
+    if (
+        ropeLocation.right > smallBall1Location.left &&
+        ropeLocation.left < smallBall1Location.right &&
+        ropeLocation.bottom > smallBall1Location.top &&
+        ropeLocation.top < smallBall1Location.bottom
+    ) {
+        smallBall1.style.display = 'none';
     }
-}, 10);
-// setInterval(s, 10);
+    if (
+        ropeLocation.right > smallBall2Location.left &&
+        ropeLocation.left < smallBall2Location.right &&
+        ropeLocation.bottom > smallBall2Location.top &&
+        ropeLocation.top < smallBall2Location.bottom
+    ) {
+        smallBall2.style.display = 'none';
+    }
+    if ((ropeLocation.right > smallBall1Location.left &&
+        ropeLocation.left < smallBall1Location.right &&
+        ropeLocation.bottom > smallBall1Location.top &&
+        ropeLocation.top < smallBall1Location.bottom) && (
+            ropeLocation.right > smallBall2Location.left &&
+            ropeLocation.left < smallBall2Location.right &&
+            ropeLocation.bottom > smallBall2Location.top &&
+            ropeLocation.top < smallBall2Location.bottom)) {
+        life.classList.add("none")
+        bart.classList.add("none")
+        shoot.classList.add("none")
+        ball.classList.add("none")
+        const gameOver = document.querySelector('#container__gameOver') as HTMLElement;
+        const html = ` <h1>good job</h1> <br>  <a href="/levels.html">back</a>`
+        gameOver.innerHTML = html;
+    }
 
-// function s() {
-//     const ropeLocation = shoot.getBoundingClientRect();
-//     const smallBall1Location = smallBall1.getBoundingClientRect();
-//     const smallBall2Location = smallBall2.getBoundingClientRect();
-//     if (
-//         ropeLocation.right > smallBall1Location.left &&
-//         ropeLocation.left < smallBall1Location.right &&
-//         ropeLocation.bottom > smallBall1Location.top &&
-//         ropeLocation.top < smallBall1Location.bottom
-//     ) {
-//         smallBall1.style.display = 'none';
-//     }
-//     if (
-//         ropeLocation.right > smallBall2Location.left &&
-//         ropeLocation.left < smallBall2Location.right &&
-//         ropeLocation.bottom > smallBall2Location.top &&
-//         ropeLocation.top < smallBall2Location.bottom
-//     ) {
-//         smallBall2.style.display = 'none';
-//     }
 
-
-
+}
 
 

@@ -179,6 +179,7 @@ function ballAndShootCollision() {
             ball.style.display = 'none';
             smallBall1.style.display = 'block';
             smallBall2.style.display = 'block';
+            setInterval(shootBalls, 10);
             // Start updating the positions of the balls
             updateBallsPosition();
         }
@@ -228,7 +229,6 @@ function updateBallsPosition() {
         smallBall2.style.left = smallBall2X + 'px';
         smallBall2.style.top = smallBall2Y + 'px';
         // גדחייבדגי
-        handleCollision();
         requestAnimationFrame(updateBallsPosition);
     }
     catch (error) {
@@ -290,29 +290,42 @@ function handleCollision() {
         console.error(error);
     }
 }
-setInterval(function () {
-    if (canMoveBall) {
-        handleCollision();
+// setInterval(() => {
+//     if (canMoveBall) {
+//         handleCollision();
+//     }
+// }, 10);
+function shootBalls() {
+    var smallBall1 = document.querySelector('#container__smallBall1');
+    var smallBall2 = document.querySelector('#container__smallBall2');
+    var ropeLocation = shoot.getBoundingClientRect();
+    var smallBall1Location = smallBall1.getBoundingClientRect();
+    var smallBall2Location = smallBall2.getBoundingClientRect();
+    if (ropeLocation.right > smallBall1Location.left &&
+        ropeLocation.left < smallBall1Location.right &&
+        ropeLocation.bottom > smallBall1Location.top &&
+        ropeLocation.top < smallBall1Location.bottom) {
+        smallBall1.style.display = 'none';
     }
-}, 10);
-// setInterval(s, 10);
-// function s() {
-//     const ropeLocation = shoot.getBoundingClientRect();
-//     const smallBall1Location = smallBall1.getBoundingClientRect();
-//     const smallBall2Location = smallBall2.getBoundingClientRect();
-//     if (
-//         ropeLocation.right > smallBall1Location.left &&
-//         ropeLocation.left < smallBall1Location.right &&
-//         ropeLocation.bottom > smallBall1Location.top &&
-//         ropeLocation.top < smallBall1Location.bottom
-//     ) {
-//         smallBall1.style.display = 'none';
-//     }
-//     if (
-//         ropeLocation.right > smallBall2Location.left &&
-//         ropeLocation.left < smallBall2Location.right &&
-//         ropeLocation.bottom > smallBall2Location.top &&
-//         ropeLocation.top < smallBall2Location.bottom
-//     ) {
-//         smallBall2.style.display = 'none';
-//     }
+    if (ropeLocation.right > smallBall2Location.left &&
+        ropeLocation.left < smallBall2Location.right &&
+        ropeLocation.bottom > smallBall2Location.top &&
+        ropeLocation.top < smallBall2Location.bottom) {
+        smallBall2.style.display = 'none';
+    }
+    if ((ropeLocation.right > smallBall1Location.left &&
+        ropeLocation.left < smallBall1Location.right &&
+        ropeLocation.bottom > smallBall1Location.top &&
+        ropeLocation.top < smallBall1Location.bottom) && (ropeLocation.right > smallBall2Location.left &&
+        ropeLocation.left < smallBall2Location.right &&
+        ropeLocation.bottom > smallBall2Location.top &&
+        ropeLocation.top < smallBall2Location.bottom)) {
+        life.classList.add("none");
+        bart.classList.add("none");
+        shoot.classList.add("none");
+        ball.classList.add("none");
+        var gameOver = document.querySelector('#container__gameOver');
+        var html = " <h1>good job</h1> <br>  <a href=\"/levels.html\">back</a>";
+        gameOver.innerHTML = html;
+    }
+}
