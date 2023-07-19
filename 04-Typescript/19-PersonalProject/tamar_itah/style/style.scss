@@ -30,8 +30,8 @@ h4 {
 #h4i{
     color: white;
 }
-//the game view
 
+//the game view
 .wrapper {
     position: flex;
     text-align: center;
@@ -61,6 +61,7 @@ h4 {
     background-color: rgb(230, 200, 156);
     vertical-align: middle;
     line-height: 120px;
+    box-shadow: 6px 6px 10px yellow;
 }
 
 .c1 {
@@ -81,16 +82,16 @@ h4 {
 }
 
 .btnF {
-    grid-area: btnF;
     display: inherit;
     background-color: rgb(217, 138, 82);
-    color: bisque;
+    color: rgb(23, 15, 241);
     font-size: 20px;
-    border-radius: 25%;
+    border-radius:40%;
     border: 0px;
     position: relative;
 }
 
+//othe pages view
 .btnF2{
     background-color: rgb(64, 219, 142);
     border-radius: 50%;
@@ -111,7 +112,8 @@ h4 {
     height: 25px;
 }
 #correct {
-    color: blue;
+    color:aqua;
+    font-size: larger;
 }
 
 #wrong {
