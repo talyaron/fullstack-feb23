@@ -40,7 +40,7 @@ body #container__life {
   top: 10px;
   left: 10px;
 }
-body #container__life .b {
+body #container__life .Photos {
   width: 30px;
   position: absolute;
   top: 3px;
@@ -48,13 +48,13 @@ body #container__life .b {
   display: flex;
   justify-content: space-between;
 }
-body #container__life #s {
+body #container__life #image1 {
   left: 5px;
 }
-body #container__life #f {
+body #container__life #image2 {
   left: 35px;
 }
-body #container__life #c {
+body #container__life #image3 {
   left: 65px;
 }
 body #container__ball {

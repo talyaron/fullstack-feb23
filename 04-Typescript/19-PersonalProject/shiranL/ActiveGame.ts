@@ -1113,6 +1113,7 @@ function rendercityCardRentOrBuy(cityId, playerId) {
           const goodsId = Math.floor(Math.random() * (currentGame.goodThings.length - 1)) + 1;  
           rendergoodsCard(goodsId, playerId);
           
+          
         });
         dialogForm.appendChild(pUserIsOwner);
         dialogForm.appendChild(getGift);

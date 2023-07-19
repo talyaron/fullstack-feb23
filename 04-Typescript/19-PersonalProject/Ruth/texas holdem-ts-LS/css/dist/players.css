@@ -29,11 +29,14 @@
 }
 .playerPanel__inputChips {
   position: absolute;
-  width: 80px;
-  border: 1px solid black;
+  display: flex;
+  width: fit-content;
+  border-radius: 20px;
+  padding: 5px;
+  box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.333);
 }
 .playerPanel__inputChips img {
-  width: 30px;
+  width: 20px;
 }
 .playerPanel__img {
   position: relative;
@@ -105,9 +108,17 @@
   top: 0px;
   right: calc(50% - 50px);
 }
-.dealer__head {
-  font-size: medium;
+.dealer__chips {
+  font-size: large;
+  position: absolute;
+  left: 40%;
+  top: 100%;
   text-align: center;
+  width: fit-content;
+  border-radius: 20px;
+  padding: 10px;
+  background-color: rgba(166, 29, 29, 0.993);
+  box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.333);
 }
 .dealer__img img {
   width: 140px;
@@ -172,6 +183,8 @@
   z-index: 4;
 }
 .myPanel #myTurnInput {
-  width: 81px;
-  height: 31px;
+  width: fit-content;
+  position: absolute;
+  left: 20%;
+  top: 10px;
 }

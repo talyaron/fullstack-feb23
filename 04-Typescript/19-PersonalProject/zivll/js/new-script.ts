@@ -297,9 +297,11 @@ function loadPage() {
 }
 function deleteExpense(ev) {
   const expenseId = ev.target.parentElement.parentElement.id;
+  const categoryId = ev.target.parentElement.parentElement.parentElement.id;
   const categoryName =
     ev.target.parentElement.parentElement.parentElement.previousElementSibling
-      .lastChild.innerText;
+      .childNodes[0].innerText;
+
   const same = expences.filter((expense) => expense.category === categoryName);
   // console.log(same);
 
@@ -308,7 +310,7 @@ function deleteExpense(ev) {
   );
   expences.splice(index, 1);
   const indexUserCategories = userCategories.findIndex(
-    (category) => category.categoryId === expenseId
+    (category) => category.categoryId === categoryId
   );
   // if(userCategories[indexUserCategories].
   if (same.length < 2) {
@@ -319,6 +321,7 @@ function deleteExpense(ev) {
   loadDataToLocalStorage(expences, `expences`);
   const allExpences = calculateTotalExpence(expences);
   loadDataToLocalStorage(allExpences, `totalExpence`);
+  ev.stopImmediatePropagation();
   window.location.reload();
 }
 function editExpense(ev) {
@@ -375,7 +378,7 @@ function renderExpenceCalculator() {
     <input
       type="number"
       name="expenceAmount"
-      id="expenceAmount" required
+      id="expenceAmount" required 
     />
     <label for="expenceAmount">מה סכום ההוצאה שלך?</label>
   </div>

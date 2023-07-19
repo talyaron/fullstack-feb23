@@ -1,0 +1,133 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+body {
+  background-color: #b1d7ea;
+}
+
+.home-page {
+  background: url("https://lh3.googleusercontent.com/A2WoYTiyROKKYM3eZ3q0NVRbNEZeYrWroqNZI2yYrsJ7UXmoFp1Nt37aZu-AbBbIqw")
+    no-repeat center;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 0px solid black;
+  max-width: 50%;
+  height: 70vh;
+  text-align: center;
+  margin: auto;
+  margin-top: 50px;
+  padding-top: 45px;
+  overflow: hidden;
+
+  a {
+    text-decoration: none;
+    text-shadow: 0px 1px 4px #f4f1f1;
+    color: white;
+    background-color: #737373;
+    font-size: 20px;
+  }
+
+  &__details {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    border: 0px solid black;
+    padding: 24px 50px 3px 50px;
+    gap: 20px;
+    overflow: hidden;
+    width: 71%;
+    height: 55vh;
+    position: relative;
+    align-items: center;
+
+    > img {
+      max-width: 30%;
+    }
+  }
+
+  #tap-to-play {
+    font-size: 170%;
+    margin-top: 10px;
+    text-shadow: 0px 1px 4px #f4f1f1;
+    color: white;
+    background-color: #737373;
+    font-size: 30px;
+  }
+}
+
+.details {
+  &__coins {
+    text-shadow: 0px 1px 4px #f4f1f1;
+    color: white;
+    background-color: #737373;
+    font-size: 20px;
+  }
+
+  &__buttons {
+    display: flex;
+    flex-direction: column;
+    max-width: 50%;
+    gap: 5px;
+  }
+
+  &__nameInput {
+    display: flex;
+    box-shadow: -3px 6px 4px #222;
+
+    button {
+      width: 30px;
+      background-color: teal;
+      border: none;
+      color: white;
+    }
+  }
+
+  &__container {
+    margin-top: 50px;
+    position: fixed;
+
+    ul {
+      list-style: 100%;
+      width: 500px;
+    }
+
+    li {
+      width: 100%;
+      background: #fff;
+      height: 40px;
+      line-height: 40px;
+      padding: 0 5px;
+      position: relative;
+      cursor: pointer;
+      display: block;
+      margin: 5px 0;
+      box-shadow: -3px 6px 4px #222;
+
+      span {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 50px;
+        text-align: center;
+        background: #e22;
+        text-shadow: 0px 1px 4px #f4f1f1;
+      }
+    }
+  }
+
+  &__characters-container {
+    display: flex;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    
+    #character-image {
+      width: 90%;
+      height: 20vh;
+    }
+  }
+}

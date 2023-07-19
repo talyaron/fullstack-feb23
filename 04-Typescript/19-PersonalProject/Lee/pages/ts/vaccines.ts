@@ -1,4 +1,16 @@
-const Vaccines: Vaccine[] = [
+class Vaccine {
+    id: string;
+    constructor(public vacName: string, public price: number, id?: string | null) {
+        if (id) {
+            this.id = id;
+        } else {
+
+            this.id = `${Math.random()}`
+        }
+    }
+}
+
+const vaccines: Vaccine[] = [
 
     new Vaccine("Rabies", 100),
     new Vaccine("FVRCP", 80),
@@ -13,7 +25,7 @@ const Vaccines: Vaccine[] = [
 
 
 class PatientVaccine {
-    constructor(public name: Patient, public owner: Patient, public patientId: Patient, public vacName: Vaccine, public price: Vaccine, public VacId: Vaccine) {
+    constructor(public name: Patient, public owner: Patient, public vaccine: Vaccine, public price: Vaccine) {
 
     }
 }
@@ -21,32 +33,39 @@ class PatientVaccine {
 const patientVaccine: PatientVaccine[] = []
 
 
-function renderVaxPatient(rootElement:HTMLElement|null) {
+function renderVaxPatient(rootElement: HTMLElement | null) {
     try {
-        const html =
-            `<form onsubmit="handleVaxPatient(event)">
+        const html = `<form onsubmit="handleVaxPatient(event)">
             <div class="card">
             <h2>Time for Vaccine</h2>
-            <label for="name">Patient: <input type="text" name="name" placeholder="Member Name"></label>
+            <label for="name">Patient: <input type="text" name="name" placeholder="Patient Name"></label>
             <label for="name">Owner: <input type="text" name="owner" placeholder="Owner"></label>
             <label for="name">Vaccine:<input type="text" name="vaccine" placeholder="Vaccine"></label>
             <label for="name">Price: <input type="number" name="price" placeholder="Price"></label>
             <input type="submit" value="Register">
         </div>
     </form>`
-    console.log(html)
-    
-    if(!rootElement) throw new Error("no root elemnt")
+        console.log(html)
 
-    rootElement.innerHTML = html
+        if (!rootElement) throw new Error("no root elemnt")
+
+        rootElement.innerHTML = html
     } catch (error) {
         console.error(error)
-
     }
 }
 
-renderVaxPatient (document.querySelector("#submit"))
+renderVaxPatient(document.querySelector("#add"))
 
+function renderVacPatient(patient: Patient, rootElement: HTMLElement | null) {
+    try {
+        const html = `${patient.name}, the furry child of ${patient.owner} got vaccinated today!`
+        if (!rootElement) throw new Error("no root element")
+        rootElement.innerHTML = html;
+    } catch (error) {
+        console.error(error)
+    }
+}
 
 function handleVaxPatient(ev: any) {
     try {
@@ -54,13 +73,19 @@ function handleVaxPatient(ev: any) {
         const name = ev.target.name.value;
         const owner = ev.target.owner.value;
         const vaccine = ev.target.vaccine.value;
-        const price = ev.target.price.value;
+        const price = Number(ev.target.price.value);
 
-        console.log(name, owner, vaccine, price)
+        const patient = new Patient(name, owner, vaccine, price: Number);
+        patientVaccine.push(patient);
 
+
+        const patientInfoElement = document.querySelector("#patientInfo");
+        renderVacPatient(patient, patientInfoElement);
+
+        console.log(name, owner, vaccine, price);
     } catch (error) {
         console.error(error)
-
     }
 }
+
 

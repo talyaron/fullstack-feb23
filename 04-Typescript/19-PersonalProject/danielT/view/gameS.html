@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../scss/dist/home.css">
+    <link rel="stylesheet" href="../scss/dist/edit.css">
+    <link rel="stylesheet" href="../scss/dist/gameS.css">
+    <link rel="stylesheet" href="../scss/dist/gameE.css">
+    <script src="../js/dist/home.js" defer></script>
+    <script src="../js/dist/edit.js" defer></script>
+    <script src="../js/dist/gameS.js" defer></script>
+    <script src="../js/dist/gameE.js" defer></script>
+    <title>Game-start page</title>
+</head>
+<body>
+    <div class="backgroundGame">
+        <div class="container">
+            <div class="container__trackContainer">
+                <div class="container__trackContainer__track">
+                    <img id="track1" src="../images/subwayTrack.png" alt="">
+                </div>
+                <div class="container__trackContainer__track">
+                    <img id="track2" src="../images/subwayTrack.png" alt="">
+                </div>
+                <div class="container__trackContainer__track">
+                    <img id="track3" src="../images/subwayTrack.png" alt="">
+                </div>
+            <img class="container__character" id="selected-character-image" src="" alt="">
+            <div id="obstacle" class="container__obstacle"></div>
+            <div id="obstacle" class="container__obstacleTrain"></div>
+            <div class="container__coins"></div>
+        <div class="container__endGame">
+            <button id="endGameBtn" onclick="goToGameE()">Game over</button>
+        </div>
+        </div>
+    </div>
+  
+</body>
+</html>
