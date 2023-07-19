@@ -269,14 +269,14 @@ function loadPage() {
 }
 function deleteExpense(ev) {
     var expenseId = ev.target.parentElement.parentElement.id;
-    var categoryIdId = ev.target.parentElement.parentElement.parentElement.id;
+    var categoryId = ev.target.parentElement.parentElement.parentElement.id;
     var categoryName = ev.target.parentElement.parentElement.parentElement.previousElementSibling
         .lastChild.innerText;
     var same = expences.filter(function (expense) { return expense.category === categoryName; });
     // console.log(same);
     var index = expences.findIndex(function (expense) { return expense.expenseId === expenseId; });
     expences.splice(index, 1);
-    var indexUserCategories = userCategories.findIndex(function (category) { return category.categoryId === categoryIdId; });
+    var indexUserCategories = userCategories.findIndex(function (category) { return category.categoryId === categoryId; });
     // if(userCategories[indexUserCategories].
     if (same.length < 2) {
         userCategories.splice(indexUserCategories, 1);
@@ -315,7 +315,7 @@ function renderExpenceCalculator() {
         var expencesRoots = document.querySelector("#expences-calculators");
         if (!expencesRoots)
             throw new Error("expencesRoots not found");
-        expencesRoots.innerHTML = " <h3>\u05D4\u05D5\u05E6\u05D0\u05D5\u05EA \u05D7\u05D5\u05D3\u05E9\u05D9\u05D5\u05EA</h3>\n  <div class=\"user-box\">\n    <input\n      type=\"text\"\n      name=\"expenceDescription\"\n      id=\"expenceDescription\" class=\"focusInput\" required\n    />\n    <label for=\"expenceDescription\">\u05E9\u05DD \u05D4\u05D4\u05D5\u05E6\u05D0\u05D4:</label>\n  </div>\n  <div class=\"user-box\">\n    <label for=\"categories\"\n      >\u05DE\u05D4 \u05D4\u05E7\u05D8\u05D2\u05D5\u05E8\u05D9\u05D4 \u05D4\u05DE\u05EA\u05D0\u05D9\u05DE\u05D4 \u05E2\u05D1\u05D5\u05E8 \u05D4\u05D4\u05D5\u05E6\u05D0\u05D4 \u05E9\u05DC\u05DA?</label\n    >\n    <select name=\"categories\" id=\"categories\">\n    <option value=\"\" disabled selected>\u05D1\u05D7\u05E8/\u05D9 \u05D0\u05EA \u05D4\u05E7\u05D8\u05D2\u05D5\u05E8\u05D9\u05D4</option>\n    " + categoriesHtml + "\n    </select>\n  </div>\n  <div class=\"user-box\">\n    <input\n      type=\"number\"\n      name=\"expenceAmount\"\n      id=\"expenceAmount\" required class=\"focusInput\"\n    />\n    <label for=\"expenceAmount\">\u05DE\u05D4 \u05E1\u05DB\u05D5\u05DD \u05D4\u05D4\u05D5\u05E6\u05D0\u05D4 \u05E9\u05DC\u05DA?</label>\n  </div>\n  \n  <input type=\"submit\" value=\"\u05D4\u05D5\u05E1\u05E3\" />";
+        expencesRoots.innerHTML = " <h3>\u05D4\u05D5\u05E6\u05D0\u05D5\u05EA \u05D7\u05D5\u05D3\u05E9\u05D9\u05D5\u05EA</h3>\n  <div class=\"user-box\">\n    <input\n      type=\"text\"\n      name=\"expenceDescription\"\n      id=\"expenceDescription\" required\n    />\n    <label for=\"expenceDescription\">\u05E9\u05DD \u05D4\u05D4\u05D5\u05E6\u05D0\u05D4:</label>\n  </div>\n  <div class=\"user-box\">\n    <label for=\"categories\"\n      >\u05DE\u05D4 \u05D4\u05E7\u05D8\u05D2\u05D5\u05E8\u05D9\u05D4 \u05D4\u05DE\u05EA\u05D0\u05D9\u05DE\u05D4 \u05E2\u05D1\u05D5\u05E8 \u05D4\u05D4\u05D5\u05E6\u05D0\u05D4 \u05E9\u05DC\u05DA?</label\n    >\n    <select name=\"categories\" id=\"categories\">\n    <option value=\"\" disabled selected>\u05D1\u05D7\u05E8/\u05D9 \u05D0\u05EA \u05D4\u05E7\u05D8\u05D2\u05D5\u05E8\u05D9\u05D4</option>\n    " + categoriesHtml + "\n    </select>\n  </div>\n  <div class=\"user-box\">\n    <input\n      type=\"number\"\n      name=\"expenceAmount\"\n      id=\"expenceAmount\" required \n    />\n    <label for=\"expenceAmount\">\u05DE\u05D4 \u05E1\u05DB\u05D5\u05DD \u05D4\u05D4\u05D5\u05E6\u05D0\u05D4 \u05E9\u05DC\u05DA?</label>\n  </div>\n  \n  <input type=\"submit\" value=\"\u05D4\u05D5\u05E1\u05E3\" />";
         // loadDataToLocalStorage();
     }
     catch (error) {
@@ -395,17 +395,3 @@ function ExportToExcel(type, fn, dl) {
         ? XLSX.write(wb, { bookType: type, bookSST: true, type: "base64" })
         : XLSX.writeFile(wb, fn || "MyExpencesTable." + (type || "xlsx"));
 }
-// function addClassToFillInput() {
-//   debugger;
-//   const rootfocusInput = document.querySelectorAll(".focusInput");
-//   const rootLabel = document.querySelectorAll("label");
-//   // rootfocusInput.addEventListener("change", function() {});
-//   // rootfocusInput.forEach(input=> input.classList.add("fill-input"));
-//   rootfocusInput.forEach((input, i) =>
-//     input.addEventListener("focusin", function () {
-//       rootLabel[i].classList.add("fill-input");
-//     })
-//   );
-// document.addEventListener('oninput', function(e){)
-// }
-// addClassToFillInput();

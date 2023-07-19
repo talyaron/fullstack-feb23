@@ -297,7 +297,7 @@ function loadPage() {
 }
 function deleteExpense(ev) {
   const expenseId = ev.target.parentElement.parentElement.id;
-  const categoryIdId = ev.target.parentElement.parentElement.parentElement.id;
+  const categoryId = ev.target.parentElement.parentElement.parentElement.id;
   const categoryName =
     ev.target.parentElement.parentElement.parentElement.previousElementSibling
       .lastChild.innerText;
@@ -309,7 +309,7 @@ function deleteExpense(ev) {
   );
   expences.splice(index, 1);
   const indexUserCategories = userCategories.findIndex(
-    (category) => category.categoryId === categoryIdId
+    (category) => category.categoryId === categoryId
   );
   // if(userCategories[indexUserCategories].
   if (same.length < 2) {
@@ -359,7 +359,7 @@ function renderExpenceCalculator() {
     <input
       type="text"
       name="expenceDescription"
-      id="expenceDescription" class="focusInput" required
+      id="expenceDescription" required
     />
     <label for="expenceDescription">שם ההוצאה:</label>
   </div>
@@ -376,7 +376,7 @@ function renderExpenceCalculator() {
     <input
       type="number"
       name="expenceAmount"
-      id="expenceAmount" required class="focusInput"
+      id="expenceAmount" required 
     />
     <label for="expenceAmount">מה סכום ההוצאה שלך?</label>
   </div>
@@ -493,18 +493,3 @@ function ExportToExcel(type, fn, dl) {
     ? XLSX.write(wb, { bookType: type, bookSST: true, type: "base64" })
     : XLSX.writeFile(wb, fn || "MyExpencesTable." + (type || "xlsx"));
 }
-// function addClassToFillInput() {
-//   debugger;
-//   const rootfocusInput = document.querySelectorAll(".focusInput");
-//   const rootLabel = document.querySelectorAll("label");
-//   // rootfocusInput.addEventListener("change", function() {});
-//   // rootfocusInput.forEach(input=> input.classList.add("fill-input"));
-//   rootfocusInput.forEach((input, i) =>
-//     input.addEventListener("focusin", function () {
-//       rootLabel[i].classList.add("fill-input");
-//     })
-//   );
-
-// document.addEventListener('oninput', function(e){)
-// }
-// addClassToFillInput();
