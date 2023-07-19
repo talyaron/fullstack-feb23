@@ -3,7 +3,7 @@
 class Card {
   public cardName: string;
   public srcImgCard: string;
-  constructor(public cardNumber: string, public cardSign: string) {
+  constructor(public cardNumber: string, public cardSign: string ,public partOfSet:boolean = false ) {
     this.cardName = `${this.cardNumber}-${cardSign}`;
     this.srcImgCard = this.getSignCardSrc() as string;
   }
@@ -25,9 +25,11 @@ class Card {
   }
 
   renderCard(root = document.body.querySelector(".cards")) {
-    root!.innerHTML += `<div class="card" name="${
-      this.cardNumber + this.cardSign
-    }">
+    root!.innerHTML += this.getHtmlRenderCard();
+  }
+
+  getHtmlRenderCard() {
+    return `<div class="card" name="${this.cardNumber + this.cardSign}">
               <h3 class="cardN">${this.cardNumber}</h3>
               <img class="cardS" src="${this.srcImgCard}"  alt="">
               </div>`;
@@ -170,7 +172,7 @@ class Player {
     this.chips = this.chips - betToCall;
 
     localStorage.setItem("players", JSON.stringify(players));
-    localStorage.setItem("dealerMoney", JSON.stringify(diler.dilersChips));
+    localStorage.setItem("dilersChips", JSON.stringify(diler.dilersChips));
     this.renderTurn();
 
     this.renderThisChipsAgain();
@@ -227,8 +229,8 @@ const diler = {
     document.querySelector(".dealer__chips")!.innerHTML =
       diler.dilersChips.toString();
 
-      localStorage.setItem("dilersChips", JSON.stringify(diler.dilersChips));
-    },
+    localStorage.setItem("dilersChips", JSON.stringify(diler.dilersChips));
+  },
 };
 
 //----------------Round--------------------------------

@@ -87,7 +87,10 @@ function getPlayerFromLs() {
         console.error(error);
     }
 }
-players[0].renderMyPanel();
+function renderPlayers() {
+    players[0].renderMyPanel();
+    renderPlayersPanel(users);
+}
 //---------------------------------------------render players-------------------------------------
 function renderPlayersPanel(players) {
     try {
@@ -105,7 +108,6 @@ function renderPlayersPanel(players) {
         console.error(error);
     }
 }
-renderPlayersPanel(users);
 function addCardToStage() {
     var root = document.querySelector(".stage");
     if (root.children.length < 5) {
