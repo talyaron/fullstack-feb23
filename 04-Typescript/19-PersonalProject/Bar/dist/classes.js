@@ -1,16 +1,5 @@
-// 1) 1 entity, CRUD, make it betfull with CSS.
 // 2) 2 eneties ,with joins, CRUD, two pages that share the model.
-// # Points
-// 10 good BEM model - v
-// 10 beutifull and accurate design - v
-// 10 reponsive - v
-// 10 clear code - v
-// 10 clear structure. - v
-// 20 using MVC - v
-// 10 trycatch with good exceptions - v
-// 10 error free - v
-//
-//class - user, image.
+//class - user, image, userImg.
 var Img = /** @class */ (function () {
     function Img(image) {
         this.image = image;
