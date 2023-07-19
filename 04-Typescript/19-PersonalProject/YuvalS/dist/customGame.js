@@ -1,18 +1,10 @@
-var Word = /** @class */ (function () {
-    function Word(height, word) {
-        this.height = height;
-        this.word = word;
-    }
-    return Word;
-}());
-var word = getWordFromLS();
-console.log(word);
+var Words = ["yuval"];
 function renderinputs(htmlElement) {
     try {
         htmlElement = document.querySelector("#forms");
         if (!htmlElement)
             throw new Error("No element");
-        var html = "<div class=\"input\">\n<form onsubmit=\"handleMyInput(event)\">\n    <label for=\"height\">How many guesses</label>\n    <input type=\"number\" name=\"height\" placeholder=\"Guesses\" required>\n    <label for=\"word\">What is the word</label>\n    <input type=\"text\" name=\"word\" placeholder=\"Word\" required>\n    <input type=\"submit\" value=\"START GAME\">\n</form>\n</div>";
+        var html = "<div class=\"input\">\n<form onsubmit=\"handleAddWord(event)\">\n    <label for=\"words\">Insert words</label>\n    <input type=\"text\" name=\"word\" placeholder=\"Word\" required>\n    <input type=\"submit\" value=\"ADD\">\n    </form>\n    <form onsubmit=\"handleStartGame(event)\">\n    <input type=\"submit\" value=\"START GAME\">\n</form>\n</div>";
         htmlElement.innerHTML = html;
     }
     catch (error) {
@@ -20,40 +12,44 @@ function renderinputs(htmlElement) {
     }
 }
 renderinputs(document.querySelector("#forms"));
-function handleMyInput(ev) {
+function handleAddWord(ev) {
     try {
         ev.preventDefault();
-        var height_1 = ev.target.height.value;
-        if (height_1 < 1)
-            alert("not enough guesses");
         var myword_1 = ev.target.word.value;
-        var newWord = new Word(height_1, myword_1);
-        saveWordToLS(newWord);
-        makeBoard();
+        if (myword_1.length !== 5) {
+            alert("Must be 5 letters");
+            return;
+        }
+        Words.push(myword_1);
+        console.log(Words);
+        ev.target.reset();
     }
     catch (error) {
         console.error(error);
     }
 }
-function saveWordToLS(word) {
-    localStorage.setItem('word', JSON.stringify(word));
+function handleStartGame(ev) {
+    makeBoard();
+    handleInputFromUserGame();
 }
-function getWordFromLS() {
-    try {
-        var wordStorage = localStorage.getItem('word');
-        if (!wordStorage)
-            throw new Error("no word");
-        var word_1 = JSON.parse(wordStorage);
-        return word_1;
-    }
-    catch (error) {
-        console.error(error);
-        throw new Error("no word");
-    }
-}
-var height = word.height;
-var myword = word.word;
-var width = myword.length;
+// function saveWordToLS(Words){
+//     localStorage.setItem('Words', JSON.stringify(Words));
+// }
+// function getWordFromLS(){
+//     try {
+//         const WordsStorage = localStorage.getItem('Words');
+//         if(!WordsStorage) return 
+//         const Words = JSON.parse(WordsStorage);
+//         return Words;
+//     } catch (error) {
+//         console.error(error);
+//         return [];
+//     }
+// }
+console.log(Words);
+var height = 6;
+var myword = Words[Math.floor(Math.random() * Words.length)].toUpperCase();
+var width = 5;
 console.log(height);
 console.log(myword);
 console.log(width);
@@ -65,7 +61,7 @@ var gameOver = false;
 // }
 // create game board
 function makeBoard() {
-    var _a, _b, _c;
+    var _a;
     try {
         for (var r = 0; r < height; r++) {
             for (var c = 0; c < width; c++) {
@@ -76,9 +72,7 @@ function makeBoard() {
                 tile.innerText = "";
                 var forms = document.querySelector("#forms");
                 forms === null || forms === void 0 ? void 0 : forms.remove();
-                (_a = document.getElementById("#board")) === null || _a === void 0 ? void 0 : _a.style.gridTemplateColumns.repeat(height);
-                (_b = document.getElementById("#board")) === null || _b === void 0 ? void 0 : _b.style.gridTemplateRows.repeat(width);
-                (_c = document.querySelector("#board")) === null || _c === void 0 ? void 0 : _c.appendChild(tile);
+                (_a = document.querySelector("#board")) === null || _a === void 0 ? void 0 : _a.appendChild(tile);
             }
         }
     }
@@ -121,9 +115,11 @@ for (var i = 0; i < keyboard.length; i++) {
     document.body.appendChild(keyboardRow);
 }
 //handle input from user
-document.addEventListener("keyup", function (ev) {
-    handleInput(ev);
-});
+function handleInputFromUserGame() {
+    document.addEventListener("keyup", function (ev) {
+        handleInput(ev);
+    });
+}
 function processKey() {
     var ev = { "code": this.id };
     handleInput(ev);
