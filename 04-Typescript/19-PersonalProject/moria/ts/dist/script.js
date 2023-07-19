@@ -7,9 +7,8 @@ var Player = /** @class */ (function () {
     return Player;
 }());
 var Point = /** @class */ (function () {
-    function Point(name, amount, id) {
+    function Point(name, id) {
         this.name = name;
-        this.amount = amount;
         this.id = "id-" + (new Date().getTime() - Math.random());
     }
     return Point;
@@ -33,7 +32,7 @@ function handleAdd(ev) {
     try {
         ev.preventDefault();
         var name = ev.target.elements.name.value;
-        var newName = new Point(name, 0);
+        var newName = new Point(name);
         points.push(newName);
         localStorage.setItem("points", JSON.stringify(points));
         ev.target.reset();

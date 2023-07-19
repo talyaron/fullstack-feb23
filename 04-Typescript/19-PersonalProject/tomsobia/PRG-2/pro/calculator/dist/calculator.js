@@ -1,7 +1,6 @@
 function calculateAlcohol() {
     try {
-        var gender = document.querySelector("#gender")
-            .value;
+        var gender = document.querySelector("#gender").value;
         var weight = Number(document.querySelector("#weight").value);
         var drinks = Number(document.querySelector("#drinks").value);
         var alcohol = Number(document.querySelector("#alcohol").value);
