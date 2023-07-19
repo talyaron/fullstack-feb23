@@ -230,7 +230,8 @@ function renderFinish() {
         var htmlend = "<h2>Good Job " + users[users.length - 1].userName + "! your final score is " + users[users.length - 1].points + "</h2>\n                    <br>\n                    <button class=\"btnF2\" onClick=\"hendelLogOn()\">Play Again</button>";
         var htmltablehead = "<h3>Last Games Scores:</h3>\n                                                <table><thead><tr><th id=\"hth\">player name</th><th>player score</th></tr></thead></table>";
         var htmltablebody = users.reverse().map(function (user) { return "<table><tbody><tr><th>" + user.userName + "</th><th>" + user.points + "</th></tr></tbody></table>"; }).join(' ');
-        end.innerHTML = htmlend + htmltablehead + htmltablebody;
+        end.innerHTML = htmlend;
+        table.innerHTML = htmltablehead + htmltablebody;
     }
     catch (error) {
         console.error(error);
