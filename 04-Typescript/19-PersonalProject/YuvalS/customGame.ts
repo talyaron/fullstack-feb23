@@ -99,8 +99,11 @@ function makeBoard() {
             tile.innerText = "";
             const forms = document.querySelector("#forms")
             forms?.remove();
+            document.getElementById("#board")?.style.gridTemplateColumns.repeat(height)
+            document.getElementById("#board")?.style.gridTemplateRows.repeat(width)
             document.querySelector("#board")?.appendChild(tile);
             
+        
             
             
         }

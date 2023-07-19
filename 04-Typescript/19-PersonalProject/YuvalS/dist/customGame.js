@@ -65,7 +65,7 @@ var gameOver = false;
 // }
 // create game board
 function makeBoard() {
-    var _a;
+    var _a, _b, _c;
     try {
         for (var r = 0; r < height; r++) {
             for (var c = 0; c < width; c++) {
@@ -76,7 +76,9 @@ function makeBoard() {
                 tile.innerText = "";
                 var forms = document.querySelector("#forms");
                 forms === null || forms === void 0 ? void 0 : forms.remove();
-                (_a = document.querySelector("#board")) === null || _a === void 0 ? void 0 : _a.appendChild(tile);
+                (_a = document.getElementById("#board")) === null || _a === void 0 ? void 0 : _a.style.gridTemplateColumns.repeat(height);
+                (_b = document.getElementById("#board")) === null || _b === void 0 ? void 0 : _b.style.gridTemplateRows.repeat(width);
+                (_c = document.querySelector("#board")) === null || _c === void 0 ? void 0 : _c.appendChild(tile);
             }
         }
     }

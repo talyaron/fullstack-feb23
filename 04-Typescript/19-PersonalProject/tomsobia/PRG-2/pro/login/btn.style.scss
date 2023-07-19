@@ -114,9 +114,10 @@ button::before {
     }
 
     to {
-        transform: translate(0 , -91%);
+        transform: translate(0, -91%);
     }
 }
+
 @media (max-width: 600px) {
     button {
         padding: 7px 12px;
