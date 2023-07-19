@@ -13,15 +13,15 @@ html {
     .logo {
        display: flex;
        position: relative;
-       top: -10rem;
-       left: 1.2rem;
+       justify-content: center;
+       top: -8rem;
        height: 10px;
     }
    
 
 form {
     border-radius: 15px;
-    margin: 5rem;
+    margin-top: 10rem;
     padding: 2rem;
 
     h2 {
