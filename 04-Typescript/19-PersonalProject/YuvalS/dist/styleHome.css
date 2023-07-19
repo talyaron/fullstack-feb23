@@ -34,7 +34,11 @@ body {
   cursor: pointer;
 }
 
-#imgHowTo img {
-  width: 100%;
-  height: 100%;
+#imageHowTo img {
+  width: 500px;
+  height: 550px;
+  border-radius: 10px;
+  position: absolute;
+  bottom: 8vh;
+  left: 2vw;
 }

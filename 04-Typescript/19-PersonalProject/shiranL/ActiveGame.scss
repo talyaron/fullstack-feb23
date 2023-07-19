@@ -73,6 +73,14 @@
   background-color: #3e8e41;
 }
 
+.jailBtn {
+  
+  background-size: cover;
+  background-position: center;
+  width: var(--cellSize);
+  height: var(--cellSize);
+}
+
 .RovaA {
   background-image: url('./rovaA1.jpg');
   background-size: cover;
@@ -142,10 +150,43 @@
   height: var(--playerSize);
   background-size: cover;
   background-position: center;
+  z-index: 999;
 
+}
+.playersStatus__player {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #f2f2f2;
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+  width: 300px;
+
+  .playersStatus__player__id {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+
+  .playersStatus__player__name {
+    margin-bottom: 5px;
+  }
+
+  .playersStatus__player__bank {
+    margin-bottom: 5px;
+  }
+
+  .playersStatus__player__cell {
+    margin-bottom: 5px;
+  }
+  .playersStatus__player__isJail {
+    margin-bottom: 5px;
+  }
 }
 
 #cubeButton {
+  display: none;
   width: var(--cellSize);
   height: var(--cellSize);
   background-image: url('./cube.png');
@@ -153,10 +194,10 @@
   background-position: center;
   border: none;
   background-color: white;
-  position: fixed;
-  top: 20%;
-  left: 30%;
-  transform: translate(-50%, -50%);
+  // position: fixed;
+  // top: 20%;
+  // left: 30%;
+  // transform: translate(-50%, -50%);
 }
 
 .rotate-animation {
@@ -200,60 +241,45 @@
   background-position: center;
 }
 
-.cityDialog {
-  transform: translate(-50%, -50%);
-  z-index: 9999;
+.dialog-card {
   padding: 20px;
   width: 400px;
   border-radius: 5px;
   border: none;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+
+  h3 {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0;
+  }
+
+  p {
+    font-size: 20px;
+    margin: 10px 0;
+  }
+
+  button {
+    padding: 8px 16px;
+    margin: 15px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+
+    &:hover {
+      background-color: #0056b3;
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
 }
 
-.cityDialog__cityCardForm {
-  display: flex;
-  flex-direction: column;
-}
-
-.cityDialog .closeCityDialog {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background: none;
-  border: none;
-  color: #b10606;
-  font-size: var(--fontsize);
-  font-weight: bold;
-  cursor: pointer;
-  padding: 5px;
-}
-
-.cityDialog h1 {
-  margin-top: 0;
-  font-size: calc(var(--fontsize) * 2);
-  font-weight: bold;
-}
-
-.cityDialog h2 {
-  margin: 10px 0;
-  font-size: calc(var(--fontsize) * 1.5);
-}
-
-.cityDialog .buyBtn,
-.cityDialog .payBtn {
-  background-color: #007bff;
-  color: #ffffff;
-  padding: 10px;
-  border: none;
-  border-radius: 3px;
-  cursor: pointer;
-  font-size: var(--fontsize);
-  text-align: center;
-  margin-top: 10px;
-}
-
-.cityDialog .buyBtn:hover {
-  background-color: #0056b3;
-}
 
 .goodS {
   width: var(--cellSize);
@@ -287,4 +313,30 @@
   background-image: url('./happyS.jpg');
   background-size: cover;
   background-position: center;
+}
+@keyframes enlarge {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(2);
+  }
+}
+
+.enlarge-animation {
+  animation-name: enlarge;
+  animation-duration: 3s;
+  animation-timing-function: ease;
+  animation-fill-mode: forwards;
+}
+
+.currentPlayer {
+  border: 2px solid green;
+  transform: scale(1.2);
+
+
+}
+.cityOwner{
+  border: 5px solid red;
+  transform: scale(1.1);
 }

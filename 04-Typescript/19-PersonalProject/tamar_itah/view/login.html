@@ -9,26 +9,12 @@
     <title>login</title>
 </head>
 
-<body>
+<body id="body_login">
     <div class="wrapper">
         <form onsubmit="handelSubmit(event)">
-            <h1 class="h1login">WELCOME PLAYER</h1>
-            <label class="label">please select your User Name</label>
-            <select name="name" id="name">
-                <option value=" "></option>
-                <option value="ofir">Ofir</option>
-                <option value="sivan">Sivan</option>
-                <option value="eliya">Eliya</option>
-            </select>
-            <button type="submit">Submit</button>
-        </form>
-        <br>
-        <br>
-        <br>
-        <h4>If you are a guest plaese enter your name here</h4>
-        <form onsubmit="handelSignUp(event)">
+            <h4>plaese enter your name here</h4>
             <input type="text" id="newname" required>
-            <button type="submit">Sign up</button>
+            <button type="submit">Sing in</button>
         </form>
     </div>
 </body>
