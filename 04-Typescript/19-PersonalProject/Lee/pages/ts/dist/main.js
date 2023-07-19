@@ -18,7 +18,7 @@ var Patient = /** @class */ (function () {
     };
     return Patient;
 }());
-var firstPatiens = [
+var firstPatients = [
     new Patient("Oscar", "Lee Dekel", "0521111111", "https://media.istockphoto.com/id/462488163/photo/tabby-grey-cat-lying-on-white-background.jpg?s=612x612&w=0&k=20&c=PowgpbMeU8jJwlHrkVQY3SLGrr_83pR8m6_arn_M3BA=", 2006),
     new Patient("Nella", "Judith Dekel", "0522222222", "https://www.letsgetpet.com/wp-content/uploads/2021/02/chat-tricolore.jpeg", 2021),
     new Patient("Dubi", "Barak Ortman", "0521201120", "https://www.thesprucepets.com/thmb/DRKAoOkKeWmh5SMzDvapRfnZpn0=/4984x0/filters:no_upscale():strip_icc()/1_BlackPuppy-5ba50070c9e77c0082221c54.jpg", 2021),
@@ -30,8 +30,8 @@ function getPatientsFromLocalStorage() {
     try {
         var patientsString = localStorage.getItem("patients");
         if (!patientsString) {
-            localStorage.setItem("patients", JSON.stringify(firstPatiens));
-            return firstPatiens;
+            localStorage.setItem("patients", JSON.stringify(firstPatients));
+            return firstPatients;
         }
         else {
             var patientsArray = JSON.parse(patientsString);
@@ -140,39 +140,3 @@ function handleSetEditPatient(ev) {
         console.error(error);
     }
 }
-var Vaccine = /** @class */ (function () {
-    function Vaccine(vacName, price, id) {
-        this.vacName = vacName;
-        this.price = price;
-        if (id) {
-            this.id = id;
-        }
-        else {
-            this.id = "" + Math.random();
-        }
-    }
-    return Vaccine;
-}());
-var Treatment = /** @class */ (function () {
-    function Treatment(treatName, price) {
-        this.treatName = treatName;
-        this.price = price;
-    }
-    return Treatment;
-}());
-var treatments = [
-    new Treatment("Haircut", 200),
-    new Treatment("Hospitalization per night", 450),
-    new Treatment("teeth cleaning", 100),
-    new Treatment("x-ray", 100),
-    new Treatment("US", 100),
-];
-var PatientTeatment = /** @class */ (function () {
-    function PatientTeatment(name, owner, treatName, price) {
-        this.name = name;
-        this.owner = owner;
-        this.treatName = treatName;
-        this.price = price;
-    }
-    return PatientTeatment;
-}());
