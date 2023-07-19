@@ -17,6 +17,25 @@ var Vegetable = /** @class */ (function () {
     return Vegetable;
 }());
 var vegetables = getVegetablesFromStorage();
+<<<<<<< HEAD
+var vegetablesNames = [];
+vegetables.forEach(function (veg) {
+    if (veg !== undefined)
+        vegetablesNames.push(veg.name);
+});
+function getVegetablesFromStorage() {
+    try {
+        debugger;
+        //get friends from locastorage (string)
+        var vegetablestring = localStorage.getItem("vegetables");
+        // const vegetableNamesstring = localStorage.getItem("vegetablesNames");
+        if (!vegetablestring)
+            return [];
+        // if (!vegetableNamesstring) return [];
+        //convert string to array of objects
+        var vegetablesArray = JSON.parse(vegetablestring);
+        // const vegetablesNamesArray = JSON.parse(vegetableNamesstring);
+=======
 function getVegetablesFromStorage() {
     try {
         //get friends from locastorage (string)
@@ -25,10 +44,16 @@ function getVegetablesFromStorage() {
             return [];
         //convert string to array of objects
         var vegetablesArray = JSON.parse(vegetablestring);
+>>>>>>> 739c24e868222afd020880edb0b95cbe98262c5d
         //convert array of objects to array of friends
         var vegetables_1 = vegetablesArray.map(function (vegetable) {
             return new Vegetable(vegetable.name, vegetable.image, vegetable.quantity, vegetable.id);
         });
+<<<<<<< HEAD
+        debugger;
+        renderAllVegetables(vegetables_1, document.querySelector("#rootVegetables"));
+=======
+>>>>>>> 739c24e868222afd020880edb0b95cbe98262c5d
         return vegetables_1;
     }
     catch (error) {
@@ -39,6 +64,23 @@ function getVegetablesFromStorage() {
 function handleAddVegetable(ev) {
     try {
         ev.preventDefault();
+<<<<<<< HEAD
+        debugger;
+        var name_1 = ev.target.elements.name.value;
+        var image = ev.target.elements.image.value;
+        var quantity = ev.target.elements.quantity.value;
+        if (vegetablesNames.find(function (vegetable) { return vegetable == name_1; })) {
+            alert(name_1 + " Already in your refrigerator");
+        }
+        else {
+            var newVegetable = new Vegetable(name_1, image, quantity);
+            vegetables.push(newVegetable);
+            vegetablesNames.push(name_1);
+            renderAllVegetables(vegetables, document.querySelector("#rootVegetables"));
+            //save to localStorage
+            localStorage.setItem("vegetables", JSON.stringify(vegetables));
+        }
+=======
         var name = ev.target.elements.name.value;
         var image = ev.target.elements.image.value;
         var quantity = ev.target.elements.quantity.value;
@@ -47,6 +89,7 @@ function handleAddVegetable(ev) {
         renderAllVegetables(vegetables, document.querySelector("#rootVegetables"));
         //save to localStorage
         localStorage.setItem("vegetables", JSON.stringify(vegetables));
+>>>>>>> 739c24e868222afd020880edb0b95cbe98262c5d
         ev.target.reset();
     }
     catch (error) {
@@ -58,8 +101,13 @@ function handleSearchVegetable(ev) {
         ev.preventDefault();
         debugger;
         console.dir(ev);
+<<<<<<< HEAD
+        // if(ev.currentTarget.)
+        var nameForSearch = ev.target.elements.search.value;
+=======
         if (ev.currentTarget.)
             var nameForSearch = ev.target.elements.search.value;
+>>>>>>> 739c24e868222afd020880edb0b95cbe98262c5d
         if (vegetables.includes(nameForSearch))
             renderSpecificVegetables(nameForSearch, document.querySelector("#rootVegetables"));
         else {
@@ -77,7 +125,11 @@ function renderSpecificVegetables(vegetable, htmlElement) {
             throw new Error("No element");
         var html_1 = "";
         //   const html = vegetables.map((vegetable) => renderVegetableCard(vegetable)).join(" ");
+<<<<<<< HEAD
+        var regex_1 = RegExp("" + vegetable, 'g');
+=======
         var regex_1 = RegExp("*" + vegetable + "*", 'g');
+>>>>>>> 739c24e868222afd020880edb0b95cbe98262c5d
         //   const html = vegetables.map((vegetable) => renderVegetableCard(vegetable)).join(" ");
         vegetables.forEach(function (vegetable) {
             if (regex_1.test(vegetable.name))
@@ -103,10 +155,17 @@ function renderAllVegetables(vegetables, htmlElement) {
 function renderVegetableCard(vegetable) {
     try {
         if (vegetable.isEdit) {
+<<<<<<< HEAD
+            return "<div class=\"card\">\n                    <form onsubmit=\"handleSetEditVegetable(event)\" id=\"" + vegetable.id + "\">\n                                      <img src=\"" + vegetable.image + "\">\n                                      <input type=\"text\" name=\"name\" value=\"" + vegetable.name + "\">\n                                      <input type=\"text\" name=\"quantity\" value=\"" + vegetable.quantity + "\">\n                                      <div class=\"buttons\">\n                                      <button onclick=\"handleDeleteVegetable('" + vegetable.id + "')\">Delete</button>\n                                      <input type=\"submit\" value=\"SET\">\n                                      </div>\n                                  </form>\n                              </div>\n                              ";
+        }
+        else {
+            return "<div class=\"card\">\n                      <img src=\"" + vegetable.image + "\">\n                      <p>" + vegetable.name + "</p>\n                      <p>" + vegetable.quantity + "</p>\n                      <div class=\"buttons\">\n                      <button onclick=\"handleDeleteVegetable('" + vegetable.id + "')\">Delete</button>\n                      <button onclick=\"handleEdit('" + vegetable.id + "')\">Edit</button>\n                      <button onclick=\"handleEat('" + vegetable.id + "')\">Eat</button>\n                      <button onclick=\"handleBuy('" + vegetable.id + "')\">Buy</button>\n                      </div>\n                  </div>\n              ";
+=======
             return "<div class=\"card\">\n                                  <img src=\"" + vegetable.image + "\">\n                                  <form onsubmit=\"handleSetEditVegetable(event)\" id=\"" + vegetable.id + "\">\n                                      <input type=\"text\" name=\"name\" value=\"" + vegetable.name + "\">\n                                      <input type=\"text\" name=\"quantity\" value=\"" + vegetable.quantity + "\">\n                                      <br>\n                                      <button onclick=\"handleDeleteVegetable('" + vegetable.id + "')\">Delete</button>\n                                      <input type=\"submit\" value=\"SET\">\n                                  </form>\n                              </div>\n                              ";
         }
         else {
             return "<div class=\"card\">\n                      <img src=\"" + vegetable.image + "\">\n                      <p>" + vegetable.name + "</p>\n                      <p>" + vegetable.quantity + "</p>\n                      <button onclick=\"handleDeleteVegetable('" + vegetable.id + "')\">Delete</button>\n                      <button onclick=\"handleEdit('" + vegetable.id + "')\">Edit</button>\n                  </div>\n              ";
+>>>>>>> 739c24e868222afd020880edb0b95cbe98262c5d
         }
     }
     catch (error) {
@@ -136,6 +195,44 @@ function handleEdit(vegetableId) {
         if (!vegetable)
             throw new Error("couldnt find friend");
         vegetable.setEdit(true);
+<<<<<<< HEAD
+        //save to localStorage
+        localStorage.setItem("vegetables", JSON.stringify(vegetables));
+        renderAllVegetables(vegetables, document.querySelector("#rootVegetables"));
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+function handleEat(vegetableId) {
+    try {
+        var vegetable = vegetables.find(function (vegetable) { return vegetable.id === vegetableId; });
+        if (!vegetable)
+            throw new Error("couldnt find friend");
+        if (vegetable.quantity == 0) {
+            alert("No more " + vegetable.name + ", you need to buy");
+        }
+        else {
+            vegetable.quantity--;
+            //save to localStorage
+            localStorage.setItem("vegetables", JSON.stringify(vegetables));
+            renderAllVegetables(vegetables, document.querySelector("#rootVegetables"));
+        }
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+function handleBuy(vegetableId) {
+    try {
+        var vegetable = vegetables.find(function (vegetable) { return vegetable.id === vegetableId; });
+        if (!vegetable)
+            throw new Error("couldnt find friend");
+        vegetable.quantity++;
+        //save to localStorage
+        localStorage.setItem("vegetables", JSON.stringify(vegetables));
+=======
+>>>>>>> 739c24e868222afd020880edb0b95cbe98262c5d
         renderAllVegetables(vegetables, document.querySelector("#rootVegetables"));
     }
     catch (error) {
@@ -162,6 +259,37 @@ function handleSetEditVegetable(ev) {
         console.error(error);
     }
 }
+<<<<<<< HEAD
+function autocompleteMatch(input) {
+    if (input == '') {
+        return [];
+    }
+    var reg = new RegExp(input);
+    return vegetablesNames.filter(function (term) {
+        if (term.match(reg)) {
+            return term;
+        }
+    });
+}
+function showResults(val) {
+    try {
+        debugger;
+        var res = document.getElementById("result");
+        if (!res)
+            throw new Error("no result div");
+        res.innerHTML = '';
+        var list = '';
+        var terms = autocompleteMatch(val);
+        for (var i = 0; i < terms.length; i++) {
+            list += '<li>' + terms[i] + '</li>';
+        }
+        res.innerHTML = '<ul>' + list + '</ul>';
+    }
+    catch (error) {
+    }
+}
+=======
+>>>>>>> 739c24e868222afd020880edb0b95cbe98262c5d
 // //model
 // class Friend {
 //     id: string;
