@@ -23,7 +23,7 @@ function renderPlayers(player) {
 
         rootPlayer.innerHTML = html;
         const life = document.querySelector('#container__life') as HTMLElement;
-        const img = `<img id="s" class="b" src="${player.playerImg}"> <img id="f" class="b" src="${player.playerImg}"> <img id="c" class="b" src="${player.playerImg}">`
+        const img = `<img id="image1" class="Photos" src="${player.playerImg}"> <img id="image2" class="Photos" src="${player.playerImg}"> <img id="image3" class="Photos" src="${player.playerImg}">`
         life.innerHTML = img;
     } catch (error) {
         console.error(error);
@@ -102,7 +102,7 @@ function creatingAball() {
 
 const ball = document.querySelector('#container__ball') as HTMLElement;
 const life = document.querySelector('#container__life') as HTMLElement;
-const images = life.querySelectorAll('.b');
+const images = life.querySelectorAll('.Photos');
 let collisionCount = 0;
 let gameEnded = false;
 

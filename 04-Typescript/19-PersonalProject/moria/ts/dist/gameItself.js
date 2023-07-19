@@ -18,7 +18,7 @@ function renderPlayers(player) {
         var html = "<img class=\"bart\" src=\"" + player.playerImg + "\"> ";
         rootPlayer.innerHTML = html;
         var life_1 = document.querySelector('#container__life');
-        var img = "<img id=\"s\" class=\"b\" src=\"" + player.playerImg + "\"> <img id=\"f\" class=\"b\" src=\"" + player.playerImg + "\"> <img id=\"c\" class=\"b\" src=\"" + player.playerImg + "\">";
+        var img = "<img id=\"image1\" class=\"Photos\" src=\"" + player.playerImg + "\"> <img id=\"image2\" class=\"Photos\" src=\"" + player.playerImg + "\"> <img id=\"image3\" class=\"Photos\" src=\"" + player.playerImg + "\">";
         life_1.innerHTML = img;
     }
     catch (error) {
@@ -80,7 +80,7 @@ function creatingAball() {
 }
 var ball = document.querySelector('#container__ball');
 var life = document.querySelector('#container__life');
-var images = life.querySelectorAll('.b');
+var images = life.querySelectorAll('.Photos');
 var collisionCount = 0;
 var gameEnded = false;
 var ballX = 0;
