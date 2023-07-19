@@ -1,0 +1,12 @@
+.welcomePage {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.welcomePage__login {
+  margin: 1rem;
+}
+.welcomePage__register {
+  margin: 1rem;
+}

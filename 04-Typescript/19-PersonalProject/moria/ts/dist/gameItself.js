@@ -30,8 +30,8 @@ var shoot = document.querySelector("#container__shoot");
 var container = document.querySelector('#container');
 document.addEventListener('keydown', function (event) {
     event.stopPropagation();
-    var bartRect = bart.getBoundingClientRect(); // משיג את גבולות ה־<div> של השחקן
-    var containerRect = container.getBoundingClientRect(); // משיג את גבולות ה־<div> המכיל
+    var bartRect = bart.getBoundingClientRect();
+    var containerRect = container.getBoundingClientRect();
     switch (event.key) {
         case 'ArrowLeft':
             if (bartRect.left > containerRect.left) {
@@ -65,8 +65,14 @@ function updateTargetPosition() {
     shoot.style.left = parseFloat(getComputedStyle(shoot).left) + offsetX + 'px';
     shoot.style.top = parseFloat(getComputedStyle(shoot).top) + offsetY + 'px';
 }
-// בדיקת מיקום ה-DIV המקור ועדכון מיקום ה-DIV היעד בכל שינוי
 setInterval(updateTargetPosition, 100);
+function creatingAball() {
+    try {
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
 var ball = document.querySelector('#container__ball');
 var life = document.querySelector('#container__life');
 var images = life.querySelectorAll('.b');
@@ -78,74 +84,84 @@ var ballSpeedX = 5;
 var ballSpeedY = 5;
 var canMoveBall = true;
 function moveBall() {
-    if (gameEnded) {
-        return;
+    try {
+        if (gameEnded) {
+            return;
+        }
+        ballX += ballSpeedX;
+        ballY += ballSpeedY;
+        var containerWidth = container.offsetWidth;
+        var containerHeight = container.offsetHeight;
+        var ballSize = ball.offsetWidth;
+        if (ballX + ballSize >= containerWidth || ballX <= 0) {
+            ballSpeedX *= -1;
+        }
+        if (ballY + ballSize >= containerHeight || ballY <= 0) {
+            ballSpeedY *= -1;
+        }
+        ball.style.left = ballX + 'px';
+        ball.style.top = ballY + 'px';
+        requestAnimationFrame(moveBall);
     }
-    ballX += ballSpeedX;
-    ballY += ballSpeedY;
-    var containerWidth = container.offsetWidth;
-    var containerHeight = container.offsetHeight;
-    var ballSize = ball.offsetWidth;
-    if (ballX + ballSize >= containerWidth || ballX <= 0) {
-        ballSpeedX *= -1;
+    catch (error) {
+        console.error(error);
     }
-    if (ballY + ballSize >= containerHeight || ballY <= 0) {
-        ballSpeedY *= -1;
-    }
-    ball.style.left = ballX + 'px';
-    ball.style.top = ballY + 'px';
-    requestAnimationFrame(moveBall);
 }
 moveBall();
-function handleCollision() {
-    if (collisionCount >= 3) {
-        // console.log("המשחק נגמר");
-        gameEnded = true;
-        return;
-    }
-    var playerLocation = bart.getBoundingClientRect();
-    var ballLocation = ball.getBoundingClientRect();
-    if (playerLocation.right > ballLocation.left &&
-        playerLocation.left < ballLocation.right &&
-        playerLocation.bottom > ballLocation.top &&
-        playerLocation.top < ballLocation.bottom) {
-        var imageToRemove = images[collisionCount];
-        if (imageToRemove) {
-            life.removeChild(imageToRemove);
-        }
-        collisionCount++;
-        if (collisionCount === 1) {
-            canMoveBall = false;
-            setTimeout(function () {
-                canMoveBall = true;
-            }, 1000);
-        }
-        else if (collisionCount === 2) {
-            canMoveBall = false;
-            setTimeout(function () {
-                canMoveBall = true;
-            }, 1000);
-        }
-        else if (collisionCount === 3) {
+function ballAndPlayerCollision() {
+    try {
+        if (collisionCount >= 3) {
+            // console.log("המשחק נגמר");
             gameEnded = true;
-            life.classList.add("none");
-            bart.classList.add("none");
-            shoot.classList.add("none");
-            ball.classList.add("none");
-            var gameOver = document.querySelector('#container__gameOver');
-            var html = " <h1>game over</h1>   ";
-            gameOver.innerHTML = html;
-            window.location.href = "levels.html";
+            return;
         }
+        var playerLocation = bart.getBoundingClientRect();
+        var ballLocation = ball.getBoundingClientRect();
+        if (playerLocation.right > ballLocation.left &&
+            playerLocation.left < ballLocation.right &&
+            playerLocation.bottom > ballLocation.top &&
+            playerLocation.top < ballLocation.bottom) {
+            var imageToRemove = images[collisionCount];
+            if (imageToRemove) {
+                life.removeChild(imageToRemove);
+            }
+            collisionCount++;
+            if (collisionCount === 1) {
+                canMoveBall = false;
+                setTimeout(function () {
+                    canMoveBall = true;
+                }, 1000);
+            }
+            else if (collisionCount === 2) {
+                canMoveBall = false;
+                setTimeout(function () {
+                    canMoveBall = true;
+                }, 1000);
+            }
+            else if (collisionCount === 3) {
+                gameEnded = true;
+                life.classList.add("none");
+                bart.classList.add("none");
+                shoot.classList.add("none");
+                ball.classList.add("none");
+                var gameOver = document.querySelector('#container__gameOver');
+                var html = " <h1>game over</h1>   ";
+                gameOver.innerHTML = html;
+                // window.location.href = "levels.html"; 
+            }
+        }
+    }
+    catch (error) {
+        console.error(error);
     }
 }
 setInterval(function () {
     if (canMoveBall) {
-        handleCollision();
+        ballAndPlayerCollision();
     }
 }, 10);
-setInterval(u, 10);
-function u() {
+setInterval(ballAndShootCollision, 10);
+function ballAndShootCollision() {
     var ropeLocation = shoot.getBoundingClientRect();
     var ballLocation = ball.getBoundingClientRect();
     if (ropeLocation.right > ballLocation.left &&
@@ -158,8 +174,6 @@ function u() {
         var smallBall2_1 = document.createElement('div');
         smallBall1_1.style.position = "absolute";
         smallBall2_1.style.position = "absolute";
-        // smallBall2.style.margin = "20px"
-        // Set up the properties for smallBall1
         smallBall1_1.className = 'small-ball';
         smallBall1_1.style.width = '50px';
         smallBall1_1.style.height = '50px';

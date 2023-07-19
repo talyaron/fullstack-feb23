@@ -37,8 +37,8 @@ const shoot = document.querySelector(`#container__shoot`) as HTMLElement;
 const container = document.querySelector('#container') as HTMLElement;
 document.addEventListener('keydown', (event: KeyboardEvent) => {
     event.stopPropagation();
-    const bartRect = bart.getBoundingClientRect(); // משיג את גבולות ה־<div> של השחקן
-    const containerRect = container.getBoundingClientRect(); // משיג את גבולות ה־<div> המכיל
+    const bartRect = bart.getBoundingClientRect();
+    const containerRect = container.getBoundingClientRect();
 
     switch (event.key) {
         case 'ArrowLeft':
@@ -80,11 +80,16 @@ function updateTargetPosition() {
     shoot.style.top = parseFloat(getComputedStyle(shoot).top) + offsetY + 'px';
 }
 
-// בדיקת מיקום ה-DIV המקור ועדכון מיקום ה-DIV היעד בכל שינוי
 setInterval(updateTargetPosition, 100);
 
 
+function creatingAball() {
+    try {
 
+    } catch (error) {
+        console.error(error);
+    }
+}
 
 
 
@@ -101,94 +106,105 @@ let ballSpeedY = 5;
 let canMoveBall = true;
 
 function moveBall() {
-    if (gameEnded) {
-        return;
+    try {
+        if (gameEnded) {
+            return;
+        }
+
+        ballX += ballSpeedX;
+        ballY += ballSpeedY;
+
+        const containerWidth = container.offsetWidth;
+        const containerHeight = container.offsetHeight;
+        const ballSize = ball.offsetWidth;
+
+        if (ballX + ballSize >= containerWidth || ballX <= 0) {
+            ballSpeedX *= -1;
+        }
+
+        if (ballY + ballSize >= containerHeight || ballY <= 0) {
+            ballSpeedY *= -1;
+        }
+
+        ball.style.left = ballX + 'px';
+        ball.style.top = ballY + 'px';
+
+        requestAnimationFrame(moveBall);
+    } catch (error) {
+        console.error(error);
     }
 
-    ballX += ballSpeedX;
-    ballY += ballSpeedY;
 
-    const containerWidth = container.offsetWidth;
-    const containerHeight = container.offsetHeight;
-    const ballSize = ball.offsetWidth;
-
-    if (ballX + ballSize >= containerWidth || ballX <= 0) {
-        ballSpeedX *= -1;
-    }
-
-    if (ballY + ballSize >= containerHeight || ballY <= 0) {
-        ballSpeedY *= -1;
-    }
-
-    ball.style.left = ballX + 'px';
-    ball.style.top = ballY + 'px';
-
-    requestAnimationFrame(moveBall);
 }
 
 moveBall();
 
-function handleCollision() {
-    if (collisionCount >= 3) {
-        // console.log("המשחק נגמר");
-        gameEnded = true;
-        return;
-    }
-
-    const playerLocation = bart.getBoundingClientRect();
-    const ballLocation = ball.getBoundingClientRect();
-
-    if (
-        playerLocation.right > ballLocation.left &&
-        playerLocation.left < ballLocation.right &&
-        playerLocation.bottom > ballLocation.top &&
-        playerLocation.top < ballLocation.bottom
-    ) {
-        const imageToRemove = images[collisionCount];
-        if (imageToRemove) {
-            life.removeChild(imageToRemove);
-        }
-
-        collisionCount++;
-
-        if (collisionCount === 1) {
-            canMoveBall = false;
-            setTimeout(() => {
-                canMoveBall = true;
-            }, 1000);
-        } else if (collisionCount === 2) {
-            canMoveBall = false;
-            setTimeout(() => {
-                canMoveBall = true;
-            }, 1000);
-        } else if (collisionCount === 3) {
+function ballAndPlayerCollision() {
+    try {
+        if (collisionCount >= 3) {
+            // console.log("המשחק נגמר");
             gameEnded = true;
-            life.classList.add("none")
-            bart.classList.add("none")
-            shoot.classList.add("none")
-            ball.classList.add("none")
-            const gameOver = document.querySelector('#container__gameOver') as HTMLElement;
-            const html = ` <h1>game over</h1>   `
-            gameOver.innerHTML = html;
-
-            window.location.href = "levels.html";
-
-
+            return;
         }
 
+        const playerLocation = bart.getBoundingClientRect();
+        const ballLocation = ball.getBoundingClientRect();
+
+        if (
+            playerLocation.right > ballLocation.left &&
+            playerLocation.left < ballLocation.right &&
+            playerLocation.bottom > ballLocation.top &&
+            playerLocation.top < ballLocation.bottom
+        ) {
+            const imageToRemove = images[collisionCount];
+            if (imageToRemove) {
+                life.removeChild(imageToRemove);
+            }
+
+            collisionCount++;
+
+            if (collisionCount === 1) {
+                canMoveBall = false;
+                setTimeout(() => {
+                    canMoveBall = true;
+                }, 1000);
+            } else if (collisionCount === 2) {
+                canMoveBall = false;
+                setTimeout(() => {
+                    canMoveBall = true;
+                }, 1000);
+            } else if (collisionCount === 3) {
+                gameEnded = true;
+                life.classList.add("none")
+                bart.classList.add("none")
+                shoot.classList.add("none")
+                ball.classList.add("none")
+                const gameOver = document.querySelector('#container__gameOver') as HTMLElement;
+                const html = ` <h1>game over</h1>   `
+                gameOver.innerHTML = html;
+
+                // window.location.href = "levels.html"; 
+
+
+            }
+
+        }
+    } catch (error) {
+        console.error(error);
     }
+
 }
 
 setInterval(() => {
     if (canMoveBall) {
-        handleCollision();
+        ballAndPlayerCollision();
     }
 }, 10);
 
 
-setInterval(u, 10);
+setInterval(ballAndShootCollision, 10);
 
-function u() {
+function ballAndShootCollision() {
     const ropeLocation = shoot.getBoundingClientRect();
     const ballLocation = ball.getBoundingClientRect();
     if (
@@ -204,9 +220,8 @@ function u() {
         const smallBall2 = document.createElement('div');
         smallBall1.style.position = "absolute"
         smallBall2.style.position = "absolute"
-        // smallBall2.style.margin = "20px"
 
-        // Set up the properties for smallBall1
+
         smallBall1.className = 'small-ball';
         smallBall1.style.width = '50px';
         smallBall1.style.height = '50px';

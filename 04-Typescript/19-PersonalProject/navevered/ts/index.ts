@@ -2,16 +2,7 @@
 const uid = function () {
   return Date.now().toString(36) + Math.random().toString(36).substr(2);
 };
-class User {
-  id: string;
-  constructor(
-    public name: string,
-    public email: string,
-    public password: string
-  ) {
-    this.id = uid();
-  }
-}
+
 
 // Income entity
 class Income {
