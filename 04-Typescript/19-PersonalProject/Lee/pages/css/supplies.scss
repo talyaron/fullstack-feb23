@@ -16,12 +16,14 @@
 
     .logo {
     
-      width: 5rem;
+      
       display: flex;
       position: relative;
-      top: 28rem;
-      right: 8rem;
-      height: 5px;
+      top: -12rem;
+      left: -10rem;
+      height: 80px;
+      padding: -2vh 7vw;
+        width: 20vw;
 
       
   }
@@ -38,6 +40,7 @@
     width: 170px;
     height: 30px;
     padding: 10px;
+    left: 3rem;
     border: 0.5px solid rgba(0, 0, 0, 0.276);
     border-radius: 10px;
     background: white

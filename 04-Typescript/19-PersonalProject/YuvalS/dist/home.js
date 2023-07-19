@@ -16,4 +16,3 @@ function handleHowtoImg(ev) {
     ev.preventDefault();
     renderHowtoImg(document.querySelector("#imageHowTo"));
 }
-removeImage(document.querySelector("#imageH"));

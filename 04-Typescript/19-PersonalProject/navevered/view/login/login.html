@@ -10,6 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="../register/dist/register.js"defer></script>
     <script src="../home-page/dist/homepage.js"defer></script>
     <script src="../login/dist/login.js" defer></script>
 
@@ -41,16 +42,18 @@
   </div>
   <div class="popup" id="popup">
   </div>
+  <div id="rootName"></div>
 <div dir="rtl" class="row">
     <div class="columna">
         <h1 class="heading"> התחברות ללקוחות רשומים </h1> 
     
     <h2  class="h2"> איזה כיף שחזרתם !</h2>
     <p class="p">   שנתחבר?  </p>
-    <form dir="rtl" class="form" id="login-form">
+    <form dir="rtl" onsubmit="handleLoginFormSubmit(event)" class="form" id="login-form" action="../home-page/homepage.html">
       <input type="email" id="email-input" placeholder="איימיל" required>
       <input type="password" id="password-input" placeholder="סיסמא" required>
-      <button type="submit" class="submit_full">התחברות</button>
+      <input type="submit" class="submit_full value= "התחברות">
+
     </form>
    
     </div>
@@ -59,3 +62,4 @@
  
 
 </body>
+</html>

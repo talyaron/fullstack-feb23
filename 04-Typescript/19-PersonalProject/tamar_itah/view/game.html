@@ -9,9 +9,8 @@
     <title>Game</title>
 </head>
 
-<body onload="renderPlay()">
-    <div id="end"></div>
-    <div id="finish" class="wrapper">
+<body id="body_game" onload="OnLoadGame()">
+    <div class="wrapper">
         <div id="h1"></div>
         <div id="instruction"></div>
         <div class="wrapper">
@@ -19,7 +18,7 @@
             <div class="cards" id="cards"></div>
             <br>
             <br>
-            <button id="finish" class="btnF" onclick="renderFinish()">Finish</button>
+            <button id="finish" class="btnF" onclick="hendelFinish()">Finish</button>
         </div>
     </div>
 </body>

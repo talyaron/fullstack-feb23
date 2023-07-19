@@ -1,8 +1,8 @@
 ///-----------------------myPlayerMoves--------------------
 
 function playTheButton(myOption: string[]) {
-  document.querySelectorAll("button").forEach((button) => {
-    button.disabled = false;
+  (document.querySelectorAll(".operations__btn")as NodeListOf<HTMLButtonElement>).forEach((button) => {
+    button.disabled = "false";
   });
   if (myOption.length == 2) {
     //check or rise{
@@ -39,13 +39,15 @@ function myPlayerHandleCheck() {
   const myPlayer = players.find((p) => p.id == "myPlayer");
   myPlayer?.checkMove(players);
 
-  turnOrder(players);
+  delayedTurnOrder(players);
+
 }
 function myPlayerHandleFold() {
   const myPlayer = players.find((p) => p.id == "myPlayer");
   myPlayer?.foldMove(players);
 
-  turnOrder(players);
+  delayedTurnOrder(players);
+
 }
 
 function myPlayerHandleRise() {
@@ -56,7 +58,8 @@ function myPlayerHandleRise() {
   }
   myPlayer?.riseMove(players, inputSizeToBet);
 
-  turnOrder(players);
+  delayedTurnOrder(players);
+
 }
 
 function myPlayerHandleCall() {
@@ -64,7 +67,11 @@ function myPlayerHandleCall() {
   const myPlayerIndex = players.findIndex((p) => p.id == "myPlayer");
   myPlayer?.callMove(players, myPlayerIndex);
 
-  turnOrder(players);
+  delayedTurnOrder(players);
+
 }
 
 //------------------------
+
+
+

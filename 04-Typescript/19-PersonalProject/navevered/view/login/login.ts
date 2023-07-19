@@ -1,22 +1,42 @@
-const loginForm = document.querySelector("#login-form");
-loginForm.addEventListener("submit", handleLoginFormSubmit);
+function loadUsersFromLocal(): User[]|undefined{
+  try {
+    const userString = localStorage.getItem("users");
+    if(userString)
+    return JSON.parse(userString);
+    else return[];
+  } catch (error) {
+    console.error(error);
+    return[]
+  }
+  
 
-function handleLoginFormSubmit(event) {
+}
+class User {
+
+  constructor(
+    public name: string,
+    public email: string,
+    public password: string
+  ) {
+  
+  }
+}
+const usersLoginPage: User[]| undefined =  loadUsersFromLocal();
+
+
+
+function handleLoginFormSubmit(event: Event) {
   event.preventDefault();
 
-  const emailInput = document.querySelector("#email-input");
-  const passwordInput = document.querySelector("#password-input");
-
-  const email = emailInput.value;
-  const password = passwordInput.value;
-
-  const user = JSON.parse(localStorage.getItem("user"));
-
-  if (user && user.email === email && user.password === password) {
-    // Redirect to the main system page
-    window.location.href = "../home/profit.html";
-
-  } else {
-    alert("Invalid email or password. Please try again.");
+  try {
+    debugger
+    if (User && User === User && usersLoginPage ) {
+      // Redirect to the registration page
+      window.location.href = "../home-page/homepage.html";
+    } else {
+      alert("Invalid email or password. Please try again.");
+    }
+  } catch (error) {
+    console.error('An error occurred:', error);
   }
 }

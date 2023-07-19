@@ -214,7 +214,7 @@ function loadQuestionBadThings (): QuestionBadThings[] | undefined {
           //get characters from localstorage
           const badThingsArray = JSON.parse(badThingsString);
           badThingsArray.forEach((bad) => {
-            badThings.push(new QuestionBadThings(bad.bdThingsTitel,bad.badThingsDescription,bad.purchasePrice,bad.badThingsId));
+            badThings.push(new QuestionBadThings(bad.badThingsTitel,bad.badThingsDescription,bad.purchasePrice,bad.badThingsId));
               });}
    return badThings;          
         
@@ -295,6 +295,7 @@ function loadDataToBoard(board: Board|undefined): void {
       // Load bad things and add them to the board
       const badThings: QuestionBadThings[] | undefined = loadQuestionBadThings();
       if (badThings) {
+        debugger
         board.badThings = badThings;
       }
       

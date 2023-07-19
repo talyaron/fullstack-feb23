@@ -1,0 +1,40 @@
+.btn{
+    margin-left: 1.5rem;
+}
+.wrapper{
+
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    .workerlog{
+        height: 15rem;
+        width: 55rem;
+        background-color: aliceblue;
+        overflow: scroll;
+        &__info{
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid black;
+        }
+        &__worker{
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid black;
+            .workername{
+                margin-left: 1rem;
+            }
+            .workerdate{
+
+            }
+            .workertime{
+
+            }
+        }
+    }
+
+
+
+}

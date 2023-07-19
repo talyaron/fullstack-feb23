@@ -1,5 +1,6 @@
 class Details {
   id: string;
+
   constructor(
     public name: string,
     public pass: string,
@@ -14,24 +15,35 @@ class Details {
   }
 }
 
-const Detailsarray = [];
-const Detailsstring = localStorage.getItem(`user`);
-console.log(Detailsarray);
+const Detailsarray: Details[] = [];
 
-function login(event) {
-  event.preventDefault();
-  const name = event.target.elements.name.value;
-  const pass = event.target.elements.pass.value;
-  const email = event.target.elements.email.value;
-  const id = event.target.elements.id;
-  const data: Details = new Details(name, pass, email, id);
-  Detailsarray.push(data);
-  localStorage.setItem(`user`, JSON.stringify(Detailsarray));
-  event.target.reset();
-  window.location.href = "../web/web.html";
+const Detailsstring = localStorage.getItem(`user`);
+if (Detailsstring) {
+  const storedData: Details[] = JSON.parse(Detailsstring);
+  Detailsarray.push(...storedData);
 }
 
-const root: Element | null= document.querySelector("#root");
-const storedData = JSON.parse(localStorage.getItem("user"));
-const lastDetails = storedData[storedData.length - 1];
-root.innerHTML = `Hello ${lastDetails.name}`;
+function login(event: Event) {
+  event.preventDefault();
+  try {
+    const name = (event.target as HTMLFormElement).elements.name.value;
+    const pass = (event.target as HTMLFormElement).elements.pass.value;
+    const email = (event.target as HTMLFormElement).elements.email.value;
+    const id = (event.target as HTMLFormElement).elements.id.value;
+    const data: Details = new Details(name, pass, email, id);
+    Detailsarray.push(data);
+    localStorage.setItem(`user`, JSON.stringify(Detailsarray));
+    (event.target as HTMLFormElement).reset();
+    window.location.href = "../web/web.html";
+  } catch (error) {
+    console.error("An error occurred:", error);
+  }
+}
+
+const root: Element | null = document.querySelector("#root");
+if (Detailsarray.length > 0) {
+  const lastDetails = Detailsarray[Detailsarray.length - 1];
+  root.innerHTML = `Hello ${lastDetails.name}`;
+} else {
+  root.innerHTML = "No user details available.";
+}

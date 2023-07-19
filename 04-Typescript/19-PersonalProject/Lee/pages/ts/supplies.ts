@@ -191,9 +191,9 @@ function renderAddProductForm() {
       <form id="addProductForm" onsubmit="handelNewProduct(event)">
       <label for="newName"> name of product: </label>
       <input type="text" id="newName" required><br>
-      <label for="newImgSrc"> Image source of product: </label>
+      <label for="newImgSrc"> Image address: </label>
       <input type="url" id="newImgSrc" required><br>
-      <label for="newAmount"> Image address: </label>
+      <label for="newAmount"> Amount: </label>
       <input type="number" id="newAmount" value="0" min="0"><br>
       <label for="newPrice"> Price: </label><br>
       <input type="text" id="newPrice" required>
