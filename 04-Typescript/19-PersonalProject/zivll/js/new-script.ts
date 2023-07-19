@@ -300,7 +300,8 @@ function deleteExpense(ev) {
   const categoryId = ev.target.parentElement.parentElement.parentElement.id;
   const categoryName =
     ev.target.parentElement.parentElement.parentElement.previousElementSibling
-      .lastChild.innerText;
+      .childNodes[0].innerText;
+
   const same = expences.filter((expense) => expense.category === categoryName);
   // console.log(same);
 
@@ -320,6 +321,7 @@ function deleteExpense(ev) {
   loadDataToLocalStorage(expences, `expences`);
   const allExpences = calculateTotalExpence(expences);
   loadDataToLocalStorage(allExpences, `totalExpence`);
+  ev.stopImmediatePropagation();
   window.location.reload();
 }
 function editExpense(ev) {
