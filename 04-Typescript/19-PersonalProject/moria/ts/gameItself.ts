@@ -294,6 +294,8 @@ function updateBallsPosition() {
         smallBall2.style.left = smallBall2X + 'px';
         smallBall2.style.top = smallBall2Y + 'px';
         // גדחייבדגי
+        handleCollision();
+
 
         requestAnimationFrame(updateBallsPosition);
 
