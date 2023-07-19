@@ -1,81 +1,150 @@
-document.getElementById('submitBtn').addEventListener('click', function(event) {
-  event.preventDefault();
+class User {
+  constructor(
+    public userName: string,
+    public email: string,
+    public password: string
+  ) {}
+}
 
-  const salaryPensionFrequency = document:Document.getElementById('salary-pension-frequency').value;
-  const salaryPensionAmount = Number(document.getElementById('salary-pension-amount').value);
+class Income {
+  id: string;
+  labelName:  NodeListOf<Node> | null;
+  constructor(
+    public user: User,
+    public amount: number,
+    public frequency: string
+  ) {
+    this.id = uid();
+    this.labelName = uLabelName;
+  }
+}
+const uLabelName = document.querySelectorAll(".label")
 
-  const govSupportFrequency =   document.getElementById('gov-support-frequency').value;
-  const govSupportAmount = Number(document.getElementById('gov-support-amount').value);
+const uid = function () {
+  return Date.now().toString(36) + Math.random().toString(36).substr(2);
+};
 
-  const rentalIncomeFrequency = document.getElementById('rental-income-frequency').value;
-  const rentalIncomeAmount = Number(document.getElementById('rental-income-amount').value);
+const incomes: Income[] = [];
 
-  const otherSupportFrequency = document.getElementById('other-support-frequency').value;
-  const otherSupportAmount = Number(document.getElementById('other-support-amount').value);
+const getInputElementValue = (id: string) => {
+  const inputElement = document.querySelector(`#${id}`) as HTMLInputElement;
+  return inputElement.value;
+};
 
-  const giftsBonusesFrequency = document.getElementById('gifts-bonuses-frequency').value;
-  const giftsBonusesAmount = Number(document.getElementById('gifts-bonuses-amount').value);
 
-  const otherIncomeName = document.getElementById('other-income-name').value;
-  const otherIncomeFrequency = document.getElementById('other-income-frequency').value;
-  const otherIncomeAmount = Number(document.getElementById('other-income-amount').value);
   
-  const result = calculateTotalIncome([
-      { name: 'Salary from work or pension allowance', frequency: salaryPensionFrequency, amount: salaryPensionAmount },
-      { name: 'Allowances and supports from the government', frequency: govSupportFrequency, amount: govSupportAmount },
-      { name: 'Rental income', frequency: rentalIncomeFrequency, amount: rentalIncomeAmount },
-      { name: 'Other support', frequency: otherSupportFrequency, amount: otherSupportAmount },
-      { name: 'Gifts and bonuses', frequency: giftsBonusesFrequency, amount: giftsBonusesAmount },
-      { name: otherIncomeName, frequency: otherIncomeFrequency, amount: otherIncomeAmount }
-  ]);
 
-  displayResult(result);
-  document.getElementById('incomeForm').reset();
+
+
+    renderTable();
+
+    
+
+document.querySelector("#incomeForm")?.addEventListener("submit", (ev) => {
+  try {
+    ev.preventDefault();
+
+    const salaryPensionFrequency = getInputElementValue(
+      "salary-pension-frequency"
+    );
+    const salaryPensionAmount = Number(
+      getInputElementValue("salary-pension-amount")
+    );
+
+    const govSupportFrequency = getInputElementValue("gov-support-frequency");
+    const govSupportAmount = Number(getInputElementValue("gov-support-amount"));
+
+    const rentalIncomeFrequency = getInputElementValue(
+      "rental-income-frequency"
+    );
+    const rentalIncomeAmount = Number(
+      getInputElementValue("rental-income-amount")
+    );
+
+    const otherSupportFrequency = getInputElementValue(
+      "other-support-frequency"
+    );
+    const otherSupportAmount = Number(
+      getInputElementValue("other-support-amount")
+    );
+
+    const giftsBonusesFrequency = getInputElementValue(
+      "gifts-bonuses-frequency"
+    );
+    const giftsBonusesAmount = Number(
+      getInputElementValue("gifts-bonuses-amount")
+    );
+
+    const otherIncomeName = getInputElementValue("other-income-name");
+    const otherIncomeFrequency = getInputElementValue("other-income-frequency");
+    const otherIncomeAmount = Number(
+      getInputElementValue("other-income-amount")
+    );
+
+    incomes.push(
+      new Income(
+        new User("User", "", ""),
+        salaryPensionAmount,
+        salaryPensionFrequency
+      )
+    );
+    incomes.push(
+      new Income(
+        new User("User", "", ""),
+        govSupportAmount,
+        govSupportFrequency
+      )
+    );
+    incomes.push(
+      new Income(
+        new User("User", "", ""),
+        rentalIncomeAmount,
+        rentalIncomeFrequency
+      )
+    );
+    incomes.push(
+      new Income(
+        new User("User", "", ""),
+        otherSupportAmount,
+        otherSupportFrequency
+      )
+    );
+    incomes.push(
+      new Income(
+        new User("User", "", ""),
+        giftsBonusesAmount,
+        giftsBonusesFrequency
+      )
+    );
+    incomes.push(
+      new Income(
+        new User("User", "", ""),
+        otherIncomeAmount,
+        otherIncomeFrequency
+      )
+    );
+
+    renderTable();
+    
+
+    const incomesJson = JSON.stringify(incomes);
+    localStorage.setItem("incomes", incomesJson);
+  } catch (error) {
+    console.error(error);
+  }
 });
 
-function calculateTotalIncome(incomes) {
-  let totalIncome = 0;
+function renderTable() {
+  const nameRoot = document.querySelector("#rootName");
+  if (!nameRoot) throw new Error("Could not find rootPersons html element");
+
+  let html =
+    "<table dir><thead><tr><th> מי הוציא  </th><th>סכום</th><th>כל כמה זמן</th></tr></thead><tbody>";
 
   for (const income of incomes) {
-      if (income.name && income.amount) {
-          let multiplier = 1;
-          if (income.frequency === 'every-two-months') {
-              multiplier = 2;
-          } else if (income.frequency === 'yearly') {
-              multiplier = 12;
-          }
-
-          totalIncome += income.amount * multiplier;
-      }
+    html += `<tr><td id="tdName">${income.labelName}</td><td>${income.amount}</td><td>${income.frequency}</td></tr>`;
   }
 
-  return totalIncome;
-}
-
-function displayResult(result) {
-  const resultElement = document.getElementById('result');
-  resultElement.innerHTML = `Your total income is: ${result}`;
-}
-
-// Login Form Submission Functionality
-const loginForm: = document.querySelector("#login-form");
-
-loginForm.addEventListener("submit", handleLoginFormSubmit);
-
-function handleLoginFormSubmit(event) {
-  event.preventDefault();
-
-  const emailInput = document.querySelector("#email-input");
-  const passwordInput = document.querySelector("#password-input");
-  const email = emailInput.value;
-  const password = passwordInput.value;
-
-  const user = JSON.parse(localStorage.getItem("user"));
-
-  if (user && user.email === email && user.password === password) {
-    // Redirect to the dashboard page
-    window.location.href = "income.html";
-  } else {
-    alert("Invalid email or password. Please try again.");
-  }
+  html += "</tbody></table>";
+  nameRoot.innerHTML = html;
 }

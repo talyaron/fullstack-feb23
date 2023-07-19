@@ -15,7 +15,7 @@ class Patient {
     }
 }
 
-const firstPatiens: Patient[] = [
+const firstPatients: Patient[] = [
 
     new Patient(
         "Oscar", "Lee Dekel", "0521111111", "https://media.istockphoto.com/id/462488163/photo/tabby-grey-cat-lying-on-white-background.jpg?s=612x612&w=0&k=20&c=PowgpbMeU8jJwlHrkVQY3SLGrr_83pR8m6_arn_M3BA=", 2006
@@ -42,8 +42,8 @@ function getPatientsFromLocalStorage(): Patient[] {
     try {
         const patientsString = localStorage.getItem("patients");
         if (!patientsString) {
-            localStorage.setItem("patients", JSON.stringify(firstPatiens));
-            return firstPatiens;
+            localStorage.setItem("patients", JSON.stringify(firstPatients));
+            return firstPatients;
         } else {
 
             const patientsArray = JSON.parse(patientsString)
@@ -195,37 +195,4 @@ function handleSetEditPatient(ev: any) {
     }
 }
 
-class Vaccine {
-    id: string;
-    constructor(public vacName: string, public price: number, id?: string | null) {
-        if (id) {
-            this.id = id;
-        } else {
 
-            this.id = `${Math.random()}`
-        }
-    }
-}
-
-class Treatment {
-    id: string;
-    constructor(public treatName: string, public price: number) {
-    }
-}
-
-const treatments: Treatment[] = [
-    new Treatment("Haircut", 200),
-    new Treatment("Hospitalization per night", 450),
-    new Treatment("teeth cleaning", 100),
-    new Treatment("x-ray", 100),
-    new Treatment("US", 100),
-]
-
-
-
-
-class PatientTeatment {
-    constructor(public name: Patient, public owner: Patient, public treatName: Treatment, public price: Treatment) {
-
-    }
-}

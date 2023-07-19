@@ -11,8 +11,24 @@ header {
   margin: 0px;
 }
 
+.h1 {
+  display: flex;
+  background-color: #718f54;
+  align-items: center;
+}
+
 h1 {
+  color: white;
+  text-align: center;
   margin: 0;
+  font-size: 5vw;
+  padding-left: 29vw;
+}
+
+a {
+  color: white;
+  font-size: 2.5vw;
+  padding-left: 2vw;
 }
 
 main {
@@ -40,7 +56,7 @@ input[type=number] {
 }
 
 button {
-  width: 5vw;
+  width: 18vw;
   padding: 10px 20px;
   font-size: 16px;
   background-color: #333;

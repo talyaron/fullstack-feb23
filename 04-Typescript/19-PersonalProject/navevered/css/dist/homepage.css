@@ -16,7 +16,7 @@
   justify-content: space-between;
   align-items: center;
   max-width: 1200px;
-  width: 100%;
+  width: 95%;
   height: 12vh;
   padding: 0 20px;
   align-content: center;
@@ -55,6 +55,42 @@
 .menu-button {
   display: none;
   cursor: pointer;
+}
+
+.popup {
+  position: fixed;
+  width: 100vw;
+  background-color: #ffffff;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 9999;
+}
+
+.popup ul {
+  text-align: right;
+  padding: 15px 30px;
+  border: 1px solid #9A8FF6;
+}
+
+.popup li {
+  margin-bottom: 10px;
+  border-bottom: 1px solid #9A8FF6;
+}
+
+.popup a:hover {
+  color: #9A8FF6;
+}
+
+.popup a {
+  color: #191716;
+  text-decoration: none;
+  color: #191716;
+  font-family: "Assistant", sans-serif;
+  text-align: center;
+  font-size: 22px;
+}
+
+.show-popup {
+  display: block;
 }
 
 @media (max-width: 767px) {
@@ -110,21 +146,21 @@
 }
 .row {
   background-image: url(bg.jpg);
-  padding: 20px;
-  height: 90vh;
+  height: 150vh;
   margin: 0px 0px 50px 0px;
 }
 
 .columna {
   text-align: center;
+  overflow-x: hidden !important;
 }
 
 .heading {
-  font-size: 50px;
+  font-size: 3em;
   text-align: center;
   line-height: 1em;
   color: #FEC94E;
-  padding: 5px;
+  padding: 10px;
   font-family: "Assistant", sans-serif;
   padding-top: 75px;
 }
@@ -157,20 +193,21 @@
 }
 
 .h2 {
-  font-size: 45px;
+  font: size 3em;
   font-weight: 300;
   color: #191716;
   font-family: "Assistant", sans-serif;
 }
 
 .p {
-  font-size: 20px;
+  font-size: 18px;
   color: #9A8FF6;
   font-weight: 700;
   font-family: "Assistant", sans-serif;
+  width: 100vw;
 }
 
-input[type=email], [type=submit], [type=text], [type=tel], [type=password] {
+input[type=email], [type=text], [type=tel], [type=password], [type=number], [type=submit] {
   background-color: #ffffff;
   padding: 0.5em 2em 0.5em 2em;
   font-family: "Assistant", sans-serif;
@@ -178,6 +215,16 @@ input[type=email], [type=submit], [type=text], [type=tel], [type=password] {
   border: solid 1px black;
   border-radius: 100px;
   margin-top: 20px;
+  cursor: pointer;
+}
+
+input[type=submit] {
+  background-color: #FEC94E;
+  padding: 0.5em 2em 0.5em 2em;
+  font-family: "Assistant", sans-serif;
+  color: #000000;
+  border-radius: 100px;
+  border: none;
   cursor: pointer;
 }
 
@@ -231,7 +278,7 @@ input[type=email], [type=submit], [type=text], [type=tel], [type=password] {
 }
 
 h2 {
-  font-size: 34px;
+  font-size: 2em;
   margin-bottom: 20px;
   color: #191716;
 }
@@ -372,6 +419,9 @@ p {
 @media screen and (max-width: 700px) {
   .heading {
     padding-top: 50px;
+    font-size: 25;
+    font-weight: 700;
+    stroke-width: 1px;
   }
 }
 .footer {
@@ -443,5 +493,89 @@ p {
     background-color: #FEC94E;
     border: none;
     width: 50%;
+  }
+}
+.incomeForm {
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  width: 100%;
+  font-size: 15px;
+  font-family: "Assistant", sans-serif;
+}
+
+.select {
+  background-color: #ffffff;
+  padding: 0.5em 0.5em 0.5em 2em;
+  font-family: "Assistant", sans-serif;
+  color: #000000;
+  border: solid 1px black;
+  border-radius: 100px;
+  margin-top: 20px;
+  cursor: pointer;
+  width: 30vw;
+  box-sizing: content-box;
+}
+
+table {
+  width: 70%;
+  margin: 0 auto;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  margin-top: 3em;
+}
+table th {
+  background-color: #FEC94E;
+  color: #191716;
+  font-size: 15px;
+  font-family: "Assistant", sans-serif;
+  padding: 10px;
+  text-align: right;
+  border: 1px solid #191716;
+}
+table td {
+  font-size: 15px;
+  font-family: "Assistant", sans-serif;
+  padding: 10px;
+  border: 1px solid #191716;
+  color: #191716;
+}
+table #tdName {
+  background-color: #191716;
+  color: white;
+}
+@media (max-width: 768px) {
+  table {
+    width: 100%;
+  }
+  table th, table td {
+    font-size: 14px;
+  }
+}
+
+#submitBtnIncome {
+  margin: 70px;
+}
+
+@media (max-width: 767px) {
+  /* Adjust the form layout and font sizes for mobile */
+  .label {
+    font-size: 14px;
+    width: 100%;
+  }
+
+  .select {
+    width: 80%;
+  }
+
+  input[type=number],
+input[type=text] {
+    width: 80%;
+  }
+
+  .submit_full {
+    width: 80%;
   }
 }
