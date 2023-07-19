@@ -1,6 +1,8 @@
+class Word{
+    constructor(public word:string){}
+}
 
-
-const Words:String[] = ["yuval"];
+const Words:Word[] = getWordFromLS();
 function renderinputs(htmlElement: HTMLElement | null){
     try {
         htmlElement = document.querySelector("#forms");
@@ -30,16 +32,22 @@ renderinputs(document.querySelector("#forms"))
 function handleAddWord(ev:any){
 try {
             ev.preventDefault();
-            const myword = ev.target.word.value;
-            if(myword.length !== 5) {alert("Must be 5 letters")
+            const inputWord = ev.target.word.value;
+            if(inputWord.length !== 5) {alert("Must be 5 letters")
             return
             }
 
-            Words.push(myword);
+            const newWord = new Word (inputWord)
+
+            Words.push(newWord);
+            saveWordToLS(Words)
             console.log(Words)
             ev.target.reset();
             
-    
+            
+                
+              
+            
     
     
         } catch (error) {
@@ -49,40 +57,45 @@ try {
 
 
 
+
 function handleStartGame(ev:any){
     makeBoard()
     handleInputFromUserGame()
     
+    
 }
 
 
-// function saveWordToLS(Words){
-//     localStorage.setItem('Words', JSON.stringify(Words));
-// }
+function saveWordToLS(words: Word[]){
+    localStorage.setItem('words', JSON.stringify(words));
+}
 
-// function getWordFromLS(){
-//     try {
-//         const WordsStorage = localStorage.getItem('Words');
-//         if(!WordsStorage) return 
-//         const Words = JSON.parse(WordsStorage);
-//         return Words;
-//     } catch (error) {
-//         console.error(error);
-//         return [];
-//     }
-// }
+function getWordFromLS(): Word[]{
+    try {
+        const WordsStorage = localStorage.getItem('words');
+        if(!WordsStorage) return [];
+        const wordsArr = JSON.parse(WordsStorage);
+        const Words = wordsArr.map(word => new Word(word.word));
+        return Words;
+    } catch (error) {
+        console.error(error);
+        return [];
+    }
+}
 
 
 console.log(Words)
 let height = 6;
-let myword = Words[Math.floor(Math.random() * Words.length)].toUpperCase()
+// let myword = Words[Math.floor(Math.random() * Words.length)].toUpperCase()
 let width = 5;
-console.log(height);
-console.log(myword);
-console.log(width);
+
 let row = 0; //current guess atempt
 let col = 0; // current letter for that attempt
 let gameOver = false;
+let wordObj = Words[Math.floor(Math.random() * Words.length)];
+let myword = wordObj.word.toLocaleUpperCase();
+console.log(myword);
+
 
 
 
