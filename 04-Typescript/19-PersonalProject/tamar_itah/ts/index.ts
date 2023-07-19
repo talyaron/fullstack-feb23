@@ -17,6 +17,10 @@ const words: Word[] = [
     new Word('earth', 'כַּדוּר הָאָרֶץ'),
     new Word('volcano', 'הַר גַעַשׁ'),
     new Word('Mountain', 'הַר'),
+    new Word('lantern', 'פָּנָס'),
+    new Word('raft', 'רַפסוֹדָה'),
+    new Word('Trip', 'טִיוּל'),
+    new Word('journey', 'מַסָע'),
 ]
 
 
@@ -27,7 +31,7 @@ const words: Word[] = [
 function handelSubmit(ev: any) {
     try {
         ev.preventDefault()
-        fromStorage() // Amir
+        fromStorage()
 
         const newUserName = ev.target.elements.newname.value;  //colect the user name
         if (!newUserName) throw new Error('user name is missing')
@@ -35,6 +39,7 @@ function handelSubmit(ev: any) {
 
         let newUser = new User(newUserName)
         console.log(newUser)
+
         users.push(newUser)  //add the new user into users array
         console.log(users)
 
@@ -110,12 +115,12 @@ function heandelPlay() {
     window.location.replace("./game.html")  //move to game page
 }
 
-function hendelFinish(){
+function hendelFinish() {
     localStorage.setItem('users', JSON.stringify(users)) //sent the array to local storage as string
     window.location.replace("./finish.html")
 }
 
-function hendelLogOn(){
+function hendelLogOn() {
     window.location.replace("./login.html")
 }
 
@@ -134,24 +139,34 @@ function renderUserName() {
     }
 }
 
-//the Add form
-function renderAdd() {
-    const htmlroot = document.querySelector('#root')
-    if (!htmlroot) throw new Error("no root element");
-    const toHtml = `<form id="form" onsubmit="hendelAddWordsubmit(event)">
-                        <input type="text" name="newEnWord" placeholder="Please Insert a New English Word" required>
-                        <input type="text" name="interpretation" placeholder="Please provide the meaning of the word" required>
+//the Add word form
+function renderNewWords() {
+    try {
+        //set styles on the body element
+        document.body.style.backgroundImage = 'url(https://media.istockphoto.com/id/487846628/vector/colorful-cubes-background.jpg?s=612x612&w=0&k=20&c=_12UlcCYJXf3zSNykkujGRvhrxko65w3DTZIjRT7UB0=)';
+
+        // const htmlbody = document.querySelector('#body_index')
+        // if (!htmlbody) throw new Error("no root element");
+        const htmlroot = document.querySelector('#root')
+        if (!htmlroot) throw new Error("no root element");
+        const toHtml = `<form id="form" onsubmit="hendelAddWordsubmit(event)">
+                        <input type="text" name="newEnWord" placeholder="Please Insert a New English Word  " required>
+                        <input type="text" name="interpretation" placeholder="Please provide the meaning of the word  " required>
                         <button type="submit">Submit</button>
                     </form>
                     <br>
                     <form onsubmit="heandelDelWord(event)">
-                    <input type="text" name="wrongEnWord" placeholder="Please Insert a English Word or">
-                    <input type="text" name="wronginterpretation" placeholder="Please provide the meaning of the word">
+                    <input type="text" name="wrongEnWord" placeholder="Please Insert a English Word or  ">
+                    <input type="text" name="wronginterpretation" placeholder="Please provide the meaning of the word  ">
                     <button type="submit">Delet</button>
                     <br>
                     <button onclick="renderBack()">Back</button>
                     `
-    htmlroot.innerHTML = toHtml;
+        htmlroot.innerHTML = toHtml;
+    } catch (error) {
+        console.error(error)
+    }
+
 
 }
 
@@ -161,57 +176,62 @@ function renderBack() {
 
 //move to game
 function renderPlay() {
-    console.log("users:",users)
+    try {
+        console.log("users:", users)
 
-    const h1Instructions = document.querySelector('#instruction')!
-    const instractions = `Match the word with its meaning 
-                        <div id="score">your score: ${users[users.length-1].points}</div>`  //show the score/points of the player
-    h1Instructions.innerHTML = instractions
+        const h1Instructions = document.querySelector('#instruction')!
+        const instractions = `<h4 id="h4i">Match the word with its meaning</h4> 
+                        <div id="score">your score: ${users[users.length - 1].points}</div>`  //show the score/points of the player
+        h1Instructions.innerHTML = instractions
 
-    //call the random word function
-    const htmlroot = document.querySelector('#cards')
+        //call the random word function
+        const htmlroot = document.querySelector('#cards')
 
-    if (!htmlroot) throw new Error("no root element");
+        if (!htmlroot) throw new Error("no root element");
 
-    console.log("htmlroot:",htmlroot)
-    console.log("users:",users)
-    console.log("words:",words)
+        console.log("htmlroot:", htmlroot)
+        console.log("users:", users)
+        console.log("words:", words)
 
-    //view + data binding
-    //render the cards in random order
-    //create a function whcih return the cards in random order
-    //fisrst step: create an array with the cards
-    //second step: get 3 random cards from the array
-    //third step: selct one random card from the 3 and put it in the first place
-    //fourth step: put the other 2 cards in the second and third place
-    //fifth step: put thei first card on the diaply
-    //sixth step: put the other 3 cards in random order on the display and show only the Hebrew options.
+        //view + data binding
+        //render the cards in random order
+        //create a function whcih return the cards in random order
+        //fisrst step: create an array with the cards
+        //second step: get 3 random cards from the array
+        //third step: selct one random card from the 3 and put it in the first place
+        //fourth step: put the other 2 cards in the second and third place
+        //fifth step: put thei first card on the diaply
+        //sixth step: put the other 3 cards in random order on the display and show only the Hebrew options.
 
-    const randomWords = randomWord(words);
+        const randomWords = randomWord(words);
+        if (randomWords === undefined) throw new Error("element undfined");
 
-    const firstWord = randomWords[0]
+        const firstWord = randomWords[0]
 
-    //randomized words
-    const randomWardsToDisplay = randomWord(randomWords)
+        //randomized words
+        const randomWardsToDisplay = randomWord(randomWords)
+        if (randomWardsToDisplay === undefined) throw new Error("element undfined");
 
-    //display all words in random order
-    const htmlWordsToSelect = randomWardsToDisplay.map(word => `<div class="card c${numOfCard()}">${word.heWord}</div>`).join(' ')
-    const htmlWordInEnglish = `<div id="c1" class="card c1" data-correct-hebrew="${firstWord.heWord}">${firstWord.enWord}</div>`;
+        //display all words in random order
+        const htmlWordsToSelect = randomWardsToDisplay.map(word => `<div class="card c${numOfCard()}">${word.heWord}</div>`).join(' ')
+        const htmlWordInEnglish = `<div id="c1" class="card c1" data-correct-hebrew="${firstWord.heWord}">${firstWord.enWord}</div>`;
 
-    htmlroot.innerHTML = htmlWordsToSelect + "<br>" + htmlWordInEnglish
+        htmlroot.innerHTML = htmlWordsToSelect + "<br>" + htmlWordInEnglish
 
-    const htmlc2 = document.querySelector('.c2')
-    const htmlc3 = document.querySelector('.c3')
-    const htmlc4 = document.querySelector('.c4')
-    
-    if (!htmlc2) throw new Error("htmlc2 no root element");
-    if (!htmlc3) throw new Error("htmlc3 no root element");
-    if (!htmlc4) throw new Error("htmlc4 no root element");
+        const htmlc2 = document.querySelector('.c2')
+        const htmlc3 = document.querySelector('.c3')
+        const htmlc4 = document.querySelector('.c4')
 
-    //htmlroot.addEventListener('click', checkAnswer);
-    htmlc2.addEventListener('click', checkAnswer);
-    htmlc3.addEventListener('click', checkAnswer);
-    htmlc4.addEventListener('click', checkAnswer);
+        if (!htmlc2) throw new Error("htmlc2 no root element");
+        if (!htmlc3) throw new Error("htmlc3 no root element");
+        if (!htmlc4) throw new Error("htmlc4 no root element");
+        //listening to click on the hebrow cards
+        htmlc2.addEventListener('click', checkAnswer);
+        htmlc3.addEventListener('click', checkAnswer);
+        htmlc4.addEventListener('click', checkAnswer);
+    } catch (error) {
+        console.error(error)
+    }
 }
 
 //show messige for wrong anser
@@ -238,63 +258,79 @@ function rendermessage(x: number) {
 
 //finish the game
 function renderFinish() {
-    const end = document.querySelector('#end')
-    if (!end) throw new Error("no element");
+    try {
+        document.body.style.backgroundImage = 'url(https://media.istockphoto.com/id/1207033867/photo/individual-letters-fly-magically-out-of-pages-of-open-book.jpg?s=612x612&w=0&k=20&c=JCFcAk_SjgFN_M2Chp4hUtdOPXdPX7U0nfTK8vO-SOc=)';
 
-    const htmlend = `<h2>Good Job ${users[users.length-1].userName}! your final score is ${users[users.length-1].points}</h2>
+        const end = document.querySelector('#end')
+        if (!end) throw new Error("no element");
+        const table = document.querySelector('#table')
+        if (!table) throw new Error("no element");
+
+        const htmlend = `<h2>Good Job ${users[users.length - 1].userName}! your final score is ${users[users.length - 1].points}</h2>
                     <br>
                     <button onClick="hendelLogOn()">Play Again</button>`
-    end.innerHTML = htmlend 
+
+        const htmltablehead = `<div>Last Games Scores:</div>
+                                                <table><thead><tr><th>player name</th><th>player score</th></tr></thead></table>`
+        const htmltablebody = users.reverse().map(user => `<table><tbody><tr><th>${user.userName}</th><th>${user.points}</th></tr></tbody></table>`).join(' ')
+
+        end.innerHTML = htmlend + htmltablehead + htmltablebody
+    } catch (error) {
+        console.error(error)
+    }
 }
 
 //-------------------------------------controlers--------------------
-function OnLoadFinish(){
+function OnLoadFinish() {
     fromStorage()
     renderFinish()
 }
 
-function OnLoadLogin(){
-}
-
-function OnLoadGame(){
+function OnLoadGame() {
     fromStorage()
     renderPlay()
 }
 
-function OnLoadIndex(){
+function OnLoadIndex() {
     fromStorage()
     renderUserName()
 }
 
-function fromStorage(){
-    const users_string = localStorage.getItem('users')
-    
-    if (users_string) {
-        //convert it back to array of classes
-        const users_array = JSON.parse(users_string)
-        //console.log("usernameArray of object:", usernameArray)
-        users_array.forEach(user => users.push(new User(user.userName, user.points, user.id)))
+function fromStorage() {
+    try {
+        const users_string = localStorage.getItem('users')
 
-        console.log("users array of classes:", users)
+        if (users_string) {
+            //convert it back to array of classes
+            const users_array = JSON.parse(users_string)
+            users_array.forEach(user => users.push(new User(user.userName, user.points, user.id)))
+            console.log("users array of classes:", users)
+        }
+    } catch (error) {
+        console.error(error)
     }
+
 }
+
 //make the random select words
 function randomWord(words: Word[]) {
+    try {
+        const randomWordArr: Word[] = [];
+        const _words = JSON.parse((JSON.stringify(words)));
 
-    const randomWordArr: Word[] = [];
-    const _words = JSON.parse((JSON.stringify(words)));
+        while (randomWordArr.length < 3) {
+            const random: number = Math.floor(Math.random() * _words.length);
+            console.log(random)
+            randomWordArr.push(_words[random]);
+            _words.splice(random, 1);
 
-
-    while (randomWordArr.length < 3) {
-        const random: number = Math.floor(Math.random() * _words.length);
-        console.log(random)
-        randomWordArr.push(_words[random]);
-        _words.splice(random, 1);
-
+        }
+        console.log(randomWordArr);
+        return randomWordArr;
+    } catch (error) {
+        console.error(error)
     }
-    console.log(randomWordArr);
 
-    return randomWordArr;
 }
 
 let numberOfCard: number = 1
@@ -313,54 +349,58 @@ function numOfCard(): number | undefined {
 
 }
 
-//function work at eveant lisiner mouse click ocure on one -> to chose the right answer
+//function work at eveant lisiner mouse click ocure on one -> to check the right answer
 function checkAnswer(event: any) {
-    const selectedCard = event.target;
-    //console.log(selectedCard)
-    const selectedHebrewWord = selectedCard.innerText;
-    //console.log(selectedHebrewWord)
+    try {
+        const selectedCard = event.target;
+        //console.log(selectedCard)
+        const selectedHebrewWord = selectedCard.innerText;
+        //console.log(selectedHebrewWord)
 
-    const englishWordCard = document.querySelector('#c1')!;
-    //console.log(englishWordCard)
+        const englishWordCard = document.querySelector('#c1')!;
+        //console.log(englishWordCard)
 
-    const correctHebrewWord = englishWordCard.getAttribute('data-correct-hebrew');
-    console.log("correctHebrewWord is:", correctHebrewWord)
+        const correctHebrewWord = englishWordCard.getAttribute('data-correct-hebrew');
+        console.log("correctHebrewWord is:", correctHebrewWord)
 
-    if (selectedHebrewWord === correctHebrewWord) {
-        // The user selected the correct Hebrew word
-        console.log('Correct answer!');
-        //  updating the score
-        updateScore();
-        rendermessage(1)
-        renderPlay()
-    } else {
-        // The user selected the wrong Hebrew word
-        console.log('Wrong answer!');
-        // displaying an error message
-        rendermessage(0)
-        renderPlay()
+        if (selectedHebrewWord === correctHebrewWord) {
+            // The user selected the correct Hebrew word
+            console.log('Correct answer!');
+            //  updating the score, show msg & move to the next set
+            updateScore();
+            rendermessage(1)
+            renderPlay()
+        } else {
+            // The user selected the wrong Hebrew word
+            console.log('Wrong answer!');
+            // displaying an error message & move to the next set
+            rendermessage(0)
+            renderPlay()
+        }
+    } catch (error) {
+        console.error(error)
     }
+
 }
 
 //add point for right choise
 function updateScore() {
-    //const currentUser = users[users.length-1];
-    //currentUser.points++ //Amir: comment
-    users[users.length-1].points++
-    console.log("currentUser.points:", users[users.length-1].points) 
-    console.log("users array:", users)
+    try {
+        users[users.length - 1].points++ //update the user points
+        //console.log("currentUser.points:", users[users.length - 1].points)
+        //console.log("users array:", users)
+    } catch (error) {
+        console.error(error)
+    }
 }
 
-// function currentPlayer(users_array:User[]) {
-//     const length = users_array.length
-//     const currentUser: User = users_array[length - 1]
-//     console.log("currentUser:", currentUser)
-//     return currentUser
-// }
-
-function dissapear(){
-    const htmlmassege = document.querySelector('#massege')
-    if (!htmlmassege) throw new Error("no element");
-    const html = ``
-            htmlmassege.innerHTML = html
+function dissapear() {
+    try {
+        const htmlmassege = document.querySelector('#massege')
+        if (!htmlmassege) throw new Error("no element");
+        const html = ``
+        htmlmassege.innerHTML = html
+    } catch (error) {
+        console.error(error)
+    }
 }

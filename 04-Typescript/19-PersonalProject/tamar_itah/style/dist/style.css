@@ -1,16 +1,39 @@
 body {
-  background-image: url();
   position: relative;
   height: 100vh;
   background-repeat: no-repeat;
   background-size: cover;
 }
 
+#body_login {
+  background-image: url(https://media.istockphoto.com/id/1144516771/photo/misty-letters-float-up-from-open-book-words-are-magic.jpg?s=612x612&w=0&k=20&c=DhXfL4UVaONm61jXApYcDNgtyIJMJ5Iuqk6iUQ_RJIA=);
+}
+
+#body_index {
+  background-image: url(https://media.istockphoto.com/id/1163788069/vector/vector-set-of-white-cubes-3d-square-boxes-under-different-angles-paper-style-rotated.jpg?s=612x612&w=0&k=20&c=CCwDdFN2X37QtLg1vtfb3oUpgrh2-EiJ-_BwqrUYD8Y=);
+}
+
+#body_game {
+  background-image: url(https://media.istockphoto.com/id/1420962747/vector/falling-letters-of-english-language-pastel-flying-words-of-latin-alphabet-foreign-languages.jpg?s=612x612&w=0&k=20&c=ow1bSpjNhWHoYFFtEsBHvQIVCEbNeBX77KcF8qL0eKE=);
+}
+
+h4 {
+  font-size: 26px;
+}
+
+#h4i {
+  color: white;
+}
+
 .wrapper {
-  position: relative;
+  position: flex;
   text-align: center;
-  margin: 20px auto;
+  margin: 20px 50px;
   top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .cards {
@@ -56,6 +79,12 @@ body {
   font-size: 20px;
   border-radius: 25%;
   border: 0px;
+  position: relative;
+}
+
+#score {
+  color: crimson;
+  font-size: 25px;
 }
 
 #instruction {
@@ -72,6 +101,24 @@ body {
 
 #wrong {
   color: red;
+}
+
+.tableOfScores {
+  margin-top: 20px;
+  /* Add some top margin to separate from the header */
+}
+
+th,
+td {
+  border: 1px solid lightskyblue;
+  padding: 8px;
+  /* Add padding to space out content from the borders */
+  text-align: center;
+  /* Center the text in the cells */
+}
+
+table, th, td {
+  width: 300px;
 }
 
 @media only screen and (max-width: 1024px) {
