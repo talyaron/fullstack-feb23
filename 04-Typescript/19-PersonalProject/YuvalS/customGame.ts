@@ -1,14 +1,6 @@
 
 
-class Word {
-    constructor (public height: number, public word: string){
-        
-
-    }
-}
-
-const word: Word = getWordFromLS(); 
-console.log(word);
+const Words:String[] = ["yuval"];
 function renderinputs(htmlElement: HTMLElement | null){
     try {
         htmlElement = document.querySelector("#forms");
@@ -16,11 +8,12 @@ function renderinputs(htmlElement: HTMLElement | null){
 const html =
      
 `<div class="input">
-<form onsubmit="handleMyInput(event)">
-    <label for="height">How many guesses</label>
-    <input type="number" name="height" placeholder="Guesses" required>
-    <label for="word">What is the word</label>
+<form onsubmit="handleAddWord(event)">
+    <label for="words">Insert words</label>
     <input type="text" name="word" placeholder="Word" required>
+    <input type="submit" value="ADD">
+    </form>
+    <form onsubmit="handleStartGame(event)">
     <input type="submit" value="START GAME">
 </form>
 </div>`;
@@ -34,42 +27,56 @@ catch (error) {
 
 renderinputs(document.querySelector("#forms"))
 
-function handleMyInput(ev: any) {
-    try {
-        ev.preventDefault();
-        const height = ev.target.height.value;
-        if(height < 1) alert("not enough guesses")
-        const myword = ev.target.word.value;
-       
+function handleAddWord(ev:any){
+try {
+            ev.preventDefault();
+            const myword = ev.target.word.value;
+            if(myword.length !== 5) {alert("Must be 5 letters")
+            return
+            }
 
-        const newWord = new Word(height, myword)
-        saveWordToLS(newWord);
-        makeBoard()
-
-    } catch (error) {
-        console.error(error)
-    }
+            Words.push(myword);
+            console.log(Words)
+            ev.target.reset();
+            
+    
+    
+    
+        } catch (error) {
+            console.error(error)
+        }
 }
 
-function saveWordToLS(word:Word){
-    localStorage.setItem('word', JSON.stringify(word));
+
+
+function handleStartGame(ev:any){
+    makeBoard()
+    handleInputFromUserGame()
+    
 }
 
-function getWordFromLS():Word{
-    try {
-        const wordStorage = localStorage.getItem('word');
-        if(!wordStorage) throw new Error("no word") ;
-        const word = JSON.parse(wordStorage);
-        return word;
-    } catch (error) {
-        console.error(error);
-        throw new Error("no word") ;
-    }
-}
 
-let height = word.height;
-let myword = word.word;
-let width = myword.length
+// function saveWordToLS(Words){
+//     localStorage.setItem('Words', JSON.stringify(Words));
+// }
+
+// function getWordFromLS(){
+//     try {
+//         const WordsStorage = localStorage.getItem('Words');
+//         if(!WordsStorage) return 
+//         const Words = JSON.parse(WordsStorage);
+//         return Words;
+//     } catch (error) {
+//         console.error(error);
+//         return [];
+//     }
+// }
+
+
+console.log(Words)
+let height = 6;
+let myword = Words[Math.floor(Math.random() * Words.length)].toUpperCase()
+let width = 5;
 console.log(height);
 console.log(myword);
 console.log(width);
@@ -99,8 +106,6 @@ function makeBoard() {
             tile.innerText = "";
             const forms = document.querySelector("#forms")
             forms?.remove();
-            document.getElementById("#board")?.style.gridTemplateColumns.repeat(height)
-            document.getElementById("#board")?.style.gridTemplateRows.repeat(width)
             document.querySelector("#board")?.appendChild(tile);
             
         
@@ -156,10 +161,10 @@ for (let i = 0; i < keyboard.length; i++) {
   document.body.appendChild(keyboardRow);
 }
 //handle input from user
-
+function handleInputFromUserGame(){
 document.addEventListener("keyup", (ev) => {
     handleInput(ev);
-})
+})}
 
 
 function processKey(){
@@ -261,6 +266,7 @@ if (gameOver) return;
 
             //is it in the correct position?
             if (myword[c] === letter) {
+                
                 currentTile.classList.add("correct");
                 let keyTile = document.getElementById("Key" + letter);
                 if(!keyTile) throw new Error("no key-tile")

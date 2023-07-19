@@ -14,11 +14,12 @@ hr {
 }
 
 #board {
-  width: 500px;
-  height: 500px;
+  width: 350px;
+  height: 420px;
   margin: 0 auto;
   margin-top: 3px;
-  display: grid;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .tile {
@@ -92,13 +93,12 @@ hr {
 }
 
 form {
+  margin: auto;
   display: flex;
   flex-direction: column;
   gap: 10px;
   padding: 20px;
   max-width: 300px;
-  position: relative;
-  left: 35vw;
 }
 form input {
   border-radius: 20px;
