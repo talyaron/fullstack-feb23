@@ -58,12 +58,17 @@ function handleKeyUp(event) {
     }
 }
 function updateTargetPosition() {
-    var sourceRect = bart.getBoundingClientRect();
-    var targetRect = shoot.getBoundingClientRect();
-    var offsetX = sourceRect.left - targetRect.left;
-    var offsetY = sourceRect.top - targetRect.top;
-    shoot.style.left = parseFloat(getComputedStyle(shoot).left) + offsetX + 'px';
-    shoot.style.top = parseFloat(getComputedStyle(shoot).top) + offsetY + 'px';
+    try {
+        var sourceRect = bart.getBoundingClientRect();
+        var targetRect = shoot.getBoundingClientRect();
+        var offsetX = sourceRect.left - targetRect.left;
+        var offsetY = sourceRect.top - targetRect.top;
+        shoot.style.left = parseFloat(getComputedStyle(shoot).left) + offsetX + 'px';
+        shoot.style.top = parseFloat(getComputedStyle(shoot).top) + offsetY + 'px';
+    }
+    catch (error) {
+        console.error(error);
+    }
 }
 setInterval(updateTargetPosition, 100);
 function creatingAball() {
@@ -162,19 +167,24 @@ setInterval(function () {
 }, 10);
 setInterval(ballAndShootCollision, 10);
 function ballAndShootCollision() {
-    var ropeLocation = shoot.getBoundingClientRect();
-    var ballLocation = ball.getBoundingClientRect();
-    if (ropeLocation.right > ballLocation.left &&
-        ropeLocation.left < ballLocation.right &&
-        ropeLocation.bottom > ballLocation.top &&
-        ropeLocation.top < ballLocation.bottom) {
-        var smallBall1 = document.querySelector('#container__smallBall1');
-        var smallBall2 = document.querySelector('#container__smallBall2');
-        ball.style.display = 'none';
-        smallBall1.style.display = 'block';
-        smallBall2.style.display = 'block';
-        // Start updating the positions of the balls
-        updateBallsPosition();
+    try {
+        var ropeLocation = shoot.getBoundingClientRect();
+        var ballLocation = ball.getBoundingClientRect();
+        if (ropeLocation.right > ballLocation.left &&
+            ropeLocation.left < ballLocation.right &&
+            ropeLocation.bottom > ballLocation.top &&
+            ropeLocation.top < ballLocation.bottom) {
+            var smallBall1 = document.querySelector('#container__smallBall1');
+            var smallBall2 = document.querySelector('#container__smallBall2');
+            ball.style.display = 'none';
+            smallBall1.style.display = 'block';
+            smallBall2.style.display = 'block';
+            // Start updating the positions of the balls
+            updateBallsPosition();
+        }
+    }
+    catch (error) {
+        console.error(error);
     }
 }
 // Set initial positions for the balls
@@ -189,85 +199,95 @@ var smallBall2SpeedX = 3;
 var smallBall2SpeedY = 3;
 // Function to update the positions of the balls
 function updateBallsPosition() {
-    var smallBall1 = document.querySelector('#container__smallBall1');
-    var smallBall2 = document.querySelector('#container__smallBall2');
-    var containerWidth = container.offsetWidth;
-    var containerHeight = container.offsetHeight;
-    var smallBallSize = smallBall1.offsetWidth;
-    // Update the position of smallBall1
-    smallBall1X += smallBall1SpeedX;
-    smallBall1Y += smallBall1SpeedY;
-    if (smallBall1X + smallBallSize >= containerWidth || smallBall1X <= 0) {
-        smallBall1SpeedX *= -1;
+    try {
+        var smallBall1 = document.querySelector('#container__smallBall1');
+        var smallBall2 = document.querySelector('#container__smallBall2');
+        var containerWidth = container.offsetWidth;
+        var containerHeight = container.offsetHeight;
+        var smallBallSize = smallBall1.offsetWidth;
+        // Update the position of smallBall1
+        smallBall1X += smallBall1SpeedX;
+        smallBall1Y += smallBall1SpeedY;
+        if (smallBall1X + smallBallSize >= containerWidth || smallBall1X <= 0) {
+            smallBall1SpeedX *= -1;
+        }
+        if (smallBall1Y + smallBallSize >= containerHeight || smallBall1Y <= 0) {
+            smallBall1SpeedY *= -1;
+        }
+        smallBall1.style.left = smallBall1X + 'px';
+        smallBall1.style.top = smallBall1Y + 'px';
+        // Update the position of smallBall2
+        smallBall2X += smallBall2SpeedX;
+        smallBall2Y += smallBall2SpeedY;
+        if (smallBall2X + smallBallSize >= containerWidth || smallBall2X <= 0) {
+            smallBall2SpeedX *= -1;
+        }
+        if (smallBall2Y + smallBallSize >= containerHeight || smallBall2Y <= 0) {
+            smallBall2SpeedY *= -1;
+        }
+        smallBall2.style.left = smallBall2X + 'px';
+        smallBall2.style.top = smallBall2Y + 'px';
+        // גדחייבדגי
+        handleCollision();
+        requestAnimationFrame(updateBallsPosition);
     }
-    if (smallBall1Y + smallBallSize >= containerHeight || smallBall1Y <= 0) {
-        smallBall1SpeedY *= -1;
+    catch (error) {
+        console.error(error);
     }
-    smallBall1.style.left = smallBall1X + 'px';
-    smallBall1.style.top = smallBall1Y + 'px';
-    // Update the position of smallBall2
-    smallBall2X += smallBall2SpeedX;
-    smallBall2Y += smallBall2SpeedY;
-    if (smallBall2X + smallBallSize >= containerWidth || smallBall2X <= 0) {
-        smallBall2SpeedX *= -1;
-    }
-    if (smallBall2Y + smallBallSize >= containerHeight || smallBall2Y <= 0) {
-        smallBall2SpeedY *= -1;
-    }
-    smallBall2.style.left = smallBall2X + 'px';
-    smallBall2.style.top = smallBall2Y + 'px';
-    // גדחייבדגי
-    handleCollision();
-    requestAnimationFrame(updateBallsPosition);
 }
 function handleCollision() {
-    var collisionCount = 0;
-    var gameEnded = false;
-    if (collisionCount >= 3) {
-        // console.log("המשחק נגמר");
-        gameEnded = true;
-        return;
+    try {
+        var collisionCount_1 = 0;
+        var gameEnded_1 = false;
+        if (collisionCount_1 >= 3) {
+            // console.log("המשחק נגמר");
+            gameEnded_1 = true;
+            return;
+        }
+        var smallBall1 = document.querySelector('#container__smallBall1');
+        var smallBall2 = document.querySelector('#container__smallBall2');
+        var playerLocation = bart.getBoundingClientRect();
+        var smallBall1Location = smallBall1.getBoundingClientRect();
+        var smallBall2Location = smallBall2.getBoundingClientRect();
+        if (playerLocation.right > smallBall1Location.left &&
+            playerLocation.left < smallBall1Location.right &&
+            playerLocation.bottom > smallBall1Location.top &&
+            playerLocation.top < smallBall1Location.bottom ||
+            playerLocation.right > smallBall2Location.left &&
+                playerLocation.left < smallBall2Location.right &&
+                playerLocation.bottom > smallBall2Location.top &&
+                playerLocation.top < smallBall2Location.bottom) {
+            var imageToRemove = images[collisionCount_1];
+            if (imageToRemove) {
+                life.removeChild(imageToRemove);
+            }
+            collisionCount_1++;
+            if (collisionCount_1 === 1) {
+                canMoveBall = false;
+                setTimeout(function () {
+                    canMoveBall = true;
+                }, 1000);
+            }
+            else if (collisionCount_1 === 2) {
+                canMoveBall = false;
+                setTimeout(function () {
+                    canMoveBall = true;
+                }, 1000);
+            }
+            else if (collisionCount_1 === 3) {
+                gameEnded_1 = true;
+                life.classList.add("none");
+                bart.classList.add("none");
+                shoot.classList.add("none");
+                ball.classList.add("none");
+                var gameOver = document.querySelector('#container__gameOver');
+                var html = " <h1>game over</h1> <br>  <a href=\"/levels.html\">back</a>";
+                gameOver.innerHTML = html;
+            }
+        }
     }
-    var smallBall1 = document.querySelector('#container__smallBall1');
-    var smallBall2 = document.querySelector('#container__smallBall2');
-    var playerLocation = bart.getBoundingClientRect();
-    var smallBall1Location = smallBall1.getBoundingClientRect();
-    var smallBall2Location = smallBall2.getBoundingClientRect();
-    if (playerLocation.right > smallBall1Location.left &&
-        playerLocation.left < smallBall1Location.right &&
-        playerLocation.bottom > smallBall1Location.top &&
-        playerLocation.top < smallBall1Location.bottom ||
-        playerLocation.right > smallBall2Location.left &&
-            playerLocation.left < smallBall2Location.right &&
-            playerLocation.bottom > smallBall2Location.top &&
-            playerLocation.top < smallBall2Location.bottom) {
-        var imageToRemove = images[collisionCount];
-        if (imageToRemove) {
-            life.removeChild(imageToRemove);
-        }
-        collisionCount++;
-        if (collisionCount === 1) {
-            canMoveBall = false;
-            setTimeout(function () {
-                canMoveBall = true;
-            }, 1000);
-        }
-        else if (collisionCount === 2) {
-            canMoveBall = false;
-            setTimeout(function () {
-                canMoveBall = true;
-            }, 1000);
-        }
-        else if (collisionCount === 3) {
-            gameEnded = true;
-            life.classList.add("none");
-            bart.classList.add("none");
-            shoot.classList.add("none");
-            ball.classList.add("none");
-            var gameOver = document.querySelector('#container__gameOver');
-            var html = " <h1>game over</h1> <br>  <a href=\"/levels.html\">back</a>";
-            gameOver.innerHTML = html;
-        }
+    catch (error) {
+        console.error(error);
     }
 }
 setInterval(function () {
