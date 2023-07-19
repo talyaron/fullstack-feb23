@@ -82,6 +82,7 @@ function renderProductCard(product: Product) {
     </div>
 `
         }
+        
 
 
     } catch (error) {
@@ -89,3 +90,4 @@ function renderProductCard(product: Product) {
         return ''
     }
 }
+

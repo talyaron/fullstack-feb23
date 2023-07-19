@@ -1,43 +1,14 @@
-var dealerMoney = 0;
-// function turnOrder(players) {
-//   const stage = document.querySelector(".stage") as HTMLDivElement;
-//   let currentPlayerIndex = 0;
-//   performTurn(players, stage, currentPlayerIndex);
-// }
-// function performTurn(
-//   players: Player[],
-//   stage: HTMLElement,
-//   currentPlayerIndex: number,
-// ) {
-//   try {
-//     const currentPlayer = players[currentPlayerIndex];
-//     let activePlayers = players.filter((p) => p.isActive === true);
-//     activePlayers.map((p) => (p.isTurn = false));
-//     currentPlayer.setActive();
-//     currentPlayer.isTurn = true;
-//     currentPlayer.doingTurn(activePlayers, currentPlayerIndex); ///התור
-//     currentPlayerIndex++;
-//     if (currentPlayerIndex >= players.length && stage.children.length < 6) {
-//       currentPlayerIndex = 0;
-//       if (stage.children.length < 6) {
-//         addCardToStage();
-//       }
-//     }
-//     setTimeout(() => performTurn(players, stage, currentPlayerIndex), 500);
-//   } catch (error) {
-//     console.error(error);
-//   }
-// }
-// turnOrder(players);
 function getMoveOption(activePlayers, thisIndex) {
     var thisPlayer = activePlayers[thisIndex];
-    for (var j = thisIndex; j >= 0; j--) {
-        if (activePlayers[j].movesInRound[length - 1] == PlayerMovesOption.rise) {
+    for (var j = thisIndex - 1; j >= 0; j--) {
+        if (activePlayers[j].movesInRound[activePlayers[j].movesInRound.length - 1] ==
+            PlayerMovesOption.rise) {
             return ["fold", "rise", "call"];
         }
     }
     for (var i = activePlayers.length - 1; i > thisIndex; i--) {
-        if (activePlayers[i].movesInRound[length - 1] == PlayerMovesOption.rise) {
+        if (activePlayers[i].movesInRound[activePlayers[i].movesInRound.length - 1] ==
+            PlayerMovesOption.rise) {
             return ["fold", "rise", "call"];
         }
     }
@@ -45,6 +16,7 @@ function getMoveOption(activePlayers, thisIndex) {
 }
 function getPointOfOptionalSet(thisPlayer) {
     var thisPCards = thisPlayer.allCards;
+    console.log(thisPCards);
     var setsResult = [
         checkPair(thisPCards),
         checkTwoPairs(thisPCards),
@@ -105,7 +77,7 @@ function chooseMove(players, movesOptions, sizeOfBet, pointOfOptionalSet, player
         //rise or call or fold
         var randomNumToMove = Math.round(Math.random() * 2);
         var randomMove = movesOptions[randomNumToMove];
-        var lastBetSize = riseBetSizeInThisRound(players, player.turnNumber);
+        var lastBetSize = riseBetSizeInThisRound(players, players.findIndex(function (p) { return p.id === player.id; }));
         if (pointOfOptionalSet < 2)
             if (randomMove == "call" && lastBetSize <= sizeOfBet) {
                 player.callMove(players, lastBetSize);
@@ -133,7 +105,7 @@ function chooseMove(players, movesOptions, sizeOfBet, pointOfOptionalSet, player
         }
     }
 }
-function getSizeOfBet(pointOfOptionalSet, playerChips) {
+function getSizeOfBet(pointOfOptionalSet, playerChips, thisIndex) {
     var randomNum = 0;
     if (pointOfOptionalSet < 2) {
         randomNum = Math.round(Math.random() * (0.05 * playerChips));
@@ -147,48 +119,67 @@ function getSizeOfBet(pointOfOptionalSet, playerChips) {
     if (pointOfOptionalSet >= 4) {
         randomNum = Math.round(Math.random() * (0.8 * playerChips));
     }
+    // if ( randomNum < riseBetSizeInThisRound(players, thisIndex))return 0;
     return randomNum;
 }
 var counterTurn = 0;
 var indexInArray = 0;
-function turnOrder(activePlayers) {
-    /////----------------------------הוא מדלג על השחקן השני קבוע!!------------------------------------------------------
-    var players = activePlayers.filter(function (p) { return p.isActive === true; });
-    console.log(players);
-    console.log(indexInArray);
-    if (players[indexInArray].id == "myPlayer") {
-        indexInArray++;
-        counterTurn++;
-        myTurn(players);
-    }
-    else {
-        indexInArray++;
-        counterTurn++;
-        document.querySelectorAll("button").forEach(function (button) {
-            button.disabled = true;
-        });
-        if (counterTurn < 5 && indexInArray < players.length) {
-            players[indexInArray].doingTurn(players, indexInArray);
-            if (players[indexInArray].lastBet > 0) {
-                counterTurn = 0;
-            }
-        }
-        else if (counterTurn < 5) {
-            addCardToStage();
-            counterTurn = 0;
-            indexInArray = 0;
-        }
-        else {
-            indexInArray = 0;
-        }
-    }
-}
-turnOrder(players);
 function myTurn(players) {
     var myPlayer = players.find(function (p) { return p.id == "myPlayer"; });
     var myPlayerIndex = players.findIndex(function (p) { return p.id == "myPlayer"; });
+    players.forEach(function (p) {
+        p.isTurn = true;
+        p.setTurn();
+    });
+    myPlayer.setTurn();
+    var sound = new Audio("../sound/service-bell-ring-14610.mp3");
+    sound.play();
     var myOption = getMoveOption(players, myPlayerIndex);
-    console.log((myPlayer === null || myPlayer === void 0 ? void 0 : myPlayer.userName) + " is doing somethig......");
-    console.log(myOption);
+    console.log((myPlayer === null || myPlayer === void 0 ? void 0 : myPlayer.userName) + " is doing something......");
     playTheButton(myOption);
+}
+var index = 0;
+var indexInRound = 0;
+function turnOrder(players) {
+    players = players.filter(function (p) { return p.isActive === true; });
+    var playersLen = players.length;
+    document.querySelectorAll("button").forEach(function (button) {
+        button.disabled = "false";
+    });
+    if (indexInRound == playersLen + 1) {
+        indexInRound = 0;
+        index = 0;
+        addCardToStage();
+    }
+    if (index == playersLen + 1) {
+        index = 0;
+    }
+    if (index >= playersLen + 1) {
+        index = playersLen;
+    }
+    if (playersLen == 1) {
+        addCardToStage();
+    }
+    if (indexInRound >= playersLen) {
+        indexInRound = playersLen - 1;
+    }
+    if (index < playersLen + 1) {
+        index++;
+        indexInRound++;
+        if (players[index - 1].id == "myPlayer") {
+            console.log(players[index - 1]);
+            myTurn(players);
+        }
+        if (players[index - 1].id != "myPlayer") {
+            players[index - 1].doingTurn(players, index - 1);
+        }
+        if (players[index - 1].lastBet > 0)
+            indexInRound = 0;
+    }
+}
+turnOrder(players);
+function delayedTurnOrder(players) {
+    setTimeout(function () {
+        turnOrder(players);
+    }, 500);
 }

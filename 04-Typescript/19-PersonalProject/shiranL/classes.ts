@@ -46,7 +46,7 @@ class Hotel {
 class QuestionGoodThings {
     static counter = 0;
     goodThingsId:number;
-    constructor(public goodThingsTitel:string,public goodThingsDescription:string,public winningPrice:Number,
+    constructor(public goodThingsTitel:string,public goodThingsDescription:string,public winningPrice:number,
         goodThingsId?:number){
         if(goodThingsId)
         this.goodThingsId=goodThingsId;
@@ -58,7 +58,7 @@ class QuestionGoodThings {
 class QuestionBadThings {
     static counter = 0;
     badThingsId:number;
-    constructor(public badThingsTitel:string,public badThingsDescription:string,public purchasePrice:Number,
+    constructor(public badThingsTitel:string,public badThingsDescription:string,public purchasePrice:number,
         badThingsId?:number){
         if(badThingsId)
         this.badThingsId=badThingsId;
@@ -84,7 +84,7 @@ playerId:number;
 color:string;
 jailIndex:number=0;
 cellId:string='cell5';
-Pbank:number=1500;
+Pbank:number=800;
 character:Character | undefined;
 constructor(public userName:string,public isJail:boolean,public status:boolean,
      playerId?:number,color?:string,character?:Character)
