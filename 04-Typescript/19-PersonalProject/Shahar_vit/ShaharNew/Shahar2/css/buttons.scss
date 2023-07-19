@@ -1,7 +1,47 @@
-.btn, button, input[type="button"], input[type="submit"]{
-    padding: 5px;
-    background-color:black;
-    width: 100px;
-    color: white;
-    border-radius: $radius; 
+.add-note {
+  width: 100px;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  background-color: rgb(165, 248, 0);
+  color: black;
+  cursor: pointer;
+  transition: 0.2s;
+//   when hovering over the button, the background color will be gray instead
+  &:hover {
+    transform: scale(1.1);
+  }
+
 }
+.btn,
+button,
+input[type="button"],
+input[type="submit"] {
+  padding: 5px;
+  background-color: black;
+  width: 100px;
+  color: white;
+  border-radius: $radius;
+  margin-top: 115px;
+  cursor: pointer;
+  // display: flex;
+}
+
+.main {
+  width: 100px;
+  border-radius: $radius;
+  margin: auto;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  background-color: rgb(252, 106, 106);
+  color: black;
+  box-shadow: $box-shadow;
+  &:hover{
+    background-color: rgb(253, 89, 89);
+    transform: scale(1.1);
+  }
+}
+
+

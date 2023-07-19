@@ -84,7 +84,7 @@ playerId:number;
 color:string;
 jailIndex:number=0;
 cellId:string='cell5';
-Pbank:number=800;
+Pbank:number=100;
 character:Character | undefined;
 constructor(public userName:string,public isJail:boolean,public status:boolean,
      playerId?:number,color?:string,character?:Character)
