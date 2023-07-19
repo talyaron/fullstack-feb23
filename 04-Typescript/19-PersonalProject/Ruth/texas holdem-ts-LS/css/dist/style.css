@@ -78,10 +78,11 @@ h1 {
 
 .stage {
   position: absolute;
-  top: calc(50% - 75px);
+  top: calc(50% - 55px);
   left: calc(50% - 160px);
   display: flex;
   flex-wrap: wrap;
+  
 }
 .stage button {
   position: absolute;

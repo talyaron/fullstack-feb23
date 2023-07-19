@@ -167,7 +167,6 @@ function checkTwoPairs(cards) {
 function checkPair(cards) {
     var copiedCards = __spreadArrays(cards);
     var _loop_4 = function (i) {
-        console.log(copiedCards[i]);
         var tempArray = copiedCards.slice(i);
         var sameNumberCards = tempArray.filter(function (card) { return card.cardNumber === copiedCards[i].cardNumber; });
         if (sameNumberCards.length == 1) {
@@ -181,21 +180,6 @@ function checkPair(cards) {
     }
     return false;
 }
-// function getPair(cards: Card[]) {
-//   const copiedCards = [...cards];
-//   for (let i = 0; i < copiedCards.length; i++) {
-//     const tempArray = copiedCards.slice(i);
-//     const sameNumberCards = tempArray.filter(
-//       (card) => card.cardNumber === copiedCards[i].cardNumber,
-//     );
-//     if (sameNumberCards.length == 1) {
-//     }
-//     for(let i  = 0; i <= cards.length ; i++) {
-//       copiedCards.filter(c=> c.cardName === cards[i].cardName)
-//     }
-//   }
-//   return false;
-// }
 function getPair(cards) {
     var cardCounts = {};
     var duplicateCards;
@@ -412,13 +396,13 @@ function getCardNumberValue(cardNumber) {
         return -1;
     }
 }
-// const cardsArray: Card[] = [
-//   new Card("2", "heart"),
-//   new Card("3", "heart"),
-//   new Card("4", "heart"),
-//   new Card("5", "heart"),
-//   new Card("6", "heart"),
-//   new Card("9", "club"),
-//   new Card("9", "diamond"),
-// ];
-// console.log(getStraightFlash(cardsArray));
+var cardsArr = [
+    new Card("2", "heart"),
+    new Card("2", "heart"),
+    new Card("4", "heart"),
+    new Card("5", "heart"),
+    new Card("a", "heart"),
+    new Card("9", "club"),
+    new Card("9", "diamond"),
+];
+console.log(getTwoPairs(cardsArr));

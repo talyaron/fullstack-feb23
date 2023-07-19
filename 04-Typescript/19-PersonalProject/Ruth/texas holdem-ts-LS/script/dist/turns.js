@@ -146,7 +146,7 @@ function turnOrder(players) {
     document.querySelectorAll("button").forEach(function (button) {
         button.disabled = "false";
     });
-    if (indexInRound == playersLen + 1) {
+    if (indexInRound == playersLen) {
         indexInRound = 0;
         index = 0;
         addCardToStage();
@@ -177,9 +177,11 @@ function turnOrder(players) {
             indexInRound = 0;
     }
 }
-turnOrder(players);
+function beginnerTurn() {
+    turnOrder(players);
+}
 function delayedTurnOrder(players) {
     setTimeout(function () {
         turnOrder(players);
-    }, 500);
+    }, 3000);
 }
