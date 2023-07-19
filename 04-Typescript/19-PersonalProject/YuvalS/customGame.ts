@@ -100,7 +100,9 @@ function makeBoard() {
             const forms = document.querySelector("#forms")
             forms?.remove();
             document.querySelector("#board")?.appendChild(tile);
-            
+            document.getElementById("#board")?.style.gridTemplateColumns.repeat(height)
+            document.getElementById("#board")?.style.gridTemplateRows.repeat(width)
+        
             
             
         }
