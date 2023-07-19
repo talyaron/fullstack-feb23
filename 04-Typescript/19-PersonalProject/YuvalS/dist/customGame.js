@@ -76,9 +76,9 @@ function makeBoard() {
                 tile.innerText = "";
                 var forms = document.querySelector("#forms");
                 forms === null || forms === void 0 ? void 0 : forms.remove();
-                (_a = document.querySelector("#board")) === null || _a === void 0 ? void 0 : _a.appendChild(tile);
-                (_b = document.getElementById("#board")) === null || _b === void 0 ? void 0 : _b.style.gridTemplateColumns.repeat(height);
-                (_c = document.getElementById("#board")) === null || _c === void 0 ? void 0 : _c.style.gridTemplateRows.repeat(width);
+                (_a = document.getElementById("#board")) === null || _a === void 0 ? void 0 : _a.style.gridTemplateColumns.repeat(height);
+                (_b = document.getElementById("#board")) === null || _b === void 0 ? void 0 : _b.style.gridTemplateRows.repeat(width);
+                (_c = document.querySelector("#board")) === null || _c === void 0 ? void 0 : _c.appendChild(tile);
             }
         }
     }

@@ -18,8 +18,7 @@ hr {
   height: 500px;
   margin: 0 auto;
   margin-top: 3px;
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
 }
 
 .tile {
