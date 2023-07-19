@@ -179,6 +179,10 @@ function myTurn(players: Player[]) {
   playTheButton(myOption!);
 }
 
+
+
+
+
 let index = 0;
 let indexInRound = 0;
 function turnOrder(players: Player[]) {
@@ -190,12 +194,12 @@ function turnOrder(players: Player[]) {
     button.disabled = "false";
   });
 
-  if (indexInRound == playersLen + 1) {
+  if (indexInRound == playersLen) {
     indexInRound = 0;
     index = 0;
     addCardToStage();
   }
-  if (index == playersLen + 1) {
+  if (index == playersLen +1) {
     index = 0;
   }
   if (index >= playersLen + 1) {
@@ -223,10 +227,13 @@ function turnOrder(players: Player[]) {
   }
 }
 
-turnOrder(players);
+function beginnerTurn() {
+  turnOrder(players);
+
+}
 
 function delayedTurnOrder(players: Player[]) {
   setTimeout(() => {
     turnOrder(players);
-  }, 500);
+  }, 3000);
 }

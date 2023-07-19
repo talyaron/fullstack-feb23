@@ -133,7 +133,11 @@ function getPlayerFromLs() {
   }
 }
 
-players[0].renderMyPanel();
+
+function renderPlayers() {
+  players[0].renderMyPanel();
+  renderPlayersPanel(users);
+}
 
 //---------------------------------------------render players-------------------------------------
 
@@ -162,7 +166,6 @@ function renderPlayersPanel(players: Player[]) {
   }
 }
 
-renderPlayersPanel(users);
 
 function addCardToStage() {
   
