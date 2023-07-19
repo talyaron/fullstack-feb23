@@ -253,11 +253,18 @@ function OnLoadIndex() {
 function fromStorage() {
     try {
         var users_string = localStorage.getItem('users');
+        var words_string = localStorage.getItem('words');
         if (users_string) {
             //convert it back to array of classes
             var users_array = JSON.parse(users_string);
             users_array.forEach(function (user) { return users.push(new User(user.userName, user.points, user.id)); });
             console.log("users array of classes:", users);
+        }
+        if (words_string) {
+            //convert it back to array of classes
+            var words_array = JSON.parse(words_string);
+            words_array.forEach(function (word) { return words.push(new Word(word.enWord, word.heWord)); });
+            console.log("words array of classes:", words);
         }
     }
     catch (error) {
