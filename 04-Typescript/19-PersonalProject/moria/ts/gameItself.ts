@@ -368,14 +368,14 @@ function handleCollision() {
     } catch (error) {
         console.error(error)
     }
-
-
 }
-// setInterval(() => {
-//     if (canMoveBall) {
-//         handleCollision();
-//     }
-// }, 10);
+
+
+setInterval(() => {
+    if (canMoveBall) {
+        handleCollision();
+    }
+}, 10);
 
 
 

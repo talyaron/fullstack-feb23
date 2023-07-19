@@ -290,11 +290,11 @@ function handleCollision() {
         console.error(error);
     }
 }
-// setInterval(() => {
-//     if (canMoveBall) {
-//         handleCollision();
-//     }
-// }, 10);
+setInterval(function () {
+    if (canMoveBall) {
+        handleCollision();
+    }
+}, 10);
 function shootBalls() {
     var smallBall1 = document.querySelector('#container__smallBall1');
     var smallBall2 = document.querySelector('#container__smallBall2');
