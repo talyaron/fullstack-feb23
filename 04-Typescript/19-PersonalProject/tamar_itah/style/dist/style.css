@@ -42,6 +42,7 @@ h4 {
 
 .cards {
   display: inline-grid;
+  height: 300px;
   gap: 30px 70px;
   grid-template-areas: ". c1 ." "c2 c3 c4";
 }
@@ -62,6 +63,12 @@ h4 {
 .c1 {
   grid-area: c1;
   background-color: goldenrod;
+}
+
+.c2:hover,
+.c3:hover,
+.c4:hover {
+  font-size: 39px;
 }
 
 .c2 {
@@ -132,7 +139,9 @@ td {
   /* Center the text in the cells */
 }
 
-table, th, td {
+table,
+th,
+td {
   width: 300px;
   font-weight: bolder;
   background-color: aquamarine;
