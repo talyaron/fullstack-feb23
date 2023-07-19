@@ -29,13 +29,13 @@ function handleRenderInstructions() {
         if (!root) throw new Error("can not find root elemnt")
         const html = `
         <h3>
-        You have to make ice cream cones for the customers who come to your ice cream truck. <br>
-        Use the arrows to select the desired flavor. <br>
-        Press enter to add an ice cream scoop to the cone. <br>
-        To go to customer selection press the space bar, <br> select the appropriate customer
-        and press enter to deliver the ice cream. <br>
+        You have to make ice cream cones for the customers who come to your ice cream van. <br>
+        Use the arrows right or left to select the desired flavor. <br>
+        Press arrow up to add an ice cream scoop to the cone. <br>
+        Press arrow down to remove all ice cream balls from the cone.<br>
+        To give ice cream to the customer, press enter <br>
     Be careful! <br>
-    Customers are not so patient.<br>
+    Customers aren't very patient!<br>
         Work quickly and accurately! </h3>
     <button onclick="handleRenderMain()">BACK</button>
         `

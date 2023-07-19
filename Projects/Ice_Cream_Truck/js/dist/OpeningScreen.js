@@ -21,7 +21,7 @@ function handleRenderInstructions() {
         var root = document.querySelector("#main");
         if (!root)
             throw new Error("can not find root elemnt");
-        var html = "\n        <h3>\n        You have to make ice cream cones for the customers who come to your ice cream truck. <br>\n        Use the arrows to select the desired flavor. <br>\n        Press enter to add an ice cream scoop to the cone. <br>\n        To go to customer selection press the space bar, <br> select the appropriate customer\n        and press enter to deliver the ice cream. <br>\n    Be careful! <br>\n    Customers are not so patient.<br>\n        Work quickly and accurately! </h3>\n    <button onclick=\"handleRenderMain()\">BACK</button>\n        ";
+        var html = "\n        <h3>\n        You have to make ice cream cones for the customers who come to your ice cream van. <br>\n        Use the arrows right or left to select the desired flavor. <br>\n        Press arrow up to add an ice cream scoop to the cone. <br>\n        Press arrow down to remove all ice cream balls from the cone.<br>\n        To give ice cream to the customer, press enter <br>\n    Be careful! <br>\n    Customers aren't very patient!<br>\n        Work quickly and accurately! </h3>\n    <button onclick=\"handleRenderMain()\">BACK</button>\n        ";
         root.innerHTML = html;
     }
     catch (error) {

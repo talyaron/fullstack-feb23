@@ -1,7 +1,10 @@
 body {
   height: 97vh;
+  width: 98vw;
+  overflow: hidden;
   align-items: center;
-  background: linear-gradient(#0026fa, #83d6ff, #854803, #5d3201);
+  background-image: url(./background2.png);
+  background-size: cover;
 }
 
 #main {
@@ -50,11 +53,31 @@ body {
   bottom: 0px;
   z-index: 2;
 }
-.hands .cone {
+.hands #cone {
   margin-left: -80px;
 }
-.hands .spoon {
-  margin-left: 380px;
+.hands #spoon {
+  position: absolute;
+  margin-left: 330px;
+}
+.hands #ballsInCone {
+  position: absolute;
+  width: 60px;
+  height: 160px;
+  left: 420px;
+  bottom: 0px;
+}
+.hands #ballsInCone #ballInCone {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 1px solid black;
+  z-index: 3;
+  top: -50px;
+  left: 0px;
+  margin-top: 20px;
+  transition: all 0.2s ease;
 }
 
 .iceCreams {
@@ -79,15 +102,17 @@ body {
   font-size: large;
   line-height: 100px;
 }
-.iceCream__strawberry {
-  background-color: #f93333;
-}
-.iceCream__banana {
+
+#banana {
   background-color: #e6ff59;
 }
-.iceCream__chocolate {
+
+#chocolate {
   background-color: #9c5304;
-  box-shadow: 0px 0px 4px 5px #ffffb9;
+}
+
+#strawberry {
+  background-color: #f93333;
 }
 
 #lives {
@@ -127,17 +152,52 @@ body {
   position: absolute;
   right: 0px;
   top: 0px;
+  transition: all 0.2s ease-in-out;
 }
 .score .cover img {
   width: 130px;
   height: 180px;
   margin: 10px;
 }
+.score #points {
+  margin-right: 3vw;
+  margin-top: -30%;
+  font-size: xx-large;
+  transition: all 0.8s ease-in-out;
+  font-family: "Annie Use Your Telescope", cursive;
+  font-weight: bolder;
+}
 
-#costumers {
+.costumer {
   position: absolute;
   bottom: 2px;
+  transition: all 0.2s ease;
 }
-#costumers img {
+.costumer img {
   height: 300px;
+}
+.costumer .bubble {
+  position: absolute;
+  left: 80px;
+  top: -70px;
+  display: none;
+  transition: all 0.5s ease;
+}
+.costumer .bubble img {
+  width: 80px;
+  height: 120px;
+}
+.costumer .bubble #iceCreamBalls {
+  position: absolute;
+  left: 28px;
+  top: 60px;
+  transition: all 0.5s ease;
+}
+.costumer .bubble #iceCreamBalls .iceCreamBall {
+  width: 18px;
+  height: 18px;
+  border: 1px solid black;
+  border-radius: 50%;
+  background-color: #9c5304;
+  margin-top: -12px;
 }
