@@ -30,7 +30,7 @@ h4 {
 }
 
 .wrapper {
-  position: flex;
+  position: relative;
   text-align: center;
   margin: 20px 50px;
   top: 20px;
@@ -126,7 +126,6 @@ h4 {
 
 th,
 td {
-  border: 3px solid lightskyblue;
   padding: 8px;
   /* Add padding to space out content from the borders */
   text-align: center;
@@ -137,6 +136,10 @@ table, th, td {
   width: 300px;
   font-weight: bolder;
   background-color: aquamarine;
+}
+
+table {
+  border: 3px solid lightskyblue;
 }
 
 @media only screen and (max-width: 1024px) {

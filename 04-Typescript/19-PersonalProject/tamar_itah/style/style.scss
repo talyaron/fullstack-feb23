@@ -33,7 +33,7 @@ h4 {
 
 //the game view
 .wrapper {
-    position: flex;
+    position: relative;
     text-align: center;
     margin: 20px 50px;
     top: 20px;
@@ -120,6 +120,7 @@ h4 {
     color: red;
 }
 
+//table
 .tableOfScores{
     margin-top: 20px; /* Add some top margin to separate from the header */
 }
@@ -130,7 +131,7 @@ h4 {
 
 th,
 td {
-    border: 3px solid lightskyblue;
+    
     padding: 8px; /* Add padding to space out content from the borders */
     text-align: center; /* Center the text in the cells */
 }
@@ -141,6 +142,9 @@ table, th, td{
        background-color: aquamarine;
 } 
 
+table {
+    border: 3px solid lightskyblue;
+}
 
 //responsive
 @media only screen and (max-width: 1024px) {
