@@ -57,9 +57,9 @@ function myPlayerHandleRise() {
     inputSizeToBet = Number(prompt("Enter again your bet here in number:"));
   }
   myPlayer?.riseMove(players, inputSizeToBet);
-
+  
+  
   delayedTurnOrder(players);
-
 }
 
 function myPlayerHandleCall() {

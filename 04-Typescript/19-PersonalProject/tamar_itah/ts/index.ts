@@ -300,12 +300,20 @@ function OnLoadIndex() {
 function fromStorage() {
     try {
         const users_string = localStorage.getItem('users')
+        const words_string = localStorage.getItem('words')
 
         if (users_string) {
             //convert it back to array of classes
             const users_array = JSON.parse(users_string)
             users_array.forEach(user => users.push(new User(user.userName, user.points, user.id)))
             console.log("users array of classes:", users)
+        }
+
+        if (words_string) {
+            //convert it back to array of classes
+            const words_array = JSON.parse(words_string)
+            words_array.forEach(word => words.push(new Word(word.enWord, word.heWord)))
+            console.log("words array of classes:", words)
         }
     } catch (error) {
         console.error(error)

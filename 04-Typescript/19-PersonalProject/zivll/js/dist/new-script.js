@@ -271,7 +271,7 @@ function deleteExpense(ev) {
     var expenseId = ev.target.parentElement.parentElement.id;
     var categoryId = ev.target.parentElement.parentElement.parentElement.id;
     var categoryName = ev.target.parentElement.parentElement.parentElement.previousElementSibling
-        .lastChild.innerText;
+        .childNodes[0].innerText;
     var same = expences.filter(function (expense) { return expense.category === categoryName; });
     // console.log(same);
     var index = expences.findIndex(function (expense) { return expense.expenseId === expenseId; });
@@ -285,6 +285,7 @@ function deleteExpense(ev) {
     loadDataToLocalStorage(expences, "expences");
     var allExpences = calculateTotalExpence(expences);
     loadDataToLocalStorage(allExpences, "totalExpence");
+    ev.stopImmediatePropagation();
     window.location.reload();
 }
 function editExpense(ev) {
