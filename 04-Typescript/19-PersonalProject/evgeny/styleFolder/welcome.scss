@@ -1,17 +1,46 @@
-body{background-color: aquamarine;}
 
 
-.welcomePage{
-    height: 100vh;
+.wrapper{
+
     display: flex;
-    align-items: center;
-    justify-content: center; 
+    position: relative;
+    background-image: url('https://media.cntraveller.com/photos/6346d2533fa6dbf34bc5dd1f/3:2/w_7950,h_5300,c_limit/GettyImages-636848410.jpeg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    width: 100vw;
     background-color: aqua;
+    
+}
+.welcomePage{
+
+    flex: 1; /* Allow .welcomePage to occupy remaining space */
+  display: flex;
+  flex-direction: column; /* Stack login and register vertically */
+  align-items: center; /* Center login and register horizontally */
+  justify-content: center; /* Center login and register vertically */
+  padding: 1rem; /* Add padding to .welcomePage */
+  
+   
+ position: absolute;
+ top: 50%;
+ left: 50%;
+
+
     &__login{
         margin: 1rem;
+        
     }
+
     &__register{
         margin: 1rem;
+        &__text{
+            color: blue;
+        }
+        &__btn{
+            color: aquamarine;
+        }
+        
     }
 
 }
