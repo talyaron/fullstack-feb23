@@ -1,3 +1,17 @@
+@mixin fadein($delay) {
+    animation: fade ease-in $delay;
+
+    @keyframes fade {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+}
+
 body {
     background-image: url(https://c4.wallpaperflare.com/wallpaper/306/908/890/spots-background-light-dark-wallpaper-preview.jpg);
     background-size: cover;
@@ -18,6 +32,8 @@ body {
         border-radius: 10px;
         cursor: pointer;
         transition: all 200ms ease-in-out;
+        @include fadein(0.5s);
+
 
         &:active {
             transform: scale(1.08);
@@ -29,6 +45,8 @@ body {
         font-size: 30px;
         color: rgb(200, 231, 22);
         font-family: sans-serif;
+        @include fadein(0.8s);
+
 
     }
 
@@ -54,6 +72,8 @@ body {
     bottom: 30vh;
     color: rgb(146, 185, 219);
     transition: all 100ms ease-in-out;
+    @include fadein(0.8s);
+
 
 
 }
@@ -64,6 +84,8 @@ body {
     color: rgb(211, 81, 161);
     transition: all 100ms ease-in-out;
     animation: rotate 3s infinite cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    @include fadein(0.8s);
+
 
     @keyframes rotate {
        0% {
@@ -96,6 +118,8 @@ body {
     transition: all 200ms ease-in-out;
     border-radius: 10px;
     z-index: 1;
+    @include fadein(0.5s);
+
    
     
 }
@@ -109,6 +133,8 @@ body {
     transition: all 200ms ease-in-out;
     border-radius: 10px;
     z-index: 0;
+    @include fadein(0.5s);
+
 }
 
 #time {
@@ -120,12 +146,15 @@ body {
     position: relative;
     top: 1.2vh;
     margin-top: 2vh;
+    @include fadein(0.5s);
+
 }
 
 #MainPageWrapper__suggested__songPage {
     position: absolute;
     bottom: 10px;
     left: 0;
+    
     
 }
 #homeicon{
