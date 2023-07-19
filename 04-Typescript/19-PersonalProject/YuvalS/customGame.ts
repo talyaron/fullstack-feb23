@@ -1,14 +1,8 @@
-
-
-class Word {
-    constructor (public height: number, public word: string){
-        
-
-    }
+class Word{
+    constructor(public word:string){}
 }
 
-const word: Word = getWordFromLS(); 
-console.log(word);
+const Words:Word[] = getWordFromLS();
 function renderinputs(htmlElement: HTMLElement | null){
     try {
         htmlElement = document.querySelector("#forms");
@@ -16,11 +10,12 @@ function renderinputs(htmlElement: HTMLElement | null){
 const html =
      
 `<div class="input">
-<form onsubmit="handleMyInput(event)">
-    <label for="height">How many guesses</label>
-    <input type="number" name="height" placeholder="Guesses" required>
-    <label for="word">What is the word</label>
+<form onsubmit="handleAddWord(event)">
+    <label for="words">Insert words</label>
     <input type="text" name="word" placeholder="Word" required>
+    <input type="submit" value="ADD">
+    </form>
+    <form onsubmit="handleStartGame(event)">
     <input type="submit" value="START GAME">
 </form>
 </div>`;
@@ -34,48 +29,73 @@ catch (error) {
 
 renderinputs(document.querySelector("#forms"))
 
-function handleMyInput(ev: any) {
-    try {
-        ev.preventDefault();
-        const height = ev.target.height.value;
-        if(height < 1) alert("not enough guesses")
-        const myword = ev.target.word.value;
-       
+function handleAddWord(ev:any){
+try {
+            ev.preventDefault();
+            const inputWord = ev.target.word.value;
+            if(inputWord.length !== 5) {alert("Must be 5 letters")
+            return
+            }
 
-        const newWord = new Word(height, myword)
-        saveWordToLS(newWord);
-        makeBoard()
+            const newWord = new Word (inputWord)
 
-    } catch (error) {
-        console.error(error)
-    }
+            Words.push(newWord);
+            saveWordToLS(Words)
+            console.log(Words)
+            ev.target.reset();
+            
+            
+                
+              
+            
+    
+    
+        } catch (error) {
+            console.error(error)
+        }
 }
 
-function saveWordToLS(word:Word){
-    localStorage.setItem('word', JSON.stringify(word));
+
+
+
+function handleStartGame(ev:any){
+    makeBoard()
+    handleInputFromUserGame()
+    
+    
 }
 
-function getWordFromLS():Word{
+
+function saveWordToLS(words: Word[]){
+    localStorage.setItem('words', JSON.stringify(words));
+}
+
+function getWordFromLS(): Word[]{
     try {
-        const wordStorage = localStorage.getItem('word');
-        if(!wordStorage) throw new Error("no word") ;
-        const word = JSON.parse(wordStorage);
-        return word;
+        const WordsStorage = localStorage.getItem('words');
+        if(!WordsStorage) return [];
+        const wordsArr = JSON.parse(WordsStorage);
+        const Words = wordsArr.map(word => new Word(word.word));
+        return Words;
     } catch (error) {
         console.error(error);
-        throw new Error("no word") ;
+        return [];
     }
 }
 
-let height = word.height;
-let myword = word.word;
-let width = myword.length
-console.log(height);
-console.log(myword);
-console.log(width);
+
+console.log(Words)
+let height = 6;
+// let myword = Words[Math.floor(Math.random() * Words.length)].toUpperCase()
+let width = 5;
+
 let row = 0; //current guess atempt
 let col = 0; // current letter for that attempt
 let gameOver = false;
+let wordObj = Words[Math.floor(Math.random() * Words.length)];
+let myword = wordObj.word.toLocaleUpperCase();
+console.log(myword);
+
 
 
 
@@ -99,8 +119,6 @@ function makeBoard() {
             tile.innerText = "";
             const forms = document.querySelector("#forms")
             forms?.remove();
-            document.getElementById("#board")?.style.gridTemplateColumns.repeat(height)
-            document.getElementById("#board")?.style.gridTemplateRows.repeat(width)
             document.querySelector("#board")?.appendChild(tile);
             
         
@@ -156,10 +174,10 @@ for (let i = 0; i < keyboard.length; i++) {
   document.body.appendChild(keyboardRow);
 }
 //handle input from user
-
+function handleInputFromUserGame(){
 document.addEventListener("keyup", (ev) => {
     handleInput(ev);
-})
+})}
 
 
 function processKey(){
@@ -261,6 +279,7 @@ if (gameOver) return;
 
             //is it in the correct position?
             if (myword[c] === letter) {
+                
                 currentTile.classList.add("correct");
                 let keyTile = document.getElementById("Key" + letter);
                 if(!keyTile) throw new Error("no key-tile")

@@ -274,7 +274,8 @@ function renderFinish() {
                                                 <table><thead><tr><th id="hth">player name</th><th>player score</th></tr></thead></table>`
         const htmltablebody = users.reverse().map(user => `<table><tbody><tr><th>${user.userName}</th><th>${user.points}</th></tr></tbody></table>`).join(' ')
 
-        end.innerHTML = htmlend + htmltablehead + htmltablebody
+        end.innerHTML = htmlend
+        table.innerHTML = htmltablehead + htmltablebody
     } catch (error) {
         console.error(error)
     }

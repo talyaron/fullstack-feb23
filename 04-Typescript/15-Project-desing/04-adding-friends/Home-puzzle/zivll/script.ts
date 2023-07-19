@@ -199,10 +199,28 @@ function userSearch() {
   const userSearch = search.value;
   const regexp = new RegExp(`^${userSearch}`);
   const vegetablesFromSearch: Vegetable[] = [];
+<<<<<<< HEAD
+  const result = vegetables.filter((vegetable) => regexp.test(vegetable.name));
+  if (result.length === 0) {
+    renderVeagtable(vegetablesFromSearch, rootvegetables);
+
+    throw new Error(`there is no match`);
+  }
+
+  result.forEach((vegetable) => {
+    switch (regexp.test(vegetable.name)) {
+      case regexp.test(vegetable.name) !== null:
+        vegetablesFromSearch.push(vegetable);
+        renderVeagtable(vegetablesFromSearch, rootvegetables);
+        break;
+      case regexp.test(vegetable.name) === null:
+        throw new Error(`there is no match`) && alert(`there is no match`);
+=======
   vegetables.forEach((vegetable) => {
     if (regexp.test(vegetable.name)) {
       vegetablesFromSearch.push(vegetable);
       renderVeagtable(vegetablesFromSearch, rootvegetables);
+>>>>>>> 739c24e868222afd020880edb0b95cbe98262c5d
     }
   });
 }

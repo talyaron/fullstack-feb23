@@ -30,7 +30,7 @@ h4 {
 }
 
 .wrapper {
-  position: flex;
+  position: relative;
   text-align: center;
   margin: 20px 50px;
   top: 20px;
@@ -42,6 +42,7 @@ h4 {
 
 .cards {
   display: inline-grid;
+  height: 300px;
   gap: 30px 70px;
   grid-template-areas: ". c1 ." "c2 c3 c4";
 }
@@ -62,6 +63,12 @@ h4 {
 .c1 {
   grid-area: c1;
   background-color: goldenrod;
+}
+
+.c2:hover,
+.c3:hover,
+.c4:hover {
+  font-size: 39px;
 }
 
 .c2 {
@@ -126,17 +133,22 @@ h4 {
 
 th,
 td {
-  border: 3px solid lightskyblue;
   padding: 8px;
   /* Add padding to space out content from the borders */
   text-align: center;
   /* Center the text in the cells */
 }
 
-table, th, td {
+table,
+th,
+td {
   width: 300px;
   font-weight: bolder;
   background-color: aquamarine;
+}
+
+table {
+  border: 3px solid lightskyblue;
 }
 
 @media only screen and (max-width: 1024px) {
