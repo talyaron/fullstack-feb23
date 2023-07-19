@@ -448,7 +448,7 @@ p {
 }
 
 .footer-container {
-  height: 25vh;
+  height: 30vh;
   max-width: 80vw;
   margin: 0 auto;
   background-color: #191716;
@@ -474,13 +474,14 @@ p {
 }
 .footer-container form {
   display: flex;
-  margin-top: 10px;
+  margin-top: 50px;
   margin: auto;
   justify-content: center;
 }
 .footer-container input[type=email] {
-  width: 200px;
+  width: 15vw;
   padding: 5px;
+  margin-left: 5px;
 }
 .footer-container button[type=submit] {
   padding: 5px 10px;
@@ -504,6 +505,11 @@ p {
   .footer-container {
     flex-direction: column;
     height: 65vh;
+  }
+
+  .footer {
+    background-color: #191716;
+    padding-top: 15vh;
   }
 }
 @media screen and (max-width: 700px) {
@@ -620,7 +626,4 @@ input[type=text] {
   .submit_full {
     width: 80%;
   }
-}
-.form {
-  margin-bottom: 15vh;
 }
