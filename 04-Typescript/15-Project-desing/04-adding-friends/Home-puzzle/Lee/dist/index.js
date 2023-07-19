@@ -6,6 +6,10 @@ var Vegetable = /** @class */ (function () {
         this.kind = kind;
         this.image = image;
         this.quantity = quantity;
+<<<<<<< HEAD
+        this.isEdit = false;
+=======
+>>>>>>> 739c24e868222afd020880edb0b95cbe98262c5d
         if (id) {
             this.id = id;
         }
@@ -13,6 +17,12 @@ var Vegetable = /** @class */ (function () {
             this.id = "id-" + new Date().getTime() + "-" + Math.random();
         }
     }
+<<<<<<< HEAD
+    Vegetable.prototype.setEdit = function (set) {
+        this.isEdit = set;
+    };
+=======
+>>>>>>> 739c24e868222afd020880edb0b95cbe98262c5d
     return Vegetable;
 }());
 var vegetables = getVegetablesFromStorage();
@@ -65,13 +75,47 @@ function renderAllVegetables(vegetables, htmlElement) {
 }
 function renderVegCard(vegetable) {
     try {
+<<<<<<< HEAD
+        debugger;
+        if (vegetable.isEdit) {
+            return "<form  class=\"card\" onsubmit=\"handleSet(event)\" id=\"" + vegetable.id + "\">\n        <img src=\"" + vegetable.image + "\">\n        <input type=\"text\" name=\"kind\" value=\"" + vegetable.kind + "\">\n        <input type=\"text\" name=\"quantity\" value=\"" + vegetable.quantity + "\">\n        \n        <button onclick=\"handleDeleteVeg('" + vegetable.id + "')\">Delete</button>\n        <input type=\"submit\" value=\"SET\">\n    </form>";
+        }
+        else {
+            return "<form  class=\"card\" id=\"" + vegetable.id + "\">\n            <img src=\"" + vegetable.image + "\">\n            <p>" + vegetable.kind + "</p>\n            <p>" + vegetable.quantity + "</p>\n        \n        <button onclick=\"handleDeleteVeg('" + vegetable.id + "')\">Delete</button>\n        <button onclick=\"handleEdit('" + vegetable.id + "')\">Edit</button>\n       \n    </form>";
+        }
+=======
         return "<div class=\"card\"> \n        <img src=\"" + vegetable.image + "\">\n        <p>" + vegetable.kind + "</p>\n        <p>" + vegetable.quantity + "</p>\n        <button onclick=\"handleDeleteVeg('" + vegetable.id + "')\">Delete</button>\n        </div>";
+>>>>>>> 739c24e868222afd020880edb0b95cbe98262c5d
     }
     catch (error) {
         console.error(error);
         return '';
     }
 }
+<<<<<<< HEAD
+function handleSet(ev) {
+    try {
+        debugger;
+        ev.preventDefault();
+        var quantity = ev.target.quantity.value;
+        var kind = ev.target.kind.value;
+        var vegId_1 = ev.target.id;
+        var vegi = vegetables.find(function (vegi) { return vegi.id === vegId_1; });
+        if (!vegi)
+            throw new Error("couldnt find friend");
+        vegi.kind = kind;
+        vegi.quantity = quantity;
+        vegi.setEdit(false);
+        console.log(vegi);
+        localStorage.setItem("vegetables", JSON.stringify(vegetables));
+        renderAllVegetables(vegetables, document.querySelector("#rootVegetables"));
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+=======
+>>>>>>> 739c24e868222afd020880edb0b95cbe98262c5d
 function handleDeleteVeg(vegId) {
     try {
         var index = vegetables.findIndex(function (vegetable) { return vegetable.id === vegId; });
@@ -85,3 +129,19 @@ function handleDeleteVeg(vegId) {
         console.error(error);
     }
 }
+<<<<<<< HEAD
+function handleEdit(vegetableId) {
+    try {
+        debugger;
+        var vegetable = vegetables.find(function (vegetable) { return vegetable.id === vegetableId; });
+        if (!vegetable)
+            throw new Error("Could not find vegetable");
+        vegetable.setEdit(true);
+        renderAllVegetables(vegetables, document.querySelector("#rootVegetables"));
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+=======
+>>>>>>> 739c24e868222afd020880edb0b95cbe98262c5d
