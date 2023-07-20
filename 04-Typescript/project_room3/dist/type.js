@@ -24,16 +24,21 @@ var items = [
 var seconds = 0;
 var minutes = 0;
 //moves and win count
-var moveCount = 0;
+var movesCount = 0;
 var winCount = 0;
 //Timer
 function Timer() {
     seconds += 1;
-    if (seconds = 60) {
+    if ((seconds = 60)) {
         minutes += 1;
         seconds = 0;
     }
+    var secondsValue = seconds < 10 ? "0" + seconds : seconds;
+    var minutesValue = seconds < 10 ? "0" + minutes : minutes;
+    timeValue === null || timeValue === void 0 ? void 0 : timeValue.innerHTML = "<span>Time:</span>" + minutesValue + ":" + secondsValue;
 }
-var secondsValue = seconds < 10 ? "0" + seconds : seconds;
-var minutesValue = seconds < 10 ? "0" + minutes : minutes;
-timeValue === null || timeValue === void 0 ? void 0 : timeValue.innerHTML = "<span>Time";
+// Calculating moves
+function movesCounter() {
+    movesCount += 1;
+    moves === null || moves === void 0 ? void 0 : moves.innerHTML = "<span>Moves</span>" + movesCount;
+}
