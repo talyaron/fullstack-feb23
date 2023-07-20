@@ -1,1 +1,0 @@
-const num1 = parseInt(prompt('Enter the first number ')); const num2 = parseInt(prompt('Enter the second number ')); Then, the sum of the numbers is computed. const sum = num1 + num2;

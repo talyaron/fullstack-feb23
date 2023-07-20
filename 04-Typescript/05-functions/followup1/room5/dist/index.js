@@ -1,2 +1,0 @@
-function Mul(a, b) {
-}
