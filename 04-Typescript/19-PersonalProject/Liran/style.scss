@@ -1,0 +1,243 @@
+body {
+    background-color: black;
+    width: 99vw;
+    height: 98vh;
+    overflow: hidden;
+
+    .screen {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+
+        &__game {
+
+            position: absolute;
+            width: 85%;
+            left: 15%;
+            background-color: black;
+            height: 100%;
+
+            .star {
+                width: 60px;
+                height: 60px;
+                position: absolute;
+                animation: fallingStar infinite;
+
+            }
+
+            #boom {
+                position: absolute;
+                width: 100px;
+                height: 100px;
+                visibility: hidden;
+                background-image: url(boom.gif);
+                background-repeat: no-repeat;
+                background-size: contain;
+                border-radius: 100%;
+            }
+
+            @keyframes fallingStar {
+                from {
+                    top: 0;
+
+                }
+
+                to {
+                    top: 100vh
+                }
+            }
+
+            #fighter {
+                position: absolute;
+                width: fit-content;
+                top: 73%;
+                left: 50%;
+                transition: all 80ms ease-in-out;
+
+                img {
+                    width: 200px;
+                    height: 200px;
+                    background: none;
+                    position: absolute;
+                    transition: all 100ms ease-in-out;
+
+                }
+
+                #sword {
+                    height: 200px;
+                    width: 20px;
+                    left: 85px;
+                    top: -110px;
+                    position: absolute;
+                    background-repeat: no-repeat;
+                    background-size: contain;
+                    // transition: all linear;
+                    // transform: translateX(-65deg);
+                }
+            }
+
+
+
+        }
+
+
+        &__UI {
+            width: 15%;
+            height: 100%;
+            border-radius: 5px;
+            position: absolute;
+            left: 0;
+            background: linear-gradient(rgb(53, 98, 122), transparent);
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+
+
+            h1 {
+                color: rgb(128, 163, 179);
+
+            }
+
+            #score {
+                width: 80%;
+                height: 70px;
+                margin: 0 auto;
+                box-shadow: 0 0 20px rgba(6, 201, 204, 0.921);
+                background: linear-gradient(rgb(4, 15, 21), transparent);
+                border-radius: 30px;
+
+                p{
+                    color: white;
+                    width: 100%;
+                    height: fit-content;
+                    font-weight: bold;
+                    letter-spacing: 5px;
+                    font-size: 25px;
+                    text-align: center;
+                }
+
+            }
+
+            form {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                gap: 18px;
+                padding-bottom: 10px;
+
+                input,
+                select {
+                    width: 80%;
+                    margin: auto;
+                    border-radius: 8px;
+                    box-shadow: 200px;
+                    padding: 5px;
+                    background-color: black;
+                    color: white;
+                    font-family: fantasy;
+                    letter-spacing: .1rem;
+
+                    &:hover {
+                        cursor: pointer;
+                    }
+
+                    &[type="text"]:focus {
+                        background-color: white;
+                        color: black;
+                        border: none;
+                    }
+                }
+
+                input[type="button"]:hover {
+                    background-color: white;
+                    color: black;
+                }
+
+            }
+
+            .container {
+                width: 100%;
+                min-width: 50px;
+                padding: 20px 0;
+                padding-bottom: 50px;
+                border-radius: 10px;
+                font-size: medium;
+            }
+
+            #timerDisplay {
+                margin: auto;
+                width: 92%;
+                font-family: "Roboto mono", monospace;
+                color: #8cb4c7;
+                font-size: 30px;
+                display: flex;
+                align-items: center;
+                border-radius: 5px;
+                box-shadow: 0 0 20px rgba(6, 204, 105, 0.921);
+                justify-content: center;
+            }
+
+            a {
+                height: fit-content;
+                font-size: 1.5rem;
+                text-decoration: none;
+                color: rgb(106, 139, 157);
+                padding-top: 20px;
+                
+            }
+
+            a:hover {
+                transform: scale(1.2rem);
+                color: rgb(244, 244, 245);
+                transition: all 0.5s ease-in-out;
+                transform: scale(1.2);
+
+            }
+
+        }
+
+        &__end {
+
+            position: relative;
+            width: 50vw;
+            height: 70vh;
+            left: 20%;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            animation: gameOver 4s ease-in-out;
+
+            &--img {
+                background-image: url(https://assetsio.reedpopcdn.com/five-of-the-best-game-over-screens-1590748640300.jpg?width=690&quality=75&format=jpg&auto=webp);
+                background-repeat: no-repeat;
+                background-size: cover;
+                width: 100%;
+                height: 90%;
+            }
+
+            &--finalScore {
+                font-family: fantasy;
+                letter-spacing: .1rem;
+                width: 100%;
+                height: 30%;
+                text-align: center;
+            }
+
+            @keyframes gameOver {
+                from {
+                    top: 120vh;
+                    scale: 0.2;
+                }
+
+                to {
+                    top: 0%;
+                    scale: 1;
+                    rotate: 360deg;
+                }
+            }
+
+        }
+    }
+}
