@@ -1,0 +1,189 @@
+body {
+    height: 97vh;
+    align-items: center;
+    background: linear-gradient(rgb(0, 38, 250), rgb(131, 214, 255), rgb(133, 72, 3), rgb(93, 50, 1));
+
+}
+
+#main {
+    width: 33%;
+    position: fixed;
+    left: 33%;
+    top: 20%;
+    font-size: 45px;
+    text-align: center;
+    z-index: 3;
+    text-shadow: 2px 2px 10px yellow;
+
+}
+
+#mainName {
+    position: absolute;
+    z-index: 3;
+    width: 98vw;
+    text-align: center;
+    font-size: 29px;
+    margin-top: -25px;
+    font-family: 'Annie Use Your Telescope', cursive;
+
+}
+
+.crop {
+    width: 90vw;
+    height: 98vh;
+    overflow: hidden;
+    z-index: 1;
+    position: relative;
+}
+
+.crop img {
+    width: 120vw;
+    height: 220vh;
+    margin: -300px 0 0 90px;
+}
+
+.hands {
+    margin: auto;
+    width: 300px;
+
+    img {
+        height: 200px;
+        width: 80px;
+        position: absolute;
+        bottom: 0px;
+        z-index: 2;
+
+    }
+
+    .cone {
+        margin-left: -80px;
+    }
+
+    .spoon {
+        margin-left: 380px;
+    }
+}
+
+.iceCreams {
+    display: flex;
+    gap: 14px;
+    position: absolute;
+    bottom: 14vh;
+    right: 31.2vw;
+}
+
+.iceCream {
+    width: 80px;
+    height: 80px;
+    border-radius: 0px 0px 5px 5px;
+    border-bottom: solid 2px black;
+    border-left: solid 2px black;
+    border-right: solid 2px black;
+    z-index: 1;
+    text-align: center;
+    color: rgb(255, 255, 255);
+    text-shadow: 1px 1px 2px black;
+    font-size: large;
+    line-height: 100px;
+
+    &__strawberry {
+        background-color: #f93333;
+    }
+
+    &__banana {
+        background-color: #e6ff59;
+    }
+
+    &__chocolate {
+        background-color: #9c5304;
+        box-shadow: 0px 0px 4px 5px rgb(255, 255, 185);
+    }
+}
+
+#lives {
+    width: 190px;
+    height: 60px;
+    position: absolute;
+    top: 12px;
+    left: 20px;
+    border-radius: 25px;
+    border: 2px solid black;
+    background-color: rgb(188, 220, 248);
+
+    img {
+        height: 50px;
+        margin: -5px;
+        margin-top: 3px;
+    }
+}
+
+.score {
+    height: 180px;
+    position: absolute;
+    top: 100px;
+    right: 10px;
+
+    img {
+        width: 130px;
+        height: 180px;
+    }
+
+    #color {
+        position: absolute;
+        top: 0px;
+        right: 0px;
+
+    }
+
+    #cover {
+        width: 130px;
+        // height: 25px;
+        overflow: hidden;
+        position: absolute;
+        right: 0px;
+        top: 0px;
+    }
+
+    .cover img {
+
+        width: 130px;
+        height: 180px;
+        margin: 10px;
+    }
+}
+
+.costumer {
+    position: absolute;
+    bottom: 2px;
+
+    img {
+        height: 300px;
+    }
+
+    #bubble {
+        position: absolute;
+        left: 80px;
+        top: -70px;
+        display: none;
+
+        img {
+            width: 80px;
+            height: 120px;
+        }
+
+        #iceCreamBalls {
+            position: absolute;
+            left: 28px;
+            top: 60px;
+
+            .iceCreamBall {
+                width: 18px;
+                height: 18px;
+                border: 1px solid rgb(0, 0, 0);
+                border-radius: 50%;
+                background-color: #9c5304;
+                margin-top: -12px;
+            }
+        }
+    }
+}
