@@ -1,0 +1,125 @@
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #131316;
+  color: #ffffff;
+  font-family: "Poppins", sans-serif;
+  padding: 0;
+  margin: 0;
+  overflow-x: hidden;
+}
+
+section {
+  display: grid;
+  place-items: center;
+  align-content: center;
+  min-height: 100vh;
+}
+
+.hidden {
+  opacity: 0;
+  transition: all 2s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.show {
+  opacity: 1;
+  transition: all 2s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#txt {
+  font-size: 2vw;
+  position: relative;
+  bottom: 10vh;
+}
+
+#video-container {
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  border-radius: 20px;
+  position: absolute;
+  left: 16vw;
+  overflow: hidden;
+}
+
+.artists {
+  width: 50vw;
+  height: 20vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.artists__artistImg {
+  width: 20%;
+  height: 20vh;
+  border-radius: 20px;
+}
+
+#begintxt {
+  font-size: 50px;
+  font-family: fantasy;
+  animation-name: colorfull;
+  animation-duration: 4s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+}
+@keyframes colorfull {
+  0% {
+    color: #ffffff;
+  }
+  20% {
+    color: aqua;
+  }
+  40% {
+    color: blueviolet;
+  }
+  50% {
+    color: burlywood;
+  }
+  80% {
+    color: azure;
+  }
+  100% {
+    color: darkseagreen;
+  }
+}
+
+.video-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: -1;
+  overflow: hidden;
+  background-color: #101213;
+  opacity: 0.8;
+}
+
+.registerForm {
+  display: flex;
+  flex-direction: column;
+  z-index: 2;
+  gap: 8px;
+}
+
+#input {
+  cursor: pointer;
+  border-radius: 10px;
+  width: 20vw;
+  background: #d9c1c1;
+  background: linear-gradient(90deg, #d9c1c1 0%, #56c6e2 100%);
+}
+
+#registerSubmit {
+  opacity: 0;
+  transition: all 100ms ease-in-out;
+}

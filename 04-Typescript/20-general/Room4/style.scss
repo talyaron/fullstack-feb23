@@ -1,0 +1,109 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.video-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+    background-color: rgb(16, 18, 19);
+}
+
+.signIn {
+    width: 20vw;
+    height: 40vh;
+    background: rgb(14, 14, 14);
+    background: linear-gradient(90deg, rgba(14, 14, 14, 1) 0%, rgba(179, 187, 189, 1) 100%);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: fantasy;
+    color: rgb(10, 56, 56);
+    gap: 10px;
+    transition: all 100ms ease-in-out;
+
+    &:hover {
+        transform: scale(1.02);
+    }
+
+    &__userName {
+        width: 15vw;
+        height: 2vh;
+        border-radius: 10px;
+        background: rgb(217, 193, 193);
+        background: linear-gradient(90deg, rgba(217, 193, 193, 1) 0%, rgba(179, 187, 189, 1) 100%);
+        cursor: pointer;
+        font-family: fantasy;
+        transition: all 100ms ease-in-out;
+
+        &:focus {
+            transform: scaleX(1.1) scaley(1.1);
+
+        }
+    }
+
+    &__password {
+        width: 15vw;
+        height: 2vh;
+        border-radius: 10px;
+        background: rgb(217, 193, 193);
+        background: linear-gradient(90deg, rgba(217, 193, 193, 1) 0%, rgba(179, 187, 189, 1) 100%);
+        cursor: pointer;
+        font-family: fantasy;
+        transition: all 100ms ease-in-out;
+
+        &:focus {
+            transform: scaleX(1.1) scaley(1.1);
+
+        }
+
+    }
+
+    &__submit {
+        border-radius: 10px;
+        background: rgb(217, 193, 193);
+        background: linear-gradient(90deg, rgba(217, 193, 193, 1) 0%, rgba(179, 187, 189, 1) 100%);
+        cursor: pointer;
+        font-family: fantasy;
+
+
+    }
+
+    &__register {
+        margin-top: 80px;
+        cursor: pointer;
+        border-radius: 10px;
+        background: rgb(217, 193, 193);
+        background: linear-gradient(90deg, rgba(217, 193, 193, 1) 0%, rgba(179, 187, 189, 1) 100%);
+        cursor: pointer;
+        font-family: fantasy;
+        position: absolute;
+        bottom: 34vh;
+
+
+    }
+
+    &__continue {
+        cursor: pointer;
+        border-radius: 10px;
+        background: rgb(217, 193, 193);
+        background: linear-gradient(90deg, rgba(217, 193, 193, 1) 0%, rgba(179, 187, 189, 1) 100%);
+        cursor: pointer;
+        font-family: fantasy;
+        position: absolute;
+        bottom: 31vh;
+
+    }
+}

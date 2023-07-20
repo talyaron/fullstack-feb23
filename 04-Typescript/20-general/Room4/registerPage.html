@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./dist/ResiterStyle.css">
+</head>
+
+<body>
+    <section class="hidden">
+        <div class="video-container">
+            <video autoplay loop muted>
+              <source src="./dist/video (2160p) (1).mp4" type="video/mp4">
+            </video>
+          </div>
+        <h1 class="hidden__txt">Welcome to a World of music.</h1>
+    </section>
+    <section class="hidden">
+        <h1 id="txt">choose your favourite genres</h1>
+        <div id="video-container">
+            <video autoplay loop muted>
+                <source src="./dist/Rae Sremmurd - No Type (Official Video) (1).mp4" type="video/mp4">
+            </video>
+        </div>
+    </section>
+
+    <section class="hidden">
+        <h1>and your favourite artists</h1>
+        <div class="artists">
+            <img class="artists__artistImg" src="./dist/220px-Red_-_band_press_photo.jpg" alt="">
+            <img class="artists__artistImg" src="./dist/justin-bieber-gettyimages-1202421980.jpg" alt="">
+            <img class="artists__artistImg" src="./dist/maroon-e9cb8c5b25b4d1f3e68aa26e6a0ce51cf2ae59d8-s1100-c50.jpg"
+                alt="">
+            <img class="artists__artistImg" src="./dist/עומר_אדם_צילום_שי_פרנקו_(cropped).jpg" alt="">
+        </div>
+    </section>
+
+    <section class="hidden">
+        <h1 id="begintxt">Shell we begin?</h1>
+            <form class="registerForm" onsubmit="registerProfile()">
+                <input name="firstName" id="input" type="text" class="registerForm__First" placeholder="First Name">
+                <input name="lastName" id="input"  type="text" class="registerForm__Last" placeholder="Last Name">
+                <input name="username" id="input"  type="text" class="registerForm__text" placeholder="Create Username">
+                <input name="password" id="input" onkeyup="passwordCheck(event)"  type="password" class="registerForm__password" placeholder="Create Password">
+                <h3 id="passwordINS">Password need to be at least 8 characters</h3>
+                <input type="submit" id="registerSubmit">
+
+            </form>
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+    <script src="./dist/registerCode.js"></script>
+</body>
+
+</html>
