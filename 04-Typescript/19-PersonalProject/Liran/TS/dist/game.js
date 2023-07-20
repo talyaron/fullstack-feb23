@@ -425,9 +425,9 @@ function endOfGame(player) {
         debugger;
         if (scoreTable === undefined)
             throw new Error("Missing players");
-        var highScore_1 = scoreTable === null || scoreTable === void 0 ? void 0 : scoreTable.findIndex(function (p) { return p.record <= player.currentScore; });
+        var highScore_1 = scoreTable === null || scoreTable === void 0 ? void 0 : scoreTable.findIndex(function (p) { return p.record > player.currentScore; });
         setTimeout(function () {
-            if (highScore_1 == 0)
+            if (highScore_1 == -1)
                 alert("Great job! You got a new record");
             location.href = "../HTML/scoreTable.html";
         }, 5000);

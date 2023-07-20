@@ -30,25 +30,45 @@ var Card = /** @class */ (function () {
 }());
 //---------------------------Player--------------------
 var Player = /** @class */ (function () {
+<<<<<<< HEAD
     function Player(userName, chips, isActive, pCards) {
         if (chips === void 0) { chips = 100000; }
         if (isActive === void 0) { isActive = true; }
         if (pCards === void 0) { pCards = get2RandomCards(); }
         this.userName = userName;
+=======
+    function Player(userName, imgSrc, chips, isActive, pCards) {
+        if (imgSrc === void 0) { imgSrc = ""; }
+        if (chips === void 0) { chips = 100000; }
+        if (isActive === void 0) { isActive = false; }
+        if (pCards === void 0) { pCards = get2RandomCards(); }
+        this.userName = userName;
+        this.imgSrc = imgSrc;
+>>>>>>> 7473a3df52bf457216d9852d7b1fca3092105c27
         this.chips = chips;
         this.isActive = isActive;
         this.pCards = pCards;
         this.pCards = this.pCards.map(function (c) { return new Card(c.cardNumber, c.cardSign); });
     }
+<<<<<<< HEAD
     Player.prototype.setToUnActive = function () {
         this.isActive = false;
+=======
+    Player.prototype.setActive = function () {
+        this.isActive = !this.isActive;
+>>>>>>> 7473a3df52bf457216d9852d7b1fca3092105c27
     };
     Player.prototype.renderMyPanel = function () {
         try {
             this.pCards.forEach(function (c) {
                 return c.renderCard(document.querySelector(".myPanel__cards"));
             });
+<<<<<<< HEAD
             document.querySelector(".myPanel__chips").innerHTML = this.chips.toString();
+=======
+            document.querySelector(".myPanel__chips").innerHTML =
+                this.chips.toString();
+>>>>>>> 7473a3df52bf457216d9852d7b1fca3092105c27
         }
         catch (error) {
             console.error(error);

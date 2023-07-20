@@ -9,7 +9,11 @@ body {
 
 .wrapper {
   width: 800px;
+<<<<<<< HEAD
   height: 500px;
+=======
+  height: 450px;
+>>>>>>> 7473a3df52bf457216d9852d7b1fca3092105c27
   background-size: cover;
   background-color: #212526;
   border: 1px solid black;

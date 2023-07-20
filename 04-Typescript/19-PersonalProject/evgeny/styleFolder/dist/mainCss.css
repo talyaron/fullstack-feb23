@@ -1,0 +1,5 @@
+@import url(../styleFolder/welcome.scss);
+@import url(welcome.css);
+body {
+  background-color: #7fff85;
+}

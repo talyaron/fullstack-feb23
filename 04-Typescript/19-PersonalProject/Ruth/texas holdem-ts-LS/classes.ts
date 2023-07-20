@@ -36,6 +36,7 @@ class Card {
 class Player {
   constructor(
     public userName: string,
+<<<<<<< HEAD
     public chips: number = 100000,
     public isActive: boolean = true,
     public pCards: Card[] = get2RandomCards(),
@@ -46,6 +47,18 @@ class Player {
 
   setToUnActive() {
     this.isActive = false;
+=======
+    public imgSrc: string = "",
+    public chips: number = 100000,
+    public isActive: boolean = false,
+    public pCards: Card[] = get2RandomCards(),
+  ) {
+    this.pCards = this.pCards.map((c) => new Card(c.cardNumber, c.cardSign));
+  }
+
+  setActive() {
+    this.isActive = !this.isActive;
+>>>>>>> 7473a3df52bf457216d9852d7b1fca3092105c27
   }
 
   renderMyPanel() {
@@ -53,7 +66,12 @@ class Player {
       this.pCards!.forEach((c) =>
         c.renderCard(document.querySelector(".myPanel__cards") as HTMLElement),
       );
+<<<<<<< HEAD
       document.querySelector(".myPanel__chips")!.innerHTML = this.chips.toString();
+=======
+      document.querySelector(".myPanel__chips")!.innerHTML =
+        this.chips.toString();
+>>>>>>> 7473a3df52bf457216d9852d7b1fca3092105c27
     } catch (error) {
       console.error(error);
     }
@@ -61,6 +79,11 @@ class Player {
 }
 
 //------------------Dealer------------------------------
+<<<<<<< HEAD
 class Dealer{
   constructor(public sum:number){}
+=======
+class Dealer {
+  constructor(public sum: number) {}
+>>>>>>> 7473a3df52bf457216d9852d7b1fca3092105c27
 }

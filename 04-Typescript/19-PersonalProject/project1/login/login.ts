@@ -31,7 +31,14 @@ function login(event) {
   window.location.href = "../web/web.html";
 }
 
+<<<<<<< HEAD
 const root = document.querySelector("#root");
 const storedData = JSON.parse(localStorage.getItem("user"));
 const lastDetails = storedData[storedData.length - 1];
 root?.innerHTML = `Hello ${lastDetails.name}`;
+=======
+const root: Element | null= document.querySelector("#root");
+const storedData = JSON.parse(localStorage.getItem("user"));
+const lastDetails = storedData[storedData.length - 1];
+root.innerHTML = `Hello ${lastDetails.name}`;
+>>>>>>> 7473a3df52bf457216d9852d7b1fca3092105c27

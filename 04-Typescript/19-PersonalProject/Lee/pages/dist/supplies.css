@@ -12,6 +12,13 @@ html body {
   height: 100vh;
   padding: 10px;
 }
+<<<<<<< HEAD
+=======
+html body h1 {
+  text-align: center;
+  text-shadow: 2px 3px 10px rgba(0, 0, 0, 0.5);
+}
+>>>>>>> 7473a3df52bf457216d9852d7b1fca3092105c27
 html body #searchInput {
   position: absolute;
   width: 170px;

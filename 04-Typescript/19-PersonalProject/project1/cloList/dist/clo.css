@@ -1,4 +1,5 @@
 body {
+<<<<<<< HEAD
   direction: ltr;
   font-family: Arial, sans-serif;
   margin: 0;
@@ -10,10 +11,22 @@ header {
   background-color: #ff0000;
   color: #fff;
   padding: 20px;
+=======
+  background-color: #cbddbb;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+>>>>>>> 7473a3df52bf457216d9852d7b1fca3092105c27
 }
 
 h1 {
   margin: 0;
+<<<<<<< HEAD
+=======
+  background-color: #718f54;
+  color: white;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  text-align: center;
+  margin: 0px;
+>>>>>>> 7473a3df52bf457216d9852d7b1fca3092105c27
 }
 
 main {
@@ -32,18 +45,34 @@ label {
 
 input[type=text],
 input[type=number] {
+<<<<<<< HEAD
   padding: 10px;
   font-size: 16px;
   border: 1px solid #ccc;
+=======
+  padding: 5px;
+  margin-bottom: 1vw;
+  font-size: 16px;
+  border: 1px solid #635e5e;
+  background-color: #cbddbb;
+>>>>>>> 7473a3df52bf457216d9852d7b1fca3092105c27
   border-radius: 3px;
 }
 
 button {
+<<<<<<< HEAD
+=======
+  width: 5vw;
+>>>>>>> 7473a3df52bf457216d9852d7b1fca3092105c27
   padding: 10px 20px;
   font-size: 16px;
   background-color: #333;
   color: #fff;
+<<<<<<< HEAD
   border: none;
+=======
+  border-radius: 1vw;
+>>>>>>> 7473a3df52bf457216d9852d7b1fca3092105c27
   cursor: pointer;
 }
 
@@ -51,7 +80,11 @@ button {
   list-style-type: none;
   padding: 0;
   background-color: #fff;
+<<<<<<< HEAD
   border-radius: 3px;
+=======
+  border-radius: 1vw;
+>>>>>>> 7473a3df52bf457216d9852d7b1fca3092105c27
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
