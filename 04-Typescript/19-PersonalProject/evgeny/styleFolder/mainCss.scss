@@ -1,0 +1,27 @@
+
+@import url(../styleFolder/welcome.scss);
+@import url(welcome.css);
+
+body{background-color: rgb(127, 255, 133);
+    
+    
+}
+
+//phones
+
+@media (max-width: 480px) {  }
+@media (max-width: 767px) {  }
+@media (max-width: 991px) { }
+
+//tablets
+
+@media (min-width: 768px) and (max-width: 991px) { }
+@media (min-width: 768px) and (max-width: 1023px) {  }
+
+//pc
+
+@media (min-width: 992px) and (max-width: 1199px) {  }
+@media (min-width: 1200px) {  }
+//high res screens
+@media (min-resolution: 144dpi) {  }
+@media (min-resolution: 2dppx) {  }
