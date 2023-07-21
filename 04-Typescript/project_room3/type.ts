@@ -72,8 +72,13 @@ function matrixGenerator(cardValues){
     cardValues.sort(() => Math.random()-0.5);
     for(let i=0; i<size*size; i++){
         gameContainer?.innerHTML+=`
-        <div class="`
+        <div class="cardcontainer" data-card-value="${cardValues[i].name}">
+        <div class="card-before">?</div>
+        <div class="card-after"><img scr="${cardValues[i].image}" class="image"/></div>
+        </div>
+        `
     }
+    gameContainer.style.gridTemplateColumns= `repeat(${size},auto)`;
 }
 
 function initializer(){
