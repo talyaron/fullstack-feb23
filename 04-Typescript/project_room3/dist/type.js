@@ -1,10 +1,17 @@
-var moves = document.querySelector("#moves-count");
+var __spreadArrays = (this && this.__spreadArrays) || function () {
+    for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
+    for (var r = Array(s), k = 0, i = 0; i < il; i++)
+        for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
+            r[k] = a[j];
+    return r;
+};
+var moves = document.querySelector("#movesCount");
 var timeValue = document.querySelector("#time");
 var startButton = document.querySelector("#start");
 var stopButton = document.querySelector("#stop");
-var gameContainer = document.querySelector(".game-container");
+var gameContainer = document.querySelector(".gameContainer");
 var result = document.querySelector("#result");
-var controls = document.querySelector(".controls-container");
+var controls = document.querySelector(".controlsContainer");
 var cards;
 var interval;
 var firstCard = false;
@@ -41,4 +48,20 @@ function Timer() {
 function movesCounter() {
     movesCount += 1;
     moves === null || moves === void 0 ? void 0 : moves.innerHTML = "<span>Moves</span>" + movesCount;
+}
+// Pick 8 random object from the items array
+function generateRandom() {
+    var size = 4;
+    var tempArray = __spreadArrays(items);
+    var cardValues = [];
+    size = (size * size) / 2;
+    for (var i = 0; i < size; i++) {
+        var randomIndex = Math.floor(Math.random() * tempArray.length);
+        cardValues.push(tempArray[randomIndex]);
+        tempArray.splice(randomIndex, 1);
+    }
+    return cardValues;
+}
+function matrixGenerator(cardValue) {
+    gameContainer.innerHTML = "";
 }
