@@ -22,23 +22,23 @@ body {
   box-shadow: 0 0.9em 2.8em rgba(86, 66, 0, 0.2);
 }
 
-.game-container {
+.gamecontainer {
   position: relative;
   width: 100%;
   display: grid;
   gap: 0.6em;
 }
 
-.stats-container {
+.statscontainer {
   text-align: right;
   margin-bottom: 1.2em;
 }
 
-.stats-container span {
+.statscontainer span {
   font-weight: 600;
 }
 
-.card-container {
+.cardcontainer {
   position: relative;
   width: 6.25em;
   height: 6.25em;
@@ -70,15 +70,15 @@ body {
   transform: rotateY(180deg);
 }
 
-.card-container.flipped.card-before {
+.cardcontainer.flipped.card-before {
   transform: rotateY("180deg");
 }
 
-.card-container.flipped.card-after {
+.cardcontainer.flipped.card-after {
   transform: rotateY("0deg");
 }
 
-.controls-container {
+.controlscontainer {
   position: absolute;
   display: flex;
   align-items: center;
