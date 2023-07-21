@@ -22,7 +22,7 @@ body {
   box-shadow: 0 0.9em 2.8em rgba(86, 66, 0, 0.2);
 }
 
-.gamecontainer {
+.gameContainer {
   position: relative;
   width: 100%;
   display: grid;
@@ -70,11 +70,11 @@ body {
   transform: rotateY(180deg);
 }
 
-.cardcontainer.flipped.card-before {
+.cardcontainer.flipped .card-before {
   transform: rotateY("180deg");
 }
 
-.cardcontainer.flipped.card-after {
+.cardcontainer.flipped .card-after {
   transform: rotateY("0deg");
 }
 
