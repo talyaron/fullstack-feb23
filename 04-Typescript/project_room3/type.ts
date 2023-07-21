@@ -65,7 +65,23 @@ function generateRandom(){
     return cardValues;
 }
 
-function matrixGenerator(cardValue){
-    gameContainer.innerHTML= "";
-
+function matrixGenerator(cardValues){
+    let size= 4
+    gameContainer?.innerHTML= "";
+    cardValues= [...cardValues,...cardValues]
+    cardValues.sort(() => Math.random()-0.5);
+    for(let i=0; i<size*size; i++){
+        gameContainer?.innerHTML+=`
+        <div class="`
+    }
 }
+
+function initializer(){
+    result?.innerHTML= "";
+    winCount = 0
+    let cardValues= generateRandom();
+    console.log(cardValues);
+    matrixGenerator(cardValues);
+}
+
+initializer()

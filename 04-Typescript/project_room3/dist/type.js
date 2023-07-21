@@ -62,6 +62,20 @@ function generateRandom() {
     }
     return cardValues;
 }
-function matrixGenerator(cardValue) {
-    gameContainer.innerHTML = "";
+function matrixGenerator(cardValues) {
+    var size = 4;
+    gameContainer === null || gameContainer === void 0 ? void 0 : gameContainer.innerHTML = "";
+    cardValues = __spreadArrays(cardValues, cardValues);
+    cardValues.sort(function () { return Math.random() - 0.5; });
+    for (var i = 0; i < size * size; i++) {
+        gameContainer === null || gameContainer === void 0 ? void 0 : gameContainer.innerHTML += "\n        <div class=\"";
+    }
 }
+function initializer() {
+    result === null || result === void 0 ? void 0 : result.innerHTML = "";
+    winCount = 0;
+    var cardValues = generateRandom();
+    console.log(cardValues);
+    matrixGenerator(cardValues);
+}
+initializer();
