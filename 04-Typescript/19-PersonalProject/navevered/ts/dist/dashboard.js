@@ -100,17 +100,6 @@ var getInputElementValue = function (id) {
         console.error(error);
     }
 });
-// function renderIncomeTable() {
-//   const incomeTableDiv = document.querySelector("#incomeTableDiv");
-//   if (!incomeTableDiv) throw new Error("Could not find incomeTableDiv html element");
-//   let html =
-//     "<table dir><thead><tr><th> שם ההכנסה   </th><th>סכום</th><th>כל כמה זמן</th></tr></thead><tbody>";
-//   for (const income of incomes) {
-//     html += `<tr><td id="tdName">${income.user.userName}</td><td>${income.amount}</td><td>${income.frequency}</td></tr>`;
-//   }
-//   html += "</tbody></table>";
-//   incomeTableDiv.innerHTML = html;
-// }
 function renderIncomeTable() {
     var nameRoot = document.querySelector("#rootNameIncome");
     if (!nameRoot)
