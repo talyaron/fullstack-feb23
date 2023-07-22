@@ -18,14 +18,14 @@ var firstCard = false;
 var secondCard = false;
 //Items array
 var items = [
-    { name: "java", image: "java.png" },
-    { name: "c++", image: "C++.png" },
-    { name: "css", image: "css.webp" },
-    { name: "html", image: "html.png" },
-    { name: "js", image: "js.jpeg" },
-    { name: "python", image: "Python.png" },
-    { name: "react", image: "React.png" },
-    { name: "git", image: "git.png" },
+    { name: "java", image: "img/java.png" },
+    { name: "c++", image: "img/C++.png" },
+    { name: "css", image: "img/css.webp" },
+    { name: "html", image: "img/html.png" },
+    { name: "js", image: "img/js.jpeg" },
+    { name: "python", image: "img/Python.png" },
+    { name: "react", image: "img/React.png" },
+    { name: "git", image: "img/git.png" },
 ];
 //Time
 var seconds = 0;

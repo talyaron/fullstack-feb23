@@ -30,11 +30,13 @@ body {
     display: grid;
     gap: 0.6em;
 }
+
 .statscontainer {
-text-align: right;
-margin-bottom: 1.2em;
+    text-align: right;
+    margin-bottom: 1.2em;
 }
-.statscontainer span{
+
+.statscontainer span {
     font-weight: 600;
 }
 
