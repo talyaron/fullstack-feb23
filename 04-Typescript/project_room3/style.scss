@@ -48,7 +48,7 @@ body {
 }
 
 .card-before,
-.card:after {
+.cardafter {
     position: absolute;
     border-radius: 5px;
     height: 100%;
@@ -121,4 +121,8 @@ display: none;
 #result h4{
     font-size: 1.8em;
     margin: 0.6em 0.1em 0; 
+}
+
+img{
+    width: 50px;
 }
