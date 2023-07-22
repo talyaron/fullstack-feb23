@@ -11,3 +11,23 @@ passwordBar.addEventListener("keypress", function (ev) {
 function register() {
     window.location.href = "registerPage.html";
 }
+function handleProfile(ev) {
+    try {
+        ev.preventDefault();
+        var tryUserName = ev.target.userName.value;
+        var tryPassword = ev.target.Password.value;
+        profileCheck(tryUserName, tryPassword);
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+function profileCheck(tryUserName, tryPassword) {
+    var profiles = localStorage.getItem("profiles");
+    var profilesSTR = JSON.parse(profiles);
+    profilesSTR.forEach(function (prof) {
+        if (prof.username === tryUserName && prof.password === tryPassword) {
+            return prof.id;
+        }
+    });
+}

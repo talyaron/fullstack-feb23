@@ -14,3 +14,23 @@ passwordBar.addEventListener("keypress", (ev: any) => {
 function register(){
     window.location.href = "registerPage.html"
 }
+function handleProfile(ev:any){
+    try {
+        ev.preventDefault()
+        const tryUserName = ev.target.userName.value;
+        const tryPassword = ev.target.Password.value;
+        profileCheck(tryUserName,tryPassword);
+
+    } catch (error) {
+        console.error(error);
+    }
+}
+function profileCheck(tryUserName, tryPassword){
+const profiles = localStorage.getItem("profiles")!
+const profilesSTR:profile[] = JSON.parse(profiles);
+profilesSTR.forEach(prof => {
+    if(prof.username===tryUserName && prof.password===tryPassword){
+        return prof.id;
+    }
+})
+}

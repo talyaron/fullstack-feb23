@@ -7,7 +7,9 @@
   <title>Document</title>
   <link rel="stylesheet" href="./dist/style.css">
 </head>
-
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tektur:wght@500&display=swap" rel="stylesheet">
 <body>
 
 
@@ -16,10 +18,10 @@
       <source src="./dist/pexels-louai-munajim-5818973 (2160p).mp4" type="video/mp4">
     </video>
   </div>
-  <form class="signIn" onsubmit="handleProfile()">
+  <form class="signIn" onsubmit="handleProfile(event)">
     <h3>Sign In</h3>
-    <input class="signIn__userName" type="text" placeholder="Username">
-    <input class="signIn__password" type="password" placeholder="Password">
+    <input name="userName" class="signIn__userName" type="text" placeholder="Username">
+    <input name="Password" class="signIn__password" type="password" placeholder="Password">
     <input type="submit" name="submit" class="signIn__submit">
     
   </form>

@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Tektur:wght@500&display=swap');
+
+
 body {
     display: flex;
     flex-direction: column;
@@ -31,10 +34,11 @@ body {
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
     align-items: center;
     justify-content: center;
-    font-family: fantasy;
+    font-family: 'Tektur', cursive;
     color: rgb(252, 255, 254);
     gap: 10px;
     transition: all 100ms ease-in-out;
+    
 
     &:hover {
         transform: scale(1.02);
@@ -45,8 +49,9 @@ body {
         height: 2vh;
         border-radius: 10px;
         cursor: pointer;
-        font-family: fantasy;
+        font-family: 'Tektur', cursive;
         transition: all 100ms ease-in-out;
+        background-color: rgba(240, 255, 255, 0.719);
 
         &:focus {
             transform: scaleX(1.1) scaley(1.1);
@@ -59,11 +64,13 @@ body {
         height: 2vh;
         border-radius: 10px;
         cursor: pointer;
-        font-family: fantasy;
         transition: all 100ms ease-in-out;
+        background-color: rgba(240, 255, 255, 0.719);
+        font-family: 'Tektur', cursive;
 
         &:focus {
             transform: scaleX(1.1) scaley(1.1);
+            
 
         }
 
@@ -73,6 +80,8 @@ body {
         border-radius: 10px;
         cursor: pointer;
         font-family: fantasy;
+        background-color: rgba(240, 255, 255, 0.719);
+
 
 
     }
@@ -85,17 +94,8 @@ body {
         font-family: fantasy;
         position: relative;
         bottom: 24vh;
-    }
-
-    &__continue {
-        cursor: pointer;
-        border-radius: 10px;
-        background: rgb(217, 193, 193);
-        background: linear-gradient(90deg, rgba(217, 193, 193, 1) 0%, rgba(179, 187, 189, 1) 100%);
-        cursor: pointer;
-        font-family: fantasy;
-        position: relative;
-        bottom: 23vh;
+        background-color: rgba(240, 255, 255, 0.719);
 
     }
+
 }

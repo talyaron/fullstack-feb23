@@ -142,6 +142,7 @@ section {
 }
 #input:focus {
   transform: scaleX(1.05);
+  background-color: rgba(255, 255, 255, 0.909);
 }
 
 #registerSubmit {
