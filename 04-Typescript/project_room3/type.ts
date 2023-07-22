@@ -86,6 +86,76 @@ function matrixGenerator(cardValues) {
   gameContainer.style.gridTemplateColumns = `repeat(${size},auto)`;
 }
 
+
+cards = document.querySelectorAll(".cardcontainer");
+let firstCardValue = null; // Declare the variable outside the click event handler
+let cardValues = []; // Declare the variable outside the initializer function
+
+cards.forEach((card) => {
+  card.addEventListener("click", () => {
+    if (!card.classList.contains("matched")) {
+      card.classList.add("flipped");
+      if (!firstCard) {
+        firstCard = card;
+        firstCardValue = card.getAttribute("data-card-value"); // Assign value to firstCardValue
+      } else {
+        movesCounter(); // Correct function name: movesCount() -> movesCounter()
+        secondCard = card;
+        let secondCardValue = card.getAttribute("data-card-value");
+        if (firstCardValue == secondCardValue) {
+          firstCard.classList.add("matched");
+          secondCard.classList.add("matched");
+
+          firstCard = false;
+          // win Count increment as the user found a correct match
+          winCount += 1;
+          if (winCount == Math.floor(cardValues.length / 2)) {
+            result.innerHTML = `<h2>You Won!</h2>
+            <h4> Moves: ${movesCount}</h4>`;
+            stopGame();
+
+          } else {
+            let [tempFirst, tempSecond] = [firstCard, secondCard];
+            firstCard = false;
+            secondCard = false;
+            let delay = setTimeout(() => {
+              tempFirst.classList.remove("flipped");
+              tempSecond.classList.remove("flipped");
+            }, 900);
+          }
+        }
+      }
+    }
+  });
+});
+// start game
+
+startButton.addEventListener("click", () => {
+movesCount = 0;
+time = 0;
+// controlers and buttons visability
+controls?.classList.add("hide");
+stopButton?.classList.remove("hide");
+  startButton?.classList.add("hide");
+
+  interval = setInterval( Timer, 1000);
+
+  moves?.innerHTML = `<span>Moves:</span>${movesCount}`;
+
+  initializer();
+});
+
+
+//Stop game
+
+stopButton?.addEventListener("click", ( stopGame = () => {
+  controls?.classList.remove("hide");
+  stopButton?.classList.add("hide");
+  startButton?.classList.remove("hide");
+  clearInterval(interval);
+
+}));
+
 function initializer() {
   result?.innerHTML = "";
   winCount = 0;
@@ -94,4 +164,3 @@ function initializer() {
   matrixGenerator(cardValues);
 }
 
-initializer();

@@ -81,6 +81,64 @@ function matrixGenerator(cardValues) {
     }
     gameContainer.style.gridTemplateColumns = "repeat(" + size + ",auto)";
 }
+cards = document.querySelectorAll(".cardcontainer");
+var firstCardValue = null; // Declare the variable outside the click event handler
+var cardValues = []; // Declare the variable outside the initializer function
+cards.forEach(function (card) {
+    card.addEventListener("click", function () {
+        if (!card.classList.contains("matched")) {
+            card.classList.add("flipped");
+            if (!firstCard) {
+                firstCard = card;
+                firstCardValue = card.getAttribute("data-card-value"); // Assign value to firstCardValue
+            }
+            else {
+                movesCounter(); // Correct function name: movesCount() -> movesCounter()
+                secondCard = card;
+                var secondCardValue = card.getAttribute("data-card-value");
+                if (firstCardValue == secondCardValue) {
+                    firstCard.classList.add("matched");
+                    secondCard.classList.add("matched");
+                    firstCard = false;
+                    // win Count increment as the user found a correct match
+                    winCount += 1;
+                    if (winCount == Math.floor(cardValues.length / 2)) {
+                        result.innerHTML = "<h2>You Won!</h2>\n            <h4> Moves: " + movesCount + "</h4>";
+                        stopGame();
+                    }
+                    else {
+                        var _a = [firstCard, secondCard], tempFirst_1 = _a[0], tempSecond_1 = _a[1];
+                        firstCard = false;
+                        secondCard = false;
+                        var delay = setTimeout(function () {
+                            tempFirst_1.classList.remove("flipped");
+                            tempSecond_1.classList.remove("flipped");
+                        }, 900);
+                    }
+                }
+            }
+        }
+    });
+});
+// start game
+startButton.addEventListener("click", function () {
+    movesCount = 0;
+    time = 0;
+    // controlers and buttons visability
+    controls === null || controls === void 0 ? void 0 : controls.classList.add("hide");
+    stopButton === null || stopButton === void 0 ? void 0 : stopButton.classList.remove("hide");
+    startButton === null || startButton === void 0 ? void 0 : startButton.classList.add("hide");
+    interval = setInterval(Timer, 1000);
+    moves === null || moves === void 0 ? void 0 : moves.innerHTML = "<span>Moves:</span>" + movesCount;
+    initializer();
+});
+//Stop game
+stopButton === null || stopButton === void 0 ? void 0 : stopButton.addEventListener("click", (stopGame = function () {
+    controls === null || controls === void 0 ? void 0 : controls.classList.remove("hide");
+    stopButton === null || stopButton === void 0 ? void 0 : stopButton.classList.add("hide");
+    startButton === null || startButton === void 0 ? void 0 : startButton.classList.remove("hide");
+    clearInterval(interval);
+}));
 function initializer() {
     result === null || result === void 0 ? void 0 : result.innerHTML = "";
     winCount = 0;
@@ -88,4 +146,3 @@ function initializer() {
     console.log(cardValues);
     matrixGenerator(cardValues);
 }
-initializer();
