@@ -1,0 +1,23 @@
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+}
+.loading{
+width: 200px;
+height: 200px;
+border-radius: 50%;
+border-top: 5px solid rgba(17, 124, 124, 0.39);
+animation: spin 0.7s infinite ease-in-out;
+@keyframes spin {
+    from{
+        transform: rotate(0);
+    }
+    to{
+        transform: rotate(1turn);
+    }
+    
+}
+}

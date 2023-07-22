@@ -28,7 +28,7 @@ section {
 
 .show {
   opacity: 1;
-  transition: all 2s ease-in-out;
+  transition: all 4s ease-in-out;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -46,6 +46,26 @@ section {
   z-index: -1;
   border-radius: 20px;
   position: absolute;
+  left: 16vw;
+  overflow: hidden;
+}
+
+.srummered {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+}
+.srummered__txt {
+  font-size: 2vw;
+  position: absolute;
+}
+.srummered__video {
+  height: 60vh;
+  z-index: -1;
+  border-radius: 40px;
   left: 16vw;
   overflow: hidden;
 }
@@ -76,19 +96,19 @@ section {
     color: #ffffff;
   }
   20% {
-    color: aqua;
+    color: #b7f4f4;
   }
   40% {
-    color: blueviolet;
+    color: #cbafe5;
   }
   50% {
-    color: burlywood;
+    color: #efcfa6;
   }
   80% {
     color: azure;
   }
   100% {
-    color: darkseagreen;
+    color: #efff74;
   }
 }
 
@@ -109,17 +129,26 @@ section {
   flex-direction: column;
   z-index: 2;
   gap: 8px;
+  backdrop-filter: blur(2px);
 }
 
 #input {
   cursor: pointer;
-  border-radius: 10px;
+  border-radius: 5px;
   width: 20vw;
-  background: #d9c1c1;
-  background: linear-gradient(90deg, #d9c1c1 0%, #56c6e2 100%);
+  background-color: rgba(197, 197, 197, 0.84);
+  transition: all 100ms ease-in-out;
+  color: black;
+}
+#input:focus {
+  transform: scaleX(1.05);
 }
 
 #registerSubmit {
   opacity: 0;
   transition: all 100ms ease-in-out;
+}
+
+#passwordINS {
+  font-size: 15px;
 }

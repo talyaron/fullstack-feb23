@@ -33,7 +33,7 @@ section {
 
 .show {
     opacity: 1;
-    transition: all 2s ease-in-out;
+    transition: all 4s ease-in-out;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -55,6 +55,28 @@ section {
     position: absolute;
     left: 16vw;
     overflow: hidden;
+}
+
+.srummered {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+
+    &__txt {
+        font-size: 2vw;
+        position: absolute;
+    }
+    &__video{
+        height: 60vh;
+        z-index: -1;
+        border-radius: 40px;
+        left: 16vw;
+        overflow: hidden;
+    }
+    
 }
 
 .artists {
@@ -86,15 +108,15 @@ section {
         }
 
         20% {
-            color: aqua;
+            color: rgb(183, 244, 244);
         }
 
         40% {
-            color: blueviolet;
+            color: rgb(203, 175, 229);
         }
 
         50% {
-            color: burlywood;
+            color: rgb(239, 207, 166);
         }
 
         80% {
@@ -102,7 +124,7 @@ section {
         }
 
         100% {
-            color: darkseagreen;
+            color: rgb(239, 255, 116);
         }
 
     }
@@ -126,18 +148,27 @@ section {
     flex-direction: column;
     z-index: 2;
     gap: 8px;
+    backdrop-filter: blur(2px);
 
 
 }
 
 #input {
     cursor: pointer;
-    border-radius: 10px;
+    border-radius: 5px;
     width: 20vw;
-    background: rgb(217, 193, 193);
-    background: linear-gradient(90deg, rgba(217, 193, 193, 1) 0%, rgba(86, 198, 226, 1) 100%);
+    background-color: rgba(197, 197, 197, 0.84);
+    transition: all 100ms ease-in-out;
+    color: black;
+    &:focus{
+        transform: scaleX(1.05);
+    }
 }
-#registerSubmit{
-opacity: 0;
-transition: all 100ms ease-in-out;
+
+#registerSubmit {
+    opacity: 0;
+    transition: all 100ms ease-in-out;
+}
+#passwordINS{
+    font-size: 15px;
 }

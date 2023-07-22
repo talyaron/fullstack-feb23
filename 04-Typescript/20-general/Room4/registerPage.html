@@ -12,20 +12,19 @@
     <section class="hidden">
         <div class="video-container">
             <video autoplay loop muted>
-              <source src="./dist/video (2160p) (1).mp4" type="video/mp4">
-            </video>
-          </div>
-        <h1 class="hidden__txt">Welcome to a World of music.</h1>
-    </section>
-    <section class="hidden">
-        <h1 id="txt">choose your favourite genres</h1>
-        <div id="video-container">
-            <video autoplay loop muted>
-                <source src="./dist/Rae Sremmurd - No Type (Official Video) (1).mp4" type="video/mp4">
+                <source src="./dist/video (2160p) (1).mp4" type="video/mp4">
             </video>
         </div>
+        <h1 class="hidden__txt">Welcome to a World of music.</h1>
     </section>
-
+    <!-- ------------------------------ -->
+    <section class="hidden srummered">
+        <h1 class="srummered__txt">choose your favourite genres</h1>
+        <video class="srummered__video" autoplay loop muted>
+            <source src="./dist/Rae Sremmurd - No Type (Official Video) (1).mp4" type="video/mp4">
+        </video>
+    </section>
+    <!-- -------------------------------------- -->
     <section class="hidden">
         <h1>and your favourite artists</h1>
         <div class="artists">
@@ -39,15 +38,17 @@
 
     <section class="hidden">
         <h1 id="begintxt">Shell we begin?</h1>
-            <form class="registerForm" onsubmit="registerProfile()">
-                <input name="firstName" id="input" type="text" class="registerForm__First" placeholder="First Name">
-                <input name="lastName" id="input"  type="text" class="registerForm__Last" placeholder="Last Name">
-                <input name="username" id="input"  type="text" class="registerForm__text" placeholder="Create Username">
-                <input name="password" id="input" onkeyup="passwordCheck(event)"  type="password" class="registerForm__password" placeholder="Create Password">
-                <h3 id="passwordINS">Password need to be at least 8 characters</h3>
-                <input type="submit" id="registerSubmit">
+        <form class="registerForm" onsubmit="registerProfile(event)">
+            <input name="firstName" id="input" type="text" class="registerForm__First" placeholder="First Name">
+            <input name="lastName" id="input" type="text" class="registerForm__Last" placeholder="Last Name">
+            <input name="username" id="input" type="text" class="registerForm__text" placeholder="Create Username">
+            <input name="password" id="input" onkeyup="passwordCheck(event)" type="password"
+                class="registerForm__password" placeholder="Create Password">
+            <input type="submit" id="registerSubmit">
 
-            </form>
+        </form>
+        <h3 id="passwordINS">Password need to be at least 8 characters</h3>
+
         </div>
     </section>
 
@@ -59,6 +60,7 @@
 
 
     <script src="./dist/registerCode.js"></script>
+    <script src="./dist/profileHandler.js"></script>
 </body>
 
 </html>
