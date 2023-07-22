@@ -93,7 +93,7 @@ function matrixGenerator(cardValues: Item[]) {
   secondCard = false;
   cards.forEach((card) => {
     card.addEventListener("click", () => {
-      if (!card.classList.contains("matched") && !secondCard) {
+      if (!card.classList.contains("matched") && !secondCard && card !== firstCard) {
         card.classList.add("flipped");
         if (!firstCard) {
           firstCard = card;
@@ -112,7 +112,14 @@ function matrixGenerator(cardValues: Item[]) {
             secondCard = false;
             winCount += 1;
             if (winCount == Math.floor(cardValues.length / 2)) {
-              result.innerHTML = `<h2>You Won!</h2><h4>Moves: ${movesCount}</h4> <h4>Time: ${interval}`;
+              result.innerHTML = `<h2>You Won!</h2><h4>Moves: ${movesCount}`;
+              clearInterval(interval);
+              if (stopGame) {
+                showResult("Game Failed");
+              } else {
+                showResult("You Won!");
+              }
+
               stopGame?.();
             }
           } else {
@@ -158,4 +165,11 @@ function initializer() {
   const cardValues = generateRandom();
   console.log(cardValues);
   matrixGenerator(cardValues);
+}
+
+function showResult(message: string) {
+  result.innerHTML = `<h2>${message}</h2><h4>Moves: ${movesCount}</h4> <h4>Time: ${timeValue.innerText}</h4>`;
+  controls.classList.remove("hide");
+  stopButton.classList.add("hide");
+  startButton.classList.remove("hide");
 }
