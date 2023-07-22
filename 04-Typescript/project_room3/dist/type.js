@@ -20,6 +20,7 @@ var firstCard = false;
 var secondCard = false;
 var stopGame;
 var time;
+var firstCardValue;
 var Item = /** @class */ (function () {
     function Item(name, image) {
         this.name = name;

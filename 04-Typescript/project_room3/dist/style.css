@@ -115,6 +115,9 @@ button {
 
 #result {
   text-align: center;
+  width: 500px;
+  padding: 30px;
+  margin-bottom: 50px;
 }
 
 #result h2 {

@@ -14,6 +14,7 @@ let firstCard: HTMLDivElement | false = false;
 let secondCard: HTMLDivElement | false = false;
 let stopGame: (() => void) | undefined;
 let time: number;
+let firstCardValue;
 
 class Item {
   constructor(public name: string, public image: string) {}
@@ -100,7 +101,9 @@ function matrixGenerator(cardValues: Item[]) {
         } else {
           movesCounter();
           secondCard = card;
-          const secondCardValue = card.getAttribute("data-card-value") as string;
+          const secondCardValue = card.getAttribute(
+            "data-card-value"
+          ) as string;
           if (firstCardValue == secondCardValue) {
             firstCard.classList.add("matched");
             secondCard.classList.add("matched");
