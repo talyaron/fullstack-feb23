@@ -16,16 +16,25 @@ var cards;
 var interval;
 var firstCard = false;
 var secondCard = false;
+var Item = /** @class */ (function () {
+    function Item(name, image) {
+        this.name = name;
+        this.image = image;
+    }
+    return Item;
+}());
 //Items array
 var items = [
-    { name: "java", image: "img/java.png" },
-    { name: "c++", image: "img/C++.png" },
-    { name: "css", image: "img/css.webp" },
-    { name: "html", image: "img/html.png" },
-    { name: "js", image: "img/js.jpeg" },
-    { name: "python", image: "img/Python.png" },
-    { name: "react", image: "img/React.png" },
-    { name: "git", image: "img/git.png" },
+    new Item("java", "img/java.png"),
+    new Item("c++", "img/C.png"),
+    new Item("css", "img/css.webp"),
+    new Item("html", "img/html.png"),
+    new Item("js", "img/js.jpeg"),
+    new Item("python", "img/Python.png"),
+    new Item("react", "img/React.png"),
+    new Item("android", "img/android.png"),
+    new Item("git", "img/git.png"),
+    new Item("ios", "img/ios.png"),
 ];
 //Time
 var seconds = 0;
