@@ -57,6 +57,7 @@ body {
   border: 4px solid black;
   transform: translate(0.7s ease-out);
   backface-visibility: hidden;
+  transition: transform 0.7s ease-out;
 }
 
 .card_before {
