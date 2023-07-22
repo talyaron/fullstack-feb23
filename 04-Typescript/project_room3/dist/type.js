@@ -16,6 +16,8 @@ var cards;
 var interval;
 var firstCard = false;
 var secondCard = false;
+var stopGame;
+var time;
 var Item = /** @class */ (function () {
     function Item(name, image) {
         this.name = name;
@@ -45,7 +47,7 @@ var winCount = 0;
 //Timer
 function Timer() {
     seconds += 1;
-    if ((seconds = 60)) {
+    if ((seconds === 60)) {
         minutes += 1;
         seconds = 0;
     }
@@ -77,7 +79,7 @@ function matrixGenerator(cardValues) {
     cardValues = __spreadArrays(cardValues, cardValues);
     cardValues.sort(function () { return Math.random() - 0.5; });
     for (var i = 0; i < size * size; i++) {
-        gameContainer === null || gameContainer === void 0 ? void 0 : gameContainer.innerHTML += "\n        <div class=\"cardcontainer\" data-card-value=\"" + cardValues[i].name + "\">\n        <div class=\"card-before\">?</div>\n        <div class=\"card-after\"><img scr=\"" + cardValues[i].image + "\" class=\"image\"/></div>\n        </div>\n        ";
+        gameContainer === null || gameContainer === void 0 ? void 0 : gameContainer.innerHTML += "\n        <div class=\"cardcontainer\" data-card-value=\"" + cardValues[i].name + "\">\n        <div class=\"card-before\">?</div>\n        <div class=\"card-after\"><img src=\"" + cardValues[i].image + "\" class=\"image\"/></div>\n        </div>\n        ";
     }
     gameContainer.style.gridTemplateColumns = "repeat(" + size + ",auto)";
 }

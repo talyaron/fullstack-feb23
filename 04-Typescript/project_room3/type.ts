@@ -9,6 +9,8 @@ let cards;
 let interval;
 let firstCard = false;
 let secondCard = false;
+let stopGame;
+let time;
 
 class Item {
   constructor(public name: string, public image) {}
@@ -40,7 +42,7 @@ let winCount = 0;
 //Timer
 function Timer() {
   seconds += 1;
-  if ((seconds = 60)) {
+  if ((seconds === 60)) {
     minutes += 1;
     seconds = 0;
   }
@@ -79,7 +81,7 @@ function matrixGenerator(cardValues) {
     gameContainer?.innerHTML += `
         <div class="cardcontainer" data-card-value="${cardValues[i].name}">
         <div class="card-before">?</div>
-        <div class="card-after"><img scr="${cardValues[i].image}" class="image"/></div>
+        <div class="card-after"><img src="${cardValues[i].image}" class="image"/></div>
         </div>
         `;
   }
