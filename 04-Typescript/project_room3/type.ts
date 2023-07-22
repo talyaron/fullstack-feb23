@@ -1,23 +1,26 @@
-const moves = document.querySelector("#movesCount");
-const timeValue = document.querySelector("#time");
-const startButton = document.querySelector("#start");
-const stopButton = document.querySelector("#stop");
-const gameContainer = document.querySelector(".gameContainer");
-const result = document.querySelector("#result");
-const controls = document.querySelector(".controlsContainer");
-let cards;
-let interval;
-let firstCard = false;
-let secondCard = false;
-let stopGame;
-let time;
+// index.ts
+
+// Import the required DOM elements
+const moves = document.querySelector("#movesCount") as HTMLElement;
+const timeValue = document.querySelector("#time") as HTMLElement;
+const startButton = document.querySelector("#start") as HTMLButtonElement;
+const stopButton = document.querySelector("#stop") as HTMLButtonElement;
+const gameContainer = document.querySelector(".game_Container") as HTMLElement;
+const result = document.querySelector("#result") as HTMLElement;
+const controls = document.querySelector(".controls_Container") as HTMLElement;
+let cards: NodeListOf<HTMLDivElement>;
+let interval: NodeJS.Timeout;
+let firstCard: HTMLDivElement | false = false;
+let secondCard: HTMLDivElement | false = false;
+let stopGame: (() => void) | undefined;
+let time: number;
 
 class Item {
-  constructor(public name: string, public image) {}
+  constructor(public name: string, public image: string) {}
 }
 
-//Items array
-const items = [
+// Items array
+const items: Item[] = [
   new Item("java", "img/java.png"),
   new Item("c++", "img/C.png"),
   new Item("css", "img/css.webp"),
@@ -28,41 +31,39 @@ const items = [
   new Item("android", "img/android.png"),
   new Item("git", "img/git.png"),
   new Item("ios", "img/ios.png"),
-
 ];
 
-//Time
+// Time
 let seconds = 0;
 let minutes = 0;
 
-//moves and win count
+// Moves and win count
 let movesCount = 0;
 let winCount = 0;
 
-//Timer
+// Timer
 function Timer() {
   seconds += 1;
-  if ((seconds === 60)) {
+  if (seconds === 60) {
     minutes += 1;
     seconds = 0;
   }
-  let secondsValue = seconds < 10 ? `0${seconds}` : seconds;
-  let minutesValue = seconds < 10 ? `0${minutes}` : minutes;
-  timeValue?.innerHTML = `<span>Time:</span>${minutesValue}:${secondsValue}`;
+  const secondsValue = seconds < 10 ? `0${seconds}` : seconds;
+  const minutesValue = minutes < 10 ? `0${minutes}` : minutes;
+  timeValue.innerHTML = `<span>Time:</span>${minutesValue}:${secondsValue}`;
 }
 
 // Calculating moves
 function movesCounter() {
   movesCount += 1;
-  moves?.innerHTML = `<span>Moves</span>${movesCount}`;
+  moves.innerHTML = `<span>Moves:</span>${movesCount}`;
 }
 
-// Pick 8 random object from the items array
-
+// Pick 8 random objects from the items array
 function generateRandom() {
   let size = 4;
   let tempArray = [...items];
-  let cardValues = [];
+  let cardValues: Item[] = [];
   size = (size * size) / 2;
   for (let i = 0; i < size; i++) {
     const randomIndex = Math.floor(Math.random() * tempArray.length);
@@ -72,97 +73,86 @@ function generateRandom() {
   return cardValues;
 }
 
-function matrixGenerator(cardValues) {
-  let size = 4;
-  gameContainer?.innerHTML = "";
+function matrixGenerator(cardValues: Item[]) {
+  const size = 4;
+  gameContainer.innerHTML = "";
   cardValues = [...cardValues, ...cardValues];
   cardValues.sort(() => Math.random() - 0.5);
   for (let i = 0; i < size * size; i++) {
-    gameContainer?.innerHTML += `
-        <div class="cardcontainer" data-card-value="${cardValues[i].name}">
-        <div class="card-before">?</div>
-        <div class="card-after"><img src="${cardValues[i].image}" class="image"/></div>
-        </div>
-        `;
+    gameContainer.innerHTML += `
+      <div class="card_container" data-card-value="${cardValues[i].name}">
+        <div class="card_before">?</div>
+        <div class="card_after"><img src="${cardValues[i].image}" class="image"/></div>
+      </div>
+    `;
   }
-  gameContainer.style.gridTemplateColumns = `repeat(${size},auto)`;
-}
+  gameContainer.style.gridTemplateColumns = `repeat(${size}, auto)`;
+  cards = document.querySelectorAll(".card_container");
+  firstCard = false;
+  secondCard = false;
+  cards.forEach((card) => {
+    card.addEventListener("click", () => {
+      if (!card.classList.contains("matched") && !secondCard) {
+        card.classList.add("flipped");
+        if (!firstCard) {
+          firstCard = card;
+          firstCardValue = card.getAttribute("data-card-value") as string;
+        } else {
+          movesCounter();
+          secondCard = card;
+          const secondCardValue = card.getAttribute("data-card-value") as string;
+          if (firstCardValue == secondCardValue) {
+            firstCard.classList.add("matched");
+            secondCard.classList.add("matched");
 
-
-cards = document.querySelectorAll(".cardcontainer");
-let firstCardValue = null; // Declare the variable outside the click event handler
-let cardValues = []; // Declare the variable outside the initializer function
-
-cards.forEach((card) => {
-  card.addEventListener("click", () => {
-    if (!card.classList.contains("matched")) {
-      card.classList.add("flipped");
-      if (!firstCard) {
-        firstCard = card;
-        firstCardValue = card.getAttribute("data-card-value"); // Assign value to firstCardValue
-      } else {
-        movesCounter(); // Correct function name: movesCount() -> movesCounter()
-        secondCard = card;
-        let secondCardValue = card.getAttribute("data-card-value");
-        if (firstCardValue == secondCardValue) {
-          firstCard.classList.add("matched");
-          secondCard.classList.add("matched");
-
-          firstCard = false;
-          // win Count increment as the user found a correct match
-          winCount += 1;
-          if (winCount == Math.floor(cardValues.length / 2)) {
-            result.innerHTML = `<h2>You Won!</h2>
-            <h4> Moves: ${movesCount}</h4>`;
-            stopGame();
-
-          } else {
-            let [tempFirst, tempSecond] = [firstCard, secondCard];
             firstCard = false;
             secondCard = false;
-            let delay = setTimeout(() => {
+            winCount += 1;
+            if (winCount == Math.floor(cardValues.length / 2)) {
+              result.innerHTML = `<h2>You Won!</h2><h4>Moves: ${movesCount}</h4>`;
+              stopGame?.();
+            }
+          } else {
+            const [tempFirst, tempSecond] = [firstCard, secondCard];
+            setTimeout(() => {
               tempFirst.classList.remove("flipped");
               tempSecond.classList.remove("flipped");
+              firstCard = false;
+              secondCard = false;
             }, 900);
           }
         }
       }
-    }
+    });
   });
-});
-// start game
+}
 
+// Start game
 startButton.addEventListener("click", () => {
-movesCount = 0;
-time = 0;
-// controlers and buttons visability
-controls?.classList.add("hide");
-stopButton?.classList.remove("hide");
-  startButton?.classList.add("hide");
+  movesCount = 0;
+  time = 0;
+  controls.classList.add("hide");
+  stopButton.classList.remove("hide");
+  startButton.classList.add("hide");
 
-  interval = setInterval( Timer, 1000);
-
-  moves?.innerHTML = `<span>Moves:</span>${movesCount}`;
+  interval = setInterval(Timer, 1000);
+  moves.innerHTML = `<span>Moves:</span>${movesCount}`;
 
   initializer();
 });
 
-
-//Stop game
-
-stopButton?.addEventListener("click", ( stopGame = () => {
-  controls?.classList.remove("hide");
-  stopButton?.classList.add("hide");
-  startButton?.classList.remove("hide");
+// Stop game
+stopButton.addEventListener("click", () => {
+  controls.classList.remove("hide");
+  stopButton.classList.add("hide");
+  startButton.classList.remove("hide");
   clearInterval(interval);
-
-}));
+});
 
 function initializer() {
-  result?.innerHTML = "";
+  result.innerHTML = "";
   winCount = 0;
-  let cardValues = generateRandom();
+  const cardValues = generateRandom();
   console.log(cardValues);
   matrixGenerator(cardValues);
 }
-
