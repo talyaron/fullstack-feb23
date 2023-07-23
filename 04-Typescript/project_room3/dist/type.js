@@ -1,3 +1,4 @@
+// index.ts
 var __spreadArrays = (this && this.__spreadArrays) || function () {
     for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
     for (var r = Array(s), k = 0, i = 0; i < il; i++)
@@ -5,24 +6,22 @@ var __spreadArrays = (this && this.__spreadArrays) || function () {
             r[k] = a[j];
     return r;
 };
+// Import the required DOM elements
 var moves = document.querySelector("#movesCount");
 var timeValue = document.querySelector("#time");
 var startButton = document.querySelector("#start");
 var stopButton = document.querySelector("#stop");
-var gameContainer = document.querySelector(".gameContainer");
+var gameContainer = document.querySelector(".game_Container");
 var result = document.querySelector("#result");
-var controls = document.querySelector(".controlsContainer");
+var controls = document.querySelector(".controls_Container");
 var cards;
 var interval;
 var firstCard = false;
 var secondCard = false;
-<<<<<<< HEAD
 var stopGame;
 var time;
 var firstCardValue;
 var cardValues;
-=======
->>>>>>> aec3b195daeea45be61570bc0c9b17f346844787
 var Item = /** @class */ (function () {
     function Item(name, image) {
         this.name = name;
@@ -88,8 +87,6 @@ function matrixGenerator(cardValues) {
     }
     gameContainer.style.gridTemplateColumns = "repeat(" + size + ",auto)";
 }
-<<<<<<< HEAD
-// Start game
 startButton.addEventListener("click", function () {
     movesCount = 0;
     time = 0;
@@ -110,8 +107,6 @@ stopButton.addEventListener("click", function () {
         showResult("Game Failed");
     }
 });
-=======
->>>>>>> aec3b195daeea45be61570bc0c9b17f346844787
 function initializer() {
     result === null || result === void 0 ? void 0 : result.innerHTML = "";
     winCount = 0;

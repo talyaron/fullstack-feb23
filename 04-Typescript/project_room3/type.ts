@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 // index.ts
 
 // Import the required DOM elements
@@ -17,19 +16,6 @@ let stopGame: (() => void) | undefined;
 let time: number;
 let firstCardValue;
 let cardValues: Item[];
-=======
-const moves = document.querySelector("#movesCount");
-const timeValue = document.querySelector("#time");
-const startButton = document.querySelector("#start");
-const stopButton = document.querySelector("#stop");
-const gameContainer = document.querySelector(".gameContainer");
-const result = document.querySelector("#result");
-const controls = document.querySelector(".controlsContainer");
-let cards;
-let interval;
-let firstCard = false;
-let secondCard = false;
->>>>>>> aec3b195daeea45be61570bc0c9b17f346844787
 
 class Item {
   constructor(public name: string, public image) {}
