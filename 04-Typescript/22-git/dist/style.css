@@ -1,4 +1,5 @@
 @import "./features/inventory/dist/invnetory.css";
+@import "./features/Cart/dist/style.css"
 h1 {
   background-color: yellow;
 }
