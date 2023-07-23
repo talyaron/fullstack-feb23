@@ -21,6 +21,7 @@ var secondCard = false;
 var stopGame;
 var time;
 var firstCardValue;
+var cardValues;
 var Item = /** @class */ (function () {
     function Item(name, image) {
         this.name = name;
@@ -149,6 +150,9 @@ stopButton.addEventListener("click", function () {
     stopButton.classList.add("hide");
     startButton.classList.remove("hide");
     clearInterval(interval);
+    if (interval) {
+        showResult("Game Failed");
+    }
 });
 function initializer() {
     result.innerHTML = "";

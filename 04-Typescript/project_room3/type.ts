@@ -15,6 +15,7 @@ let secondCard: HTMLDivElement | false = false;
 let stopGame: (() => void) | undefined;
 let time: number;
 let firstCardValue;
+let cardValues: Item[];
 
 class Item {
   constructor(public name: string, public image: string) {}
@@ -157,6 +158,10 @@ stopButton.addEventListener("click", () => {
   stopButton.classList.add("hide");
   startButton.classList.remove("hide");
   clearInterval(interval);
+
+  if (interval) {
+    showResult("Game Failed");
+  }
 });
 
 function initializer() {
