@@ -1,4 +1,5 @@
 @import "./features/inventory/dist/invnetory.css";
+@import "./main/dist/style.css"
 h1 {
   background-color: yellow;
 }
