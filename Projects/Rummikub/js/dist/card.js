@@ -1,6 +1,6 @@
 var Card = /** @class */ (function () {
-    function Card(valu, color, imgUrl) {
-        this.valu = valu;
+    function Card(value, color, imgUrl) {
+        this.value = value;
         this.color = color;
         this.imgUrl = imgUrl;
     }
@@ -157,10 +157,10 @@ function sortByColor() {
 function sortByNumber() {
     try {
         playerCards.sort(function (a, b) {
-            if (a.valu < b.valu) {
+            if (a.value < b.value) {
                 return -1;
             }
-            if (a.valu > b.valu) {
+            if (a.value > b.value) {
                 return 1;
             }
             return 0;

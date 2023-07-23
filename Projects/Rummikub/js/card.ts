@@ -1,5 +1,5 @@
 class Card {
-    constructor(public valu: number | string, public color: string, public imgUrl: string) {
+    constructor(public value: number | string, public color: string, public imgUrl: string) {
     }
 }
 
@@ -164,10 +164,10 @@ function sortByColor(){
 function sortByNumber(){
     try {
         playerCards.sort((a,b)=>{
-            if ( a.valu < b.valu ){
+            if ( a.value < b.value ){
                 return -1;
               }
-              if ( a.valu > b.valu ){
+              if ( a.value > b.value ){
                 return 1;
               }
               return 0;
