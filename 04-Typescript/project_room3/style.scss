@@ -48,7 +48,7 @@ body {
 }
 
 .card-before,
-.card:after {
+.card-after {
     position: absolute;
     border-radius: 5px;
     height: 100%;
@@ -68,7 +68,7 @@ body {
 
 }
 
-.card:after {
+.card-after {
     background-color: #ffffff;
     transform: rotateY(180deg);
 }
@@ -121,4 +121,7 @@ display: none;
 #result h4{
     font-size: 1.8em;
     margin: 0.6em 0.1em 0; 
+}
+img{
+width: 50px;
 }

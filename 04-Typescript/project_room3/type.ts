@@ -79,7 +79,7 @@ function matrixGenerator(cardValues) {
     gameContainer?.innerHTML += `
         <div class="cardcontainer" data-card-value="${cardValues[i].name}">
         <div class="card-before">?</div>
-        <div class="card-after"><img scr="${cardValues[i].image}" class="image"/></div>
+        <div class="card-after"><img src="${cardValues[i].image}" class="image"/></div>
         </div>
         `;
   }

@@ -77,7 +77,7 @@ function matrixGenerator(cardValues) {
     cardValues = __spreadArrays(cardValues, cardValues);
     cardValues.sort(function () { return Math.random() - 0.5; });
     for (var i = 0; i < size * size; i++) {
-        gameContainer === null || gameContainer === void 0 ? void 0 : gameContainer.innerHTML += "\n        <div class=\"cardcontainer\" data-card-value=\"" + cardValues[i].name + "\">\n        <div class=\"card-before\">?</div>\n        <div class=\"card-after\"><img scr=\"" + cardValues[i].image + "\" class=\"image\"/></div>\n        </div>\n        ";
+        gameContainer === null || gameContainer === void 0 ? void 0 : gameContainer.innerHTML += "\n        <div class=\"cardcontainer\" data-card-value=\"" + cardValues[i].name + "\">\n        <div class=\"card-before\">?</div>\n        <div class=\"card-after\"><img src=\"" + cardValues[i].image + "\" class=\"image\"/></div>\n        </div>\n        ";
     }
     gameContainer.style.gridTemplateColumns = "repeat(" + size + ",auto)";
 }
