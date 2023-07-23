@@ -1,4 +1,3 @@
-// index.ts
 var __spreadArrays = (this && this.__spreadArrays) || function () {
     for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
     for (var r = Array(s), k = 0, i = 0; i < il; i++)
@@ -6,22 +5,24 @@ var __spreadArrays = (this && this.__spreadArrays) || function () {
             r[k] = a[j];
     return r;
 };
-// Import the required DOM elements
 var moves = document.querySelector("#movesCount");
 var timeValue = document.querySelector("#time");
 var startButton = document.querySelector("#start");
 var stopButton = document.querySelector("#stop");
-var gameContainer = document.querySelector(".game_Container");
+var gameContainer = document.querySelector(".gameContainer");
 var result = document.querySelector("#result");
-var controls = document.querySelector(".controls_Container");
+var controls = document.querySelector(".controlsContainer");
 var cards;
 var interval;
 var firstCard = false;
 var secondCard = false;
+<<<<<<< HEAD
 var stopGame;
 var time;
 var firstCardValue;
 var cardValues;
+=======
+>>>>>>> aec3b195daeea45be61570bc0c9b17f346844787
 var Item = /** @class */ (function () {
     function Item(name, image) {
         this.name = name;
@@ -29,7 +30,7 @@ var Item = /** @class */ (function () {
     }
     return Item;
 }());
-// Items array
+//Items array
 var items = [
     new Item("java", "img/java.png"),
     new Item("c++", "img/C.png"),
@@ -42,29 +43,29 @@ var items = [
     new Item("git", "img/git.png"),
     new Item("ios", "img/ios.png"),
 ];
-// Time
+//Time
 var seconds = 0;
 var minutes = 0;
-// Moves and win count
+//moves and win count
 var movesCount = 0;
 var winCount = 0;
-// Timer
+//Timer
 function Timer() {
     seconds += 1;
-    if (seconds === 60) {
+    if ((seconds = 60)) {
         minutes += 1;
         seconds = 0;
     }
     var secondsValue = seconds < 10 ? "0" + seconds : seconds;
-    var minutesValue = minutes < 10 ? "0" + minutes : minutes;
-    timeValue.innerHTML = "<span>Time:</span>" + minutesValue + ":" + secondsValue;
+    var minutesValue = seconds < 10 ? "0" + minutes : minutes;
+    timeValue === null || timeValue === void 0 ? void 0 : timeValue.innerHTML = "<span>Time:</span>" + minutesValue + ":" + secondsValue;
 }
 // Calculating moves
 function movesCounter() {
     movesCount += 1;
-    moves.innerHTML = "<span>Moves:</span>" + movesCount;
+    moves === null || moves === void 0 ? void 0 : moves.innerHTML = "<span>Moves</span>" + movesCount;
 }
-// Pick 8 random objects from the items array
+// Pick 8 random object from the items array
 function generateRandom() {
     var size = 4;
     var tempArray = __spreadArrays(items);
@@ -79,60 +80,15 @@ function generateRandom() {
 }
 function matrixGenerator(cardValues) {
     var size = 4;
-    gameContainer.innerHTML = "";
+    gameContainer === null || gameContainer === void 0 ? void 0 : gameContainer.innerHTML = "";
     cardValues = __spreadArrays(cardValues, cardValues);
     cardValues.sort(function () { return Math.random() - 0.5; });
     for (var i = 0; i < size * size; i++) {
-        gameContainer.innerHTML += "\n      <div class=\"card_container\" data-card-value=\"" + cardValues[i].name + "\">\n        <div class=\"card_before\">?</div>\n        <div class=\"card_after\"><img src=\"" + cardValues[i].image + "\" class=\"image\"/></div>\n      </div>\n    ";
+        gameContainer === null || gameContainer === void 0 ? void 0 : gameContainer.innerHTML += "\n        <div class=\"cardcontainer\" data-card-value=\"" + cardValues[i].name + "\">\n        <div class=\"card-before\">?</div>\n        <div class=\"card-after\"><img src=\"" + cardValues[i].image + "\" class=\"image\"/></div>\n        </div>\n        ";
     }
-    gameContainer.style.gridTemplateColumns = "repeat(" + size + ", auto)";
-    cards = document.querySelectorAll(".card_container");
-    firstCard = false;
-    secondCard = false;
-    cards.forEach(function (card) {
-        card.addEventListener("click", function () {
-            if (!card.classList.contains("matched") && !secondCard && card !== firstCard) {
-                card.classList.add("flipped");
-                if (!firstCard) {
-                    firstCard = card;
-                    firstCardValue = card.getAttribute("data-card-value");
-                }
-                else {
-                    movesCounter();
-                    secondCard = card;
-                    var secondCardValue = card.getAttribute("data-card-value");
-                    if (firstCardValue == secondCardValue) {
-                        firstCard.classList.add("matched");
-                        secondCard.classList.add("matched");
-                        firstCard = false;
-                        secondCard = false;
-                        winCount += 1;
-                        if (winCount == Math.floor(cardValues.length / 2)) {
-                            result.innerHTML = "<h2>You Won!</h2><h4>Moves: " + movesCount;
-                            clearInterval(interval);
-                            if (stopGame) {
-                                showResult("Game Failed");
-                            }
-                            else {
-                                showResult("You Won!");
-                            }
-                            stopGame === null || stopGame === void 0 ? void 0 : stopGame();
-                        }
-                    }
-                    else {
-                        var _a = [firstCard, secondCard], tempFirst_1 = _a[0], tempSecond_1 = _a[1];
-                        setTimeout(function () {
-                            tempFirst_1.classList.remove("flipped");
-                            tempSecond_1.classList.remove("flipped");
-                            firstCard = false;
-                            secondCard = false;
-                        }, 900);
-                    }
-                }
-            }
-        });
-    });
+    gameContainer.style.gridTemplateColumns = "repeat(" + size + ",auto)";
 }
+<<<<<<< HEAD
 // Start game
 startButton.addEventListener("click", function () {
     movesCount = 0;
@@ -154,16 +110,13 @@ stopButton.addEventListener("click", function () {
         showResult("Game Failed");
     }
 });
+=======
+>>>>>>> aec3b195daeea45be61570bc0c9b17f346844787
 function initializer() {
-    result.innerHTML = "";
+    result === null || result === void 0 ? void 0 : result.innerHTML = "";
     winCount = 0;
     var cardValues = generateRandom();
     console.log(cardValues);
     matrixGenerator(cardValues);
 }
-function showResult(message) {
-    result.innerHTML = "<h2>" + message + "</h2><h4>Moves: " + movesCount + "</h4> <h4>Time: " + timeValue.innerText + "</h4>";
-    controls.classList.remove("hide");
-    stopButton.classList.add("hide");
-    startButton.classList.remove("hide");
-}
+initializer();
