@@ -67,9 +67,10 @@ function storeProfile(){
     redirectPage()
 }
 function redirectPage(){
-    window.location.href = "Redirect.html"
+    window.location.href = "../redirect/redirect.html"
     redirectToMain()
 }
 
 function redirectToMain(){
+    window.location.href = "../main/main.html"
 }
