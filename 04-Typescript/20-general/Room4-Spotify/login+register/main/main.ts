@@ -58,3 +58,45 @@ function renderSongs(
     }
 }
 renderSongs(document.querySelector('#recentlyHeard'), songsArray);
+
+//show random song.
+function getRandomSong(songs: Song[]): Song | null {
+    try {
+        if (!songs) throw new Error('Songs not found');
+
+        if (songs.length === 0) {
+            return null;
+        }
+
+        const randomIndex = Math.floor(Math.random() * songs.length);
+        return songs[randomIndex];
+
+    } catch (error) {
+        console.error(error);
+        return error;
+    }
+}
+
+function displayRandomSong(rootElement: HTMLElement | null, songs: Song[]): void {
+    try {
+        if (!rootElement) throw new Error('Root element is not found');
+        if (!songs) throw new Error('Songs not found');
+
+        const randomSong = getRandomSong(songs);
+
+        if (randomSong && rootElement) {
+            const html = `
+        <div class="randomSong">
+          <img src="${randomSong.src}" alt="${randomSong.name}">
+          <h2>${randomSong.name}</h2>
+        </div> `;
+
+            rootElement.innerHTML = html;
+        }
+
+    } catch (error) {
+        console.error(error);
+        return error;
+    }
+}
+displayRandomSong(document.querySelector("#randomSong"), songsArray);

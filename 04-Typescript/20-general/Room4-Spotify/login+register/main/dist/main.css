@@ -49,3 +49,20 @@ section {
 .recentlyHeard__box h3 {
   text-align: center;
 }
+
+#randomSong {
+  width: 50vw;
+  height: 33vh;
+  background-color: #333333;
+  padding: 15px;
+  border-radius: 10px;
+}
+#randomSong img {
+  width: 20vw;
+  height: 30vh;
+  border-radius: 10px;
+  float: right;
+}
+#randomSong h2 {
+  text-align: center;
+}

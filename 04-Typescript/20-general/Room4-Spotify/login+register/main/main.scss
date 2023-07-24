@@ -48,8 +48,27 @@ section {
             border-radius: 10px;
         }
 
-        h3{
+        h3 {
             text-align: center;
         }
+    }
+}
+
+#randomSong {
+    width: 50vw;
+    height: 33vh;
+    background-color: rgb(51, 51, 51);
+    padding: 15px;
+    border-radius: 10px;
+
+    img {
+        width: 20vw;
+        height: 30vh;
+        border-radius: 10px;
+        float: right;
+    }
+
+    h2 {
+        text-align: center;
     }
 }

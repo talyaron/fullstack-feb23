@@ -17,7 +17,7 @@ if (songsArray.length === 0) {
 
 class Singer {
     id: string;
-    constructor(public name: string, public img: string, public songs: Song[]) {
+    constructor(public name: string, public img: string, public genre: string, public songs: Song[]) {
         this.id = Math.random().toString(16).slice(2).toString();
     }
 }

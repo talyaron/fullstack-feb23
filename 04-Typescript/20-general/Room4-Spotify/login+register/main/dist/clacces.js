@@ -17,9 +17,10 @@ if (songsArray.length === 0) {
 }
 ;
 var Singer = /** @class */ (function () {
-    function Singer(name, img, songs) {
+    function Singer(name, img, genre, songs) {
         this.name = name;
         this.img = img;
+        this.genre = genre;
         this.songs = songs;
         this.id = Math.random().toString(16).slice(2).toString();
     }
