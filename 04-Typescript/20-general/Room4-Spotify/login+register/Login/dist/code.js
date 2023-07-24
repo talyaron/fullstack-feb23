@@ -9,7 +9,7 @@ passwordBar.addEventListener("keypress", function (ev) {
     keyboardSound2.play();
 });
 function register() {
-    window.location.href = "../register/registerPage.html";
+    window.location.href = "../register/register.html";
 }
 function handleProfile(ev) {
     try {

@@ -12,7 +12,7 @@ passwordBar.addEventListener("keypress", (ev: any) => {
 })
 
 function register(){
-    window.location.href = "../register/registerPage.html"
+    window.location.href = "../register/register.html"
 }
 function handleProfile(ev:any){
     try {
