@@ -6,16 +6,16 @@ function getGreetingByTimeOfDay(rootElement, currentTime) {
             throw new Error("rootElement is null or undefined");
         var hours = currentTime.getHours();
         var greeting = "";
-        if (hours >= 23 || hours < 4) {
+        if (hours >= 22 || hours < 5) {
             greeting = "Good Night";
         }
         else if (hours >= 5 && hours < 12) {
             greeting = "Good Morning";
         }
-        else if (hours >= 13 && hours < 18) {
+        else if (hours >= 12 && hours < 18) {
             greeting = "Good Afternoon";
         }
-        else if (hours >= 19 && hours < 22) {
+        else if (hours >= 18 && hours < 22) {
             greeting = "Good Evening";
         }
         else {
@@ -51,4 +51,4 @@ function renderSongs(rootElement, songs) {
         return error;
     }
 }
-renderSongs(document.querySelector('#recentlyHeard'), song);
+renderSongs(document.querySelector('#recentlyHeard'), songsArray);
