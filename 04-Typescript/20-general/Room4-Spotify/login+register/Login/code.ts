@@ -21,6 +21,7 @@ function handleProfile(ev:any){
         const tryPassword = ev.target.Password.value;
         profileCheck(tryUserName,tryPassword);
 
+
     } catch (error) {
         console.error(error);
     }
