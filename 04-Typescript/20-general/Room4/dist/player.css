@@ -9,7 +9,6 @@ html {
   align-items: center;
   align-content: center;
   position: relative;
-  background-image: url("https://www.metalcallout.com/sites/default/files/img/cradledarklycover2.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -107,12 +106,11 @@ html {
 }
 
 #progress {
-  height: 2vh;
-  background: black;
+  height: 3vh;
   position: relative;
   transition: all 200ms ease-in-out;
   bottom: -20px;
   z-index: 1;
-  opacity: 0.3;
-  border-right: 10px solid white;
+  opacity: 0.6;
+  border-right: 10px solid black;
 }
