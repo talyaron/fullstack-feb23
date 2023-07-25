@@ -43,7 +43,7 @@ function renderSongs(
         const html = songs.map((song) => {
             return `
                    <div class="recentlyHeard__box">
-                     <img src="${song.src}">
+                     <img src="${song.img}">
                      <h3>${song.name}</h3>
                  </div>`;
         }).join('');
@@ -87,7 +87,7 @@ function displayRandomSong(rootElement: HTMLElement | null, songs: Song[]): void
         if (randomSong && rootElement) {
             const html = `
         <div class="randomSong">
-          <img src="${randomSong.src}" alt="${randomSong.name}">
+          <img src="${randomSong.img}" alt="${randomSong.name}">
           <h2>${randomSong.name}</h2>
         </div> `;
 

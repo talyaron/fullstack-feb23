@@ -1,8 +1,12 @@
 //classes - songs, singers, playlists
+//
 // public singer: string,
+// , public src: HTMLAudioElement
+// , new Audio ('../dist/media/redBand&ninet')
+//
 class Song {
     id: string;
-    constructor(public name: string,  public src: string) {
+    constructor(public name: string,  public img: string) {
         this.id = Math.random().toString(16).slice(2).toString();
     }
 }

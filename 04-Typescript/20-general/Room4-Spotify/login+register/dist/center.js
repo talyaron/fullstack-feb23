@@ -1,9 +1,13 @@
 //classes - songs, singers, playlists
+//
 // public singer: string,
+// , public src: HTMLAudioElement
+// , new Audio ('../dist/media/redBand&ninet')
+//
 var Song = /** @class */ (function () {
-    function Song(name, src) {
+    function Song(name, img) {
         this.name = name;
-        this.src = src;
+        this.img = img;
         this.id = Math.random().toString(16).slice(2).toString();
     }
     return Song;

@@ -40,7 +40,7 @@ function renderSongs(rootElement, songs) {
         if (!songs)
             throw new Error('Songs not found');
         var html = songs.map(function (song) {
-            return "\n                   <div class=\"recentlyHeard__box\">\n                     <img src=\"" + song.src + "\">\n                     <h3>" + song.name + "</h3>\n                 </div>";
+            return "\n                   <div class=\"recentlyHeard__box\">\n                     <img src=\"" + song.img + "\">\n                     <h3>" + song.name + "</h3>\n                 </div>";
         }).join('');
         rootElement.innerHTML = html;
         saveSongsToLocalStorage(song);
@@ -76,7 +76,7 @@ function displayRandomSong(rootElement, songs) {
             throw new Error('Songs not found');
         var randomSong = getRandomSong(songs);
         if (randomSong && rootElement) {
-            var html = "\n        <div class=\"randomSong\">\n          <img src=\"" + randomSong.src + "\" alt=\"" + randomSong.name + "\">\n          <h2>" + randomSong.name + "</h2>\n        </div> ";
+            var html = "\n        <div class=\"randomSong\">\n          <img src=\"" + randomSong.img + "\" alt=\"" + randomSong.name + "\">\n          <h2>" + randomSong.name + "</h2>\n        </div> ";
             rootElement.innerHTML = html;
         }
     }
