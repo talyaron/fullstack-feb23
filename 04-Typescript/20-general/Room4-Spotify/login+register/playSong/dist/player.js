@@ -1,3 +1,6 @@
+//פונקציה שמקשרת את הקלאסים שנימצאים ב-center.ts
+// const song: Song[] = getSongsFromLocalStorage();
+// const singer: Singer[] = getSingersFromLocalStorage();
 var AudioElement = /** @class */ (function () {
     function AudioElement(name, artist, audio, img, id) {
         this.name = name;
@@ -9,8 +12,8 @@ var AudioElement = /** @class */ (function () {
     return AudioElement;
 }());
 var audioElements = [
-    new AudioElement("Her Ghost in The Fog", "Cradle Of Filth", new Audio("./dist/Cradle of Filth - Her Ghost in The Fog (192 kbps).mp3"), 'https://www.metalcallout.com/sites/default/files/img/cradledarklycover2.jpg', 1),
-    new AudioElement("Final Countdown", "Europe", new Audio("./dist/Europe - The Final Countdown.mp3"), 'https://upload.wikimedia.org/wikipedia/en/2/22/The_Final_Countdown_single.png', 2)
+    new AudioElement("Her Ghost in The Fog", "Cradle Of Filth", new Audio("../dist/media/Cradle of Filth - Her Ghost in The Fog (192 kbps).mp3"), 'https://www.metalcallout.com/sites/default/files/img/cradledarklycover2.jpg', 1),
+    new AudioElement("Final Countdown", "Europe", new Audio("../dist/media/Europe - The Final Countdown.mp3"), 'https://upload.wikimedia.org/wikipedia/en/2/22/The_Final_Countdown_single.png', 2)
 ];
 // console.log(audioElements)
 // const audioElement = new AudioElement("Her Ghost in The Fog", "Cradle Of Filth", new Audio('./dist/Cradle of Filth - Her Ghost in The Fog (192 kbps).mp3'))
