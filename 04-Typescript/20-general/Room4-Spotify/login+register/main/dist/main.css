@@ -66,3 +66,17 @@ section {
 #randomSong h2 {
   text-align: center;
 }
+
+.playlistBySinger {
+  width: 50vw;
+  height: 33vh;
+  background-color: #333333;
+  padding: 15px;
+  border-radius: 10px;
+}
+.playlistBySinger img {
+  width: 20vw;
+  height: 30vh;
+  border-radius: 10px;
+  float: right;
+}

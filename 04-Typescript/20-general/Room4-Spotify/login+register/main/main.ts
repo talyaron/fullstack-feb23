@@ -1,5 +1,6 @@
 const song: Song[] = getSongsFromLocalStorage();
 const singer: Singer[] = getSingersFromLocalStorage();
+const singersSong: SingersSong[] = getSingersSongsFromLocalStorage();
 
 function getGreetingByTimeOfDay(rootElement: HTMLElement | null, currentTime: Date): void {
     try {
@@ -44,7 +45,7 @@ function renderSongs(
             return `
                    <div class="recentlyHeard__box">
                      <img src="${song.img}">
-                     <h3>${song.name}</h3>
+                     <h3>${song.artist}</h3>
                  </div>`;
         }).join('');
 
@@ -100,3 +101,42 @@ function displayRandomSong(rootElement: HTMLElement | null, songs: Song[]): void
     }
 }
 displayRandomSong(document.querySelector("#randomSong"), songsArray);
+
+//create playlist for each singer.
+// Function to render the playlist of songs for each singer on the DOM
+function renderAllPlaylists(rootElement: HTMLElement | null | Element, singersSongsArray: SingersSong[]): void {
+    if (!rootElement) return;
+
+    // Iterate through the singersSongsArray and render playlists for each singer
+    for (const singersSong of singersSongsArray) {
+        const singer = singersSong.singers[0]; // Since each singersSong has only one singer in the array
+
+        const playlistHTML = singer.songs.map(song => `
+            <div class="playlistBySinger">
+                <img src="${song.img}" alt="${song.name}">
+                <h3>${song.name}</h3>
+                <audio controls>
+                    <source src="${song.audio}" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
+        `).join('');
+
+        const section = document.createElement("section");
+        section.classList.add("playlist");
+        section.innerHTML = `
+            <h1>${singer.name}'s Playlist</h1>
+            ${playlistHTML}
+        `;
+
+        rootElement.appendChild(section);
+    }
+}
+
+// Assuming you have a div element with the ID "playlistContainer" on your HTML.
+const playlistContainer = document.querySelector("#playlistContainer");
+
+// Display playlists for all singers in the singersSongsArray
+if (singersSongsArray.length > 0) {
+    renderAllPlaylists(playlistContainer, singersSongsArray);
+}

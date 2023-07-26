@@ -1,5 +1,6 @@
 var song = getSongsFromLocalStorage();
 var singer = getSingersFromLocalStorage();
+var singersSong = getSingersSongsFromLocalStorage();
 function getGreetingByTimeOfDay(rootElement, currentTime) {
     try {
         if (!rootElement)
@@ -40,7 +41,7 @@ function renderSongs(rootElement, songs) {
         if (!songs)
             throw new Error('Songs not found');
         var html = songs.map(function (song) {
-            return "\n                   <div class=\"recentlyHeard__box\">\n                     <img src=\"" + song.img + "\">\n                     <h3>" + song.name + "</h3>\n                 </div>";
+            return "\n                   <div class=\"recentlyHeard__box\">\n                     <img src=\"" + song.img + "\">\n                     <h3>" + song.artist + "</h3>\n                 </div>";
         }).join('');
         rootElement.innerHTML = html;
         saveSongsToLocalStorage(song);
@@ -86,3 +87,25 @@ function displayRandomSong(rootElement, songs) {
     }
 }
 displayRandomSong(document.querySelector("#randomSong"), songsArray);
+//create playlist for each singer.
+// Function to render the playlist of songs for each singer on the DOM
+function renderAllPlaylists(rootElement, singersSongsArray) {
+    if (!rootElement)
+        return;
+    // Iterate through the singersSongsArray and render playlists for each singer
+    for (var _i = 0, singersSongsArray_1 = singersSongsArray; _i < singersSongsArray_1.length; _i++) {
+        var singersSong_1 = singersSongsArray_1[_i];
+        var singer_1 = singersSong_1.singers[0]; // Since each singersSong has only one singer in the array
+        var playlistHTML = singer_1.songs.map(function (song) { return "\n            <div class=\"playlistBySinger\">\n                <img src=\"" + song.img + "\" alt=\"" + song.name + "\">\n                <h3>" + song.name + "</h3>\n                <audio controls>\n                    <source src=\"" + song.audio + "\" type=\"audio/mpeg\">\n                    Your browser does not support the audio element.\n                </audio>\n            </div>\n        "; }).join('');
+        var section = document.createElement("section");
+        section.classList.add("playlist");
+        section.innerHTML = "\n            <h1>" + singer_1.name + "'s Playlist</h1>\n            " + playlistHTML + "\n        ";
+        rootElement.appendChild(section);
+    }
+}
+// Assuming you have a div element with the ID "playlistContainer" on your HTML.
+var playlistContainer = document.querySelector("#playlistContainer");
+// Display playlists for all singers in the singersSongsArray
+if (singersSongsArray.length > 0) {
+    renderAllPlaylists(playlistContainer, singersSongsArray);
+}
