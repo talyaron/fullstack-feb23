@@ -28,11 +28,10 @@ function getGreetingByTimeOfDay(rootElement: HTMLElement | null, currentTime: Da
         return error;
     }
 }
-
-// Example usage:
 const headerElement: HTMLElement | null = document.querySelector("#header");
 getGreetingByTimeOfDay(headerElement, new Date());
 
+//show recently heard songs.
 function renderSongs(
     rootElement: HTMLElement | null,
     songs: Song[]
@@ -60,7 +59,7 @@ function renderSongs(
 }
 renderSongs(document.querySelector('#recentlyHeard'), songsArray);
 
-//show random song.
+//get random song.
 function getRandomSong(songs: Song[]): Song | null {
     try {
         if (!songs) throw new Error('Songs not found');
@@ -78,6 +77,7 @@ function getRandomSong(songs: Song[]): Song | null {
     }
 }
 
+//render random song.
 function displayRandomSong(rootElement: HTMLElement | null, songs: Song[]): void {
     try {
         if (!rootElement) throw new Error('Root element is not found');
@@ -117,7 +117,6 @@ function renderAllPlaylists(rootElement: HTMLElement | null | Element, singersSo
                 <h3>${song.name}</h3>
                 <audio controls>
                     <source src="${song.audio}" type="audio/mpeg">
-                    Your browser does not support the audio element.
                 </audio>
             </div>
         `).join('');

@@ -8,13 +8,13 @@ class Song {
 }
 const songsArray: Song[] = getSongsFromLocalStorage();
 if (songsArray.length === 0) {
-    const song1 = new Song(1, 'Can not feel my face', 'Red Band', '../dist/media/redBand&ninet', '../dist/media/220px-Red_-_band_press_photo.jpg');
+    const song1 = new Song(1, 'Can not feel my face', 'Red Band', '../dist/media/redBand&ninet.mp3', '../dist/media/220px-Red_-_band_press_photo.jpg');
     const song2 = new Song(2, 'Peaches', 'Justin Bieber', '../dist/media/JustinBieber-Peaches.mp3', '../dist/media/justin-bieber-gettyimages-1202421980.jpg',);
     const song3 = new Song(3, 'Girls Like You', 'Maroon 5', '../dist/media/Maroon5-GirlsLikeYou.mp3', '../dist/media/maroon-e9cb8c5b25b4d1f3e68aa26e6a0ce51cf2ae59d8-s1100-c50.jpg');
     const song4 = new Song(4, 'התעוררתי עם נמר', 'עומר אדם', '../dist/media/עומר אדם&איזי-התעוררתיעםנמר.mp3', '../dist/media/עומר_אדם_צילום_שי_פרנקו_(cropped).jpg');
-    const song5 = new Song(5, 'try', 'Justin Bieber', '../dist/media/JustinBieber-Peaches.mp3', '../dist/media/justin-bieber-gettyimages-1202421980.jpg',);
+    // const song5 = new Song(5, 'try', 'Justin Bieber', '../dist/media/JustinBieber-Peaches.mp3', '../dist/media/justin-bieber-gettyimages-1202421980.jpg',);
 
-    songsArray.push(song1, song2, song3, song4, song5);
+    songsArray.push(song1, song2, song3, song4);
 };
 console.log(songsArray[0].name)
 

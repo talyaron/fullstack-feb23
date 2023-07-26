@@ -31,9 +31,9 @@ function getGreetingByTimeOfDay(rootElement, currentTime) {
         return error;
     }
 }
-// Example usage:
 var headerElement = document.querySelector("#header");
 getGreetingByTimeOfDay(headerElement, new Date());
+//show recently heard songs.
 function renderSongs(rootElement, songs) {
     try {
         if (!rootElement)
@@ -53,7 +53,7 @@ function renderSongs(rootElement, songs) {
     }
 }
 renderSongs(document.querySelector('#recentlyHeard'), songsArray);
-//show random song.
+//get random song.
 function getRandomSong(songs) {
     try {
         if (!songs)
@@ -69,6 +69,7 @@ function getRandomSong(songs) {
         return error;
     }
 }
+//render random song.
 function displayRandomSong(rootElement, songs) {
     try {
         if (!rootElement)
@@ -96,7 +97,7 @@ function renderAllPlaylists(rootElement, singersSongsArray) {
     for (var _i = 0, singersSongsArray_1 = singersSongsArray; _i < singersSongsArray_1.length; _i++) {
         var singersSong_1 = singersSongsArray_1[_i];
         var singer_1 = singersSong_1.singers[0]; // Since each singersSong has only one singer in the array
-        var playlistHTML = singer_1.songs.map(function (song) { return "\n            <div class=\"playlistBySinger\">\n                <img src=\"" + song.img + "\" alt=\"" + song.name + "\">\n                <h3>" + song.name + "</h3>\n                <audio controls>\n                    <source src=\"" + song.audio + "\" type=\"audio/mpeg\">\n                    Your browser does not support the audio element.\n                </audio>\n            </div>\n        "; }).join('');
+        var playlistHTML = singer_1.songs.map(function (song) { return "\n            <div class=\"playlistBySinger\">\n                <img src=\"" + song.img + "\" alt=\"" + song.name + "\">\n                <h3>" + song.name + "</h3>\n                <audio controls>\n                    <source src=\"" + song.audio + "\" type=\"audio/mpeg\">\n                </audio>\n            </div>\n        "; }).join('');
         var section = document.createElement("section");
         section.classList.add("playlist");
         section.innerHTML = "\n            <h1>" + singer_1.name + "'s Playlist</h1>\n            " + playlistHTML + "\n        ";
