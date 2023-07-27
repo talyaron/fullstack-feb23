@@ -2,12 +2,15 @@
 // const song: Song[] = getSongsFromLocalStorage();
 // const singer: Singer[] = getSingersFromLocalStorage();
 
+
+
+// --------- Song Class with constructor -------
 class AudioElement {
   constructor(public name: string, public artist: string, public audio: HTMLAudioElement, public img: string, public id: number) { }
 }
 
 
-
+//----------- demo array of songs with class AudioElement(song) 
 const audioElements: AudioElement[] = [
   new AudioElement(
     "Her Ghost in The Fog",
@@ -29,10 +32,9 @@ const audioElements: AudioElement[] = [
     3)
 ];
 
-// console.log(audioElements)
-// const audioElement = new AudioElement("Her Ghost in The Fog", "Cradle Of Filth", new Audio('./dist/Cradle of Filth - Her Ghost in The Fog (192 kbps).mp3'))
 
-//Render Player
+
+//-------------Render html song in Player
 const wrapperDiv = document.querySelector('.wrapper');
 let activeSong: AudioElement | undefined;
 function renderPlayer(songId) {
@@ -107,7 +109,7 @@ function renderPlayer(songId) {
 }
 ///
 
-
+//------------ Function of song timeline (current time+remain time)
 
 function updateTimeAndProgress(audioElement) {
   try {
@@ -134,7 +136,7 @@ function updateTimeAndProgress(audioElement) {
     console.error(error);
   }
 }
-
+//---------- function for clicking on timeline and move song to part of timeline
 const seek = (event: MouseEvent) => {
 
   const progressElement = document.querySelector("#progress") as HTMLDivElement;
@@ -150,7 +152,7 @@ const seek = (event: MouseEvent) => {
   }
 };
 
-
+//---------- function play Song (if playing,pause)
 function playPause() {
   if (activeSong && activeSong.audio) {
     const audioElement = activeSong.audio;
@@ -163,7 +165,7 @@ function playPause() {
 }
 
 
-
+//--------function for button NEXT
 function nextBtn(activeSong) {
   if (activeSong.id < audioElements.length) {
     activeSong.audio.pause()
@@ -174,6 +176,8 @@ function nextBtn(activeSong) {
     console.log('Last song"')
 
 }
+
+//------ function button BACK
 function backBtn(activeSong) {
   if (activeSong.id > 1) {
     activeSong.audio.pause()

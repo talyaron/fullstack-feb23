@@ -1,6 +1,7 @@
 //פונקציה שמקשרת את הקלאסים שנימצאים ב-center.ts
 // const song: Song[] = getSongsFromLocalStorage();
 // const singer: Singer[] = getSingersFromLocalStorage();
+// --------- Song Class with constructor -------
 var AudioElement = /** @class */ (function () {
     function AudioElement(name, artist, audio, img, id) {
         this.name = name;
@@ -11,14 +12,13 @@ var AudioElement = /** @class */ (function () {
     }
     return AudioElement;
 }());
+//----------- demo array of songs with class AudioElement(song) 
 var audioElements = [
     new AudioElement("Her Ghost in The Fog", "Cradle Of Filth", new Audio("../dist/media/Cradle of Filth - Her Ghost in The Fog (192 kbps).mp3"), 'https://www.metalcallout.com/sites/default/files/img/cradledarklycover2.jpg', 1),
     new AudioElement("Final Countdown", "Europe", new Audio("../dist/media/Europe - The Final Countdown.mp3"), 'https://upload.wikimedia.org/wikipedia/en/2/22/The_Final_Countdown_single.png', 2),
     new AudioElement("Still Loving You", "Scorpions", new Audio("../dist/media/scorpions_-_wind-of-change.mp3"), 'https://upload.wikimedia.org/wikipedia/en/a/af/Scorpions-stilllovingyouep1.jpg', 3)
 ];
-// console.log(audioElements)
-// const audioElement = new AudioElement("Her Ghost in The Fog", "Cradle Of Filth", new Audio('./dist/Cradle of Filth - Her Ghost in The Fog (192 kbps).mp3'))
-//Render Player
+//-------------Render html song in Player
 var wrapperDiv = document.querySelector('.wrapper');
 var activeSong;
 function renderPlayer(songId) {
@@ -46,6 +46,7 @@ function renderPlayer(songId) {
     }
 }
 ///
+//------------ Function of song timeline (current time+remain time)
 function updateTimeAndProgress(audioElement) {
     try {
         var progressContainer = document.querySelector("#progress-container");
@@ -70,6 +71,7 @@ function updateTimeAndProgress(audioElement) {
         console.error(error);
     }
 }
+//---------- function for clicking on timeline and move song to part of timeline
 var seek = function (event) {
     var progressElement = document.querySelector("#progress");
     var progressContainer = document.querySelector("#progress-container");
@@ -81,6 +83,7 @@ var seek = function (event) {
         audioElement.currentTime = (progress / 100) * audioElement.duration;
     }
 };
+//---------- function play Song (if playing,pause)
 function playPause() {
     if (activeSong && activeSong.audio) {
         var audioElement = activeSong.audio;
@@ -92,6 +95,7 @@ function playPause() {
         }
     }
 }
+//--------function for button NEXT
 function nextBtn(activeSong) {
     if (activeSong.id < audioElements.length) {
         activeSong.audio.pause();
@@ -100,6 +104,7 @@ function nextBtn(activeSong) {
     else
         console.log('Last song"');
 }
+//------ function button BACK
 function backBtn(activeSong) {
     if (activeSong.id > 1) {
         activeSong.audio.pause();
