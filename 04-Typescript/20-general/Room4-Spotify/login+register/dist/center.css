@@ -1,4 +1,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Tektur:wght@500&display=swap");
+@media only screen and (max-width: 1000px) {
+  .signIn {
+    width: 50vw;
+  }
+}
+@media only screen and (min-width: 1001px) {
+  .signIn {
+    width: 20vw;
+  }
+}
 body {
   display: flex;
   flex-direction: column;
@@ -21,7 +31,6 @@ body {
 }
 
 .signIn {
-  width: 20vw;
   height: 50vh;
   background: transparent;
   backdrop-filter: blur(0.5px);
@@ -33,7 +42,7 @@ body {
   align-items: center;
   justify-content: center;
   font-family: "Tektur", cursive;
-  color: #fcfffe;
+  color: #fffcfc;
   gap: 10px;
   transition: all 100ms ease-in-out;
 }

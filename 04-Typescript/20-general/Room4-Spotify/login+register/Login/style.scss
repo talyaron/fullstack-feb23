@@ -1,5 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Tektur:wght@500&display=swap');
 
+@media only screen and (max-width: 1000px) {
+    .signIn {
+        width: 50vw;
+    }
+}
+
+@media only screen and (min-width: 1001px) {
+    .signIn {
+        width: 20vw;
+    }
+}
+
 
 body {
     display: flex;
@@ -23,22 +35,21 @@ body {
 }
 
 .signIn {
-    width: 20vw;
     height: 50vh;
     background: transparent;
     backdrop-filter: blur(0.5px);
     border-radius: 20px;
     display: flex;
     flex-direction: column;
-    border: 2px solid rgba(255,255,255,0.2);
+    border: 2px solid rgba(255, 255, 255, 0.2);
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
     align-items: center;
     justify-content: center;
     font-family: 'Tektur', cursive;
-    color: rgb(252, 255, 254);
+    color: rgb(255, 252, 252);
     gap: 10px;
     transition: all 100ms ease-in-out;
-    
+
 
     &:hover {
         transform: scale(1.02);
@@ -70,7 +81,7 @@ body {
 
         &:focus {
             transform: scaleX(1.1) scaley(1.1);
-            
+
 
         }
 

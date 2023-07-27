@@ -21,7 +21,12 @@ const audioElements: AudioElement[] = [
     "Europe",
     new Audio("../dist/media/Europe - The Final Countdown.mp3")
     , 'https://upload.wikimedia.org/wikipedia/en/2/22/The_Final_Countdown_single.png',
-    2)
+    2),
+  new AudioElement("Still Loving You",
+    "Scorpions",
+    new Audio("../dist/media/scorpions_-_wind-of-change.mp3")
+    , 'https://upload.wikimedia.org/wikipedia/en/a/af/Scorpions-stilllovingyouep1.jpg',
+    3)
 ];
 
 // console.log(audioElements)
@@ -164,16 +169,16 @@ function nextBtn(activeSong) {
     activeSong.audio.pause()
     renderPlayer(activeSong.id + 1)
   } else
-   
-    
+
+
     console.log('Last song"')
-    
+
 }
 function backBtn(activeSong) {
-  if (activeSong.id >1) {
+  if (activeSong.id > 1) {
     activeSong.audio.pause()
     renderPlayer(activeSong.id - 1)
-  }else 
-  console.log('first song')
-  
+  } else
+    console.log('first song')
+
 }
