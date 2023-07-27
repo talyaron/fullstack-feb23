@@ -2,12 +2,16 @@ $mainColor: white;
 
 html {
   height: 100%;
-  
-  
+
+
 }
-.wrapper{
-  
+body{
+margin: 0;
+padding: 0;
+
 }
+
+.wrapper {}
 
 .player {
 
@@ -23,8 +27,9 @@ html {
   background-repeat: no-repeat;
   background-size: cover;
   z-index: 1;
+  
 
- 
+
   // backdrop-filter: blur(10px);
   // filter: blur(10px);
   &::before {
@@ -39,17 +44,20 @@ html {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    filter: blur(10px); /* Adjust the blur amount as needed */
-    z-index: -1; /* Ensure the overlay is behind the foreground content */
+    filter: blur(10px);
+    /* Adjust the blur amount as needed */
+    z-index: -1;
+    /* Ensure the overlay is behind the foreground content */
   }
-  
+
   &__collapse {
     font-size: 2rem;
     color: darken($color: $mainColor, $amount: 15);
   }
 
   width: 100vw;
-  height: 100%;
+  // height: 100%;
+  height: 100vh;
 
   &__image {
     margin-top: 50px;
@@ -84,43 +92,52 @@ html {
     // padding-bottom: 50px;
     justify-content: start;
     white-space: nowrap;
-    
-    
+
+
     &-song {
       width: 100%;
       font-weight: bold;
-      
-      
+
+
     }
 
     &-thumb {
       background-position: center;
       background-size: contain;
       height: 5rem;
-        width:5rem;    }
+      width: 5rem;
+    }
   }
+
   &__controls {
     position: relative;
-    top:-70px;
-width: 80%;
-span{
-  position: absolute;
-  right: 5px;
-}
-.buttons{
-  font-size: 3rem;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  margin-top: 20px;
+    top: -70px;
+    width: 100%;
 
-  .playBtn{
-    font-size: 6rem;
+    span {
+      position: absolute;
+      right: 5px;
+    }
+
+    .buttons {
+      font-size: 3rem;
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+      margin-top: 20px;
+      i:hover{
+        color: darken($color: $mainColor, $amount: 15);
+        
+      }
+    
+
+      .playBtn {
+        font-size: 6rem;
+      }
+
+    }
+
   }
-  
-}
-
-}
 }
 
 
@@ -128,23 +145,23 @@ span{
 
 
 #time {
-   width: 100%;
+  width: 100%;
   font-size: 18px;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  color: $mainColor;
+  color: black;
   // z-index: 2;
   position: relative;
   // top: 1.2vh;
   // margin-top: 2vh;
-  background-color: darken($color: $mainColor, $amount: 40);
+  background-color: darken($color: $mainColor, $amount: 50);
   bottom: 0;
-  opacity: 1;
+  opacity: .6;
   // border: 1px solid rgb(0, 0, 0);
 
 }
 
 #progress {
-  
+
   // width: 100%;
   height: 3vh;
   // background: black;
@@ -152,9 +169,11 @@ span{
   position: relative;
   transition: all 200ms ease-in-out;
   // border-radius: 10px;
-  bottom: -20px;
+  bottom: -22px;
   z-index: 1;
   opacity: .6;
   border-right: 10px solid black;
 
 }
+
+
