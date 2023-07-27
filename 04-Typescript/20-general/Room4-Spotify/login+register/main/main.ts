@@ -2,6 +2,23 @@ const song: Song[] = getSongsFromLocalStorage();
 const singer: Singer[] = getSingersFromLocalStorage();
 const singersSong: SingersSong[] = getSingersSongsFromLocalStorage();
 
+//Makes a beautiful transition between the sections.
+//copy from register.ts
+const observerr = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('show')
+        }
+        else {
+            entry.target.classList.remove('show')
+        }
+
+    })
+})
+const hiddennElements = document.querySelectorAll('.hiddenn')
+hiddennElements.forEach((el) => observerr.observe(el))
+//
+
 function getGreetingByTimeOfDay(rootElement: HTMLElement | null, currentTime: Date): void {
     try {
         if (!rootElement) throw new Error("rootElement is null or undefined");

@@ -27,7 +27,7 @@ section {
   justify-content: center;
 }
 
-.show {
+.showw {
   opacity: 1;
   transition: all 4s ease-in-out;
   display: flex;

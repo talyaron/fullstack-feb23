@@ -1,6 +1,21 @@
 var song = getSongsFromLocalStorage();
 var singer = getSingersFromLocalStorage();
 var singersSong = getSingersSongsFromLocalStorage();
+//Makes a beautiful transition between the sections.
+//copy from register.ts
+var observerr = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('show');
+        }
+        else {
+            entry.target.classList.remove('show');
+        }
+    });
+});
+var hiddennElements = document.querySelectorAll('.hiddenn');
+hiddennElements.forEach(function (el) { return observerr.observe(el); });
+//
 function getGreetingByTimeOfDay(rootElement, currentTime) {
     try {
         if (!rootElement)
