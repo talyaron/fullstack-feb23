@@ -51,7 +51,7 @@ function renderSongs(
         rootElement.innerHTML = html;
 
         saveSongsToLocalStorage(song);
-        console.log(html)
+        // console.log(html)
     } catch (error) {
         console.error(error);
         return error;
@@ -102,40 +102,52 @@ function displayRandomSong(rootElement: HTMLElement | null, songs: Song[]): void
 }
 displayRandomSong(document.querySelector("#randomSong"), songsArray);
 
-//create playlist for each singer.
-// Function to render the playlist of songs for each singer on the DOM
-function renderAllPlaylists(rootElement: HTMLElement | null | Element, singersSongsArray: SingersSong[]): void {
-    if (!rootElement) return;
+//difaind the audio element.
+// Function to play audio when clicking on the image
+function playAudio(audioElement: HTMLAudioElement): void {
+//difaind the audio element.
 
-    // Iterate through the singersSongsArray and render playlists for each singer
-    for (const singersSong of singersSongsArray) {
-        const singer = singersSong.singers[0]; // Since each singersSong has only one singer in the array
+    // Get the audio element
+    const audio = audioElement;
 
-        const playlistHTML = singer.songs.map(song => `
-            <div class="playlistBySinger">
-                <img src="${song.img}" alt="${song.name}">
-                <h3>${song.name}</h3>
-                <audio controls>
-                    <source src="${song.audio}" type="audio/mpeg">
-                </audio>
-            </div>
-        `).join('');
-
-        const section = document.createElement("section");
-        section.classList.add("playlist");
-        section.innerHTML = `
-            <h1>${singer.name}'s Playlist</h1>
-            ${playlistHTML}
-        `;
-
-        rootElement.appendChild(section);
+    // Check if the audio is paused or not
+    if (audio.paused) {
+        audio.play();
+    } else {
+        audio.pause();
     }
 }
 
-// Assuming you have a div element with the ID "playlistContainer" on your HTML.
-const playlistContainer = document.querySelector("#playlistContainer");
 
-// Display playlists for all singers in the singersSongsArray
-if (singersSongsArray.length > 0) {
-    renderAllPlaylists(playlistContainer, singersSongsArray);
+//create playlist for each singer.
+// Function to render the playlist of songs for each singer on the DOM
+function renderPlaylist(rootElement: HTMLElement | null, singer: Singer[]){
+    try {
+        if (!rootElement) throw new Error('Root element is not found');
+        if (!singer) throw new Error('Singer not found');
+
+        const html = singer.map((singer) => {
+            return `
+            <div class="playlistBySinger">
+              <img src="${singer.img}">
+              <h3>${singer.name}</h3>
+              ${singer.songs.map((song) => {
+                return `
+                    <audio controls>
+                        <source src="${song.audio}" type="audio/mpeg">
+                    </audio>`
+            }).join('')}
+            </div>`;
+        }).join('');
+
+        rootElement.innerHTML = html;
+
+        saveSingersToLocalStorage(singer);
+        // console.log(html)
+        
+    } catch (error) {
+        console.error(error);
+        return error;
+    }
 }
+renderPlaylist(document.querySelector('#playlistContainer'), singersArray);

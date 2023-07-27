@@ -73,17 +73,37 @@ section {
     }
 }
 
-.playlistBySinger{
-    width: 50vw;
-    height: 33vh;
+#playlistContainer {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.playlistBySinger {
+    position: relative;
+    width: 20vw;
+    height: 35vh;
     background-color: rgb(51, 51, 51);
     padding: 15px;
     border-radius: 10px;
+    text-align: center;
 
     img {
         width: 20vw;
         height: 30vh;
         border-radius: 10px;
         float: right;
+    }
+
+    h3 {
+        position: relative;
+        top: 2vh;
+    }
+
+    audio {
+        position: relative;
+        top: -8vh;
+        width: 6vw;
+        height: 3vh;
     }
 }

@@ -17,8 +17,8 @@ if (songsArray.length === 0) {
     var song2 = new Song(2, 'Peaches', 'Justin Bieber', '../dist/media/JustinBieber-Peaches.mp3', '../dist/media/justin-bieber-gettyimages-1202421980.jpg');
     var song3 = new Song(3, 'Girls Like You', 'Maroon 5', '../dist/media/Maroon5-GirlsLikeYou.mp3', '../dist/media/maroon-e9cb8c5b25b4d1f3e68aa26e6a0ce51cf2ae59d8-s1100-c50.jpg');
     var song4 = new Song(4, 'התעוררתי עם נמר', 'עומר אדם', '../dist/media/עומר אדם&איזי-התעוררתיעםנמר.mp3', '../dist/media/עומר_אדם_צילום_שי_פרנקו_(cropped).jpg');
-    // const song5 = new Song(5, 'try', 'Justin Bieber', '../dist/media/JustinBieber-Peaches.mp3', '../dist/media/justin-bieber-gettyimages-1202421980.jpg',);
-    songsArray.push(song1, song2, song3, song4);
+    var song5 = new Song(5, 'קןמה 58', 'עומר אדם', '../dist/media/[YT2mp3.info] - עומר אדם – קומה 58   (Prod. by Assaf Tzrouya) (128kbps).mp3', '../dist/media/justin-bieber-gettyimages-1202421980.jpg');
+    songsArray.push(song1, song2, song3, song4, song5);
 }
 ;
 console.log(songsArray[0].name);
@@ -39,10 +39,11 @@ if (singersArray.length === 0) {
     var singer1 = new Singer('Red Band', '../dist/media/220px-Red_-_band_press_photo.jpg', 'rock', [songsArray[0]]);
     var singer2 = new Singer('Justin Bieber', '../dist/media/justin-bieber-gettyimages-1202421980.jpg', 'pop', [songsArray[1]]);
     var singer3 = new Singer('Maroon 5', '../dist/media/maroon-e9cb8c5b25b4d1f3e68aa26e6a0ce51cf2ae59d8-s1100-c50.jpg', 'pop', [songsArray[2]]);
-    var singer4 = new Singer('עומר אדם', '../dist/media/עומר_אדם_צילום_שי_פרנקו_(cropped).jpg', 'mediterranean', [songsArray[3]]);
+    var singer4 = new Singer('עומר אדם', '../dist/media/עומר_אדם_צילום_שי_פרנקו_(cropped).jpg', 'mediterranean', [songsArray[3], songsArray[4]]);
     singersArray.push(singer1, singer2, singer3, singer4);
 }
 ;
+console.log(singersArray[3].songs);
 //class how join singers and their songs.
 var SingersSong = /** @class */ (function () {
     function SingersSong(singers, songs) {
