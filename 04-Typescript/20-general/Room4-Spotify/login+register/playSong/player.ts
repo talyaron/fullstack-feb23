@@ -84,30 +84,30 @@ function renderPlayer(songId) {
           <div class="player__title">
               <div class="player__title-song">${activeSong.name}</div>
               <div class="player__title-artist">${activeSong.artist}</div>
+            </div>
+            <div class="player__header-play" onclick="playPause(activeSong)"><i class="fa-sharp fa-solid fa-play"></i></div>
           </div>
-          <div class="player__header-play" onclick="playPause(activeSong)"><i class="fa-sharp fa-solid fa-play"></i></div>
-      </div>
-      <div class="player__image"
-      style="background-image: url('${activeSong.img}')">
-    </div>
-    <div class="player__controls">
-    <audio id="audio"src="${activeSong.audio.src}"></audio>
-    <div id="progress-container">
-        <div id="progress" class="timeBar__progress"></div>
-        <div id="time"></div>
-    </div>
+          <div class="player__image"
+          style="background-image: url('${activeSong.img}')">
+        </div>
+        <div class="player__controls">
+        <audio id="audio"src="${activeSong.audio.src}"></audio>
+        <div id="progress-container">
+            <div id="progress" class="timeBar__progress"></div>
+            <div id="time"></div>
+        </div>
    
-    
-    <div class="buttons">`
+      
+      <div class="buttons">`
       if (shuffle) {
         html += '<div class="shuffleBtn" onclick="shuffleBtn(audioElements)" style="color:red;"><i class="fa-solid fa-shuffle"></i></div>'
       } else {
         html += '<div class="shuffleBtn" onclick="shuffleBtn(audioElements)"><i class="fa-solid fa-shuffle"></i></div>'
       }
       html += ` <div onclick="backBtn(activeSong)">   <i class="fa-solid fa-backward-step"></i></div>
-        <div class="playBtn" onclick="playPause(activeSong)"><i class="fa-solid fa-circle-play"></i></div>
-        <div onclick="nextBtn(activeSong)">  <i class="fa-solid fa-forward-step"></i></div>
-`
+          <div class="playBtn" onclick="playPause(activeSong)"><i class="fa-solid fa-circle-play"></i></div>
+          <div onclick="nextBtn(activeSong)">  <i class="fa-solid fa-forward-step"></i></div>
+  `
       if (repeat) {
         html += '<div class="repeatBtn" onclick="repeatBtn()" style="color:red;"><i class="fa-solid fa-repeat"></i></div>'
 
@@ -127,6 +127,13 @@ function renderPlayer(songId) {
       const progressContainer = document.querySelector("#progress-container") as HTMLDivElement;
       progressContainer.addEventListener('click', seek);
       activeSong.audio.addEventListener('timeupdate', () => updateTimeAndProgress(activeSong.audio));
+      activeSong.audio.addEventListener("ended", () => {
+        if (repeat) {
+          nextBtn(activeSong);
+        } else {
+          return;
+        }
+      });
 
     }
 
@@ -199,9 +206,11 @@ function playPause() {
 
 //--------function for button NEXT
 function nextBtn(activeSong) {
-
+try {
   if (shuffle) {
-    activeSong.audio.pause()
+    if (activeSong.audio.play) {
+      activeSong.audio.pause()
+    }
     randomSong();
 
   } else if (activeSong.id < audioElements.length) {
@@ -215,6 +224,10 @@ function nextBtn(activeSong) {
     }
 
   }
+} catch (error) {
+  console.error(error)
+}
+  
 
 
 
@@ -238,21 +251,22 @@ function backBtn(activeSong) {
 
 let repeat = false;
 let shuffle = false;
-function repeatSong(){
-  let aud = document.querySelector("#audio");
-  console.log(aud)
-}
 
-const repeatBtnDiv = document.querySelector('.repeatBtn')
+
+
+
+
+const repeatBtnDiv:HTMLDivElement | null = document.querySelector('.repeatBtn')
 
 
 function repeatBtn() {
   const repeatBtnDiv = document.querySelector('.repeatBtn')
+  if(!repeatBtnDiv) throw new Error('no div element')
   if (!repeat) {
     repeat = true;
     repeatBtnDiv.style.color = 'red';
-    
-    
+
+
   } else {
 
     repeatBtnDiv.style.color = 'white';
@@ -284,6 +298,7 @@ function randomSong() {
   renderPlayer(random.id)
   // console.log(activeSong)
 }
+
 
 
 
