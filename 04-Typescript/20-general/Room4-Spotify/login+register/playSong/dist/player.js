@@ -15,26 +15,10 @@ var AudioElement = /** @class */ (function () {
 //i took song array from center.ts
 var audioElements = songsArray;
 //----------- demo array of songs with class AudioElement(song) 
-// const audioElements: AudioElement[] = [
-//   new AudioElement(
-//     "Her Ghost in The Fog",
-//     "Cradle Of Filth",
-//     new Audio("../dist/media/Cradle of Filth - Her Ghost in The Fog (192 kbps).mp3"),
-//     'https://www.metalcallout.com/sites/default/files/img/cradledarklycover2.jpg',
-//     1
-//   ),
-//   new AudioElement(
-//     "Final Countdown",
-//     "Europe",
-//     new Audio("../dist/media/Europe - The Final Countdown.mp3")
-//     , 'https://upload.wikimedia.org/wikipedia/en/2/22/The_Final_Countdown_single.png',
-//     2),
-//   new AudioElement("Still Loving You",
-//     "Scorpions",
-//     new Audio("../dist/media/scorpions_-_wind-of-change.mp3")
-//     , 'https://upload.wikimedia.org/wikipedia/en/a/af/Scorpions-stilllovingyouep1.jpg',
-//     3)
-// ];
+// const audioElements = [];
+audioElements.push(new Song(6, "Her Ghost in The Fog", "Cradle Of Filth", new Audio("../dist/media/Cradle of Filth - Her Ghost in The Fog (192 kbps).mp3"), 'https://www.metalcallout.com/sites/default/files/img/cradledarklycover2.jpg'));
+audioElements.push(new Song(7, "Final Countdown", "Europe", new Audio("../dist/media/Europe - The Final Countdown.mp3"), 'https://upload.wikimedia.org/wikipedia/en/2/22/The_Final_Countdown_single.png'));
+audioElements.push(new Song(8, "Still Loving You", "Scorpions", new Audio("../dist/media/scorpions_-_wind-of-change.mp3"), 'https://upload.wikimedia.org/wikipedia/en/a/af/Scorpions-stilllovingyouep1.jpg'));
 //-------------Render html song in Player
 var wrapperDiv = document.querySelector('.wrapper');
 var activeSong;
@@ -49,7 +33,7 @@ function renderPlayer(songId) {
         activeSong = audioElements.find(function (song) { return song.id === songId; });
         if (activeSong !== undefined) {
             activeSong.audio.play();
-            var html = "\n        <div class=\"player\" id=\"" + activeSong.id + "\" style=\"background-image:url('" + activeSong.img + "')\">\n          <div class=\"player__collapse\">\n            <i class=\"fa-solid fa-angle-down\"></i>\n          </div>\n          <div class=\"player__header\">\n          <div class=\"player__title-thumb\" style=\"background-image: url('" + activeSong.img + "')\"></div>\n          <div class=\"player__title\">\n              <div class=\"player__title-song\">" + activeSong.name + "</div>\n              <div class=\"player__title-artist\">" + activeSong.artist + "</div>\n          </div>\n          <div class=\"player__header-play\" onclick=\"playPause(activeSong)\"><i class=\"fa-sharp fa-solid fa-play\"></i></div>\n      </div>\n      <div class=\"player__image\"\n      style=\"background-image: url('" + activeSong.img + "')\">\n    </div>\n    <div class=\"player__controls\">\n    <audio src=\"" + activeSong.audio.src + "\"></audio>\n    <div id=\"progress-container\">\n        <div id=\"progress\" class=\"timeBar__progress\"></div>\n        <div id=\"time\"></div>\n    </div>\n   \n    \n    <div class=\"buttons\">";
+            var html = "\n        <div class=\"player\" id=\"" + activeSong.id + "\" style=\"background-image:url('" + activeSong.img + "')\">\n          <div class=\"player__collapse\">\n            <i class=\"fa-solid fa-angle-down\"></i>\n          </div>\n          <div class=\"player__header\">\n          <div class=\"player__title-thumb\" style=\"background-image: url('" + activeSong.img + "')\"></div>\n          <div class=\"player__title\">\n              <div class=\"player__title-song\">" + activeSong.name + "</div>\n              <div class=\"player__title-artist\">" + activeSong.artist + "</div>\n          </div>\n          <div class=\"player__header-play\" onclick=\"playPause(activeSong)\"><i class=\"fa-sharp fa-solid fa-play\"></i></div>\n      </div>\n      <div class=\"player__image\"\n      style=\"background-image: url('" + activeSong.img + "')\">\n    </div>\n    <div class=\"player__controls\">\n    <audio id=\"audio\"src=\"" + activeSong.audio.src + "\"></audio>\n    <div id=\"progress-container\">\n        <div id=\"progress\" class=\"timeBar__progress\"></div>\n        <div id=\"time\"></div>\n    </div>\n   \n    \n    <div class=\"buttons\">";
             if (shuffle) {
                 html += '<div class="shuffleBtn" onclick="shuffleBtn(audioElements)" style="color:red;"><i class="fa-solid fa-shuffle"></i></div>';
             }
@@ -165,6 +149,10 @@ function backBtn(activeSong) {
 }
 var repeat = false;
 var shuffle = false;
+function repeatSong() {
+    var aud = document.querySelector("#audio");
+    console.log(aud);
+}
 var repeatBtnDiv = document.querySelector('.repeatBtn');
 function repeatBtn() {
     var repeatBtnDiv = document.querySelector('.repeatBtn');
@@ -192,6 +180,11 @@ function shuffleBtn() {
 }
 function randomSong() {
     var random = audioElements[Math.floor(Math.random() * audioElements.length)];
+    if (random === activeSong) {
+        random = audioElements[Math.floor(Math.random() * audioElements.length)];
+        console.log(random);
+    }
+    console.log(random);
     renderPlayer(random.id);
     // console.log(activeSong)
 }

@@ -16,26 +16,39 @@ const audioElements: song[] = songsArray;
 
 //----------- demo array of songs with class AudioElement(song) 
 
-// const audioElements: AudioElement[] = [
-//   new AudioElement(
-//     "Her Ghost in The Fog",
-//     "Cradle Of Filth",
-//     new Audio("../dist/media/Cradle of Filth - Her Ghost in The Fog (192 kbps).mp3"),
-//     'https://www.metalcallout.com/sites/default/files/img/cradledarklycover2.jpg',
-//     1
-//   ),
-//   new AudioElement(
-//     "Final Countdown",
-//     "Europe",
-//     new Audio("../dist/media/Europe - The Final Countdown.mp3")
-//     , 'https://upload.wikimedia.org/wikipedia/en/2/22/The_Final_Countdown_single.png',
-//     2),
-//   new AudioElement("Still Loving You",
-//     "Scorpions",
-//     new Audio("../dist/media/scorpions_-_wind-of-change.mp3")
-//     , 'https://upload.wikimedia.org/wikipedia/en/a/af/Scorpions-stilllovingyouep1.jpg',
-//     3)
-// ];
+// const audioElements = [];
+
+audioElements.push(
+  new Song(
+    6,
+    "Her Ghost in The Fog",
+    "Cradle Of Filth",
+    new Audio("../dist/media/Cradle of Filth - Her Ghost in The Fog (192 kbps).mp3"),
+    'https://www.metalcallout.com/sites/default/files/img/cradledarklycover2.jpg',
+  )
+);
+
+audioElements.push(
+  new Song(
+    7,
+    "Final Countdown",
+    "Europe",
+    new Audio("../dist/media/Europe - The Final Countdown.mp3"),
+    'https://upload.wikimedia.org/wikipedia/en/2/22/The_Final_Countdown_single.png',
+  )
+);
+
+audioElements.push(
+  new Song(
+    8,
+    "Still Loving You",
+    "Scorpions",
+    new Audio("../dist/media/scorpions_-_wind-of-change.mp3"),
+    'https://upload.wikimedia.org/wikipedia/en/a/af/Scorpions-stilllovingyouep1.jpg',
+  )
+);
+
+
 
 
 
@@ -78,7 +91,7 @@ function renderPlayer(songId) {
       style="background-image: url('${activeSong.img}')">
     </div>
     <div class="player__controls">
-    <audio src="${activeSong.audio.src}"></audio>
+    <audio id="audio"src="${activeSong.audio.src}"></audio>
     <div id="progress-container">
         <div id="progress" class="timeBar__progress"></div>
         <div id="time"></div>
@@ -86,12 +99,12 @@ function renderPlayer(songId) {
    
     
     <div class="buttons">`
-    if (shuffle) {
-      html +='<div class="shuffleBtn" onclick="shuffleBtn(audioElements)" style="color:red;"><i class="fa-solid fa-shuffle"></i></div>'
-    }else {
-      html +='<div class="shuffleBtn" onclick="shuffleBtn(audioElements)"><i class="fa-solid fa-shuffle"></i></div>'
-    }
-        html += ` <div onclick="backBtn(activeSong)">   <i class="fa-solid fa-backward-step"></i></div>
+      if (shuffle) {
+        html += '<div class="shuffleBtn" onclick="shuffleBtn(audioElements)" style="color:red;"><i class="fa-solid fa-shuffle"></i></div>'
+      } else {
+        html += '<div class="shuffleBtn" onclick="shuffleBtn(audioElements)"><i class="fa-solid fa-shuffle"></i></div>'
+      }
+      html += ` <div onclick="backBtn(activeSong)">   <i class="fa-solid fa-backward-step"></i></div>
         <div class="playBtn" onclick="playPause(activeSong)"><i class="fa-solid fa-circle-play"></i></div>
         <div onclick="nextBtn(activeSong)">  <i class="fa-solid fa-forward-step"></i></div>
 `
@@ -225,6 +238,10 @@ function backBtn(activeSong) {
 
 let repeat = false;
 let shuffle = false;
+function repeatSong(){
+  let aud = document.querySelector("#audio");
+  console.log(aud)
+}
 
 const repeatBtnDiv = document.querySelector('.repeatBtn')
 
@@ -234,7 +251,10 @@ function repeatBtn() {
   if (!repeat) {
     repeat = true;
     repeatBtnDiv.style.color = 'red';
+    
+    
   } else {
+
     repeatBtnDiv.style.color = 'white';
     repeat = false;
   }
@@ -255,7 +275,12 @@ function shuffleBtn() {
   }
 }
 function randomSong() {
-  const random = audioElements[Math.floor(Math.random() * audioElements.length)];
+  let random = audioElements[Math.floor(Math.random() * audioElements.length)];
+  if (random === activeSong) {
+    random = audioElements[Math.floor(Math.random() * audioElements.length)];
+    console.log(random)
+  }
+  console.log(random)
   renderPlayer(random.id)
   // console.log(activeSong)
 }
