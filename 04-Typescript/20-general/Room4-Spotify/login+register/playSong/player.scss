@@ -16,7 +16,7 @@ padding: 0;
 .player {
 
   // background-color: darken($color: $mainColor, $amount: 30);
-  color: $mainColor;
+  // color: $mainColor;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -129,10 +129,7 @@ padding: 0;
       color: $mainColor;
       background-color: rgba($color: #000000, $alpha: .2);
       
-      i:hover{
-        color: darken($color: $mainColor, $amount: 15);
-        
-      }
+     
     
 
       .playBtn {

@@ -49,7 +49,21 @@ function renderPlayer(songId) {
         activeSong = audioElements.find(function (song) { return song.id === songId; });
         if (activeSong !== undefined) {
             activeSong.audio.play();
-            var html = "\n        <div class=\"player\" id=\"" + activeSong.id + "\" style=\"background-image:url('" + activeSong.img + "')\">\n          <div class=\"player__collapse\">\n            <i class=\"fa-solid fa-angle-down\"></i>\n          </div>\n          <div class=\"player__header\">\n          <div class=\"player__title-thumb\" style=\"background-image: url('" + activeSong.img + "')\"></div>\n          <div class=\"player__title\">\n              <div class=\"player__title-song\">" + activeSong.name + "</div>\n              <div class=\"player__title-artist\">" + activeSong.artist + "</div>\n          </div>\n          <div class=\"player__header-play\" onclick=\"playPause(activeSong)\"><i class=\"fa-sharp fa-solid fa-play\"></i></div>\n      </div>\n      <div class=\"player__image\"\n      style=\"background-image: url('" + activeSong.img + "')\">\n    </div>\n    <div class=\"player__controls\">\n    <audio src=\"" + activeSong.audio.src + "\"></audio>\n    <div id=\"progress-container\">\n        <div id=\"progress\" class=\"timeBar__progress\"></div>\n        <div id=\"time\"></div>\n    </div>\n    \n    <div class=\"buttons\">\n        <div><i class=\"fa-solid fa-shuffle\"></i></div>\n        <div onclick=\"backBtn(activeSong)\">   <i class=\"fa-solid fa-backward-step\"></i></div>\n        <div class=\"playBtn\" onclick=\"playPause(activeSong)\"><i class=\"fa-solid fa-circle-play\"></i></div>\n        <div onclick=\"nextBtn(activeSong)\">  <i class=\"fa-solid fa-forward-step\"></i></div>\n        <div onclick=\"audioElement.pause()\"><i class=\"fa-solid fa-repeat\"></i></div>\n    \n    </div>\n    \n    <!-- <i class=\"fa-solid fa-shuffle\"></i>\n    \n    <button id=\"play-icon\"></i></button>\n    \n    <i class=\"fa-solid fa-arrows-rotate\"></i>\n    <button id=\"mute-icon\"></button> -->\n    </div>";
+            var html = "\n        <div class=\"player\" id=\"" + activeSong.id + "\" style=\"background-image:url('" + activeSong.img + "')\">\n          <div class=\"player__collapse\">\n            <i class=\"fa-solid fa-angle-down\"></i>\n          </div>\n          <div class=\"player__header\">\n          <div class=\"player__title-thumb\" style=\"background-image: url('" + activeSong.img + "')\"></div>\n          <div class=\"player__title\">\n              <div class=\"player__title-song\">" + activeSong.name + "</div>\n              <div class=\"player__title-artist\">" + activeSong.artist + "</div>\n          </div>\n          <div class=\"player__header-play\" onclick=\"playPause(activeSong)\"><i class=\"fa-sharp fa-solid fa-play\"></i></div>\n      </div>\n      <div class=\"player__image\"\n      style=\"background-image: url('" + activeSong.img + "')\">\n    </div>\n    <div class=\"player__controls\">\n    <audio src=\"" + activeSong.audio.src + "\"></audio>\n    <div id=\"progress-container\">\n        <div id=\"progress\" class=\"timeBar__progress\"></div>\n        <div id=\"time\"></div>\n    </div>\n   \n    \n    <div class=\"buttons\">";
+            if (shuffle) {
+                html += '<div class="shuffleBtn" onclick="shuffleBtn(audioElements)" style="color:red;"><i class="fa-solid fa-shuffle"></i></div>';
+            }
+            else {
+                html += '<div class="shuffleBtn" onclick="shuffleBtn(audioElements)"><i class="fa-solid fa-shuffle"></i></div>';
+            }
+            html += " <div onclick=\"backBtn(activeSong)\">   <i class=\"fa-solid fa-backward-step\"></i></div>\n        <div class=\"playBtn\" onclick=\"playPause(activeSong)\"><i class=\"fa-solid fa-circle-play\"></i></div>\n        <div onclick=\"nextBtn(activeSong)\">  <i class=\"fa-solid fa-forward-step\"></i></div>\n";
+            if (repeat) {
+                html += '<div class="repeatBtn" onclick="repeatBtn()" style="color:red;"><i class="fa-solid fa-repeat"></i></div>';
+            }
+            else {
+                html += '<div class="repeatBtn" onclick="repeatBtn()"><i class="fa-solid fa-repeat"></i></div>';
+            }
+            html += "\n    \n    </div>\n    \n  \n    </div>";
             if (!wrapperDiv)
                 throw new Error('no div element');
             wrapperDiv.innerHTML = html;
@@ -119,12 +133,21 @@ function playPause() {
 }
 //--------function for button NEXT
 function nextBtn(activeSong) {
-    if (activeSong.id < audioElements.length) {
+    if (shuffle) {
+        activeSong.audio.pause();
+        randomSong();
+    }
+    else if (activeSong.id < audioElements.length) {
         activeSong.audio.pause();
         renderPlayer(activeSong.id + 1);
     }
-    else
+    else {
         console.log('Last song"');
+        if (repeat) {
+            activeSong.audio.pause();
+            renderPlayer(1);
+        }
+    }
 }
 //------ function button BACK
 function backBtn(activeSong) {
@@ -132,6 +155,43 @@ function backBtn(activeSong) {
         activeSong.audio.pause();
         renderPlayer(activeSong.id - 1);
     }
-    else
+    else {
         console.log('first song');
+        if (repeat) {
+            activeSong.audio.pause();
+            renderPlayer(audioElements.length);
+        }
+    }
+}
+var repeat = false;
+var shuffle = false;
+var repeatBtnDiv = document.querySelector('.repeatBtn');
+function repeatBtn() {
+    var repeatBtnDiv = document.querySelector('.repeatBtn');
+    if (!repeat) {
+        repeat = true;
+        repeatBtnDiv.style.color = 'red';
+    }
+    else {
+        repeatBtnDiv.style.color = 'white';
+        repeat = false;
+    }
+}
+function shuffleBtn() {
+    var shuffleBtnDiv = document.querySelector('.shuffleBtn');
+    if (!shuffle) {
+        shuffle = true;
+        shuffleBtnDiv.style.color = 'red';
+        console.log(shuffle);
+    }
+    else {
+        shuffle = false;
+        shuffleBtnDiv.style.color = 'white';
+        console.log(shuffle);
+    }
+}
+function randomSong() {
+    var random = audioElements[Math.floor(Math.random() * audioElements.length)];
+    renderPlayer(random.id);
+    // console.log(activeSong)
 }

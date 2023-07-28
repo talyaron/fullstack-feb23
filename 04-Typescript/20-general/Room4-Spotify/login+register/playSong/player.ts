@@ -11,7 +11,7 @@ class AudioElement {
 
 //i took song array from center.ts
 
-const audioElements: AudioElement[] = songsArray;
+const audioElements: song[] = songsArray;
 
 
 //----------- demo array of songs with class AudioElement(song) 
@@ -41,10 +41,10 @@ const audioElements: AudioElement[] = songsArray;
 
 //-------------Render html song in Player
 const wrapperDiv = document.querySelector('.wrapper');
+
 let activeSong: AudioElement | undefined;
 function renderPlayer(songId) {
   try {
-
 
 
 
@@ -83,22 +83,30 @@ function renderPlayer(songId) {
         <div id="progress" class="timeBar__progress"></div>
         <div id="time"></div>
     </div>
+   
     
-    <div class="buttons">
-        <div><i class="fa-solid fa-shuffle"></i></div>
-        <div onclick="backBtn(activeSong)">   <i class="fa-solid fa-backward-step"></i></div>
+    <div class="buttons">`
+    if (shuffle) {
+      html +='<div class="shuffleBtn" onclick="shuffleBtn(audioElements)" style="color:red;"><i class="fa-solid fa-shuffle"></i></div>'
+    }else {
+      html +='<div class="shuffleBtn" onclick="shuffleBtn(audioElements)"><i class="fa-solid fa-shuffle"></i></div>'
+    }
+        html += ` <div onclick="backBtn(activeSong)">   <i class="fa-solid fa-backward-step"></i></div>
         <div class="playBtn" onclick="playPause(activeSong)"><i class="fa-solid fa-circle-play"></i></div>
         <div onclick="nextBtn(activeSong)">  <i class="fa-solid fa-forward-step"></i></div>
-        <div onclick="audioElement.pause()"><i class="fa-solid fa-repeat"></i></div>
+`
+      if (repeat) {
+        html += '<div class="repeatBtn" onclick="repeatBtn()" style="color:red;"><i class="fa-solid fa-repeat"></i></div>'
+
+      } else {
+        html += '<div class="repeatBtn" onclick="repeatBtn()"><i class="fa-solid fa-repeat"></i></div>'
+
+      }
+      html += `
     
     </div>
     
-    <!-- <i class="fa-solid fa-shuffle"></i>
-    
-    <button id="play-icon"></i></button>
-    
-    <i class="fa-solid fa-arrows-rotate"></i>
-    <button id="mute-icon"></button> -->
+  
     </div>`
 
       if (!wrapperDiv) throw new Error('no div element')
@@ -108,6 +116,7 @@ function renderPlayer(songId) {
       activeSong.audio.addEventListener('timeupdate', () => updateTimeAndProgress(activeSong.audio));
 
     }
+
   } catch (error) {
     console.error(error);
   }
@@ -177,13 +186,25 @@ function playPause() {
 
 //--------function for button NEXT
 function nextBtn(activeSong) {
-  if (activeSong.id < audioElements.length) {
+
+  if (shuffle) {
+    activeSong.audio.pause()
+    randomSong();
+
+  } else if (activeSong.id < audioElements.length) {
     activeSong.audio.pause()
     renderPlayer(activeSong.id + 1)
-  } else
+  } else {
+    console.log('Last song"');
+    if (repeat) {
+      activeSong.audio.pause()
+      renderPlayer(1)
+    }
+
+  }
 
 
-    console.log('Last song"')
+
 
 }
 
@@ -192,7 +213,52 @@ function backBtn(activeSong) {
   if (activeSong.id > 1) {
     activeSong.audio.pause()
     renderPlayer(activeSong.id - 1)
-  } else
+  } else {
     console.log('first song')
+    if (repeat) {
+      activeSong.audio.pause()
+      renderPlayer(audioElements.length)
 
+    }
+  }
 }
+
+let repeat = false;
+let shuffle = false;
+
+const repeatBtnDiv = document.querySelector('.repeatBtn')
+
+
+function repeatBtn() {
+  const repeatBtnDiv = document.querySelector('.repeatBtn')
+  if (!repeat) {
+    repeat = true;
+    repeatBtnDiv.style.color = 'red';
+  } else {
+    repeatBtnDiv.style.color = 'white';
+    repeat = false;
+  }
+}
+
+
+
+function shuffleBtn() {
+  const shuffleBtnDiv = document.querySelector('.shuffleBtn')
+  if (!shuffle) {
+    shuffle = true;
+    shuffleBtnDiv.style.color = 'red';
+    console.log(shuffle)
+  } else {
+    shuffle = false;
+    shuffleBtnDiv.style.color = 'white';
+    console.log(shuffle)
+  }
+}
+function randomSong() {
+  const random = audioElements[Math.floor(Math.random() * audioElements.length)];
+  renderPlayer(random.id)
+  // console.log(activeSong)
+}
+
+
+
