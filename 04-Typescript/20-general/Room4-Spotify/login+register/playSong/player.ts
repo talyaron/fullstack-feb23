@@ -207,6 +207,7 @@ function playPause() {
 //--------function for button NEXT
 function nextBtn(activeSong) {
 try {
+  activeSong.audio.currentTime = 0;
   if (shuffle) {
     if (activeSong.audio.play) {
       activeSong.audio.pause()
@@ -214,7 +215,8 @@ try {
     randomSong();
 
   } else if (activeSong.id < audioElements.length) {
-    activeSong.audio.pause()
+    activeSong.audio.pause();
+   
     renderPlayer(activeSong.id + 1)
   } else {
     console.log('Last song"');

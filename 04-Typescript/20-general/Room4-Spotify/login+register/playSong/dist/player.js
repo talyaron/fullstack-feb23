@@ -126,6 +126,7 @@ function playPause() {
 //--------function for button NEXT
 function nextBtn(activeSong) {
     try {
+        activeSong.audio.currentTime = 0;
         if (shuffle) {
             if (activeSong.audio.play) {
                 activeSong.audio.pause();
