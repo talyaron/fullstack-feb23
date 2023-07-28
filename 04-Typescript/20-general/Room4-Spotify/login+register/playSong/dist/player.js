@@ -1,5 +1,5 @@
 //פונקציה שמקשרת את הקלאסים שנימצאים ב-center.ts
-// const song: Song[] = getSongsFromLocalStorage();
+var song = getSongsFromLocalStorage();
 // const singer: Singer[] = getSingersFromLocalStorage();
 // --------- Song Class with constructor -------
 var AudioElement = /** @class */ (function () {
@@ -12,12 +12,29 @@ var AudioElement = /** @class */ (function () {
     }
     return AudioElement;
 }());
+//i took song array from center.ts
+var audioElements = songsArray;
 //----------- demo array of songs with class AudioElement(song) 
-var audioElements = [
-    new AudioElement("Her Ghost in The Fog", "Cradle Of Filth", new Audio("../dist/media/Cradle of Filth - Her Ghost in The Fog (192 kbps).mp3"), 'https://www.metalcallout.com/sites/default/files/img/cradledarklycover2.jpg', 1),
-    new AudioElement("Final Countdown", "Europe", new Audio("../dist/media/Europe - The Final Countdown.mp3"), 'https://upload.wikimedia.org/wikipedia/en/2/22/The_Final_Countdown_single.png', 2),
-    new AudioElement("Still Loving You", "Scorpions", new Audio("../dist/media/scorpions_-_wind-of-change.mp3"), 'https://upload.wikimedia.org/wikipedia/en/a/af/Scorpions-stilllovingyouep1.jpg', 3)
-];
+// const audioElements: AudioElement[] = [
+//   new AudioElement(
+//     "Her Ghost in The Fog",
+//     "Cradle Of Filth",
+//     new Audio("../dist/media/Cradle of Filth - Her Ghost in The Fog (192 kbps).mp3"),
+//     'https://www.metalcallout.com/sites/default/files/img/cradledarklycover2.jpg',
+//     1
+//   ),
+//   new AudioElement(
+//     "Final Countdown",
+//     "Europe",
+//     new Audio("../dist/media/Europe - The Final Countdown.mp3")
+//     , 'https://upload.wikimedia.org/wikipedia/en/2/22/The_Final_Countdown_single.png',
+//     2),
+//   new AudioElement("Still Loving You",
+//     "Scorpions",
+//     new Audio("../dist/media/scorpions_-_wind-of-change.mp3")
+//     , 'https://upload.wikimedia.org/wikipedia/en/a/af/Scorpions-stilllovingyouep1.jpg',
+//     3)
+// ];
 //-------------Render html song in Player
 var wrapperDiv = document.querySelector('.wrapper');
 var activeSong;
@@ -85,14 +102,19 @@ var seek = function (event) {
 };
 //---------- function play Song (if playing,pause)
 function playPause() {
-    if (activeSong && activeSong.audio) {
-        var audioElement = activeSong.audio;
-        if (audioElement.paused) {
-            audioElement.play();
+    try {
+        if (activeSong && activeSong.audio) {
+            var audioElement = activeSong.audio;
+            if (audioElement.paused) {
+                audioElement.play();
+            }
+            else {
+                audioElement.pause();
+            }
         }
-        else {
-            audioElement.pause();
-        }
+    }
+    catch (error) {
+        console.error(error);
     }
 }
 //--------function for button NEXT

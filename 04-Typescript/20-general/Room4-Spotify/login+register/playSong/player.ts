@@ -1,5 +1,5 @@
 //פונקציה שמקשרת את הקלאסים שנימצאים ב-center.ts
-// const song: Song[] = getSongsFromLocalStorage();
+const song: Song[] = getSongsFromLocalStorage();
 // const singer: Singer[] = getSingersFromLocalStorage();
 
 
@@ -9,28 +9,33 @@ class AudioElement {
   constructor(public name: string, public artist: string, public audio: HTMLAudioElement, public img: string, public id: number) { }
 }
 
+//i took song array from center.ts
+
+const audioElements: AudioElement[] = songsArray;
+
 
 //----------- demo array of songs with class AudioElement(song) 
-const audioElements: AudioElement[] = [
-  new AudioElement(
-    "Her Ghost in The Fog",
-    "Cradle Of Filth",
-    new Audio("../dist/media/Cradle of Filth - Her Ghost in The Fog (192 kbps).mp3"),
-    'https://www.metalcallout.com/sites/default/files/img/cradledarklycover2.jpg',
-    1
-  ),
-  new AudioElement(
-    "Final Countdown",
-    "Europe",
-    new Audio("../dist/media/Europe - The Final Countdown.mp3")
-    , 'https://upload.wikimedia.org/wikipedia/en/2/22/The_Final_Countdown_single.png',
-    2),
-  new AudioElement("Still Loving You",
-    "Scorpions",
-    new Audio("../dist/media/scorpions_-_wind-of-change.mp3")
-    , 'https://upload.wikimedia.org/wikipedia/en/a/af/Scorpions-stilllovingyouep1.jpg',
-    3)
-];
+
+// const audioElements: AudioElement[] = [
+//   new AudioElement(
+//     "Her Ghost in The Fog",
+//     "Cradle Of Filth",
+//     new Audio("../dist/media/Cradle of Filth - Her Ghost in The Fog (192 kbps).mp3"),
+//     'https://www.metalcallout.com/sites/default/files/img/cradledarklycover2.jpg',
+//     1
+//   ),
+//   new AudioElement(
+//     "Final Countdown",
+//     "Europe",
+//     new Audio("../dist/media/Europe - The Final Countdown.mp3")
+//     , 'https://upload.wikimedia.org/wikipedia/en/2/22/The_Final_Countdown_single.png',
+//     2),
+//   new AudioElement("Still Loving You",
+//     "Scorpions",
+//     new Audio("../dist/media/scorpions_-_wind-of-change.mp3")
+//     , 'https://upload.wikimedia.org/wikipedia/en/a/af/Scorpions-stilllovingyouep1.jpg',
+//     3)
+// ];
 
 
 
@@ -153,14 +158,19 @@ const seek = (event: MouseEvent) => {
 };
 
 //---------- function play Song (if playing,pause)
+
 function playPause() {
-  if (activeSong && activeSong.audio) {
-    const audioElement = activeSong.audio;
-    if (audioElement.paused) {
-      audioElement.play();
-    } else {
-      audioElement.pause();
+  try {
+    if (activeSong && activeSong.audio) {
+      const audioElement = activeSong.audio;
+      if (audioElement.paused) {
+        audioElement.play();
+      } else {
+        audioElement.pause();
+      }
     }
+  } catch (error) {
+    console.error(error)
   }
 }
 
