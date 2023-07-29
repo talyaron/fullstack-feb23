@@ -79,6 +79,14 @@ section {
     flex-direction: row;
     justify-content: space-around;
     gap: 2vw;
+    position: relative;
+    left: 5vw;
+
+    &__hedlain {
+        font-family: 'Times New Roman', Times, serif;
+        position: relative;
+        left: 5vw;
+    }
 
     &__box {
         width: 12vw;
@@ -166,4 +174,30 @@ section {
     &:hover {
         transform: scale(1.08);
     }
+}
+
+.found {
+    display: flex;
+    flex-direction: column;
+    width: 20vw;
+    height: 5vh;
+    position: absolute;
+    left: 8vw;
+    top: 4vh;
+    background-color: azure;
+
+    &__img {
+        width: 3vw;
+        height: 4.6vh;
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+}
+
+.header {
+    position: absolute;
+    top: 4vh;
+    left: 4vw;
+
 }

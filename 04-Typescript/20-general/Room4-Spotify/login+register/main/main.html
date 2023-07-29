@@ -19,31 +19,27 @@
     <div class="headerSection">
         <i id="homeLogo" class="fas fa-home fa-lg home" style="color: #ffffff;"></i>
         <i onclick="search()" id="searchLogo" class="fas fa-search fa-lg search" style="color: #ffffff;"></i>
-<input oninput="handleSearch(event)" name="songInput" type="text" class="headerSection__searchSection"></div>
-<div id="headerSection__paragraphs"></div>
-<img class="headerSection__logo" src="../dist/media/app_logo_notxt.png" alt="">
+        <input oninput="handleSearch(event)" name="songInput" type="text" class="headerSection__searchSection">
+    </div>
+    <div id="headerSection__paragraphs"></div>
+    <img class="headerSection__logo" src="../dist/media/app_logo_notxt.png" alt="">
 
     </div>
 
-    <section class="hiddenn">
-        <div class="header">
-            <h1 id="header"></h1>
-        </div>
-    </section>
 
-    <section class="hiddenn">
-        <h1 class="hedlain">Recently Heard</h1>
+    <div class="header">
+        <h1 id="header"></h1>
+    </div>
+
+    <section class="recentlyHeard">
+        <h1 class="recentlyHeard__hedlain">Recently Heard</h1>
         <div class="recentlyHeard" id="recentlyHeard"></div>
     </section>
 
-    <section class="hiddenn">
-        <h1 class="hedlain">For you</h1>
-        <div id="randomSong"></div>
-    </section>
+    <h1 class="hedlain">For you</h1>
+    <div id="randomSong"></div>
 
-    <section class="hiddenn">
-        <div id="playlistContainer"></div>
-    </section>
+    <div id="playlistContainer"></div>
 
 </body>
 

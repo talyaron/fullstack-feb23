@@ -2,6 +2,16 @@ debugger;
 var songs = getSongsFromLocalStorage();
 var singers = getSingersFromLocalStorage();
 var singersSong = getSingersSongsFromLocalStorage();
+var Song = /** @class */ (function () {
+    function Song(id, name, artist, audio, img) {
+        this.id = id;
+        this.name = name;
+        this.artist = artist;
+        this.audio = audio;
+        this.img = img;
+    }
+    return Song;
+}());
 //Makes a beautiful transition between the sections.
 //copy from register.ts
 var observerr = new IntersectionObserver(function (entries) {
@@ -149,7 +159,7 @@ function search() {
 }
 function idControll(paragraph) {
     try {
-        var matchedSong = songs.find(function (song) { return song.artist + "-" + song.name === paragraph; });
+        var matchedSong = songs.find(function (song) { return "" + song.name === paragraph.name; });
         if (matchedSong) {
             return matchedSong.id;
         }
@@ -165,7 +175,7 @@ function handleSearch(ev) {
         var searchTerms_1 = ev.target.value;
         var pattern_1 = new RegExp(searchTerms_1, 'i');
         var foundParagraphs = songs.map(function (paragraph, i) {
-            var isMatch = pattern_1.test(paragraph);
+            var isMatch = pattern_1.test(paragraph.name);
             if (isMatch && searchTerms_1 != "") {
                 return paragraph;
             }
@@ -178,6 +188,7 @@ function handleSearch(ev) {
 }
 function renderParagraphs(paragraphs, htmlElement) {
     try {
+        debugger;
         if (!htmlElement)
             throw new Error('htmlElement is required');
         var html = paragraphs.map(function (paragraph) { return renderParagraph(paragraph); }).join(' ');
@@ -192,10 +203,12 @@ function renderParagraph(paragraph) {
         if (!paragraph)
             throw new Error('paragraph is required');
         var songID = idControll(paragraph);
-        return "<button onclick=\"handleSongClick(" + songID + ")\" class=\"found\">" + paragraph + "</button>";
+        return "<button onclick=\"handleSongClick(" + songID + ")\" class=\"found\">\n      <div class=\"found__artist\">'" + paragraph.artist + "'</div>\n      <div class=\"found__name\">'" + paragraph.name + "'</div>\n      <img class=\"found__img\" src=\"" + paragraph.img + "\" alt=\"\">\n\n      </button>";
     }
     catch (error) {
         console.error(error);
     }
 }
 //   -----------------------------
+function handleSongClick(id) {
+}

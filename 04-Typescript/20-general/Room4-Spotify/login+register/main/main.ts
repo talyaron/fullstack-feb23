@@ -3,7 +3,10 @@ const songs: Song[] = getSongsFromLocalStorage();
 const singers: Singer[] = getSingersFromLocalStorage();
 const singersSong: SingersSong[] = getSingersSongsFromLocalStorage();
 
-
+class Song {
+    constructor(public id: number, public name: string, public artist: string, public audio: HTMLElement, public img: string) {
+    }
+}
 //Makes a beautiful transition between the sections.
 //copy from register.ts
 const observerr = new IntersectionObserver((entries) => {
@@ -179,7 +182,7 @@ searchBar.style.width= "6vw"
 }
 function idControll(paragraph){
     try {
-        const matchedSong = songs.find(song => `${song.artist}-${song.name}` === paragraph);
+        const matchedSong = songs.find(song => `${song.name}` === paragraph.name);
         if (matchedSong) {
           return matchedSong.id;
         }
@@ -196,7 +199,7 @@ function handleSearch(ev: any) {
       const pattern = new RegExp(searchTerms, 'i');
   
       const foundParagraphs: (string | undefined)[] = songs.map((paragraph, i) => {
-        const isMatch = pattern.test(paragraph)
+        const isMatch = pattern.test(paragraph.name)
         if (isMatch && searchTerms != "") {
           return paragraph
         }
@@ -212,6 +215,8 @@ function handleSearch(ev: any) {
   
   function renderParagraphs(paragraphs: (string | undefined)[], htmlElement: HTMLElement | null) {
     try {
+        debugger;
+
       if (!htmlElement) throw new Error('htmlElement is required');
       const html = paragraphs.map(paragraph => renderParagraph(paragraph)).join(' ');
       htmlElement.innerHTML = html;
@@ -224,10 +229,18 @@ function handleSearch(ev: any) {
     try {
       if (!paragraph) throw new Error('paragraph is required');
       const songID = idControll(paragraph)
-      return `<button onclick="handleSongClick(${songID})" class="found">${paragraph}</button>`
+      return `<button onclick="handleSongClick(${songID})" class="found">
+      <div class="found__artist">'${paragraph.artist}'</div>
+      <div class="found__name">'${paragraph.name}'</div>
+      <img class="found__img" src="${paragraph.img}" alt="">
+
+      </button>`
   
     } catch (error) {
       console.error(error)
     }
   }
 //   -----------------------------
+function handleSongClick(id){
+    
+}
