@@ -33,14 +33,14 @@ function renderPlayer(songId) {
         activeSong = audioElements.find(function (song) { return song.id === songId; });
         if (activeSong !== undefined) {
             activeSong.audio.play();
-            var html = "\n        <div class=\"player\" id=\"" + activeSong.id + "\" style=\"background-image:url('" + activeSong.img + "')\">\n          <div class=\"player__collapse\">\n            <i class=\"fa-solid fa-angle-down\"></i>\n          </div>\n          <div class=\"player__header\">\n          <div class=\"player__title-thumb\" style=\"background-image: url('" + activeSong.img + "')\"></div>\n          <div class=\"player__title\">\n              <div class=\"player__title-song\">" + activeSong.name + "</div>\n              <div class=\"player__title-artist\">" + activeSong.artist + "</div>\n          </div>\n          <div class=\"player__header-play\" onclick=\"playPause(activeSong)\"><i class=\"fa-sharp fa-solid fa-play\"></i></div>\n      </div>\n      <div class=\"player__image\"\n      style=\"background-image: url('" + activeSong.img + "')\">\n    </div>\n    <div class=\"player__controls\">\n    <audio id=\"audio\"src=\"" + activeSong.audio.src + "\"></audio>\n    <div id=\"progress-container\">\n        <div id=\"progress\" class=\"timeBar__progress\"></div>\n        <div id=\"time\"></div>\n    </div>\n   \n    \n    <div class=\"buttons\">";
+            var html = "\n        <div class=\"player\" id=\"" + activeSong.id + "\" style=\"background-image:url('" + activeSong.img + "')\">\n          <div class=\"player__collapse\">\n            <i class=\"fa-solid fa-angle-down\"></i>\n          </div>\n          <div class=\"player__header\">\n          <div class=\"player__title-thumb\" style=\"background-image: url('" + activeSong.img + "')\"></div>\n          <div class=\"player__title\">\n              <div class=\"player__title-song\">" + activeSong.name + "</div>\n              <div class=\"player__title-artist\">" + activeSong.artist + "</div>\n            </div>\n            <div class=\"player__header-play\" onclick=\"playPause(activeSong)\"><i class=\"fa-sharp fa-solid fa-play\"></i></div>\n          </div>\n          <div class=\"player__image\"\n          style=\"background-image: url('" + activeSong.img + "')\">\n        </div>\n        <div class=\"player__controls\">\n        <audio id=\"audio\"src=\"" + activeSong.audio.src + "\"></audio>\n        <div id=\"progress-container\">\n            <div id=\"progress\" class=\"timeBar__progress\"></div>\n            <div id=\"time\"></div>\n        </div>\n   \n      \n      <div class=\"buttons\">";
             if (shuffle) {
                 html += '<div class="shuffleBtn" onclick="shuffleBtn(audioElements)" style="color:red;"><i class="fa-solid fa-shuffle"></i></div>';
             }
             else {
                 html += '<div class="shuffleBtn" onclick="shuffleBtn(audioElements)"><i class="fa-solid fa-shuffle"></i></div>';
             }
-            html += " <div onclick=\"backBtn(activeSong)\">   <i class=\"fa-solid fa-backward-step\"></i></div>\n        <div class=\"playBtn\" onclick=\"playPause(activeSong)\"><i class=\"fa-solid fa-circle-play\"></i></div>\n        <div onclick=\"nextBtn(activeSong)\">  <i class=\"fa-solid fa-forward-step\"></i></div>\n";
+            html += " <div onclick=\"backBtn(activeSong)\">   <i class=\"fa-solid fa-backward-step\"></i></div>\n          <div class=\"playBtn\" onclick=\"playPause(activeSong)\"><i class=\"fa-solid fa-circle-play\"></i></div>\n          <div onclick=\"nextBtn(activeSong)\">  <i class=\"fa-solid fa-forward-step\"></i></div>\n  ";
             if (repeat) {
                 html += '<div class="repeatBtn" onclick="repeatBtn()" style="color:red;"><i class="fa-solid fa-repeat"></i></div>';
             }
@@ -54,6 +54,14 @@ function renderPlayer(songId) {
             var progressContainer = document.querySelector("#progress-container");
             progressContainer.addEventListener('click', seek);
             activeSong.audio.addEventListener('timeupdate', function () { return updateTimeAndProgress(activeSong.audio); });
+            activeSong.audio.addEventListener("ended", function () {
+                if (repeat) {
+                    nextBtn(activeSong);
+                }
+                else {
+                    return;
+                }
+            });
         }
     }
     catch (error) {
@@ -117,20 +125,28 @@ function playPause() {
 }
 //--------function for button NEXT
 function nextBtn(activeSong) {
-    if (shuffle) {
-        activeSong.audio.pause();
-        randomSong();
-    }
-    else if (activeSong.id < audioElements.length) {
-        activeSong.audio.pause();
-        renderPlayer(activeSong.id + 1);
-    }
-    else {
-        console.log('Last song"');
-        if (repeat) {
-            activeSong.audio.pause();
-            renderPlayer(1);
+    try {
+        activeSong.audio.currentTime = 0;
+        if (shuffle) {
+            if (activeSong.audio.play) {
+                activeSong.audio.pause();
+            }
+            randomSong();
         }
+        else if (activeSong.id < audioElements.length) {
+            activeSong.audio.pause();
+            renderPlayer(activeSong.id + 1);
+        }
+        else {
+            console.log('Last song"');
+            if (repeat) {
+                activeSong.audio.pause();
+                renderPlayer(1);
+            }
+        }
+    }
+    catch (error) {
+        console.error(error);
     }
 }
 //------ function button BACK
@@ -149,13 +165,11 @@ function backBtn(activeSong) {
 }
 var repeat = false;
 var shuffle = false;
-function repeatSong() {
-    var aud = document.querySelector("#audio");
-    console.log(aud);
-}
 var repeatBtnDiv = document.querySelector('.repeatBtn');
 function repeatBtn() {
     var repeatBtnDiv = document.querySelector('.repeatBtn');
+    if (!repeatBtnDiv)
+        throw new Error('no div element');
     if (!repeat) {
         repeat = true;
         repeatBtnDiv.style.color = 'red';

@@ -7,6 +7,10 @@ body {
   padding: 0;
 }
 
+.wrapper {
+  width: 100vw;
+}
+
 .player {
   color: white;
   display: flex;
