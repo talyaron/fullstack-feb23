@@ -1,5 +1,6 @@
-var song = getSongsFromLocalStorage();
-var singer = getSingersFromLocalStorage();
+debugger;
+var songs = getSongsFromLocalStorage();
+var singers = getSingersFromLocalStorage();
 var singersSong = getSingersSongsFromLocalStorage();
 //Makes a beautiful transition between the sections.
 //copy from register.ts
@@ -140,3 +141,61 @@ function renderPlaylist(rootElement, singer) {
     }
 }
 renderPlaylist(document.querySelector('#playlistContainer'), singersArray);
+function search() {
+    var searchBar = document.querySelector(".headerSection__searchSection");
+    var searchIcon = document.querySelector("#searchLogo");
+    searchIcon.style.display = "none";
+    searchBar.style.width = "6vw";
+}
+function idControll(paragraph) {
+    try {
+        var matchedSong = songs.find(function (song) { return song.artist + "-" + song.name === paragraph; });
+        if (matchedSong) {
+            return matchedSong.id;
+        }
+        return null;
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+// RegExp
+function handleSearch(ev) {
+    try {
+        var searchTerms_1 = ev.target.value;
+        var pattern_1 = new RegExp(searchTerms_1, 'i');
+        var foundParagraphs = songs.map(function (paragraph, i) {
+            var isMatch = pattern_1.test(paragraph);
+            if (isMatch && searchTerms_1 != "") {
+                return paragraph;
+            }
+        }).filter(function (paragraph) { return paragraph !== undefined; });
+        renderParagraphs(foundParagraphs, document.querySelector('#headerSection__paragraphs'));
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+function renderParagraphs(paragraphs, htmlElement) {
+    try {
+        if (!htmlElement)
+            throw new Error('htmlElement is required');
+        var html = paragraphs.map(function (paragraph) { return renderParagraph(paragraph); }).join(' ');
+        htmlElement.innerHTML = html;
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+function renderParagraph(paragraph) {
+    try {
+        if (!paragraph)
+            throw new Error('paragraph is required');
+        var songID = idControll(paragraph);
+        return "<button onclick=\"handleSongClick(" + songID + ")\" class=\"found\">" + paragraph + "</button>";
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+//   -----------------------------

@@ -11,6 +11,39 @@ body {
     overflow-x: hidden;
 }
 
+.headerSection {
+    display: flex;
+    position: absolute;
+    top: 0;
+    width: 100vw;
+    height: 4vh;
+    background: rgb(217, 193, 193);
+    background: linear-gradient(90deg, rgba(217, 193, 193, 0.05646008403361347) 20%, rgba(57, 179, 69, 1) 50%, rgba(86, 198, 226, 0.06206232492997199) 80%);
+    padding-left: 6vw;
+    align-items: center;
+    gap: 1vw;
+
+    &__logo {
+        width: 2vw;
+        position: absolute;
+        margin: auto;
+        left: 2vw;
+    }
+
+    &__searchSection {
+        width: 0vw;
+        height: 2vh;
+        background-color: rgb(149 149 149 / 27%);
+        border-radius: 10px;
+        position: absolute;
+        left: 8vw;
+        transition: all 100ms ease-in-out;
+        color: #ffffff;
+
+
+    }
+}
+
 section {
     display: grid;
     place-items: center;
@@ -114,5 +147,23 @@ section {
         top: -8vh;
         width: 6vw;
         height: 3vh;
+    }
+}
+
+#homeLogo {
+    cursor: pointer;
+    transition: all 100ms ease-in-out;
+
+    &:hover {
+        transform: scale(1.08);
+    }
+}
+
+#searchLogo {
+    cursor: pointer;
+    transition: all 100ms ease-in-out;
+
+    &:hover {
+        transform: scale(1.08);
     }
 }

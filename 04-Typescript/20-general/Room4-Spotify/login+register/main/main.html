@@ -2,6 +2,8 @@
 <html lang="en">
 
 <head>
+    <script src="https://kit.fontawesome.com/761340618e.js" crossorigin="anonymous"></script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- <script src="./dist/clacces.js" defer></script> -->
@@ -14,8 +16,15 @@
 
 <body>
 
-    <!-- <audio src="../dist/media/[YT2mp3.info] - עומר אדם – קומה 58   (Prod. by Assaf Tzrouya) (128kbps).mp3"></audio> -->
-    
+    <div class="headerSection">
+        <i id="homeLogo" class="fas fa-home fa-lg home" style="color: #ffffff;"></i>
+        <i onclick="search()" id="searchLogo" class="fas fa-search fa-lg search" style="color: #ffffff;"></i>
+<input oninput="handleSearch(event)" name="songInput" type="text" class="headerSection__searchSection"></div>
+<div id="headerSection__paragraphs"></div>
+<img class="headerSection__logo" src="../dist/media/app_logo_notxt.png" alt="">
+
+    </div>
+
     <section class="hiddenn">
         <div class="header">
             <h1 id="header"></h1>

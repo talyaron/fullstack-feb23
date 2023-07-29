@@ -37,7 +37,7 @@ body {
 .signIn {
     height: 50vh;
     background: transparent;
-    backdrop-filter: blur(0.5px);
+    backdrop-filter: blur(4.5px);
     border-radius: 20px;
     display: flex;
     flex-direction: column;
@@ -53,6 +53,12 @@ body {
 
     &:hover {
         transform: scale(1.02);
+    }
+
+    &__logo{
+        position: absolute;
+        width: 10vw;
+        top: -8vh;
     }
 
     &__userName {

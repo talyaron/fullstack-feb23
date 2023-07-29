@@ -11,17 +11,15 @@ var Song = /** @class */ (function () {
     }
     return Song;
 }());
-var songsArray = getSongsFromLocalStorage();
-if (songsArray.length === 0) {
-    var song1 = new Song(1, 'Can not feel my face', 'Red Band', new Audio('../dist/media/redBand&ninet.mp3'), '../dist/media/220px-Red_-_band_press_photo.jpg');
-    var song2 = new Song(2, 'Peaches', 'Justin Bieber', new Audio('../dist/media/JustinBieber-Peaches.mp3'), '../dist/media/justin-bieber-gettyimages-1202421980.jpg');
-    var song3 = new Song(3, 'Girls Like You', 'Maroon 5', new Audio('../dist/media/Maroon5-GirlsLikeYou.mp3'), '../dist/media/maroon-e9cb8c5b25b4d1f3e68aa26e6a0ce51cf2ae59d8-s1100-c50.jpg');
-    var song4 = new Song(4, 'התעוררתי עם נמר', 'עומר אדם', new Audio('../dist/media/עומר אדם&איזי-התעוררתיעםנמר.mp3'), '../dist/media/עומר_אדם_צילום_שי_פרנקו_(cropped).jpg');
-    var song5 = new Song(5, 'קןמה 58', 'עומר אדם', new Audio('../dist/media/[YT2mp3.info] - עומר אדם – קומה 58   (Prod. by Assaf Tzrouya) (128kbps).mp3'), '../dist/media/justin-bieber-gettyimages-1202421980.jpg');
-    songsArray.push(song1, song2, song3, song4, song5);
-}
-;
-console.log(songsArray[0].name);
+var songsArray = [
+    new Song(1, 'Can not feel my face', 'Red Band', new Audio('../dist/media/redBand&ninet.mp3'), '../dist/media/220px-Red_-_band_press_photo.jpg'),
+    new Song(2, 'Peaches', 'Justin Bieber', new Audio('../dist/media/JustinBieber-Peaches.mp3'), '../dist/media/justin-bieber-gettyimages-1202421980.jpg'),
+    new Song(3, 'Girls Like You', 'Maroon 5', new Audio('../dist/media/Maroon5-GirlsLikeYou.mp3'), '../dist/media/maroon-e9cb8c5b25b4d1f3e68aa26e6a0ce51cf2ae59d8-s1100-c50.jpg'),
+    new Song(4, 'התעוררתי עם נמר', 'עומר אדם', new Audio('../dist/media/עומר אדם&איזי-התעוררתיעםנמר.mp3'), '../dist/media/עומר_אדם_צילום_שי_פרנקו_(cropped).jpg'),
+    new Song(5, 'קןמה 58', 'עומר אדם', new Audio('../dist/media/[YT2mp3.info] - עומר אדם – קומה 58   (Prod. by Assaf Tzrouya) (128kbps).mp3'), '../dist/media/justin-bieber-gettyimages-1202421980.jpg'),
+    new Song(6, '505', 'Arctic Monkeys', new Audio('../dist/media/505.mp3'), '../dist/media/justin-bieber-gettyimages-1202421980.jpg'),
+    new Song(7, 'קומה 58', 'עומר אדם', new Audio('../dist/media/[YT2mp3.info] - עומר אדם – קומה 58   (Prod. by Assaf Tzrouya) (128kbps).mp3'), '../dist/media/justin-bieber-gettyimages-1202421980.jpg'),
+];
 //class of oll the singers.
 //singer - id, name of the singer, img, genre, songs.
 var Singer = /** @class */ (function () {
@@ -71,6 +69,7 @@ var singersSongsArray = createSingersSongsArray(singersArray, songsArray);
 console.log(singersSongsArray.forEach(function (singersSong) { return singersSong.songs.forEach(function (song) { return console.log(song.name); }); }));
 //
 //songs local storage.
+saveSongsToLocalStorage(songsArray);
 function saveSongsToLocalStorage(song) {
     localStorage.setItem('songsArray', JSON.stringify(song));
 }

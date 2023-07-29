@@ -27,7 +27,7 @@ section {
   justify-content: center;
 }
 
-.showw {
+.show {
   opacity: 1;
   transition: all 4s ease-in-out;
   display: flex;
@@ -98,19 +98,19 @@ section {
     color: #ffffff;
   }
   20% {
-    color: #b7f4f4;
+    color: rgba(171, 196, 196, 0.753);
   }
   40% {
-    color: #cbafe5;
+    color: rgba(146, 235, 158, 0.589);
   }
   50% {
-    color: #efcfa6;
+    color: rgba(239, 207, 166, 0.671);
   }
   80% {
     color: azure;
   }
   100% {
-    color: #efff74;
+    color: rgba(204, 117, 95, 0.623);
   }
 }
 
