@@ -3,19 +3,18 @@
 //class of oll the songs.
 //song - id, name of the song, artist, audio.
 class Song {
-    constructor(public id: number, public name: string, public artist: string, public audio: HTMLElement, public img: string) {
+    constructor(public id: number, public name: string, public artist: string, public audio: HTMLAudioElement, public img: string) {
     }
 }
 
 const songsArray: Song[] = [
     new Song(1, 'Can not feel my face', 'Red Band', new Audio('../dist/media/redBand&ninet.mp3'), '../dist/media/220px-Red_-_band_press_photo.jpg'),
+    new Song(5, 'קומה 58', 'עומר אדם', new Audio('../dist/media/[YT2mp3.info] - עומר אדם – קומה 58   (Prod. by Assaf Tzrouya) (128kbps).mp3'), '../dist/media/עומר_אדם_צילום_שי_פרנקו_(cropped).jpg'),
     new Song(2, 'Peaches', 'Justin Bieber', new Audio('../dist/media/JustinBieber-Peaches.mp3'), '../dist/media/justin-bieber-gettyimages-1202421980.jpg',),
     new Song(3, 'Girls Like You', 'Maroon 5', new Audio('../dist/media/Maroon5-GirlsLikeYou.mp3'), '../dist/media/maroon-e9cb8c5b25b4d1f3e68aa26e6a0ce51cf2ae59d8-s1100-c50.jpg'),
     new Song(4, 'התעוררתי עם נמר', 'עומר אדם', new Audio('../dist/media/עומר אדם&איזי-התעוררתיעםנמר.mp3'), '../dist/media/עומר_אדם_צילום_שי_פרנקו_(cropped).jpg'),
-    new Song(5, 'קןמה 58', 'עומר אדם', new Audio('../dist/media/[YT2mp3.info] - עומר אדם – קומה 58   (Prod. by Assaf Tzrouya) (128kbps).mp3'), '../dist/media/justin-bieber-gettyimages-1202421980.jpg',),
-    new Song(6, '505', 'Arctic Monkeys', new Audio('../dist/media/505.mp3'), '../dist/media/justin-bieber-gettyimages-1202421980.jpg',),
-    new Song(7, 'קומה 58', 'עומר אדם', new Audio('../dist/media/[YT2mp3.info] - עומר אדם – קומה 58   (Prod. by Assaf Tzrouya) (128kbps).mp3'), '../dist/media/justin-bieber-gettyimages-1202421980.jpg',),
-    ]
+    new Song(6, '505', 'Justin Bieber', new Audio('../dist/media/505.mp3'), '../dist/media/justin-bieber-gettyimages-1202421980.jpg',),
+]
 
 
 //class of oll the singers.
@@ -36,6 +35,7 @@ if (singersArray.length === 0) {
     singersArray.push(singer1, singer2, singer3, singer4);
 };
 console.log(singersArray[3].songs)
+
 //class how join singers and their songs.
 class SingersSong {
     id: string;

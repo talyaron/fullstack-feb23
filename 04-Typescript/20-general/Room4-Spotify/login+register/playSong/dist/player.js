@@ -1,6 +1,6 @@
 //פונקציה שמקשרת את הקלאסים שנימצאים ב-center.ts
 var song = getSongsFromLocalStorage();
-// const singer: Singer[] = getSingersFromLocalStorage();
+var singer = getSingersFromLocalStorage();
 // --------- Song Class with constructor -------
 var AudioElement = /** @class */ (function () {
     function AudioElement(name, artist, audio, img, id) {
