@@ -1,4 +1,4 @@
-debugger;
+// debugger;
 var songs = getSongsFromLocalStorage();
 var singers = getSingersFromLocalStorage();
 var singersSong = getSingersSongsFromLocalStorage();
@@ -57,7 +57,7 @@ function renderSongs(rootElement, songs) {
         if (!songs)
             throw new Error('Songs not found');
         var html = songs.map(function (song) {
-            return "\n                   <button onclick=\"openPlay()\" class=\"recentlyHeard__box\">\n                     <img src=\"" + song.img + "\">\n                     <h3>" + song.name + "</h3>\n                 </butten>";
+            return "\n                   <button onclick=\"openPlay(this)\" class=\"recentlyHeard__box\" id=\"" + song.id + "\">\n                     <img src=\"" + song.img + "\">\n                     <h3>" + song.name + "</h3>\n                 </button>";
         }).join('');
         rootElement.innerHTML = html;
         saveSongsToLocalStorage(songsArray);
@@ -70,9 +70,10 @@ function renderSongs(rootElement, songs) {
 }
 renderSongs(document.querySelector('#recentlyHeard'), songsArray);
 //open play song page.
-function openPlay() {
-    renderPlayer(document.querySelector('.wrapper'));
-    window.location.href = '../playSong/player.html';
+function openPlay(song) {
+    window.location.href = '../playSong/player.html?${song.id}';
+    renderPlayer(song.id);
+    // console.log();
 }
 //get random song.
 function getRandomSong(songs) {

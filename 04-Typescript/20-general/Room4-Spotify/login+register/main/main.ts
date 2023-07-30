@@ -1,4 +1,4 @@
-debugger;
+// debugger;
 const songs: Song[] = getSongsFromLocalStorage();
 const singers: Singer[] = getSingersFromLocalStorage();
 const singersSong: SingersSong[] = getSingersSongsFromLocalStorage();
@@ -60,10 +60,10 @@ function renderSongs(
 
         const html = songs.map((song) => {
             return `
-                   <button onclick="openPlay()" class="recentlyHeard__box">
+                   <button onclick="openPlay(this)" class="recentlyHeard__box" id="${song.id}">
                      <img src="${song.img}">
                      <h3>${song.name}</h3>
-                 </butten>`;
+                 </button>`;
         }).join('');
 
         rootElement.innerHTML = html;
@@ -78,10 +78,10 @@ function renderSongs(
 renderSongs(document.querySelector('#recentlyHeard'), songsArray);
 
 //open play song page.
-function openPlay() {
-    renderPlayer(document.querySelector('.wrapper'));
-
-    window.location.href = '../playSong/player.html';
+function openPlay(song) {
+    window.location.href = '../playSong/player.html?${song.id}';
+    renderPlayer(song.id);
+    // console.log();
 }
 
 //get random song.
