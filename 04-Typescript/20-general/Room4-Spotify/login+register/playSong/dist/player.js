@@ -16,9 +16,9 @@ var AudioElement = /** @class */ (function () {
 var audioElements = songsArray;
 //----------- demo array of songs with class AudioElement(song) 
 // const audioElements = [];
-audioElements.push(new Song(6, "Her Ghost in The Fog", "Cradle Of Filth", new Audio("../dist/media/Cradle of Filth - Her Ghost in The Fog (192 kbps).mp3"), 'https://www.metalcallout.com/sites/default/files/img/cradledarklycover2.jpg'));
-audioElements.push(new Song(7, "Final Countdown", "Europe", new Audio("../dist/media/Europe - The Final Countdown.mp3"), 'https://upload.wikimedia.org/wikipedia/en/2/22/The_Final_Countdown_single.png'));
-audioElements.push(new Song(8, "Still Loving You", "Scorpions", new Audio("../dist/media/scorpions_-_wind-of-change.mp3"), 'https://upload.wikimedia.org/wikipedia/en/a/af/Scorpions-stilllovingyouep1.jpg'));
+audioElements.push(new Song(8, "Her Ghost in The Fog", "Cradle Of Filth", new Audio("../dist/media/Cradle of Filth - Her Ghost in The Fog (192 kbps).mp3"), 'https://www.metalcallout.com/sites/default/files/img/cradledarklycover2.jpg'));
+audioElements.push(new Song(9, "Final Countdown", "Europe", new Audio("../dist/media/Europe - The Final Countdown.mp3"), 'https://upload.wikimedia.org/wikipedia/en/2/22/The_Final_Countdown_single.png'));
+audioElements.push(new Song(10, "Still Loving You", "Scorpions", new Audio("../dist/media/scorpions_-_wind-of-change.mp3"), 'https://upload.wikimedia.org/wikipedia/en/a/af/Scorpions-stilllovingyouep1.jpg'));
 //-------------Render html song in Player
 var wrapperDiv = document.querySelector('.wrapper');
 var activeSong;

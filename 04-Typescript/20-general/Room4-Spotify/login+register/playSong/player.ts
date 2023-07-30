@@ -20,7 +20,7 @@ const audioElements: song[] = songsArray;
 
 audioElements.push(
   new Song(
-    6,
+    8,
     "Her Ghost in The Fog",
     "Cradle Of Filth",
     new Audio("../dist/media/Cradle of Filth - Her Ghost in The Fog (192 kbps).mp3"),
@@ -30,7 +30,7 @@ audioElements.push(
 
 audioElements.push(
   new Song(
-    7,
+    9,
     "Final Countdown",
     "Europe",
     new Audio("../dist/media/Europe - The Final Countdown.mp3"),
@@ -40,7 +40,7 @@ audioElements.push(
 
 audioElements.push(
   new Song(
-    8,
+    10,
     "Still Loving You",
     "Scorpions",
     new Audio("../dist/media/scorpions_-_wind-of-change.mp3"),
