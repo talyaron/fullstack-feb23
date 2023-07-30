@@ -2,16 +2,6 @@ debugger;
 var songs = getSongsFromLocalStorage();
 var singers = getSingersFromLocalStorage();
 var singersSong = getSingersSongsFromLocalStorage();
-var Song = /** @class */ (function () {
-    function Song(id, name, artist, audio, img) {
-        this.id = id;
-        this.name = name;
-        this.artist = artist;
-        this.audio = audio;
-        this.img = img;
-    }
-    return Song;
-}());
 //Makes a beautiful transition between the sections.
 //copy from register.ts
 var observerr = new IntersectionObserver(function (entries) {
@@ -67,10 +57,10 @@ function renderSongs(rootElement, songs) {
         if (!songs)
             throw new Error('Songs not found');
         var html = songs.map(function (song) {
-            return "\n                   <div class=\"recentlyHeard__box\">\n                     <img src=\"" + song.img + "\">\n                     <h3>" + song.artist + "</h3>\n                 </div>";
+            return "\n                   <button onclick=\"openPlay()\" class=\"recentlyHeard__box\">\n                     <img src=\"" + song.img + "\">\n                     <h3>" + song.name + "</h3>\n                 </butten>";
         }).join('');
         rootElement.innerHTML = html;
-        saveSongsToLocalStorage(song);
+        saveSongsToLocalStorage(songsArray);
         // console.log(html)
     }
     catch (error) {
@@ -79,6 +69,11 @@ function renderSongs(rootElement, songs) {
     }
 }
 renderSongs(document.querySelector('#recentlyHeard'), songsArray);
+//open play song page.
+function openPlay() {
+    renderPlayer(document.querySelector('.wrapper'));
+    window.location.href = '../playSong/player.html';
+}
 //get random song.
 function getRandomSong(songs) {
     try {
@@ -104,7 +99,7 @@ function displayRandomSong(rootElement, songs) {
             throw new Error('Songs not found');
         var randomSong = getRandomSong(songs);
         if (randomSong && rootElement) {
-            var html = "\n        <div class=\"randomSong\">\n          <img src=\"" + randomSong.img + "\" alt=\"" + randomSong.name + "\">\n          <h2>" + randomSong.name + "</h2>\n        </div> ";
+            var html = "\n        <button onclick=\"openPlay()\" class=\"randomSong\">\n          <img src=\"" + randomSong.img + "\" alt=\"" + randomSong.name + "\">\n          <h2>" + randomSong.name + "</h2>\n        </button> ";
             rootElement.innerHTML = html;
         }
     }

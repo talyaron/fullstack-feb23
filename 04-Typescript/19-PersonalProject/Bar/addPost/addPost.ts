@@ -40,7 +40,7 @@ function handleAddNewPost(event: Event | any) {
 
     const newImg = new Img(image);
     user.imagse.push(newImg);
-    
+     
     if (!newImg) throw new Error('Image not found');
 
     saveImgToLocalStorage(imagesArray);

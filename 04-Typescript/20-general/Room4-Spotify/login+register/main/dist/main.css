@@ -69,23 +69,20 @@ section {
 }
 
 .recentlyHeard {
-  width: 60vw;
-  height: 20vh;
+  position: relative;
+  width: 80vw;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  gap: 2vw;
-  position: relative;
-  left: 5vw;
-}
-.recentlyHeard__hedlain {
-  font-family: "Times New Roman", Times, serif;
-  position: relative;
-  left: 5vw;
+  gap: 1vw;
 }
 .recentlyHeard__box {
-  width: 12vw;
-  height: 20vh;
+  width: 280px;
+  height: 200px;
+  background-color: rgba(51, 51, 51, 0);
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
 }
 .recentlyHeard__box img {
   width: 100%;
@@ -97,20 +94,33 @@ section {
 }
 
 #randomSong {
+  position: relative;
   width: 50vw;
   height: 33vh;
   background-color: #333333;
   padding: 15px;
   border-radius: 10px;
 }
-#randomSong img {
+
+.randomSong {
+  position: relative;
+  background-color: rgba(51, 51, 51, 0);
+  border: none;
+  color: #ffffff;
+  float: right;
+  cursor: pointer;
+}
+.randomSong img {
   width: 20vw;
   height: 30vh;
   border-radius: 10px;
   float: right;
 }
-#randomSong h2 {
-  text-align: center;
+.randomSong h2 {
+  position: relative;
+  top: 2vh;
+  right: 10vw;
+  float: left;
 }
 
 #playlistContainer {
@@ -127,6 +137,7 @@ section {
   padding: 15px;
   border-radius: 10px;
   text-align: center;
+  cursor: pointer;
 }
 .playlistBySinger img {
   width: 20vw;

@@ -1,6 +1,6 @@
 //פונקציה שמקשרת את הקלאסים שנימצאים ב-center.ts
 const song: Song[] = getSongsFromLocalStorage();
-// const singer: Singer[] = getSingersFromLocalStorage();
+const singer: Singer[] = getSingersFromLocalStorage();
 
 
 
@@ -55,7 +55,7 @@ audioElements.push(
 //-------------Render html song in Player
 const wrapperDiv = document.querySelector('.wrapper');
 
-let activeSong: AudioElement | undefined;
+let activeSong: Song | AudioElement | undefined;
 function renderPlayer(songId) {
   try {
 
@@ -206,30 +206,30 @@ function playPause() {
 
 //--------function for button NEXT
 function nextBtn(activeSong) {
-try {
-  activeSong.audio.currentTime = 0;
-  if (shuffle) {
-    if (activeSong.audio.play) {
-      activeSong.audio.pause()
-    }
-    randomSong();
+  try {
+    activeSong.audio.currentTime = 0;
+    if (shuffle) {
+      if (activeSong.audio.play) {
+        activeSong.audio.pause()
+      }
+      randomSong();
 
-  } else if (activeSong.id < audioElements.length) {
-    activeSong.audio.pause();
-   
-    renderPlayer(activeSong.id + 1)
-  } else {
-    console.log('Last song"');
-    if (repeat) {
-      activeSong.audio.pause()
-      renderPlayer(1)
-    }
+    } else if (activeSong.id < audioElements.length) {
+      activeSong.audio.pause();
 
+      renderPlayer(activeSong.id + 1)
+    } else {
+      console.log('Last song"');
+      if (repeat) {
+        activeSong.audio.pause()
+        renderPlayer(1)
+      }
+
+    }
+  } catch (error) {
+    console.error(error)
   }
-} catch (error) {
-  console.error(error)
-}
-  
+
 
 
 
@@ -258,12 +258,12 @@ let shuffle = false;
 
 
 
-const repeatBtnDiv:HTMLDivElement | null = document.querySelector('.repeatBtn')
+const repeatBtnDiv: HTMLDivElement | null = document.querySelector('.repeatBtn')
 
 
 function repeatBtn() {
   const repeatBtnDiv = document.querySelector('.repeatBtn')
-  if(!repeatBtnDiv) throw new Error('no div element')
+  if (!repeatBtnDiv) throw new Error('no div element')
   if (!repeat) {
     repeat = true;
     repeatBtnDiv.style.color = 'red';
