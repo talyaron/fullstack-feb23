@@ -33,18 +33,30 @@ body {
 .signIn {
   height: 50vh;
   background: transparent;
+<<<<<<< Updated upstream:04-Typescript/20-general/Room4-Spotify/login+register/Login/dist/style.css
   backdrop-filter: blur(4.5px);
+=======
+  backdrop-filter: blur(4px);
+>>>>>>> Stashed changes:04-Typescript/20-general/Room4-Spotify/login+register/dist/style.css
   border-radius: 20px;
   display: flex;
   flex-direction: column;
-  border: 2px solid rgba(255, 255, 255, 0.2);
+  border: 2px solid rgba(241, 236, 236, 0.418);
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
   align-items: center;
+<<<<<<< Updated upstream:04-Typescript/20-general/Room4-Spotify/login+register/Login/dist/style.css
   justify-content: center;
   font-family: "Tektur", cursive;
   color: #fffcfc;
+=======
+  justify-content: flex-start;
+  font-family: fantasy;
+  color: #fcfffe;
+>>>>>>> Stashed changes:04-Typescript/20-general/Room4-Spotify/login+register/dist/style.css
   gap: 10px;
   transition: all 100ms ease-in-out;
+  font-size: 30px;
+  gap: 20px;
 }
 .signIn:hover {
   transform: scale(1.02);
@@ -85,12 +97,19 @@ body {
   background-color: rgba(240, 255, 255, 0.719);
 }
 .signIn__register {
-  margin-top: 80px;
   cursor: pointer;
   border-radius: 10px;
   cursor: pointer;
   font-family: fantasy;
   position: relative;
-  bottom: 24vh;
+  bottom: 20vh;
   background-color: rgba(240, 255, 255, 0.719);
+}
+
+#logo {
+  margin: 0;
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  top: 62vh;
 }

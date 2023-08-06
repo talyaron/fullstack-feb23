@@ -221,7 +221,6 @@ function updateTimeAndProgress() {
   } catch (error) {
     console.error(error);
   }
-
 }
 
 

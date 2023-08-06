@@ -1,3 +1,8 @@
+
+class profile {
+    constructor(public id: number, public firstName: string, public lastName: string, public username: string, public password: string) { }
+}
+// ----------------------------
 const usernnameBar = document.querySelector(".signIn__userName")! as HTMLElement
 const passwordBar = document.querySelector(".signIn__password")! as HTMLElement
 
@@ -29,9 +34,16 @@ function handleProfile(ev:any){
 function profileCheck(tryUserName, tryPassword){
 const profiles = localStorage.getItem("profiles")!
 const profilesSTR:profile[] = JSON.parse(profiles);
+debugger;
 profilesSTR.forEach(prof => {
     if(prof.username===tryUserName && prof.password===tryPassword){
-        return prof.id;
+        const selectedProfile = JSON.stringify(prof.id);
+        localStorage.setItem("selectedProfileId",selectedProfile);
+        redirectToMain()
     }
 })
+}
+
+function redirectToMain(){
+    window.location.href = "mainPage.html"
 }
