@@ -2,8 +2,6 @@ const date: Date = new Date();
 
 const renderCalendar = () => {
 
-
-
 date.setDate(1);
 
 const monthDays: Element | null = document.querySelector(".days")
