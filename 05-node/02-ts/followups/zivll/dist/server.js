@@ -1,2 +1,2 @@
-console.log("Hi, I'm a server");
+console.log(`hey im a server`);
 //# sourceMappingURL=server.js.map
