@@ -1,5 +1,5 @@
 {
-  "name": "example",
+  "name": "node_project",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -7,8 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
     "dev": "nodemon server.ts",
-    "start": "node dist/server.js",
-    "update": "npm install -g npm-check-updates && ncu -u && npm install"
+    "start": "node dist/daniel.js"
   },
   "keywords": [],
   "author": "",
