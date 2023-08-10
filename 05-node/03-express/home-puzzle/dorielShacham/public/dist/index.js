@@ -35,18 +35,19 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 var _this = this;
-console.log('index is ready');
+console.log('index.ts online');
+//Age
 var getAge = function () { return __awaiter(_this, void 0, void 0, function () {
     var response, data, userAge, error_1;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
                 _a.trys.push([0, 3, , 4]);
-                console.time('fetching name');
-                return [4 /*yield*/, fetch('/firstName')];
+                console.time('fetching age');
+                return [4 /*yield*/, fetch('/myAge')];
             case 1:
                 response = _a.sent();
-                console.timeEnd('fetching name');
+                console.timeEnd('fetching age');
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
@@ -55,7 +56,7 @@ var getAge = function () { return __awaiter(_this, void 0, void 0, function () {
                 data = _a.sent();
                 console.log(data);
                 userAge = document.querySelector('#age');
-                userAge.innerHTML = data.age;
+                userAge.innerHTML = data.myAge;
                 return [3 /*break*/, 4];
             case 3:
                 error_1 = _a.sent();
@@ -97,3 +98,34 @@ var getName = function () { return __awaiter(_this, void 0, void 0, function () 
     });
 }); };
 getName();
+//Description
+var myDescription = function () { return __awaiter(_this, void 0, void 0, function () {
+    var response, data, userDescription, error_3;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                _a.trys.push([0, 3, , 4]);
+                console.time('fetching description');
+                return [4 /*yield*/, fetch('/myDescription')];
+            case 1:
+                response = _a.sent();
+                console.timeEnd('fetching description');
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return [4 /*yield*/, response.json()];
+            case 2:
+                data = _a.sent();
+                console.log(data);
+                userDescription = document.querySelector('#description');
+                userDescription.innerHTML = data.myDescription;
+                return [3 /*break*/, 4];
+            case 3:
+                error_3 = _a.sent();
+                console.error('Error:', error_3);
+                return [3 /*break*/, 4];
+            case 4: return [2 /*return*/];
+        }
+    });
+}); };
+myDescription();
