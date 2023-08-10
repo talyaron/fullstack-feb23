@@ -26,8 +26,8 @@
             
             <a href="../home-page/homepage.html">עמוד הבית</a>
              <a href="../home/Income.html"> הכנסות </a>
-             <a href="../home/expenses.html">הוצאות</a>
-             <a href="../home/profit.html">הרווח שלי</a>
+             <a href="../home/Income.html#expensesFormDiv">הוצאות</a>
+             <a href="../home/Income.html#profitResult">הרווח שלי</a>
              <a href="../home-page/homepage.html#about-us">קצת עלינו</a>
              <a href="../home-page/homepage.html#contact">יצירת קשר</a>
           
@@ -46,19 +46,19 @@
   
       <div dir="rtl" class="row">
         <div class="columna">
-  <h1 class="heading">מעקב אחר ההכנסות שלך בעמוד אחד </h1>
+  <h1 id="heading" class="heading">מעקב אחר ההכנסות שלך   </h1>
     
   <div class="label" id="revenues">
-      <h2 class="h2">הכנס את ההכנסות שלך כאן</h2>
+      <h2 class="h2">הכנס את ההכנסות  כאן</h2>
       
-      <form id="incomeForm">
-        <label id="salaryPensionLabel" for="שכר-פנסיה">שכר מעבודה\פנסיה:</label>
+      <form id="incomeForm" onsubmit="calculateTotalIncome(); return false;">
+        <label  id="salaryPensionLabel" for="שכר-פנסיה">שכר מעבודה\פנסיה:></label>
         <select class="select" id="salary-pension-frequency" name="salary-pension-frequency">
           <option value="חודשי">חודשי</option>
           <option value="אחת לחודשיים">אחת לחודשיים</option>
           <option value="שנתי">שנתי</option>
         </select>
-        <input type="number" id="salary-pension-amount" name="salary-pension-amount" placeholder="הכנס סכום">
+        <input type="number" id="salary-pension-amount" name="salary-pension-income-amount" placeholder="הכנס סכום">
         <br><br>
       
         <label id="govSupportLabel" for="gov-support">קצבאות מהממשלה:</label>
@@ -67,7 +67,7 @@
           <option value="אחת לחודשיים">אחת לחודשיים</option>
           <option value="שנתי">שנתי</option>
         </select>
-        <input type="number" id="gov-support-amount" name="gov-support-amount" placeholder="הכנס סכום">
+        <input type="number" id="gov-support-amount" name="gov-support-income-amount" placeholder="הכנס סכום">
         <br><br>
       
         <label id="rentalIncomeLabel" for="rental-income">הכנסה משכירות:</label>
@@ -85,7 +85,7 @@
           <option value="אחת לחודשיים">אחת לחודשיים</option>
           <option value="שנתי">שנתי</option>
         </select>
-        <input type="number" id="other-support-amount" name="other-support-amount" placeholder="הכנס סכום">
+        <input type="number" id="other-support-amount" name="other-support-income-amount" placeholder="הכנס סכום">
         <br><br>
       
         <label id="giftsBonusesLabel" for="gifts-bonuses">מתנות ובנוסים</label>
@@ -94,7 +94,7 @@
           <option value="אחת לחודשיים">אחת לחודשיים</option>
           <option value="שנתי">שנתי</option>
         </select>
-        <input type="number" id="gifts-bonuses-amount" name="gifts-bonuses-amount" placeholder="הכנס סכום">
+        <input type="number" id="gifts-bonuses-amount" name="gifts-bonusesincome-amount" placeholder="הכנס סכום">
         <br><br>
       
         <label id="otherIncomeLabel" for="other-income">שכחנו משהו?  הכנסה בהתאמה אישית:</label>
@@ -110,26 +110,111 @@
         <input type="submit" class="submit_full" id="submitBtnIncome" value="חשב סכום הכנסות ">
       </form>
       
-</div>
-<div id="rootName"></div>
-<div id="result"></div>
-<div id="incomeTable"></div>
-<canvas id="chartElement"></canvas>
+
+
+      <div id="rootNameIncome"></div>
+      <div id="resultIncome"></div>
+      <div id="incomeTableIncome"></div>
 
 
 
-</div>
+<h1 id="expensesFormDiv" class="heading">מעקב אחר ההוצאות שלך     </h1>
+<h2 class="h2">הכנס את ההוצאות  כאן</h2>
+<form id="expensesForm" onsubmit="calculateTotalExpenses(); return false;">
+    <!-- קטגוריה 1: הוצאות מגורים -->
+    <label id="housingExpensesLabel" for="housing-expenses-amount">הוצאות מגורים:</label>
+    <select class="select" id="housing-expenses-frequency" name="housing-expenses-frequency">
+        <option value="חודשי">חודשי</option>
+        <option value="אחת לחודשיים">אחת לחודשיים</option>
+        <option value="שנתי">שנתי</option>
+    </select>
+    <input type="number" id="housing-expenses-amount" name="housing-expenses-amount" placeholder="הכנס סכום">
+    <br><br>
+
+    <!-- קטגוריה 2: הוצאות מחיה -->
+    <label id="livingExpensesLabel" for="living-expenses-amount">הוצאות מחיה:</label>
+    <select class="select" id="living-expenses-frequency" name="living-expenses-frequency">
+        <option value="חודשי">חודשי</option>
+        <option value="אחת לחודשיים">אחת לחודשיים</option>
+        <option value="שנתי">שנתי</option>
+    </select>
+    <input type="number" id="living-expenses-amount" name="living-expenses-amount" placeholder="הכנס סכום">
+    <br><br>
+
+    <!-- קטגוריה 3: וקניות שוטפות -->
+    <label id="groceryExpensesLabel" for="grocery-expenses-amount">קניות שוטפות:</label>
+    <select class="select" id="grocery-expenses-frequency" name="grocery-expenses-frequency">
+        <option value="חודשי">חודשי</option>
+        <option value="אחת לחודשיים">אחת לחודשיים</option>
+        <option value="שנתי">שנתי</option>
+    </select>
+    <input type="number" id="grocery-expenses-amount" name="grocery-expenses-amount" placeholder="הכנס סכום">
+    <br><br>
+
+    <!-- קטגוריה 4: הוצאות רכב -->
+    <label id="carExpensesLabel" for="car-expenses-amount">הוצאות רכב:</label>
+    <select class="select" id="car-expenses-frequency" name="car-expenses-frequency">
+        <option value="חודשי">חודשי</option>
+        <option value="אחת לחודשיים">אחת לחודשיים</option>
+        <option value="שנתי">שנתי</option>
+    </select>
+    <input type="number" id="car-expenses-amount" name="car-expenses-amount" placeholder="הכנס סכום">
+    <br><br>
+
+    <!-- קטגוריה 5: הוצאות פנאי ובילויים -->
+    <label id="entertainmentExpensesLabel" for="entertainment-expenses-amount">הוצאות פנאי ובילויים:</label>
+    <select class="select" id="entertainment-expenses-frequency" name="entertainment-expenses-frequency">
+        <option value="חודשי">חודשי</option>
+        <option value="אחת לחודשיים">אחת לחודשיים</option>
+        <option value="שנתי">שנתי</option>
+    </select>
+    <input type="number" id="entertainment-expenses-amount" name="entertainment-expenses-amount" placeholder="הכנס סכום">
+    <br><br>
+
+    <!-- קטגוריה 6: בריאות וביטוחים -->
+    <label id="healthExpensesLabel" for="health-expenses-amount">בריאות וביטוחים:</label>
+    <select class="select" id="health-expenses-frequency" name="health-expenses-frequency">
+        <option value="חודשי">חודשי</option>
+        <option value="אחת לחודשיים">אחת לחודשיים</option>
+        <option value="שנתי">שנתי</option>
+    </select>
+    <input type="number" id="health-expenses-amount" name="health-expenses-amount" placeholder="הכנס סכום">
+    <br><br>
+
+    <label id="otherExpensesLabel" for="other-expenses">שכחנו משהו?  הוצאה בהתאמה אישית:</label>
+    <input type="text" id="other-expenses-name" name="other-expenses-name" placeholder=" שם הכנסה ">
+    <select class="select" id="other-expenses-frequency" name="other-expenses-frequency">
+      <option value="חודשי">חודשי</option>
+      <option value="אחת לחודשיים">אחת לחודשיים</option>
+      <option value="שנתי">שנתי</option>
+    </select>
+    <input type="number" id="other-expenses-amount" name="other-expenses-amount" placeholder="הכנס סכום">
+    <br><br>
+    <input type="submit" class="submit_full" id="submitBtnExpenses" value="חשב סכום הוצאות">
+</form>
+
+<div id="rootNameExpenses"></div>
+<div id="resultExpenses"></div>
+<div id="incomeTableExpenses"></div>
+
+<button class="start-button" onclick="calculateProfit()">חשב את הרווח החודשי </button>
+<button class="start-button" onclick="calculateProfityearly()">חשב את הרווח השנתי </button>
+<div id="profitResultYear"></div>
+<div id="profitResult"></div>
+
+  </div>
+
 <footer class="footer">
     <div dir="rtl" class="footer-container">
       <div class="column">
         <h4>מפת האתר</h4>
         <nav class="nav Foter" id="nav">
-          <a href="../home-page/homepage.html">עמוד הבית</a>
-       <a href="../home/Income.html"> הכנסות</a>
-       <a href="../home/expenses.html">הוצאות</a>
-       <a href="../home/profit.html">הרווח שלי</a>
-       <a href="../home-page/homepage.html#about-us">קצת עלינו</a>
-       <a href="../home-page/homepage.html#contact">יצירת קשר</a>
+            <a href="../home-page/homepage.html">עמוד הבית</a>
+            <a href="../home/Income.html"> הכנסות </a>
+            <a href="../home/Income.html#expensesFormDiv">הוצאות</a>
+            <a href="../home/Income.html#profitResult">הרווח שלי</a>
+            <a href="../home-page/homepage.html#about-us">קצת עלינו</a>
+            <a href="../home-page/homepage.html#contact">יצירת קשר</a>
         </nav>
       </div>
       <div class="column">

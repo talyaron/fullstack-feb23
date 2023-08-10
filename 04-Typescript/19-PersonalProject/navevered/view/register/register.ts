@@ -29,7 +29,7 @@ if (usersString) {
   renderUsers();
 }
 
-function handleAddUser(ev) {
+function handleAddUser(ev: any) {
   try {
     ev.preventDefault();
     const name = ev.target.name.value;

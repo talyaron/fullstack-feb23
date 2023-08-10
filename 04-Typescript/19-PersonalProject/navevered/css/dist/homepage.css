@@ -146,8 +146,21 @@
 }
 .row {
   background-image: url(bg.jpg);
-  height: 150vh;
   margin: 0px 0px 50px 0px;
+  background-repeat: repeat;
+}
+
+.rowDashBord {
+  background-image: url(bg.jpg);
+  height: 100vh;
+  margin: 0px 0px 50px 0px;
+  background-repeat: repeat;
+}
+
+.rowDashBordd {
+  background-image: url(bg.jpg);
+  height: 120vh;
+  background-repeat: repeat;
 }
 
 .columna {
@@ -163,6 +176,10 @@
   padding: 10px;
   font-family: "Assistant", sans-serif;
   padding-top: 75px;
+}
+
+#heading {
+  padding-top: 2em;
 }
 
 .column1 {
@@ -297,7 +314,8 @@ img {
 
 .start-button {
   font-size: 18px;
-  padding: 10px 50px;
+  padding: 10px 70px;
+  margin: 20px 0px;
   background-color: #9A8FF6;
   color: #fff;
   border: solid 2px #FEC94E;
@@ -430,7 +448,7 @@ p {
 }
 
 .footer-container {
-  height: 25vh;
+  height: 30vh;
   max-width: 80vw;
   margin: 0 auto;
   background-color: #191716;
@@ -456,13 +474,14 @@ p {
 }
 .footer-container form {
   display: flex;
-  margin-top: 10px;
+  margin-top: 50px;
   margin: auto;
   justify-content: center;
 }
 .footer-container input[type=email] {
-  width: 200px;
+  width: 15vw;
   padding: 5px;
+  margin-left: 5px;
 }
 .footer-container button[type=submit] {
   padding: 5px 10px;
@@ -487,6 +506,11 @@ p {
     flex-direction: column;
     height: 65vh;
   }
+
+  .footer {
+    background-color: #191716;
+    padding-top: 15vh;
+  }
 }
 @media screen and (max-width: 700px) {
   .submit_full {
@@ -495,15 +519,36 @@ p {
     width: 50%;
   }
 }
-.incomeForm {
+#expensesForm {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  align-content: center;
+  margin-bottom: 50px;
+}
+
+#incomeForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  align-content: center;
 }
 
 .label {
-  width: 100%;
-  font-size: 15px;
+  display: flex;
+  width: 100vw;
+  font-size: 18px;
+  font-weight: 700;
   font-family: "Assistant", sans-serif;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .select {
@@ -520,7 +565,7 @@ p {
 }
 
 table {
-  width: 70%;
+  width: 50vw;
   margin: 0 auto;
   border-collapse: collapse;
   margin-bottom: 20px;
@@ -532,7 +577,7 @@ table th {
   font-size: 15px;
   font-family: "Assistant", sans-serif;
   padding: 10px;
-  text-align: right;
+  text-align: center;
   border: 1px solid #191716;
 }
 table td {
@@ -555,15 +600,18 @@ table #tdName {
   }
 }
 
-#submitBtnIncome {
-  margin: 70px;
-}
-
 @media (max-width: 767px) {
   /* Adjust the form layout and font sizes for mobile */
   .label {
-    font-size: 14px;
-    width: 100%;
+    display: flex;
+    width: 100vw;
+    font-size: 15px;
+    font-family: "Assistant", sans-serif;
+    align-items: center;
+    text-align: center;
+    flex-direction: row-reverse;
+    flex-wrap: wrap;
+    justify-content: center;
   }
 
   .select {
