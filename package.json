@@ -2,5 +2,9 @@
   "dependencies": {
     "@types/chart.js": "^2.9.37",
     "sass": "^1.63.4"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1",
+    "ts-node": "^10.9.1"
   }
 }
