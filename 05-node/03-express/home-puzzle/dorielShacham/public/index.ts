@@ -1,5 +1,5 @@
-console.log('index is ready');
-
+console.log('index.ts online');
+//Age
 const getAge = async () => {
     try {
         console.time('fetching age');
@@ -15,7 +15,7 @@ const getAge = async () => {
 
         //render age
         let userAge = document.querySelector('#age') as HTMLElement;
-        userAge.innerHTML = data.age; 
+        userAge.innerHTML = data.myAge; 
 
     } catch (error) {
         console.error('Error:', error);
@@ -46,3 +46,27 @@ const getName = async () => {
     }
 }
 getName();
+
+//Description
+const myDescription = async () => {
+    try {
+        console.time('fetching description');
+        const response = await fetch('/myDescription');
+        console.timeEnd('fetching description');
+        
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+
+        const data = await response.json();
+        console.log(data);
+
+        //render name
+        const userDescription = document.querySelector('#description') as HTMLElement;
+        userDescription.innerHTML = data.myDescription; 
+
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}
+myDescription();
