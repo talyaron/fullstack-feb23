@@ -42,11 +42,11 @@ var getAge = function () { return __awaiter(_this, void 0, void 0, function () {
         switch (_a.label) {
             case 0:
                 _a.trys.push([0, 3, , 4]);
-                console.time('fetching name');
-                return [4 /*yield*/, fetch('/firstName')];
+                console.time('fetching age');
+                return [4 /*yield*/, fetch('/myAge')];
             case 1:
                 response = _a.sent();
-                console.timeEnd('fetching name');
+                console.timeEnd('fetching age');
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }

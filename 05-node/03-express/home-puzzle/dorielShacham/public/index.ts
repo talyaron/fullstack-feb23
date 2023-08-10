@@ -2,9 +2,9 @@ console.log('index is ready');
 
 const getAge = async () => {
     try {
-        console.time('fetching name');
-        const response = await fetch('/firstName');
-        console.timeEnd('fetching name');
+        console.time('fetching age');
+        const response = await fetch('/myAge');
+        console.timeEnd('fetching age');
         
         if (!response.ok) {
             throw new Error('Network response was not ok');
@@ -40,7 +40,6 @@ const getName = async () => {
         //render name
         const userInput = document.querySelector('.userName') as HTMLInputElement;
         userInput.value = data.firstName; 
-
 
     } catch (error) {
         console.error('Error:', error);
