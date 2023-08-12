@@ -36,24 +36,20 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 var _this = this;
 console.log('index is ready');
-//create a function the get then name from the server and render to root element
-//async await
 var getName = function () { return __awaiter(_this, void 0, void 0, function () {
     var response, data;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
                 console.time('fetching name');
-                return [4 /*yield*/, fetch('/name')]; //wait for the response from server
+                return [4 /*yield*/, fetch('/name')];
             case 1:
-                response = _a.sent() //wait for the response from server
-                ;
+                response = _a.sent();
                 console.timeEnd('fetching name');
                 console.log(response);
-                return [4 /*yield*/, response.json()]; //wait for the data to be parsed
+                return [4 /*yield*/, response.json()];
             case 2:
-                data = _a.sent() //wait for the data to be parsed
-                ;
+                data = _a.sent();
                 console.log(data);
                 document.querySelector('#root').innerHTML = data.name;
                 return [2 /*return*/];
