@@ -10,7 +10,7 @@ const myName = "Tal"
 //routes to get data from server
 app.get('/name', (req, res) => {
     console.log('request to name')
-    res.send({ name: myName })
+    res.send({ name: siteN })
 });
 
 app.get('/family', (req, res) => {
