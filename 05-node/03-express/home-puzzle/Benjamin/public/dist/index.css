@@ -13,4 +13,5 @@ body {
   background-color: brown;
   border-radius: 20px;
   font-family: fantasy;
+  transition: all 100ms ease-in-out;
 }
