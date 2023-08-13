@@ -35,25 +35,52 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 var _this = this;
-console.log("indes is ready!");
+console.log("index is ready!");
 var getTitle = function () { return __awaiter(_this, void 0, void 0, function () {
-    var response, data;
+    var response, data, title;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
-                console.time("getTitle");
+                console.time("fetching title");
                 return [4 /*yield*/, fetch("/dinamicTitle")];
             case 1:
                 response = _a.sent();
-                console.timeEnd("getTitle");
+                console.timeEnd("fetching title");
                 console.log(response);
                 return [4 /*yield*/, response.json()];
             case 2:
                 data = _a.sent();
                 console.log(data);
-                document.querySelector("#title").innerHTML = data.title;
+                title = document.querySelector("#title");
+                if (!title)
+                    throw new Error("title not found!");
+                title.innerHTML = data.title;
                 return [2 /*return*/];
         }
     });
 }); };
+var getDescription = function () { return __awaiter(_this, void 0, void 0, function () {
+    var response, data, title;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                console.time("fetching description");
+                return [4 /*yield*/, fetch("/dinamicDescription")];
+            case 1:
+                response = _a.sent();
+                console.timeEnd("fetching description");
+                console.log(response);
+                return [4 /*yield*/, response.json()];
+            case 2:
+                data = _a.sent();
+                console.log(data);
+                title = document.querySelector("#desc");
+                if (!title)
+                    throw new Error("Description is not found!");
+                title.innerHTML = data.description;
+                return [2 /*return*/];
+        }
+    });
+}); };
+getDescription();
 getTitle();
