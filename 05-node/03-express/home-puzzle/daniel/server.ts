@@ -5,17 +5,17 @@ const port = process.env.PORT || 3000;
 //static files
 app.use(express.static('public'));
 
-const myName = "Tal"
+const myUser = "Daniel"
 
 //routes to get data from server
-app.get('/name', (req, res) => {
-    console.log('request to name')
-    res.send({ name: siteN })
+app.get('/user', (req, res) => {
+    console.log('request to user')
+    res.send({ user: myUser })
 });
 
-app.get('/family', (req, res) => {
-    console.log('request to family')
-    res.send({ family: "Rozen" })
+app.get('/age', (req, res) => {
+    console.log('request to age')
+    res.send({ age: "21" })
 });
 
 

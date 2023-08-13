@@ -1,5 +1,5 @@
 {
-  "name": "shahar",
+  "name": "lee",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,6 +9,7 @@
     "dev": "nodemon server.ts",
     "start": "node dist/server.js",
     "update": "npm install -g npm-check-updates && ncu -u && npm install"
+
   },
   "keywords": [],
   "author": "",

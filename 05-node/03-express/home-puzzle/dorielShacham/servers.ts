@@ -1,6 +1,6 @@
 import express from "express";
 const app = express()
-const port = process.env.PORT || 5052;
+const port = process.env.PORT || 5000;
 
 //get the html+ts files
 app.use(express.static('public'));
@@ -15,7 +15,7 @@ const imageOne = '/images/postmanTestResponse.jpg';
 const imageTwo = '/images/RapidAPI.jpg';
 
 //routes to get data from server
-app.get('/firstName', (req: any, res: { send: (arg0: { firstName: string }) => void; }) => {
+app.get('/firstName', (req: any, res: { send: (wrappererObj: { firstName: string }) => void; }) => {
     console.log('request to name')
     res.send({
         firstName: myName
@@ -43,7 +43,6 @@ app.get('/loadImages', (req, res: { send: (arg0: { imageOne: string; imageTwo: s
         imageTwo: imageTwo
     })
 });
-
 
 //close with a listener 
 app.listen(port, () => {
