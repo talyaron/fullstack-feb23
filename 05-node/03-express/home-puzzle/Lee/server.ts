@@ -5,7 +5,7 @@ const port = process.env.PORT || 3000;
 
 app.use(express.static('public'));
 
-const myName = "Judith"
+const myName = "The easiest way for vets!"
 
 app.get('/name', (req, res) => {
     console.log('request to name')

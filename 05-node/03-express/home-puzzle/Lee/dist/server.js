@@ -7,7 +7,7 @@ const express_1 = __importDefault(require("express"));
 const app = express_1.default();
 const port = process.env.PORT || 3000;
 app.use(express_1.default.static('public'));
-const myName = "Judith";
+const myName = "The easiest way for vets!";
 app.get('/name', (req, res) => {
     console.log('request to name');
     res.send({ name: myName });
