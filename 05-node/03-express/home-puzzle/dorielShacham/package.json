@@ -6,8 +6,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
-    "dev": "nodemon servers.ts",
-    "start": "node dist/servers.js",
+    "dev": "PORT=8080 nodemon servers.ts",
+    "dev2": "PORT=8081 nodemon servers.ts",
+    "dev3": "nodemon servers.ts",
+    "start": "PORT=8 node dist/servers.js",
     "update": "npm install -g npm-check-updates && ncu -u && npm install"
   },
   "keywords": [],
