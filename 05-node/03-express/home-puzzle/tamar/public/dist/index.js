@@ -87,3 +87,4 @@ var getDescription = function () { return __awaiter(_this, void 0, void 0, funct
 }); };
 getDescription();
 //2:
+//https://blog.postman.com/extracting-data-from-responses-and-chaining-requests/
