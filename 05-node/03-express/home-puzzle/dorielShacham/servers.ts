@@ -1,7 +1,10 @@
 import express from "express";
 const app = express()
+import * as dotenv from "dotenv"
+dotenv.config({path:__dirname + "/.env"})
 const port = process.env.PORT || 5000;
 
+console.log(process.env)
 //get the html+ts files
 app.use(express.static('public'));
 
