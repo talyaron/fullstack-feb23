@@ -55,7 +55,7 @@ var getName = function () { return __awaiter(_this, void 0, void 0, function () 
                 data = _a.sent() //wait for the data to be parsed
                 ;
                 console.log(data);
-                document.querySelector('#root').innerHTML = data.name;
+                document.querySelector('#root).innerHTML = data.name);
                 return [2 /*return*/];
         }
     });

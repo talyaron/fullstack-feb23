@@ -1,0 +1,16 @@
+body{
+    flex-direction: column;
+    background-color: aquamarine;
+    display: flex;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+}
+#siteNameHeader{
+font-size: 200px;
+color: bisque;
+background-color: brown;
+border-radius: 20px;
+font-family: fantasy;
+transition: all 100ms ease-in-out;
+}
