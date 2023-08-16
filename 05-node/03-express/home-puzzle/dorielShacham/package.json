@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
-    "dev": "PORT=8080 nodemon servers.ts",
+    "dev": "nodemon servers.ts",
     "dev2": "PORT=8081 nodemon servers.ts",
     "dev3": "nodemon servers.ts",
     "start": "PORT=8 node dist/servers.js",
@@ -22,6 +22,7 @@
     "typescript": "^5.1.6"
   },
   "dependencies": {
+    "dotenv": "^16.3.1",
     "express": "^4.18.2"
   }
 }
