@@ -27,7 +27,7 @@ const sendNameToServer = async () => {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({name: name})
+            body: JSON.stringify({ name: name })
         });
         console.timeEnd('sending name')
 
@@ -43,7 +43,7 @@ const sendNameToServer = async () => {
     }
 }
 
-sendNameToServer ();
+sendNameToServer();
 
 const sendNameButton = document.querySelector('#sendNameButton');
 
