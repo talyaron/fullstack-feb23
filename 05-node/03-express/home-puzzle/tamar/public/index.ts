@@ -30,4 +30,5 @@ const getDescription = async () => {
 getDescription();
 
 //2:
-//https://blog.postman.com/extracting-data-from-responses-and-chaining-requests/
+//https://www.section.io/engineering-education/how-to-create-a-simple-rest-api-using-typescript-and-nodejs/
+
