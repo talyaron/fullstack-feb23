@@ -35,7 +35,34 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 var _this = this;
-console.log('index.ts online');
+//login form
+var loginModal = document.getElementById('loginModal');
+var loginForm = document.getElementById('loginForm');
+var loginButton = document.getElementById('loginButton');
+function showLoginModal() {
+    loginModal.style.display = 'block';
+}
+function hideLoginModal() {
+    loginModal.style.display = 'none';
+}
+loginButton.addEventListener('click', function () {
+    var username = document.getElementById('username').value;
+    var password = document.getElementById('password').value;
+    var matchingUser = users.find(function (user) { return user.username === username && user.password === password; });
+    if (matchingUser) {
+        hideLoginModal();
+    }
+    else {
+        alert('Invalid credentials. Please try again.');
+    }
+});
+document.addEventListener('DOMContentLoaded', function () {
+    showLoginModal();
+});
+var users = [
+    { username: 'doriel', password: 'admin' },
+    { username: 'eti', password: 'admin1' },
+];
 //Age
 var getAge = function () { return __awaiter(_this, void 0, void 0, function () {
     var response, data, userAge, error_1;
