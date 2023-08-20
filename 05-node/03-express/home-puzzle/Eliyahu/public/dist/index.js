@@ -41,11 +41,11 @@ var getTitle = function () { return __awaiter(_this, void 0, void 0, function ()
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
-                console.time('fetcing title');
+                console.time('fetching title');
                 return [4 /*yield*/, fetch('/title')];
             case 1:
                 response = _a.sent();
-                console.timeEnd('fetcing title');
+                console.timeEnd('fetching title');
                 return [4 /*yield*/, response.json()];
             case 2:
                 data = _a.sent();
@@ -57,3 +57,43 @@ var getTitle = function () { return __awaiter(_this, void 0, void 0, function ()
     });
 }); };
 getTitle();
+var getDscrpt = function () { return __awaiter(_this, void 0, void 0, function () {
+    var response, data, rootDscrpt;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                console.time('fetching description');
+                return [4 /*yield*/, fetch('/dscrpt')];
+            case 1:
+                response = _a.sent();
+                console.timeEnd('fetching description');
+                return [4 /*yield*/, response.json()];
+            case 2:
+                data = _a.sent();
+                rootDscrpt = document.querySelector('#rootDscrpt');
+                rootDscrpt.innerHTML = data.description;
+                return [2 /*return*/];
+        }
+    });
+}); };
+getDscrpt();
+var postAnimal = function () { return __awaiter(_this, void 0, void 0, function () {
+    var response, data, rootDscrpt;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                console.time('fetching animal');
+                return [4 /*yield*/, fetch('/animal')];
+            case 1:
+                response = _a.sent();
+                console.timeEnd('fetching animal');
+                return [4 /*yield*/, response.json()];
+            case 2:
+                data = _a.sent();
+                rootDscrpt = document.querySelector('#rootAnimal');
+                rootDscrpt.innerHTML = data.animal;
+                return [2 /*return*/];
+        }
+    });
+}); };
+postAnimal();

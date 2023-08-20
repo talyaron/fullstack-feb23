@@ -9,7 +9,7 @@ console.log(process.env)
 app.use(express.static('public'));
 
 //post
-const myName = "Doriel";
+let myName = "Doriel";
 const age = 29;
 const description = "I'm a web enthusiast, pouring my energy into building captivating online experiences that fuse creativity and technology. \n Coding is my playground, and I relish the challenge of turning ideas into reality. With each line of code, I bring my passion for excellence to life, creating digital landscapes that are both functional and beautiful. Whether I'm fine-tuning software or crafting a website, my commitment to perfection is the driving force behind everything I do. \n In a world where technology evolves at lightning speed, I thrive on the excitement of learning and growing. I'm not just a QA Engineer and a web developer – I'm a relentless explorer of possibilities, eager to make my mark on the digital frontier. "
 
@@ -23,6 +23,13 @@ app.get('/firstName', (req: any, res: { send: (wrappererObj: { firstName: string
     res.send({
         firstName: myName
     })
+});
+
+app.post('/updateFirstName', express.json(), (req, res) => {
+    const newFirstName = req.body.firstName;
+    myName = newFirstName; 
+
+    res.status(200).json({ message: 'First name updated successfully.', newFirstName });
 });
 
 app.get('/myAge', (req, res: { send: (arg0: { myAge: number }) => void; }) => {
