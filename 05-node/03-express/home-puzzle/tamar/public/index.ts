@@ -29,6 +29,25 @@ const getDescription = async () => {
 
 getDescription();
 
-//2:
+//2+3:
 //https://www.section.io/engineering-education/how-to-create-a-simple-rest-api-using-typescript-and-nodejs/
+document.querySelector('#titleForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const newTitleInput = document.querySelector('#newTitle') as HTMLInputElement;
+    const newTitle = newTitleInput.value;
+    await updateTitle(newTitle);
+    getTitle(); // Refresh the displayed title
+});
 
+const updateTitle = async (newTitle) => {
+    console.time('updating title');
+    const response = await fetch('/updateTitle', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ title: newTitle }),
+    });
+    console.timeEnd('updating title');
+    console.log(response);
+};

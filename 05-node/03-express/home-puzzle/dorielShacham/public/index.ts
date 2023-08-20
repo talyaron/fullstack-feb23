@@ -1,4 +1,42 @@
-console.log('index.ts online');
+//login form
+const loginModal = document.getElementById('loginModal') as HTMLElement;
+const loginForm = document.getElementById('loginForm') as HTMLElement;
+const loginButton = document.getElementById('loginButton') as HTMLElement;
+
+function showLoginModal() {
+    loginModal.style.display = 'block';
+}
+
+function hideLoginModal() {
+    loginModal.style.display = 'none';
+}
+
+loginButton.addEventListener('click', () => {
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+    const matchingUser = users.find(user => user.username === username && user.password === password);
+
+    if (matchingUser) {
+        hideLoginModal();
+    } else {
+        alert('Invalid credentials. Please try again.');
+    }
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    showLoginModal();
+});
+
+interface User {
+    username: string;
+    password: string;
+}
+
+const users: User[] = [
+    { username: 'doriel', password: 'admin' },
+    { username: 'eti', password: 'admin1' },
+];
+
 //Age
 const getAge = async () => {
     try {
