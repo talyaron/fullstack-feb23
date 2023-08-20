@@ -7,10 +7,21 @@ const express_1 = __importDefault(require("express"));
 const app = express_1.default();
 const port = process.env.PORT || 3000;
 app.use(express_1.default.static('public'));
-const myName = "The easiest way for vets!";
+app.use(express_1.default.json());
+const slogan = "The easiest way for vets!";
+let name = "";
+app.get('/slogan', (req, res) => {
+    console.log('request to slogan');
+    res.send({ slogan: slogan });
+});
 app.get('/name', (req, res) => {
     console.log('request to name');
-    res.send({ name: myName });
+    res.send({ name: name });
+});
+app.post('/name', (req, res) => {
+    console.log('received name:', req.body.name);
+    name = req.body.name;
+    res.send({ name: name });
 });
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`);

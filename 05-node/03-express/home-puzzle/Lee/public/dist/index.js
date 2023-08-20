@@ -36,24 +36,64 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 var _this = this;
 console.log('index is ready');
-var getName = function () { return __awaiter(_this, void 0, void 0, function () {
+var getSlogan = function () { return __awaiter(_this, void 0, void 0, function () {
     var response, data;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
-                console.time('fetching name');
-                return [4 /*yield*/, fetch('/name')];
+                console.time('fetching slogan');
+                return [4 /*yield*/, fetch('/slogan')];
             case 1:
                 response = _a.sent();
-                console.timeEnd('fetching name');
+                console.timeEnd('fetching slogan');
                 console.log(response);
                 return [4 /*yield*/, response.json()];
             case 2:
                 data = _a.sent();
                 console.log(data);
-                document.querySelector('#root').innerHTML = data.name;
+                document.querySelector('#root').innerHTML = data.slogan;
                 return [2 /*return*/];
         }
     });
 }); };
-getName();
+getSlogan();
+var sendNameToServer = function () { return __awaiter(_this, void 0, void 0, function () {
+    var userInput, name, response, data, error_1;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                _a.trys.push([0, 3, , 4]);
+                userInput = document.querySelector('.userName');
+                name = userInput.value;
+                console.time('sending name');
+                return [4 /*yield*/, fetch('/name', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ name: name })
+                    })];
+            case 1:
+                response = _a.sent();
+                console.timeEnd('sending name');
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return [4 /*yield*/, response.json()];
+            case 2:
+                data = _a.sent();
+                console.log(data);
+                return [3 /*break*/, 4];
+            case 3:
+                error_1 = _a.sent();
+                console.error(error_1);
+                return [3 /*break*/, 4];
+            case 4: return [2 /*return*/];
+        }
+    });
+}); };
+sendNameToServer();
+var sendNameButton = document.querySelector('#sendNameButton');
+if (sendNameButton) {
+    sendNameButton.addEventListener('click', sendNameToServer);
+}
