@@ -1,7 +1,7 @@
-import dgdfgdfg ,{y, multi } from "./cont/helpers";
+import dgdfgdfg ,{ multi } from "./cont/helpers";
 
 console.log("Hi, I'm a server");
 
 console.log(dgdfgdfg)
 
-console.log(multi(5, y));
+console.log(multi(5, 6));
