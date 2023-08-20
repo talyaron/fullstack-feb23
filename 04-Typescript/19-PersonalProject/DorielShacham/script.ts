@@ -1,22 +1,3 @@
-<<<<<<< HEAD
-import {Player} from "./player"
-const canvas = document.querySelector("#game") as HTMLCanvasElement;
-const ctx: any = canvas.getContext("2d") ; //print
-
-canvas.width = 550;//screen size of the game
-canvas.height = 600;//screen size of the game
-
-const player = new Player(canvas.width / 2.2, canvas.height / 1.3);
-
-
-function gameLoop() {
-    ctx.fillStyle = "black";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-    player.draw(ctx)
-}
-
-setInterval(gameLoop, 1000 / 60); //speed of game
-=======
 // import { Player, Bullet } from './class/class'; this would work if we would not use live server and also the rest of the functions
 
 let canvas = document.querySelector("canvas") as HTMLCanvasElement;
@@ -129,4 +110,3 @@ function runGame() {
 playerInstance = new Player();
 addMovementToPlayer(playerInstance);
 runGame();
->>>>>>> 7473a3df52bf457216d9852d7b1fca3092105c27
