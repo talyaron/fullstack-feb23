@@ -212,7 +212,7 @@ function updateTimeAndProgress() {
   try {
     const progressElement = document.querySelector("#progress") as HTMLDivElement;
     const timeElement = document.querySelector("#time") as HTMLDivElement;
-
+//you didint checked that the element is not null
     const progress = (audioElement.currentTime / audioElement.duration) * 100;
     progressElement.style.width = `${progress}%`;
     const minutes = Math.floor(audioElement.currentTime / 60);
