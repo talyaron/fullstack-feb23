@@ -2,12 +2,11 @@ import express from 'express';
 const app = express()
 const port = process.env.PORT || 3002;
 
+
 //static files
 app.use(express.static('public'));
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
-})
+
 
 // const getNameFromUser = prompt('Please enter your name');
 
@@ -21,4 +20,8 @@ app.get('/name', (req, res) => {
 app.get('/family', (req, res) => {
   console.log('request to /family')
   res.send({ family: 'Yaron' })
+});
+
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}`)
 });
