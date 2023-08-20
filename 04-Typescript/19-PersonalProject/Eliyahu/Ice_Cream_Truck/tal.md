@@ -1,4 +1,4 @@
-BEM model: 2. You duidn't use BEM model.
+BEM model: 2. You didn't use BEM model.
 Responsivnace.  10
 Design: 9.
 Code is clear: 10
