@@ -7,4 +7,3 @@ MVC: 10. The code is not architected as MVC
 trycatch: 0.You didnt use trycatch.
 Error free: 5. The usee experince some of errors
 level 2: 5
-total:  58
