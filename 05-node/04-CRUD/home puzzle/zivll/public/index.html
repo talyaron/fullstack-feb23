@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./dist/style.css" />
+    <script src="./dist/index.js" defer></script>
+  </head>
+  <body>
+    <div class="form-wrapper">
+      <form onsubmit="handleSubmit(event)">
+        <input
+          type="text"
+          name="friendsName"
+          id="friendsName"
+          placeholder="what is your friend's name?"
+          required
+        />
+        <input
+          type="email"
+          name="friendsEmail"
+          id="friendsEmail"
+          placeholder="what is your friend's Email?"
+          required
+        />
+        <input
+          type="phone"
+          name="friendsPhoneNumber"
+          id="friendsPhoneNumber"
+          placeholder="what is your friend's Phone Number?"
+          required
+        />
+        <input
+          type="text"
+          name="friendsInstagramAccount"
+          id="friendsInstagramAccount"
+          placeholder="what is your friend's Instagram Account?"
+          required
+        />
+        <input type="submit" value="ADD" />
+      </form>
+    </div>
+    <button onclick="handleGetAllFriends()">
+      Get all friends from the server
+    </button>
+    <div id="root"></div>
+  </body>
+</html>
