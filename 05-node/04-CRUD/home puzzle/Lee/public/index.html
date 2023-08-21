@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./dist/style.css">
+    <script src="./dist/index.js" defer></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Shantell+Sans:wght@300&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <h1>Welcome to myFriends</h1>
+
+    <h2>Add a Friend</h2>
+    <form onsubmit="handleAddFriend(event)">
+        <label for="name">Name: </label><input type="text" name="name" placeholder=" Your Name">
+        <label for="email">E-mail address: </label><input type="text" name="email" placeholder=" Your Email">
+        <label for="phone">Phone number: </label><input type="text" name="phone" placeholder=" Phone Number">
+        <label for="igName">Instagram handle: </label><input type="text" name="igName" placeholder=" Your Instagram">
+        <button type="submit">ADD</button>
+    </form>
+
+    <button onclick="handleGetFriends()">GET Friends</button>
+    <div id="root"></div>
+</body>
+
+</html>
