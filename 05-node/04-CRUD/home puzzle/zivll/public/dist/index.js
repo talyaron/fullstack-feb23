@@ -108,7 +108,7 @@ function handleGetAllFriends() {
 }
 function friendsHTML(friend) {
     try {
-        var html = "<div class=\"friends-card\"><div>friend's name: " + friend.friendsName + "</div><div>friend's email: " + friend.friendsEmail + "</div><div>friend's phone number: " + friend.friendsPhoneNumber + "</div><div>friend's instagram account: " + friend.friendsInstagramAccount + "</div><div> friend's id: " + friend.id + "</div><input type=\"text\" name=\"friendsName\" value=\"" + friend.friendsName + "\" placeholder=\"New friend's Name\" /><button type=\"submit\">Update name</button><button onclick=\"handleDeleteFriend('" + friend.id + "')\">Delete friend</button></div>";
+        var html = "<div class=\"friends-card\"><div>friend's name: " + friend.friendsName + "</div><div>email: " + friend.friendsEmail + "</div><div>phone number: " + friend.friendsPhoneNumber + "</div><div>instagram account: " + friend.friendsInstagramAccount + "</div><div>id: " + friend.id + "</div><input type=\"text\" name=\"friendsName\" value=\"" + friend.friendsName + "\" placeholder=\"New friend's Name\" /><button type=\"submit\">Update name</button><button onclick=\"handleDeleteFriend('" + friend.id + "')\">Delete friend</button></div>";
         return html;
     }
     catch (error) {
