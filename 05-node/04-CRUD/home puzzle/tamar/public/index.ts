@@ -9,7 +9,7 @@ interface Friend {
   
   getfriends();
   
-  async function handleAddfriends(event: any) {
+  async function handleAddFriend(event: any) {
     try {
       event.preventDefault();
       const fullName = event.target.fullName.value;
@@ -23,7 +23,7 @@ interface Friend {
   
       const friend: Friend = { fullName, email, phoneNumber, instegram, imgUrl };
   
-      const response = await fetch('/API/add-friends', {
+      const response = await fetch('/API/add-friend', {
         method: 'POST',  //catch the data from user and save it in server
         headers: {
           'Content-Type': 'application/json'
@@ -60,15 +60,19 @@ interface Friend {
       const html = `<div class="friends">
         <img src="${friends.imgUrl}" />
         <h3>${friends.fullName}</h3>
+        <p>email: ${friends.email}</p>
         <p>phoneNumber: ${friends.phoneNumber}</p>
         <p>instegram: ${friends.instegram}</p>
+        <p>update friend information:</p>
+        <!--update data form-->
         <form id="${friends.id}" onsubmit="handleUpdatefriends(event)">
-        <input type="text" name="email" value="${friends.email}" placeholder="*e-mail">
-        <input type="text" name="phoneNumber"  value="${friends.phoneNumber}" placeholder="Price">
-        <input type="text" name="instegram" value="${friends.instegram}" placeholder="instegram accaunte">
-        <input type="url" name="imgUrl" value="${friends.imgUrl}" placeholder="my friend Image">
+        <input type="text" name="email" placeholder="e-mail">
+        <input type="text" name="phoneNumber" placeholder="phoneNumber">
+        <input type="text" name="instegram" placeholder="instegram accaunte">
+        <input type="url" name="imgUrl" placeholder="my friend Image">
         <button type="submit">Update</button></form>
         <button onclick="handleDeletefriends('${friends.id}')">Delete</button>
+
       </div>`
       return html;
     } catch (error) {
@@ -97,7 +101,7 @@ interface Friend {
   
   async function handleDeletefriends(id:string){
     try {
-      const response = await fetch('/API/delete-friends', {
+      const response = await fetch('/API/delete-friend', {
         method: 'DELETE', //delet the data saved in server
         headers: {
           'Content-Type': 'application/json'
@@ -125,7 +129,7 @@ interface Friend {
       const id = ev.target.id;
       console.log(id, phoneNumber, email, instegram, imgUrl)
   
-      const response = await fetch('/API/update-friends', {
+      const response = await fetch('/API/update-friend', {
         method: 'PATCH', //catch the update and save it in server
         headers: {
           'Content-Type': 'application/json'
