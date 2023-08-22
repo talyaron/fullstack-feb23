@@ -2,8 +2,8 @@ body {
   background-color: rgb(80, 15, 231);
   display: flex;
   justify-content: center;
-  .wrapper {
-  }
+//   .wrapper {
+//   }
 }
 
 h1 {
@@ -11,16 +11,23 @@ h1 {
   text-align: center;
 }
 
-
-tasksListDiv __task
-.tasksListDiv{
+.tasksListDiv {
   border: 3px solid rgb(203, 12, 44);
   &__task {
-    padding: 5px ;
+    padding: 5px;
     margin: 20px;
-    // input {
-    // }
-    // .focused {
-    // }
+    input {
+      background-color: rgb(80, 15, 231);
+      border: none;
+    }
+    .taskNameInList{
+        width: 200px;
+        height: 50px;
+    }
+    .focused {
+      background-color: rgb(192, 3, 3);
+      color: rgb(0, 0, 0);
+      border: 1px solid black;
+    }
   }
 }

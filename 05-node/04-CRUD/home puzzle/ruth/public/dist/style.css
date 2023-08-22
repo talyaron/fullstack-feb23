@@ -3,15 +3,29 @@ body {
   display: flex;
   justify-content: center;
 }
+
 h1 {
   color: white;
   text-align: center;
 }
 
-tasksListDiv __task .tasksListDiv {
+.tasksListDiv {
   border: 3px solid #cb0c2c;
 }
-tasksListDiv __task .tasksListDiv__task {
+.tasksListDiv__task {
   padding: 5px;
   margin: 20px;
+}
+.tasksListDiv__task input {
+  background-color: #500fe7;
+  border: none;
+}
+.tasksListDiv__task .taskNameInList {
+  width: 200px;
+  height: 50px;
+}
+.tasksListDiv__task .focused {
+  background-color: #c00303;
+  color: black;
+  border: 1px solid black;
 }
