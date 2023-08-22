@@ -49,7 +49,7 @@ function handleAddfriends(event) {
                     instegram = event.target.instegram.value;
                     imgUrl = event.target.imgUrl.value;
                     if (!fullName || !email || !phoneNumber) {
-                        throw new Error('Please complete all first free fields');
+                        throw new Error('Please complete all mandatory fields');
                     }
                     friend = { fullName: fullName, email: email, phoneNumber: phoneNumber, instegram: instegram, imgUrl: imgUrl };
                     return [4 /*yield*/, fetch('/API/add-friends', {
@@ -105,7 +105,7 @@ function getfriends() {
 }
 function renderfriendsHTML(friends) {
     try {
-        var html = "<div class=\"friends\">\n        <img src=\"" + friends.imgUrl + "\" />\n        <h3>" + friends.fullName + "</h3>\n        <p>phoneNumber: " + friends.phoneNumber + "</p>\n        <p>instegram: " + friends.instegram + "</p>\n        <form id=\"" + friends.id + "\" onsubmit=\"handleUpdatefriends(event)\">\n        <input type=\"text\" name=\"email\" value=\"" + friends.email + "\" placeholder=\"*e-mail\">\n        <input type=\"text\" name=\"phoneNumber\"  value=\"" + friends.phoneNumber + "\" placeholder=\"Price\" />\n        <input type=\"text\" name=\"instegram\" value=\"" + friends.instegram + "\" placeholder=\"instegram accaunte\">\n        <input type=\"url\" name=\"imgUrl\" value=\"" + friends.imgUrl + "\" placeholder=\"my friend Image\">\n        <button type=\"submit\">Update</button></form>\n        <button onclick=\"handleDeletefriends('" + friends.id + "')\">Delete</button>\n      </div>";
+        var html = "<div class=\"friends\">\n        <img src=\"" + friends.imgUrl + "\" />\n        <h3>" + friends.fullName + "</h3>\n        <p>phoneNumber: " + friends.phoneNumber + "</p>\n        <p>instegram: " + friends.instegram + "</p>\n        <form id=\"" + friends.id + "\" onsubmit=\"handleUpdatefriends(event)\">\n        <input type=\"text\" name=\"email\" value=\"" + friends.email + "\" placeholder=\"*e-mail\">\n        <input type=\"text\" name=\"phoneNumber\"  value=\"" + friends.phoneNumber + "\" placeholder=\"Price\">\n        <input type=\"text\" name=\"instegram\" value=\"" + friends.instegram + "\" placeholder=\"instegram accaunte\">\n        <input type=\"url\" name=\"imgUrl\" value=\"" + friends.imgUrl + "\" placeholder=\"my friend Image\">\n        <button type=\"submit\">Update</button></form>\n        <button onclick=\"handleDeletefriends('" + friends.id + "')\">Delete</button>\n      </div>";
         return html;
     }
     catch (error) {
@@ -120,14 +120,14 @@ function renderfriends(friends, HTMLElement) {
         console.log(friends);
         if (!Array.isArray(friends))
             throw new Error("friendss are not array");
-        var friendssHTML = friends.map(function (friends) { return renderfriendsHTML(friends); }).join("");
-        HTMLElement.innerHTML = friendssHTML;
+        var friendsHTML = friends.map(function (friend) { return renderfriendsHTML(friend); }).join("");
+        HTMLElement.innerHTML = friendsHTML;
     }
     catch (error) {
         console.error(error);
     }
 }
-function handleShowFriends() {
+function handleGetFriends() {
     return __awaiter(this, void 0, void 0, function () {
         var friends, root;
         return __generator(this, function (_a) {
@@ -136,7 +136,7 @@ function handleShowFriends() {
                 case 1:
                     friends = _a.sent();
                     root = document.querySelector('#root');
-                    renderfriends(friends, root);
+                    renderfriends(friends, root); //call the function to show the list on-screen
                     return [2 /*return*/];
             }
         });
@@ -163,7 +163,7 @@ function handleDeletefriends(id) {
                     result = _a.sent();
                     console.log(result);
                     friends = result.friends;
-                    renderfriends(friends, document.querySelector('#root'));
+                    renderfriends(friends, document.querySelector('#root')); //call the function to shoe the update list
                     return [3 /*break*/, 4];
                 case 3:
                     error_3 = _a.sent();
@@ -176,21 +176,24 @@ function handleDeletefriends(id) {
 }
 function handleUpdatefriends(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var phoneNumber, id, response, result, friendss, error_4;
+        var phoneNumber, email, instegram, imgUrl, id, response, result, friends, error_4;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
                     ev.preventDefault();
-                    phoneNumber = ev.target.phoneNumber.valueAsNumber;
+                    phoneNumber = ev.target.phoneNumber.value;
+                    email = ev.target.email.value;
+                    instegram = ev.target.instegram.value;
+                    imgUrl = ev.target.imgUrl.value;
                     id = ev.target.id;
-                    console.log(id, phoneNumber);
+                    console.log(id, phoneNumber, email, instegram, imgUrl);
                     return [4 /*yield*/, fetch('/API/update-friends', {
                             method: 'PATCH',
                             headers: {
                                 'Content-Type': 'application/json'
                             },
-                            body: JSON.stringify({ id: id, phoneNumber: phoneNumber })
+                            body: JSON.stringify({ id: id, phoneNumber: phoneNumber, email: email, instegram: instegram, imgUrl: imgUrl })
                         })];
                 case 1:
                     response = _a.sent();
@@ -198,8 +201,8 @@ function handleUpdatefriends(ev) {
                 case 2:
                     result = _a.sent();
                     console.log(result);
-                    friendss = result.friendss;
-                    renderfriendss(friendss, document.querySelector('#root'));
+                    friends = result.friends;
+                    renderfriends(friends, document.querySelector('#root'));
                     return [3 /*break*/, 4];
                 case 3:
                     error_4 = _a.sent();

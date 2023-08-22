@@ -108,7 +108,7 @@ function handleGetAllFriends() {
 }
 function friendsHTML(friend) {
     try {
-        var html = "<div class=\"friends-card\"><div>friend's name: " + friend.friendsName + "</div><div>email: " + friend.friendsEmail + "</div><div>phone number: " + friend.friendsPhoneNumber + "</div><div>instagram account: " + friend.friendsInstagramAccount + "</div><div>id: " + friend.id + "</div><input type=\"text\" name=\"friendsName\" value=\"" + friend.friendsName + "\" placeholder=\"New friend's Name\" /><button type=\"submit\">Update name</button><button onclick=\"handleDeleteFriend('" + friend.id + "')\">Delete friend</button></div>";
+        var html = "<div class=\"friends-card\"><div>friend's name: " + friend.friendsName + "</div><div>email: " + friend.friendsEmail + "</div><div>phone number: " + friend.friendsPhoneNumber + "</div><div>instagram account: " + friend.friendsInstagramAccount + "</div><div>id: " + friend.id + "</div><form id=\"" + friend.id + "\" onsubmit=\"handleUpdateFriends(event)\"><input type=\"text\" name=\"friendsName\" value=\"" + friend.friendsName + "\" placeholder=\"New friend's Name\" /><input type=\"text\" name=\"friendsEmail\" value=\"" + friend.friendsEmail + "\" placeholder=\"New friend's Email\" /><input type=\"text\" name=\"friendsPhoneNumber\" value=\"" + friend.friendsPhoneNumber + "\" placeholder=\"New friend's Phone number\" /><input type=\"text\" name=\"friendsInstagramAccount\" value=\"" + friend.friendsInstagramAccount + "\" placeholder=\"New friend's Instagram Account\" /><button type=\"submit\">Update</button></form><button onclick=\"handleDeleteFriend('" + friend.id + "')\">Delete friend</button></div>";
         return html;
     }
     catch (error) {
@@ -123,4 +123,70 @@ function renderAllFriends(friends) {
     if (!root)
         throw new Error("root element not found");
     root.innerHTML = htmlFriends;
+}
+function handleUpdateFriends(event) {
+    return __awaiter(this, void 0, void 0, function () {
+        var friendsName, friendsEmail, friendsPhoneNumber, friendsInstagramAccount, id, response, result, error_3;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 3, , 4]);
+                    console.dir(event);
+                    event.preventDefault();
+                    friendsName = event.target.friendsName.value;
+                    friendsEmail = event.target.friendsEmail.value;
+                    friendsPhoneNumber = event.target.friendsPhoneNumber.value;
+                    friendsInstagramAccount = event.target.friendsInstagramAccount.value;
+                    id = event.target.id;
+                    return [4 /*yield*/, fetch("/API/update", {
+                            method: "PATCH",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify({
+                                friendsName: friendsName,
+                                friendsEmail: friendsEmail,
+                                friendsPhoneNumber: friendsPhoneNumber,
+                                friendsInstagramAccount: friendsInstagramAccount,
+                                id: id
+                            })
+                        })];
+                case 1:
+                    response = _a.sent();
+                    console.log(response);
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    result = _a.sent();
+                    console.log(result);
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_3 = _a.sent();
+                    console.error(error_3);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
+            }
+        });
+    });
+}
+function handleDeleteFriend(id) {
+    return __awaiter(this, void 0, void 0, function () {
+        var response, error_4;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    return [4 /*yield*/, fetch("/API/delete/", {
+                            method: "DELETE",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify({ id: id })
+                        })];
+                case 1:
+                    response = _a.sent();
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_4 = _a.sent();
+                    console.error(error_4);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
 }

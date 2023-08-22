@@ -9,27 +9,29 @@ const port = process.env.PORT || 3000;
 //static files
 app.use(express_1.default.static("public"));
 app.use(express_1.default.json());
-class friend {
-    constructor({ fullName, phoneNumber, imgUrl }) {
+class Friend {
+    constructor({ fullName, email, phoneNumber, instegram, imgUrl }) {
         this.fullName = fullName;
+        this.email = email;
         this.phoneNumber = phoneNumber;
+        this.instegram = instegram;
         this.imgUrl = imgUrl;
         this.id = Math.random().toString();
     }
 }
 let friends = [];
 //CRUD - Create, Read, Update, Delete
-//Create - friend
+//Create - one friend
 app.post("/API/add-friend", (req, res) => {
     const friend = req.body;
     console.log(friend);
     //add to friends array
-    friends.push(new friend(friend)); // --> add to Database
+    friends.push(new Friend(friend)); // --> add to Database
     console.log(friends);
     res.send({ friend });
 });
-//Read - friends
-//get all friends
+//Read - all friends
+//get all friends list
 app.get("/API/get-friends", (req, res) => {
     try {
         res.send({ friends });
@@ -38,7 +40,7 @@ app.get("/API/get-friends", (req, res) => {
         console.error(error);
     }
 });
-//Delete - friend
+//Delete - one friend
 app.delete("/API/delete-friend", (req, res) => {
     try {
         const { id } = req.body;
@@ -51,17 +53,20 @@ app.delete("/API/delete-friend", (req, res) => {
         res.send({ error });
     }
 });
-//update - friend
+//update - one friend
 app.patch("/API/update-friend", (req, res) => {
     try {
-        const { phoneNumber, id } = req.body;
+        const { email, phoneNumber, instegram, imgUrl, id } = req.body;
         console.log(req.body);
-        if (!phoneNumber || !id)
+        if (!email || !phoneNumber || !instegram || !imgUrl || !id)
             throw new Error("Please complete all fields");
         const friend = friends.find((friend) => friend.id === id);
         if (!friend)
             throw new Error("friend not found");
+        friend.email = email;
         friend.phoneNumber = phoneNumber;
+        friend.instegram = instegram;
+        friend.imgUrl = imgUrl;
         res.send({ friends });
     }
     catch (error) {

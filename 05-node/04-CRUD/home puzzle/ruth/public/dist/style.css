@@ -1,0 +1,17 @@
+body {
+  background-color: #500fe7;
+  display: flex;
+  justify-content: center;
+}
+h1 {
+  color: white;
+  text-align: center;
+}
+
+tasksListDiv __task .tasksListDiv {
+  border: 3px solid #cb0c2c;
+}
+tasksListDiv __task .tasksListDiv__task {
+  padding: 5px;
+  margin: 20px;
+}
