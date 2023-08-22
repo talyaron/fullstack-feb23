@@ -34,28 +34,30 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-getproducts();
-function handleAddProduct(event) {
+getfriends();
+function handleAddfriends(event) {
     return __awaiter(this, void 0, void 0, function () {
-        var title, price, imgUrl, product, response, result, error_1;
+        var fullName, email, phoneNumber, instegram, imgUrl, friend, response, result, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
                     event.preventDefault();
-                    title = event.target.title.value;
-                    price = event.target.price.valueAsNumber;
+                    fullName = event.target.fullName.value;
+                    email = event.target.email.value;
+                    phoneNumber = event.target.phoneNumber.value;
+                    instegram = event.target.instegram.value;
                     imgUrl = event.target.imgUrl.value;
-                    if (!title || !price || !imgUrl) {
-                        throw new Error("Please complete all fields");
+                    if (!fullName || !email || !phoneNumber) {
+                        throw new Error('Please complete all mandatory fields');
                     }
-                    product = { title: title, price: price, imgUrl: imgUrl };
-                    return [4 /*yield*/, fetch("/API/add-product", {
-                            method: "POST",
+                    friend = { fullName: fullName, email: email, phoneNumber: phoneNumber, instegram: instegram, imgUrl: imgUrl };
+                    return [4 /*yield*/, fetch('/API/add-friends', {
+                            method: 'POST',
                             headers: {
-                                "Content-Type": "application/json"
+                                'Content-Type': 'application/json'
                             },
-                            body: JSON.stringify(product)
+                            body: JSON.stringify(friend)
                         })];
                 case 1:
                     response = _a.sent();
@@ -73,25 +75,25 @@ function handleAddProduct(event) {
         });
     });
 }
-function getproducts() {
+function getfriends() {
     return __awaiter(this, void 0, void 0, function () {
-        var response, results, products, error_2;
+        var response, results, friends, error_2;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
-                    return [4 /*yield*/, fetch("/API/get-products")];
+                    return [4 /*yield*/, fetch('/API/get-friends')];
                 case 1:
                     response = _a.sent();
                     return [4 /*yield*/, response.json()];
                 case 2:
                     results = _a.sent();
-                    products = results.products;
-                    if (!Array.isArray(products))
-                        throw new Error("products are not array");
-                    console.log(products);
+                    friends = results.friends;
+                    if (!Array.isArray(friends))
+                        throw new Error("friendss are not array");
+                    console.log(friends);
                     console.log(results);
-                    return [2 /*return*/, products];
+                    return [2 /*return*/, friends];
                 case 3:
                     error_2 = _a.sent();
                     console.error(error_2);
@@ -101,9 +103,9 @@ function getproducts() {
         });
     });
 }
-function renderProductHTML(product) {
+function renderfriendsHTML(friends) {
     try {
-        var html = "<div class=\"product\">\n      <img src=\"" + product.imgUrl + "\" />\n      <h3>" + product.title + "</h3>\n      <p>Price: " + product.price + "</p>\n      <form id=\"" + product.id + "\" onsubmit=\"handleUpdateProduct(event)\"><input type=\"number\" name=\"price\"  value=\"" + product.price + "\" placeholder=\"Price\" /><button type=\"submit\">Update</button></form>\n      <button onclick=\"handleDeleteProduct('" + product.id + "')\">Delete</button>\n    </div>";
+        var html = "<div class=\"friends\">\n        <img src=\"" + friends.imgUrl + "\" />\n        <h3>" + friends.fullName + "</h3>\n        <p>phoneNumber: " + friends.phoneNumber + "</p>\n        <p>instegram: " + friends.instegram + "</p>\n        <form id=\"" + friends.id + "\" onsubmit=\"handleUpdatefriends(event)\">\n        <input type=\"text\" name=\"email\" value=\"" + friends.email + "\" placeholder=\"*e-mail\">\n        <input type=\"text\" name=\"phoneNumber\"  value=\"" + friends.phoneNumber + "\" placeholder=\"Price\">\n        <input type=\"text\" name=\"instegram\" value=\"" + friends.instegram + "\" placeholder=\"instegram accaunte\">\n        <input type=\"url\" name=\"imgUrl\" value=\"" + friends.imgUrl + "\" placeholder=\"my friend Image\">\n        <button type=\"submit\">Update</button></form>\n        <button onclick=\"handleDeletefriends('" + friends.id + "')\">Delete</button>\n      </div>";
         return html;
     }
     catch (error) {
@@ -111,48 +113,46 @@ function renderProductHTML(product) {
         return "";
     }
 }
-function renderProducts(products, HTMLElement) {
+function renderfriends(friends, HTMLElement) {
     try {
         if (!HTMLElement)
             throw new Error("HTMLElement not found");
-        console.log(products);
-        if (!Array.isArray(products))
-            throw new Error("products are not array");
-        var productsHTML = products
-            .map(function (product) { return renderProductHTML(product); })
-            .join("");
-        HTMLElement.innerHTML = productsHTML;
+        console.log(friends);
+        if (!Array.isArray(friends))
+            throw new Error("friendss are not array");
+        var friendsHTML = friends.map(function (friend) { return renderfriendsHTML(friend); }).join("");
+        HTMLElement.innerHTML = friendsHTML;
     }
     catch (error) {
         console.error(error);
     }
 }
-function handleGetProducts() {
+function handleGetFriends() {
     return __awaiter(this, void 0, void 0, function () {
-        var products, root;
+        var friends, root;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, getproducts()];
+                case 0: return [4 /*yield*/, getfriends()];
                 case 1:
-                    products = _a.sent();
-                    root = document.querySelector("#root");
-                    renderProducts(products, root);
+                    friends = _a.sent();
+                    root = document.querySelector('#root');
+                    renderfriends(friends, root); //call the function to show the list on-screen
                     return [2 /*return*/];
             }
         });
     });
 }
-function handleDeleteProduct(id) {
+function handleDeletefriends(id) {
     return __awaiter(this, void 0, void 0, function () {
-        var response, result, products, error_3;
+        var response, result, friends, error_3;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
-                    return [4 /*yield*/, fetch("/API/delete-product", {
-                            method: "DELETE",
+                    return [4 /*yield*/, fetch('/API/delete-friends', {
+                            method: 'DELETE',
                             headers: {
-                                "Content-Type": "application/json"
+                                'Content-Type': 'application/json'
                             },
                             body: JSON.stringify({ id: id })
                         })];
@@ -162,8 +162,8 @@ function handleDeleteProduct(id) {
                 case 2:
                     result = _a.sent();
                     console.log(result);
-                    products = result.products;
-                    renderProducts(products, document.querySelector("#root"));
+                    friends = result.friends;
+                    renderfriends(friends, document.querySelector('#root')); //call the function to shoe the update list
                     return [3 /*break*/, 4];
                 case 3:
                     error_3 = _a.sent();
@@ -174,23 +174,26 @@ function handleDeleteProduct(id) {
         });
     });
 }
-function handleUpdateProduct(ev) {
+function handleUpdatefriends(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var price, id, response, result, products, error_4;
+        var phoneNumber, email, instegram, imgUrl, id, response, result, friends, error_4;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
                     ev.preventDefault();
-                    price = ev.target.price.valueAsNumber;
+                    phoneNumber = ev.target.phoneNumber.value;
+                    email = ev.target.email.value;
+                    instegram = ev.target.instegram.value;
+                    imgUrl = ev.target.imgUrl.value;
                     id = ev.target.id;
-                    console.log(id, price);
-                    return [4 /*yield*/, fetch("/API/update-product", {
-                            method: "PATCH",
+                    console.log(id, phoneNumber, email, instegram, imgUrl);
+                    return [4 /*yield*/, fetch('/API/update-friends', {
+                            method: 'PATCH',
                             headers: {
-                                "Content-Type": "application/json"
+                                'Content-Type': 'application/json'
                             },
-                            body: JSON.stringify({ id: id, price: price })
+                            body: JSON.stringify({ id: id, phoneNumber: phoneNumber, email: email, instegram: instegram, imgUrl: imgUrl })
                         })];
                 case 1:
                     response = _a.sent();
@@ -198,8 +201,8 @@ function handleUpdateProduct(ev) {
                 case 2:
                     result = _a.sent();
                     console.log(result);
-                    products = result.products;
-                    renderProducts(products, document.querySelector("#root"));
+                    friends = result.friends;
+                    renderfriends(friends, document.querySelector('#root'));
                     return [3 /*break*/, 4];
                 case 3:
                     error_4 = _a.sent();

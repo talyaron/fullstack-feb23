@@ -34,28 +34,34 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-getproducts();
-function handleAddProduct(event) {
+function handleSubmit(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var title, price, imgUrl, product, response, result, error_1;
+        var friendsName, friendsEmail, friendsPhoneNumber, friendsInstagramAccount, friend, response, result, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
-                    event.preventDefault();
-                    title = event.target.title.value;
-                    price = event.target.price.valueAsNumber;
-                    imgUrl = event.target.imgUrl.value;
-                    if (!title || !price || !imgUrl) {
-                        throw new Error("Please complete all fields");
-                    }
-                    product = { title: title, price: price, imgUrl: imgUrl };
-                    return [4 /*yield*/, fetch("/API/add-product", {
+                    ev.preventDefault();
+                    friendsName = ev.target.friendsName.value;
+                    friendsEmail = ev.target.friendsEmail.value;
+                    friendsPhoneNumber = ev.target.friendsPhoneNumber.value;
+                    friendsInstagramAccount = ev.target.friendsInstagramAccount.value;
+                    if (!friendsName ||
+                        !friendsEmail ||
+                        !friendsPhoneNumber ||
+                        !friendsInstagramAccount)
+                        throw new Error("please fill all the fields");
+                    friend = {
+                        friendsName: friendsName,
+                        friendsEmail: friendsEmail,
+                        friendsPhoneNumber: friendsPhoneNumber,
+                        friendsInstagramAccount: friendsInstagramAccount
+                    };
+                    console.log(friend);
+                    return [4 /*yield*/, fetch("/API/create", {
                             method: "POST",
-                            headers: {
-                                "Content-Type": "application/json"
-                            },
-                            body: JSON.stringify(product)
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify(friend)
                         })];
                 case 1:
                     response = _a.sent();
@@ -63,6 +69,7 @@ function handleAddProduct(event) {
                 case 2:
                     result = _a.sent();
                     console.log(result);
+                    ev.target.reset();
                     return [3 /*break*/, 4];
                 case 3:
                     error_1 = _a.sent();
@@ -73,25 +80,23 @@ function handleAddProduct(event) {
         });
     });
 }
-function getproducts() {
+function handleGetAllFriends() {
     return __awaiter(this, void 0, void 0, function () {
-        var response, results, products, error_2;
+        var response, result, friends, error_2;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
-                    return [4 /*yield*/, fetch("/API/get-products")];
+                    return [4 /*yield*/, fetch("/API/getAllFriends")];
                 case 1:
                     response = _a.sent();
                     return [4 /*yield*/, response.json()];
                 case 2:
-                    results = _a.sent();
-                    products = results.products;
-                    if (!Array.isArray(products))
-                        throw new Error("products are not array");
-                    console.log(products);
-                    console.log(results);
-                    return [2 /*return*/, products];
+                    result = _a.sent();
+                    friends = result;
+                    console.log(friends);
+                    renderAllFriends(friends);
+                    return [3 /*break*/, 4];
                 case 3:
                     error_2 = _a.sent();
                     console.error(error_2);
@@ -101,69 +106,56 @@ function getproducts() {
         });
     });
 }
-function renderProductHTML(product) {
+function friendsHTML(friend) {
     try {
-        var html = "<div class=\"product\">\n      <img src=\"" + product.imgUrl + "\" />\n      <h3>" + product.title + "</h3>\n      <p>Price: " + product.price + "</p>\n      <form id=\"" + product.id + "\" onsubmit=\"handleUpdateProduct(event)\"><input type=\"number\" name=\"price\"  value=\"" + product.price + "\" placeholder=\"Price\" /><button type=\"submit\">Update</button></form>\n      <button onclick=\"handleDeleteProduct('" + product.id + "')\">Delete</button>\n    </div>";
+        var html = "<div class=\"friends-card\"><div>friend's name: " + friend.friendsName + "</div><div>email: " + friend.friendsEmail + "</div><div>phone number: " + friend.friendsPhoneNumber + "</div><div>instagram account: " + friend.friendsInstagramAccount + "</div><div>id: " + friend.id + "</div><form id=\"" + friend.id + "\" onsubmit=\"handleUpdateFriends(event)\"><input type=\"text\" name=\"friendsName\" value=\"" + friend.friendsName + "\" placeholder=\"New friend's Name\" /><input type=\"text\" name=\"friendsEmail\" value=\"" + friend.friendsEmail + "\" placeholder=\"New friend's Email\" /><input type=\"text\" name=\"friendsPhoneNumber\" value=\"" + friend.friendsPhoneNumber + "\" placeholder=\"New friend's Phone number\" /><input type=\"text\" name=\"friendsInstagramAccount\" value=\"" + friend.friendsInstagramAccount + "\" placeholder=\"New friend's Instagram Account\" /><button type=\"submit\">Update</button></form><button onclick=\"handleDeleteFriend('" + friend.id + "')\">Delete friend</button></div>";
         return html;
     }
     catch (error) {
         console.error(error);
-        return "";
     }
 }
-function renderProducts(products, HTMLElement) {
-    try {
-        if (!HTMLElement)
-            throw new Error("HTMLElement not found");
-        console.log(products);
-        if (!Array.isArray(products))
-            throw new Error("products are not array");
-        var productsHTML = products
-            .map(function (product) { return renderProductHTML(product); })
-            .join("");
-        HTMLElement.innerHTML = productsHTML;
-    }
-    catch (error) {
-        console.error(error);
-    }
+function renderAllFriends(friends) {
+    var root = document.querySelector("#root");
+    var htmlFriends = friends
+        .map(function (friend) { return friendsHTML(friend); })
+        .join("");
+    if (!root)
+        throw new Error("root element not found");
+    root.innerHTML = htmlFriends;
 }
-function handleGetProducts() {
+function handleUpdateFriends(event) {
     return __awaiter(this, void 0, void 0, function () {
-        var products, root;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0: return [4 /*yield*/, getproducts()];
-                case 1:
-                    products = _a.sent();
-                    root = document.querySelector("#root");
-                    renderProducts(products, root);
-                    return [2 /*return*/];
-            }
-        });
-    });
-}
-function handleDeleteProduct(id) {
-    return __awaiter(this, void 0, void 0, function () {
-        var response, result, products, error_3;
+        var friendsName, friendsEmail, friendsPhoneNumber, friendsInstagramAccount, id, response, result, error_3;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
-                    return [4 /*yield*/, fetch("/API/delete-product", {
-                            method: "DELETE",
-                            headers: {
-                                "Content-Type": "application/json"
-                            },
-                            body: JSON.stringify({ id: id })
+                    console.dir(event);
+                    event.preventDefault();
+                    friendsName = event.target.friendsName.value;
+                    friendsEmail = event.target.friendsEmail.value;
+                    friendsPhoneNumber = event.target.friendsPhoneNumber.value;
+                    friendsInstagramAccount = event.target.friendsInstagramAccount.value;
+                    id = event.target.id;
+                    return [4 /*yield*/, fetch("/API/update", {
+                            method: "PATCH",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify({
+                                friendsName: friendsName,
+                                friendsEmail: friendsEmail,
+                                friendsPhoneNumber: friendsPhoneNumber,
+                                friendsInstagramAccount: friendsInstagramAccount,
+                                id: id
+                            })
                         })];
                 case 1:
                     response = _a.sent();
+                    console.log(response);
                     return [4 /*yield*/, response.json()];
                 case 2:
                     result = _a.sent();
                     console.log(result);
-                    products = result.products;
-                    renderProducts(products, document.querySelector("#root"));
                     return [3 /*break*/, 4];
                 case 3:
                     error_3 = _a.sent();
@@ -174,38 +166,26 @@ function handleDeleteProduct(id) {
         });
     });
 }
-function handleUpdateProduct(ev) {
+function handleDeleteFriend(id) {
     return __awaiter(this, void 0, void 0, function () {
-        var price, id, response, result, products, error_4;
+        var response, error_4;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    _a.trys.push([0, 3, , 4]);
-                    ev.preventDefault();
-                    price = ev.target.price.valueAsNumber;
-                    id = ev.target.id;
-                    console.log(id, price);
-                    return [4 /*yield*/, fetch("/API/update-product", {
-                            method: "PATCH",
-                            headers: {
-                                "Content-Type": "application/json"
-                            },
-                            body: JSON.stringify({ id: id, price: price })
+                    _a.trys.push([0, 2, , 3]);
+                    return [4 /*yield*/, fetch("/API/delete/", {
+                            method: "DELETE",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify({ id: id })
                         })];
                 case 1:
                     response = _a.sent();
-                    return [4 /*yield*/, response.json()];
+                    return [3 /*break*/, 3];
                 case 2:
-                    result = _a.sent();
-                    console.log(result);
-                    products = result.products;
-                    renderProducts(products, document.querySelector("#root"));
-                    return [3 /*break*/, 4];
-                case 3:
                     error_4 = _a.sent();
                     console.error(error_4);
-                    return [3 /*break*/, 4];
-                case 4: return [2 /*return*/];
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
             }
         });
     });

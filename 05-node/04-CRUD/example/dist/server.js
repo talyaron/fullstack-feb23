@@ -5,9 +5,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const app = express_1.default();
-const port = process.env.PORT || 3000;
 //static files
-app.use(express_1.default.static('public'));
+app.use(express_1.default.static("public"));
 app.use(express_1.default.json());
 class Product {
     constructor({ title, price, imgUrl }) {
@@ -20,7 +19,7 @@ class Product {
 let products = [];
 //CRUD - Create, Read, Update, Delete
 //Create - product
-app.post('/API/add-product', (req, res) => {
+app.post("/API/add-product", (req, res) => {
     const product = req.body;
     console.log(product);
     //add to products array
@@ -43,7 +42,7 @@ app.delete("/API/delete-product", (req, res) => {
     try {
         const { id } = req.body;
         console.log(id);
-        products = products.filter(product => product.id !== id);
+        products = products.filter((product) => product.id !== id);
         res.send({ products });
     }
     catch (error) {
@@ -58,7 +57,7 @@ app.patch("/API/update-product", (req, res) => {
         console.log(req.body);
         if (!price || !id)
             throw new Error("Please complete all fields");
-        const product = products.find(product => product.id === id);
+        const product = products.find((product) => product.id === id);
         if (!product)
             throw new Error("Product not found");
         product.price = price;
