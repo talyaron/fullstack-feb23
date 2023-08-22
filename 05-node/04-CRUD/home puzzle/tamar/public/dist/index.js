@@ -65,6 +65,7 @@ function handleAddFriend(event) {
                 case 2:
                     result = _a.sent();
                     console.log(result);
+                    document.querySelector("form").reset();
                     return [3 /*break*/, 4];
                 case 3:
                     error_1 = _a.sent();

@@ -33,6 +33,8 @@ interface Friend {
   
       const result = await response.json();
       console.log(result); 
+
+      document.querySelector("form").reset();
   
     } catch (error) {
       console.error(error);
