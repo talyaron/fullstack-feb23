@@ -35,7 +35,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 getfriends();
-function handleAddfriends(event) {
+function handleAddFriend(event) {
     return __awaiter(this, void 0, void 0, function () {
         var fullName, email, phoneNumber, instegram, imgUrl, friend, response, result, error_1;
         return __generator(this, function (_a) {
@@ -52,7 +52,7 @@ function handleAddfriends(event) {
                         throw new Error('Please complete all mandatory fields');
                     }
                     friend = { fullName: fullName, email: email, phoneNumber: phoneNumber, instegram: instegram, imgUrl: imgUrl };
-                    return [4 /*yield*/, fetch('/API/add-friends', {
+                    return [4 /*yield*/, fetch('/API/add-friend', {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json'
@@ -65,6 +65,7 @@ function handleAddfriends(event) {
                 case 2:
                     result = _a.sent();
                     console.log(result);
+                    document.querySelector("form").reset();
                     return [3 /*break*/, 4];
                 case 3:
                     error_1 = _a.sent();
@@ -105,7 +106,7 @@ function getfriends() {
 }
 function renderfriendsHTML(friends) {
     try {
-        var html = "<div class=\"friends\">\n        <img src=\"" + friends.imgUrl + "\" />\n        <h3>" + friends.fullName + "</h3>\n        <p>phoneNumber: " + friends.phoneNumber + "</p>\n        <p>instegram: " + friends.instegram + "</p>\n        <form id=\"" + friends.id + "\" onsubmit=\"handleUpdatefriends(event)\">\n        <input type=\"text\" name=\"email\" value=\"" + friends.email + "\" placeholder=\"*e-mail\">\n        <input type=\"text\" name=\"phoneNumber\"  value=\"" + friends.phoneNumber + "\" placeholder=\"Price\">\n        <input type=\"text\" name=\"instegram\" value=\"" + friends.instegram + "\" placeholder=\"instegram accaunte\">\n        <input type=\"url\" name=\"imgUrl\" value=\"" + friends.imgUrl + "\" placeholder=\"my friend Image\">\n        <button type=\"submit\">Update</button></form>\n        <button onclick=\"handleDeletefriends('" + friends.id + "')\">Delete</button>\n      </div>";
+        var html = "<div class=\"friends\">\n        <img src=\"" + friends.imgUrl + "\" />\n        <h3>" + friends.fullName + "</h3>\n        <p>email: " + friends.email + "</p>\n        <p>phoneNumber: " + friends.phoneNumber + "</p>\n        <p>instegram: " + friends.instegram + "</p>\n        <p>update friend information:</p>\n        <!--update data form-->\n        <form id=\"" + friends.id + "\" onsubmit=\"handleUpdatefriends(event)\">\n        <input type=\"text\" name=\"email\" placeholder=\"e-mail\">\n        <input type=\"text\" name=\"phoneNumber\" placeholder=\"phoneNumber\">\n        <input type=\"text\" name=\"instegram\" placeholder=\"instegram accaunte\">\n        <input type=\"url\" name=\"imgUrl\" placeholder=\"my friend Image\">\n        <button type=\"submit\">Update</button></form>\n        <button onclick=\"handleDeletefriends('" + friends.id + "')\">Delete</button>\n\n      </div>";
         return html;
     }
     catch (error) {
@@ -149,7 +150,7 @@ function handleDeletefriends(id) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
-                    return [4 /*yield*/, fetch('/API/delete-friends', {
+                    return [4 /*yield*/, fetch('/API/delete-friend', {
                             method: 'DELETE',
                             headers: {
                                 'Content-Type': 'application/json'
@@ -188,7 +189,7 @@ function handleUpdatefriends(ev) {
                     imgUrl = ev.target.imgUrl.value;
                     id = ev.target.id;
                     console.log(id, phoneNumber, email, instegram, imgUrl);
-                    return [4 /*yield*/, fetch('/API/update-friends', {
+                    return [4 /*yield*/, fetch('/API/update-friend', {
                             method: 'PATCH',
                             headers: {
                                 'Content-Type': 'application/json'
