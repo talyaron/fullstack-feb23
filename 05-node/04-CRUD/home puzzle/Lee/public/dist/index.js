@@ -102,9 +102,9 @@ function getFriends() {
         });
     });
 }
-function renderFriendsHTML(friend) {
+function renderFriendHTML(friend) {
     try {
-        var html = "<div class=\"friend\">\n    <h3>Name: " + friend.name + "</h3>\n    <h4>email: " + friend.email + "</h4>\n    <h4>phone: " + friend.phone + "</h4>\n    <h4>IG: " + friend.igName + "</h4>\n    </div>";
+        var html = "<div class=\"friend\">\n    <h3>Name: " + friend.name + "</h3>\n    <h4>email: " + friend.email + "</h4>\n    <h4>phone: " + friend.phone + "</h4>\n    <h4>IG: " + friend.igName + "</h4>\n    <img src=\"" + friend.img + "\" />\n    </div>";
         return html;
     }
     catch (error) {
@@ -114,11 +114,13 @@ function renderFriendsHTML(friend) {
 }
 function renderFriends(friends, HTMLElement) {
     try {
-        if (!HTMLElement) {
+        if (!HTMLElement)
             throw new Error('HTMLElement not found');
-            var friendsHTML = friends.map(function (friend) { return renderFriendsHTML(friend); }).join("");
-            HTMLElement.innerHTML = friendsHTML;
-        }
+        console.log(friends);
+        if (!Array.isArray(friends))
+            throw new Error('friend not found');
+        var friendsHTML = friends.map(function (friend) { return renderFriendHTML(friend); }).join("");
+        HTMLElement.innerHTML = friendsHTML;
     }
     catch (error) {
         console.error(error);
