@@ -49,14 +49,14 @@ function renderTask(
     <form class="tasksListDiv__task" id ="${
       task.id
     }" onchange = "handelChangeTask(event)" >
-    <input type="checkbox" name ="isDone" ${task.isDone ? "checked" : ""}>
+    <input type="checkbox" class="checkMark" name ="isDone" ${task.isDone ? "checked" : ""}>
     <input type="text" class="taskNameInList" name="taskNameInList" placeholder="" value="${
       task.name
     }">
     <input type="time" class="taskTimeInList" name="taskTimeInList" placeholder="" value="${
       task.time
     }">
-      <button  onclick="sayHallo(event)" > save changes </button>
+      <button  onclick="sayHallo(event)" > update </button>
       <button type="button" onclick = "handleDeleteTask(event)"> delete </button>
     </form>`;
     root.innerHTML += html;
@@ -76,14 +76,14 @@ function renderAllTask(
         return `<form class="tasksListDiv__task" id ="${
           task.id
         }" onchange = "handelChangeTask(event)" >
-        <input type="checkbox" name ="isDone" ${task.isDone ? "checked" : ""}>
+        <input type="checkbox" class="checkMark" name ="isDone" ${task.isDone ? "checked" : ""}>
     <input type="text" class="taskNameInList" name="taskNameInList" placeholder="" value="${
       task.name
     }">
     <input type="time" class="taskTimeInList" name="taskTimeInList" placeholder="" value="${
       task.time
     }">
-    <button  onclick="sayHallo(event)" > save changes </button>
+    <button  onclick="sayHallo(event)" > update </button>
     <button type="button" onclick = "handleDeleteTask(event)"> delete </button>
   </form>`;
       })

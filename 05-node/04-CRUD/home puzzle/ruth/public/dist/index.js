@@ -83,7 +83,7 @@ function handleAddTask(event) {
 function renderTask(task, root) {
     if (root === void 0) { root = document.querySelector(".tasksListDiv"); }
     try {
-        var html = "\n    <form class=\"tasksListDiv__task\" id =\"" + task.id + "\" onchange = \"handelChangeTask(event)\" >\n    <input type=\"checkbox\" name =\"isDone\" " + (task.isDone ? "checked" : "") + ">\n    <input type=\"text\" class=\"taskNameInList\" name=\"taskNameInList\" placeholder=\"\" value=\"" + task.name + "\">\n    <input type=\"time\" class=\"taskTimeInList\" name=\"taskTimeInList\" placeholder=\"\" value=\"" + task.time + "\">\n      <button  onclick=\"sayHallo(event)\" > save changes </button>\n      <button type=\"button\" onclick = \"handleDeleteTask(event)\"> delete </button>\n    </form>";
+        var html = "\n    <form class=\"tasksListDiv__task\" id =\"" + task.id + "\" onchange = \"handelChangeTask(event)\" >\n    <input type=\"checkbox\" class=\"checkMark\" name =\"isDone\" " + (task.isDone ? "checked" : "") + ">\n    <input type=\"text\" class=\"taskNameInList\" name=\"taskNameInList\" placeholder=\"\" value=\"" + task.name + "\">\n    <input type=\"time\" class=\"taskTimeInList\" name=\"taskTimeInList\" placeholder=\"\" value=\"" + task.time + "\">\n      <button  onclick=\"sayHallo(event)\" > update </button>\n      <button type=\"button\" onclick = \"handleDeleteTask(event)\"> delete </button>\n    </form>";
         root.innerHTML += html;
     }
     catch (error) {
@@ -96,7 +96,7 @@ function renderAllTask(tasks, root) {
         root.innerHTML = " ";
         root.innerHTML += tasks
             .map(function (task) {
-            return "<form class=\"tasksListDiv__task\" id =\"" + task.id + "\" onchange = \"handelChangeTask(event)\" >\n        <input type=\"checkbox\" name =\"isDone\" " + (task.isDone ? "checked" : "") + ">\n    <input type=\"text\" class=\"taskNameInList\" name=\"taskNameInList\" placeholder=\"\" value=\"" + task.name + "\">\n    <input type=\"time\" class=\"taskTimeInList\" name=\"taskTimeInList\" placeholder=\"\" value=\"" + task.time + "\">\n    <button  onclick=\"sayHallo(event)\" > save changes </button>\n    <button type=\"button\" onclick = \"handleDeleteTask(event)\"> delete </button>\n  </form>";
+            return "<form class=\"tasksListDiv__task\" id =\"" + task.id + "\" onchange = \"handelChangeTask(event)\" >\n        <input type=\"checkbox\" class=\"checkMark\" name =\"isDone\" " + (task.isDone ? "checked" : "") + ">\n    <input type=\"text\" class=\"taskNameInList\" name=\"taskNameInList\" placeholder=\"\" value=\"" + task.name + "\">\n    <input type=\"time\" class=\"taskTimeInList\" name=\"taskTimeInList\" placeholder=\"\" value=\"" + task.time + "\">\n    <button  onclick=\"sayHallo(event)\" > update </button>\n    <button type=\"button\" onclick = \"handleDeleteTask(event)\"> delete </button>\n  </form>";
         })
             .join(" ");
     }
