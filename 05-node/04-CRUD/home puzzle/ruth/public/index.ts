@@ -46,10 +46,16 @@ function renderTask(
 ) {
   try {
     const html = `
-    <form class="tasksListDiv__task" id ="${task.id}" onchange = "handelChangeTask(event)" >
-    <input type="checkbox" name ="isDone" ${task.isDone ? 'checked' : ''}>
-    <input type="text" name="taskName" placeholder="" value="${task.name}">
-      <input type="time" name="taskTime" placeholder="" value="${task.time}">
+    <form class="tasksListDiv__task" id ="${
+      task.id
+    }" onchange = "handelChangeTask(event)" >
+    <input type="checkbox" name ="isDone" ${task.isDone ? "checked" : ""}>
+    <input type="text" class="taskNameInList" name="taskNameInList" placeholder="" value="${
+      task.name
+    }">
+    <input type="time" class="taskTimeInList" name="taskTimeInList" placeholder="" value="${
+      task.time
+    }">
       <button  onclick="sayHallo(event)" > save changes </button>
       <button type="button" onclick = "handleDeleteTask(event)"> delete </button>
     </form>`;
@@ -67,10 +73,16 @@ function renderAllTask(
     root.innerHTML = " ";
     root.innerHTML += tasks
       .map((task) => {
-        return `<form class="tasksListDiv__task" id ="${task.id}" onchange = "handelChangeTask(event)" >
-        <input type="checkbox" name ="isDone" ${task.isDone ? 'checked' : ''}>
-    <input type="text" name="taskNameInList" placeholder="" value="${task.name}">
-    <input type="time" name="taskTimeInList" placeholder="" value="${task.time}">
+        return `<form class="tasksListDiv__task" id ="${
+          task.id
+        }" onchange = "handelChangeTask(event)" >
+        <input type="checkbox" name ="isDone" ${task.isDone ? "checked" : ""}>
+    <input type="text" class="taskNameInList" name="taskNameInList" placeholder="" value="${
+      task.name
+    }">
+    <input type="time" class="taskTimeInList" name="taskTimeInList" placeholder="" value="${
+      task.time
+    }">
     <button  onclick="sayHallo(event)" > save changes </button>
     <button type="button" onclick = "handleDeleteTask(event)"> delete </button>
   </form>`;
@@ -107,7 +119,7 @@ async function handelChangeTask(event: any) {
     event.preventDefault();
     console.dir(event.srcElement.form.id);
     console.log(event.target);
-    
+
     const inputChange = event.target.name;
     const inputValue = event.target.value;
     const taskId = event.srcElement.form.id;
@@ -138,17 +150,38 @@ const inputsName = document.querySelectorAll(".taskNameInList");
 
 inputsName.forEach((input) => {
   input.addEventListener("focus", () => {
+    console.log("focus");
+
     input.classList.add("focused");
   });
   input.addEventListener("blur", () => {
+    console.log("focus");
+
     input.classList.remove("focused");
   });
 });
+
 inputsTime.forEach((input) => {
   input.addEventListener("focus", () => {
+    console.log("focus");
+
     input.classList.add("focused");
   });
   input.addEventListener("blur", () => {
+    console.log("focus");
+
     input.classList.remove("focused");
   });
 });
+
+async function handleAllDoneTasks() {
+  const response = await fetch("/API/get-all-done-tasks");
+  const { doneTasks } = await response.json();
+  renderAllTask(doneTasks);
+}
+
+async function handleAllTasks() {
+  const response = await fetch("/API/get-all-tasks");
+  const { tasks } = await response.json();
+  renderAllTask(tasks);
+}

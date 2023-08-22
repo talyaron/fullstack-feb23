@@ -35,11 +35,19 @@ app.delete("/API/delete-task", (req, res) => {
 app.patch("/API/patch-task", (req, res) => {
     const { inputChange, inputValue, taskId } = req.body;
     const thisTask = tasks.find((task) => task.id == taskId);
-    if (inputChange == "taskName")
+    if (inputChange == "taskNameInList")
         thisTask.name = inputValue;
     if (inputChange == "isDone")
         thisTask.isDone = !thisTask.isDone;
     else
         thisTask.time = inputValue;
+    res.send({ tasks });
+});
+app.get("/API/get-all-done-tasks", (req, res) => {
+    const doneTasks = tasks.filter((task) => task.isDone);
+    console.log(doneTasks);
+    res.send({ doneTasks });
+});
+app.get("/API/get-all-tasks", (req, res) => {
     res.send({ tasks });
 });

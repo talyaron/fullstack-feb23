@@ -83,7 +83,7 @@ function handleAddTask(event) {
 function renderTask(task, root) {
     if (root === void 0) { root = document.querySelector(".tasksListDiv"); }
     try {
-        var html = "\n    <form class=\"tasksListDiv__task\" id =\"" + task.id + "\" onchange = \"handelChangeTask(event)\" >\n    <input type=\"checkbox\" name =\"isDone\" " + (task.isDone ? 'checked' : '') + ">\n    <input type=\"text\" name=\"taskName\" placeholder=\"\" value=\"" + task.name + "\">\n      <input type=\"time\" name=\"taskTime\" placeholder=\"\" value=\"" + task.time + "\">\n      <button  onclick=\"sayHallo(event)\" > save changes </button>\n      <button type=\"button\" onclick = \"handleDeleteTask(event)\"> delete </button>\n    </form>";
+        var html = "\n    <form class=\"tasksListDiv__task\" id =\"" + task.id + "\" onchange = \"handelChangeTask(event)\" >\n    <input type=\"checkbox\" name =\"isDone\" " + (task.isDone ? "checked" : "") + ">\n    <input type=\"text\" class=\"taskNameInList\" name=\"taskNameInList\" placeholder=\"\" value=\"" + task.name + "\">\n    <input type=\"time\" class=\"taskTimeInList\" name=\"taskTimeInList\" placeholder=\"\" value=\"" + task.time + "\">\n      <button  onclick=\"sayHallo(event)\" > save changes </button>\n      <button type=\"button\" onclick = \"handleDeleteTask(event)\"> delete </button>\n    </form>";
         root.innerHTML += html;
     }
     catch (error) {
@@ -96,7 +96,7 @@ function renderAllTask(tasks, root) {
         root.innerHTML = " ";
         root.innerHTML += tasks
             .map(function (task) {
-            return "<form class=\"tasksListDiv__task\" id =\"" + task.id + "\" onchange = \"handelChangeTask(event)\" >\n        <input type=\"checkbox\" name =\"isDone\" " + (task.isDone ? 'checked' : '') + ">\n    <input type=\"text\" name=\"taskNameInList\" placeholder=\"\" value=\"" + task.name + "\">\n    <input type=\"time\" name=\"taskTimeInList\" placeholder=\"\" value=\"" + task.time + "\">\n    <button  onclick=\"sayHallo(event)\" > save changes </button>\n    <button type=\"button\" onclick = \"handleDeleteTask(event)\"> delete </button>\n  </form>";
+            return "<form class=\"tasksListDiv__task\" id =\"" + task.id + "\" onchange = \"handelChangeTask(event)\" >\n        <input type=\"checkbox\" name =\"isDone\" " + (task.isDone ? "checked" : "") + ">\n    <input type=\"text\" class=\"taskNameInList\" name=\"taskNameInList\" placeholder=\"\" value=\"" + task.name + "\">\n    <input type=\"time\" class=\"taskTimeInList\" name=\"taskTimeInList\" placeholder=\"\" value=\"" + task.time + "\">\n    <button  onclick=\"sayHallo(event)\" > save changes </button>\n    <button type=\"button\" onclick = \"handleDeleteTask(event)\"> delete </button>\n  </form>";
         })
             .join(" ");
     }
@@ -182,17 +182,55 @@ var inputsTime = document.querySelectorAll(".taskTimeInList");
 var inputsName = document.querySelectorAll(".taskNameInList");
 inputsName.forEach(function (input) {
     input.addEventListener("focus", function () {
+        console.log("focus");
         input.classList.add("focused");
     });
     input.addEventListener("blur", function () {
+        console.log("focus");
         input.classList.remove("focused");
     });
 });
 inputsTime.forEach(function (input) {
     input.addEventListener("focus", function () {
+        console.log("focus");
         input.classList.add("focused");
     });
     input.addEventListener("blur", function () {
+        console.log("focus");
         input.classList.remove("focused");
     });
 });
+function handleAllDoneTasks() {
+    return __awaiter(this, void 0, void 0, function () {
+        var response, doneTasks;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, fetch("/API/get-all-done-tasks")];
+                case 1:
+                    response = _a.sent();
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    doneTasks = (_a.sent()).doneTasks;
+                    renderAllTask(doneTasks);
+                    return [2 /*return*/];
+            }
+        });
+    });
+}
+function handleAllTasks() {
+    return __awaiter(this, void 0, void 0, function () {
+        var response, tasks;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, fetch("/API/get-all-tasks")];
+                case 1:
+                    response = _a.sent();
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    tasks = (_a.sent()).tasks;
+                    renderAllTask(tasks);
+                    return [2 /*return*/];
+            }
+        });
+    });
+}

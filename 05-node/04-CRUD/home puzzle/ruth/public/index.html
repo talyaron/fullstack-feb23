@@ -1,29 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./dist/style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./dist/style.css" />
     <script src="./dist/index.js" defer></script>
     <title>Document</title>
-</head>
-<body>
-<div class="wrapper">
+  </head>
+  <body>
+    <div class="wrapper">
+      <h1>ToDo - List</h1>
 
-    <h1>
-ToDo  - List    </h1>
+      <button onclick="handleAllDoneTasks()">get all done tasks</button>
+      <button onclick="handleAllTasks()">get all</button>
 
-    <form onsubmit="handleAddTask(event)">
-        <input type="text" name="taskName" placeholder="task to do">
-        <input type="time" name="taskTime" placeholder="when it will done">
+      <form onsubmit="handleAddTask(event)">
+        <input type="text" name="taskName" placeholder="task to do" />
+        <input type="time" name="taskTime" placeholder="when it will done" />
         <button type="submit">add task</button>
-        <button  type="reset">reset</button>
-    </form>
-    
-    <div class="tasksListDiv">
-    </div>
+        <button type="reset">reset</button>
+      </form>
 
-</div>
-   
-</body>
+      <div class="tasksListDiv"></div>
+    </div>
+  </body>
 </html>
