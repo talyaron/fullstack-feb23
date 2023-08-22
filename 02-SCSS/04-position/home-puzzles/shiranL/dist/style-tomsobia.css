@@ -1,0 +1,154 @@
+.fixedImg img {
+  background-size: cover;
+  border-radius: 20%;
+  position: fixed;
+  height: 850px;
+  top: 10px;
+  left: 5px;
+}
+
+.contianer {
+  margin: auto;
+  width: 80%;
+  position: relative;
+  top: 0px;
+  left: 0px;
+}
+
+.ballons {
+  cursor: url(https://cur.cursors-4u.net/mechanics/mec-2/mec110.cur), auto;
+}
+
+.blue {
+  position: absolute;
+  left: 295px;
+  bottom: -859px;
+  transform: rotate(-20deg);
+}
+
+.orange {
+  position: absolute;
+  left: 519px;
+  bottom: -774px;
+  transform: rotate(-15deg);
+}
+
+.pink {
+  position: absolute;
+  left: 510px;
+  bottom: -806px;
+}
+
+.blue2 {
+  position: absolute;
+  left: 581px;
+  bottom: -859px;
+  transform: rotate(30deg);
+}
+
+.yellow {
+  position: absolute;
+  left: 376px;
+  bottom: -849px;
+  transform: rotate(-15deg);
+}
+
+.purp {
+  position: absolute;
+  left: 543px;
+  bottom: -837px;
+  transform: rotate(35deg);
+}
+
+.red {
+  position: absolute;
+  left: 406px;
+  bottom: -810px;
+}
+
+.green {
+  position: absolute;
+  left: 415px;
+  bottom: -818px;
+  transform: rotate(-23deg);
+}
+
+.green2 {
+  position: absolute;
+  left: 499px;
+  bottom: -838px;
+  transform: rotate(37deg);
+}
+
+.child {
+  position: absolute;
+  left: 873px;
+  bottom: -836px;
+  width: 214px;
+  height: 200px;
+  cursor: url(https://cur.cursors-4u.net/mechanics/mec-2/mec110.cur), auto;
+}
+
+.sun {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 150px;
+  height: 150px;
+}
+
+.pinkLove {
+  position: absolute;
+  top: 180px;
+  left: 194px;
+  width: 200px;
+  height: 180px;
+  filter: blur(1px);
+  transform: rotate(-26deg);
+}
+
+.goldblur {
+  position: absolute;
+  top: 114px;
+  left: 981px;
+  width: 160px;
+  height: 145px;
+  filter: blur(2px);
+  transform: rotate(-11deg);
+}
+
+.goldblur1 {
+  position: absolute;
+  top: 129px;
+  left: 914px;
+  width: 131px;
+  height: 122px;
+  filter: blur(2px);
+  transform: rotate(-32deg);
+}
+
+.gold1 {
+  position: absolute;
+  top: 250px;
+  left: 981px;
+  width: 200px;
+  height: 180px;
+}
+
+.gold2 {
+  position: absolute;
+  top: 269px;
+  left: 934px;
+  width: 200px;
+  height: 180px;
+  transform: rotate(-36deg);
+}
+
+.gold3 {
+  position: absolute;
+  top: 261px;
+  left: 1035px;
+  width: 200px;
+  height: 180px;
+  transform: rotate(35deg);
+}
