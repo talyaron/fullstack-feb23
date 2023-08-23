@@ -38,9 +38,9 @@ class Friend {
 
 let friends: Friend[] = [];
 
-//CRUD - Create, Read, Update, Delete
 
-//Create - friend
+
+//POST - friend
 app.post("/API/add-friend", (req, res) => {
   const friend: _Friend = req.body;
   console.log(friend);
@@ -50,8 +50,8 @@ app.post("/API/add-friend", (req, res) => {
   res.send({ friend });
 });
 
-//Read - friends
-//get all friends
+
+//GET all friends
 app.get("/API/get-friends", (req, res) => {
   try {
     res.send({ friends });
@@ -60,7 +60,7 @@ app.get("/API/get-friends", (req, res) => {
   }
 });
 
-//Delete - friend
+//DELETE - friend
 app.delete("/API/delete-friend", (req, res) => {
   try {
     const { id } = req.body;
@@ -73,7 +73,7 @@ app.delete("/API/delete-friend", (req, res) => {
   }
 });
 
-//update - friend
+//PATCH - friend
 app.patch("/API/update-friend", (req, res) => {
   try {
     const { age, id } = req.body;

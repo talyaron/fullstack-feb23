@@ -23,8 +23,7 @@ class Friend {
     }
 }
 let friends = [];
-//CRUD - Create, Read, Update, Delete
-//Create - friend
+//POST - friend
 app.post("/API/add-friend", (req, res) => {
     const friend = req.body;
     console.log(friend);
@@ -33,8 +32,7 @@ app.post("/API/add-friend", (req, res) => {
     console.log(friends);
     res.send({ friend });
 });
-//Read - friends
-//get all friends
+//GET all friends
 app.get("/API/get-friends", (req, res) => {
     try {
         res.send({ friends });
@@ -43,7 +41,7 @@ app.get("/API/get-friends", (req, res) => {
         console.error(error);
     }
 });
-//Delete - friend
+//DELETE - friend
 app.delete("/API/delete-friend", (req, res) => {
     try {
         const { id } = req.body;
@@ -56,7 +54,7 @@ app.delete("/API/delete-friend", (req, res) => {
         res.send({ error });
     }
 });
-//update - friend
+//PATCH - friend
 app.patch("/API/update-friend", (req, res) => {
     try {
         const { age, id } = req.body;
