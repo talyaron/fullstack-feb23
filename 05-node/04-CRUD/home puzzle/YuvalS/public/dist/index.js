@@ -103,7 +103,7 @@ function getproducts() {
 }
 function renderProductHTML(product) {
     try {
-        var html = "<div class=\"product\">\n      <img src=\"" + product.imgUrl + "\" />\n      <h3>" + product.name + "</h3>\n      <p>Phone Number: " + product.phoneNumber + "</p>\n      <form id=\"" + product.id + "\" onsubmit=\"handleUpdateProduct(event)\"><input type=\"text\" name=\"phoneNumber\"  value=\"" + product.phoneNumber + "\" placeholder=\"Price\" /><input type=\"text\" name=\"name\"  value=\"" + product.name + "\" placeholder=\"Name\" /><input type=\"url\" name=\"imgUrl\"  value=\"" + product.imgUrl + "\" placeholder=\"imgUrl\" /><button type=\"submit\">Update</button></form>\n      <button onclick=\"handleDeleteProduct('" + product.id + "')\">Delete</button>\n    </div>";
+        var html = "<div class=\"product\">\n      <img src=\"" + product.imgUrl + "\" />\n      <h3>" + product.name + "</h3>\n      <p>Phone Number: " + product.phoneNumber + "</p>\n      <form id=\"" + product.id + "\" onsubmit=\"handleUpdateProduct(event)\"><input type=\"number\" name=\"phoneNumber\"  value=\"" + product.phoneNumber + "\" placeholder=\"Price\" /><input type=\"text\" name=\"name\"  value=\"" + product.name + "\" placeholder=\"Name\" /><input type=\"url\" name=\"imgUrl\"  value=\"" + product.imgUrl + "\" placeholder=\"imgUrl\" /><button type=\"submit\">Update</button></form>\n      <button onclick=\"handleDeleteProduct('" + product.id + "')\">Delete</button>\n    </div>";
         return html;
     }
     catch (error) {
@@ -176,13 +176,15 @@ function handleDeleteProduct(id) {
 }
 function handleUpdateProduct(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var phoneNumber, id, response, result, products, error_4;
+        var name, phoneNumber, imgUrl, id, response, result, products, error_4;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
                     ev.preventDefault();
-                    phoneNumber = ev.target.phoneNumber.valueAsNumber;
+                    name = ev.target.name.value;
+                    phoneNumber = ev.target.phoneNumber.value;
+                    imgUrl = ev.target.imgUrl.value;
                     id = ev.target.id;
                     console.log(id, phoneNumber);
                     return [4 /*yield*/, fetch("/API/update-product", {
@@ -190,7 +192,7 @@ function handleUpdateProduct(ev) {
                             headers: {
                                 "Content-Type": "application/json"
                             },
-                            body: JSON.stringify({ id: id, phoneNumber: phoneNumber })
+                            body: JSON.stringify({ id: id, name: name, phoneNumber: phoneNumber, imgUrl: imgUrl })
                         })];
                 case 1:
                     response = _a.sent();

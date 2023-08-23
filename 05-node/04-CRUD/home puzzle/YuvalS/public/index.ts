@@ -55,7 +55,7 @@ function renderProductHTML(product: Product) {
       <img src="${product.imgUrl}" />
       <h3>${product.name}</h3>
       <p>Phone Number: ${product.phoneNumber}</p>
-      <form id="${product.id}" onsubmit="handleUpdateProduct(event)"><input type="text" name="phoneNumber"  value="${product.phoneNumber}" placeholder="Price" /><input type="text" name="name"  value="${product.name}" placeholder="Name" /><input type="url" name="imgUrl"  value="${product.imgUrl}" placeholder="imgUrl" /><button type="submit">Update</button></form>
+      <form id="${product.id}" onsubmit="handleUpdateProduct(event)"><input type="number" name="phoneNumber"  value="${product.phoneNumber}" placeholder="Price" /><input type="text" name="name"  value="${product.name}" placeholder="Name" /><input type="url" name="imgUrl"  value="${product.imgUrl}" placeholder="imgUrl" /><button type="submit">Update</button></form>
       <button onclick="handleDeleteProduct('${product.id}')">Delete</button>
     </div>`;
     return html;
@@ -108,7 +108,9 @@ async function handleDeleteProduct(id: string) {
 async function handleUpdateProduct(ev: any) {
   try {
     ev.preventDefault();
-    const phoneNumber = ev.target.phoneNumber.valueAsNumber;
+    const name = ev.target.name.value;
+    const phoneNumber = ev.target.phoneNumber.value;
+    const imgUrl = ev.target.imgUrl.value;
     const id = ev.target.id;
     console.log(id, phoneNumber);
 
@@ -117,7 +119,7 @@ async function handleUpdateProduct(ev: any) {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ id, phoneNumber }),
+      body: JSON.stringify({ id, name, phoneNumber, imgUrl}),
     });
 
     const result = await response.json();
