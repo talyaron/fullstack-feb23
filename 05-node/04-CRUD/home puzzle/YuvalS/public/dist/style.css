@@ -1,0 +1,24 @@
+h1, h2, p {
+  text-align: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  margin: 0 auto;
+}
+form input {
+  display: block;
+  margin: 10px 0;
+  padding: 1rem;
+  border-radius: 5px;
+}
+form button {
+  padding: 20px;
+}
+
+img {
+  width: 200px;
+  height: 200px;
+}
