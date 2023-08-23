@@ -17,8 +17,10 @@ app.use(express.json());
 //router to products
 // get router from productsRouter
 import productsRouter from "./API/products/productsRouter";
+import reviewRouter from "./API/reviews/reviewroute";
 //tells express to use proudctsRouter on the intial route "/API/products"
 app.use("/API/products", productsRouter)
+app.use("/API/reviews", reviewRouter)
 
 
 
