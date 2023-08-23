@@ -7,7 +7,7 @@ interface _Friend {
     name: string;
     email: string;
     phoneNumber: number;
-    instagramAccount: string;
+    instagram: string;
 }
 
 // static files 
@@ -18,13 +18,13 @@ class Friend {
     name: string;
     email: string;
     phoneNumber: number;
-    instagramAccount: string;
+    instagram: string;
     id: string;
-    constructor({name, email, phoneNumber, instagramAccount}: _Friend){
+    constructor({name, email, phoneNumber, instagram}: _Friend){
         this.name = name;
         this.email = email;
         this.phoneNumber = phoneNumber;
-        this.instagramAccount = instagramAccount;
+        this.instagram = instagram;
         this.id = Math.random().toString();
     }
 }

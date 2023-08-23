@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 function handleAddFriend(event) {
     return __awaiter(this, void 0, void 0, function () {
-        var name, email, phoneNumber, instagramAccount, friend, response, result, error_1;
+        var name, email, phoneNumber, instagram, friend, response, result, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -45,11 +45,11 @@ function handleAddFriend(event) {
                     name = event.target.name.value;
                     email = event.target.email.value;
                     phoneNumber = event.target.phoneNumber.valueAsNumber;
-                    instagramAccount = event.target.instagramAccount.value;
-                    if (!name || !email || !phoneNumber || !instagramAccount) {
+                    instagram = event.target.instagram.value;
+                    if (!name || !email || !phoneNumber || !instagram) {
                         throw new Error("Please complete all fields");
                     }
-                    friend = { name: name, email: email, phoneNumber: phoneNumber, instagramAccount: instagramAccount };
+                    friend = { name: name, email: email, phoneNumber: phoneNumber, instagram: instagram };
                     return [4 /*yield*/, fetch('/API/add-friend', //the res from the server
                         {
                             method: 'POST',
@@ -103,7 +103,7 @@ function getFriends() {
 // When rendering we don't need to use async before function
 function renderFriendHTML(friend) {
     try {
-        var html = "<div class=\"friend\">\n        <h2>Name: " + friend.name + "</h2>\n        <img src =\"" + friend.instagramAccount + "\" />\n        <h3>Email: " + friend.email + "</h3>\n        <p>Phone number: " + friend.phoneNumber + "</p>\n        <button onclick=\"handleDeleteFriend('" + friend.id + "')\">Delete</button>\n        </div>";
+        var html = "<div class=\"friend\">\n        <h2>Name: " + friend.name + "</h2>\n        <p>Instagram: " + friend.instagram + "</p>\n        <p>Email: " + friend.email + "</p>\n        <p>Phone number: " + friend.phoneNumber + "</p>\n        <button class=\"delete\" onclick=\"handleDeleteFriend('" + friend.id + "')\">Delete</button>\n        </div>";
         return html;
     }
     catch (error) {

@@ -10,11 +10,11 @@ const port = process.env.PORT || 3000;
 app.use(express_1.default.static('public'));
 app.use(express_1.default.json()); // I need to add this if I want to get the (body: JSON.stringify(friend) //the req) 
 class Friend {
-    constructor({ name, email, phoneNumber, instagramAccount }) {
+    constructor({ name, email, phoneNumber, instagram }) {
         this.name = name;
         this.email = email;
         this.phoneNumber = phoneNumber;
-        this.instagramAccount = instagramAccount;
+        this.instagram = instagram;
         this.id = Math.random().toString();
     }
 }

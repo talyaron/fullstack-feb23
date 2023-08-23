@@ -3,7 +3,7 @@ interface Friend {
     name: string;
     email: string;
     phoneNumber: number;
-    instagramAccount: string;
+    instagram: string;
     id?:string;
 } 
 
@@ -13,12 +13,12 @@ async function handleAddFriend(event:any) {
         const name = event.target.name.value;
         const email = event.target.email.value;
         const phoneNumber = event.target.phoneNumber.valueAsNumber;
-        const instagramAccount = event.target.instagramAccount.value;
-        if(!name || !email || !phoneNumber || !instagramAccount){
+        const instagram = event.target.instagram.value;
+        if(!name || !email || !phoneNumber || !instagram){
             throw new Error("Please complete all fields")
         }
 
-        const friend: Friend = {name, email, phoneNumber, instagramAccount};
+        const friend: Friend = {name, email, phoneNumber, instagram};
 
         const response = await fetch('/API/add-friend', //the res from the server
         { 
@@ -56,10 +56,10 @@ function renderFriendHTML (friend: Friend){
     try {
         const html = `<div class="friend">
         <h2>Name: ${friend.name}</h2>
-        <img src ="${friend.instagramAccount}" />
-        <h3>Email: ${friend.email}</h3>
+        <p>Instagram: ${friend.instagram}</p>
+        <p>Email: ${friend.email}</p>
         <p>Phone number: ${friend.phoneNumber}</p>
-        <button onclick="handleDeleteFriend('${friend.id}')">Delete</button>
+        <button class="delete" onclick="handleDeleteFriend('${friend.id}')">Delete</button>
         </div>`
         return html;
     } catch (error) {
