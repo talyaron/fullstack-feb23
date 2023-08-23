@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 function handleAddFriend(event) {
     return __awaiter(this, void 0, void 0, function () {
-        var name, email, phone, igName, friend, response, results, error_1;
+        var name, email, phone, igName, img, friend, response, results, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -46,10 +46,11 @@ function handleAddFriend(event) {
                     email = event.target.email.value;
                     phone = event.target.phone.value;
                     igName = event.target.igName.value;
+                    img = event.target.img.value;
                     if (!name || !email || !phone || !igName) {
                         throw new Error('Please complete all fields');
                     }
-                    friend = { name: name, email: email, phone: phone, igName: igName };
+                    friend = { name: name, email: email, phone: phone, igName: igName, img: img };
                     return [4 /*yield*/, fetch('/API/add-friend', {
                             method: 'POST',
                             headers: {
@@ -75,7 +76,7 @@ function handleAddFriend(event) {
 }
 function getFriends() {
     return __awaiter(this, void 0, void 0, function () {
-        var response, results, error_2;
+        var response, results, friends, error_2;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -86,8 +87,12 @@ function getFriends() {
                     return [4 /*yield*/, response.json()];
                 case 2:
                     results = _a.sent();
+                    friends = results.friends;
+                    if (!Array.isArray(friends))
+                        throw new Error('Friends are not array');
+                    console.log(friends);
                     console.log(results);
-                    return [2 /*return*/, results];
+                    return [2 /*return*/, friends];
                 case 3:
                     error_2 = _a.sent();
                     console.error(error_2);
@@ -97,13 +102,42 @@ function getFriends() {
         });
     });
 }
-getFriends();
+function renderFriendHTML(friend) {
+    try {
+        var html = "<div class=\"friend\">\n    <h3>Name: " + friend.name + "</h3>\n    <h4>email: " + friend.email + "</h4>\n    <h4>phone: " + friend.phone + "</h4>\n    <h4>IG: " + friend.igName + "</h4>\n    <img src=\"" + friend.img + "\" />\n    </div>";
+        return html;
+    }
+    catch (error) {
+        console.error(error);
+        return "";
+    }
+}
+function renderFriends(friends, HTMLElement) {
+    try {
+        if (!HTMLElement)
+            throw new Error('HTMLElement not found');
+        console.log(friends);
+        if (!Array.isArray(friends))
+            throw new Error('friend not found');
+        var friendsHTML = friends.map(function (friend) { return renderFriendHTML(friend); }).join("");
+        HTMLElement.innerHTML = friendsHTML;
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
 function handleGetFriends() {
     return __awaiter(this, void 0, void 0, function () {
-        var friends;
+        var friends, root;
         return __generator(this, function (_a) {
-            friends = getFriends();
-            return [2 /*return*/];
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, getFriends()];
+                case 1:
+                    friends = _a.sent();
+                    root = document.querySelector("#root");
+                    renderFriends(friends, root);
+                    return [2 /*return*/];
+            }
         });
     });
 }

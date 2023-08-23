@@ -22,12 +22,12 @@ html body form label {
   margin: 0.2rem;
   font-size: 18px;
 }
-html body form button {
+html button {
   height: 35px;
   margin: 1rem;
   border: 2px solid #275464;
-  background-color: #38788f;
+  background-color: #5c9ab1;
 }
-html body form button:hover {
+html button:hover {
   background-color: #295d6f;
 }

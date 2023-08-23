@@ -1,15 +1,15 @@
-class Word{
-    constructor(public word:string){}
+class Word {
+    constructor(public word: string) { }
 }
 
-const Words:Word[] = getWordFromLS();
-function renderinputs(htmlElement: HTMLElement | null){
+const Words: Word[] = getWordFromLS();
+function renderinputs(htmlElement: HTMLElement | null) {
     try {
         htmlElement = document.querySelector("#forms");
         if (!htmlElement) throw new Error("No element");
-const html =
-     
-`<div class="input">
+        const html =
+
+            `<div class="input">
 <form onsubmit="handleAddWord(event)">
     <label for="words">Insert words</label>
     <input type="text" name="word" placeholder="Word" required>
@@ -19,61 +19,62 @@ const html =
     <input type="submit" value="START GAME">
 </form>
 </div>`;
-htmlElement.innerHTML = html;
+        htmlElement.innerHTML = html;
 
-}
-catch (error) {
-    console.error(error)     
-}
+    }
+    catch (error) {
+        console.error(error)
+    }
 }
 
 renderinputs(document.querySelector("#forms"))
 
-function handleAddWord(ev:any){
-try {
-            ev.preventDefault();
-            const inputWord = ev.target.word.value;
-            if(inputWord.length !== 5) {alert("Must be 5 letters")
+function handleAddWord(ev: any) {
+    try {
+        ev.preventDefault();
+        const inputWord = ev.target.word.value;
+        if (inputWord.length !== 5) {
+            alert("Must be 5 letters")
             return
-            }
-
-            const newWord = new Word (inputWord)
-
-            Words.push(newWord);
-            saveWordToLS(Words)
-            console.log(Words)
-            ev.target.reset();
-            
-            
-                
-              
-            
-    
-    
-        } catch (error) {
-            console.error(error)
         }
+
+        const newWord = new Word(inputWord)
+
+        Words.push(newWord);
+        saveWordToLS(Words)
+        console.log(Words)
+        ev.target.reset();
+
+
+
+
+
+
+
+    } catch (error) {
+        console.error(error)
+    }
 }
 
 
 
 
-function handleStartGame(ev:any){
+function handleStartGame(ev: any) {
     makeBoard()
     handleInputFromUserGame()
-    
-    
+
+
 }
 
 
-function saveWordToLS(words: Word[]){
+function saveWordToLS(words: Word[]) {
     localStorage.setItem('words', JSON.stringify(words));
 }
 
-function getWordFromLS(): Word[]{
+function getWordFromLS(): Word[] {
     try {
         const WordsStorage = localStorage.getItem('words');
-        if(!WordsStorage) return [];
+        if (!WordsStorage) return [];
         const wordsArr = JSON.parse(WordsStorage);
         const Words = wordsArr.map(word => new Word(word.word));
         return Words;
@@ -106,27 +107,27 @@ console.log(myword);
 
 // create game board
 function makeBoard() {
-    
+
     try {
-         
-    
-    for (let r = 0; r < height; r++) {
-        for (let c = 0; c < width; c++) {
-            //<span id = "0-0" class = "tile"></span> for all the tiles
-            let tile = document.createElement("span");
-            tile.id = r.toString() + "-" + c.toString();
-            tile.classList.add("tile");
-            tile.innerText = "";
-            const forms = document.querySelector("#forms")
-            forms?.remove();
-            document.querySelector("#board")?.appendChild(tile);
-            
-        
-            
-            
+
+
+        for (let r = 0; r < height; r++) {
+            for (let c = 0; c < width; c++) {
+                //<span id = "0-0" class = "tile"></span> for all the tiles
+                let tile = document.createElement("span");
+                tile.id = r.toString() + "-" + c.toString();
+                tile.classList.add("tile");
+                tile.innerText = "";
+                const forms = document.querySelector("#forms")
+                forms?.remove();
+                document.querySelector("#board")?.appendChild(tile);
+
+
+
+
+            }
         }
     }
-} 
 
     catch (error) {
         console.error(error);
@@ -139,7 +140,7 @@ function makeBoard() {
 let keyboard = [
     ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"],
     ["A", "S", "D", "F", "G", "H", "J", "K", "L"],
-    ["Enter", "Z", "X", "C", "V", "B", "N", "M", "⌫" ]
+    ["Enter", "Z", "X", "C", "V", "B", "N", "M", "⌫"]
 ]
 
 for (let i = 0; i < keyboard.length; i++) {
@@ -156,38 +157,39 @@ for (let i = 0; i < keyboard.length; i++) {
             keyTile.id = "Enter"
         }
         else if (key === "⌫") {
-        keyTile.id = "Backspace"
-    }
-    else if ("A" <= key && key <= "Z"){
-        keyTile.id = "Key" + key; // "Key" + "A" like the keyboard
-    }
+            keyTile.id = "Backspace"
+        }
+        else if ("A" <= key && key <= "Z") {
+            keyTile.id = "Key" + key; // "Key" + "A" like the keyboard
+        }
 
-    keyTile.addEventListener("click", processKey);
-    if (key === "Enter") {
-        keyTile.classList.add("enter-key-tile");
+        keyTile.addEventListener("click", processKey);
+        if (key === "Enter") {
+            keyTile.classList.add("enter-key-tile");
+        }
+        else {
+            keyTile.classList.add("key-tile");
+        }
+        keyboardRow.appendChild(keyTile);
     }
-    else {
-        keyTile.classList.add("key-tile");
-    }
-    keyboardRow.appendChild(keyTile);
-  }
-  document.body.appendChild(keyboardRow);
+    document.body.appendChild(keyboardRow);
 }
 //handle input from user
-function handleInputFromUserGame(){
-document.addEventListener("keyup", (ev) => {
-    handleInput(ev);
-})}
+function handleInputFromUserGame() {
+    document.addEventListener("keyup", (ev) => {
+        handleInput(ev);
+    })
+}
 
 
-function processKey(){
-    let ev = {"code" : this.id};
+function processKey() {
+    let ev = { "code": this.id };
     handleInput(ev)
 }
-    
-function handleInput(ev){
 
-if (gameOver) return;
+function handleInput(ev) {
+
+    if (gameOver) return;
 
     if ("KeyA" <= ev.code && ev.code <= "KeyZ") {
         if (col < width) {
@@ -213,7 +215,7 @@ if (gameOver) return;
     else if (ev.code === "Enter") {
 
         update()
-        
+
 
     }
 
@@ -226,8 +228,8 @@ if (gameOver) return;
     }
 
     function update() {
-        
-        
+
+
         let guess = "";
 
         //string the guess word
@@ -241,26 +243,26 @@ if (gameOver) return;
         guess = guess.toLocaleLowerCase();
         if (guess.length < width) {
             const answer = document.querySelector("#answer")
-        const html = `<h1 class = "loser"> NOT Enough Letters</h1>`
-        if (answer) answer.innerHTML = html;
-        return;
+            const html = `<h1 class = "loser"> NOT Enough Letters</h1>`
+            if (answer) answer.innerHTML = html;
+            return;
         }
-        
-        
+
+
         // if (!wordList.includes(guess)) {
         //     const answer = document.querySelector("#answer")
         // const html = `<h1 class = "loser"> "${guess.toUpperCase()}" is NOT a Word</h1>`
         // if (answer) answer.innerHTML = html;
         // return;
         // }
-        
-    
-      
-       
+
+
+
+
         let correct = 0;
         let letterCount = {};
         for (let i = 0; i < myword.length; i++) {
-         let letter = myword[i];
+            let letter = myword[i];
             if (letterCount[letter]) {
                 letterCount[letter] += 1;
             }
@@ -279,10 +281,10 @@ if (gameOver) return;
 
             //is it in the correct position?
             if (myword[c] === letter) {
-                
+
                 currentTile.classList.add("correct");
                 let keyTile = document.getElementById("Key" + letter);
-                if(!keyTile) throw new Error("no key-tile")
+                if (!keyTile) throw new Error("no key-tile")
                 keyTile.classList.remove("present");
                 keyTile.classList.add("correct");
                 correct += 1;
@@ -293,9 +295,9 @@ if (gameOver) return;
             if (correct === width) {
                 gameOver === true;
                 const answer = document.querySelector("#answer")
-        const html = `<h1 class = "loser"> "${guess.toUpperCase()}" is The Word, GOOD JOB!</h1>`
-        if (answer) answer.innerHTML = html;
-       return
+                const html = `<h1 class = "loser"> "${guess.toUpperCase()}" is The Word, GOOD JOB!</h1>`
+                if (answer) answer.innerHTML = html;
+                return
             }
         }
         //second it is it the correct position
@@ -309,28 +311,28 @@ if (gameOver) return;
                 if (myword.includes(letter) && letterCount[letter] > 0) {
                     currentTile.classList.add("present");
                     let keyTile = document.getElementById("Key" + letter);
-                if(!keyTile) throw new Error("no key-tile")
-                if (!keyTile.classList.contains("correct")) {
-                    keyTile.classList.add("present");
-                }
+                    if (!keyTile) throw new Error("no key-tile")
+                    if (!keyTile.classList.contains("correct")) {
+                        keyTile.classList.add("present");
+                    }
                     letterCount[letter] -= 1;
                 }
                 //not in the word
                 else {
                     currentTile.classList.add("absent");
                     let keyTile = document.getElementById("Key" + letter);
-                if(!keyTile) throw new Error("no key-tile")
-                if (!keyTile.classList.contains("present")) {
-                    keyTile.classList.add("absent");
-                }
+                    if (!keyTile) throw new Error("no key-tile")
+                    if (!keyTile.classList.contains("present")) {
+                        keyTile.classList.add("absent");
+                    }
                 }
             }
 
-           
+
         }
         row += 1; //next row
         col = 0; // left letter
 
     }
-   
+
 }
