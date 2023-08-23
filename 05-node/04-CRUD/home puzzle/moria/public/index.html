@@ -1,0 +1,27 @@
+<!-- index html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./dist/index.css">
+    <script src="./dist/index.js" defer></script>
+    <title>My Friends</title>
+</head>
+<body>
+    <h1>Welcome to Friend club</h1>
+    <form id="friendForm" onsubmit="handleAddFriend(event)">
+        <input type="text" name="name" placeholder="Enter your name">
+        <input type="text" name="email" placeholder="Enter your email">
+        <input type="text" name="phone" placeholder="Enter your phone Number">
+        <input type="text" name="instegram" placeholder="Enter your instegram account">
+        <input type="text" name="imgSrc" placeholder="Enter your image src">
+        <input type="submit" value="Add Friend">
+    </form>
+
+    <button onclick="handleGetFriends()">GET Friends</button>
+    <div id="root"></div>
+    
+</body>
+</html>

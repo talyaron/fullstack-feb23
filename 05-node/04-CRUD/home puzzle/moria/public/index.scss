@@ -1,0 +1,130 @@
+/* Reset some default browser styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Set a background color for the entire page */
+  body {
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+    padding: 20px;
+  }
+  
+  /* Style the header */
+  h1 {
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  /* Style the form for adding friends */
+  #friendForm {
+    display: flex;
+    flex-direction: column;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+  
+  #friendForm input[type="text"] {
+    margin: 5px 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  #friendForm input[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  #friendForm input[type="submit"]:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Style the button for fetching friends */
+  button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Style the friend cards */
+  .friend {
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    padding: 10px; /* Reduce padding to make the card smaller */
+    margin: 10px; /* Reduce margin to bring the cards closer together */
+    display: inline-block; /* Display cards inline to make them stack horizontally */
+    width: calc(33.33% - 20px); /* Adjust card width to fit 3 cards in a row with margin */
+    text-align: center;
+    box-sizing: border-box; /* Include padding and border in card dimensions */
+  }
+  
+  .friend img {
+    width: 80%;
+    height: 200px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+  }
+  
+  .friend h3 {
+    font-size: 20px;
+    margin: 10px 0;
+  }
+  
+  .friend p {
+    font-size: 16px;
+    margin: 5px 0;
+  }
+  
+  /* Style the form for updating friends */
+  form {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  form input[type="text"] {
+    margin: 5px 0;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+  }
+  
+  form button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    margin-top: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  form button:hover {
+    background-color: #0056b3;
+  }
+  
