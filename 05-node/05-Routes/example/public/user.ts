@@ -1,4 +1,4 @@
-function handleUser() {
+function handleGetUser() {
     const toHtml = document.querySelector('#userRoot');
     const html = `
     <h2>Add User</h2>
@@ -9,6 +9,6 @@ function handleUser() {
         <button type="submit">ADD</button>
     </form>`
 
-    toHtml.innerHTML = html
+    toHtml.innerHTML += html
 }
 
