@@ -1,14 +1,12 @@
 {
-  "name": "example",
+  "name": "alex",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
     "dev": "nodemon server.ts",
-    "start": "node dist/server.js",
-    "update": "npm install -g npm-check-updates && ncu -u && npm install"
+    "start": "node dist/server.js"
   },
   "keywords": [],
   "author": "",
@@ -19,7 +17,9 @@
     "typescript": "^5.1.6"
   },
   "dependencies": {
+    "@types/express": "^4.17.17",
+    "@types/node": "^20.4.10",
     "express": "^4.18.2",
-    "uuid": "^9.0.0"
+    "sass": "^1.65.1"
   }
 }

@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 function handleAddFriend(event) {
     return __awaiter(this, void 0, void 0, function () {
-        var name, email, phone, igName, img, friend, response, results, error_1;
+        var name, email, phoneNumber, instagramAccount, friend, response, result, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -44,26 +44,24 @@ function handleAddFriend(event) {
                     event.preventDefault();
                     name = event.target.name.value;
                     email = event.target.email.value;
-                    phone = event.target.phone.value;
-                    igName = event.target.igName.value;
-                    img = event.target.img.value;
-                    if (!name || !email || !phone || !igName) {
-                        throw new Error('Please complete all fields');
+                    phoneNumber = event.target.phoneNumber.valueAsNumber;
+                    instagramAccount = event.target.instagramAccount.value;
+                    if (!name || !email || !phoneNumber || !instagramAccount) {
+                        throw new Error("Please complete all fields");
                     }
-                    friend = { name: name, email: email, phone: phone, igName: igName, img: img };
-                    return [4 /*yield*/, fetch('/API/add-friend', {
+                    friend = { name: name, email: email, phoneNumber: phoneNumber, instagramAccount: instagramAccount };
+                    return [4 /*yield*/, fetch('/API/add-friend', //the res from the server
+                        {
                             method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json'
-                            },
-                            body: JSON.stringify(friend)
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(friend) //the req
                         })];
                 case 1:
                     response = _a.sent();
                     return [4 /*yield*/, response.json()];
                 case 2:
-                    results = _a.sent();
-                    console.log(results);
+                    result = _a.sent();
+                    console.log(result);
                     return [3 /*break*/, 4];
                 case 3:
                     error_1 = _a.sent();
@@ -89,7 +87,7 @@ function getFriends() {
                     results = _a.sent();
                     friends = results.friends;
                     if (!Array.isArray(friends))
-                        throw new Error('Friends are not array');
+                        throw new Error("friends are not array");
                     console.log(friends);
                     console.log(results);
                     return [2 /*return*/, friends];
@@ -102,9 +100,10 @@ function getFriends() {
         });
     });
 }
+// When rendering we don't need to use async before function
 function renderFriendHTML(friend) {
     try {
-        var html = "<div class=\"friend\">\n    <h3>Name: " + friend.name + "</h3>\n    <h4>email: " + friend.email + "</h4>\n    <h4>phone: " + friend.phone + "</h4>\n    <h4>IG: " + friend.igName + "</h4>\n    <img src=\"" + friend.img + "\" />\n    </div>";
+        var html = "<div class=\"friend\">\n        <h2>Name: " + friend.name + "</h2>\n        <img src =\"" + friend.instagramAccount + "\" />\n        <h3>Email: " + friend.email + "</h3>\n        <p>Phone number: " + friend.phoneNumber + "</p>\n        <button onclick=\"handleDeleteFriend('" + friend.id + "')\">Delete</button>\n        </div>";
         return html;
     }
     catch (error) {
@@ -115,10 +114,10 @@ function renderFriendHTML(friend) {
 function renderFriends(friends, HTMLElement) {
     try {
         if (!HTMLElement)
-            throw new Error('HTMLElement not found');
+            throw new Error("HTMLElement not found");
         console.log(friends);
         if (!Array.isArray(friends))
-            throw new Error('friend not found');
+            throw new Error("Friends are not array");
         var friendsHTML = friends.map(function (friend) { return renderFriendHTML(friend); }).join("");
         HTMLElement.innerHTML = friendsHTML;
     }
@@ -141,3 +140,36 @@ function handleGetFriends() {
         });
     });
 }
+function handleDeleteFriend(id) {
+    return __awaiter(this, void 0, void 0, function () {
+        var response, result, friends, error_3;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 3, , 4]);
+                    return [4 /*yield*/, fetch("/API/delete-friend", {
+                            method: 'DELETE',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({ id: id })
+                        })];
+                case 1:
+                    response = _a.sent();
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    result = _a.sent();
+                    console.log(result);
+                    friends = result.friends;
+                    renderFriends(friends, document.querySelector("#root"));
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_3 = _a.sent();
+                    console.error(error_3);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
+            }
+        });
+    });
+}
+// We need to use event in function when it get us some info

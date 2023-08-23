@@ -35,27 +35,28 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 getfriends();
-function handleAddFriend(event) {
+function handleAddfriend(event) {
     return __awaiter(this, void 0, void 0, function () {
-        var fullName, email, phoneNumber, instegram, imgUrl, friend, response, result, error_1;
+        var name, phoneNumber, email, instegram, imgUrl, friend, response, result, friends, root, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    _a.trys.push([0, 3, , 4]);
+                    _a.trys.push([0, 4, , 5]);
+                    debugger;
                     event.preventDefault();
-                    fullName = event.target.fullName.value;
-                    email = event.target.email.value;
+                    name = event.target.name.value;
                     phoneNumber = event.target.phoneNumber.value;
+                    email = event.target.email.value;
                     instegram = event.target.instegram.value;
                     imgUrl = event.target.imgUrl.value;
-                    if (!fullName || !email || !phoneNumber) {
-                        throw new Error('Please complete all mandatory fields');
+                    if (!name || !phoneNumber || !imgUrl) {
+                        throw new Error("Please complete all ** fields");
                     }
-                    friend = { fullName: fullName, email: email, phoneNumber: phoneNumber, instegram: instegram, imgUrl: imgUrl };
-                    return [4 /*yield*/, fetch('/API/add-friend', {
-                            method: 'POST',
+                    friend = { name: name, phoneNumber: phoneNumber, email: email, instegram: instegram, imgUrl: imgUrl };
+                    return [4 /*yield*/, fetch("/API/add-friend", {
+                            method: "POST",
                             headers: {
-                                'Content-Type': 'application/json'
+                                "Content-Type": "application/json"
                             },
                             body: JSON.stringify(friend)
                         })];
@@ -65,16 +66,31 @@ function handleAddFriend(event) {
                 case 2:
                     result = _a.sent();
                     console.log(result);
-                    document.querySelector("form").reset();
-                    return [3 /*break*/, 4];
+                    resetForm(document.querySelector("#details"));
+                    return [4 /*yield*/, getfriends()];
                 case 3:
+                    friends = _a.sent();
+                    root = document.querySelector("#root");
+                    renderfriends(friends, root);
+                    return [3 /*break*/, 5];
+                case 4:
                     error_1 = _a.sent();
                     console.error(error_1);
-                    return [3 /*break*/, 4];
-                case 4: return [2 /*return*/];
+                    return [3 /*break*/, 5];
+                case 5: return [2 /*return*/];
             }
         });
     });
+}
+function resetForm(form) {
+    try {
+        if (!form)
+            throw new Error("form not found");
+        form.reset();
+    }
+    catch (error) {
+        console.error(error);
+    }
 }
 function getfriends() {
     return __awaiter(this, void 0, void 0, function () {
@@ -83,7 +99,7 @@ function getfriends() {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
-                    return [4 /*yield*/, fetch('/API/get-friends')];
+                    return [4 /*yield*/, fetch("/API/get-friends")];
                 case 1:
                     response = _a.sent();
                     return [4 /*yield*/, response.json()];
@@ -91,7 +107,7 @@ function getfriends() {
                     results = _a.sent();
                     friends = results.friends;
                     if (!Array.isArray(friends))
-                        throw new Error("friendss are not array");
+                        throw new Error("friends are not array");
                     console.log(friends);
                     console.log(results);
                     return [2 /*return*/, friends];
@@ -104,9 +120,10 @@ function getfriends() {
         });
     });
 }
-function renderfriendsHTML(friends) {
+function renderfriendHTML(friend) {
     try {
-        var html = "<div class=\"friends\">\n        <img src=\"" + friends.imgUrl + "\" />\n        <h3>" + friends.fullName + "</h3>\n        <p>email: " + friends.email + "</p>\n        <p>phoneNumber: " + friends.phoneNumber + "</p>\n        <p>instegram: " + friends.instegram + "</p>\n        <p>update friend information:</p>\n        <!--update data form-->\n        <form id=\"" + friends.id + "\" onsubmit=\"handleUpdatefriends(event)\">\n        <input type=\"text\" name=\"email\" placeholder=\"e-mail\">\n        <input type=\"text\" name=\"phoneNumber\" placeholder=\"phoneNumber\">\n        <input type=\"text\" name=\"instegram\" placeholder=\"instegram accaunte\">\n        <input type=\"url\" name=\"imgUrl\" placeholder=\"my friend Image\">\n        <button type=\"submit\">Update</button></form>\n        <button onclick=\"handleDeletefriends('" + friends.id + "')\">Delete</button>\n\n      </div>";
+        debugger;
+        var html = "<div class=\"friend\">\n      <img src=\"" + friend.imgUrl + "\" alt=\"" + friend.name + "\" />\n      <form id=\"" + friend.id + "\" onsubmit=\"handleUpdatefriend(event)\">\n        <input type=\"text\" name=\"name\" placeholder=\"" + friend.name + "\">\n        <input type=\"text\" name=\"phoneNum\" placeholder=\"" + friend.phoneNumber + "\">\n        <input type=\"email\" name=\"email\" placeholder=\"" + (friend.email === "" ? "Email" : friend.email) + "\">\n        <input type=\"text\" name=\"instegram\" placeholder=\"" + (friend.instegram === "" ? "Instegram" : friend.instegram) + "\">\n        <div class=\"buttons\">\n          <button type=\"submit\">Update</button>\n          <button onclick=\"handleDeletefriend('" + friend.id + "')\">Delete</button>\n        </div>\n        </form>\n    </div>";
         return html;
     }
     catch (error) {
@@ -120,40 +137,32 @@ function renderfriends(friends, HTMLElement) {
             throw new Error("HTMLElement not found");
         console.log(friends);
         if (!Array.isArray(friends))
-            throw new Error("friendss are not array");
-        var friendsHTML = friends.map(function (friend) { return renderfriendsHTML(friend); }).join("");
+            throw new Error("friends are not array");
+        var friendsHTML = friends
+            .map(function (friend) { return renderfriendHTML(friend); })
+            .join("");
         HTMLElement.innerHTML = friendsHTML;
     }
     catch (error) {
         console.error(error);
     }
 }
-function handleGetFriends() {
-    return __awaiter(this, void 0, void 0, function () {
-        var friends, root;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0: return [4 /*yield*/, getfriends()];
-                case 1:
-                    friends = _a.sent();
-                    root = document.querySelector('#root');
-                    renderfriends(friends, root); //call the function to show the list on-screen
-                    return [2 /*return*/];
-            }
-        });
-    });
-}
-function handleDeletefriends(id) {
+// async function handleGetfriends() {
+//   const friends = await getfriends();
+//   const root = document.querySelector("#root");
+//   renderfriends(friends, root as HTMLDivElement);
+// }
+function handleDeletefriend(id) {
     return __awaiter(this, void 0, void 0, function () {
         var response, result, friends, error_3;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
-                    return [4 /*yield*/, fetch('/API/delete-friend', {
-                            method: 'DELETE',
+                    return [4 /*yield*/, fetch("/API/delete-friend", {
+                            method: "DELETE",
                             headers: {
-                                'Content-Type': 'application/json'
+                                "Content-Type": "application/json"
                             },
                             body: JSON.stringify({ id: id })
                         })];
@@ -164,7 +173,7 @@ function handleDeletefriends(id) {
                     result = _a.sent();
                     console.log(result);
                     friends = result.friends;
-                    renderfriends(friends, document.querySelector('#root')); //call the function to shoe the update list
+                    renderfriends(friends, document.querySelector("#root"));
                     return [3 /*break*/, 4];
                 case 3:
                     error_3 = _a.sent();
@@ -175,26 +184,27 @@ function handleDeletefriends(id) {
         });
     });
 }
-function handleUpdatefriends(ev) {
+function handleUpdatefriend(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var phoneNumber, email, instegram, imgUrl, id, response, result, friends, error_4;
+        var name, phoneNumber, email, instegram, id, response, result, friends, error_4;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
                     ev.preventDefault();
-                    phoneNumber = ev.target.phoneNumber.value;
-                    email = ev.target.email.value;
-                    instegram = ev.target.instegram.value;
-                    imgUrl = ev.target.imgUrl.value;
+                    debugger;
+                    name = ev.target.name.value != "" ? ev.target.name.value : undefined;
+                    phoneNumber = ev.target.phoneNum.value != "" ? ev.target.phoneNum.value : undefined;
+                    email = ev.target.email.value != "" ? ev.target.email.value : undefined;
+                    instegram = ev.target.instegram.value != "" ? ev.target.instegram.value : undefined;
                     id = ev.target.id;
-                    console.log(id, phoneNumber, email, instegram, imgUrl);
-                    return [4 /*yield*/, fetch('/API/update-friend', {
-                            method: 'PATCH',
+                    console.log(id, name, phoneNumber, email, instegram);
+                    return [4 /*yield*/, fetch("/API/update-friend", {
+                            method: "PATCH",
                             headers: {
-                                'Content-Type': 'application/json'
+                                "Content-Type": "application/json"
                             },
-                            body: JSON.stringify({ id: id, phoneNumber: phoneNumber, email: email, instegram: instegram, imgUrl: imgUrl })
+                            body: JSON.stringify({ id: id, name: name, phoneNumber: phoneNumber, email: email, instegram: instegram })
                         })];
                 case 1:
                     response = _a.sent();
@@ -203,7 +213,7 @@ function handleUpdatefriends(ev) {
                     result = _a.sent();
                     console.log(result);
                     friends = result.friends;
-                    renderfriends(friends, document.querySelector('#root'));
+                    renderfriends(friends, document.querySelector("#root"));
                     return [3 /*break*/, 4];
                 case 3:
                     error_4 = _a.sent();
