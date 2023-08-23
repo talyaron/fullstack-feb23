@@ -69,7 +69,6 @@ function handleSubmit(ev) {
                 case 2:
                     result = _a.sent();
                     console.log(result);
-                    ev.target.reset();
                     return [3 /*break*/, 4];
                 case 3:
                     error_1 = _a.sent();
@@ -156,6 +155,7 @@ function handleUpdateFriends(event) {
                 case 2:
                     result = _a.sent();
                     console.log(result);
+                    handleGetAllFriends();
                     return [3 /*break*/, 4];
                 case 3:
                     error_3 = _a.sent();
@@ -180,6 +180,8 @@ function handleDeleteFriend(id) {
                         })];
                 case 1:
                     response = _a.sent();
+                    // const result = await response.json();
+                    handleGetAllFriends();
                     return [3 /*break*/, 3];
                 case 2:
                     error_4 = _a.sent();

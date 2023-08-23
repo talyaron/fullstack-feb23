@@ -35,7 +35,7 @@ async function handleSubmit(ev: any) {
     const result = await response.json();
     console.log(result);
 
-    ev.target.reset();
+    // ev.target.reset();
   } catch (error) {
     console.error(error);
   }
@@ -96,6 +96,7 @@ async function handleUpdateFriends(event: any) {
 
     const result = await response.json();
     console.log(result);
+    handleGetAllFriends();
   } catch (error) {
     console.error(error);
   }
@@ -108,6 +109,7 @@ async function handleDeleteFriend(id: string) {
       body: JSON.stringify({ id }),
     });
     // const result = await response.json();
+    handleGetAllFriends();
   } catch (error) {
     console.error(error);
   }
