@@ -3,7 +3,7 @@ const app = express()
 const port = 4500
 
 app.use(express.static('public'))
-//app.use(express.json());
+app.use(express.json());
 
 const myName :string ="shiran";
 
@@ -20,7 +20,8 @@ app.get('/name', (req, res) => {
   ];
 
   app.post('/login', (req, res) => {
-    const { username, password } = req.body;
+    const  username= req.body.username;
+    const password = req.body.password;
     const user = users.find(u => u.username === username && u.password === password);
     
     if (user) {
@@ -28,6 +29,8 @@ app.get('/name', (req, res) => {
     } else {
       res.send({ success: false });
     }
+
+    res.status(200).json({ message: 'First name updated successfully.', user });
   });
 
 

@@ -1,0 +1,136 @@
+body {
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(#35627a, transparent);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: fit-content;
+  width: 98vw;
+}
+body h1,
+body h2,
+body p {
+  text-align: center;
+}
+body #header {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  background: linear-gradient(#35627a, transparent);
+  z-index: 1;
+  width: 100%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+body #header img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+body #header button {
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  background-color: #5fa7f4;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+}
+body #header button:hover {
+  background-color: #0069d9;
+}
+body #header #title {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 3rem;
+  margin: 0;
+}
+body #header #register {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: fit-content;
+  margin: 0 auto;
+}
+body #header #register button {
+  padding: 20px;
+  width: 100px;
+}
+body #header #register form {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+}
+body #header #register form input {
+  margin: 10px 0;
+  padding: 1rem;
+  border-radius: 5px;
+}
+body #root {
+  padding-top: 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+  height: fit-content;
+  margin: auto;
+  width: 35%;
+}
+body #root .friend {
+  display: flex;
+  width: fit-content;
+  padding-bottom: 50px;
+  justify-content: space-around;
+  margin: 0 auto;
+  flex-wrap: wrap;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  background-color: #a3a9a9;
+  border-radius: 10px;
+  height: fit-content;
+}
+body #root .friend img {
+  width: 200px;
+  height: 200px;
+  padding: 10px;
+  margin: auto;
+  border-radius: 10px;
+}
+body #root .friend form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding: 10px;
+}
+body #root .friend input {
+  padding: 10px;
+  margin: 5px 0;
+  border-radius: 5px;
+  border: none;
+  font-size: 16px;
+  background: linear-gradient(#d2e5f0, transparent);
+  color: black;
+}
+body #root .friend input:focus {
+  border-color: #0542cf;
+  /* Change border color on focus */
+  box-shadow: 0 0 5px #2d343b;
+  /* Add a subtle shadow on focus */
+  outline: none;
+  /* Remove the default focus outline */
+}
+body #root .friend button {
+  padding: 7px;
+  margin: 5px 0;
+  border-radius: 5px;
+  border: none;
+  background-color: #007bff;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+}
+body #root .friend button:hover {
+  background-color: #0069d9;
+}
