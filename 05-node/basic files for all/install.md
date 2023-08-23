@@ -35,4 +35,4 @@ npm run dev
 
 
 if you get the comment:"'nodemon' is not recognized as an internal or external command" 
-you need to write the commend in line 5 again
+you need to write the commend in line 32 again

@@ -9,7 +9,6 @@
 </head>
 <body>
     <h1>Welcome to my friends</h1>
-    
     <h2>Add friend</h2>
     <form onsubmit="handleAddFriend(event)">
         <p>Please fill in all the fields, the fields with the asterisk are mandatory fields</p>
@@ -18,10 +17,10 @@
         <input type="text" name='phoneNumber' placeholder="*phone number">
         <input type="text" name="instegram" placeholder="instegram accaunte">
         <input type="url" name="imgUrl" placeholder="my friend Image">
-        <button type="submit">ADD</button>
+        <button type="submit" onclick="resetForm()">ADD</button>
     </form>
 
-    <button onclick="handleShowFriends()">Show Friends</button>
+    <button onclick="handleGetFriends()">Show Friends</button>
     <div id="root"></div>
     
 </body>

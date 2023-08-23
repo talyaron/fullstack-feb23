@@ -1,0 +1,57 @@
+body{
+    background: url("https://martech.org/wp-content/uploads/2016/12/instagram-logo-gradient3-ss-1920.jpg");
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+h1{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    color: pink;
+    font-size: 50px;
+    text-shadow: #FC0 1px 0 10px;
+}
+
+body > button{
+    position: relative;
+    left: 43%;
+    width: 14%;
+    padding: 12px;
+    border-radius: 12px;
+    margin-bottom: 40px;
+}
+
+input{
+    margin-bottom: 10px;
+}
+
+.friend{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+
+    h2{
+        color: #ef9303;
+        text-shadow: #1a1a18 1px 0 2px;
+        font-size: 50px;
+        margin: 0;
+    }
+
+    p{
+        text-shadow: #1a1a18 1px 0 2px;
+    }
+
+    .delete{
+        background-color: #b56060;
+        margin-bottom: 45px;
+    }
+}
