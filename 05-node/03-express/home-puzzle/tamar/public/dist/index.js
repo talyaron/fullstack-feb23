@@ -86,4 +86,42 @@ var getDescription = function () { return __awaiter(_this, void 0, void 0, funct
     });
 }); };
 getDescription();
-//2:
+//2+3:
+//https://www.section.io/engineering-education/how-to-create-a-simple-rest-api-using-typescript-and-nodejs/
+document.querySelector('#titleForm').addEventListener('submit', function (e) { return __awaiter(_this, void 0, void 0, function () {
+    var newTitleInput, newTitle;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                e.preventDefault();
+                newTitleInput = document.querySelector('#newTitle');
+                newTitle = newTitleInput.value;
+                return [4 /*yield*/, updateTitle(newTitle)];
+            case 1:
+                _a.sent();
+                getTitle(); // Refresh the displayed title
+                return [2 /*return*/];
+        }
+    });
+}); });
+var updateTitle = function (newTitle) { return __awaiter(_this, void 0, void 0, function () {
+    var response;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                console.time('updating title');
+                return [4 /*yield*/, fetch('/updateTitle', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ title: newTitle })
+                    })];
+            case 1:
+                response = _a.sent();
+                console.timeEnd('updating title');
+                console.log(response);
+                return [2 /*return*/];
+        }
+    });
+}); };

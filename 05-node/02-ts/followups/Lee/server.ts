@@ -1,7 +1,7 @@
-import x ,{y, multi } from "./const/helpers";
+import x ,{y, multi} from "./cont/helpers";
 
 console.log("Hi, I'm a server");
 
 console.log(x)
 
-console.log(multi(5, y));
+console.log(multi(12, y));

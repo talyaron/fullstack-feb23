@@ -1,0 +1,44 @@
+body {
+  margin: 100px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  .form-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    form {
+      background-color: #999;
+      border-radius: 10px;
+      padding: 10px;
+      margin-bottom: 20px;
+      input {
+        width: -webkit-fill-available;
+        margin: 5px;
+      }
+    }
+  }
+  #root {
+    display: flex;
+    flex-wrap: wrap;
+    .friends-card {
+      border: 1px solid black;
+      border-radius: 10px;
+      padding: 10px;
+      margin: 10px;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      input {
+        width: fit-content;
+        margin: 5px;
+      }
+    }
+    button {
+      margin: 5px;
+    }
+  }
+}
