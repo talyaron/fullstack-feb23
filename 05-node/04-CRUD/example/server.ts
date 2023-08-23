@@ -1,6 +1,6 @@
 import express from "express";
 const app = express();
-const port = process.env.PORT || 3000;
+// const port = process.env.PORT || 3000;
 
 interface _Product {
   title: string;
@@ -10,6 +10,8 @@ interface _Product {
 
 //static files
 app.use(express.static("public"));
+
+//body
 app.use(express.json());
 
 class Product {
@@ -26,6 +28,7 @@ class Product {
 }
 
 let products: Product[] = [];
+
 
 //CRUD - Create, Read, Update, Delete
 
