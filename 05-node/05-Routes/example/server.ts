@@ -20,7 +20,8 @@ import productsRouter from "./API/products/productsRouter";
 //tells express to use proudctsRouter on the intial route "/API/products"
 app.use("/API/products", productsRouter)
 
-
+import orderRouter from "./API/orders/orderRouter";
+app.use("/API/orders", orderRouter);
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
