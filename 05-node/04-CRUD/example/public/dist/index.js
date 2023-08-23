@@ -47,13 +47,13 @@ function handleAddProduct(event) {
                     price = event.target.price.valueAsNumber;
                     imgUrl = event.target.imgUrl.value;
                     if (!title || !price || !imgUrl) {
-                        throw new Error('Please complete all fields');
+                        throw new Error("Please complete all fields");
                     }
                     product = { title: title, price: price, imgUrl: imgUrl };
-                    return [4 /*yield*/, fetch('/API/add-product', {
-                            method: 'POST',
+                    return [4 /*yield*/, fetch("/API/add-product", {
+                            method: "POST",
                             headers: {
-                                'Content-Type': 'application/json'
+                                "Content-Type": "application/json"
                             },
                             body: JSON.stringify(product)
                         })];
@@ -80,7 +80,7 @@ function getproducts() {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
-                    return [4 /*yield*/, fetch('/API/get-products')];
+                    return [4 /*yield*/, fetch("/API/get-products")];
                 case 1:
                     response = _a.sent();
                     return [4 /*yield*/, response.json()];
@@ -118,7 +118,9 @@ function renderProducts(products, HTMLElement) {
         console.log(products);
         if (!Array.isArray(products))
             throw new Error("products are not array");
-        var productsHTML = products.map(function (product) { return renderProductHTML(product); }).join("");
+        var productsHTML = products
+            .map(function (product) { return renderProductHTML(product); })
+            .join("");
         HTMLElement.innerHTML = productsHTML;
     }
     catch (error) {
@@ -133,7 +135,7 @@ function handleGetProducts() {
                 case 0: return [4 /*yield*/, getproducts()];
                 case 1:
                     products = _a.sent();
-                    root = document.querySelector('#root');
+                    root = document.querySelector("#root");
                     renderProducts(products, root);
                     return [2 /*return*/];
             }
@@ -147,10 +149,10 @@ function handleDeleteProduct(id) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
-                    return [4 /*yield*/, fetch('/API/delete-product', {
-                            method: 'DELETE',
+                    return [4 /*yield*/, fetch("/API/delete-product", {
+                            method: "DELETE",
                             headers: {
-                                'Content-Type': 'application/json'
+                                "Content-Type": "application/json"
                             },
                             body: JSON.stringify({ id: id })
                         })];
@@ -161,7 +163,7 @@ function handleDeleteProduct(id) {
                     result = _a.sent();
                     console.log(result);
                     products = result.products;
-                    renderProducts(products, document.querySelector('#root'));
+                    renderProducts(products, document.querySelector("#root"));
                     return [3 /*break*/, 4];
                 case 3:
                     error_3 = _a.sent();
@@ -183,10 +185,10 @@ function handleUpdateProduct(ev) {
                     price = ev.target.price.valueAsNumber;
                     id = ev.target.id;
                     console.log(id, price);
-                    return [4 /*yield*/, fetch('/API/update-product', {
-                            method: 'PATCH',
+                    return [4 /*yield*/, fetch("/API/update-product", {
+                            method: "PATCH",
                             headers: {
-                                'Content-Type': 'application/json'
+                                "Content-Type": "application/json"
                             },
                             body: JSON.stringify({ id: id, price: price })
                         })];
@@ -197,7 +199,7 @@ function handleUpdateProduct(ev) {
                     result = _a.sent();
                     console.log(result);
                     products = result.products;
-                    renderProducts(products, document.querySelector('#root'));
+                    renderProducts(products, document.querySelector("#root"));
                     return [3 /*break*/, 4];
                 case 3:
                     error_4 = _a.sent();
