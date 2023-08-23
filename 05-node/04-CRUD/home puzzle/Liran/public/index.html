@@ -15,14 +15,18 @@
         <div id="register">
             <h2>Add Yourself</h2>
             <form id="details" onsubmit="handleAddfriend(event)">
-                <input type="text" name="name" placeholder="**Name">
-                <input type="text" name="phoneNumber" placeholder="**Phone Number">
-                <input type="email" name="email" placeholder="Email">
-                <input type="text" name="instegram" placeholder="instegram">
-                <input type="text" name="imgUrl" placeholder="**Image URL">
-                <button type="submit">ADD</button>
-                <button onclick="handlegetfriend()">Get</button>
+                <div>
+                    <input type="text" name="name" placeholder="**Name">
+                    <input type="text" name="phoneNumber" placeholder="**Phone Number">
+                    <input type="email" name="email" placeholder="Email">
+                    <input type="text" name="instegram" placeholder="instegram">
+                    <input type="text" name="imgUrl" placeholder="**Image URL">
+                </div>
+                <div>
+                    <button type="submit">ADD</button>
+                </div>
             </form>
+            <button onclick="handleGetfriends()">Get</button>
         </div>
     </div>
 

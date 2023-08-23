@@ -7,11 +7,11 @@ interface _Friend {
   id?: string;
 }
 
-getfriends();
+// getfriends();
 
 async function handleAddfriend(event: any) {
   try {
-    debugger;
+
     event.preventDefault();
     const name = event.target.name.value;
     const phoneNumber = event.target.phoneNumber.value;
@@ -52,6 +52,8 @@ function resetForm(form: HTMLFormElement) {
   }
 }
 
+
+
 async function getfriends() {
   try {
     const response = await fetch("/API/get-friends");
@@ -69,7 +71,7 @@ async function getfriends() {
 
 function renderfriendHTML(friend: _Friend) {
   try {
-    debugger;
+
     const html = `<div class="friend">
       <img src="${friend.imgUrl}" alt="${friend.name}" />
       <form id="${friend.id}" onsubmit="handleUpdatefriend(event)">
@@ -92,6 +94,7 @@ function renderfriendHTML(friend: _Friend) {
 
 function renderfriends(friends: _Friend[], HTMLElement: HTMLDivElement) {
   try {
+    debugger;
     if (!HTMLElement) throw new Error("HTMLElement not found");
     console.log(friends);
     if (!Array.isArray(friends)) throw new Error("friends are not array");
@@ -104,12 +107,12 @@ function renderfriends(friends: _Friend[], HTMLElement: HTMLDivElement) {
   }
 }
 
-// async function handleGetfriends() {
-//   const friends = await getfriends();
-
-//   const root = document.querySelector("#root");
-//   renderfriends(friends, root as HTMLDivElement);
-// }
+async function handleGetfriends() {
+  debugger;
+  const friends = await getfriends();
+  const root = document.querySelector("#root");
+  renderfriends(friends, root as HTMLDivElement);
+}
 
 async function handleDeletefriend(id: string) {
   try {
@@ -133,7 +136,7 @@ async function handleDeletefriend(id: string) {
 async function handleUpdatefriend(ev: any) {
   try {
     ev.preventDefault();
-    debugger;
+
     const name = ev.target.name.value != "" ? ev.target.name.value : undefined;
     const phoneNumber = ev.target.phoneNum.value != "" ? ev.target.phoneNum.value : undefined;
     const email = ev.target.email.value != "" ? ev.target.email.value : undefined;

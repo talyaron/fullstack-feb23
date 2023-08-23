@@ -34,7 +34,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-getfriends();
+// getfriends();
 function handleAddfriend(event) {
     return __awaiter(this, void 0, void 0, function () {
         var name, phoneNumber, email, instegram, imgUrl, friend, response, result, friends, root, error_1;
@@ -42,7 +42,6 @@ function handleAddfriend(event) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 4, , 5]);
-                    debugger;
                     event.preventDefault();
                     name = event.target.name.value;
                     phoneNumber = event.target.phoneNumber.value;
@@ -122,7 +121,6 @@ function getfriends() {
 }
 function renderfriendHTML(friend) {
     try {
-        debugger;
         var html = "<div class=\"friend\">\n      <img src=\"" + friend.imgUrl + "\" alt=\"" + friend.name + "\" />\n      <form id=\"" + friend.id + "\" onsubmit=\"handleUpdatefriend(event)\">\n        <input type=\"text\" name=\"name\" placeholder=\"" + friend.name + "\">\n        <input type=\"text\" name=\"phoneNum\" placeholder=\"" + friend.phoneNumber + "\">\n        <input type=\"email\" name=\"email\" placeholder=\"" + (friend.email === "" ? "Email" : friend.email) + "\">\n        <input type=\"text\" name=\"instegram\" placeholder=\"" + (friend.instegram === "" ? "Instegram" : friend.instegram) + "\">\n        <div class=\"buttons\">\n          <button type=\"submit\">Update</button>\n          <button onclick=\"handleDeletefriend('" + friend.id + "')\">Delete</button>\n        </div>\n        </form>\n    </div>";
         return html;
     }
@@ -133,6 +131,7 @@ function renderfriendHTML(friend) {
 }
 function renderfriends(friends, HTMLElement) {
     try {
+        debugger;
         if (!HTMLElement)
             throw new Error("HTMLElement not found");
         console.log(friends);
@@ -147,11 +146,23 @@ function renderfriends(friends, HTMLElement) {
         console.error(error);
     }
 }
-// async function handleGetfriends() {
-//   const friends = await getfriends();
-//   const root = document.querySelector("#root");
-//   renderfriends(friends, root as HTMLDivElement);
-// }
+function handleGetfriends() {
+    return __awaiter(this, void 0, void 0, function () {
+        var friends, root;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    debugger;
+                    return [4 /*yield*/, getfriends()];
+                case 1:
+                    friends = _a.sent();
+                    root = document.querySelector("#root");
+                    renderfriends(friends, root);
+                    return [2 /*return*/];
+            }
+        });
+    });
+}
 function handleDeletefriend(id) {
     return __awaiter(this, void 0, void 0, function () {
         var response, result, friends, error_3;
@@ -192,7 +203,6 @@ function handleUpdatefriend(ev) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
                     ev.preventDefault();
-                    debugger;
                     name = ev.target.name.value != "" ? ev.target.name.value : undefined;
                     phoneNumber = ev.target.phoneNum.value != "" ? ev.target.phoneNum.value : undefined;
                     email = ev.target.email.value != "" ? ev.target.email.value : undefined;
