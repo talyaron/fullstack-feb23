@@ -1,3 +1,4 @@
+import { Task } from "../tasks/tasksModel";
 export class User {
     name: string;
     tasks: Task[];

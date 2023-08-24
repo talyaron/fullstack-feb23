@@ -34,9 +34,47 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+//view (all render function):
+//controllers:
+function handleAddTask(event) {
+    return __awaiter(this, void 0, void 0, function () {
+        var title, description, task, response, result, error_1;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 3, , 4]);
+                    event.preventDefault();
+                    title = event.target.title.value;
+                    description = event.target.description.value;
+                    if (!title || !description)
+                        throw new Error("Pleas complete all fields");
+                    task = { title: title, description: description };
+                    return [4 /*yield*/, fetch('/API/tasks/add-task', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(task)
+                        })];
+                case 1:
+                    response = _a.sent();
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    result = _a.sent();
+                    console.log(result);
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_1 = _a.sent();
+                    console.error(error_1);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
+            }
+        });
+    });
+}
 function getTasks() {
     return __awaiter(this, void 0, void 0, function () {
-        var response, result, tasks, error_1;
+        var response, result, tasks, error_2;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -54,8 +92,8 @@ function getTasks() {
                     console.log(result);
                     return [2 /*return*/, tasks];
                 case 3:
-                    error_1 = _a.sent();
-                    console.error(error_1);
+                    error_2 = _a.sent();
+                    console.error(error_2);
                     return [2 /*return*/, []];
                 case 4: return [2 /*return*/];
             }
@@ -74,6 +112,74 @@ function handelGetTasks() {
                     root = document.querySelector('#root');
                     renderTasks(tasks, root);
                     return [2 /*return*/];
+            }
+        });
+    });
+}
+function handelDeleteTask(id) {
+    return __awaiter(this, void 0, void 0, function () {
+        var response, result, products, error_3;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 3, , 4]);
+                    return [4 /*yield*/, fetch('/API/tasks/delet-task', {
+                            method: 'DELETE',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({ id: id })
+                        })];
+                case 1:
+                    response = _a.sent();
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    result = _a.sent();
+                    console.log(result);
+                    products = result.products;
+                    renderTasks(products, document.querySelector('#root'));
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_3 = _a.sent();
+                    console.error(error_3);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
+            }
+        });
+    });
+}
+function handleUpdateTaskStatus(ev) {
+    return __awaiter(this, void 0, void 0, function () {
+        var status, id, response, result, products, error_4;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 3, , 4]);
+                    ev.preventDefault();
+                    status = ev.target.ststus.value;
+                    id = ev.target.id;
+                    console.log(id, status);
+                    return [4 /*yield*/, fetch('/API/tasks/update-task-status', {
+                            method: 'PATCH',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({ id: id, status: status })
+                        })];
+                case 1:
+                    response = _a.sent();
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    result = _a.sent();
+                    console.log(result);
+                    products = result.products;
+                    rendertasks(products, document.querySelector('#root'));
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_4 = _a.sent();
+                    console.error(error_4);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
             }
         });
     });
