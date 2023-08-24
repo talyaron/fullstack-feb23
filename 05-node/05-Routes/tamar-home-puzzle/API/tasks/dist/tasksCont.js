@@ -5,7 +5,7 @@ var tasksModel_1 = require("./tasksModel");
 var tasks = [
     new tasksModel_1.Task({ title: "garbige", description: "throw the garbige" })
 ];
-//the cintrollers:
+//the controllers:
 //add task to server
 exports.addTask = function (req, res) {
     try {
@@ -39,7 +39,7 @@ exports.updateTaskStatus = function (req, res) {
             throw new Error("please fill status field");
         var task = tasks.find(function (task) { return task.id === id_1; });
         if (!task)
-            throw new Error("no task match found");
+            throw new Error("no match task found");
         task.status = status; //update the status
         res.send({ tasks: tasks }); //server send the updated array to client
     }

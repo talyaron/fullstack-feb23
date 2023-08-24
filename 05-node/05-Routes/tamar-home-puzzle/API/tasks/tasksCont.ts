@@ -1,11 +1,10 @@
-import { compileString } from "sass";
 import { Task } from "./tasksModel";
 
 let tasks: Task[] = [
     new Task({title:"garbige", description: "throw the garbige"})
 ];
 
-//the cintrollers:
+//the controllers:
 //add task to server
 export const addTask = (req: any, res: any) => {
     try {
@@ -36,7 +35,7 @@ export const updateTaskStatus = (req: any, res: any) => {
         console.log(req.body);
         if (!status || !id) throw new Error("please fill status field");
         const task = tasks.find((task) => task.id === id);
-        if (!task) throw new Error("no task match found");
+        if (!task) throw new Error("no match task found");
         task.status = status; //update the status
         res.send({tasks}) //server send the updated array to client
     } catch (error) {

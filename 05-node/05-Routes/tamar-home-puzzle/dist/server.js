@@ -11,8 +11,15 @@ const port = process.env.PORT || 3000;
 //body
 app.use(express_1.default.json());
 //routers:
-//to task:
+//get router from taskRouter:
 //get:
 const tasksRouter_1 = __importDefault(require("./API/tasks/tasksRouter"));
 //tells express to use this route on the initial rout "/API/tasks"
 app.use("/API/tasks", tasksRouter_1.default);
+//get router from userRouter:
+const usersRouter_1 = __importDefault(require("./API/users/usersRouter"));
+//tells express to use userRouter on the intial route "/API/users"
+app.use("/API/users", usersRouter_1.default);
+app.listen(port, () => {
+    console.log(`app listening on pors ${port}`);
+});

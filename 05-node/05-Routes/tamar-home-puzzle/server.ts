@@ -17,9 +17,18 @@ interface _Task {
 app.use(express.json())
 
 //routers:
-//to task:
+//get router from taskRouter:
 //get:
 import tasksRouter from "./API/tasks/tasksRouter"
 
 //tells express to use this route on the initial rout "/API/tasks"
 app.use("/API/tasks", tasksRouter)
+
+//get router from userRouter:
+import usersRouter from "./API/users/usersRouter";
+//tells express to use userRouter on the intial route "/API/users"
+app.use("/API/users", usersRouter)
+
+app.listen(port, () => {
+    console.log(`app listening on pors ${port}`)
+})
