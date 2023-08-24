@@ -1,7 +1,9 @@
 import { compileString } from "sass";
 import { Task } from "./tasksModel";
 
-let tasks: Task[] = [];
+let tasks: Task[] = [
+    new Task({title:"garbige", description: "throw the garbige"})
+];
 
 //the cintrollers:
 //add task to server

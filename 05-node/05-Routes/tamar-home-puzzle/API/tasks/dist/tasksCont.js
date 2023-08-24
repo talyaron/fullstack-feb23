@@ -2,7 +2,9 @@
 exports.__esModule = true;
 exports.deleteTask = exports.updateTaskStatus = exports.getTasks = exports.addTask = void 0;
 var tasksModel_1 = require("./tasksModel");
-var tasks = [];
+var tasks = [
+    new tasksModel_1.Task({ title: "garbige", description: "throw the garbige" })
+];
 //the cintrollers:
 //add task to server
 exports.addTask = function (req, res) {
