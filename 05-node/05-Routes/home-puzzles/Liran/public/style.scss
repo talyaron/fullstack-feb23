@@ -3,12 +3,15 @@
     flex-direction: column;
     align-items: center;
     margin: auto;
+    gap: 20px;
     width: 400px;
     background: linear-gradient(180deg, rgb(52, 177, 230) 35%, rgb(161, 204, 212) 100%);
     height: 100vh;
     font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
-    color: #ffffffb3;
+    color: #ffffffff;
     border-radius: 10px;
+
+
 
     h1 {
         text-align: center;
@@ -19,6 +22,7 @@
         flex-direction: column;
         gap: 20px;
         align-items: center;
+        justify-content: center;
         width: 100%;
 
         button {
@@ -41,12 +45,38 @@
 
         }
 
-        Form {
+        #userUI {
+            display: flex;
+
+            button {
+                width: 50%;
+                padding: 5px;
+                border-radius: 5px;
+                background: linear-gradient(180deg, rgb(52, 177, 230) 35%, rgb(161, 204, 212) 100%);
+                color: #ffffffb3;
+                border: none;
+                outline: none;
+                font-size: 1.2rem;
+                font-weight: bold;
+            }
+
+            button:hover {
+                background: linear-gradient(0deg, rgb(52, 177, 230) 35%, rgb(161, 204, 212) 100%);
+                color: #ffffffff;
+                cursor: pointer;
+            }
+        }
+
+        #form,
+        .loginForm,.addNoteForm {
+            width: 100%;
             display: flex;
             flex-direction: column;
+            align-items: center;
             gap: 20px;
-            width: 100%;
-            justify-content: center;
+            justify-content: space-around;
+
+
 
             input,
             select {
@@ -65,5 +95,7 @@
                 outline: none;
             }
         }
+
+
     }
 }

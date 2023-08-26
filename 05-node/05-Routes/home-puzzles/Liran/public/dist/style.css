@@ -3,11 +3,12 @@
   flex-direction: column;
   align-items: center;
   margin: auto;
+  gap: 20px;
   width: 400px;
   background: linear-gradient(180deg, #34b1e6 35%, #a1ccd4 100%);
   height: 100vh;
   font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
-  color: #ffffffb3;
+  color: #ffffffff;
   border-radius: 10px;
 }
 #root h1 {
@@ -18,6 +19,7 @@
   flex-direction: column;
   gap: 20px;
   align-items: center;
+  justify-content: center;
   width: 100%;
 }
 #root #panel button {
@@ -37,22 +39,47 @@
   transition: background-color 0.3s ease;
   /* Smooth hover effect */
 }
-#root #panel Form {
+#root #panel #userUI {
+  display: flex;
+}
+#root #panel #userUI button {
+  width: 50%;
+  padding: 5px;
+  border-radius: 5px;
+  background: linear-gradient(180deg, #34b1e6 35%, #a1ccd4 100%);
+  color: #ffffffb3;
+  border: none;
+  outline: none;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+#root #panel #userUI button:hover {
+  background: linear-gradient(0deg, #34b1e6 35%, #a1ccd4 100%);
+  color: #ffffffff;
+  cursor: pointer;
+}
+#root #panel #form,
+#root #panel .loginForm, #root #panel .addNoteForm {
+  width: 100%;
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 20px;
-  width: 100%;
-  justify-content: center;
+  justify-content: space-around;
 }
-#root #panel Form input,
-#root #panel Form select {
+#root #panel #form input,
+#root #panel #form select,
+#root #panel .loginForm input,
+#root #panel .loginForm select, #root #panel .addNoteForm input,
+#root #panel .addNoteForm select {
   width: 200px;
   padding: 10px;
   border-radius: 5px;
   border: none;
   outline: none;
 }
-#root #panel Form button {
+#root #panel #form button,
+#root #panel .loginForm button, #root #panel .addNoteForm button {
   width: 50%;
   padding: 10px;
   border-radius: 5px;

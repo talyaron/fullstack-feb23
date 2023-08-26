@@ -5,7 +5,7 @@ const router = express.Router();
 
 router
     .get('/get-notes', getNotes)
-    .post("/add-note", addNote)
+    .post('/add-note', addNote)
     .delete("/delete-note", deleteNote)
     .patch('/update-note-decription', updateNote)
     .patch('/update-note-status', updateNoteStatus)

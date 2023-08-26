@@ -1,7 +1,7 @@
 import { Note } from "./noteModel";
 import { users } from "../users/usersCont";
 
-let ntoes: Note[] = [
+let notes: Note[] = [
     // new user("Google", "054-1234567", 100, [])
 ];
 
@@ -9,16 +9,19 @@ let ntoes: Note[] = [
 export const addNote = (req: any, res: any) => {
     try {
         const { title, description, status, id } = req.body;
-        if(!title || !description || !status || id) throw new Error("Please complete all fields");
+        console.log(req.body);
+        if (!title || !description || !status || id) throw new Error("Please complete all fields");
         //add to users array
         const user = users.find((user) => user.id === id);
         if (!user) throw new Error("user not found");
-        user.noteList.push({title, description, status}); // --> add to Database
-        console.log(users);
+        console.log(user);
+        const note: Note = { title: title, description: description, status: status };
+        user.noteList.push(note); // --> add to Database
         const list = user.noteList;
+        console.log(list);
         res.send({ list });
     } catch (error) {
-
+        console.error(error);
     }
 }
 

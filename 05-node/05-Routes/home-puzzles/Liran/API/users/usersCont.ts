@@ -6,13 +6,17 @@ export let users: User[] = [
 
 //add user controler
 export const adduser = (req: any, res: any) => {
-    debugger;
-    const user: User = req.body;
-    console.log(user);
-    //add to users array
-    users.push(new User(user.userName, user.password, user.phoneNumber, user.email)); // --> add to Database
-    console.log(users);
-    res.send({ user });
+    try {
+        debugger;
+        const user: User = req.body;
+        console.log(user);
+        //add to users array
+        users.push(new User(user.userName, user.password, user.phoneNumber, user.email)); // --> add to Database
+        console.log(users);
+        res.send({ user });
+    } catch (error) {
+        console.error(error);
+    }
 }
 
 //get users
@@ -54,13 +58,13 @@ export const updatePassword = (req: any, res: any) => {
 
 export const updateEmail = (req: any, res: any) => {
     try {
-        const { password, id } = req.body;
+        const { email, id } = req.body;
         console.log(req.body);
         if (!id) throw new Error("Please complete all fields");
         console.log(users);
         const user = users.find((user) => user.id === id);
         if (!user) throw new Error("user not found");
-        user.password = password;
+        user.email = email;
         res.send({ users });
     } catch (error) {
         console.error(error);
