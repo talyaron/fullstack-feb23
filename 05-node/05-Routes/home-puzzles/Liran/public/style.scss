@@ -1,0 +1,61 @@
+
+#root {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+    width: 400px;
+    background:linear-gradient(180deg, rgb(52, 177, 230) 35%, rgb(161, 204, 212) 100%);
+    height: 100vh;
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    color: #ffffffb3;
+    h1{
+        text-align: center;
+    }
+
+    #panel{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        align-items: center;
+        width: 100%;
+        button{
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #3498db; /* Button background color */
+            color: #ffffff; /* Text color */
+            border: none;
+            border-radius: 5px; /* Rounded corners */
+            font-size: 16px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            transition: background-color 0.3s ease; /* Smooth hover effect */
+            
+
+        }
+
+        Form{
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            width: 100%;
+            justify-content: center;
+            input{
+                width: 100%;
+                padding: 10px;
+                border-radius: 5px;
+                border: none;
+                outline: none;
+            }
+
+            button{
+                width: 50%;
+                padding: 10px;
+                border-radius: 5px;
+                border: none;
+                outline: none;
+            }
+        }
+    }
+}
