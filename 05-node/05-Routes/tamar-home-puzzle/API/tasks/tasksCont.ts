@@ -20,9 +20,9 @@ export const addTask = (req: any, res: any) => {
 }
 
 //get all tasks from server
-export const getTasks = (req: any, res: any) => {
+export const getTasks = async (req: any, res: any) => {
     try {
-        res.send({ tasks });
+        await res.send({ tasks });
     } catch (error) {
         console.error(error); 
     }

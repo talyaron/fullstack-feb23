@@ -2,6 +2,7 @@
 exports.__esModule = true;
 exports.deleteUser = exports.updateUserTasks = exports.getUsers = exports.addUser = void 0;
 var usersModel_1 = require("./usersModel");
+var tasksModel_1 = require("../tasks/tasksModel");
 var users = [
     new usersModel_1.User({ name: "Tamar" }),
     new usersModel_1.User({ name: "Amir" }),
@@ -9,6 +10,14 @@ var users = [
     new usersModel_1.User({ name: "Ofir" }),
     new usersModel_1.User({ name: "Eliya" })
 ];
+//create demo tasks
+var task1 = new tasksModel_1.Task({ title: 'task1', description: 'description t1' });
+var task2 = new tasksModel_1.Task({ title: 'task2', description: 'description t2' });
+//creat demo user and assign tasks to him
+var demoUser = new usersModel_1.User({ name: "demo" });
+demoUser.tasks.push(task1, task2);
+console.log(demoUser);
+users.push(demoUser);
 //the controllers:
 //add User to server
 exports.addUser = function (req, res) {
@@ -42,7 +51,7 @@ exports.updateUserTasks = function (req, res) {
         var user = users.find(function (user) { return user.id === id_1; });
         if (!user)
             throw new Error("no match User found");
-        user.tasks = //**need to be fill */
+        user.tasks = //**need to be fill*/
             res.send({ users: users }); //server send the updated array to client
     }
     catch (error) {

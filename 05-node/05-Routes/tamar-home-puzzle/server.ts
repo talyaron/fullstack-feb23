@@ -2,14 +2,6 @@ import express from "express"
 const app = express()
 const port = process.env.PORT || 3000
 
-//interfaces:
-
-interface _Task {
-    title: string;
-    description: string;
-    status: string;
-}
-
 //static files
 //app.use(express.static("public"))  //not yet created
 
