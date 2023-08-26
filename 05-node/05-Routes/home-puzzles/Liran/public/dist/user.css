@@ -1,0 +1,12 @@
+#root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+  width: 400px;
+  background: linear-gradient(180deg, #34b1e6 35%, #a1ccd4 100%);
+  height: 100vh;
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  color: #ffffffb3;
+  border-radius: 10px;
+}

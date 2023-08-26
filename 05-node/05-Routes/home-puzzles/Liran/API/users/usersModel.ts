@@ -1,6 +1,6 @@
 import { Note } from '../note/noteModel';
 
-export class Person {
+export class User {
     noteList: Note[] = [];
     id?: string;
     constructor(public userName: string, public password: string, public phoneNumber: string, public email: string) {

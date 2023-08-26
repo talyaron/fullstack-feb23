@@ -34,40 +34,142 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-// import { Note } from "../API/note/noteModel";
-renderEntrencePanel();
-// async function handleAddProduct(event: any) {
+var User = /** @class */ (function () {
+    function User(userName, password, phoneNumber, email) {
+        this.userName = userName;
+        this.password = password;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.id = "id-" + new Date().getTime() + "-" + Math.random();
+    }
+    return User;
+}());
+var currentUser = null;
+function handleLoginSubmit(event) {
+    return __awaiter(this, void 0, void 0, function () {
+        var selectedUser, userId_1, password, response, results, users, user, error_1;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 3, , 4]);
+                    event.preventDefault();
+                    selectedUser = document.querySelector("#user") || new HTMLSelectElement();
+                    if (!selectedUser)
+                        throw new Error("User not found");
+                    userId_1 = selectedUser.value;
+                    password = event.target.password.value;
+                    if (!userId_1 || !password)
+                        throw new Error("Please complete all fields");
+                    return [4 /*yield*/, fetch('/API/users/get-users')];
+                case 1:
+                    response = _a.sent();
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    results = _a.sent();
+                    users = results.users;
+                    if (!Array.isArray(users))
+                        throw new Error("users are not array");
+                    user = users.find(function (user) { return user.id === userId_1; });
+                    if (!user)
+                        throw new Error("User not found");
+                    if (user.password !== password) {
+                        alert("Password is incorrect");
+                        throw new Error("Password is incorrect");
+                    }
+                    currentUser = user;
+                    renderUserPage(document.querySelector('#root'), user);
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_1 = _a.sent();
+                    console.error(error_1);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
+            }
+        });
+    });
+}
+function handleRegisterSubmit(event) {
+    return __awaiter(this, void 0, void 0, function () {
+        var userName, password, phoneNumber, email, user, response, result, error_2;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 4, , 5]);
+                    event.preventDefault();
+                    userName = event.target.userName.value;
+                    password = event.target.password.value;
+                    phoneNumber = event.target.phoneNumber.value;
+                    email = event.target.email.value;
+                    if (!userName || !password || !phoneNumber || !email)
+                        throw new Error("Please complete all fields");
+                    return [4 /*yield*/, checkIfUserExist(userName)];
+                case 1:
+                    if (_a.sent())
+                        throw new Error("User already exist");
+                    user = new User(userName, password, phoneNumber, email);
+                    return [4 /*yield*/, fetch('/API/users/add-user', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(user)
+                        })];
+                case 2:
+                    response = _a.sent();
+                    return [4 /*yield*/, response.json()];
+                case 3:
+                    result = _a.sent();
+                    console.log(result);
+                    return [3 /*break*/, 5];
+                case 4:
+                    error_2 = _a.sent();
+                    console.error(error_2);
+                    return [3 /*break*/, 5];
+                case 5: return [2 /*return*/];
+            }
+        });
+    });
+}
+function checkIfUserExist(userName) {
+    return __awaiter(this, void 0, Promise, function () {
+        var response, results, users, user, error_3;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 3, , 4]);
+                    return [4 /*yield*/, fetch('/API/users/get-users')];
+                case 1:
+                    response = _a.sent();
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    results = _a.sent();
+                    users = results.users;
+                    if (!Array.isArray(users))
+                        throw new Error("users are not array");
+                    user = users.findIndex(function (user) { return user.userName === userName; });
+                    if (user !== -1) {
+                        alert("Name already exist, please choose another name");
+                        return [2 /*return*/, true];
+                    }
+                    return [2 /*return*/, false];
+                case 3:
+                    error_3 = _a.sent();
+                    console.error(error_3);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
+            }
+        });
+    });
+}
+// async function getusers() {
 //     try {
-//         event.preventDefault();
-//         const title = event.target.title.value;
-//         const price = event.target.price.valueAsNumber;
-//         const imgUrl = event.target.imgUrl.value;
-//         if (!title || !price || !imgUrl) {
-//             throw new Error('Please complete all fields');
-//         }
-//         const product: Product = { title, price, imgUrl };
-//         const response = await fetch('/API/products/add-product', {
-//             method: 'POST',
-//             headers: {
-//                 'Content-Type': 'application/json'
-//             },
-//             body: JSON.stringify(product)
-//         });
-//         const result = await response.json();
-//         console.log(result);
-//     } catch (error) {
-//         console.error(error);
-//     }
-// }
-// async function getPersons() {
-//     try {
-//         const response = await fetch('/API/persons/get-persons')
+//         const response = await fetch('/API/users/get-users')
 //         const results = await response.json();
-//         const { persons } = results;
-//         if (!Array.isArray(persons)) throw new Error("persons are not array");
-//         console.log(persons)
+//         const { users } = results;
+//         if (!Array.isArray(users)) throw new Error("users are not array");
+//         console.log(users)
 //         console.log(results)
-//         return persons;
+//         return users;
 //     } catch (error) {
 //         console.error(error);
 //         return []
@@ -104,6 +206,35 @@ renderEntrencePanel();
 //     const root = document.querySelector('#root');
 //     renderProducts(products, root as HTMLDivElement);
 // }
+function getusers() {
+    return __awaiter(this, void 0, void 0, function () {
+        var response, results, users, error_4;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 3, , 4]);
+                    return [4 /*yield*/, fetch('/API/users/get-users')];
+                case 1:
+                    response = _a.sent();
+                    console.log(response);
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    results = _a.sent();
+                    users = results.users;
+                    if (!Array.isArray(users))
+                        throw new Error("products are not array");
+                    console.log(users);
+                    console.log(results);
+                    return [2 /*return*/, users];
+                case 3:
+                    error_4 = _a.sent();
+                    console.error(error_4);
+                    return [2 /*return*/, []];
+                case 4: return [2 /*return*/];
+            }
+        });
+    });
+}
 // async function handleDeleteProduct(id: string) {
 //     try {
 //         const response = await fetch('/API/products/delete-product', {
@@ -142,6 +273,142 @@ renderEntrencePanel();
 //         console.error(error)
 //     }
 // }
+function renderUserPage(HTMLElement, user) {
+    try {
+        if (!HTMLElement)
+            throw new Error("HTMLElement not found");
+        HTMLElement.innerHTML = "<div id=\"title\"></div>\n        <div id=\"buttons\"></div>\n        <div id=\"form\"></div>";
+        renderTitle(document.querySelector('#title'), "Welcome " + user.userName);
+        renderUserButtons(document.querySelector('#buttons'), user);
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+function renderUserButtons(HTMLElement, user) {
+    try {
+        if (!HTMLElement)
+            throw new Error("HTMLElement not found");
+        HTMLElement.innerHTML = "<div><button onclick=\"handleAddNote()\">Add Note</button>\n        <button onclick=\"handleShowNotes()\">Show Notes</button>\n        <button onclick=\"handleUpdatePassword()\">Update Password</button>\n        <button onclick=\"handleUpdateEmail()\">Update Email</button>\n        <button onclick=\"handleDeleteUser()\">Delete User</button></div>";
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+function handleAddNote() {
+    try {
+        renderTitle(document.querySelector('#title'), "Add Note");
+        renderAddNoteForm(document.querySelector('#form'));
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+function renderAddNoteForm(HTMLElement) {
+    try {
+        if (!HTMLElement)
+            throw new Error("HTMLElement not found");
+        HTMLElement.innerHTML = "<form class=addNoteForm onsubmit=\"handleAddNoteSubmit(event)\">\n        <input type=\"text\" name=\"title\" placeholder=\"Title\" />\n        <input type=\"text\" name=\"description\" placeholder=\"Description\" />\n        <button type=\"submit\">Add</button>\n      </form>";
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+function handleShowNotes() {
+    return __awaiter(this, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            try {
+                renderTitle(document.querySelector('#title'), "Show Notes");
+                renderNotes(document.querySelector('#form'));
+            }
+            catch (error) {
+                console.error(error);
+            }
+            return [2 /*return*/];
+        });
+    });
+}
+function renderNotes(HTMLElement) {
+    return __awaiter(this, void 0, void 0, function () {
+        var response, results, notes, notesHTML, error_5;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 3, , 4]);
+                    if (!HTMLElement)
+                        throw new Error("HTMLElement not found");
+                    return [4 /*yield*/, fetch('/API/note/get-notes')];
+                case 1:
+                    response = _a.sent();
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    results = _a.sent();
+                    notes = results.notes;
+                    if (!Array.isArray(notes))
+                        throw new Error("notes are not array");
+                    notesHTML = notes.map(function (note) { return renderNoteHTML(note); }).join("");
+                    HTMLElement.innerHTML = notesHTML;
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_5 = _a.sent();
+                    console.error(error_5);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
+            }
+        });
+    });
+}
+function renderNoteHTML(note) {
+    try {
+        var html = "<div class=\"note\">\n        <h3>" + note.title + "</h3>\n        <p>" + note.description + "</p>\n        <p>" + note.status + "</p>\n        <button onclick=\"handleDeleteNote('" + note.title + "')\">Delete</button>\n      </div>";
+        return html;
+    }
+    catch (error) {
+        console.error(error);
+        return "";
+    }
+}
+function handleAddNoteSubmit(event) {
+    return __awaiter(this, void 0, void 0, function () {
+        var title, description, status, userID, note, response, result, error_6;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 3, , 4]);
+                    debugger;
+                    event.preventDefault();
+                    title = event.target.title.value;
+                    description = event.target.description.value;
+                    if (!title || !description)
+                        throw new Error("Please complete all fields");
+                    if (!currentUser)
+                        throw new Error("User not found");
+                    status = "To-Do";
+                    userID = currentUser.id;
+                    note = { title: title, description: description, status: status, userID: userID };
+                    return [4 /*yield*/, fetch('/API/note/add-note', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(note)
+                        })];
+                case 1:
+                    response = _a.sent();
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    result = _a.sent();
+                    console.log(result);
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_6 = _a.sent();
+                    console.error(error_6);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
+            }
+        });
+    });
+}
 function renderEntrencePanel() {
     try {
         renderTitle(document.querySelector('#title'), "Welcome to NoteList");
@@ -191,16 +458,27 @@ function handleRegister() {
 }
 function renderLogin(HTMLElement) {
     return __awaiter(this, void 0, void 0, function () {
+        var users, html, error_7;
         return __generator(this, function (_a) {
-            try {
-                if (!HTMLElement)
-                    throw new Error("HTMLElement not found");
-                HTMLElement.innerHTML = "<form class=loginForm onsubmit=\"handleLoginSubmit(event)\">\n        <select id=\"user\">\n        <option style=\"color:blue\" value=\"blueSword\">Blue sword</option>\n        <option style=\"color:green\" value=\"greenSword\">Green sword</option>\n        <option style=\"color:red\" value=\"redSword\">Red sword</option>\n        <option style=\"color:white\" value=\"whiteSword\">White sword</option>\n        </select> \n        <input type=\"password\" name=\"password\" placeholder=\"Password\" />\n        <button type=\"submit\">Go</button>\n      </form>";
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    if (!HTMLElement)
+                        throw new Error("HTMLElement not found");
+                    return [4 /*yield*/, getusers()];
+                case 1:
+                    users = _a.sent();
+                    html = "<form class=loginForm onsubmit=\"handleLoginSubmit(event)\">\n        <select id=\"user\">";
+                    html += users.map(function (user) { return "<option value=\"" + user.id + "\">" + user.userName + "</option>"; }).join("");
+                    html += "</select> \n        <input type=\"password\" name=\"password\" placeholder=\"Password\" />\n        <button type=\"submit\">Go</button>\n      </form>";
+                    HTMLElement.innerHTML = html;
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_7 = _a.sent();
+                    console.error(error_7);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
             }
-            catch (error) {
-                console.error(error);
-            }
-            return [2 /*return*/];
         });
     });
 }
@@ -208,9 +486,10 @@ function renderRegister(HTMLElement) {
     try {
         if (!HTMLElement)
             throw new Error("HTMLElement not found");
-        HTMLElement.innerHTML = "<form class=registerForm onsubmit=\"handleRegisterSubmit(event)\">\n        <input type=\"text\" name=\"userName\" placeholder=\"User Name\" />\n        <input type=\"password\" name=\"password\" placeholder=\"Password\" />\n        <input type=\"text\" name=\"phoneNumber\" placeholder=\"Phone Number\" />\n        <input type=\"text\" name=\"email\" placeholder=\"Email\" />\n        <button type=\"submit\">Go</button>\n      </form>";
+        HTMLElement.innerHTML = "<form class=registerForm onsubmit=\"handleRegisterSubmit(event)\">\n        <input type=\"text\" name=\"userName\" placeholder=\"User Name\" />\n        <input type=\"password\" name=\"password\" placeholder=\"Password\" />\n        <input type=\"text\" name=\"phoneNumber\" placeholder=\"Phone Number\" />\n        <input type=\"text\" name=\"email\" placeholder=\"Email\" />\n        <button type=\"submit\">Sign up</button>\n      </form>";
     }
     catch (error) {
         console.error(error);
     }
 }
+renderEntrencePanel();
