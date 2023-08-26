@@ -1,0 +1,85 @@
+body {
+  background-image: url(https://img.rawpixel.com/s3fs-private/rawpixel_images/website_content/v546batch3-mynt-34-badgewatercolor_1.jpg?w=1200&h=1200&dpr=1&fit=clip&crop=default&fm=jpg&q=75&vib=3&con=3&usm=15&cs=srgb&bg=F4F4F3&ixlib=js-2.2.1&s=f04d2786c16b18e1ee49ca8128b65221);
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+}
+
+.siteHeader {
+  font-size: 50px;
+  font-family: fantasy;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  width: 80vw;
+  gap: 10vw;
+  height: 80vh;
+}
+.wrapper__tasksBox {
+  height: 60vh;
+  width: 25vw;
+  background: #d9c1c1;
+  background: linear-gradient(90deg, rgba(255, 168, 168, 0.527) 34%, rgba(153, 193, 245, 0.74) 80%);
+  border-radius: 20px;
+  box-shadow: 4px 4px rgba(128, 128, 128, 0.514);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: fantasy;
+  font-style: italic;
+  text-decoration: underline;
+}
+
+#newTaskBtn {
+  width: 6vw;
+  height: 6vh;
+  border-radius: 20px;
+  font-family: fantasy;
+  background: #d9c1c1;
+  background: linear-gradient(90deg, rgba(255, 168, 168, 0.527) 34%, rgba(153, 193, 245, 0.74) 80%);
+  margin-bottom: 20px;
+  transition: all 100ms ease-in-out;
+  cursor: pointer;
+}
+#newTaskBtn:hover {
+  transform: scale(1.21);
+}
+
+.newTaskWindow {
+  transition: all 150ms ease-in-out;
+  opacity: 0;
+  position: absolute;
+  z-index: 2;
+  width: 40vw;
+  height: 40vh;
+  background-color: aliceblue;
+  top: -40vh;
+  border-radius: 20px;
+  font-family: fantasy;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 4px 4px rgba(128, 128, 128, 0.479);
+}
+.newTaskWindow__newTaskForm {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.task {
+  display: flex;
+  flex-direction: column;
+  height: 18vh;
+  width: 18vw;
+  border-radius: 20px;
+  background-color: rgba(250, 235, 215, 0.589);
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+}
