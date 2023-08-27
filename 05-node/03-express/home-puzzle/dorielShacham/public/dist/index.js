@@ -46,8 +46,9 @@ function hideLoginModal() {
     loginModal.style.display = 'none';
 }
 loginButton.addEventListener('click', function () {
-    var username = document.getElementById('username').value;
-    var password = document.getElementById('password').value;
+    var _a, _b;
+    var username = (_a = document.getElementById('username')) === null || _a === void 0 ? void 0 : _a.value;
+    var password = (_b = document.getElementById('password')) === null || _b === void 0 ? void 0 : _b.value;
     var matchingUser = users.find(function (user) { return user.username === username && user.password === password; });
     if (matchingUser) {
         hideLoginModal();

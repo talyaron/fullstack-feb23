@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="docTitleRoot"></title>
+    <script src="./dist/index.js" defer></script>
+    <link rel="stylesheet" href="./dist/index.css">
+</head>
+
+<body>
+    <h1 class="siteHeader">AWESOME TM</h1>
+    <div class="addTask">
+        <button onclick="newTaskBtnClicked()" id="newTaskBtn">NEW AWESOME TASK!</button>
+    </div>
+    
+        <div class="newTaskWindow">
+            <h1>ADD YOUR NEW AWESOME TASK!</h1>
+            <form class="newTaskWindow__newTaskForm" onsubmit="handleNewTask(event)">
+            <input id="title" name="title" type="text" placeholder="title">
+            <label for="category">Select a Category:</label>
+            <select id="category" name="category" aria-placeholder="Category">
+                <option value="Work">Work</option>
+                <option value="Study">Study</option>
+                <option value="Life">Life</option>
+            </select>
+            
+            <input type="submit">
+
+            
+            
+            </form>
+
+        </div>
+    
+    <div class="wrapper">
+        <div id="todo" class="wrapper__tasksBox">
+            <h2>TODO</h2>
+            <div id="todoROOT"></div>
+        </div>
+        <div id="doing" class="wrapper__tasksBox">
+            <h2>DOING</h2>
+            <div id="doingROOT"></div>
+
+        </div>
+        <div id="done" class="wrapper__tasksBox">
+            <h2>DONE</h2>
+            <div id="doneROOT"></div>
+
+        </div>
+    </div>
+</body>
+
+</html>

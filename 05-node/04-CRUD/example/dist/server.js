@@ -7,6 +7,7 @@ const express_1 = __importDefault(require("express"));
 const app = express_1.default();
 //static files
 app.use(express_1.default.static("public"));
+//body
 app.use(express_1.default.json());
 class Product {
     constructor({ title, price, imgUrl }) {

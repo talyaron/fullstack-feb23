@@ -12,8 +12,8 @@ function hideLoginModal() {
 }
 
 loginButton.addEventListener('click', () => {
-    const username = document.getElementById('username').value;
-    const password = document.getElementById('password').value;
+    const username = document.getElementById('username')?.value;
+    const password = document.getElementById('password')?.value;
     const matchingUser = users.find(user => user.username === username && user.password === password);
 
     if (matchingUser) {
