@@ -90,60 +90,6 @@ async function checkIfUserExist(userName: string): Promise<boolean> {
     }
 }
 
-
-// async function getusers() {
-//     try {
-//         const response = await fetch('/API/users/get-users')
-//         const results = await response.json();
-//         const { users } = results;
-//         if (!Array.isArray(users)) throw new Error("users are not array");
-//         console.log(users)
-//         console.log(results)
-//         return users;
-
-//     } catch (error) {
-//         console.error(error);
-//         return []
-//     }
-// }
-
-// function renderProductHTML(product: Product) {
-//     try {
-//         const html = `<div class="product">
-//         <img src="${product.imgUrl}" />
-//         <h3>${product.title}</h3>
-//         <p>Price: ${product.price}</p>
-//         <form id="${product.id}" onsubmit="handleUpdateProduct(event)"><input type="number" name="price"  value="${product.price}" placeholder="Price" /><button type="submit">Update</button></form>
-//         <button onclick="handleDeleteProduct('${product.id}')">Delete</button>
-//       </div>`
-//         return html;
-//     } catch (error) {
-//         console.error(error)
-//         return ""
-//     }
-// }
-
-// function renderProducts(products: Product[], HTMLElement: HTMLDivElement) {
-//     try {
-//         if (!HTMLElement) throw new Error("HTMLElement not found")
-//         console.log(products)
-//         if (!Array.isArray(products)) throw new Error("products are not array");
-//         const productsHTML = products.map(product => renderProductHTML(product)).join("")
-//         HTMLElement.innerHTML = productsHTML;
-//     } catch (error) {
-//         console.error(error)
-//     }
-// }
-
-// async function handleGetProducts() {
-//     const products = await getproducts();
-
-//     const root = document.querySelector('#root');
-//     renderProducts(products, root as HTMLDivElement);
-
-// }
-
-
 async function getusers() {
     try {
         const response = await fetch('/API/users/get-users')
@@ -162,94 +108,11 @@ async function getusers() {
     }
 }
 
-
-// async function handleDeleteProduct(id: string) {
-//     try {
-//         const response = await fetch('/API/products/delete-product', {
-//             method: 'DELETE',
-//             headers: {
-//                 'Content-Type': 'application/json'
-//             },
-//             body: JSON.stringify({ id })
-//         });
-//         const result = await response.json();
-//         console.log(result);
-//         const { products } = result;
-
-//         renderProducts(products, document.querySelector('#root') as HTMLDivElement);
-
-//     } catch (error) {
-//         console.error(error)
-//     }
-// }
-
-// async function handleUpdateProduct(ev: any) {
-//     try {
-//         ev.preventDefault();
-//         const price = ev.target.price.valueAsNumber;
-//         const id = ev.target.id;
-//         console.log(id, price)
-
-//         const response = await fetch('/API/products/update-product-price', {
-//             method: 'PATCH',
-//             headers: {
-//                 'Content-Type': 'application/json'
-//             },
-//             body: JSON.stringify({ id, price })
-//         });
-
-//         const result = await response.json();
-//         console.log(result);
-//         const { products } = result;
-//         renderProducts(products, document.querySelector('#root') as HTMLDivElement);
-
-//     } catch (error) {
-//         console.error(error)
-//     }
-// }
-
-function renderUserPage(HTMLElement: HTMLDivElement, user: User) {
-    try {
-        if (!HTMLElement) throw new Error("HTMLElement not found")
-        HTMLElement.innerHTML = `<div id="title"></div>
-        <div id="panel"><div id="buttons"></div>
-        <div id="form"></div></div>`
-        renderTitle(document.querySelector('#title') as HTMLDivElement, `Welcome ${user.userName}`)
-        renderUserButtons(document.querySelector('#buttons') as HTMLDivElement, user)
-        //renderLogoutButton(document.querySelector('#form') as HTMLDivElement);
-    } catch (error) {
-        console.error(error)
-    }
-}
-
-// function renderLogoutButton(HTMLElement: HTMLDivElement) { 
-//     try {
-//         if (!HTMLElement) throw new Error("HTMLElement not found")
-//         HTMLElement.innerHTML += `<button id=logout onclick="handleLogout()">Logout</button>`
-//     } catch (error) {
-//         console.error(error)
-//     }
-// }
-
 function handleLogOut() {
     try {
         debugger;
         currentUser = null;
         renderEntrencePanel();
-    } catch (error) {
-        console.error(error)
-    }
-}
-
-function renderUserButtons(HTMLElement: HTMLDivElement, user: User) {
-    try {
-        if (!HTMLElement) throw new Error("HTMLElement not found")
-        HTMLElement.innerHTML = `<div id=userUI><button onclick="handleAddTask()">Add Task</button>
-        <button onclick="handleShowTasks()">Show Tasks</button>
-        <button onclick="handleUpdatePassword()">Update Password</button>
-        <button onclick="handleUpdateEmail()">Update Email</button>
-        <button onclick="handleDeleteUser()">Delete User</button>
-        <button onclick="handleLogOut()">Log out</button></div>`
     } catch (error) {
         console.error(error)
     }
@@ -325,19 +188,6 @@ function handleAddTask() {
     }
 }
 
-function renderAddTaskForm(HTMLElement: HTMLDivElement) {
-    try {
-        if (!HTMLElement) throw new Error("HTMLElement not found")
-        HTMLElement.innerHTML = `<form id=addTaskForm onsubmit="handleAddTaskSubmit(event)">
-        <input type="text" name="title" placeholder="Title" />
-        <input type="text" name="description" placeholder="Description" />
-        <button type="submit">Add</button>
-      </form>`
-    } catch (error) {
-        console.error(error)
-    }
-}
-
 async function handleShowTasks() {
     try {
 
@@ -390,6 +240,26 @@ function handleLogin() {
     try {
         renderTitle(document.querySelector('#title') as HTMLDivElement, "Login")
         renderLogin(document.querySelector('#form') as HTMLDivElement);
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+async function handleUpdateDescription(title: string) {
+    try {
+        if (!currentUser) throw new Error("User not found")
+        const newDescription = prompt("Please enter new description");
+        if (!newDescription) throw new Error("Please enter new description");
+        const response = await fetch('/API/task/update-task-description', {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ id: currentUser.id, title: title, newDescription })
+        });
+        const result = await response.json();
+        console.log(result);
+        renderTasks(document.querySelector('#form') as HTMLDivElement, currentUser.id)
     } catch (error) {
         console.error(error)
     }
@@ -455,6 +325,46 @@ async function checkIfTaskExist(title: string, id: string): Promise<boolean> {
     }
 }
 
+function renderUserButtons(HTMLElement: HTMLDivElement, user: User) {
+    try {
+        if (!HTMLElement) throw new Error("HTMLElement not found")
+        HTMLElement.innerHTML = `<div id=userUI><button onclick="handleAddTask()">Add Task</button>
+        <button onclick="handleShowTasks()">Show Tasks</button>
+        <button onclick="handleUpdatePassword()">Update Password</button>
+        <button onclick="handleUpdateEmail()">Update Email</button>
+        <button onclick="handleDeleteUser()">Delete User</button>
+        <button onclick="handleLogOut()">Log out</button></div>`
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+function renderUserPage(HTMLElement: HTMLDivElement, user: User) {
+    try {
+        if (!HTMLElement) throw new Error("HTMLElement not found")
+        HTMLElement.innerHTML = `<div id="title"></div>
+        <div id="panel"><div id="buttons"></div>
+        <div id="form"></div></div>`
+        renderTitle(document.querySelector('#title') as HTMLDivElement, `Welcome ${user.userName}`)
+        renderUserButtons(document.querySelector('#buttons') as HTMLDivElement, user)
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+function renderAddTaskForm(HTMLElement: HTMLDivElement) {
+    try {
+        if (!HTMLElement) throw new Error("HTMLElement not found")
+        HTMLElement.innerHTML = `<form id=addTaskForm onsubmit="handleAddTaskSubmit(event)">
+        <input type="text" name="title" placeholder="Title" />
+        <input type="text" name="description" placeholder="Description" />
+        <button type="submit">Add</button>
+      </form>`
+    } catch (error) {
+        console.error(error)
+    }
+}
+
 
 
 function renderEntrencePanel() {
@@ -467,14 +377,6 @@ function renderEntrencePanel() {
     }
 }
 
-function clearForm(HTMLElement: HTMLDivElement) {
-    try {
-        if (!HTMLElement) throw new Error("HTMLElement not found")
-        HTMLElement.innerHTML = ""
-    } catch (error) {
-        console.error(error)
-    }
-}
 
 async function renderTasks(HTMLElement: HTMLDivElement, id: string) {
     try {
@@ -517,26 +419,6 @@ function renderTaskHTML(task: Task) {
     } catch (error) {
         console.error(error)
         return ""
-    }
-}
-
-async function handleUpdateDescription(title: string) {
-    try {
-        if (!currentUser) throw new Error("User not found")
-        const newDescription = prompt("Please enter new description");
-        if (!newDescription) throw new Error("Please enter new description");
-        const response = await fetch('/API/task/update-task-description', {
-            method: 'PATCH',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ id: currentUser.id, title: title, newDescription })
-        });
-        const result = await response.json();
-        console.log(result);
-        renderTasks(document.querySelector('#form') as HTMLDivElement, currentUser.id)
-    } catch (error) {
-        console.error(error)
     }
 }
 
@@ -588,6 +470,16 @@ function renderRegister(HTMLElement: HTMLDivElement) {
         <input type="text" name="email" placeholder="Email" />
         <button type="submit">Sign up</button>
       </form>`
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+
+function clearForm(HTMLElement: HTMLDivElement) {
+    try {
+        if (!HTMLElement) throw new Error("HTMLElement not found")
+        HTMLElement.innerHTML = ""
     } catch (error) {
         console.error(error)
     }

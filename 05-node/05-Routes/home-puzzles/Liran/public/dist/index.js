@@ -164,51 +164,6 @@ function checkIfUserExist(userName) {
         });
     });
 }
-// async function getusers() {
-//     try {
-//         const response = await fetch('/API/users/get-users')
-//         const results = await response.json();
-//         const { users } = results;
-//         if (!Array.isArray(users)) throw new Error("users are not array");
-//         console.log(users)
-//         console.log(results)
-//         return users;
-//     } catch (error) {
-//         console.error(error);
-//         return []
-//     }
-// }
-// function renderProductHTML(product: Product) {
-//     try {
-//         const html = `<div class="product">
-//         <img src="${product.imgUrl}" />
-//         <h3>${product.title}</h3>
-//         <p>Price: ${product.price}</p>
-//         <form id="${product.id}" onsubmit="handleUpdateProduct(event)"><input type="number" name="price"  value="${product.price}" placeholder="Price" /><button type="submit">Update</button></form>
-//         <button onclick="handleDeleteProduct('${product.id}')">Delete</button>
-//       </div>`
-//         return html;
-//     } catch (error) {
-//         console.error(error)
-//         return ""
-//     }
-// }
-// function renderProducts(products: Product[], HTMLElement: HTMLDivElement) {
-//     try {
-//         if (!HTMLElement) throw new Error("HTMLElement not found")
-//         console.log(products)
-//         if (!Array.isArray(products)) throw new Error("products are not array");
-//         const productsHTML = products.map(product => renderProductHTML(product)).join("")
-//         HTMLElement.innerHTML = productsHTML;
-//     } catch (error) {
-//         console.error(error)
-//     }
-// }
-// async function handleGetProducts() {
-//     const products = await getproducts();
-//     const root = document.querySelector('#root');
-//     renderProducts(products, root as HTMLDivElement);
-// }
 function getusers() {
     return __awaiter(this, void 0, void 0, function () {
         var response, results, users, error_4;
@@ -238,80 +193,11 @@ function getusers() {
         });
     });
 }
-// async function handleDeleteProduct(id: string) {
-//     try {
-//         const response = await fetch('/API/products/delete-product', {
-//             method: 'DELETE',
-//             headers: {
-//                 'Content-Type': 'application/json'
-//             },
-//             body: JSON.stringify({ id })
-//         });
-//         const result = await response.json();
-//         console.log(result);
-//         const { products } = result;
-//         renderProducts(products, document.querySelector('#root') as HTMLDivElement);
-//     } catch (error) {
-//         console.error(error)
-//     }
-// }
-// async function handleUpdateProduct(ev: any) {
-//     try {
-//         ev.preventDefault();
-//         const price = ev.target.price.valueAsNumber;
-//         const id = ev.target.id;
-//         console.log(id, price)
-//         const response = await fetch('/API/products/update-product-price', {
-//             method: 'PATCH',
-//             headers: {
-//                 'Content-Type': 'application/json'
-//             },
-//             body: JSON.stringify({ id, price })
-//         });
-//         const result = await response.json();
-//         console.log(result);
-//         const { products } = result;
-//         renderProducts(products, document.querySelector('#root') as HTMLDivElement);
-//     } catch (error) {
-//         console.error(error)
-//     }
-// }
-function renderUserPage(HTMLElement, user) {
-    try {
-        if (!HTMLElement)
-            throw new Error("HTMLElement not found");
-        HTMLElement.innerHTML = "<div id=\"title\"></div>\n        <div id=\"panel\"><div id=\"buttons\"></div>\n        <div id=\"form\"></div></div>";
-        renderTitle(document.querySelector('#title'), "Welcome " + user.userName);
-        renderUserButtons(document.querySelector('#buttons'), user);
-        //renderLogoutButton(document.querySelector('#form') as HTMLDivElement);
-    }
-    catch (error) {
-        console.error(error);
-    }
-}
-// function renderLogoutButton(HTMLElement: HTMLDivElement) { 
-//     try {
-//         if (!HTMLElement) throw new Error("HTMLElement not found")
-//         HTMLElement.innerHTML += `<button id=logout onclick="handleLogout()">Logout</button>`
-//     } catch (error) {
-//         console.error(error)
-//     }
-// }
 function handleLogOut() {
     try {
         debugger;
         currentUser = null;
         renderEntrencePanel();
-    }
-    catch (error) {
-        console.error(error);
-    }
-}
-function renderUserButtons(HTMLElement, user) {
-    try {
-        if (!HTMLElement)
-            throw new Error("HTMLElement not found");
-        HTMLElement.innerHTML = "<div id=userUI><button onclick=\"handleAddTask()\">Add Task</button>\n        <button onclick=\"handleShowTasks()\">Show Tasks</button>\n        <button onclick=\"handleUpdatePassword()\">Update Password</button>\n        <button onclick=\"handleUpdateEmail()\">Update Email</button>\n        <button onclick=\"handleDeleteUser()\">Delete User</button>\n        <button onclick=\"handleLogOut()\">Log out</button></div>";
     }
     catch (error) {
         console.error(error);
@@ -434,16 +320,6 @@ function handleAddTask() {
         console.error(error);
     }
 }
-function renderAddTaskForm(HTMLElement) {
-    try {
-        if (!HTMLElement)
-            throw new Error("HTMLElement not found");
-        HTMLElement.innerHTML = "<form id=addTaskForm onsubmit=\"handleAddTaskSubmit(event)\">\n        <input type=\"text\" name=\"title\" placeholder=\"Title\" />\n        <input type=\"text\" name=\"description\" placeholder=\"Description\" />\n        <button type=\"submit\">Add</button>\n      </form>";
-    }
-    catch (error) {
-        console.error(error);
-    }
-}
 function handleShowTasks() {
     return __awaiter(this, void 0, void 0, function () {
         return __generator(this, function (_a) {
@@ -533,6 +409,42 @@ function handleLogin() {
         console.error(error);
     }
 }
+function handleUpdateDescription(title) {
+    return __awaiter(this, void 0, void 0, function () {
+        var newDescription, response, result, error_10;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 3, , 4]);
+                    if (!currentUser)
+                        throw new Error("User not found");
+                    newDescription = prompt("Please enter new description");
+                    if (!newDescription)
+                        throw new Error("Please enter new description");
+                    return [4 /*yield*/, fetch('/API/task/update-task-description', {
+                            method: 'PATCH',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({ id: currentUser.id, title: title, newDescription: newDescription })
+                        })];
+                case 1:
+                    response = _a.sent();
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    result = _a.sent();
+                    console.log(result);
+                    renderTasks(document.querySelector('#form'), currentUser.id);
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_10 = _a.sent();
+                    console.error(error_10);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
+            }
+        });
+    });
+}
 function handleRegister() {
     try {
         renderTitle(document.querySelector('#title'), "Register");
@@ -544,7 +456,7 @@ function handleRegister() {
 }
 function handleAddTaskSubmit(event) {
     return __awaiter(this, void 0, void 0, function () {
-        var title, description, status, userID, task, response, result, error_10;
+        var title, description, status, userID, task, response, result, error_11;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -580,8 +492,8 @@ function handleAddTaskSubmit(event) {
                     event.target.reset();
                     return [3 /*break*/, 5];
                 case 4:
-                    error_10 = _a.sent();
-                    console.error(error_10);
+                    error_11 = _a.sent();
+                    console.error(error_11);
                     return [3 /*break*/, 5];
                 case 5: return [2 /*return*/];
             }
@@ -590,7 +502,7 @@ function handleAddTaskSubmit(event) {
 }
 function checkIfTaskExist(title, id) {
     return __awaiter(this, void 0, Promise, function () {
-        var response, results, tasks, task, error_11;
+        var response, results, tasks, task, error_12;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -616,13 +528,45 @@ function checkIfTaskExist(title, id) {
                     }
                     return [2 /*return*/, false];
                 case 3:
-                    error_11 = _a.sent();
-                    console.error(error_11);
+                    error_12 = _a.sent();
+                    console.error(error_12);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }
         });
     });
+}
+function renderUserButtons(HTMLElement, user) {
+    try {
+        if (!HTMLElement)
+            throw new Error("HTMLElement not found");
+        HTMLElement.innerHTML = "<div id=userUI><button onclick=\"handleAddTask()\">Add Task</button>\n        <button onclick=\"handleShowTasks()\">Show Tasks</button>\n        <button onclick=\"handleUpdatePassword()\">Update Password</button>\n        <button onclick=\"handleUpdateEmail()\">Update Email</button>\n        <button onclick=\"handleDeleteUser()\">Delete User</button>\n        <button onclick=\"handleLogOut()\">Log out</button></div>";
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+function renderUserPage(HTMLElement, user) {
+    try {
+        if (!HTMLElement)
+            throw new Error("HTMLElement not found");
+        HTMLElement.innerHTML = "<div id=\"title\"></div>\n        <div id=\"panel\"><div id=\"buttons\"></div>\n        <div id=\"form\"></div></div>";
+        renderTitle(document.querySelector('#title'), "Welcome " + user.userName);
+        renderUserButtons(document.querySelector('#buttons'), user);
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+function renderAddTaskForm(HTMLElement) {
+    try {
+        if (!HTMLElement)
+            throw new Error("HTMLElement not found");
+        HTMLElement.innerHTML = "<form id=addTaskForm onsubmit=\"handleAddTaskSubmit(event)\">\n        <input type=\"text\" name=\"title\" placeholder=\"Title\" />\n        <input type=\"text\" name=\"description\" placeholder=\"Description\" />\n        <button type=\"submit\">Add</button>\n      </form>";
+    }
+    catch (error) {
+        console.error(error);
+    }
 }
 function renderEntrencePanel() {
     try {
@@ -634,19 +578,9 @@ function renderEntrencePanel() {
         console.error(error);
     }
 }
-function clearForm(HTMLElement) {
-    try {
-        if (!HTMLElement)
-            throw new Error("HTMLElement not found");
-        HTMLElement.innerHTML = "";
-    }
-    catch (error) {
-        console.error(error);
-    }
-}
 function renderTasks(HTMLElement, id) {
     return __awaiter(this, void 0, void 0, function () {
-        var response, results, tasks, tasksHTML, error_12;
+        var response, results, tasks, tasksHTML, error_13;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -675,8 +609,8 @@ function renderTasks(HTMLElement, id) {
                     HTMLElement.innerHTML = tasksHTML;
                     return [3 /*break*/, 4];
                 case 3:
-                    error_12 = _a.sent();
-                    console.error(error_12);
+                    error_13 = _a.sent();
+                    console.error(error_13);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }
@@ -692,42 +626,6 @@ function renderTaskHTML(task) {
         console.error(error);
         return "";
     }
-}
-function handleUpdateDescription(title) {
-    return __awaiter(this, void 0, void 0, function () {
-        var newDescription, response, result, error_13;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    _a.trys.push([0, 3, , 4]);
-                    if (!currentUser)
-                        throw new Error("User not found");
-                    newDescription = prompt("Please enter new description");
-                    if (!newDescription)
-                        throw new Error("Please enter new description");
-                    return [4 /*yield*/, fetch('/API/task/update-task-description', {
-                            method: 'PATCH',
-                            headers: {
-                                'Content-Type': 'application/json'
-                            },
-                            body: JSON.stringify({ id: currentUser.id, title: title, newDescription: newDescription })
-                        })];
-                case 1:
-                    response = _a.sent();
-                    return [4 /*yield*/, response.json()];
-                case 2:
-                    result = _a.sent();
-                    console.log(result);
-                    renderTasks(document.querySelector('#form'), currentUser.id);
-                    return [3 /*break*/, 4];
-                case 3:
-                    error_13 = _a.sent();
-                    console.error(error_13);
-                    return [3 /*break*/, 4];
-                case 4: return [2 /*return*/];
-            }
-        });
-    });
 }
 function renderTitle(HTMLElement, title) {
     try {
@@ -780,6 +678,16 @@ function renderRegister(HTMLElement) {
         if (!HTMLElement)
             throw new Error("HTMLElement not found");
         HTMLElement.innerHTML = "<form id=registerForm onsubmit=\"handleRegisterSubmit(event)\">\n        <input type=\"text\" name=\"userName\" placeholder=\"User Name\" />\n        <input type=\"password\" name=\"password\" placeholder=\"Password\" />\n        <input type=\"text\" name=\"phoneNumber\" placeholder=\"Phone Number\" />\n        <input type=\"text\" name=\"email\" placeholder=\"Email\" />\n        <button type=\"submit\">Sign up</button>\n      </form>";
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+function clearForm(HTMLElement) {
+    try {
+        if (!HTMLElement)
+            throw new Error("HTMLElement not found");
+        HTMLElement.innerHTML = "";
     }
     catch (error) {
         console.error(error);
