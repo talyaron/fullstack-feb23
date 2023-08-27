@@ -10,23 +10,32 @@ h2 {
   text-align: center;
 }
 
-.toDo {
+.toDo,
+.doing,
+.done {
   height: 85vh;
   flex: 1;
 }
-.toDo_header {
+.toDo_header,
+.doing_header,
+.done_header {
   display: flex;
   justify-content: space-around;
-  background-color: darkgoldenrod;
   border: 2px gray solid;
   border-radius: 10px 10px 0 0;
   align-items: center;
+  background-color: darkgoldenrod;
 }
-.toDo_header button {
+.toDo_header button,
+.doing_header button,
+.done_header button {
   width: 30px;
   height: 30px;
 }
-.toDo .toDoTasks {
+
+.toDo .toDoTasks,
+.doing .doingTasks,
+.done .doneTasks {
   margin-top: -2px;
   height: 40vh;
   border: 2px gray solid;
@@ -34,21 +43,24 @@ h2 {
   padding: 10px;
   border-radius: 0 0 10px 10px;
 }
-.toDo .toDoTasks form {
+.toDo .toDoTasks form,
+.doing .doingTasks form,
+.done .doneTasks form {
   width: 100%;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-.toDo .toDoTasks input, .toDo .toDoTasks button, .toDo .toDoTasks textarea {
+.toDo .toDoTasks input,
+.toDo .toDoTasks button,
+.toDo .toDoTasks textarea,
+.doing .doingTasks input,
+.doing .doingTasks button,
+.doing .doingTasks textarea,
+.done .doneTasks input,
+.done .doneTasks button,
+.done .doneTasks textarea {
   padding: 5px;
   margin: 6px;
-}
-
-.doing {
-  flex: 1;
-  background-color: navajowhite;
-}
-
-.done {
-  flex: 1;
-  background-color: mediumaquamarine;
+  max-width: 35vw;
 }

@@ -2,12 +2,6 @@ import express from "express";
 const app = express();
 const port = process.env.PORT || 3000;
 
-interface _User {
-  id: number;
-  userName:string; 
-  password: string 
-  
-}
 
 //static files
 app.use(express.static("public"));

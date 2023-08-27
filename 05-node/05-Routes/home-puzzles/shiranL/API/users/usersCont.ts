@@ -1,22 +1,39 @@
-//usersCont.ts  
+import { User } from "./usersModel";
 
-import { User, users } from "./usersModel"
+let users: User[] = [new User("shiran", "123456")];
 
-export const getUsers = (req, res) => {
+//add user controler    
+export const addUser = (req: any, res: any) => {
     try {
-        res.send({ users })
+        const user = req.body;
+        console.log(user);
+        //add to users array
+        users.push(new User(user.userName, user.password)); // --> add to Database
+        console.log(users);
+        res.send({ users });
     } catch (error) {
-        console.error(error.massage)
+        console.error(error);
     }
 }
-
-export const addUser = (req, res) => {
+//get all users controler
+export const getAllUsers = (req: any, res: any) => {
     try {
-        const user: User = req.body;
-        users.push(new User(user.userName, user.password))  
-        res.send({ users })
+        res.send({ users });
     } catch (error) {
-        console.error(error.massage)
+        console.error(error);
+    }
+}   
 
+export const logIn = (req: any, res: any) => {
+    try {
+        const user = req.body;
+        const userFound = users.find((u: User) => u.userName === user.userName && u.password === user.password);
+        if (userFound) {
+            res.send({ success: true, message: "user found" });
+        } else {
+            res.send({ success: false, message: "user not found" });
+        }
+    } catch (error) {
+        console.error(error);
     }
 }

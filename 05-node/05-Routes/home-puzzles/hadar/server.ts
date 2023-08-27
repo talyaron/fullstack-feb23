@@ -5,8 +5,8 @@ const port = process.env.PORT || 3000;
 app.use(express.static('public'));
 app.use(express.json());
 
-
-
+import router from "./API/router";
+app.use('/API', router)
 
 
 app.listen(port, () => {

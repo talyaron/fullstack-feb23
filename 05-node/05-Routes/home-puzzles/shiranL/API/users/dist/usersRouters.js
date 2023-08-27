@@ -6,5 +6,6 @@ var express_1 = require("express");
 var router = express_1["default"].Router();
 exports["default"] = router;
 router
-    .get('./usersCont.ts', usersCont_1.getUsers)
-    .post('/API/tasks/addUser', usersCont_1.addUser);
+    .get("/get-all-users", usersCont_1.getAllUsers)
+    .post("/add-user", usersCont_1.addUser)
+    .post("/log-in", usersCont_1.logIn);
