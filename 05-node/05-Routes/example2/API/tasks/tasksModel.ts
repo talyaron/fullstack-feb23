@@ -1,3 +1,5 @@
+import { User } from "../users/userModel";
+
 export enum TaskStatus{
     done = "done",
     todo = "todo"
@@ -16,3 +18,12 @@ export class Task{
 }
 
 export const tasks:Task[] = [];
+
+export class UserTasks{
+    id:string
+    constructor(public user:User,public task:Task){
+        this.id = Math.random().toString(36).substr(2, 9);
+    }
+}   
+
+export const userTasks:UserTasks[] = [];

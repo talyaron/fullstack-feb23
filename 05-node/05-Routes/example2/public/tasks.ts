@@ -50,7 +50,7 @@ async function handeleAddTask(ev: any) {
 
 async function handleUpdateStatus(status: TaskStatus, id: string) {
     try {
-      
+
         console.log(status);
 
         const body = { id, status };
@@ -71,7 +71,10 @@ async function handleUpdateStatus(status: TaskStatus, id: string) {
 
 function renderTask(task: Task) {
     try {
-        const html = task.status === TaskStatus.todo ? `<li onclick="handleUpdateStatus('done', '${task.id}')">${task.title} - ${task.description}</li>`: `<li style="text-decoration: line-through;" onclick="handleUpdateStatus('todo', '${task.id}')">${task.title} - ${task.description}</li>`;
+        const html = task.status === TaskStatus.todo
+            ? `<li onclick="handleUpdateStatus('done', '${task.id}')">${task.title} - ${task.description}</li>`
+            :
+            `<li style="text-decoration: line-through;" onclick="handleUpdateStatus('todo', '${task.id}')">${task.title} - ${task.description}</li>`;
         return html;
     } catch (error) {
         console.error(error);

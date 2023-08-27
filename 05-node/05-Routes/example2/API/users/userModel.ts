@@ -1,12 +1,12 @@
 export class User {
-    name: string;
-    phoneNum: string;
-    imgUrl: string;
-    id: string;
-    constructor({ name, phoneNum, imgUrl }: {name:string, phoneNum:string, imgUrl:string}) {
-      this.name = name;
-      this.phoneNum = phoneNum;
-      this.imgUrl = imgUrl;
-      this.id = Math.random().toString();
-    }
+  email: string;
+  password: string;
+  id: string;
+  constructor({ email, password}: { email: string, password: string }) {
+    this.email = email;
+    this.password = password;
+    this.id = Math.random().toString();
   }
+}
+
+export const users: User[] = [];

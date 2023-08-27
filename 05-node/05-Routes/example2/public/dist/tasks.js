@@ -135,7 +135,10 @@ function handleUpdateStatus(status, id) {
 }
 function renderTask(task) {
     try {
-        var html = task.status === TaskStatus.todo ? "<li onclick=\"handleUpdateStatus('done', '" + task.id + "')\">" + task.title + " - " + task.description + "</li>" : "<li style=\"text-decoration: line-through;\" onclick=\"handleUpdateStatus('todo', '" + task.id + "')\">" + task.title + " - " + task.description + "</li>";
+        var html = task.status === TaskStatus.todo
+            ? "<li onclick=\"handleUpdateStatus('done', '" + task.id + "')\">" + task.title + " - " + task.description + "</li>"
+            :
+                "<li style=\"text-decoration: line-through;\" onclick=\"handleUpdateStatus('todo', '" + task.id + "')\">" + task.title + " - " + task.description + "</li>";
         return html;
     }
     catch (error) {
