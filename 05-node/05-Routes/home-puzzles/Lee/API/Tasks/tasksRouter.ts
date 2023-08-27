@@ -1,6 +1,6 @@
 import express from 'express';
 import { addTasks, deleteTask, getTasks, updateTaskStatus } from './tasksCont'
-const router = express.router()
+const router = express.Router()
 
 
 router
