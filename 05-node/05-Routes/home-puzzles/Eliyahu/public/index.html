@@ -15,19 +15,26 @@
         <div class="toDo">
             <div class="toDo_header">
                 <h2>To Do</h2>
-                <button onclick="renderAddTask()">+</button>
+                <button onclick="renderAddTask('toDo')">+</button>
             </div>
             <div class="toDoTasks" id="toDoTasks"></div>
         </div>
         <div class="doing">
-            <h2>Doing</h2>
-            <div id="doingTasks"></div>
+            <div class="doing_header">
+                <h2>Doing</h2>
+                <button onclick="renderAddTask('doing')">+</button>
+            </div>
+            <div class="doingTasks" id="doingTasks"></div>
         </div>
         <div class="done">
-            <h2>Done</h2>
-            <div id="doneTasks"></div>
+            <div class="done_header">
+                <h2>Done</h2>
+                <button onclick="renderAddTask('done')">+</button>
+            </div>
+            <div class="doneTasks" id="doneTasks"></div>
         </div>
     </div>
+
 </body>
 
 </html>

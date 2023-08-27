@@ -1,5 +1,4 @@
 // import { Task } from "../API/tasks/tasksModels";
-console.log('111');
 
 
 class Task {
@@ -13,19 +12,23 @@ class Task {
         this.id = Math.random().toString()
     }
 }
-async function gatTasks() {
-    try {
-        const response = await fetch('API/tasks/get-tasks')
-        const result = await response.json()
-        const { tasks } = result
-        if (!Array.isArray(tasks)) throw new Error("tasks is not array");
-        return tasks;
 
-    } catch (error) {
-        console.error(error.massage);
-    }
-}
+const toDoRoot = document.querySelector('#toDoTasks') as HTMLDivElement
+const doingRoot = document.querySelector('#doingTasks') as HTMLDivElement
+const doneRoot = document.querySelector('#doneTasks') as HTMLDivElement
 
+// async function gatTasks() {
+//     try {
+//         const response = await fetch('API/tasks/get-tasks')
+//         const result = await response.json()
+//         const { tasks } = result
+//         if (!Array.isArray(tasks)) throw new Error("tasks is not array");
+//         return tasks;
+
+//     } catch (error) {
+//         console.error(error.massage);
+//     }
+// }
 
 
 
@@ -54,7 +57,7 @@ async function handleAddTask(ev: any, user: string, status: string) {
         const { tasks } = result
         console.log(tasks);
 
-
+        renderTasks(tasks)
     } catch (error) {
         console.error(error)
     }
@@ -72,6 +75,7 @@ async function handleDeleteTask(id: string) {
         })
         const result = await response.json()
         const { tasks } = result
+        renderTasks(tasks)
 
     } catch (error) {
         console.error(error.massage);
@@ -94,6 +98,9 @@ async function handleUpdateTaskTitle(ev: any) {
 
         const result = await response.json()
         const { tasks } = result
+
+        renderTasks(tasks)
+
     } catch (error) {
         console.error(error.massage);
     }
@@ -115,6 +122,9 @@ async function handleUpdateTaskDescription(ev: any) {
 
         const result = await response.json()
         const { tasks } = result
+
+        renderTasks(tasks)
+
     } catch (error) {
         console.error(error.massage);
     }
@@ -135,21 +145,34 @@ async function handleUpdateTaskStatus(taskStatus: string, taskId: string) {
 
         const result = await response.json()
         const { tasks } = result
+
+        renderTasks(tasks)
+
     } catch (error) {
         console.error(error.massage);
     }
 }
 
-function renderAddTask() {
+function renderAddTask(status: string) {
     try {
-        const html = `<form onsubmit="handleAddTask(ev, 'eli', 'toDo')">
-        <input type="text" name="title" placeholder="Title">
-        <textarea name="description" cols="21" rows="5" placeholder="Description"></textarea>
+        const html = `<form onsubmit="handleAddTask(event, 'eli', '${status}')">
+        <input type="text" name="title" placeholder="Title" required>
+        <textarea name="description" cols="21" rows="5" placeholder="Description" required></textarea>
         <button type="submit">ADD</button>
     </form>`
 
-        const root = document.querySelector('#toDoTasks') as HTMLDivElement
-        root.innerHTML = html
+
+        switch (status) {
+            case 'toDo':
+                toDoRoot.innerHTML = html
+                break;
+            case 'doing':
+                doingRoot.innerHTML = html
+                break;
+            case 'done':
+                doneRoot.innerHTML = html
+                break;
+        }
     } catch (error) {
         console.error(error.massage);
     }
@@ -169,8 +192,30 @@ function renderTaskHtml(task: Task) {
         </div>
         <button onclick="handleDeleteTask(${task.id})">Delete</button>
         </div>`
+
+        return html
     } catch (error) {
         console.error(error.massage);
-
     }
 }
+
+function renderTasks(tasks: Task[]) {
+    try {
+        if (!Array.isArray(tasks)) throw new Error("tasks is not array");
+        const toDoTasks = tasks.filter(task => task.status === 'toDo')
+        const toDoTasksHTML = toDoTasks.map(task => renderTaskHtml(task)).join('')
+        toDoRoot.innerHTML = toDoTasksHTML
+
+        const doingTasks = tasks.filter(task => task.status === 'doing')
+        const doingTasksHTML = doingTasks.map(task => renderTaskHtml(task)).join('')
+        doingRoot.innerHTML = doingTasksHTML
+
+        const doneTasks = tasks.filter(task => task.status === 'done')
+        const doneTasksHTML = doneTasks.map(task => renderTaskHtml(task)).join('')
+        doneRoot.innerHTML = doneTasksHTML
+    } catch (error) {
+        console.error(error.massage);
+    }
+}
+
+

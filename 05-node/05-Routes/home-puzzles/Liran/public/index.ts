@@ -60,7 +60,6 @@ async function handleRegisterSubmit(event: any) {
         });
 
         const result = await response.json();
-        console.log(result);
         alert("User added successfully");
         currentUser = user;
         renderLogin(document.querySelector('#form') as HTMLDivElement);
@@ -93,15 +92,10 @@ async function checkIfUserExist(userName: string): Promise<boolean> {
 async function getusers() {
     try {
         const response = await fetch('/API/users/get-users')
-        console.log(response)
         const results = await response.json();
-
         const { users } = results;
         if (!Array.isArray(users)) throw new Error("products are not array");
-        console.log(users)
-        console.log(results)
         return users;
-
     } catch (error) {
         console.error(error);
         return []
@@ -131,7 +125,6 @@ async function handleUpdateEmail() {
             body: JSON.stringify({ id: currentUser.id, email: newEmail })
         });
         const result = await response.json();
-        console.log(result);
         alert("Email updated successfully");
     } catch (error) {
         console.error(error)
@@ -149,7 +142,6 @@ async function handleDeleteUser() {
             body: JSON.stringify({ id: currentUser.id })
         });
         const result = await response.json();
-        console.log(result);
         currentUser = null;
         renderEntrencePanel();
     } catch (error) {
@@ -170,7 +162,6 @@ async function handleUpdatePassword() {
             body: JSON.stringify({ id: currentUser.id, password: newPassword })
         });
         const result = await response.json();
-        console.log(result);
         alert("Password updated successfully");
         currentUser = null;
         renderEntrencePanel();
@@ -211,7 +202,6 @@ async function handleDeleteTask(title: string) {
             body: JSON.stringify({ id: currentUser.id, title })
         });
         const result = await response.json();
-        console.log(result);
         renderTasks(document.querySelector('#form') as HTMLDivElement, currentUser.id)
     } catch (error) {
         console.error(error)
@@ -229,7 +219,6 @@ async function handleUpdateStatus(title: string) {
             body: JSON.stringify({ id: currentUser.id, title: title, newStatus: "Done" })
         });
         const result = await response.json();
-        console.log(result);
         renderTasks(document.querySelector('#form') as HTMLDivElement, currentUser.id)
     } catch (error) {
         console.error(error)
@@ -258,7 +247,6 @@ async function handleUpdateDescription(title: string) {
             body: JSON.stringify({ id: currentUser.id, title: title, newDescription })
         });
         const result = await response.json();
-        console.log(result);
         renderTasks(document.querySelector('#form') as HTMLDivElement, currentUser.id)
     } catch (error) {
         console.error(error)
@@ -279,8 +267,6 @@ async function handleAddTaskSubmit(event: any) {
         event.preventDefault();
         const title = event.target.title.value;
         const description = event.target.description.value;
-        console.log(title, description)
-
         if (!title || !description) throw new Error("Please complete all fields")
         if (!currentUser) throw new Error("User not found")
         const status = "To-Do";
@@ -388,13 +374,11 @@ async function renderTasks(HTMLElement: HTMLDivElement, id: string) {
             }
         })
         const results = await response.json();
-        console.log(response);
         const { tasks } = results;
         if (!Array.isArray(tasks)) throw new Error("tasks are not array");
         let tasksHTML = ``;
         tasksHTML += tasks.map(task => renderTaskHTML(task)).join("")
         debugger;
-        console.log(tasksHTML);
         HTMLElement.innerHTML = tasksHTML;
     } catch (error) {
         console.error(error)

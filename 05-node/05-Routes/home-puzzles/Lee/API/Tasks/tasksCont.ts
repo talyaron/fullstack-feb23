@@ -1,12 +1,11 @@
 import { Task } from "./tasksModel";
 
 
-let tasks: Task[] = [];
+let tasks: Task[] = [new Task("Walk the dog", "take a walk with the dog", "to-do")];
 
 export const addTasks = (req: any, res: any) => {
     const task: Task = req.body;
     console.log(task);
-    //add to tasks array
     tasks.push(new Task(task.title, task.description, task.status, task.id)); // --> add to Database
     console.log(tasks);
     res.send({task});
