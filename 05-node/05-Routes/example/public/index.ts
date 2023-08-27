@@ -59,7 +59,10 @@ function renderProductHTML(product: Product) {
       <img src="${product.imgUrl}" />
       <h3>${product.title}</h3>
       <p>Price: ${product.price}</p>
-      <form id="${product.id}" onsubmit="handleUpdateProduct(event)"><input type="number" name="price"  value="${product.price}" placeholder="Price" /><button type="submit">Update</button></form>
+      <form id="${product.id}" onsubmit="handleUpdateProduct(event)">
+        <input type="number" name="price"  value="${product.price}" placeholder="Price" />
+        <button type="submit">Update</button>
+      </form>
       <button onclick="handleDeleteProduct('${product.id}')">Delete</button>
     </div>`
     return html;

@@ -15,6 +15,13 @@ app.use(express_1.default.json());
 const productsRouter_1 = __importDefault(require("./API/products/productsRouter"));
 //tells express to use proudctsRouter on the intial route "/API/products"
 app.use("/API/products", productsRouter_1.default);
+<<<<<<< HEAD
+=======
+// get router from userRouter
+const userRouter_1 = __importDefault(require("./API/users/userRouter"));
+//tells express to use userRouter on the intial route "/API/users"
+app.use("/API/users", userRouter_1.default);
+>>>>>>> tamar-grop
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`);
 });
