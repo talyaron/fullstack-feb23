@@ -12,7 +12,7 @@ export const addProduct = (req: any, res: any) => {
     products.push(new Product(product)); // --> add to Database
     console.log(products);
     res.send({ product });
-}
+};
 
 //get products
 export const getProducts = (req, res) => {
