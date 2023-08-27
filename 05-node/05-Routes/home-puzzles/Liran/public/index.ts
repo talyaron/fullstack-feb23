@@ -270,8 +270,6 @@ async function handleUpdateEmail() {
         const result = await response.json();
         console.log(result);
         alert("Email updated successfully");
-        currentUser = null;
-        renderEntrencePanel();
     } catch (error) {
         console.error(error)
     }

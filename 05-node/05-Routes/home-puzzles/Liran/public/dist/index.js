@@ -343,8 +343,6 @@ function handleUpdateEmail() {
                     result = _a.sent();
                     console.log(result);
                     alert("Email updated successfully");
-                    currentUser = null;
-                    renderEntrencePanel();
                     return [3 /*break*/, 4];
                 case 3:
                     error_5 = _a.sent();
