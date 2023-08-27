@@ -1,16 +1,18 @@
-import { User } from "./usersModel";
+import { User ,users} from "./usersModel";
 
-let users: User[] = [new User("shiran", "123456")];
+
 
 //add user controler    
 export const addUser = (req: any, res: any) => {
     try {
         const user = req.body;
-        console.log(user);
+      if (!user.userName || !user.password) {
+            res.send({ users,success: false, message: "user name and password are required" });
+            return;
+        }
         //add to users array
         users.push(new User(user.userName, user.password)); // --> add to Database
-        console.log(users);
-        res.send({ users });
+        res.send({ users, success: true, message: "user added" });
     } catch (error) {
         console.error(error);
     }
