@@ -103,7 +103,7 @@ function getproducts() {
 }
 function renderProductHTML(product) {
     try {
-        var html = "<div class=\"product\">\n      <img src=\"" + product.imgUrl + "\" />\n      <h3>" + product.title + "</h3>\n      <p>Price: " + product.price + "</p>\n      <form id=\"" + product.id + "\" onsubmit=\"handleUpdateProduct(event)\"><input type=\"number\" name=\"price\"  value=\"" + product.price + "\" placeholder=\"Price\" /><button type=\"submit\">Update</button></form>\n      <button onclick=\"handleDeleteProduct('" + product.id + "')\">Delete</button>\n    </div>";
+        var html = "<div class=\"product\">\n      <img src=\"" + product.imgUrl + "\" />\n      <h3>" + product.title + "</h3>\n      <p>Price: " + product.price + "</p>\n      <form id=\"" + product.id + "\" onsubmit=\"handleUpdateProduct(event)\">\n        <input type=\"number\" name=\"price\"  value=\"" + product.price + "\" placeholder=\"Price\" />\n        <button type=\"submit\">Update</button>\n      </form>\n      <button onclick=\"handleDeleteProduct('" + product.id + "')\">Delete</button>\n    </div>";
         return html;
     }
     catch (error) {

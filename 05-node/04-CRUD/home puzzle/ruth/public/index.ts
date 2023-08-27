@@ -1,13 +1,4 @@
-class Task {
-  public id: string;
-  constructor(
-    public name: string,
-    public time: string,
-    public isDone: boolean = false,
-  ) {
-    this.id = require("uuid/v4");
-  }
-}
+import { Task } from "../API/tasks/taskModel";
 
 async function handleAddTask(event) {
   try {
@@ -46,19 +37,21 @@ function renderTask(
 ) {
   try {
     const html = `
-    <form class="tasksListDiv__task" id ="${
-      task.id
-    }" onchange = "handelChangeTask(event)" >
-    <input type="checkbox" class="checkMark" name ="isDone" ${task.isDone ? "checked" : ""}>
-    <input type="text" class="taskNameInList" name="taskNameInList" placeholder="" value="${
-      task.name
-    }">
-    <input type="time" class="taskTimeInList" name="taskTimeInList" placeholder="" value="${
-      task.time
-    }">
-      <button  onclick="sayHallo(event)" > update </button>
-      <button type="button" onclick = "handleDeleteTask(event)"> delete </button>
-    </form>`;
+      <form class="tasksListDiv__task" id ="${
+        task.id
+      }" onchange = "handelChangeTask(event)" >
+      <input type="checkbox" class="checkMark" name ="isDone" ${
+        task.isDone ? "checked" : ""
+      }>
+      <input type="text" class="taskNameInList" name="taskNameInList" placeholder="" value="${
+        task.name
+      }">
+      <input type="time" class="taskTimeInList" name="taskTimeInList" placeholder="" value="${
+        task.time
+      }">
+        <button  onclick="sayHallo(event)" > update </button>
+        <button type="button" onclick = "handleDeleteTask(event)"> delete </button>
+      </form>`;
     root.innerHTML += html;
   } catch (error) {
     console.error(error);
@@ -76,16 +69,18 @@ function renderAllTask(
         return `<form class="tasksListDiv__task" id ="${
           task.id
         }" onchange = "handelChangeTask(event)" >
-        <input type="checkbox" class="checkMark" name ="isDone" ${task.isDone ? "checked" : ""}>
-    <input type="text" class="taskNameInList" name="taskNameInList" placeholder="" value="${
-      task.name
-    }">
-    <input type="time" class="taskTimeInList" name="taskTimeInList" placeholder="" value="${
-      task.time
-    }">
-    <button  onclick="sayHallo(event)" > update </button>
-    <button type="button" onclick = "handleDeleteTask(event)"> delete </button>
-  </form>`;
+          <input type="checkbox" class="checkMark" name ="isDone" ${
+            task.isDone ? "checked" : ""
+          }>
+      <input type="text" class="taskNameInList" name="taskNameInList" placeholder="" value="${
+        task.name
+      }">
+      <input type="time" class="taskTimeInList" name="taskTimeInList" placeholder="" value="${
+        task.time
+      }">
+      <button  onclick="sayHallo(event)" > update </button>
+      <button type="button" onclick = "handleDeleteTask(event)"> delete </button>
+    </form>`;
       })
       .join(" ");
   } catch (error) {

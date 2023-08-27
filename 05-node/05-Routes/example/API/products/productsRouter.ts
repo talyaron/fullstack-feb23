@@ -1,4 +1,4 @@
-import express from 'express'
+import express from 'express';
 import { addProduct, deleteProduct, getProducts, updateProductPrice } from './productsCont';
 const router = express.Router();
 

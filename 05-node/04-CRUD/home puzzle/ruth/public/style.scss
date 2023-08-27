@@ -2,9 +2,9 @@ body {
   background-color: #1c1331;
   display: flex;
   justify-content: center;
-    .wrapper {
-        text-align: center;
-    }
+  .wrapper {
+    text-align: center;
+  }
 }
 
 h1 {
@@ -12,16 +12,16 @@ h1 {
   text-align: center;
 }
 
-.addTaskForm{
-    padding: 15px;
-    margin: 20px;
-    background-color: white;
-    background-color: #22173b;
-    border-radius: 20px;
-    width: 340px;
-    box-shadow: 3px 4px 15px 2px rgba(0, 0, 0, 0.379);
-    display: flex;
-    justify-content: space-between;
+.addTaskForm {
+  padding: 15px;
+  margin: 20px;
+  background-color: white;
+  background-color: #22173b;
+  border-radius: 20px;
+  width: 340px;
+  box-shadow: 3px 4px 15px 2px rgba(0, 0, 0, 0.379);
+  display: flex;
+  justify-content: space-between;
 }
 .tasksListDiv {
   &__task {
@@ -68,6 +68,6 @@ button {
   min-width: 30px;
   border: 1px solid black;
 }
-input{
-    height: 25px;
+input {
+  height: 25px;
 }

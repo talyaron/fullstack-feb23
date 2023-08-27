@@ -9,7 +9,7 @@ export class Product {
       this.imgUrl = imgUrl;
       this.id = Math.random().toString();
     }
-  }
+  };
 
   //how to creat new instance
 //   const prd = new Product({title:"hi", price:5, imgUrl:"dgdfg"})
