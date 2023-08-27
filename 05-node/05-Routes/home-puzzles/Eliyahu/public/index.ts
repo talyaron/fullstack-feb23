@@ -155,7 +155,7 @@ async function handleUpdateTaskStatus(taskStatus: string, taskId: string) {
 
 function renderAddTask(status: string) {
     try {
-        const html = `<form onsubmit="handleAddTask(ev, 'eli', '${status}')">
+        const html = `<form onsubmit="handleAddTask(event, 'eli', '${status}')">
         <input type="text" name="title" placeholder="Title" required>
         <textarea name="description" cols="21" rows="5" placeholder="Description" required></textarea>
         <button type="submit">ADD</button>

@@ -235,7 +235,7 @@ function handleUpdateTaskStatus(taskStatus, taskId) {
 }
 function renderAddTask(status) {
     try {
-        var html = "<form onsubmit=\"handleAddTask(ev, 'eli', '" + status + "')\">\n        <input type=\"text\" name=\"title\" placeholder=\"Title\" required>\n        <textarea name=\"description\" cols=\"21\" rows=\"5\" placeholder=\"Description\" required></textarea>\n        <button type=\"submit\">ADD</button>\n    </form>";
+        var html = "<form onsubmit=\"handleAddTask(event, 'eli', '" + status + "')\">\n        <input type=\"text\" name=\"title\" placeholder=\"Title\" required>\n        <textarea name=\"description\" cols=\"21\" rows=\"5\" placeholder=\"Description\" required></textarea>\n        <button type=\"submit\">ADD</button>\n    </form>";
         switch (status) {
             case 'toDo':
                 toDoRoot.innerHTML = html;
