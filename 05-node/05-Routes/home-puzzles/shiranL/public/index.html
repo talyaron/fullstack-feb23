@@ -19,5 +19,12 @@
     <!-- add btn to render all users -->
     <button onclick="handleGetAllUsers()">All Users</button>
     <div id="users"></div>
+
+     <!-- Log in form -->
+      <form id="loginForm" onsubmit="handleLogin(event)">
+          <input type="text" name="uesrName" placeholder="uesrName">
+          <input type="text" name="password" placeholder="password">
+          <input type="submit" value="Log in">  
+      </form>
 </body>
 </html>

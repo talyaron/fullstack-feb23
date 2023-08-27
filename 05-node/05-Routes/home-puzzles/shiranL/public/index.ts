@@ -14,15 +14,14 @@ async function handleAddUser(evevt:any)
     const result = await response.json();
     console.log(result);
 
-    const addUserForm = document.getElementById("addUserForm");
+    const addUserForm :any = document.getElementById("addUserForm");
     addUserForm.reset();    
-    
 }
 
 async function  handleGetAllUsers(){
     const response = await fetch('/API/users/get-all-users');
     const result = await response.json();
-    debugger;
+    
     console.log(result);
     const users = result.users;
     const ul = document.getElementById("users");
@@ -32,4 +31,28 @@ async function  handleGetAllUsers(){
         li.innerHTML = `userName: ${user.userName} password: ${user.password}`;
         ul.appendChild(li);
     }); 
+}
+
+async function handleLogin(event){
+    event.preventDefault();
+    const userName = event.target.elements.uesrName.value;  
+    const password = event.target.elements.password.value; 
+    const user = {userName, password};
+    const response = await fetch('/API/users/log-in', {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(user)
+    });
+    debugger;
+    const result = await response.json();
+    console.log(result);
+    if(result.success){
+        // go to home page  
+        window.location.href = "../home/homePage.html";    
+    }
+    const loginForm :any = document.getElementById("loginForm");
+    loginForm.reset();    
+
 }

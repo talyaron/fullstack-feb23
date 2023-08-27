@@ -7,4 +7,5 @@ var router = express_1["default"].Router();
 exports["default"] = router;
 router
     .get("/get-all-users", usersCont_1.getAllUsers)
-    .post("/add-user", usersCont_1.addUser);
+    .post("/add-user", usersCont_1.addUser)
+    .post("/log-in", usersCont_1.logIn);

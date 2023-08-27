@@ -23,3 +23,17 @@ export const getAllUsers = (req: any, res: any) => {
         console.error(error);
     }
 }   
+
+export const logIn = (req: any, res: any) => {
+    try {
+        const user = req.body;
+        const userFound = users.find((u: User) => u.userName === user.userName && u.password === user.password);
+        if (userFound) {
+            res.send({ success: true, message: "user found" });
+        } else {
+            res.send({ success: false, message: "user not found" });
+        }
+    } catch (error) {
+        console.error(error);
+    }
+}

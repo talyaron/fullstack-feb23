@@ -75,7 +75,6 @@ function handleGetAllUsers() {
                     return [4 /*yield*/, response.json()];
                 case 2:
                     result = _a.sent();
-                    debugger;
                     console.log(result);
                     users = result.users;
                     ul = document.getElementById("users");
@@ -85,6 +84,41 @@ function handleGetAllUsers() {
                         li.innerHTML = "userName: " + user.userName + " password: " + user.password;
                         ul.appendChild(li);
                     });
+                    return [2 /*return*/];
+            }
+        });
+    });
+}
+function handleLogin(event) {
+    return __awaiter(this, void 0, void 0, function () {
+        var userName, password, user, response, result, loginForm;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    event.preventDefault();
+                    userName = event.target.elements.uesrName.value;
+                    password = event.target.elements.password.value;
+                    user = { userName: userName, password: password };
+                    return [4 /*yield*/, fetch('/API/users/log-in', {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json"
+                            },
+                            body: JSON.stringify(user)
+                        })];
+                case 1:
+                    response = _a.sent();
+                    debugger;
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    result = _a.sent();
+                    console.log(result);
+                    if (result.success) {
+                        // go to home page  
+                        window.location.href = "../home/homePage.html";
+                    }
+                    loginForm = document.getElementById("loginForm");
+                    loginForm.reset();
                     return [2 /*return*/];
             }
         });
