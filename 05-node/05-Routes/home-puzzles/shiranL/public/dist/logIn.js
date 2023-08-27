@@ -34,34 +34,36 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-// index.ts
-function handleRegisterPage() {
-    debugger;
-    location.href = "/register.html";
-}
-function handleLoginPage() {
-    location.href = "/login.html";
-}
-function handleGetAllUsers() {
+function handleLogin(event) {
     return __awaiter(this, void 0, void 0, function () {
-        var response, result, users, ul;
+        var userName, password, user, response, result, loginForm;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, fetch('/API/users/get-all-users')];
+                case 0:
+                    event.preventDefault();
+                    userName = event.target.elements.uesrName.value;
+                    password = event.target.elements.password.value;
+                    user = { userName: userName, password: password };
+                    return [4 /*yield*/, fetch('/API/users/log-in', {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json"
+                            },
+                            body: JSON.stringify(user)
+                        })];
                 case 1:
                     response = _a.sent();
+                    debugger;
                     return [4 /*yield*/, response.json()];
                 case 2:
                     result = _a.sent();
                     console.log(result);
-                    users = result.users;
-                    ul = document.getElementById("users");
-                    ul.innerHTML = "";
-                    users.forEach(function (user) {
-                        var li = document.createElement("li");
-                        li.innerHTML = "userName: " + user.userName + " password: " + user.password;
-                        ul.appendChild(li);
-                    });
+                    if (result.success) {
+                        // go to home page  
+                        window.location.href = "../home/homePage.html";
+                    }
+                    loginForm = document.getElementById("loginForm");
+                    loginForm.reset();
                     return [2 /*return*/];
             }
         });
