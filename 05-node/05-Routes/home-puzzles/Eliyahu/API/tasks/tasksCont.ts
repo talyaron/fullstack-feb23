@@ -1,4 +1,15 @@
-import { Task } from "./tasksModels"
+// import { Task } from "./tasksModels"
+class Task {
+    id: string
+    constructor(
+        public user: string,
+        public title: string,
+        public description: string,
+        public status: string
+    ) {
+        this.id = Math.random().toString()
+    }
+}
 
 let tasks: Task[] = [
     new Task('eli', 'test', 'it`s work?', 'TO-DO')
@@ -16,7 +27,7 @@ export const addTask = (req, res) => {
     try {
         const task: Task = req.body;
         tasks.push(new Task(task.user, task.title, task.description, task.status))
-        res.send({ task })
+        res.send({ tasks })
     } catch (error) {
         console.error(error.massage)
 
@@ -42,7 +53,7 @@ export const updateTaskTitle = (req, res)=>{
 
         if(!task) throw new Error("Task not found");
         task.title = title
-        res.send({task})
+        res.send({tasks})
     } catch (error) {
         console.error(error.massage)  
         
@@ -57,7 +68,7 @@ export const updateTaskDescription = (req, res)=>{
 
         if(!task) throw new Error("Task not found");
         task.description = description
-        res.send({task})
+        res.send({tasks})
     } catch (error) {
         console.error(error.massage)  
         
@@ -72,7 +83,7 @@ export const updateTaskStatus = (req, res)=>{
 
         if(!task) throw new Error("Task not found");
         task.status = status
-        res.send({task})
+        res.send({tasks})
     } catch (error) {
         console.error(error.massage)  
         

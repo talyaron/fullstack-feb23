@@ -1,0 +1,59 @@
+.allTasks {
+    width: 95vw;
+    display: flex;
+    justify-content: space-around;
+    gap: 1vw;
+}
+
+h1,
+h2 {
+    text-align: center;
+}
+
+.toDo {
+    height: 85vh;
+    flex: 1;
+
+    &_header {
+        display: flex;
+        justify-content: space-around;
+        background-color: darkgoldenrod;
+        border: 2px gray solid;
+        border-radius: 10px 10px 0 0;
+        align-items: center;
+
+        button {
+            width: 30px;
+            height: 30px;
+        }
+    }
+
+    .toDoTasks {
+        margin-top: -2px;
+        height: 40vh;
+        border: 2px gray solid;
+        background-color: rgb(193, 247, 247);
+        padding: 10px;
+        border-radius: 0 0 10px 10px;
+
+        form {
+            width: 100%;
+            text-align: center;
+        }
+
+        input,button, textarea {
+            padding: 5px;
+            margin: 6px;
+        }
+    }
+}
+
+.doing {
+    flex: 1;
+    background-color: navajowhite;
+}
+
+.done {
+    flex: 1;
+    background-color: mediumaquamarine;
+}

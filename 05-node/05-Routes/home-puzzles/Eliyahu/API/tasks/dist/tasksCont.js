@@ -1,9 +1,19 @@
 "use strict";
 exports.__esModule = true;
 exports.updateTaskStatus = exports.updateTaskDescription = exports.updateTaskTitle = exports.deleteTask = exports.addTask = exports.getTasks = void 0;
-var tasksModels_1 = require("./tasksModels");
+// import { Task } from "./tasksModels"
+var Task = /** @class */ (function () {
+    function Task(user, title, description, status) {
+        this.user = user;
+        this.title = title;
+        this.description = description;
+        this.status = status;
+        this.id = Math.random().toString();
+    }
+    return Task;
+}());
 var tasks = [
-    new tasksModels_1.Task('eli', 'test', 'it`s work?', 'TO-DO')
+    new Task('eli', 'test', 'it`s work?', 'TO-DO')
 ];
 exports.getTasks = function (req, res) {
     try {
@@ -16,8 +26,8 @@ exports.getTasks = function (req, res) {
 exports.addTask = function (req, res) {
     try {
         var task = req.body;
-        tasks.push(new tasksModels_1.Task(task.user, task.title, task.description, task.status));
-        res.send({ task: task });
+        tasks.push(new Task(task.user, task.title, task.description, task.status));
+        res.send({ tasks: tasks });
     }
     catch (error) {
         console.error(error.massage);
@@ -42,7 +52,7 @@ exports.updateTaskTitle = function (req, res) {
         if (!task)
             throw new Error("Task not found");
         task.title = title;
-        res.send({ task: task });
+        res.send({ tasks: tasks });
     }
     catch (error) {
         console.error(error.massage);
@@ -57,7 +67,7 @@ exports.updateTaskDescription = function (req, res) {
         if (!task)
             throw new Error("Task not found");
         task.description = description;
-        res.send({ task: task });
+        res.send({ tasks: tasks });
     }
     catch (error) {
         console.error(error.massage);
@@ -72,7 +82,7 @@ exports.updateTaskStatus = function (req, res) {
         if (!task)
             throw new Error("Task not found");
         task.status = status;
-        res.send({ task: task });
+        res.send({ tasks: tasks });
     }
     catch (error) {
         console.error(error.massage);

@@ -1,11 +1,11 @@
-export class Task {
-    id: string
-    constructor(
-        public user: string,
-        public title: string,
-        public description: string,
-        public status: string
-    ) {
-        this.id = Math.random().toString()
-    }
-}
+//  class Task {
+//     id: string
+//     constructor(
+//         public user: string,
+//         public title: string,
+//         public description: string,
+//         public status: string
+//     ) {
+//         this.id = Math.random().toString()
+//     }
+// }

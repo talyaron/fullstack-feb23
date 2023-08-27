@@ -1,14 +1,11 @@
-"use strict";
-exports.__esModule = true;
-exports.Task = void 0;
-var Task = /** @class */ (function () {
-    function Task(user, title, description, status) {
-        this.user = user;
-        this.title = title;
-        this.description = description;
-        this.status = status;
-        this.id = Math.random().toString();
-    }
-    return Task;
-}());
-exports.Task = Task;
+//  class Task {
+//     id: string
+//     constructor(
+//         public user: string,
+//         public title: string,
+//         public description: string,
+//         public status: string
+//     ) {
+//         this.id = Math.random().toString()
+//     }
+// }
