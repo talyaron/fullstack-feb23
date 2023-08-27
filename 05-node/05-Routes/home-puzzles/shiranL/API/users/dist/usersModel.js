@@ -1,7 +1,7 @@
 "use strict";
-//usersModel.ts
 exports.__esModule = true;
-exports.users = exports.User = void 0;
+exports.User = void 0;
+//usersModel.ts
 var User = /** @class */ (function () {
     function User(userName, password) {
         this.userName = userName;
@@ -11,4 +11,3 @@ var User = /** @class */ (function () {
     return User;
 }());
 exports.User = User;
-exports.users = [new User('shiranLevy', '123456')];

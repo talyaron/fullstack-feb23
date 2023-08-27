@@ -1,11 +1,12 @@
 // usersRouters.ts  
 
-import { addUser, getUsers } from "./usersCont";
+import { addUser ,getAllUsers } from "./usersCont";
 import express from "express";
 
 const router = express.Router();
 export default router
 
 router
-.get('./usersCont.ts', getUsers)
-.post('/API/tasks/addUser', addUser)
+.get("/get-all-users", getAllUsers)
+.post("/add-user", addUser);
+
