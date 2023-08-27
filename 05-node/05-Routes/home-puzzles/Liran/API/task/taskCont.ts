@@ -13,11 +13,9 @@ export const addTask = (req: any, res: any) => {
         //add to users array
         const user = users.find((user) => user.id === id);
         if (!user) throw new Error("user not found");
-        console.log(user);
         const task: Task = { title: title, description: description, status: status };
         user.taskList.push(task); // --> add to Database
         const list = user.taskList;
-        console.log(list);
         res.send({ list });
     } catch (error) {
         console.error(error);
@@ -29,11 +27,9 @@ export const getTasks = (req, res) => {
     try {
         const { id } = req.query;
         if (!id) throw new Error("Please complete all fields");
-        console.log(users);
         const user = users.find((user) => user.id === id);
         if (!user) throw new Error("user not found");
         const tasks = user.taskList;
-        console.log(tasks);
         debugger;
         res.send({ tasks });
     } catch (error) {
@@ -45,7 +41,6 @@ export const deleteTask = (req, res) => {
     try {
         const { title, id } = req.body;
         if (!id || !title) throw new Error("Please complete all fields");
-        console.log(id);
         const user = users.find((user) => user.id === id);
         if (!user) throw new Error("user not found");
         const indx = user.taskList.findIndex((task) => task.title === title);
@@ -62,9 +57,7 @@ export const deleteTask = (req, res) => {
 export const updateTask = (req: any, res: any) => {
     try {
         const { title, newDescription, id } = req.body;
-        console.log(req.body);
         if (!id || !title || !newDescription) throw new Error("Please complete all fields");
-        console.log(users);
         const user = users.find((user) => user.id === id);
         if (!user) throw new Error("user not found");
         const indx = user.taskList.findIndex((task) => task.title === title);
@@ -81,7 +74,6 @@ export const updateTask = (req: any, res: any) => {
 export const updateTaskStatus = (req: any, res: any) => {
     try {
         const { title, newStatus, id } = req.body;
-        console.log(req.body);
         if (!id || !title || !newStatus) throw new Error("Please complete all fields");
         const user = users.find((user) => user.id === id);
         if (!user) throw new Error("user not found");

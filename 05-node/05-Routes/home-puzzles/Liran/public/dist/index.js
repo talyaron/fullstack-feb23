@@ -119,7 +119,6 @@ function handleRegisterSubmit(event) {
                     return [4 /*yield*/, response.json()];
                 case 3:
                     result = _a.sent();
-                    console.log(result);
                     alert("User added successfully");
                     currentUser = user;
                     renderLogin(document.querySelector('#form'));
@@ -174,15 +173,12 @@ function getusers() {
                     return [4 /*yield*/, fetch('/API/users/get-users')];
                 case 1:
                     response = _a.sent();
-                    console.log(response);
                     return [4 /*yield*/, response.json()];
                 case 2:
                     results = _a.sent();
                     users = results.users;
                     if (!Array.isArray(users))
                         throw new Error("products are not array");
-                    console.log(users);
-                    console.log(results);
                     return [2 /*return*/, users];
                 case 3:
                     error_4 = _a.sent();
@@ -227,7 +223,6 @@ function handleUpdateEmail() {
                     return [4 /*yield*/, response.json()];
                 case 2:
                     result = _a.sent();
-                    console.log(result);
                     alert("Email updated successfully");
                     return [3 /*break*/, 4];
                 case 3:
@@ -260,7 +255,6 @@ function handleDeleteUser() {
                     return [4 /*yield*/, response.json()];
                 case 2:
                     result = _a.sent();
-                    console.log(result);
                     currentUser = null;
                     renderEntrencePanel();
                     return [3 /*break*/, 4];
@@ -297,7 +291,6 @@ function handleUpdatePassword() {
                     return [4 /*yield*/, response.json()];
                 case 2:
                     result = _a.sent();
-                    console.log(result);
                     alert("Password updated successfully");
                     currentUser = null;
                     renderEntrencePanel();
@@ -355,7 +348,6 @@ function handleDeleteTask(title) {
                     return [4 /*yield*/, response.json()];
                 case 2:
                     result = _a.sent();
-                    console.log(result);
                     renderTasks(document.querySelector('#form'), currentUser.id);
                     return [3 /*break*/, 4];
                 case 3:
@@ -388,7 +380,6 @@ function handleUpdateStatus(title) {
                     return [4 /*yield*/, response.json()];
                 case 2:
                     result = _a.sent();
-                    console.log(result);
                     renderTasks(document.querySelector('#form'), currentUser.id);
                     return [3 /*break*/, 4];
                 case 3:
@@ -433,7 +424,6 @@ function handleUpdateDescription(title) {
                     return [4 /*yield*/, response.json()];
                 case 2:
                     result = _a.sent();
-                    console.log(result);
                     renderTasks(document.querySelector('#form'), currentUser.id);
                     return [3 /*break*/, 4];
                 case 3:
@@ -464,7 +454,6 @@ function handleAddTaskSubmit(event) {
                     event.preventDefault();
                     title = event.target.title.value;
                     description = event.target.description.value;
-                    console.log(title, description);
                     if (!title || !description)
                         throw new Error("Please complete all fields");
                     if (!currentUser)
@@ -598,14 +587,12 @@ function renderTasks(HTMLElement, id) {
                     return [4 /*yield*/, response.json()];
                 case 2:
                     results = _a.sent();
-                    console.log(response);
                     tasks = results.tasks;
                     if (!Array.isArray(tasks))
                         throw new Error("tasks are not array");
                     tasksHTML = "";
                     tasksHTML += tasks.map(function (task) { return renderTaskHTML(task); }).join("");
                     debugger;
-                    console.log(tasksHTML);
                     HTMLElement.innerHTML = tasksHTML;
                     return [3 /*break*/, 4];
                 case 3:
