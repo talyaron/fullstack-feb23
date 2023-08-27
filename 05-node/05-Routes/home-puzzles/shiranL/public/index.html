@@ -10,10 +10,21 @@
 <body>
     <h1>Welcome to task manager</h1>
 
-    //login form
-    <form onsubmit="handleLogin(event)">
-        <input type="text" name="username" placeholder="username">
-        <input type="password" name="password" placeholder="password">
-        <button type="submit">Login</button>
+  <!-- add from for add user -->
+    <form id="addUserForm" onsubmit="handleAddUser(event)">
+        <input type="text" name="uesrName" placeholder="uesrName">
+        <input type="text" name="password" placeholder="password">
+        <input type="submit" value="Add">
+    </form>
+    <!-- add btn to render all users -->
+    <button onclick="handleGetAllUsers()">All Users</button>
+    <div id="users"></div>
+
+     <!-- Log in form -->
+      <form id="loginForm" onsubmit="handleLogin(event)">
+          <input type="text" name="uesrName" placeholder="uesrName">
+          <input type="text" name="password" placeholder="password">
+          <input type="submit" value="Log in">  
+      </form>
 </body>
 </html>

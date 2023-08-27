@@ -1,5 +1,4 @@
 // import { Task } from "../API/tasks/tasksModels";
-console.log('111');
 
 
 class Task {
@@ -13,6 +12,11 @@ class Task {
         this.id = Math.random().toString()
     }
 }
+
+const toDoRoot = document.querySelector('#toDoTasks') as HTMLDivElement
+const doingRoot = document.querySelector('#doingTasks') as HTMLDivElement
+const doneRoot = document.querySelector('#doneTasks') as HTMLDivElement
+
 async function gatTasks() {
     try {
         const response = await fetch('API/tasks/get-tasks')
@@ -25,7 +29,6 @@ async function gatTasks() {
         console.error(error.massage);
     }
 }
-
 
 
 
@@ -140,23 +143,33 @@ async function handleUpdateTaskStatus(taskStatus: string, taskId: string) {
     }
 }
 
-function renderAddTask() {
+function renderAddTask(status: string) {
     try {
-        const html = `<form onsubmit="handleAddTask(ev, 'eli', 'toDo')">
-        <input type="text" name="title" placeholder="Title">
-        <textarea name="description" cols="21" rows="5" placeholder="Description"></textarea>
+        const html = `<form onsubmit="handleAddTask(ev, 'eli', '${status}')">
+        <input type="text" name="title" placeholder="Title" required>
+        <textarea name="description" cols="21" rows="5" placeholder="Description" required></textarea>
         <button type="submit">ADD</button>
     </form>`
 
-        const root = document.querySelector('#toDoTasks') as HTMLDivElement
-        root.innerHTML = html
+      
+        switch (status) {
+            case 'toDo':
+                toDoRoot.innerHTML = html
+                break;
+            case 'doing':
+                doingRoot.innerHTML = html
+                break;
+            case 'done':
+                doneRoot.innerHTML = html
+                break;
+        }
     } catch (error) {
         console.error(error.massage);
     }
 }
 
 
-function renderTaskHtml(task: Task) {
+function renderTaskHtml(task: Task, rootElement:HTMLDivElement) {
     try {
         const html = `<div class = "task">
         <div class = "task_header">
@@ -169,8 +182,12 @@ function renderTaskHtml(task: Task) {
         </div>
         <button onclick="handleDeleteTask(${task.id})">Delete</button>
         </div>`
+
+        rootElement.innerHTML = html
     } catch (error) {
         console.error(error.massage);
-
     }
 }
+
+
+

@@ -1,0 +1,31 @@
+* {
+  margin: 0%;
+  padding: 0%;
+}
+
+.container {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+h1 {
+  text-align: center;
+  color: #f6ff00;
+  font-size: 35px;
+}
+
+form input,
+form button {
+  margin-bottom: 10px;
+}
+
+form button {
+  background-color: #000000;
+  color: #fffcfc;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+}
