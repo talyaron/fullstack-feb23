@@ -7,7 +7,7 @@ router
     .get('/get-notes', getNotes)
     .post('/add-note', addNote)
     .delete("/delete-note", deleteNote)
-    .patch('/update-note-decription', updateNote)
+    .patch('/update-note-description', updateNote)
     .patch('/update-note-status', updateNoteStatus)
 
 export default router;

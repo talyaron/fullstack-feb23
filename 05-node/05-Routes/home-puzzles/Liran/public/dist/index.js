@@ -120,6 +120,9 @@ function handleRegisterSubmit(event) {
                 case 3:
                     result = _a.sent();
                     console.log(result);
+                    alert("User added successfully");
+                    currentUser = user;
+                    renderLogin(document.querySelector('#form'));
                     return [3 /*break*/, 5];
                 case 4:
                     error_2 = _a.sent();
@@ -280,6 +283,25 @@ function renderUserPage(HTMLElement, user) {
         HTMLElement.innerHTML = "<div id=\"title\"></div>\n        <div id=\"panel\"><div id=\"buttons\"></div>\n        <div id=\"form\"></div></div>";
         renderTitle(document.querySelector('#title'), "Welcome " + user.userName);
         renderUserButtons(document.querySelector('#buttons'), user);
+        //renderLogoutButton(document.querySelector('#form') as HTMLDivElement);
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+// function renderLogoutButton(HTMLElement: HTMLDivElement) { 
+//     try {
+//         if (!HTMLElement) throw new Error("HTMLElement not found")
+//         HTMLElement.innerHTML += `<button id=logout onclick="handleLogout()">Logout</button>`
+//     } catch (error) {
+//         console.error(error)
+//     }
+// }
+function handleLogOut() {
+    try {
+        debugger;
+        currentUser = null;
+        renderEntrencePanel();
     }
     catch (error) {
         console.error(error);
@@ -289,7 +311,7 @@ function renderUserButtons(HTMLElement, user) {
     try {
         if (!HTMLElement)
             throw new Error("HTMLElement not found");
-        HTMLElement.innerHTML = "<div id=userUI><button onclick=\"handleAddNote()\">Add Note</button>\n        <button onclick=\"handleShowNotes()\">Show Notes</button>\n        <button onclick=\"handleUpdatePassword()\">Update Password</button>\n        <button onclick=\"handleUpdateEmail()\">Update Email</button>\n        <button onclick=\"handleDeleteUser()\">Delete User</button></div>";
+        HTMLElement.innerHTML = "<div id=userUI><button onclick=\"handleAddNote()\">Add Note</button>\n        <button onclick=\"handleShowNotes()\">Show Notes</button>\n        <button onclick=\"handleUpdatePassword()\">Update Password</button>\n        <button onclick=\"handleUpdateEmail()\">Update Email</button>\n        <button onclick=\"handleDeleteUser()\">Delete User</button>\n        <button onclick=\"handleLogOut()\">Log out</button></div>";
     }
     catch (error) {
         console.error(error);
@@ -418,7 +440,7 @@ function renderAddNoteForm(HTMLElement) {
     try {
         if (!HTMLElement)
             throw new Error("HTMLElement not found");
-        HTMLElement.innerHTML = "<form class=addNoteForm onsubmit=\"handleAddNoteSubmit(event)\">\n        <input type=\"text\" name=\"title\" placeholder=\"Title\" />\n        <input type=\"text\" name=\"description\" placeholder=\"Description\" />\n        <button type=\"submit\">Add</button>\n      </form>";
+        HTMLElement.innerHTML = "<form id=addNoteForm onsubmit=\"handleAddNoteSubmit(event)\">\n        <input type=\"text\" name=\"title\" placeholder=\"Title\" />\n        <input type=\"text\" name=\"description\" placeholder=\"Description\" />\n        <button type=\"submit\">Add</button>\n      </form>";
     }
     catch (error) {
         console.error(error);
@@ -428,9 +450,8 @@ function handleShowNotes() {
     return __awaiter(this, void 0, void 0, function () {
         return __generator(this, function (_a) {
             try {
-                debugger;
                 renderTitle(document.querySelector('#title'), "Show Notes");
-                renderNotes(document.querySelector('#form'));
+                renderNotes(document.querySelector('#form'), currentUser.id);
             }
             catch (error) {
                 console.error(error);
@@ -439,16 +460,207 @@ function handleShowNotes() {
         });
     });
 }
-function renderNotes(HTMLElement) {
+function handleDeleteNote(title) {
     return __awaiter(this, void 0, void 0, function () {
-        var response, results, notes, notesHTML, error_8;
+        var response, result, error_8;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 3, , 4]);
+                    if (!currentUser)
+                        throw new Error("User not found");
+                    return [4 /*yield*/, fetch('/API/note/delete-note', {
+                            method: 'DELETE',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({ id: currentUser.id, title: title })
+                        })];
+                case 1:
+                    response = _a.sent();
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    result = _a.sent();
+                    console.log(result);
+                    renderNotes(document.querySelector('#form'), currentUser.id);
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_8 = _a.sent();
+                    console.error(error_8);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
+            }
+        });
+    });
+}
+function handleUpdateStatus(title) {
+    return __awaiter(this, void 0, void 0, function () {
+        var response, result, error_9;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 3, , 4]);
+                    if (!currentUser)
+                        throw new Error("User not found");
+                    return [4 /*yield*/, fetch('/API/note/update-note-status', {
+                            method: 'PATCH',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({ id: currentUser.id, title: title, newStatus: "Done" })
+                        })];
+                case 1:
+                    response = _a.sent();
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    result = _a.sent();
+                    console.log(result);
+                    renderNotes(document.querySelector('#form'), currentUser.id);
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_9 = _a.sent();
+                    console.error(error_9);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
+            }
+        });
+    });
+}
+function handleLogin() {
+    try {
+        renderTitle(document.querySelector('#title'), "Login");
+        renderLogin(document.querySelector('#form'));
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+function handleRegister() {
+    try {
+        renderTitle(document.querySelector('#title'), "Register");
+        renderRegister(document.querySelector('#form'));
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+function handleAddNoteSubmit(event) {
+    return __awaiter(this, void 0, void 0, function () {
+        var title, description, status, userID, note, response, result, error_10;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 4, , 5]);
+                    event.preventDefault();
+                    title = event.target.title.value;
+                    description = event.target.description.value;
+                    console.log(title, description);
+                    if (!title || !description)
+                        throw new Error("Please complete all fields");
+                    if (!currentUser)
+                        throw new Error("User not found");
+                    status = "To-Do";
+                    userID = currentUser.id;
+                    return [4 /*yield*/, checkIfNoteExist(title, userID)];
+                case 1:
+                    if (_a.sent())
+                        throw new Error("Note already exist");
+                    note = { title: title, description: description, status: status, id: userID };
+                    return [4 /*yield*/, fetch('/API/note/add-note', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(note)
+                        })];
+                case 2:
+                    response = _a.sent();
+                    return [4 /*yield*/, response.json()];
+                case 3:
+                    result = _a.sent();
+                    alert("Note added successfully");
+                    event.target.reset();
+                    return [3 /*break*/, 5];
+                case 4:
+                    error_10 = _a.sent();
+                    console.error(error_10);
+                    return [3 /*break*/, 5];
+                case 5: return [2 /*return*/];
+            }
+        });
+    });
+}
+function checkIfNoteExist(title, id) {
+    return __awaiter(this, void 0, Promise, function () {
+        var response, results, notes, note, error_11;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 3, , 4]);
+                    return [4 /*yield*/, fetch("/API/note/get-notes?id=" + id, {
+                            method: 'GET',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            }
+                        })];
+                case 1:
+                    response = _a.sent();
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    results = _a.sent();
+                    notes = results.notes;
+                    if (!Array.isArray(notes))
+                        throw new Error("notes are not array");
+                    note = notes.findIndex(function (note) { return note.title === title; });
+                    if (note !== -1) {
+                        alert("Note already exist, please choose another title");
+                        return [2 /*return*/, true];
+                    }
+                    return [2 /*return*/, false];
+                case 3:
+                    error_11 = _a.sent();
+                    console.error(error_11);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
+            }
+        });
+    });
+}
+function renderEntrencePanel() {
+    try {
+        renderTitle(document.querySelector('#title'), "Welcome to NoteList");
+        renderFirstButtons(document.querySelector('#buttons'));
+        clearForm(document.querySelector('#form'));
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+function clearForm(HTMLElement) {
+    try {
+        if (!HTMLElement)
+            throw new Error("HTMLElement not found");
+        HTMLElement.innerHTML = "";
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+function renderNotes(HTMLElement, id) {
+    return __awaiter(this, void 0, void 0, function () {
+        var response, results, notes, notesHTML, error_12;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
                     if (!HTMLElement)
                         throw new Error("HTMLElement not found");
-                    return [4 /*yield*/, fetch('/API/note/get-notes')];
+                    return [4 /*yield*/, fetch("/API/note/get-notes?id=" + id, {
+                            method: 'GET',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            }
+                        })];
                 case 1:
                     response = _a.sent();
                     return [4 /*yield*/, response.json()];
@@ -460,12 +672,13 @@ function renderNotes(HTMLElement) {
                         throw new Error("notes are not array");
                     notesHTML = "";
                     notesHTML += notes.map(function (note) { return renderNoteHTML(note); }).join("");
+                    debugger;
                     console.log(notesHTML);
                     HTMLElement.innerHTML = notesHTML;
                     return [3 /*break*/, 4];
                 case 3:
-                    error_8 = _a.sent();
-                    console.error(error_8);
+                    error_12 = _a.sent();
+                    console.error(error_12);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }
@@ -474,8 +687,7 @@ function renderNotes(HTMLElement) {
 }
 function renderNoteHTML(note) {
     try {
-        debugger;
-        var html = "<div class=\"note\">\n        <h3>" + note.title + "</h3>\n        <p>" + note.description + "</p>\n        <p>" + note.status + "</p>\n        <button onclick=\"handleDeleteNote('" + note.title + "')\">Delete</button>\n      </div>";
+        var html = "<div class=\"note\">\n        <h3>Title: " + note.title + "</h3>\n        <p>Description: " + note.description + "</p>\n        <p>Status: " + note.status + "</p>\n        <div id=\"noteButtons\">\n            <button onclick=\"handleDeleteNote('" + note.title + "')\">Delete</button>\n            <button onclick=\"handleUpdateStatus('" + note.title + "')\">Mark As Done</button>\n            <button onclick=\"handleUpdateDescription('" + note.title + "')\">Update Description</button>\n        </div>\n      </div>";
         return html;
     }
     catch (error) {
@@ -483,29 +695,24 @@ function renderNoteHTML(note) {
         return "";
     }
 }
-function handleAddNoteSubmit(event) {
+function handleUpdateDescription(title) {
     return __awaiter(this, void 0, void 0, function () {
-        var title, description, status, userID, note, response, result, error_9;
+        var newDescription, response, result, error_13;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
-                    event.preventDefault();
-                    title = event.target.title.value;
-                    description = event.target.description.value;
-                    if (!title || !description)
-                        throw new Error("Please complete all fields");
                     if (!currentUser)
                         throw new Error("User not found");
-                    status = "To-Do";
-                    userID = currentUser.id;
-                    note = { title: title, description: description, status: status, id: userID };
-                    return [4 /*yield*/, fetch('/API/note/add-note', {
-                            method: 'POST',
+                    newDescription = prompt("Please enter new description");
+                    if (!newDescription)
+                        throw new Error("Please enter new description");
+                    return [4 /*yield*/, fetch('/API/note/update-note-description', {
+                            method: 'PATCH',
                             headers: {
                                 'Content-Type': 'application/json'
                             },
-                            body: JSON.stringify(note)
+                            body: JSON.stringify({ id: currentUser.id, title: title, newDescription: newDescription })
                         })];
                 case 1:
                     response = _a.sent();
@@ -513,24 +720,16 @@ function handleAddNoteSubmit(event) {
                 case 2:
                     result = _a.sent();
                     console.log(result);
+                    renderNotes(document.querySelector('#form'), currentUser.id);
                     return [3 /*break*/, 4];
                 case 3:
-                    error_9 = _a.sent();
-                    console.error(error_9);
+                    error_13 = _a.sent();
+                    console.error(error_13);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }
         });
     });
-}
-function renderEntrencePanel() {
-    try {
-        renderTitle(document.querySelector('#title'), "Welcome to NoteList");
-        renderFirstButtons(document.querySelector('#buttons'));
-    }
-    catch (error) {
-        console.error(error);
-    }
 }
 function renderTitle(HTMLElement, title) {
     try {
@@ -552,27 +751,9 @@ function renderFirstButtons(HTMLElement) {
         console.error(error);
     }
 }
-function handleLogin() {
-    try {
-        renderTitle(document.querySelector('#title'), "Login");
-        renderLogin(document.querySelector('#panel'));
-    }
-    catch (error) {
-        console.error(error);
-    }
-}
-function handleRegister() {
-    try {
-        renderTitle(document.querySelector('#title'), "Register");
-        renderRegister(document.querySelector('#form'));
-    }
-    catch (error) {
-        console.error(error);
-    }
-}
 function renderLogin(HTMLElement) {
     return __awaiter(this, void 0, void 0, function () {
-        var users, html, error_10;
+        var users, html, error_14;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -582,14 +763,14 @@ function renderLogin(HTMLElement) {
                     return [4 /*yield*/, getusers()];
                 case 1:
                     users = _a.sent();
-                    html = "<form class=loginForm onsubmit=\"handleLoginSubmit(event)\">\n        <select id=\"user\">";
+                    html = "<form id=loginForm onsubmit=\"handleLoginSubmit(event)\">\n        <select id=\"user\">";
                     html += users.map(function (user) { return "<option value=\"" + user.id + "\">" + user.userName + "</option>"; }).join("");
                     html += "</select> \n        <input type=\"password\" name=\"password\" placeholder=\"Password\" />\n        <button type=\"submit\">Go</button>\n      </form>";
                     HTMLElement.innerHTML = html;
                     return [3 /*break*/, 3];
                 case 2:
-                    error_10 = _a.sent();
-                    console.error(error_10);
+                    error_14 = _a.sent();
+                    console.error(error_14);
                     return [3 /*break*/, 3];
                 case 3: return [2 /*return*/];
             }
@@ -600,7 +781,7 @@ function renderRegister(HTMLElement) {
     try {
         if (!HTMLElement)
             throw new Error("HTMLElement not found");
-        HTMLElement.innerHTML = "<form class=registerForm onsubmit=\"handleRegisterSubmit(event)\">\n        <input type=\"text\" name=\"userName\" placeholder=\"User Name\" />\n        <input type=\"password\" name=\"password\" placeholder=\"Password\" />\n        <input type=\"text\" name=\"phoneNumber\" placeholder=\"Phone Number\" />\n        <input type=\"text\" name=\"email\" placeholder=\"Email\" />\n        <button type=\"submit\">Sign up</button>\n      </form>";
+        HTMLElement.innerHTML = "<form id=registerForm onsubmit=\"handleRegisterSubmit(event)\">\n        <input type=\"text\" name=\"userName\" placeholder=\"User Name\" />\n        <input type=\"password\" name=\"password\" placeholder=\"Password\" />\n        <input type=\"text\" name=\"phoneNumber\" placeholder=\"Phone Number\" />\n        <input type=\"text\" name=\"email\" placeholder=\"Email\" />\n        <button type=\"submit\">Sign up</button>\n      </form>";
     }
     catch (error) {
         console.error(error);

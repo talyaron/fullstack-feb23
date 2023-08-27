@@ -20,7 +20,7 @@ async function handleLoginSubmit(event: any) {
         if (!selectedUser) throw new Error("User not found")
         const userId = selectedUser.value;
         const password = event.target.password.value;
-
+        
         if (!userId || !password) throw new Error("Please complete all fields")
         const response = await fetch('/API/users/get-users')
         const results = await response.json();
@@ -61,7 +61,9 @@ async function handleRegisterSubmit(event: any) {
 
         const result = await response.json();
         console.log(result);
-
+        alert("User added successfully");
+        currentUser = user;
+        renderLogin(document.querySelector('#form') as HTMLDivElement);
 
 
     } catch (error) {
@@ -214,6 +216,26 @@ function renderUserPage(HTMLElement: HTMLDivElement, user: User) {
         <div id="form"></div></div>`
         renderTitle(document.querySelector('#title') as HTMLDivElement, `Welcome ${user.userName}`)
         renderUserButtons(document.querySelector('#buttons') as HTMLDivElement, user)
+        //renderLogoutButton(document.querySelector('#form') as HTMLDivElement);
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+// function renderLogoutButton(HTMLElement: HTMLDivElement) { 
+//     try {
+//         if (!HTMLElement) throw new Error("HTMLElement not found")
+//         HTMLElement.innerHTML += `<button id=logout onclick="handleLogout()">Logout</button>`
+//     } catch (error) {
+//         console.error(error)
+//     }
+// }
+
+function handleLogOut() {
+    try {
+        debugger;
+        currentUser = null;
+        renderEntrencePanel();
     } catch (error) {
         console.error(error)
     }
@@ -226,7 +248,8 @@ function renderUserButtons(HTMLElement: HTMLDivElement, user: User) {
         <button onclick="handleShowNotes()">Show Notes</button>
         <button onclick="handleUpdatePassword()">Update Password</button>
         <button onclick="handleUpdateEmail()">Update Email</button>
-        <button onclick="handleDeleteUser()">Delete User</button></div>`
+        <button onclick="handleDeleteUser()">Delete User</button>
+        <button onclick="handleLogOut()">Log out</button></div>`
     } catch (error) {
         console.error(error)
     }
@@ -307,7 +330,7 @@ function handleAddNote() {
 function renderAddNoteForm(HTMLElement: HTMLDivElement) {
     try {
         if (!HTMLElement) throw new Error("HTMLElement not found")
-        HTMLElement.innerHTML = `<form class=addNoteForm onsubmit="handleAddNoteSubmit(event)">
+        HTMLElement.innerHTML = `<form id=addNoteForm onsubmit="handleAddNoteSubmit(event)">
         <input type="text" name="title" placeholder="Title" />
         <input type="text" name="description" placeholder="Description" />
         <button type="submit">Add</button>
@@ -319,57 +342,82 @@ function renderAddNoteForm(HTMLElement: HTMLDivElement) {
 
 async function handleShowNotes() {
     try {
-        debugger;
+        
         renderTitle(document.querySelector('#title') as HTMLDivElement, "Show Notes")
-        renderNotes(document.querySelector('#form') as HTMLDivElement)
+        renderNotes(document.querySelector('#form') as HTMLDivElement, currentUser.id)
     } catch (error) {
         console.error(error)
     }
 }
 
-async function renderNotes(HTMLElement: HTMLDivElement) {
+
+
+async function handleDeleteNote(title: string) { 
     try {
-        if (!HTMLElement) throw new Error("HTMLElement not found")
-        const response = await fetch('/API/note/get-notes')
-        const results = await response.json();
-        console.log(response);
-        const { notes } = results;
-        if (!Array.isArray(notes)) throw new Error("notes are not array");
-        let notesHTML = ``;
-        notesHTML += notes.map(note => renderNoteHTML(note)).join("")
-        console.log(notesHTML);
-        HTMLElement.innerHTML = notesHTML;
+        if (!currentUser) throw new Error("User not found")
+        const response = await fetch('/API/note/delete-note', {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ id: currentUser.id, title })
+        });
+        const result = await response.json();
+        console.log(result);
+        renderNotes(document.querySelector('#form') as HTMLDivElement, currentUser.id)
     } catch (error) {
         console.error(error)
     }
 }
 
-function renderNoteHTML(note: Note) {
+async function handleUpdateStatus(title: string) { 
     try {
-        debugger;
-        const html = `<div class="note">
-        <h3>${note.title}</h3>
-        <p>${note.description}</p>
-        <p>${note.status}</p>
-        <button onclick="handleDeleteNote('${note.title}')">Delete</button>
-      </div>`
-        return html;
+        if (!currentUser) throw new Error("User not found")
+        const response = await fetch('/API/note/update-note-status', {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ id: currentUser.id, title:title, newStatus: "Done" })
+        });
+        const result = await response.json();
+        console.log(result);
+        renderNotes(document.querySelector('#form') as HTMLDivElement, currentUser.id)
     } catch (error) {
         console.error(error)
-        return ""
     }
 }
 
+function handleLogin() {
+    try {
+        renderTitle(document.querySelector('#title') as HTMLDivElement, "Login")
+        renderLogin(document.querySelector('#form') as HTMLDivElement);
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+function handleRegister() {
+    try {
+        renderTitle(document.querySelector('#title') as HTMLDivElement, "Register")
+        renderRegister(document.querySelector('#form') as HTMLDivElement);
+    } catch (error) {
+        console.error(error)
+    }
+}
 
 async function handleAddNoteSubmit(event: any) {
     try {
         event.preventDefault();
         const title = event.target.title.value;
         const description = event.target.description.value;
+        console.log(title, description)
+        
         if (!title || !description) throw new Error("Please complete all fields")
         if (!currentUser) throw new Error("User not found")
         const status = "To-Do";
         const userID = currentUser.id;
+        if(await checkIfNoteExist(title,userID)) throw new Error("Note already exist");
         const note = { title: title, description: description, status: status, id: userID };
         const response = await fetch('/API/note/add-note', {
             method: 'POST',
@@ -380,8 +428,29 @@ async function handleAddNoteSubmit(event: any) {
         });
 
         const result = await response.json();
-        console.log(result);
+        alert("Note added successfully");
+        event.target.reset();
+    } catch (error) {
+        console.error(error);
+    }
+}
 
+async function checkIfNoteExist(title: string, id: string): Promise<boolean> { 
+    try {
+        const response = await fetch(`/API/note/get-notes?id=${id}`,{
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }})
+        const results = await response.json();
+        const { notes } = results;
+        if (!Array.isArray(notes)) throw new Error("notes are not array");
+        const note = notes.findIndex((note) => note.title === title);
+        if (note !== -1) {
+            alert("Note already exist, please choose another title")
+            return true;
+        }
+        return false;
     } catch (error) {
         console.error(error);
     }
@@ -389,13 +458,83 @@ async function handleAddNoteSubmit(event: any) {
 
 
 
-
-
 function renderEntrencePanel() {
     try {
-
         renderTitle(document.querySelector('#title') as HTMLDivElement, "Welcome to NoteList")
         renderFirstButtons(document.querySelector('#buttons') as HTMLDivElement)
+        clearForm(document.querySelector('#form') as HTMLDivElement);
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+function clearForm(HTMLElement: HTMLDivElement) { 
+    try {
+        if (!HTMLElement) throw new Error("HTMLElement not found")
+        HTMLElement.innerHTML = ""
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+async function renderNotes(HTMLElement: HTMLDivElement, id: string) {
+    try {
+        if (!HTMLElement) throw new Error("HTMLElement not found")
+        const response = await fetch(`/API/note/get-notes?id=${id}`,{
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }})
+        const results = await response.json();
+        console.log(response);
+        const { notes } = results;
+        if (!Array.isArray(notes)) throw new Error("notes are not array");
+        let notesHTML = ``;
+        notesHTML += notes.map(note => renderNoteHTML(note)).join("")
+        debugger;
+        console.log(notesHTML);
+        HTMLElement.innerHTML = notesHTML;
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+
+function renderNoteHTML(note: Note) {
+    try {
+        
+        const html = `<div class="note">
+        <h3>Title: ${note.title}</h3>
+        <p>Description: ${note.description}</p>
+        <p>Status: ${note.status}</p>
+        <div id="noteButtons">
+            <button onclick="handleDeleteNote('${note.title}')">Delete</button>
+            <button onclick="handleUpdateStatus('${note.title}')">Mark As Done</button>
+            <button onclick="handleUpdateDescription('${note.title}')">Update Description</button>
+        </div>
+      </div>`
+        return html;
+    } catch (error) {
+        console.error(error)
+        return ""
+    }
+}
+
+async function handleUpdateDescription(title: string) { 
+    try {
+        if (!currentUser) throw new Error("User not found")
+        const newDescription = prompt("Please enter new description");
+        if (!newDescription) throw new Error("Please enter new description");
+        const response = await fetch('/API/note/update-note-description', {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ id: currentUser.id, title:title, newDescription })
+        });
+        const result = await response.json();
+        console.log(result);
+        renderNotes(document.querySelector('#form') as HTMLDivElement, currentUser.id)
     } catch (error) {
         console.error(error)
     }
@@ -420,29 +559,13 @@ function renderFirstButtons(HTMLElement: HTMLDivElement) {
     }
 }
 
-function handleLogin() {
-    try {
-        renderTitle(document.querySelector('#title') as HTMLDivElement, "Login")
-        renderLogin(document.querySelector('#panel') as HTMLDivElement);
-    } catch (error) {
-        console.error(error)
-    }
-}
 
-function handleRegister() {
-    try {
-        renderTitle(document.querySelector('#title') as HTMLDivElement, "Register")
-        renderRegister(document.querySelector('#form') as HTMLDivElement);
-    } catch (error) {
-        console.error(error)
-    }
-}
 
 async function renderLogin(HTMLElement: HTMLDivElement) {
     try {
         if (!HTMLElement) throw new Error("HTMLElement not found")
         const users = await getusers();
-        let html = `<form class=loginForm onsubmit="handleLoginSubmit(event)">
+        let html = `<form id=loginForm onsubmit="handleLoginSubmit(event)">
         <select id="user">`
         html += users.map(user => `<option value="${user.id}">${user.userName}</option>`).join("");
         html += `</select> 
@@ -458,7 +581,7 @@ async function renderLogin(HTMLElement: HTMLDivElement) {
 function renderRegister(HTMLElement: HTMLDivElement) {
     try {
         if (!HTMLElement) throw new Error("HTMLElement not found")
-        HTMLElement.innerHTML = `<form class=registerForm onsubmit="handleRegisterSubmit(event)">
+        HTMLElement.innerHTML = `<form id=registerForm onsubmit="handleRegisterSubmit(event)">
         <input type="text" name="userName" placeholder="User Name" />
         <input type="password" name="password" placeholder="Password" />
         <input type="text" name="phoneNumber" placeholder="Phone Number" />

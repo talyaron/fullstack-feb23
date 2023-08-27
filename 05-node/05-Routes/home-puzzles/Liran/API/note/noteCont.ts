@@ -9,8 +9,7 @@ let notes: Note[] = [
 export const addNote = (req: any, res: any) => {
     try {
         const { title, description, status, id } = req.body;
-        console.log(req.body);
-        if (!title || !description || !status || id) throw new Error("Please complete all fields");
+        if (!title || !description || !status || !id) throw new Error("Please complete all fields");
         //add to users array
         const user = users.find((user) => user.id === id);
         if (!user) throw new Error("user not found");
@@ -28,12 +27,15 @@ export const addNote = (req: any, res: any) => {
 //get users
 export const getNotes = (req, res) => {
     try {
-        const { id } = req.body;
+        const { id } = req.query;
         if (!id) throw new Error("Please complete all fields");
+        console.log(users);
         const user = users.find((user) => user.id === id);
         if (!user) throw new Error("user not found");
-        const list = user.noteList;
-        res.send({ list });
+        const notes = user.noteList;
+        console.log(notes);
+        debugger;
+        res.send({ notes });
     } catch (error) {
         console.error(error);
     }

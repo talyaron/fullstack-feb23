@@ -4,9 +4,8 @@
   align-items: center;
   margin: auto;
   gap: 20px;
-  width: 400px;
+  width: 450px;
   background: linear-gradient(180deg, #34b1e6 35%, #a1ccd4 100%);
-  height: 100vh;
   font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
   color: #ffffffff;
   border-radius: 10px;
@@ -59,7 +58,7 @@
   cursor: pointer;
 }
 #root #panel #form,
-#root #panel .loginForm, #root #panel .addNoteForm {
+#root #panel #loginForm, #root #panel #addNoteForm, #root #panel #registerForm {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -69,9 +68,10 @@
 }
 #root #panel #form input,
 #root #panel #form select,
-#root #panel .loginForm input,
-#root #panel .loginForm select, #root #panel .addNoteForm input,
-#root #panel .addNoteForm select {
+#root #panel #loginForm input,
+#root #panel #loginForm select, #root #panel #addNoteForm input,
+#root #panel #addNoteForm select, #root #panel #registerForm input,
+#root #panel #registerForm select {
   width: 200px;
   padding: 10px;
   border-radius: 5px;
@@ -79,10 +79,47 @@
   outline: none;
 }
 #root #panel #form button,
-#root #panel .loginForm button, #root #panel .addNoteForm button {
+#root #panel #loginForm button, #root #panel #addNoteForm button, #root #panel #registerForm button {
   width: 50%;
   padding: 10px;
   border-radius: 5px;
   border: none;
   outline: none;
+}
+#root #panel #form .note,
+#root #panel #loginForm .note, #root #panel #addNoteForm .note, #root #panel #registerForm .note {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  gap: 5px;
+  justify-content: space-around;
+  background: linear-gradient(180deg, #a3d2e7 35%, #d2d7d7 100%);
+  border-radius: 10px;
+  text-align: left;
+}
+#root #panel #form .note p, #root #panel #form .note h3,
+#root #panel #loginForm .note p,
+#root #panel #loginForm .note h3, #root #panel #addNoteForm .note p, #root #panel #addNoteForm .note h3, #root #panel #registerForm .note p, #root #panel #registerForm .note h3 {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: black;
+  margin-left: 5px;
+}
+#root #panel #form .note #noteButtons,
+#root #panel #loginForm .note #noteButtons, #root #panel #addNoteForm .note #noteButtons, #root #panel #registerForm .note #noteButtons {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 5px;
+}
+#root #panel #form .note #noteButtons button,
+#root #panel #loginForm .note #noteButtons button, #root #panel #addNoteForm .note #noteButtons button, #root #panel #registerForm .note #noteButtons button {
+  width: 33%;
+  height: 50px;
+}
+#root #panel #form .note #noteButtons button:hover,
+#root #panel #loginForm .note #noteButtons button:hover, #root #panel #addNoteForm .note #noteButtons button:hover, #root #panel #registerForm .note #noteButtons button:hover {
+  cursor: pointer;
+  background: linear-gradient(0deg, #23a7e0 35%, #8dcdd8 100%);
 }
