@@ -1,6 +1,7 @@
 // import { Task } from "../API/tasks/tasksModels";
 
 
+
 class Task {
     id: string
     constructor(
@@ -17,34 +18,31 @@ const toDoRoot = document.querySelector('#toDoTasks') as HTMLDivElement
 const doingRoot = document.querySelector('#doingTasks') as HTMLDivElement
 const doneRoot = document.querySelector('#doneTasks') as HTMLDivElement
 
-// async function gatTasks() {
-//     try {
-//         const response = await fetch('API/tasks/get-tasks')
-//         const result = await response.json()
-//         const { tasks } = result
-//         if (!Array.isArray(tasks)) throw new Error("tasks is not array");
-//         return tasks;
+async function getTasks() {
+    try {
+        const response = await fetch('API/tasks/get-tasks')
+        const result = await response.json()
+        const { tasks } = result
+        if (!Array.isArray(tasks)) throw new Error("tasks is not array");
+        renderTasks(tasks)
 
-//     } catch (error) {
-//         console.error(error.massage);
-//     }
-// }
+    } catch (error) {
+        console.error(error.massage);
+    }
+}
+getTasks()
 
 
 
 async function handleAddTask(ev: any, user: string, status: string) {
     try {
         ev.preventDefault()
+        
         const title = ev.target.title.value
         const description = ev.target.description.value
-        console.log(description);
         if (!user || !status || !title || !description) throw new Error("Please complete all details");
-        console.log(user);
-        console.log(status);
-        console.log(title);
-
         const task = new Task(user, title, description, status)
-
+        
         const response = await fetch('/API/tasks/add-task', {
             method: 'POST',
             headers: {
@@ -52,7 +50,7 @@ async function handleAddTask(ev: any, user: string, status: string) {
             },
             body: JSON.stringify(task)
         })
-
+        
         const result = await response.json()
         const { tasks } = result
         console.log(tasks);
@@ -86,38 +84,15 @@ async function handleUpdateTaskTitle(ev: any) {
     try {
         ev.preventDefault()
         const title = ev.target.title.value
-        const id = ev.target.id
-
-        const response = await fetch('API/tasks/update-task-title', {
-            method: 'PATCH',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ title, id })
-        })
-
-        const result = await response.json()
-        const { tasks } = result
-
-        renderTasks(tasks)
-
-    } catch (error) {
-        console.error(error.massage);
-    }
-}
-
-async function handleUpdateTaskDescription(ev: any) {
-    try {
-        ev.preventDefault()
         const description = ev.target.description.value
         const id = ev.target.id
 
-        const response = await fetch('API/tasks/update-task-description', {
+        const response = await fetch('API/tasks/update-task', {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ description, id })
+            body: JSON.stringify({ title,description, id })
         })
 
         const result = await response.json()
@@ -129,6 +104,7 @@ async function handleUpdateTaskDescription(ev: any) {
         console.error(error.massage);
     }
 }
+
 
 async function handleUpdateTaskStatus(taskStatus: string, taskId: string) {
     try {
@@ -155,10 +131,10 @@ async function handleUpdateTaskStatus(taskStatus: string, taskId: string) {
 
 function renderAddTask(status: string) {
     try {
-        const html = `<form onsubmit="handleAddTask(event, 'eli', '${status}')">
+        let html = `<form onsubmit="handleAddTask(event, 'eli', '${status}')">
         <input type="text" name="title" placeholder="Title" required>
         <textarea name="description" cols="21" rows="5" placeholder="Description" required></textarea>
-        <button type="submit">ADD</button>
+        <button type="submit" class="material-symbols-rounded">check</button>
     </form>`
 
 
@@ -173,6 +149,7 @@ function renderAddTask(status: string) {
                 doneRoot.innerHTML = html
                 break;
         }
+
     } catch (error) {
         console.error(error.massage);
     }
@@ -181,18 +158,44 @@ function renderAddTask(status: string) {
 
 function renderTaskHtml(task: Task) {
     try {
-        const html = `<div class = "task">
-        <div class = "task_header">
-        <h3>${task.title}</h3>
-        <button onclick="renderUpdateTaskTitle()">Edit</button>
+        console.log(task.id);
+        console.log(`title${task.id}`);
+        
+        let html = `<div class = "task">
+        <div class = "task_header" id="title${task.id}">
+        <h3 >${task.title}</h3>
+        <button class="material-symbols-rounded" onclick="renderUpdateTask('${task.id}')">Edit</button>
         </div>
         <div class = "task_body">
         <p>${task.description}</p>
-        <button onclick="renderUpdateTaskDescription()">Edit</button>
-        </div>
-        <button onclick="handleDeleteTask(${task.id})">Delete</button>
+        
         </div>`
-
+        switch (task.status) {
+            case 'toDo':
+                html += `<div class="btns">
+                <div></div>
+                <button class="material-symbols-rounded" onclick="handleDeleteTask('${task.id}')">Delete</button>
+                <button class="material-symbols-rounded" onclick="handleUpdateTaskStatus('doing','${task.id}')">keyboard_double_arrow_right</button>
+                </div>
+                </div>`
+                break;
+            case 'doing':
+                html += `<div class="btns">
+                    <button class="material-symbols-rounded" onclick="handleUpdateTaskStatus('toDo','${task.id}')">keyboard_double_arrow_left</button>
+                    <button class="material-symbols-rounded" onclick="handleDeleteTask('${task.id}')">Delete</button>
+                    <button class="material-symbols-rounded" onclick="handleUpdateTaskStatus('done','${task.id}')">keyboard_double_arrow_right</button>
+                    </div>
+                    </div>`
+                break;
+            case 'done':
+                html += `<div class="btns">
+                        <button class="material-symbols-rounded" onclick="handleUpdateTaskStatus('doing','${task.id}')">keyboard_double_arrow_left</button>
+                        <button class="material-symbols-rounded" onclick="handleDeleteTask('${task.id}')">delete</button>
+                        <div></div>
+                        </div>
+                        </div>`
+                break;
+        }
         return html
     } catch (error) {
         console.error(error.massage);
@@ -215,6 +218,28 @@ function renderTasks(tasks: Task[]) {
         doneRoot.innerHTML = doneTasksHTML
     } catch (error) {
         console.error(error.massage);
+    }
+}
+
+function renderUpdateTask(id:string){
+    try {
+        debugger
+        // const currentTask = tasks.find(task=>task.id===id)
+        console.log(id);
+        // console.log(tasks);
+        console.log(`#title${id}`);
+        
+        // console.log(currentTask.id);
+        
+        // if(!currentTask) throw new Error("can not find current task");
+        
+        // let html = `<textarea name="editTitle" id="title${id}" cols="20" rows="1">title</textarea>`
+       let html=""
+        const editRoot = document.querySelector(`#title${id}`) as HTMLDivElement
+        editRoot.innerHTML = html
+    } catch (error) {
+        console.error(error.massage);
+        
     }
 }
 
