@@ -1,3 +1,4 @@
+// import { Task } from "../API/tasks/tasksModels";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -34,8 +35,6 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-// import { Task } from "../API/tasks/tasksModels";
-console.log('111');
 var Task = /** @class */ (function () {
     function Task(user, title, description, status) {
         this.user = user;
@@ -46,6 +45,9 @@ var Task = /** @class */ (function () {
     }
     return Task;
 }());
+var toDoRoot = document.querySelector('#toDoTasks');
+var doingRoot = document.querySelector('#doingTasks');
+var doneRoot = document.querySelector('#doneTasks');
 function gatTasks() {
     return __awaiter(this, void 0, void 0, function () {
         var response, result, tasks, error_1;
@@ -241,19 +243,29 @@ function handleUpdateTaskStatus(taskStatus, taskId) {
         });
     });
 }
-function renderAddTask() {
+function renderAddTask(status) {
     try {
-        var html = "<form onsubmit=\"handleAddTask(ev, 'eli', 'toDo')\">\n        <input type=\"text\" name=\"title\" placeholder=\"Title\">\n        <textarea name=\"description\" cols=\"21\" rows=\"5\" placeholder=\"Description\"></textarea>\n        <button type=\"submit\">ADD</button>\n    </form>";
-        var root = document.querySelector('#toDoTasks');
-        root.innerHTML = html;
+        var html = "<form onsubmit=\"handleAddTask(ev, 'eli', '" + status + "')\">\n        <input type=\"text\" name=\"title\" placeholder=\"Title\" required>\n        <textarea name=\"description\" cols=\"21\" rows=\"5\" placeholder=\"Description\" required></textarea>\n        <button type=\"submit\">ADD</button>\n    </form>";
+        switch (status) {
+            case 'toDo':
+                toDoRoot.innerHTML = html;
+                break;
+            case 'doing':
+                doingRoot.innerHTML = html;
+                break;
+            case 'done':
+                doneRoot.innerHTML = html;
+                break;
+        }
     }
     catch (error) {
         console.error(error.massage);
     }
 }
-function renderTaskHtml(task) {
+function renderTaskHtml(task, rootElement) {
     try {
         var html = "<div class = \"task\">\n        <div class = \"task_header\">\n        <h3>" + task.title + "</h3>\n        <button onclick=\"renderUpdateTaskTitle()\">Edit</button>\n        </div>\n        <div class = \"task_body\">\n        <p>" + task.description + "</p>\n        <button onclick=\"renderUpdateTaskDescription()\">Edit</button>\n        </div>\n        <button onclick=\"handleDeleteTask(" + task.id + ")\">Delete</button>\n        </div>";
+        rootElement.innerHTML = html;
     }
     catch (error) {
         console.error(error.massage);

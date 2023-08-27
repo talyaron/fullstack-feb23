@@ -14,8 +14,8 @@ import userRouter from "./API/users/usersRouter";
 //tells express to use proudctsRouter on the intial route "/API/products"
 app.use("/API/users", userRouter)
 
-import noteRouter from "./API/note/noteRouter";
-app.use("/API/note", noteRouter);
+import noteRouter from "./API/task/taskRouter";
+app.use("/API/task", noteRouter);
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`);
