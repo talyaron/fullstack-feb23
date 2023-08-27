@@ -17,6 +17,7 @@ loginButton.addEventListener('click', () => {
     const matchingUser = users.find(user => user.username === username && user.password === password);
 
     if (matchingUser) {
+        alert(`Welcome ${username}`)
         hideLoginModal();
     } else {
         alert('Invalid credentials. Please try again.');
