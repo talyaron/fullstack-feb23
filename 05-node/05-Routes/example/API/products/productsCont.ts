@@ -21,7 +21,7 @@ export const getProducts = (req, res) => {
     } catch (error) {
         console.error(error);
     }
-}
+};
 
 export const deleteProduct = (req, res) => {
     try {
