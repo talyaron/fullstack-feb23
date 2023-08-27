@@ -2,11 +2,22 @@ import express from "express";
 const app = express();
 // const port = process.env.PORT || 3000;
 
+<<<<<<< main:05-node/04-CRUD/example/server copy.ts
 interface _Product {
   title: string;
   price: number;
   imgUrl: string;
 }
+=======
+//get products
+export const getProducts = (req, res) => {
+    try {
+        res.send({ products });
+    } catch (error) {
+        console.error(error);
+    }
+};
+>>>>>>> cont:05-node/05-Routes/example/API/products/productsCont.ts
 
 //static files
 app.use(express.static("public"));
