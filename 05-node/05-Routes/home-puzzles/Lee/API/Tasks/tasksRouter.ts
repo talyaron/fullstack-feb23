@@ -1,4 +1,4 @@
-import express from 'express'
+import express from 'express';
 import { addTasks, deleteTask, getTasks, updateTaskStatus } from './tasksCont'
 const router = express.router()
 
@@ -6,7 +6,7 @@ const router = express.router()
 router
     .get('/get-tasks', getTasks)
     .post('/add-task', addTasks)
-    .deleteTask('/delete-task', deleteTask)
-    .patch('/add-task', updateTaskStatus)
+    .delete('/delete-task', deleteTask)
+    .patch('/update-task', updateTaskStatus)
 
 export default router;
