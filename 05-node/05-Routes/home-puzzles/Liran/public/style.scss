@@ -4,14 +4,13 @@
     align-items: center;
     margin: auto;
     gap: 20px;
-    width: 400px;
-    background: linear-gradient(180deg, rgb(52, 177, 230) 35%, rgb(161, 204, 212) 100%);
-    height: 100vh;
+    width: 430px;
+    background: linear-gradient(180deg, rgb(23, 28, 29) 35%, rgb(220, 243, 247) 100%);
     font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
     color: #ffffffff;
     border-radius: 10px;
-
-
+    min-height: 100vh;
+    height: auto;
 
     h1 {
         text-align: center;
@@ -28,7 +27,7 @@
         button {
             display: inline-block;
             padding: 10px 20px;
-            background-color: #3498db;
+            background-color: #3b3d3db5;
             /* Button background color */
             color: #ffffff;
             /* Text color */
@@ -52,7 +51,7 @@
                 width: 50%;
                 padding: 5px;
                 border-radius: 5px;
-                background: linear-gradient(180deg, rgb(52, 177, 230) 35%, rgb(161, 204, 212) 100%);
+                background: linear-gradient(180deg, rgb(23, 28, 29) 35%, rgb(220, 243, 247) 100%);
                 color: #ffffffb3;
                 border: none;
                 outline: none;
@@ -61,14 +60,16 @@
             }
 
             button:hover {
-                background: linear-gradient(0deg, rgb(52, 177, 230) 35%, rgb(161, 204, 212) 100%);
+                background: linear-gradient(0deg, rgb(23, 28, 29) 35%, rgb(220, 243, 247) 100%);
                 color: #ffffffff;
                 cursor: pointer;
             }
         }
 
         #form,
-        .loginForm,.addNoteForm {
+        #loginForm,
+        #addTaskForm,
+        #registerForm {
             width: 100%;
             display: flex;
             flex-direction: column;
@@ -93,6 +94,43 @@
                 border-radius: 5px;
                 border: none;
                 outline: none;
+            }
+
+            .task {
+                width: 80%;
+                display: flex;
+                flex-direction: column;
+                align-items: left;
+                gap: 5px;
+                justify-content: space-around;
+                background: linear-gradient(180deg, rgb(23, 28, 29) 35%, rgb(220, 243, 247) 100%);
+                border-radius: 10px;
+                text-align: left;
+
+                p,
+                h3 {
+                    font-family: Verdana, Geneva, Tahoma, sans-serif;
+                    color: #ffffffb3;
+                    margin-left: 5px;
+                }
+
+                #taskButtons {
+                    width: 100%;
+                    display: flex;
+                    justify-content: space-around;
+                    align-items: center;
+                    gap: 5px;
+
+                    button {
+                        width: 33%;
+                        height: 50px;
+                    }
+
+                    button:hover {
+                        cursor: pointer;
+                        background: linear-gradient(0deg, rgb(23, 28, 29) 35%, rgb(220, 243, 247) 100%);
+                    }
+                }
             }
         }
 
