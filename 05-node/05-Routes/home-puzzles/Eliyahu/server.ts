@@ -7,9 +7,9 @@ app.use(express.static('public'));
 app.use(express.json());
 
 
-import tasksRouters from './API/tasks/tasksRouters'
+import tasksRouter from './API/tasks/tasksRouter'
 
-app.use('./API/tasks/tasksRouters.ts', tasksRouters)
+app.use('/API/tasks', tasksRouter)
 
 
 

@@ -9,6 +9,6 @@ function handleGetUser() {
         <button type="submit">ADD</button>
     </form>`
 
-    toHtml.innerHTML = html
+    toHtml.innerHTML += html
 }
 

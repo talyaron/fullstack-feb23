@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +8,33 @@
     <link rel="stylesheet" href="./dist/style.css">
     <script src="./dist/index.js" defer></script>
 </head>
+
 <body>
-    
+    <h1>MY Task Manager</h1>
+    <div class="allTasks">
+        <div class="toDo">
+            <div class="toDo_header">
+                <h2>To Do</h2>
+                <button onclick="renderAddTask('toDo')">+</button>
+            </div>
+            <div class="toDoTasks" id="toDoTasks"></div>
+        </div>
+        <div class="doing">
+            <div class="doing_header">
+                <h2>Doing</h2>
+                <button onclick="renderAddTask('doing')">+</button>
+            </div>
+            <div class="doingTasks" id="doingTasks"></div>
+        </div>
+        <div class="done">
+            <div class="done_header">
+                <h2>Done</h2>
+                <button onclick="renderAddTask('done')">+</button>
+            </div>
+            <div class="doneTasks" id="doneTasks"></div>
+        </div>
+    </div>
+
 </body>
+
 </html>

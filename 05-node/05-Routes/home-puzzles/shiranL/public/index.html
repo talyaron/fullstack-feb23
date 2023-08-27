@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./dist/index.css">
+    <script src="./dist/index.js" defer></script>   
+    <title>Document</title>
+</head>
+<body>
+    <h1>Welcome to task manager</h1>
+
+  <!-- add from for add user -->
+    <form id="addUserForm" onsubmit="handleAddUser(event)">
+        <input type="text" name="uesrName" placeholder="uesrName">
+        <input type="text" name="password" placeholder="password">
+        <input type="submit" value="Add">
+    </form>
+    <!-- add btn to render all users -->
+    <button onclick="handleGetAllUsers()">All Users</button>
+    <div id="users"></div>
+
+     <!-- Log in form -->
+      <form id="loginForm" onsubmit="handleLogin(event)">
+          <input type="text" name="uesrName" placeholder="uesrName">
+          <input type="text" name="password" placeholder="password">
+          <input type="submit" value="Log in">  
+      </form>
+</body>
+</html>
