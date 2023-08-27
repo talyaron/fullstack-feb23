@@ -17,18 +17,18 @@ const toDoRoot = document.querySelector('#toDoTasks') as HTMLDivElement
 const doingRoot = document.querySelector('#doingTasks') as HTMLDivElement
 const doneRoot = document.querySelector('#doneTasks') as HTMLDivElement
 
-async function gatTasks() {
-    try {
-        const response = await fetch('API/tasks/get-tasks')
-        const result = await response.json()
-        const { tasks } = result
-        if (!Array.isArray(tasks)) throw new Error("tasks is not array");
-        return tasks;
+// async function gatTasks() {
+//     try {
+//         const response = await fetch('API/tasks/get-tasks')
+//         const result = await response.json()
+//         const { tasks } = result
+//         if (!Array.isArray(tasks)) throw new Error("tasks is not array");
+//         return tasks;
 
-    } catch (error) {
-        console.error(error.massage);
-    }
-}
+//     } catch (error) {
+//         console.error(error.massage);
+//     }
+// }
 
 
 
@@ -57,7 +57,7 @@ async function handleAddTask(ev: any, user: string, status: string) {
         const { tasks } = result
         console.log(tasks);
 
-
+        renderTasks(tasks)
     } catch (error) {
         console.error(error)
     }
@@ -75,6 +75,7 @@ async function handleDeleteTask(id: string) {
         })
         const result = await response.json()
         const { tasks } = result
+        renderTasks(tasks)
 
     } catch (error) {
         console.error(error.massage);
@@ -97,6 +98,9 @@ async function handleUpdateTaskTitle(ev: any) {
 
         const result = await response.json()
         const { tasks } = result
+
+        renderTasks(tasks)
+
     } catch (error) {
         console.error(error.massage);
     }
@@ -118,6 +122,9 @@ async function handleUpdateTaskDescription(ev: any) {
 
         const result = await response.json()
         const { tasks } = result
+
+        renderTasks(tasks)
+
     } catch (error) {
         console.error(error.massage);
     }
@@ -138,6 +145,9 @@ async function handleUpdateTaskStatus(taskStatus: string, taskId: string) {
 
         const result = await response.json()
         const { tasks } = result
+
+        renderTasks(tasks)
+
     } catch (error) {
         console.error(error.massage);
     }
@@ -151,7 +161,7 @@ function renderAddTask(status: string) {
         <button type="submit">ADD</button>
     </form>`
 
-      
+
         switch (status) {
             case 'toDo':
                 toDoRoot.innerHTML = html
@@ -169,7 +179,7 @@ function renderAddTask(status: string) {
 }
 
 
-function renderTaskHtml(task: Task, rootElement:HTMLDivElement) {
+function renderTaskHtml(task: Task) {
     try {
         const html = `<div class = "task">
         <div class = "task_header">
@@ -183,11 +193,29 @@ function renderTaskHtml(task: Task, rootElement:HTMLDivElement) {
         <button onclick="handleDeleteTask(${task.id})">Delete</button>
         </div>`
 
-        rootElement.innerHTML = html
+        return html
     } catch (error) {
         console.error(error.massage);
     }
 }
 
+function renderTasks(tasks: Task[]) {
+    try {
+        if (!Array.isArray(tasks)) throw new Error("tasks is not array");
+        const toDoTasks = tasks.filter(task => task.status === 'toDo')
+        const toDoTasksHTML = toDoTasks.map(task => renderTaskHtml(task)).join('')
+        toDoRoot.innerHTML = toDoTasksHTML
+
+        const doingTasks = tasks.filter(task => task.status === 'doing')
+        const doingTasksHTML = doingTasks.map(task => renderTaskHtml(task)).join('')
+        doingRoot.innerHTML = doingTasksHTML
+
+        const doneTasks = tasks.filter(task => task.status === 'done')
+        const doneTasksHTML = doneTasks.map(task => renderTaskHtml(task)).join('')
+        doneRoot.innerHTML = doneTasksHTML
+    } catch (error) {
+        console.error(error.massage);
+    }
+}
 
 
