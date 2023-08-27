@@ -1,3 +1,4 @@
+// index.ts
 async function handleAddUser(evevt:any) 
 {
     evevt.preventDefault();
@@ -50,6 +51,7 @@ async function handleLogin(event){
     console.log(result);
     if(result.success){
         // go to home page  
+        
         window.location.href = "../home/homePage.html";    
     }
     const loginForm :any = document.getElementById("loginForm");

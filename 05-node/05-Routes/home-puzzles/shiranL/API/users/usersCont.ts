@@ -29,7 +29,22 @@ export const logIn = (req: any, res: any) => {
         const user = req.body;
         const userFound = users.find((u: User) => u.userName === user.userName && u.password === user.password);
         if (userFound) {
+            userFound.isLogIn = true;   // --> update Database
             res.send({ success: true, message: "user found" });
+        } else {
+            res.send({ success: false, message: "user not found" });
+        }
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+export const getUserLogIn = (req: any, res: any) => {
+    try {
+        
+        const userFound = users.find((u: User) => u.isLogIn === true);
+        if (userFound) {
+            res.send({ success: true, message: "user found", user: userFound });
         } else {
             res.send({ success: false, message: "user not found" });
         }
