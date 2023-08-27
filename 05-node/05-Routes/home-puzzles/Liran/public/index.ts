@@ -1,4 +1,4 @@
-interface Note {
+interface Task {
     title: string;
     description: string;
     status: string;
@@ -20,7 +20,7 @@ async function handleLoginSubmit(event: any) {
         if (!selectedUser) throw new Error("User not found")
         const userId = selectedUser.value;
         const password = event.target.password.value;
-        
+
         if (!userId || !password) throw new Error("Please complete all fields")
         const response = await fetch('/API/users/get-users')
         const results = await response.json();
@@ -244,8 +244,8 @@ function handleLogOut() {
 function renderUserButtons(HTMLElement: HTMLDivElement, user: User) {
     try {
         if (!HTMLElement) throw new Error("HTMLElement not found")
-        HTMLElement.innerHTML = `<div id=userUI><button onclick="handleAddNote()">Add Note</button>
-        <button onclick="handleShowNotes()">Show Notes</button>
+        HTMLElement.innerHTML = `<div id=userUI><button onclick="handleAddTask()">Add Task</button>
+        <button onclick="handleShowTasks()">Show Tasks</button>
         <button onclick="handleUpdatePassword()">Update Password</button>
         <button onclick="handleUpdateEmail()">Update Email</button>
         <button onclick="handleDeleteUser()">Delete User</button>
@@ -316,19 +316,19 @@ async function handleUpdatePassword() {
     }
 }
 
-function handleAddNote() {
+function handleAddTask() {
     try {
-        renderTitle(document.querySelector('#title') as HTMLDivElement, "Add Note")
-        renderAddNoteForm(document.querySelector('#form') as HTMLDivElement)
+        renderTitle(document.querySelector('#title') as HTMLDivElement, "Add Task")
+        renderAddTaskForm(document.querySelector('#form') as HTMLDivElement)
     } catch (error) {
         console.error(error)
     }
 }
 
-function renderAddNoteForm(HTMLElement: HTMLDivElement) {
+function renderAddTaskForm(HTMLElement: HTMLDivElement) {
     try {
         if (!HTMLElement) throw new Error("HTMLElement not found")
-        HTMLElement.innerHTML = `<form id=addNoteForm onsubmit="handleAddNoteSubmit(event)">
+        HTMLElement.innerHTML = `<form id=addTaskForm onsubmit="handleAddTaskSubmit(event)">
         <input type="text" name="title" placeholder="Title" />
         <input type="text" name="description" placeholder="Description" />
         <button type="submit">Add</button>
@@ -338,11 +338,11 @@ function renderAddNoteForm(HTMLElement: HTMLDivElement) {
     }
 }
 
-async function handleShowNotes() {
+async function handleShowTasks() {
     try {
-        
-        renderTitle(document.querySelector('#title') as HTMLDivElement, "Show Notes")
-        renderNotes(document.querySelector('#form') as HTMLDivElement, currentUser.id)
+
+        renderTitle(document.querySelector('#title') as HTMLDivElement, "Show Tasks")
+        renderTasks(document.querySelector('#form') as HTMLDivElement, currentUser.id)
     } catch (error) {
         console.error(error)
     }
@@ -350,10 +350,10 @@ async function handleShowNotes() {
 
 
 
-async function handleDeleteNote(title: string) { 
+async function handleDeleteTask(title: string) {
     try {
         if (!currentUser) throw new Error("User not found")
-        const response = await fetch('/API/note/delete-note', {
+        const response = await fetch('/API/task/delete-task', {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json'
@@ -362,25 +362,25 @@ async function handleDeleteNote(title: string) {
         });
         const result = await response.json();
         console.log(result);
-        renderNotes(document.querySelector('#form') as HTMLDivElement, currentUser.id)
+        renderTasks(document.querySelector('#form') as HTMLDivElement, currentUser.id)
     } catch (error) {
         console.error(error)
     }
 }
 
-async function handleUpdateStatus(title: string) { 
+async function handleUpdateStatus(title: string) {
     try {
         if (!currentUser) throw new Error("User not found")
-        const response = await fetch('/API/note/update-note-status', {
+        const response = await fetch('/API/task/update-task-status', {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ id: currentUser.id, title:title, newStatus: "Done" })
+            body: JSON.stringify({ id: currentUser.id, title: title, newStatus: "Done" })
         });
         const result = await response.json();
         console.log(result);
-        renderNotes(document.querySelector('#form') as HTMLDivElement, currentUser.id)
+        renderTasks(document.querySelector('#form') as HTMLDivElement, currentUser.id)
     } catch (error) {
         console.error(error)
     }
@@ -404,48 +404,49 @@ function handleRegister() {
     }
 }
 
-async function handleAddNoteSubmit(event: any) {
+async function handleAddTaskSubmit(event: any) {
     try {
         event.preventDefault();
         const title = event.target.title.value;
         const description = event.target.description.value;
         console.log(title, description)
-        
+
         if (!title || !description) throw new Error("Please complete all fields")
         if (!currentUser) throw new Error("User not found")
         const status = "To-Do";
         const userID = currentUser.id;
-        if(await checkIfNoteExist(title,userID)) throw new Error("Note already exist");
-        const note = { title: title, description: description, status: status, id: userID };
-        const response = await fetch('/API/note/add-note', {
+        if (await checkIfTaskExist(title, userID)) throw new Error("Task already exist");
+        const task = { title: title, description: description, status: status, id: userID };
+        const response = await fetch('/API/task/add-task', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(note)
+            body: JSON.stringify(task)
         });
 
         const result = await response.json();
-        alert("Note added successfully");
+        alert("Task added successfully");
         event.target.reset();
     } catch (error) {
         console.error(error);
     }
 }
 
-async function checkIfNoteExist(title: string, id: string): Promise<boolean> { 
+async function checkIfTaskExist(title: string, id: string): Promise<boolean> {
     try {
-        const response = await fetch(`/API/note/get-notes?id=${id}`,{
+        const response = await fetch(`/API/task/get-tasks?id=${id}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
-            }})
+            }
+        })
         const results = await response.json();
-        const { notes } = results;
-        if (!Array.isArray(notes)) throw new Error("notes are not array");
-        const note = notes.findIndex((note) => note.title === title);
-        if (note !== -1) {
-            alert("Note already exist, please choose another title")
+        const { tasks } = results;
+        if (!Array.isArray(tasks)) throw new Error("Tasks are not array");
+        const task = tasks.findIndex((task) => task.title === title);
+        if (task !== -1) {
+            alert("Task already exist, please choose another title")
             return true;
         }
         return false;
@@ -458,7 +459,7 @@ async function checkIfNoteExist(title: string, id: string): Promise<boolean> {
 
 function renderEntrencePanel() {
     try {
-        renderTitle(document.querySelector('#title') as HTMLDivElement, "Welcome to NoteList")
+        renderTitle(document.querySelector('#title') as HTMLDivElement, "Welcome to TaskList")
         renderFirstButtons(document.querySelector('#buttons') as HTMLDivElement)
         clearForm(document.querySelector('#form') as HTMLDivElement);
     } catch (error) {
@@ -466,7 +467,7 @@ function renderEntrencePanel() {
     }
 }
 
-function clearForm(HTMLElement: HTMLDivElement) { 
+function clearForm(HTMLElement: HTMLDivElement) {
     try {
         if (!HTMLElement) throw new Error("HTMLElement not found")
         HTMLElement.innerHTML = ""
@@ -475,40 +476,41 @@ function clearForm(HTMLElement: HTMLDivElement) {
     }
 }
 
-async function renderNotes(HTMLElement: HTMLDivElement, id: string) {
+async function renderTasks(HTMLElement: HTMLDivElement, id: string) {
     try {
         if (!HTMLElement) throw new Error("HTMLElement not found")
-        const response = await fetch(`/API/note/get-notes?id=${id}`,{
+        const response = await fetch(`/API/task/get-tasks?id=${id}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
-            }})
+            }
+        })
         const results = await response.json();
         console.log(response);
-        const { notes } = results;
-        if (!Array.isArray(notes)) throw new Error("notes are not array");
-        let notesHTML = ``;
-        notesHTML += notes.map(note => renderNoteHTML(note)).join("")
+        const { tasks } = results;
+        if (!Array.isArray(tasks)) throw new Error("tasks are not array");
+        let tasksHTML = ``;
+        tasksHTML += tasks.map(task => renderTaskHTML(task)).join("")
         debugger;
-        console.log(notesHTML);
-        HTMLElement.innerHTML = notesHTML;
+        console.log(tasksHTML);
+        HTMLElement.innerHTML = tasksHTML;
     } catch (error) {
         console.error(error)
     }
 }
 
 
-function renderNoteHTML(note: Note) {
+function renderTaskHTML(task: Task) {
     try {
-        
-        const html = `<div class="note">
-        <h3>Title: ${note.title}</h3>
-        <p>Description: ${note.description}</p>
-        <p>Status: ${note.status}</p>
-        <div id="noteButtons">
-            <button onclick="handleDeleteNote('${note.title}')">Delete</button>
-            <button onclick="handleUpdateStatus('${note.title}')">Mark As Done</button>
-            <button onclick="handleUpdateDescription('${note.title}')">Update Description</button>
+
+        const html = `<div class="task">
+        <h3>Title: ${task.title}</h3>
+        <p>Description: ${task.description}</p>
+        <p>Status: ${task.status}</p>
+        <div id="taskButtons">
+            <button onclick="handleDeleteTask('${task.title}')">Delete</button>
+            <button onclick="handleUpdateStatus('${task.title}')">Mark As Done</button>
+            <button onclick="handleUpdateDescription('${task.title}')">Update Description</button>
         </div>
       </div>`
         return html;
@@ -518,21 +520,21 @@ function renderNoteHTML(note: Note) {
     }
 }
 
-async function handleUpdateDescription(title: string) { 
+async function handleUpdateDescription(title: string) {
     try {
         if (!currentUser) throw new Error("User not found")
         const newDescription = prompt("Please enter new description");
         if (!newDescription) throw new Error("Please enter new description");
-        const response = await fetch('/API/note/update-note-description', {
+        const response = await fetch('/API/task/update-task-description', {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ id: currentUser.id, title:title, newDescription })
+            body: JSON.stringify({ id: currentUser.id, title: title, newDescription })
         });
         const result = await response.json();
         console.log(result);
-        renderNotes(document.querySelector('#form') as HTMLDivElement, currentUser.id)
+        renderTasks(document.querySelector('#form') as HTMLDivElement, currentUser.id)
     } catch (error) {
         console.error(error)
     }

@@ -1,12 +1,12 @@
-import { Note } from "./noteModel";
+import { Task } from "./taskModel";
 import { users } from "../users/usersCont";
 
-let notes: Note[] = [
+let tasks: Task[] = [
     // new user("Google", "054-1234567", 100, [])
 ];
 
-//add note controler
-export const addNote = (req: any, res: any) => {
+//add Task controler
+export const addTask = (req: any, res: any) => {
     try {
         const { title, description, status, id } = req.body;
         if (!title || !description || !status || !id) throw new Error("Please complete all fields");
@@ -14,9 +14,9 @@ export const addNote = (req: any, res: any) => {
         const user = users.find((user) => user.id === id);
         if (!user) throw new Error("user not found");
         console.log(user);
-        const note: Note = { title: title, description: description, status: status };
-        user.noteList.push(note); // --> add to Database
-        const list = user.noteList;
+        const task: Task = { title: title, description: description, status: status };
+        user.taskList.push(task); // --> add to Database
+        const list = user.taskList;
         console.log(list);
         res.send({ list });
     } catch (error) {
@@ -25,33 +25,33 @@ export const addNote = (req: any, res: any) => {
 }
 
 //get users
-export const getNotes = (req, res) => {
+export const getTasks = (req, res) => {
     try {
         const { id } = req.query;
         if (!id) throw new Error("Please complete all fields");
         console.log(users);
         const user = users.find((user) => user.id === id);
         if (!user) throw new Error("user not found");
-        const notes = user.noteList;
-        console.log(notes);
+        const tasks = user.taskList;
+        console.log(tasks);
         debugger;
-        res.send({ notes });
+        res.send({ tasks });
     } catch (error) {
         console.error(error);
     }
 }
 
-export const deleteNote = (req, res) => {
+export const deleteTask = (req, res) => {
     try {
         const { title, id } = req.body;
         if (!id || !title) throw new Error("Please complete all fields");
         console.log(id);
         const user = users.find((user) => user.id === id);
         if (!user) throw new Error("user not found");
-        const indx = user.noteList.findIndex((note) => note.title === title);
-        if (indx === -1) throw new Error("note not found");
-        user.noteList.splice(indx, 1);
-        const list = user.noteList;
+        const indx = user.taskList.findIndex((task) => task.title === title);
+        if (indx === -1) throw new Error("Task not found");
+        user.taskList.splice(indx, 1);
+        const list = user.taskList;
         res.send({ list });
     } catch (error) {
         console.error(error);
@@ -59,7 +59,7 @@ export const deleteNote = (req, res) => {
     }
 }
 
-export const updateNote = (req: any, res: any) => {
+export const updateTask = (req: any, res: any) => {
     try {
         const { title, newDescription, id } = req.body;
         console.log(req.body);
@@ -67,10 +67,10 @@ export const updateNote = (req: any, res: any) => {
         console.log(users);
         const user = users.find((user) => user.id === id);
         if (!user) throw new Error("user not found");
-        const indx = user.noteList.findIndex((note) => note.title === title);
-        if (indx === -1) throw new Error("note not found");
-        user.noteList[indx].description = newDescription;
-        const list = user.noteList;
+        const indx = user.taskList.findIndex((task) => task.title === title);
+        if (indx === -1) throw new Error("task not found");
+        user.taskList[indx].description = newDescription;
+        const list = user.taskList;
         res.send({ list });
     } catch (error) {
         console.error(error);
@@ -78,17 +78,17 @@ export const updateNote = (req: any, res: any) => {
     }
 }
 
-export const updateNoteStatus = (req: any, res: any) => {
+export const updateTaskStatus = (req: any, res: any) => {
     try {
         const { title, newStatus, id } = req.body;
         console.log(req.body);
         if (!id || !title || !newStatus) throw new Error("Please complete all fields");
         const user = users.find((user) => user.id === id);
         if (!user) throw new Error("user not found");
-        const indx = user.noteList.findIndex((note) => note.title === title);
-        if (indx === -1) throw new Error("note not found");
-        user.noteList[indx].status = newStatus;
-        const list = user.noteList;
+        const indx = user.taskList.findIndex((task) => task.title === title);
+        if (indx === -1) throw new Error("task not found");
+        user.taskList[indx].status = newStatus;
+        const list = user.taskList;
         res.send({ list });
     } catch (error) {
         console.error(error);

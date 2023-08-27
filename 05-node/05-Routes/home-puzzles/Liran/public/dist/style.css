@@ -60,7 +60,9 @@
   cursor: pointer;
 }
 #root #panel #form,
-#root #panel #loginForm, #root #panel #addNoteForm, #root #panel #registerForm {
+#root #panel #loginForm,
+#root #panel #addTaskForm,
+#root #panel #registerForm {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -71,8 +73,10 @@
 #root #panel #form input,
 #root #panel #form select,
 #root #panel #loginForm input,
-#root #panel #loginForm select, #root #panel #addNoteForm input,
-#root #panel #addNoteForm select, #root #panel #registerForm input,
+#root #panel #loginForm select,
+#root #panel #addTaskForm input,
+#root #panel #addTaskForm select,
+#root #panel #registerForm input,
 #root #panel #registerForm select {
   width: 200px;
   padding: 10px;
@@ -81,15 +85,19 @@
   outline: none;
 }
 #root #panel #form button,
-#root #panel #loginForm button, #root #panel #addNoteForm button, #root #panel #registerForm button {
+#root #panel #loginForm button,
+#root #panel #addTaskForm button,
+#root #panel #registerForm button {
   width: 50%;
   padding: 10px;
   border-radius: 5px;
   border: none;
   outline: none;
 }
-#root #panel #form .note,
-#root #panel #loginForm .note, #root #panel #addNoteForm .note, #root #panel #registerForm .note {
+#root #panel #form .task,
+#root #panel #loginForm .task,
+#root #panel #addTaskForm .task,
+#root #panel #registerForm .task {
   width: 80%;
   display: flex;
   flex-direction: column;
@@ -100,28 +108,39 @@
   border-radius: 10px;
   text-align: left;
 }
-#root #panel #form .note p, #root #panel #form .note h3,
-#root #panel #loginForm .note p,
-#root #panel #loginForm .note h3, #root #panel #addNoteForm .note p, #root #panel #addNoteForm .note h3, #root #panel #registerForm .note p, #root #panel #registerForm .note h3 {
+#root #panel #form .task p,
+#root #panel #form .task h3,
+#root #panel #loginForm .task p,
+#root #panel #loginForm .task h3,
+#root #panel #addTaskForm .task p,
+#root #panel #addTaskForm .task h3,
+#root #panel #registerForm .task p,
+#root #panel #registerForm .task h3 {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   color: #ffffffb3;
   margin-left: 5px;
 }
-#root #panel #form .note #noteButtons,
-#root #panel #loginForm .note #noteButtons, #root #panel #addNoteForm .note #noteButtons, #root #panel #registerForm .note #noteButtons {
+#root #panel #form .task #taskButtons,
+#root #panel #loginForm .task #taskButtons,
+#root #panel #addTaskForm .task #taskButtons,
+#root #panel #registerForm .task #taskButtons {
   width: 100%;
   display: flex;
   justify-content: space-around;
   align-items: center;
   gap: 5px;
 }
-#root #panel #form .note #noteButtons button,
-#root #panel #loginForm .note #noteButtons button, #root #panel #addNoteForm .note #noteButtons button, #root #panel #registerForm .note #noteButtons button {
+#root #panel #form .task #taskButtons button,
+#root #panel #loginForm .task #taskButtons button,
+#root #panel #addTaskForm .task #taskButtons button,
+#root #panel #registerForm .task #taskButtons button {
   width: 33%;
   height: 50px;
 }
-#root #panel #form .note #noteButtons button:hover,
-#root #panel #loginForm .note #noteButtons button:hover, #root #panel #addNoteForm .note #noteButtons button:hover, #root #panel #registerForm .note #noteButtons button:hover {
+#root #panel #form .task #taskButtons button:hover,
+#root #panel #loginForm .task #taskButtons button:hover,
+#root #panel #addTaskForm .task #taskButtons button:hover,
+#root #panel #registerForm .task #taskButtons button:hover {
   cursor: pointer;
   background: linear-gradient(0deg, #171c1d 35%, #dcf3f7 100%);
 }

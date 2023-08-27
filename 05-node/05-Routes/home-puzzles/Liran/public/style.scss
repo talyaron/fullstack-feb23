@@ -11,6 +11,7 @@
     border-radius: 10px;
     min-height: 100vh;
     height: auto;
+
     h1 {
         text-align: center;
     }
@@ -66,7 +67,9 @@
         }
 
         #form,
-        #loginForm,#addNoteForm,#registerForm{
+        #loginForm,
+        #addTaskForm,
+        #registerForm {
             width: 100%;
             display: flex;
             flex-direction: column;
@@ -93,7 +96,7 @@
                 outline: none;
             }
 
-            .note{
+            .task {
                 width: 80%;
                 display: flex;
                 flex-direction: column;
@@ -104,25 +107,26 @@
                 border-radius: 10px;
                 text-align: left;
 
-                p,h3{
+                p,
+                h3 {
                     font-family: Verdana, Geneva, Tahoma, sans-serif;
                     color: #ffffffb3;
                     margin-left: 5px;
                 }
 
-                #noteButtons{
+                #taskButtons {
                     width: 100%;
                     display: flex;
                     justify-content: space-around;
                     align-items: center;
                     gap: 5px;
 
-                    button{
+                    button {
                         width: 33%;
                         height: 50px;
                     }
 
-                    button:hover{
+                    button:hover {
                         cursor: pointer;
                         background: linear-gradient(0deg, rgb(23, 28, 29) 35%, rgb(220, 243, 247) 100%);
                     }

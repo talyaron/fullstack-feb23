@@ -311,7 +311,7 @@ function renderUserButtons(HTMLElement, user) {
     try {
         if (!HTMLElement)
             throw new Error("HTMLElement not found");
-        HTMLElement.innerHTML = "<div id=userUI><button onclick=\"handleAddNote()\">Add Note</button>\n        <button onclick=\"handleShowNotes()\">Show Notes</button>\n        <button onclick=\"handleUpdatePassword()\">Update Password</button>\n        <button onclick=\"handleUpdateEmail()\">Update Email</button>\n        <button onclick=\"handleDeleteUser()\">Delete User</button>\n        <button onclick=\"handleLogOut()\">Log out</button></div>";
+        HTMLElement.innerHTML = "<div id=userUI><button onclick=\"handleAddTask()\">Add Task</button>\n        <button onclick=\"handleShowTasks()\">Show Tasks</button>\n        <button onclick=\"handleUpdatePassword()\">Update Password</button>\n        <button onclick=\"handleUpdateEmail()\">Update Email</button>\n        <button onclick=\"handleDeleteUser()\">Delete User</button>\n        <button onclick=\"handleLogOut()\">Log out</button></div>";
     }
     catch (error) {
         console.error(error);
@@ -425,31 +425,31 @@ function handleUpdatePassword() {
         });
     });
 }
-function handleAddNote() {
+function handleAddTask() {
     try {
-        renderTitle(document.querySelector('#title'), "Add Note");
-        renderAddNoteForm(document.querySelector('#form'));
+        renderTitle(document.querySelector('#title'), "Add Task");
+        renderAddTaskForm(document.querySelector('#form'));
     }
     catch (error) {
         console.error(error);
     }
 }
-function renderAddNoteForm(HTMLElement) {
+function renderAddTaskForm(HTMLElement) {
     try {
         if (!HTMLElement)
             throw new Error("HTMLElement not found");
-        HTMLElement.innerHTML = "<form id=addNoteForm onsubmit=\"handleAddNoteSubmit(event)\">\n        <input type=\"text\" name=\"title\" placeholder=\"Title\" />\n        <input type=\"text\" name=\"description\" placeholder=\"Description\" />\n        <button type=\"submit\">Add</button>\n      </form>";
+        HTMLElement.innerHTML = "<form id=addTaskForm onsubmit=\"handleAddTaskSubmit(event)\">\n        <input type=\"text\" name=\"title\" placeholder=\"Title\" />\n        <input type=\"text\" name=\"description\" placeholder=\"Description\" />\n        <button type=\"submit\">Add</button>\n      </form>";
     }
     catch (error) {
         console.error(error);
     }
 }
-function handleShowNotes() {
+function handleShowTasks() {
     return __awaiter(this, void 0, void 0, function () {
         return __generator(this, function (_a) {
             try {
-                renderTitle(document.querySelector('#title'), "Show Notes");
-                renderNotes(document.querySelector('#form'), currentUser.id);
+                renderTitle(document.querySelector('#title'), "Show Tasks");
+                renderTasks(document.querySelector('#form'), currentUser.id);
             }
             catch (error) {
                 console.error(error);
@@ -458,7 +458,7 @@ function handleShowNotes() {
         });
     });
 }
-function handleDeleteNote(title) {
+function handleDeleteTask(title) {
     return __awaiter(this, void 0, void 0, function () {
         var response, result, error_8;
         return __generator(this, function (_a) {
@@ -467,7 +467,7 @@ function handleDeleteNote(title) {
                     _a.trys.push([0, 3, , 4]);
                     if (!currentUser)
                         throw new Error("User not found");
-                    return [4 /*yield*/, fetch('/API/note/delete-note', {
+                    return [4 /*yield*/, fetch('/API/task/delete-task', {
                             method: 'DELETE',
                             headers: {
                                 'Content-Type': 'application/json'
@@ -480,7 +480,7 @@ function handleDeleteNote(title) {
                 case 2:
                     result = _a.sent();
                     console.log(result);
-                    renderNotes(document.querySelector('#form'), currentUser.id);
+                    renderTasks(document.querySelector('#form'), currentUser.id);
                     return [3 /*break*/, 4];
                 case 3:
                     error_8 = _a.sent();
@@ -500,7 +500,7 @@ function handleUpdateStatus(title) {
                     _a.trys.push([0, 3, , 4]);
                     if (!currentUser)
                         throw new Error("User not found");
-                    return [4 /*yield*/, fetch('/API/note/update-note-status', {
+                    return [4 /*yield*/, fetch('/API/task/update-task-status', {
                             method: 'PATCH',
                             headers: {
                                 'Content-Type': 'application/json'
@@ -513,7 +513,7 @@ function handleUpdateStatus(title) {
                 case 2:
                     result = _a.sent();
                     console.log(result);
-                    renderNotes(document.querySelector('#form'), currentUser.id);
+                    renderTasks(document.querySelector('#form'), currentUser.id);
                     return [3 /*break*/, 4];
                 case 3:
                     error_9 = _a.sent();
@@ -542,9 +542,9 @@ function handleRegister() {
         console.error(error);
     }
 }
-function handleAddNoteSubmit(event) {
+function handleAddTaskSubmit(event) {
     return __awaiter(this, void 0, void 0, function () {
-        var title, description, status, userID, note, response, result, error_10;
+        var title, description, status, userID, task, response, result, error_10;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -559,24 +559,24 @@ function handleAddNoteSubmit(event) {
                         throw new Error("User not found");
                     status = "To-Do";
                     userID = currentUser.id;
-                    return [4 /*yield*/, checkIfNoteExist(title, userID)];
+                    return [4 /*yield*/, checkIfTaskExist(title, userID)];
                 case 1:
                     if (_a.sent())
-                        throw new Error("Note already exist");
-                    note = { title: title, description: description, status: status, id: userID };
-                    return [4 /*yield*/, fetch('/API/note/add-note', {
+                        throw new Error("Task already exist");
+                    task = { title: title, description: description, status: status, id: userID };
+                    return [4 /*yield*/, fetch('/API/task/add-task', {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json'
                             },
-                            body: JSON.stringify(note)
+                            body: JSON.stringify(task)
                         })];
                 case 2:
                     response = _a.sent();
                     return [4 /*yield*/, response.json()];
                 case 3:
                     result = _a.sent();
-                    alert("Note added successfully");
+                    alert("Task added successfully");
                     event.target.reset();
                     return [3 /*break*/, 5];
                 case 4:
@@ -588,14 +588,14 @@ function handleAddNoteSubmit(event) {
         });
     });
 }
-function checkIfNoteExist(title, id) {
+function checkIfTaskExist(title, id) {
     return __awaiter(this, void 0, Promise, function () {
-        var response, results, notes, note, error_11;
+        var response, results, tasks, task, error_11;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
-                    return [4 /*yield*/, fetch("/API/note/get-notes?id=" + id, {
+                    return [4 /*yield*/, fetch("/API/task/get-tasks?id=" + id, {
                             method: 'GET',
                             headers: {
                                 'Content-Type': 'application/json'
@@ -606,12 +606,12 @@ function checkIfNoteExist(title, id) {
                     return [4 /*yield*/, response.json()];
                 case 2:
                     results = _a.sent();
-                    notes = results.notes;
-                    if (!Array.isArray(notes))
-                        throw new Error("notes are not array");
-                    note = notes.findIndex(function (note) { return note.title === title; });
-                    if (note !== -1) {
-                        alert("Note already exist, please choose another title");
+                    tasks = results.tasks;
+                    if (!Array.isArray(tasks))
+                        throw new Error("Tasks are not array");
+                    task = tasks.findIndex(function (task) { return task.title === title; });
+                    if (task !== -1) {
+                        alert("Task already exist, please choose another title");
                         return [2 /*return*/, true];
                     }
                     return [2 /*return*/, false];
@@ -626,7 +626,7 @@ function checkIfNoteExist(title, id) {
 }
 function renderEntrencePanel() {
     try {
-        renderTitle(document.querySelector('#title'), "Welcome to NoteList");
+        renderTitle(document.querySelector('#title'), "Welcome to TaskList");
         renderFirstButtons(document.querySelector('#buttons'));
         clearForm(document.querySelector('#form'));
     }
@@ -644,16 +644,16 @@ function clearForm(HTMLElement) {
         console.error(error);
     }
 }
-function renderNotes(HTMLElement, id) {
+function renderTasks(HTMLElement, id) {
     return __awaiter(this, void 0, void 0, function () {
-        var response, results, notes, notesHTML, error_12;
+        var response, results, tasks, tasksHTML, error_12;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
                     if (!HTMLElement)
                         throw new Error("HTMLElement not found");
-                    return [4 /*yield*/, fetch("/API/note/get-notes?id=" + id, {
+                    return [4 /*yield*/, fetch("/API/task/get-tasks?id=" + id, {
                             method: 'GET',
                             headers: {
                                 'Content-Type': 'application/json'
@@ -665,14 +665,14 @@ function renderNotes(HTMLElement, id) {
                 case 2:
                     results = _a.sent();
                     console.log(response);
-                    notes = results.notes;
-                    if (!Array.isArray(notes))
-                        throw new Error("notes are not array");
-                    notesHTML = "";
-                    notesHTML += notes.map(function (note) { return renderNoteHTML(note); }).join("");
+                    tasks = results.tasks;
+                    if (!Array.isArray(tasks))
+                        throw new Error("tasks are not array");
+                    tasksHTML = "";
+                    tasksHTML += tasks.map(function (task) { return renderTaskHTML(task); }).join("");
                     debugger;
-                    console.log(notesHTML);
-                    HTMLElement.innerHTML = notesHTML;
+                    console.log(tasksHTML);
+                    HTMLElement.innerHTML = tasksHTML;
                     return [3 /*break*/, 4];
                 case 3:
                     error_12 = _a.sent();
@@ -683,9 +683,9 @@ function renderNotes(HTMLElement, id) {
         });
     });
 }
-function renderNoteHTML(note) {
+function renderTaskHTML(task) {
     try {
-        var html = "<div class=\"note\">\n        <h3>Title: " + note.title + "</h3>\n        <p>Description: " + note.description + "</p>\n        <p>Status: " + note.status + "</p>\n        <div id=\"noteButtons\">\n            <button onclick=\"handleDeleteNote('" + note.title + "')\">Delete</button>\n            <button onclick=\"handleUpdateStatus('" + note.title + "')\">Mark As Done</button>\n            <button onclick=\"handleUpdateDescription('" + note.title + "')\">Update Description</button>\n        </div>\n      </div>";
+        var html = "<div class=\"task\">\n        <h3>Title: " + task.title + "</h3>\n        <p>Description: " + task.description + "</p>\n        <p>Status: " + task.status + "</p>\n        <div id=\"taskButtons\">\n            <button onclick=\"handleDeleteTask('" + task.title + "')\">Delete</button>\n            <button onclick=\"handleUpdateStatus('" + task.title + "')\">Mark As Done</button>\n            <button onclick=\"handleUpdateDescription('" + task.title + "')\">Update Description</button>\n        </div>\n      </div>";
         return html;
     }
     catch (error) {
@@ -705,7 +705,7 @@ function handleUpdateDescription(title) {
                     newDescription = prompt("Please enter new description");
                     if (!newDescription)
                         throw new Error("Please enter new description");
-                    return [4 /*yield*/, fetch('/API/note/update-note-description', {
+                    return [4 /*yield*/, fetch('/API/task/update-task-description', {
                             method: 'PATCH',
                             headers: {
                                 'Content-Type': 'application/json'
@@ -718,7 +718,7 @@ function handleUpdateDescription(title) {
                 case 2:
                     result = _a.sent();
                     console.log(result);
-                    renderNotes(document.querySelector('#form'), currentUser.id);
+                    renderTasks(document.querySelector('#form'), currentUser.id);
                     return [3 /*break*/, 4];
                 case 3:
                     error_13 = _a.sent();
