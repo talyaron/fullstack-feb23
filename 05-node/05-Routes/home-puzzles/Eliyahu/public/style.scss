@@ -10,50 +10,50 @@ h2 {
     text-align: center;
 }
 
-.toDo {
+.toDo,
+.doing,
+.done {
     height: 85vh;
     flex: 1;
 
-    &_header {
+    &_header{
         display: flex;
         justify-content: space-around;
-        background-color: darkgoldenrod;
         border: 2px gray solid;
         border-radius: 10px 10px 0 0;
         align-items: center;
+        background-color: darkgoldenrod;
 
         button {
             width: 30px;
             height: 30px;
         }
     }
+}
 
-    .toDoTasks {
-        margin-top: -2px;
-        height: 40vh;
-        border: 2px gray solid;
-        background-color: rgb(193, 247, 247);
-        padding: 10px;
-        border-radius: 0 0 10px 10px;
 
-        form {
-            width: 100%;
-            text-align: center;
-        }
+.toDo .toDoTasks,
+.doing .doingTasks,
+.done .doneTasks {
+    margin-top: -2px;
+    height: 40vh;
+    border: 2px gray solid;
+    background-color: rgb(193, 247, 247);
+    padding: 10px;
+    border-radius: 0 0 10px 10px;
 
-        input,button, textarea {
-            padding: 5px;
-            margin: 6px;
-        }
+    form {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+      align-items: center;
     }
-}
 
-.doing {
-    flex: 1;
-    background-color: navajowhite;
-}
-
-.done {
-    flex: 1;
-    background-color: mediumaquamarine;
+    input,
+    button,
+    textarea {
+        padding: 5px;
+        margin: 6px;
+        max-width: 35vw;
+    }
 }
