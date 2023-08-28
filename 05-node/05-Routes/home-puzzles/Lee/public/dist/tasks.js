@@ -34,34 +34,61 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-// index.ts
-function handleRegisterPage() {
-    location.href = "/register.html";
-}
-function handleLoginPage() {
-    location.href = "/login.html";
-}
-function handleGetAllUsers() {
+function handleGetTasks() {
     return __awaiter(this, void 0, void 0, function () {
-        var response, result, users, ul;
+        var response, tasks, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, fetch('/API/users/get-all-users')];
+                case 0:
+                    _a.trys.push([0, 3, , 4]);
+                    return [4 /*yield*/, fetch('/API/Tasks/get-tasks')];
                 case 1:
                     response = _a.sent();
                     return [4 /*yield*/, response.json()];
                 case 2:
-                    result = _a.sent();
-                    console.log(result);
-                    users = result.users;
-                    ul = document.getElementById("users");
-                    ul.innerHTML = "";
-                    users.forEach(function (user) {
-                        var li = document.createElement("li");
-                        li.innerHTML = "userName: " + user.userName + " password: " + user.password;
-                        ul.appendChild(li);
-                    });
-                    return [2 /*return*/];
+                    tasks = (_a.sent()).tasks;
+                    console.log(tasks);
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_1 = _a.sent();
+                    console.error(error_1);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
+            }
+        });
+    });
+}
+handleGetTasks();
+function handleAddTask(ev) {
+    return __awaiter(this, void 0, void 0, function () {
+        var title, description, newTask, response, tasks, error_2;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 3, , 4]);
+                    ev.preventDefault();
+                    title = ev.target.elements.title.value;
+                    description = ev.target.elements.description.value;
+                    newTask = { title: title, description: description };
+                    return [4 /*yield*/, fetch('/API/Tasks/add-task', {
+                            method: 'POST',
+                            headers: {
+                                'content-type': 'application/json'
+                            },
+                            body: JSON.stringify(newTask)
+                        })];
+                case 1:
+                    response = _a.sent();
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    tasks = (_a.sent()).tasks;
+                    console.log(tasks);
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_2 = _a.sent();
+                    console.error(error_2);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
             }
         });
     });
