@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <script src="./dist/login.js"></script>
+</head>
+
+<body>
+    <h1>Login</h1>
+    <form onsubmit="handleLogin(event)">
+        <!--do i conect with the sarver like this? do i have the id for each name?-->
+        <select id="user-select">
+            <option value="">chose your name</option>
+            <option value="Tamar">Tamar</option>
+            <option value="Amir">Amir</option>
+            <option value="Sivan">Sivan</option>
+            <option value="Ofir">Ofir</option>
+            <option value="Eliya">Eliya</option>
+        </select>
+        <button type="submit">Login</button>
+    </form>
+</body>
+
+</html>

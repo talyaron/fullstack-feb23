@@ -1,4 +1,3 @@
-"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -35,37 +34,42 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-exports.__esModule = true;
-exports.User = void 0;
-var index_1 = require("../../public/index");
-var User = /** @class */ (function () {
-    function User(_a) {
-        var _this = this;
-        var name = _a.name;
-        this.name = name;
-        this.tasks = []; //initialize with an empty array
-        // Call an async function using 'await'
-        (function () { return __awaiter(_this, void 0, void 0, function () {
-            var tasks, error_1;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        _a.trys.push([0, 2, , 3]);
-                        return [4 /*yield*/, index_1.getTasks()];
-                    case 1:
-                        tasks = _a.sent();
-                        this.tasks = tasks;
-                        return [3 /*break*/, 3];
-                    case 2:
-                        error_1 = _a.sent();
-                        console.error(error_1);
-                        return [3 /*break*/, 3];
-                    case 3: return [2 /*return*/];
-                }
-            });
-        }); })();
-        this.id = Math.random().toString();
-    }
-    return User;
-}());
-exports.User = User;
+function handleRegister(ev) {
+    return __awaiter(this, void 0, void 0, function () {
+        var user, response, error, error_1;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 3, , 4]);
+                    ev.preventDefault(); // stop form from submitting
+                    user = {
+                        name: ev.target.name.value
+                    };
+                    return [4 /*yield*/, fetch('/API/users/register', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(user)
+                        })];
+                case 1:
+                    response = _a.sent();
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    error = (_a.sent()).error;
+                    console.log(error);
+                    if (error) {
+                        throw new Error(error);
+                    }
+                    //if everthink is OK, redirect to login page
+                    window.location.href = "/login.html";
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_1 = _a.sent();
+                    console.error(error_1);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
+            }
+        });
+    });
+}
