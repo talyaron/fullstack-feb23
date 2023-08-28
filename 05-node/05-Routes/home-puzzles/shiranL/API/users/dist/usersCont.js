@@ -1,6 +1,6 @@
 "use strict";
 exports.__esModule = true;
-exports.getUserLogIn = exports.logIn = exports.getAllUsers = exports.addUser = void 0;
+exports.getUserDetails = exports.login = exports.getAllUsers = exports.addUser = void 0;
 var usersModel_1 = require("./usersModel");
 //add user controler    
 exports.addUser = function (req, res) {
@@ -27,33 +27,41 @@ exports.getAllUsers = function (req, res) {
         console.error(error);
     }
 };
-exports.logIn = function (req, res) {
+//log in controler
+exports.login = function (req, res) {
     try {
-        var user_1 = req.body;
-        var userFound = usersModel_1.users.find(function (u) { return u.userName === user_1.userName && u.password === user_1.password; });
-        if (userFound) {
-            userFound.isLogIn = true; // --> update Database
-            res.send({ success: true, message: "user found" });
-        }
-        else {
-            res.send({ success: false, message: "user not found" });
-        }
+        var _a = req.body, userName_1 = _a.userName, password_1 = _a.password;
+        if (!userName_1 || !password_1)
+            throw new Error("Please complete all fields");
+        //check if user exist and password is correct
+        var user = usersModel_1.users.find(function (user) { return user.userName === userName_1 && user.password === password_1; });
+        if (!user)
+            throw new Error("some of the details are incorrect");
+        res.send({ ok: true, userName: user.userName });
     }
     catch (error) {
         console.error(error);
+        res.send({ error: error.message });
     }
 };
-exports.getUserLogIn = function (req, res) {
+// Function to get user details by username
+exports.getUserDetails = function (req, res) {
     try {
-        var userFound = usersModel_1.users.find(function (u) { return u.isLogIn === true; });
-        if (userFound) {
-            res.send({ success: true, message: "user found", user: userFound });
+        var userName_2 = req.query.userName;
+        if (!userName_2) {
+            res.status(400).send("Username is required.");
+            return;
         }
-        else {
-            res.send({ success: false, message: "user not found" });
+        var user = usersModel_1.users.find(function (user) { return user.userName === userName_2; });
+        if (!user) {
+            res.status(404).send("User not found.");
+            return;
         }
+        // Send the user details as a JSON response
+        res.send(user);
     }
     catch (error) {
         console.error(error);
+        res.status(500).send("Internal server error");
     }
 };

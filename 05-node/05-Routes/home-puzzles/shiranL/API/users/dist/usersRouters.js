@@ -8,4 +8,5 @@ exports["default"] = router;
 router
     .get("/get-all-users", usersCont_1.getAllUsers)
     .post("/add-user", usersCont_1.addUser)
-    .post("/log-in", usersCont_1.logIn);
+    .post("/log-in", usersCont_1.login)
+    .get("/get-user-details", usersCont_1.getUserDetails);

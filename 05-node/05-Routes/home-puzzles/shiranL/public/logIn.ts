@@ -1,4 +1,7 @@
+//login.ts 
+
 async function handleLogin(event){
+   
     event.preventDefault();
     const userName = event.target.elements.uesrName.value;  
     const password = event.target.elements.password.value; 
@@ -10,13 +13,14 @@ async function handleLogin(event){
         },
         body: JSON.stringify(user)
     });
-    debugger;
+    
     const result = await response.json();
-    console.log(result);
-    if(result.success){
-        // go to home page  
+   
+    console.log(result.userName);
+    if(result.ok===true){
+        // go to home page  with user name
         
-        window.location.href = "../home/homePage.html";    
+        window.location.href = `../home/homePage.html?userName=${result.userName}`;    
     }
     const loginForm :any = document.getElementById("loginForm");
     loginForm.reset();    

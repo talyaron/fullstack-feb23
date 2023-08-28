@@ -1,6 +1,6 @@
 // index.ts
 function handleRegisterPage(){
-  debugger;
+
      location.href = "/register.html";
 }
 function handleLoginPage(){
