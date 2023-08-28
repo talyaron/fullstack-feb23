@@ -8,4 +8,10 @@ export class User {
   }
 }
 
-export const users: User[] = [];
+export const users: User[] = [
+  new User({name:"Tamar"}),
+  new User({name:"Amir"}),
+  new User({name:"Sivan"}),
+  new User({name:"Ofir"}),
+  new User({name:"Eliya"})
+];
