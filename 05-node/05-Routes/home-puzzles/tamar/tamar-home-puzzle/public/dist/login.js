@@ -64,7 +64,7 @@ function handleLogin(ev) {
                     if (error) {
                         throw new Error(error);
                     }
-                    //if everthink is OK, redirect to main page of the user
+                    //if everthink is OK, redirect to main page of the user and pass the id of this user
                     window.location.href = "/main.html?id=" + id;
                     return [3 /*break*/, 4];
                 case 3:

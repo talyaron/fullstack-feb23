@@ -20,7 +20,7 @@ async function handleLogin(ev:any){
         if (error) {
             throw new Error(error);
         }
-        //if everthink is OK, redirect to main page of the user
+        //if everthink is OK, redirect to main page of the user and pass the id of this user
         window.location.href = `/main.html?id=${id}`;
     } catch (error) {
         console.error(error);

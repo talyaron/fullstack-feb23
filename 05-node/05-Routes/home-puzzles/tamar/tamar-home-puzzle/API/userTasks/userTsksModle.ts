@@ -4,7 +4,7 @@ import { Task} from "../tasks/tasksModel";
 
 export class UserTasks{
     id:string
-    constructor(public user:User,public task:Task){
+    constructor(public user:User,public tasks:Task[]){
         this.id = Math.random().toString(36);
     }
 }   
