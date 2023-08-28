@@ -1,3 +1,8 @@
+body .material-symbols-rounded {
+  padding: 2px;
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+}
+
 .allTasks {
   width: 95vw;
   display: flex;
@@ -31,15 +36,16 @@ h2 {
 .done_header button {
   width: 30px;
   height: 30px;
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
 }
 
 .toDo .toDoTasks,
 .doing .doingTasks,
 .done .doneTasks {
   margin-top: -2px;
-  height: 40vh;
+  min-height: 70vh;
   border: 2px gray solid;
-  background-color: #c1f7f7;
+  background-color: rgba(217, 251, 251, 0.5);
   padding: 10px;
   border-radius: 0 0 10px 10px;
 }
@@ -63,4 +69,35 @@ h2 {
   padding: 5px;
   margin: 6px;
   max-width: 35vw;
+}
+
+.task {
+  margin: auto;
+  width: 90%;
+  margin-bottom: 10px;
+}
+.task_header, .task_body {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 8px;
+}
+.task_header {
+  border: 1px #aaaaaa solid;
+  border-radius: 5px 5px 0 0;
+  background-color: antiquewhite;
+  height: 40px;
+  align-items: center;
+}
+.task_body {
+  border-left: 1px #aaaaaa solid;
+  border-right: 1px #aaaaaa solid;
+  background-color: white;
+}
+.task .btns {
+  background-color: white;
+  border: 1px #aaaaaa solid;
+  border-top: none;
+  border-radius: 0 0 5px 5px;
+  display: flex;
+  justify-content: space-between;
 }

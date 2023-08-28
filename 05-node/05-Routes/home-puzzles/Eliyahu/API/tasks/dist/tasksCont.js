@@ -1,6 +1,6 @@
 "use strict";
 exports.__esModule = true;
-exports.updateTaskStatus = exports.updateTaskDescription = exports.updateTaskTitle = exports.deleteTask = exports.addTask = exports.getTasks = void 0;
+exports.updateTaskStatus = exports.updateTask = exports.deleteTask = exports.addTask = exports.getTasks = void 0;
 // import { Task } from "./tasksModels"
 var Task = /** @class */ (function () {
     function Task(user, title, description, status) {
@@ -13,7 +13,7 @@ var Task = /** @class */ (function () {
     return Task;
 }());
 var tasks = [
-    new Task('eli', 'test', 'it`s work?', 'TO-DO')
+    new Task('eli', 'test', 'it`s work?', 'toDo')
 ];
 exports.getTasks = function (req, res) {
     try {
@@ -43,29 +43,15 @@ exports.deleteTask = function (req, res) {
         console.error(error.massage);
     }
 };
-exports.updateTaskTitle = function (req, res) {
+exports.updateTask = function (req, res) {
     try {
-        var _a = req.body, title = _a.title, id_2 = _a.id;
-        if (!title || !id_2)
+        var _a = req.body, title = _a.title, description = _a.description, id_2 = _a.id;
+        if (!title || !description || !id_2)
             throw new Error("Please complete all details");
         var task = tasks.find(function (task) { return task.id === id_2; });
         if (!task)
             throw new Error("Task not found");
         task.title = title;
-        res.send({ tasks: tasks });
-    }
-    catch (error) {
-        console.error(error.massage);
-    }
-};
-exports.updateTaskDescription = function (req, res) {
-    try {
-        var _a = req.body, description = _a.description, id_3 = _a.id;
-        if (!description || !id_3)
-            throw new Error("Please complete all details");
-        var task = tasks.find(function (task) { return task.id === id_3; });
-        if (!task)
-            throw new Error("Task not found");
         task.description = description;
         res.send({ tasks: tasks });
     }
@@ -75,10 +61,10 @@ exports.updateTaskDescription = function (req, res) {
 };
 exports.updateTaskStatus = function (req, res) {
     try {
-        var _a = req.body, status = _a.status, id_4 = _a.id;
-        if (!status || !id_4)
+        var _a = req.body, status = _a.status, id_3 = _a.id;
+        if (!status || !id_3)
             throw new Error("Please complete all details");
-        var task = tasks.find(function (task) { return task.id === id_4; });
+        var task = tasks.find(function (task) { return task.id === id_3; });
         if (!task)
             throw new Error("Task not found");
         task.status = status;
