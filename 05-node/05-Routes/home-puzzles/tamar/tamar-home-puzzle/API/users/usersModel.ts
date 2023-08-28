@@ -7,3 +7,5 @@ export class User {
     this.id = Math.random().toString();
   }
 }
+
+export const users: User[] = [];

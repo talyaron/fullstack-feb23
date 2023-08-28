@@ -1,6 +1,6 @@
 "use strict";
 exports.__esModule = true;
-exports.User = void 0;
+exports.users = exports.User = void 0;
 var User = /** @class */ (function () {
     function User(_a) {
         var name = _a.name;
@@ -10,3 +10,4 @@ var User = /** @class */ (function () {
     return User;
 }());
 exports.User = User;
+exports.users = [];
