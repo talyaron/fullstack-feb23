@@ -9,8 +9,9 @@ exports.registerUser = function (req, res) {
             throw new Error("Please complete all fields");
         var user = new userModels_1.User(email_1, password);
         var userExist = userModels_1.users.find(function (user) { return user.email === email_1; });
-        if (userExist)
+        if (userExist) {
             throw new Error("This email address already exist");
+        }
         userModels_1.users.push(user);
         res.send({ ok: true });
     }

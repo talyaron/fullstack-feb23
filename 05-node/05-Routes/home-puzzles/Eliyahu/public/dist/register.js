@@ -36,16 +36,22 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 function handleRegister(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var user, response, error, error_1;
+        var passwordCheck, user, response, error, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
                     ev.preventDefault();
+                    passwordCheck = ev.target.passwordCheck.value;
                     user = {
                         password: ev.target.password.value,
                         email: ev.target.email.value
                     };
+                    console.log(user.password);
+                    if (passwordCheck !== user.password) {
+                        alert("The passwords do not match");
+                        throw new Error("The passwords do not match");
+                    }
                     if (!user.email || !user.password)
                         throw new Error("Please complete all fields");
                     return [4 /*yield*/, fetch('/API/users/register', {

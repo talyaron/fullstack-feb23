@@ -6,13 +6,27 @@
     <title>Document</title>
     <script src="./dist/register.js" defer></script>
     <link rel="stylesheet" href="./dist/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Carter+One&family=Sedgwick+Ave+Display&display=swap"
+        rel="stylesheet">
 </head>
-<body>
-    <h1>Register</h1>
-    <form onsubmit="handleRegister(event)">
-    <input type="email" name="email" placeholder="Email" required>
-    <input type="password" name="password" placeholder="Password" required>
-    <button type="submit">Register</button>
-    </form>
+<body class="regis">
+    <div class="loginForm">
+        <h1>Register</h1>
+        <form class="login" onsubmit="handleRegister(event)">
+        <input type="email" name="email" placeholder="Email" required>
+        <input type="password" name="password" placeholder="Password" required>
+        <input type="password" name="passwordCheck" placeholder="Password Check" required>
+        <div>
+            <a class="back" href="./index.html">Back</a>
+            <button type="submit">Register</button>
+        </div>
+        </form>
+    </div>
+    <div class="img reg">
+        <h2 class="art">Tasks Manager</h2>
+        <h3 class="art">Proper management <br> has never been so easy</h3>
+    </div>
 </body>
 </html>

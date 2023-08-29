@@ -6,8 +6,10 @@ export const registerUser = (req: any, res: any) => {
         if (!email || !password) throw new Error("Please complete all fields");
         const user = new User(email, password)
         const userExist = users.find(user => user.email === email)
-        if (userExist) throw new Error("This email address already exist");
-        users.push(user)
+        if (userExist) {
+            throw new Error("This email address already exist");
+        }
+            users.push(user)
         res.send({ ok: true })
 
     } catch (error) {
