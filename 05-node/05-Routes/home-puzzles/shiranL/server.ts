@@ -15,6 +15,10 @@ import usersRouters from "./API/users/usersRouters"
 //tells express to use proudctsRouter on the intial route "/API/users"
 app.use("/API/users", usersRouters);
 
+// get router from tasksRouter
+import tasksRouters from "./API/tasks/tasksRouters"
+//tells express to use proudctsRouter on the intial route "/API/users"
+app.use("/API/tasks", tasksRouters);
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);

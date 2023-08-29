@@ -15,6 +15,9 @@ var Task = /** @class */ (function () {
         this.status = status;
         this.id = Math.random().toString();
     }
+    Task.prototype.updateStatus = function (status) {
+        this.status = status;
+    };
     return Task;
 }());
 exports.Task = Task;
