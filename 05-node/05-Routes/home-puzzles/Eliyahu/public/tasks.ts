@@ -1,21 +1,3 @@
-// import { Task } from "../API/tasks/tasksModels";
-
-
-class Task {
-    id: string
-    constructor(
-        public user: string,
-        public title: string,
-        public description: string,
-        public status: string
-    ) {
-        this.id = Math.random().toString()
-    }
-}
-
-let tasks: Task[] = [
-    new Task('eli', 'test', 'it`s work?', 'toDo')
-]
 
 const toDoRoot = document.querySelector('#toDoTasks') as HTMLDivElement
 const doingRoot = document.querySelector('#doingTasks') as HTMLDivElement
@@ -25,24 +7,28 @@ async function getTasks() {
     try {
         const response = await fetch('API/tasks/get-tasks')
         const result = await response.json()
-        const { tasks } = result
-        if (!Array.isArray(tasks)) throw new Error("tasks is not array");
-        renderTasks(tasks)
+        const { usersTasks } = result
+        if (!Array.isArray(usersTasks)) throw new Error("tasks is not array");
+        renderTasks(usersTasks)
     } catch (error) {
         console.error(error.massage);
     }
 }
+
 getTasks()
+const emailUser = window.location.search.toString().replace('?email=', '')
 
-
-async function handleAddTask(ev: any, user: string, status: string) {
+async function handleAddTask(ev: any, status: string) {
     try {
         ev.preventDefault()
 
-        const title = ev.target.title.value
-        const description = ev.target.description.value
-        if (!user || !status || !title || !description) throw new Error("Please complete all details");
-        const task = new Task(user, title, description, status)
+        const task = {
+            title: ev.target.title.value,
+            description: ev.target.description.value,
+            status,
+            emailUser
+        }
+        if ( !status || !task.title || !task.description) throw new Error("Please complete all details");
 
         const response = await fetch('/API/tasks/add-task', {
             method: 'POST',
@@ -53,10 +39,10 @@ async function handleAddTask(ev: any, user: string, status: string) {
         })
 
         const result = await response.json()
-        const { tasks } = result
-        console.log(tasks);
+        const { usersTasks } = result
+        console.log(usersTasks);
 
-        renderTasks(tasks)
+        renderTasks(usersTasks)
 
     } catch (error) {
         console.error(error)
@@ -74,8 +60,8 @@ async function handleDeleteTask(id: string) {
             body: JSON.stringify({ id })
         })
         const result = await response.json()
-        const { tasks } = result
-        renderTasks(tasks)
+        const { usersTasks } = result
+        renderTasks(usersTasks)
 
     } catch (error) {
         console.error(error.massage);
@@ -88,19 +74,19 @@ async function handleUpdateTask(ev: any) {
         const title = ev.target.editTitle.value
         const description = ev.target.editDescription.value
         const id = ev.target.id
-   
+
         const response = await fetch('API/tasks/update-task', {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ title,description, id })
+            body: JSON.stringify({ title, description, id })
         })
 
         const result = await response.json()
-        const { tasks } = result
+        const { usersTasks } = result
 
-        renderTasks(tasks)
+        renderTasks(usersTasks)
 
     } catch (error) {
         console.error(error.massage);
@@ -122,9 +108,9 @@ async function handleUpdateTaskStatus(taskStatus: string, taskId: string) {
         })
 
         const result = await response.json()
-        const { tasks } = result
+        const { usersTasks } = result
 
-        renderTasks(tasks)
+        renderTasks(usersTasks)
 
     } catch (error) {
         console.error(error.massage);
@@ -133,11 +119,14 @@ async function handleUpdateTaskStatus(taskStatus: string, taskId: string) {
 
 function renderAddTask(status: string) {
     try {
-        let html = `<form onsubmit="handleAddTask(event, 'eli', '${status}')">
+        let html = `<form onsubmit="handleAddTask(event, '${status}')">
         <input type="text" name="title" placeholder="Title" required>
         <textarea name="description" cols="21" rows="5" placeholder="Description" required></textarea>
+        <div>
         <button type="submit" class="material-symbols-rounded">check</button>
-    </form>`
+        <button onclick="getTasks()" class="material-symbols-rounded">close</button>
+        </div>
+        </form>`
 
 
         switch (status) {
@@ -158,13 +147,13 @@ function renderAddTask(status: string) {
 }
 
 
-function renderTaskHtml(task: Task) {
+function renderTaskHtml(task) {
     try {
 
-        let html = `<div class = "task" id="${task.title}">
+        let html = `<div class = "task" id="task${task.id}">
         <div class = "task_header">
         <h3 >${task.title}</h3>
-        <button class="material-symbols-rounded" onclick="renderUpdateTask('${task.title}','${task.description}',${task.id})">Edit</button>
+        <button class="material-symbols-rounded" onclick="renderUpdateTask('${task.title}','${task.description}','${task.id}')">Edit</button>
         </div>
         <div class = "task_body">
         <p>${task.description}</p>
@@ -202,24 +191,30 @@ function renderTaskHtml(task: Task) {
     }
 }
 
-function renderTasks(tasks: Task[]) {
+function renderTasks(usersTasks) {
     try {
-        if (!Array.isArray(tasks)) throw new Error("tasks is not array");
-        const toDoTasks = tasks.filter(task => task.status === 'toDo')
-        const toDoTasksHTML = toDoTasks.map(task => renderTaskHtml(task)).join('')
+        if (!Array.isArray(usersTasks)) throw new Error("usersTasks is not array");
+
+        const userTasks = usersTasks.filter(userTask => userTask.user.email === emailUser)
+        if (!Array.isArray(userTasks)) throw new Error("userTasks");
+
+        const toDoTasks = userTasks.filter(element => element.task.status === 'toDo')
+        const toDoTasksHTML = toDoTasks.map(usertask => renderTaskHtml(usertask.task)).join('')
         toDoRoot.innerHTML = toDoTasksHTML
 
-        const doingTasks = tasks.filter(task => task.status === 'doing')
-        const doingTasksHTML = doingTasks.map(task => renderTaskHtml(task)).join('')
+        const doingTasks = userTasks.filter(element => element.task.status === 'doing')
+        const doingTasksHTML = doingTasks.map(usertask => renderTaskHtml(usertask.task)).join('')
         doingRoot.innerHTML = doingTasksHTML
 
-        const doneTasks = tasks.filter(task => task.status === 'done')
-        const doneTasksHTML = doneTasks.map(task => renderTaskHtml(task)).join('')
+        const doneTasks = userTasks.filter(element => element.task.status === 'done')
+        const doneTasksHTML = doneTasks.map(usertask => renderTaskHtml(usertask.task)).join('')
         doneRoot.innerHTML = doneTasksHTML
     } catch (error) {
         console.error(error.massage);
     }
 }
+
+
 
 function renderUpdateTask(title: string, description: string, id: string) {
     try {
@@ -231,7 +226,7 @@ function renderUpdateTask(title: string, description: string, id: string) {
         <textarea name="editDescription" id="${description}" cols="20" rows="1">${description}</textarea>
         <button type="submit" class="material-symbols-rounded">check</button>
         </div>`
-        const editRoot = document.querySelector(`#${title}`) as HTMLDivElement
+        const editRoot = document.querySelector(`#task${id}`) as HTMLDivElement
         editRoot.innerHTML = html
     } catch (error) {
         console.error(error.massage);

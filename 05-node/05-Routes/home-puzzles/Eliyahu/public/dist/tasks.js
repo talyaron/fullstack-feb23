@@ -1,4 +1,3 @@
-// import { Task } from "../API/tasks/tasksModels";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -35,25 +34,12 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var Task = /** @class */ (function () {
-    function Task(user, title, description, status) {
-        this.user = user;
-        this.title = title;
-        this.description = description;
-        this.status = status;
-        this.id = Math.random().toString();
-    }
-    return Task;
-}());
-var tasks = [
-    new Task('eli', 'test', 'it`s work?', 'toDo')
-];
 var toDoRoot = document.querySelector('#toDoTasks');
 var doingRoot = document.querySelector('#doingTasks');
 var doneRoot = document.querySelector('#doneTasks');
 function getTasks() {
     return __awaiter(this, void 0, void 0, function () {
-        var response, result, tasks_1, error_1;
+        var response, result, usersTasks, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -64,10 +50,10 @@ function getTasks() {
                     return [4 /*yield*/, response.json()];
                 case 2:
                     result = _a.sent();
-                    tasks_1 = result.tasks;
-                    if (!Array.isArray(tasks_1))
+                    usersTasks = result.usersTasks;
+                    if (!Array.isArray(usersTasks))
                         throw new Error("tasks is not array");
-                    renderTasks(tasks_1);
+                    renderTasks(usersTasks);
                     return [3 /*break*/, 4];
                 case 3:
                     error_1 = _a.sent();
@@ -79,19 +65,23 @@ function getTasks() {
     });
 }
 getTasks();
-function handleAddTask(ev, user, status) {
+var emailUser = window.location.search.toString().replace('?email=', '');
+function handleAddTask(ev, status) {
     return __awaiter(this, void 0, void 0, function () {
-        var title, description, task, response, result, tasks_2, error_2;
+        var task, response, result, usersTasks, error_2;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
                     ev.preventDefault();
-                    title = ev.target.title.value;
-                    description = ev.target.description.value;
-                    if (!user || !status || !title || !description)
+                    task = {
+                        title: ev.target.title.value,
+                        description: ev.target.description.value,
+                        status: status,
+                        emailUser: emailUser
+                    };
+                    if (!status || !task.title || !task.description)
                         throw new Error("Please complete all details");
-                    task = new Task(user, title, description, status);
                     return [4 /*yield*/, fetch('/API/tasks/add-task', {
                             method: 'POST',
                             headers: {
@@ -104,9 +94,9 @@ function handleAddTask(ev, user, status) {
                     return [4 /*yield*/, response.json()];
                 case 2:
                     result = _a.sent();
-                    tasks_2 = result.tasks;
-                    console.log(tasks_2);
-                    renderTasks(tasks_2);
+                    usersTasks = result.usersTasks;
+                    console.log(usersTasks);
+                    renderTasks(usersTasks);
                     return [3 /*break*/, 4];
                 case 3:
                     error_2 = _a.sent();
@@ -119,7 +109,7 @@ function handleAddTask(ev, user, status) {
 }
 function handleDeleteTask(id) {
     return __awaiter(this, void 0, void 0, function () {
-        var response, result, tasks_3, error_3;
+        var response, result, usersTasks, error_3;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -136,8 +126,8 @@ function handleDeleteTask(id) {
                     return [4 /*yield*/, response.json()];
                 case 2:
                     result = _a.sent();
-                    tasks_3 = result.tasks;
-                    renderTasks(tasks_3);
+                    usersTasks = result.usersTasks;
+                    renderTasks(usersTasks);
                     return [3 /*break*/, 4];
                 case 3:
                     error_3 = _a.sent();
@@ -150,7 +140,7 @@ function handleDeleteTask(id) {
 }
 function handleUpdateTask(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var title, description, id, response, result, tasks_4, error_4;
+        var title, description, id, response, result, usersTasks, error_4;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -171,8 +161,8 @@ function handleUpdateTask(ev) {
                     return [4 /*yield*/, response.json()];
                 case 2:
                     result = _a.sent();
-                    tasks_4 = result.tasks;
-                    renderTasks(tasks_4);
+                    usersTasks = result.usersTasks;
+                    renderTasks(usersTasks);
                     return [3 /*break*/, 4];
                 case 3:
                     error_4 = _a.sent();
@@ -185,7 +175,7 @@ function handleUpdateTask(ev) {
 }
 function handleUpdateTaskStatus(taskStatus, taskId) {
     return __awaiter(this, void 0, void 0, function () {
-        var status, id, response, result, tasks_5, error_5;
+        var status, id, response, result, usersTasks, error_5;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -204,8 +194,8 @@ function handleUpdateTaskStatus(taskStatus, taskId) {
                     return [4 /*yield*/, response.json()];
                 case 2:
                     result = _a.sent();
-                    tasks_5 = result.tasks;
-                    renderTasks(tasks_5);
+                    usersTasks = result.usersTasks;
+                    renderTasks(usersTasks);
                     return [3 /*break*/, 4];
                 case 3:
                     error_5 = _a.sent();
@@ -218,7 +208,7 @@ function handleUpdateTaskStatus(taskStatus, taskId) {
 }
 function renderAddTask(status) {
     try {
-        var html = "<form onsubmit=\"handleAddTask(event, 'eli', '" + status + "')\">\n        <input type=\"text\" name=\"title\" placeholder=\"Title\" required>\n        <textarea name=\"description\" cols=\"21\" rows=\"5\" placeholder=\"Description\" required></textarea>\n        <button type=\"submit\" class=\"material-symbols-rounded\">check</button>\n    </form>";
+        var html = "<form onsubmit=\"handleAddTask(event, '" + status + "')\">\n        <input type=\"text\" name=\"title\" placeholder=\"Title\" required>\n        <textarea name=\"description\" cols=\"21\" rows=\"5\" placeholder=\"Description\" required></textarea>\n        <div>\n        <button type=\"submit\" class=\"material-symbols-rounded\">check</button>\n        <button onclick=\"getTasks()\" class=\"material-symbols-rounded\">close</button>\n        </div>\n        </form>";
         switch (status) {
             case 'toDo':
                 toDoRoot.innerHTML += html;
@@ -237,7 +227,7 @@ function renderAddTask(status) {
 }
 function renderTaskHtml(task) {
     try {
-        var html = "<div class = \"task\" id=\"" + task.title + "\">\n        <div class = \"task_header\">\n        <h3 >" + task.title + "</h3>\n        <button class=\"material-symbols-rounded\" onclick=\"renderUpdateTask('" + task.title + "','" + task.description + "'," + task.id + ")\">Edit</button>\n        </div>\n        <div class = \"task_body\">\n        <p>" + task.description + "</p>\n        \n        </div>";
+        var html = "<div class = \"task\" id=\"task" + task.id + "\">\n        <div class = \"task_header\">\n        <h3 >" + task.title + "</h3>\n        <button class=\"material-symbols-rounded\" onclick=\"renderUpdateTask('" + task.title + "','" + task.description + "','" + task.id + "')\">Edit</button>\n        </div>\n        <div class = \"task_body\">\n        <p>" + task.description + "</p>\n        \n        </div>";
         switch (task.status) {
             case 'toDo':
                 html += "<div class=\"btns\">\n                <div></div>\n                <button class=\"material-symbols-rounded\" onclick=\"handleDeleteTask('" + task.id + "')\">Delete</button>\n                <button class=\"material-symbols-rounded\" onclick=\"handleUpdateTaskStatus('doing','" + task.id + "')\">keyboard_double_arrow_right</button>\n                </div>\n                </div>";
@@ -255,18 +245,21 @@ function renderTaskHtml(task) {
         console.error(error.massage);
     }
 }
-function renderTasks(tasks) {
+function renderTasks(usersTasks) {
     try {
-        if (!Array.isArray(tasks))
-            throw new Error("tasks is not array");
-        var toDoTasks = tasks.filter(function (task) { return task.status === 'toDo'; });
-        var toDoTasksHTML = toDoTasks.map(function (task) { return renderTaskHtml(task); }).join('');
+        if (!Array.isArray(usersTasks))
+            throw new Error("usersTasks is not array");
+        var userTasks = usersTasks.filter(function (userTask) { return userTask.user.email === emailUser; });
+        if (!Array.isArray(userTasks))
+            throw new Error("userTasks");
+        var toDoTasks = userTasks.filter(function (element) { return element.task.status === 'toDo'; });
+        var toDoTasksHTML = toDoTasks.map(function (usertask) { return renderTaskHtml(usertask.task); }).join('');
         toDoRoot.innerHTML = toDoTasksHTML;
-        var doingTasks = tasks.filter(function (task) { return task.status === 'doing'; });
-        var doingTasksHTML = doingTasks.map(function (task) { return renderTaskHtml(task); }).join('');
+        var doingTasks = userTasks.filter(function (element) { return element.task.status === 'doing'; });
+        var doingTasksHTML = doingTasks.map(function (usertask) { return renderTaskHtml(usertask.task); }).join('');
         doingRoot.innerHTML = doingTasksHTML;
-        var doneTasks = tasks.filter(function (task) { return task.status === 'done'; });
-        var doneTasksHTML = doneTasks.map(function (task) { return renderTaskHtml(task); }).join('');
+        var doneTasks = userTasks.filter(function (element) { return element.task.status === 'done'; });
+        var doneTasksHTML = doneTasks.map(function (usertask) { return renderTaskHtml(usertask.task); }).join('');
         doneRoot.innerHTML = doneTasksHTML;
     }
     catch (error) {
@@ -276,7 +269,7 @@ function renderTasks(tasks) {
 function renderUpdateTask(title, description, id) {
     try {
         var html = "<div class=\"edit\">\n        <form id=\"" + id + "\" onsubmit=\"handleUpdateTask(event)\">\n        <label for=\"" + title + "\">Edit Title</label>\n        <textarea name=\"editTitle\" id=\"" + title + "\" cols=\"20\" rows=\"1\">" + title + "</textarea>\n        <label for=\"" + description + "\">Edit Description</label>\n        <textarea name=\"editDescription\" id=\"" + description + "\" cols=\"20\" rows=\"1\">" + description + "</textarea>\n        <button type=\"submit\" class=\"material-symbols-rounded\">check</button>\n        </div>";
-        var editRoot = document.querySelector("#" + title);
+        var editRoot = document.querySelector("#task" + id);
         editRoot.innerHTML = html;
     }
     catch (error) {

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./dist/main.css">
+    <script src="./dist/tasks.js" defer></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+</head>
+
+<body>
+    <h1>MY Task Manager</h1>
+    <button class="logout"> <a href="./index.html">Logout</a></button>
+       <div class="allTasks">
+        <div class="toDo">
+            <div class="toDo_header">
+                <h2>To Do</h2>
+                <button onclick="renderAddTask('toDo')" class="material-symbols-rounded">add </button>
+            </div>
+            <div class="toDoTasks" id="toDoTasks"></div>
+        </div>
+        <div class="doing">
+            <div class="doing_header">
+                <h2>Doing</h2>
+                <button onclick="renderAddTask('doing')"class="material-symbols-rounded">add</button>
+            </div>
+            <div class="doingTasks" id="doingTasks"></div>
+        </div>
+        <div class="done">
+            <div class="done_header">
+                <h2>Done</h2>
+                <button onclick="renderAddTask('done')"class="material-symbols-rounded">add</button>
+            </div>
+            <div class="doneTasks" id="doneTasks"></div>
+        </div>
+    </div>
+</body>
+
+</html>

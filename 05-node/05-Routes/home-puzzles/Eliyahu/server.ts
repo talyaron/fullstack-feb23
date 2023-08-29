@@ -8,8 +8,9 @@ app.use(express.json());
 
 
 import tasksRouter from './API/tasks/tasksRouter'
-
+import userRouter from './API/users/userRouter'
 app.use('/API/tasks', tasksRouter)
+app.use('/API/users', userRouter)
 
 
 
