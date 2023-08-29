@@ -1,7 +1,6 @@
 // import { Task } from "../API/tasks/tasksModels";
 
 
-
 class Task {
     id: string
     constructor(
@@ -14,6 +13,10 @@ class Task {
     }
 }
 
+let tasks: Task[] = [
+    new Task('eli', 'test', 'it`s work?', 'toDo')
+]
+
 const toDoRoot = document.querySelector('#toDoTasks') as HTMLDivElement
 const doingRoot = document.querySelector('#doingTasks') as HTMLDivElement
 const doneRoot = document.querySelector('#doneTasks') as HTMLDivElement
@@ -25,7 +28,6 @@ async function getTasks() {
         const { tasks } = result
         if (!Array.isArray(tasks)) throw new Error("tasks is not array");
         renderTasks(tasks)
-
     } catch (error) {
         console.error(error.massage);
     }
@@ -33,16 +35,15 @@ async function getTasks() {
 getTasks()
 
 
-
 async function handleAddTask(ev: any, user: string, status: string) {
     try {
         ev.preventDefault()
-        
+
         const title = ev.target.title.value
         const description = ev.target.description.value
         if (!user || !status || !title || !description) throw new Error("Please complete all details");
         const task = new Task(user, title, description, status)
-        
+
         const response = await fetch('/API/tasks/add-task', {
             method: 'POST',
             headers: {
@@ -50,12 +51,13 @@ async function handleAddTask(ev: any, user: string, status: string) {
             },
             body: JSON.stringify(task)
         })
-        
+
         const result = await response.json()
         const { tasks } = result
         console.log(tasks);
 
         renderTasks(tasks)
+
     } catch (error) {
         console.error(error)
     }
@@ -80,13 +82,13 @@ async function handleDeleteTask(id: string) {
     }
 }
 
-async function handleUpdateTaskTitle(ev: any) {
+async function handleUpdateTask(ev: any) {
     try {
         ev.preventDefault()
-        const title = ev.target.title.value
-        const description = ev.target.description.value
+        const title = ev.target.editTitle.value
+        const description = ev.target.editDescription.value
         const id = ev.target.id
-
+   
         const response = await fetch('API/tasks/update-task', {
             method: 'PATCH',
             headers: {
@@ -140,13 +142,13 @@ function renderAddTask(status: string) {
 
         switch (status) {
             case 'toDo':
-                toDoRoot.innerHTML = html
+                toDoRoot.innerHTML += html
                 break;
             case 'doing':
-                doingRoot.innerHTML = html
+                doingRoot.innerHTML += html
                 break;
             case 'done':
-                doneRoot.innerHTML = html
+                doneRoot.innerHTML += html
                 break;
         }
 
@@ -158,13 +160,11 @@ function renderAddTask(status: string) {
 
 function renderTaskHtml(task: Task) {
     try {
-        console.log(task.id);
-        console.log(`title${task.id}`);
-        
-        let html = `<div class = "task">
-        <div class = "task_header" id="title${task.id}">
+
+        let html = `<div class = "task" id="${task.title}">
+        <div class = "task_header">
         <h3 >${task.title}</h3>
-        <button class="material-symbols-rounded" onclick="renderUpdateTask('${task.id}')">Edit</button>
+        <button class="material-symbols-rounded" onclick="renderUpdateTask('${task.title}','${task.description}',${task.id})">Edit</button>
         </div>
         <div class = "task_body">
         <p>${task.description}</p>
@@ -221,25 +221,21 @@ function renderTasks(tasks: Task[]) {
     }
 }
 
-function renderUpdateTask(id:string){
+function renderUpdateTask(title: string, description: string, id: string) {
     try {
-        debugger
-        // const currentTask = tasks.find(task=>task.id===id)
-        console.log(id);
-        // console.log(tasks);
-        console.log(`#title${id}`);
-        
-        // console.log(currentTask.id);
-        
-        // if(!currentTask) throw new Error("can not find current task");
-        
-        // let html = `<textarea name="editTitle" id="title${id}" cols="20" rows="1">title</textarea>`
-       let html=""
-        const editRoot = document.querySelector(`#title${id}`) as HTMLDivElement
+        let html = `<div class="edit">
+        <form id="${id}" onsubmit="handleUpdateTask(event)">
+        <label for="${title}">Edit Title</label>
+        <textarea name="editTitle" id="${title}" cols="20" rows="1">${title}</textarea>
+        <label for="${description}">Edit Description</label>
+        <textarea name="editDescription" id="${description}" cols="20" rows="1">${description}</textarea>
+        <button type="submit" class="material-symbols-rounded">check</button>
+        </div>`
+        const editRoot = document.querySelector(`#${title}`) as HTMLDivElement
         editRoot.innerHTML = html
     } catch (error) {
         console.error(error.massage);
-        
+
     }
 }
 

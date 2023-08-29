@@ -4,10 +4,11 @@ body .material-symbols-rounded {
 }
 
 .allTasks {
-  width: 95vw;
+  margin: auto;
+  width: 75vw;
   display: flex;
   justify-content: space-around;
-  gap: 1vw;
+  gap: 3vw;
 }
 
 h1,
@@ -58,17 +59,22 @@ h2 {
   align-items: center;
 }
 .toDo .toDoTasks input,
-.toDo .toDoTasks button,
 .toDo .toDoTasks textarea,
 .doing .doingTasks input,
-.doing .doingTasks button,
 .doing .doingTasks textarea,
 .done .doneTasks input,
-.done .doneTasks button,
 .done .doneTasks textarea {
   padding: 5px;
   margin: 6px;
   max-width: 35vw;
+}
+.toDo .toDoTasks button,
+.doing .doingTasks button,
+.done .doneTasks button {
+  width: 25px;
+  height: 25px;
+  font-size: 18px;
+  margin: 2px;
 }
 
 .task {
@@ -100,4 +106,9 @@ h2 {
   border-radius: 0 0 5px 5px;
   display: flex;
   justify-content: space-between;
+}
+.task .edit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
