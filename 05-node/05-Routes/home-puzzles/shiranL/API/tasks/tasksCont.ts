@@ -1,5 +1,6 @@
 import { users,User } from '../users/usersModel';
 import { TaskStatus , Task ,UserTasks,userTasks} from './tasksModel';
+import { Request, Response } from 'express'; 
 
 // export function getUserTasks(req: any, res: any) {
 //     try {
@@ -44,7 +45,7 @@ export function getUserTasks(req: any, res: any) {
         const userTask = userTasks.find((userTask) => userTask.user.id === userId);
 
         if (!userTask) {
-            res.status(404).send({ success: false, message: 'User tasks not found' });
+            res.status(404).send({ success: false, message: 'User tasks not found', userTasks: [] });
             return;
         }
 
@@ -54,4 +55,3 @@ export function getUserTasks(req: any, res: any) {
         res.status(500).send({ success: false, message: 'Internal server error' });
     }
 }
-

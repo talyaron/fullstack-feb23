@@ -100,9 +100,43 @@ function handleAddTask(ev) {
         });
     });
 }
+function handleUpdateStatus(status, id) {
+    return __awaiter(this, void 0, void 0, function () {
+        var body, result, tasks, error_3;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 3, , 4]);
+                    console.log(status);
+                    body = { id: id, status: status };
+                    return [4 /*yield*/, fetch('/API/Tasks/update-task-status', {
+                            method: 'PATCH',
+                            headers: {
+                                'content-type': 'application/json'
+                            },
+                            body: JSON.stringify(body)
+                        })];
+                case 1:
+                    result = _a.sent();
+                    return [4 /*yield*/, result.json()];
+                case 2:
+                    tasks = (_a.sent()).tasks;
+                    console.log(tasks);
+                    renderTasks(tasks, document.querySelector("#tasks"));
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_3 = _a.sent();
+                    console.error(error_3);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
+            }
+        });
+    });
+}
 function renderTask(task) {
     try {
-        var html = "<li>" + task.title + " - " + task.description + " - " + task.status + "</li>";
+        var html = task.status === TaskStatus.todo ? "<li onclick=\"handleUpdateStatus('done', '" + task.id + "')\">" + task.title + " - " + task.description + "</li>" :
+            "<li style=\"text-decoration: line-through;\" onclick=\"handleUpdateStatus('todo', '" + task.id + "')\">" + task.title + " - " + task.description + "</li>";
         return html;
     }
     catch (error) {

@@ -1,4 +1,4 @@
-import { User } from "../users/userModel";
+import { User } from "../users/usersModel";
 
 export enum TaskStatus{
   done = "done",

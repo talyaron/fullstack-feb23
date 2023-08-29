@@ -16,7 +16,7 @@ async function handleGetTasks() {
     const response = await fetch('/API/Tasks/get-tasks')
     const { tasks } = await response.json()
     console.log(tasks)
-    renderTasks (tasks, document.querySelector("#tasks"))
+    renderTasks(tasks, document.querySelector("#tasks"))
   } catch (error) {
     console.error(error)
   }
@@ -40,7 +40,29 @@ async function handleAddTask(ev: any) {
     const { tasks } = await response.json();
     console.log(tasks);
 
+    renderTasks(tasks, document.querySelector("#tasks"))
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+async function handleUpdateStatus(status: TaskStatus, id:string) {
+  try {
+    console.log(status)
+    // const newStatus = status === TaskStatus.todo ? TaskStatus.done : TaskStatus.todo
+    const body = {id, status}
+    const result = await fetch('/API/Tasks/update-task-status', {
+      method: 'PATCH',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify(body)
+    })
+
+    const {tasks} = await result.json()
+    console.log(tasks)
     renderTasks (tasks, document.querySelector("#tasks"))
+    
   } catch (error) {
     console.error(error)
   }
@@ -48,7 +70,8 @@ async function handleAddTask(ev: any) {
 
 function renderTask(task: Task) {
   try {
-    const html = `<li>${task.title} - ${task.description} - ${task.status}</li>`
+    const html = task.status === TaskStatus.todo ? `<li onclick="handleUpdateStatus('done', '${task.id}')">${task.title} - ${task.description}</li>` :
+      `<li style="text-decoration: line-through;" onclick="handleUpdateStatus('todo', '${task.id}')">${task.title} - ${task.description}</li>`;
     return html;
   } catch (error) {
     console.error(error)

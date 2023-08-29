@@ -28,21 +28,33 @@ interface UserTasks{
 //-----render functions:----------
 async function renderUser(){
     try {
-        const response = await fetch('/API/userTask/get-user') //get the chosen user by id
+        const response = await fetch('/API/users/get-user') //get the chosen user by id
         const results = await response.json(); //the result is user
         const Html = document.querySelector("#root")
+        if (!Html) throw new Error("no div element catches");
+        
         const userHTML = `<div class="user">
                             <h1>${results.name}</h1>
                             <div id="tasksRoot"></div> 
                          </div>`
         renderUserTasks();
+        Html.innerHTML = userHTML
     } catch (error) {
         console.error(error)
     }
 }
 
-function renderUserTasks(){
-
+async function renderUserTasks(){
+    try {
+        const response = await fetch('/API/userTask/get-tasks-of-user') //get the tasks of the user by user-id
+        const results = await response.json(); //the result is array of tasks
+        const Html :HTMLDivElement = document.querySelector("#tasksRoot")
+        if (!Html) throw new Error("no div element catches");
+       
+        renderTasks(results, Html)
+    } catch (error) {
+        console.error(error)
+    }
 }
 
 //----controller function:---------

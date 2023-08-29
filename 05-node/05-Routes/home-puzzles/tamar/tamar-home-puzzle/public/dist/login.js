@@ -43,11 +43,11 @@ function handleLogin(ev) {
                     _b.trys.push([0, 3, , 4]);
                     ev.preventDefault(); // stop form from submitting
                     user = {
-                        name: ev.target.password.value,
-                        id: ev.target.id.value
+                        password: ev.target.password.value,
+                        name: ev.target.name.value
                     };
-                    if (!user.name)
-                        throw new Error("Please chose user");
+                    if (!user.name || !user.password)
+                        throw new Error("Please complete all fields");
                     return [4 /*yield*/, fetch('/API/users/login', {
                             method: 'POST',
                             headers: {
@@ -64,7 +64,7 @@ function handleLogin(ev) {
                     if (error) {
                         throw new Error(error);
                     }
-                    //if everthink is OK, redirect to main page of the user and pass the id of this user
+                    // if everthink is OK, redirect to main page of the user and pass the id of this user
                     window.location.href = "/main.html?id=" + id;
                     return [3 /*break*/, 4];
                 case 3:
