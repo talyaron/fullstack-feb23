@@ -47,7 +47,7 @@ function getUserTasks(req, res) {
         var userId_1 = req.params.userId; // Modify this to get the user ID
         var userTask = tasksModel_1.userTasks.find(function (userTask) { return userTask.user.id === userId_1; });
         if (!userTask) {
-            res.status(404).send({ success: false, message: 'User tasks not found' });
+            res.status(404).send({ success: false, message: 'User tasks not found', userTasks: [] });
             return;
         }
         res.send({ success: true, userTasks: userTask.tasks });
