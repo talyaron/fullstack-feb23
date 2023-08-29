@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <script src="./dist/register.js"></script>
+    <style>
+        html {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        h1 {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            width: 300px;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            margin: 0 auto;
+        }
+
+        input {
+            display: block;
+            margin: 10px 0;
+            padding: 1rem;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 20px;
+            background-color: white;
+            transition: 0.2s;
+        }
+
+        button:hover {
+            background-color: #eee;
+        }
+
+        a {
+            margin: 10px;
+            padding: 10px;
+            border: 2px solid black;
+            background-color: white;
+            transition: 0.2s;
+            text-decoration: none;
+            color: black;
+        }
+
+        a:hover {
+            background-color: #eee;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Register</h1>
+    <form onsubmit="handleRegister(event)">
+        <input type="email" name="email" placeholder="email">
+        <input type="password" name="password" placeholder="Password">
+        <button type="submit">Register</button>
+        <a href="/login.html">Login</a>
+
+    </form>
+</body>
+
+</html>
