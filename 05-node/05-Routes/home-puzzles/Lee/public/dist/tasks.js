@@ -34,6 +34,11 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var TaskStatus;
+(function (TaskStatus) {
+    TaskStatus["done"] = "done";
+    TaskStatus["todo"] = "todo";
+})(TaskStatus || (TaskStatus = {}));
 function handleGetTasks() {
     return __awaiter(this, void 0, void 0, function () {
         var response, tasks, error_1;
@@ -48,6 +53,7 @@ function handleGetTasks() {
                 case 2:
                     tasks = (_a.sent()).tasks;
                     console.log(tasks);
+                    renderTasks(tasks, document.querySelector("#tasks"));
                     return [3 /*break*/, 4];
                 case 3:
                     error_1 = _a.sent();
@@ -83,6 +89,7 @@ function handleAddTask(ev) {
                 case 2:
                     tasks = (_a.sent()).tasks;
                     console.log(tasks);
+                    renderTasks(tasks, document.querySelector("#tasks"));
                     return [3 /*break*/, 4];
                 case 3:
                     error_2 = _a.sent();
@@ -92,4 +99,28 @@ function handleAddTask(ev) {
             }
         });
     });
+}
+function renderTask(task) {
+    try {
+        var html = "<li>" + task.title + " - " + task.description + " - " + task.status + "</li>";
+        return html;
+    }
+    catch (error) {
+        console.error(error);
+        return "";
+    }
+}
+function renderTasks(tasks, DIVElem) {
+    try {
+        if (!DIVElem)
+            throw new Error("no div element");
+        var html = "<ul>";
+        html += tasks.map(function (task) { return renderTask(task); }).join("");
+        html += "<ul>";
+        DIVElem.innerHTML = html;
+    }
+    catch (error) {
+        console.error(error);
+        return "";
+    }
 }
