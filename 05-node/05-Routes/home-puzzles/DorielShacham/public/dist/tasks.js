@@ -138,7 +138,7 @@ function renderTask(task) {
         var html = task.status === TaskStatus.todo
             ? "<li onclick=\"handleUpdateStatus('done', '" + task.id + "')\">" + task.title + " - " + task.description + "</li>"
             :
-                "<li style=\"text-decoration: COLO line-through;\" onclick=\"handleUpdateStatus('todo', '" + task.id + "')\">" + task.title + " - " + task.description + "</li>";
+                "<li style=\"margin: 10px; text-decoration: red line-through; border: 1px solid black;\"  onclick=\"handleUpdateStatus('todo', '" + task.id + "')\">" + task.title + " - " + task.description + "</li>";
         return html;
     }
     catch (error) {
