@@ -43,7 +43,7 @@ function getQueryParam(name) {
 }
 function getCorrentUser(username) {
     return __awaiter(this, void 0, void 0, function () {
-        var response, user, correntUserDiv, error_1;
+        var response, user, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -61,8 +61,6 @@ function getCorrentUser(username) {
                     user = _a.sent();
                     // save the user in a global variable
                     correntUser = user;
-                    correntUserDiv = document.getElementById("correntUserDiv");
-                    correntUserDiv.innerHTML = "Hello " + correntUser.userName;
                     return [3 /*break*/, 4];
                 case 3:
                     error_1 = _a.sent();
@@ -74,22 +72,39 @@ function getCorrentUser(username) {
     });
 }
 function renderHelloUser() {
-    try {
-        var userName = getQueryParam('userName'); // get from url
-        // Check if the userName is available
-        if (!userName)
-            throw new Error("Username not found.");
-        // Call the function to fetch user details
-        getCorrentUser(userName);
-    }
-    catch (error) {
-        console.error(error);
-    }
+    return __awaiter(this, void 0, void 0, function () {
+        var userName, correntUserDiv, error_2;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    userName = getQueryParam('userName');
+                    // Check if the userName is available
+                    if (!userName)
+                        throw new Error("Username not found.");
+                    // Call the function to fetch user details
+                    return [4 /*yield*/, getCorrentUser(userName)];
+                case 1:
+                    // Call the function to fetch user details
+                    _a.sent();
+                    correntUserDiv = document.getElementById("correntUserDiv");
+                    correntUserDiv.innerHTML = "Hello " + correntUser.userName;
+                    renderUserTasks();
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_2 = _a.sent();
+                    console.error(error_2);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
 }
 renderHelloUser();
+// 
 function handleAddUserTask(event) {
     return __awaiter(this, void 0, void 0, function () {
-        var titel, discripton, taskUserId, taskObj, response, result, error_2;
+        var titel, discripton, taskUserId, taskObj, response, result, error_3;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -98,7 +113,7 @@ function handleAddUserTask(event) {
                     titel = event.target.title.value;
                     discripton = event.target.taskDescription.value;
                     taskUserId = correntUser.id;
-                    taskObj = { titel: titel, discripton: discripton, id: taskUserId };
+                    taskObj = { title: titel, description: discripton, id: taskUserId };
                     return [4 /*yield*/, fetch('/API/tasks/add-user-task', {
                             method: "POST",
                             headers: {
@@ -113,16 +128,72 @@ function handleAddUserTask(event) {
                     result = _a.sent();
                     if (result.success) {
                         alert("Task added successfully");
+                        renderUserTasks();
+                        console.log(result.userTasks);
                     }
                     else {
                         alert("Task not added");
                     }
                     return [3 /*break*/, 4];
                 case 3:
-                    error_2 = _a.sent();
-                    console.error(error_2);
+                    error_3 = _a.sent();
+                    console.error(error_3);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
+            }
+        });
+    });
+}
+// Function to fetch and render user tasks
+function renderUserTasks() {
+    return __awaiter(this, void 0, void 0, function () {
+        var userId, response, result, userTasksContainer_1, noTasks, error_4;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 5, , 6]);
+                    // Fetch user tasks from the server
+                    debugger;
+                    userId = correntUser.id;
+                    return [4 /*yield*/, fetch("/API/tasks/get-user-tasks/" + userId, {
+                            method: 'GET',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            }
+                        })];
+                case 1:
+                    response = _a.sent();
+                    if (!(response.status === 200)) return [3 /*break*/, 3];
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    result = _a.sent();
+                    userTasksContainer_1 = document.getElementById('userTasksContainer');
+                    // Clear existing tasks
+                    userTasksContainer_1.innerHTML = '';
+                    if (!result.userTasks.length) {
+                        noTasks = document.createElement('p');
+                        noTasks.innerText = 'No tasks found';
+                        userTasksContainer_1.appendChild(noTasks);
+                        return [2 /*return*/];
+                    }
+                    // Loop through the user's tasks and create HTML elements to display them
+                    result.userTasks.forEach(function (userTask) {
+                        var taskList = document.createElement('ul');
+                        taskList.innerHTML = "<li>Title: " + userTask.titel + "</li><li>Description: " + userTask.discripton + "</li>";
+                        userTasksContainer_1.appendChild(taskList);
+                    });
+                    return [3 /*break*/, 4];
+                case 3:
+                    // Handle non-200 status codes (e.g., 404)
+                    console.error("Failed to fetch user tasks. Status code: " + response.status);
+                    _a.label = 4;
+                case 4: return [3 /*break*/, 6];
+                case 5:
+                    error_4 = _a.sent();
+                    // Handle network or other errors
+                    console.error(error_4);
+                    return [3 /*break*/, 6];
+                case 6: return [2 /*return*/];
             }
         });
     });
