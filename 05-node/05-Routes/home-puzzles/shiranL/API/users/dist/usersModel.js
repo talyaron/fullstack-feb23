@@ -1,6 +1,6 @@
 "use strict";
 exports.__esModule = true;
-exports.User = void 0;
+exports.users = exports.User = void 0;
 //usersModel.ts
 var User = /** @class */ (function () {
     function User(userName, password) {
@@ -11,3 +11,4 @@ var User = /** @class */ (function () {
     return User;
 }());
 exports.User = User;
+exports.users = [];

@@ -1,5 +1,5 @@
 import express from "express";
-import { addTask, deleteTask, getTasks, updateTaskDescription, updateTaskStatus, updateTaskTitle } from "./tasksCont";
+import { addTask, deleteTask, getTasks, updateTask, updateTaskStatus } from "./tasksCont";
 
 const router = express.Router();
 
@@ -10,8 +10,7 @@ router
     
     .delete('/delete-task', deleteTask)
 
-    .patch('/update-task-title', updateTaskTitle)
-    .patch('/update-task-description', updateTaskDescription)
+    .patch('/update-task', updateTask)
     .patch('/update-task-status', updateTaskStatus)
 
 export default router

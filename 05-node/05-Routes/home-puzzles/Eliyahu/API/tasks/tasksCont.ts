@@ -12,7 +12,7 @@ class Task {
 }
 
 let tasks: Task[] = [
-    new Task('eli', 'test', 'it`s work?', 'TO-DO')
+    new Task('eli', 'test', 'it`s work?', 'toDo')
 ]
 
 export const getTasks = (req, res) => {
@@ -45,28 +45,14 @@ export const deleteTask = (req, res) => {
     }
 }
 
-export const updateTaskTitle = (req, res)=>{
+export const updateTask = (req, res)=>{
     try {
-        const {title,id} = req.body
-        if(!title||!id) throw new Error("Please complete all details");
+        const {title,description,id} = req.body
+        if(!title||!description||!id) throw new Error("Please complete all details");
         const task = tasks.find((task)=>task.id===id)
 
         if(!task) throw new Error("Task not found");
         task.title = title
-        res.send({tasks})
-    } catch (error) {
-        console.error(error.massage)  
-        
-    }
-}
-
-export const updateTaskDescription = (req, res)=>{
-    try {
-        const {description,id} = req.body
-        if(!description||!id) throw new Error("Please complete all details");
-        const task = tasks.find((task)=>task.id===id)
-
-        if(!task) throw new Error("Task not found");
         task.description = description
         res.send({tasks})
     } catch (error) {
@@ -74,6 +60,8 @@ export const updateTaskDescription = (req, res)=>{
         
     }
 }
+
+
 
 export const updateTaskStatus = (req, res)=>{
     try {

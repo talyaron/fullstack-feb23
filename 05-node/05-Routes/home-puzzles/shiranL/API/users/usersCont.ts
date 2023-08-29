@@ -1,16 +1,16 @@
-import { User } from "./usersModel";
-
-let users: User[] = [new User("shiran", "123456")];
+import { User ,users} from "./usersModel";
 
 //add user controler    
 export const addUser = (req: any, res: any) => {
     try {
         const user = req.body;
-        console.log(user);
+      if (!user.userName || !user.password) {
+            res.send({ users,success: false, message: "user name and password are required" });
+            return;
+        }
         //add to users array
         users.push(new User(user.userName, user.password)); // --> add to Database
-        console.log(users);
-        res.send({ users });
+        res.send({ users, success: true, message: "user added" });
     } catch (error) {
         console.error(error);
     }
@@ -23,32 +23,44 @@ export const getAllUsers = (req: any, res: any) => {
         console.error(error);
     }
 }   
-
-export const logIn = (req: any, res: any) => {
+//log in controler
+export const login = (req: any, res: any) => {
     try {
-        const user = req.body;
-        const userFound = users.find((u: User) => u.userName === user.userName && u.password === user.password);
-        if (userFound) {
-            userFound.isLogIn = true;   // --> update Database
-            res.send({ success: true, message: "user found" });
-        } else {
-            res.send({ success: false, message: "user not found" });
-        }
+        const { userName, password } = req.body;
+        if(!userName || !password) throw new Error("Please complete all fields");
+        //check if user exist and password is correct
+        const user = users.find((user) => user.userName === userName && user.password === password);
+        if (!user) throw new Error("some of the details are incorrect");
+        res.send({ ok:true, userName:user.userName });
     } catch (error) {
         console.error(error);
+        res.send({ error:error.message });
     }
 }
 
-export const getUserLogIn = (req: any, res: any) => {
+
+
+// Function to get user details by username
+export const getUserDetails = (req: any, res: any) => {
     try {
-        
-        const userFound = users.find((u: User) => u.isLogIn === true);
-        if (userFound) {
-            res.send({ success: true, message: "user found", user: userFound });
-        } else {
-            res.send({ success: false, message: "user not found" });
-        }
+      const userName = req.query.userName;
+      if (!userName) {
+        res.status(400).send("Username is required.");
+        return;
+      }
+  
+      const user = users.find((user) => user.userName === userName);
+      if (!user) {
+        res.status(404).send("User not found.");
+        return;
+      }
+  
+      // Send the user details as a JSON response
+      res.send(user)
     } catch (error) {
-        console.error(error);
+      console.error(error);
+      res.status(500).send("Internal server error");
     }
-}
+  };
+  
+
