@@ -9,6 +9,13 @@
 </head>
 <body>
     <h1>HOME PAGE</h1>
-    <div id="greeting"></div>
+    <div id="correntUserDiv"></div>
+
+    <!-- add form to add task -->
+    <form id="addTaskForm" onsubmit="handleAddUserTask(event)">
+        <input type="text" id="title" placeholder="Enter task name">
+        <input type="text" id="taskDescription" placeholder="Enter task description">
+        <input type="submit" value="Add Task">
+    </form>
 </body>
 </html>

@@ -1,3 +1,4 @@
+//login.ts 
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -53,14 +54,13 @@ function handleLogin(event) {
                         })];
                 case 1:
                     response = _a.sent();
-                    debugger;
                     return [4 /*yield*/, response.json()];
                 case 2:
                     result = _a.sent();
-                    console.log(result);
-                    if (result.success) {
-                        // go to home page  
-                        window.location.href = "../home/homePage.html";
+                    console.log(result.userName);
+                    if (result.ok === true) {
+                        // go to home page  with user name
+                        window.location.href = "../home/homePage.html?userName=" + result.userName;
                     }
                     loginForm = document.getElementById("loginForm");
                     loginForm.reset();
