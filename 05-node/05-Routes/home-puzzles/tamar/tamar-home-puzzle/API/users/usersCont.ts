@@ -36,9 +36,13 @@ export const registerUser = (req: any, res: any) => {
 
 
 //get all users from server
-export const getUsers = (req: any, res: any) => {
+export const getUser = (req: any, res: any) => {
     try {
-        res.send({ users });
+        const { id } = req.body; 
+        console.log(id);        
+        const user = users.find((user) => user.id === id);
+        if (!user) throw new Error("no match User found");
+        res.send({ user });
     } catch (error) {
         console.error(error); 
     }

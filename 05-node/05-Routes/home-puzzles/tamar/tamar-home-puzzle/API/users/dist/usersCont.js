@@ -1,6 +1,6 @@
 "use strict";
 exports.__esModule = true;
-exports.deleteUser = exports.updateUser = exports.getUsers = exports.login = exports.registerUser = void 0;
+exports.deleteUser = exports.updateUser = exports.getUser = exports.login = exports.registerUser = void 0;
 var usersModel_1 = require("./usersModel");
 //the controllers:
 //register user 
@@ -39,9 +39,14 @@ exports.login = function (req, res) {
     }
 };
 //get all users from server
-exports.getUsers = function (req, res) {
+exports.getUser = function (req, res) {
     try {
-        res.send({ users: usersModel_1.users });
+        var id_2 = req.body.id;
+        console.log(id_2);
+        var user = usersModel_1.users.find(function (user) { return user.id === id_2; });
+        if (!user)
+            throw new Error("no match User found");
+        res.send({ user: user });
     }
     catch (error) {
         console.error(error);
@@ -50,9 +55,9 @@ exports.getUsers = function (req, res) {
 //update specific user
 exports.updateUser = function (req, res) {
     try {
-        var id_2 = req.body.id;
-        console.log(id_2);
-        var user = usersModel_1.users.find(function (user) { return user.id === id_2; });
+        var id_3 = req.body.id;
+        console.log(id_3);
+        var user = usersModel_1.users.find(function (user) { return user.id === id_3; });
         if (!user)
             throw new Error("no match User found"); //**need to be fill*/
         res.send({ users: usersModel_1.users }); //server send the updated array to client
@@ -64,9 +69,9 @@ exports.updateUser = function (req, res) {
 //delete specific user
 exports.deleteUser = function (req, res) {
     try {
-        var id_3 = req.body.id;
-        console.log(id_3);
-        var users_1 = users_1.filter(function (user) { return user.id !== id_3; });
+        var id_4 = req.body.id;
+        console.log(id_4);
+        var users_1 = users_1.filter(function (user) { return user.id !== id_4; });
         res.send({ users: users_1 });
     }
     catch (error) {
