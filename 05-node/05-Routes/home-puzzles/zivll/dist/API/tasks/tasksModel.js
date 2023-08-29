@@ -1,15 +1,15 @@
 "use strict";
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.tasks = exports.Task = void 0;
-var Task = /** @class */ (function () {
-    function Task(title, description, status) {
+class Task {
+    constructor(title, description, status) {
         this.title = title;
         this.description = description;
         this.status = status;
         this.id = Math.random().toString(36).substring(2);
     }
-    Task.prototype.changeStatus = function (taskStatus) {
-        var Newstatus;
+    changeStatus(taskStatus) {
+        let Newstatus;
         if (taskStatus === "todo") {
             Newstatus = "done";
         }
@@ -17,8 +17,8 @@ var Task = /** @class */ (function () {
             Newstatus = "todo";
         }
         this.status = Newstatus;
-    };
-    return Task;
-}());
+    }
+}
 exports.Task = Task;
 exports.tasks = [];
+//# sourceMappingURL=tasksModel.js.map

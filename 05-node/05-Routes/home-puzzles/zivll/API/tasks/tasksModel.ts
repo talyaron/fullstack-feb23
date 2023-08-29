@@ -12,8 +12,14 @@ export class Task {
   ) {
     this.id = Math.random().toString(36).substring(2);
   }
-  changeStatus(newStatus: taskStatus) {
-    this.status = newStatus;
+  changeStatus(taskStatus: taskStatus) {
+    let Newstatus;
+    if (taskStatus === "todo") {
+      Newstatus = "done";
+    } else {
+      Newstatus = "todo";
+    }
+    this.status = Newstatus;
   }
 }
 export const tasks: Task[] = [];
