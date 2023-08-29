@@ -3,13 +3,20 @@ import { User ,users} from "./usersModel";
 //add user controler    
 export const addUser = (req: any, res: any) => {
     try {
-        const user = req.body;
-      if (!user.userName || !user.password) {
+        const {userName,password} = req.body;
+      if (!userName || !password) {
             res.send({ users,success: false, message: "user name and password are required" });
             return;
         }
+        //check if user name is already exist 
+        const isUserExist = users.find((user1) => user1.userName === userName);
+        if (isUserExist) {  
+            res.send({ users,success: false, message: "user name is already exist" });
+            return;
+        }
+        
         //add to users array
-        users.push(new User(user.userName, user.password)); // --> add to Database
+        users.push(new User(userName, password)); // --> add to Database
         res.send({ users, success: true, message: "user added" });
     } catch (error) {
         console.error(error);

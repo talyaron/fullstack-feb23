@@ -87,9 +87,9 @@ function renderHelloUser() {
                 case 1:
                     // Call the function to fetch user details
                     _a.sent();
+                    renderUserTasks();
                     correntUserDiv = document.getElementById("correntUserDiv");
                     correntUserDiv.innerHTML = "Hello " + correntUser.userName;
-                    renderUserTasks();
                     return [3 /*break*/, 3];
                 case 2:
                     error_2 = _a.sent();
@@ -100,11 +100,72 @@ function renderHelloUser() {
         });
     });
 }
+function renderTask() {
+}
+function renderUserTasks() {
+    return __awaiter(this, void 0, void 0, function () {
+        var userId, response, result, userTasksContainer_1, userTasksContainer, noTasks, error_3;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 5, , 6]);
+                    userId = correntUser.id;
+                    return [4 /*yield*/, fetch("/API/tasks/get-user-tasks/" + userId, {
+                            method: 'GET',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            }
+                        })];
+                case 1:
+                    response = _a.sent();
+                    if (!(response.status === 200)) return [3 /*break*/, 3];
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    result = _a.sent();
+                    userTasksContainer_1 = document.getElementById('userTasksContainer');
+                    // Clear existing tasks
+                    userTasksContainer_1.innerHTML = '';
+                    if (response.status === 200) {
+                        // Loop through the user's tasks and create HTML elements to display them
+                        result.userTasks.forEach(function (userTask) {
+                            if (userTask.status === "open") {
+                                var taskList = document.createElement('p');
+                                taskList.classList.add('userTaskList');
+                                taskList.innerHTML = "<p onclick=\"changeTaskStatus('done'," + userTask.id + "," + correntUser.id + ")\">Task: " + userTask.titel + " - " + userTask.discripton + "</p>";
+                                userTasksContainer_1.appendChild(taskList);
+                            }
+                        });
+                    }
+                    return [3 /*break*/, 4];
+                case 3:
+                    if (response.status === 404) {
+                        userTasksContainer = document.getElementById('userTasksContainer');
+                        userTasksContainer.innerHTML = '';
+                        noTasks = document.createElement('p');
+                        noTasks.innerText = 'No tasks found';
+                        userTasksContainer.appendChild(noTasks);
+                    }
+                    else {
+                        // Handle non-200 status codes (e.g., 500)
+                        console.error("Failed to fetch user tasks. Status code: " + response.status);
+                    }
+                    _a.label = 4;
+                case 4: return [3 /*break*/, 6];
+                case 5:
+                    error_3 = _a.sent();
+                    // Handle network or other errors
+                    console.error(error_3);
+                    return [3 /*break*/, 6];
+                case 6: return [2 /*return*/];
+            }
+        });
+    });
+}
 renderHelloUser();
 // 
 function handleAddUserTask(event) {
     return __awaiter(this, void 0, void 0, function () {
-        var titel, discripton, taskUserId, taskObj, response, result, error_3;
+        var titel, discripton, taskUserId, taskObj, response, result, error_4;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -127,17 +188,15 @@ function handleAddUserTask(event) {
                 case 2:
                     result = _a.sent();
                     if (result.success) {
-                        alert("Task added successfully");
                         renderUserTasks();
-                        console.log(result.userTasks);
                     }
                     else {
                         alert("Task not added");
                     }
                     return [3 /*break*/, 4];
                 case 3:
-                    error_3 = _a.sent();
-                    console.error(error_3);
+                    error_4 = _a.sent();
+                    console.error(error_4);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }
@@ -145,56 +204,3 @@ function handleAddUserTask(event) {
     });
 }
 // Function to fetch and render user tasks
-function renderUserTasks() {
-    return __awaiter(this, void 0, void 0, function () {
-        var userId, response, result, userTasksContainer_1, noTasks, error_4;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    _a.trys.push([0, 5, , 6]);
-                    // Fetch user tasks from the server
-                    debugger;
-                    userId = correntUser.id;
-                    return [4 /*yield*/, fetch("/API/tasks/get-user-tasks/" + userId, {
-                            method: 'GET',
-                            headers: {
-                                'Content-Type': 'application/json'
-                            }
-                        })];
-                case 1:
-                    response = _a.sent();
-                    if (!(response.status === 200)) return [3 /*break*/, 3];
-                    return [4 /*yield*/, response.json()];
-                case 2:
-                    result = _a.sent();
-                    userTasksContainer_1 = document.getElementById('userTasksContainer');
-                    // Clear existing tasks
-                    userTasksContainer_1.innerHTML = '';
-                    if (!result.userTasks.length) {
-                        noTasks = document.createElement('p');
-                        noTasks.innerText = 'No tasks found';
-                        userTasksContainer_1.appendChild(noTasks);
-                        return [2 /*return*/];
-                    }
-                    // Loop through the user's tasks and create HTML elements to display them
-                    result.userTasks.forEach(function (userTask) {
-                        var taskList = document.createElement('ul');
-                        taskList.innerHTML = "<li>Title: " + userTask.titel + "</li><li>Description: " + userTask.discripton + "</li>";
-                        userTasksContainer_1.appendChild(taskList);
-                    });
-                    return [3 /*break*/, 4];
-                case 3:
-                    // Handle non-200 status codes (e.g., 404)
-                    console.error("Failed to fetch user tasks. Status code: " + response.status);
-                    _a.label = 4;
-                case 4: return [3 /*break*/, 6];
-                case 5:
-                    error_4 = _a.sent();
-                    // Handle network or other errors
-                    console.error(error_4);
-                    return [3 /*break*/, 6];
-                case 6: return [2 /*return*/];
-            }
-        });
-    });
-}
