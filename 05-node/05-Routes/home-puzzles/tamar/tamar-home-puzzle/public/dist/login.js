@@ -36,43 +36,35 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 function handleLogin(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var user, response, _a, error, id, error_1;
-        return __generator(this, function (_b) {
-            switch (_b.label) {
-                case 0:
-                    _b.trys.push([0, 3, , 4]);
-                    ev.preventDefault(); // stop form from submitting
-                    user = {
-                        name: ev.target.password.value,
-                        id: ev.target.id.value
-                    };
-                    if (!user.name)
-                        throw new Error("Please chose user");
-                    return [4 /*yield*/, fetch('/API/users/login', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json'
-                            },
-                            body: JSON.stringify(user)
-                        })];
-                case 1:
-                    response = _b.sent();
-                    return [4 /*yield*/, response.json()];
-                case 2:
-                    _a = _b.sent(), error = _a.error, id = _a.id;
-                    console.log(error);
-                    if (error) {
-                        throw new Error(error);
-                    }
-                    //if everthink is OK, redirect to main page of the user and pass the id of this user
-                    window.location.href = "/main.html?id=" + id;
-                    return [3 /*break*/, 4];
-                case 3:
-                    error_1 = _b.sent();
-                    console.error(error_1);
-                    return [3 /*break*/, 4];
-                case 4: return [2 /*return*/];
+        var user;
+        return __generator(this, function (_a) {
+            try {
+                ev.preventDefault(); // stop form from submitting
+                user = {
+                    name: ev.target.name.value,
+                    id: ev.target.id.value
+                };
+                console.log(ev.target.value);
+                // if(!user.name) throw new Error("Please chose user");
+                // const response = await fetch('/API/users/login', { // send data to server
+                //     method: 'POST',
+                //     headers: {
+                //         'Content-Type': 'application/json'
+                //     },
+                //     body: JSON.stringify(user)
+                // });
+                // const {error, id} = await response.json(); // get data from server
+                // console.log(error);
+                // if (error) {
+                //     throw new Error(error);
+                // }
+                //if everthink is OK, redirect to main page of the user and pass the id of this user
+                // window.location.href = `/main.html?id=${id}`;
             }
+            catch (error) {
+                console.error(error);
+            }
+            return [2 /*return*/];
         });
     });
 }

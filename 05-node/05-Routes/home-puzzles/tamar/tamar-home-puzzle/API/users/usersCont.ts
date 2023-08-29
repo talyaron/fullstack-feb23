@@ -66,8 +66,8 @@ export const deleteUser= (req: any, res: any) => {
    try {
     const { id } = req.body;
     console.log(id);
-    const users = users.filter((user) => user.id !== id);
-    res.send({ users });
+    const newUsers = users.filter((user) => user.id !== id);
+    res.send({ newUsers });
    } catch (error) {
     console.error(error);
     res.send({error})

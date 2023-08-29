@@ -71,8 +71,8 @@ exports.deleteUser = function (req, res) {
     try {
         var id_4 = req.body.id;
         console.log(id_4);
-        var users_1 = users_1.filter(function (user) { return user.id !== id_4; });
-        res.send({ users: users_1 });
+        var newUsers = usersModel_1.users.filter(function (user) { return user.id !== id_4; });
+        res.send({ newUsers: newUsers });
     }
     catch (error) {
         console.error(error);

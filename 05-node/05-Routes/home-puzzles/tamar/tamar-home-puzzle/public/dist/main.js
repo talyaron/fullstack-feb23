@@ -43,7 +43,7 @@ function renderUser() {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
-                    return [4 /*yield*/, fetch('/API/userTask/get-user')]; //get the chosen user by id
+                    return [4 /*yield*/, fetch('/API/users/get-user')]; //get the chosen user by id
                 case 1:
                     response = _a.sent() //get the chosen user by id
                     ;
@@ -51,8 +51,11 @@ function renderUser() {
                 case 2:
                     results = _a.sent();
                     Html = document.querySelector("#root");
+                    if (!Html)
+                        throw new Error("no div element catches");
                     userHTML = "<div class=\"user\">\n                            <h1>" + results.name + "</h1>\n                            <div id=\"tasksRoot\"></div> \n                         </div>";
                     renderUserTasks();
+                    Html.innerHTML = userHTML;
                     return [3 /*break*/, 4];
                 case 3:
                     error_1 = _a.sent();
@@ -64,11 +67,37 @@ function renderUser() {
     });
 }
 function renderUserTasks() {
+    return __awaiter(this, void 0, void 0, function () {
+        var response, results, Html, error_2;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 3, , 4]);
+                    return [4 /*yield*/, fetch('/API/userTask/get-tasks-of-user')]; //get the tasks of the user by user-id
+                case 1:
+                    response = _a.sent() //get the tasks of the user by user-id
+                    ;
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    results = _a.sent();
+                    Html = document.querySelector("#tasksRoot");
+                    if (!Html)
+                        throw new Error("no div element catches");
+                    renderTasks(results, Html);
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_2 = _a.sent();
+                    console.error(error_2);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
+            }
+        });
+    });
 }
 //----controller function:---------
 function getUserTasks() {
     return __awaiter(this, void 0, void 0, function () {
-        var response, results, userTasks, error_2;
+        var response, results, userTasks, error_3;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -90,8 +119,8 @@ function getUserTasks() {
                     console.log("results:", results);
                     return [2 /*return*/, userTasks];
                 case 3:
-                    error_2 = _a.sent();
-                    console.error(error_2);
+                    error_3 = _a.sent();
+                    console.error(error_3);
                     return [2 /*return*/, []];
                 case 4: return [2 /*return*/];
             }
