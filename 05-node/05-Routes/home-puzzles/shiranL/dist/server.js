@@ -15,6 +15,10 @@ app.use(express_1.default.json());
 const usersRouters_1 = __importDefault(require("./API/users/usersRouters"));
 //tells express to use proudctsRouter on the intial route "/API/users"
 app.use("/API/users", usersRouters_1.default);
+// get router from tasksRouter
+const tasksRouters_1 = __importDefault(require("./API/tasks/tasksRouters"));
+//tells express to use proudctsRouter on the intial route "/API/users"
+app.use("/API/tasks", tasksRouters_1.default);
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`);
 });

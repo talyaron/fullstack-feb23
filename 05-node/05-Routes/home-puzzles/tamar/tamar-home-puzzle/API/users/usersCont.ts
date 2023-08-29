@@ -5,11 +5,11 @@ import { User, users} from "./usersModel";
 //register user 
 export const registerUser = (req: any, res: any) => {
     try {
-      const { name } = req.body;
-      if(!name) throw new Error("Please complete all fields");
-      const user = new User({ name });
+      const { name, password } = req.body;
+      if(!name || !password) throw new Error("Please complete all fields");
+      const user = new User({ name, password });
       //check if user already exist
-      const userExist = users.find((user) => user.name === name);
+      const userExist = users.find((user) => user.name === name && user.password === password);
       if (userExist) throw new Error("User already exist");
       users.push(user);
       res.send({ ok:true });
@@ -22,12 +22,12 @@ export const registerUser = (req: any, res: any) => {
   
   export const login = (req: any, res: any) => {
       try {
-          const { name, id } = req.body;
-          if(!name || !id) throw new Error("Please complete all fields");
+          const { name, password } = req.body;
+          if(!name || !password) throw new Error("Please complete all fields");
           //check if user exist and id is match
-          const user = users.find((user) => user.name === name && user.id === id);
+          const user = users.find((user) => user.name === name && user.password === password);
           if (!user) throw new Error("some of the details are not match");
-          res.send({ ok:true, name:user.name });
+          res.send({ ok:true, name:user.name , id:user.id});
       } catch (error) {
           console.error(error);
           res.send({ error:error.message });
@@ -35,10 +35,14 @@ export const registerUser = (req: any, res: any) => {
   }
 
 
-//get all users from server
-export const getUsers = (req: any, res: any) => {
+//get user from server
+export const getUser = (req: any, res: any) => {
     try {
-        res.send({ users });
+        const { id } = req.body; 
+        console.log(id);        
+        const user = users.find((user) => user.id === id);
+        if (!user) throw new Error("no match User found");
+        res.send({ user });
     } catch (error) {
         console.error(error); 
     }
@@ -62,8 +66,8 @@ export const deleteUser= (req: any, res: any) => {
    try {
     const { id } = req.body;
     console.log(id);
-    const users = users.filter((user) => user.id !== id);
-    res.send({ users });
+    const newUsers = users.filter((user) => user.id !== id);
+    res.send({ newUsers });
    } catch (error) {
     console.error(error);
     res.send({error})

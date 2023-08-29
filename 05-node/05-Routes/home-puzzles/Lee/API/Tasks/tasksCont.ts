@@ -41,18 +41,18 @@ export function addTask(req: any, res: any) {
 //     }
 //   }
 
-//   export const updateTaskStatus = (req: any, res: any) => {
-//     try {
-//       const { status, id } = req.body;
-//       console.log(req.body);
-//       if (!status || !id) throw new Error("Please complete all fields");
-//       const task = tasks.find((task) => task.id === id);
+  export const updateTaskStatus = (req: any, res: any) => {
+    try {
+      const { status, id } = req.body;
+      console.log(req.body);
+      if (!status || !id) throw new Error("Please complete all fields");
+      const task = tasks.find((task) => task.id === id);
   
-//       if (!task) throw new Error("Product not found");
-//       task.status = status;
-//       res.send({ tasks });
-//     } catch (error) {
-//       console.error(error);
-//       res.send({ error });
-//     }
-//   }
+      if (!task) throw new Error("Product not found");
+      task.status = status;
+      res.send({ tasks });
+    } catch (error) {
+      console.error(error);
+      res.send({ error });
+    }
+  }

@@ -5,11 +5,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const app = express_1.default();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3003;
 //static files
 //app.use(express.static("public"))  //not yet created
 //body
 app.use(express_1.default.json());
+app.use(express_1.default.static('public'));
 //routers:
 //get router from taskRouter:
 //get:

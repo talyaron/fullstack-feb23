@@ -1,6 +1,6 @@
 "use strict";
 exports.__esModule = true;
-exports.addTask = exports.getTasks = void 0;
+exports.updateTaskStatus = exports.addTask = exports.getTasks = void 0;
 var tasksModel_1 = require("./tasksModel");
 function getTasks(req, res) {
     try {
@@ -41,17 +41,20 @@ exports.addTask = addTask;
 //       res.send({ error });
 //     }
 //   }
-//   export const updateTaskStatus = (req: any, res: any) => {
-//     try {
-//       const { status, id } = req.body;
-//       console.log(req.body);
-//       if (!status || !id) throw new Error("Please complete all fields");
-//       const task = tasks.find((task) => task.id === id);
-//       if (!task) throw new Error("Product not found");
-//       task.status = status;
-//       res.send({ tasks });
-//     } catch (error) {
-//       console.error(error);
-//       res.send({ error });
-//     }
-//   }
+exports.updateTaskStatus = function (req, res) {
+    try {
+        var _a = req.body, status = _a.status, id_1 = _a.id;
+        console.log(req.body);
+        if (!status || !id_1)
+            throw new Error("Please complete all fields");
+        var task = tasksModel_1.tasks.find(function (task) { return task.id === id_1; });
+        if (!task)
+            throw new Error("Product not found");
+        task.status = status;
+        res.send({ tasks: tasksModel_1.tasks });
+    }
+    catch (error) {
+        console.error(error);
+        res.send({ error: error });
+    }
+};

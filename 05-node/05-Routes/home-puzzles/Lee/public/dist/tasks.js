@@ -34,6 +34,11 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var TaskStatus;
+(function (TaskStatus) {
+    TaskStatus["done"] = "done";
+    TaskStatus["todo"] = "todo";
+})(TaskStatus || (TaskStatus = {}));
 function handleGetTasks() {
     return __awaiter(this, void 0, void 0, function () {
         var response, tasks, error_1;
@@ -48,6 +53,7 @@ function handleGetTasks() {
                 case 2:
                     tasks = (_a.sent()).tasks;
                     console.log(tasks);
+                    renderTasks(tasks, document.querySelector("#tasks"));
                     return [3 /*break*/, 4];
                 case 3:
                     error_1 = _a.sent();
@@ -83,6 +89,7 @@ function handleAddTask(ev) {
                 case 2:
                     tasks = (_a.sent()).tasks;
                     console.log(tasks);
+                    renderTasks(tasks, document.querySelector("#tasks"));
                     return [3 /*break*/, 4];
                 case 3:
                     error_2 = _a.sent();
@@ -92,4 +99,62 @@ function handleAddTask(ev) {
             }
         });
     });
+}
+function handleUpdateStatus(status, id) {
+    return __awaiter(this, void 0, void 0, function () {
+        var body, result, tasks, error_3;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 3, , 4]);
+                    console.log(status);
+                    body = { id: id, status: status };
+                    return [4 /*yield*/, fetch('/API/Tasks/update-task-status', {
+                            method: 'PATCH',
+                            headers: {
+                                'content-type': 'application/json'
+                            },
+                            body: JSON.stringify(body)
+                        })];
+                case 1:
+                    result = _a.sent();
+                    return [4 /*yield*/, result.json()];
+                case 2:
+                    tasks = (_a.sent()).tasks;
+                    console.log(tasks);
+                    renderTasks(tasks, document.querySelector("#tasks"));
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_3 = _a.sent();
+                    console.error(error_3);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
+            }
+        });
+    });
+}
+function renderTask(task) {
+    try {
+        var html = task.status === TaskStatus.todo ? "<li onclick=\"handleUpdateStatus('done', '" + task.id + "')\">" + task.title + " - " + task.description + "</li>" :
+            "<li style=\"text-decoration: line-through;\" onclick=\"handleUpdateStatus('todo', '" + task.id + "')\">" + task.title + " - " + task.description + "</li>";
+        return html;
+    }
+    catch (error) {
+        console.error(error);
+        return "";
+    }
+}
+function renderTasks(tasks, DIVElem) {
+    try {
+        if (!DIVElem)
+            throw new Error("no div element");
+        var html = "<ul>";
+        html += tasks.map(function (task) { return renderTask(task); }).join("");
+        html += "<ul>";
+        DIVElem.innerHTML = html;
+    }
+    catch (error) {
+        console.error(error);
+        return "";
+    }
 }

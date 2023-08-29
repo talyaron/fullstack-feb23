@@ -1,0 +1,79 @@
+// Variables
+$primary-color: #3498db;
+$secondary-color: #e74c3c;
+
+// Global Styles
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  color: $primary-color;
+}
+
+#correntUserDiv {
+  margin-top: 20px;
+  font-weight: bold;
+}
+
+#addTaskForm {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  max-width: 300px;
+
+  input[type="text"] {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+  input[type="submit"] {
+    background-color: $primary-color;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: darken($primary-color, 10%);
+    }
+  }
+}
+
+#userTasksContainer {
+  margin-top: 20px;
+
+  .userTaskList {
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+
+    p {
+      margin: 0;
+    }
+  }
+
+  p {
+    color: $secondary-color;
+  }
+}
+
+a {
+  display: block;
+  margin-top: 20px;
+  color: $primary-color;
+  text-decoration: none;
+  font-weight: bold;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}

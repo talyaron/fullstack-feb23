@@ -1,12 +1,13 @@
 import express from "express"
 const app = express()
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 3003
 
 //static files
 //app.use(express.static("public"))  //not yet created
 
 //body
 app.use(express.json())
+app.use(express.static('public'))
 
 //routers:
 //get router from taskRouter:
