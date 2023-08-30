@@ -34,24 +34,22 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-function handleRegister(ev) {
+function handleRegister(event) {
     return __awaiter(this, void 0, void 0, function () {
-        var user, response, error, error_1;
+        var user, response, result, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
-                    ev.preventDefault(); // stop form from submitting
+                    event.preventDefault();
                     user = {
-                        // get data from form
-                        password: ev.target.password.value,
-                        email: ev.target.email.value
+                        email: event.target.email.value,
+                        password: event.target.password.value
                     };
                     return [4 /*yield*/, fetch("/API/users/register", {
-                            // send data to server
                             method: "POST",
                             headers: {
-                                "Content-Type": "application/json"
+                                "content-type": "application/json"
                             },
                             body: JSON.stringify(user)
                         })];
@@ -59,13 +57,14 @@ function handleRegister(ev) {
                     response = _a.sent();
                     return [4 /*yield*/, response.json()];
                 case 2:
-                    error = (_a.sent()).error;
-                    console.log(error);
-                    if (error) {
-                        throw new Error(error);
+                    result = _a.sent();
+                    console.log(result);
+                    if (result.message === "user added succsesfully") {
+                        window.location.href = "/tasks.html";
                     }
-                    //if everthink is OK, redirect to login page
-                    window.location.href = "/login.html";
+                    else {
+                        document.querySelector("#message").innerHTML = result.message;
+                    }
                     return [3 /*break*/, 4];
                 case 3:
                     error_1 = _a.sent();
