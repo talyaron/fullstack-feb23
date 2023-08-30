@@ -9,6 +9,8 @@ app.use(express.json());
 // CRUD
 import tasksRouter from "./API/tasks/tasksRouter";
 app.use("/API/tasks", tasksRouter);
+import routes from "./API/users/usersRouter";
+app.use("/API/users", routes);
 app.listen(port, () => {
   console.log(`app is listening on port ${port}`);
 });
