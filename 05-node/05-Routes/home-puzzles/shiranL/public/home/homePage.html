@@ -13,9 +13,14 @@
 
     <!-- add form to add task -->
     <form id="addTaskForm" onsubmit="handleAddUserTask(event)">
-        <input type="text" id="title" placeholder="Enter task name">
-        <input type="text" id="taskDescription" placeholder="Enter task description">
+        <input type="text" id="title" name="title" placeholder="Enter task name">
+        <input type="text" id="taskDescription" name="taskDescription" placeholder="Enter task description">
         <input type="submit" value="Add Task">
     </form>
+    <div id="userTasksContainer">
+        <!-- User tasks will be displayed here -->
+    </div>
+    <!-- BACK HOME -->
+    <a href="../index.html">BACK HOME</a>
 </body>
 </html>

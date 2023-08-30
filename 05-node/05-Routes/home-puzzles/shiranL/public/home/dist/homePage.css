@@ -1,0 +1,67 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  color: #3498db;
+}
+
+#correntUserDiv {
+  margin-top: 20px;
+  font-weight: bold;
+}
+
+#addTaskForm {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  max-width: 300px;
+}
+#addTaskForm input[type=text] {
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+#addTaskForm input[type=submit] {
+  background-color: #3498db;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+#addTaskForm input[type=submit]:hover {
+  background-color: #217dbb;
+}
+
+#userTasksContainer {
+  margin-top: 20px;
+}
+#userTasksContainer .userTaskList {
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+#userTasksContainer .userTaskList p {
+  margin: 0;
+}
+#userTasksContainer p {
+  color: #e74c3c;
+}
+
+a {
+  display: block;
+  margin-top: 20px;
+  color: #3498db;
+  text-decoration: none;
+  font-weight: bold;
+}
+a:hover {
+  text-decoration: underline;
+}

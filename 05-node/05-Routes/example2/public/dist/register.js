@@ -43,13 +43,15 @@ function handleRegister(ev) {
                     _a.trys.push([0, 3, , 4]);
                     ev.preventDefault(); // stop form from submitting
                     user = {
+                        // get data from form
                         password: ev.target.password.value,
                         email: ev.target.email.value
                     };
-                    return [4 /*yield*/, fetch('/API/users/register', {
-                            method: 'POST',
+                    return [4 /*yield*/, fetch("/API/users/register", {
+                            // send data to server
+                            method: "POST",
                             headers: {
-                                'Content-Type': 'application/json'
+                                "Content-Type": "application/json"
                             },
                             body: JSON.stringify(user)
                         })];

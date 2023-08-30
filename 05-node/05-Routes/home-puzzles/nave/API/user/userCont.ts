@@ -1,89 +1,36 @@
-import { User } from "./userModel";
+import { User, users } from "./userModel";
 
-export let users: User[] = [
-    new User("nave", "123456", "054-1234567", "vnavev@gmail.com")
-];
 
-//add user controler
-export const adduser = (req: any, res: any) => {
+
+//register user 
+export const registerUser = (req: any, res: any) => {
+  try {
+    const { email, password } = req.body;
+    if(!email || !password) throw new Error("Please complete all fields");
+    const user = new User({ email, password });
+    //check if user already exist
+    const userExist = users.find((user) => user.email === email);
+    if (userExist) throw new Error("User already exist");
+    users.push(user);
+    res.send({ ok:true });
+
+  } catch (error) {
+    console.error(error);
+    res.send({ error:error.message });
+  }
+}
+
+export const login = (req: any, res: any) => {
     try {
-        debugger;
-        const user: User = req.body;
-        console.log(user);
-        //add to users array
-        users.push(new User(user.userName, user.password, user.phoneNumber, user.email)); 
-        console.log(users);
-        res.send({ user });
+        const { email, password } = req.body;
+        if(!email || !password) throw new Error("Please complete all fields");
+        //check if user exist and password is correct
+        const user = users.find((user) => user.email === email && user.password === password);
+        if (!user) throw new Error("some of the details are incorrect");
+        res.send({ ok:true, email:user.email });
     } catch (error) {
         console.error(error);
+        res.send({ error:error.message });
     }
 }
 
-//get users
-export const getusers = (req, res) => {
-    try {
-        res.send({ users });
-    } catch (error) {
-        console.error(error);
-    }
-}
-
-export const deleteuser = (req, res) => {
-    try {
-        const { id } = req.body;
-        console.log(id);
-        users = users.filter((user) => user.id !== id);
-        res.send({ users });
-    } catch (error) {
-        console.error(error);
-        res.send({ error });
-    }
-}
-
-export const updatePassword = (req: any, res: any) => {
-    try {
-        const { password, id } = req.body;
-        console.log(req.body);
-        if (!id) throw new Error("Please complete all fields");
-        console.log(users);
-        const user = users.find((user) => user.id === id);
-        if (!user) throw new Error("user not found");
-        user.password = password;
-        res.send({ users });
-    } catch (error) {
-        console.error(error);
-        res.send({ error: error.message });
-    }
-}
-
-export const updateEmail = (req: any, res: any) => {
-    try {
-        const { email, id } = req.body;
-        console.log(req.body);
-        if (!id) throw new Error("Please complete all fields");
-        console.log(users);
-        const user = users.find((user) => user.id === id);
-        if (!user) throw new Error("user not found");
-        user.email = email;
-        res.send({ users });
-    } catch (error) {
-        console.error(error);
-        res.send({ error: error.message });
-    }
-}
-
-export const updatePhoneNumber = (req: any, res: any) => {
-    try {
-        const { phoneNumber, id } = req.body;
-        console.log(req.body);
-        if (!id) throw new Error("Please complete all fields");
-        console.log(users);
-        const user = users.find((user) => user.id === id);
-        if (!user) throw new Error("user not found");
-        user.phoneNumber = phoneNumber;
-        res.send({ users });
-    } catch (error) {
-        console.error(error);
-        res.send({ error: error.message });
-    }
-}

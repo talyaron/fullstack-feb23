@@ -13,6 +13,10 @@ export class Task {
      {
         this.id = Math.random().toString()
      }
+     updateStatus(status:TaskStatus){
+            this.status = status;
+        }
+        
 }
 
 export class UserTasks{
