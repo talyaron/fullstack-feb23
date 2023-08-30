@@ -1,0 +1,79 @@
+.hero {
+  width: 50vw;
+  height: 35vh;
+  display: block;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  margin: auto;
+}
+
+.h1 {
+  font-family: "Montserrat", sans-serif;
+  font-size: 3em;
+  color: #d34936;
+  text-align: center;
+}
+
+.h2 {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.5em;
+  color: #000000;
+  text-align: center;
+  font-weight: 300;
+}
+
+.btnStart {
+  background-color: #d34936;
+  color: #ffff;
+  font-size: 1.5em;
+  font-family: "Montserrat", sans-serif;
+  padding: 10px 10px;
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  border: none;
+  border-radius: 4px;
+  width: 15vw;
+}
+
+.addTask {
+  border-radius: 100px;
+  display: flex;
+  margin: auto;
+  justify-content: center;
+}
+.addTask input[type=text] {
+  padding: 5px;
+  border-radius: 4px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 1em;
+  color: #000000;
+  margin-right: 10px;
+  border: 1px solid gray;
+}
+.addTask button[type=submit] {
+  padding: 5px 40px;
+  border-radius: 8px;
+  font-family: "Montserrat", sans-serif;
+  color: #ffff;
+  border: 1px solid lightgrey;
+  background-color: #d34936;
+}
+.addTask ::placeholder {
+  font-family: "Montserrat", sans-serif;
+  color: #d34936;
+}
+
+.list {
+  display: flex;
+  margin: auto;
+  justify-content: start;
+  background-color: #ffff;
+  border: 1px solid #a5a5a5;
+  color: #d34936;
+  padding: 10px;
+  width: 15vw;
+  border-radius: 8px;
+  margin-top: 10px;
+}

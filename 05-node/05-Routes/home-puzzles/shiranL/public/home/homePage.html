@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./dist/homePage.css">
+    <script src="./dist/homePage.js" defer></script>    
+    <title> HOME </title>
+</head>
+<body>
+    <h1>HOME PAGE</h1>
+    <div id="correntUserDiv"></div>
+
+    <!-- add form to add task -->
+    <form id="addTaskForm" onsubmit="handleAddUserTask(event)">
+        <input type="text" id="title" name="title" placeholder="Enter task name">
+        <input type="text" id="taskDescription" name="taskDescription" placeholder="Enter task description">
+        <input type="submit" value="Add Task">
+    </form>
+    <div id="userTasksContainer">
+        <!-- User tasks will be displayed here -->
+    </div>
+    <!-- BACK HOME -->
+    <a href="../index.html">BACK HOME</a>
+</body>
+</html>

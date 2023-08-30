@@ -1,31 +1,25 @@
-import { User } from "../API/users/usersModel";
+// index.ts
+function handleRegisterPage(){
 
-async function handleLogin(event: any) {
-    try {
-      event.preventDefault();
-      const userName = event.target.userName.value;
-      const password = event.target.password.value;
-      
-      if (!userName || !password) {
-        throw new Error('Please complete all fields');
-      }
+     location.href = "/register.html";
+}
+function handleLoginPage(){
   
-      const user: User =new User(userName, password);
-  
-      const response = await fetch('/API/users/add-user', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(user)
-      });
-  
-      const result = await response.json();
-      console.log(result);
-  
-  
-    } catch (error) {
-      console.error(error);
-    }
-  
-  }
+    location.href = "/login.html";  
+}
+
+async function  handleGetAllUsers(){
+    const response = await fetch('/API/users/get-all-users');
+    const result = await response.json();
+    
+    console.log(result);
+    const users = result.users;
+    const ul = document.getElementById("users");
+    ul.innerHTML = "";
+    users.forEach((user:any) => {
+        const li = document.createElement("li");
+        li.innerHTML = `userName: ${user.userName} password: ${user.password}`;
+        ul.appendChild(li);
+    }); 
+}
+

@@ -1,0 +1,78 @@
+// Variables
+$primary-color: #3498db;
+$secondary-color: #e74c3c;
+
+// Global Styles
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+h1 {
+  color: $primary-color;
+  margin-top: 40px;
+}
+
+#registerOrLogin {
+  margin-top: 20px;
+  button {
+    padding: 10px 20px;
+    margin: 0 10px;
+    background-color: $primary-color;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: darken($primary-color, 10%);
+    }
+  }
+}
+
+/* Style the 'All Users' button if you decide to use it
+#getAllUsersBtn {
+  margin-top: 20px;
+  background-color: $primary-color;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: darken($primary-color, 10%);
+  }
+}
+
+#users {
+  margin-top: 20px;
+  list-style: none;
+
+  li {
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    display: inline-block;
+    margin-right: 10px;
+    font-weight: bold;
+  }
+}
+*/
+
+a {
+  display: block;
+  margin-top: 20px;
+  color: $primary-color;
+  text-decoration: none;
+  font-weight: bold;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}

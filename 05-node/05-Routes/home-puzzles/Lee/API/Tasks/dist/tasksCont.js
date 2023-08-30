@@ -1,47 +1,50 @@
 "use strict";
 exports.__esModule = true;
-exports.updateTaskStatus = exports.deleteTask = exports.getTasks = exports.addTasks = void 0;
+exports.updateTaskStatus = exports.addTask = exports.getTasks = void 0;
 var tasksModel_1 = require("./tasksModel");
-var tasks = [];
-exports.addTasks = function (req, res) {
-    var task = req.body;
-    console.log(task);
-    //add to tasks array
-    tasks.push(new tasksModel_1.Task(task.title, task.description, task.status, task.id)); // --> add to Database
-    console.log(tasks);
-    res.send({ task: task });
-};
-exports.getTasks = function (req, res) {
+function getTasks(req, res) {
     try {
-        res.send({ tasks: tasks });
+        res.send({ tasks: tasksModel_1.tasks });
     }
     catch (error) {
         console.error(error);
     }
-};
-exports.deleteTask = function (req, res) {
+}
+exports.getTasks = getTasks;
+function addTask(req, res) {
     try {
-        var id_1 = req.body.id;
-        console.log(id_1);
-        tasks = tasks.filter(function (task) { return task.id !== id_1; });
-        res.send({ tasks: tasks });
+        var _a = req.body, title = _a.title, description = _a.description;
+        var newTask = new tasksModel_1.Task(title, description, tasksModel_1.TaskStatus.todo);
+        tasksModel_1.tasks.push(newTask);
+        res.send({ tasks: tasksModel_1.tasks });
     }
     catch (error) {
         console.error(error);
-        res.send({ error: error });
     }
-};
+}
+exports.addTask = addTask;
+// export const deleteTask = (req: any, res: any) => {
+//     try {
+//       const { id } = req.body;
+//       console.log(id);
+//       tasks = tasks.filter((task) => task.id !== id);
+//       res.send({ tasks });
+//     } catch (error) {
+//       console.error(error);
+//       res.send({ error });
+//     }
+//   }
 exports.updateTaskStatus = function (req, res) {
     try {
-        var _a = req.body, status = _a.status, id_2 = _a.id;
+        var _a = req.body, status = _a.status, id_1 = _a.id;
         console.log(req.body);
-        if (!status || !id_2)
+        if (!status || !id_1)
             throw new Error("Please complete all fields");
-        var task = tasks.find(function (task) { return task.id === id_2; });
+        var task = tasksModel_1.tasks.find(function (task) { return task.id === id_1; });
         if (!task)
             throw new Error("Product not found");
         task.status = status;
-        res.send({ tasks: tasks });
+        res.send({ tasks: tasksModel_1.tasks });
     }
     catch (error) {
         console.error(error);

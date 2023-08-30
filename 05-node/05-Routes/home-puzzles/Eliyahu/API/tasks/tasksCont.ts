@@ -1,23 +1,10 @@
-// import { Task } from "./tasksModels"
-class Task {
-    id: string
-    constructor(
-        public user: string,
-        public title: string,
-        public description: string,
-        public status: string
-    ) {
-        this.id = Math.random().toString()
-    }
-}
+import { users } from "../users/userModels"
+import { Task, tasks, TaskStatus, UserTasks, usersTasks } from "./tasksModels"
 
-let tasks: Task[] = [
-    new Task('eli', 'test', 'it`s work?', 'TO-DO')
-]
 
 export const getTasks = (req, res) => {
     try {
-        res.send({ tasks })
+        res.send({ usersTasks })
     } catch (error) {
         console.error(error.massage)
     }
@@ -25,9 +12,15 @@ export const getTasks = (req, res) => {
 
 export const addTask = (req, res) => {
     try {
-        const task: Task = req.body;
-        tasks.push(new Task(task.user, task.title, task.description, task.status))
-        res.send({ tasks })
+        const task = req.body;
+        const emailUser=task.emailUser
+        const currentTask = new Task(task.title, task.description, task.status)
+        tasks.push(currentTask)
+       const currentUser = users.find(user=>user.email===emailUser)
+       usersTasks.push(new UserTasks(currentUser,currentTask))
+
+
+        res.send({ usersTasks })
     } catch (error) {
         console.error(error.massage)
 
@@ -37,53 +30,45 @@ export const addTask = (req, res) => {
 export const deleteTask = (req, res) => {
     try {
         const { id } = req.body
-        tasks = tasks.filter((task) => task.id !== id)
-        res.send({ tasks })
+        const index = usersTasks.findIndex((element) => element.task.id === id);
+        if (index === -1) {
+            throw new Error("task not found");
+        }
+        usersTasks.splice(index, 1);
+        res.send({ usersTasks })
     } catch (error) {
         console.error(error.massage)
 
     }
 }
 
-export const updateTaskTitle = (req, res)=>{
+export const updateTask = (req, res)=>{
     try {
-        const {title,id} = req.body
-        if(!title||!id) throw new Error("Please complete all details");
-        const task = tasks.find((task)=>task.id===id)
+        const {title,description,id} = req.body
+        if(!title||!description||!id) throw new Error("Please complete all details");
+        const taskUser = usersTasks.find(element=>element.task.id===id)
 
-        if(!task) throw new Error("Task not found");
-        task.title = title
-        res.send({tasks})
+        if(!taskUser) throw new Error("Task not found");
+        taskUser.task.title = title
+        taskUser.task.description = description
+        res.send({usersTasks})
     } catch (error) {
         console.error(error.massage)  
         
     }
 }
 
-export const updateTaskDescription = (req, res)=>{
-    try {
-        const {description,id} = req.body
-        if(!description||!id) throw new Error("Please complete all details");
-        const task = tasks.find((task)=>task.id===id)
 
-        if(!task) throw new Error("Task not found");
-        task.description = description
-        res.send({tasks})
-    } catch (error) {
-        console.error(error.massage)  
-        
-    }
-}
 
 export const updateTaskStatus = (req, res)=>{
     try {
         const {status,id} = req.body
         if(!status||!id) throw new Error("Please complete all details");
-        const task = tasks.find((task)=>task.id===id)
+        const taskUser = usersTasks.find(element=>element.task.id===id)
 
-        if(!task) throw new Error("Task not found");
-        task.status = status
-        res.send({tasks})
+        if(!taskUser) throw new Error("Task not found");
+        taskUser.task.status = status
+        res.send({usersTasks})
     } catch (error) {
         console.error(error.massage)  
         

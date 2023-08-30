@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./dist/login.js" defer></script>
+    <link rel="stylesheet" href="./dist/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Carter+One&family=Sedgwick+Ave+Display&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="loginForm">
+        <h1>Login</h1>
+        <form class="login" onsubmit="handleLogin(event)">
+            <input type="email" name="email" placeholder="email" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <div>
+                <a class="back" href="./index.html">Back</a>
+                <button type="submit">Login</button>
+            </div>
+        </form>
+    </div>
+    <div class="img log">
+        <h2 class="art">Tasks Manager</h2>
+        <h3 class="art">The surest way to success</h3>
+    </div>
+</body>
+
+</html>

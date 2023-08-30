@@ -5,14 +5,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const app = express_1.default();
-const port = process.env.PORT || 3000;
-//static files
+const port = process.env.PORT || 4000;
 app.use(express_1.default.static("public"));
-//body
 app.use(express_1.default.json());
-//class Task {title: string, description: string, status: string, id: : string}
 const tasksRouter_1 = __importDefault(require("./API/Tasks/tasksRouter"));
-app.use("API/tasks", tasksRouter_1.default);
+app.use("/API/Tasks", tasksRouter_1.default);
+const usersRouter_1 = __importDefault(require("./API/Users/usersRouter"));
+app.use("/API/Users", usersRouter_1.default);
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`);
 });

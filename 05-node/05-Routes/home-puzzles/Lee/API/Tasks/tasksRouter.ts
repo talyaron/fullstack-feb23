@@ -1,12 +1,10 @@
-import express from 'express'
-import { addTasks, deleteTask, getTasks, updateTaskStatus } from './tasksCont'
-const router = express.router()
+import express from 'express';
+import { addTask, getTasks, updateTaskStatus } from './tasksCont';
+const router = express.Router()
 
 
-router
-    .get('/get-tasks', getTasks)
-    .post('/add-task', addTasks)
-    .deleteTask('/delete-task', deleteTask)
-    .patch('/add-task', updateTaskStatus)
-
+router.get('/get-tasks', getTasks)
+    .post('/add-task', addTask)
+    // .delete('/delete-task', deleteTask)
+    .patch('/update-task-status', updateTaskStatus)
 export default router;
