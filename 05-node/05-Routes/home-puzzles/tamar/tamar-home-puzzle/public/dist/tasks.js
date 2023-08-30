@@ -34,29 +34,26 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-//----hendles functions:-----------
-//-----render functions:----------
-function renderUser() {
+var TaskStatus;
+(function (TaskStatus) {
+    TaskStatus["done"] = "done";
+    TaskStatus["todo"] = "todo";
+})(TaskStatus || (TaskStatus = {}));
+function handleGetTasks() {
     return __awaiter(this, void 0, void 0, function () {
-        var response, results, Html, userHTML, error_1;
+        var response, tasks, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
-                    return [4 /*yield*/, fetch('/API/users/get-user')]; //get the chosen user by id
+                    return [4 /*yield*/, fetch('/API/tasks/get-tasks')];
                 case 1:
-                    response = _a.sent() //get the chosen user by id
-                    ;
-                    console.log(response);
+                    response = _a.sent();
                     return [4 /*yield*/, response.json()];
                 case 2:
-                    results = _a.sent();
-                    Html = document.querySelector("#userName");
-                    if (!Html)
-                        throw new Error("no div element catches");
-                    userHTML = "<h1>Hello " + results.name + "</h1>";
-                    Html.innerHTML = userHTML;
-                    renderUserTasks();
+                    tasks = (_a.sent()).tasks;
+                    console.log(tasks);
+                    renderTasks(tasks, document.querySelector("#tasks"));
                     return [3 /*break*/, 4];
                 case 3:
                     error_1 = _a.sent();
@@ -67,24 +64,32 @@ function renderUser() {
         });
     });
 }
-function renderUserTasks() {
+handleGetTasks();
+function handeleAddTask(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var response, results, Html, error_2;
+        var title, description, newTask, response, tasks, error_2;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
-                    return [4 /*yield*/, fetch('/API/userTask/get-tasks-of-user')]; //get the tasks of the user by user-id
+                    ev.preventDefault();
+                    title = ev.target.elements.title.value;
+                    description = ev.target.elements.description.value;
+                    newTask = { title: title, description: description };
+                    return [4 /*yield*/, fetch('/API/tasks/add-task', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(newTask)
+                        })];
                 case 1:
-                    response = _a.sent() //get the tasks of the user by user-id
-                    ;
+                    response = _a.sent();
                     return [4 /*yield*/, response.json()];
                 case 2:
-                    results = _a.sent();
-                    Html = document.querySelector("#tasksRoot");
-                    if (!Html)
-                        throw new Error("no div element catches");
-                    renderTasks(results, Html);
+                    tasks = (_a.sent()).tasks;
+                    console.log(tasks);
+                    renderTasks(tasks, document.querySelector("#tasks"));
                     return [3 /*break*/, 4];
                 case 3:
                     error_2 = _a.sent();
@@ -95,38 +100,63 @@ function renderUserTasks() {
         });
     });
 }
-//----controller function:---------
-function getUserTasks() {
+function handleUpdateStatus(status, id) {
     return __awaiter(this, void 0, void 0, function () {
-        var response, results, userTasks, error_3;
+        var body, result, tasks, error_3;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
-                    return [4 /*yield*/, fetch('/API/userTask/get-tasks-of-user')
-                        //becaous the id pass from the login to main page
-                        //the getTasksOfUser function in the server will have the id
-                        //to use it to find the spesific user
-                    ];
+                    console.log(status);
+                    body = { id: id, status: status };
+                    return [4 /*yield*/, fetch('/API/tasks/update-task-status', {
+                            method: 'PATCH',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(body)
+                        })];
                 case 1:
-                    response = _a.sent();
-                    return [4 /*yield*/, response.json()];
+                    result = _a.sent();
+                    return [4 /*yield*/, result.json()];
                 case 2:
-                    results = _a.sent();
-                    userTasks = results.userTasks;
-                    if (!Array.isArray(userTasks))
-                        throw new Error("User Tasks are not array");
-                    console.log("userTasks:", userTasks);
-                    console.log("results:", results);
-                    return [2 /*return*/, userTasks];
+                    tasks = (_a.sent()).tasks;
+                    console.log(tasks);
+                    renderTasks(tasks, document.querySelector("#tasks"));
+                    return [3 /*break*/, 4];
                 case 3:
                     error_3 = _a.sent();
                     console.error(error_3);
-                    return [2 /*return*/, []];
+                    return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }
         });
     });
 }
-//---call function:--
-getUserTasks();
+function renderTask(task) {
+    try {
+        var html = task.status === TaskStatus.todo
+            ? "<li onclick=\"handleUpdateStatus('done', '" + task.id + "')\">" + task.title + " - " + task.description + "</li>"
+            :
+                "<li style=\"text-decoration: line-through;\" onclick=\"handleUpdateStatus('todo', '" + task.id + "')\">" + task.title + " - " + task.description + "</li>";
+        return html;
+    }
+    catch (error) {
+        console.error(error);
+        return "";
+    }
+}
+function renderTasks(tasks, DIVElem) {
+    try {
+        if (!DIVElem)
+            throw new Error("no div element");
+        var html = "<ul>";
+        html += tasks.map(function (task) { return renderTask(task); }).join("");
+        html += "</ul>";
+        DIVElem.innerHTML = html;
+    }
+    catch (error) {
+        console.error(error);
+        return "";
+    }
+}
