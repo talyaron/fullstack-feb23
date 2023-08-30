@@ -249,7 +249,7 @@ async function renderNav() {
         if (error) throw new Error("Some of details are incorrect");
 
         const html = `<div class="nav">
-        <p>Hello ${userName}</p>
+        <p>${userName}</p>
         <a class="logout material-symbols-rounded" href="./index.html">Logout</a>
     </div>`
         const root = document.querySelector('#nav') as HTMLDivElement

@@ -299,7 +299,7 @@ function renderNav() {
                     error = result.error, userName = result.userName;
                     if (error)
                         throw new Error("Some of details are incorrect");
-                    html = "<div class=\"nav\">\n        <p>Hello " + userName + "</p>\n        <a class=\"logout material-symbols-rounded\" href=\"./index.html\">Logout</a>\n    </div>";
+                    html = "<div class=\"nav\">\n        <p>" + userName + "</p>\n        <a class=\"logout material-symbols-rounded\" href=\"./index.html\">Logout</a>\n    </div>";
                     root = document.querySelector('#nav');
                     root.innerHTML = html;
                     return [3 /*break*/, 4];
