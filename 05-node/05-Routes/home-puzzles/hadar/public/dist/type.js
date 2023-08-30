@@ -34,7 +34,23 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-gettasks();
+// get tasks from sserver, and render to screen.
+function handleStart() {
+    return __awaiter(this, void 0, void 0, function () {
+        var tasks;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, gettasks()];
+                case 1:
+                    tasks = _a.sent();
+                    //render tasks to screen
+                    rendertasks(tasks, document.querySelector('#root'));
+                    return [2 /*return*/];
+            }
+        });
+    });
+}
+handleStart();
 function handleAddTask(event) {
     return __awaiter(this, void 0, void 0, function () {
         var text, task, response, result, error_1;
@@ -45,10 +61,10 @@ function handleAddTask(event) {
                     event.preventDefault();
                     text = event.target.title.value;
                     task = { text: text };
-                    return [4 /*yield*/, fetch('/API/products/add-product', {
-                            method: 'POST',
+                    return [4 /*yield*/, fetch("/API/products/add-product", {
+                            method: "POST",
                             headers: {
-                                'Content-Type': 'application/json'
+                                "Content-Type": "application/json"
                             },
                             body: JSON.stringify(task)
                         })];
@@ -75,7 +91,7 @@ function gettasks() {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
-                    return [4 /*yield*/, fetch('/API/products/get-products')];
+                    return [4 /*yield*/, fetch("/API/products/get-products")];
                 case 1:
                     response = _a.sent();
                     return [4 /*yield*/, response.json()];
@@ -128,7 +144,7 @@ function handleGetTasks() {
                 case 0: return [4 /*yield*/, gettasks()];
                 case 1:
                     tasks = _a.sent();
-                    root = document.querySelector('#root');
+                    root = document.querySelector("#root");
                     rendertasks(tasks, root);
                     return [2 /*return*/];
             }
@@ -142,10 +158,10 @@ function handleDeletetask(id) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
-                    return [4 /*yield*/, fetch('/API/delete-task', {
-                            method: 'DELETE',
+                    return [4 /*yield*/, fetch("/API/delete-task", {
+                            method: "DELETE",
                             headers: {
-                                'Content-Type': 'application/json'
+                                "Content-Type": "application/json"
                             },
                             body: JSON.stringify({ id: id })
                         })];
@@ -156,7 +172,7 @@ function handleDeletetask(id) {
                     result = _a.sent();
                     console.log(result);
                     tasks = result.tasks;
-                    rendertasks(tasks, document.querySelector('#root'));
+                    rendertasks(tasks, document.querySelector("#root"));
                     return [3 /*break*/, 4];
                 case 3:
                     error_3 = _a.sent();
@@ -177,10 +193,10 @@ function handleUpdatetask(ev) {
                     ev.preventDefault();
                     id = ev.target.id;
                     console.log(id);
-                    return [4 /*yield*/, fetch('/API/update-task-description', {
-                            method: 'PATCH',
+                    return [4 /*yield*/, fetch("/API/update-task-description", {
+                            method: "PATCH",
                             headers: {
-                                'Content-Type': 'application/json'
+                                "Content-Type": "application/json"
                             },
                             body: JSON.stringify({ id: id })
                         })];
@@ -191,7 +207,7 @@ function handleUpdatetask(ev) {
                     result = _a.sent();
                     console.log(result);
                     products = result.products;
-                    rendertasks(products, document.querySelector('#root'));
+                    rendertasks(products, document.querySelector("#root"));
                     return [3 /*break*/, 4];
                 case 3:
                     error_4 = _a.sent();
