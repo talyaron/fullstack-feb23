@@ -1,7 +1,5 @@
-async function handleRegister(event) {
+async function handleRegister(event: any) {
   try {
-    console.dir(event);
-
     event.preventDefault();
     const user = {
       email: event.target.email.value,
@@ -14,6 +12,13 @@ async function handleRegister(event) {
       },
       body: JSON.stringify(user),
     });
+    const result = await response.json();
+    console.log(result);
+    if (result.message === "user added succsesfully") {
+      window.location.href = "/tasks.html";
+    } else {
+      document.querySelector("#message").innerHTML = result.message;
+    }
   } catch (error) {
     console.error(error);
   }
