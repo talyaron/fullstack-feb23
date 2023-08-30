@@ -5,7 +5,7 @@ const router = express.Router();
 
 router
     .get('/get-tasks', getTasks)
-    
+
     .post('/add-task', addTask)
     
     .delete('/delete-task', deleteTask)

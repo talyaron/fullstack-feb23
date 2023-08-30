@@ -23,13 +23,6 @@ function addTask(req, res) {
     }
 }
 exports.addTask = addTask;
-// export const getTasks = (req, res) => {
-//     try {
-//         res.send({tasks});
-//     } catch (error) {
-//         console.error(error);
-//     }
-// }
 // export const deleteTask = (req: any, res: any) => {
 //     try {
 //       const { id } = req.body;

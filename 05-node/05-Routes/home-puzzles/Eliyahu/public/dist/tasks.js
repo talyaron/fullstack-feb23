@@ -227,7 +227,7 @@ function renderAddTask(status) {
 }
 function renderTaskHtml(task) {
     try {
-        var html = "<div class = \"task\" id=\"task" + task.id + "\">\n        <div class = \"task_header\">\n        <h3 >" + task.title + "</h3>\n        <button class=\"material-symbols-rounded\" onclick=\"renderUpdateTask('" + task.title + "','" + task.description + "','" + task.id + "')\">Edit</button>\n        </div>\n        <div class = \"task_body\">\n        <p>" + task.description + "</p>\n        \n        </div>";
+        var html = "<div class = \"task\" id=\"task" + task.id + "\">\n        <div class = \"task_header\">\n        <h3 >" + task.title + "</h3>\n        <button class=\"material-symbols-rounded\" onclick=\"renderUpdateTask('" + task.title + "','" + task.description + "','" + task.id + "')\">Edit</button>\n        </div>\n        <div class = \"task_body\">\n        <p>" + task.description + "</p>\n        </div>";
         switch (task.status) {
             case 'toDo':
                 html += "<div class=\"btns\">\n                <div></div>\n                <button class=\"material-symbols-rounded\" onclick=\"handleDeleteTask('" + task.id + "')\">Delete</button>\n                <button class=\"material-symbols-rounded\" onclick=\"handleUpdateTaskStatus('doing','" + task.id + "')\">keyboard_double_arrow_right</button>\n                </div>\n                </div>";
@@ -276,3 +276,40 @@ function renderUpdateTask(title, description, id) {
         console.error(error.massage);
     }
 }
+function renderNav() {
+    return __awaiter(this, void 0, void 0, function () {
+        var email, response, result, error, userName, html, root, error_6;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 3, , 4]);
+                    email = { emailUser: emailUser };
+                    return [4 /*yield*/, fetch('/API/users/get-user-name', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(email)
+                        })];
+                case 1:
+                    response = _a.sent();
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    result = _a.sent();
+                    error = result.error, userName = result.userName;
+                    if (error)
+                        throw new Error("Some of details are incorrect");
+                    html = "<div class=\"nav\">\n        <p>" + userName + "</p>\n        <a class=\"logout material-symbols-rounded\" href=\"./index.html\">Logout</a>\n    </div>";
+                    root = document.querySelector('#nav');
+                    root.innerHTML = html;
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_6 = _a.sent();
+                    console.error(error_6.massage);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
+            }
+        });
+    });
+}
+renderNav();

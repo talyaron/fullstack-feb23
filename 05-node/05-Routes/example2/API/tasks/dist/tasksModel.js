@@ -20,6 +20,7 @@ var Task = /** @class */ (function () {
 }());
 exports.Task = Task;
 exports.tasks = [];
+//join collection (class)
 var UserTasks = /** @class */ (function () {
     function UserTasks(user, task) {
         this.user = user;

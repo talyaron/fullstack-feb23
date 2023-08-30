@@ -22,6 +22,11 @@ import usersRouter from "./API/users/usersRouter";
 //tells express to use userRouter on the intial route "/API/users"
 app.use("/API/users", usersRouter)
 
+//get router from userTaskRouter:
+import userTaskRouter from "./API/userTasks/userTaskRouter";
+//tells express to use userRouter on the intial route "/API/users"
+app.use("/API/userTasks", userTaskRouter)
+
 app.listen(port, () => {
     console.log(`app listening on pors ${port}`)
 })

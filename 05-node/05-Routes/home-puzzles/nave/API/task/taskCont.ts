@@ -1,72 +1,53 @@
-import { Task } from "./taskModel";
+import { tasks, TaskStatus, Task } from './taskModel';
 
-let tasks: Task[] = [
-    new Task ({title:"test", description:"tevst", status:"bla"})
-];
-
-//add product controler
-export const addTask = (req: any, res: any) => {
-    const task: Task = req.body;
-    console.log(task);
-    //add to products array
-    tasks.push(new Task(task)); // --> add to Database
-    console.log(tasks);
-    res.send({ task });
-};
-
-//get products
-export const getTask = (req, res) => {
+export function getTasks(req: any, res: any) {
     try {
         res.send({ tasks });
     } catch (error) {
         console.error(error);
     }
-};
+}
 
-export const deleteTask = (req, res) => {
+export function addTask(req: any, res: any) {
+    try {
+        const { title, description } = req.body;
+        const newTask = new Task(title, description, TaskStatus.todo);
+
+        tasks.push(newTask);
+        res.send({ tasks });
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+export function deleteTask(req: any, res: any) {
     try {
         const { id } = req.body;
-        console.log(id);
-        tasks = tasks.filter((task) => task.id !== id);
+        const index = tasks.findIndex((task) => task.id === id);
+        if (index === -1) {
+            throw new Error("task not found");
+        }
+        tasks.splice(index, 1);
         res.send({ tasks });
     } catch (error) {
         console.error(error);
-        res.send({ error });
-    }
+        res.status(500).send({ error: error.message });
+    }   
 }
 
-export const updateTaskDecription = (req: any, res: any) => {
+export function updateTaskStatus(req: any, res: any) {
     try {
-        const { decription, id } = req.body;
-        console.log(req.body);
-        if (!decription || !id) throw new Error("Please complete all fields");
-        const task = tasks.find((task) => task.id === id);
-
-        if (!tasks) throw new Error("Product not found");
-        task.description = decription;
+        const {id, status} = req.body;
+        const index = tasks.findIndex((task) => task.id === id);
+        if (index === -1) {
+            throw new Error("task not found");
+        }
+        if(status !== TaskStatus.done && status !== TaskStatus.todo){
+            throw new Error("status not valid");
+        }
+        tasks[index].changeStatus(status);
         res.send({ tasks });
     } catch (error) {
-        console.error(error);
-        res.send({ error });
+        
     }
 }
-
-export const updateTaskStatus = (req: any, res: any) => {
-    try {
-        const { status, id } = req.body;
-        console.log(req.body);
-        if (!status || !id) throw new Error("Please complete all fields");
-        const task = tasks.find((task) => task.id === id);
-
-        if (!tasks) throw new Error("task not found");
-        task.status = status;
-        res.send({ tasks });
-    } catch (error) {
-        console.error(error);
-        res.send({ error });
-    }
-}
-
-
-
-

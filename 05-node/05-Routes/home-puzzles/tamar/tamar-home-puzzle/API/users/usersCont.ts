@@ -6,6 +6,7 @@ import { User, users} from "./usersModel";
 export const registerUser = (req: any, res: any) => {
     try {
       const { name, password } = req.body;
+      console.log(name, password)
       if(!name || !password) throw new Error("Please complete all fields");
       const user = new User({ name, password });
       //check if user already exist

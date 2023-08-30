@@ -43,7 +43,8 @@ function handleRegister(ev) {
                     _a.trys.push([0, 3, , 4]);
                     ev.preventDefault(); // stop form from submitting
                     user = {
-                        name: ev.target.name.value
+                        name: ev.target.name.value,
+                        password: ev.target.password.value
                     };
                     return [4 /*yield*/, fetch('/API/users/register', {
                             method: 'POST',

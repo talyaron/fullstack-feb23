@@ -28,7 +28,7 @@ async function handleAddTask(ev: any, status: string) {
             status,
             emailUser
         }
-        if ( !status || !task.title || !task.description) throw new Error("Please complete all details");
+        if (!status || !task.title || !task.description) throw new Error("Please complete all details");
 
         const response = await fetch('/API/tasks/add-task', {
             method: 'POST',
@@ -157,7 +157,6 @@ function renderTaskHtml(task) {
         </div>
         <div class = "task_body">
         <p>${task.description}</p>
-        
         </div>`
         switch (task.status) {
             case 'toDo':
@@ -234,4 +233,31 @@ function renderUpdateTask(title: string, description: string, id: string) {
     }
 }
 
+async function renderNav() {
+    try {
+        const email = { emailUser }
+        const response = await fetch('/API/users/get-user-name', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(email)
+        })
 
+        const result = await response.json()
+        const { error, userName } = result
+        if (error) throw new Error("Some of details are incorrect");
+
+        const html = `<div class="nav">
+        <p>${userName}</p>
+        <a class="logout material-symbols-rounded" href="./index.html">Logout</a>
+    </div>`
+        const root = document.querySelector('#nav') as HTMLDivElement
+        root.innerHTML = html
+    } catch (error) {
+        console.error(error.massage);
+
+    }
+}
+
+renderNav()
