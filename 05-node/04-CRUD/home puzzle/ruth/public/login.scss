@@ -1,0 +1,36 @@
+body {
+  background-color: #1c1331;
+  display: flex;
+  color: white;
+  justify-content: center;
+  margin: 5%;
+  .wrapper {
+    text-align: center;
+  }
+}
+
+h1{
+    color: #fffebf;
+    margin-bottom :50px;
+}
+label{
+    text-align: left;
+}
+input {
+    margin: 5px;
+    padding: 5px;
+  background-color: #3a2967;
+  width: 200px;
+  height: 30px;
+  border-radius: 20px;
+  text-align: center;
+}
+
+button  {
+  background-color: #3a2967;
+  color:#fffd98;
+  border-radius: 10px;
+  padding: 15px;
+  margin: 10px;
+  border-radius:20px ;
+}
