@@ -25,6 +25,7 @@ async function handleLogin(ev:any){
         });
 
         const {error, id} = await response.json(); // get data from server
+        console.log(id);
         console.log(error);
         if (error) {
             throw new Error(error);

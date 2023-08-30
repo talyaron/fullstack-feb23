@@ -21,6 +21,10 @@ app.use("/API/tasks", tasksRouter_1.default);
 const usersRouter_1 = __importDefault(require("./API/users/usersRouter"));
 //tells express to use userRouter on the intial route "/API/users"
 app.use("/API/users", usersRouter_1.default);
+//get router from userTaskRouter:
+const userTaskRouter_1 = __importDefault(require("./API/userTasks/userTaskRouter"));
+//tells express to use userRouter on the intial route "/API/users"
+app.use("/API/userTasks", userTaskRouter_1.default);
 app.listen(port, () => {
     console.log(`app listening on pors ${port}`);
 });

@@ -60,6 +60,7 @@ function handleLogin(ev) {
                     return [4 /*yield*/, response.json()];
                 case 2:
                     _a = _b.sent(), error = _a.error, id = _a.id;
+                    console.log(id);
                     console.log(error);
                     if (error) {
                         throw new Error(error);

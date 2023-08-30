@@ -29,16 +29,15 @@ interface UserTasks{
 async function renderUser(){
     try {
         const response = await fetch('/API/users/get-user') //get the chosen user by id
+        console.log(response)
         const results = await response.json(); //the result is user
-        const Html = document.querySelector("#root")
+        const Html = document.querySelector("#userName")
         if (!Html) throw new Error("no div element catches");
         
-        const userHTML = `<div class="user">
-                            <h1>${results.name}</h1>
-                            <div id="tasksRoot"></div> 
-                         </div>`
-        renderUserTasks();
+        const userHTML = `<h1>Hello ${results.name}</h1>`
         Html.innerHTML = userHTML
+        renderUserTasks();
+
     } catch (error) {
         console.error(error)
     }
