@@ -47,15 +47,16 @@ function renderUser() {
                 case 1:
                     response = _a.sent() //get the chosen user by id
                     ;
+                    console.log(response);
                     return [4 /*yield*/, response.json()];
                 case 2:
                     results = _a.sent();
-                    Html = document.querySelector("#root");
+                    Html = document.querySelector("#userName");
                     if (!Html)
                         throw new Error("no div element catches");
-                    userHTML = "<div class=\"user\">\n                            <h1>" + results.name + "</h1>\n                            <div id=\"tasksRoot\"></div> \n                         </div>";
-                    renderUserTasks();
+                    userHTML = "<h1>Hello " + results.name + "</h1>";
                     Html.innerHTML = userHTML;
+                    renderUserTasks();
                     return [3 /*break*/, 4];
                 case 3:
                     error_1 = _a.sent();

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="./dist/tasks.js"></script>
+    <link rel="stylesheet" href="./dist/style.css" />
+  </head>
+  <body>
+    <h1 id="main-title">Tasks Manager</h1>
+    <form onsubmit="handleAddTask(event)">
+      <h2>please use this fields to add new tasks</h2>
+      <input type="text" name="title" id="title" placeholder="title" />
+      <input
+        type="text"
+        name="description"
+        id="description"
+        placeholder="description"
+      />
+      <button type="submit">ADD</button>
+      <!-- <button onclick="handleGetTasks()">Get existing tasks</button> -->
+    </form>
+    <div id="tasks"></div>
+  </body>
+</html>

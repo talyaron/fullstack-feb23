@@ -7,7 +7,7 @@ var userTsksModle_1 = require("./userTsksModle");
 exports.getTasksOfUser = function (req, res) {
     try {
         var id_1 = req.body.id;
-        //we found the user in the userTasks array by his id
+        //found the spesific user in the userTasks array by his id
         var searchUser = userTsksModle_1.userTasks.filter(function (user) { return user.id == id_1; });
         res.send(searchUser);
     }

@@ -7,8 +7,8 @@ import { UserTasks, userTasks } from "./userTsksModle";
 export const getTasksOfUser = (req: any, res: any) => {
     try {
         const {id} = req.body 
-        //we found the user in the userTasks array by his id
-        const searchUser = userTasks.filter(user => user.id == id)
+        //found the spesific user in the userTasks array by his id
+        const searchUser:UserTasks[] = userTasks.filter(user => user.id == id)
         res.send(searchUser)
     } catch (error) {
         console.error(error);

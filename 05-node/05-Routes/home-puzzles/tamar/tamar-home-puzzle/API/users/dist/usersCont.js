@@ -7,6 +7,7 @@ var usersModel_1 = require("./usersModel");
 exports.registerUser = function (req, res) {
     try {
         var _a = req.body, name_1 = _a.name, password_1 = _a.password;
+        console.log(name_1, password_1);
         if (!name_1 || !password_1)
             throw new Error("Please complete all fields");
         var user = new usersModel_1.User({ name: name_1, password: password_1 });
