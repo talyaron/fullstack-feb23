@@ -1,4 +1,6 @@
+import { Response } from 'express';
 import { Task } from "../API/tasks/taskModel";
+import { UserTasks } from "../API/users/usersModel";
 
 async function handleAddTask(event) {
   try {
@@ -179,4 +181,15 @@ async function handleAllTasks() {
   const response = await fetch("/API/get-all-tasks");
   const { tasks } = await response.json();
   renderAllTask(tasks);
+}
+
+ async function renderPage() {
+  try {
+    const userMail = window.location.search.toString().replace('?email=', '')
+    const response = await fetch("/get-Tasks-by-user", JSON.parse(userMail))
+    const {tasksArray} = await response.json()
+    renderAllTask(tasksArray)
+  } catch (error) {
+    
+  }
 }

@@ -1,3 +1,4 @@
+import { bodyParser } from 'body-parser';
 import { log } from "console";
 import { Task } from "../tasks/taskModel";
 import { UserTasks, User } from "./usersModel";
@@ -55,3 +56,13 @@ export const addUser = (req, res) => {
     res.send({ usersTasks, success: true, message: "user added" });
   } catch (error) {}
 };
+
+
+export const getTasksByUser =(req, res) => {
+  const {userMail} = req.body
+  const userTasks =  usersTasks.find(user => user.user.email === userMail)
+  const tasksArray = userTasks.tasks
+  res.send ({tasksArray})
+}
+
+export const updateUser = (req, res) => {}

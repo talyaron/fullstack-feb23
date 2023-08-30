@@ -1,6 +1,6 @@
 "use strict";
 exports.__esModule = true;
-exports.addUser = exports.login = void 0;
+exports.updateUser = exports.getTasksByUser = exports.addUser = exports.login = void 0;
 var usersModel_1 = require("./usersModel");
 var usersTasks = [];
 exports.login = function (req, res) {
@@ -48,3 +48,10 @@ exports.addUser = function (req, res) {
     }
     catch (error) { }
 };
+exports.getTasksByUser = function (req, res) {
+    var userMail = req.body.userMail;
+    var userTasks = usersTasks.find(function (user) { return user.user.email === userMail; });
+    var tasksArray = userTasks.tasks;
+    res.send({ tasksArray: tasksArray });
+};
+exports.updateUser = function (req, res) { };
