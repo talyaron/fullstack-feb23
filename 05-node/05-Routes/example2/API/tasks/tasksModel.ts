@@ -19,6 +19,8 @@ export class Task{
 
 export const tasks:Task[] = [];
 
+//join collection (class)
+
 export class UserTasks{
     id:string
     constructor(public user:User,public task:Task){

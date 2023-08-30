@@ -65,7 +65,7 @@ function handleLogin(ev) {
                         throw new Error(error);
                     }
                     //if everthink is OK, redirect to main page of the user
-                    window.location.href = "/main.html?email=" + email;
+                    window.location.href = "/main.html?email=" + email; //query
                     return [3 /*break*/, 4];
                 case 3:
                     error_1 = _b.sent();

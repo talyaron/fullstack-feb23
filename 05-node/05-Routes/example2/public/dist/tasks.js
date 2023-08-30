@@ -64,18 +64,22 @@ function handleGetTasks() {
         });
     });
 }
-handleGetTasks();
 function handeleAddTask(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var title, description, newTask, response, tasks, error_2;
+        var email, title, description, newTask, response, tasks, error_2;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
                     ev.preventDefault();
+                    email = getEmailFromQuery();
+                    if (!email)
+                        throw new Error("no email");
+                    console.log(email);
                     title = ev.target.elements.title.value;
                     description = ev.target.elements.description.value;
-                    newTask = { title: title, description: description };
+                    newTask = { title: title, description: description, email: email };
+                    console.log(newTask);
                     return [4 /*yield*/, fetch('/API/tasks/add-task', {
                             method: 'POST',
                             headers: {
