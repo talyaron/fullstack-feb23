@@ -1,9 +1,12 @@
-import { Task } from '../task/taskModel';
- export class User {
-    taskList: Task[] = [];
-
-    id? : string; 
-    constructor(public userName: string, public password: string, public phoneNumber: string, public email: string) {
-        this.id = `id-${new Date().getTime()}-${Math.random()}`;
+export class User {
+    email: string;
+    password: string;
+    id: string;
+    constructor({ email, password}: { email: string, password: string }) {
+      this.email = email;
+      this.password = password;
+      this.id = Math.random().toString();
     }
-}
+  }
+  
+  export const users: User[] = [];
