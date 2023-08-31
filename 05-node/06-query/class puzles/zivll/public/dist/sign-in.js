@@ -65,7 +65,7 @@ function handleSignIn(event) {
                         messageRoot.innerHTML = "<h3>" + result.error + "</h3><a href=\"/register.html\"><button>REGISTER NOW</button></a>";
                     }
                     else {
-                        window.location.href = "/index.html?email=" + result.email;
+                        window.location.href = "/index.html";
                     }
                     return [3 /*break*/, 4];
                 case 3:
