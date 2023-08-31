@@ -34,6 +34,19 @@ export const deleteImg = (req, res) =>{
 }
 
 export const updateImg= (req, res) =>{
-    const {url, id} = req.body;
+    try {
+        const {url, id} = req.body;
+        console.log(req.body);
+        if (!url || !id) throw new Error("Please complete all fields");
+        const img = imgs.find((img) => img.id === id);
+
+        if (!img) throw new Error("img not found");
+        img.url = url;
+        res.send({ imgs });
+    } catch (error) {
+        console.error(error);
+        res.send({ error });
+    }
     
+
 }

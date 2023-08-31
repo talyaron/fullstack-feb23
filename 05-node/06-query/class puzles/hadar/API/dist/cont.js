@@ -33,5 +33,19 @@ exports.deleteImg = function (req, res) {
     }
 };
 exports.updateImg = function (req, res) {
-    var _a = req.body, url = _a.url, id = _a.id;
+    try {
+        var _a = req.body, url = _a.url, id_2 = _a.id;
+        console.log(req.body);
+        if (!url || !id_2)
+            throw new Error("Please complete all fields");
+        var img = imgs.find(function (img) { return img.id === id_2; });
+        if (!img)
+            throw new Error("img not found");
+        img.url = url;
+        res.send({ imgs: imgs });
+    }
+    catch (error) {
+        console.error(error);
+        res.send({ error: error });
+    }
 };
