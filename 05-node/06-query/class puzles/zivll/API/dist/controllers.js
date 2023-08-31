@@ -10,7 +10,15 @@ exports.addImage = function (req, res) {
             throw new Error("some of the details are missing");
         var image = new model_1.Image(description, imageUrl);
         model_1.images.push(image);
-        res.send("image added successfully");
+        var html = model_1.images
+            .map(function (image) {
+            return "<div class=\"image>\"<img src=\"" + image.url + "\" ><p>" + image.description + "</p></div>";
+        })
+            .join(" ");
+        res.send(
+        // { massege: `image added successfully` },
+        // { image: image },
+        { html: html });
     }
     catch (error) {
         console.error(error);
@@ -19,8 +27,10 @@ exports.addImage = function (req, res) {
 };
 exports.getImage = function (req, res) {
     try {
-        var _a = req.body, imageDescription = _a.imageDescription, imageUrl = _a.imageUrl;
-        console.log();
+        // const { imageDescription, imageUrl } = req.body;
+        // console.log();
+        console.log(model_1.images);
+        res.send(model_1.images);
     }
     catch (error) {
         console.error(error);
