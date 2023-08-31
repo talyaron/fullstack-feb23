@@ -2,7 +2,7 @@
 
 import {Img} from "./model";
 
-let imgs: Img[] = [];
+import {imgs} from "./model";
 
 export const getImgs = (req,res) =>{
     try {

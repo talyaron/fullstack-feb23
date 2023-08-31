@@ -6,3 +6,5 @@ export class Img{
         this.id = Math.random().toString();
     }
 }
+
+export let imgs: Img[] = [];

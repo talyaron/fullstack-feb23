@@ -1,6 +1,6 @@
 "use strict";
 exports.__esModule = true;
-exports.Img = void 0;
+exports.imgs = exports.Img = void 0;
 var Img = /** @class */ (function () {
     function Img(url, id) {
         this.url = url;
@@ -9,3 +9,4 @@ var Img = /** @class */ (function () {
     return Img;
 }());
 exports.Img = Img;
+exports.imgs = [];
