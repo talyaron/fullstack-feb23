@@ -34,14 +34,62 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-function getImages() {
+function checkUser() {
     return __awaiter(this, void 0, void 0, function () {
-        var response, result, root, html, error_1;
+        var urlParams, email, response, result, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
-                    return [4 /*yield*/, fetch("/API//get-image", {
+                    urlParams = new URLSearchParams(window.location.search);
+                    email = urlParams.get("email");
+                    if (urlParams.size === 0 || !email) {
+                        window.location.href = "/register.html";
+                    }
+                    return [4 /*yield*/, fetch("/API/users/check-user", {
+                            method: "POST",
+                            headers: {
+                                "content-type": "application/json"
+                            },
+                            body: JSON.stringify({ email: email })
+                        })];
+                case 1:
+                    response = _a.sent();
+                    console.log(response);
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    result = _a.sent();
+                    console.log(result);
+                    // if (result.message === "user exist") {
+                    //   window.location.href = "/index.html";
+                    // }
+                    // } else {
+                    //   alert("user does not exist, please register");
+                    //   window.location.href = "/register.html";
+                    // }
+                    console.log(result.message);
+                    if (result.message === "user does not exist") {
+                        alert("user does not exist, please register");
+                        window.location.href = "/register.html";
+                    }
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_1 = _a.sent();
+                    console.error(error_1);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
+            }
+        });
+    });
+}
+function getImages() {
+    return __awaiter(this, void 0, void 0, function () {
+        var response, result, root, html, error_2;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 3, , 4]);
+                    return [4 /*yield*/, fetch("/API/images/get-image", {
                             method: "GET",
                             headers: {
                                 "content-type": "application/json"
@@ -61,8 +109,8 @@ function getImages() {
                     root.innerHTML = html;
                     return [3 /*break*/, 4];
                 case 3:
-                    error_1 = _a.sent();
-                    console.error(error_1);
+                    error_2 = _a.sent();
+                    console.error(error_2);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }
@@ -70,11 +118,12 @@ function getImages() {
     });
 }
 window.onload = function () {
+    checkUser();
     getImages();
 };
 function handleAddImage(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var image, response, result, error_2;
+        var image, response, result, error_3;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -85,7 +134,7 @@ function handleAddImage(ev) {
                         description: ev.target.imageDescription.value,
                         imageUrl: ev.target.imageUrl.value
                     };
-                    return [4 /*yield*/, fetch("/API/add-image", {
+                    return [4 /*yield*/, fetch("/API/images/add-image", {
                             method: "POST",
                             headers: {
                                 "content-type": "application/json"
@@ -102,8 +151,8 @@ function handleAddImage(ev) {
                     getImages();
                     return [3 /*break*/, 4];
                 case 3:
-                    error_2 = _a.sent();
-                    console.error(error_2);
+                    error_3 = _a.sent();
+                    console.error(error_3);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }
@@ -112,13 +161,13 @@ function handleAddImage(ev) {
 }
 function deleteImage(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var id, response, result, error_3;
+        var id, response, result, error_4;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
                     id = ev.target.id.id;
-                    return [4 /*yield*/, fetch("/API/delete-image", {
+                    return [4 /*yield*/, fetch("/API/images/delete-image", {
                             method: "DELETE",
                             headers: {
                                 "content-type": "application/json"
@@ -134,8 +183,8 @@ function deleteImage(ev) {
                     alert("" + result.message);
                     return [3 /*break*/, 4];
                 case 3:
-                    error_3 = _a.sent();
-                    console.error(error_3);
+                    error_4 = _a.sent();
+                    console.error(error_4);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }

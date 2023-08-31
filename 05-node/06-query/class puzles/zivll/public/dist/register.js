@@ -34,23 +34,23 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-function handleSignIn(event) {
+function handleRegister(event) {
     return __awaiter(this, void 0, void 0, function () {
-        var user, response, result, messageRoot, error_1;
+        var user, response, result, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
+                    debugger;
                     event.preventDefault();
                     user = {
                         email: event.target.email.value,
                         password: event.target.password.value
                     };
-                    console.log(user);
-                    return [4 /*yield*/, fetch("/API/users/login", {
+                    return [4 /*yield*/, fetch("/API/users/register", {
                             method: "POST",
                             headers: {
-                                "content-Type": "application/json"
+                                "content-type": "application/json"
                             },
                             body: JSON.stringify(user)
                         })];
@@ -60,12 +60,11 @@ function handleSignIn(event) {
                 case 2:
                     result = _a.sent();
                     console.log(result);
-                    messageRoot = document.querySelector("#message");
-                    if (result.error === "email or password are incorrect") {
-                        messageRoot.innerHTML = "<h3>" + result.error + "</h3><a href=\"/register.html\"><button>REGISTER NOW</button></a>";
+                    if (result.message === "User added successfully") {
+                        window.location.href = "/index.html?email=" + result.email;
                     }
                     else {
-                        window.location.href = "/index.html?email=" + result.email;
+                        document.querySelector("#message").innerHTML = result.message;
                     }
                     return [3 /*break*/, 4];
                 case 3:
