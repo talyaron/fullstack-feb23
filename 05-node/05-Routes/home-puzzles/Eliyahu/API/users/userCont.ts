@@ -31,6 +31,17 @@ export const login = (req: any, res: any) => {
     }
 }
 
+export const loginAdmin = (req:any, res:any)=>{
+    try {
+        const {adminEmail} = req.body
+        const admin = 'Admin'
+        if(!adminEmail) throw new Error("Missing email Aamin");
+        res.send({ok:true, adminEmail, admin})
+    } catch (error) {
+        console.error(error.message);
+    }
+}
+
 export const getUserName = (req: any, res: any) => {
     try {
         const { emailUser } = req.body

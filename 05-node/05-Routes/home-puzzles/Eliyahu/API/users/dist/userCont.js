@@ -1,6 +1,6 @@
 "use strict";
 exports.__esModule = true;
-exports.getUserName = exports.login = exports.registerUser = void 0;
+exports.getUserName = exports.loginAdmin = exports.login = exports.registerUser = void 0;
 var userModels_1 = require("./userModels");
 exports.registerUser = function (req, res) {
     try {
@@ -28,6 +28,18 @@ exports.login = function (req, res) {
         if (!user)
             throw new Error("Some of details are incorrect");
         res.send({ ok: true, email: user.email });
+    }
+    catch (error) {
+        console.error(error.message);
+    }
+};
+exports.loginAdmin = function (req, res) {
+    try {
+        var adminEmail = req.body.adminEmail;
+        var admin = 'Admin';
+        if (!adminEmail)
+            throw new Error("Missing email Aamin");
+        res.send({ ok: true, adminEmail: adminEmail, admin: admin });
     }
     catch (error) {
         console.error(error.message);

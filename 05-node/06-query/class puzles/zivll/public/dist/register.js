@@ -34,52 +34,42 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-function handleLogin(ev) {
+function handleRegister(event) {
     return __awaiter(this, void 0, void 0, function () {
-        var user, response, _a, error, email, error_1;
-        return __generator(this, function (_b) {
-            switch (_b.label) {
+        var user, response, result, error_1;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
                 case 0:
-                    _b.trys.push([0, 3, , 4]);
-                    ev.preventDefault();
+                    _a.trys.push([0, 3, , 4]);
+                    debugger;
+                    event.preventDefault();
                     user = {
-                        password: ev.target.password.value,
-                        email: ev.target.email.value
+                        email: event.target.email.value,
+                        password: event.target.password.value
                     };
-                    if (user.email === 'admin@gmail.com' && user.password === 'admin') {
-                        // const adminEmail = user.email
-                        // const response = await fetch('/API/users/loginAdmin', {
-                        //     method: 'POST',
-                        //     headers: {
-                        //         'Content-type': 'application/json'
-                        //     },
-                        //     body: JSON.stringify(adminEmail)
-                        // })
-                        // const{error, admin} = await response.json()
-                        window.location.href = "/main.html?email=" + user.email;
-                    }
-                    if (!user.email || !user.password)
-                        throw new Error("Please complete all fields");
-                    return [4 /*yield*/, fetch('/API/users/login', {
-                            method: 'POST',
+                    return [4 /*yield*/, fetch("/API/users/register", {
+                            method: "POST",
                             headers: {
-                                'Content-type': 'application/json'
+                                "content-type": "application/json"
                             },
                             body: JSON.stringify(user)
                         })];
                 case 1:
-                    response = _b.sent();
+                    response = _a.sent();
                     return [4 /*yield*/, response.json()];
                 case 2:
-                    _a = _b.sent(), error = _a.error, email = _a.email;
-                    console.log(error);
-                    if (error)
-                        throw new Error(error);
-                    window.location.href = "/main.html?email=" + email;
+                    result = _a.sent();
+                    console.log(result);
+                    if (result.message === "User added successfully") {
+                        window.location.href = "/index.html?email=" + result.email;
+                    }
+                    else {
+                        document.querySelector("#message").innerHTML = result.message;
+                    }
                     return [3 /*break*/, 4];
                 case 3:
-                    error_1 = _b.sent();
-                    console.error(error_1.message);
+                    error_1 = _a.sent();
+                    console.error(error_1);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }
