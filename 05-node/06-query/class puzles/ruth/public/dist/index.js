@@ -1,4 +1,3 @@
-"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -35,8 +34,21 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-exports.__esModule = true;
-var imagesModel_1 = require("../API/Images/imagesModel");
+var Img = /** @class */ (function () {
+    function Img(url, title) {
+        this.url = url;
+        this.title = title;
+    }
+    return Img;
+}());
+var User = /** @class */ (function () {
+    function User(_a) {
+        var email = _a.email, password = _a.password;
+        this.email = email;
+        this.password = password;
+    }
+    return User;
+}());
 function addImg(event) {
     try {
         event.preventDefault();
@@ -44,11 +56,13 @@ function addImg(event) {
         var imgTitle = event.target.title.value;
         if (!imgSrc || !imgTitle)
             throw new Error("img or title not found");
-        var newImg = new imagesModel_1.Image(imgSrc, imgTitle);
-        addImageToUser(newImg);
+        var newImg = new Img(imgSrc, imgTitle);
         renderImg(newImg);
+        addImageToUser(newImg);
     }
-    catch (error) { }
+    catch (error) {
+        console.error(error);
+    }
 }
 function addImageToUser(newImg) {
     return __awaiter(this, void 0, void 0, function () {
@@ -84,7 +98,8 @@ function addImageToUser(newImg) {
     });
 }
 function renderImg(newImg) {
-    var html = "\n    <div class=\"imgBlock\">\n    <img src=\"" + newImg.imgSrc + "\">\n    <h4>" + newImg.imgTitle + "</h4>\n</div>";
+    console.log(newImg.title);
+    var html = "\n    <div class=\"imgBlock\">\n    <img src=\"" + newImg.url + "\">\n    <h4>" + newImg.title + "</h4>\n</div>";
     document.querySelector(".gallery").innerHTML += html;
 }
 function getUserFromQuery() {
@@ -92,5 +107,31 @@ function getUserFromQuery() {
         var urlStr = new URLSearchParams(window.location.search);
         return urlStr.get("email");
     }
-    catch (error) { }
+    catch (error) {
+        console.error(error.message);
+    }
+}
+function getImgsByEmail() {
+    return __awaiter(this, void 0, void 0, function () {
+        var response, thisUserImgs, error_2;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 3, , 4]);
+                    return [4 /*yield*/, fetch("API/img/get-imgs-by-user")];
+                case 1:
+                    response = _a.sent();
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    thisUserImgs = (_a.sent()).thisUserImgs;
+                    thisUserImgs.forEach(function (userImg) { return renderImg(userImg.img); });
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_2 = _a.sent();
+                    console.error(error_2.message);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
+            }
+        });
+    });
 }
