@@ -5,7 +5,7 @@ async function handleLogin(ev: any) {
             email: ev.target.email.value
         }
         if (!user.email || !user.password) throw new Error ("Please complete all fields")
-        const response = await fetch('/API/Users/login' {
+        const response = await fetch('/API/Users/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

@@ -7,6 +7,18 @@
     <link rel="stylesheet" href="./dist/style.css">
 </head>
 <body>
+    <h1>Hi All</h1>
+    
+    <h2>Add Product</h2>
+    <form onsubmit="handleAddTask(event)">
+        <input type="text" name="text" placeholder="text">
+
+        <button type="submit">ADD</button>
+    </form>
+
+    <button onclick="handleGetTasks()">GET tasks</button>
+    <div id="root"></div>
+
     <script src="./dist/type.js"></script>
 </body>
 </html>
