@@ -1,3 +1,4 @@
+import { log } from 'console';
 import { User, users } from "./usersModel";
 
 export const login = (req, res) => {
@@ -10,6 +11,7 @@ export const login = (req, res) => {
     );
     if (!user) throw new Error("Incorrect email or password");
     res.send({user,  ok: true });
+    log(user.email + " ! ! ! -- LOGIN SUCCESSFUL ! ! !")
   } catch (error) {
     console.error(error.message);
   }
@@ -22,9 +24,10 @@ export const register = (req, res) => {
     if (users.find((user) => user.email === email))
       throw new Error("this email already used");
     const newUser = new User({ email, password });
-    console.log(newUser);
     users.push(newUser);
     res.send({ success: true });
+    log(newUser.email + " ! ! ! -- REGISTER SUCCESSFUL -- ! ! !")
+
   } catch (error) {
     console.log(users)
     console.error(error.message);

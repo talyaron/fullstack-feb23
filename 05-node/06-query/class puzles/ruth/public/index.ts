@@ -63,12 +63,14 @@ function getUserFromQuery() {
   }
 }
 
-async function getImgsByEmail(){
-try {
-  const response = await fetch ("API/img/get-imgs-by-user")
-  const {thisUserImgs} =  await response.json()
-  thisUserImgs.forEach(userImg => renderImg(userImg.img))
-} catch (error) {
-  console.error(error.message);
-}
+async function getImgsByEmail() {
+  try {
+    const email = getUserFromQuery();
+    const response = await fetch(`API/img/get-imgs-by-user?email=${email}`);
+    const { thisUserImgs } = await response.json();
+    document.querySelector(".gallery").innerHTML += "";
+    thisUserImgs.forEach((userImg) => renderImg(userImg.image));
+  } catch (error) {
+    console.error(error);
+  }
 }

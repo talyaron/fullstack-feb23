@@ -113,22 +113,24 @@ function getUserFromQuery() {
 }
 function getImgsByEmail() {
     return __awaiter(this, void 0, void 0, function () {
-        var response, thisUserImgs, error_2;
+        var email, response, thisUserImgs, error_2;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
-                    return [4 /*yield*/, fetch("API/img/get-imgs-by-user")];
+                    email = getUserFromQuery();
+                    return [4 /*yield*/, fetch("API/img/get-imgs-by-user?email=" + email)];
                 case 1:
                     response = _a.sent();
                     return [4 /*yield*/, response.json()];
                 case 2:
                     thisUserImgs = (_a.sent()).thisUserImgs;
-                    thisUserImgs.forEach(function (userImg) { return renderImg(userImg.img); });
+                    document.querySelector(".gallery").innerHTML += "";
+                    thisUserImgs.forEach(function (userImg) { return renderImg(userImg.image); });
                     return [3 /*break*/, 4];
                 case 3:
                     error_2 = _a.sent();
-                    console.error(error_2.message);
+                    console.error(error_2);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }

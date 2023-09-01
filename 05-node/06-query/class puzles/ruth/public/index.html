@@ -8,24 +8,27 @@
     <title>Document</title>
   </head>
   <body onload="getImgsByEmail()">
-    <h1>hallo gallery</h1>
-    <a href="./login.html">LOGIN</a>
-    <a href="./register.html">Register</a>
-    <form onsubmit="addImg(event)">
-      <input
-        type="url"
-        name="imgSrc"
-        id="imgScrInput"
-        placeholder="img - src" />
-      <input
-        type="text"
-        name="title"
-        id="imgTitelInput"
-        placeholder="img - title" />
+    <div class="wrapper">
+      <h1>hallo gallery</h1>
+      <a href="./login.html">LOGIN</a>
+      <a href="./register.html">Register</a>
+      <button onclick="getImgsByEmail()">get img by user</button>
+      <form onsubmit="addImg(event)">
+        <input
+          type="url"
+          name="imgSrc"
+          id="imgScrInput"
+          placeholder="img - src" />
+        <input
+          type="text"
+          name="title"
+          id="imgTitelInput"
+          placeholder="img - title" />
 
-      <button type="submit">add image</button>
-    </form>
+        <button type="submit">add image</button>
+      </form>
 
-    <div class="gallery"></div>
+      <div class="gallery"></div>
+    </div>
   </body>
 </html>

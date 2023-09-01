@@ -1,3 +1,42 @@
+body {
+  background-color: #1c1331;
+  display: flex;
+  justify-content: center;
+}
+body .wrapper {
+  text-align: center;
+}
+
+h1 {
+  color: white;
+  text-align: center;
+}
+
+.addTaskForm {
+  padding: 15px;
+  margin: 20px;
+  background-color: white;
+  background-color: #22173b;
+  border-radius: 20px;
+  width: 340px;
+  box-shadow: 3px 4px 15px 2px rgba(0, 0, 0, 0.379);
+  display: flex;
+  justify-content: space-between;
+}
+
+button {
+  background-color: #382760;
+  color: white;
+  border-radius: 10px;
+  padding: 10px;
+  min-width: 30px;
+  border: 1px solid black;
+}
+
+input {
+  height: 25px;
+}
+
 img {
   width: 90px;
 }

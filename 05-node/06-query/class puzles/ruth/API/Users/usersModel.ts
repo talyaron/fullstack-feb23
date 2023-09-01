@@ -8,4 +8,6 @@ export class User {
 }
 
 
-export const users: User[] = []
+export const users: User[] = [
+  new User({email:"manager@manager.com",password:"1234567890"})
+]

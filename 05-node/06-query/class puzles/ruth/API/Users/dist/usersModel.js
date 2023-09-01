@@ -10,4 +10,6 @@ var User = /** @class */ (function () {
     return User;
 }());
 exports.User = User;
-exports.users = [];
+exports.users = [
+    new User({ email: "manager@manager.com", password: "1234567890" })
+];
