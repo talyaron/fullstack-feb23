@@ -1,4 +1,5 @@
-import { tasks, TaskStatus, Task } from "./tasksModel";
+import { users } from '../Users/usersModel';
+import { tasks, TaskStatus, Task, userTasks, UserTasks } from './tasksModel';
 
 export function getTasks(req: any, res: any) {
   try {
@@ -23,17 +24,20 @@ export function addTask(req: any, res: any) {
 
 
 
-// export const deleteTask = (req: any, res: any) => {
-//     try {
-//       const { id } = req.body;
-//       console.log(id);
-//       tasks = tasks.filter((task) => task.id !== id);
-//       res.send({ tasks });
-//     } catch (error) {
-//       console.error(error);
-//       res.send({ error });
-//     }
-//   }
+export const deleteTask = (req: any, res: any) => {
+    try {
+      const { id } = req.body
+      const index = tasks.findIndex((task) => task.id === id)
+      if (index === -1) {
+        throw new Error("task not found")
+      }
+      tasks.splice(index, 1)
+      res.send({ tasks });
+    } catch (error) {
+      console.error(error);
+      res.send({ error });
+    }
+  }
 
 export const updateTaskStatus = (req: any, res: any) => {
   try {
@@ -48,5 +52,25 @@ export const updateTaskStatus = (req: any, res: any) => {
   } catch (error) {
     console.error(error);
     res.send({ error });
+  }
+}
+
+
+export function getUserTasks(req: any, res: any) {
+  try {
+
+    const { email } = req.query
+    if (!email) {
+      throw new Error("email is required")
+    }
+
+    const _userTasks = userTasks.filter((usertask) => usertask.user.email === email)
+    const _tasks = _userTasks.map((usertask) => usertask.task)
+
+    res.send({ tasks: _tasks })
+
+  } catch (error) {
+    console.error(error)
+    res.status(500).send({error: error.message})
   }
 }
