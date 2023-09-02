@@ -46,7 +46,7 @@ function renderImgHTML(img: Img) {
            <img src="${img.url}"/>
         </div>
         <form id=${img.id} onsubmit="updateImg(event)">
-        <input type="url"  value="${img.url}" placeholder="url" />
+        <input type="url" name="url" value="${img.url}" placeholder="url" />
         <button type="submit">update</button>
         </form>
         <button onclick="handleDeleteImg('${img.id}')">Delete</button>`

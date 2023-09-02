@@ -96,7 +96,7 @@ function getImgs() {
 }
 function renderImgHTML(img) {
     try {
-        var html = "<div class=\"imgs\">\n           <img src=\"" + img.url + "\"/>\n        </div>\n        <form id=" + img.id + " onsubmit=\"updateImg(event)\">\n        <input type=\"url\"  value=\"" + img.url + "\" placeholder=\"url\" />\n        <button type=\"submit\">update</button>\n        </form>\n        <button onclick=\"handleDeleteImg('" + img.id + "')\">Delete</button>";
+        var html = "<div class=\"imgs\">\n           <img src=\"" + img.url + "\"/>\n        </div>\n        <form id=" + img.id + " onsubmit=\"updateImg(event)\">\n        <input type=\"url\" name=\"url\" value=\"" + img.url + "\" placeholder=\"url\" />\n        <button type=\"submit\">update</button>\n        </form>\n        <button onclick=\"handleDeleteImg('" + img.id + "')\">Delete</button>";
         return html;
     }
     catch (error) {
