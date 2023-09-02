@@ -11,6 +11,15 @@ h1 {
   justify-content: center;
 }
 
+.imgs img {
+  width: 100px;
+  height: 100%;
+}
+.imgs button {
+  font-size: 10px;
+  width: 40px;
+}
+
 form {
   display: flex;
   flex-direction: column;

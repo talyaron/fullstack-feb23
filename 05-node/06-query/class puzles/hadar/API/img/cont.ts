@@ -1,8 +1,7 @@
 //Taking the model from the model file
 
 import {Img} from "./model";
-
-import {imgs} from "./model";
+let imgs: Img[] = [];
 
 export const getImgs = (req,res) =>{
     try {
@@ -15,7 +14,7 @@ export const getImgs = (req,res) =>{
 export const addImg = (req, res) =>{
     try {
         const img: Img = req.body;
-        imgs.push(new Img(img.url, img.id))
+        imgs.push(new Img(img))
         res.send({imgs})
 
     } catch (error) {
