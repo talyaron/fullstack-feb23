@@ -1,5 +1,6 @@
 async function handleLogin(ev: any) {
     try {
+        ev.preventDefault()
         const user = {
             password: ev.target.password.value,
             email: ev.target.email.value
