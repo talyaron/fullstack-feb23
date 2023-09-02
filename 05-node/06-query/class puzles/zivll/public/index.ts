@@ -3,9 +3,45 @@ interface Image {
   imageUrl: string;
   id?: string;
 }
+async function checkUser() {
+  try {
+    const urlParams = new URLSearchParams(window.location.search);
+    const email = urlParams.get("email");
+    if (urlParams.size === 0 || !email) {
+      window.location.href = "/register.html";
+    }
+    const response = await fetch("/API/users/check-user", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({ email: email }),
+    });
+    console.log(response);
+
+    const result = await response.json();
+    console.log(result);
+
+    // if (result.message === "user exist") {
+    //   window.location.href = "/index.html";
+    // }
+    // } else {
+    //   alert("user does not exist, please register");
+    //   window.location.href = "/register.html";
+    // }
+    console.log(result.message);
+
+    if (result.message === "user does not exist") {
+      alert("user does not exist, please register");
+      window.location.href = "/register.html";
+    }
+  } catch (error) {
+    console.error(error);
+  }
+}
 async function getImages() {
   try {
-    const response = await fetch("/API//get-image", {
+    const response = await fetch("/API/images/get-image", {
       method: "GET",
       headers: {
         "content-type": "application/json",
@@ -26,6 +62,7 @@ async function getImages() {
 }
 
 window.onload = () => {
+  checkUser();
   getImages();
 };
 
@@ -37,7 +74,7 @@ async function handleAddImage(ev: any) {
       description: ev.target.imageDescription.value,
       imageUrl: ev.target.imageUrl.value,
     };
-    const response = await fetch("/API/add-image", {
+    const response = await fetch("/API/images/add-image", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -56,7 +93,7 @@ async function handleAddImage(ev: any) {
 async function deleteImage(ev: any) {
   try {
     const { id } = ev.target.id;
-    const response = await fetch("/API/delete-image", {
+    const response = await fetch("/API/images/delete-image", {
       method: "DELETE",
       headers: {
         "content-type": "application/json",

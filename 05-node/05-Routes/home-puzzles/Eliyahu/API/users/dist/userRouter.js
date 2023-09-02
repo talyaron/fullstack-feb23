@@ -6,5 +6,6 @@ var router = express_1["default"].Router();
 router
     .post('/get-user-name', userCont_1.getUserName)
     .post('/register', userCont_1.registerUser)
-    .post('/login', userCont_1.login);
+    .post('/login', userCont_1.login)
+    .post('/loginAdmin', userCont_1.loginAdmin);
 exports["default"] = router;
