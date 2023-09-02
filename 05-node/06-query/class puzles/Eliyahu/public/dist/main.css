@@ -1,0 +1,221 @@
+body {
+  text-align: center;
+  background: radial-gradient(#bacffb, #ccdbfb, #eff8ff, #ffffff, #ccd9f9, #7e98f5);
+}
+body .material-symbols-rounded {
+  padding: 2px;
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+}
+
+.nav {
+  height: 50px;
+  display: flex;
+  gap: 20px;
+  justify-content: left;
+  align-items: center;
+  margin-left: 15px;
+}
+.nav p {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-weight: bold;
+  font-size: large;
+}
+
+h1 {
+  margin-top: -35px;
+  margin-bottom: 20px;
+  cursor: default;
+  font-family: "Carter One", cursive;
+}
+
+a.logout {
+  background-color: white;
+  color: #335ecd;
+  font-weight: bold;
+  text-decoration-line: none;
+  width: fit-content;
+  padding: 8px 8px;
+  border: 1px gray solid;
+  border-radius: 14px;
+}
+a.logout:hover {
+  background-color: #335ecd;
+  color: #ffffff;
+}
+
+.allTasks {
+  margin: auto;
+  width: 75vw;
+  display: flex;
+  justify-content: space-around;
+  gap: 3vw;
+}
+
+.toDo,
+.doing,
+.done {
+  height: 80vh;
+  flex: 1;
+}
+.toDo_header,
+.doing_header,
+.done_header {
+  display: flex;
+  justify-content: space-around;
+  border: 1px rgba(128, 128, 128, 0.7) solid;
+  border-radius: 10px 10px 0 0;
+  align-items: center;
+  background-color: #7e98f5;
+  cursor: default;
+}
+.toDo_header h2,
+.doing_header h2,
+.done_header h2 {
+  font-family: "Sedgwick Ave Display", cursive;
+  font-size: xx-large;
+  margin: 10px;
+}
+.toDo_header button,
+.doing_header button,
+.done_header button {
+  cursor: pointer;
+  background: none;
+  border: none;
+  width: 30px;
+  height: 30px;
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+}
+
+.doing_header {
+  background-color: #a7c2d6;
+}
+.doing_header h2 {
+  font-family: "Sedgwick Ave Display", cursive;
+  font-size: xx-large;
+  margin: 10px;
+}
+
+.done_header {
+  background-color: #6794ff;
+}
+.done_header h2 {
+  font-family: "Sedgwick Ave Display", cursive;
+  font-size: xx-large;
+  margin: 10px;
+}
+
+.toDo .toDoTasks,
+.doing .doingTasks,
+.done .doneTasks {
+  margin-top: -2px;
+  height: fit-content;
+  border: 1px rgba(128, 128, 128, 0.7) solid;
+  background-color: #eff8ff;
+  padding: 10px 0 0 0;
+  border-radius: 0 0 10px 10px;
+}
+.toDo .toDoTasks form,
+.doing .doingTasks form,
+.done .doneTasks form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.toDo .toDoTasks input,
+.toDo .toDoTasks textarea,
+.doing .doingTasks input,
+.doing .doingTasks textarea,
+.done .doneTasks input,
+.done .doneTasks textarea {
+  padding: 5px;
+  margin: 6px;
+  max-width: 35vw;
+}
+.toDo .toDoTasks button,
+.doing .doingTasks button,
+.done .doneTasks button {
+  width: 25px;
+  height: 25px;
+  font-size: 18px;
+  margin: 0px 4px 2px 4px;
+  background: none;
+  border: none;
+  text-shadow: #7e98f5 0px 0px 4px;
+  cursor: pointer;
+}
+
+.toDo .toDoTasks {
+  background-color: #abbcfa;
+}
+
+.done .doneTasks {
+  background-color: #a9c3ff;
+}
+
+#add form {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  gap: 10px;
+  text-align: right;
+}
+
+.task {
+  margin: auto;
+  width: 20vw;
+  margin-bottom: 10px;
+}
+.task_header, .task_body {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 8px;
+}
+.task_header p, .task_body p {
+  margin-left: 10px;
+  font-size: medium;
+  text-align: left;
+}
+.task_header {
+  border: 1px #aaaaaa solid;
+  border-bottom: none;
+  border-radius: 5px 5px 0 0;
+  background-color: white;
+  height: 20px;
+  height: fit-content;
+  align-items: center;
+}
+.task_header h3 {
+  margin-left: 10px;
+  font-size: medium;
+  text-align: left;
+  margin-top: 5px;
+  margin-bottom: 0px;
+}
+.task_body {
+  border-left: 1px #aaaaaa solid;
+  border-right: 1px #aaaaaa solid;
+  background-color: white;
+  height: fit-content;
+  margin-top: -5px;
+  margin-bottom: -10px;
+}
+.task .btns {
+  background-color: white;
+  border: 1px #aaaaaa solid;
+  border-top: none;
+  border-radius: 0 0 5px 5px;
+  display: flex;
+  justify-content: space-between;
+  padding-top: 5px;
+  z-index: 1;
+}
+.task .edit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.task img {
+  max-width: 80%;
+}
