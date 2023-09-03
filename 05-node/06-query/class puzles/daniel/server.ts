@@ -11,8 +11,11 @@ app.use(express.json());
 // // // tells express to use tasksRouter on the initial route "/API/tasks"
 // // app.use("/API/tasks", tasksRouter)
 
-import router from "./API/img/imgRouter";
-app.use("/API/img", router);
+import imgRouter from "./API/img/imgRouter";
+app.use("/API/img", imgRouter);
+
+import usersRouter from "./API/users/usersRouter";
+app.use("/API/users", usersRouter)
 
 app.listen(port, ()=>{
     console.log(`Example app listening on port ${port}`);

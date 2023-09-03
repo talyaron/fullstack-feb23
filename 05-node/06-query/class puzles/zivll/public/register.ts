@@ -1,6 +1,5 @@
 async function handleRegister(event: any) {
   try {
-    debugger;
     event.preventDefault();
     const user = {
       email: event.target.email.value,
@@ -18,7 +17,7 @@ async function handleRegister(event: any) {
     if (result.message === "User added successfully") {
       window.location.href = `/index.html?email=${result.email}`;
     } else {
-      document.querySelector("#message").innerHTML = result.message;
+      alert(`${result.message}`);
     }
   } catch (error) {
     console.error(error);

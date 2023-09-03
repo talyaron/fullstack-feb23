@@ -15,6 +15,8 @@ app.use(express_1.default.json());
 // // app.use("/API/tasks", tasksRouter)
 const imgRouter_1 = __importDefault(require("./API/img/imgRouter"));
 app.use("/API/img", imgRouter_1.default);
+const usersRouter_1 = __importDefault(require("./API/users/usersRouter"));
+app.use("/API/users", usersRouter_1.default);
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`);
 });

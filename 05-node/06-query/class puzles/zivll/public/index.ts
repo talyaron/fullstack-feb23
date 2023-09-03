@@ -7,7 +7,9 @@ async function checkUser() {
   try {
     const urlParams = new URLSearchParams(window.location.search);
     const email = urlParams.get("email");
-    if (urlParams.size === 0 || !email) {
+    console.log(email);
+
+    if (!email) {
       window.location.href = "/register.html";
     }
     const response = await fetch("/API/users/check-user", {
@@ -41,15 +43,19 @@ async function checkUser() {
 }
 async function getImages() {
   try {
+    const urlParams = new URLSearchParams(window.location.search);
+    const email = urlParams.get("email");
     const response = await fetch("/API/images/get-image", {
       method: "GET",
       headers: {
         "content-type": "application/json",
       },
+      // body: JSON.stringify({ email: email }),
     });
     const result = await response.json();
     const root = document.querySelector("#images");
-    const html = result
+    const imagesByUser = result.filter((user) => user.email === email);
+    const html = imagesByUser
       .map(
         (image) =>
           `<div class="image"><p>${image.description}</p><img src="${image.url}" ><button class="delete" id="${image.id}" onclick="deleteImage(event)">Delete Image</button></div>`
@@ -60,19 +66,43 @@ async function getImages() {
     console.error(error);
   }
 }
+async function checkIfAdmin() {
+  try {
+    const urlParams = new URLSearchParams(window.location.search);
+    const email = urlParams.get("email");
+    const response = await fetch("/API/users/check-admin", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ email: email }),
+    });
+    const result = await response.json();
+    console.log(result);
+    debugger;
 
+    if (result.message === "user is admin") {
+      const root = document.querySelector(".admin-list");
+      root.innerHTML = result.html;
+    }
+  } catch (error) {
+    console.error(error);
+  }
+}
 window.onload = () => {
   checkUser();
   getImages();
+  checkIfAdmin();
 };
 
 async function handleAddImage(ev: any) {
   try {
     ev.preventDefault();
     console.dir(ev);
+    const urlParams = new URLSearchParams(window.location.search);
+    const email = urlParams.get("email");
     const image = {
       description: ev.target.imageDescription.value,
       imageUrl: ev.target.imageUrl.value,
+      email: email,
     };
     const response = await fetch("/API/images/add-image", {
       method: "POST",

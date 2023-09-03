@@ -9,6 +9,12 @@
 <body onload="renderHelloUser()">
     <h1>Home Page</h1>
     <div id="helloUser"></div>
+    <!-- form for add img -->
+    <form onsubmit="handleAddImg(event)">
+        <input type="text" name="titel" placeholder="img description">
+        <input type="text" name="imgUrl" placeholder="img url">
+        <input type="submit" value="Upload Image" name="submit">
+    </form>
     
 </body>
 </html>

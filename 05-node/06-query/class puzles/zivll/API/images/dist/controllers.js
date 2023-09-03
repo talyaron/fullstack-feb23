@@ -4,11 +4,11 @@ exports.deleteImage = exports.updateImage = exports.getImage = exports.addImage 
 var model_1 = require("./model");
 exports.addImage = function (req, res) {
     try {
-        var _a = req.body, description = _a.description, imageUrl = _a.imageUrl;
+        var _a = req.body, description = _a.description, imageUrl = _a.imageUrl, email = _a.email;
         console.log({ description: description, imageUrl: imageUrl });
         if (!description || !imageUrl)
             throw new Error("some of the details are missing");
-        var image = new model_1.Image(description, imageUrl);
+        var image = new model_1.Image(description, imageUrl, email);
         model_1.images.push(image);
         var html = model_1.images
             .map(function (image) {
@@ -45,8 +45,15 @@ exports.updateImage = function (req, res) {
 };
 exports.deleteImage = function (req, res) {
     try {
+        var id_1 = req.body.id;
+        var index = model_1.images.findIndex(function (Image) {
+            Image.id === id_1;
+        });
+        model_1.images.splice(index, 1);
+        res.status(200).send({ message: "Image deleted successfully" });
     }
     catch (error) {
         console.error(error);
+        res.status(500).send(error.message);
     }
 };
