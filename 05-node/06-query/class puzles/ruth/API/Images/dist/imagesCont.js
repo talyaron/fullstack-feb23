@@ -1,6 +1,6 @@
 "use strict";
 exports.__esModule = true;
-exports.getImgsByEmail = exports.addImgToUser = void 0;
+exports.updateTitle = exports.deleteImg = exports.getImgsByEmail = exports.addImgToUser = void 0;
 var console_1 = require("console");
 var usersModel_1 = require("../Users/usersModel");
 var imagesModel_1 = require("./imagesModel");
@@ -36,6 +36,40 @@ exports.getImgsByEmail = function (req, res) {
             throw new Error("not found imgs to this user");
         res.send({ thisUserImgs: thisUserImgs });
         console_1.log("user:" + email_1 + " images send to client");
+    }
+    catch (error) {
+        console.error(error.message);
+    }
+};
+exports.deleteImg = function (req, res) {
+    try {
+        var id_1 = req.body.id;
+        if (!id_1)
+            throw new Error("id not provided");
+        console.log(imagesModel_1.userImgs[0].image.id);
+        console.log(id_1);
+        var userImg = imagesModel_1.userImgs.find(function (userImg) { return userImg.image.id == id_1; });
+        if (!userImg)
+            throw new Error("image not found");
+        imagesModel_1.userImgs.filter(function (_userImg) { return _userImg.image.id != id_1; });
+        res.send({ ok: true });
+    }
+    catch (error) {
+        console.error(error.message);
+    }
+};
+exports.updateTitle = function (req, res) {
+    try {
+        var _a = req.body, imgId_1 = _a.imgId, newTitle = _a.newTitle;
+        if (!imgId_1 || !newTitle)
+            throw new Error("id or title not provided");
+        var userImg = imagesModel_1.userImgs.find(function (_userImg) { return _userImg.image.id == imgId_1; });
+        console.log(imgId_1);
+        console.log(imagesModel_1.userImgs);
+        if (!userImg)
+            throw new Error("image not found");
+        userImg.image.title = newTitle;
+        res.send({ ok: true, title: newTitle });
     }
     catch (error) {
         console.error(error.message);
