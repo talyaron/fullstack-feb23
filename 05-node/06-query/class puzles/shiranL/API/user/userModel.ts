@@ -1,6 +1,7 @@
 export class User {
     id : string;
-    constructor(public email:string,public password:string, id?:string) {
+    isLogIn:boolean = false;
+    constructor(public email:string,public password:string, id?:string  ) {
         this.email = email;
         this.password = password;
         if (id) this.id = id;
