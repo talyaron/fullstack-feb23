@@ -20,7 +20,6 @@ mongoose.connect("mongodb+srv://tal:mwtBquKP1ZHIIQGH@cluster0.0hzknon.mongodb.ne
   console.error(err)
 })
 
-//mwtBquKP1ZHIIQGH
 
 
 
