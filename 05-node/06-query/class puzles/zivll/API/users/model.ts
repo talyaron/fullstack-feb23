@@ -6,7 +6,7 @@ export class User {
   constructor(email: string, password: string, admin?: boolean) {
     this.email = email;
     this.password = password;
-    this.admin = admin;
+    this.admin = admin || false;
     this.id = Math.random().toString(36).substring(2);
   }
 }
