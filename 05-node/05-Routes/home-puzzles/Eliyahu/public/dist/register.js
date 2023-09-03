@@ -44,6 +44,7 @@ function handleRegister(ev) {
                     ev.preventDefault();
                     passwordCheck = ev.target.passwordCheck.value;
                     user = {
+                        name: ev.target.name.value,
                         password: ev.target.password.value,
                         email: ev.target.email.value
                     };

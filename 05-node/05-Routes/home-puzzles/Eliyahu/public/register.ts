@@ -3,6 +3,7 @@ async function handleRegister(ev: any) {
         ev.preventDefault()
         const passwordCheck = ev.target.passwordCheck.value
         const user = {
+            name:ev.target.name.value,
             password: ev.target.password.value,
             email: ev.target.email.value
         }

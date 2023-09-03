@@ -24,14 +24,19 @@ async function handleGetTasks() {
     }
 }
 
-handleGetTasks();
+
 
 async function handeleAddTask(ev: any) {
     try {
         ev.preventDefault();
+
+        const email = getEmailFromQuery();
+        if (!email) throw new Error("no email");
+        console.log(email)
         const title = ev.target.elements.title.value;
         const description = ev.target.elements.description.value;
-        const newTask = { title, description };
+        const newTask = { title, description, email };
+        console.log(newTask)
         const response = await fetch('/API/tasks/add-task', {
             method: 'POST',
             headers: {

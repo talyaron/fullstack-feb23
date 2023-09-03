@@ -7,12 +7,16 @@
     <title>Document</title>
     <link rel="stylesheet" href="./dist/main.css">
     <script src="./dist/tasks.js" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Carter+One&family=Sedgwick+Ave+Display&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
 
 <body>
+    <div id="nav"></div>
     <h1>MY Task Manager</h1>
-    <button class="logout"> <a href="./index.html">Logout</a></button>
        <div class="allTasks">
         <div class="toDo">
             <div class="toDo_header">
@@ -23,7 +27,7 @@
         </div>
         <div class="doing">
             <div class="doing_header">
-                <h2>Doing</h2>
+                <h2 style="display: block; margin-bottom: 2px;">Doing</h2>
                 <button onclick="renderAddTask('doing')"class="material-symbols-rounded">add</button>
             </div>
             <div class="doingTasks" id="doingTasks"></div>

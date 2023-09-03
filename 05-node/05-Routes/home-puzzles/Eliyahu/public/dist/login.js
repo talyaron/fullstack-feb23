@@ -46,6 +46,18 @@ function handleLogin(ev) {
                         password: ev.target.password.value,
                         email: ev.target.email.value
                     };
+                    if (user.email === 'admin@gmail.com' && user.password === 'admin') {
+                        // const adminEmail = user.email
+                        // const response = await fetch('/API/users/loginAdmin', {
+                        //     method: 'POST',
+                        //     headers: {
+                        //         'Content-type': 'application/json'
+                        //     },
+                        //     body: JSON.stringify(adminEmail)
+                        // })
+                        // const{error, admin} = await response.json()
+                        window.location.href = "/main.html?email=" + user.email;
+                    }
                     if (!user.email || !user.password)
                         throw new Error("Please complete all fields");
                     return [4 /*yield*/, fetch('/API/users/login', {

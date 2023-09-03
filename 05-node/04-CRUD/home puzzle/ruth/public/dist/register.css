@@ -1,0 +1,8 @@
+body {
+  background-color: #1c1331;
+  display: flex;
+  justify-content: center;
+}
+body .wrapper {
+  text-align: center;
+}

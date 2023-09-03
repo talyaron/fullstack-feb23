@@ -22,11 +22,15 @@ async function handleGetTasks() {
   }
 }
 
-handleGetTasks()
 
 async function handleAddTask(ev: any) {
   try {
     ev.preventDefault()
+
+    const email = getEmailFromQuery();
+    if (!email) throw new Error("no email");
+    console.log(email)
+  
     const title = ev.target.elements.title.value;
     const description = ev.target.elements.description.value;
     const newTask = { title, description };
@@ -46,11 +50,11 @@ async function handleAddTask(ev: any) {
   }
 }
 
-async function handleUpdateStatus(status: TaskStatus, id:string) {
+async function handleUpdateStatus(status: TaskStatus, id: string) {
   try {
     console.log(status)
     // const newStatus = status === TaskStatus.todo ? TaskStatus.done : TaskStatus.todo
-    const body = {id, status}
+    const body = { id, status }
     const result = await fetch('/API/Tasks/update-task-status', {
       method: 'PATCH',
       headers: {
@@ -59,10 +63,10 @@ async function handleUpdateStatus(status: TaskStatus, id:string) {
       body: JSON.stringify(body)
     })
 
-    const {tasks} = await result.json()
+    const { tasks } = await result.json()
     console.log(tasks)
-    renderTasks (tasks, document.querySelector("#tasks"))
-    
+    renderTasks(tasks, document.querySelector("#tasks"))
+
   } catch (error) {
     console.error(error)
   }

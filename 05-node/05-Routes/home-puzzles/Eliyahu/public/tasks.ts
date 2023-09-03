@@ -28,7 +28,7 @@ async function handleAddTask(ev: any, status: string) {
             status,
             emailUser
         }
-        if ( !status || !task.title || !task.description) throw new Error("Please complete all details");
+        if (!status || !task.title || !task.description) throw new Error("Please complete all details");
 
         const response = await fetch('/API/tasks/add-task', {
             method: 'POST',
@@ -157,7 +157,6 @@ function renderTaskHtml(task) {
         </div>
         <div class = "task_body">
         <p>${task.description}</p>
-        
         </div>`
         switch (task.status) {
             case 'toDo':
@@ -209,6 +208,20 @@ function renderTasks(usersTasks) {
         const doneTasks = userTasks.filter(element => element.task.status === 'done')
         const doneTasksHTML = doneTasks.map(usertask => renderTaskHtml(usertask.task)).join('')
         doneRoot.innerHTML = doneTasksHTML
+
+        if(emailUser==='admin@gmail.com'){
+            const toDoTasks = usersTasks.filter(element => element.task.status === 'toDo')
+        const toDoTasksHTML = toDoTasks.map(element =>  '<p style="font-weight: bold; margin-bottom: 2px;"> User:' + element.user.name +'</p>' + renderTaskHtml(element.task)).join('')
+        toDoRoot.innerHTML = toDoTasksHTML
+
+        const doingTasks = usersTasks.filter(element => element.task.status === 'doing')
+        const doingTasksHTML = doingTasks.map(element =>  '<p style="font-weight: bold; margin-bottom: 2px;"> User:' + element.user.name +'</p>' + renderTaskHtml(element.task)).join('')
+        doingRoot.innerHTML = doingTasksHTML
+
+        const doneTasks = usersTasks.filter(element => element.task.status === 'done')
+        const doneTasksHTML = doneTasks.map(element => '<p style="font-weight: bold; margin-bottom: 2px;"> User:' + element.user.name +'</p>' + renderTaskHtml(element.task)).join(``)
+        doneRoot.innerHTML = doneTasksHTML
+        }
     } catch (error) {
         console.error(error.massage);
     }
@@ -234,4 +247,41 @@ function renderUpdateTask(title: string, description: string, id: string) {
     }
 }
 
+async function renderNav() {
+    try {
+        const email = { emailUser }
 
+        if (emailUser === 'admin@gmail.com') {
+            const html = `<div class="nav">
+        <p>Admin</p>
+        <a class="logout material-symbols-rounded" href="./index.html">Logout</a>
+    </div>`
+            const root = document.querySelector('#nav') as HTMLDivElement
+            root.innerHTML = html
+
+        }
+        const response = await fetch('/API/users/get-user-name', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(email)
+        })
+
+        const result = await response.json()
+        const { error, userName } = result
+        if (error) throw new Error("Some of details are incorrect");
+
+        const html = `<div class="nav">
+        <p>${userName}</p>
+        <a class="logout material-symbols-rounded" href="./index.html">Logout</a>
+    </div>`
+        const root = document.querySelector('#nav') as HTMLDivElement
+        root.innerHTML = html
+    } catch (error) {
+        console.error(error.massage);
+
+    }
+}
+
+renderNav()
