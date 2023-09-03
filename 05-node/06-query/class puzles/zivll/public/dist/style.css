@@ -1,0 +1,28 @@
+body .admin-list {
+  position: absolute;
+  top: 2em;
+  right: 50px;
+}
+body #images {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2%;
+  margin: 50px;
+}
+body #images .image {
+  background-color: #e7e7e7;
+  max-width: 20%;
+  border: 1px solid #3a3a3a;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 2%;
+}
+body #images .image img {
+  margin: 1em 0;
+  height: auto;
+  max-width: 100%;
+  border-radius: 10px;
+}
+body #images button {
+  margin: 1em 0;
+}
