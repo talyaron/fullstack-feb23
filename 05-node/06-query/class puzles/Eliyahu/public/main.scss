@@ -1,7 +1,7 @@
 body {
     text-align: center;
-    background: radial-gradient((#bacffb, #ccdbfb, #eff8ff, #ffffff, #ccd9f9, #7e98f5));
-
+    background-color: #414246;
+color: #ffffff;
     .material-symbols-rounded {
         padding: 2px;
         font-variation-settings:
@@ -31,8 +31,6 @@ h1 {
     margin-top: -35px;
     margin-bottom: 20px;
     cursor: default;
-    font-family: 'Carter One', cursive;
-
 }
 
 a.logout {
@@ -53,7 +51,7 @@ a.logout {
 
 }
 
-.allTasks {
+.allPictures {
     margin: auto;
     width: 75vw;
     display: flex;
@@ -61,120 +59,115 @@ a.logout {
     gap: 3vw;
 }
 
-.toDo,
-.doing,
-.done {
-    height: 80vh;
-    flex: 1;
+// .toDo,
+// .doing,
+// .done {
+//     height: 80vh;
+//     flex: 1;
 
-    &_header {
-        display: flex;
-        justify-content: space-around;
-        border: 1px rgba(128, 128, 128, 0.7) solid;
-        border-radius: 10px 10px 0 0;
-        align-items: center;
-        background-color: #7e98f5;
-        cursor: default;
-        h2 {
-            font-family: 'Sedgwick Ave Display', cursive;
-            font-size: xx-large;
-            margin: 10px;
-        }
-        button {
-            cursor: pointer;
-            background: none;
-            border: none;
-            width: 30px;
-            height: 30px;
-            font-variation-settings:
-                'FILL' 0,
-                'wght' 400,
-                'GRAD' 0,
-                'opsz' 24
-        }
-    }
-}
+//     &_header {
+//         display: flex;
+//         justify-content: space-around;
+//         border: 1px rgba(128, 128, 128, 0.7) solid;
+//         border-radius: 10px 10px 0 0;
+//         align-items: center;
+//         background-color: #7e98f5;
+//         cursor: default;
+//         h2 {
+//             font-family: 'Sedgwick Ave Display', cursive;
+//             font-size: xx-large;
+//             margin: 10px;
+//         }
+//         button {
+//             cursor: pointer;
+//             background: none;
+//             border: none;
+//             width: 30px;
+//             height: 30px;
+//             font-variation-settings:
+//                 'FILL' 0,
+//                 'wght' 400,
+//                 'GRAD' 0,
+//                 'opsz' 24
+//         }
+//     }
+// }
 
-.doing_header {
-    background-color: #a7c2d6;
+// .doing_header {
+//     background-color: #a7c2d6;
 
-    h2 {
-        font-family: 'Sedgwick Ave Display', cursive;
-        font-size: xx-large;
-        margin: 10px;
-    }
-}
+//     h2 {
+//         font-family: 'Sedgwick Ave Display', cursive;
+//         font-size: xx-large;
+//         margin: 10px;
+//     }
+// }
 
-.done_header {
-    background-color: #6794ff;
-    h2 {
-        font-family: 'Sedgwick Ave Display', cursive;
-        font-size: xx-large;
-        margin: 10px;
-    }
-}
+// .done_header {
+//     background-color: #6794ff;
+//     h2 {
+//         font-family: 'Sedgwick Ave Display', cursive;
+//         font-size: xx-large;
+//         margin: 10px;
+//     }
+// }
 
-.toDo .toDoTasks,
-.doing .doingTasks,
-.done .doneTasks {
+// .toDo .toDoTasks,
+// .doing .doingTasks,
+// .done .doneTasks {
     
-    margin-top: -2px;
-    // min-height: 65vh;
-    height: fit-content;
-    border: 1px rgba(128, 128, 128, 0.7) solid;
-    background-color: #eff8ff;
-    padding: 10px 0 0 0;
-    border-radius: 0 0 10px 10px;
+//     margin-top: -2px;
+//     // min-height: 65vh;
+//     height: fit-content;
+//     border: 1px rgba(128, 128, 128, 0.7) solid;
+//     background-color: #eff8ff;
+//     padding: 10px 0 0 0;
+//     border-radius: 0 0 10px 10px;
 
 
 
-    form {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
+//     form {
+//         width: 100%;
+//         display: flex;
+//         flex-direction: column;
+//         align-items: center;
+//     }
 
-    input,
-    textarea {
-        padding: 5px;
-        margin: 6px;
-        max-width: 35vw;
-    }
+//     input,
+//     textarea {
+//         padding: 5px;
+//         margin: 6px;
+//         max-width: 35vw;
+//     }
 
-    button {
-        width: 25px;
-        height: 25px;
-        font-size: 18px;
-        margin: 0px 4px 2px 4px;
-        background: none;
-        border: none;
-        text-shadow: #7e98f5 0px 0px 4px;
-        cursor: pointer;
+//     button {
+//         width: 25px;
+//         height: 25px;
+//         font-size: 18px;
+//         margin: 0px 4px 2px 4px;
+//         background: none;
+//         border: none;
+//         text-shadow: #7e98f5 0px 0px 4px;
+//         cursor: pointer;
 
-    }
-}
+//     }
+// }
 
-.toDo .toDoTasks {
-    background-color: #abbcfa;
-}
-
-.done .doneTasks {
-    background-color: #a9c3ff;
-
-}
 #add{
    
     form{
         margin: auto;
         display: flex;
-        flex-direction: column;
         width: fit-content;
         gap: 10px;
         text-align: right;
+        align-items: center;
+        input{
+            height: 20px;
+        }
     }
 }
-.task {
+.picture {
 
     margin: auto;
 

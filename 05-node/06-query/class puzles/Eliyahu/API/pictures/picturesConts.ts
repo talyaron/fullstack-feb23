@@ -1,5 +1,5 @@
 import { users } from "../users/userModels"
-import { Picture, pictures, UserPicture, usersPictures } from "./picturesModels"
+import { Picture, pictures, UserPicture, usersPictures, tags } from "./picturesModels"
 
 
 export const getPictures = (req, res) => {
@@ -10,17 +10,29 @@ export const getPictures = (req, res) => {
     }
 }
 
+export const getTags = (req, res) => {
+    try {
+        res.send({ tags })
+    } catch (error) {
+        console.error(error.massage)
+    }
+}
+
 export const addPicture = (req, res) => {
     try {
         const picture = req.body;
-        const emailUser=picture.emailUser
+        const emailUser = picture.emailUser
+        const { newTag } = picture
+        if (newTag) {
+            picture.tags.push(newTag)
+            tags.push(newTag)
+        }
         const currentPicture = new Picture(picture.title, picture.imgUrl, picture.location, picture.tags, picture.area)
-        pictures.push(currentPicture)
-       const currentUser = users.find(user=>user.email===emailUser)
-       usersPictures.push(new UserPicture(currentUser,currentPicture))
+        const currentUser = users.find(user => user.email === emailUser)
+        usersPictures.push(new UserPicture(currentUser, currentPicture))
 
 
-        res.send({ usersPictures })
+        res.send({ usersPictures, tags })
     } catch (error) {
         console.error(error.massage)
 
@@ -31,12 +43,10 @@ export const deletePicture = (req, res) => {
     try {
         const { id } = req.body
         const indexAtUsersPictures = usersPictures.findIndex((element) => element.picture.id === id);
-        const indexAtPictures = pictures.findIndex((picture) => picture.id === id);
-        if (indexAtUsersPictures === -1|| indexAtPictures===-1) {
+        if (indexAtUsersPictures === -1 ) {
             throw new Error("picture not found");
         }
         usersPictures.splice(indexAtUsersPictures, 1);
-        pictures.splice(indexAtPictures,1)
         res.send({ usersPictures })
     } catch (error) {
         console.error(error.massage)
@@ -44,19 +54,20 @@ export const deletePicture = (req, res) => {
     }
 }
 
-export const updatePicture = (req, res)=>{
+export const updatePicture = (req, res) => {
     try {
-        const {title,tags,id} = req.body
-        if(!title||!tags||!id) throw new Error("Please complete all details");
-        const pictureUser = usersPictures.find(element=>element.picture.id===id)
+        const { title, imgUrl, location, id } = req.body
+        if (!title || !imgUrl || !location ||!id) throw new Error("Please complete all details");
+        const pictureUser = usersPictures.find(element => element.picture.id === id)
 
-        if(!pictureUser) throw new Error("Picture not found");
+        if (!pictureUser) throw new Error("Picture not found");
         pictureUser.picture.title = title
-        pictureUser.picture.tags = tags
-        res.send({usersPictures})
+        pictureUser.picture.imgUrl = imgUrl
+        pictureUser.picture.location = location
+        res.send({ usersPictures })
     } catch (error) {
-        console.error(error.massage)  
-        
+        console.error(error.massage)
+
     }
 }
 

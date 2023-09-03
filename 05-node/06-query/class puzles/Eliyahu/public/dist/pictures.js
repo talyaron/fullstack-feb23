@@ -65,21 +65,22 @@ getPictures();
 var emailUser = window.location.search.toString().replace('?email=', '');
 function handleAddPicture(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var arr_1, picture, response, result, usersPictures, error_2;
+        var imageTags_1, picture, response, result, usersPictures, tags, error_2;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
                     ev.preventDefault();
-                    arr_1 = [];
-                    document.querySelectorAll('input[type=checkbox]:checked').forEach(function (ev) { return arr_1.push(ev.attributes[2].value); });
+                    imageTags_1 = [];
+                    document.querySelectorAll('input[type=checkbox]:checked').forEach(function (ev) { return imageTags_1.push(ev.attributes[2].value); });
                     picture = {
                         title: ev.target.title.value,
                         imgUrl: ev.target.imgUrl.value,
                         location: ev.target.location.value,
-                        tags: arr_1,
+                        tags: imageTags_1,
                         area: ev.target.area.value,
-                        emailUser: emailUser
+                        emailUser: emailUser,
+                        newTag: ev.target.newTag.value
                     };
                     if (!picture.title || !picture.imgUrl || !picture.location || !picture.tags || !picture.area)
                         throw new Error("Please complete all details");
@@ -95,7 +96,7 @@ function handleAddPicture(ev) {
                     return [4 /*yield*/, response.json()];
                 case 2:
                     result = _a.sent();
-                    usersPictures = result.usersPictures;
+                    usersPictures = result.usersPictures, tags = result.tags;
                     renderPictures(usersPictures);
                     return [3 /*break*/, 4];
                 case 3:
@@ -140,7 +141,7 @@ function handleDeletePicture(id) {
 }
 function handleUpdatePicture(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var title, imgUrl, location, tags_1, area, id, response, result, usersPictures, error_4;
+        var title, imgUrl, location, id, response, result, usersPictures, error_4;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -149,15 +150,13 @@ function handleUpdatePicture(ev) {
                     title = ev.target.editTitle.value;
                     imgUrl = ev.target.editImgUrl.value;
                     location = ev.target.editLocation.value;
-                    tags_1 = ev.target.editTags.value;
-                    area = ev.target.editArea.value;
                     id = ev.target.id;
                     return [4 /*yield*/, fetch('API/pictures/update-picture', {
                             method: 'PATCH',
                             headers: {
                                 'Content-Type': 'application/json'
                             },
-                            body: JSON.stringify({ title: title, imgUrl: imgUrl, location: location, tags: tags_1, area: area, id: id })
+                            body: JSON.stringify({ title: title, imgUrl: imgUrl, location: location, id: id })
                         })];
                 case 1:
                     response = _a.sent();
@@ -176,28 +175,36 @@ function handleUpdatePicture(ev) {
         });
     });
 }
-var tags = ['ים', 'מדבר', 'צבי', 'מעיין'];
 function renderAddPicture() {
-    try {
-        var html_1 = "<form onsubmit=\"handleAddPicture(event)\">\n        <input type=\"text\" name=\"title\" placeholder=\"\u05E0\u05D5\u05E9\u05D0\" required>\n        <input type=\"url\" name=\"imgUrl\" placeholder=\"\u05E7\u05D9\u05E9\u05D5\u05E8 \u05DC\u05EA\u05DE\u05D5\u05E0\u05D4\">\n        <input type=\"text\" name=\"location\" placeholder=\"\u05D4\u05D9\u05DB\u05DF \u05E6\u05D5\u05DC\u05DE\u05D4 \u05D4\u05EA\u05DE\u05D5\u05E0\u05D4?\">\n        <div>\n        <p>\u05D1\u05D0\u05D9\u05D6\u05D4 \u05D0\u05D6\u05D5\u05E8 \u05D1\u05D0\u05E8\u05E5 \u05E6\u05D5\u05DC\u05DE\u05D4 \u05D4\u05EA\u05DE\u05D5\u05E0\u05D4? </p>\n        <input type=\"radio\" name=\"area\" value=\"north\">\n        <label for=\"north\">\u05E6\u05E4\u05D5\u05DF</label>\n        <input type=\"radio\" name=\"area\" value=\"center\">\n        <label for=\"north\">\u05DE\u05E8\u05DB\u05D6</label>\n        <input type=\"radio\" name=\"area\" value=\"south\">\n        <label for=\"north\">\u05D3\u05E8\u05D5\u05DD</label>\n        </div>\n        <div class=\"tags\" id=\"tags\">\n        <p>\u05D1\u05D7\u05E8 \u05EA\u05D2\u05D9\u05D5\u05EA \u05DC\u05EA\u05DE\u05D5\u05E0\u05D4:</p>";
-        tags.forEach(function (tag) { return html_1 += " <div>\n        <input type=\"checkbox\" name=\"tags\" value=\"" + tag + "\">\n        <label for=\"" + tag + "\">" + tag + "</label>\n        </div>"; });
-        html_1 += "<div id=\"bt\"><button onclick=\"renderAddTag()\">\u05E6\u05D5\u05E8 \u05EA\u05D2\u05D9\u05EA \u05D7\u05D3\u05E9\u05D4</button></div>\n\n        </div>\n       <div>\n            <button type=\"submit\" class=\"material-symbols-rounded\">check</button>\n            <button onclick=\"closeAdd()\" class=\"material-symbols-rounded\">close</button>\n        </div>\n        </form>";
-        var root = document.querySelector('#add');
-        root.innerHTML = html_1;
-    }
-    catch (error) {
-        console.error(error.massage);
-    }
-}
-function renderAddTag(ev) {
-    try {
-        var html = "\n        <form onsubmit=\"handleAddTag()\">\n<input type=\"text\" name=\"newTag\" placeholder=\"\u05D4\u05D6\u05DF \u05EA\u05D2\u05D9\u05EA \u05D7\u05D3\u05E9\u05D4\">\n<button type=\"submit\">\u05D4\u05D5\u05E1\u05E3</button>\n</form>";
-        var tagsRoot = document.querySelector('#tags');
-        tagsRoot.innerHTML += html;
-    }
-    catch (error) {
-        console.error(error.massage);
-    }
+    return __awaiter(this, void 0, void 0, function () {
+        var response, result, tags, html_1, root, error_5;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 3, , 4]);
+                    return [4 /*yield*/, fetch('API/pictures/get-tags')];
+                case 1:
+                    response = _a.sent();
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    result = _a.sent();
+                    tags = result.tags;
+                    if (!Array.isArray(tags))
+                        throw new Error("tags is not array");
+                    html_1 = "<form onsubmit=\"handleAddPicture(event)\">\n        <input type=\"text\" name=\"title\" placeholder=\"\u05E0\u05D5\u05E9\u05D0\" required>\n        <input type=\"url\" name=\"imgUrl\" placeholder=\"\u05E7\u05D9\u05E9\u05D5\u05E8 \u05DC\u05EA\u05DE\u05D5\u05E0\u05D4\">\n        <input type=\"text\" name=\"location\" placeholder=\"\u05D4\u05D9\u05DB\u05DF \u05E6\u05D5\u05DC\u05DE\u05D4 \u05D4\u05EA\u05DE\u05D5\u05E0\u05D4?\">\n        <div>\n        <p>\u05D1\u05D0\u05D9\u05D6\u05D4 \u05D0\u05D6\u05D5\u05E8 \u05D1\u05D0\u05E8\u05E5 \u05E6\u05D5\u05DC\u05DE\u05D4 \u05D4\u05EA\u05DE\u05D5\u05E0\u05D4? </p>\n        <input type=\"radio\" name=\"area\" value=\"north\">\n        <label for=\"north\">\u05E6\u05E4\u05D5\u05DF</label>\n        <input type=\"radio\" name=\"area\" value=\"center\">\n        <label for=\"north\">\u05DE\u05E8\u05DB\u05D6</label>\n        <input type=\"radio\" name=\"area\" value=\"south\">\n        <label for=\"north\">\u05D3\u05E8\u05D5\u05DD</label>\n        </div>\n        <div class=\"tags\" id=\"tags\">\n        <p>\u05D1\u05D7\u05E8 \u05EA\u05D2\u05D9\u05D5\u05EA \u05DC\u05EA\u05DE\u05D5\u05E0\u05D4:</p>";
+                    tags.forEach(function (tag) { return html_1 += " <div>\n        <input type=\"checkbox\" name=\"tags\" value=\"" + tag + "\">\n        <label for=\"" + tag + "\">" + tag + "</label>\n        </div>"; });
+                    html_1 += "<input type=\"text\" name=\"newTag\" placeholder=\"\u05D4\u05D6\u05DF \u05EA\u05D2\u05D9\u05EA \u05D7\u05D3\u05E9\u05D4\">\n        </div>\n       <div>\n            <button type=\"submit\" class=\"material-symbols-rounded\">check</button>\n            <button onclick=\"closeAdd()\" class=\"material-symbols-rounded\">close</button>\n        </div>\n        </form>";
+                    root = document.querySelector('#add');
+                    root.innerHTML = html_1;
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_5 = _a.sent();
+                    console.error(error_5.massage);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
+            }
+        });
+    });
 }
 function closeAdd() {
     try {
@@ -210,15 +217,15 @@ function closeAdd() {
 }
 function renderPictureHtml(picture, user) {
     try {
-        var html_2 = "<div class = \"task\" id=\"" + picture.id + "\">\n        <div class = \"task_header\">\n        <div></div>\n        <h3 >" + picture.title + "</h3>";
+        var html_2 = "<div class = \"picture\" id=\"" + picture.id + "\">\n        <div class = \"picture_header\">\n        <div></div>\n        <h3 >" + picture.title + "</h3>";
         if (emailUser === user.email) {
-            html_2 += "<p>\u05EA\u05DE\u05D5\u05E0\u05D4 \u05E9\u05DC\u05D9</p>\n    <button class=\"material-symbols-rounded\" onclick=\"renderUpdatePicture('" + picture.title + "','" + picture.location + "','" + picture.id + "')\">Edit</button>\n    <button class=\"material-symbols-rounded\" onclick=\"handleDeletePicture('" + picture.id + "')\">delete</button>\n    ";
+            html_2 += "<p>\u05EA\u05DE\u05D5\u05E0\u05D4 \u05E9\u05DC\u05D9</p>\n    <button class=\"material-symbols-rounded\" onclick=\"renderUpdatePicture('" + picture.title + "','" + picture.imgUrl + "','" + picture.location + "','" + picture.id + "','" + picture.tags.join(' ') + "')\">Edit</button>\n    <button class=\"material-symbols-rounded\" onclick=\"handleDeletePicture('" + picture.id + "')\">delete</button>\n    ";
         }
         else {
             html_2 += "<p>" + user.name + "</p>";
         }
-        html_2 += "\n        </div>\n        <img src=\"" + picture.imgUrl + "\">\n        <div class = \"task_body\">\n        <p>" + picture.location + "</p>\n        <p> " + picture.publishDate + "</p>\n        </div>\n        <div class=\"tags\">";
-        picture.tags.forEach(function (tag) { return html_2 += "<button>" + tag + "</button>"; });
+        html_2 += "\n        </div>\n        <img src=\"" + picture.imgUrl + "\">\n        <div class = \"picture_body\">\n        <p>" + picture.location + "</p>\n        <p> " + picture.publishDate + "</p>\n        </div>\n        <div class=\"tags\">";
+        picture.tags.forEach(function (tag) { return html_2 += "<button onclick=\"handleRenderByTag('" + tag + "')\">" + tag + "</button>"; });
         html_2 += "</div>\n        </div>";
         return html_2;
     }
@@ -226,14 +233,46 @@ function renderPictureHtml(picture, user) {
         console.error(error.massage);
     }
 }
+function handleRenderByTag(tag) {
+    return __awaiter(this, void 0, void 0, function () {
+        var response, result, usersPictures, usersPicturesByTag, html, allPicturesRoot, error_6;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 3, , 4]);
+                    debugger;
+                    return [4 /*yield*/, fetch('API/pictures/get-pictures')];
+                case 1:
+                    response = _a.sent();
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    result = _a.sent();
+                    usersPictures = result.usersPictures;
+                    if (!Array.isArray(usersPictures))
+                        throw new Error("pictures is not array");
+                    usersPicturesByTag = usersPictures.filter(function (el) { return el.picture.tags.includes(tag); });
+                    renderPictures(usersPicturesByTag);
+                    html = "<button onclick=\"getPictures()\">\u05D4\u05E6\u05D2 \u05D4\u05DB\u05DC</button>";
+                    allPicturesRoot = document.querySelector('#allPictures');
+                    allPicturesRoot.innerHTML += html;
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_6 = _a.sent();
+                    console.error(error_6.massage);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
+            }
+        });
+    });
+}
 function renderPictures(usersPictures) {
     try {
         if (!Array.isArray(usersPictures))
             throw new Error("usersPictures is not array");
-        console.log(usersPictures[0]);
         var allPicturesRoot = document.querySelector('#allPictures');
         var allPicturesHtml = usersPictures.map(function (userPicture) { return renderPictureHtml(userPicture.picture, userPicture.user); }).join('');
         allPicturesRoot.innerHTML = allPicturesHtml;
+        closeAdd();
         // if (emailUser === 'admin@gmail.com') {
         //     const toDoTasks = usersTasks.filter(element => element.task.status === 'toDo')
         //     const toDoTasksHTML = toDoTasks.map(element => '<p style="font-weight: bold; margin-bottom: 2px;"> User:' + element.user.name + '</p>' + renderTaskHtml(element.task)).join('')
@@ -250,19 +289,53 @@ function renderPictures(usersPictures) {
         console.error(error.massage);
     }
 }
-function renderUpdatePicture(title, description, id) {
-    try {
-        var html = "<div class=\"edit\">\n        <form id=\"" + id + "\" onsubmit=\"handleUpdateTask(event)\">\n        <label for=\"" + title + "\">Edit Title</label>\n        <textarea name=\"editTitle\" id=\"" + title + "\" cols=\"20\" rows=\"1\">" + title + "</textarea>\n        <label for=\"" + description + "\">Edit Description</label>\n        <textarea name=\"editDescription\" id=\"" + description + "\" cols=\"20\" rows=\"1\">" + description + "</textarea>\n        <button type=\"submit\" class=\"material-symbols-rounded\">check</button>\n        </div>";
-        var editRoot = document.querySelector("#task" + id);
-        editRoot.innerHTML = html;
-    }
-    catch (error) {
-        console.error(error.massage);
-    }
+function renderUpdatePicture(title, imgUrl, location, id, tagsAsString) {
+    return __awaiter(this, void 0, void 0, function () {
+        var response, result, tags, html, editRoot, error_7;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 3, , 4]);
+                    return [4 /*yield*/, fetch('API/pictures/get-tags')];
+                case 1:
+                    response = _a.sent();
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    result = _a.sent();
+                    tags = result.tags;
+                    if (!Array.isArray(tags))
+                        throw new Error("tags is not array");
+                    html = "<div class=\"edit\">\n        <form id=\"" + id + "\" onsubmit=\"handleUpdatePicture(event)\">\n        <label for=\"" + title + "\">\u05E2\u05E8\u05D9\u05DB\u05EA \u05E0\u05D5\u05E9\u05D0</label>\n        <textarea name=\"editTitle\" id=\"" + title + "\" cols=\"20\" rows=\"1\">" + title + "</textarea>\n        <label for=\"" + imgUrl + "\">\u05E2\u05E8\u05D9\u05DB\u05EA \u05E7\u05D9\u05E9\u05D5\u05E8</label>\n        <textarea name=\"editImgUrl\" id=\"" + imgUrl + "\" cols=\"20\" rows=\"1\">" + imgUrl + "</textarea>\n        <label for=\"" + location + "\">\u05E2\u05E8\u05D9\u05DB\u05EA \u05DE\u05D9\u05E7\u05D5\u05DD</label>\n        <textarea name=\"editLocation\" id=\"" + location + "\" cols=\"20\" rows=\"1\">" + location + "</textarea>\n        ";
+                    // const chosenTags = tagsAsString.split(' ')
+                    // html+= chosenTags.map(tag => {
+                    //     let html = `
+                    // <label>עריכת תגיות</label>
+                    //     <select name="${tag}">
+                    //     <option value="${tag}">${tag}</option>`
+                    //     const otherTags = tags.filter(ta => ta !== tag)
+                    //     html+= otherTags.map(t => {
+                    //         let ht = `<option value="${t}">${t}</option>`
+                    //         return ht
+                    //     }).join('')
+                    //     html += `</select> `
+                    //     return html
+                    // }).join('')
+                    html += "\n        <button type=\"submit\" class=\"material-symbols-rounded\">check</button>\n        </div>";
+                    editRoot = document.querySelector("#" + id);
+                    editRoot.innerHTML = html;
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_7 = _a.sent();
+                    console.error(error_7.massage);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
+            }
+        });
+    });
 }
 function renderNav() {
     return __awaiter(this, void 0, void 0, function () {
-        var email, html_3, root_1, response, result, error, userName, html, root, error_5;
+        var email, html_3, root_1, response, result, error, userName, html, root, error_8;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -293,8 +366,8 @@ function renderNav() {
                     root.innerHTML = html;
                     return [3 /*break*/, 4];
                 case 3:
-                    error_5 = _a.sent();
-                    console.error(error_5.massage);
+                    error_8 = _a.sent();
+                    console.error(error_8.massage);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }

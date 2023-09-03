@@ -53,7 +53,7 @@ function renderImg(newImg: Img) {
     <div class="imgBlock" id="${newImg.id}">
     <img src="${newImg.url}">
     <h4>${newImg.title}</h4>
-    <div class="CRUD">
+    <div class="updateAndDelete">
     <button onclick="handleEdit(${newImg.id})" class="editBtn"><span class="material-symbols-outlined"> edit </span></button>
     <button onclick="handleDelete(${newImg.id})" class="deleteBtn"><span class="material-symbols-outlined"> delete </span></button>
     </div>

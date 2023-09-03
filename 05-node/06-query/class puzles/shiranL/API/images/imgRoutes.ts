@@ -1,8 +1,9 @@
 
+import {addImg } from "./imgCont";
 import express from "express";
 
 const router = express.Router();
 export default router
 
 router
-// .post("/add-user", addUser)
+.post("/add-img", addImg);

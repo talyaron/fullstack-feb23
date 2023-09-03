@@ -20,6 +20,13 @@ var Task = /** @class */ (function () {
 }());
 exports.Task = Task;
 exports.tasks = [];
+// export class UserTasks {
+//   id: string;
+//   constructor(public user: User, public task: Task) {
+//     this.id = Math.random().toString(36).substr(2, 9);
+//   }
+// }
+// export const userTasks: UserTasks[] = [];
 //join collection (class)
 var UserTasks = /** @class */ (function () {
     function UserTasks(user, task) {

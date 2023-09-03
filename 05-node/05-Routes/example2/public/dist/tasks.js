@@ -39,6 +39,11 @@ var TaskStatus;
     TaskStatus["done"] = "done";
     TaskStatus["todo"] = "todo";
 })(TaskStatus || (TaskStatus = {}));
+//get tasks from server
+function getTasksFromServer() {
+    //get tasks from server
+}
+//render to screen
 function handleGetTasks() {
     return __awaiter(this, void 0, void 0, function () {
         var response, tasks, error_1;

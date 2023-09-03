@@ -18,16 +18,17 @@ async function handleAddPicture(ev: any) {
     try {
         ev.preventDefault()
 
-        const arr = [];
-        document.querySelectorAll('input[type=checkbox]:checked').forEach(ev => arr.push(ev.attributes[2].value));
+        const imageTags = [];
+        document.querySelectorAll('input[type=checkbox]:checked').forEach(ev => imageTags.push(ev.attributes[2].value));
 
         const picture = {
             title: ev.target.title.value,
             imgUrl: ev.target.imgUrl.value,
             location: ev.target.location.value,
-            tags: arr,
+            tags: imageTags,
             area: ev.target.area.value,
-            emailUser
+            emailUser,
+            newTag: ev.target.newTag.value,
         }
 
 
@@ -42,7 +43,7 @@ async function handleAddPicture(ev: any) {
         })
 
         const result = await response.json()
-        const { usersPictures } = result
+        const { usersPictures, tags } = result
 
         renderPictures(usersPictures)
 
@@ -76,8 +77,8 @@ async function handleUpdatePicture(ev: any) {
         const title = ev.target.editTitle.value
         const imgUrl = ev.target.editImgUrl.value
         const location = ev.target.editLocation.value
-        const tags = ev.target.editTags.value
-        const area = ev.target.editArea.value
+        // const tags = ev.target.editTags.value
+        // const area = ev.target.editArea.value
         const id = ev.target.id
 
         const response = await fetch('API/pictures/update-picture', {
@@ -85,7 +86,7 @@ async function handleUpdatePicture(ev: any) {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ title, imgUrl, location, tags, area, id })
+            body: JSON.stringify({ title, imgUrl, location, id })
         })
 
         const result = await response.json()
@@ -98,9 +99,13 @@ async function handleUpdatePicture(ev: any) {
     }
 }
 
-const tags: string[] = ['ים', 'מדבר', 'צבי', 'מעיין']
-function renderAddPicture() {
+async function renderAddPicture() {
     try {
+        const response = await fetch('API/pictures/get-tags')
+        const result = await response.json()
+        const { tags } = result
+        if (!Array.isArray(tags)) throw new Error("tags is not array");
+
         let html = `<form onsubmit="handleAddPicture(event)">
         <input type="text" name="title" placeholder="נושא" required>
         <input type="url" name="imgUrl" placeholder="קישור לתמונה">
@@ -121,8 +126,7 @@ function renderAddPicture() {
         <label for="${tag}">${tag}</label>
         </div>`)
 
-        html += `<div id="bt"><button onclick="renderAddTag()">צור תגית חדשה</button></div>
-
+        html += `<input type="text" name="newTag" placeholder="הזן תגית חדשה">
         </div>
        <div>
             <button type="submit" class="material-symbols-rounded">check</button>
@@ -136,22 +140,7 @@ function renderAddPicture() {
         console.error(error.massage);
     }
 }
-function renderAddTag(ev: any) {
-    try {
-        const html = `
-        <form onsubmit="handleAddTag()">
-<input type="text" name="newTag" placeholder="הזן תגית חדשה">
-<button type="submit">הוסף</button>
-</form>`
-const tagsRoot = document.querySelector('#tags') as HTMLDivElement
-   tagsRoot.innerHTML+=html
-   
-    }
-     catch (error) {
-    console.error(error.massage);
 
-}
-}
 function closeAdd() {
     try {
         const root = document.querySelector('#add')
@@ -166,13 +155,13 @@ function closeAdd() {
 function renderPictureHtml(picture, user) {
     try {
 
-        let html = `<div class = "task" id="${picture.id}">
-        <div class = "task_header">
+        let html = `<div class = "picture" id="${picture.id}">
+        <div class = "picture_header">
         <div></div>
         <h3 >${picture.title}</h3>`
         if (emailUser === user.email) {
             html += `<p>תמונה שלי</p>
-    <button class="material-symbols-rounded" onclick="renderUpdatePicture('${picture.title}','${picture.location}','${picture.id}')">Edit</button>
+    <button class="material-symbols-rounded" onclick="renderUpdatePicture('${picture.title}','${picture.imgUrl}','${picture.location}','${picture.id}','${picture.tags.join(' ')}')">Edit</button>
     <button class="material-symbols-rounded" onclick="handleDeletePicture('${picture.id}')">delete</button>
     `
         } else {
@@ -181,12 +170,12 @@ function renderPictureHtml(picture, user) {
         html += `
         </div>
         <img src="${picture.imgUrl}">
-        <div class = "task_body">
+        <div class = "picture_body">
         <p>${picture.location}</p>
         <p> ${picture.publishDate}</p>
         </div>
         <div class="tags">`
-        picture.tags.forEach(tag => html += `<button>${tag}</button>`)
+        picture.tags.forEach(tag => html += `<button onclick="handleRenderByTag('${tag}')">${tag}</button>`)
 
         html += `</div>
         </div>`
@@ -197,14 +186,36 @@ function renderPictureHtml(picture, user) {
     }
 }
 
+async function handleRenderByTag(tag:string){
+    try {
+        debugger
+        const response = await fetch('API/pictures/get-pictures')
+        const result = await response.json()
+        const { usersPictures } = result
+        if (!Array.isArray(usersPictures)) throw new Error("pictures is not array");
+
+        const usersPicturesByTag = usersPictures.filter(el=>el.picture.tags.includes(tag))
+        
+        renderPictures(usersPicturesByTag)
+
+        const html = `<button onclick="getPictures()">הצג הכל</button>`
+        const allPicturesRoot = document.querySelector('#allPictures')
+        allPicturesRoot.innerHTML += html
+
+    } catch (error) {
+        console.error(error.massage);
+    }
+}
+
 function renderPictures(usersPictures) {
     try {
         if (!Array.isArray(usersPictures)) throw new Error("usersPictures is not array");
-        console.log(usersPictures[0]);
 
         const allPicturesRoot = document.querySelector('#allPictures')
         const allPicturesHtml = usersPictures.map(userPicture => renderPictureHtml(userPicture.picture, userPicture.user)).join('')
         allPicturesRoot.innerHTML = allPicturesHtml
+
+        closeAdd()
         // if (emailUser === 'admin@gmail.com') {
         //     const toDoTasks = usersTasks.filter(element => element.task.status === 'toDo')
         //     const toDoTasksHTML = toDoTasks.map(element => '<p style="font-weight: bold; margin-bottom: 2px;"> User:' + element.user.name + '</p>' + renderTaskHtml(element.task)).join('')
@@ -225,17 +236,45 @@ function renderPictures(usersPictures) {
 
 
 
-function renderUpdatePicture(title: string, description: string, id: string) {
+async function renderUpdatePicture(title: string, imgUrl: string, location: string, id: string, tagsAsString: string) {
     try {
+        const response = await fetch('API/pictures/get-tags')
+        const result = await response.json()
+        const { tags } = result
+        if (!Array.isArray(tags)) throw new Error("tags is not array");
+
         let html = `<div class="edit">
-        <form id="${id}" onsubmit="handleUpdateTask(event)">
-        <label for="${title}">Edit Title</label>
+        <form id="${id}" onsubmit="handleUpdatePicture(event)">
+        <label for="${title}">עריכת נושא</label>
         <textarea name="editTitle" id="${title}" cols="20" rows="1">${title}</textarea>
-        <label for="${description}">Edit Description</label>
-        <textarea name="editDescription" id="${description}" cols="20" rows="1">${description}</textarea>
+        <label for="${imgUrl}">עריכת קישור</label>
+        <textarea name="editImgUrl" id="${imgUrl}" cols="20" rows="1">${imgUrl}</textarea>
+        <label for="${location}">עריכת מיקום</label>
+        <textarea name="editLocation" id="${location}" cols="20" rows="1">${location}</textarea>
+        `
+        // const chosenTags = tagsAsString.split(' ')
+
+
+        // html+= chosenTags.map(tag => {
+        //     let html = `
+        // <label>עריכת תגיות</label>
+            
+        //     <select name="${tag}">
+        //     <option value="${tag}">${tag}</option>`
+        //     const otherTags = tags.filter(ta => ta !== tag)
+        //     html+= otherTags.map(t => {
+        //         let ht = `<option value="${t}">${t}</option>`
+        //         return ht
+        //     }).join('')
+        //     html += `</select> `
+        //     return html
+        // }).join('')
+
+
+        html += `
         <button type="submit" class="material-symbols-rounded">check</button>
         </div>`
-        const editRoot = document.querySelector(`#task${id}`) as HTMLDivElement
+        const editRoot = document.querySelector(`#${id}`) as HTMLDivElement
         editRoot.innerHTML = html
     } catch (error) {
         console.error(error.massage);
