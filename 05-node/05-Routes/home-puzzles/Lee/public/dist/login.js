@@ -41,6 +41,7 @@ function handleLogin(ev) {
             switch (_b.label) {
                 case 0:
                     _b.trys.push([0, 3, , 4]);
+                    ev.preventDefault();
                     user = {
                         password: ev.target.password.value,
                         email: ev.target.email.value

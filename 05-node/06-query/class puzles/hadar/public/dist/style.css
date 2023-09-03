@@ -11,13 +11,22 @@ h1 {
   justify-content: center;
 }
 
-form {
+.imgs img {
+  width: 100px;
+  height: 100%;
+}
+.imgs button {
+  font-size: 10px;
+  width: 40px;
+}
+
+.form {
   display: flex;
   flex-direction: column;
   width: 300px;
   margin: auto;
 }
-form input {
+.form input {
   display: block;
   margin: 50px 0;
   padding: 1rem;
@@ -25,7 +34,7 @@ form input {
   width: 200px;
   margin: auto;
 }
-form button {
+.form button {
   padding: 20px;
   width: 70px;
   margin: auto;

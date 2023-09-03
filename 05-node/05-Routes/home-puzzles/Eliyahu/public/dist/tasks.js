@@ -261,6 +261,17 @@ function renderTasks(usersTasks) {
         var doneTasks = userTasks.filter(function (element) { return element.task.status === 'done'; });
         var doneTasksHTML = doneTasks.map(function (usertask) { return renderTaskHtml(usertask.task); }).join('');
         doneRoot.innerHTML = doneTasksHTML;
+        if (emailUser === 'admin@gmail.com') {
+            var toDoTasks_1 = usersTasks.filter(function (element) { return element.task.status === 'toDo'; });
+            var toDoTasksHTML_1 = toDoTasks_1.map(function (element) { return '<p style="font-weight: bold; margin-bottom: 2px;"> User:' + element.user.name + '</p>' + renderTaskHtml(element.task); }).join('');
+            toDoRoot.innerHTML = toDoTasksHTML_1;
+            var doingTasks_1 = usersTasks.filter(function (element) { return element.task.status === 'doing'; });
+            var doingTasksHTML_1 = doingTasks_1.map(function (element) { return '<p style="font-weight: bold; margin-bottom: 2px;"> User:' + element.user.name + '</p>' + renderTaskHtml(element.task); }).join('');
+            doingRoot.innerHTML = doingTasksHTML_1;
+            var doneTasks_1 = usersTasks.filter(function (element) { return element.task.status === 'done'; });
+            var doneTasksHTML_1 = doneTasks_1.map(function (element) { return '<p style="font-weight: bold; margin-bottom: 2px;"> User:' + element.user.name + '</p>' + renderTaskHtml(element.task); }).join("");
+            doneRoot.innerHTML = doneTasksHTML_1;
+        }
     }
     catch (error) {
         console.error(error.massage);
@@ -278,12 +289,17 @@ function renderUpdateTask(title, description, id) {
 }
 function renderNav() {
     return __awaiter(this, void 0, void 0, function () {
-        var email, response, result, error, userName, html, root, error_6;
+        var email, html_1, root_1, response, result, error, userName, html, root, error_6;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
                     email = { emailUser: emailUser };
+                    if (emailUser === 'admin@gmail.com') {
+                        html_1 = "<div class=\"nav\">\n        <p>Admin</p>\n        <a class=\"logout material-symbols-rounded\" href=\"./index.html\">Logout</a>\n    </div>";
+                        root_1 = document.querySelector('#nav');
+                        root_1.innerHTML = html_1;
+                    }
                     return [4 /*yield*/, fetch('/API/users/get-user-name', {
                             method: 'POST',
                             headers: {
