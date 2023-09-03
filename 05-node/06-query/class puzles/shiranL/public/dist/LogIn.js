@@ -59,7 +59,6 @@ function handleLogIn(event) {
                     return [4 /*yield*/, response.json()];
                 case 2:
                     data = _a.sent();
-                    console.log(data);
                     // if data is not ok
                     if (!data.ok) {
                         throw new Error(data.message);

@@ -36,15 +36,15 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 function handleLogin(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var user, response, _a, error, id, error_1;
-        return __generator(this, function (_b) {
-            switch (_b.label) {
+        var user, response, result, loginForm, error_1;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
                 case 0:
-                    _b.trys.push([0, 3, , 4]);
+                    _a.trys.push([0, 3, , 4]);
                     ev.preventDefault(); // stop form from submitting
                     user = {
-                        password: ev.target.password.value,
-                        name: ev.target.name.value
+                        name: ev.target.name.value,
+                        password: ev.target.password.value
                     };
                     if (!user.name || !user.password)
                         throw new Error("Please complete all fields");
@@ -56,20 +56,20 @@ function handleLogin(ev) {
                             body: JSON.stringify(user)
                         })];
                 case 1:
-                    response = _b.sent();
+                    response = _a.sent();
                     return [4 /*yield*/, response.json()];
                 case 2:
-                    _a = _b.sent(), error = _a.error, id = _a.id;
-                    console.log(id);
-                    console.log(error);
-                    if (error) {
-                        throw new Error(error);
+                    result = _a.sent();
+                    console.log(result);
+                    if (result.ok) {
+                        // if everthink is OK, redirect to main page of the user and pass the id of this user
+                        window.location.href = "/main.html?id=" + result.id;
                     }
-                    // if everthink is OK, redirect to main page of the user and pass the id of this user
-                    window.location.href = "/main.html?id=" + id;
+                    loginForm = document.getElementById("loginForm");
+                    loginForm.reset();
                     return [3 /*break*/, 4];
                 case 3:
-                    error_1 = _b.sent();
+                    error_1 = _a.sent();
                     console.error(error_1);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];

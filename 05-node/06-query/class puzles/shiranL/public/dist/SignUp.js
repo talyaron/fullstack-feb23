@@ -42,7 +42,6 @@ function handleAddUser(ev) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
                     ev.preventDefault();
-                    debugger;
                     email = ev.target.email.value;
                     password = ev.target.password.value;
                     user = { email: email, password: password };

@@ -1,7 +1,6 @@
 async function handleAddUser(ev:any) {
     try {
         ev.preventDefault();
-        debugger;
         const email = ev.target.email.value; 
         const password = ev.target.password.value;
       

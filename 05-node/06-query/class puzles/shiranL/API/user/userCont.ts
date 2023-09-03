@@ -27,12 +27,28 @@ export function logIn(req, res) {
     if (!existUser) throw new Error("user not exist");
     //chack password
     if (existUser.password !== user.password) throw new Error("password not match");
+
+   // make all users log out
+    users.forEach(u => u.isLogIn = false);
     //log in
+    existUser.isLogIn = true; 
     res.send({ok:true, user:existUser});
     
   } catch (error) {
     console.log(error);
     res.status(500).send(error.message); 
+    res.send({ok:false, message:error.message});
+  }
+}
+
+export function getLogInUser(req, res) {
+  try {
+    const logInUser = users.find((u) => u.isLogIn);
+    if (!logInUser) throw new Error("no user is log in");
+    res.send({ok:true,logInUser});
     
+  } catch (error) {
+    console.log(error);
+    res.status(500).send(error.message); 
   }
 }
