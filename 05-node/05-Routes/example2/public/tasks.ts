@@ -10,6 +10,14 @@ interface Task {
     status: TaskStatus;
 }
 
+//get tasks from server
+function getTasksFromServer(){
+    //get tasks from server
+    
+
+}
+
+//render to screen
 
 async function handleGetTasks() {
     try {

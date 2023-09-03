@@ -5,6 +5,7 @@ var Image = /** @class */ (function () {
     function Image(url, title) {
         this.url = url;
         this.title = title;
+        this.id = Date.now().toString();
     }
     return Image;
 }());

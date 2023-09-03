@@ -14,7 +14,7 @@ async function handleLogIn(event) {
             body: JSON.stringify(user),
         });
         const data = await response.json();
-        console.log(data);
+        
         // if data is not ok
         if (!data.ok) {
             throw new Error(data.message);

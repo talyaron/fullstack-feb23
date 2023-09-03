@@ -41,7 +41,6 @@ function handleRegister(event) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
-                    debugger;
                     event.preventDefault();
                     user = {
                         email: event.target.email.value,
@@ -64,7 +63,7 @@ function handleRegister(event) {
                         window.location.href = "/index.html?email=" + result.email;
                     }
                     else {
-                        document.querySelector("#message").innerHTML = result.message;
+                        alert("" + result.message);
                     }
                     return [3 /*break*/, 4];
                 case 3:
