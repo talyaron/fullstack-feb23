@@ -1,4 +1,5 @@
 import { User } from "../users/userModel";
+import {Schema, model} from 'mongoose';
 
 export enum TaskStatus {
   done = "done",
@@ -32,3 +33,19 @@ export class UserTasks{
 }   
 
 export const userTasks:UserTasks[] = [];
+
+//create task schema
+
+
+export const TaskSchema = new Schema({
+    title: String,
+    description: String,
+    email: String,
+    status: {
+        type: String,
+        enum: [TaskStatus],
+        default: TaskStatus.todo
+    },
+});
+//collection name is "tasks", and the schema is TaskSchema
+export const TaskModel = model("tasks", TaskSchema)
