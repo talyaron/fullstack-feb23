@@ -1,12 +1,12 @@
 import { Image, images } from "./model";
 export const addImage = (req: any, res: any) => {
   try {
-    const { description, imageUrl } = req.body;
+    const { description, imageUrl, email } = req.body;
     console.log({ description, imageUrl });
 
     if (!description || !imageUrl)
       throw new Error(`some of the details are missing`);
-    const image = new Image(description, imageUrl);
+    const image = new Image(description, imageUrl, email);
     images.push(image);
     const html = images
       .map(

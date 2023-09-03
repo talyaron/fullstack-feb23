@@ -43,7 +43,8 @@ function checkUser() {
                     _a.trys.push([0, 3, , 4]);
                     urlParams = new URLSearchParams(window.location.search);
                     email = urlParams.get("email");
-                    if (urlParams.size === 0 || !email) {
+                    console.log(email);
+                    if (!email) {
                         window.location.href = "/register.html";
                     }
                     return [4 /*yield*/, fetch("/API/users/check-user", {
@@ -84,11 +85,13 @@ function checkUser() {
 }
 function getImages() {
     return __awaiter(this, void 0, void 0, function () {
-        var response, result, root, html, error_2;
+        var urlParams, email_1, response, result, root, imagesByUser, html, error_2;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
+                    urlParams = new URLSearchParams(window.location.search);
+                    email_1 = urlParams.get("email");
                     return [4 /*yield*/, fetch("/API/images/get-image", {
                             method: "GET",
                             headers: {
@@ -101,7 +104,8 @@ function getImages() {
                 case 2:
                     result = _a.sent();
                     root = document.querySelector("#images");
-                    html = result
+                    imagesByUser = result.filter(function (user) { return user.email === email_1; });
+                    html = imagesByUser
                         .map(function (image) {
                         return "<div class=\"image\"><p>" + image.description + "</p><img src=\"" + image.url + "\" ><button class=\"delete\" id=\"" + image.id + "\" onclick=\"deleteImage(event)\">Delete Image</button></div>";
                     })
@@ -117,22 +121,61 @@ function getImages() {
         });
     });
 }
+function checkIfAdmin() {
+    return __awaiter(this, void 0, void 0, function () {
+        var urlParams, email, response, result, root, error_3;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 3, , 4]);
+                    urlParams = new URLSearchParams(window.location.search);
+                    email = urlParams.get("email");
+                    return [4 /*yield*/, fetch("/API/users/check-admin", {
+                            method: "POST",
+                            headers: { "content-type": "application/json" },
+                            body: JSON.stringify({ email: email })
+                        })];
+                case 1:
+                    response = _a.sent();
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    result = _a.sent();
+                    console.log(result);
+                    debugger;
+                    if (result.message === "user is admin") {
+                        root = document.querySelector(".admin-list");
+                        root.innerHTML = result.html;
+                    }
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_3 = _a.sent();
+                    console.error(error_3);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
+            }
+        });
+    });
+}
 window.onload = function () {
     checkUser();
     getImages();
+    checkIfAdmin();
 };
 function handleAddImage(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var image, response, result, error_3;
+        var urlParams, email, image, response, result, error_4;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
                     ev.preventDefault();
                     console.dir(ev);
+                    urlParams = new URLSearchParams(window.location.search);
+                    email = urlParams.get("email");
                     image = {
                         description: ev.target.imageDescription.value,
-                        imageUrl: ev.target.imageUrl.value
+                        imageUrl: ev.target.imageUrl.value,
+                        email: email
                     };
                     return [4 /*yield*/, fetch("/API/images/add-image", {
                             method: "POST",
@@ -151,8 +194,8 @@ function handleAddImage(ev) {
                     getImages();
                     return [3 /*break*/, 4];
                 case 3:
-                    error_3 = _a.sent();
-                    console.error(error_3);
+                    error_4 = _a.sent();
+                    console.error(error_4);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }
@@ -161,7 +204,7 @@ function handleAddImage(ev) {
 }
 function deleteImage(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var id, response, result, error_4;
+        var id, response, result, error_5;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -183,8 +226,8 @@ function deleteImage(ev) {
                     alert("" + result.message);
                     return [3 /*break*/, 4];
                 case 3:
-                    error_4 = _a.sent();
-                    console.error(error_4);
+                    error_5 = _a.sent();
+                    console.error(error_5);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }
