@@ -1,16 +1,15 @@
 export interface _User {
-    name: string;
-    imgUrl : string;
-    id: string
+    email: string;
+    password : string;
 }
 
 export class User {
-    name: string;
-    imgUrl : string;
+    email: string;
+    password : string;
     id:string;
-    constructor ({name, imgUrl}:_User){
-        this.name = name,
-        this.imgUrl = imgUrl
+    constructor ({email, password}:_User){
+        this.email = email,
+        this.password = password
         this.id = Math.random().toString()
     }
 }

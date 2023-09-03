@@ -3,9 +3,9 @@ exports.__esModule = true;
 exports.users = exports.User = void 0;
 var User = /** @class */ (function () {
     function User(_a) {
-        var name = _a.name, imgUrl = _a.imgUrl;
-        this.name = name,
-            this.imgUrl = imgUrl;
+        var email = _a.email, password = _a.password;
+        this.email = email,
+            this.password = password;
         this.id = Math.random().toString();
     }
     return User;
