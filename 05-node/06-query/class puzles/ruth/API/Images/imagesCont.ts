@@ -42,8 +42,6 @@ export const deleteImg = (req, res) => {
   try {
     const { id } = req.body;
     if (!id) throw new Error("id not provided");
-    console.log(userImgs[0].image.id);
-    console.log(id);
 
     const userImg = userImgs.find((userImg) => userImg.image.id == id);
     if (!userImg) throw new Error("image not found");
@@ -59,9 +57,7 @@ export const updateTitle = (req, res) => {
     const { imgId, newTitle } = req.body;
     if (!imgId || !newTitle) throw new Error("id or title not provided");
     const userImg = userImgs.find((_userImg) => _userImg.image.id == imgId);
-    console.log(imgId);
-    console.log(userImgs);
-
+    
     if (!userImg) throw new Error("image not found");
     userImg.image.title = newTitle;
     res.send({ ok: true, title:newTitle });

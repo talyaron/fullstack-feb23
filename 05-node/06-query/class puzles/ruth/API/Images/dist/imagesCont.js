@@ -46,8 +46,6 @@ exports.deleteImg = function (req, res) {
         var id_1 = req.body.id;
         if (!id_1)
             throw new Error("id not provided");
-        console.log(imagesModel_1.userImgs[0].image.id);
-        console.log(id_1);
         var userImg = imagesModel_1.userImgs.find(function (userImg) { return userImg.image.id == id_1; });
         if (!userImg)
             throw new Error("image not found");
@@ -64,8 +62,6 @@ exports.updateTitle = function (req, res) {
         if (!imgId_1 || !newTitle)
             throw new Error("id or title not provided");
         var userImg = imagesModel_1.userImgs.find(function (_userImg) { return _userImg.image.id == imgId_1; });
-        console.log(imgId_1);
-        console.log(imagesModel_1.userImgs);
         if (!userImg)
             throw new Error("image not found");
         userImg.image.title = newTitle;
