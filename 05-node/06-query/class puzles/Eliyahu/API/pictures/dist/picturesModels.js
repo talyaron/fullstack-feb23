@@ -1,7 +1,6 @@
 "use strict";
 exports.__esModule = true;
-exports.usersPictures = exports.UserPicture = exports.pictures = exports.Picture = exports.PictureArea = void 0;
-var userModels_1 = require("../users/userModels");
+exports.tags = exports.usersPictures = exports.UserPicture = exports.pictures = exports.Picture = exports.PictureArea = void 0;
 var PictureArea;
 (function (PictureArea) {
     PictureArea["north"] = "\u05E6\u05E4\u05D5\u05DF";
@@ -35,6 +34,5 @@ var UserPicture = /** @class */ (function () {
     return UserPicture;
 }());
 exports.UserPicture = UserPicture;
-exports.usersPictures = [
-    new UserPicture(new userModels_1.User('eli', '1@1', '11'), new Picture('ים', 'https://www.photo-art.co.il/wp-content/uploads/2015/07/BY1A5096.jpg.webp', 'חוף נתניה', ['חוף', 'נתניה'], PictureArea.center))
-];
+exports.usersPictures = [];
+exports.tags = ['ים', 'מדבר', 'צבי', 'מעיין'];

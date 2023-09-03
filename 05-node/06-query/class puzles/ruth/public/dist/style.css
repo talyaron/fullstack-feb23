@@ -61,8 +61,9 @@ input {
   background-color: white;
 }
 .gallery .imgBlock {
-  width: 160px;
-  height: 190px;
+  position: relative;
+  width: 170px;
+  height: 200px;
   margin: 7px;
   padding: 2px;
   box-shadow: 0px 0px 10px 3px #b5b5b5;
@@ -91,4 +92,18 @@ input {
   width: fit-content;
   margin: 0;
   padding: 0%;
+}
+.gallery .imgBlock .updateAndDelete {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+}
+.gallery .imgBlock .updateAndDelete button {
+  width: 10px;
+  height: 30px;
+  padding: 0;
+  margin: 6px 2px;
+}
+.gallery .imgBlock .updateAndDelete button span {
+  font-size: 20px;
 }

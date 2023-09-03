@@ -35,13 +35,5 @@ export class UserPicture {
     }
 }
 
-export const usersPictures: UserPicture[] = [
-    new UserPicture(new User('eli',
-        '1@1',
-        '11'),
-        new Picture('ים',
-            'https://www.photo-art.co.il/wp-content/uploads/2015/07/BY1A5096.jpg.webp',
-            'חוף נתניה',
-            ['חוף', 'נתניה'],
-            PictureArea.center))
-]
+export const usersPictures: UserPicture[] = []
+export const tags:string[]=['ים', 'מדבר', 'צבי', 'מעיין']
