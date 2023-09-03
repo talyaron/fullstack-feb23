@@ -100,7 +100,7 @@ function addImageToUser(newImg) {
 }
 function renderImg(newImg) {
     console.log(newImg.title);
-    var html = "\n    <div class=\"imgBlock\" id=\"" + newImg.id + "\">\n    <img src=\"" + newImg.url + "\">\n    <h4>" + newImg.title + "</h4>\n    <div class=\"CRUD\">\n    <button onclick=\"handleEdit(" + newImg.id + ")\" class=\"editBtn\"><span class=\"material-symbols-outlined\"> edit </span></button>\n    <button onclick=\"handleDelete(" + newImg.id + ")\" class=\"deleteBtn\"><span class=\"material-symbols-outlined\"> delete </span></button>\n    </div>\n</div>";
+    var html = "\n    <div class=\"imgBlock\" id=\"" + newImg.id + "\">\n    <img src=\"" + newImg.url + "\">\n    <h4>" + newImg.title + "</h4>\n    <div class=\"updateAndDelete\">\n    <button onclick=\"handleEdit(" + newImg.id + ")\" class=\"editBtn\"><span class=\"material-symbols-outlined\"> edit </span></button>\n    <button onclick=\"handleDelete(" + newImg.id + ")\" class=\"deleteBtn\"><span class=\"material-symbols-outlined\"> delete </span></button>\n    </div>\n</div>";
     document.querySelector(".gallery").innerHTML += html;
 }
 function getUserFromQuery() {
