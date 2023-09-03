@@ -1,4 +1,3 @@
-"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -35,23 +34,21 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-exports.__esModule = true;
-var imgesModel_1 = require("../API/imges/imgesModel");
 function handleGetImages() {
     return __awaiter(this, void 0, void 0, function () {
-        var response, imges, error_1;
+        var response, images, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
-                    return [4 /*yield*/, fetch('/API/imges/get-images')];
+                    return [4 /*yield*/, fetch('/API/images/get-images')];
                 case 1:
                     response = _a.sent();
                     return [4 /*yield*/, response.json()];
                 case 2:
-                    imges = (_a.sent()).imges;
-                    console.log(imges);
-                    renderImges(imges, document.querySelector("#imges"));
+                    images = (_a.sent()).images;
+                    console.log(images);
+                    renderImages(images, document.querySelector("#images"));
                     return [3 /*break*/, 4];
                 case 3:
                     error_1 = _a.sent();
@@ -64,7 +61,7 @@ function handleGetImages() {
 }
 function handeleAddImg(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var email, title, imgUrl, newImg, response, imges, error_2;
+        var email, title, imgUrl, newImg, response, images, error_2;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -73,25 +70,26 @@ function handeleAddImg(ev) {
                     email = getEmailFromQuery();
                     if (!email)
                         throw new Error("no email");
-                    console.log(email);
                     title = ev.target.elements.title.value;
                     imgUrl = ev.target.elements.imgUrl.value;
+                    console.log("Title:", title);
+                    console.log("ImgUrl:", imgUrl);
                     newImg = { title: title, imgUrl: imgUrl, email: email };
-                    console.log(newImg);
-                    return [4 /*yield*/, fetch('/API/imges/add-task', {
+                    console.log("New Image:", newImg);
+                    return [4 /*yield*/, fetch('http://localhost:3000/API/imges/add-img', {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json'
                             },
-                            body: JSON.stringify(newTask)
+                            body: JSON.stringify(newImg)
                         })];
                 case 1:
                     response = _a.sent();
                     return [4 /*yield*/, response.json()];
                 case 2:
-                    imges = (_a.sent()).imges;
-                    console.log(imges);
-                    renderImges(imgesModel_1.images, document.querySelector("#images"));
+                    images = (_a.sent()).images;
+                    console.log("Images:", images);
+                    renderImages(images, document.querySelector("#images"));
                     return [3 /*break*/, 4];
                 case 3:
                     error_2 = _a.sent();
@@ -102,25 +100,35 @@ function handeleAddImg(ev) {
         });
     });
 }
-// function renderImage(images: Image) {
-//     try {
-//         const html = task.status === TaskStatus.todo
-//             ? `<li onclick="handleUpdateStatus('done', '${task.id}')">${task.title} - ${task.description}</li>`
-//             :
-//             `<li style="text-decoration: line-through;" onclick="handleUpdateStatus('todo', '${task.id}')">${task.title} - ${task.description}</li>`;
-//         return html;
-//     } catch (error) {
-//         console.error(error);
-//         return "";
-//     }
-// }
-function renderImges(images, DIVElem) {
+function renderImage(image) {
+    try {
+        var html = "<img src=\"" + image.imgUrl + "\" alt=\"" + image.title + "\">";
+        return html;
+    }
+    catch (error) {
+        console.error(error);
+        return "";
+    }
+}
+// Function to render the image with a title
+function renderImageWithTitle(image) {
+    try {
+        var html = "\n            <div>\n                <h2>" + image.title + "</h2>\n                <img src=\"" + image.imgUrl + "\" alt=\"" + image.title + "\">\n            </div>\n        ";
+        return html;
+    }
+    catch (error) {
+        console.error(error);
+        return "";
+    }
+}
+function renderImages(images, DIVElem) {
     try {
         if (!DIVElem)
             throw new Error("no div element");
-        var html = "<div>";
-        html += images.map(function (image) { return (image); }).join("");
-        html += "</div>";
+        var html = "<ul>";
+        // Render each image with title
+        html += images.map(function (img) { return "<li>" + renderImageWithTitle(img) + "</li>"; }).join("");
+        html += "</ul>";
         DIVElem.innerHTML = html;
     }
     catch (error) {
