@@ -37,3 +37,31 @@ export const getImgsByEmail = (req, res) => {
     console.error(error.message);
   }
 };
+
+export const deleteImg = (req, res) => {
+  try {
+    const { id } = req.body;
+    if (!id) throw new Error("id not provided");
+
+    const userImg = userImgs.find((userImg) => userImg.image.id == id);
+    if (!userImg) throw new Error("image not found");
+    userImgs.filter((_userImg) => _userImg.image.id != id);
+    res.send({ ok: true });
+  } catch (error) {
+    console.error(error.message);
+  }
+};
+
+export const updateTitle = (req, res) => {
+  try {
+    const { imgId, newTitle } = req.body;
+    if (!imgId || !newTitle) throw new Error("id or title not provided");
+    const userImg = userImgs.find((_userImg) => _userImg.image.id == imgId);
+    
+    if (!userImg) throw new Error("image not found");
+    userImg.image.title = newTitle;
+    res.send({ ok: true, title:newTitle });
+  } catch (error) {
+    console.error(error.message);
+  }
+};

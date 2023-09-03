@@ -38,6 +38,7 @@ var Img = /** @class */ (function () {
     function Img(url, title) {
         this.url = url;
         this.title = title;
+        this.id = Date.now().toString();
     }
     return Img;
 }());
@@ -99,7 +100,7 @@ function addImageToUser(newImg) {
 }
 function renderImg(newImg) {
     console.log(newImg.title);
-    var html = "\n    <div class=\"imgBlock\">\n    <img src=\"" + newImg.url + "\">\n    <h4>" + newImg.title + "</h4>\n</div>";
+    var html = "\n    <div class=\"imgBlock\" id=\"" + newImg.id + "\">\n    <img src=\"" + newImg.url + "\">\n    <h4>" + newImg.title + "</h4>\n    <div class=\"CRUD\">\n    <button onclick=\"handleEdit(" + newImg.id + ")\" class=\"editBtn\"><span class=\"material-symbols-outlined\"> edit </span></button>\n    <button onclick=\"handleDelete(" + newImg.id + ")\" class=\"deleteBtn\"><span class=\"material-symbols-outlined\"> delete </span></button>\n    </div>\n</div>";
     document.querySelector(".gallery").innerHTML += html;
 }
 function getUserFromQuery() {
@@ -131,6 +132,93 @@ function getImgsByEmail() {
                 case 3:
                     error_2 = _a.sent();
                     console.error(error_2);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
+            }
+        });
+    });
+}
+function handleDelete(id) {
+    return __awaiter(this, void 0, void 0, function () {
+        var deleteInit, response, ok, error_3;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 3, , 4]);
+                    console.log("delete: " + id);
+                    deleteInit = {
+                        method: "DELETE",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({ id: id })
+                    };
+                    return [4 /*yield*/, fetch("/API/img/delete-img", deleteInit)];
+                case 1:
+                    response = _a.sent();
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    ok = (_a.sent()).ok;
+                    if (!ok)
+                        throw new Error("Error deleting");
+                    document.getElementById("" + id).remove();
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_3 = _a.sent();
+                    console.error(error_3);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
+            }
+        });
+    });
+}
+function handleEdit(id) {
+    try {
+        console.log("edit: " + id);
+        var imgDiv = document.getElementById("" + id);
+        var h4element = imgDiv.querySelector("h4");
+        var title = imgDiv.querySelector("h4").innerText;
+        console.log(title);
+        h4element.innerHTML = "<form onsubmit=\"editImg(event, " + id + ")\">\n <input class =\"updateTitle\" name=\"updateTitle\" value=\"" + title + "\">\n </form>";
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+function editImg(event, imgId) {
+    return __awaiter(this, void 0, void 0, function () {
+        var newTitle, patchInit, response, _a, ok, title, imgDiv, formElement, error_4;
+        return __generator(this, function (_b) {
+            switch (_b.label) {
+                case 0:
+                    _b.trys.push([0, 3, , 4]);
+                    event.preventDefault();
+                    newTitle = event.target.updateTitle.value;
+                    console.log(newTitle);
+                    patchInit = {
+                        method: "PATCH",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({ imgId: imgId, newTitle: newTitle })
+                    };
+                    return [4 /*yield*/, fetch("API/img/update-title", patchInit)];
+                case 1:
+                    response = _b.sent();
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    _a = _b.sent(), ok = _a.ok, title = _a.title;
+                    if (!ok || !title) {
+                        throw new Error("something wrong in update-title");
+                    }
+                    imgDiv = document.getElementById("" + imgId);
+                    formElement = imgDiv.querySelector("h4");
+                    formElement.innerHTML = "" + title;
+                    console.log("editImg");
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_4 = _b.sent();
+                    console.error(error_4);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }
