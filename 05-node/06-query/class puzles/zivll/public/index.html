@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./dist/style.css" />
+    <script src="./dist/index.js" defer></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Welcome to our shared gallery</h1>
+    <h2>You are more than welcome to add images here &#128071;</h2>
+    <form onsubmit="handleAddImage(event)">
+      <input
+        type="text"
+        name="imageDescription"
+        id="imageDescription"
+        placeholder="image Description"
+      />
+      <input type="url" name="imageUrl" id="imageUrl" placeholder="imageUrl" />
+      <input type="submit" value="ADD IMAGE" />
+    </form>
+    <div id="images"></div>
+  </body>
+</html>
