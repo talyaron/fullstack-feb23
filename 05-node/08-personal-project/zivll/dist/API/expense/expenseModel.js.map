@@ -1,0 +1,1 @@
+{"version":3,"file":"expenseModel.js","sourceRoot":"","sources":["../../../API/expense/expenseModel.ts"],"names":[],"mappings":";;;AAAA,uCAAyC;AAEzC,uDAAuD;AAC1C,QAAA,aAAa,GAAG,IAAI,iBAAM,CAAC;IACtC,IAAI,EAAE,MAAM;IACZ,QAAQ,EAAE,MAAM;IAChB,UAAU,EAAE,MAAM;IAClB,MAAM,EAAE,MAAM;CACf,CAAC,CAAC;AAEU,QAAA,YAAY,GAAG,IAAA,gBAAK,EAAC,SAAS,EAAE,qBAAa,CAAC,CAAC"}

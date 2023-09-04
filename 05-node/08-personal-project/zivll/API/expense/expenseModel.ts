@@ -8,4 +8,4 @@ export const ExpenseSchema = new Schema({
   amount: Number,
 });
 
-export const ExpenseModel = model("expences", ExpenseSchema);
+export const ExpenseModel = model("expense", ExpenseSchema);
