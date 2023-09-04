@@ -7,6 +7,7 @@ export async function getMedicines(req: any, res: any) {
         res.send({ medicines: medicinesDB });
     } catch (error) {
         console.error(error);
+        res.status(500).send({ error: error.message });
     }
 }
 
@@ -28,7 +29,7 @@ export async function deleteMedicine(req: any, res: any) {
     try {
         const { id } = req.body;
         const medicineDB = await MedicineModel.findByIdAndDelete(id);
-        res.send({ medicineDB });
+        res.send({ ok: true });
     } catch (error) {
         console.error(error);
         res.status(500).send({ error: error.message });
@@ -43,7 +44,8 @@ export async function updateMedicine(req: any, res: any) {
         if(!medicine) throw new Error("medicine not found");
         if(name) medicine.name = name;
         if(maxPerDay) medicine.maxPerDay = maxPerDay;
-        if(maxDuration) medicine.maxDuration = maxDuration;
+        if (maxDuration) medicine.maxDuration = maxDuration;
+        res.send({ ok: true });
     } catch (error) {
         console.error(error);
         res.status(500).send({ error: error.message });
