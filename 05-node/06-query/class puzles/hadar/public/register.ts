@@ -3,7 +3,7 @@ async function handleRegister(event) {
       event.preventDefault();
       const user = {password: event.target.password.value, email: event.target.email.value,};
   
-      const response = await fetch("/API/users/register", {
+      const response = await fetch("/API/user/register-user", {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(user),

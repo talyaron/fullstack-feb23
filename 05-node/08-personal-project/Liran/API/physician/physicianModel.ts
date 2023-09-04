@@ -7,10 +7,11 @@ export const PhysicianSchema = new Schema({
     phoneNum: Number,
     email: String,
     licenseNumber: Number,
+    password:String,
     isAdmin: {
         type: Boolean,
         default: false
-      },
+  },
 });
 
 export const PhysicianModel = model("physicians", PhysicianSchema);

@@ -12,9 +12,9 @@ export async function getPrescriptions(req, res) {
 
 export async function addPrescription(req, res) {
     try {
-        const { patient, medicine, physician } = req.body;
-        if (!patient || !medicine || !physician) throw new Error("Please complete all fields");
-        const prescription = new PrescriptionModel({ patient, medicine, physician });
+        const { patient, medicine, physician, date } = req.body;
+        if (!patient || !medicine || !physician || !date) throw new Error("Please complete all fields");
+        const prescription = new PrescriptionModel({ patient, medicine, physician, date });
         const prescriptionDB = await prescription.save();
         console.log(prescriptionDB);
         res.send({ ok: true });
@@ -35,15 +35,16 @@ export async function deletePrescription(req, res) {
     }
 }
 
-export async function updatePrescription(req, res) {
+export async function updatePrescription(req: any, res: any) {
     try {
-        const { id, patient, medicine, physician } = req.body;
+        const { id, patient, medicine, physician, date } = req.body;
         if (!id) throw new Error("id is required");
         const prescription = await PrescriptionModel.findById(id);
         if (!prescription) throw new Error("prescription not found");
         if (patient) prescription.patient = patient;
         if (medicine) prescription.medicine = medicine;
         if (physician) prescription.physician = physician;
+        if (date) prescription.date = date;
         res.send({ ok: true });
     } catch (error) {
         console.error(error);
