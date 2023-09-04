@@ -1,3 +1,4 @@
+// a function which get the email from the url query
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -40,7 +41,8 @@ function getEmailFromQuery() {
 }
 var email = getEmailFromQuery();
 console.log(email);
-function handleGetUserTasks(email) {
+// a function which get the user tasks from the server by email
+function handleGetUserTasks() {
     getUserTasks(email);
 }
 function getUserTasks(email) {
@@ -50,7 +52,7 @@ function getUserTasks(email) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
-                    return [4 /*yield*/, fetch("/API/Users/get-users-task?email=" + email)];
+                    return [4 /*yield*/, fetch("/API/users/get-users-task?email=" + email)];
                 case 1:
                     response = _a.sent();
                     return [4 /*yield*/, response.json()];
@@ -67,11 +69,4 @@ function getUserTasks(email) {
             }
         });
     });
-}
-getUserTasks(email);
-var selectedUserEmail = '';
-function handleUserSelection() {
-    var userSelect = document.querySelector("#userSelect");
-    selectedUserEmail = userSelect.value;
-    handleGetUserTasks(selectedUserEmail);
 }
