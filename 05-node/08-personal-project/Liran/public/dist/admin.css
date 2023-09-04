@@ -1,22 +1,28 @@
 body {
-  width: 100vw;
-  height: 100vh;
+  width: 99vw;
+  height: fit-content;
   align-items: center;
   background: linear-gradient(180deg, #1004e9 0%, #05aed4 35%, #06e667 100%);
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
 }
-body #header {
-  height: 25%;
+body #root {
+  width: 100%;
+  min-height: 100vh;
+  height: auto;
+}
+body #root #header {
+  height: fit-content;
   width: 100%;
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
-body #header button {
+body #root #header button {
   display: inline-block;
   padding: 10px 20px;
   margin: 10px;
-  font-family: "Your Chosen Font", sans-serif;
   font-size: 16px;
   color: #fff;
   background-color: #06a0ab;
@@ -30,12 +36,71 @@ body #header button {
   text-decoration: none;
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
-body #header button:hover {
+body #root #header button:hover {
   background-color: #0056b3;
   transform: scale(1.05);
 }
-body #header h1 {
+body #root #header h1 {
   font-size: 5rem;
   color: #fff;
   text-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+body #root #forms {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  width: 75%;
+  margin: auto;
+  height: 100%;
+  gap: 20px;
+  padding-top: 20px;
+  text-align: center;
+}
+body #root #forms h2 {
+  color: #beebbd;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  font-size: 2.5rem;
+}
+body #root #forms form {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  width: 75%;
+  margin: auto;
+  height: 100%;
+  gap: 20px;
+  padding-top: 20px;
+}
+body #root #forms form .input {
+  text-align: center;
+  width: 25%;
+  height: 20%;
+}
+body #root #forms form .input input {
+  width: 80%;
+  height: 100%;
+  border-radius: 10px;
+  border: none;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.1);
+  transition: border-color 0.3s ease;
+}
+body #root #forms form .input input:focus {
+  outline: none;
+  border-color: #06a0ab;
+  background-color: #119eef;
+}
+body #root #forms form label {
+  width: 10ch;
+}
+body #root #forms form input[type=submit] {
+  width: 25%;
+  border-radius: 10px;
+}
+body #root #forms form input[type=submit]:hover {
+  background-color: #3581d2;
+  transform: scale(1.05);
+  cursor: pointer;
 }

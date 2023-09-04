@@ -34,63 +34,41 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var Physician = /** @class */ (function () {
-    function Physician(firstName, lastName, age, phoneNum, email, licenseNumber, password, isAdmin, id) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.age = age;
-        this.phoneNum = phoneNum;
-        this.email = email;
-        this.licenseNumber = licenseNumber;
-        this.password = password;
-        this.isAdmin = isAdmin;
-        this.id = id;
-    }
-    return Physician;
-}());
-function hundleLogin(event) {
+function handleLogin(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var email_1, password_1, admin, response, data, physician, error_1;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
+        var user, response, _a, error, email, error_1;
+        return __generator(this, function (_b) {
+            switch (_b.label) {
                 case 0:
-                    _a.trys.push([0, 3, , 4]);
-                    event.preventDefault();
-                    debugger;
-                    email_1 = event.target.email.value;
-                    password_1 = event.target.password.value;
-                    admin = event.target.admin.checked;
-                    if (!email_1 || !password_1)
-                        throw new Error("missing some details");
-                    return [4 /*yield*/, fetch("API/physician/get-physicians", {
-                            method: "GET",
+                    _b.trys.push([0, 3, , 4]);
+                    ev.preventDefault(); // stop form from submitting
+                    user = {
+                        password: ev.target.password.value,
+                        email: ev.target.email.value
+                    };
+                    if (!user.email || !user.password)
+                        throw new Error("Please complete all fields");
+                    return [4 /*yield*/, fetch('/API/users/login', {
+                            method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json'
-                            }
+                            },
+                            body: JSON.stringify(user)
                         })];
                 case 1:
-                    response = _a.sent();
+                    response = _b.sent();
                     return [4 /*yield*/, response.json()];
                 case 2:
-                    data = _a.sent();
-                    console.log(data.physicians);
-                    physician = data.physicians.find(function (physician) { return physician.email === email_1 && physician.password === password_1; });
-                    if (!physician) {
-                        alert("email or password are incorrect");
-                        throw new Error("email or password are incorrect");
+                    _a = _b.sent(), error = _a.error, email = _a.email;
+                    console.log(error);
+                    if (error) {
+                        throw new Error(error);
                     }
-                    // if email and password are correct
-                    if (physician.isAdmin && admin) {
-                        alert("admin");
-                        window.location.href = "admin.html?email=" + email_1;
-                    }
-                    else {
-                        alert("physician");
-                        window.location.href = "physicianPage.html?email=" + email_1;
-                    }
+                    //if everthink is OK, redirect to main page of the user
+                    window.location.href = "/main.html?email=" + email; //query
                     return [3 /*break*/, 4];
                 case 3:
-                    error_1 = _a.sent();
+                    error_1 = _b.sent();
                     console.error(error_1);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
