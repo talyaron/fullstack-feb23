@@ -1,8 +1,8 @@
-function handleSignUpPage(){
+function handleSignUpPage() {
 
     location.href = "/SignUp.html";
 }
-function handleLoginPage(){
+function handleLoginPage() {
 
     location.href = "/LogIn.html";
 }
