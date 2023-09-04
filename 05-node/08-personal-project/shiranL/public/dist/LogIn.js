@@ -44,6 +44,7 @@ function handleLogIn(event) {
                     event.preventDefault();
                     email = event.target.email.value;
                     password = event.target.password.value;
+                    debugger;
                     user = { email: email, password: password };
                     if (!user.email || !user.password)
                         throw new Error("missing some details");
@@ -59,12 +60,13 @@ function handleLogIn(event) {
                     return [4 /*yield*/, response.json()];
                 case 2:
                     data = _a.sent();
+                    console.log(data);
                     // if data is not ok
                     if (!data.ok) {
                         throw new Error(data.message);
                     }
                     // go to home page   with user email
-                    window.location.href = "homePage.html?email=" + data.user.email;
+                    window.location.href = "homePage.html";
                     return [3 /*break*/, 4];
                 case 3:
                     error_1 = _a.sent();

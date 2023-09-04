@@ -1,24 +1,40 @@
 //home page 
-
-
-// get user that isLogin = true from  server
-async function geLogInUser() {
-    
-    const response = await fetch("API/user/get-log-in-user", {  
-        method: "GET",
+async function handleLogout(){
+    debugger;
+    const response = await fetch("API/user/log-out", {
+        method: "POST",
         headers: {
             "Content-Type": "application/json",
-        },
-    });
-    const user = await response.json();
-    return user;
+        }
+            });
+    const data = await response.json();
+    console.log(data);
+    if (!data.ok) {
+        throw new Error(data.message);
+    }
+    BackHome();
+
 
     
 }
-// render hello user
-async function renderHelloUser() {
-    const {logInUser} = await geLogInUser();
-   debugger;
-    const helloUser = document.getElementById("helloUser");
-    helloUser.innerHTML = `Hello ${logInUser.email}`;
+function BackHome(){
+    location.href = "/index.html";
 }
+
+// rendr hello user to log in user  
+async function getCurrentUser() {
+    try {
+        const response = await fetch("API/user/get-log-in-user");
+        const data = await response.json();
+        console.log(data);
+        if (!data.ok) {
+            throw new Error(data.message);
+        }
+        const { logInUser } = data;
+        const helloUser = document.getElementById("helloUser");
+        helloUser.innerHTML = `Hello ${logInUser.email}`;
+    } catch (error) {
+        console.error(error);
+    }
+}
+

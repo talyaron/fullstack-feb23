@@ -36,10 +36,10 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.logIn = exports.addUser = void 0;
+exports.logOut = exports.getLoggedInUser = exports.logIn = exports.addUser = void 0;
 var userModel_1 = require("./userModel");
 exports.addUser = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var _a, email, password, user, existingUser, userDB, error_1;
+    var _a, email, password, existingUser, user, userDB, error_1;
     return __generator(this, function (_b) {
         switch (_b.label) {
             case 0:
@@ -47,7 +47,6 @@ exports.addUser = function (req, res) { return __awaiter(void 0, void 0, void 0,
                 _a = req.body, email = _a.email, password = _a.password;
                 if (!email || !password)
                     throw new Error("Please complete all fields");
-                user = new userModel_1.UserModel({ email: email, password: password });
                 return [4 /*yield*/, userModel_1.UserModel.findOne({ email: email })];
             case 1:
                 existingUser = _b.sent();
@@ -55,6 +54,7 @@ exports.addUser = function (req, res) { return __awaiter(void 0, void 0, void 0,
                     // User with the same email already exists, return an error response
                     return [2 /*return*/, res.send({ error: "User already exists with this email" })];
                 }
+                user = new userModel_1.UserModel({ email: email, password: password });
                 return [4 /*yield*/, user.save()];
             case 2:
                 userDB = _b.sent();
@@ -71,37 +71,87 @@ exports.addUser = function (req, res) { return __awaiter(void 0, void 0, void 0,
     });
 }); };
 exports.logIn = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var _a, email, password;
+    var _a, email, password, existingUser, error_2;
     return __generator(this, function (_b) {
-        _a = req.body, email = _a.email, password = _a.password;
-        if (!email || !password)
-            throw new Error("Please complete all fields");
-        return [2 /*return*/];
+        switch (_b.label) {
+            case 0:
+                _b.trys.push([0, 4, , 5]);
+                _a = req.body, email = _a.email, password = _a.password;
+                if (!email || !password)
+                    throw new Error("Please complete all fields");
+                return [4 /*yield*/, userModel_1.UserModel.findOne({ email: email })];
+            case 1:
+                existingUser = _b.sent();
+                if (!existingUser) {
+                    // User with the same email already exists, return an error response
+                    return [2 /*return*/, res.send({ error: "User not found" })];
+                }
+                if (password != existingUser.password) {
+                    // Passwords don't match, return an error response
+                    return [2 /*return*/, res.status(401).json({ error: "Incorrect password" })];
+                }
+                // make all other users logOut
+                // Log out all other users by setting their 'isLogOn' property to 'false'
+                return [4 /*yield*/, userModel_1.UserModel.updateMany({ _id: { $ne: existingUser._id } }, { isLoggedIn: false })];
+            case 2:
+                // make all other users logOut
+                // Log out all other users by setting their 'isLogOn' property to 'false'
+                _b.sent();
+                existingUser.isLoggedIn = true;
+                return [4 /*yield*/, existingUser.save()];
+            case 3:
+                _b.sent();
+                // Return a success response
+                res.send({ ok: true, existingUser: existingUser });
+                return [3 /*break*/, 5];
+            case 4:
+                error_2 = _b.sent();
+                console.error(error_2);
+                res.send({ error: error_2.message });
+                return [3 /*break*/, 5];
+            case 5: return [2 /*return*/];
+        }
     });
 }); };
-// export function logIn(req, res) {
-//   try {
-//     const user = new User(req.body.email, req.body.password );
-//     if(!user.email || !user.password) throw new Error("missing some details");
-//     // chack if user exist
-//     const existUser = users.find((u) => u.email === user.email);
-//     if (!existUser) throw new Error("user not exist");
-//     //chack password
-//     if (existUser.password !== user.password) throw new Error("password not match");
-//     res.send({ok:true, user:existUser});
-//   } catch (error) {
-//     console.log(error);
-//     res.status(500).send(error.message); 
-//     res.send({ok:false, message:error.message});
-//   }
-// }
-// export function getLogInUser(req, res) {
-//   try {
-//     const logInUser = users.find((u) => u.isLogIn);
-//     if (!logInUser) throw new Error("no user is log in");
-//     res.send({ok:true,logInUser});
-//   } catch (error) {
-//     console.log(error);
-//     res.status(500).send(error.message); 
-//   }
-// }
+exports.getLoggedInUser = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var logInUser, error_3;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                _a.trys.push([0, 2, , 3]);
+                return [4 /*yield*/, userModel_1.UserModel.findOne({ isLoggedIn: true })];
+            case 1:
+                logInUser = _a.sent();
+                if (!logInUser)
+                    return [2 /*return*/, res.send({ error: "User not found" })];
+                res.send({ ok: true, logInUser: logInUser });
+                return [3 /*break*/, 3];
+            case 2:
+                error_3 = _a.sent();
+                console.error(error_3);
+                res.send({ error: error_3.message });
+                return [3 /*break*/, 3];
+            case 3: return [2 /*return*/];
+        }
+    });
+}); };
+exports.logOut = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var error_4;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                _a.trys.push([0, 2, , 3]);
+                return [4 /*yield*/, userModel_1.UserModel.updateMany({}, { isLoggedIn: false })];
+            case 1:
+                _a.sent();
+                res.send({ ok: true });
+                return [3 /*break*/, 3];
+            case 2:
+                error_4 = _a.sent();
+                console.error(error_4);
+                res.send({ error: error_4.message });
+                return [3 /*break*/, 3];
+            case 3: return [2 /*return*/];
+        }
+    });
+}); };
