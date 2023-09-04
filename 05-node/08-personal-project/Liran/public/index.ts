@@ -10,13 +10,13 @@ class Physician {
     ) { }
 }
 
-async function handleLogin(event) {
+async function hundleLogin(event) {
     try {
         event.preventDefault();
         debugger;
         const email = event.target.email.value;
         const password = event.target.password.value;
-        const admin = event.target.admin.value;
+        const admin = event.target.admin.checked;
         if (!email || !password) throw new Error("missing some details");
         const response = await fetch("API/physician/get-physicians", {
             method: "GET",
@@ -25,22 +25,16 @@ async function handleLogin(event) {
             }
         })
         const data = await response.json();
-        console.log(data);
-        // if data is not ok
-        if (!data.ok) {
-            throw new Error(data.message);
-        }
-        // if data is ok
-        // check if email and password are correct
-        const physician: Physician = data.find(physician => physician.email === email && physician.password === password);
+        console.log(data.physicians);
+        const physician: Physician = data.physicians.find(physician => physician.email === email && physician.password === password);
         if (!physician) {
             alert("email or password are incorrect");
             throw new Error("email or password are incorrect");
         }
         // if email and password are correct
-        if (physician.isAdmin) {
+        if (physician.isAdmin && admin) {
             alert("admin");
-            window.location.href = `adminPage.html`
+            window.location.href = `admin.html?email=${email}`
         }
         else {
             alert("physician");
