@@ -12,9 +12,9 @@ export async function getPhysicians(req: any, res: any) {
  
 export async function addPhysician(req: any, res: any) {
     try {
-        const { firstName, lastName, age, phoneNum, email, licenseNumber, isAdmin } = req.body;
-        if (!firstName || !lastName || !age || !phoneNum || !email || !licenseNumber) throw new Error("Please complete all fields");
-        const physician = new PhysicianModel({ firstName, lastName, age, phoneNum, email, licenseNumber, isAdmin });
+        const { firstName, lastName, age, phoneNum, email, licenseNumber, password,isAdmin } = req.body;
+        if (!firstName || !lastName || !age || !phoneNum || !email || !licenseNumber || !password) throw new Error("Please complete all fields");
+        const physician = new PhysicianModel({ firstName, lastName, age, phoneNum, email, licenseNumber, isAdmin, password });
         const physicianDB = await physician.save();
         console.log(physicianDB);
         res.send({ ok: true });
@@ -37,7 +37,7 @@ export async function deletePhysician(req: any, res: any) {
 
 export async function updatePhysician(req: any, res: any) { 
     try {
-        const { id, firstName, lastName, age, phoneNum, email, licenseNumber } = req.body;
+        const { id, firstName, lastName, age, phoneNum, email, password, licenseNumber } = req.body;
         if (!id) throw new Error("id is required");
         const physician = await PhysicianModel.findById(id);
         if (!physician) throw new Error("physician not found");
@@ -47,6 +47,7 @@ export async function updatePhysician(req: any, res: any) {
         if (phoneNum) physician.phoneNum = phoneNum;
         if (email) physician.email = email;
         if (licenseNumber) physician.licenseNumber = licenseNumber;
+        if(password) password.password = password;
         res.send({ ok: true });
     } catch (error) {
         console.error(error);
