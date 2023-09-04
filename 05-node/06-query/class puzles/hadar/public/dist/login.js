@@ -45,7 +45,7 @@ function handleLogin(event) {
                     user = { password: event.target.password.value, email: event.target.email.value };
                     if (!user.email || !user.password)
                         throw new Error("Please complete all fields");
-                    return [4 /*yield*/, fetch('/API/users/login', {
+                    return [4 /*yield*/, fetch('/API/user/login-user', {
                             method: 'POST',
                             headers: { 'Content-Type': 'application/json' },
                             body: JSON.stringify(user)
