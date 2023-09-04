@@ -10,7 +10,7 @@ export const UserModel = model("users", UserSchema);
 
 export const UserCategoriesSchema = new Schema({
   categoryName: String,
-  categoryId: String,
+  userName: String,
 });
 
 export const UserCategoriesModel = model(
