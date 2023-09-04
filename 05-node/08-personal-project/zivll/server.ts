@@ -11,5 +11,8 @@ mongoose
   )
   .then(() => console.info("mongoose is Connected"))
   .catch((err) => console.error(err));
-
+import userRoutes from "./API/users/usersRouter";
+app.use("/API/users", userRoutes);
+import expensesRoutes from "./API/expence/expenseRouter";
+app.use("/API/expense", expensesRoutes);
 app.listen(port, () => console.log(`app is listening on port ${port}`));

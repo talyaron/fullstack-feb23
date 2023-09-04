@@ -36,67 +36,43 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.login = exports.registerUser = void 0;
-var usersModel_1 = require("./usersModel");
-exports.registerUser = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var _a, userName, email, password, userExist, user, error_1;
-    return __generator(this, function (_b) {
-        switch (_b.label) {
-            case 0:
-                _b.trys.push([0, 5, , 6]);
-                _a = req.body, userName = _a.userName, email = _a.email, password = _a.password;
-                if (!userName || !email || !password)
-                    throw new Error("Please complete all fields");
-                return [4 /*yield*/, usersModel_1.UserModel.find({ email: email })];
-            case 1:
-                userExist = _b.sent();
-                console.log(userExist);
-                if (!(userExist.length === 0)) return [3 /*break*/, 3];
-                user = new usersModel_1.UserModel({ userName: userName, email: email, password: password });
-                return [4 /*yield*/, user.save()];
-            case 2:
-                _b.sent();
-                res.send({ ok: true });
-                return [3 /*break*/, 4];
-            case 3:
-                res.send({ message: "user is already registered" });
-                _b.label = 4;
-            case 4: return [3 /*break*/, 6];
-            case 5:
-                error_1 = _b.sent();
-                console.error(error_1);
-                res.send({ error: error_1.message });
-                return [3 /*break*/, 6];
-            case 6: return [2 /*return*/];
-        }
-    });
-}); };
-exports.login = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var _a, email, password, userExist, error_2;
+exports.deleteExpense = exports.updateExpense = exports.getAllExpenses = exports.addExpense = void 0;
+var expenseModel_1 = require("./expenseModel");
+exports.addExpense = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var _a, name, category, categoryId, amount, expences, error_1;
     return __generator(this, function (_b) {
         switch (_b.label) {
             case 0:
                 _b.trys.push([0, 2, , 3]);
-                _a = req.body, email = _a.email, password = _a.password;
-                if (!email || !password)
-                    throw new Error("Please complete all fields");
-                return [4 /*yield*/, usersModel_1.UserModel.find({ email: email })];
+                _a = req.body, name = _a.name, category = _a.category, categoryId = _a.categoryId, amount = _a.amount;
+                if (!name || !category || !categoryId || !amount)
+                    throw new Error("please complete all fields");
+                expences = new expenseModel_1.ExpenceModel({ name: name, category: category, categoryId: categoryId, amount: amount });
+                return [4 /*yield*/, expences.save()];
             case 1:
-                userExist = _b.sent();
-                if (userExist.length === 0) {
-                    res.send({ message: "user does not exist, please register" });
-                }
-                else if (userExist[0].email === email &&
-                    userExist[0].password === password) {
-                    res.send({ ok: true });
-                }
+                _b.sent();
+                res.send({ ok: true });
                 return [3 /*break*/, 3];
             case 2:
-                error_2 = _b.sent();
-                console.error(error_2);
-                res.send({ error: error_2.message });
+                error_1 = _b.sent();
+                console.error(error_1);
+                res.send({ error: error_1.message });
                 return [3 /*break*/, 3];
             case 3: return [2 /*return*/];
         }
     });
 }); };
+exports.getAllExpenses = function (req, res) { return __awaiter(void 0, void 0, void 0, function () { return __generator(this, function (_a) {
+    return [2 /*return*/];
+}); }); };
+exports.updateExpense = function (req, res) { return __awaiter(void 0, void 0, void 0, function () { return __generator(this, function (_a) {
+    return [2 /*return*/];
+}); }); };
+exports.deleteExpense = function (req, res) { return __awaiter(void 0, void 0, void 0, function () { return __generator(this, function (_a) {
+    return [2 /*return*/];
+}); }); };
+// import { ExpenceModel } from "./expenceModel";
+// export const addExpense = async (req: any, res: any) => {};
+// export const getAllExpenses = async (req: any, res: any) => {};
+// export const updateExpense = async (req: any, res: any) => {};
+// export const deleteExpense = async (req: any, res: any) => {};

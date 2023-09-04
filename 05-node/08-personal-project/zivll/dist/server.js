@@ -13,4 +13,8 @@ mongoose_1.default
     .connect("mongodb+srv://zivll1991:Zcl101212@cluster0.3hjadje.mongodb.net/test")
     .then(() => console.info("mongoose is Connected"))
     .catch((err) => console.error(err));
+const usersRouter_1 = __importDefault(require("./API/users/usersRouter"));
+app.use("/API/users", usersRouter_1.default);
+const expenseRouter_1 = __importDefault(require("./API/expence/expenseRouter"));
+app.use("/API/expense", expenseRouter_1.default);
 app.listen(port, () => console.log(`app is listening on port ${port}`));
