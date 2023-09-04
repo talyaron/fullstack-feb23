@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FAMELI</title>
+    <link rel="stylesheet" href="./public/css/dist/style.css" />
+    <!-- <script src="./js/dist/script.js" defer></script> -->
+    <script src="./public/js/dist/script.js" defer></script>
+    <script
+      type="text/javascript"
+      src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"
+      defer
+    ></script>
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <logo class="logo"
+          ><div>
+            <h1>FAMELI</h1>
+            <p>Fixed Monthly Expenses calculator</p>
+          </div>
+          <img src="./public/images/budget-accounting.svg" alt="FAMELI-logo"
+        /></logo>
+      </header>
+
+      <div class="forms">
+        <div class="calculators">
+          <h2>מחשבון תקציב</h2>
+          <form class="income-calculator" onsubmit="handleIncomeSubmit(event)">
+            <h3>הכנסה חודשית</h3>
+            <div class="user-box">
+              <input type="number" name="income" id="income" required />
+              <label for="income-amount">מה גובה ההכנסה החודשית שלך?</label>
+            </div>
+            <input type="submit" value="הוסף" />
+          </form>
+          <form
+            onsubmit="handleExpenceSubmit(event)"
+            id="expences-calculators"
+          ></form>
+        </div>
+      </div>
+      <div class="result">
+        <div class="result__total-income">
+          <h2 class="result__total-income--title">הכנסה</h2>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="income-icon"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+            />
+          </svg>
+          <p class="total-number total-number--income">0&#8362;</p>
+        </div>
+        <div class="result__total-expence">
+          <h2 class="result__total-expence--title">הוצאה</h2>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="expense-icon"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5z"
+            />
+          </svg>
+          <p class="total-number total-number--expence">0&#8362;</p>
+        </div>
+        <div class="result__total-amount">
+          <h2 class="result__total-amount--title">סה"כ</h2>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="balance-icon"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M12 3v17.25m0 0c-1.472 0-2.882.265-4.185.75M12 20.25c1.472 0 2.882.265 4.185.75M18.75 4.97A48.416 48.416 0 0012 4.5c-2.291 0-4.545.16-6.75.47m13.5 0c1.01.143 2.01.317 3 .52m-3-.52l2.62 10.726c.122.499-.106 1.028-.589 1.202a5.988 5.988 0 01-2.031.352 5.988 5.988 0 01-2.031-.352c-.483-.174-.711-.703-.59-1.202L18.75 4.971zm-16.5.52c.99-.203 1.99-.377 3-.52m0 0l2.62 10.726c.122.499-.106 1.028-.589 1.202a5.989 5.989 0 01-2.031.352 5.989 5.989 0 01-2.031-.352c-.483-.174-.711-.703-.59-1.202L5.25 4.971z"
+            />
+          </svg>
+          <p class="total-number total-number--balance">0&#8362;</p>
+        </div>
+      </div>
+      <div class="expenses-table" id="expences-table"></div>
+    </div>
+  </body>
+</html>
