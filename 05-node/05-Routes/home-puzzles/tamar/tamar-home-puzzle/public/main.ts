@@ -11,11 +11,6 @@ interface Task{
     status: TaskStatus;
 }
 
-// enum TaskStatus{
-//     done = "done",
-//     todo = "todo"
-// }
-
 interface UserTasks{
     id:string
     user:User;
@@ -23,6 +18,31 @@ interface UserTasks{
 }
 
 //----hendles functions:-----------
+// a function which get the email from the url query
+
+function getIDFromQuery() {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get('resultId');
+}
+
+const resultId = getIDFromQuery();
+console.log(resultId)
+
+// a function which get the user tasks from the server by email
+
+function handleGetUserTasks(){
+    getUserTasks(resultId);
+}
+async function getUserTasks(resultId:string) {
+    try {
+        const response = await fetch(`/API/users/get-users-task?resultId=${resultId}`);
+        const data = await response.json();
+        console.log(data)
+        renderTasks(data.tasks, document.querySelector("#tasks"));
+    } catch (error) {
+        console.error(error);
+    }
+}
 
 
 //-----render functions:----------
@@ -57,27 +77,27 @@ async function renderUserTasks(){
 }
 
 //----controller function:---------
- async function getUserTasks(){
-    try {
-        const response = await fetch('/API/userTask/get-tasks-of-user') 
-        //becaous the id pass from the login to main page
-        //the getTasksOfUser function in the server will have the id
-        //to use it to find the spesific user
+//  async function getUserTasks(){
+//     try {
+//         const response = await fetch('/API/userTask/get-tasks-of-user') 
+//         //becaous the id pass from the login to main page
+//         //the getTasksOfUser function in the server will have the id
+//         //to use it to find the spesific user
 
-        const results = await response.json();
+//         const results = await response.json();
 
-        const {userTasks} = results;
-        if(!Array.isArray(userTasks)) throw new Error("User Tasks are not array");
-        console.log("userTasks:",userTasks)
-        console.log("results:",results)
-        return userTasks;
+//         const {userTasks} = results;
+//         if(!Array.isArray(userTasks)) throw new Error("User Tasks are not array");
+//         console.log("userTasks:",userTasks)
+//         console.log("results:",results)
+//         return userTasks;
         
 
-    } catch (error) {
-        console.error(error)
-        return []
-    }
-}
+//     } catch (error) {
+//         console.error(error)
+//         return []
+//     }
+// }
 
 //---call function:--
-getUserTasks();
+//getUserTasks();
