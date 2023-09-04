@@ -1,3 +1,4 @@
+//home page 
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -34,45 +35,41 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-function handleLogin(ev) {
+// get user that isLogin = true from  server
+function geLogInUser() {
     return __awaiter(this, void 0, void 0, function () {
-        var user, response, result, loginForm, error_1;
+        var response, user;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0:
-                    _a.trys.push([0, 3, , 4]);
-                    ev.preventDefault(); // stop form from submitting
-                    user = {
-                        name: ev.target.name.value,
-                        password: ev.target.password.value
-                    };
-                    if (!user.name || !user.password)
-                        throw new Error("Please complete all fields");
-                    return [4 /*yield*/, fetch('/API/users/login', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json'
-                            },
-                            body: JSON.stringify(user)
-                        })];
+                case 0: return [4 /*yield*/, fetch("API/user/get-log-in-user", {
+                        method: "GET",
+                        headers: {
+                            "Content-Type": "application/json"
+                        }
+                    })];
                 case 1:
                     response = _a.sent();
                     return [4 /*yield*/, response.json()];
                 case 2:
-                    result = _a.sent();
-                    console.log(result);
-                    if (result.ok) {
-                        // if everthink is OK, redirect to main page of the user and pass the id of this user
-                        window.location.href = "/main.html?resultId=" + result.id;
-                    }
-                    loginForm = document.getElementById("loginForm");
-                    loginForm.reset();
-                    return [3 /*break*/, 4];
-                case 3:
-                    error_1 = _a.sent();
-                    console.error(error_1);
-                    return [3 /*break*/, 4];
-                case 4: return [2 /*return*/];
+                    user = _a.sent();
+                    return [2 /*return*/, user];
+            }
+        });
+    });
+}
+// render hello user
+function renderHelloUser() {
+    return __awaiter(this, void 0, void 0, function () {
+        var logInUser, helloUser;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, geLogInUser()];
+                case 1:
+                    logInUser = (_a.sent()).logInUser;
+                    debugger;
+                    helloUser = document.getElementById("helloUser");
+                    helloUser.innerHTML = "Hello " + logInUser.email;
+                    return [2 /*return*/];
             }
         });
     });

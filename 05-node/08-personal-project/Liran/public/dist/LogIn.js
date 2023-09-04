@@ -34,24 +34,23 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-function handleLogin(ev) {
+function handleLogIn(event) {
     return __awaiter(this, void 0, void 0, function () {
-        var user, response, result, loginForm, error_1;
+        var email, password, user, response, data, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
-                    ev.preventDefault(); // stop form from submitting
-                    user = {
-                        name: ev.target.name.value,
-                        password: ev.target.password.value
-                    };
-                    if (!user.name || !user.password)
-                        throw new Error("Please complete all fields");
-                    return [4 /*yield*/, fetch('/API/users/login', {
-                            method: 'POST',
+                    event.preventDefault();
+                    email = event.target.email.value;
+                    password = event.target.password.value;
+                    user = { email: email, password: password };
+                    if (!user.email || !user.password)
+                        throw new Error("missing some details");
+                    return [4 /*yield*/, fetch("API/user/log-in", {
+                            method: "POST",
                             headers: {
-                                'Content-Type': 'application/json'
+                                "Content-Type": "application/json"
                             },
                             body: JSON.stringify(user)
                         })];
@@ -59,14 +58,13 @@ function handleLogin(ev) {
                     response = _a.sent();
                     return [4 /*yield*/, response.json()];
                 case 2:
-                    result = _a.sent();
-                    console.log(result);
-                    if (result.ok) {
-                        // if everthink is OK, redirect to main page of the user and pass the id of this user
-                        window.location.href = "/main.html?resultId=" + result.id;
+                    data = _a.sent();
+                    // if data is not ok
+                    if (!data.ok) {
+                        throw new Error(data.message);
                     }
-                    loginForm = document.getElementById("loginForm");
-                    loginForm.reset();
+                    // go to home page   with user email
+                    window.location.href = "homePage.html?email=" + data.user.email;
                     return [3 /*break*/, 4];
                 case 3:
                     error_1 = _a.sent();
