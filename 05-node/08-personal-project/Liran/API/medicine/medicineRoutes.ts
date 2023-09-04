@@ -4,8 +4,8 @@ const router = express.Router();
 
 
 router
-    .get('/get-mediciens', getMedicines)
-    .post('/add-medicien', addMedicine)
-    .delete("/delete-medicien", deleteMedicine)
-    .patch('/update-medicien', updateMedicine)
+    .get('/get-medicines', getMedicines)
+    .post('/add-medicine', addMedicine)
+    .delete("/delete-medicine", deleteMedicine)
+    .patch('/update-medicine', updateMedicine)
 export default router;

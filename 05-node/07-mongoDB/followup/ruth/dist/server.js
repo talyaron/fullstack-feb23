@@ -11,7 +11,7 @@ const port = process.env.PORT || 3000;
 app.use(express_1.default.static("public"));
 //body
 app.use(express_1.default.json());
-mongoose_1.default.connect("mongodb+srv://ruturAdmin:turrut66@cluster0.k1el7dn.mongodb.net/")
+mongoose_1.default.connect("mongodb+srv://ruturAdmin:######@cluster0.k1el7dn.mongodb.net/")
     .then(() => console.log("mongoose connected!"))
     .catch(err => {
     console.error(err);

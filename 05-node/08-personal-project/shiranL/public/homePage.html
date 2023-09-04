@@ -6,7 +6,7 @@
     <script  src="./dist/homePage.js" defer  ></script>
     <title>Document</title>
 </head>
-<body onload="renderHelloUser()">
+<body onload="getCurrentUser()">
     <h1>Home Page</h1>
     <div id="helloUser"></div>
     <!-- form for add img -->
@@ -15,6 +15,10 @@
         <input type="text" name="imgUrl" placeholder="img url">
         <input type="submit" value="Upload Image" name="submit">
     </form>
+
+    <!-- btns to logout and back -->
+    <button onclick="handleLogout()">Logout</button>
+  
     
 </body>
 </html>

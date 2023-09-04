@@ -1,0 +1,71 @@
+body {
+    width: 100vw;
+    height: 100vh;
+    align-items: center;
+    background: linear-gradient(180deg, rgb(16, 4, 233) 0%, rgb(5, 174, 212) 35%, rgb(6, 230, 103) 100%);
+
+    #root {
+        width: fit-content;
+        height: fit-content;
+        margin: auto;
+
+        /* Style for buttons */
+        button {
+            display: inline-block;
+            padding: 10px 20px;
+            /* Adjust padding as needed */
+            margin: 10px;
+            /* Adjust margin as needed */
+            font-family: 'Your Chosen Font', sans-serif;
+            /* Replace 'Your Chosen Font' with your preferred font-family */
+            font-size: 16px;
+            /* Adjust the font size to your liking */
+            color: #fff;
+            /* Set the text color */
+            background-color: #06a0ab;
+            /* Set the button background color */
+            border: none;
+            border-radius: 4px;
+            /* Add rounded corners */
+            cursor: pointer;
+            text-align: center;
+            text-transform: uppercase;
+            /* Convert text to uppercase */
+            letter-spacing: 2px;
+            /* Add letter spacing for a decorative effect */
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+            /* Add a subtle text shadow for depth */
+            text-decoration: none;
+            /* Remove underlines for anchor-style buttons */
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            /* Add smooth transition effects */
+
+            /* Add a hover effect */
+            &:hover {
+                background-color: #0056b3;
+                /* Change background color on hover */
+                transform: scale(1.05);
+                /* Add a slight scale-up effect on hover */
+            }
+        }
+
+    }
+
+    h1 {
+        font-family: 'Roboto', sans-serif;
+        font-size: 4rem;
+        /* Adjust the font size to your liking */
+        color: #333;
+        /* Set the text color */
+        text-align: center;
+        /* Center-align the text */
+        letter-spacing: 2px;
+        /* Add letter spacing for a decorative effect */
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        /* Add a subtle text shadow for depth */
+
+        /* Add a decorative underline using a pseudo-element */
+        position: relative;
+    }
+
+}
