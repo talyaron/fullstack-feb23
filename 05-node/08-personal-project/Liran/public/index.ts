@@ -6,7 +6,8 @@ class Physician {
         public email: string,
         public licenseNumber: number,
         public password: string,
-        public isAdmin: boolean
+        public isAdmin: boolean,
+        public id: string
     ) { }
 }
 

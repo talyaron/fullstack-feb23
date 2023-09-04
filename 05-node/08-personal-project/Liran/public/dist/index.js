@@ -35,7 +35,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 var Physician = /** @class */ (function () {
-    function Physician(firstName, lastName, age, phoneNum, email, licenseNumber, password, isAdmin) {
+    function Physician(firstName, lastName, age, phoneNum, email, licenseNumber, password, isAdmin, id) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
@@ -44,6 +44,7 @@ var Physician = /** @class */ (function () {
         this.licenseNumber = licenseNumber;
         this.password = password;
         this.isAdmin = isAdmin;
+        this.id = id;
     }
     return Physician;
 }());

@@ -2,7 +2,7 @@ import { Schema, model } from 'mongoose';
 
 export const MedicineSchema = new Schema({
     name: String,
-    maxPerDay: Number,
+    dosagePerDay: Number,
     maxDuration: Number,
   });
   //users collection in the DB
