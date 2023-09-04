@@ -17,11 +17,11 @@ app.use(express.static("public"));
 app.use(express.json());
 
 
-mongoose.connect("mongodb+srv://ruturAdmin:######@cluster0.k1el7dn.mongodb.net/")
-.then(()=>console.log("mongoose connected!"))
-.catch(err=>{
-  console.error(err)
-})
+// mongoose.connect("mongodb+srv://ruturAdmin:######@cluster0.k1el7dn.mongodb.net/")
+// .then(()=>console.log("mongoose connected!"))
+// .catch(err=>{
+//   console.error(err)
+// })
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 })
