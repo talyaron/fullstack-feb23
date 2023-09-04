@@ -1,5 +1,6 @@
 import { Schema, model } from 'mongoose';
 
+
 // export class User {
 //     id : string;
 //     isAdmin:boolean = false;
@@ -24,10 +25,13 @@ export const UserSchema = new Schema({
         type: Boolean,
         default: false
       },
-      isLogOn: {
+      isLoggedIn: {
         type: Boolean,
         default: false
       }
   });
+
+  // Method to compare a plain text password with the hashed password in the database
+
   //users collection in the DB
   export const UserModel = model("users", UserSchema)
