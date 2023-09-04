@@ -1,6 +1,7 @@
 "use strict";
 exports.__esModule = true;
-exports.userTasks = exports.UserTasks = exports.tasks = exports.Task = exports.TaskStatus = void 0;
+exports.TaskModel = exports.TaskSchema = exports.userTasks = exports.UserTasks = exports.tasks = exports.Task = exports.TaskStatus = void 0;
+var mongoose_1 = require("mongoose");
 var TaskStatus;
 (function (TaskStatus) {
     TaskStatus["done"] = "done";
@@ -31,3 +32,16 @@ var UserTasks = /** @class */ (function () {
 }());
 exports.UserTasks = UserTasks;
 exports.userTasks = [];
+//create task schema
+exports.TaskSchema = new mongoose_1.Schema({
+    title: String,
+    description: String,
+    email: String,
+    status: {
+        type: String,
+        "enum": [TaskStatus],
+        "default": TaskStatus.todo
+    }
+});
+//collection name is "tasks", and the schema is TaskSchema
+exports.TaskModel = mongoose_1.model("tasks", exports.TaskSchema);

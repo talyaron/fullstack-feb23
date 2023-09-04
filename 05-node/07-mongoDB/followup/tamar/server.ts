@@ -12,7 +12,8 @@ app.use(express.static("public"));
 app.use(express.json());
 
 //connect to mongoDB with mongoose
-mongoose.connect("mongodb+srv://tal:mwtBquKP1ZHIIQGH@cluster0.0hzknon.mongodb.net/test")
+mongoose.connect("mongodb+srv://tamar:Vxv7cpZuEp9uY1eZ@cluster0.85tiuhl.mongodb.net")
+
 .then(()=>{
   console.info("MongoDB connected")
 })
