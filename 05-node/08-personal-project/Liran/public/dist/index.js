@@ -34,20 +34,6 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var Physician = /** @class */ (function () {
-    function Physician(firstName, lastName, age, phoneNum, email, licenseNumber, password, isAdmin, id) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.age = age;
-        this.phoneNum = phoneNum;
-        this.email = email;
-        this.licenseNumber = licenseNumber;
-        this.password = password;
-        this.isAdmin = isAdmin;
-        this.id = id;
-    }
-    return Physician;
-}());
 function hundleLogin(event) {
     return __awaiter(this, void 0, void 0, function () {
         var email_1, password_1, admin, response, data, physician, error_1;
@@ -86,7 +72,7 @@ function hundleLogin(event) {
                     }
                     else {
                         alert("physician");
-                        window.location.href = "physicianPage.html?email=" + email_1;
+                        window.location.href = "physician.html?email=" + email_1;
                     }
                     return [3 /*break*/, 4];
                 case 3:

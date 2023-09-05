@@ -37,7 +37,8 @@ export async function deletePhysician(req: any, res: any) {
 
 export async function updatePhysician(req: any, res: any) { 
     try {
-        const { id, firstName, lastName, age, phoneNum, email, password, licenseNumber } = req.body;
+        debugger;
+        const {  id,firstName, lastName, age, phoneNum, email, licenseNumber, password, isAdmin } = req.body;
         if (!id) throw new Error("id is required");
         const physician = await PhysicianModel.findById(id);
         if (!physician) throw new Error("physician not found");
@@ -47,7 +48,8 @@ export async function updatePhysician(req: any, res: any) {
         if (phoneNum) physician.phoneNum = phoneNum;
         if (email) physician.email = email;
         if (licenseNumber) physician.licenseNumber = licenseNumber;
-        if(password) password.password = password;
+        if(password) physician.password = password;
+        if(isAdmin) physician.isAdmin = isAdmin;
         res.send({ ok: true });
     } catch (error) {
         console.error(error);

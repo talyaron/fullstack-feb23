@@ -1,16 +1,3 @@
-class Physician {
-    constructor(public firstName: string,
-        public lastName: string,
-        public age: number,
-        public phoneNum: number,
-        public email: string,
-        public licenseNumber: number,
-        public password: string,
-        public isAdmin: boolean,
-        public id: string
-    ) { }
-}
-
 async function hundleLogin(event) {
     try {
         event.preventDefault();
@@ -39,7 +26,7 @@ async function hundleLogin(event) {
         }
         else {
             alert("physician");
-            window.location.href = `physicianPage.html?email=${email}`;
+            window.location.href = `physician.html?email=${email}`;
         }
 
     } catch (error) {

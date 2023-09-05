@@ -36,19 +36,19 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.updatePhysician = exports.deletePhysician = exports.addPhysician = exports.getPhysicians = void 0;
-var physicianModel_1 = require("./physicianModel");
-function getPhysicians(req, res) {
+exports.updatePatient = exports.deletePatient = exports.addPatient = exports.getPatients = void 0;
+var patientModel_1 = require("./patientModel");
+function getPatients(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var physiciansDB, error_1;
+        var patientsDB, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, physicianModel_1.PhysicianModel.find({})];
+                    return [4 /*yield*/, patientModel_1.PatientModel.find({})];
                 case 1:
-                    physiciansDB = _a.sent();
-                    res.send({ physicians: physiciansDB });
+                    patientsDB = _a.sent();
+                    res.send({ patients: patientsDB });
                     return [3 /*break*/, 3];
                 case 2:
                     error_1 = _a.sent();
@@ -60,22 +60,22 @@ function getPhysicians(req, res) {
         });
     });
 }
-exports.getPhysicians = getPhysicians;
-function addPhysician(req, res) {
+exports.getPatients = getPatients;
+function addPatient(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var _a, firstName, lastName, age, phoneNum, email, licenseNumber, password, isAdmin, physician, physicianDB, error_2;
+        var _a, firstName, lastName, age, phoneNum, weight, height, smoking, address, physicianId, patient, patientDB, error_2;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
                     _b.trys.push([0, 2, , 3]);
-                    _a = req.body, firstName = _a.firstName, lastName = _a.lastName, age = _a.age, phoneNum = _a.phoneNum, email = _a.email, licenseNumber = _a.licenseNumber, password = _a.password, isAdmin = _a.isAdmin;
-                    if (!firstName || !lastName || !age || !phoneNum || !email || !licenseNumber || !password)
+                    _a = req.body, firstName = _a.firstName, lastName = _a.lastName, age = _a.age, phoneNum = _a.phoneNum, weight = _a.weight, height = _a.height, smoking = _a.smoking, address = _a.address, physicianId = _a.physicianId;
+                    if (!firstName || !lastName || !age || !phoneNum || !weight || !height || !smoking || !address || !physicianId)
                         throw new Error("Please complete all fields");
-                    physician = new physicianModel_1.PhysicianModel({ firstName: firstName, lastName: lastName, age: age, phoneNum: phoneNum, email: email, licenseNumber: licenseNumber, isAdmin: isAdmin, password: password });
-                    return [4 /*yield*/, physician.save()];
+                    patient = new patientModel_1.PatientModel({ firstName: firstName, lastName: lastName, age: age, phoneNum: phoneNum, weight: weight, height: height, smoking: smoking, address: address, physicianId: physicianId });
+                    return [4 /*yield*/, patient.save()];
                 case 1:
-                    physicianDB = _b.sent();
-                    console.log(physicianDB);
+                    patientDB = _b.sent();
+                    console.log(patientDB);
                     res.send({ ok: true });
                     return [3 /*break*/, 3];
                 case 2:
@@ -88,19 +88,19 @@ function addPhysician(req, res) {
         });
     });
 }
-exports.addPhysician = addPhysician;
-function deletePhysician(req, res) {
+exports.addPatient = addPatient;
+function deletePatient(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var id, physicianDB, error_3;
+        var id, patientDB, error_3;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
                     id = req.body.id;
-                    return [4 /*yield*/, physicianModel_1.PhysicianModel.findByIdAndDelete(id)];
+                    return [4 /*yield*/, patientModel_1.PatientModel.findByIdAndDelete(id)];
                 case 1:
-                    physicianDB = _a.sent();
-                    res.send({ ok: true });
+                    patientDB = _a.sent();
+                    res.send({ patientDB: patientDB });
                     return [3 /*break*/, 3];
                 case 2:
                     error_3 = _a.sent();
@@ -112,40 +112,40 @@ function deletePhysician(req, res) {
         });
     });
 }
-exports.deletePhysician = deletePhysician;
-function updatePhysician(req, res) {
+exports.deletePatient = deletePatient;
+function updatePatient(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var _a, id, firstName, lastName, age, phoneNum, email, licenseNumber, password, isAdmin, physician, error_4;
+        var _a, id, firstName, lastName, age, phoneNum, weight, height, smoking, address, physicianId, patient, error_4;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
                     _b.trys.push([0, 2, , 3]);
-                    debugger;
-                    _a = req.body, id = _a.id, firstName = _a.firstName, lastName = _a.lastName, age = _a.age, phoneNum = _a.phoneNum, email = _a.email, licenseNumber = _a.licenseNumber, password = _a.password, isAdmin = _a.isAdmin;
+                    _a = req.body, id = _a.id, firstName = _a.firstName, lastName = _a.lastName, age = _a.age, phoneNum = _a.phoneNum, weight = _a.weight, height = _a.height, smoking = _a.smoking, address = _a.address, physicianId = _a.physicianId;
                     if (!id)
                         throw new Error("id is required");
-                    return [4 /*yield*/, physicianModel_1.PhysicianModel.findById(id)];
+                    return [4 /*yield*/, patientModel_1.PatientModel.findById(id)];
                 case 1:
-                    physician = _b.sent();
-                    if (!physician)
-                        throw new Error("physician not found");
+                    patient = _b.sent();
+                    if (!patient)
+                        throw new Error("patient not found");
                     if (firstName)
-                        physician.firstName = firstName;
+                        patient.firstName = firstName;
                     if (lastName)
-                        physician.lastName = lastName;
+                        patient.lastName = lastName;
                     if (age)
-                        physician.age = age;
+                        patient.age = age;
                     if (phoneNum)
-                        physician.phoneNum = phoneNum;
-                    if (email)
-                        physician.email = email;
-                    if (licenseNumber)
-                        physician.licenseNumber = licenseNumber;
-                    if (password)
-                        physician.password = password;
-                    if (isAdmin)
-                        physician.isAdmin = isAdmin;
-                    res.send({ ok: true });
+                        patient.phoneNum = phoneNum;
+                    if (weight)
+                        patient.weight = weight;
+                    if (height)
+                        patient.height = height;
+                    if (smoking)
+                        patient.smoking = smoking;
+                    if (address)
+                        patient.address = address;
+                    if (physicianId)
+                        patient.physicianId = physicianId;
                     return [3 /*break*/, 3];
                 case 2:
                     error_4 = _b.sent();
@@ -157,4 +157,4 @@ function updatePhysician(req, res) {
         });
     });
 }
-exports.updatePhysician = updatePhysician;
+exports.updatePatient = updatePatient;

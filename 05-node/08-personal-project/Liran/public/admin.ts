@@ -5,13 +5,6 @@ function getEmailFromQuery() {
 
 const email = getEmailFromQuery();
 console.log(email)
-// const start = async () => {
-//     try {      
-//         await renderAdminPage();
-//     } catch (error) {
-//         console.error(error);
-//     }
-// }
 renderAdminPage();
 
 
@@ -36,12 +29,262 @@ function renderAdminActions(root: HTMLDivElement) {
         <button id="update-physician" onclick="hundleUpdatePhysician()">Update Physician</button>
         <button id="update-patient" onclick="hundleUpdatePatient()">Update Patient</button>
         <button id="update-medicine" onclick="hundleUpdateMedicine()">Update Medicine</button>
+        <button id="delete-physician" onclick="hundleDeletePhysician()">Delete Physician</button>
+        <button id="delete-patient" onclick="hundleDeletePatient()">Delete Patient</button>
+        <button id="delete-medicine" onclick="hundleDeleteMedicine()">Delete Medicine</button>
+        <button id="physicianList" onclick="hundlePhysicianList()">Physician List</button>
+        <button id="patientList" onclick="hundlePatientList()">Patient List</button>
+        <button id="medicineList" onclick="hundleMedicineList()">Medicine List</button>
+        <button id="logout" onclick="hundleLogout()">Logout</button>
     </div>
         `;
     } catch (error) {
         console.error(error);
     }
 }
+
+function hundleLogout() {
+    try {
+        window.location.href = "index.html";
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+function hundlePhysicianList() {
+    try {
+        renderPhysicianList(document.querySelector("#forms"));
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+async function renderPhysicianList(html: HTMLDivElement) {
+    try {
+        const response = await fetch("/API/physician/get-physicians");
+        const data = await response.json();
+        const physiciansList: Physician[] = data.physicians;
+        let tempHtml = `<h2>Physician List</h2>
+        <table>
+        <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Age</th>
+        <th>Phone Number</th>
+        <th>Email</th>
+        <th>License Number</th>
+        <th>Admin</th>
+        </tr>`;
+        physiciansList.forEach(physician => {
+            tempHtml += `<tr>
+            <td>${physician.firstName}</td>
+            <td>${physician.lastName}</td>
+            <td>${physician.age}</td>
+            <td>${physician.phoneNum}</td>
+            <td>${physician.email}</td>
+            <td>${physician.licenseNumber}</td>
+            <td>${physician.isAdmin}</td>
+            </tr>`;
+        });
+        tempHtml += `</table>`;
+        html.innerHTML = tempHtml;
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+function hundlePatientList() {
+    try {
+        renderPatientList(document.querySelector("#forms"));
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+async function renderPatientList(html: HTMLDivElement) {
+    try {
+        const response = await fetch("/API/patient/get-patients");
+        const data = await response.json();
+        const patientsList: Patient[] = data.patients;
+        let tempHtml = `<h2>Patient List</h2>
+        <table>
+        <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Age</th>
+        <th>Phone Number</th>
+        <th>Weight</th>
+        <th>Height</th>
+        <th>Smoking</th>
+        <th>Address</th>
+        <th>Physician</th>
+        </tr>`;
+        patientsList.forEach(patient => {
+            tempHtml += `<tr>
+            <td>${patient.firstName}</td>
+            <td>${patient.lastName}</td>
+            <td>${patient.age}</td>
+            <td>${patient.phoneNum}</td>
+            <td>${patient.weight}</td>
+            <td>${patient.height}</td>
+            <td>${patient.smoking}</td>
+            <td>${patient.address}</td>
+            <td>${patient.physicianId}</td>
+            </tr>`;
+        });
+        tempHtml += `</table>`;
+        html.innerHTML = tempHtml;
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+function hundleMedicineList() {
+    try {
+        renderMedicineList(document.querySelector("#forms"));
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+async function renderMedicineList(html: HTMLDivElement) {
+    try {
+        const response = await fetch("/API/medicine/get-medicines");
+        const data = await response.json();
+        const medicinesList: Medicine[] = data.medicines;
+        let tempHtml = `<h2>Medicine List</h2>
+        <table>
+        <tr>
+        <th>Name</th>
+        <th>Dosage Per Day</th>
+        <th>Max Duration</th>
+        </tr>`;
+        medicinesList.forEach(medicine => {
+            tempHtml += `<tr>
+            <td>${medicine.name}</td>
+            <td>${medicine.dosagePerDay}</td>
+            <td>${medicine.maxDuration}</td>
+            </tr>`;
+        });
+        tempHtml += `</table>`;
+        html.innerHTML = tempHtml;
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+function hundleDeletePhysician() {
+    try {
+        renderDeletePhysician(document.querySelector("#forms"));
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+async function renderDeletePhysician(html: HTMLDivElement) {
+    try {
+        let tempHtml = `<h2>Delete Physician</h2>
+        <form onsubmit="hundlePhysicianDeleteSubmit(event)">
+        <div class="input">
+        <label for="id">Select physician</label><br>
+        <select id="id" name="id">
+        `;
+        const physiciansList = await getPhysiciansList();
+        physiciansList.forEach(physician => {
+            tempHtml += `<option value="${physician._id}"> Dr. ${physician.firstName} ${physician.lastName}</option>`;
+        });
+        tempHtml += `</select>
+            </div>
+            <input type="submit" value="DELETE">
+            </form>`;
+        html.innerHTML = tempHtml;
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+async function hundlePhysicianDeleteSubmit(event) {
+    try {
+        event.preventDefault();
+        const id = event.target.id.value;
+        if (!id) throw new Error("missing some details");
+        const response = await fetch("API/physician/delete-physician", {
+            method: "DELETE",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ id })
+        })
+        const data = await response.json();
+        console.log(data);
+        alert("Physician deleted successfully");
+        window.location.href = `admin.html?email=${email}`;
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+function hundleDeletePatient() {
+    try {
+        renderDeletePatient(document.querySelector("#forms"));
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+async function renderDeletePatient(html: HTMLDivElement) {
+    try {
+        let tempHtml = `<h2>Delete Patient</h2>
+        <form onsubmit="hundlePatientDeleteSubmit(event)">
+        <div class="input">
+        <label for="id">Select patient</label><br>
+        <select id="id" name="id">
+        `;
+        const patientsList = await getPatientsList();
+        patientsList.forEach(patient => {
+            tempHtml += `<option value="${patient._id}"> ${patient.firstName} ${patient.lastName}</option>`;
+        });
+        tempHtml += `</select>
+            </div>
+            <input type="submit" value="DELETE">
+            </form>`;
+        html.innerHTML = tempHtml;
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+function hundleDeleteMedicine() {
+    try {
+        renderDeleteMedicine(document.querySelector("#forms"));
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+async function renderDeleteMedicine(html: HTMLDivElement) {
+    try {
+        let tempHtml = `<h2>Delete Medicine</h2>
+        <form onsubmit="hundleMedicineDeleteSubmit(event)">
+        <div class="input">
+        <label for="id">Select medicine</label><br>
+        <select id="id" name="id">
+        `;
+        const medicinesList = await getMedicinesList();
+        medicinesList.forEach(medicine => {
+            tempHtml += `<option value="${medicine._id}"> ${medicine.name}</option>`;
+        });
+        tempHtml += `</select>
+            </div>
+            <input type="submit" value="DELETE">
+            </form>`;
+        html.innerHTML = tempHtml;
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+
 
 function renderWelcome(lastName, root: HTMLDivElement) {
     try {
@@ -168,7 +411,7 @@ async function renderAddPatient(html: HTMLDivElement) {
             `;
         const physiciansList = await getPhysiciansList();
         physiciansList.forEach(physician => {
-            tempHtml += `<option value="${physician.id}"> Dr. ${physician.firstName} ${physician.lastName}</option>`;
+            tempHtml += `<option value="${physician._id}"> Dr. ${physician.firstName} ${physician.lastName}</option>`;
         });
         tempHtml += `</select>
             </div>
@@ -273,7 +516,7 @@ async function hundleMedicineSubmit(event) {
     }
 }
 
-function hundleUpdatePhysician() { 
+function hundleUpdatePhysician() {
     try {
         renderUpdatePhysician(document.querySelector("#forms"));
     } catch (error) {
@@ -281,17 +524,18 @@ function hundleUpdatePhysician() {
     }
 }
 
-async function renderUpdatePhysician(html: HTMLDivElement) { 
+async function renderUpdatePhysician(html: HTMLDivElement) {
     try {
         let tempHtml = `<h2>Update Physician</h2>
         <form onsubmit="hundlePhysicianUpdateSubmit(event)">
         <div class="input">
         <label for="id">Select physician</label><br>
-        <select id="id" name="id">
+        <select id="id" name="id" onchange="loadDetails()">
         `;
         const physiciansList = await getPhysiciansList();
         physiciansList.forEach(physician => {
-            tempHtml += `<option value="${physician.id}"> Dr. ${physician.firstName} ${physician.lastName}</option>`;
+            
+            tempHtml += `<option value="${physician._id}"> Dr. ${physician.firstName} ${physician.lastName}</option>`;
         });
         tempHtml += `</select>
             </div>
@@ -328,11 +572,39 @@ async function renderUpdatePhysician(html: HTMLDivElement) {
     }
 }
 
-async function hundlePhysicianUpdateSubmit(event) { 
+async function loadDetails() {
+    try {
+        const id = document.querySelector<HTMLInputElement>("#id").value;
+        const response = await fetch(`/API/physician/get-physicians`);
+        const data = await response.json();
+        debugger;
+        const physician: Physician = data.physicians.find(physician => physician._id === id);
+        const idInput = document.querySelector<HTMLInputElement>("#id");
+        const firstNameInput = document.querySelector<HTMLInputElement>("#firstName");
+        const lastNameInput = document.querySelector<HTMLInputElement>("#lastName");
+        const ageInput = document.querySelector<HTMLInputElement>("#age");
+        const phoneNumInput = document.querySelector<HTMLInputElement>("#phoneNum");
+        const emailInput = document.querySelector<HTMLInputElement>("#email");
+        const licenseNumberInput = document.querySelector<HTMLInputElement>("#licenseNumber");
+        const passwordInput = document.querySelector<HTMLInputElement>("#password");
+        const isAdminCheckbox = document.querySelector<HTMLInputElement>("#isAdmin");
+        firstNameInput.value = physician.firstName;
+        lastNameInput.value = physician.lastName;
+        ageInput.value = physician.age.toString();
+        phoneNumInput.value = physician.phoneNum.toString();
+        emailInput.value = physician.email;
+        licenseNumberInput.value = physician.licenseNumber.toString();
+        passwordInput.value = physician.password;
+        isAdminCheckbox.checked = physician.isAdmin;
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+async function hundlePhysicianUpdateSubmit(event) {
     try {
         event.preventDefault();
-        debugger;   
-        const id = event.target.selecte[0].value;
+        const id = event.target[0].value;
         const firstName = event.target.firstName.value;
         const lastName = event.target.lastName.value;
         const age = event.target.age.value;
@@ -341,10 +613,11 @@ async function hundlePhysicianUpdateSubmit(event) {
         const licenseNumber = event.target.licenseNumber.value;
         const password = event.target.password.value;
         const isAdmin = event.target.isAdmin.checked;
+        
 
         if (!id) throw new Error("missing some details");
         const response = await fetch("API/physician/update-physician", {
-            method: "PUT",
+            method: "PATCH",
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -353,6 +626,235 @@ async function hundlePhysicianUpdateSubmit(event) {
         const data = await response.json();
         console.log(data);
         alert("Physician updated successfully");
+        window.location.href = `admin.html?email=${email}`;
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+function hundleUpdatePatient() {
+    try {
+        renderUpdatePatient(document.querySelector("#forms"));
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+async function renderUpdatePatient(html: HTMLDivElement) {
+    try {
+        let tempHtml = `<h2>Update Patient</h2>
+        <form onsubmit="hundlePatientUpdateSubmit(event)">
+        <div class="input">
+        <label for="id">Select patient</label><br>
+        <select id="id" name="id" onchange="loadPatientDetails()">
+        `;
+        const patientsList = await getPatientsList();
+        patientsList.forEach(patient => {
+            tempHtml += `<option value="${patient._id}"> ${patient.firstName} ${patient.lastName}</option>`;
+        });
+        tempHtml += `</select>
+            </div>
+            <div class="input">
+            <label for="firstName">First Name:</label><br>
+            <input type="text" id="firstName" name="firstName">
+            </div><div class="input">
+            <label for="lastName">Last Name:</label><br>
+            <input type="text" id="lastName" name="lastName">
+            </div> <div class="input">
+            <label for="age">Age:</label><br>
+            <input type="number" id="age" name="age">
+            </div> <div class="input">
+            <label for="phoneNum">Phone Number:</label><br>
+            <input type="number" id="phoneNum" name="phoneNum">
+            </div><div class="input">
+            <label for="weight">Weight:</label><br>
+            <input type="number" id="weight" name="weight">
+            </div><div class="input">
+            <label for="height">Height:</label><br>
+            <input type="number" id="height" name="height">
+            </div><div class="input">
+            <label for="smoking">Smoking:</label><br>
+            <input type="checkbox" id="smoking" name="smoking">
+            </div><div class="input">
+            <label for="address">Address:</label><br>
+            <input type="text" id="address" name="address">
+            </div><div class="input">
+            <label for="physicianId">Select physician</label><br>
+            <select id="physicianId" name="physicianId">
+            `;
+        const physiciansList = await getPhysiciansList();
+        physiciansList.forEach(physician => {
+            tempHtml += `<option value="${physician._id}"> Dr. ${physician.firstName} ${physician.lastName}</option>`;
+        });
+        tempHtml += `</select>
+            </div>
+            <input type="submit" value="UPDATE">
+        </form>`;
+        html.innerHTML = tempHtml;    
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+async function getPatientsList() {
+    try {
+        const response = await fetch("/API/patient/get-patients");
+        const data = await response.json();
+        const patientsList: Patient[] = data.patients;
+        return patientsList;
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+async function loadPatientDetails() {
+    try {
+        const id = document.querySelector<HTMLInputElement>("#id").value;
+        const response = await fetch(`/API/patient/get-patients`);
+        const data = await response.json();
+        const patient: Patient = data.patients.find(patient => patient._id === id);
+        const idInput = document.querySelector<HTMLInputElement>("#id");
+        const firstNameInput = document.querySelector<HTMLInputElement>("#firstName");
+        const lastNameInput = document.querySelector<HTMLInputElement>("#lastName");
+        const ageInput = document.querySelector<HTMLInputElement>("#age");
+        const phoneNumInput = document.querySelector<HTMLInputElement>("#phoneNum");
+        const weightInput = document.querySelector<HTMLInputElement>("#weight");
+        const heightInput = document.querySelector<HTMLInputElement>("#height");
+        const smokingCheckbox = document.querySelector<HTMLInputElement>("#smoking");
+        const addressInput = document.querySelector<HTMLInputElement>("#address");
+        const physicianIdInput = document.querySelector<HTMLInputElement>("#physicianId");
+        firstNameInput.value = patient.firstName;
+        lastNameInput.value = patient.lastName;
+        ageInput.value = patient.age.toString();
+        phoneNumInput.value = patient.phoneNum.toString();
+        weightInput.value = patient.weight.toString();
+        heightInput.value = patient.height.toString();
+        smokingCheckbox.checked = patient.smoking;
+        addressInput.value = patient.address;
+        physicianIdInput.value = patient.physicianId;
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+async function hundlePatientUpdateSubmit(event) {
+    try {
+        event.preventDefault();
+        debugger;
+        const id = event.target[0].value;
+        const firstName = event.target.firstName.value;
+        const lastName = event.target.lastName.value;
+        const age = event.target.age.value;
+        const phoneNum = event.target.phoneNum.value;
+        const weight = event.target.weight.value;
+        const height = event.target.height.value;
+        const smoking = event.target.smoking.checked;
+        const address = event.target.address.value;
+        const physicianId = event.target.physicianId.value;
+        if (!id) throw new Error("missing some details");
+        const response = await fetch("API/patient/update-patient", {
+            method: "PATCH",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ id, firstName, lastName, age, phoneNum, weight, height, smoking, address, physicianId })
+        })
+        const data = await response.json();
+        console.log(data);
+        alert("Patient updated successfully");
+        window.location.href = `admin.html?email=${email}`;
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+function hundleUpdateMedicine() {
+    try {
+        renderUpdateMedicine(document.querySelector("#forms"));
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+async function renderUpdateMedicine(html: HTMLDivElement) {
+    try {
+        let tempHtml = `<h2>Update Medicine</h2>
+        <form onsubmit="hundleMedicineUpdateSubmit(event)">
+        <div class="input">
+        <label for="id">Select medicine</label><br>
+        <select id="id" name="id" onchange="loadMedicineDetails()">
+        `;
+        const medicinesList = await getMedicinesList();
+        medicinesList.forEach(medicine => {
+            tempHtml += `<option value="${medicine._id}"> ${medicine.name}</option>`;
+        });
+        tempHtml += `</select>
+            </div>
+            <div class="input">
+            <label for="name">Name:</label><br>
+            <input type="text" id="name" name="name">
+            </div><div class="input">
+            <label for="dosagePerDay">Dosage Per Day:</label><br>
+            <input type="number" id="dosagePerDay" name="dosagePerDay">
+            </div> <div class="input">
+            <label for="maxDuration">Max Duration:</label><br>
+            <input type="number" id="maxDuration" name="maxDuration">
+            </div>
+            <input type="submit" value="UPDATE">
+        </form>`;
+        html.innerHTML = tempHtml;
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+async function getMedicinesList() {
+    try {
+        const response = await fetch("/API/medicine/get-medicines");
+        const data = await response.json();
+        const medicinesList: Medicine[] = data.medicines;
+        return medicinesList;
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+async function loadMedicineDetails() {
+    try {
+        const id = document.querySelector<HTMLInputElement>("#id").value;
+        const response = await fetch(`/API/medicine/get-medicines`);
+        const data = await response.json();
+        const medicine: Medicine = data.medicines.find(medicine => medicine._id === id);
+        const idInput = document.querySelector<HTMLInputElement>("#id");
+        const nameInput = document.querySelector<HTMLInputElement>("#name");
+        const dosagePerDayInput = document.querySelector<HTMLInputElement>("#dosagePerDay");
+        const maxDurationInput = document.querySelector<HTMLInputElement>("#maxDuration");
+        nameInput.value = medicine.name;
+        dosagePerDayInput.value = medicine.dosagePerDay.toString();
+        maxDurationInput.value = medicine.maxDuration.toString();
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+async function hundleMedicineUpdateSubmit(event) {
+    try {
+        event.preventDefault();
+        const id = event.target[0].value;
+        const name = event.target.name.value;
+        const dosagePerDay = event.target.dosagePerDay.value;
+        const maxDuration = event.target.maxDuration.value;
+        if (!id) throw new Error("missing some details");
+        const response = await fetch("API/medicine/update-medicine", {
+            method: "PATCH",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ id, name, dosagePerDay, maxDuration })
+        })
+        const data = await response.json();
+        console.log(data);
+        alert("Medicine updated successfully");
         window.location.href = `admin.html?email=${email}`;
     } catch (error) {
         console.error(error);
