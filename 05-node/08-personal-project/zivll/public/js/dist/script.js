@@ -1,169 +1,12 @@
-// this function is used to handle accordion click
-function handleAccordionClick() {
-    var accordion = document.querySelectorAll(".thead");
-    // this method will take care the accordion functionality
-    accordion.forEach(function (head) {
-        // first we handling the fold and unfold functions
-        head.addEventListener("click", function (ev) {
-            var _a;
-            head.classList.toggle("active");
-            var svgRoot = head.childNodes[1];
-            var createSvgDiv = document.createElement("div");
-            if (!((_a = head.parentElement) === null || _a === void 0 ? void 0 : _a.nextElementSibling))
-                throw new Error("next sibling not found");
-            var nextElementSibling = head.parentElement.nextElementSibling;
-            if (!nextElementSibling)
-                throw new Error("nextElementSibling not found");
-            if (nextElementSibling.classList.contains("off")) {
-                nextElementSibling.classList.remove("off");
-                // second we handling the svg replacing (plus, minus)
-                createSvgDiv.innerHTML = "<svg\n      xmlns=\"http://www.w3.org/2000/svg\"\n      fill=\"none\"\n      viewBox=\"0 0 24 24\"\n      stroke-width=\"1.5\"\n      stroke=\"currentColor\"\n      class=\"collapse-icon\"\n    >\n      <path\n        stroke-linecap=\"round\"\n        stroke-linejoin=\"round\"\n        d=\"M18 12H6\"\n      />\n    </svg>";
-                svgRoot.replaceChild(createSvgDiv, svgRoot.childNodes[1]);
-            }
-            else {
-                nextElementSibling.classList.add("off");
-                createSvgDiv.innerHTML = "<svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"1.5\" stroke=\"currentColor\" class=\"collapse-icon\">\n      <path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M12 6v12m6-6H6\" />\n    </svg>";
-                svgRoot.replaceChild(createSvgDiv, svgRoot.childNodes[1]);
-            }
-        });
-    });
-}
-// this function gets categories from local storage when the page loads
-function getCategoriesFromLocalStorage() {
-    if (localStorage.getItem("userCategories") == null)
-        throw new Error("no categories in local storage");
-    var categoriesAsString = localStorage.getItem("userCategories");
-    if (categoriesAsString === null)
-        throw new Error("no categories in local storage");
-    var categories = JSON.parse(categoriesAsString);
-    userCategories.push.apply(userCategories, categories);
-}
-// this function is used to check and add new category
-function addCategory(expences) {
-    expences.forEach(function (expence) {
-        // console.dir(userCategories[0].categoryName);
-        if (expence.category === undefined)
-            throw new Error("category is undefined");
-        if (userCategories.length === 0 ||
-            userCategories.every(function (category) { return category.categoryName !== expence.category; })) {
-            userCategories.push(new UserCategories(expence.category, expence.categoryId));
-        }
-        // userCategories.push(newObject);
-        localStorage.setItem("userCategories", JSON.stringify(userCategories));
-    });
-}
-// this function handling the expence submit
-function handleExpenceSubmit(ev) {
-    var _a;
-    try {
-        ev.preventDefault();
-        var resultRoot = document.querySelector(".total-number--expence");
-        if (!resultRoot)
-            throw new Error("resultRoot not found");
-        var expenceDescription = ev.target.expenceDescription.value;
-        var categoryId_1 = ev.target.categories.value;
-        var expenceAmount = ev.target.expenceAmount.valueAsNumber;
-        // if(!ev.target.categories.value) throw new Error(`categoryId not found`);
-        var categoryName = (_a = Categorys.find(function (category) { return "id-" + category.categoryId === categoryId_1; })) === null || _a === void 0 ? void 0 : _a.categoryName;
-        expences.push(new Expence(expenceDescription, categoryName, categoryId_1, expenceAmount));
-        // userCategories.push(new UserCategories(categoryName, categoryId));
-        addCategory(expences);
-        renderExpencesTable(expences, userCategories);
-        loadDataToLocalStorage(expences, "expences");
-        handleAccordionClick();
-        var allExpences = calculateTotalExpence(expences);
-        loadDataToLocalStorage(allExpences, "totalExpence");
-        renderResult(resultRoot, null, allExpences);
-        // loadDataToLocalStorage()
-        ev.target.reset();
-        console.log(ev);
-    }
-    catch (error) {
-        console.error(error);
-    }
-}
-// this funcion calculates the total expences
-function calculateTotalExpence(expences) {
-    var totalExpence = 0;
-    expences.forEach(function (expense) {
-        totalExpence += expense.amount;
-    });
-    return totalExpence;
-}
-// this function handling the income submit
-function handleIncomeSubmit(ev) {
-    try {
-        ev.preventDefault();
-        if (!ev || !ev.target)
-            throw new Error("event not found");
-        var income = ev.target.income.value;
-        var resultRoot = document.querySelector(".total-number--income");
-        if (!resultRoot)
-            throw new Error("resultRoot not found");
-        renderResult(resultRoot, income);
-        loadDataToLocalStorage(income, "income");
-        calculateBalance();
-        ev.target.reset();
-    }
-    catch (error) {
-        console.error(error);
-    }
-}
-// this function calculates the balance
-function calculateBalance() {
-    var _a;
-    try {
-        var balanceRoot = document.querySelector(".total-number--balance");
-        var incomeRoot = (_a = document.querySelector(".total-number--income")) === null || _a === void 0 ? void 0 : _a.innerHTML;
-        var allExpences = calculateTotalExpence(expences);
-        var expenceRoot = document.querySelector(".total-number--expence");
-        if (!incomeRoot || !expenceRoot)
-            throw new Error("no roots");
-        if (!balanceRoot)
-            throw new Error("balance not fount");
-        balanceRoot.innerHTML = parseFloat(incomeRoot) - allExpences + "&#8362;";
-        if (parseFloat(incomeRoot) - allExpences > 0) {
-            balanceRoot.classList.remove("total-number--expence");
-            balanceRoot.classList.add("total-number--income");
-        }
-        else {
-            balanceRoot.classList.remove("total-number--income");
-            balanceRoot.classList.add("total-number--expence");
-        }
-        expenceRoot.innerHTML = allExpences + "&#8362;";
-        // loadDataToLocalStorage(incomeRoot, `income`);
-    }
-    catch (error) {
-        console.error(error);
-    }
-}
-// this function sort the expences by category alfabetically
-function sortByCategory(category) {
-    try {
-        var sortedCategory = userCategories.sort(function (a, b) {
-            if (a.categoryName > b.categoryName)
-                return 1;
-            if (a.categoryName < b.categoryName)
-                return -1;
-            return 0;
-        });
-        return sortedCategory;
-    }
-    catch (error) {
-        console.error(error);
-    }
-}
 // this function is used to load any data to local storage
-function loadDataToLocalStorage(data, keyName) {
-    if (typeof data === "string") {
-        localStorage.setItem(keyName, data);
-    }
-    else {
-        var dataString = JSON.stringify(data);
-        localStorage.setItem(keyName, dataString);
-    }
-}
-// when refreshing the page this function will render the total numbers from local storage
+// function loadDataToLocalStorage(data, keyName: string) {
+//   if (typeof data === `string`) {
+//     localStorage.setItem(keyName, data);
+//   } else {
+//     const dataString = JSON.stringify(data);
+//     localStorage.setItem(keyName, dataString);
+//   }
+// }
 function loadPage() {
     try {
         var incomeRoot = document.querySelector(".total-number--income");
@@ -200,45 +43,6 @@ function loadPage() {
     catch (error) {
         console.error(error);
     }
-}
-function deleteExpense(ev) {
-    var expenseId = ev.target.parentElement.parentElement.id;
-    var categoryId = ev.target.parentElement.parentElement.parentElement.id;
-    var categoryName = ev.target.parentElement.parentElement.parentElement.previousElementSibling
-        .childNodes[0].innerText;
-    var same = expences.filter(function (expense) { return expense.category === categoryName; });
-    // console.log(same);
-    var index = expences.findIndex(function (expense) { return expense.expenseId === expenseId; });
-    expences.splice(index, 1);
-    var indexUserCategories = userCategories.findIndex(function (category) { return category.categoryId === categoryId; });
-    // if(userCategories[indexUserCategories].
-    if (same.length < 2) {
-        userCategories.splice(indexUserCategories, 1);
-    }
-    localStorage.setItem("userCategories", JSON.stringify(userCategories));
-    loadDataToLocalStorage(expences, "expences");
-    var allExpences = calculateTotalExpence(expences);
-    loadDataToLocalStorage(allExpences, "totalExpence");
-    ev.stopImmediatePropagation();
-    window.location.reload();
-}
-function editExpense(ev) {
-    var expenseId = ev.target.parentElement.parentElement.id;
-    var newName = prompt("\u05DE\u05D4 \u05D4\u05E9\u05DD \u05D4\u05D7\u05D3\u05E9 \u05E9\u05DC \u05D4\u05D4\u05D5\u05E6\u05D0\u05D4 \u05E9\u05DC\u05DA?");
-    var newAmount = prompt("\u05DE\u05D4 \u05D4\u05E1\u05DB\u05D5\u05DD \u05D4\u05D7\u05D3\u05E9 \u05E9\u05DC \u05D4\u05D4\u05D5\u05E6\u05D0\u05D4 \u05E9\u05DC\u05DA?");
-    var index = expences.findIndex(function (expense) { return expense.expenseId === expenseId; });
-    if (newName !== undefined || newName !== null) {
-        if (newName === null)
-            throw new Error("newName is null");
-        expences[index].name = newName;
-    }
-    if (newAmount !== undefined || newAmount !== null) {
-        expences[index].amount = Number(newAmount);
-    }
-    var expenceRoot = document.querySelector(".total-number--expence");
-    localStorage.setItem("userCategories", JSON.stringify(userCategories));
-    loadDataToLocalStorage(expences, "expences");
-    window.location.reload();
 }
 // view
 // this function is used to render the expenses calculator
@@ -317,16 +121,9 @@ function renderResult(htmlElemnet, income, expense) {
 loadPage();
 // revoke expence calculator when loading page
 // getCategoriesFromLocalStorage();
-renderExpenceCalculator();
+// renderExpenceCalculator();
 // revoke expences table (if such) when loading or refreshing page
 // renderExpencesTable(expences, userCategories);
 // revoke accordion functionality when loading or refreshing page
-handleAccordionClick();
+// handleAccordionClick();
 // getCategoriesFromLocalStorage()
-function ExportToExcel(type, fn, dl) {
-    var elt = document.querySelector("#tbl_exporttable_to_xls");
-    var wb = XLSX.utils.table_to_book(elt, { sheet: "sheet1" });
-    return dl
-        ? XLSX.write(wb, { bookType: type, bookSST: true, type: "base64" })
-        : XLSX.writeFile(wb, fn || "MyExpencesTable." + (type || "xlsx"));
-}

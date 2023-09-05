@@ -1,128 +1,13 @@
-// this function is used to check and add new category
-function addCategory(expences: Expence[]) {
-  expences.forEach((expence) => {
-    // console.dir(userCategories[0].categoryName);
-    if (expence.category === undefined)
-      throw new Error(`category is undefined`);
-    if (
-      userCategories.length === 0 ||
-      userCategories.every(
-        (category) => category.categoryName !== expence.category
-      )
-    ) {
-      userCategories.push(
-        new UserCategories(expence.category, expence.categoryId)
-      );
-    }
-    // userCategories.push(newObject);
-    localStorage.setItem("userCategories", JSON.stringify(userCategories));
-  });
-}
-// this function handling the expence submit
-function handleExpenceSubmit(ev) {
-  try {
-    ev.preventDefault();
-    const resultRoot = document.querySelector(`.total-number--expence`);
-    if (!resultRoot) throw new Error(`resultRoot not found`);
-    const expenceDescription = ev.target.expenceDescription.value;
-    const categoryId = ev.target.categories.value;
-    const expenceAmount = ev.target.expenceAmount.valueAsNumber;
-    // if(!ev.target.categories.value) throw new Error(`categoryId not found`);
-    const categoryName: string | undefined = Categorys.find(
-      (category) => `id-${category.categoryId}` === categoryId
-    )?.categoryName;
-
-    expences.push(
-      new Expence(expenceDescription, categoryName, categoryId, expenceAmount)
-    );
-    // userCategories.push(new UserCategories(categoryName, categoryId));
-    addCategory(expences);
-    renderExpencesTable(expences, userCategories);
-    loadDataToLocalStorage(expences, `expences`);
-    handleAccordionClick();
-    const allExpences = calculateTotalExpence(expences);
-    loadDataToLocalStorage(allExpences, `totalExpence`);
-    renderResult(resultRoot, null, allExpences);
-
-    // loadDataToLocalStorage()
-    ev.target.reset();
-    console.log(ev);
-  } catch (error) {
-    console.error(error);
-  }
-}
-// this funcion calculates the total expences
-function calculateTotalExpence(expences) {
-  let totalExpence = 0;
-  expences.forEach((expense) => {
-    totalExpence += expense.amount;
-  });
-  return totalExpence;
-}
-// this function handling the income submit
-function handleIncomeSubmit(ev) {
-  try {
-    ev.preventDefault();
-    if (!ev || !ev.target) throw new Error(`event not found`);
-    const income = ev.target.income.value;
-    const resultRoot = document.querySelector(`.total-number--income`);
-    if (!resultRoot) throw new Error(`resultRoot not found`);
-    renderResult(resultRoot, income);
-    loadDataToLocalStorage(income, `income`);
-    calculateBalance();
-    ev.target.reset();
-  } catch (error) {
-    console.error(error);
-  }
-}
-// this function calculates the balance
-function calculateBalance() {
-  try {
-    const balanceRoot = document.querySelector(`.total-number--balance`);
-    const incomeRoot = document.querySelector(
-      `.total-number--income`
-    )?.innerHTML;
-    const allExpences = calculateTotalExpence(expences);
-    const expenceRoot = document.querySelector(`.total-number--expence`);
-    if (!incomeRoot || !expenceRoot) throw new Error(`no roots`);
-    if (!balanceRoot) throw new Error(`balance not fount`);
-    balanceRoot.innerHTML = `${parseFloat(incomeRoot) - allExpences}&#8362;`;
-    if (parseFloat(incomeRoot) - allExpences > 0) {
-      balanceRoot.classList.remove(`total-number--expence`);
-      balanceRoot.classList.add(`total-number--income`);
-    } else {
-      balanceRoot.classList.remove(`total-number--income`);
-      balanceRoot.classList.add(`total-number--expence`);
-    }
-    expenceRoot.innerHTML = `${allExpences}&#8362;`;
-    // loadDataToLocalStorage(incomeRoot, `income`);
-  } catch (error) {
-    console.error(error);
-  }
-}
-// this function sort the expences by category alfabetically
-function sortByCategory(category: UserCategories[]) {
-  try {
-    const sortedCategory = userCategories.sort((a, b) => {
-      if (a.categoryName > b.categoryName) return 1;
-      if (a.categoryName < b.categoryName) return -1;
-      return 0;
-    });
-    return sortedCategory;
-  } catch (error) {
-    console.error(error);
-  }
-}
 // this function is used to load any data to local storage
-function loadDataToLocalStorage(data, keyName: string) {
-  if (typeof data === `string`) {
-    localStorage.setItem(keyName, data);
-  } else {
-    const dataString = JSON.stringify(data);
-    localStorage.setItem(keyName, dataString);
-  }
-}
-// when refreshing the page this function will render the total numbers from local storage
+// function loadDataToLocalStorage(data, keyName: string) {
+//   if (typeof data === `string`) {
+//     localStorage.setItem(keyName, data);
+//   } else {
+//     const dataString = JSON.stringify(data);
+//     localStorage.setItem(keyName, dataString);
+//   }
+// }
+
 function loadPage() {
   try {
     const incomeRoot = document.querySelector(`.total-number--income`);
@@ -166,56 +51,6 @@ function loadPage() {
     console.error(error);
   }
 }
-function deleteExpense(ev) {
-  const expenseId = ev.target.parentElement.parentElement.id;
-  const categoryId = ev.target.parentElement.parentElement.parentElement.id;
-  const categoryName =
-    ev.target.parentElement.parentElement.parentElement.previousElementSibling
-      .childNodes[0].innerText;
-
-  const same = expences.filter((expense) => expense.category === categoryName);
-  // console.log(same);
-
-  const index = expences.findIndex(
-    (expense) => expense.expenseId === expenseId
-  );
-  expences.splice(index, 1);
-  const indexUserCategories = userCategories.findIndex(
-    (category) => category.categoryId === categoryId
-  );
-  // if(userCategories[indexUserCategories].
-  if (same.length < 2) {
-    userCategories.splice(indexUserCategories, 1);
-  }
-
-  localStorage.setItem("userCategories", JSON.stringify(userCategories));
-  loadDataToLocalStorage(expences, `expences`);
-  const allExpences = calculateTotalExpence(expences);
-  loadDataToLocalStorage(allExpences, `totalExpence`);
-  ev.stopImmediatePropagation();
-  window.location.reload();
-}
-function editExpense(ev) {
-  const expenseId = ev.target.parentElement.parentElement.id;
-  const newName = prompt(`מה השם החדש של ההוצאה שלך?`);
-  const newAmount = prompt(`מה הסכום החדש של ההוצאה שלך?`);
-
-  const index = expences.findIndex(
-    (expense) => expense.expenseId === expenseId
-  );
-  if (newName !== undefined || newName !== null) {
-    if (newName === null) throw new Error(`newName is null`);
-    expences[index].name = newName;
-  }
-  if (newAmount !== undefined || newAmount !== null) {
-    expences[index].amount = Number(newAmount);
-  }
-  const expenceRoot = document.querySelector(`.total-number--expence`);
-  localStorage.setItem("userCategories", JSON.stringify(userCategories));
-  loadDataToLocalStorage(expences, `expences`);
-  window.location.reload();
-}
-
 // view
 
 // this function is used to render the expenses calculator
@@ -353,16 +188,9 @@ function renderResult(
 loadPage();
 // revoke expence calculator when loading page
 // getCategoriesFromLocalStorage();
-renderExpenceCalculator();
+// renderExpenceCalculator();
 // revoke expences table (if such) when loading or refreshing page
 // renderExpencesTable(expences, userCategories);
 // revoke accordion functionality when loading or refreshing page
-handleAccordionClick();
+// handleAccordionClick();
 // getCategoriesFromLocalStorage()
-function ExportToExcel(type, fn, dl) {
-  var elt = document.querySelector("#tbl_exporttable_to_xls");
-  var wb = XLSX.utils.table_to_book(elt, { sheet: "sheet1" });
-  return dl
-    ? XLSX.write(wb, { bookType: type, bookSST: true, type: "base64" })
-    : XLSX.writeFile(wb, fn || "MyExpencesTable." + (type || "xlsx"));
-}

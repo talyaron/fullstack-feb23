@@ -12,7 +12,7 @@ export const addCategoey = async (req: any, res: any) => {
       categoryName: categoryName,
       userName: userName,
     });
-    res.send({ message: "category created" });
+    res.send({ message: `category created` });
   } catch (error) {
     console.error(error);
     res.status(500).send({ error: error.message });
