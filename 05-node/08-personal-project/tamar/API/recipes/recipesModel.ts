@@ -1,3 +1,5 @@
+import { Schema, model } from "mongoose";
+
 export class Recipe {
     title: string;
     description: string;
@@ -11,5 +13,16 @@ export class Recipe {
         this.id = Math.random().toString();
     }
 }
+
+//define schema
+
+export const RecipeSchema = new Schema({
+    title: String,
+    description: String,
+    urlImg: String,
+});
+
+//"recipes" will be the name of this collection in the DB
+export const RecipeModel = model("recipes", RecipeSchema)
 
 export const recipes: Recipe[] = [];
