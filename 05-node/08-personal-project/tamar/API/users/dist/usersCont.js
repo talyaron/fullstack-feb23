@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.registerUser = void 0;
+exports.loginUser = exports.registerUser = void 0;
 var usersModle_1 = require("./usersModle");
 //register
 exports.registerUser = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
@@ -49,7 +49,8 @@ exports.registerUser = function (req, res) { return __awaiter(void 0, void 0, vo
                 , userName = _a.userName, email = _a.email, password = _a.password;
                 if (!userName || !email || !password)
                     throw new Error("Please complete all fields");
-                user = new usersModle_1.UserModel({ userName: userName, email: email, password: password });
+                user = new usersModle_1.UserModel({ userName: userName, email: email, password: password }) //create new user from data
+                ;
                 return [4 /*yield*/, user.save()];
             case 1:
                 userDB = _b.sent();
@@ -60,6 +61,38 @@ exports.registerUser = function (req, res) { return __awaiter(void 0, void 0, vo
                 error_1 = _b.sent();
                 console.error(error_1);
                 res.send({ error: error_1.massage });
+                return [3 /*break*/, 3];
+            case 3: return [2 /*return*/];
+        }
+    });
+}); };
+//login
+exports.loginUser = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var _a, userName, email, password, user, userDB, error_2;
+    return __generator(this, function (_b) {
+        switch (_b.label) {
+            case 0:
+                _b.trys.push([0, 2, , 3]);
+                _a = req.body //get data from claient
+                , userName = _a.userName, email = _a.email, password = _a.password;
+                if (!userName || !email || !password)
+                    throw new Error("Please complete all fields");
+                user = new usersModle_1.UserModel({ userName: userName, email: email, password: password }) //create new user from data
+                ;
+                console.log(user);
+                return [4 /*yield*/, usersModle_1.UserModel.findOne({ user: user })]; //find the user in DB
+            case 1:
+                userDB = _b.sent() //find the user in DB
+                ;
+                if (!userDB)
+                    throw new Error("No user found in DB");
+                console.log(userDB);
+                res.send({ ok: true });
+                return [3 /*break*/, 3];
+            case 2:
+                error_2 = _b.sent();
+                console.error(error_2);
+                res.send({ error: error_2.massage });
                 return [3 /*break*/, 3];
             case 3: return [2 /*return*/];
         }
