@@ -19,8 +19,8 @@ mongoose_1.default.connect("mongodb+srv://leedee:Omer2021!@cluster0.pe6xuzr.mong
 const userRouter_1 = __importDefault(require("./API/users/userRouter"));
 //tells express to use userRouter on the intial route "/API/users"
 app.use("/API/users", userRouter_1.default);
-const tasksRoutes_1 = __importDefault(require("./API/tasks/tasksRoutes"));
-app.use("/API/tasks", tasksRoutes_1.default);
+const relativesRoutes_1 = __importDefault(require("./API/tasks/relativesRoutes"));
+app.use("/API/tasks", relativesRoutes_1.default);
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`);
 });
