@@ -36,10 +36,22 @@ function renderPhysicianActions(html: HTMLElement) {
     <button id="addPatient" onclick="loadPatients()">Patient</button>
     <button id="addMedicine" onclick="loadMedicines()">Medicine</button>
     <button id="addPrescription" onclick="loadPrescriptions()">Prescription</button>
+    <button id="updatePatient" onclick="updatePatient()">Update Patient</button>
     <button id="logout" onclick="logout()">Logout</button>
     </div>
     `;
 }
+
+async function updatePatient(){
+    try {
+        const response = await fetch("/API/patient/get-patients");
+        const data = await response.json();
+        console.log(data);
+        renderUpdatePatient(data.patients);
+    } catch (error) {
+        console.error(error);
+    }
+} 
 
 async function loadPatients() {
     try {
