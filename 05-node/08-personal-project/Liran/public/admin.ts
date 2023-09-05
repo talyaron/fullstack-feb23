@@ -108,6 +108,9 @@ async function renderPatientList(html: HTMLDivElement) {
     try {
         const response = await fetch("/API/patient/get-patients");
         const data = await response.json();
+        const responsePhysician = await fetch("/API/physician/get-physicians");
+        const dataPhysician = await responsePhysician.json();
+        const physiciansList: Physician[] = dataPhysician.physicians;
         const patientsList: Patient[] = data.patients;
         let tempHtml = `<h2>Patient List</h2>
         <table>
@@ -132,7 +135,7 @@ async function renderPatientList(html: HTMLDivElement) {
             <td>${patient.height}</td>
             <td>${patient.smoking}</td>
             <td>${patient.address}</td>
-            <td>${patient.physicianId}</td>
+            <td>Dr. ${dataPhysician.physicians.find(p => p._id === patient.physicianId).lastName}</td>
             </tr>`;
         });
         tempHtml += `</table>`;
@@ -257,6 +260,28 @@ async function renderDeletePatient(html: HTMLDivElement) {
     }
 }
 
+async function hundlePatientDeleteSubmit(event) { 
+    try {
+        event.preventDefault();
+        const id = event.target.id.value;
+        if (!id) throw new Error("missing some details");
+        const response = await fetch("API/patient/delete-patient", {
+            method: "DELETE",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ id })
+        })
+        const data = await response.json();
+        console.log(data);
+        alert("Patient deleted successfully");
+        window.location.href = `admin.html?email=${email}`;
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+
 function hundleDeleteMedicine() {
     try {
         renderDeleteMedicine(document.querySelector("#forms"));
@@ -287,7 +312,26 @@ async function renderDeleteMedicine(html: HTMLDivElement) {
     }
 }
 
-
+async function hundleMedicineDeleteSubmit(event) { 
+    try {
+        event.preventDefault();
+        const id = event.target.id.value;
+        if (!id) throw new Error("missing some details");
+        const response = await fetch("API/medicine/delete-medicine", {
+            method: "DELETE",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ id })
+        })
+        const data = await response.json();
+        console.log(data);
+        alert("Medicine deleted successfully");
+        window.location.href = `admin.html?email=${email}`;
+    } catch (error) {
+        console.error(error);
+    }
+}
 
 function renderWelcome(lastName, root: HTMLDivElement) {
     try {
