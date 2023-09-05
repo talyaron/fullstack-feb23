@@ -132,30 +132,37 @@ function hundlePatientList() {
 }
 function renderPatientList(html) {
     return __awaiter(this, void 0, void 0, function () {
-        var response, data, patientsList, tempHtml_2, error_3;
+        var response, data, responsePhysician, dataPhysician_1, physiciansList, patientsList, tempHtml_2, error_3;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    _a.trys.push([0, 3, , 4]);
+                    _a.trys.push([0, 5, , 6]);
                     return [4 /*yield*/, fetch("/API/patient/get-patients")];
                 case 1:
                     response = _a.sent();
                     return [4 /*yield*/, response.json()];
                 case 2:
                     data = _a.sent();
+                    return [4 /*yield*/, fetch("/API/physician/get-physicians")];
+                case 3:
+                    responsePhysician = _a.sent();
+                    return [4 /*yield*/, responsePhysician.json()];
+                case 4:
+                    dataPhysician_1 = _a.sent();
+                    physiciansList = dataPhysician_1.physicians;
                     patientsList = data.patients;
                     tempHtml_2 = "<h2>Patient List</h2>\n        <table>\n        <tr>\n        <th>First Name</th>\n        <th>Last Name</th>\n        <th>Age</th>\n        <th>Phone Number</th>\n        <th>Weight</th>\n        <th>Height</th>\n        <th>Smoking</th>\n        <th>Address</th>\n        <th>Physician</th>\n        </tr>";
                     patientsList.forEach(function (patient) {
-                        tempHtml_2 += "<tr>\n            <td>" + patient.firstName + "</td>\n            <td>" + patient.lastName + "</td>\n            <td>" + patient.age + "</td>\n            <td>" + patient.phoneNum + "</td>\n            <td>" + patient.weight + "</td>\n            <td>" + patient.height + "</td>\n            <td>" + patient.smoking + "</td>\n            <td>" + patient.address + "</td>\n            <td>" + patient.physicianId + "</td>\n            </tr>";
+                        tempHtml_2 += "<tr>\n            <td>" + patient.firstName + "</td>\n            <td>" + patient.lastName + "</td>\n            <td>" + patient.age + "</td>\n            <td>" + patient.phoneNum + "</td>\n            <td>" + patient.weight + "</td>\n            <td>" + patient.height + "</td>\n            <td>" + patient.smoking + "</td>\n            <td>" + patient.address + "</td>\n            <td>Dr. " + dataPhysician_1.physicians.find(function (p) { return p._id === patient.physicianId; }).lastName + "</td>\n            </tr>";
                     });
                     tempHtml_2 += "</table>";
                     html.innerHTML = tempHtml_2;
-                    return [3 /*break*/, 4];
-                case 3:
+                    return [3 /*break*/, 6];
+                case 5:
                     error_3 = _a.sent();
                     console.error(error_3);
-                    return [3 /*break*/, 4];
-                case 4: return [2 /*return*/];
+                    return [3 /*break*/, 6];
+                case 6: return [2 /*return*/];
             }
         });
     });
@@ -302,6 +309,42 @@ function renderDeletePatient(html) {
         });
     });
 }
+function hundlePatientDeleteSubmit(event) {
+    return __awaiter(this, void 0, void 0, function () {
+        var id, response, data, error_8;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 3, , 4]);
+                    event.preventDefault();
+                    id = event.target.id.value;
+                    if (!id)
+                        throw new Error("missing some details");
+                    return [4 /*yield*/, fetch("API/patient/delete-patient", {
+                            method: "DELETE",
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({ id: id })
+                        })];
+                case 1:
+                    response = _a.sent();
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    data = _a.sent();
+                    console.log(data);
+                    alert("Patient deleted successfully");
+                    window.location.href = "admin.html?email=" + email;
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_8 = _a.sent();
+                    console.error(error_8);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
+            }
+        });
+    });
+}
 function hundleDeleteMedicine() {
     try {
         renderDeleteMedicine(document.querySelector("#forms"));
@@ -312,7 +355,7 @@ function hundleDeleteMedicine() {
 }
 function renderDeleteMedicine(html) {
     return __awaiter(this, void 0, void 0, function () {
-        var tempHtml_6, medicinesList, error_8;
+        var tempHtml_6, medicinesList, error_9;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -328,10 +371,46 @@ function renderDeleteMedicine(html) {
                     html.innerHTML = tempHtml_6;
                     return [3 /*break*/, 3];
                 case 2:
-                    error_8 = _a.sent();
-                    console.error(error_8);
+                    error_9 = _a.sent();
+                    console.error(error_9);
                     return [3 /*break*/, 3];
                 case 3: return [2 /*return*/];
+            }
+        });
+    });
+}
+function hundleMedicineDeleteSubmit(event) {
+    return __awaiter(this, void 0, void 0, function () {
+        var id, response, data, error_10;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 3, , 4]);
+                    event.preventDefault();
+                    id = event.target.id.value;
+                    if (!id)
+                        throw new Error("missing some details");
+                    return [4 /*yield*/, fetch("API/medicine/delete-medicine", {
+                            method: "DELETE",
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({ id: id })
+                        })];
+                case 1:
+                    response = _a.sent();
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    data = _a.sent();
+                    console.log(data);
+                    alert("Medicine deleted successfully");
+                    window.location.href = "admin.html?email=" + email;
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_10 = _a.sent();
+                    console.error(error_10);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
             }
         });
     });
@@ -362,7 +441,7 @@ function renderAddPhysician(html) {
 }
 function hundlePhysicianSubmit(event) {
     return __awaiter(this, void 0, void 0, function () {
-        var firstName, lastName, age, phoneNum, email_1, licenseNumber, password, isAdmin, response, data, error_9;
+        var firstName, lastName, age, phoneNum, email_1, licenseNumber, password, isAdmin, response, data, error_11;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -395,8 +474,8 @@ function hundlePhysicianSubmit(event) {
                     window.location.href = "admin.html?email=" + email_1;
                     return [3 /*break*/, 4];
                 case 3:
-                    error_9 = _a.sent();
-                    console.error(error_9);
+                    error_11 = _a.sent();
+                    console.error(error_11);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }
@@ -413,7 +492,7 @@ function hundleAddPatient() {
 }
 function renderAddPatient(html) {
     return __awaiter(this, void 0, void 0, function () {
-        var tempHtml_7, physiciansList, error_10;
+        var tempHtml_7, physiciansList, error_12;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -429,8 +508,8 @@ function renderAddPatient(html) {
                     html.innerHTML = tempHtml_7;
                     return [3 /*break*/, 3];
                 case 2:
-                    error_10 = _a.sent();
-                    console.error(error_10);
+                    error_12 = _a.sent();
+                    console.error(error_12);
                     return [3 /*break*/, 3];
                 case 3: return [2 /*return*/];
             }
@@ -439,7 +518,7 @@ function renderAddPatient(html) {
 }
 function getPhysiciansList() {
     return __awaiter(this, void 0, void 0, function () {
-        var response, data, physiciansList, error_11;
+        var response, data, physiciansList, error_13;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -453,8 +532,8 @@ function getPhysiciansList() {
                     physiciansList = data.physicians;
                     return [2 /*return*/, physiciansList];
                 case 3:
-                    error_11 = _a.sent();
-                    console.error(error_11);
+                    error_13 = _a.sent();
+                    console.error(error_13);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }
@@ -463,7 +542,7 @@ function getPhysiciansList() {
 }
 function hundlePatientSubmit(event) {
     return __awaiter(this, void 0, void 0, function () {
-        var firstName, lastName, age, phoneNum, weight, height, smoking, address, physicianId, response, data, error_12;
+        var firstName, lastName, age, phoneNum, weight, height, smoking, address, physicianId, response, data, error_14;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -497,8 +576,8 @@ function hundlePatientSubmit(event) {
                     window.location.href = "admin.html?email=" + email;
                     return [3 /*break*/, 4];
                 case 3:
-                    error_12 = _a.sent();
-                    console.error(error_12);
+                    error_14 = _a.sent();
+                    console.error(error_14);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }
@@ -523,7 +602,7 @@ function renderAddMedicine(html) {
 }
 function hundleMedicineSubmit(event) {
     return __awaiter(this, void 0, void 0, function () {
-        var name, dosagePerDay, maxDuration, response, data, error_13;
+        var name, dosagePerDay, maxDuration, response, data, error_15;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -551,8 +630,8 @@ function hundleMedicineSubmit(event) {
                     window.location.href = "admin.html?email=" + email;
                     return [3 /*break*/, 4];
                 case 3:
-                    error_13 = _a.sent();
-                    console.error(error_13);
+                    error_15 = _a.sent();
+                    console.error(error_15);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }
@@ -570,7 +649,7 @@ function hundleUpdatePhysician() {
 function renderUpdatePhysician(html) {
     var _a;
     return __awaiter(this, void 0, void 0, function () {
-        var tempHtml_8, physiciansList, error_14;
+        var tempHtml_8, physiciansList, error_16;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
@@ -586,8 +665,8 @@ function renderUpdatePhysician(html) {
                     html.innerHTML = tempHtml_8;
                     return [3 /*break*/, 3];
                 case 2:
-                    error_14 = _b.sent();
-                    console.error(error_14);
+                    error_16 = _b.sent();
+                    console.error(error_16);
                     return [3 /*break*/, 3];
                 case 3: return [2 /*return*/];
             }
@@ -596,7 +675,7 @@ function renderUpdatePhysician(html) {
 }
 function loadDetails() {
     return __awaiter(this, void 0, void 0, function () {
-        var id_1, response, data, physician, idInput, firstNameInput, lastNameInput, ageInput, phoneNumInput, emailInput, licenseNumberInput, passwordInput, isAdminCheckbox, error_15;
+        var id_1, response, data, physician, idInput, firstNameInput, lastNameInput, ageInput, phoneNumInput, emailInput, licenseNumberInput, passwordInput, isAdminCheckbox, error_17;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -629,8 +708,8 @@ function loadDetails() {
                     isAdminCheckbox.checked = physician.isAdmin;
                     return [3 /*break*/, 4];
                 case 3:
-                    error_15 = _a.sent();
-                    console.error(error_15);
+                    error_17 = _a.sent();
+                    console.error(error_17);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }
@@ -639,7 +718,7 @@ function loadDetails() {
 }
 function hundlePhysicianUpdateSubmit(event) {
     return __awaiter(this, void 0, void 0, function () {
-        var id, firstName, lastName, age, phoneNum, email_2, licenseNumber, password, isAdmin, response, data, error_16;
+        var id, firstName, lastName, age, phoneNum, email_2, licenseNumber, password, isAdmin, response, data, error_18;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -673,8 +752,8 @@ function hundlePhysicianUpdateSubmit(event) {
                     window.location.href = "admin.html?email=" + email_2;
                     return [3 /*break*/, 4];
                 case 3:
-                    error_16 = _a.sent();
-                    console.error(error_16);
+                    error_18 = _a.sent();
+                    console.error(error_18);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }
@@ -691,7 +770,7 @@ function hundleUpdatePatient() {
 }
 function renderUpdatePatient(html) {
     return __awaiter(this, void 0, void 0, function () {
-        var tempHtml_9, patientsList, physiciansList, error_17;
+        var tempHtml_9, patientsList, physiciansList, error_19;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -715,8 +794,8 @@ function renderUpdatePatient(html) {
                     html.innerHTML = tempHtml_9;
                     return [3 /*break*/, 4];
                 case 3:
-                    error_17 = _a.sent();
-                    console.error(error_17);
+                    error_19 = _a.sent();
+                    console.error(error_19);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }
@@ -725,7 +804,7 @@ function renderUpdatePatient(html) {
 }
 function getPatientsList() {
     return __awaiter(this, void 0, void 0, function () {
-        var response, data, patientsList, error_18;
+        var response, data, patientsList, error_20;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -739,8 +818,8 @@ function getPatientsList() {
                     patientsList = data.patients;
                     return [2 /*return*/, patientsList];
                 case 3:
-                    error_18 = _a.sent();
-                    console.error(error_18);
+                    error_20 = _a.sent();
+                    console.error(error_20);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }
@@ -749,7 +828,7 @@ function getPatientsList() {
 }
 function loadPatientDetails() {
     return __awaiter(this, void 0, void 0, function () {
-        var id_2, response, data, patient, idInput, firstNameInput, lastNameInput, ageInput, phoneNumInput, weightInput, heightInput, smokingCheckbox, addressInput, physicianIdInput, error_19;
+        var id_2, response, data, patient, idInput, firstNameInput, lastNameInput, ageInput, phoneNumInput, weightInput, heightInput, smokingCheckbox, addressInput, physicianIdInput, error_21;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -783,8 +862,8 @@ function loadPatientDetails() {
                     physicianIdInput.value = patient.physicianId;
                     return [3 /*break*/, 4];
                 case 3:
-                    error_19 = _a.sent();
-                    console.error(error_19);
+                    error_21 = _a.sent();
+                    console.error(error_21);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }
@@ -793,7 +872,7 @@ function loadPatientDetails() {
 }
 function hundlePatientUpdateSubmit(event) {
     return __awaiter(this, void 0, void 0, function () {
-        var id, firstName, lastName, age, phoneNum, weight, height, smoking, address, physicianId, response, data, error_20;
+        var id, firstName, lastName, age, phoneNum, weight, height, smoking, address, physicianId, response, data, error_22;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -829,8 +908,8 @@ function hundlePatientUpdateSubmit(event) {
                     window.location.href = "admin.html?email=" + email;
                     return [3 /*break*/, 4];
                 case 3:
-                    error_20 = _a.sent();
-                    console.error(error_20);
+                    error_22 = _a.sent();
+                    console.error(error_22);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }
@@ -847,7 +926,7 @@ function hundleUpdateMedicine() {
 }
 function renderUpdateMedicine(html) {
     return __awaiter(this, void 0, void 0, function () {
-        var tempHtml_10, medicinesList, error_21;
+        var tempHtml_10, medicinesList, error_23;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -863,8 +942,8 @@ function renderUpdateMedicine(html) {
                     html.innerHTML = tempHtml_10;
                     return [3 /*break*/, 3];
                 case 2:
-                    error_21 = _a.sent();
-                    console.error(error_21);
+                    error_23 = _a.sent();
+                    console.error(error_23);
                     return [3 /*break*/, 3];
                 case 3: return [2 /*return*/];
             }
@@ -873,7 +952,7 @@ function renderUpdateMedicine(html) {
 }
 function getMedicinesList() {
     return __awaiter(this, void 0, void 0, function () {
-        var response, data, medicinesList, error_22;
+        var response, data, medicinesList, error_24;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -887,8 +966,8 @@ function getMedicinesList() {
                     medicinesList = data.medicines;
                     return [2 /*return*/, medicinesList];
                 case 3:
-                    error_22 = _a.sent();
-                    console.error(error_22);
+                    error_24 = _a.sent();
+                    console.error(error_24);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }
@@ -897,7 +976,7 @@ function getMedicinesList() {
 }
 function loadMedicineDetails() {
     return __awaiter(this, void 0, void 0, function () {
-        var id_3, response, data, medicine, idInput, nameInput, dosagePerDayInput, maxDurationInput, error_23;
+        var id_3, response, data, medicine, idInput, nameInput, dosagePerDayInput, maxDurationInput, error_25;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -919,8 +998,8 @@ function loadMedicineDetails() {
                     maxDurationInput.value = medicine.maxDuration.toString();
                     return [3 /*break*/, 4];
                 case 3:
-                    error_23 = _a.sent();
-                    console.error(error_23);
+                    error_25 = _a.sent();
+                    console.error(error_25);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }
@@ -929,7 +1008,7 @@ function loadMedicineDetails() {
 }
 function hundleMedicineUpdateSubmit(event) {
     return __awaiter(this, void 0, void 0, function () {
-        var id, name, dosagePerDay, maxDuration, response, data, error_24;
+        var id, name, dosagePerDay, maxDuration, response, data, error_26;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -958,8 +1037,8 @@ function hundleMedicineUpdateSubmit(event) {
                     window.location.href = "admin.html?email=" + email;
                     return [3 /*break*/, 4];
                 case 3:
-                    error_24 = _a.sent();
-                    console.error(error_24);
+                    error_26 = _a.sent();
+                    console.error(error_26);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }
