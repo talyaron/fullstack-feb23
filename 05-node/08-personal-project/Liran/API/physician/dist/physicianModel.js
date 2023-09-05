@@ -6,9 +6,9 @@ exports.PhysicianSchema = new mongoose_1.Schema({
     firstName: String,
     lastName: String,
     age: Number,
-    phoneNum: Number,
+    phoneNum: String,
     email: String,
-    licenseNumber: Number,
+    licenseNumber: String,
     password: String,
     isAdmin: {
         type: Boolean,

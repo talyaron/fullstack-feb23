@@ -1,3 +1,4 @@
+// export { getEmailFromQuery };
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -353,7 +354,7 @@ function hundleAddPhysician() {
 }
 function renderAddPhysician(html) {
     try {
-        html.innerHTML = "<h2>Add Physician</h2>\n        <form onsubmit=\"hundlePhysicianSubmit(event)\">\n        <div class=\"input\">\n        <label for=\"firstName\">First Name:</label><br>\n        <input type=\"text\" id=\"firstName\" name=\"firstName\">\n        </div><div class=\"input\">\n        <label for=\"lastName\">Last Name:</label><br>\n        <input type=\"text\" id=\"lastName\" name=\"lastName\">\n        </div> <div class=\"input\">\n        <label for=\"age\">Age:</label><br>\n        <input type=\"number\" id=\"age\" name=\"age\">\n        </div> <div class=\"input\">\n        <label for=\"phoneNum\">Phone Number:</label><br>\n        <input type=\"number\" id=\"phoneNum\" name=\"phoneNum\">\n        </div><div class=\"input\">\n        <label for=\"email\">Email:</label><br>\n        <input type=\"email\" id=\"email\" name=\"email\">\n        </div><div class=\"input\">\n        <label for=\"licenseNumber\">License Number:</label><br>\n        <input type=\"number\" id=\"licenseNumber\" name=\"licenseNumber\">\n        </div><div class=\"input\">\n        <label for=\"password\">Password:</label><br>\n        <input type=\"password\" id=\"password\" name=\"password\">\n        </div><div class=\"input\">\n        <label for=\"isAdmin\">Admin:</label><br>\n        <input type=\"checkbox\" id=\"isAdmin\" name=\"isAdmin\">\n        </div> \n        <input type=\"submit\" value=\"ADD\">\n        </form>";
+        html.innerHTML = "<h2>Add Physician</h2>\n        <form onsubmit=\"hundlePhysicianSubmit(event)\">\n        <div class=\"input\">\n        <label for=\"firstName\">First Name:</label><br>\n        <input type=\"text\" id=\"firstName\" name=\"firstName\">\n        </div><div class=\"input\">\n        <label for=\"lastName\">Last Name:</label><br>\n        <input type=\"text\" id=\"lastName\" name=\"lastName\">\n        </div> <div class=\"input\">\n        <label for=\"age\">Age:</label><br>\n        <input type=\"number\" id=\"age\" name=\"age\">\n        </div> <div class=\"input\">\n        <label for=\"phoneNum\">Phone Number:</label><br>\n        <input type=\"text\" id=\"phoneNum\" name=\"phoneNum\">\n        </div><div class=\"input\">\n        <label for=\"email\">Email:</label><br>\n        <input type=\"email\" id=\"email\" name=\"email\">\n        </div><div class=\"input\">\n        <label for=\"licenseNumber\">License Number:</label><br>\n        <input type=\"text\" id=\"licenseNumber\" name=\"licenseNumber\">\n        </div><div class=\"input\">\n        <label for=\"password\">Password:</label><br>\n        <input type=\"password\" id=\"password\" name=\"password\">\n        </div><div class=\"input\">\n        <label for=\"isAdmin\">Admin:</label><br>\n        <input type=\"checkbox\" id=\"isAdmin\" name=\"isAdmin\">\n        </div> \n        <input type=\"submit\" value=\"ADD\">\n        </form>";
     }
     catch (error) {
         console.error(error);
@@ -417,7 +418,7 @@ function renderAddPatient(html) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-                    tempHtml_7 = "<h2>Add Patient</h2>\n        <form onsubmit=\"hundlePatientSubmit(event)\">\n            <div class=\"input\">\n            <label for=\"firstName\">First Name:</label><br>\n            <input type=\"text\" id=\"firstName\" name=\"firstName\">\n            </div><div class=\"input\">\n            <label for=\"lastName\">Last Name:</label><br>\n            <input type=\"text\" id=\"lastName\" name=\"lastName\">\n            </div> <div class=\"input\">\n            <label for=\"age\">Age:</label><br>\n            <input type=\"number\" id=\"age\" name=\"age\">\n            </div> <div class=\"input\">\n            <label for=\"phoneNum\">Phone Number:</label><br>\n            <input type=\"number\" id=\"phoneNum\" name=\"phoneNum\">\n            </div><div class=\"input\">\n            <label for=\"weight\">Weight:</label><br>\n            <input type=\"number\" id=\"weight\" name=\"weight\">\n            </div><div class=\"input\">\n            <label for=\"height\">Height:</label><br>\n            <input type=\"number\" id=\"height\" name=\"height\">\n            </div><div class=\"input\">\n            <label for=\"smoking\">Smoking:</label><br>\n            <input type=\"checkbox\" id=\"smoking\" name=\"smoking\">\n            </div><div class=\"input\">\n            <label for=\"address\">Address:</label><br>\n            <input type=\"text\" id=\"address\" name=\"address\">\n            </div><div class=\"input\">\n            <label for=\"physicianId\">Select physician</label><br>\n            <select id=\"physicianId\" name=\"physicianId\">\n            ";
+                    tempHtml_7 = "<h2>Add Patient</h2>\n        <form onsubmit=\"hundlePatientSubmit(event)\">\n            <div class=\"input\">\n            <label for=\"firstName\">First Name:</label><br>\n            <input type=\"text\" id=\"firstName\" name=\"firstName\">\n            </div><div class=\"input\">\n            <label for=\"lastName\">Last Name:</label><br>\n            <input type=\"text\" id=\"lastName\" name=\"lastName\">\n            </div> <div class=\"input\">\n            <label for=\"age\">Age:</label><br>\n            <input type=\"number\" id=\"age\" name=\"age\">\n            </div> <div class=\"input\">\n            <label for=\"phoneNum\">Phone Number:</label><br>\n            <input type=\"text\" id=\"phoneNum\" name=\"phoneNum\">\n            </div><div class=\"input\">\n            <label for=\"weight\">Weight:</label><br>\n            <input type=\"number\" id=\"weight\" name=\"weight\">\n            </div><div class=\"input\">\n            <label for=\"height\">Height:</label><br>\n            <input type=\"number\" id=\"height\" name=\"height\">\n            </div><div class=\"input\">\n            <label for=\"smoking\">Smoking:</label><br>\n            <input type=\"checkbox\" id=\"smoking\" name=\"smoking\">\n            </div><div class=\"input\">\n            <label for=\"address\">Address:</label><br>\n            <input type=\"text\" id=\"address\" name=\"address\">\n            </div><div class=\"input\">\n            <label for=\"physicianId\">Select physician</label><br>\n            <select id=\"physicianId\" name=\"physicianId\">\n            ";
                     return [4 /*yield*/, getPhysiciansList()];
                 case 1:
                     physiciansList = _a.sent();
@@ -567,24 +568,25 @@ function hundleUpdatePhysician() {
     }
 }
 function renderUpdatePhysician(html) {
+    var _a;
     return __awaiter(this, void 0, void 0, function () {
         var tempHtml_8, physiciansList, error_14;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
+        return __generator(this, function (_b) {
+            switch (_b.label) {
                 case 0:
-                    _a.trys.push([0, 2, , 3]);
+                    _b.trys.push([0, 2, , 3]);
                     tempHtml_8 = "<h2>Update Physician</h2>\n        <form onsubmit=\"hundlePhysicianUpdateSubmit(event)\">\n        <div class=\"input\">\n        <label for=\"id\">Select physician</label><br>\n        <select id=\"id\" name=\"id\" onchange=\"loadDetails()\">\n        ";
                     return [4 /*yield*/, getPhysiciansList()];
                 case 1:
-                    physiciansList = _a.sent();
+                    physiciansList = _b.sent();
                     physiciansList.forEach(function (physician) {
                         tempHtml_8 += "<option value=\"" + physician._id + "\"> Dr. " + physician.firstName + " " + physician.lastName + "</option>";
                     });
-                    tempHtml_8 += "</select>\n            </div>\n            <div class=\"input\">\n            <label for=\"firstName\">First Name:</label><br>\n            <input type=\"text\" id=\"firstName\" name=\"firstName\">\n            </div><div class=\"input\">\n            <label for=\"lastName\">Last Name:</label><br>\n            <input type=\"text\" id=\"lastName\" name=\"lastName\">\n            </div> <div class=\"input\">\n            <label for=\"age\">Age:</label><br>\n            <input type=\"number\" id=\"age\" name=\"age\">\n            </div> <div class=\"input\">\n            <label for=\"phoneNum\">Phone Number:</label><br>\n            <input type=\"number\" id=\"phoneNum\" name=\"phoneNum\">\n            </div><div class=\"input\">\n            <label for=\"email\">Email:</label><br>\n            <input type=\"email\" id=\"email\" name=\"email\">\n            </div><div class=\"input\">\n            <label for=\"licenseNumber\">License Number:</label><br>\n            <input type=\"number\" id=\"licenseNumber\" name=\"licenseNumber\">\n            </div><div class=\"input\">\n            <label for=\"password\">Password:</label><br>\n            <input type=\"password\" id=\"password\" name=\"password\">\n            </div><div class=\"input\">\n            <label for=\"isAdmin\">Admin:</label><br>\n            <input type=\"checkbox\" id=\"isAdmin\" name=\"isAdmin\">\n            </div> \n            <input type=\"submit\" value=\"UPDATE\">\n            </form>";
+                    tempHtml_8 += "</select>\n            </div>\n            <div class=\"input\">\n            <label for=\"firstName\">First Name:</label><br>\n            <input type=\"text\" id=\"firstName\" name=\"firstName\" value=\"" + physiciansList[0].firstName + "\">\n            </div><div class=\"input\">\n            <label for=\"lastName\">Last Name:</label><br>\n            <input type=\"text\" id=\"lastName\" name=\"lastName\" value=\"" + physiciansList[0].lastName + "\">\n            </div> <div class=\"input\">\n            <label for=\"age\">Age:</label><br>\n            <input type=\"number\" id=\"age\" name=\"age\" value=\"" + physiciansList[0].age + "\">\n            </div> <div class=\"input\">\n            <label for=\"phoneNum\">Phone Number:</label><br>\n            <input type=\"text\" id=\"phoneNum\" name=\"phoneNum\" value=\"" + physiciansList[0].phoneNum + "\">\n            </div><div class=\"input\">\n            <label for=\"email\">Email:</label><br>\n            <input type=\"email\" id=\"email\" name=\"email\">\n            </div><div class=\"input\">\n            <label for=\"licenseNumber\">License Number:</label><br>\n            <input type=\"text\" id=\"licenseNumber\" name=\"licenseNumber\" value=\"" + physiciansList[0].licenseNumber + "\">\n            </div><div class=\"input\">\n            <label for=\"password\">Password:</label><br>\n            <input type=\"password\" id=\"password\" name=\"password\" value=\"" + physiciansList[0].password + "\">\n            </div><div class=\"input\">\n            <label for=\"isAdmin\">Admin:</label><br>\n            <input type=\"checkbox\" id=\"isAdmin\" name=\"isAdmin\" " + (((_a = physiciansList[0]) === null || _a === void 0 ? void 0 : _a.isAdmin) ? "checked" : "") + ">\n            </div> \n            <input type=\"submit\" value=\"UPDATE\">\n            </form>";
                     html.innerHTML = tempHtml_8;
                     return [3 /*break*/, 3];
                 case 2:
-                    error_14 = _a.sent();
+                    error_14 = _b.sent();
                     console.error(error_14);
                     return [3 /*break*/, 3];
                 case 3: return [2 /*return*/];
@@ -620,9 +622,9 @@ function loadDetails() {
                     firstNameInput.value = physician.firstName;
                     lastNameInput.value = physician.lastName;
                     ageInput.value = physician.age.toString();
-                    phoneNumInput.value = physician.phoneNum.toString();
+                    phoneNumInput.value = physician.phoneNum;
                     emailInput.value = physician.email;
-                    licenseNumberInput.value = physician.licenseNumber.toString();
+                    licenseNumberInput.value = physician.licenseNumber;
                     passwordInput.value = physician.password;
                     isAdminCheckbox.checked = physician.isAdmin;
                     return [3 /*break*/, 4];
@@ -646,7 +648,7 @@ function hundlePhysicianUpdateSubmit(event) {
                     id = event.target[0].value;
                     firstName = event.target.firstName.value;
                     lastName = event.target.lastName.value;
-                    age = event.target.age.value;
+                    age = event.target.age.valueAsNumber;
                     phoneNum = event.target.phoneNum.value;
                     email_2 = event.target.email.value;
                     licenseNumber = event.target.licenseNumber.value;
@@ -698,10 +700,11 @@ function renderUpdatePatient(html) {
                     return [4 /*yield*/, getPatientsList()];
                 case 1:
                     patientsList = _a.sent();
+                    debugger;
                     patientsList.forEach(function (patient) {
                         tempHtml_9 += "<option value=\"" + patient._id + "\"> " + patient.firstName + " " + patient.lastName + "</option>";
                     });
-                    tempHtml_9 += "</select>\n            </div>\n            <div class=\"input\">\n            <label for=\"firstName\">First Name:</label><br>\n            <input type=\"text\" id=\"firstName\" name=\"firstName\">\n            </div><div class=\"input\">\n            <label for=\"lastName\">Last Name:</label><br>\n            <input type=\"text\" id=\"lastName\" name=\"lastName\">\n            </div> <div class=\"input\">\n            <label for=\"age\">Age:</label><br>\n            <input type=\"number\" id=\"age\" name=\"age\">\n            </div> <div class=\"input\">\n            <label for=\"phoneNum\">Phone Number:</label><br>\n            <input type=\"number\" id=\"phoneNum\" name=\"phoneNum\">\n            </div><div class=\"input\">\n            <label for=\"weight\">Weight:</label><br>\n            <input type=\"number\" id=\"weight\" name=\"weight\">\n            </div><div class=\"input\">\n            <label for=\"height\">Height:</label><br>\n            <input type=\"number\" id=\"height\" name=\"height\">\n            </div><div class=\"input\">\n            <label for=\"smoking\">Smoking:</label><br>\n            <input type=\"checkbox\" id=\"smoking\" name=\"smoking\">\n            </div><div class=\"input\">\n            <label for=\"address\">Address:</label><br>\n            <input type=\"text\" id=\"address\" name=\"address\">\n            </div><div class=\"input\">\n            <label for=\"physicianId\">Select physician</label><br>\n            <select id=\"physicianId\" name=\"physicianId\">\n            ";
+                    tempHtml_9 += "</select>\n            </div>\n            <div class=\"input\">\n            <label for=\"firstName\">First Name:</label><br>\n            <input type=\"text\" id=\"firstName\" name=\"firstName\" value=\"" + patientsList[0].firstName + "\">\n            </div><div class=\"input\">\n            <label for=\"lastName\">Last Name:</label><br>\n            <input type=\"text\" id=\"lastName\" name=\"lastName\" value=\"" + patientsList[0].lastName + "\">\n            </div> <div class=\"input\">\n            <label for=\"age\">Age:</label><br>\n            <input type=\"number\" id=\"age\" name=\"age\" value=\"" + patientsList[0].age + "\">\n            </div> <div class=\"input\">\n            <label for=\"phoneNum\">Phone Number:</label><br>\n            <input type=\"text\" id=\"phoneNum\" name=\"phoneNum\" value=\"" + patientsList[0].phoneNum + "\">\n            </div><div class=\"input\">\n            <label for=\"weight\">Weight:</label><br>\n            <input type=\"number\" id=\"weight\" name=\"weight\" value=\"" + patientsList[0].weight + "\">\n            </div><div class=\"input\">\n            <label for=\"height\">Height:</label><br>\n            <input type=\"number\" id=\"height\" name=\"height\" value=\"" + patientsList[0].height + "\">\n            </div><div class=\"input\">\n            <label for=\"smoking\">Smoking:</label><br>\n            <input type=\"checkbox\" id=\"smoking\" name=\"smoking\" " + (patientsList[0].smoking ? "checked" : "") + ">\n            </div><div class=\"input\">\n            <label for=\"address\">Address:</label><br>\n            <input type=\"text\" id=\"address\" name=\"address\" value=\"" + patientsList[0].address + "\">\n            </div><div class=\"input\">\n            <label for=\"physicianId\">Select physician</label><br>\n            <select id=\"physicianId\" name=\"physicianId\">\n            ";
                     return [4 /*yield*/, getPhysiciansList()];
                 case 2:
                     physiciansList = _a.sent();
@@ -772,7 +775,7 @@ function loadPatientDetails() {
                     firstNameInput.value = patient.firstName;
                     lastNameInput.value = patient.lastName;
                     ageInput.value = patient.age.toString();
-                    phoneNumInput.value = patient.phoneNum.toString();
+                    phoneNumInput.value = patient.phoneNum;
                     weightInput.value = patient.weight.toString();
                     heightInput.value = patient.height.toString();
                     smokingCheckbox.checked = patient.smoking;
@@ -856,7 +859,7 @@ function renderUpdateMedicine(html) {
                     medicinesList.forEach(function (medicine) {
                         tempHtml_10 += "<option value=\"" + medicine._id + "\"> " + medicine.name + "</option>";
                     });
-                    tempHtml_10 += "</select>\n            </div>\n            <div class=\"input\">\n            <label for=\"name\">Name:</label><br>\n            <input type=\"text\" id=\"name\" name=\"name\">\n            </div><div class=\"input\">\n            <label for=\"dosagePerDay\">Dosage Per Day:</label><br>\n            <input type=\"number\" id=\"dosagePerDay\" name=\"dosagePerDay\">\n            </div> <div class=\"input\">\n            <label for=\"maxDuration\">Max Duration:</label><br>\n            <input type=\"number\" id=\"maxDuration\" name=\"maxDuration\">\n            </div>\n            <input type=\"submit\" value=\"UPDATE\">\n        </form>";
+                    tempHtml_10 += "</select>\n            </div>\n            <div class=\"input\">\n            <label for=\"name\">Name:</label><br>\n            <input type=\"text\" id=\"name\" name=\"name\" value=\"" + medicinesList[0].name + "\">\n            </div><div class=\"input\">\n            <label for=\"dosagePerDay\">Dosage Per Day:</label><br>\n            <input type=\"number\" id=\"dosagePerDay\" name=\"dosagePerDay\" value=\"" + medicinesList[0].dosagePerDay + "\">\n            </div> <div class=\"input\">\n            <label for=\"maxDuration\">Max Duration:</label><br>\n            <input type=\"number\" id=\"maxDuration\" name=\"maxDuration\" value=\"" + medicinesList[0].maxDuration + "\">\n            </div>\n            <input type=\"submit\" value=\"UPDATE\">\n        </form>";
                     html.innerHTML = tempHtml_10;
                     return [3 /*break*/, 3];
                 case 2:

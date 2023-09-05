@@ -47,9 +47,13 @@ export async function updatePatient(req: any, res: any) {
         if (phoneNum) patient.phoneNum = phoneNum;
         if (weight) patient.weight = weight;
         if (height) patient.height = height;
-        if (smoking) patient.smoking = smoking;
+        patient.smoking = smoking;
         if (address) patient.address = address;
         if (physicianId) patient.physicianId = physicianId;
+        await patient.save();
+        res.status(200).send({ message: "Patient updated successfully" });
+
+
     } catch (error) {
         console.error(error);
         res.status(500).send({ error: error.message });
