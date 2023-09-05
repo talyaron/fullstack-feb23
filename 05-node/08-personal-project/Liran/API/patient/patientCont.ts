@@ -14,7 +14,7 @@ export async function addPatient(req: any, res: any) {
     try {
         const { firstName, lastName, age, phoneNum, weight, height, smoking, address, physicianId } = req.body;
         if (!firstName || !lastName || !age || !phoneNum || !weight || !height || !smoking || !address || !physicianId) throw new Error("Please complete all fields");
-        const patient = new PatientModel({ firstName, lastName, age, weight, height, smoking, address, physicianId });
+        const patient = new PatientModel({ firstName, lastName, age, phoneNum, weight, height, smoking, address, physicianId });
         const patientDB = await patient.save();
         console.log(patientDB);
         res.send({ ok: true });
