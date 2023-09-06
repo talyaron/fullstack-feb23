@@ -39,11 +39,10 @@ function getEmailFromQuery() {
     return urlParams.get('email');
 }
 var email = getEmailFromQuery();
-console.log(email);
 getUserData();
 function getUserData() {
     return __awaiter(this, void 0, void 0, function () {
-        var response, data, error_1;
+        var response, data, name, dateCreatd, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -55,7 +54,11 @@ function getUserData() {
                 case 2:
                     data = _a.sent();
                     console.log(data);
-                    greeting();
+                    name = data[0].name;
+                    dateCreatd = data[0].createdAt;
+                    console.log(name);
+                    console.log(dateCreatd);
+                    greeting(name);
                     return [3 /*break*/, 4];
                 case 3:
                     error_1 = _a.sent();
@@ -66,20 +69,65 @@ function getUserData() {
         });
     });
 }
-function greeting() {
+function greeting(name) {
     return __awaiter(this, void 0, void 0, function () {
-        var response, data;
+        var root, html;
+        return __generator(this, function (_a) {
+            try {
+                root = document.querySelector('#nameGreetingRoot');
+                html = "hello " + name + " have a great day of habits!";
+                root.innerHTML = html;
+            }
+            catch (error) {
+                console.error(error);
+            }
+            return [2 /*return*/];
+        });
+    });
+}
+function openDocs() {
+    var docsRoot = document.querySelector(".docs");
+    docsRoot.style.display = "block";
+    document.body.addEventListener("mousedown", function () {
+        docsRoot.style.display = "none";
+    });
+}
+function newHabit() {
+    var newHabitRoot = document.querySelector(".newHabit");
+    newHabitRoot.style.display = "flex";
+}
+function handleNewHabit(ev) {
+    return __awaiter(this, void 0, void 0, function () {
+        var newHabitRoot, name, categorie, time, response, data, error_2;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
+                    _a.trys.push([0, 3, , 4]);
+                    ev.preventDefault();
                     debugger;
-                    return [4 /*yield*/, fetch("/API/users/getUserName?email=" + email)];
+                    newHabitRoot = document.querySelector(".newHabit");
+                    newHabitRoot.style.display = "none";
+                    name = ev.target.name.value;
+                    categorie = ev.target.categorie.value;
+                    time = ev.target.time.value;
+                    return [4 /*yield*/, fetch("/API/habits/add-new-habit", {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({ name: name, categorie: categorie, time: time })
+                        })];
                 case 1:
                     response = _a.sent();
                     return [4 /*yield*/, response.json()];
                 case 2:
                     data = _a.sent();
-                    return [2 /*return*/];
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_2 = _a.sent();
+                    console.error(error_2);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
             }
         });
     });

@@ -1,10 +1,3 @@
-// export { getEmailFromQuery };
-
-function getEmailFromQuery() {
-    const urlParams = new URLSearchParams(window.location.search);
-    return urlParams.get('email');
-}
-
 
 const email = getEmailFromQuery();
 console.log(email)
@@ -226,7 +219,7 @@ async function hundlePhysicianDeleteSubmit(event) {
         const data = await response.json();
         console.log(data);
         alert("Physician deleted successfully");
-        window.location.href = `admin.html?email=${email}`;
+        window.location.href = `admin.html?physicianEmail=${email}`;
     } catch (error) {
         console.error(error);
     }
@@ -262,7 +255,7 @@ async function renderDeletePatient(html: HTMLDivElement) {
     }
 }
 
-async function hundlePatientDeleteSubmit(event) { 
+async function hundlePatientDeleteSubmit(event) {
     try {
         event.preventDefault();
         const id = event.target.id.value;
@@ -277,7 +270,7 @@ async function hundlePatientDeleteSubmit(event) {
         const data = await response.json();
         console.log(data);
         alert("Patient deleted successfully");
-        window.location.href = `admin.html?email=${email}`;
+        window.location.href = `admin.html?physicianEmail=${email}`;
     } catch (error) {
         console.error(error);
     }
@@ -314,7 +307,7 @@ async function renderDeleteMedicine(html: HTMLDivElement) {
     }
 }
 
-async function hundleMedicineDeleteSubmit(event) { 
+async function hundleMedicineDeleteSubmit(event) {
     try {
         event.preventDefault();
         const id = event.target.id.value;
@@ -329,7 +322,7 @@ async function hundleMedicineDeleteSubmit(event) {
         const data = await response.json();
         console.log(data);
         alert("Medicine deleted successfully");
-        window.location.href = `admin.html?email=${email}`;
+        window.location.href = `admin.html?physicianEmail=${email}`;
     } catch (error) {
         console.error(error);
     }
@@ -412,7 +405,7 @@ async function hundlePhysicianSubmit(event) {
         const data = await response.json();
         console.log(data);
         alert("Physician added successfully");
-        window.location.href = `admin.html?email=${email}`;
+        window.location.href = `admin.html?physicianEmail=${email}`;
     } catch (error) {
         console.error(error);
     }
@@ -510,8 +503,8 @@ async function hundlePatientSubmit(event) {
         })
         const data = await response.json();
         console.log(data);
-        if(data.ok) alert("Patient added successfully");
-        window.location.href = `admin.html?email=${email}`;
+        if (data.ok) alert("Patient added successfully");
+        window.location.href = `admin.html?physicianEmail=${email}`;
     } catch (error) {
         console.error(error);
     }
@@ -563,7 +556,7 @@ async function hundleMedicineSubmit(event) {
         const data = await response.json();
         console.log(data);
         alert("Medicine added successfully");
-        window.location.href = `admin.html?email=${email}`;
+        window.location.href = `admin.html?physicianEmail=${email}`;
     } catch (error) {
         console.error(error);
     }
@@ -679,7 +672,7 @@ async function hundlePhysicianUpdateSubmit(event) {
         const data = await response.json();
         console.log(data);
         alert("Physician updated successfully");
-        window.location.href = `admin.html?email=${email}`;
+        window.location.href = `admin.html?physicianEmail=${email}`;
     } catch (error) {
         console.error(error);
     }
@@ -816,7 +809,7 @@ async function hundlePatientUpdateSubmit(event) {
         const data = await response.json();
         console.log(data);
         alert("Patient updated successfully");
-        window.location.href = `admin.html?email=${email}`;
+        window.location.href = `admin.html?physicianEmail=${email}`;
     } catch (error) {
         console.error(error);
     }
@@ -909,7 +902,7 @@ async function hundleMedicineUpdateSubmit(event) {
         const data = await response.json();
         console.log(data);
         alert("Medicine updated successfully");
-        window.location.href = `admin.html?email=${email}`;
+        window.location.href = `admin.html?physicianEmail=${email}`;
     } catch (error) {
         console.error(error);
     }

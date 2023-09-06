@@ -9,7 +9,8 @@ app.use(express.json());
 
 import usersRouter from "./API/users/usersRouter";
 app.use("/API/users", usersRouter);
-
+import habitsRouter from "./API/habits/habitsRouter"
+app.use("/API/habits", habitsRouter);
 
 
 

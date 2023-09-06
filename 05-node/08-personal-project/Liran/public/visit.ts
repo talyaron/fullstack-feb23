@@ -1,7 +1,5 @@
-import { get } from "mongoose";
-
 const patientID = getPatientIdFromQuery();
-const physicianEmail = getPhysicianEmailFromQuery();
+const physicianEmail2 = getEmailFromQuery();
 const patientData = getPatientData(patientID)
     .then(patient => {
         renderVisitForm(patient, document.querySelector("#root"))
@@ -36,7 +34,8 @@ function renderVisitForm(patient, root: HTMLDivElement) {
             <div><button type="button" onclick="writePrescription(${patient.patientId})">Write Prescription</button></div>
             <div><button type="button">History</button></div>
             <div><button type="submit">Close Visit</button></div>
-        </form></div>`
+        </form></div>
+        <button onclick="window.location.href = 'physician.html?physicianEmail=${physicianEmail2}'">Back</button>`
 
         root.innerHTML += html;
     } catch (error) {
@@ -46,7 +45,7 @@ function renderVisitForm(patient, root: HTMLDivElement) {
 
 async function writePrescription(patientId) {
     try {
-        const popupURL =`prescription.html?patientId=${patientId}&physicianEmail=${physicianEmail}`; // Replace with the actual URL of your popup page
+        const popupURL =`prescription.html?patientId=${patientId}&physicianEmail=${physicianEmail2}`; // Replace with the actual URL of your popup page
         // Define the size and position of the popup window
         const popupWidth = 400;
         const popupHeight = 300;
@@ -65,25 +64,8 @@ async function writePrescription(patientId) {
     }
 }
 
-async function getPhysicianEmailFromQuery(){
-    try{
-        const params = new URLSearchParams(window.location.search);
-        return params.get("physicianEmail");
-    }catch(error){
-        console.error(error)
-    }
-}
 
-async function getPatientIdFromQuery() {
-    try {
-        const params = new URLSearchParams(window.location.search);
-        return params.get("patientId");
-    } catch (error) {
-        console.error(error);
-    }
-}
-
-async function getPatientData(patientId: Promise<string>) {
+async function getPatientData(patientId:) {
     try {
         const id = await patientId;
         const response = await fetch(`/api/patient/get-patients`, {

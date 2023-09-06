@@ -1,4 +1,3 @@
-// export { getEmailFromQuery };
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -35,10 +34,6 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-function getEmailFromQuery() {
-    var urlParams = new URLSearchParams(window.location.search);
-    return urlParams.get('email');
-}
 var email = getEmailFromQuery();
 console.log(email);
 renderAdminPage();
@@ -264,7 +259,7 @@ function hundlePhysicianDeleteSubmit(event) {
                     data = _a.sent();
                     console.log(data);
                     alert("Physician deleted successfully");
-                    window.location.href = "admin.html?email=" + email;
+                    window.location.href = "admin.html?physicianEmail=" + email;
                     return [3 /*break*/, 4];
                 case 3:
                     error_6 = _a.sent();
@@ -334,7 +329,7 @@ function hundlePatientDeleteSubmit(event) {
                     data = _a.sent();
                     console.log(data);
                     alert("Patient deleted successfully");
-                    window.location.href = "admin.html?email=" + email;
+                    window.location.href = "admin.html?physicianEmail=" + email;
                     return [3 /*break*/, 4];
                 case 3:
                     error_8 = _a.sent();
@@ -404,7 +399,7 @@ function hundleMedicineDeleteSubmit(event) {
                     data = _a.sent();
                     console.log(data);
                     alert("Medicine deleted successfully");
-                    window.location.href = "admin.html?email=" + email;
+                    window.location.href = "admin.html?physicianEmail=" + email;
                     return [3 /*break*/, 4];
                 case 3:
                     error_10 = _a.sent();
@@ -471,7 +466,7 @@ function hundlePhysicianSubmit(event) {
                     data = _a.sent();
                     console.log(data);
                     alert("Physician added successfully");
-                    window.location.href = "admin.html?email=" + email_1;
+                    window.location.href = "admin.html?physicianEmail=" + email_1;
                     return [3 /*break*/, 4];
                 case 3:
                     error_11 = _a.sent();
@@ -575,7 +570,7 @@ function hundlePatientSubmit(event) {
                     console.log(data);
                     if (data.ok)
                         alert("Patient added successfully");
-                    window.location.href = "admin.html?email=" + email;
+                    window.location.href = "admin.html?physicianEmail=" + email;
                     return [3 /*break*/, 4];
                 case 3:
                     error_14 = _a.sent();
@@ -629,7 +624,7 @@ function hundleMedicineSubmit(event) {
                     data = _a.sent();
                     console.log(data);
                     alert("Medicine added successfully");
-                    window.location.href = "admin.html?email=" + email;
+                    window.location.href = "admin.html?physicianEmail=" + email;
                     return [3 /*break*/, 4];
                 case 3:
                     error_15 = _a.sent();
@@ -751,7 +746,7 @@ function hundlePhysicianUpdateSubmit(event) {
                     data = _a.sent();
                     console.log(data);
                     alert("Physician updated successfully");
-                    window.location.href = "admin.html?email=" + email_2;
+                    window.location.href = "admin.html?physicianEmail=" + email_2;
                     return [3 /*break*/, 4];
                 case 3:
                     error_18 = _a.sent();
@@ -907,7 +902,7 @@ function hundlePatientUpdateSubmit(event) {
                     data = _a.sent();
                     console.log(data);
                     alert("Patient updated successfully");
-                    window.location.href = "admin.html?email=" + email;
+                    window.location.href = "admin.html?physicianEmail=" + email;
                     return [3 /*break*/, 4];
                 case 3:
                     error_22 = _a.sent();
@@ -1036,7 +1031,7 @@ function hundleMedicineUpdateSubmit(event) {
                     data = _a.sent();
                     console.log(data);
                     alert("Medicine updated successfully");
-                    window.location.href = "admin.html?email=" + email;
+                    window.location.href = "admin.html?physicianEmail=" + email;
                     return [3 /*break*/, 4];
                 case 3:
                     error_26 = _a.sent();
