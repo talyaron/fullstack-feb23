@@ -2,9 +2,9 @@ class Physician {
     constructor(public firstName: string,
         public lastName: string,
         public age: number,
-        public phoneNum: number,
+        public phoneNum: string,
         public email: string,
-        public licenseNumber: number,
+        public licenseNumber: string,
         public password: string,
         public isAdmin: boolean,
         public _id: string
@@ -14,8 +14,9 @@ class Physician {
 class Patient {
     constructor(public firstName: string,
         public lastName: string,
+        public patientId: string,
         public age: number,
-        public phoneNum: number,
+        public phoneNum: string,
         public weight: number,
         public height: number,
         public smoking: boolean,

@@ -63,15 +63,15 @@ function getPatients(req, res) {
 exports.getPatients = getPatients;
 function addPatient(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var _a, firstName, lastName, age, phoneNum, weight, height, smoking, address, physicianId, patient, patientDB, error_2;
+        var _a, firstName, lastName, patientId, age, phoneNum, weight, height, smoking, address, physicianId, patient, patientDB, error_2;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
                     _b.trys.push([0, 2, , 3]);
-                    _a = req.body, firstName = _a.firstName, lastName = _a.lastName, age = _a.age, phoneNum = _a.phoneNum, weight = _a.weight, height = _a.height, smoking = _a.smoking, address = _a.address, physicianId = _a.physicianId;
-                    if (!firstName || !lastName || !age || !phoneNum || !weight || !height || !smoking || !address || !physicianId)
+                    _a = req.body, firstName = _a.firstName, lastName = _a.lastName, patientId = _a.patientId, age = _a.age, phoneNum = _a.phoneNum, weight = _a.weight, height = _a.height, smoking = _a.smoking, address = _a.address, physicianId = _a.physicianId;
+                    if (!firstName || !lastName || !patientId || !age || !phoneNum || !weight || !height || !smoking || !address || !physicianId)
                         throw new Error("Please complete all fields");
-                    patient = new patientModel_1.PatientModel({ firstName: firstName, lastName: lastName, age: age, phoneNum: phoneNum, weight: weight, height: height, smoking: smoking, address: address, physicianId: physicianId });
+                    patient = new patientModel_1.PatientModel({ firstName: firstName, lastName: lastName, patientId: patientId, age: age, phoneNum: phoneNum, weight: weight, height: height, smoking: smoking, address: address, physicianId: physicianId });
                     return [4 /*yield*/, patient.save()];
                 case 1:
                     patientDB = _b.sent();
@@ -115,12 +115,12 @@ function deletePatient(req, res) {
 exports.deletePatient = deletePatient;
 function updatePatient(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var _a, id, firstName, lastName, age, phoneNum, weight, height, smoking, address, physicianId, patient, error_4;
+        var _a, id, firstName, lastName, patientId, age, phoneNum, weight, height, smoking, address, physicianId, patient, error_4;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
-                    _b.trys.push([0, 2, , 3]);
-                    _a = req.body, id = _a.id, firstName = _a.firstName, lastName = _a.lastName, age = _a.age, phoneNum = _a.phoneNum, weight = _a.weight, height = _a.height, smoking = _a.smoking, address = _a.address, physicianId = _a.physicianId;
+                    _b.trys.push([0, 3, , 4]);
+                    _a = req.body, id = _a.id, firstName = _a.firstName, lastName = _a.lastName, patientId = _a.patientId, age = _a.age, phoneNum = _a.phoneNum, weight = _a.weight, height = _a.height, smoking = _a.smoking, address = _a.address, physicianId = _a.physicianId;
                     if (!id)
                         throw new Error("id is required");
                     return [4 /*yield*/, patientModel_1.PatientModel.findById(id)];
@@ -140,19 +140,22 @@ function updatePatient(req, res) {
                         patient.weight = weight;
                     if (height)
                         patient.height = height;
-                    if (smoking)
-                        patient.smoking = smoking;
+                    patient.smoking = smoking;
                     if (address)
                         patient.address = address;
                     if (physicianId)
                         patient.physicianId = physicianId;
-                    return [3 /*break*/, 3];
+                    return [4 /*yield*/, patient.save()];
                 case 2:
+                    _b.sent();
+                    res.status(200).send({ message: "Patient updated successfully" });
+                    return [3 /*break*/, 4];
+                case 3:
                     error_4 = _b.sent();
                     console.error(error_4);
                     res.status(500).send({ error: error_4.message });
-                    return [3 /*break*/, 3];
-                case 3: return [2 /*return*/];
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
             }
         });
     });

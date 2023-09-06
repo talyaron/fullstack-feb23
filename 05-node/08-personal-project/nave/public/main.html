@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./dist/main.js" defer></script>
+    <script src="./dist/imges.js" defer></script>
+    <link rel="stylesheet" href="./dist/style.css">
+</head>
+<!-- <body onload="handleGetUsers()"> -->
+<body>
+    <h1>Hi All</h1>
+    <a href="./login.html">Login</a>
+    <a href="./register.html">Register</a>
+    <h2>Add Task</h2>
+    <form onsubmit="handeleAddImg(event)">
+        <input type="text" name="title" placeholder="img title">
+       <input type="url" name="imgUrl" placeholder="img url">
+        <button type="submit">ADD</button>
+    </form>
+
+    <button onclick="handleGetImages()">GET Images</button>
+    <div id="images"></div>
+    
+
+</body>
+</html>
