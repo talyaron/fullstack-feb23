@@ -11,12 +11,12 @@ export async function getRecipes(req:any, res:any) {
 
 export async function addRecipe(req:any, res:any) {
     try {
-        const {title, description, urlImg} = req.body
-        console.log ({title, description, urlImg})
+        const {title, description, urlImg, email} = req.body
+        console.log ({title, description, urlImg, email})
         if(!title || !description) throw new Error("Please complete title and/or description fields");
 
         //add recipe using mongoose
-        const recipe = new RecipeModel({title, description, urlImg})
+        const recipe = new RecipeModel({title, description, urlImg, email})
         const recipeDB = await recipe.save(); //save to DB
         console.log(recipeDB)
 

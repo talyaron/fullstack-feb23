@@ -34,3 +34,33 @@ export const loginUser = async (req: any, res:any) =>{
         res.send({error:error.massage})
     }
 }
+
+//get
+export async function getUser(req:any, res:any) {
+    try {
+        //get email from query
+        const { email } = req.query; //speshel identefayer
+        if (!email) {
+            throw new Error("email is required");
+        }
+
+        const userDB = await UserModel.find({ email });
+        res.send({ users: userDB });
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).send({ error: error.message });
+    }
+}
+
+//delete
+export async function deleteUser(req:any, res:any) {
+    try {
+        const {id} = req.body 
+        const userDB = await UserModel.findByIdAndDelete(id)
+        res.send({userDB})
+    } catch (error) {
+        console.error(error);
+        res.status(500).send({ error: error.message });
+    }
+}

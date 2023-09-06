@@ -29,6 +29,10 @@ app.use("/API/users", userRouter)
 import recipesRoute from "./API/recipes/recipesRoute";
 app.use("/API/recipes", recipesRoute)
 
+//get router from URRouter
+import URRouter from "./API/userRecipes/URRouter";
+app.use("/API/userRecipes", URRouter)
+
 //listen port
 app.listen(port, () =>{
     console.log(`App listening on port ${port}`)

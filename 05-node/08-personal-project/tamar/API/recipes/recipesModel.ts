@@ -20,6 +20,10 @@ export const RecipeSchema = new Schema({
     title: String,
     description: String,
     urlImg: String,
+    email: {
+        type: String,
+        required: true
+    }
 });
 
 //"recipes" will be the name of this collection in the DB

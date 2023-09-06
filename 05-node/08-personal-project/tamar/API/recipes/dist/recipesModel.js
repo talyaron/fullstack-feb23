@@ -17,7 +17,8 @@ exports.Recipe = Recipe;
 exports.RecipeSchema = new mongoose_1.Schema({
     title: String,
     description: String,
-    urlImg: String
+    urlImg: String,
+    email: String
 });
 //"recipes" will be the name of this collection in the DB
 exports.RecipeModel = mongoose_1.model("recipes", exports.RecipeSchema);

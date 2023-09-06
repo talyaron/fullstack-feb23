@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.loginUser = exports.registerUser = void 0;
+exports.deleteUser = exports.getUser = exports.loginUser = exports.registerUser = void 0;
 var usersModle_1 = require("./usersModle");
 //register
 exports.registerUser = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
@@ -98,3 +98,56 @@ exports.loginUser = function (req, res) { return __awaiter(void 0, void 0, void 
         }
     });
 }); };
+//get
+function getUser(req, res) {
+    return __awaiter(this, void 0, void 0, function () {
+        var email, userDB, error_3;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    email = req.query.email;
+                    if (!email) {
+                        throw new Error("email is required");
+                    }
+                    return [4 /*yield*/, usersModle_1.UserModel.find({ email: email })];
+                case 1:
+                    userDB = _a.sent();
+                    res.send({ users: userDB });
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_3 = _a.sent();
+                    console.error(error_3);
+                    res.status(500).send({ error: error_3.message });
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
+}
+exports.getUser = getUser;
+//delete
+function deleteUser(req, res) {
+    return __awaiter(this, void 0, void 0, function () {
+        var id, userDB, error_4;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    id = req.body.id;
+                    return [4 /*yield*/, usersModle_1.UserModel.findByIdAndDelete(id)];
+                case 1:
+                    userDB = _a.sent();
+                    res.send({ userDB: userDB });
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_4 = _a.sent();
+                    console.error(error_4);
+                    res.status(500).send({ error: error_4.message });
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
+}
+exports.deleteUser = deleteUser;
