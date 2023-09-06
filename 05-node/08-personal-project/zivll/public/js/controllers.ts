@@ -1,20 +1,26 @@
 interface Category {
+  _id: string;
   categoryName: string;
   userName: string;
 }
-let categories: Category[] = [];
+let categories = [];
 
 interface Expense {
-  name: string;
-  category: string;
-  categoryId: string;
-  amount: string;
+  _id: string;
+  userName: string;
+  expenseName: string;
+  expenseCategory: string;
+  expenseAmount: string;
 }
 
 let expenses: Expense[] = [];
 // this function is used to handle accordion click
-function handleAccordionClick() {
+async function handleAccordionClick() {
+  await getCategoriesFromDB();
+  await getExpensesFromDB();
+  await getUserIncomeFromDB();
   const accordion = document.querySelectorAll(`.thead`);
+  //   console.log(accordion);
 
   // this method will take care the accordion functionality
   accordion.forEach((head) => {
@@ -58,48 +64,66 @@ function handleAccordionClick() {
 }
 
 // this function handling the income submit
-function handleIncomeSubmit(ev) {
+async function handleIncomeSubmit(ev: any) {
   try {
+    const urlParams = new URLSearchParams(window.location.search);
+    const userName = urlParams.get("userName");
     ev.preventDefault();
     if (!ev || !ev.target) throw new Error(`event not found`);
-    const income = ev.target.income.value;
+    const userIncome = ev.target.income.value;
     const resultRoot = document.querySelector(`.total-number--income`);
     if (!resultRoot) throw new Error(`resultRoot not found`);
-    renderResult(resultRoot, income);
-    loadDataToLocalStorage(income, `income`);
+    renderResult(resultRoot, userIncome);
+
     calculateBalance();
     ev.target.reset();
+    addIncomeToDB(userName, userIncome);
   } catch (error) {
     console.error(error);
   }
 }
 
+async function addIncomeToDB(userName: string, userIncome: string) {
+  try {
+    const response = await fetch(`/API/users/add-income`, {
+      method: "PATCH",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ userName: userName, userIncome: userIncome }),
+    });
+    const result = await response.json();
+    console.log(result);
+    calculateBalance();
+  } catch (error) {
+    console.error(error);
+  }
+}
 // this function handling the expence submit
-function handleExpenceSubmit(ev) {
+async function handleExpenceSubmit(ev) {
   try {
     ev.preventDefault();
-    const resultRoot = document.querySelector(`.total-number--expence`);
+
+    const resultRoot = document.querySelector(`.total-number--expense`);
     if (!resultRoot) throw new Error(`resultRoot not found`);
-    const expenceDescription = ev.target.expenceDescription.value;
-    const categoryId = ev.target.categories.value;
-    const expenceAmount = ev.target.expenceAmount.valueAsNumber;
-    // if(!ev.target.categories.value) throw new Error(`categoryId not found`);
-    const categoryName: string | undefined = Categorys.find(
-      (category) => `id-${category.categoryId}` === categoryId
-    )?.categoryName;
-
-    expences.push(
-      new Expence(expenceDescription, categoryName, categoryId, expenceAmount)
-    );
-    // userCategories.push(new UserCategories(categoryName, categoryId));
-    addCategory(expences);
-    renderExpencesTable(expences, userCategories);
-    loadDataToLocalStorage(expences, `expences`);
+    const urlParams = new URLSearchParams(window.location.search);
+    const userName = urlParams.get("userName");
+    const expenseName: string = ev.target.expenseName.value;
+    const expenseCategory: string = ev.target.expenseCategory.value;
+    const expenseAmount: number = ev.target.expenseAmount.valueAsNumber;
+    const respone = await fetch(`/API/expense/add-expense`, {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({
+        userName: userName,
+        expenseName: expenseName,
+        expenseCategory: expenseCategory,
+        expenseAmount: expenseAmount,
+      }),
+    });
+    const result = await respone.json();
+    renderExpencesTable();
     handleAccordionClick();
-    const allExpences = calculateTotalExpence(expences);
-    loadDataToLocalStorage(allExpences, `totalExpence`);
-    renderResult(resultRoot, null, allExpences);
-
+    calculateTotalExpense(expenses);
+    // renderResult(resultRoot, expenseAmount.toString());
     // loadDataToLocalStorage()
     ev.target.reset();
     console.log(ev);
@@ -113,9 +137,28 @@ async function getCategoriesFromDB() {
   try {
     const response = await fetch(`/API/category/get-categories`);
     const { allCategories } = await response.json();
-    console.log(allCategories);
-    categories = [...allCategories];
+    const categoriesByUserName = sortCategoriesByUserName(allCategories);
+    categories = [...categoriesByUserName];
     return categories;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// this functions gets the user income from DB
+async function getUserIncomeFromDB() {
+  try {
+    const urlParams = new URLSearchParams(window.location.search);
+    const userName = urlParams.get("userName");
+    const response = await fetch(`/API/users/get-income`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({ userName: userName }),
+    });
+    const result = await response.json();
+    return result;
   } catch (error) {
     console.error(error);
   }
@@ -125,8 +168,10 @@ async function getExpensesFromDB() {
   try {
     const response = await fetch(`/API/expense/get-all-expenses`);
     const allExpenses = await response.json();
-    console.log(allExpenses);
-    expenses = [...allExpenses];
+    const ExpensesByUserName = sortExpensesByUserName(allExpenses);
+    expenses = [...ExpensesByUserName];
+    console.log(expenses);
+
     return expenses;
   } catch (error) {
     console.error(error);
@@ -135,49 +180,56 @@ async function getExpensesFromDB() {
 
 async function deleteExpense(ev) {
   try {
-    const expenseId = ev.target.parentElement.parentElement.id;
+    const expenseId: string = ev.target.parentElement.parentElement.id;
     // const categoryId = ev.target.parentElement.parentElement.parentElement.id;
     const response = await fetch(`/API/expense/delete-expense`, {
       method: "DELETE",
       headers: { "content-type": "application/json" },
-      body: JSON.stringify(expenseId),
+      body: JSON.stringify({ id: expenseId }),
     });
+
     const result = await response.json();
     console.log(result);
+    renderExpencesTable();
+    calculateBalance();
   } catch (error) {
     console.error(error);
   }
 }
 async function editExpense(ev) {
   try {
-    const expenseId = ev.target.parentElement.parentElement.id;
-    const newName = prompt(`מה השם החדש של ההוצאה שלך?`);
-    const newAmount = prompt(`מה הסכום החדש של ההוצאה שלך?`);
+    const id = ev.target.parentElement.parentElement.id;
+    const name = prompt(`מה השם החדש של ההוצאה שלך?`);
+    const amount = Number(prompt(`מה הסכום החדש של ההוצאה שלך?`));
+    debugger;
     if (
-      newName === undefined ||
-      newName === null ||
-      newAmount === undefined ||
-      newAmount === null
+      name === undefined ||
+      name === null ||
+      amount === undefined ||
+      amount === null ||
+      id === undefined ||
+      id === null
     )
       throw new Error(`some of the parameters are null`);
-    const respone = await fetch("/API/expense/update-expense", {
+    const resposne = await fetch("/API/expense/update-expense", {
       method: "PATCH",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ id: expenseId, name: newName, amount: newAmount }),
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ id: id, name: name, amount: amount }),
     });
-    const result = await respone.json();
-    console.log(result.message);
+    const result = await resposne.json();
+    debugger;
+    console.log(result);
 
-    const expenseRoot = document.querySelector(`.total-number--expence`);
-
-    window.location.reload();
+    renderExpencesTable();
+    calculateBalance();
+    // window.location.reload();
   } catch (error) {
     console.error(error);
   }
 }
 
 // this function sorted the categories by user names
-function sortCategoriesByUserName() {
+function sortCategoriesByUserName(categories: Category[]): Category[] {
   try {
     const urlParams = new URLSearchParams(window.location.search);
     const userNameFromUrl = urlParams.get("userName");
@@ -186,23 +238,40 @@ function sortCategoriesByUserName() {
         category.userName === userNameFromUrl ||
         category.userName === "genericCategory"
     );
-    return categoriesByUserName;
+    // console.log(categoriesByUserName);
+
+    const fillterdCategories: Category[] =
+      removeDuplicates(categoriesByUserName);
+    return fillterdCategories;
   } catch (error) {
     console.error(error);
   }
 }
+
+// this function sorted the categories by user names
+function sortExpensesByUserName(expenses: Expense[]) {
+  try {
+    const urlParams = new URLSearchParams(window.location.search);
+    const userNameFromUrl = urlParams.get("userName");
+    const expensesByUserName = expenses.filter(
+      (expense) => expense.userName === userNameFromUrl
+    );
+    return expensesByUserName;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 // this function sort the expences by category alfabetically
 async function sortByCategory() {
   try {
-    const allCategories = getCategoriesFromDB();
-    console.log(allCategories);
-
-    const sortedCategory = (await allCategories).sort((a, b) => {
+    await getCategoriesFromDB();
+    const sortedCategories = categories.sort((a, b) => {
       if (a.categoryName > b.categoryName) return 1;
       if (a.categoryName < b.categoryName) return -1;
       return 0;
     });
-    return sortedCategory;
+    return sortedCategories;
   } catch (error) {
     console.error(error);
   }
@@ -229,35 +298,38 @@ async function addCategory(newCategory: string) {
 }
 
 // this funcion calculates the total expences
-function calculateTotalExpence(expences) {
+async function calculateTotalExpense() {
+  const resultRoot = document.querySelector(`.total-number--expense`);
+
+  await getExpensesFromDB();
+  debugger;
   let totalExpence = 0;
-  expences.forEach((expense) => {
-    totalExpence += expense.amount;
+  expenses.forEach((expense) => {
+    totalExpence += Number(expense.expenseAmount);
   });
+  renderResult(resultRoot, totalExpence);
   return totalExpence;
 }
 
 // this function calculates the balance
-function calculateBalance() {
+async function calculateBalance() {
   try {
     const balanceRoot = document.querySelector(`.total-number--balance`);
-    const incomeRoot = document.querySelector(
-      `.total-number--income`
-    )?.innerHTML;
-    const allExpenses = calculateTotalExpence(expenses);
-    const expenseRoot = document.querySelector(`.total-number--expence`);
-    if (!incomeRoot || !expenseRoot) throw new Error(`no roots`);
+    const incomeRoot = document.querySelector(`.total-number--income`);
+    const allExpenses = await calculateTotalExpense(expenses);
+    const userIncome = await getUserIncomeFromDB();
+    incomeRoot.innerHTML = userIncome;
     if (!balanceRoot) throw new Error(`balance not found`);
-    balanceRoot.innerHTML = `${parseFloat(incomeRoot) - allExpenses}&#8362;`;
-    if (parseFloat(incomeRoot) - allExpenses > 0) {
-      balanceRoot.classList.remove(`total-number--expence`);
+    balanceRoot.innerHTML = `${
+      parseFloat(userIncome) - (await allExpenses)
+    }&#8362;`;
+    if (parseFloat(userIncome) - (await allExpenses) > 0) {
+      balanceRoot.classList.remove(`total-number--expense`);
       balanceRoot.classList.add(`total-number--income`);
     } else {
       balanceRoot.classList.remove(`total-number--income`);
-      balanceRoot.classList.add(`total-number--expence`);
+      balanceRoot.classList.add(`total-number--expense`);
     }
-    expenseRoot.innerHTML = `${allExpenses}&#8362;`;
-    // loadDataToLocalStorage(incomeRoot, `income`);
   } catch (error) {
     console.error(error);
   }
@@ -267,10 +339,13 @@ function calculateBalance() {
 
 // revoke function onLoading
 window.onload = () => {
+  calculateBalance();
   getCategoriesFromDB();
+  getExpensesFromDB();
   handleAccordionClick();
   renderExpenceCalculator();
-  getExpensesFromDB();
+  renderExpencesTable();
+  // renderResult(resultRoot, userIncome);
 };
 function ExportToExcel(type, fn, dl) {
   var elt = document.querySelector("#tbl_exporttable_to_xls");
@@ -281,3 +356,17 @@ function ExportToExcel(type, fn, dl) {
 }
 
 // when refreshing the page this function will render the total numbers from local storage
+
+// this function will remove duplicates from the array
+function removeDuplicates(arr: Category[]): Category[] {
+  try {
+    const newCategoriesNames = new Set();
+    arr.forEach((category) => {
+      newCategoriesNames.add(category.categoryName);
+    });
+    const newCategoriesArray = Array.from(newCategoriesNames);
+    return newCategoriesArray;
+  } catch (error) {
+    console.error(error);
+  }
+}

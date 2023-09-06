@@ -1,20 +1,35 @@
 "use strict";
 exports.__esModule = true;
-exports.users = exports.UserModel = exports.UserSchema = exports.User = void 0;
+exports.users = exports.UserModel = exports.UserSchema = exports.User = exports.Gender = void 0;
 var mongoose_1 = require("mongoose");
+var Gender;
+(function (Gender) {
+    Gender["male"] = "Male";
+    Gender["female"] = "Female";
+    Gender["other"] = "Other";
+})(Gender = exports.Gender || (exports.Gender = {}));
 var User = /** @class */ (function () {
     function User(_a) {
-        var email = _a.email, password = _a.password;
-        this.email = email;
-        this.password = password;
-        this.id = Math.random().toString();
+        var userName = _a.userName, gender = _a.gender, email = _a.email, password = _a.password;
+        this.userName = userName;
+        this.gender = gender;
+        if (email)
+            this.email = email;
+        if (password)
+            this.password = password;
     }
+    User.prototype.updateGender = function (newGender) {
+        this.gender = newGender;
+    };
     return User;
 }());
 exports.User = User;
 exports.UserSchema = new mongoose_1.Schema({
+    userName: String,
+    gender: String,
     email: String,
-    password: String
+    password: String,
+    familyMembers: [{ type: mongoose_1.Schema.Types.ObjectId, ref: 'User' }]
 });
 exports.UserModel = mongoose_1.model("users", exports.UserSchema);
 exports.users = [];

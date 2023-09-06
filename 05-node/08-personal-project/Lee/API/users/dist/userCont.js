@@ -40,7 +40,46 @@ exports.login = exports.registerUser = void 0;
 var userModel_1 = require("./userModel");
 //register user 
 exports.registerUser = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var _a, email, password, user, userDB, error_1;
+    var _a, email, password, familyMembers, user, userDB, _i, familyMembers_1, familyMember, familyUser, error_1;
+    return __generator(this, function (_b) {
+        switch (_b.label) {
+            case 0:
+                _b.trys.push([0, 6, , 7]);
+                _a = req.body, email = _a.email, password = _a.password, familyMembers = _a.familyMembers;
+                if (!email || !password)
+                    throw new Error("Please complete all fields");
+                user = new userModel_1.UserModel({ email: email, password: password, familyMembers: familyMembers });
+                return [4 /*yield*/, user.save()];
+            case 1:
+                userDB = _b.sent();
+                console.log(userDB);
+                _i = 0, familyMembers_1 = familyMembers;
+                _b.label = 2;
+            case 2:
+                if (!(_i < familyMembers_1.length)) return [3 /*break*/, 5];
+                familyMember = familyMembers_1[_i];
+                familyUser = new userModel_1.UserModel(familyMember);
+                return [4 /*yield*/, familyUser.save()];
+            case 3:
+                _b.sent();
+                _b.label = 4;
+            case 4:
+                _i++;
+                return [3 /*break*/, 2];
+            case 5:
+                res.send({ ok: true, user: userDB });
+                return [3 /*break*/, 7];
+            case 6:
+                error_1 = _b.sent();
+                console.error(error_1);
+                res.send({ error: error_1.message });
+                return [3 /*break*/, 7];
+            case 7: return [2 /*return*/];
+        }
+    });
+}); };
+exports.login = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var _a, email, password, user, error_2;
     return __generator(this, function (_b) {
         switch (_b.label) {
             case 0:
@@ -48,39 +87,19 @@ exports.registerUser = function (req, res) { return __awaiter(void 0, void 0, vo
                 _a = req.body, email = _a.email, password = _a.password;
                 if (!email || !password)
                     throw new Error("Please complete all fields");
-                user = new userModel_1.UserModel({ email: email, password: password });
-                return [4 /*yield*/, user.save()];
+                return [4 /*yield*/, userModel_1.UserModel.findOne({ email: email, password: password }).exec()];
             case 1:
-                userDB = _b.sent();
-                console.log(userDB);
-                //check if user already exist
-                // const userExist = users.find((user) => user.email === email);
-                // if (userExist) throw new Error("User already exist");
-                // users.push(user);
-                res.send({ ok: true, user: userDB });
+                user = _b.sent();
+                if (!user)
+                    throw new Error("some of the details are incorrect");
+                res.send({ ok: true, email: user.email });
                 return [3 /*break*/, 3];
             case 2:
-                error_1 = _b.sent();
-                console.error(error_1);
-                res.send({ error: error_1.message });
+                error_2 = _b.sent();
+                console.error(error_2);
+                res.send({ error: error_2.message });
                 return [3 /*break*/, 3];
             case 3: return [2 /*return*/];
         }
     });
 }); };
-exports.login = function (req, res) {
-    try {
-        var _a = req.body, email_1 = _a.email, password_1 = _a.password;
-        if (!email_1 || !password_1)
-            throw new Error("Please complete all fields");
-        //check if user exist and password is correct
-        var user = userModel_1.users.find(function (user) { return user.email === email_1 && user.password === password_1; });
-        if (!user)
-            throw new Error("some of the details are incorrect");
-        res.send({ ok: true, email: user.email });
-    }
-    catch (error) {
-        console.error(error);
-        res.send({ error: error.message });
-    }
-};
