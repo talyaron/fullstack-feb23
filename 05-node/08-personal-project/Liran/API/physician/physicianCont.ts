@@ -49,8 +49,9 @@ export async function updatePhysician(req: any, res: any) {
         if (email) physician.email = email;
         if (licenseNumber) physician.licenseNumber = licenseNumber;
         if(password) physician.password = password;
-        if(isAdmin) physician.isAdmin = isAdmin;
-        res.send({ ok: true });
+        physician.isAdmin = isAdmin;
+        await physician.save();
+        res.status(200).send({ message: "Physician updated successfully" });
     } catch (error) {
         console.error(error);
         res.status(500).send({ error: error.message });

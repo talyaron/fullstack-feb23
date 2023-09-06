@@ -119,7 +119,7 @@ function updatePhysician(req, res) {
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
-                    _b.trys.push([0, 2, , 3]);
+                    _b.trys.push([0, 3, , 4]);
                     debugger;
                     _a = req.body, id = _a.id, firstName = _a.firstName, lastName = _a.lastName, age = _a.age, phoneNum = _a.phoneNum, email = _a.email, licenseNumber = _a.licenseNumber, password = _a.password, isAdmin = _a.isAdmin;
                     if (!id)
@@ -145,14 +145,17 @@ function updatePhysician(req, res) {
                         physician.password = password;
                     if (isAdmin)
                         physician.isAdmin = isAdmin;
-                    res.send({ ok: true });
-                    return [3 /*break*/, 3];
+                    return [4 /*yield*/, physician.save()];
                 case 2:
+                    _b.sent();
+                    res.status(200).send({ message: "Patient updated successfully" });
+                    return [3 /*break*/, 4];
+                case 3:
                     error_4 = _b.sent();
                     console.error(error_4);
                     res.status(500).send({ error: error_4.message });
-                    return [3 /*break*/, 3];
-                case 3: return [2 /*return*/];
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
             }
         });
     });
