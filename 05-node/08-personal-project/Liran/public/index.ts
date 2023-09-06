@@ -22,11 +22,11 @@ async function hundleLogin(event) {
         // if email and password are correct
         if (physician.isAdmin && admin) {
             alert("admin");
-            window.location.href = `admin.html?email=${email}`
+            window.location.href = `admin.html?physicianEmail=${email}`
         }
         else {
             alert("physician");
-            window.location.href = `physician.html?email=${email}`;
+            window.location.href = `physician.html?physicianEmail=${email}`;
         }
 
     } catch (error) {

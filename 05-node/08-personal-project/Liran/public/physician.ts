@@ -1,6 +1,4 @@
-// import { getEmailFromQuery } from "./admin";
-
-const physicianEmail = getEmailFromQueryP();
+const physicianEmail = getEmailFromQuery();
 renderPhisicianPage();
 
 async function renderPhisicianPage() {
@@ -27,17 +25,6 @@ function renderWelcomeP(lastName, root: HTMLDivElement) {
         console.error(error);
     }
 }
-
-
-function getEmailFromQueryP() {
-    try {
-        const params = new URLSearchParams(window.location.search);
-        return params.get("email");
-    } catch (error) {
-        console.error(error);
-    }
-}
-
 function renderPhysicianActions(html: HTMLElement) {
     try {
         html.innerHTML += `<div id="physicianActions">

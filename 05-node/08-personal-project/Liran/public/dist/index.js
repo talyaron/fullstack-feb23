@@ -68,11 +68,11 @@ function hundleLogin(event) {
                     // if email and password are correct
                     if (physician.isAdmin && admin) {
                         alert("admin");
-                        window.location.href = "admin.html?email=" + email_1;
+                        window.location.href = "admin.html?physicianEmail=" + email_1;
                     }
                     else {
                         alert("physician");
-                        window.location.href = "physician.html?email=" + email_1;
+                        window.location.href = "physician.html?physicianEmail=" + email_1;
                     }
                     return [3 /*break*/, 4];
                 case 3:

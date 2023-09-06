@@ -1,4 +1,3 @@
-"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -35,9 +34,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-exports.__esModule = true;
 var patientID = getPatientIdFromQuery();
-var physicianEmail = getPhysicianEmailFromQuery();
+var physicianEmail2 = getEmailFromQuery();
 var patientData = getPatientData(patientID)
     .then(function (patient) {
     renderVisitForm(patient, document.querySelector("#root"));
@@ -49,7 +47,7 @@ function renderVisitForm(patient, root) {
             throw new Error("Patient not found");
         if (!root)
             throw new Error("Root not found");
-        var html = "<div id=\"forms\">\n        <form onsubmit=\"submitVisitForm(event)\"> \n        <div>\n            <label>Date:</label>\n            <input type=\"date\" id=\"visit-date\" name=\"visit-date\" value=\"" + new Date().toISOString().split("T")[0] + "\" readonly></div>\n            <div><label>First Name:</label>\n            <input type=\"text\" id=\"visit-first-name\" name=\"visit-first-name\" value=\"" + patient.firstName + "\" readonly></div>\n            <div><label>Last Name:</label>\n            <input type=\"text\" id=\"visit-last-name\" name=\"visit-last-name\" value=\"" + patient.lastName + "\" readonly></div>\n            <div><label>Age:</label>\n            <input type=\"number\" id=\"visit-age\" name=\"visit-age\" value=\"" + patient.age + "\" readonly></div>\n            <div><label>Phone Number:</label>\n            <input type=\"tel\" id=\"visit-phone-number\" name=\"visit-phone-number\" value=\"" + patient.phoneNum + "\" readonly></div>\n            <div><label>Weight:</label>\n            <input type=\"number\" id=\"visit-weight\" name=\"visit-weight\" value=\"" + patient.weight + "\" readonly></div>\n            <div><label>Height:</label>\n            <input type=\"number\" id=\"visit-height\" name=\"visit-height\" value=\"" + patient.height + "\" readonly></div>\n            <div><label>Smoking:</label>\n            <input type=\"checkbox\" id=\"visit-smoking\" name=\"visit-smoking\" value=\"" + patient.smoking + "\" disabled></div>\n            <div><label>Visit Summary:</label>\n            <textarea id=\"visit-description\" name=\"visit-description\" rows=\"14\" cols=\"50\" required></textarea></div>\n            <div><button type=\"button\" onclick=\"writePrescription(" + patient.patientId + ")\">Write Prescription</button></div>\n            <div><button type=\"button\">History</button></div>\n            <div><button type=\"submit\">Close Visit</button></div>\n        </form></div>";
+        var html = "<div id=\"forms\">\n        <form onsubmit=\"submitVisitForm(event)\"> \n        <div>\n            <label>Date:</label>\n            <input type=\"date\" id=\"visit-date\" name=\"visit-date\" value=\"" + new Date().toISOString().split("T")[0] + "\" readonly></div>\n            <div><label>First Name:</label>\n            <input type=\"text\" id=\"visit-first-name\" name=\"visit-first-name\" value=\"" + patient.firstName + "\" readonly></div>\n            <div><label>Last Name:</label>\n            <input type=\"text\" id=\"visit-last-name\" name=\"visit-last-name\" value=\"" + patient.lastName + "\" readonly></div>\n            <div><label>Age:</label>\n            <input type=\"number\" id=\"visit-age\" name=\"visit-age\" value=\"" + patient.age + "\" readonly></div>\n            <div><label>Phone Number:</label>\n            <input type=\"tel\" id=\"visit-phone-number\" name=\"visit-phone-number\" value=\"" + patient.phoneNum + "\" readonly></div>\n            <div><label>Weight:</label>\n            <input type=\"number\" id=\"visit-weight\" name=\"visit-weight\" value=\"" + patient.weight + "\" readonly></div>\n            <div><label>Height:</label>\n            <input type=\"number\" id=\"visit-height\" name=\"visit-height\" value=\"" + patient.height + "\" readonly></div>\n            <div><label>Smoking:</label>\n            <input type=\"checkbox\" id=\"visit-smoking\" name=\"visit-smoking\" value=\"" + patient.smoking + "\" disabled></div>\n            <div><label>Visit Summary:</label>\n            <textarea id=\"visit-description\" name=\"visit-description\" rows=\"14\" cols=\"50\" required></textarea></div>\n            <div><button type=\"button\" onclick=\"writePrescription(" + patient.patientId + ")\">Write Prescription</button></div>\n            <div><button type=\"button\">History</button></div>\n            <div><button type=\"submit\">Close Visit</button></div>\n        </form></div>\n        <button onclick=\"window.location.href = 'physician.html?physicianEmail=" + physicianEmail2 + "'\">Back</button>";
         root.innerHTML += html;
     }
     catch (error) {
@@ -61,7 +59,7 @@ function writePrescription(patientId) {
         var popupURL, popupWidth, popupHeight, left, top, popupWindow;
         return __generator(this, function (_a) {
             try {
-                popupURL = "prescription.html?patientId=" + patientId + "&physicianEmail=" + physicianEmail;
+                popupURL = "prescription.html?patientId=" + patientId + "&physicianEmail=" + physicianEmail2;
                 popupWidth = 400;
                 popupHeight = 300;
                 left = (window.innerWidth - popupWidth) / 2;
@@ -71,33 +69,6 @@ function writePrescription(patientId) {
                 if (popupWindow) {
                     popupWindow.focus();
                 }
-            }
-            catch (error) {
-                console.error(error);
-            }
-            return [2 /*return*/];
-        });
-    });
-}
-function getPhysicianEmailFromQuery() {
-    return __awaiter(this, void 0, void 0, function () {
-        return __generator(this, function (_a) {
-            try {
-            }
-            catch (error) {
-                console.error(error);
-            }
-            return [2 /*return*/];
-        });
-    });
-}
-function getPatientIdFromQuery() {
-    return __awaiter(this, void 0, void 0, function () {
-        var params;
-        return __generator(this, function (_a) {
-            try {
-                params = new URLSearchParams(window.location.search);
-                return [2 /*return*/, params.get("patientId")];
             }
             catch (error) {
                 console.error(error);
