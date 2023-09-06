@@ -276,7 +276,7 @@ body {
   grid-column: 1/2;
   display: inline-block;
 }
-.wrapper .result__total-expence {
+.wrapper .result__total-expense {
   text-align: center;
   grid-column: 2/3;
   display: inline-block;
@@ -295,7 +295,7 @@ body {
 .wrapper .result .total-number--income {
   color: green;
 }
-.wrapper .result .total-number--expence {
+.wrapper .result .total-number--expense {
   color: red;
 }
 .wrapper .result .total-number--balance {

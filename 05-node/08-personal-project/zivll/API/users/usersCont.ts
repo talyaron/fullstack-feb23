@@ -21,6 +21,36 @@ export const registerUser = async (req: any, res: any) => {
   }
 };
 
+export const addIncome = async (req: any, res: any) => {
+  try {
+    const { userName, userIncome } = req.body;
+    if (!userName || !userIncome)
+      throw new Error(`some of the parameters are missing`);
+    const updateIncome = await UserModel.findOneAndUpdate({
+      userName,
+      userIncome,
+    });
+    // const income = new UserIncomeModel({ userName, userIncome });
+    await updateIncome.save();
+    res.send({ ok: true });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send({ error: error.message });
+  }
+};
+export const getIncome = async (req: any, res: any) => {
+  try {
+    const { userName } = req.body;
+    // console.log(userName);
+
+    if (!userName) throw new Error(`Username not provided`);
+    const getIncome = await UserModel.findOne({ userName });
+    res.send(getIncome.userIncome);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send({ error: error.message });
+  }
+};
 export const login = async (req: any, res: any) => {
   try {
     const { email, password } = req.body;
