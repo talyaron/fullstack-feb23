@@ -21,6 +21,8 @@ app.use(express_1.default.static("public"));
 app.use(express_1.default.json());
 const usersRouter_1 = __importDefault(require("./API/users/usersRouter"));
 app.use("/API/users", usersRouter_1.default);
+const habitsRouter_1 = __importDefault(require("./API/habits/habitsRouter"));
+app.use("/API/habits", habitsRouter_1.default);
 const mongoose = require('mongoose');
 main().catch(err => console.log(err));
 function main() {

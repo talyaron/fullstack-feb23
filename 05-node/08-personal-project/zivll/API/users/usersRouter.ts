@@ -1,5 +1,9 @@
 import express from "express";
-import { login, registerUser } from "./usersCont";
+import { addIncome, getIncome, login, registerUser } from "./usersCont";
 const userRoutes = express.Router();
-userRoutes.post("/register", registerUser).post("/login", login);
+userRoutes
+  .post("/register", registerUser)
+  .post("/login", login)
+  .patch("/add-income", addIncome)
+  .post("/get-income", getIncome);
 export default userRoutes;
