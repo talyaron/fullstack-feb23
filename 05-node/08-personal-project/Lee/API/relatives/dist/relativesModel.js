@@ -14,10 +14,13 @@ var Relation;
     Relation["uncle"] = "Uncle";
     Relation["aunt"] = "Aunt";
     Relation["cousin"] = "Cousin";
+    Relation["niece"] = "Niece";
+    Relation["nephew"] = "Nephew";
 })(Relation = exports.Relation || (exports.Relation = {}));
 var Relative = /** @class */ (function () {
-    function Relative(fullName, country, relation) {
+    function Relative(fullName, birthDate, country, relation) {
         this.fullName = fullName;
+        this.birthDate = birthDate;
         this.country = country;
         this.relation = relation;
         this.id = Math.random().toString(36).substr(2, 9);
@@ -29,14 +32,6 @@ var Relative = /** @class */ (function () {
 }());
 exports.Relative = Relative;
 exports.relatives = [];
-// export class UserTasks {
-//   id: string;
-//   constructor(public user: User, public task: Task) {
-//     this.id = Math.random().toString(36).substr(2, 9);
-//   }
-// }
-// export const userTasks: UserTasks[] = [];
-//join collection (class)
 var UserRelatives = /** @class */ (function () {
     function UserRelatives(user, task) {
         this.user = user;

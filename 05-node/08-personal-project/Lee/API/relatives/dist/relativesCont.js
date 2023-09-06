@@ -14,13 +14,13 @@ function getRelatives(req, res) {
 exports.getRelatives = getRelatives;
 function addRelative(req, res) {
     try {
-        var _a = req.body, fullName = _a.fullName, country = _a.country, email_1 = _a.email;
-        console.log({ fullName: fullName, country: country, email: email_1 });
+        var _a = req.body, fullName = _a.fullName, birthDate = _a.birthDate, country = _a.country, email_1 = _a.email;
+        console.log({ fullName: fullName, birthDate: birthDate, country: country, email: email_1 });
         if (!fullName || !country)
             throw new Error("Please complete all fields");
         if (!email_1)
             throw new Error("no email");
-        var newRelative = new relativesModel_1.Relative(fullName, country, relativesModel_1.Relation.choose);
+        var newRelative = new relativesModel_1.Relative(fullName, birthDate, country, relativesModel_1.Relation.choose);
         relativesModel_1.relatives.push(newRelative);
         //find user
         var user = userModel_1.users.find(function (user) { return user.email === email_1; });

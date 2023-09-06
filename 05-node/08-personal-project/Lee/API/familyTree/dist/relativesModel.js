@@ -16,8 +16,9 @@ var Relation;
     Relation["cousin"] = "Cousin";
 })(Relation = exports.Relation || (exports.Relation = {}));
 var Relative = /** @class */ (function () {
-    function Relative(fullName, country, relation) {
+    function Relative(fullName, birthDate, country, relation) {
         this.fullName = fullName;
+        this.birthDate = birthDate;
         this.country = country;
         this.relation = relation;
         this.id = Math.random().toString(36).substr(2, 9);
