@@ -15,7 +15,7 @@ function getPhysicianEmailFromQuery(){
 function getPatientIdFromQuery() {
     try {
         const params = new URLSearchParams(window.location.search);
-        return params.get("patientId");
+        return params.get("_id");
     } catch (error) {
         console.error(error);
     }

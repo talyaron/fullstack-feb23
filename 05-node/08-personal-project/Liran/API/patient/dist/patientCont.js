@@ -148,7 +148,7 @@ function updatePatient(req, res) {
                     return [4 /*yield*/, patient.save()];
                 case 2:
                     _b.sent();
-                    res.status(200).send({ message: "Patient updated successfully" });
+                    res.send({ ok: true });
                     return [3 /*break*/, 4];
                 case 3:
                     error_4 = _b.sent();

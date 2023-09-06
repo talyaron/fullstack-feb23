@@ -51,7 +51,6 @@ function renderPhisicianPage() {
                     data = _a.sent();
                     console.log(data);
                     renderWelcomeP(data.physicians[0].lastName, document.querySelector("#root"));
-                    debugger;
                     renderPhysicianActions(document.querySelector("#header"));
                     return [3 /*break*/, 4];
                 case 3:
@@ -65,7 +64,6 @@ function renderPhisicianPage() {
 }
 function renderWelcomeP(lastName, root) {
     try {
-        debugger;
         root.innerHTML = "<div id = \"header\">\n        <h1>Welcome Dr. " + lastName + "</h1>\n        </div>\n        <div id=\"forms\"></div>";
     }
     catch (error) {
@@ -180,7 +178,7 @@ function renderUpdatePatientP(patients, html) {
                     patientsList.forEach(function (patient) {
                         tempHtml_1 += "<option value=\"" + patient._id + "\"> " + patient.firstName + " " + patient.lastName + "</option>";
                     });
-                    tempHtml_1 += "</select>\n            </div>\n            <div class=\"input\">\n            <label for=\"firstName\">First Name:</label><br>\n            <input type=\"text\" id=\"firstName\" name=\"firstName\">\n            </div><div class=\"input\">\n            <label for=\"lastName\">Last Name:</label><br>\n            <input type=\"text\" id=\"lastName\" name=\"lastName\">\n            </div> <div class=\"input\">\n            <label for=\"age\">Age:</label><br>\n            <input type=\"number\" id=\"age\" name=\"age\">\n            </div> <div class=\"input\">\n            <label for=\"phoneNum\">Phone Number:</label><br>\n            <input type=\"text\" id=\"phoneNum\" name=\"phoneNum\">\n            </div><div class=\"input\">\n            <label for=\"weight\">Weight:</label><br>\n            <input type=\"number\" id=\"weight\" name=\"weight\">\n            </div><div class=\"input\">\n            <label for=\"height\">Height:</label><br>\n            <input type=\"number\" id=\"height\" name=\"height\">\n            </div><div class=\"input\">\n            <label for=\"smoking\">Smoking:</label><br>\n            <input type=\"checkbox\" id=\"smoking\" name=\"smoking\">\n            </div><div class=\"input\">\n            <label for=\"address\">Address:</label><br>\n            <input type=\"text\" id=\"address\" name=\"address\">\n            </div>";
+                    tempHtml_1 += "</select>\n            </div>\n            <div class=\"input\">\n            <label for=\"firstName\">First Name:</label><br>\n            <input type=\"text\" id=\"firstName\" name=\"firstName\" value=\"" + patientsList[0].firstName + "\">\n            </div><div class=\"input\">\n            <label for=\"lastName\">Last Name:</label><br>\n            <input type=\"text\" id=\"lastName\" name=\"lastName\" value=\"" + patientsList[0].lastName + "\">\n            </div> <div class=\"input\">\n            <label for=\"age\">Age:</label><br>\n            <input type=\"number\" id=\"age\" name=\"age\" value=\"" + patientsList[0].age + "\">\n            </div> <div class=\"input\">\n            <label for=\"phoneNum\">Phone Number:</label><br>\n            <input type=\"text\" id=\"phoneNum\" name=\"phoneNum\" value=\"" + patientsList[0].phoneNum + "\">\n            </div><div class=\"input\">\n            <label for=\"weight\">Weight:</label><br>\n            <input type=\"number\" id=\"weight\" name=\"weight\" value=\"" + patientsList[0].weight + "\"> \n            </div><div class=\"input\">\n            <label for=\"height\">Height:</label><br>\n            <input type=\"number\" id=\"height\" name=\"height\" value=\"" + patientsList[0].height + "\">\n            </div><div class=\"input\">\n            <label for=\"smoking\">Smoking:</label><br>\n            <input type=\"checkbox\" id=\"smoking\" name=\"smoking\" value=\"" + patientsList[0].smoking + "\">\n            </div><div class=\"input\">\n            <label for=\"address\">Address:</label><br>\n            <input type=\"text\" id=\"address\" name=\"address\" value=\"" + patientsList[0].address + "\">\n            </div>";
                     tempHtml_1 += "<input type=\"submit\" value=\"UPDATE\">\n        </form>";
                     html.innerHTML = tempHtml_1;
                     return [3 /*break*/, 6];
@@ -201,7 +199,6 @@ function hundlePatientUpdate(event) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
                     event.preventDefault();
-                    debugger;
                     id = event.target.id.value;
                     firstName = event.target.firstName.value;
                     lastName = event.target.lastName.value;
@@ -226,7 +223,7 @@ function hundlePatientUpdate(event) {
                     data = _a.sent();
                     console.log(data);
                     alert("Patient updated successfully");
-                    window.location.href = "physician.html?email=" + physicianEmail;
+                    window.location.href = "physician.html?physicianEmail=" + physicianEmail;
                     return [3 /*break*/, 4];
                 case 3:
                     error_5 = _a.sent();
@@ -250,6 +247,7 @@ function loadPatients() {
                     return [4 /*yield*/, responseP.json()];
                 case 2:
                     dataP = _a.sent();
+                    console.log(dataP);
                     physicianID_3 = dataP.physicians.find(function (physician) { return physician.email === physicianEmail; })._id;
                     return [4 /*yield*/, fetch("/API/patient/get-patients")];
                 case 3:
@@ -277,25 +275,44 @@ function renderPatients(patients) {
         root.innerHTML += "<h2>Patients</h2>\n     <table>\n     <tr>\n     <th>First Name</th>\n     <th>Last Name</th>\n     <th>ID</th>\n     <th>Age</th>\n     <th>Phone Number</th>\n     <th>Weight</th>\n     <th>Height</th>\n     <th>Smoking</th>\n     <th>Address</th>\n     <th>Visit</th>\n     </tr>\n     </table>";
         var table_1 = document.querySelector("table");
         patients.forEach(function (patient) {
-            table_1.innerHTML += "<tr>\n         <td>" + patient.firstName + "</td>\n         <td>" + patient.lastName + "</td>\n         <td>" + patient.patientId + "</td>\n         <td>" + patient.age + "</td>\n         <td>" + patient.phoneNum + "</td>\n         <td>" + patient.weight + "</td>\n         <td>" + patient.height + "</td>\n         <td>" + (patient.smoking ? "Yes" : "No") + "</td>\n         <td>" + patient.address + "</td>\n         <td><button onclick=\"StartVisit(" + patient.patientId + ")\">Open Visit</button></td>\n         </tr>";
+            table_1.innerHTML += "<tr>\n         <td>" + patient.firstName + "</td>\n         <td>" + patient.lastName + "</td>\n         <td>" + patient.patientId + "</td>\n         <td>" + patient.age + "</td>\n         <td>" + patient.phoneNum + "</td>\n         <td>" + patient.weight + "</td>\n         <td>" + patient.height + "</td>\n         <td>" + (patient.smoking ? "Yes" : "No") + "</td>\n         <td>" + patient.address + "</td>\n         <td><button onclick=\"StartVisit(" + patient._id + ")\">Open Visit</button></td>\n         </tr>";
         });
     }
     catch (error) {
         console.error(error);
     }
 }
-function StartVisit(id) {
-    try {
-        debugger;
-        window.location.href = "visit.html?patientId=" + id + "&physicianEmail=" + physicianEmail;
-    }
-    catch (error) {
-        console.error(error);
-    }
+function StartVisit(patientId) {
+    return __awaiter(this, void 0, void 0, function () {
+        var response, data, patientID, error_7;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 3, , 4]);
+                    console.log(patientId);
+                    return [4 /*yield*/, fetch("/API/patient/get-patients")];
+                case 1:
+                    response = _a.sent();
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    data = _a.sent();
+                    debugger;
+                    patientID = data.patients.find(function (patient) { return patient.patientId === patientId; });
+                    console.log(patientID);
+                    window.location.href = "visit.html?_id=" + patientID._id + "&physicianEmail=" + physicianEmail;
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_7 = _a.sent();
+                    console.error(error_7);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
+            }
+        });
+    });
 }
 function loadMedicines() {
     return __awaiter(this, void 0, void 0, function () {
-        var response, data, error_7;
+        var response, data, error_8;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -310,8 +327,8 @@ function loadMedicines() {
                     renderMedicines(data.medicines);
                     return [3 /*break*/, 4];
                 case 3:
-                    error_7 = _a.sent();
-                    console.error(error_7);
+                    error_8 = _a.sent();
+                    console.error(error_8);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }

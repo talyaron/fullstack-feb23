@@ -1,6 +1,7 @@
-body{
-    background: linear-gradient(180deg, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
-    #root{
+body {
+    background: linear-gradient(0deg, rgba(9, 9, 121, 1) 35%, rgba(0, 212, 255, 1) 100%);
+
+    #root {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -8,7 +9,7 @@ body{
         height: 100vh;
         width: 100vw;
 
-        form{
+        form {
             display: flex;
             flex-direction: column;
             align-items: left;
@@ -17,15 +18,41 @@ body{
             width: 75%;
             gap: 10px;
 
-            label{
-                width: 200px;
-            }
-            input{
-                width: 100px;
+            div {
+                display: flex;
             }
 
-            button{
+            label {
+                width: 200px;
+                color: rgb(199, 228, 255);
+            }
+
+            input {
                 width: 100px;
+                text-align: center;
+            }
+
+            input[type="number"] {
+                width: 30px;
+            }
+
+            input[type="date"] {
+                width: fit-content;
+                background: none;
+                border: none;
+            }
+
+            input[type="submit"] {
+                width: fit-content;
+                font-weight: bold;
+                border-radius: 4px;
+                background-color: #4CAF50;
+            }
+
+            input[type="submit"]:hover {
+                background-color: #00b7ff;
+                cursor: pointer;
+                scale: 1.1;
             }
 
         }
