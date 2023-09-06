@@ -5,6 +5,7 @@ var mongoose_1 = require("mongoose");
 exports.PatientSchema = new mongoose_1.Schema({
     firstName: String,
     lastName: String,
+    patientId: String,
     age: Number,
     phoneNum: String,
     weight: Number,

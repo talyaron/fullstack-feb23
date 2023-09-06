@@ -35,9 +35,9 @@ function renderAdminActions(root: HTMLDivElement) {
         <button id="delete-physician" onclick="hundleDeletePhysician()">Delete Physician</button>
         <button id="delete-patient" onclick="hundleDeletePatient()">Delete Patient</button>
         <button id="delete-medicine" onclick="hundleDeleteMedicine()">Delete Medicine</button>
-        <button id="physicianList" onclick="hundlePhysicianList()">Physician List</button>
-        <button id="patientList" onclick="hundlePatientList()">Patient List</button>
-        <button id="medicineList" onclick="hundleMedicineList()">Medicine List</button>
+        <button id="physiciansList" onclick="hundlePhysicianList()">Physician List</button>
+        <button id="patientsList" onclick="hundlePatientList()">Patient List</button>
+        <button id="medicinesList" onclick="hundleMedicineList()">Medicine List</button>
         <button id="logout" onclick="hundleLogout()">Logout</button>
     </div>
         `;
@@ -117,6 +117,7 @@ async function renderPatientList(html: HTMLDivElement) {
         <tr>
         <th>First Name</th>
         <th>Last Name</th>
+        <th>ID</th>
         <th>Age</th>
         <th>Phone Number</th>
         <th>Weight</th>
@@ -129,6 +130,7 @@ async function renderPatientList(html: HTMLDivElement) {
             tempHtml += `<tr>
             <td>${patient.firstName}</td>
             <td>${patient.lastName}</td>
+            <td>${patient.patientId}</td>
             <td>${patient.age}</td>
             <td>${patient.phoneNum}</td>
             <td>${patient.weight}</td>
@@ -163,7 +165,7 @@ async function renderMedicineList(html: HTMLDivElement) {
         <tr>
         <th>Name</th>
         <th>Dosage Per Day</th>
-        <th>Max Duration</th>
+        <th>Max Days</th>
         </tr>`;
         medicinesList.forEach(medicine => {
             tempHtml += `<tr>
@@ -435,6 +437,9 @@ async function renderAddPatient(html: HTMLDivElement) {
             <label for="lastName">Last Name:</label><br>
             <input type="text" id="lastName" name="lastName">
             </div> <div class="input">
+            <label for="patientId">ID:</label><br>
+            <input type="text" id="patientId" name="patientId">
+            </div><div class="input">
             <label for="age">Age:</label><br>
             <input type="number" id="age" name="age">
             </div> <div class="input">
@@ -487,6 +492,7 @@ async function hundlePatientSubmit(event) {
         event.preventDefault();
         const firstName = event.target.firstName.value;
         const lastName = event.target.lastName.value;
+        const patientId = event.target.patientId.value;
         const age = event.target.age.value;
         const phoneNum = event.target.phoneNum.value;
         const weight = event.target.weight.value;
@@ -494,17 +500,17 @@ async function hundlePatientSubmit(event) {
         const smoking = event.target.smoking.checked;
         const address = event.target.address.value;
         const physicianId = event.target.physicianId.value;
-        if (!firstName || !lastName || !age || !phoneNum || !weight || !height || !address || !physicianId) throw new Error("missing some details");
+        if (!firstName || !lastName || !patientId || !age || !phoneNum || !weight || !height || !address || !physicianId) throw new Error("missing some details");
         const response = await fetch("API/patient/add-patient", {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ firstName, lastName, age, phoneNum, weight, height, smoking, address, physicianId })
+            body: JSON.stringify({ firstName, lastName, patientId, age, phoneNum, weight, height, smoking, address, physicianId })
         })
         const data = await response.json();
         console.log(data);
-        alert("Patient added successfully");
+        if(data.ok) alert("Patient added successfully");
         window.location.href = `admin.html?email=${email}`;
     } catch (error) {
         console.error(error);

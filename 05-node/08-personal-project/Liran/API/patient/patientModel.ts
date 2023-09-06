@@ -3,6 +3,7 @@ import { Schema, model } from 'mongoose';
 export const PatientSchema = new Schema({
   firstName: String,
   lastName: String,
+  patientId:String,
   age: Number,
   phoneNum: String,
   weight: Number,

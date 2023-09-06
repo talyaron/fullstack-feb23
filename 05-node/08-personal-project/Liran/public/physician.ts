@@ -41,11 +41,11 @@ function getEmailFromQueryP() {
 function renderPhysicianActions(html: HTMLElement) {
     try {
         html.innerHTML += `<div id="physicianActions">
-        <button id="addPatient" onclick="loadPatients()">Patient</button>
-        <button id="addMedicine" onclick="loadMedicines()">Medicine</button>
-        <button id="addPrescription" onclick="loadPrescriptions()">Prescription</button>
-        <button id="updatePatient" onclick="updatePatientP()">Update Patient</button>
-        <button id="logout" onclick="logout()">Logout</button>
+        <button onclick="loadPatients()">Patients</button>
+        <button onclick="loadMedicines()">Medicines</button>
+        <button onclick="loadPrescriptions()">Prescriptions</button>
+        <button onclick="updatePatientP()">Update Patient</button>
+        <button onclick="logout()">Logout</button>
         </div>
         `;
     } catch (error) {
@@ -202,6 +202,7 @@ function renderPatients(patients: Patient[]) {
      <tr>
      <th>First Name</th>
      <th>Last Name</th>
+     <th>ID</th>
      <th>Age</th>
      <th>Phone Number</th>
      <th>Weight</th>
@@ -216,15 +217,25 @@ function renderPatients(patients: Patient[]) {
             table.innerHTML += `<tr>
          <td>${patient.firstName}</td>
          <td>${patient.lastName}</td>
+         <td>${patient.patientId}</td>
          <td>${patient.age}</td>
          <td>${patient.phoneNum}</td>
          <td>${patient.weight}</td>
          <td>${patient.height}</td>
          <td>${patient.smoking ? "Yes" : "No"}</td>
          <td>${patient.address}</td>
-         <td><button onclick = "Open Visit(${patient._id})">Open Visit</button></td>
+         <td><button onclick="StartVisit(${patient.patientId})">Open Visit</button></td>
          </tr>`;
         });
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+function StartVisit(id: string) {
+    try {
+        debugger;
+        window.location.href = `visit.html?patientId=${id}&physicianEmail=${physicianEmail}`;
     } catch (error) {
         console.error(error);
     }

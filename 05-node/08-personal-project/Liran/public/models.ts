@@ -14,6 +14,7 @@ class Physician {
 class Patient {
     constructor(public firstName: string,
         public lastName: string,
+        public patientId: string,
         public age: number,
         public phoneNum: string,
         public weight: number,

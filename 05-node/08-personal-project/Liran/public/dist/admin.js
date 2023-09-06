@@ -70,7 +70,7 @@ function renderAdminPage() {
 }
 function renderAdminActions(root) {
     try {
-        root.innerHTML += "<div id=\"admin-actions\">\n        <button id=\"add-physician\" onclick=\"hundleAddPhysician()\">Add Physician</button>\n        <button id=\"add-patient\" onclick=\"hundleAddPatient()\">Add Patient</button>\n        <button id=\"add-medicine\" onclick=\"hundleAddMedicine()\">Add Medicine</button>\n        <button id=\"update-physician\" onclick=\"hundleUpdatePhysician()\">Update Physician</button>\n        <button id=\"update-patient\" onclick=\"hundleUpdatePatient()\">Update Patient</button>\n        <button id=\"update-medicine\" onclick=\"hundleUpdateMedicine()\">Update Medicine</button>\n        <button id=\"delete-physician\" onclick=\"hundleDeletePhysician()\">Delete Physician</button>\n        <button id=\"delete-patient\" onclick=\"hundleDeletePatient()\">Delete Patient</button>\n        <button id=\"delete-medicine\" onclick=\"hundleDeleteMedicine()\">Delete Medicine</button>\n        <button id=\"physicianList\" onclick=\"hundlePhysicianList()\">Physician List</button>\n        <button id=\"patientList\" onclick=\"hundlePatientList()\">Patient List</button>\n        <button id=\"medicineList\" onclick=\"hundleMedicineList()\">Medicine List</button>\n        <button id=\"logout\" onclick=\"hundleLogout()\">Logout</button>\n    </div>\n        ";
+        root.innerHTML += "<div id=\"admin-actions\">\n        <button id=\"add-physician\" onclick=\"hundleAddPhysician()\">Add Physician</button>\n        <button id=\"add-patient\" onclick=\"hundleAddPatient()\">Add Patient</button>\n        <button id=\"add-medicine\" onclick=\"hundleAddMedicine()\">Add Medicine</button>\n        <button id=\"update-physician\" onclick=\"hundleUpdatePhysician()\">Update Physician</button>\n        <button id=\"update-patient\" onclick=\"hundleUpdatePatient()\">Update Patient</button>\n        <button id=\"update-medicine\" onclick=\"hundleUpdateMedicine()\">Update Medicine</button>\n        <button id=\"delete-physician\" onclick=\"hundleDeletePhysician()\">Delete Physician</button>\n        <button id=\"delete-patient\" onclick=\"hundleDeletePatient()\">Delete Patient</button>\n        <button id=\"delete-medicine\" onclick=\"hundleDeleteMedicine()\">Delete Medicine</button>\n        <button id=\"physiciansList\" onclick=\"hundlePhysicianList()\">Physician List</button>\n        <button id=\"patientsList\" onclick=\"hundlePatientList()\">Patient List</button>\n        <button id=\"medicinesList\" onclick=\"hundleMedicineList()\">Medicine List</button>\n        <button id=\"logout\" onclick=\"hundleLogout()\">Logout</button>\n    </div>\n        ";
     }
     catch (error) {
         console.error(error);
@@ -151,9 +151,9 @@ function renderPatientList(html) {
                     dataPhysician_1 = _a.sent();
                     physiciansList = dataPhysician_1.physicians;
                     patientsList = data.patients;
-                    tempHtml_2 = "<h2>Patient List</h2>\n        <table>\n        <tr>\n        <th>First Name</th>\n        <th>Last Name</th>\n        <th>Age</th>\n        <th>Phone Number</th>\n        <th>Weight</th>\n        <th>Height</th>\n        <th>Smoking</th>\n        <th>Address</th>\n        <th>Physician</th>\n        </tr>";
+                    tempHtml_2 = "<h2>Patient List</h2>\n        <table>\n        <tr>\n        <th>First Name</th>\n        <th>Last Name</th>\n        <th>ID</th>\n        <th>Age</th>\n        <th>Phone Number</th>\n        <th>Weight</th>\n        <th>Height</th>\n        <th>Smoking</th>\n        <th>Address</th>\n        <th>Physician</th>\n        </tr>";
                     patientsList.forEach(function (patient) {
-                        tempHtml_2 += "<tr>\n            <td>" + patient.firstName + "</td>\n            <td>" + patient.lastName + "</td>\n            <td>" + patient.age + "</td>\n            <td>" + patient.phoneNum + "</td>\n            <td>" + patient.weight + "</td>\n            <td>" + patient.height + "</td>\n            <td>" + patient.smoking + "</td>\n            <td>" + patient.address + "</td>\n            <td>Dr. " + dataPhysician_1.physicians.find(function (p) { return p._id === patient.physicianId; }).lastName + "</td>\n            </tr>";
+                        tempHtml_2 += "<tr>\n            <td>" + patient.firstName + "</td>\n            <td>" + patient.lastName + "</td>\n            <td>" + patient.patientId + "</td>\n            <td>" + patient.age + "</td>\n            <td>" + patient.phoneNum + "</td>\n            <td>" + patient.weight + "</td>\n            <td>" + patient.height + "</td>\n            <td>" + patient.smoking + "</td>\n            <td>" + patient.address + "</td>\n            <td>Dr. " + dataPhysician_1.physicians.find(function (p) { return p._id === patient.physicianId; }).lastName + "</td>\n            </tr>";
                     });
                     tempHtml_2 += "</table>";
                     html.innerHTML = tempHtml_2;
@@ -189,7 +189,7 @@ function renderMedicineList(html) {
                 case 2:
                     data = _a.sent();
                     medicinesList = data.medicines;
-                    tempHtml_3 = "<h2>Medicine List</h2>\n        <table>\n        <tr>\n        <th>Name</th>\n        <th>Dosage Per Day</th>\n        <th>Max Duration</th>\n        </tr>";
+                    tempHtml_3 = "<h2>Medicine List</h2>\n        <table>\n        <tr>\n        <th>Name</th>\n        <th>Dosage Per Day</th>\n        <th>Max Days</th>\n        </tr>";
                     medicinesList.forEach(function (medicine) {
                         tempHtml_3 += "<tr>\n            <td>" + medicine.name + "</td>\n            <td>" + medicine.dosagePerDay + "</td>\n            <td>" + medicine.maxDuration + "</td>\n            </tr>";
                     });
@@ -497,7 +497,7 @@ function renderAddPatient(html) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-                    tempHtml_7 = "<h2>Add Patient</h2>\n        <form onsubmit=\"hundlePatientSubmit(event)\">\n            <div class=\"input\">\n            <label for=\"firstName\">First Name:</label><br>\n            <input type=\"text\" id=\"firstName\" name=\"firstName\">\n            </div><div class=\"input\">\n            <label for=\"lastName\">Last Name:</label><br>\n            <input type=\"text\" id=\"lastName\" name=\"lastName\">\n            </div> <div class=\"input\">\n            <label for=\"age\">Age:</label><br>\n            <input type=\"number\" id=\"age\" name=\"age\">\n            </div> <div class=\"input\">\n            <label for=\"phoneNum\">Phone Number:</label><br>\n            <input type=\"text\" id=\"phoneNum\" name=\"phoneNum\">\n            </div><div class=\"input\">\n            <label for=\"weight\">Weight:</label><br>\n            <input type=\"number\" id=\"weight\" name=\"weight\">\n            </div><div class=\"input\">\n            <label for=\"height\">Height:</label><br>\n            <input type=\"number\" id=\"height\" name=\"height\">\n            </div><div class=\"input\">\n            <label for=\"smoking\">Smoking:</label><br>\n            <input type=\"checkbox\" id=\"smoking\" name=\"smoking\">\n            </div><div class=\"input\">\n            <label for=\"address\">Address:</label><br>\n            <input type=\"text\" id=\"address\" name=\"address\">\n            </div><div class=\"input\">\n            <label for=\"physicianId\">Select physician</label><br>\n            <select id=\"physicianId\" name=\"physicianId\">\n            ";
+                    tempHtml_7 = "<h2>Add Patient</h2>\n        <form onsubmit=\"hundlePatientSubmit(event)\">\n            <div class=\"input\">\n            <label for=\"firstName\">First Name:</label><br>\n            <input type=\"text\" id=\"firstName\" name=\"firstName\">\n            </div><div class=\"input\">\n            <label for=\"lastName\">Last Name:</label><br>\n            <input type=\"text\" id=\"lastName\" name=\"lastName\">\n            </div> <div class=\"input\">\n            <label for=\"patientId\">ID:</label><br>\n            <input type=\"text\" id=\"patientId\" name=\"patientId\">\n            </div><div class=\"input\">\n            <label for=\"age\">Age:</label><br>\n            <input type=\"number\" id=\"age\" name=\"age\">\n            </div> <div class=\"input\">\n            <label for=\"phoneNum\">Phone Number:</label><br>\n            <input type=\"text\" id=\"phoneNum\" name=\"phoneNum\">\n            </div><div class=\"input\">\n            <label for=\"weight\">Weight:</label><br>\n            <input type=\"number\" id=\"weight\" name=\"weight\">\n            </div><div class=\"input\">\n            <label for=\"height\">Height:</label><br>\n            <input type=\"number\" id=\"height\" name=\"height\">\n            </div><div class=\"input\">\n            <label for=\"smoking\">Smoking:</label><br>\n            <input type=\"checkbox\" id=\"smoking\" name=\"smoking\">\n            </div><div class=\"input\">\n            <label for=\"address\">Address:</label><br>\n            <input type=\"text\" id=\"address\" name=\"address\">\n            </div><div class=\"input\">\n            <label for=\"physicianId\">Select physician</label><br>\n            <select id=\"physicianId\" name=\"physicianId\">\n            ";
                     return [4 /*yield*/, getPhysiciansList()];
                 case 1:
                     physiciansList = _a.sent();
@@ -542,7 +542,7 @@ function getPhysiciansList() {
 }
 function hundlePatientSubmit(event) {
     return __awaiter(this, void 0, void 0, function () {
-        var firstName, lastName, age, phoneNum, weight, height, smoking, address, physicianId, response, data, error_14;
+        var firstName, lastName, patientId, age, phoneNum, weight, height, smoking, address, physicianId, response, data, error_14;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -550,6 +550,7 @@ function hundlePatientSubmit(event) {
                     event.preventDefault();
                     firstName = event.target.firstName.value;
                     lastName = event.target.lastName.value;
+                    patientId = event.target.patientId.value;
                     age = event.target.age.value;
                     phoneNum = event.target.phoneNum.value;
                     weight = event.target.weight.value;
@@ -557,14 +558,14 @@ function hundlePatientSubmit(event) {
                     smoking = event.target.smoking.checked;
                     address = event.target.address.value;
                     physicianId = event.target.physicianId.value;
-                    if (!firstName || !lastName || !age || !phoneNum || !weight || !height || !address || !physicianId)
+                    if (!firstName || !lastName || !patientId || !age || !phoneNum || !weight || !height || !address || !physicianId)
                         throw new Error("missing some details");
                     return [4 /*yield*/, fetch("API/patient/add-patient", {
                             method: "POST",
                             headers: {
                                 'Content-Type': 'application/json'
                             },
-                            body: JSON.stringify({ firstName: firstName, lastName: lastName, age: age, phoneNum: phoneNum, weight: weight, height: height, smoking: smoking, address: address, physicianId: physicianId })
+                            body: JSON.stringify({ firstName: firstName, lastName: lastName, patientId: patientId, age: age, phoneNum: phoneNum, weight: weight, height: height, smoking: smoking, address: address, physicianId: physicianId })
                         })];
                 case 1:
                     response = _a.sent();
@@ -572,7 +573,8 @@ function hundlePatientSubmit(event) {
                 case 2:
                     data = _a.sent();
                     console.log(data);
-                    alert("Patient added successfully");
+                    if (data.ok)
+                        alert("Patient added successfully");
                     window.location.href = "admin.html?email=" + email;
                     return [3 /*break*/, 4];
                 case 3:

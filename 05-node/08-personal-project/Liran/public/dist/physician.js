@@ -84,7 +84,7 @@ function getEmailFromQueryP() {
 }
 function renderPhysicianActions(html) {
     try {
-        html.innerHTML += "<div id=\"physicianActions\">\n        <button id=\"addPatient\" onclick=\"loadPatients()\">Patient</button>\n        <button id=\"addMedicine\" onclick=\"loadMedicines()\">Medicine</button>\n        <button id=\"addPrescription\" onclick=\"loadPrescriptions()\">Prescription</button>\n        <button id=\"updatePatient\" onclick=\"updatePatientP()\">Update Patient</button>\n        <button id=\"logout\" onclick=\"logout()\">Logout</button>\n        </div>\n        ";
+        html.innerHTML += "<div id=\"physicianActions\">\n        <button onclick=\"loadPatients()\">Patients</button>\n        <button onclick=\"loadMedicines()\">Medicines</button>\n        <button onclick=\"loadPrescriptions()\">Prescriptions</button>\n        <button onclick=\"updatePatientP()\">Update Patient</button>\n        <button onclick=\"logout()\">Logout</button>\n        </div>\n        ";
     }
     catch (error) {
         console.error(error);
@@ -284,11 +284,20 @@ function renderPatients(patients) {
     try {
         var root = document.querySelector("#forms");
         root.innerHTML = "";
-        root.innerHTML += "<h2>Patients</h2>\n     <table>\n     <tr>\n     <th>First Name</th>\n     <th>Last Name</th>\n     <th>Age</th>\n     <th>Phone Number</th>\n     <th>Weight</th>\n     <th>Height</th>\n     <th>Smoking</th>\n     <th>Address</th>\n     <th>Visit</th>\n     </tr>\n     </table>";
+        root.innerHTML += "<h2>Patients</h2>\n     <table>\n     <tr>\n     <th>First Name</th>\n     <th>Last Name</th>\n     <th>ID</th>\n     <th>Age</th>\n     <th>Phone Number</th>\n     <th>Weight</th>\n     <th>Height</th>\n     <th>Smoking</th>\n     <th>Address</th>\n     <th>Visit</th>\n     </tr>\n     </table>";
         var table_1 = document.querySelector("table");
         patients.forEach(function (patient) {
-            table_1.innerHTML += "<tr>\n         <td>" + patient.firstName + "</td>\n         <td>" + patient.lastName + "</td>\n         <td>" + patient.age + "</td>\n         <td>" + patient.phoneNum + "</td>\n         <td>" + patient.weight + "</td>\n         <td>" + patient.height + "</td>\n         <td>" + (patient.smoking ? "Yes" : "No") + "</td>\n         <td>" + patient.address + "</td>\n         <td><button onclick = \"Open Visit(" + patient._id + ")\">Open Visit</button></td>\n         </tr>";
+            table_1.innerHTML += "<tr>\n         <td>" + patient.firstName + "</td>\n         <td>" + patient.lastName + "</td>\n         <td>" + patient.patientId + "</td>\n         <td>" + patient.age + "</td>\n         <td>" + patient.phoneNum + "</td>\n         <td>" + patient.weight + "</td>\n         <td>" + patient.height + "</td>\n         <td>" + (patient.smoking ? "Yes" : "No") + "</td>\n         <td>" + patient.address + "</td>\n         <td><button onclick=\"StartVisit(" + patient.patientId + ")\">Open Visit</button></td>\n         </tr>";
         });
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+function StartVisit(id) {
+    try {
+        debugger;
+        window.location.href = "visit.html?patientId=" + id + "&physicianEmail=" + physicianEmail;
     }
     catch (error) {
         console.error(error);

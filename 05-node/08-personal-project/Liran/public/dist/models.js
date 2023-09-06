@@ -13,9 +13,10 @@ var Physician = /** @class */ (function () {
     return Physician;
 }());
 var Patient = /** @class */ (function () {
-    function Patient(firstName, lastName, age, phoneNum, weight, height, smoking, address, physicianId, _id) {
+    function Patient(firstName, lastName, patientId, age, phoneNum, weight, height, smoking, address, physicianId, _id) {
         this.firstName = firstName;
         this.lastName = lastName;
+        this.patientId = patientId;
         this.age = age;
         this.phoneNum = phoneNum;
         this.weight = weight;

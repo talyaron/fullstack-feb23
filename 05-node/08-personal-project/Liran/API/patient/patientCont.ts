@@ -12,9 +12,9 @@ export async function getPatients(req: any, res: any) {
 
 export async function addPatient(req: any, res: any) {
     try {
-        const { firstName, lastName, age, phoneNum, weight, height, smoking, address, physicianId } = req.body;
-        if (!firstName || !lastName || !age || !phoneNum || !weight || !height || !smoking || !address || !physicianId) throw new Error("Please complete all fields");
-        const patient = new PatientModel({ firstName, lastName, age, phoneNum, weight, height, smoking, address, physicianId });
+        const { firstName, lastName, patientId, age, phoneNum, weight, height, smoking, address, physicianId } = req.body;
+        if (!firstName || !lastName || !patientId || !age || !phoneNum || !weight || !height || !smoking || !address || !physicianId) throw new Error("Please complete all fields");
+        const patient = new PatientModel({ firstName, lastName, patientId, age, phoneNum, weight, height, smoking, address, physicianId });
         const patientDB = await patient.save();
         console.log(patientDB);
         res.send({ ok: true });
@@ -37,7 +37,7 @@ export async function deletePatient(req: any, res: any) {
 
 export async function updatePatient(req: any, res: any) {
     try {
-        const { id, firstName, lastName, age, phoneNum, weight, height, smoking, address, physicianId } = req.body;
+        const { id, firstName, lastName, patientId, age, phoneNum, weight, height, smoking, address, physicianId } = req.body;
         if (!id) throw new Error("id is required");
         const patient = await PatientModel.findById(id);
         if (!patient) throw new Error("patient not found");
