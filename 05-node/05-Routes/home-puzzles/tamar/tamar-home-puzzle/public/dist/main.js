@@ -35,10 +35,46 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 //----hendles functions:-----------
+// a function which get the email from the url query
+function getIDFromQuery() {
+    var urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get('resultId');
+}
+var resultId = getIDFromQuery();
+console.log(resultId);
+// a function which get the user tasks from the server by email
+function handleGetUserTasks() {
+    getUserTasks(resultId);
+}
+function getUserTasks(resultId) {
+    return __awaiter(this, void 0, void 0, function () {
+        var response, data, error_1;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 3, , 4]);
+                    return [4 /*yield*/, fetch("/API/users/get-users-task?resultId=" + resultId)];
+                case 1:
+                    response = _a.sent();
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    data = _a.sent();
+                    console.log(data);
+                    renderTasks(data.tasks, document.querySelector("#tasks"));
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_1 = _a.sent();
+                    console.error(error_1);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
+            }
+        });
+    });
+}
 //-----render functions:----------
 function renderUser() {
     return __awaiter(this, void 0, void 0, function () {
-        var response, results, Html, userHTML, error_1;
+        var response, results, Html, userHTML, error_2;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -59,8 +95,8 @@ function renderUser() {
                     renderUserTasks();
                     return [3 /*break*/, 4];
                 case 3:
-                    error_1 = _a.sent();
-                    console.error(error_1);
+                    error_2 = _a.sent();
+                    console.error(error_2);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }
@@ -69,7 +105,7 @@ function renderUser() {
 }
 function renderUserTasks() {
     return __awaiter(this, void 0, void 0, function () {
-        var response, results, Html, error_2;
+        var response, results, Html, error_3;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -87,8 +123,8 @@ function renderUserTasks() {
                     renderTasks(results, Html);
                     return [3 /*break*/, 4];
                 case 3:
-                    error_2 = _a.sent();
-                    console.error(error_2);
+                    error_3 = _a.sent();
+                    console.error(error_3);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }
@@ -96,37 +132,22 @@ function renderUserTasks() {
     });
 }
 //----controller function:---------
-function getUserTasks() {
-    return __awaiter(this, void 0, void 0, function () {
-        var response, results, userTasks, error_3;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    _a.trys.push([0, 3, , 4]);
-                    return [4 /*yield*/, fetch('/API/userTask/get-tasks-of-user')
-                        //becaous the id pass from the login to main page
-                        //the getTasksOfUser function in the server will have the id
-                        //to use it to find the spesific user
-                    ];
-                case 1:
-                    response = _a.sent();
-                    return [4 /*yield*/, response.json()];
-                case 2:
-                    results = _a.sent();
-                    userTasks = results.userTasks;
-                    if (!Array.isArray(userTasks))
-                        throw new Error("User Tasks are not array");
-                    console.log("userTasks:", userTasks);
-                    console.log("results:", results);
-                    return [2 /*return*/, userTasks];
-                case 3:
-                    error_3 = _a.sent();
-                    console.error(error_3);
-                    return [2 /*return*/, []];
-                case 4: return [2 /*return*/];
-            }
-        });
-    });
-}
+//  async function getUserTasks(){
+//     try {
+//         const response = await fetch('/API/userTask/get-tasks-of-user') 
+//         //becaous the id pass from the login to main page
+//         //the getTasksOfUser function in the server will have the id
+//         //to use it to find the spesific user
+//         const results = await response.json();
+//         const {userTasks} = results;
+//         if(!Array.isArray(userTasks)) throw new Error("User Tasks are not array");
+//         console.log("userTasks:",userTasks)
+//         console.log("results:",results)
+//         return userTasks;
+//     } catch (error) {
+//         console.error(error)
+//         return []
+//     }
+// }
 //---call function:--
-getUserTasks();
+//getUserTasks();

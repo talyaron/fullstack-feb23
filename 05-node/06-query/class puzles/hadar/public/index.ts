@@ -45,11 +45,11 @@ function renderImgHTML(img: Img) {
     const html = `<div class="imgs">
            <img src="${img.url}"/>
         </div>
-        <form id=${img.id} onsubmit="updateImg(event)">
+        <form class="imgForm" id=${img.id} onsubmit="updateImg(event)">
         <input type="url" name="url" value="${img.url}" placeholder="url" />
         <button type="submit">update</button>
         </form>
-        <button onclick="handleDeleteImg('${img.id}')">Delete</button>`
+        <button class="imgButton" onclick="handleDeleteImg('${img.id}')">Delete</button>`
     return html;
   } catch (error) {
     console.error(error);

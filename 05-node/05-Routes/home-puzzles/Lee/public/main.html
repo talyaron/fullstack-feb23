@@ -22,10 +22,23 @@
         <button type="submit">ADD</button>
     </form>
 
+
     <button onclick="handleGetTasks()">Tasks list</button>
     <div id="tasks"></div>
 
     <button onclick="handleGetUser()">Add User</button>
     <div id="userRoot"></div>
+
+
+    <div class="container">
+        <label for="userSelect">Select User:</label>
+    <select id="userSelect" onchange="handleUserSelection()">
+      <option value="">Select a User</option>
+      <option value="LeeDee@gmail.com">Lee</option>
+      <option value="linorM@gmail.com">Linor</option>
+      <option value="berryR@gmail.com">Berry</option>
+      <option value="omerR@gmail.com">Omer</option>
+    </select>
+    </div>
 </body>
 </html>
