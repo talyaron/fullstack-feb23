@@ -11,12 +11,12 @@ export function getRelatives(req: any, res: any) {
 
 export function addRelative(req: any, res: any) {
     try {
-        const { fullName, country, email } = req.body;
-        console.log({ fullName, country, email })
+        const { fullName, birthDate, country, email } = req.body;
+        console.log({ fullName, birthDate, country, email })
         if (!fullName || !country) throw new Error("Please complete all fields");
         if (!email) throw new Error("no email");
 
-        const newRelative = new Relative(fullName, country, Relation.choose);
+        const newRelative = new Relative(fullName, birthDate, country, Relation.choose);
         relatives.push(newRelative);
 
         //find user
