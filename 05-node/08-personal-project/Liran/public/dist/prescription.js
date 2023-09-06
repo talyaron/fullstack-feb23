@@ -36,69 +36,18 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 debugger;
 var pEmail = getEmailFromQuery();
-var physician = getPhysicianDB().then(function (physician) {
+var physicianId;
+var physician = getPhysicianDB(pEmail).then(function (physician) {
     console.log(physician);
+    physicianId = physician._id;
 });
 var pId = getPatientIdFromQuery();
-var patient = getPatientDB().then(function (patient) {
+var patient = getPatientDB(pId).then(function (patient) {
     console.log(patient);
 });
 var medicines = getMedicinesDB().then(function (medicines) {
     renderForm(medicines, document.querySelector("#root"));
 });
-function getPhysicianDB() {
-    return __awaiter(this, void 0, void 0, function () {
-        var response, result, physician_1, error_1;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    _a.trys.push([0, 3, , 4]);
-                    return [4 /*yield*/, fetch("/API/physician/get-physicians")];
-                case 1:
-                    response = _a.sent();
-                    return [4 /*yield*/, response.json()];
-                case 2:
-                    result = _a.sent();
-                    physician_1 = result.physicians.find(function (physician) { return physician.email === pEmail; });
-                    if (!physician_1)
-                        throw new Error("Physician not found");
-                    return [2 /*return*/, physician_1];
-                case 3:
-                    error_1 = _a.sent();
-                    console.error(error_1);
-                    return [3 /*break*/, 4];
-                case 4: return [2 /*return*/];
-            }
-        });
-    });
-}
-function getPatientDB() {
-    return __awaiter(this, void 0, void 0, function () {
-        var response, result, patient_1, error_2;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    _a.trys.push([0, 3, , 4]);
-                    return [4 /*yield*/, fetch("/API/patient/get-patients")];
-                case 1:
-                    response = _a.sent();
-                    return [4 /*yield*/, response.json()];
-                case 2:
-                    result = _a.sent();
-                    debugger;
-                    patient_1 = result.patients.find(function (patient) { return patient.patientId === pId; });
-                    if (!patient_1)
-                        throw new Error("Patient not found");
-                    return [2 /*return*/, patient_1];
-                case 3:
-                    error_2 = _a.sent();
-                    console.error(error_2);
-                    return [3 /*break*/, 4];
-                case 4: return [2 /*return*/];
-            }
-        });
-    });
-}
 function renderForm(medicines, root) {
     return __awaiter(this, void 0, void 0, function () {
         var html_1;
@@ -124,53 +73,30 @@ function renderForm(medicines, root) {
 }
 function hundlePrescriptionSubmit(event) {
     return __awaiter(this, void 0, void 0, function () {
-        var medicineId_1, response, result, medicine, date, error_3;
+        var medicineId, date;
         return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    _a.trys.push([0, 3, , 4]);
-                    debugger;
-                    event.preventDefault();
-                    medicineId_1 = document.querySelector("#medicine-select").value;
-                    return [4 /*yield*/, fetch("/API/medicine/get-medicines")];
-                case 1:
-                    response = _a.sent();
-                    return [4 /*yield*/, response.json()];
-                case 2:
-                    result = _a.sent();
-                    medicine = result.medicines.find(function (medicine) { return medicine._id === medicineId_1; });
-                    if (!patient)
-                        throw new Error("Patient not found");
-                    date = getTimeFormated(new Date());
-                    addNewPrescription(medicine, date);
-                    return [3 /*break*/, 4];
-                case 3:
-                    error_3 = _a.sent();
-                    console.error(error_3);
-                    return [3 /*break*/, 4];
-                case 4: return [2 /*return*/];
+            try {
+                debugger;
+                event.preventDefault();
+                medicineId = document.querySelector("#medicine-select").value;
+                // const response = await fetch(`/API/medicine/get-medicines`);
+                // const result = await response.json();
+                // const medicine = result.medicines.find(medicine => medicine._id === medicineId);
+                if (!patient)
+                    throw new Error("Patient not found");
+                date = getTimeFormated(new Date());
+                addNewPrescription(medicineId, date, pId, physicianId);
             }
+            catch (error) {
+                console.error(error);
+            }
+            return [2 /*return*/];
         });
     });
 }
-function getTimeFormated(date) {
-    try {
-        if (!date)
-            throw new Error("No date");
-        var year = date.getFullYear();
-        var month = date.getMonth() + 1;
-        var day = date.getDate();
-        var formattedDate = year + "-" + month.toString().padStart(2, '0') + "-" + day.toString().padStart(2, '0');
-        var formattedDateAsDate = new Date(formattedDate);
-        return formattedDateAsDate;
-    }
-    catch (error) {
-        console.error(error);
-    }
-}
-function addNewPrescription(medicine, date) {
+function addNewPrescription(medicine, date, patient, physician) {
     return __awaiter(this, void 0, void 0, function () {
-        var response, result, error_4;
+        var response, result, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -190,11 +116,12 @@ function addNewPrescription(medicine, date) {
                     if (result.error)
                         throw new Error(result.error);
                     alert("Prescription added successfully");
+                    window.close();
                     window.location.href = "/physician.html?email=" + pEmail + "&id=" + pId;
                     return [3 /*break*/, 4];
                 case 3:
-                    error_4 = _a.sent();
-                    console.error(error_4);
+                    error_1 = _a.sent();
+                    console.error(error_1);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }
@@ -203,19 +130,19 @@ function addNewPrescription(medicine, date) {
 }
 function loadMedicineInfo() {
     return __awaiter(this, void 0, void 0, function () {
-        var medicineId_2, response, result, medicine, dosagePerDay, duration, error_5;
+        var medicineId_1, response, result, medicine, dosagePerDay, duration, error_2;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
-                    medicineId_2 = document.querySelector("#medicine-select").value;
+                    medicineId_1 = document.querySelector("#medicine-select").value;
                     return [4 /*yield*/, fetch("/API/medicine/get-medicines")];
                 case 1:
                     response = _a.sent();
                     return [4 /*yield*/, response.json()];
                 case 2:
                     result = _a.sent();
-                    medicine = result.medicines.find(function (medicine) { return medicine._id === medicineId_2; });
+                    medicine = result.medicines.find(function (medicine) { return medicine._id === medicineId_1; });
                     dosagePerDay = document.querySelector("#dosage-per-day");
                     duration = document.querySelector("#duration");
                     debugger;
@@ -223,8 +150,8 @@ function loadMedicineInfo() {
                     duration.value = medicine.maxDuration;
                     return [3 /*break*/, 4];
                 case 3:
-                    error_5 = _a.sent();
-                    console.error(error_5);
+                    error_2 = _a.sent();
+                    console.error(error_2);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }
@@ -233,7 +160,7 @@ function loadMedicineInfo() {
 }
 function getMedicinesDB() {
     return __awaiter(this, void 0, void 0, function () {
-        var response, result, medicines_1, error_6;
+        var response, result, medicines_1, error_3;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -248,8 +175,8 @@ function getMedicinesDB() {
                     console.log(medicines_1);
                     return [2 /*return*/, medicines_1];
                 case 3:
-                    error_6 = _a.sent();
-                    console.error(error_6);
+                    error_3 = _a.sent();
+                    console.error(error_3);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }

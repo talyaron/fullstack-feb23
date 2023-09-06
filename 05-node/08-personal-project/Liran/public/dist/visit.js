@@ -35,9 +35,10 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 var patientID = getPatientIdFromQuery();
-var physicianEmail2 = getEmailFromQuery();
-var patientData = getPatientData(patientID)
-    .then(function (patient) {
+var physicianE = getEmailFromQuery();
+var physicianID = getPhysicianDB(physicianE);
+var currPatient = getPatientDB(patientID).then(function (patient) {
+    console.log(patient);
     renderVisitForm(patient, document.querySelector("#root"));
 });
 function renderVisitForm(patient, root) {
@@ -47,19 +48,68 @@ function renderVisitForm(patient, root) {
             throw new Error("Patient not found");
         if (!root)
             throw new Error("Root not found");
-        var html = "<div id=\"forms\">\n        <form onsubmit=\"submitVisitForm(event)\"> \n        <div>\n            <label>Date:</label>\n            <input type=\"date\" id=\"visit-date\" name=\"visit-date\" value=\"" + new Date().toISOString().split("T")[0] + "\" readonly></div>\n            <div><label>First Name:</label>\n            <input type=\"text\" id=\"visit-first-name\" name=\"visit-first-name\" value=\"" + patient.firstName + "\" readonly></div>\n            <div><label>Last Name:</label>\n            <input type=\"text\" id=\"visit-last-name\" name=\"visit-last-name\" value=\"" + patient.lastName + "\" readonly></div>\n            <div><label>Age:</label>\n            <input type=\"number\" id=\"visit-age\" name=\"visit-age\" value=\"" + patient.age + "\" readonly></div>\n            <div><label>Phone Number:</label>\n            <input type=\"tel\" id=\"visit-phone-number\" name=\"visit-phone-number\" value=\"" + patient.phoneNum + "\" readonly></div>\n            <div><label>Weight:</label>\n            <input type=\"number\" id=\"visit-weight\" name=\"visit-weight\" value=\"" + patient.weight + "\" readonly></div>\n            <div><label>Height:</label>\n            <input type=\"number\" id=\"visit-height\" name=\"visit-height\" value=\"" + patient.height + "\" readonly></div>\n            <div><label>Smoking:</label>\n            <input type=\"checkbox\" id=\"visit-smoking\" name=\"visit-smoking\" value=\"" + patient.smoking + "\" disabled></div>\n            <div><label>Visit Summary:</label>\n            <textarea id=\"visit-description\" name=\"visit-description\" rows=\"14\" cols=\"50\" required></textarea></div>\n            <div><button type=\"button\" onclick=\"writePrescription(" + patient.patientId + ")\">Write Prescription</button></div>\n            <div><button type=\"button\">History</button></div>\n            <div><button type=\"submit\">Close Visit</button></div>\n        </form></div>\n        <button onclick=\"window.location.href = 'physician.html?physicianEmail=" + physicianEmail2 + "'\">Back</button>";
+        var html = "<div id=\"forms\">\n        <form onsubmit=\"submitVisitForm(event)\"> \n        <div>\n            <label>Date:</label>\n            <input type=\"date\" id=\"visit-date\" name=\"visit-date\" value=\"" + new Date().toISOString().split("T")[0] + "\" readonly></div>\n            <div><label>First Name:</label>\n            <input type=\"text\" id=\"visit-first-name\" name=\"visit-first-name\" value=\"" + patient.firstName + "\" readonly></div>\n            <div><label>Last Name:</label>\n            <input type=\"text\" id=\"visit-last-name\" name=\"visit-last-name\" value=\"" + patient.lastName + "\" readonly></div>\n            <div><label>Age:</label>\n            <input type=\"number\" id=\"visit-age\" name=\"visit-age\" value=\"" + patient.age + "\" readonly></div>\n            <div><label>Phone Number:</label>\n            <input type=\"tel\" id=\"visit-phone-number\" name=\"visit-phone-number\" value=\"" + patient.phoneNum + "\" readonly></div>\n            <div><label>Weight:</label>\n            <input type=\"number\" id=\"visit-weight\" name=\"visit-weight\" value=\"" + patient.weight + "\" readonly></div>\n            <div><label>Height:</label>\n            <input type=\"number\" id=\"visit-height\" name=\"visit-height\" value=\"" + patient.height + "\" readonly></div>\n            <div><label>Smoking:</label>\n            <input type=\"checkbox\" id=\"visit-smoking\" name=\"visit-smoking\" value=\"" + patient.smoking + "\" disabled></div>\n            <div><label>Visit Summary:</label>\n            <textarea id=\"visit-description\" name=\"visit-description\" rows=\"14\" cols=\"50\" required></textarea></div>\n            <div><button type=\"button\" onclick=\"writePrescription('" + patient._id + "')\">Write Prescription</button></div>\n            <div><button type=\"button\">History</button></div>\n            <div><button onclick=\"hundleCloseVisit(event)\">Close Visit</button></div>\n        </form></div>\n        <button onclick=\"window.location.href = 'physician.html?physicianEmail=" + physicianE + "'\">Back</button>";
         root.innerHTML += html;
     }
     catch (error) {
         console.error(error);
     }
 }
+function hundleCloseVisit(ev) {
+    try {
+        ev.preventDefault();
+        var summary = document.querySelector("#visit-description").value;
+        if (!summary) {
+            alert("Please fill the summary");
+            throw new Error("Please fill the summary");
+        }
+        submitVisitForm(summary);
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+function submitVisitForm(summary) {
+    return __awaiter(this, void 0, void 0, function () {
+        var date, visit, response, result, error_1;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 3, , 4]);
+                    date = getTimeFormated(new Date());
+                    visit = { date: date, patient: patientID, physician: physicianID, summary: summary };
+                    return [4 /*yield*/, fetch("/api/visit/add-visit", {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json"
+                            },
+                            body: JSON.stringify(visit)
+                        })];
+                case 1:
+                    response = _a.sent();
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    result = _a.sent();
+                    if (result.error)
+                        throw new Error(result.error);
+                    alert("Visit added successfully");
+                    window.location.href = "physician.html?physicianEmail=" + physicianE;
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_1 = _a.sent();
+                    console.error(error_1);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
+            }
+        });
+    });
+}
 function writePrescription(patientId) {
     return __awaiter(this, void 0, void 0, function () {
         var popupURL, popupWidth, popupHeight, left, top, popupWindow;
         return __generator(this, function (_a) {
             try {
-                popupURL = "prescription.html?patientId=" + patientId + "&physicianEmail=" + physicianEmail2;
+                popupURL = "prescription.html?_id=" + patientId + "&physicianEmail=" + physicianE;
                 popupWidth = 400;
                 popupHeight = 300;
                 left = (window.innerWidth - popupWidth) / 2;
@@ -79,35 +129,25 @@ function writePrescription(patientId) {
 }
 function getPatientData(patientId) {
     return __awaiter(this, void 0, void 0, function () {
-        var id_1, response, result, patients, patient, error_1;
+        var response, result, patient, error_2;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    _a.trys.push([0, 4, , 5]);
-                    return [4 /*yield*/, patientId];
+                    _a.trys.push([0, 3, , 4]);
+                    return [4 /*yield*/, fetch("/api/patient/get-patients")];
                 case 1:
-                    id_1 = _a.sent();
-                    return [4 /*yield*/, fetch("/api/patient/get-patients", {
-                            method: "GET",
-                            headers: {
-                                "Content-Type": "application/json"
-                            }
-                        })];
-                case 2:
                     response = _a.sent();
                     return [4 /*yield*/, response.json()];
-                case 3:
+                case 2:
                     result = _a.sent();
-                    patients = result.patients;
-                    debugger;
-                    patient = patients.find(function (patient) { return patient.patientId === id_1; });
+                    patient = result.patients.find(function (patient) { return patient._id === patientId; });
                     debugger;
                     return [2 /*return*/, patient];
-                case 4:
-                    error_1 = _a.sent();
-                    console.error(error_1);
-                    return [3 /*break*/, 5];
-                case 5: return [2 /*return*/];
+                case 3:
+                    error_2 = _a.sent();
+                    console.error(error_2);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
             }
         });
     });

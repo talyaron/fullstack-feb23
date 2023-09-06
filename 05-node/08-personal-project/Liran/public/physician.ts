@@ -55,6 +55,101 @@ async function updatePatientP() {
     }
 }
 
+async function loadPrescriptions() {
+    try {
+        const response = await fetch("/API/prescription/get-prescriptions");
+        const data = await response.json();
+        console.log(data);
+        renderPrescriptions(data.prescriptions);
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+async function renderPrescriptions(prescriptions: Prescription[]) { 
+    try {
+        const root = document.querySelector("#forms");
+        root.innerHTML = "";
+        root.innerHTML += `<div id="prescriptions">
+        <h2>Prescriptions</h2>
+        <table>
+        <tr>
+        <th>Physician</th>
+        <th>Patient</th>
+        <th>Medicine</th>
+        <th>Supply Date</th>
+        </tr>
+        </table>
+        </div>`;
+        const table = document.querySelector("table");
+        const promises = prescriptions.map(async (prescription) => {
+            const physicianName = await getPhysicianName(prescription.physician);
+            const patientName = await getPatientName(prescription.patient);
+            const medicineName = await getMedicineName(prescription.medicine);
+
+            table.innerHTML += `<tr>
+            <td>${physicianName}</td>
+            <td>${patientName}</td>
+            <td>${medicineName}</td>
+            <td>${formatDate(prescription.date)}</td>
+            </tr>`;
+        });
+
+        // Wait for all promises to resolve
+        await Promise.all(promises);
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+function formatDate(date: Date) {
+    debugger;
+    const dateNew = new Date(date);
+    const day = String(dateNew.getDate()).padStart(2, '0'); // Ensure two digits for day
+    const month = String(dateNew.getMonth() + 1).padStart(2, '0'); // Ensure two digits for month (January is 0-based)
+    const year = dateNew.getFullYear();
+
+    return `${day}-${month}-${year}`;
+}
+
+
+async function getMedicineName(medicineId: string) { 
+    try {
+        const response = await fetch("/API/medicine/get-medicines");
+        const data = await response.json();
+        const medicine = data.medicines.find(medicine => medicine._id === medicineId);
+        if (!medicine) throw new Error("Medicine not found");
+        return medicine.name;
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+async function getPatientName(patientId: string) { 
+    try {
+        const response = await fetch("/API/patient/get-patients");
+        const data = await response.json();
+        const patient = data.patients.find(patient => patient._id === patientId);
+        const patientName = `${patient.firstName} ${patient.lastName}`;
+        return patientName;
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+async function getPhysicianName(physicianId: string) { 
+    try {
+        const response = await fetch("/API/physician/get-physicians");
+        const data = await response.json();
+        const physician = data.physicians.find(physician => physician._id === physicianId);
+        const physicianName = `Dr. ${physician.firstName} ${physician.lastName}`;
+        return physicianName;
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+
 async function loadPatientInfo() {
     try {
         const id = document.querySelector<HTMLInputElement>("#id").value;
@@ -214,7 +309,7 @@ function renderPatients(patients: Patient[]) {
          <td>${patient.height}</td>
          <td>${patient.smoking ? "Yes" : "No"}</td>
          <td>${patient.address}</td>
-         <td><button onclick="StartVisit(${patient._id})">Open Visit</button></td>
+         <td><button onclick="StartVisit('${patient._id}')">Open Visit</button></td>
          </tr>`;
         });
     } catch (error) {
@@ -227,8 +322,8 @@ async function StartVisit(patientId: string) {
         console.log(patientId);
         const response = await fetch("/API/patient/get-patients");
         const data = await response.json();
-        debugger;
-        const patientID = data.patients.find(patient => patient.patientId === patientId);
+        
+        const patientID = data.patients.find(patient => patient._id === patientId);
         console.log(patientID);
         window.location.href = `visit.html?_id=${patientID._id}&physicianEmail=${physicianEmail}`;
     } catch (error) {

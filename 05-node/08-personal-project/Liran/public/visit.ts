@@ -1,9 +1,10 @@
 const patientID = getPatientIdFromQuery();
-const physicianEmail2 = getEmailFromQuery();
-const patientData = getPatientData(patientID)
-    .then(patient => {
-        renderVisitForm(patient, document.querySelector("#root"))
-    });
+const physicianE = getEmailFromQuery();
+const physicianID = getPhysicianDB(physicianE);
+const currPatient = getPatientDB(patientID).then(patient => {
+    console.log(patient);
+    renderVisitForm(patient, document.querySelector("#root"));
+});
 
 function renderVisitForm(patient, root: HTMLDivElement) {
     try {
@@ -31,11 +32,11 @@ function renderVisitForm(patient, root: HTMLDivElement) {
             <input type="checkbox" id="visit-smoking" name="visit-smoking" value="${patient.smoking}" disabled></div>
             <div><label>Visit Summary:</label>
             <textarea id="visit-description" name="visit-description" rows="14" cols="50" required></textarea></div>
-            <div><button type="button" onclick="writePrescription(${patient.patientId})">Write Prescription</button></div>
+            <div><button type="button" onclick="writePrescription('${patient._id}')">Write Prescription</button></div>
             <div><button type="button">History</button></div>
-            <div><button type="submit">Close Visit</button></div>
+            <div><button onclick="hundleCloseVisit(event)">Close Visit</button></div>
         </form></div>
-        <button onclick="window.location.href = 'physician.html?physicianEmail=${physicianEmail2}'">Back</button>`
+        <button onclick="window.location.href = 'physician.html?physicianEmail=${physicianE}'">Back</button>`
 
         root.innerHTML += html;
     } catch (error) {
@@ -43,9 +44,43 @@ function renderVisitForm(patient, root: HTMLDivElement) {
     }
 }
 
+function hundleCloseVisit(ev) {
+    try {
+        ev.preventDefault();
+        const summary = document.querySelector<HTMLInputElement>("#visit-description").value;
+        if (!summary) {
+            alert("Please fill the summary");
+            throw new Error("Please fill the summary");
+        }
+        submitVisitForm(summary);
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+async function submitVisitForm(summary) {
+    try {
+        const date = getTimeFormated(new Date());
+        const visit = { date: date, patient: patientID, physician: physicianID, summary: summary };
+        const response = await fetch(`/api/visit/add-visit`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(visit)
+        });
+        const result = await response.json();
+        if (result.error) throw new Error(result.error);
+        alert("Visit added successfully");
+        window.location.href = `physician.html?physicianEmail=${physicianE}`;
+    } catch (error) {
+        console.error(error);
+    }
+}
+
 async function writePrescription(patientId) {
     try {
-        const popupURL =`prescription.html?patientId=${patientId}&physicianEmail=${physicianEmail2}`; // Replace with the actual URL of your popup page
+        const popupURL = `prescription.html?_id=${patientId}&physicianEmail=${physicianE}`; // Replace with the actual URL of your popup page
         // Define the size and position of the popup window
         const popupWidth = 400;
         const popupHeight = 300;
@@ -65,19 +100,11 @@ async function writePrescription(patientId) {
 }
 
 
-async function getPatientData(patientId:) {
+async function getPatientData(patientId) {
     try {
-        const id = await patientId;
-        const response = await fetch(`/api/patient/get-patients`, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-            }
-        });
+        const response = await fetch(`/api/patient/get-patients`)
         const result = await response.json();
-        const patients: Patient[] = result.patients;
-        debugger;
-        const patient = patients.find(patient => patient.patientId === id);
+        const patient = result.patients.find(patient => patient._id === patientId);
         debugger;
         return patient;
     } catch (error) {
