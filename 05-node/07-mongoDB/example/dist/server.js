@@ -19,7 +19,6 @@ mongoose_1.default.connect("mongodb+srv://tal:mwtBquKP1ZHIIQGH@cluster0.0hzknon.
     .catch(err => {
     console.error(err);
 });
-//mwtBquKP1ZHIIQGH
 //router to products
 // get router from userRouter
 const userRouter_1 = __importDefault(require("./API/users/userRouter"));

@@ -17,3 +17,7 @@ app.use("/API/Users", userRouter)
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
+
+
+mongodb+srv://leedee:<password>@cluster0.pe6xuzr.mongodb.net/
+
