@@ -42,32 +42,37 @@ export async function deleteRecipe(req:any, res:any) {
 //update DB by ID
 export async function updateRecipe(req:any, res:any) {
     try {
-        const {id, title, description, urlImg} = req.body
+        const {id, title, description, urlImg} = req.body //the data fron claient store in this variables
 
         const currentRecipe = await RecipeModel.findById(id); //find current recipe by id
         if(!currentRecipe) throw new Error("recipe not found"); 
 
+        //the current items are extracted and store in "_" variables
+        const {title:_title, description:_description, urlImg:_urlImg} = currentRecipe;
+
         if(title === ""){
-            this.title = currentRecipe.title
+            const recipeDB = await RecipeModel.findByIdAndUpdate(id, {title:_title}, { new: true });
+            res.send({ recipeDB });
         } else {
-            this.title = title
+            const recipeDB = await RecipeModel.findByIdAndUpdate(id, {title:title}, { new: true });
+            res.send({ recipeDB });
         }
 
         if(description === ""){
-            this.description = currentRecipe.description
+            const recipeDB = await RecipeModel.findByIdAndUpdate(id, {description:_description}, { new: true });
+            res.send({ recipeDB });
         } else {
-            this.description = description
+            const recipeDB = await RecipeModel.findByIdAndUpdate(id, {description:description}, { new: true });
+            res.send({ recipeDB });
         }
 
         if(urlImg === ""){
-            this.urlImg = currentRecipe.urlImg
+            const recipeDB = await RecipeModel.findByIdAndUpdate(id, {urlImg:_urlImg}, { new: true });
+            res.send({ recipeDB });
         } else {
-            this.urlImg = urlImg
+            const recipeDB = await RecipeModel.findByIdAndUpdate(id, {urlImg:urlImg}, { new: true });
+            res.send({ recipeDB });
         }
-
-        const recipeDB = await RecipeModel.findByIdAndUpdate(id, {title:this.title}, {description:this.description}, {urlImg:this.urlImg});
-
-        res.send(recipeDB)
         
     } catch (error) {
         console.error(error);
