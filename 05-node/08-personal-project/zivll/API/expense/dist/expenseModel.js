@@ -6,7 +6,7 @@ var mongoose_1 = require("mongoose");
 exports.ExpenseSchema = new mongoose_1.Schema({
     userName: String,
     expenseName: String,
-    expenseCategory: String,
+    categoryName: String,
     expenseAmount: Number
 });
 exports.ExpenseModel = mongoose_1.model("expense", exports.ExpenseSchema);

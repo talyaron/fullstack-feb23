@@ -2,15 +2,15 @@ import { ExpenseModel } from "./expenseModel";
 
 export const addExpense = async (req: any, res: any) => {
   try {
-    const { userName, expenseName, expenseCategory, expenseAmount } = req.body;
-    console.log(userName, expenseName, expenseCategory, expenseAmount);
+    const { userName, expenseName, categoryName, expenseAmount } = req.body;
+    console.log(userName, expenseName, categoryName, expenseAmount);
 
-    if (!userName || !expenseName || !expenseCategory || !expenseAmount)
+    if (!userName || !expenseName || !categoryName || !expenseAmount)
       throw new Error("please complete all fields");
     const expences = new ExpenseModel({
       userName: userName,
       expenseName: expenseName,
-      expenseCategory: expenseCategory,
+      categoryName: categoryName,
       expenseAmount: expenseAmount,
     });
     await expences.save();
@@ -31,20 +31,19 @@ export const getAllExpenses = async (req: any, res: any) => {
 };
 export const updateExpense = async (req: any, res: any) => {
   try {
-    const { id, name, amount } = req.body;
-    console.log({ id, name, amount });
+    const { _id, name, amount } = req.body;
+    console.log({ _id, name, amount });
 
-    if (!id || !name || !amount) {
+    if (!_id || !name || !amount) {
       throw new Error(`some of the parameters are missing`);
     }
+    const filter = { _id: _id };
+    const newParameters = { expenseName: name, expenseAmount: amount };
     // const newExpense = { id, name, amount };
     // console.log(newExpense);
-    await ExpenseModel.findByIdAndUpdate(
-      id,
-      { id, name, amount },
-      { new: true }
-    );
-    res.send({ message: `expense updated successfully` });
+    const update = await ExpenseModel.findByIdAndUpdate(filter, newParameters);
+    await update.save();
+    res.send({ ok: true });
   } catch (error) {
     console.error(error);
     res.status(500).send({ error: error.message });

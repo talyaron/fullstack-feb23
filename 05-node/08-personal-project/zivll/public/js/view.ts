@@ -3,12 +3,14 @@
 // this function is used to render the expenses calculator
 async function renderExpenceCalculator() {
   try {
+    await getExpensesFromDB();
     await getCategoriesFromDB();
-    // const UniqeCategories = removeDuplicates(categories);
     const categoriesHtml = categories
-      .map((category) => `<option value="${category}">${category}</option>`)
+      .map(
+        (category) =>
+          `<option value="${category.categoryName}">${category.categoryName}</option>`
+      )
       .join(` `);
-    // console.log(UniqeCategories);
 
     const expensesRoots = document.querySelector(`#expenses-calculators`);
     if (!expensesRoots) throw new Error(`expensesRoots not found`);
@@ -25,7 +27,7 @@ async function renderExpenceCalculator() {
       <label for="categories"
         >מה הקטגוריה המתאימה עבור ההוצאה שלך?</label
       >
-      <select name="expenseCategory" id="categories">
+      <select name="categoryName" id="categories">
       <option value="" disabled selected>בחר/י את הקטגוריה</option>
       ${categoriesHtml}
       </select>
@@ -40,32 +42,23 @@ async function renderExpenceCalculator() {
     </div>
     
     <input type="submit" value="הוסף" />`;
-    // loadDataToLocalStorage();
   } catch (error) {
     console.error(error);
   }
 }
-// this function is used to render the expences table
+// this function is used to render the Expenses Table
 async function renderExpencesTable() {
   try {
-    await getExpensesFromDB();
-    await getCategoriesFromDB();
-    // const sortedCategories = sortByCategc);
+    await sortCategoriesByUserActualExpenses(expenses);
     const rootExpensesTable = document.querySelector(`#expenses-table`);
     if (!rootExpensesTable) throw new Error(`expensesTable not found`);
 
     if (expenses.length === 0) {
       return (rootExpensesTable.innerHTML = `<h2>על מנת לצפות בטבלת ההוצאות יש להזין הוצאות בטבלה שמצד שמאל</h2>`);
     }
-
-    const htmlHeadersTable = categories
+    const htmlHeadersTable = fillterdCategories
       .map(
-        (category: Category) =>
-          // `<tr><td>${expence.name}</td><td>${expence.amount}&#8362;</td></tr>`
-
-          //  const categoryId = expences.find(
-          //     (expence) => expence.category === category
-          //   ).categoryId;}
+        (category) =>
           `<tr class="thead">
             <th colspan="4">
               ${category}<svg
@@ -83,19 +76,21 @@ async function renderExpencesTable() {
                 />
               </svg>
             </th>
-          </tr><tbody id="${category}"></tbody>`
+          </tr><tbody id="id-${getCategoryId(category)}"></tbody>`
       )
       .join(` `);
+
     rootExpensesTable.innerHTML = `<table id="tbl_exporttable_to_xls">${htmlHeadersTable}</table><div class="excel-download" onclick="ExportToExcel()">
       <h3>להורדת קובץ</h3>
       <img src="./images/icons8-excel.svg" alt="" />
     </div>`;
-    categories.forEach((category) => {
-      const html = document.querySelector(`#${category}`);
-      const htmlCreateTr = document.createElement(`tr`);
+    fillterdCategories.forEach((category) => {
+      // console.log(userCategories);
+      const html = document.querySelector(`#id-${getCategoryId(category)}`);
+      console.log(html);
       if (!html) throw new Error(`html not found`);
       expenses.forEach((expense: Expense) => {
-        if (expense.expenseCategory === category) {
+        if (expense.categoryName === category) {
           html.innerHTML += `<tr class="tbody" id="${expense._id}"><td >${expense.expenseName}</td><td >${expense.expenseAmount}&#8362;</td><td ><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="edit" onclick="editExpense(event)">
             <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
           </svg><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="delete" onclick="deleteExpense(event)">
@@ -112,13 +107,10 @@ async function renderExpencesTable() {
 async function renderResult(htmlElemnet: Element, expense?: number) {
   try {
     const userIncome = await getUserIncomeFromDB();
-    debugger;
-
     if (userIncome !== null || undefined)
       htmlElemnet.innerHTML = `${userIncome}&#8362;`;
     if (expense) htmlElemnet.innerHTML = `${expense}&#8362;`;
     if (!htmlElemnet) throw new Error(`htmlElemnet not found`);
-    // calculateBalance();
   } catch (error) {
     console.error(error);
   }

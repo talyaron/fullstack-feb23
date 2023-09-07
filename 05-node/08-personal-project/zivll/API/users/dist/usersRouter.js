@@ -7,5 +7,6 @@ userRoutes
     .post("/register", usersCont_1.registerUser)
     .post("/login", usersCont_1.login)
     .patch("/add-income", usersCont_1.addIncome)
-    .post("/get-income", usersCont_1.getIncome);
+    .post("/get-income", usersCont_1.getIncome)
+    .post("/check-user", usersCont_1.checkUser);
 exports["default"] = userRoutes;

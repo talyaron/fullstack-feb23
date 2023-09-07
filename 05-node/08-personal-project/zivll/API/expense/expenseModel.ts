@@ -4,7 +4,7 @@ import { Schema, model } from "mongoose";
 export const ExpenseSchema = new Schema({
   userName: String,
   expenseName: String,
-  expenseCategory: String,
+  categoryName: String,
   expenseAmount: Number,
 });
 
