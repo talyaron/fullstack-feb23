@@ -24,6 +24,9 @@ async function hundleLogin(event) {
             alert("admin");
             window.location.href = `admin.html?physicianEmail=${email}`
         }
+        else if (!physician.isAdmin && admin) { 
+            alert("You are not an admin, please login again");
+        }
         else {
             alert("physician");
             window.location.href = `physician.html?physicianEmail=${email}`;

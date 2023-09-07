@@ -31,9 +31,97 @@ function renderAdminActions(root: HTMLDivElement) {
         <button id="physiciansList" onclick="hundlePhysicianList()">Physician List</button>
         <button id="patientsList" onclick="hundlePatientList()">Patient List</button>
         <button id="medicinesList" onclick="hundleMedicineList()">Medicine List</button>
+        <button id="visitsList" onclick="hundleVisitsList()">Visits List</button>
         <button id="logout" onclick="hundleLogout()">Logout</button>
     </div>
         `;
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+async function hundleVisitsList() {
+    try {
+        renderVisitsList(document.querySelector("#forms"));
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+async function renderVisitsList(html: HTMLDivElement) {
+    try {
+        const visitsList = await getVisitsAdminDB();
+        let tempHtml = `<h2>Visits List</h2>
+        <table>
+        <tr>
+        <th>Date</th>
+        <th>Patient Name</th>
+        <th>Physician Name</th>
+        <th>summary</th>
+        <th>prescription</th>
+        </tr>`;
+        const promise = visitsList.map(async (visit) => {
+            const patientName = await getPatientName(visit.patient);
+            const physicianName = await getPhysicianName(visit.physician);
+            const formattedDate = getTimeFormated(new Date(visit.date));
+            const checkPrescription = await checkPrescriptionExist(visit.patient, visit.date);
+            debugger;
+            tempHtml += `<tr>
+            <td>${formattedDate}</td>
+            <td>${patientName}</td>
+            <td>${physicianName}</td>
+            <td><button onclick="hundleSummary('${visit._id}')">Open Summary</button></td>
+            <td><button onclick="hundlePrescription('${!checkPrescription ? 'disabled' : checkPrescription}')" ${!checkPrescription ? 'disabled' : ""}>Open Prescription</button></td>
+            </tr>`;
+        });
+        await Promise.all(promise);
+
+        tempHtml += `</table>`;
+        html.innerHTML = tempHtml;
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+async function hundlePrescription(id) { 
+    try {
+        const popupURL = `prescriptionPopUp.html?prescriptionId=${id}`; 
+        const popupWidth = 700;
+        const popupHeight = 400;
+        const left = (window.innerWidth - popupWidth) / 2;
+        const top = (window.innerHeight - popupHeight) / 2;
+        const popupWindow = window.open(popupURL, "PopupWindow", `width=${popupWidth},height=${popupHeight},left=${left},top=${top}`);
+        if (popupWindow) {
+            popupWindow.focus();
+        }
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+async function hundleSummary(id) {
+    try {
+        const popupURL = `summary.html?VisitId=${id}`; 
+        const popupWidth = 700;
+        const popupHeight = 400;
+        const left = (window.innerWidth - popupWidth) / 2;
+        const top = (window.innerHeight - popupHeight) / 2;
+        const popupWindow = window.open(popupURL, "PopupWindow", `width=${popupWidth},height=${popupHeight},left=${left},top=${top}`);
+        if (popupWindow) {
+            popupWindow.focus();
+        }
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+async function checkPrescriptionExist(patientId, date) {
+    try {
+        const response = await fetch(`/API/prescription/get-prescriptions`);
+        const data = await response.json();
+        const prescriptions = data.prescriptions;
+        const prescriptionExist = prescriptions.find(prescription => prescription.patient === patientId && prescription.date === date);
+        return prescriptionExist ? prescriptionExist._id : false;
     } catch (error) {
         console.error(error);
     }
@@ -121,7 +209,7 @@ async function renderPatientList(html: HTMLDivElement) {
         </tr>`;
         const promise = patientsList.map(async (patient) => {
             const physicianName = await getPhysicianName(patient.physicianId);
-            debugger;
+
             tempHtml += `<tr>
             <td>${patient.firstName}</td>
             <td>${patient.lastName}</td>
@@ -627,7 +715,7 @@ async function loadDetails() {
         const id = document.querySelector<HTMLInputElement>("#id").value;
         const response = await fetch(`/API/physician/get-physicians`);
         const data = await response.json();
-        debugger;
+
         const physician: Physician = data.physicians.find(physician => physician._id === id);
         const idInput = document.querySelector<HTMLInputElement>("#id");
         const firstNameInput = document.querySelector<HTMLInputElement>("#firstName");
@@ -699,7 +787,7 @@ async function renderUpdatePatient(html: HTMLDivElement) {
         <select id="id" name="id" onchange="loadPatientDetails()">
         `;
         const patientsList = await getPatientsList();
-        debugger;
+
         patientsList.forEach(patient => {
             tempHtml += `<option value="${patient._id}"> ${patient.firstName} ${patient.lastName}</option>`;
         });
@@ -791,7 +879,7 @@ async function loadPatientDetails() {
 async function hundlePatientUpdateSubmit(event) {
     try {
         event.preventDefault();
-        debugger;
+
         const id = event.target[0].value;
         const firstName = event.target.firstName.value;
         const lastName = event.target.lastName.value;

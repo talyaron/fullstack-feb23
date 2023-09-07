@@ -19,6 +19,12 @@ body {
             align-items: center;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 
+            #admin-actions{
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
             button {
                 display: inline-block;
                 padding: 10px 20px;
@@ -138,7 +144,18 @@ body {
                     &:hover {
                         background-color: #0056b3;
                         transform: scale(1.05);
+                        cursor: pointer;
                     }
+                }
+
+                button:disabled{
+                    background-color: #c2c1c1c7;
+                    color: #333;
+                }
+
+                button:disabled:hover{
+                    cursor: not-allowed;
+                    transform: scale(1)
                 }
             }
             

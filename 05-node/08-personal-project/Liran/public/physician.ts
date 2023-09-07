@@ -167,22 +167,6 @@ function formatDate(date: Date) {
     return `${day}-${month}-${year}`;
 }
 
-
-async function getMedicineName(medicineId: string) {
-    try {
-        const response = await fetch("/API/medicine/get-medicines");
-        const data = await response.json();
-        const medicine = data.medicines.find(medicine => medicine._id === medicineId);
-        if (!medicine) throw new Error("Medicine not found");
-        return medicine.name;
-    } catch (error) {
-        console.error(error);
-    }
-}
-
-
-
-
 async function loadPatientInfo() {
     try {
         const id = document.querySelector<HTMLInputElement>("#id").value;

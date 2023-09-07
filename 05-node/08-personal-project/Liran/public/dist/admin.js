@@ -65,11 +65,140 @@ function renderAdminPage() {
 }
 function renderAdminActions(root) {
     try {
-        root.innerHTML += "<div id=\"admin-actions\">\n        <button id=\"add-physician\" onclick=\"hundleAddPhysician()\">Add Physician</button>\n        <button id=\"add-patient\" onclick=\"hundleAddPatient()\">Add Patient</button>\n        <button id=\"add-medicine\" onclick=\"hundleAddMedicine()\">Add Medicine</button>\n        <button id=\"update-physician\" onclick=\"hundleUpdatePhysician()\">Update Physician</button>\n        <button id=\"update-patient\" onclick=\"hundleUpdatePatient()\">Update Patient</button>\n        <button id=\"update-medicine\" onclick=\"hundleUpdateMedicine()\">Update Medicine</button>\n        <button id=\"delete-physician\" onclick=\"hundleDeletePhysician()\">Delete Physician</button>\n        <button id=\"delete-patient\" onclick=\"hundleDeletePatient()\">Delete Patient</button>\n        <button id=\"delete-medicine\" onclick=\"hundleDeleteMedicine()\">Delete Medicine</button>\n        <button id=\"physiciansList\" onclick=\"hundlePhysicianList()\">Physician List</button>\n        <button id=\"patientsList\" onclick=\"hundlePatientList()\">Patient List</button>\n        <button id=\"medicinesList\" onclick=\"hundleMedicineList()\">Medicine List</button>\n        <button id=\"logout\" onclick=\"hundleLogout()\">Logout</button>\n    </div>\n        ";
+        root.innerHTML += "<div id=\"admin-actions\">\n        <button id=\"add-physician\" onclick=\"hundleAddPhysician()\">Add Physician</button>\n        <button id=\"add-patient\" onclick=\"hundleAddPatient()\">Add Patient</button>\n        <button id=\"add-medicine\" onclick=\"hundleAddMedicine()\">Add Medicine</button>\n        <button id=\"update-physician\" onclick=\"hundleUpdatePhysician()\">Update Physician</button>\n        <button id=\"update-patient\" onclick=\"hundleUpdatePatient()\">Update Patient</button>\n        <button id=\"update-medicine\" onclick=\"hundleUpdateMedicine()\">Update Medicine</button>\n        <button id=\"delete-physician\" onclick=\"hundleDeletePhysician()\">Delete Physician</button>\n        <button id=\"delete-patient\" onclick=\"hundleDeletePatient()\">Delete Patient</button>\n        <button id=\"delete-medicine\" onclick=\"hundleDeleteMedicine()\">Delete Medicine</button>\n        <button id=\"physiciansList\" onclick=\"hundlePhysicianList()\">Physician List</button>\n        <button id=\"patientsList\" onclick=\"hundlePatientList()\">Patient List</button>\n        <button id=\"medicinesList\" onclick=\"hundleMedicineList()\">Medicine List</button>\n        <button id=\"visitsList\" onclick=\"hundleVisitsList()\">Visits List</button>\n        <button id=\"logout\" onclick=\"hundleLogout()\">Logout</button>\n    </div>\n        ";
     }
     catch (error) {
         console.error(error);
     }
+}
+function hundleVisitsList() {
+    return __awaiter(this, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            try {
+                renderVisitsList(document.querySelector("#forms"));
+            }
+            catch (error) {
+                console.error(error);
+            }
+            return [2 /*return*/];
+        });
+    });
+}
+function renderVisitsList(html) {
+    return __awaiter(this, void 0, void 0, function () {
+        var visitsList, tempHtml_1, promise, error_2;
+        var _this = this;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 3, , 4]);
+                    return [4 /*yield*/, getVisitsAdminDB()];
+                case 1:
+                    visitsList = _a.sent();
+                    tempHtml_1 = "<h2>Visits List</h2>\n        <table>\n        <tr>\n        <th>Date</th>\n        <th>Patient Name</th>\n        <th>Physician Name</th>\n        <th>summary</th>\n        <th>prescription</th>\n        </tr>";
+                    promise = visitsList.map(function (visit) { return __awaiter(_this, void 0, void 0, function () {
+                        var patientName, physicianName, formattedDate, checkPrescription;
+                        return __generator(this, function (_a) {
+                            switch (_a.label) {
+                                case 0: return [4 /*yield*/, getPatientName(visit.patient)];
+                                case 1:
+                                    patientName = _a.sent();
+                                    return [4 /*yield*/, getPhysicianName(visit.physician)];
+                                case 2:
+                                    physicianName = _a.sent();
+                                    formattedDate = getTimeFormated(new Date(visit.date));
+                                    return [4 /*yield*/, checkPrescriptionExist(visit.patient, visit.date)];
+                                case 3:
+                                    checkPrescription = _a.sent();
+                                    debugger;
+                                    tempHtml_1 += "<tr>\n            <td>" + formattedDate + "</td>\n            <td>" + patientName + "</td>\n            <td>" + physicianName + "</td>\n            <td><button onclick=\"hundleSummary('" + visit._id + "')\">Open Summary</button></td>\n            <td><button onclick=\"hundlePrescription('" + (!checkPrescription ? 'disabled' : checkPrescription) + "')\" " + (!checkPrescription ? 'disabled' : "") + ">Open Prescription</button></td>\n            </tr>";
+                                    return [2 /*return*/];
+                            }
+                        });
+                    }); });
+                    return [4 /*yield*/, Promise.all(promise)];
+                case 2:
+                    _a.sent();
+                    tempHtml_1 += "</table>";
+                    html.innerHTML = tempHtml_1;
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_2 = _a.sent();
+                    console.error(error_2);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
+            }
+        });
+    });
+}
+function hundlePrescription(id) {
+    return __awaiter(this, void 0, void 0, function () {
+        var popupURL, popupWidth, popupHeight, left, top, popupWindow;
+        return __generator(this, function (_a) {
+            try {
+                popupURL = "prescriptionPopUp.html?prescriptionId=" + id;
+                popupWidth = 700;
+                popupHeight = 400;
+                left = (window.innerWidth - popupWidth) / 2;
+                top = (window.innerHeight - popupHeight) / 2;
+                popupWindow = window.open(popupURL, "PopupWindow", "width=" + popupWidth + ",height=" + popupHeight + ",left=" + left + ",top=" + top);
+                if (popupWindow) {
+                    popupWindow.focus();
+                }
+            }
+            catch (error) {
+                console.error(error);
+            }
+            return [2 /*return*/];
+        });
+    });
+}
+function hundleSummary(id) {
+    return __awaiter(this, void 0, void 0, function () {
+        var popupURL, popupWidth, popupHeight, left, top, popupWindow;
+        return __generator(this, function (_a) {
+            try {
+                popupURL = "summary.html?VisitId=" + id;
+                popupWidth = 700;
+                popupHeight = 400;
+                left = (window.innerWidth - popupWidth) / 2;
+                top = (window.innerHeight - popupHeight) / 2;
+                popupWindow = window.open(popupURL, "PopupWindow", "width=" + popupWidth + ",height=" + popupHeight + ",left=" + left + ",top=" + top);
+                if (popupWindow) {
+                    popupWindow.focus();
+                }
+            }
+            catch (error) {
+                console.error(error);
+            }
+            return [2 /*return*/];
+        });
+    });
+}
+function checkPrescriptionExist(patientId, date) {
+    return __awaiter(this, void 0, void 0, function () {
+        var response, data, prescriptions, prescriptionExist, error_3;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 3, , 4]);
+                    return [4 /*yield*/, fetch("/API/prescription/get-prescriptions")];
+                case 1:
+                    response = _a.sent();
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    data = _a.sent();
+                    prescriptions = data.prescriptions;
+                    prescriptionExist = prescriptions.find(function (prescription) { return prescription.patient === patientId && prescription.date === date; });
+                    return [2 /*return*/, prescriptionExist ? prescriptionExist._id : false];
+                case 3:
+                    error_3 = _a.sent();
+                    console.error(error_3);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
+            }
+        });
+    });
 }
 function hundleLogout() {
     try {
@@ -89,7 +218,7 @@ function hundlePhysicianList() {
 }
 function renderPhysicianList(html) {
     return __awaiter(this, void 0, void 0, function () {
-        var response, data, physiciansList, tempHtml_1, error_2;
+        var response, data, physiciansList, tempHtml_2, error_4;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -101,16 +230,16 @@ function renderPhysicianList(html) {
                 case 2:
                     data = _a.sent();
                     physiciansList = data.physicians;
-                    tempHtml_1 = "<h2>Physician List</h2>\n        <table>\n        <tr>\n        <th>First Name</th>\n        <th>Last Name</th>\n        <th>Age</th>\n        <th>Phone Number</th>\n        <th>Email</th>\n        <th>License Number</th>\n        <th>Admin</th>\n        </tr>";
+                    tempHtml_2 = "<h2>Physician List</h2>\n        <table>\n        <tr>\n        <th>First Name</th>\n        <th>Last Name</th>\n        <th>Age</th>\n        <th>Phone Number</th>\n        <th>Email</th>\n        <th>License Number</th>\n        <th>Admin</th>\n        </tr>";
                     physiciansList.forEach(function (physician) {
-                        tempHtml_1 += "<tr>\n            <td>" + physician.firstName + "</td>\n            <td>" + physician.lastName + "</td>\n            <td>" + physician.age + "</td>\n            <td>" + physician.phoneNum + "</td>\n            <td>" + physician.email + "</td>\n            <td>" + physician.licenseNumber + "</td>\n            <td>" + physician.isAdmin + "</td>\n            </tr>";
+                        tempHtml_2 += "<tr>\n            <td>" + physician.firstName + "</td>\n            <td>" + physician.lastName + "</td>\n            <td>" + physician.age + "</td>\n            <td>" + physician.phoneNum + "</td>\n            <td>" + physician.email + "</td>\n            <td>" + physician.licenseNumber + "</td>\n            <td>" + physician.isAdmin + "</td>\n            </tr>";
                     });
-                    tempHtml_1 += "</table>";
-                    html.innerHTML = tempHtml_1;
+                    tempHtml_2 += "</table>";
+                    html.innerHTML = tempHtml_2;
                     return [3 /*break*/, 4];
                 case 3:
-                    error_2 = _a.sent();
-                    console.error(error_2);
+                    error_4 = _a.sent();
+                    console.error(error_4);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }
@@ -127,7 +256,7 @@ function hundlePatientList() {
 }
 function renderPatientList(html) {
     return __awaiter(this, void 0, void 0, function () {
-        var response, data, responsePhysician, dataPhysician, physiciansList, patientsList, tempHtml_2, promise, error_3;
+        var response, data, responsePhysician, dataPhysician, physiciansList, patientsList, tempHtml_3, promise, error_5;
         var _this = this;
         return __generator(this, function (_a) {
             switch (_a.label) {
@@ -147,7 +276,7 @@ function renderPatientList(html) {
                     dataPhysician = _a.sent();
                     physiciansList = dataPhysician.physicians;
                     patientsList = data.patients;
-                    tempHtml_2 = "<h2>Patient List</h2>\n        <table>\n        <tr>\n        <th>First Name</th>\n        <th>Last Name</th>\n        <th>ID</th>\n        <th>Age</th>\n        <th>Phone Number</th>\n        <th>Weight</th>\n        <th>Height</th>\n        <th>Smoking</th>\n        <th>Address</th>\n        <th>Physician</th>\n        </tr>";
+                    tempHtml_3 = "<h2>Patient List</h2>\n        <table>\n        <tr>\n        <th>First Name</th>\n        <th>Last Name</th>\n        <th>ID</th>\n        <th>Age</th>\n        <th>Phone Number</th>\n        <th>Weight</th>\n        <th>Height</th>\n        <th>Smoking</th>\n        <th>Address</th>\n        <th>Physician</th>\n        </tr>";
                     promise = patientsList.map(function (patient) { return __awaiter(_this, void 0, void 0, function () {
                         var physicianName;
                         return __generator(this, function (_a) {
@@ -155,8 +284,7 @@ function renderPatientList(html) {
                                 case 0: return [4 /*yield*/, getPhysicianName(patient.physicianId)];
                                 case 1:
                                     physicianName = _a.sent();
-                                    debugger;
-                                    tempHtml_2 += "<tr>\n            <td>" + patient.firstName + "</td>\n            <td>" + patient.lastName + "</td>\n            <td>" + patient.patientId + "</td>\n            <td>" + patient.age + "</td>\n            <td>" + patient.phoneNum + "</td>\n            <td>" + patient.weight + "</td>\n            <td>" + patient.height + "</td>\n            <td>" + patient.smoking + "</td>\n            <td>" + patient.address + "</td>\n            <td>" + physicianName + "</td>\n            </tr>";
+                                    tempHtml_3 += "<tr>\n            <td>" + patient.firstName + "</td>\n            <td>" + patient.lastName + "</td>\n            <td>" + patient.patientId + "</td>\n            <td>" + patient.age + "</td>\n            <td>" + patient.phoneNum + "</td>\n            <td>" + patient.weight + "</td>\n            <td>" + patient.height + "</td>\n            <td>" + patient.smoking + "</td>\n            <td>" + patient.address + "</td>\n            <td>" + physicianName + "</td>\n            </tr>";
                                     return [2 /*return*/];
                             }
                         });
@@ -164,12 +292,12 @@ function renderPatientList(html) {
                     return [4 /*yield*/, Promise.all(promise)];
                 case 5:
                     _a.sent();
-                    tempHtml_2 += "</table>";
-                    html.innerHTML = tempHtml_2;
+                    tempHtml_3 += "</table>";
+                    html.innerHTML = tempHtml_3;
                     return [3 /*break*/, 7];
                 case 6:
-                    error_3 = _a.sent();
-                    console.error(error_3);
+                    error_5 = _a.sent();
+                    console.error(error_5);
                     return [3 /*break*/, 7];
                 case 7: return [2 /*return*/];
             }
@@ -186,7 +314,7 @@ function hundleMedicineList() {
 }
 function renderMedicineList(html) {
     return __awaiter(this, void 0, void 0, function () {
-        var response, data, medicinesList, tempHtml_3, error_4;
+        var response, data, medicinesList, tempHtml_4, error_6;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -198,16 +326,16 @@ function renderMedicineList(html) {
                 case 2:
                     data = _a.sent();
                     medicinesList = data.medicines;
-                    tempHtml_3 = "<h2>Medicine List</h2>\n        <table>\n        <tr>\n        <th>Name</th>\n        <th>Dosage Per Day</th>\n        <th>Max Days</th>\n        </tr>";
+                    tempHtml_4 = "<h2>Medicine List</h2>\n        <table>\n        <tr>\n        <th>Name</th>\n        <th>Dosage Per Day</th>\n        <th>Max Days</th>\n        </tr>";
                     medicinesList.forEach(function (medicine) {
-                        tempHtml_3 += "<tr>\n            <td>" + medicine.name + "</td>\n            <td>" + medicine.dosagePerDay + "</td>\n            <td>" + medicine.maxDuration + "</td>\n            </tr>";
+                        tempHtml_4 += "<tr>\n            <td>" + medicine.name + "</td>\n            <td>" + medicine.dosagePerDay + "</td>\n            <td>" + medicine.maxDuration + "</td>\n            </tr>";
                     });
-                    tempHtml_3 += "</table>";
-                    html.innerHTML = tempHtml_3;
+                    tempHtml_4 += "</table>";
+                    html.innerHTML = tempHtml_4;
                     return [3 /*break*/, 4];
                 case 3:
-                    error_4 = _a.sent();
-                    console.error(error_4);
+                    error_6 = _a.sent();
+                    console.error(error_6);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }
@@ -224,24 +352,24 @@ function hundleDeletePhysician() {
 }
 function renderDeletePhysician(html) {
     return __awaiter(this, void 0, void 0, function () {
-        var tempHtml_4, physiciansList, error_5;
+        var tempHtml_5, physiciansList, error_7;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-                    tempHtml_4 = "<h2>Delete Physician</h2>\n        <form onsubmit=\"hundlePhysicianDeleteSubmit(event)\">\n        <div class=\"input\">\n        <label for=\"id\">Select physician</label><br>\n        <select id=\"id\" name=\"id\">\n        ";
+                    tempHtml_5 = "<h2>Delete Physician</h2>\n        <form onsubmit=\"hundlePhysicianDeleteSubmit(event)\">\n        <div class=\"input\">\n        <label for=\"id\">Select physician</label><br>\n        <select id=\"id\" name=\"id\">\n        ";
                     return [4 /*yield*/, getPhysiciansList()];
                 case 1:
                     physiciansList = _a.sent();
                     physiciansList.forEach(function (physician) {
-                        tempHtml_4 += "<option value=\"" + physician._id + "\"> Dr. " + physician.firstName + " " + physician.lastName + "</option>";
+                        tempHtml_5 += "<option value=\"" + physician._id + "\"> Dr. " + physician.firstName + " " + physician.lastName + "</option>";
                     });
-                    tempHtml_4 += "</select>\n            </div>\n            <input type=\"submit\" value=\"DELETE\">\n            </form>";
-                    html.innerHTML = tempHtml_4;
+                    tempHtml_5 += "</select>\n            </div>\n            <input type=\"submit\" value=\"DELETE\">\n            </form>";
+                    html.innerHTML = tempHtml_5;
                     return [3 /*break*/, 3];
                 case 2:
-                    error_5 = _a.sent();
-                    console.error(error_5);
+                    error_7 = _a.sent();
+                    console.error(error_7);
                     return [3 /*break*/, 3];
                 case 3: return [2 /*return*/];
             }
@@ -250,7 +378,7 @@ function renderDeletePhysician(html) {
 }
 function hundlePhysicianDeleteSubmit(event) {
     return __awaiter(this, void 0, void 0, function () {
-        var id, response, data, error_6;
+        var id, response, data, error_8;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -276,8 +404,8 @@ function hundlePhysicianDeleteSubmit(event) {
                     window.location.href = "admin.html?physicianEmail=" + email;
                     return [3 /*break*/, 4];
                 case 3:
-                    error_6 = _a.sent();
-                    console.error(error_6);
+                    error_8 = _a.sent();
+                    console.error(error_8);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }
@@ -294,24 +422,24 @@ function hundleDeletePatient() {
 }
 function renderDeletePatient(html) {
     return __awaiter(this, void 0, void 0, function () {
-        var tempHtml_5, patientsList, error_7;
+        var tempHtml_6, patientsList, error_9;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-                    tempHtml_5 = "<h2>Delete Patient</h2>\n        <form onsubmit=\"hundlePatientDeleteSubmit(event)\">\n        <div class=\"input\">\n        <label for=\"id\">Select patient</label><br>\n        <select id=\"id\" name=\"id\">\n        ";
+                    tempHtml_6 = "<h2>Delete Patient</h2>\n        <form onsubmit=\"hundlePatientDeleteSubmit(event)\">\n        <div class=\"input\">\n        <label for=\"id\">Select patient</label><br>\n        <select id=\"id\" name=\"id\">\n        ";
                     return [4 /*yield*/, getPatientsList()];
                 case 1:
                     patientsList = _a.sent();
                     patientsList.forEach(function (patient) {
-                        tempHtml_5 += "<option value=\"" + patient._id + "\"> " + patient.firstName + " " + patient.lastName + "</option>";
+                        tempHtml_6 += "<option value=\"" + patient._id + "\"> " + patient.firstName + " " + patient.lastName + "</option>";
                     });
-                    tempHtml_5 += "</select>\n            </div>\n            <input type=\"submit\" value=\"DELETE\">\n            </form>";
-                    html.innerHTML = tempHtml_5;
+                    tempHtml_6 += "</select>\n            </div>\n            <input type=\"submit\" value=\"DELETE\">\n            </form>";
+                    html.innerHTML = tempHtml_6;
                     return [3 /*break*/, 3];
                 case 2:
-                    error_7 = _a.sent();
-                    console.error(error_7);
+                    error_9 = _a.sent();
+                    console.error(error_9);
                     return [3 /*break*/, 3];
                 case 3: return [2 /*return*/];
             }
@@ -320,7 +448,7 @@ function renderDeletePatient(html) {
 }
 function hundlePatientDeleteSubmit(event) {
     return __awaiter(this, void 0, void 0, function () {
-        var id, response, data, error_8;
+        var id, response, data, error_10;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -346,8 +474,8 @@ function hundlePatientDeleteSubmit(event) {
                     window.location.href = "admin.html?physicianEmail=" + email;
                     return [3 /*break*/, 4];
                 case 3:
-                    error_8 = _a.sent();
-                    console.error(error_8);
+                    error_10 = _a.sent();
+                    console.error(error_10);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }
@@ -364,24 +492,24 @@ function hundleDeleteMedicine() {
 }
 function renderDeleteMedicine(html) {
     return __awaiter(this, void 0, void 0, function () {
-        var tempHtml_6, medicinesList, error_9;
+        var tempHtml_7, medicinesList, error_11;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-                    tempHtml_6 = "<h2>Delete Medicine</h2>\n        <form onsubmit=\"hundleMedicineDeleteSubmit(event)\">\n        <div class=\"input\">\n        <label for=\"id\">Select medicine</label><br>\n        <select id=\"id\" name=\"id\">\n        ";
+                    tempHtml_7 = "<h2>Delete Medicine</h2>\n        <form onsubmit=\"hundleMedicineDeleteSubmit(event)\">\n        <div class=\"input\">\n        <label for=\"id\">Select medicine</label><br>\n        <select id=\"id\" name=\"id\">\n        ";
                     return [4 /*yield*/, getMedicinesList()];
                 case 1:
                     medicinesList = _a.sent();
                     medicinesList.forEach(function (medicine) {
-                        tempHtml_6 += "<option value=\"" + medicine._id + "\"> " + medicine.name + "</option>";
+                        tempHtml_7 += "<option value=\"" + medicine._id + "\"> " + medicine.name + "</option>";
                     });
-                    tempHtml_6 += "</select>\n            </div>\n            <input type=\"submit\" value=\"DELETE\">\n            </form>";
-                    html.innerHTML = tempHtml_6;
+                    tempHtml_7 += "</select>\n            </div>\n            <input type=\"submit\" value=\"DELETE\">\n            </form>";
+                    html.innerHTML = tempHtml_7;
                     return [3 /*break*/, 3];
                 case 2:
-                    error_9 = _a.sent();
-                    console.error(error_9);
+                    error_11 = _a.sent();
+                    console.error(error_11);
                     return [3 /*break*/, 3];
                 case 3: return [2 /*return*/];
             }
@@ -390,7 +518,7 @@ function renderDeleteMedicine(html) {
 }
 function hundleMedicineDeleteSubmit(event) {
     return __awaiter(this, void 0, void 0, function () {
-        var id, response, data, error_10;
+        var id, response, data, error_12;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -416,8 +544,8 @@ function hundleMedicineDeleteSubmit(event) {
                     window.location.href = "admin.html?physicianEmail=" + email;
                     return [3 /*break*/, 4];
                 case 3:
-                    error_10 = _a.sent();
-                    console.error(error_10);
+                    error_12 = _a.sent();
+                    console.error(error_12);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }
@@ -450,7 +578,7 @@ function renderAddPhysician(html) {
 }
 function hundlePhysicianSubmit(event) {
     return __awaiter(this, void 0, void 0, function () {
-        var firstName, lastName, age, phoneNum, email_1, licenseNumber, password, isAdmin, response, data, error_11;
+        var firstName, lastName, age, phoneNum, email_1, licenseNumber, password, isAdmin, response, data, error_13;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -483,8 +611,8 @@ function hundlePhysicianSubmit(event) {
                     window.location.href = "admin.html?physicianEmail=" + email_1;
                     return [3 /*break*/, 4];
                 case 3:
-                    error_11 = _a.sent();
-                    console.error(error_11);
+                    error_13 = _a.sent();
+                    console.error(error_13);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }
@@ -501,24 +629,24 @@ function hundleAddPatient() {
 }
 function renderAddPatient(html) {
     return __awaiter(this, void 0, void 0, function () {
-        var tempHtml_7, physiciansList, error_12;
+        var tempHtml_8, physiciansList, error_14;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-                    tempHtml_7 = "<h2>Add Patient</h2>\n        <form onsubmit=\"hundlePatientSubmit(event)\">\n            <div class=\"input\">\n            <label for=\"firstName\">First Name:</label><br>\n            <input type=\"text\" id=\"firstName\" name=\"firstName\">\n            </div><div class=\"input\">\n            <label for=\"lastName\">Last Name:</label><br>\n            <input type=\"text\" id=\"lastName\" name=\"lastName\">\n            </div> <div class=\"input\">\n            <label for=\"patientId\">ID:</label><br>\n            <input type=\"text\" id=\"patientId\" name=\"patientId\">\n            </div><div class=\"input\">\n            <label for=\"age\">Age:</label><br>\n            <input type=\"number\" id=\"age\" name=\"age\">\n            </div> <div class=\"input\">\n            <label for=\"phoneNum\">Phone Number:</label><br>\n            <input type=\"text\" id=\"phoneNum\" name=\"phoneNum\">\n            </div><div class=\"input\">\n            <label for=\"weight\">Weight:</label><br>\n            <input type=\"number\" id=\"weight\" name=\"weight\">\n            </div><div class=\"input\">\n            <label for=\"height\">Height:</label><br>\n            <input type=\"number\" id=\"height\" name=\"height\">\n            </div><div class=\"input\">\n            <label for=\"smoking\">Smoking:</label><br>\n            <input type=\"checkbox\" id=\"smoking\" name=\"smoking\">\n            </div><div class=\"input\">\n            <label for=\"address\">Address:</label><br>\n            <input type=\"text\" id=\"address\" name=\"address\">\n            </div><div class=\"input\">\n            <label for=\"physicianId\">Select physician</label><br>\n            <select id=\"physicianId\" name=\"physicianId\">\n            ";
+                    tempHtml_8 = "<h2>Add Patient</h2>\n        <form onsubmit=\"hundlePatientSubmit(event)\">\n            <div class=\"input\">\n            <label for=\"firstName\">First Name:</label><br>\n            <input type=\"text\" id=\"firstName\" name=\"firstName\">\n            </div><div class=\"input\">\n            <label for=\"lastName\">Last Name:</label><br>\n            <input type=\"text\" id=\"lastName\" name=\"lastName\">\n            </div> <div class=\"input\">\n            <label for=\"patientId\">ID:</label><br>\n            <input type=\"text\" id=\"patientId\" name=\"patientId\">\n            </div><div class=\"input\">\n            <label for=\"age\">Age:</label><br>\n            <input type=\"number\" id=\"age\" name=\"age\">\n            </div> <div class=\"input\">\n            <label for=\"phoneNum\">Phone Number:</label><br>\n            <input type=\"text\" id=\"phoneNum\" name=\"phoneNum\">\n            </div><div class=\"input\">\n            <label for=\"weight\">Weight:</label><br>\n            <input type=\"number\" id=\"weight\" name=\"weight\">\n            </div><div class=\"input\">\n            <label for=\"height\">Height:</label><br>\n            <input type=\"number\" id=\"height\" name=\"height\">\n            </div><div class=\"input\">\n            <label for=\"smoking\">Smoking:</label><br>\n            <input type=\"checkbox\" id=\"smoking\" name=\"smoking\">\n            </div><div class=\"input\">\n            <label for=\"address\">Address:</label><br>\n            <input type=\"text\" id=\"address\" name=\"address\">\n            </div><div class=\"input\">\n            <label for=\"physicianId\">Select physician</label><br>\n            <select id=\"physicianId\" name=\"physicianId\">\n            ";
                     return [4 /*yield*/, getPhysiciansList()];
                 case 1:
                     physiciansList = _a.sent();
                     physiciansList.forEach(function (physician) {
-                        tempHtml_7 += "<option value=\"" + physician._id + "\"> Dr. " + physician.firstName + " " + physician.lastName + "</option>";
+                        tempHtml_8 += "<option value=\"" + physician._id + "\"> Dr. " + physician.firstName + " " + physician.lastName + "</option>";
                     });
-                    tempHtml_7 += "</select>\n            </div>\n            <input type=\"submit\" value=\"ADD\">\n        </form>";
-                    html.innerHTML = tempHtml_7;
+                    tempHtml_8 += "</select>\n            </div>\n            <input type=\"submit\" value=\"ADD\">\n        </form>";
+                    html.innerHTML = tempHtml_8;
                     return [3 /*break*/, 3];
                 case 2:
-                    error_12 = _a.sent();
-                    console.error(error_12);
+                    error_14 = _a.sent();
+                    console.error(error_14);
                     return [3 /*break*/, 3];
                 case 3: return [2 /*return*/];
             }
@@ -527,7 +655,7 @@ function renderAddPatient(html) {
 }
 function getPhysiciansList() {
     return __awaiter(this, void 0, void 0, function () {
-        var response, data, physiciansList, error_13;
+        var response, data, physiciansList, error_15;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -541,8 +669,8 @@ function getPhysiciansList() {
                     physiciansList = data.physicians;
                     return [2 /*return*/, physiciansList];
                 case 3:
-                    error_13 = _a.sent();
-                    console.error(error_13);
+                    error_15 = _a.sent();
+                    console.error(error_15);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }
@@ -551,7 +679,7 @@ function getPhysiciansList() {
 }
 function hundlePatientSubmit(event) {
     return __awaiter(this, void 0, void 0, function () {
-        var firstName, lastName, patientId, age, phoneNum, weight, height, smoking, address, physicianId, response, data, error_14;
+        var firstName, lastName, patientId, age, phoneNum, weight, height, smoking, address, physicianId, response, data, error_16;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -587,8 +715,8 @@ function hundlePatientSubmit(event) {
                     window.location.href = "admin.html?physicianEmail=" + email;
                     return [3 /*break*/, 4];
                 case 3:
-                    error_14 = _a.sent();
-                    console.error(error_14);
+                    error_16 = _a.sent();
+                    console.error(error_16);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }
@@ -613,7 +741,7 @@ function renderAddMedicine(html) {
 }
 function hundleMedicineSubmit(event) {
     return __awaiter(this, void 0, void 0, function () {
-        var name, dosagePerDay, maxDuration, response, data, error_15;
+        var name, dosagePerDay, maxDuration, response, data, error_17;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -641,8 +769,8 @@ function hundleMedicineSubmit(event) {
                     window.location.href = "admin.html?physicianEmail=" + email;
                     return [3 /*break*/, 4];
                 case 3:
-                    error_15 = _a.sent();
-                    console.error(error_15);
+                    error_17 = _a.sent();
+                    console.error(error_17);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }
@@ -660,24 +788,24 @@ function hundleUpdatePhysician() {
 function renderUpdatePhysician(html) {
     var _a;
     return __awaiter(this, void 0, void 0, function () {
-        var tempHtml_8, physiciansList, error_16;
+        var tempHtml_9, physiciansList, error_18;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
                     _b.trys.push([0, 2, , 3]);
-                    tempHtml_8 = "<h2>Update Physician</h2>\n        <form onsubmit=\"hundlePhysicianUpdateSubmit(event)\">\n        <div class=\"input\">\n        <label for=\"id\">Select physician</label><br>\n        <select id=\"id\" name=\"id\" onchange=\"loadDetails()\">\n        ";
+                    tempHtml_9 = "<h2>Update Physician</h2>\n        <form onsubmit=\"hundlePhysicianUpdateSubmit(event)\">\n        <div class=\"input\">\n        <label for=\"id\">Select physician</label><br>\n        <select id=\"id\" name=\"id\" onchange=\"loadDetails()\">\n        ";
                     return [4 /*yield*/, getPhysiciansList()];
                 case 1:
                     physiciansList = _b.sent();
                     physiciansList.forEach(function (physician) {
-                        tempHtml_8 += "<option value=\"" + physician._id + "\"> Dr. " + physician.firstName + " " + physician.lastName + "</option>";
+                        tempHtml_9 += "<option value=\"" + physician._id + "\"> Dr. " + physician.firstName + " " + physician.lastName + "</option>";
                     });
-                    tempHtml_8 += "</select>\n            </div>\n            <div class=\"input\">\n            <label for=\"firstName\">First Name:</label><br>\n            <input type=\"text\" id=\"firstName\" name=\"firstName\" value=\"" + physiciansList[0].firstName + "\">\n            </div><div class=\"input\">\n            <label for=\"lastName\">Last Name:</label><br>\n            <input type=\"text\" id=\"lastName\" name=\"lastName\" value=\"" + physiciansList[0].lastName + "\">\n            </div> <div class=\"input\">\n            <label for=\"age\">Age:</label><br>\n            <input type=\"number\" id=\"age\" name=\"age\" value=\"" + physiciansList[0].age + "\">\n            </div> <div class=\"input\">\n            <label for=\"phoneNum\">Phone Number:</label><br>\n            <input type=\"text\" id=\"phoneNum\" name=\"phoneNum\" value=\"" + physiciansList[0].phoneNum + "\">\n            </div><div class=\"input\">\n            <label for=\"email\">Email:</label><br>\n            <input type=\"email\" id=\"email\" name=\"email\">\n            </div><div class=\"input\">\n            <label for=\"licenseNumber\">License Number:</label><br>\n            <input type=\"text\" id=\"licenseNumber\" name=\"licenseNumber\" value=\"" + physiciansList[0].licenseNumber + "\">\n            </div><div class=\"input\">\n            <label for=\"password\">Password:</label><br>\n            <input type=\"password\" id=\"password\" name=\"password\" value=\"" + physiciansList[0].password + "\">\n            </div><div class=\"input\">\n            <label for=\"isAdmin\">Admin:</label><br>\n            <input type=\"checkbox\" id=\"isAdmin\" name=\"isAdmin\" " + (((_a = physiciansList[0]) === null || _a === void 0 ? void 0 : _a.isAdmin) ? "checked" : "") + ">\n            </div> \n            <input type=\"submit\" value=\"UPDATE\">\n            </form>";
-                    html.innerHTML = tempHtml_8;
+                    tempHtml_9 += "</select>\n            </div>\n            <div class=\"input\">\n            <label for=\"firstName\">First Name:</label><br>\n            <input type=\"text\" id=\"firstName\" name=\"firstName\" value=\"" + physiciansList[0].firstName + "\">\n            </div><div class=\"input\">\n            <label for=\"lastName\">Last Name:</label><br>\n            <input type=\"text\" id=\"lastName\" name=\"lastName\" value=\"" + physiciansList[0].lastName + "\">\n            </div> <div class=\"input\">\n            <label for=\"age\">Age:</label><br>\n            <input type=\"number\" id=\"age\" name=\"age\" value=\"" + physiciansList[0].age + "\">\n            </div> <div class=\"input\">\n            <label for=\"phoneNum\">Phone Number:</label><br>\n            <input type=\"text\" id=\"phoneNum\" name=\"phoneNum\" value=\"" + physiciansList[0].phoneNum + "\">\n            </div><div class=\"input\">\n            <label for=\"email\">Email:</label><br>\n            <input type=\"email\" id=\"email\" name=\"email\">\n            </div><div class=\"input\">\n            <label for=\"licenseNumber\">License Number:</label><br>\n            <input type=\"text\" id=\"licenseNumber\" name=\"licenseNumber\" value=\"" + physiciansList[0].licenseNumber + "\">\n            </div><div class=\"input\">\n            <label for=\"password\">Password:</label><br>\n            <input type=\"password\" id=\"password\" name=\"password\" value=\"" + physiciansList[0].password + "\">\n            </div><div class=\"input\">\n            <label for=\"isAdmin\">Admin:</label><br>\n            <input type=\"checkbox\" id=\"isAdmin\" name=\"isAdmin\" " + (((_a = physiciansList[0]) === null || _a === void 0 ? void 0 : _a.isAdmin) ? "checked" : "") + ">\n            </div> \n            <input type=\"submit\" value=\"UPDATE\">\n            </form>";
+                    html.innerHTML = tempHtml_9;
                     return [3 /*break*/, 3];
                 case 2:
-                    error_16 = _b.sent();
-                    console.error(error_16);
+                    error_18 = _b.sent();
+                    console.error(error_18);
                     return [3 /*break*/, 3];
                 case 3: return [2 /*return*/];
             }
@@ -686,7 +814,7 @@ function renderUpdatePhysician(html) {
 }
 function loadDetails() {
     return __awaiter(this, void 0, void 0, function () {
-        var id_1, response, data, physician, idInput, firstNameInput, lastNameInput, ageInput, phoneNumInput, emailInput, licenseNumberInput, passwordInput, isAdminCheckbox, error_17;
+        var id_1, response, data, physician, idInput, firstNameInput, lastNameInput, ageInput, phoneNumInput, emailInput, licenseNumberInput, passwordInput, isAdminCheckbox, error_19;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -698,7 +826,6 @@ function loadDetails() {
                     return [4 /*yield*/, response.json()];
                 case 2:
                     data = _a.sent();
-                    debugger;
                     physician = data.physicians.find(function (physician) { return physician._id === id_1; });
                     idInput = document.querySelector("#id");
                     firstNameInput = document.querySelector("#firstName");
@@ -719,8 +846,8 @@ function loadDetails() {
                     isAdminCheckbox.checked = physician.isAdmin;
                     return [3 /*break*/, 4];
                 case 3:
-                    error_17 = _a.sent();
-                    console.error(error_17);
+                    error_19 = _a.sent();
+                    console.error(error_19);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }
@@ -729,7 +856,7 @@ function loadDetails() {
 }
 function hundlePhysicianUpdateSubmit(event) {
     return __awaiter(this, void 0, void 0, function () {
-        var id, firstName, lastName, age, phoneNum, email_2, licenseNumber, password, isAdmin, response, data, error_18;
+        var id, firstName, lastName, age, phoneNum, email_2, licenseNumber, password, isAdmin, response, data, error_20;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -763,8 +890,8 @@ function hundlePhysicianUpdateSubmit(event) {
                     window.location.href = "admin.html?physicianEmail=" + email_2;
                     return [3 /*break*/, 4];
                 case 3:
-                    error_18 = _a.sent();
-                    console.error(error_18);
+                    error_20 = _a.sent();
+                    console.error(error_20);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }
@@ -781,32 +908,31 @@ function hundleUpdatePatient() {
 }
 function renderUpdatePatient(html) {
     return __awaiter(this, void 0, void 0, function () {
-        var tempHtml_9, patientsList, physiciansList, error_19;
+        var tempHtml_10, patientsList, physiciansList, error_21;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
-                    tempHtml_9 = "<h2>Update Patient</h2>\n        <form onsubmit=\"hundlePatientUpdateSubmit(event)\">\n        <div class=\"input\">\n        <label for=\"id\">Select patient</label><br>\n        <select id=\"id\" name=\"id\" onchange=\"loadPatientDetails()\">\n        ";
+                    tempHtml_10 = "<h2>Update Patient</h2>\n        <form onsubmit=\"hundlePatientUpdateSubmit(event)\">\n        <div class=\"input\">\n        <label for=\"id\">Select patient</label><br>\n        <select id=\"id\" name=\"id\" onchange=\"loadPatientDetails()\">\n        ";
                     return [4 /*yield*/, getPatientsList()];
                 case 1:
                     patientsList = _a.sent();
-                    debugger;
                     patientsList.forEach(function (patient) {
-                        tempHtml_9 += "<option value=\"" + patient._id + "\"> " + patient.firstName + " " + patient.lastName + "</option>";
+                        tempHtml_10 += "<option value=\"" + patient._id + "\"> " + patient.firstName + " " + patient.lastName + "</option>";
                     });
-                    tempHtml_9 += "</select>\n            </div>\n            <div class=\"input\">\n            <label for=\"firstName\">First Name:</label><br>\n            <input type=\"text\" id=\"firstName\" name=\"firstName\" value=\"" + patientsList[0].firstName + "\">\n            </div><div class=\"input\">\n            <label for=\"lastName\">Last Name:</label><br>\n            <input type=\"text\" id=\"lastName\" name=\"lastName\" value=\"" + patientsList[0].lastName + "\">\n            </div> <div class=\"input\">\n            <label for=\"age\">Age:</label><br>\n            <input type=\"number\" id=\"age\" name=\"age\" value=\"" + patientsList[0].age + "\">\n            </div> <div class=\"input\">\n            <label for=\"phoneNum\">Phone Number:</label><br>\n            <input type=\"text\" id=\"phoneNum\" name=\"phoneNum\" value=\"" + patientsList[0].phoneNum + "\">\n            </div><div class=\"input\">\n            <label for=\"weight\">Weight:</label><br>\n            <input type=\"number\" id=\"weight\" name=\"weight\" value=\"" + patientsList[0].weight + "\">\n            </div><div class=\"input\">\n            <label for=\"height\">Height:</label><br>\n            <input type=\"number\" id=\"height\" name=\"height\" value=\"" + patientsList[0].height + "\">\n            </div><div class=\"input\">\n            <label for=\"smoking\">Smoking:</label><br>\n            <input type=\"checkbox\" id=\"smoking\" name=\"smoking\" " + (patientsList[0].smoking ? "checked" : "") + ">\n            </div><div class=\"input\">\n            <label for=\"address\">Address:</label><br>\n            <input type=\"text\" id=\"address\" name=\"address\" value=\"" + patientsList[0].address + "\">\n            </div><div class=\"input\">\n            <label for=\"physicianId\">Select physician</label><br>\n            <select id=\"physicianId\" name=\"physicianId\">\n            ";
+                    tempHtml_10 += "</select>\n            </div>\n            <div class=\"input\">\n            <label for=\"firstName\">First Name:</label><br>\n            <input type=\"text\" id=\"firstName\" name=\"firstName\" value=\"" + patientsList[0].firstName + "\">\n            </div><div class=\"input\">\n            <label for=\"lastName\">Last Name:</label><br>\n            <input type=\"text\" id=\"lastName\" name=\"lastName\" value=\"" + patientsList[0].lastName + "\">\n            </div> <div class=\"input\">\n            <label for=\"age\">Age:</label><br>\n            <input type=\"number\" id=\"age\" name=\"age\" value=\"" + patientsList[0].age + "\">\n            </div> <div class=\"input\">\n            <label for=\"phoneNum\">Phone Number:</label><br>\n            <input type=\"text\" id=\"phoneNum\" name=\"phoneNum\" value=\"" + patientsList[0].phoneNum + "\">\n            </div><div class=\"input\">\n            <label for=\"weight\">Weight:</label><br>\n            <input type=\"number\" id=\"weight\" name=\"weight\" value=\"" + patientsList[0].weight + "\">\n            </div><div class=\"input\">\n            <label for=\"height\">Height:</label><br>\n            <input type=\"number\" id=\"height\" name=\"height\" value=\"" + patientsList[0].height + "\">\n            </div><div class=\"input\">\n            <label for=\"smoking\">Smoking:</label><br>\n            <input type=\"checkbox\" id=\"smoking\" name=\"smoking\" " + (patientsList[0].smoking ? "checked" : "") + ">\n            </div><div class=\"input\">\n            <label for=\"address\">Address:</label><br>\n            <input type=\"text\" id=\"address\" name=\"address\" value=\"" + patientsList[0].address + "\">\n            </div><div class=\"input\">\n            <label for=\"physicianId\">Select physician</label><br>\n            <select id=\"physicianId\" name=\"physicianId\">\n            ";
                     return [4 /*yield*/, getPhysiciansList()];
                 case 2:
                     physiciansList = _a.sent();
                     physiciansList.forEach(function (physician) {
-                        tempHtml_9 += "<option value=\"" + physician._id + "\"> Dr. " + physician.firstName + " " + physician.lastName + "</option>";
+                        tempHtml_10 += "<option value=\"" + physician._id + "\"> Dr. " + physician.firstName + " " + physician.lastName + "</option>";
                     });
-                    tempHtml_9 += "</select>\n            </div>\n            <input type=\"submit\" value=\"UPDATE\">\n        </form>";
-                    html.innerHTML = tempHtml_9;
+                    tempHtml_10 += "</select>\n            </div>\n            <input type=\"submit\" value=\"UPDATE\">\n        </form>";
+                    html.innerHTML = tempHtml_10;
                     return [3 /*break*/, 4];
                 case 3:
-                    error_19 = _a.sent();
-                    console.error(error_19);
+                    error_21 = _a.sent();
+                    console.error(error_21);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }
@@ -815,7 +941,7 @@ function renderUpdatePatient(html) {
 }
 function getPatientsList() {
     return __awaiter(this, void 0, void 0, function () {
-        var response, data, patientsList, error_20;
+        var response, data, patientsList, error_22;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -829,8 +955,8 @@ function getPatientsList() {
                     patientsList = data.patients;
                     return [2 /*return*/, patientsList];
                 case 3:
-                    error_20 = _a.sent();
-                    console.error(error_20);
+                    error_22 = _a.sent();
+                    console.error(error_22);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }
@@ -839,7 +965,7 @@ function getPatientsList() {
 }
 function loadPatientDetails() {
     return __awaiter(this, void 0, void 0, function () {
-        var id_2, response, data, patient, idInput, firstNameInput, lastNameInput, ageInput, phoneNumInput, weightInput, heightInput, smokingCheckbox, addressInput, physicianIdInput, error_21;
+        var id_2, response, data, patient, idInput, firstNameInput, lastNameInput, ageInput, phoneNumInput, weightInput, heightInput, smokingCheckbox, addressInput, physicianIdInput, error_23;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -873,8 +999,8 @@ function loadPatientDetails() {
                     physicianIdInput.value = patient.physicianId;
                     return [3 /*break*/, 4];
                 case 3:
-                    error_21 = _a.sent();
-                    console.error(error_21);
+                    error_23 = _a.sent();
+                    console.error(error_23);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }
@@ -883,13 +1009,12 @@ function loadPatientDetails() {
 }
 function hundlePatientUpdateSubmit(event) {
     return __awaiter(this, void 0, void 0, function () {
-        var id, firstName, lastName, age, phoneNum, weight, height, smoking, address, physicianId, response, data, error_22;
+        var id, firstName, lastName, age, phoneNum, weight, height, smoking, address, physicianId, response, data, error_24;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
                     event.preventDefault();
-                    debugger;
                     id = event.target[0].value;
                     firstName = event.target.firstName.value;
                     lastName = event.target.lastName.value;
@@ -919,8 +1044,8 @@ function hundlePatientUpdateSubmit(event) {
                     window.location.href = "admin.html?physicianEmail=" + email;
                     return [3 /*break*/, 4];
                 case 3:
-                    error_22 = _a.sent();
-                    console.error(error_22);
+                    error_24 = _a.sent();
+                    console.error(error_24);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }
@@ -937,24 +1062,24 @@ function hundleUpdateMedicine() {
 }
 function renderUpdateMedicine(html) {
     return __awaiter(this, void 0, void 0, function () {
-        var tempHtml_10, medicinesList, error_23;
+        var tempHtml_11, medicinesList, error_25;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-                    tempHtml_10 = "<h2>Update Medicine</h2>\n        <form onsubmit=\"hundleMedicineUpdateSubmit(event)\">\n        <div class=\"input\">\n        <label for=\"id\">Select medicine</label><br>\n        <select id=\"id\" name=\"id\" onchange=\"loadMedicineDetails()\">\n        ";
+                    tempHtml_11 = "<h2>Update Medicine</h2>\n        <form onsubmit=\"hundleMedicineUpdateSubmit(event)\">\n        <div class=\"input\">\n        <label for=\"id\">Select medicine</label><br>\n        <select id=\"id\" name=\"id\" onchange=\"loadMedicineDetails()\">\n        ";
                     return [4 /*yield*/, getMedicinesList()];
                 case 1:
                     medicinesList = _a.sent();
                     medicinesList.forEach(function (medicine) {
-                        tempHtml_10 += "<option value=\"" + medicine._id + "\"> " + medicine.name + "</option>";
+                        tempHtml_11 += "<option value=\"" + medicine._id + "\"> " + medicine.name + "</option>";
                     });
-                    tempHtml_10 += "</select>\n            </div>\n            <div class=\"input\">\n            <label for=\"name\">Name:</label><br>\n            <input type=\"text\" id=\"name\" name=\"name\" value=\"" + medicinesList[0].name + "\">\n            </div><div class=\"input\">\n            <label for=\"dosagePerDay\">Dosage Per Day:</label><br>\n            <input type=\"number\" id=\"dosagePerDay\" name=\"dosagePerDay\" value=\"" + medicinesList[0].dosagePerDay + "\">\n            </div> <div class=\"input\">\n            <label for=\"maxDuration\">Max Duration:</label><br>\n            <input type=\"number\" id=\"maxDuration\" name=\"maxDuration\" value=\"" + medicinesList[0].maxDuration + "\">\n            </div>\n            <input type=\"submit\" value=\"UPDATE\">\n        </form>";
-                    html.innerHTML = tempHtml_10;
+                    tempHtml_11 += "</select>\n            </div>\n            <div class=\"input\">\n            <label for=\"name\">Name:</label><br>\n            <input type=\"text\" id=\"name\" name=\"name\" value=\"" + medicinesList[0].name + "\">\n            </div><div class=\"input\">\n            <label for=\"dosagePerDay\">Dosage Per Day:</label><br>\n            <input type=\"number\" id=\"dosagePerDay\" name=\"dosagePerDay\" value=\"" + medicinesList[0].dosagePerDay + "\">\n            </div> <div class=\"input\">\n            <label for=\"maxDuration\">Max Duration:</label><br>\n            <input type=\"number\" id=\"maxDuration\" name=\"maxDuration\" value=\"" + medicinesList[0].maxDuration + "\">\n            </div>\n            <input type=\"submit\" value=\"UPDATE\">\n        </form>";
+                    html.innerHTML = tempHtml_11;
                     return [3 /*break*/, 3];
                 case 2:
-                    error_23 = _a.sent();
-                    console.error(error_23);
+                    error_25 = _a.sent();
+                    console.error(error_25);
                     return [3 /*break*/, 3];
                 case 3: return [2 /*return*/];
             }
@@ -963,7 +1088,7 @@ function renderUpdateMedicine(html) {
 }
 function getMedicinesList() {
     return __awaiter(this, void 0, void 0, function () {
-        var response, data, medicinesList, error_24;
+        var response, data, medicinesList, error_26;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -977,8 +1102,8 @@ function getMedicinesList() {
                     medicinesList = data.medicines;
                     return [2 /*return*/, medicinesList];
                 case 3:
-                    error_24 = _a.sent();
-                    console.error(error_24);
+                    error_26 = _a.sent();
+                    console.error(error_26);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }
@@ -987,7 +1112,7 @@ function getMedicinesList() {
 }
 function loadMedicineDetails() {
     return __awaiter(this, void 0, void 0, function () {
-        var id_3, response, data, medicine, idInput, nameInput, dosagePerDayInput, maxDurationInput, error_25;
+        var id_3, response, data, medicine, idInput, nameInput, dosagePerDayInput, maxDurationInput, error_27;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -1009,8 +1134,8 @@ function loadMedicineDetails() {
                     maxDurationInput.value = medicine.maxDuration.toString();
                     return [3 /*break*/, 4];
                 case 3:
-                    error_25 = _a.sent();
-                    console.error(error_25);
+                    error_27 = _a.sent();
+                    console.error(error_27);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }
@@ -1019,7 +1144,7 @@ function loadMedicineDetails() {
 }
 function hundleMedicineUpdateSubmit(event) {
     return __awaiter(this, void 0, void 0, function () {
-        var id, name, dosagePerDay, maxDuration, response, data, error_26;
+        var id, name, dosagePerDay, maxDuration, response, data, error_28;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -1048,8 +1173,8 @@ function hundleMedicineUpdateSubmit(event) {
                     window.location.href = "admin.html?physicianEmail=" + email;
                     return [3 /*break*/, 4];
                 case 3:
-                    error_26 = _a.sent();
-                    console.error(error_26);
+                    error_28 = _a.sent();
+                    console.error(error_28);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }

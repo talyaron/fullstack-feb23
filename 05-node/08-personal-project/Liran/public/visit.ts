@@ -60,8 +60,8 @@ function renderHistoryPopUp() {
     try {
         const popupURL = `history.html?_id=${patientID}&physicianEmail=${physicianE}`; // Replace with the actual URL of your popup page
         // Define the size and position of the popup window
-        const popupWidth = 400;
-        const popupHeight = 300;
+        const popupWidth = 500;
+        const popupHeight = 600;
         const left = (window.innerWidth - popupWidth) / 2;
         const top = (window.innerHeight - popupHeight) / 2;
 

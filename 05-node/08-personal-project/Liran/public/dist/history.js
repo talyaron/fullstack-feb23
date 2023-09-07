@@ -39,11 +39,12 @@ var patId = getPatientIdFromQuery();
 renderPatientHistory(patId, document.querySelector("#root"));
 function renderPatientHistory(pId, root) {
     return __awaiter(this, void 0, void 0, function () {
-        var patient, visits, html_1, prescriptions, error_1;
+        var patient, visits, medicines, html_1, prescriptions, promises, error_1;
+        var _this = this;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    _a.trys.push([0, 4, , 5]);
+                    _a.trys.push([0, 6, , 7]);
                     if (!pId)
                         throw new Error("No patient id");
                     if (!root)
@@ -54,27 +55,43 @@ function renderPatientHistory(pId, root) {
                     return [4 /*yield*/, getVisitsDB(pId)];
                 case 2:
                     visits = _a.sent();
-                    html_1 = "<h1>" + patient.firstName + " " + patient.lastName + " " + patient.patientId + "</h1>\n        <h2>Visits</h2>\n        <table>\n        <tr>\n        <th>Date</th>\n        <th>Summary</th>\n        </tr>";
-                    debugger;
-                    visits.forEach(function (visit) {
-                        html_1 += "<tr>\n            <td>" + getTimeFormated(visit.date.toString()) + "</td>\n            <td>" + visit.summary + "</td>\n            </tr>";
-                    });
-                    html_1 += "</table>";
-                    html_1 += "<br><br>\n        <h2>Prescriptions</h2>";
-                    return [4 /*yield*/, getPrescriptionsDB(pId)];
+                    return [4 /*yield*/, getMedicinesDB()];
                 case 3:
-                    prescriptions = _a.sent();
-                    prescriptions.forEach(function (prescription) {
-                        html_1 += "<div class=\"prescription\">\n            <div><label>Date</label><span>" + prescription.date + "</span></div>\n            <div><label>Medicine</label><span>" + prescription.medicine + "</span></div>\n            </div>";
+                    medicines = _a.sent();
+                    html_1 = "<h1>" + patient.firstName + " " + patient.lastName + "<br>ID: " + patient.patientId + "</h1>\n        <div id=\"visits\">\n        <h2>Visits</h2>\n        <table>\n        <tr>\n        <th>Date</th>\n        <th>Summary</th>\n        </tr>";
+                    visits.forEach(function (visit) {
+                        html_1 += "<tr>\n            <td>" + getTimeFormated(new Date(visit.date)) + "</td>\n            <td>" + visit.summary + "</td>\n            </tr>";
                     });
-                    html_1 += "<br><br>\n        <button onclick=\"goBack()\">Back</button>";
-                    root.innerHTML = html_1;
-                    return [3 /*break*/, 5];
+                    html_1 += "</table>\n        </div>";
+                    html_1 += "<div id=\"prescriptions\">\n        <h2>Prescriptions</h2>\n        <table>\n        <tr>\n        <th>Date</th>\n        <th>Medicine</th>\n        </tr>";
+                    return [4 /*yield*/, getPrescriptionsDB(pId)];
                 case 4:
+                    prescriptions = _a.sent();
+                    debugger;
+                    promises = prescriptions.map(function (prescription) { return __awaiter(_this, void 0, void 0, function () {
+                        var medName, formattedDate;
+                        return __generator(this, function (_a) {
+                            switch (_a.label) {
+                                case 0: return [4 /*yield*/, getMedicineName(prescription.medicine)];
+                                case 1:
+                                    medName = _a.sent();
+                                    formattedDate = getTimeFormated(new Date(prescription.date));
+                                    html_1 += "<tr>\n                <td>" + formattedDate + "</td>\n                <td>" + medName + "</td>\n            </tr>";
+                                    return [2 /*return*/];
+                            }
+                        });
+                    }); });
+                    return [4 /*yield*/, Promise.all(promises)];
+                case 5:
+                    _a.sent();
+                    html_1 += "</table>\n        <br><br>\n        </div>\n        <button onclick=\"goBack()\">Back</button>";
+                    root.innerHTML = html_1;
+                    return [3 /*break*/, 7];
+                case 6:
                     error_1 = _a.sent();
                     console.error(error_1);
-                    return [3 /*break*/, 5];
-                case 5: return [2 /*return*/];
+                    return [3 /*break*/, 7];
+                case 7: return [2 /*return*/];
             }
         });
     });

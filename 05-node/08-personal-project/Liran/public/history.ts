@@ -8,33 +8,56 @@ async function renderPatientHistory(pId, root) {
         if (!root) throw new Error("No root");
         const patient = await getPatientDB(pId);
         const visits = await getVisitsDB(pId);
-        let html = `<h1>${patient.firstName} ${patient.lastName} ${patient.patientId}</h1>
+        const medicines: Medicine[] = await getMedicinesDB();
+        let html = `<h1>${patient.firstName} ${patient.lastName}<br>ID: ${patient.patientId}</h1>
+        <div id="visits">
         <h2>Visits</h2>
         <table>
         <tr>
         <th>Date</th>
         <th>Summary</th>
         </tr>`;
-        debugger;
-        visits.forEach(visit => { 
+        visits.forEach(visit => {
             html += `<tr>
-            <td>${getTimeFormated(visit.date.toString())}</td>
+            <td>${getTimeFormated(new Date(visit.date))}</td>
             <td>${visit.summary}</td>
             </tr>`
         });
-        html += `</table>`;
+        html += `</table>
+        </div>`;
 
-        html += `<br><br>
-        <h2>Prescriptions</h2>`
+        html += `<div id="prescriptions">
+        <h2>Prescriptions</h2>
+        <table>
+        <tr>
+        <th>Date</th>
+        <th>Medicine</th>
+        </tr>`;
         const prescriptions = await getPrescriptionsDB(pId);
-        prescriptions.forEach(prescription => {
-            html += `<div class="prescription">
-            <div><label>Date</label><span>${prescription.date}</span></div>
-            <div><label>Medicine</label><span>${prescription.medicine}</span></div>
-            </div>`
+        debugger;
+        // prescriptions.forEach(async prescription => {
+        //     const medName = await getMedicineName(prescription.medicine);
+        //     const formattedDate = getTimeFormated(new Date(prescription.date)).toISOString().split("T")[0];
+        //     html += `<tr>
+        //             <td>${formattedDate}</td>
+        //             <td>${medName}</td>
+        //         </tr>`;
+        // });
+        const promises = prescriptions.map(async (prescription) => {
+            const medName = await getMedicineName(prescription.medicine);
+            const formattedDate = getTimeFormated(new Date(prescription.date));
+
+            html += `<tr>
+                <td>${formattedDate}</td>
+                <td>${medName}</td>
+            </tr>`;
         });
 
-        html += `<br><br>
+        await Promise.all(promises);
+
+        html += `</table>
+        <br><br>
+        </div>
         <button onclick="goBack()">Back</button>`
 
         root.innerHTML = html;
@@ -43,7 +66,7 @@ async function renderPatientHistory(pId, root) {
     }
 }
 
-function goBack() { 
+function goBack() {
     try {
         window.close();
         window.location.href = `physician.html?physicianId=${phyId}`;

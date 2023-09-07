@@ -51,9 +51,6 @@ async function hundlePrescriptionSubmit(event) {
         debugger;
         event.preventDefault();
         const medicineId = document.querySelector<HTMLInputElement>("#medicine-select").value;
-        // const response = await fetch(`/API/medicine/get-medicines`);
-        // const result = await response.json();
-        // const medicine = result.medicines.find(medicine => medicine._id === medicineId);
         if (!patient) throw new Error("Patient not found");
         const date = getTimeFormated(new Date());
         addNewPrescription(medicineId, date, pId, physicianId);
@@ -76,11 +73,11 @@ async function addNewPrescription(medicine, date, patient, physician) {
         if (result.error) throw new Error(result.error);
         alert("Prescription added successfully");
         window.close();
-        window.location.href = `/physician.html?email=${pEmail}&id=${pId}`;
     } catch (error) {
         console.error(error);
     }
 }
+
 
 async function loadMedicineInfo() {
     try {
@@ -98,15 +95,3 @@ async function loadMedicineInfo() {
     }
 }
 
-
-async function getMedicinesDB() {
-    try {
-        const response = await fetch(`/API/medicine/get-medicines`);
-        const result = await response.json();
-        const medicines = result.medicines;
-        console.log(medicines);
-        return medicines;
-    } catch (error) {
-        console.error(error);
-    }
-}

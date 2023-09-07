@@ -85,8 +85,8 @@ function renderHistoryPopUp() {
     try {
         var popupURL = "history.html?_id=" + patientID + "&physicianEmail=" + physicianE; // Replace with the actual URL of your popup page
         // Define the size and position of the popup window
-        var popupWidth = 400;
-        var popupHeight = 300;
+        var popupWidth = 500;
+        var popupHeight = 600;
         var left = (window.innerWidth - popupWidth) / 2;
         var top = (window.innerHeight - popupHeight) / 2;
         // Open the popup window

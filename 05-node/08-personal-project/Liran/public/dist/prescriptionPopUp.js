@@ -34,49 +34,28 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-function hundleLogin(event) {
+var prescriptionIdFromQuery = new URLSearchParams(window.location.search).get('prescriptionId');
+var currPrescription = getPrescriptionFromDB(prescriptionIdFromQuery).then(function (prescription) {
+    renderPrescription(prescription, document.querySelector('#root'));
+});
+function renderPrescription(prescription, root) {
     return __awaiter(this, void 0, void 0, function () {
-        var email_1, password_1, admin, response, data, physician, error_1;
+        var medicineName, physicianName, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
-                    event.preventDefault();
-                    debugger;
-                    email_1 = event.target.email.value;
-                    password_1 = event.target.password.value;
-                    admin = event.target.admin.checked;
-                    if (!email_1 || !password_1)
-                        throw new Error("missing some details");
-                    return [4 /*yield*/, fetch("API/physician/get-physicians", {
-                            method: "GET",
-                            headers: {
-                                'Content-Type': 'application/json'
-                            }
-                        })];
+                    if (!prescription)
+                        throw new Error("No prescription");
+                    if (!root)
+                        throw new Error("No root");
+                    return [4 /*yield*/, getMedicineName(prescription.medicine)];
                 case 1:
-                    response = _a.sent();
-                    return [4 /*yield*/, response.json()];
+                    medicineName = _a.sent();
+                    return [4 /*yield*/, getPhysicianName(prescription.physician)];
                 case 2:
-                    data = _a.sent();
-                    console.log(data.physicians);
-                    physician = data.physicians.find(function (physician) { return physician.email === email_1 && physician.password === password_1; });
-                    if (!physician) {
-                        alert("email or password are incorrect");
-                        throw new Error("email or password are incorrect");
-                    }
-                    // if email and password are correct
-                    if (physician.isAdmin && admin) {
-                        alert("admin");
-                        window.location.href = "admin.html?physicianEmail=" + email_1;
-                    }
-                    else if (!physician.isAdmin && admin) {
-                        alert("You are not an admin, please login again");
-                    }
-                    else {
-                        alert("physician");
-                        window.location.href = "physician.html?physicianEmail=" + email_1;
-                    }
+                    physicianName = _a.sent();
+                    root.innerHTML = "<h1>Prescription</h1>\n        <div id=\"prescription\">\n        <p>Medicine: " + medicineName + "</p>\n        <p>Date: " + getTimeFormated(new Date(prescription.date)) + "</p>\n        <p>Physician: " + physicianName + "</p>\n        </div>\n        <button onclick=\"window.close()\">Close</button>";
                     return [3 /*break*/, 4];
                 case 3:
                     error_1 = _a.sent();
