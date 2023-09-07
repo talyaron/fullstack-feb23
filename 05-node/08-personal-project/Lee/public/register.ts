@@ -2,9 +2,10 @@ async function handleRegister(ev: any) {
   try {
     ev.preventDefault(); // stop form from submitting
     const user = {
-      // get data from form
-      password: ev.target.password.value,
+      userName: ev.target.userName.value,
+      gender: ev.target.gender.value,
       email: ev.target.email.value,
+      password: ev.target.password.value,
     };
 
     const response = await fetch("/API/users/register", {

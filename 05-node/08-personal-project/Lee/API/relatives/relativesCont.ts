@@ -1,7 +1,7 @@
 import { users } from '../users/userModel';
-import { relatives, Relation, Relative, userRelatives, UserRelatives } from './relativesModel';
+import { relatives, Relation, Relative, userRelatives, UserRelatives  } from './relativesModel';
 
-export function getRelatives(req: any, res: any) {
+export function getFamilyMembers(req: any, res: any) {
     try {
         res.send({ relatives });
     } catch (error) {
@@ -23,13 +23,10 @@ export function addRelative(req: any, res: any) {
         const user = users.find((user: any) => user.email === email);
         if (!user) throw new Error("user not found");
 
-        userRelatives.push(new userRelatives(user, newRelative));
+        const newUserRelative = new UserRelatives(user, newRelative); 
+        userRelatives.push(newUserRelative);
         console.log(userRelatives);
-        const userRelatives = userRelatives.filter((userrelative) => userrelative.user.email === email);
-
-        const _relatives = _userRelatives.map((userrelative) => userrelative.relative); //returns only relatives of user
-
-        res.send({ relatives: _relatives });
+        
     } catch (error) {
         console.error(error);
         res.status(500).send({ error: error.message });
@@ -58,9 +55,7 @@ export function updateRelation(req: any, res: any) {
         if (index === -1) {
             throw new Error("relative not found");
         }
-        // if (status !== relation.done && status !== TaskStatus.todo) {
-        //     throw new Error("status not valid");
-        // }
+     
         relatives[index].changeRelation(relation);
         res.send({ relatives });
     } catch (error) {

@@ -33,10 +33,11 @@ var Relative = /** @class */ (function () {
 exports.Relative = Relative;
 exports.relatives = [];
 var UserRelatives = /** @class */ (function () {
-    function UserRelatives(user, task) {
+    function UserRelatives(user, relative) {
         this.user = user;
-        this.task = task;
+        this.relative = relative;
         this.id = Math.random().toString(36).substr(2, 9);
+        this.isVerified = false;
     }
     return UserRelatives;
 }());

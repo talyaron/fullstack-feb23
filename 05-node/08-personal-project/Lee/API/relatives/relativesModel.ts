@@ -36,8 +36,11 @@ export const relatives: Relative[] = [];
 
 export class UserRelatives{
     id:string
-    constructor(public user:User,public task:Task){
+    isVerified: boolean
+
+    constructor(public user:User,public relative:Relative){
         this.id = Math.random().toString(36).substr(2, 9);
+        this.isVerified = false
     }
 }   
 
