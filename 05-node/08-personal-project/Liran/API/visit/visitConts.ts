@@ -1,1 +1,1 @@
-import {VisitModel} from "./visitModel";
+import { VisitModel } from "./visitModel";
