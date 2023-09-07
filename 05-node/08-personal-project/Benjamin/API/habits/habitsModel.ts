@@ -1,23 +1,13 @@
 import { Schema, model } from 'mongoose';
 
-// enum Categorie{
-//     health,
-//     focus,
-//     learn,
-//     fun
-// }
-// enum Time{
-//     morning,
-//     afternoon,
-//     evening
-// }
-
-
+// DB models
 export const HabitSchema = new Schema({
     name: String,
     categorie: String,
     time: String,
-    status:String
+    status:String,
+    email: String
 });
 
 export const HabitModelDB = model("habits", HabitSchema);
+

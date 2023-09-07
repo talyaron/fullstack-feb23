@@ -25,14 +25,12 @@ export class User {
   }
 }
 
-
-
 export const UserSchema = new Schema({
-  userName: String, // String is shorthand for {type: String}
-  gender: String,
-  email: String,
-  password: String,
-  familyMembers: [{ type: Schema.Types.ObjectId, ref: 'User' }], // Reference to other users in the family
+  userName: { type: String, required: false },
+  gender: { type: String, enum: Object.values(Gender), required: false },
+  email: { type: String, required: true, unique: true },
+  password: { type: String, required: true },
+  familyMembers: [{ type: Schema.Types.ObjectId, ref: 'User' }],
 });
 
 export const UserModel = model("users", UserSchema)

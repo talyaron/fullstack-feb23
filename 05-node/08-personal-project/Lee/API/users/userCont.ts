@@ -10,19 +10,28 @@ export const registerUser = async (req: any, res: any) => {
 
 
     const user = new UserModel({ email, password, familyMembers })
-    const userDB = await user.save()
-    console.log(userDB)
 
-    for (const familyMember of familyMembers) {
-      const familyUser = new UserModel(familyMember);
-      await familyUser.save();
+    const validationError = user.validateSync();
+
+    if (validationError) {
+      console.error("Validation error:", validationError);
+      res.status(400).json({ error: validationError.message });
+    } else {
+      // Data is valid, proceed with saving
+      user.save()
+        .then((userDB) => {
+          console.log("User saved:", userDB);
+          res.status(201).json({ ok: true, user: userDB });
+        })
+        .catch((saveError) => {
+          console.error("Error saving user:", saveError);
+          res.status(500).json({ error: "Failed to save user." });
+        });
     }
-
-    res.send({ ok: true, user: userDB });
 
   } catch (error) {
     console.error(error);
-    res.send({ error: error.message });
+    res.status(500).json({ error: error.message });
   }
 }
 

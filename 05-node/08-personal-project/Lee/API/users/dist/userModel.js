@@ -25,10 +25,10 @@ var User = /** @class */ (function () {
 }());
 exports.User = User;
 exports.UserSchema = new mongoose_1.Schema({
-    userName: String,
-    gender: String,
-    email: String,
-    password: String,
+    userName: { type: String, required: false },
+    gender: { type: String, "enum": Object.values(Gender), required: false },
+    email: { type: String, required: true, unique: true },
+    password: { type: String, required: true },
     familyMembers: [{ type: mongoose_1.Schema.Types.ObjectId, ref: 'User' }]
 });
 exports.UserModel = mongoose_1.model("users", exports.UserSchema);

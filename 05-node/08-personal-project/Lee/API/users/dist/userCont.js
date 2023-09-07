@@ -40,46 +40,39 @@ exports.login = exports.registerUser = void 0;
 var userModel_1 = require("./userModel");
 //register user 
 exports.registerUser = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var _a, email, password, familyMembers, user, userDB, _i, familyMembers_1, familyMember, familyUser, error_1;
+    var _a, email, password, familyMembers, user, validationError;
     return __generator(this, function (_b) {
-        switch (_b.label) {
-            case 0:
-                _b.trys.push([0, 6, , 7]);
-                _a = req.body, email = _a.email, password = _a.password, familyMembers = _a.familyMembers;
-                if (!email || !password)
-                    throw new Error("Please complete all fields");
-                user = new userModel_1.UserModel({ email: email, password: password, familyMembers: familyMembers });
-                return [4 /*yield*/, user.save()];
-            case 1:
-                userDB = _b.sent();
-                console.log(userDB);
-                _i = 0, familyMembers_1 = familyMembers;
-                _b.label = 2;
-            case 2:
-                if (!(_i < familyMembers_1.length)) return [3 /*break*/, 5];
-                familyMember = familyMembers_1[_i];
-                familyUser = new userModel_1.UserModel(familyMember);
-                return [4 /*yield*/, familyUser.save()];
-            case 3:
-                _b.sent();
-                _b.label = 4;
-            case 4:
-                _i++;
-                return [3 /*break*/, 2];
-            case 5:
-                res.send({ ok: true, user: userDB });
-                return [3 /*break*/, 7];
-            case 6:
-                error_1 = _b.sent();
-                console.error(error_1);
-                res.send({ error: error_1.message });
-                return [3 /*break*/, 7];
-            case 7: return [2 /*return*/];
+        try {
+            _a = req.body, email = _a.email, password = _a.password, familyMembers = _a.familyMembers;
+            if (!email || !password)
+                throw new Error("Please complete all fields");
+            user = new userModel_1.UserModel({ email: email, password: password, familyMembers: familyMembers });
+            validationError = user.validateSync();
+            if (validationError) {
+                console.error("Validation error:", validationError);
+                res.status(400).json({ error: validationError.message });
+            }
+            else {
+                // Data is valid, proceed with saving
+                user.save()
+                    .then(function (userDB) {
+                    console.log("User saved:", userDB);
+                    res.status(201).json({ ok: true, user: userDB });
+                })["catch"](function (saveError) {
+                    console.error("Error saving user:", saveError);
+                    res.status(500).json({ error: "Failed to save user." });
+                });
+            }
         }
+        catch (error) {
+            console.error(error);
+            res.status(500).json({ error: error.message });
+        }
+        return [2 /*return*/];
     });
 }); };
 exports.login = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var _a, email, password, user, error_2;
+    var _a, email, password, user, error_1;
     return __generator(this, function (_b) {
         switch (_b.label) {
             case 0:
@@ -95,9 +88,9 @@ exports.login = function (req, res) { return __awaiter(void 0, void 0, void 0, f
                 res.send({ ok: true, email: user.email });
                 return [3 /*break*/, 3];
             case 2:
-                error_2 = _b.sent();
-                console.error(error_2);
-                res.send({ error: error_2.message });
+                error_1 = _b.sent();
+                console.error(error_1);
+                res.send({ error: error_1.message });
                 return [3 /*break*/, 3];
             case 3: return [2 /*return*/];
         }
