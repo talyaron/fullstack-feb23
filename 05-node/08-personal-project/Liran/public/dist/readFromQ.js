@@ -124,3 +124,53 @@ function getPatientDB(pId) {
         });
     });
 }
+function getPatientName(patientId) {
+    return __awaiter(this, void 0, void 0, function () {
+        var response, data, patient, patientName, error_3;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 3, , 4]);
+                    return [4 /*yield*/, fetch("/API/patient/get-patients")];
+                case 1:
+                    response = _a.sent();
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    data = _a.sent();
+                    patient = data.patients.find(function (patient) { return patient._id === patientId; });
+                    patientName = patient.firstName + " " + patient.lastName;
+                    return [2 /*return*/, patientName];
+                case 3:
+                    error_3 = _a.sent();
+                    console.error(error_3);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
+            }
+        });
+    });
+}
+function getPhysicianName(physicianId) {
+    return __awaiter(this, void 0, void 0, function () {
+        var response, data, physician, physicianName, error_4;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 3, , 4]);
+                    return [4 /*yield*/, fetch("/API/physician/get-physicians")];
+                case 1:
+                    response = _a.sent();
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    data = _a.sent();
+                    physician = data.physicians.find(function (physician) { return physician._id === physicianId; });
+                    physicianName = "Dr. " + physician.firstName + " " + physician.lastName;
+                    return [2 /*return*/, physicianName];
+                case 3:
+                    error_4 = _a.sent();
+                    console.error(error_4);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
+            }
+        });
+    });
+}

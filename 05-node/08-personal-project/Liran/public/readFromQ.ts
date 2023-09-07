@@ -60,3 +60,27 @@ async function getPatientDB(pId) {
         console.error(error);
     }
 }
+
+async function getPatientName(patientId: string) { 
+    try {
+        const response = await fetch("/API/patient/get-patients");
+        const data = await response.json();
+        const patient = data.patients.find(patient => patient._id === patientId);
+        const patientName = `${patient.firstName} ${patient.lastName}`;
+        return patientName;
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+async function getPhysicianName(physicianId: string) { 
+    try {
+        const response = await fetch("/API/physician/get-physicians");
+        const data = await response.json();
+        const physician = data.physicians.find(physician => physician._id === physicianId);
+        const physicianName = `Dr. ${physician.firstName} ${physician.lastName}`;
+        return physicianName;
+    } catch (error) {
+        console.error(error);
+    }
+}

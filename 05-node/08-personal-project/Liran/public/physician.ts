@@ -60,7 +60,13 @@ async function loadPrescriptions() {
         const response = await fetch("/API/prescription/get-prescriptions");
         const data = await response.json();
         console.log(data);
-        renderPrescriptions(data.prescriptions);
+        const physician = await getPhysicianDB(physicianEmail);
+        const patientResponse = await fetch("/API/patient/get-patients");
+        const patientData = await patientResponse.json();
+        const patients = patientData.patients.filter(patient => patient.physicianId === physician._id);
+        const prescriptions = data.prescriptions.filter(prescription => prescription.physician === patients[0].physicianId);
+        debugger;
+        renderPrescriptions(prescriptions);
     } catch (error) {
         console.error(error);
     }
@@ -95,7 +101,6 @@ async function renderPrescriptions(prescriptions: Prescription[]) {
             </tr>`;
         });
 
-        // Wait for all promises to resolve
         await Promise.all(promises);
     } catch (error) {
         console.error(error);
@@ -125,29 +130,7 @@ async function getMedicineName(medicineId: string) {
     }
 }
 
-async function getPatientName(patientId: string) { 
-    try {
-        const response = await fetch("/API/patient/get-patients");
-        const data = await response.json();
-        const patient = data.patients.find(patient => patient._id === patientId);
-        const patientName = `${patient.firstName} ${patient.lastName}`;
-        return patientName;
-    } catch (error) {
-        console.error(error);
-    }
-}
 
-async function getPhysicianName(physicianId: string) { 
-    try {
-        const response = await fetch("/API/physician/get-physicians");
-        const data = await response.json();
-        const physician = data.physicians.find(physician => physician._id === physicianId);
-        const physicianName = `Dr. ${physician.firstName} ${physician.lastName}`;
-        return physicianName;
-    } catch (error) {
-        console.error(error);
-    }
-}
 
 
 async function loadPatientInfo() {
