@@ -41,8 +41,31 @@ var __spreadArrays = (this && this.__spreadArrays) || function () {
             r[k] = a[j];
     return r;
 };
+var _this = this;
 var categories = [];
+var fillterdCategories = [];
 var expenses = [];
+// this function handling the income submit
+function handleIncomeSubmit(ev) {
+    try {
+        var urlParams = new URLSearchParams(window.location.search);
+        var userName = urlParams.get("userName");
+        ev.preventDefault();
+        if (!ev || !ev.target)
+            throw new Error("event not found");
+        var userIncome = ev.target.income.value;
+        var resultRoot = document.querySelector(".total-number--income");
+        if (!resultRoot)
+            throw new Error("resultRoot not found");
+        // renderResult(resultRoot, userIncome);
+        calculateBalance();
+        ev.target.reset();
+        addIncomeToDB(userName, userIncome);
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
 // this function is used to handle accordion click
 function handleAccordionClick() {
     return __awaiter(this, void 0, void 0, function () {
@@ -55,11 +78,13 @@ function handleAccordionClick() {
                     return [4 /*yield*/, getExpensesFromDB()];
                 case 2:
                     _a.sent();
-                    return [4 /*yield*/, getUserIncomeFromDB()];
+                    //   await getUserIncomeFromDB();
+                    return [4 /*yield*/, renderExpencesTable()];
                 case 3:
+                    //   await getUserIncomeFromDB();
                     _a.sent();
                     accordion = document.querySelectorAll(".thead");
-                    //   console.log(accordion);
+                    console.log(accordion);
                     // this method will take care the accordion functionality
                     accordion.forEach(function (head) {
                         // first we handling the fold and unfold functions
@@ -76,45 +101,18 @@ function handleAccordionClick() {
                             if (nextElementSibling.classList.contains("off")) {
                                 nextElementSibling.classList.remove("off");
                                 // second we handling the svg replacing (plus, minus)
-                                createSvgDiv.innerHTML = "<svg\n        xmlns=\"http://www.w3.org/2000/svg\"\n        fill=\"none\"\n        viewBox=\"0 0 24 24\"\n        stroke-width=\"1.5\"\n        stroke=\"currentColor\"\n        class=\"collapse-icon\"\n      >\n        <path\n          stroke-linecap=\"round\"\n          stroke-linejoin=\"round\"\n          d=\"M18 12H6\"\n        />\n      </svg>";
+                                createSvgDiv.innerHTML = "<svg\n            xmlns=\"http://www.w3.org/2000/svg\"\n            fill=\"none\"\n            viewBox=\"0 0 24 24\"\n            stroke-width=\"1.5\"\n            stroke=\"currentColor\"\n            class=\"collapse-icon\"\n          >\n            <path\n              stroke-linecap=\"round\"\n              stroke-linejoin=\"round\"\n              d=\"M18 12H6\"\n            />\n          </svg>";
                                 svgRoot.replaceChild(createSvgDiv, svgRoot.childNodes[1]);
                             }
                             else {
                                 nextElementSibling.classList.add("off");
-                                createSvgDiv.innerHTML = "<svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"1.5\" stroke=\"currentColor\" class=\"collapse-icon\">\n        <path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M12 6v12m6-6H6\" />\n      </svg>";
+                                createSvgDiv.innerHTML = "<svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"1.5\" stroke=\"currentColor\" class=\"collapse-icon\">\n            <path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M12 6v12m6-6H6\" />\n          </svg>";
                                 svgRoot.replaceChild(createSvgDiv, svgRoot.childNodes[1]);
                             }
                         });
                     });
                     return [2 /*return*/];
             }
-        });
-    });
-}
-// this function handling the income submit
-function handleIncomeSubmit(ev) {
-    return __awaiter(this, void 0, void 0, function () {
-        var urlParams, userName, userIncome, resultRoot;
-        return __generator(this, function (_a) {
-            try {
-                urlParams = new URLSearchParams(window.location.search);
-                userName = urlParams.get("userName");
-                ev.preventDefault();
-                if (!ev || !ev.target)
-                    throw new Error("event not found");
-                userIncome = ev.target.income.value;
-                resultRoot = document.querySelector(".total-number--income");
-                if (!resultRoot)
-                    throw new Error("resultRoot not found");
-                renderResult(resultRoot, userIncome);
-                calculateBalance();
-                ev.target.reset();
-                addIncomeToDB(userName, userIncome);
-            }
-            catch (error) {
-                console.error(error);
-            }
-            return [2 /*return*/];
         });
     });
 }
@@ -150,7 +148,7 @@ function addIncomeToDB(userName, userIncome) {
 // this function handling the expence submit
 function handleExpenceSubmit(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var resultRoot, urlParams, userName, expenseName, expenseCategory, expenseAmount, respone, result, error_2;
+        var resultRoot, urlParams, userName, expenseName, categoryName, expenseAmount, respone, result, error_2;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -162,7 +160,7 @@ function handleExpenceSubmit(ev) {
                     urlParams = new URLSearchParams(window.location.search);
                     userName = urlParams.get("userName");
                     expenseName = ev.target.expenseName.value;
-                    expenseCategory = ev.target.expenseCategory.value;
+                    categoryName = ev.target.categoryName.value;
                     expenseAmount = ev.target.expenseAmount.valueAsNumber;
                     return [4 /*yield*/, fetch("/API/expense/add-expense", {
                             method: "POST",
@@ -170,7 +168,7 @@ function handleExpenceSubmit(ev) {
                             body: JSON.stringify({
                                 userName: userName,
                                 expenseName: expenseName,
-                                expenseCategory: expenseCategory,
+                                categoryName: categoryName,
                                 expenseAmount: expenseAmount
                             })
                         })];
@@ -181,7 +179,7 @@ function handleExpenceSubmit(ev) {
                     result = _a.sent();
                     renderExpencesTable();
                     handleAccordionClick();
-                    calculateTotalExpense(expenses);
+                    calculateTotalExpense();
                     // renderResult(resultRoot, expenseAmount.toString());
                     // loadDataToLocalStorage()
                     ev.target.reset();
@@ -203,21 +201,24 @@ function getCategoriesFromDB() {
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    _a.trys.push([0, 3, , 4]);
+                    _a.trys.push([0, 4, , 5]);
                     return [4 /*yield*/, fetch("/API/category/get-categories")];
                 case 1:
                     response = _a.sent();
                     return [4 /*yield*/, response.json()];
                 case 2:
                     allCategories = (_a.sent()).allCategories;
-                    categoriesByUserName = sortCategoriesByUserName(allCategories);
+                    return [4 /*yield*/, sortCategoriesByUserName(allCategories)];
+                case 3:
+                    categoriesByUserName = _a.sent();
+                    categoriesByUserName.sort(sortObjectsByProperty);
                     categories = __spreadArrays(categoriesByUserName);
                     return [2 /*return*/, categories];
-                case 3:
+                case 4:
                     error_3 = _a.sent();
                     console.error(error_3);
-                    return [3 /*break*/, 4];
-                case 4: return [2 /*return*/];
+                    return [3 /*break*/, 5];
+                case 5: return [2 /*return*/];
             }
         });
     });
@@ -314,33 +315,31 @@ function deleteExpense(ev) {
 }
 function editExpense(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var id, name, amount, resposne, result, error_7;
+        var _id, name, amount, resposne, result, error_7;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
-                    id = ev.target.parentElement.parentElement.id;
+                    _id = ev.target.parentElement.parentElement.id;
                     name = prompt("\u05DE\u05D4 \u05D4\u05E9\u05DD \u05D4\u05D7\u05D3\u05E9 \u05E9\u05DC \u05D4\u05D4\u05D5\u05E6\u05D0\u05D4 \u05E9\u05DC\u05DA?");
                     amount = Number(prompt("\u05DE\u05D4 \u05D4\u05E1\u05DB\u05D5\u05DD \u05D4\u05D7\u05D3\u05E9 \u05E9\u05DC \u05D4\u05D4\u05D5\u05E6\u05D0\u05D4 \u05E9\u05DC\u05DA?"));
-                    debugger;
                     if (name === undefined ||
                         name === null ||
                         amount === undefined ||
                         amount === null ||
-                        id === undefined ||
-                        id === null)
+                        _id === undefined ||
+                        _id === null)
                         throw new Error("some of the parameters are null");
                     return [4 /*yield*/, fetch("/API/expense/update-expense", {
                             method: "PATCH",
                             headers: { "content-type": "application/json" },
-                            body: JSON.stringify({ id: id, name: name, amount: amount })
+                            body: JSON.stringify({ _id: _id, name: name, amount: amount })
                         })];
                 case 1:
                     resposne = _a.sent();
                     return [4 /*yield*/, resposne.json()];
                 case 2:
                     result = _a.sent();
-                    debugger;
                     console.log(result);
                     renderExpencesTable();
                     calculateBalance();
@@ -356,20 +355,52 @@ function editExpense(ev) {
 }
 // this function sorted the categories by user names
 function sortCategoriesByUserName(categories) {
-    try {
-        var urlParams = new URLSearchParams(window.location.search);
-        var userNameFromUrl_1 = urlParams.get("userName");
-        var categoriesByUserName = categories.filter(function (category) {
-            return category.userName === userNameFromUrl_1 ||
-                category.userName === "genericCategory";
+    return __awaiter(this, void 0, void 0, function () {
+        var urlParams, userNameFromUrl_1, categoriesByUserName;
+        return __generator(this, function (_a) {
+            try {
+                urlParams = new URLSearchParams(window.location.search);
+                userNameFromUrl_1 = urlParams.get("userName");
+                categoriesByUserName = categories.filter(function (category) {
+                    return category.userName === userNameFromUrl_1 ||
+                        category.userName === "genericCategory";
+                });
+                // console.log(categoriesByUserName);
+                // const fillterdCategories = removeDuplicates(categoriesByUserName);
+                // return fillterdCategories;
+                return [2 /*return*/, categoriesByUserName];
+            }
+            catch (error) {
+                console.error(error);
+            }
+            return [2 /*return*/];
         });
-        // console.log(categoriesByUserName);
-        var fillterdCategories = removeDuplicates(categoriesByUserName);
-        return fillterdCategories;
-    }
-    catch (error) {
-        console.error(error);
-    }
+    });
+}
+// this function sort the categories by user name and actual expenses
+function sortCategoriesByUserActualExpenses(expenses) {
+    return __awaiter(this, void 0, void 0, function () {
+        var categoriesByExpenses, error_8;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 3, , 4]);
+                    return [4 /*yield*/, getExpensesFromDB()];
+                case 1:
+                    _a.sent();
+                    return [4 /*yield*/, getUserIncomeFromDB()];
+                case 2:
+                    _a.sent();
+                    categoriesByExpenses = removeDuplicates(expenses);
+                    return [2 /*return*/, categoriesByExpenses];
+                case 3:
+                    error_8 = _a.sent();
+                    console.error(error_8);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
+            }
+        });
+    });
 }
 // this function sorted the categories by user names
 function sortExpensesByUserName(expenses) {
@@ -386,28 +417,22 @@ function sortExpensesByUserName(expenses) {
 // this function sort the expences by category alfabetically
 function sortByCategory() {
     return __awaiter(this, void 0, void 0, function () {
-        var sortedCategories, error_8;
+        var sortedCategories;
         return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    _a.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, getCategoriesFromDB()];
-                case 1:
-                    _a.sent();
-                    sortedCategories = categories.sort(function (a, b) {
-                        if (a.categoryName > b.categoryName)
-                            return 1;
-                        if (a.categoryName < b.categoryName)
-                            return -1;
-                        return 0;
-                    });
-                    return [2 /*return*/, sortedCategories];
-                case 2:
-                    error_8 = _a.sent();
-                    console.error(error_8);
-                    return [3 /*break*/, 3];
-                case 3: return [2 /*return*/];
+            try {
+                sortedCategories = categories.sort(function (a, b) {
+                    if (a.categoryName > b.categoryName)
+                        return 1;
+                    if (a.categoryName < b.categoryName)
+                        return -1;
+                    return 0;
+                });
+                return [2 /*return*/, sortedCategories];
             }
+            catch (error) {
+                console.error(error);
+            }
+            return [2 /*return*/];
         });
     });
 }
@@ -450,20 +475,13 @@ function calculateTotalExpense() {
     return __awaiter(this, void 0, void 0, function () {
         var resultRoot, totalExpence;
         return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    resultRoot = document.querySelector(".total-number--expense");
-                    return [4 /*yield*/, getExpensesFromDB()];
-                case 1:
-                    _a.sent();
-                    debugger;
-                    totalExpence = 0;
-                    expenses.forEach(function (expense) {
-                        totalExpence += Number(expense.expenseAmount);
-                    });
-                    renderResult(resultRoot, totalExpence);
-                    return [2 /*return*/, totalExpence];
-            }
+            resultRoot = document.querySelector(".total-number--expense");
+            totalExpence = 0;
+            expenses.forEach(function (expense) {
+                totalExpence += Number(expense.expenseAmount);
+            });
+            renderResult(resultRoot, totalExpence);
+            return [2 /*return*/, totalExpence];
         });
     });
 }
@@ -477,13 +495,13 @@ function calculateBalance() {
                     _d.trys.push([0, 5, , 6]);
                     balanceRoot = document.querySelector(".total-number--balance");
                     incomeRoot = document.querySelector(".total-number--income");
-                    return [4 /*yield*/, calculateTotalExpense(expenses)];
+                    return [4 /*yield*/, calculateTotalExpense()];
                 case 1:
                     allExpenses = _d.sent();
                     return [4 /*yield*/, getUserIncomeFromDB()];
                 case 2:
                     userIncome = _d.sent();
-                    incomeRoot.innerHTML = userIncome;
+                    incomeRoot.innerHTML = userIncome + "&#8362;";
                     if (!balanceRoot)
                         throw new Error("balance not found");
                     _a = balanceRoot;
@@ -514,15 +532,26 @@ function calculateBalance() {
 }
 // || userName === "genericCategory"
 // revoke function onLoading
-window.onload = function () {
-    calculateBalance();
-    getCategoriesFromDB();
-    getExpensesFromDB();
-    handleAccordionClick();
-    renderExpenceCalculator();
-    renderExpencesTable();
-    // renderResult(resultRoot, userIncome);
-};
+window.onload = function () { return __awaiter(_this, void 0, void 0, function () {
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0: return [4 /*yield*/, checkUser()];
+            case 1:
+                _a.sent();
+                return [4 /*yield*/, getExpensesFromDB()];
+            case 2:
+                _a.sent();
+                return [4 /*yield*/, getCategoriesFromDB()];
+            case 3:
+                _a.sent();
+                calculateBalance();
+                handleAccordionClick();
+                renderExpenceCalculator();
+                renderExpencesTable();
+                return [2 /*return*/];
+        }
+    });
+}); };
 function ExportToExcel(type, fn, dl) {
     var elt = document.querySelector("#tbl_exporttable_to_xls");
     var wb = XLSX.utils.table_to_book(elt, { sheet: "sheet1" });
@@ -533,15 +562,90 @@ function ExportToExcel(type, fn, dl) {
 // when refreshing the page this function will render the total numbers from local storage
 // this function will remove duplicates from the array
 function removeDuplicates(arr) {
-    try {
-        var newCategoriesNames_1 = new Set();
-        arr.forEach(function (category) {
-            newCategoriesNames_1.add(category.categoryName);
+    return __awaiter(this, void 0, void 0, function () {
+        var newCategoriesNames_1, newCategoriesArray;
+        return __generator(this, function (_a) {
+            try {
+                newCategoriesNames_1 = new Set();
+                arr.forEach(function (obj) {
+                    newCategoriesNames_1.add(obj.categoryName);
+                });
+                newCategoriesArray = Array.from(newCategoriesNames_1);
+                newCategoriesArray.sort();
+                fillterdCategories = __spreadArrays(newCategoriesArray);
+                return [2 /*return*/, newCategoriesArray];
+            }
+            catch (error) {
+                console.error(error);
+            }
+            return [2 /*return*/];
         });
-        var newCategoriesArray = Array.from(newCategoriesNames_1);
-        return newCategoriesArray;
+    });
+}
+function getCategoryId(categoryName) {
+    try {
+        var categoryId = categories.find(function (category) { return category.categoryName === categoryName; });
+        return categoryId._id;
     }
     catch (error) {
         console.error(error);
     }
+}
+function sortObjectsByProperty(a, b) {
+    if (a.categoryName < b.categoryName) {
+        return -1;
+    }
+    if (a.categoryName > b.categoryName) {
+        return 1;
+    }
+    return 0;
+}
+function checkUser() {
+    return __awaiter(this, void 0, void 0, function () {
+        var urlParams, userName, response, result, error_11;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 3, , 4]);
+                    urlParams = new URLSearchParams(window.location.search);
+                    userName = urlParams.get("userName");
+                    console.log(userName);
+                    if (!userName) {
+                        window.location.href = "/register.html";
+                    }
+                    return [4 /*yield*/, fetch("/API/users/check-user", {
+                            method: "POST",
+                            headers: {
+                                "content-type": "application/json"
+                            },
+                            body: JSON.stringify({ userName: userName })
+                        })];
+                case 1:
+                    response = _a.sent();
+                    console.log(response);
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    result = _a.sent();
+                    console.log(result);
+                    if (result.message === "user exist") {
+                        window.location.href = "/index.html";
+                    }
+                    // } else {
+                    //   alert("user does not exist, please register");
+                    //   window.location.href = "/register.html";
+                    // }
+                    console.log(result.message);
+                    if (result.message === "user does not exist") {
+                        alert("user does not exist, please register");
+                        window.location.href = "/register.html";
+                    }
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_11 = _a.sent();
+                    console.error(error_11);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
+            }
+        });
+    });
 }

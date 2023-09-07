@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.login = exports.getIncome = exports.addIncome = exports.registerUser = void 0;
+exports.checkUser = exports.login = exports.getIncome = exports.addIncome = exports.registerUser = void 0;
 var usersModel_1 = require("./usersModel");
 exports.registerUser = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var _a, userName, email, password, userExist, user, error_1;
@@ -127,23 +127,24 @@ exports.getIncome = function (req, res) { return __awaiter(void 0, void 0, void 
     });
 }); };
 exports.login = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var _a, email, password, userExist, error_4;
+    var _a, userName, password, userExist, error_4;
     return __generator(this, function (_b) {
         switch (_b.label) {
             case 0:
                 _b.trys.push([0, 2, , 3]);
-                _a = req.body, email = _a.email, password = _a.password;
-                if (!email || !password)
+                _a = req.body, userName = _a.userName, password = _a.password;
+                if (!userName || !password)
                     throw new Error("Please complete all fields");
-                return [4 /*yield*/, usersModel_1.UserModel.find({ email: email })];
+                return [4 /*yield*/, usersModel_1.UserModel.find({ userName: userName })];
             case 1:
                 userExist = _b.sent();
                 if (userExist.length === 0) {
                     res.send({ message: "user does not exist, please register" });
                 }
-                else if (userExist[0].email === email &&
+                else if (userExist[0].userName === userName &&
                     userExist[0].password === password) {
-                    res.send({ ok: true });
+                    console.log(userExist);
+                    res.send(userExist);
                 }
                 return [3 /*break*/, 3];
             case 2:
@@ -155,3 +156,22 @@ exports.login = function (req, res) { return __awaiter(void 0, void 0, void 0, f
         }
     });
 }); };
+exports.checkUser = function (req, res) {
+    try {
+        var userName = req.body.userName;
+        console.log(userName);
+        if (!userName)
+            throw new Error("email is missing");
+        var userExists = usersModel_1.UserModel.find({ userName: userName });
+        console.log(userExists);
+        if (userExists)
+            res.send({ message: "user exist" });
+        if (!userExists || userExists === undefined || userExists === null)
+            res.send({ message: "user does not exist" });
+        // res.send({ email: email });
+    }
+    catch (error) {
+        console.error(error);
+        res.status(500).send(error.message);
+    }
+};

@@ -39,19 +39,19 @@ exports.__esModule = true;
 exports.deleteExpense = exports.updateExpense = exports.getAllExpenses = exports.addExpense = void 0;
 var expenseModel_1 = require("./expenseModel");
 exports.addExpense = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var _a, userName, expenseName, expenseCategory, expenseAmount, expences, error_1;
+    var _a, userName, expenseName, categoryName, expenseAmount, expences, error_1;
     return __generator(this, function (_b) {
         switch (_b.label) {
             case 0:
                 _b.trys.push([0, 2, , 3]);
-                _a = req.body, userName = _a.userName, expenseName = _a.expenseName, expenseCategory = _a.expenseCategory, expenseAmount = _a.expenseAmount;
-                console.log(userName, expenseName, expenseCategory, expenseAmount);
-                if (!userName || !expenseName || !expenseCategory || !expenseAmount)
+                _a = req.body, userName = _a.userName, expenseName = _a.expenseName, categoryName = _a.categoryName, expenseAmount = _a.expenseAmount;
+                console.log(userName, expenseName, categoryName, expenseAmount);
+                if (!userName || !expenseName || !categoryName || !expenseAmount)
                     throw new Error("please complete all fields");
                 expences = new expenseModel_1.ExpenseModel({
                     userName: userName,
                     expenseName: expenseName,
-                    expenseCategory: expenseCategory,
+                    categoryName: categoryName,
                     expenseAmount: expenseAmount
                 });
                 return [4 /*yield*/, expences.save()];
@@ -89,31 +89,32 @@ exports.getAllExpenses = function (req, res) { return __awaiter(void 0, void 0, 
     });
 }); };
 exports.updateExpense = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var _a, id, name, amount, error_3;
+    var _a, _id, name, amount, filter, newParameters, update, error_3;
     return __generator(this, function (_b) {
         switch (_b.label) {
             case 0:
-                _b.trys.push([0, 2, , 3]);
-                _a = req.body, id = _a.id, name = _a.name, amount = _a.amount;
-                console.log({ id: id, name: name, amount: amount });
-                if (!id || !name || !amount) {
+                _b.trys.push([0, 3, , 4]);
+                _a = req.body, _id = _a._id, name = _a.name, amount = _a.amount;
+                console.log({ _id: _id, name: name, amount: amount });
+                if (!_id || !name || !amount) {
                     throw new Error("some of the parameters are missing");
                 }
-                // const newExpense = { id, name, amount };
-                // console.log(newExpense);
-                return [4 /*yield*/, expenseModel_1.ExpenseModel.findByIdAndUpdate(id, { id: id, name: name, amount: amount }, { "new": true })];
+                filter = { _id: _id };
+                newParameters = { expenseName: name, expenseAmount: amount };
+                return [4 /*yield*/, expenseModel_1.ExpenseModel.findByIdAndUpdate(filter, newParameters)];
             case 1:
-                // const newExpense = { id, name, amount };
-                // console.log(newExpense);
-                _b.sent();
-                res.send({ message: "expense updated successfully" });
-                return [3 /*break*/, 3];
+                update = _b.sent();
+                return [4 /*yield*/, update.save()];
             case 2:
+                _b.sent();
+                res.send({ ok: true });
+                return [3 /*break*/, 4];
+            case 3:
                 error_3 = _b.sent();
                 console.error(error_3);
                 res.status(500).send({ error: error_3.message });
-                return [3 /*break*/, 3];
-            case 3: return [2 /*return*/];
+                return [3 /*break*/, 4];
+            case 4: return [2 /*return*/];
         }
     });
 }); };
