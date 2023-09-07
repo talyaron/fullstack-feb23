@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 function handleSignIn(event) {
     return __awaiter(this, void 0, void 0, function () {
-        var userName, password, response, result, error_1;
+        var userName, password, response, result, messageRoot, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -58,6 +58,14 @@ function handleSignIn(event) {
                 case 2:
                     result = _a.sent();
                     console.log(result);
+                    console.log(result);
+                    messageRoot = document.querySelector("#message");
+                    if (result.error === "email or password are incorrect") {
+                        messageRoot.innerHTML = "<h3>" + result.error + "</h3><a href=\"/register.html\"><button>REGISTER NOW</button></a>";
+                    }
+                    else {
+                        window.location.href = "/index.html?userName=" + result.userName;
+                    }
                     return [3 /*break*/, 4];
                 case 3:
                     error_1 = _a.sent();

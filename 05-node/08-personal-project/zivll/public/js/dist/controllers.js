@@ -535,14 +535,14 @@ function calculateBalance() {
 window.onload = function () { return __awaiter(_this, void 0, void 0, function () {
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, checkUser()];
+            case 0: 
+            //   await checkUser();
+            return [4 /*yield*/, getExpensesFromDB()];
             case 1:
-                _a.sent();
-                return [4 /*yield*/, getExpensesFromDB()];
-            case 2:
+                //   await checkUser();
                 _a.sent();
                 return [4 /*yield*/, getCategoriesFromDB()];
-            case 3:
+            case 2:
                 _a.sent();
                 calculateBalance();
                 handleAccordionClick();

@@ -358,7 +358,7 @@ async function calculateBalance() {
 
 // revoke function onLoading
 window.onload = async () => {
-  await checkUser();
+  //   await checkUser();
   await getExpensesFromDB();
   await getCategoriesFromDB();
 

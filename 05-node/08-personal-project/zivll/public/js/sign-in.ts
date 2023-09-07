@@ -16,13 +16,13 @@ async function handleSignIn(event: any) {
     const result = await response.json();
     console.log(result);
 
-    // console.log(result);
-    // const messageRoot = document.querySelector("#message");
-    // if (result.error === "email or password are incorrect") {
-    //   messageRoot.innerHTML = `<h3>${result.error}</h3><a href="/register.html"><button>REGISTER NOW</button></a>`;
-    // } else {
-    //   window.location.href = `/index.html?userName=${result.userName}`;
-    // }
+    console.log(result);
+    const messageRoot = document.querySelector("#message");
+    if (result.error === "email or password are incorrect") {
+      messageRoot.innerHTML = `<h3>${result.error}</h3><a href="/register.html"><button>REGISTER NOW</button></a>`;
+    } else {
+      window.location.href = `/index.html?userName=${result.userName}`;
+    }
   } catch (error) {
     console.error(error);
   }
