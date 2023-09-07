@@ -33,3 +33,12 @@ class Medicine {
         public _id: string 
     ) { }
 }
+
+class Prescription {
+    constructor(public date: Date,
+        public patient: string,
+        public medicine: string,
+        public physician: string,
+        public _id: string
+    ) { }
+}

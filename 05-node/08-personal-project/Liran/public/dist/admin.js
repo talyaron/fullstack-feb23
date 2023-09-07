@@ -127,11 +127,12 @@ function hundlePatientList() {
 }
 function renderPatientList(html) {
     return __awaiter(this, void 0, void 0, function () {
-        var response, data, responsePhysician, dataPhysician_1, physiciansList, patientsList, tempHtml_2, error_3;
+        var response, data, responsePhysician, dataPhysician, physiciansList, patientsList, tempHtml_2, promise, error_3;
+        var _this = this;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    _a.trys.push([0, 5, , 6]);
+                    _a.trys.push([0, 6, , 7]);
                     return [4 /*yield*/, fetch("/API/patient/get-patients")];
                 case 1:
                     response = _a.sent();
@@ -143,21 +144,34 @@ function renderPatientList(html) {
                     responsePhysician = _a.sent();
                     return [4 /*yield*/, responsePhysician.json()];
                 case 4:
-                    dataPhysician_1 = _a.sent();
-                    physiciansList = dataPhysician_1.physicians;
+                    dataPhysician = _a.sent();
+                    physiciansList = dataPhysician.physicians;
                     patientsList = data.patients;
                     tempHtml_2 = "<h2>Patient List</h2>\n        <table>\n        <tr>\n        <th>First Name</th>\n        <th>Last Name</th>\n        <th>ID</th>\n        <th>Age</th>\n        <th>Phone Number</th>\n        <th>Weight</th>\n        <th>Height</th>\n        <th>Smoking</th>\n        <th>Address</th>\n        <th>Physician</th>\n        </tr>";
-                    patientsList.forEach(function (patient) {
-                        tempHtml_2 += "<tr>\n            <td>" + patient.firstName + "</td>\n            <td>" + patient.lastName + "</td>\n            <td>" + patient.patientId + "</td>\n            <td>" + patient.age + "</td>\n            <td>" + patient.phoneNum + "</td>\n            <td>" + patient.weight + "</td>\n            <td>" + patient.height + "</td>\n            <td>" + patient.smoking + "</td>\n            <td>" + patient.address + "</td>\n            <td>Dr. " + dataPhysician_1.physicians.find(function (p) { return p._id === patient.physicianId; }).lastName + "</td>\n            </tr>";
-                    });
+                    promise = patientsList.map(function (patient) { return __awaiter(_this, void 0, void 0, function () {
+                        var physicianName;
+                        return __generator(this, function (_a) {
+                            switch (_a.label) {
+                                case 0: return [4 /*yield*/, getPhysicianName(patient.physicianId)];
+                                case 1:
+                                    physicianName = _a.sent();
+                                    debugger;
+                                    tempHtml_2 += "<tr>\n            <td>" + patient.firstName + "</td>\n            <td>" + patient.lastName + "</td>\n            <td>" + patient.patientId + "</td>\n            <td>" + patient.age + "</td>\n            <td>" + patient.phoneNum + "</td>\n            <td>" + patient.weight + "</td>\n            <td>" + patient.height + "</td>\n            <td>" + patient.smoking + "</td>\n            <td>" + patient.address + "</td>\n            <td>" + physicianName + "</td>\n            </tr>";
+                                    return [2 /*return*/];
+                            }
+                        });
+                    }); });
+                    return [4 /*yield*/, Promise.all(promise)];
+                case 5:
+                    _a.sent();
                     tempHtml_2 += "</table>";
                     html.innerHTML = tempHtml_2;
-                    return [3 /*break*/, 6];
-                case 5:
+                    return [3 /*break*/, 7];
+                case 6:
                     error_3 = _a.sent();
                     console.error(error_3);
-                    return [3 /*break*/, 6];
-                case 6: return [2 /*return*/];
+                    return [3 /*break*/, 7];
+                case 7: return [2 /*return*/];
             }
         });
     });

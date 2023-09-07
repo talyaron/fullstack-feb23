@@ -34,8 +34,17 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+debugger;
 var pEmail = getEmailFromQuery();
+var physicianId;
+var physician = getPhysicianDB(pEmail).then(function (physician) {
+    console.log(physician);
+    physicianId = physician._id;
+});
 var pId = getPatientIdFromQuery();
+var patient = getPatientDB(pId).then(function (patient) {
+    console.log(patient);
+});
 var medicines = getMedicinesDB().then(function (medicines) {
     renderForm(medicines, document.querySelector("#root"));
 });
@@ -48,11 +57,11 @@ function renderForm(medicines, root) {
                     throw new Error("No medicines");
                 if (!root)
                     throw new Error("No root");
-                html_1 = "<form id=\"prescription-form\"><div>\n        <label>Medicine</label>\n        <select id=\"medicine-select\" onchange=\"loadMedicineInfo()\">";
+                html_1 = "<form id=\"prescription-form\" onsubmit=\"hundlePrescriptionSubmit(event)\">\n        <div><label>Date</label>\n        <input type=\"date\" id=\"date\" value=\"" + new Date().toISOString().slice(0, 10) + "\" readonly></div>\n        <div>\n        <label>Medicine</label>\n        <select id=\"medicine-select\" onchange=\"loadMedicineInfo()\">";
                 medicines.forEach(function (medicine) {
                     html_1 += "<option value=\"" + medicine._id + "\">" + medicine.name + "</option>";
                 });
-                html_1 += "</select>\n        </div>\n        <div><label>Dosage Per Day</label>\n        <input type=\"number\" value=\"" + medicines[0].dosagePerDay + "\" readonly></div>\n        <div><label>Duration</label>\n        <input type=\"number\" value=\"" + medicines[0].maxDuration + "\" readonly></div>\n        <button type=\"submit\">Submit</button>\n        </form>";
+                html_1 += "</select>\n        </div>\n        <div><label>Dosage Per Day</label>\n        <input type=\"number\" id=\"dosage-per-day\" value=\"" + medicines[0].dosagePerDay + "\" readonly></div>\n        <div><label>Duration</label>\n        <input type=\"number\" id=\"duration\" value=\"" + medicines[0].maxDuration + "\" readonly></div>\n        <input type=\"submit\" value=\"Save Prescription\"></button>\n        </form>";
                 root.innerHTML = html_1;
             }
             catch (error) {
@@ -62,9 +71,66 @@ function renderForm(medicines, root) {
         });
     });
 }
+function hundlePrescriptionSubmit(event) {
+    return __awaiter(this, void 0, void 0, function () {
+        var medicineId, date;
+        return __generator(this, function (_a) {
+            try {
+                debugger;
+                event.preventDefault();
+                medicineId = document.querySelector("#medicine-select").value;
+                // const response = await fetch(`/API/medicine/get-medicines`);
+                // const result = await response.json();
+                // const medicine = result.medicines.find(medicine => medicine._id === medicineId);
+                if (!patient)
+                    throw new Error("Patient not found");
+                date = getTimeFormated(new Date());
+                addNewPrescription(medicineId, date, pId, physicianId);
+            }
+            catch (error) {
+                console.error(error);
+            }
+            return [2 /*return*/];
+        });
+    });
+}
+function addNewPrescription(medicine, date, patient, physician) {
+    return __awaiter(this, void 0, void 0, function () {
+        var response, result, error_1;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 3, , 4]);
+                    return [4 /*yield*/, fetch("/API/prescription/add-prescription", {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json"
+                            },
+                            body: JSON.stringify({ date: date, patient: patient, medicine: medicine, physician: physician })
+                        })];
+                case 1:
+                    response = _a.sent();
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    result = _a.sent();
+                    if (result.error)
+                        throw new Error(result.error);
+                    alert("Prescription added successfully");
+                    window.close();
+                    window.location.href = "/physician.html?email=" + pEmail + "&id=" + pId;
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_1 = _a.sent();
+                    console.error(error_1);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
+            }
+        });
+    });
+}
 function loadMedicineInfo() {
     return __awaiter(this, void 0, void 0, function () {
-        var medicineId_1, response, result, medicine, dosagePerDay, duration, error_1;
+        var medicineId_1, response, result, medicine, dosagePerDay, duration, error_2;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -79,12 +145,13 @@ function loadMedicineInfo() {
                     medicine = result.medicines.find(function (medicine) { return medicine._id === medicineId_1; });
                     dosagePerDay = document.querySelector("#dosage-per-day");
                     duration = document.querySelector("#duration");
-                    dosagePerDay.value = medicine.dosagePerDay.toString();
-                    duration.value = medicine.duration.toString();
+                    debugger;
+                    dosagePerDay.value = medicine.dosagePerDay;
+                    duration.value = medicine.maxDuration;
                     return [3 /*break*/, 4];
                 case 3:
-                    error_1 = _a.sent();
-                    console.error(error_1);
+                    error_2 = _a.sent();
+                    console.error(error_2);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }
@@ -93,7 +160,7 @@ function loadMedicineInfo() {
 }
 function getMedicinesDB() {
     return __awaiter(this, void 0, void 0, function () {
-        var response, result, medicines_1, error_2;
+        var response, result, medicines_1, error_3;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -108,8 +175,8 @@ function getMedicinesDB() {
                     console.log(medicines_1);
                     return [2 /*return*/, medicines_1];
                 case 3:
-                    error_2 = _a.sent();
-                    console.error(error_2);
+                    error_3 = _a.sent();
+                    console.error(error_3);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }

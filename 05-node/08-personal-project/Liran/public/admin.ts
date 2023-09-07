@@ -119,7 +119,9 @@ async function renderPatientList(html: HTMLDivElement) {
         <th>Address</th>
         <th>Physician</th>
         </tr>`;
-        patientsList.forEach(patient => {
+        const promise = patientsList.map(async (patient) => {
+            const physicianName = await getPhysicianName(patient.physicianId);
+            debugger;
             tempHtml += `<tr>
             <td>${patient.firstName}</td>
             <td>${patient.lastName}</td>
@@ -130,9 +132,11 @@ async function renderPatientList(html: HTMLDivElement) {
             <td>${patient.height}</td>
             <td>${patient.smoking}</td>
             <td>${patient.address}</td>
-            <td>Dr. ${dataPhysician.physicians.find(p => p._id === patient.physicianId).lastName}</td>
+            <td>${physicianName}</td>
             </tr>`;
         });
+        await Promise.all(promise);
+
         tempHtml += `</table>`;
         html.innerHTML = tempHtml;
     } catch (error) {

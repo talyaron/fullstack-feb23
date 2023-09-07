@@ -1,9 +1,9 @@
 "use strict";
 exports.__esModule = true;
-exports.getUserRelatives = exports.updateRelation = exports.deleteRelative = exports.addRelative = exports.getRelatives = void 0;
+exports.getUserRelatives = exports.updateRelation = exports.deleteRelative = exports.addRelative = exports.getFamilyMembers = void 0;
 var userModel_1 = require("../users/userModel");
 var relativesModel_1 = require("./relativesModel");
-function getRelatives(req, res) {
+function getFamilyMembers(req, res) {
     try {
         res.send({ relatives: relativesModel_1.relatives });
     }
@@ -11,7 +11,7 @@ function getRelatives(req, res) {
         console.error(error);
     }
 }
-exports.getRelatives = getRelatives;
+exports.getFamilyMembers = getFamilyMembers;
 function addRelative(req, res) {
     try {
         var _a = req.body, fullName = _a.fullName, birthDate = _a.birthDate, country = _a.country, email_1 = _a.email;
@@ -26,11 +26,9 @@ function addRelative(req, res) {
         var user = userModel_1.users.find(function (user) { return user.email === email_1; });
         if (!user)
             throw new Error("user not found");
-        userRelatives_1.push(new userRelatives_1(user, newRelative));
-        console.log(userRelatives_1);
-        var userRelatives_1 = userRelatives_1.filter(function (userrelative) { return userrelative.user.email === email_1; });
-        var _relatives = _userRelatives.map(function (userrelative) { return userrelative.relative; }); //returns only relatives of user
-        res.send({ relatives: _relatives });
+        var newUserRelative = new relativesModel_1.UserRelatives(user, newRelative);
+        relativesModel_1.userRelatives.push(newUserRelative);
+        console.log(relativesModel_1.userRelatives);
     }
     catch (error) {
         console.error(error);
@@ -61,9 +59,6 @@ function updateRelation(req, res) {
         if (index === -1) {
             throw new Error("relative not found");
         }
-        // if (status !== relation.done && status !== TaskStatus.todo) {
-        //     throw new Error("status not valid");
-        // }
         relativesModel_1.relatives[index].changeRelation(relation);
         res.send({ relatives: relativesModel_1.relatives });
     }

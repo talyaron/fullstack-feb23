@@ -143,12 +143,11 @@ function updatePhysician(req, res) {
                         physician.licenseNumber = licenseNumber;
                     if (password)
                         physician.password = password;
-                    if (isAdmin)
-                        physician.isAdmin = isAdmin;
+                    physician.isAdmin = isAdmin;
                     return [4 /*yield*/, physician.save()];
                 case 2:
                     _b.sent();
-                    res.status(200).send({ message: "Patient updated successfully" });
+                    res.status(200).send({ message: "Physician updated successfully" });
                     return [3 /*break*/, 4];
                 case 3:
                     error_4 = _b.sent();

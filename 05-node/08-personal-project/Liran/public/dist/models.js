@@ -37,3 +37,13 @@ var Medicine = /** @class */ (function () {
     }
     return Medicine;
 }());
+var Prescription = /** @class */ (function () {
+    function Prescription(date, patient, medicine, physician, _id) {
+        this.date = date;
+        this.patient = patient;
+        this.medicine = medicine;
+        this.physician = physician;
+        this._id = _id;
+    }
+    return Prescription;
+}());
