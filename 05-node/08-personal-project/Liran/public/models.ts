@@ -30,7 +30,7 @@ class Medicine {
     constructor(public name: string,
         public dosagePerDay: number,
         public maxDuration: number,
-        public _id: string 
+        public _id: string
     ) { }
 }
 
@@ -39,6 +39,15 @@ class Prescription {
         public patient: string,
         public medicine: string,
         public physician: string,
+        public _id: string
+    ) { }
+}
+
+class Visit {
+    constructor(public date: Date,
+        public patient: string,
+        public physician: string,
+        public summary: string,
         public _id: string
     ) { }
 }

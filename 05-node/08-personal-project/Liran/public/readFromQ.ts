@@ -48,6 +48,28 @@ async function getPhysicianDB(pEmail) {
     }
 }
 
+async function getVisitsDB(pId) { 
+    try {
+        const response = await fetch(`/API/visit/get-visits`);
+        const result = await response.json();
+        const visits = result.visits.filter(visit => visit.patient === pId);
+        return visits;
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+async function getPrescriptionsDB(pId) { 
+    try {
+        const response = await fetch(`/API/prescription/get-prescriptions`);
+        const result = await response.json();
+        const prescriptions = result.prescriptions.filter(prescription => prescription.patient === pId);
+        return prescriptions;
+    } catch (error) {
+        console.error(error);
+    }
+}
+
 async function getPatientDB(pId) {
     try {
         const response = await fetch(`/API/patient/get-patients`);

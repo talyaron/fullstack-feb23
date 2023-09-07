@@ -7,7 +7,7 @@ async function renderPhisicianPage() {
         const data = await response.json();
         console.log(data)
         renderWelcomeP(data.physicians[0].lastName, document.querySelector("#root"));
-        
+
         renderPhysicianActions(document.querySelector("#header"));
     } catch (error) {
         console.error(error);
@@ -16,7 +16,7 @@ async function renderPhisicianPage() {
 
 function renderWelcomeP(lastName, root: HTMLDivElement) {
     try {
-        
+
         root.innerHTML = `<div id = "header">
         <h1>Welcome Dr. ${lastName}</h1>
         </div>
@@ -32,9 +32,59 @@ function renderPhysicianActions(html: HTMLElement) {
         <button onclick="loadMedicines()">Medicines</button>
         <button onclick="loadPrescriptions()">Prescriptions</button>
         <button onclick="updatePatientP()">Update Patient</button>
+        <button onclick=viewVisits()>View Visits</button>
         <button onclick="logout()">Logout</button>
         </div>
         `;
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+async function viewVisits() {
+    try {
+        const response = await fetch("/API/visit/get-visits");
+        const data = await response.json();
+        const responseP = await fetch("/API/physician/get-physicians");
+        const dataP = await responseP.json();
+        const physicianID = dataP.physicians.find(physician => physician.email === physicianEmail)._id;
+        const visits = data.visits.filter(visit => visit.physician === physicianID);
+        console.log(visits);
+        renderVisits(visits);
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+async function renderVisits(visits: Visit[]) {
+    try {
+        const root = document.querySelector("#forms");
+        root.innerHTML = "";
+        root.innerHTML += `<div id="visits">
+        <h2>Visits</h2>
+        <table>
+        <tr>
+        <th>Physician</th>
+        <th>Patient</th>
+        <th>Date</th>
+        <th>Summary</th>
+        </tr>
+        </table>
+        </div>`;
+        const table = document.querySelector("table");
+        const promises = visits.map(async (visit) => {
+            const physicianName = await getPhysicianName(visit.physician);
+            const patientName = await getPatientName(visit.patient);
+
+            table.innerHTML += `<tr>
+            <td>${physicianName}</td>
+            <td>${patientName}</td>
+            <td>${formatDate(visit.date)}</td>
+            <td>${visit.summary}</td>
+            </tr>`;
+        });
+
+        await Promise.all(promises);
     } catch (error) {
         console.error(error);
     }
@@ -72,7 +122,7 @@ async function loadPrescriptions() {
     }
 }
 
-async function renderPrescriptions(prescriptions: Prescription[]) { 
+async function renderPrescriptions(prescriptions: Prescription[]) {
     try {
         const root = document.querySelector("#forms");
         root.innerHTML = "";
@@ -118,7 +168,7 @@ function formatDate(date: Date) {
 }
 
 
-async function getMedicineName(medicineId: string) { 
+async function getMedicineName(medicineId: string) {
     try {
         const response = await fetch("/API/medicine/get-medicines");
         const data = await response.json();
@@ -216,7 +266,7 @@ async function renderUpdatePatientP(patients: Patient[], html: HTMLDivElement) {
 async function hundlePatientUpdate(event) {
     try {
         event.preventDefault();
-        
+
         const id = event.target.id.value;
         const firstName = event.target.firstName.value;
         const lastName = event.target.lastName.value;
@@ -237,7 +287,7 @@ async function hundlePatientUpdate(event) {
         const data = await response.json();
         console.log(data);
         alert("Patient updated successfully");
-        
+
         window.location.href = `physician.html?physicianEmail=${physicianEmail}`;
     } catch (error) {
         console.error(error);
@@ -249,7 +299,7 @@ async function loadPatients() {
         const responseP = await fetch("/API/physician/get-physicians");
         const dataP = await responseP.json();
         console.log(dataP);
-        
+
         const physicianID = dataP.physicians.find(physician => physician.email === physicianEmail)._id;
         const response = await fetch("/API/patient/get-patients");
         const data = await response.json();
@@ -305,7 +355,7 @@ async function StartVisit(patientId: string) {
         console.log(patientId);
         const response = await fetch("/API/patient/get-patients");
         const data = await response.json();
-        
+
         const patientID = data.patients.find(patient => patient._id === patientId);
         console.log(patientID);
         window.location.href = `visit.html?_id=${patientID._id}&physicianEmail=${physicianEmail}`;

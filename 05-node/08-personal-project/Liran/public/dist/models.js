@@ -47,3 +47,13 @@ var Prescription = /** @class */ (function () {
     }
     return Prescription;
 }());
+var Visit = /** @class */ (function () {
+    function Visit(date, patient, physician, summary, _id) {
+        this.date = date;
+        this.patient = patient;
+        this.physician = physician;
+        this.summary = summary;
+        this._id = _id;
+    }
+    return Visit;
+}());

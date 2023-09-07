@@ -1,8 +1,9 @@
 const patientID = getPatientIdFromQuery();
 const physicianE = getEmailFromQuery();
-const physicianID = getPhysicianDB(physicianE);
+const phys = getPhysicianDB(physicianE);
+let physId;
 const currPatient = getPatientDB(patientID).then(patient => {
-    console.log(patient);
+    physId = patient.physicianId;
     renderVisitForm(patient, document.querySelector("#root"));
 });
 
@@ -33,7 +34,7 @@ function renderVisitForm(patient, root: HTMLDivElement) {
             <div><label>Visit Summary:</label>
             <textarea id="visit-description" name="visit-description" rows="14" cols="50" required></textarea></div>
             <div><button type="button" onclick="writePrescription('${patient._id}')">Write Prescription</button></div>
-            <div><button type="button">History</button></div>
+            <div><button type="button" onclick="hundleLoadHistory()">History</button></div>
             <div><button onclick="hundleCloseVisit(event)">Close Visit</button></div>
         </form></div>
         <button onclick="window.location.href = 'physician.html?physicianEmail=${physicianE}'">Back</button>`
@@ -43,6 +44,42 @@ function renderVisitForm(patient, root: HTMLDivElement) {
         console.error(error);
     }
 }
+
+async function hundleLoadHistory() { 
+    try {
+        const response = await fetch(`/API/visit/get-visits`);
+        const result = await response.json();
+        const visits = result.visits.filter(visit => visit.patient === patientID);
+        renderHistoryPopUp();
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+function renderHistoryPopUp() { 
+    try {
+        const popupURL = `history.html?_id=${patientID}&physicianEmail=${physicianE}`; // Replace with the actual URL of your popup page
+        // Define the size and position of the popup window
+        const popupWidth = 400;
+        const popupHeight = 300;
+        const left = (window.innerWidth - popupWidth) / 2;
+        const top = (window.innerHeight - popupHeight) / 2;
+
+        // Open the popup window
+        const popupWindow = window.open(popupURL, "PopupWindow", `width=${popupWidth},height=${popupHeight},left=${left},top=${top}`);
+
+        // Focus the popup window (optional)
+        if (popupWindow) {
+            popupWindow.focus();
+        }
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+
+
+
 
 function hundleCloseVisit(ev) {
     try {
@@ -61,8 +98,9 @@ function hundleCloseVisit(ev) {
 async function submitVisitForm(summary) {
     try {
         const date = getTimeFormated(new Date());
-        const visit = { date: date, patient: patientID, physician: physicianID, summary: summary };
-        const response = await fetch(`/api/visit/add-visit`, {
+        const visit = { date: date, patient: patientID, physician: physId, summary: summary };
+        debugger;
+        const response = await fetch(`/API/visit/add-visit`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
