@@ -56,9 +56,11 @@ function getUserData() {
                     console.log(data);
                     name = data[0].name;
                     dateCreatd = data[0].createdAt;
+                    manageDocName(name);
                     console.log(name);
                     console.log(dateCreatd);
                     greeting(name);
+                    getUserTasks();
                     return [3 /*break*/, 4];
                 case 3:
                     error_1 = _a.sent();
@@ -98,7 +100,7 @@ function newHabit() {
 }
 function handleNewHabit(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var newHabitRoot, name, categorie, time, response, data, error_2;
+        var newHabitRoot, name, categorie, time, userEmail, response, data, error_2;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -110,12 +112,15 @@ function handleNewHabit(ev) {
                     name = ev.target.name.value;
                     categorie = ev.target.categorie.value;
                     time = ev.target.time.value;
+                    userEmail = email;
+                    if (!name || !categorie || !time)
+                        throw new Error("please complete all fields!");
                     return [4 /*yield*/, fetch("/API/habits/add-new-habit", {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json'
                             },
-                            body: JSON.stringify({ name: name, categorie: categorie, time: time })
+                            body: JSON.stringify({ name: name, categorie: categorie, time: time, userEmail: userEmail })
                         })];
                 case 1:
                     response = _a.sent();
@@ -131,4 +136,130 @@ function handleNewHabit(ev) {
             }
         });
     });
+}
+function manageDocName(name) {
+    var docRoot = document.querySelector("#docRoot");
+    docRoot.innerHTML = name + "-HABITER";
+}
+// get tasks of user
+var Categorie;
+(function (Categorie) {
+    Categorie["health"] = "health";
+    Categorie["focus"] = "focus";
+    Categorie["learn"] = "learn";
+    Categorie["fun"] = "fun";
+})(Categorie || (Categorie = {}));
+var Time;
+(function (Time) {
+    Time["morning"] = "morning";
+    Time["afternoon"] = "afternoon";
+    Time["evening"] = "evening";
+})(Time || (Time = {}));
+var Status;
+(function (Status) {
+    Status["todo"] = "todo";
+    Status["done"] = "done";
+})(Status || (Status = {}));
+var UserTasks = /** @class */ (function () {
+    function UserTasks(name, categorie, time, status, email) {
+        this.name = name;
+        this.categorie = categorie;
+        this.time = time;
+        this.status = status;
+        this.email = email;
+    }
+    return UserTasks;
+}());
+function getUserTasks() {
+    return __awaiter(this, void 0, void 0, function () {
+        var response, data, error_3;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 3, , 4]);
+                    return [4 /*yield*/, fetch("/API/habits/get-user-habits?email=" + email)];
+                case 1:
+                    response = _a.sent();
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    data = _a.sent();
+                    printUserTasks(data);
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_3 = _a.sent();
+                    console.error(error_3);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
+            }
+        });
+    });
+}
+// print tasks of user
+function printUserTasks(arr) {
+    arr.forEach(function (obj) {
+        if (obj.time === "morning") {
+            printTaskByTime(obj, document.querySelector("#morning"));
+        }
+        if (obj.time === "afternoon") {
+            printTaskByTime(obj, document.querySelector("#afternoon"));
+        }
+        if (obj.time === "evening") {
+            printTaskByTime(obj, document.querySelector("#evening"));
+        }
+    });
+}
+function printTaskByTime(task, root) {
+    var html = "<div onclick=\"taskDocs('" + task.name + "','" + task.categorie + "','" + task.status + "', " + task + ")\" class=\"task\">\n    <h1 class=\"task__header\">" + task.name + "</h1>\n    <h2 class=\"task__categorie\">" + task.categorie + "</h2>\n</div>";
+    root.innerHTML += html;
+}
+function taskDocs(name, categorie, status, task) {
+    debugger;
+    var root = document.querySelector(".taskDocsRoot");
+    root.style.display = "flex";
+    var html = "<div class=\"taskDoc\">\n    <h1 class=\"taskDoc__header\">" + name + "</h1>\n    <h2 class=\"taskDoc__categorie\">" + categorie + "</h2>\n    <h2 class=\"taskDoc__status\">" + status + "</h2>\n    <button class=\"taskDoc__doneBTN\" onclick=\"taskDone(" + task + ")\">DONE!</button>\n</div>";
+    root.innerHTML = html;
+    document.body.addEventListener("mousedown", function () {
+        root.style.display = "none";
+    });
+}
+function taskDone(task) {
+    return __awaiter(this, void 0, void 0, function () {
+        var response;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, fetch];
+                case 1:
+                    response = _a.sent();
+                    return [2 /*return*/];
+            }
+        });
+    });
+}
+//  quotes
+var Quote = /** @class */ (function () {
+    function Quote(quote, author) {
+        this.quote = quote;
+        this.author = author;
+    }
+    return Quote;
+}());
+var quotes = [
+    new Quote("Believe you can and you're halfway there.", "Theodore Roosevelt"),
+    new Quote("The only way to do great work is to love what you do.", "Steve Jobs"),
+    new Quote("Success is not final, failure is not fatal: It is the courage to continue that counts.", "Winston Churchill"),
+    new Quote("Don't watch the clock; do what it does. Keep going.", "Sam Levenson"),
+    new Quote("Believe in yourself and all that you are. Know that there is something inside you that is greater than any obstacle.", "Christian D. Larson"),
+    new Quote("Success is walking from failure to failure with no loss of enthusiasm.", "Winston Churchill"),
+];
+function getRandomQuote(arr) {
+    debugger;
+    var randomIndex = Math.floor(Math.random() * arr.length);
+    return arr[randomIndex];
+}
+printQuote();
+function printQuote() {
+    var quote = getRandomQuote(quotes);
+    var html = "<h2 class=\"quoteRoot__quote\">" + quote.quote + "</h2><h2 class=\"quoteRoot__author\">" + quote.author + "</h2>";
+    var quoteRoot = document.querySelector(".quoteRoot");
+    quoteRoot.innerHTML += html;
 }
