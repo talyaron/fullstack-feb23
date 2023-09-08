@@ -47,6 +47,29 @@ console.log(email);
 function handelGetUserRecipe() {
     GetUserRecipe(email);
 }
+function hendelAddRecipe(ev) {
+    return __awaiter(this, void 0, void 0, function () {
+        var recipes, error_1;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    ev.preventDefault();
+                    return [4 /*yield*/, response.json()];
+                case 1:
+                    recipes = (_a.sent()).recipes;
+                    console.log(recipes);
+                    renderRecipes(recipes, document.querySelector("#userRecipes"));
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_1 = _a.sent();
+                    console.error(error_1);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
+}
 //render
 function renderRecipe(recipe) {
     try {
@@ -75,7 +98,7 @@ function renderRecipes(recipes, root) {
 //controllers
 function GetUserRecipe(email) {
     return __awaiter(this, void 0, void 0, function () {
-        var response, data, error_1;
+        var response, data, error_2;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -90,7 +113,7 @@ function GetUserRecipe(email) {
                     renderRecipes(data.recipes, document.querySelector("#userRecipes"));
                     return [3 /*break*/, 4];
                 case 3:
-                    error_1 = _a.sent();
+                    error_2 = _a.sent();
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }

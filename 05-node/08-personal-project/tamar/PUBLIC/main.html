@@ -9,12 +9,15 @@
 </head>
 <body onload="handelGetUserRecipes()">
     <h1>Welcome</h1>
-    <h3 id="addRecipe">Add Recipe</h3>
-    <h2>Your Recipes:</h2>
+    <h2>Add a new recipe to your collection</h2>
+    <form onsubmit="hendelAddRecipe(event)">
+        <input type="text" name="title" placeholder="Recipe title">
+        <input type="text" name="description" placeholder="Recipe Instructions">
+        <button type="submit">Add Recipe</button>
+    </forn>
+    <h2>Your Recipes Collection:</h2>
     <div id="userRecipes"></div>
-    <button onclick="deleteUser()">Delet User</button>
-
-    
+    <button onclick="deleteUser()">Delete User</button>
     
 </body>
 </html>

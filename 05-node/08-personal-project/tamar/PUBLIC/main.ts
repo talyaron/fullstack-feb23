@@ -10,8 +10,22 @@ const email = getEmailFromQuery();
 console.log(email)
 
 //hendel
-function handelGetUserRecipe(){
+function handelGetUserRecipe(): void {
     GetUserRecipe(email)
+}
+
+async function hendelAddRecipe(ev){
+    try {
+        ev.preventDefault();
+        
+        
+        const {recipes} = await response.json();
+        console.log(recipes);
+        renderRecipes(recipes, document.querySelector("#userRecipes"))
+    } catch (error) {
+        console.error(error)
+    }
+
 }
 
 //render
