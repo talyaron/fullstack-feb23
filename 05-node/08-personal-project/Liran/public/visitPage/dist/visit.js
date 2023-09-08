@@ -139,7 +139,7 @@ function submitVisitForm(summary) {
                     if (result.error)
                         throw new Error(result.error);
                     alert("Visit added successfully");
-                    window.location.href = "physician.html?physicianEmail=" + physicianE;
+                    window.location.href = "../phisicianPage/physician.html?physicianEmail=" + physicianE;
                     return [3 /*break*/, 4];
                 case 3:
                     error_2 = _a.sent();

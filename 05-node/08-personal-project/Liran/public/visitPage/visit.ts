@@ -110,7 +110,7 @@ async function submitVisitForm(summary) {
         const result = await response.json();
         if (result.error) throw new Error(result.error);
         alert("Visit added successfully");
-        window.location.href = `physician.html?physicianEmail=${physicianE}`;
+        window.location.href = `../phisicianPage/physician.html?physicianEmail=${physicianE}`;
     } catch (error) {
         console.error(error);
     }
