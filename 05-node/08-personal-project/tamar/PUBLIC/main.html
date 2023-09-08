@@ -3,12 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="./dist/" defer></script>
-    <script src="./dist/" defer></script>
-    <link rel="stylesheet" href="./dist/">
+    <script src="./dist/main.js" defer></script>
+    <link rel="stylesheet" href="./css/dist/mainStyle.css">
     <title>Main</title>
 </head>
-<body>
+<body onload="handelGetUserRecipes()">
+    <h1>Welcome</h1>
+    <h3 id="addRecipe">Add Recipe</h3>
+    <h2>Your Recipes:</h2>
+    <div id="userRecipes"></div>
+    <button onclick="deleteUser()">Delet User</button>
+
+    
     
 </body>
 </html>
