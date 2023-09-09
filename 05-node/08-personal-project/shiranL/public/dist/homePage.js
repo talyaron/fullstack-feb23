@@ -1,3 +1,4 @@
+// TypeScript (homePage.js)
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -34,14 +35,14 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-//home page 
+// Function to handle logout
 function handleLogout() {
     return __awaiter(this, void 0, void 0, function () {
-        var response, data;
+        var response, data, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    debugger;
+                    _a.trys.push([0, 3, , 4]);
                     return [4 /*yield*/, fetch("API/user/log-out", {
                             method: "POST",
                             headers: {
@@ -58,35 +59,6 @@ function handleLogout() {
                         throw new Error(data.message);
                     }
                     BackHome();
-                    return [2 /*return*/];
-            }
-        });
-    });
-}
-function BackHome() {
-    location.href = "/index.html";
-}
-// rendr hello user to log in user  
-function getCurrentUser() {
-    return __awaiter(this, void 0, void 0, function () {
-        var response, data, logInUser, helloUser, error_1;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    _a.trys.push([0, 3, , 4]);
-                    return [4 /*yield*/, fetch("API/user/get-log-in-user")];
-                case 1:
-                    response = _a.sent();
-                    return [4 /*yield*/, response.json()];
-                case 2:
-                    data = _a.sent();
-                    console.log(data);
-                    if (!data.ok) {
-                        throw new Error(data.message);
-                    }
-                    logInUser = data.logInUser;
-                    helloUser = document.getElementById("helloUser");
-                    helloUser.innerHTML = "Hello " + logInUser.email;
                     return [3 /*break*/, 4];
                 case 3:
                     error_1 = _a.sent();
@@ -97,3 +69,310 @@ function getCurrentUser() {
         });
     });
 }
+function BackHome() {
+    location.href = "/index.html";
+}
+//get all not Admin users
+function getAllUsers() {
+    return __awaiter(this, void 0, void 0, function () {
+        var response, data, users, error_2;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 3, , 4]);
+                    return [4 /*yield*/, fetch("API/user/get-all-users")];
+                case 1:
+                    response = _a.sent();
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    data = _a.sent();
+                    if (!data.ok) {
+                        throw new Error(data.message);
+                    }
+                    users = data.users;
+                    return [2 /*return*/, users];
+                case 3:
+                    error_2 = _a.sent();
+                    console.error(error_2);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
+            }
+        });
+    });
+}
+// Render "Hello User" for logged-in user
+function renderHelloUser() {
+    return __awaiter(this, void 0, void 0, function () {
+        var logInUser, helloUser, showAllUsersButton, error_3;
+        var _this = this;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    return [4 /*yield*/, getCurrentUser()];
+                case 1:
+                    logInUser = _a.sent();
+                    if (!logInUser) {
+                        throw new Error("User Not Found");
+                    }
+                    helloUser = document.querySelector("#helloUser");
+                    if (!helloUser)
+                        throw new Error("helloUser root not found");
+                    helloUser.innerHTML = "Hello " + logInUser.email;
+                    // if user isAdmin create button to show all users and can updte admin
+                    if (logInUser.isAdmin) {
+                        showAllUsersButton = document.createElement('button');
+                        showAllUsersButton.className = 'showAllUsers';
+                        showAllUsersButton.textContent = 'Show All Users';
+                        showAllUsersButton.onclick = function () { return __awaiter(_this, void 0, void 0, function () { return __generator(this, function (_a) {
+                            switch (_a.label) {
+                                case 0: return [4 /*yield*/, renderAllUsers()];
+                                case 1: return [2 /*return*/, _a.sent()];
+                            }
+                        }); }); };
+                        helloUser.appendChild(showAllUsersButton);
+                    }
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_3 = _a.sent();
+                    console.error(error_3);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
+}
+function getCurrentUser() {
+    return __awaiter(this, void 0, void 0, function () {
+        var response, data, logInUser, error_4;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 3, , 4]);
+                    return [4 /*yield*/, fetch("API/user/get-log-in-user")];
+                case 1:
+                    response = _a.sent();
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    data = _a.sent();
+                    if (!data.ok) {
+                        throw new Error(data.message);
+                    }
+                    logInUser = data.logInUser;
+                    return [2 /*return*/, logInUser];
+                case 3:
+                    error_4 = _a.sent();
+                    console.error(error_4);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
+            }
+        });
+    });
+}
+// Function to handle adding a recipe
+function handleAddRecipe(event) {
+    return __awaiter(this, void 0, void 0, function () {
+        var recipeName, recipeIngredients, recipeInstructions, imageUrl, category, user, userEmail, response, data, error_5;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 4, , 5]);
+                    event.preventDefault();
+                    recipeName = event.target.recipeName.value;
+                    recipeIngredients = event.target.recipeIngredients.value;
+                    recipeInstructions = event.target.recipeInstructions.value;
+                    imageUrl = event.target.imageUrl.value;
+                    category = event.target.recipeCategory.value;
+                    return [4 /*yield*/, getCurrentUser()];
+                case 1:
+                    user = _a.sent();
+                    userEmail = user.email;
+                    return [4 /*yield*/, fetch("API/recipe/add-recipe", {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json"
+                            },
+                            body: JSON.stringify({ recipeName: recipeName, recipeIngredients: recipeIngredients, recipeInstructions: recipeInstructions, imageUrl: imageUrl, category: category, userEmail: userEmail })
+                        })];
+                case 2:
+                    response = _a.sent();
+                    return [4 /*yield*/, response.json()];
+                case 3:
+                    data = _a.sent();
+                    console.log(data);
+                    if (!data.ok) {
+                        throw new Error(data.message);
+                    }
+                    alert("Recipe added");
+                    return [3 /*break*/, 5];
+                case 4:
+                    error_5 = _a.sent();
+                    console.error(error_5);
+                    return [3 /*break*/, 5];
+                case 5: return [2 /*return*/];
+            }
+        });
+    });
+}
+// Function to render a recipe
+function renderRecipe(recipe, isEmailExist, isAdmin, fromWhereICome) {
+    return __awaiter(this, void 0, void 0, function () {
+        var recipeContainer, recipeElement, deleteButton;
+        var _this = this;
+        return __generator(this, function (_a) {
+            try {
+                if (!recipe)
+                    throw new Error("Recipe does not exist");
+                recipeContainer = document.querySelector("#recipeContainer");
+                if (!recipeContainer)
+                    throw new Error("recipeContainer root not found");
+                recipeElement = document.createElement('div');
+                recipeElement.innerHTML = "\n            <h2 class=\"recipeName\">" + recipe.recipeName + "</h2>\n            <img src=\"" + recipe.imageUrl + "\" alt=\"recipe image\" class=\"recipeImage\">\n            <div class=\"recipeIngredients\">" + recipe.recipeIngredients + "</div>\n            <div class=\"recipeInstructions\">" + recipe.recipeInstructions + "</div>\n            <div class=\"recipeCategory\">" + recipe.category + "</div>\n        \n        ";
+                if (isEmailExist || isAdmin) {
+                    deleteButton = document.createElement('button');
+                    deleteButton.className = 'deleteRecipe';
+                    deleteButton.textContent = 'Delete';
+                    deleteButton.onclick = function () { return __awaiter(_this, void 0, void 0, function () { return __generator(this, function (_a) {
+                        switch (_a.label) {
+                            case 0: return [4 /*yield*/, handleDeleteRecipe(recipe._id, fromWhereICome)];
+                            case 1: return [2 /*return*/, _a.sent()];
+                        }
+                    }); }); }; // Pass the recipe ID to the function
+                    recipeElement.appendChild(deleteButton);
+                }
+                recipeContainer.appendChild(recipeElement);
+            }
+            catch (error) {
+                console.error(error);
+            }
+            return [2 /*return*/];
+        });
+    });
+}
+function handleDeleteRecipe(recipeId, fromWhereICome) {
+    return __awaiter(this, void 0, void 0, function () {
+        var response, data, error_6;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 3, , 4]);
+                    return [4 /*yield*/, fetch("API/recipe/delete-recipe", {
+                            method: "DELETE",
+                            headers: {
+                                "Content-Type": "application/json"
+                            },
+                            body: JSON.stringify({ recipeId: recipeId })
+                        })];
+                case 1:
+                    response = _a.sent();
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    data = _a.sent();
+                    if (!data.ok) {
+                        throw new Error(data.message);
+                    }
+                    alert("Recipe deleted");
+                    if (fromWhereICome === "myRecipe") {
+                        renderMyRecipes();
+                    }
+                    else {
+                        renderAllRecipes();
+                    }
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_6 = _a.sent();
+                    console.error(error_6);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
+            }
+        });
+    });
+}
+// Function to render all recipes
+function renderAllRecipes() {
+    return __awaiter(this, void 0, void 0, function () {
+        var recipeListContainer, response, data, recipeList, user_1, error_7;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 4, , 5]);
+                    recipeListContainer = document.querySelector("#recipeContainer");
+                    if (!recipeListContainer)
+                        throw new Error("recipeContainer root not found");
+                    recipeListContainer.innerHTML = "";
+                    return [4 /*yield*/, fetch("API/recipe/get-all-recipes")];
+                case 1:
+                    response = _a.sent();
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    data = _a.sent();
+                    if (!data.ok) {
+                        throw new Error(data.message);
+                    }
+                    recipeList = data.recipeList;
+                    return [4 /*yield*/, getCurrentUser()];
+                case 3:
+                    user_1 = _a.sent();
+                    if (!user_1) {
+                        throw new Error("User Not Found");
+                    }
+                    recipeList.forEach(function (recipe) {
+                        renderRecipe(recipe, false, user_1.isAdmin, 'AllRecipes');
+                    });
+                    return [3 /*break*/, 5];
+                case 4:
+                    error_7 = _a.sent();
+                    console.error(error_7);
+                    return [3 /*break*/, 5];
+                case 5: return [2 /*return*/];
+            }
+        });
+    });
+}
+// Function to render user-specific recipes
+function renderMyRecipes() {
+    return __awaiter(this, void 0, void 0, function () {
+        var user_2, response, data, recipeList, recipeListContainer, error_8;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 4, , 5]);
+                    return [4 /*yield*/, getCurrentUser()];
+                case 1:
+                    user_2 = _a.sent();
+                    if (!user_2 || !user_2.email) {
+                        throw new Error("User email not found.");
+                    }
+                    return [4 /*yield*/, fetch("API/recipe/get-My-recipes?userEmail=" + encodeURIComponent(user_2.email), {
+                            method: "GET",
+                            headers: {
+                                "Content-Type": "application/json"
+                            }
+                        })];
+                case 2:
+                    response = _a.sent();
+                    return [4 /*yield*/, response.json()];
+                case 3:
+                    data = _a.sent();
+                    if (!data.ok) {
+                        throw new Error(data.message);
+                    }
+                    recipeList = data.recipeList;
+                    recipeListContainer = document.querySelector("#recipeContainer");
+                    if (!recipeListContainer)
+                        throw new Error("recipeContainer root not found");
+                    recipeListContainer.innerHTML = "";
+                    recipeList.forEach(function (recipe) {
+                        renderRecipe(recipe, true, user_2.isAdmin, 'myRecipe');
+                    });
+                    return [3 /*break*/, 5];
+                case 4:
+                    error_8 = _a.sent();
+                    console.error(error_8);
+                    return [3 /*break*/, 5];
+                case 5: return [2 /*return*/];
+            }
+        });
+    });
+}
+// You can continue to define your other functions as needed.

@@ -43,7 +43,7 @@ export const logIn= async (req:any,res:any)=>{
 // Passwords don't match, return an error response
       return res.status(401).json({ error: "Incorrect password" });
     }
-// make all other users logOut
+
 
 // Log out all other users by setting their 'isLogOn' property to 'false'
 
@@ -98,5 +98,15 @@ export const logOut= async (req:any,res:any)=>{
 }
 
 
+export const allUsers = async (req: any, res: any) => {
+  try {
+    // Find all users who are not admins
+    const allUsers = await UserModel.find({ });
 
-
+    // Return the list of not admin users as a response
+    res.send({ ok: true, allUsers });
+  } catch (error) {
+    console.error(error);
+    res.send({ error: error.message });
+  }
+};

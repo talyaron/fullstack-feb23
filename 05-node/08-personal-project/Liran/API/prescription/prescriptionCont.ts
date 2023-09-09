@@ -45,6 +45,7 @@ export async function updatePrescription(req: any, res: any) {
         if (medicine) prescription.medicine = medicine;
         if (physician) prescription.physician = physician;
         if (date) prescription.date = date;
+        const prescriptionDB = await prescription.save();
         res.send({ ok: true });
     } catch (error) {
         console.error(error);

@@ -4,10 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="./dist/main.js"></script>
+    <script src="./dist/main.js" defer></script>
     <link rel="stylesheet" href="./dist/main.css">
     <script src="https://kit.fontawesome.com/761340618e.js" crossorigin="anonymous"></script>
-    <title>Document</title>
+    <title id="docRoot"></title>
 </head>
 
 <body>
@@ -52,30 +52,43 @@
             Start building the habits that matter to you and become the best version of yourself with Habiter today!</p>
 
     </div>
-
+    <div class="quoteRoot"></div>
     <button class="newHabitBtn" onclick="newHabit()">Add new habit!</button>
     <div class="newHabit">
         <h1>ADD NEW HABIT!</h1>
         <form class="newHabit__form" onsubmit="handleNewHabit(event)">
             <label for="name">name your task!</label>
-            <input type="text" name="name" placeholder="name your habit!">
+            <input class="newHabit__form__txt" type="text" name="name" placeholder="name your habit!">
             <label for="categorie">choose your categorie</label>
-            <select name="categorie" id="categorie">
+            <select class="newHabit__form__select" name="categorie" id="categorie">
                 <option value="health">health</option>
                 <option value="focus">focus</option>
                 <option value="learn">learn</option>
                 <option value="fun">fun</option>
             </select>
             <label for="time">choose your time of day</label>
-            <select name="time" id="time">
+            <select class="newHabit__form__select" name="time" id="time">
                 <option value="morning">morning</option>
                 <option value="afternoon">afternoon</option>
                 <option value="evening">evening</option>
             </select>
-            <input type="submit">
+            <input class="newHabit__submit" type="submit">
         </form>
     </div>
+    <div class="habits">
+        <div class="habits__habitBox" id="morning">
+            <h2 class="habits__habitBox__header">MORNING</h2>
+        </div>
+        <div class="habits__habitBox" id="afternoon">
+            <h2 class="habits__habitBox__header">afternoon</h2>
 
+        </div>
+        <div class="habits__habitBox" id="evening">
+            <h2 class="habits__habitBox__header">evening</h2>
+
+        </div>
+    </div>
+    <div class="taskDocsRoot"></div>
 
 </body>
 
