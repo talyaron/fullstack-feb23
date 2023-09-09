@@ -87,7 +87,7 @@ exports.loginUser = function (req, res) { return __awaiter(void 0, void 0, void 
                 if (!userDB)
                     throw new Error("No user found in DB");
                 console.log(userDB);
-                res.send({ ok: true });
+                res.send({ ok: true, email: userDB.email });
                 return [3 /*break*/, 3];
             case 2:
                 error_2 = _b.sent();

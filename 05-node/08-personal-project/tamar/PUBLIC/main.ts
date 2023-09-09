@@ -47,12 +47,36 @@ async function hendelAddRecipe(ev) {
 
 }
 
-function hendelUpdateRecipe(ev) {
+async function hendlUpdateRecipe(ev, id: string) {
    try {
     ev.preventDefault();
-    
+    const email = getEmailFromQuery();
+    if (!email) throw new Error("no email");
+    console.log(email)
+    const bodyID = {id};
+    if(!id) throw new Error("no recipe id");
+    console.log(bodyID)
+    //get the updated data
+    const title = ev.target.element.title.value
+    const description = ev.target.element.description.value
+    const urlImg = ev.target.element.urlImg.value;
+    const updatRecipe = { title, description, urlImg, email }
+    console.log(updatRecipe);
+    //send the updated recipe to the server/DB
+        const response = await fetch('/API/recipes/update-recipe', {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(updatRecipe)
+        });
+        const { recipes } = await response.json(); //and get the new recipes array from the server
+        console.log(recipes)
+
+        renderRecipes(recipes, document.querySelector("#userRecipes"))
+        document.querySelector("form").reset();
    } catch (error) {
-    
+    console.error(error)
    }
 }
 
@@ -93,7 +117,7 @@ function renderRecipes(recipes: Recipe[], root: HTMLDivElement) {
 function renderUpdateForm(DivEl: HTMLDivElement){
 try {
     if (!DivEl) throw new Error("no div element");
-    const html = `<form id="recipe_update" onsubmit="hendelUpdateRecipeForm(event)">
+    const html = `<form id="recipe_update" onsubmit="hendlUpdateRecipe()">
                   <input type="text" name="title" placeholder="Recipe title">
                   <input type="text" name="description" placeholder="Recipe Instructions">
                   <input type="url" name="imgUrl" placeholder="image">
@@ -108,7 +132,15 @@ try {
 
 async function hendelDeleteRecipe(){
     try {
-        const response = await fetch('/API/recipes/delete-recipe');
+
+        const response = await fetch('/API/recipes/delete-recipe')
+        // ,{
+        //     method: 'DELETE',
+        //     headers: {
+        //         'Content-Type': 'application/json'
+        //     },
+        //     body: JSON.stringify()
+        // });
         //convert response to join data
         const {recipes} = await response.json();
         console.log(recipes);
