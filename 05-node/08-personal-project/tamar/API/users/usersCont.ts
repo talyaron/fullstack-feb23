@@ -28,7 +28,7 @@ export const loginUser = async (req: any, res:any) =>{
         const userDB = await UserModel.findOne({user}) //find the user in DB
         if(!userDB) throw new Error("No user found in DB");
         console.log(userDB)
-        res.send({ok: true});
+        res.send({ok: true, email: userDB.email});
     } catch (error) {
         console.error(error)
         res.send({error:error.massage})
