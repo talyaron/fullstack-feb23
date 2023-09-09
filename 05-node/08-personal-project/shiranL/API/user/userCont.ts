@@ -110,3 +110,68 @@ export const allUsers = async (req: any, res: any) => {
     res.send({ error: error.message });
   }
 };
+
+
+
+export const getUserDetails = async (req, res) => {
+  try {
+    const userId = req.query.userId;
+
+    // Check if the provided userId exists
+    const user = await UserModel.findById(userId);
+
+    if (!user) {
+      return res.send({ error: "User not found" });
+    }
+
+    // Return the user details
+    res.send({ ok: true, user });
+  } catch (error) {
+    console.error(error);
+    res.send({ error: error.message });
+  }
+};
+
+export const updateUser = async (req: any, res: any) => {
+  try {
+    const {  newEmail, newPassword, isAdmin } = req.body;
+    const userId = req.query.userId;
+    // Check if the provided userId exists
+    const existingUser = await UserModel.findById(userId);
+
+    if (!existingUser) {
+      return res.send({ error: "User not found" });
+    }
+
+    // Update the user's email, password, and isAdmin if provided
+    if (newEmail) {
+      existingUser.email = newEmail;
+    }
+    if (newPassword) {
+      existingUser.password = newPassword;
+    }
+    if (isAdmin !== undefined) {
+      existingUser.isAdmin = isAdmin;
+    }
+
+    // Save the updated user
+    await existingUser.save();
+
+    res.send({ ok: true, existingUser });
+  } catch (error) {
+    console.error(error);
+    res.send({ error: error.message });
+  }
+};
+
+export const deleteUser = async (req: any, res: any) => {
+  try {
+   
+
+    res.send({ ok: true, message: "User deleted successfully" });
+  } catch (error) {
+    console.error(error);
+    res.send({ error: error.message });
+  }
+};
+
