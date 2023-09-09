@@ -47,7 +47,10 @@ body #root #header button:hover {
 }
 body #root #header h1 {
   font-size: 5rem;
-  color: #fff;
+  background-clip: text;
+  background: -webkit-linear-gradient(#01fe6f, rgba(15, 4, 233, 0.581));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   text-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 body #root #forms {
