@@ -63,16 +63,16 @@ function getRecipes(req, res) {
 exports.getRecipes = getRecipes;
 function addRecipe(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var _a, title, description, urlImg, recipe, recipeDB, error_2;
+        var _a, title, description, urlImg, email, recipe, recipeDB, error_2;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
                     _b.trys.push([0, 2, , 3]);
-                    _a = req.body, title = _a.title, description = _a.description, urlImg = _a.urlImg;
-                    console.log({ title: title, description: description, urlImg: urlImg });
+                    _a = req.body, title = _a.title, description = _a.description, urlImg = _a.urlImg, email = _a.email;
+                    console.log({ title: title, description: description, urlImg: urlImg, email: email });
                     if (!title || !description)
                         throw new Error("Please complete title and/or description fields");
-                    recipe = new recipesModel_1.RecipeModel({ title: title, description: description, urlImg: urlImg });
+                    recipe = new recipesModel_1.RecipeModel({ title: title, description: description, urlImg: urlImg, email: email });
                     return [4 /*yield*/, recipe.save()];
                 case 1:
                     recipeDB = _b.sent();
@@ -118,46 +118,61 @@ exports.deleteRecipe = deleteRecipe;
 //update DB by ID
 function updateRecipe(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var _a, id, title, description, urlImg, currentRecipe, recipeDB, error_4;
+        var _a, id, title, description, urlImg, currentRecipe, _title, _description, _urlImg, recipeDB, recipeDB, recipeDB, recipeDB, recipeDB, recipeDB, error_4;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
-                    _b.trys.push([0, 3, , 4]);
-                    _a = req.body, id = _a.id, title = _a.title, description = _a.description, urlImg = _a.urlImg;
+                    _b.trys.push([0, 14, , 15]);
+                    _a = req.body //the data fron claient store in this variables
+                    , id = _a.id, title = _a.title, description = _a.description, urlImg = _a.urlImg;
                     return [4 /*yield*/, recipesModel_1.RecipeModel.findById(id)];
                 case 1:
                     currentRecipe = _b.sent();
                     if (!currentRecipe)
                         throw new Error("recipe not found");
-                    if (title === "") {
-                        this.title = currentRecipe.title;
-                    }
-                    else {
-                        this.title = title;
-                    }
-                    if (description === "") {
-                        this.description = currentRecipe.description;
-                    }
-                    else {
-                        this.description = description;
-                    }
-                    if (urlImg === "") {
-                        this.urlImg = currentRecipe.urlImg;
-                    }
-                    else {
-                        this.urlImg = urlImg;
-                    }
-                    return [4 /*yield*/, recipesModel_1.RecipeModel.findByIdAndUpdate(id, { title: this.title }, { description: this.description }, { urlImg: this.urlImg })];
+                    _title = currentRecipe.title, _description = currentRecipe.description, _urlImg = currentRecipe.urlImg;
+                    if (!(title === "")) return [3 /*break*/, 3];
+                    return [4 /*yield*/, recipesModel_1.RecipeModel.findByIdAndUpdate(id, { title: _title }, { "new": true })];
                 case 2:
                     recipeDB = _b.sent();
-                    res.send(recipeDB);
-                    return [3 /*break*/, 4];
-                case 3:
+                    res.send({ recipeDB: recipeDB });
+                    return [3 /*break*/, 5];
+                case 3: return [4 /*yield*/, recipesModel_1.RecipeModel.findByIdAndUpdate(id, { title: title }, { "new": true })];
+                case 4:
+                    recipeDB = _b.sent();
+                    res.send({ recipeDB: recipeDB });
+                    _b.label = 5;
+                case 5:
+                    if (!(description === "")) return [3 /*break*/, 7];
+                    return [4 /*yield*/, recipesModel_1.RecipeModel.findByIdAndUpdate(id, { description: _description }, { "new": true })];
+                case 6:
+                    recipeDB = _b.sent();
+                    res.send({ recipeDB: recipeDB });
+                    return [3 /*break*/, 9];
+                case 7: return [4 /*yield*/, recipesModel_1.RecipeModel.findByIdAndUpdate(id, { description: description }, { "new": true })];
+                case 8:
+                    recipeDB = _b.sent();
+                    res.send({ recipeDB: recipeDB });
+                    _b.label = 9;
+                case 9:
+                    if (!(urlImg === "")) return [3 /*break*/, 11];
+                    return [4 /*yield*/, recipesModel_1.RecipeModel.findByIdAndUpdate(id, { urlImg: _urlImg }, { "new": true })];
+                case 10:
+                    recipeDB = _b.sent();
+                    res.send({ recipeDB: recipeDB });
+                    return [3 /*break*/, 13];
+                case 11: return [4 /*yield*/, recipesModel_1.RecipeModel.findByIdAndUpdate(id, { urlImg: urlImg }, { "new": true })];
+                case 12:
+                    recipeDB = _b.sent();
+                    res.send({ recipeDB: recipeDB });
+                    _b.label = 13;
+                case 13: return [3 /*break*/, 15];
+                case 14:
                     error_4 = _b.sent();
                     console.error(error_4);
                     res.status(500).send({ error: error_4.message });
-                    return [3 /*break*/, 4];
-                case 4: return [2 /*return*/];
+                    return [3 /*break*/, 15];
+                case 15: return [2 /*return*/];
             }
         });
     });
