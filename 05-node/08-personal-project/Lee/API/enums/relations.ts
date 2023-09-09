@@ -11,5 +11,6 @@ export enum Relation {
     aunt = "Aunt",
     cousin = "Cousin",
     niece = "Niece",
-    nephew = "Nephew"
+    nephew = "Nephew",
+    other = "other"
   }

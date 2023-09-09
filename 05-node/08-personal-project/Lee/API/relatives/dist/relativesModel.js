@@ -33,10 +33,11 @@ exports.RelativeSchema = new mongoose_1.Schema({
     fullName: { type: String },
     birthDate: { type: String },
     country: { type: String },
+    user: { type: mongoose_1.Schema.Types.ObjectId, ref: 'users' },
     relation: {
         type: String,
         "enum": Object.values(relations_1.Relation),
         "default": relations_1.Relation.choose
     }
 });
-exports.RelativeModel = mongoose_1.model("relatives", exports.RelativeSchema);
+exports.RelativeModel = mongoose_1.model('relatives', exports.RelativeSchema);

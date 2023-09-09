@@ -37,7 +37,9 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 exports.__esModule = true;
 exports.getUserRelatives = exports.updateRelation = exports.deleteRelative = exports.addRelative = exports.getFamilyMembers = void 0;
+var userModel_1 = require("../users/userModel");
 var relativesModel_1 = require("./relativesModel");
+var relations_1 = require("../enums/relations");
 function getFamilyMembers(req, res) {
     return __awaiter(this, void 0, void 0, function () {
         var relativesDB, error_1;
@@ -62,28 +64,30 @@ function getFamilyMembers(req, res) {
 exports.getFamilyMembers = getFamilyMembers;
 function addRelative(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var _a, fullName, birthDate, country, email, newRelative, relativeDB, error_2;
+        var _a, fullName, birthDate, country, email_1, user, newRelative, relativeDB, error_2;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
                     _b.trys.push([0, 2, , 3]);
-                    _a = req.body, fullName = _a.fullName, birthDate = _a.birthDate, country = _a.country, email = _a.email;
-                    console.log({ fullName: fullName, birthDate: birthDate, country: country, email: email });
-                    if (!fullName || !country || !birthDate)
-                        throw new Error("Please complete all fields");
-                    if (!email)
-                        throw new Error("no email");
-                    newRelative = new relativesModel_1.RelativeModel(fullName, birthDate, country);
+                    _a = req.body, fullName = _a.fullName, birthDate = _a.birthDate, country = _a.country, email_1 = _a.email;
+                    if (!fullName || !country || !birthDate || !email_1) {
+                        return [2 /*return*/, res.status(400).send({ error: "Please complete all fields" })];
+                    }
+                    user = userModel_1.users.find(function (user) { return user.email === email_1; });
+                    if (!user) {
+                        return [2 /*return*/, res.status(404).send({ error: "User not found" })];
+                    }
+                    newRelative = new relativesModel_1.RelativeModel({
+                        fullName: fullName,
+                        birthDate: birthDate,
+                        country: country,
+                        relation: relations_1.Relation.choose,
+                        user: user._id
+                    });
                     return [4 /*yield*/, newRelative.save()];
                 case 1:
                     relativeDB = _b.sent();
                     console.log(relativeDB);
-                    //find user
-                    // const user = users.find((user: any) => user.email === email);
-                    // if (!user) throw new Error("user not found");
-                    // const newUserRelative = new UserRelatives(user, newRelative); 
-                    // userRelatives.push(newUserRelative);
-                    // console.log(userRelatives);
                     res.send({ ok: true });
                     return [3 /*break*/, 3];
                 case 2:
@@ -108,11 +112,6 @@ function deleteRelative(req, res) {
                     return [4 /*yield*/, relativesModel_1.RelativeModel.findByIdAndDelete(id)];
                 case 1:
                     relativeDB = _a.sent();
-                    // const index = relatives.findIndex((relative) => relative.id === id);
-                    // if (index === -1) {
-                    //     throw new Error("relative not found");
-                    // }
-                    // relatives.splice(index, 1);
                     res.send({ relativeDB: relativeDB });
                     return [3 /*break*/, 3];
                 case 2:
@@ -140,7 +139,7 @@ function updateRelation(req, res) {
                     if (!relative) {
                         throw new Error("relative not found");
                     }
-                    if (relation === relativesModel_1.Relation.choose) {
+                    if (relation === relations_1.Relation.choose) {
                         throw new Error("Please choose a valid relation");
                     }
                     relative.relation = relation;
@@ -163,12 +162,12 @@ exports.updateRelation = updateRelation;
 function getUserRelatives(req, res) {
     try {
         //get email from query
-        var email_1 = req.query.email;
-        if (!email_1) {
+        var email_2 = req.query.email;
+        if (!email_2) {
             throw new Error("email is required");
         }
         //get user relatives
-        var _userrelatives = relativesModel_1.userRelatives.filter(function (userrelative) { return userrelative.user.email === email_1; });
+        var _userrelatives = relativesModel_1.userRelatives.filter(function (userrelative) { return userrelative.user.email === email_2; });
         var _relatives = _userrelatives.map(function (userrelative) { return userrelative.user; }); //returns only relatives of user
         res.send({ relatives: _relatives });
     }

@@ -16,4 +16,5 @@ var Relation;
     Relation["cousin"] = "Cousin";
     Relation["niece"] = "Niece";
     Relation["nephew"] = "Nephew";
+    Relation["other"] = "other";
 })(Relation = exports.Relation || (exports.Relation = {}));

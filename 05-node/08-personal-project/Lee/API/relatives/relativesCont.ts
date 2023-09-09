@@ -1,5 +1,7 @@
 import { users } from '../users/userModel';
-import { relatives, Relation, Relative, userRelatives, UserRelatives, RelativeModel } from './relativesModel';
+import { relatives, Relative, userRelatives, UserRelatives, RelativeModel } from './relativesModel';
+import { Relation } from '../enums/relations'
+
 
 export async function getFamilyMembers(req: any, res: any) {
     try {
@@ -13,21 +15,26 @@ export async function getFamilyMembers(req: any, res: any) {
 export async function addRelative(req: any, res: any) {
     try {
         const { fullName, birthDate, country, email } = req.body;
-        console.log({ fullName, birthDate, country, email })
-        if (!fullName || !country || !birthDate) throw new Error("Please complete all fields");
-        if (!email) throw new Error("no email");
 
-        const newRelative = new RelativeModel(fullName, birthDate, country);
+        if (!fullName || !country || !birthDate || !email) {
+            return res.status(400).send({ error: "Please complete all fields" })
+        }
+
+        const user = users.find((user: any) => user.email === email);
+        if (!user) {
+            return res.status(404).send({ error: "User not found" });
+        }
+
+        const newRelative = new RelativeModel({
+            fullName,
+            birthDate,
+            country,
+            relation: Relation.choose, // You can set the relation as needed
+            user: user._id
+        });
+
         const relativeDB = await newRelative.save();
         console.log(relativeDB);
-
-        //find user
-        // const user = users.find((user: any) => user.email === email);
-        // if (!user) throw new Error("user not found");
-
-        // const newUserRelative = new UserRelatives(user, newRelative); 
-        // userRelatives.push(newUserRelative);
-        // console.log(userRelatives);
 
         res.send({ ok: true })
     } catch (error) {
@@ -36,17 +43,11 @@ export async function addRelative(req: any, res: any) {
     }
 }
 
+
 export async function deleteRelative(req: any, res: any) {
     try {
         const { id } = req.body;
         const relativeDB = await RelativeModel.findByIdAndDelete(id);
-
-
-        // const index = relatives.findIndex((relative) => relative.id === id);
-        // if (index === -1) {
-        //     throw new Error("relative not found");
-        // }
-        // relatives.splice(index, 1);
         res.send({ relativeDB });
     } catch (error) {
         console.error(error);
