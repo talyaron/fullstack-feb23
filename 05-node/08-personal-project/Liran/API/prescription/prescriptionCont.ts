@@ -39,14 +39,9 @@ export async function updatePrescription(req: any, res: any) {
     try {
         const { id, patient, medicine, physician, date } = req.body;
         if (!id) throw new Error("id is required");
-        const prescription = await PrescriptionModel.findById(id);
-        if (!prescription) throw new Error("prescription not found");
-        if (patient) prescription.patient = patient;
-        if (medicine) prescription.medicine = medicine;
-        if (physician) prescription.physician = physician;
-        if (date) prescription.date = date;
-        const prescriptionDB = await prescription.save();
-        res.send({ ok: true });
+        const prescription = await PrescriptionModel.findByIdAndUpdate(id, { patient, medicine, physician, date });
+        await prescription.save();
+        res.status(200).send({ message: "Prescription updated successfully" });
     } catch (error) {
         console.error(error);
         res.status(500).send({ error: error.message });

@@ -40,14 +40,9 @@ export async function updateMedicine(req: any, res: any) {
     try {
         const { id, name, dosagePerDay, maxDuration } = req.body;
         if (!id) throw new Error("id is required");
-        const medicine = await MedicineModel.findById(id);
-        if (!medicine) throw new Error("medicine not found");
-        if (name) medicine.name = name;
-        if (dosagePerDay) medicine.dosagePerDay = dosagePerDay;
-        if (maxDuration) medicine.maxDuration = maxDuration;
-        const medicineDB = await medicine.save();
-        debugger;
-        res.send({ ok: true });
+        const medicine = await MedicineModel.findByIdAndUpdate(id, { name, dosagePerDay, maxDuration });
+        await medicine.save();
+        res.status(200).send({ message: "Medicine updated successfully" });
     } catch (error) {
         console.error(error);
         res.status(500).send({ error: error.message });

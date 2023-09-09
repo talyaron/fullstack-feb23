@@ -48,6 +48,26 @@ var patient = getPatientDB(pId).then(function (patient) {
 var medicines = getMedicinesDB().then(function (medicines) {
     renderForm(medicines, document.querySelector("#root"));
 });
+function hundlePrescriptionSubmit(event) {
+    return __awaiter(this, void 0, void 0, function () {
+        var medicineId, date;
+        return __generator(this, function (_a) {
+            try {
+                debugger;
+                event.preventDefault();
+                medicineId = document.querySelector("#medicine-select").value;
+                if (!patient)
+                    throw new Error("Patient not found");
+                date = getTimeFormated(new Date());
+                addNewPrescription(medicineId, date, pId, physicianId);
+            }
+            catch (error) {
+                console.error(error);
+            }
+            return [2 /*return*/];
+        });
+    });
+}
 function renderForm(medicines, root) {
     return __awaiter(this, void 0, void 0, function () {
         var html_1;
@@ -63,26 +83,6 @@ function renderForm(medicines, root) {
                 });
                 html_1 += "</select>\n        </div>\n        <div><label>Dosage Per Day</label>\n        <input type=\"number\" id=\"dosage-per-day\" value=\"" + medicines[0].dosagePerDay + "\" readonly></div>\n        <div><label>Duration</label>\n        <input type=\"number\" id=\"duration\" value=\"" + medicines[0].maxDuration + "\" readonly></div>\n        <input type=\"submit\" value=\"Save Prescription\"></button>\n        </form>";
                 root.innerHTML = html_1;
-            }
-            catch (error) {
-                console.error(error);
-            }
-            return [2 /*return*/];
-        });
-    });
-}
-function hundlePrescriptionSubmit(event) {
-    return __awaiter(this, void 0, void 0, function () {
-        var medicineId, date;
-        return __generator(this, function (_a) {
-            try {
-                debugger;
-                event.preventDefault();
-                medicineId = document.querySelector("#medicine-select").value;
-                if (!patient)
-                    throw new Error("Patient not found");
-                date = getTimeFormated(new Date());
-                addNewPrescription(medicineId, date, pId, physicianId);
             }
             catch (error) {
                 console.error(error);
