@@ -96,17 +96,14 @@ body {
     h1 {
         font-family: 'Roboto', sans-serif;
         font-size: 4rem;
-        /* Adjust the font size to your liking */
-        color: #333;
-        /* Set the text color */
+        // color: #333;
+        background-clip: text;
+        background: -webkit-linear-gradient(#f6f6f6, #0048ff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;      
         text-align: center;
-        /* Center-align the text */
         letter-spacing: 2px;
-        /* Add letter spacing for a decorative effect */
         text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-        /* Add a subtle text shadow for depth */
-
-        /* Add a decorative underline using a pseudo-element */
         position: relative;
     }
 
