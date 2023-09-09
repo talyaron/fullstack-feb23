@@ -7,7 +7,7 @@ async function handleLogin(ev){
             email: ev.target.email.value,
             password: ev.target.password.value
         };
-
+        console.log(user)
         if(!user.email || !user.userName || !user.password) throw new Error("Please complete all fields");
 
         //send data to server/DB
@@ -21,7 +21,7 @@ async function handleLogin(ev){
         const {error, email} = await response.json(); //get response (data) from server for the action
         console.log(error);
         if (error) throw new Error(error);
-
+    debugger;
         //if all ok, redirect to main page of the user by his email
         window.location.href = `/main.html?email=${email}`;  //query
         

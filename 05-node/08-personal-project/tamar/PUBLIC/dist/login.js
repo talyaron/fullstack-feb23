@@ -47,6 +47,7 @@ function handleLogin(ev) {
                         email: ev.target.email.value,
                         password: ev.target.password.value
                     };
+                    console.log(user);
                     if (!user.email || !user.userName || !user.password)
                         throw new Error("Please complete all fields");
                     return [4 /*yield*/, fetch("/API/users/login", {
@@ -64,6 +65,7 @@ function handleLogin(ev) {
                     console.log(error);
                     if (error)
                         throw new Error(error);
+                    debugger;
                     //if all ok, redirect to main page of the user by his email
                     window.location.href = "/main.html?email=" + email; //query
                     return [3 /*break*/, 4];

@@ -49,26 +49,48 @@ function handelGetUserRecipe() {
 }
 function hendelAddRecipe(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var recipes, error_1;
+        var email_1, title, description, urlImg, newRecipe, response, recipes, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    _a.trys.push([0, 2, , 3]);
+                    _a.trys.push([0, 3, , 4]);
                     ev.preventDefault();
-                    return [4 /*yield*/, response.json()];
+                    email_1 = getEmailFromQuery();
+                    if (!email_1)
+                        throw new Error("no email");
+                    console.log(email_1);
+                    title = ev.target.element.title.value;
+                    description = ev.target.element.description.value;
+                    urlImg = ev.target.element.urlImg.value;
+                    newRecipe = { title: title, description: description, urlImg: urlImg, email: email_1 };
+                    console.log(newRecipe);
+                    return [4 /*yield*/, fetch('/API/recipes/add-recipe', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(newRecipe)
+                        })];
                 case 1:
+                    response = _a.sent();
+                    return [4 /*yield*/, response.json()];
+                case 2:
                     recipes = (_a.sent()).recipes;
                     console.log(recipes);
                     renderRecipes(recipes, document.querySelector("#userRecipes"));
-                    return [3 /*break*/, 3];
-                case 2:
+                    document.querySelector("form").reset();
+                    return [3 /*break*/, 4];
+                case 3:
                     error_1 = _a.sent();
                     console.error(error_1);
-                    return [3 /*break*/, 3];
-                case 3: return [2 /*return*/];
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
             }
         });
     });
+}
+function hendelUpdateRecipe() {
+    renderUpdateForm(email);
 }
 //render
 function renderRecipe(recipe) {
@@ -88,12 +110,15 @@ function renderRecipes(recipes, root) {
         var html = "<ul>";
         html += recipes.map(function (recipe) { return renderRecipe(recipe); }).join("");
         html += "<ul>";
+        html += "<button onclick=\"hendelUpdateRecipe()\">Update Recipe</button>;\n                <div id=\"renderUpdateForm\"></div>\n                ";
         root.innerHTML = html;
     }
     catch (error) {
         console.error(error);
         return "";
     }
+}
+function renderUpdateForm(email) {
 }
 //controllers
 function GetUserRecipe(email) {
