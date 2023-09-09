@@ -301,7 +301,7 @@ async function hundlePhysicianDeleteSubmit(event) {
         event.preventDefault();
         const id = event.target.id.value;
         if (!id) throw new Error("missing some details");
-        const response = await fetch("API/physician/delete-physician", {
+        const response = await fetch("/API/physician/delete-physician", {
             method: "DELETE",
             headers: {
                 'Content-Type': 'application/json'
@@ -352,7 +352,7 @@ async function hundlePatientDeleteSubmit(event) {
         event.preventDefault();
         const id = event.target.id.value;
         if (!id) throw new Error("missing some details");
-        const response = await fetch("API/patient/delete-patient", {
+        const response = await fetch("/API/patient/delete-patient", {
             method: "DELETE",
             headers: {
                 'Content-Type': 'application/json'
@@ -404,7 +404,7 @@ async function hundleMedicineDeleteSubmit(event) {
         event.preventDefault();
         const id = event.target.id.value;
         if (!id) throw new Error("missing some details");
-        const response = await fetch("API/medicine/delete-medicine", {
+        const response = await fetch("/API/medicine/delete-medicine", {
             method: "DELETE",
             headers: {
                 'Content-Type': 'application/json'
@@ -486,8 +486,9 @@ async function hundlePhysicianSubmit(event) {
         const licenseNumber = event.target.licenseNumber.value;
         const password = event.target.password.value;
         const isAdmin = event.target.isAdmin.checked;
+        debugger;
         if (!firstName || !lastName || !age || !phoneNum || !email || !licenseNumber || !password) throw new Error("missing some details");
-        const response = await fetch("API/physician/add-physician", {
+        const response = await fetch("/API/physician/add-physician", {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
@@ -586,7 +587,7 @@ async function hundlePatientSubmit(event) {
         const address = event.target.address.value;
         const physicianId = event.target.physicianId.value;
         if (!firstName || !lastName || !patientId || !age || !phoneNum || !weight || !height || !address || !physicianId) throw new Error("missing some details");
-        const response = await fetch("API/patient/add-patient", {
+        const response = await fetch("/API/patient/add-patient", {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
@@ -638,7 +639,7 @@ async function hundleMedicineSubmit(event) {
         const dosagePerDay = event.target.dosagePerDay.value;
         const maxDuration = event.target.maxDuration.value;
         if (!name || !dosagePerDay || !maxDuration) throw new Error("missing some details");
-        const response = await fetch("API/medicine/add-medicine", {
+        const response = await fetch("/API/medicine/add-medicine", {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
@@ -691,7 +692,7 @@ async function renderUpdatePhysician(html: HTMLDivElement) {
             <input type="text" id="phoneNum" name="phoneNum" value="${physiciansList[0].phoneNum}">
             </div><div class="input">
             <label for="email">Email:</label><br>
-            <input type="email" id="email" name="email">
+            <input type="email" id="email" name="email" value="${physiciansList[0].email}">
             </div><div class="input">
             <label for="licenseNumber">License Number:</label><br>
             <input type="text" id="licenseNumber" name="licenseNumber" value="${physiciansList[0].licenseNumber}">
@@ -754,7 +755,7 @@ async function hundlePhysicianUpdateSubmit(event) {
 
 
         if (!id) throw new Error("missing some details");
-        const response = await fetch("API/physician/update-physician", {
+        const response = await fetch("/API/physician/update-physician", {
             method: "PATCH",
             headers: {
                 'Content-Type': 'application/json'
@@ -891,7 +892,7 @@ async function hundlePatientUpdateSubmit(event) {
         const address = event.target.address.value;
         const physicianId = event.target.physicianId.value;
         if (!id) throw new Error("missing some details");
-        const response = await fetch("API/patient/update-patient", {
+        const response = await fetch("/API/patient/update-patient", {
             method: "PATCH",
             headers: {
                 'Content-Type': 'application/json'
@@ -983,8 +984,9 @@ async function hundleMedicineUpdateSubmit(event) {
         const name = event.target.name.value;
         const dosagePerDay = event.target.dosagePerDay.value;
         const maxDuration = event.target.maxDuration.value;
+        debugger;   
         if (!id) throw new Error("missing some details");
-        const response = await fetch("API/medicine/update-medicine", {
+        const response = await fetch("/API/medicine/update-medicine", {
             method: "PATCH",
             headers: {
                 'Content-Type': 'application/json'

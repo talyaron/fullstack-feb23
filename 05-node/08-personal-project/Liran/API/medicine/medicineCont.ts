@@ -1,5 +1,5 @@
 // import { tasks, TaskStatus, Task, userTasks, UserTasks, TaskModel } from './tasksModel';
-import { MedicineModel } from '../medicine/medicineModel';
+import { MedicineModel } from './medicineModel';
 
 export async function getMedicines(req: any, res: any) {
     try {
@@ -13,9 +13,9 @@ export async function getMedicines(req: any, res: any) {
 
 export async function addMedicine(req: any, res: any) {
     try {
-        const { name,  dosagePerDay, maxDuration} = req.body;
+        const { name, dosagePerDay, maxDuration } = req.body;
         if (!name || !dosagePerDay || !maxDuration) throw new Error("Please complete all fields");
-        const medicine = new MedicineModel({ name, dosagePerDay, maxDuration});
+        const medicine = new MedicineModel({ name, dosagePerDay, maxDuration });
         const medicineDB = await medicine.save();
         console.log(medicineDB);
         res.send({ ok: true });
@@ -39,12 +39,14 @@ export async function deleteMedicine(req: any, res: any) {
 export async function updateMedicine(req: any, res: any) {
     try {
         const { id, name, dosagePerDay, maxDuration } = req.body;
-        if(!id) throw new Error("id is required");
+        if (!id) throw new Error("id is required");
         const medicine = await MedicineModel.findById(id);
-        if(!medicine) throw new Error("medicine not found");
-        if(name) medicine.name = name;
-        if(dosagePerDay) medicine.dosagePerDay = dosagePerDay;
+        if (!medicine) throw new Error("medicine not found");
+        if (name) medicine.name = name;
+        if (dosagePerDay) medicine.dosagePerDay = dosagePerDay;
         if (maxDuration) medicine.maxDuration = maxDuration;
+        const medicineDB = await medicine.save();
+        debugger;
         res.send({ ok: true });
     } catch (error) {
         console.error(error);

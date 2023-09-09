@@ -387,7 +387,7 @@ function hundlePhysicianDeleteSubmit(event) {
                     id = event.target.id.value;
                     if (!id)
                         throw new Error("missing some details");
-                    return [4 /*yield*/, fetch("API/physician/delete-physician", {
+                    return [4 /*yield*/, fetch("/API/physician/delete-physician", {
                             method: "DELETE",
                             headers: {
                                 'Content-Type': 'application/json'
@@ -457,7 +457,7 @@ function hundlePatientDeleteSubmit(event) {
                     id = event.target.id.value;
                     if (!id)
                         throw new Error("missing some details");
-                    return [4 /*yield*/, fetch("API/patient/delete-patient", {
+                    return [4 /*yield*/, fetch("/API/patient/delete-patient", {
                             method: "DELETE",
                             headers: {
                                 'Content-Type': 'application/json'
@@ -527,7 +527,7 @@ function hundleMedicineDeleteSubmit(event) {
                     id = event.target.id.value;
                     if (!id)
                         throw new Error("missing some details");
-                    return [4 /*yield*/, fetch("API/medicine/delete-medicine", {
+                    return [4 /*yield*/, fetch("/API/medicine/delete-medicine", {
                             method: "DELETE",
                             headers: {
                                 'Content-Type': 'application/json'
@@ -592,9 +592,10 @@ function hundlePhysicianSubmit(event) {
                     licenseNumber = event.target.licenseNumber.value;
                     password = event.target.password.value;
                     isAdmin = event.target.isAdmin.checked;
+                    debugger;
                     if (!firstName || !lastName || !age || !phoneNum || !email_1 || !licenseNumber || !password)
                         throw new Error("missing some details");
-                    return [4 /*yield*/, fetch("API/physician/add-physician", {
+                    return [4 /*yield*/, fetch("/API/physician/add-physician", {
                             method: "POST",
                             headers: {
                                 'Content-Type': 'application/json'
@@ -697,7 +698,7 @@ function hundlePatientSubmit(event) {
                     physicianId = event.target.physicianId.value;
                     if (!firstName || !lastName || !patientId || !age || !phoneNum || !weight || !height || !address || !physicianId)
                         throw new Error("missing some details");
-                    return [4 /*yield*/, fetch("API/patient/add-patient", {
+                    return [4 /*yield*/, fetch("/API/patient/add-patient", {
                             method: "POST",
                             headers: {
                                 'Content-Type': 'application/json'
@@ -752,7 +753,7 @@ function hundleMedicineSubmit(event) {
                     maxDuration = event.target.maxDuration.value;
                     if (!name || !dosagePerDay || !maxDuration)
                         throw new Error("missing some details");
-                    return [4 /*yield*/, fetch("API/medicine/add-medicine", {
+                    return [4 /*yield*/, fetch("/API/medicine/add-medicine", {
                             method: "POST",
                             headers: {
                                 'Content-Type': 'application/json'
@@ -800,7 +801,7 @@ function renderUpdatePhysician(html) {
                     physiciansList.forEach(function (physician) {
                         tempHtml_9 += "<option value=\"" + physician._id + "\"> Dr. " + physician.firstName + " " + physician.lastName + "</option>";
                     });
-                    tempHtml_9 += "</select>\n            </div>\n            <div class=\"input\">\n            <label for=\"firstName\">First Name:</label><br>\n            <input type=\"text\" id=\"firstName\" name=\"firstName\" value=\"" + physiciansList[0].firstName + "\">\n            </div><div class=\"input\">\n            <label for=\"lastName\">Last Name:</label><br>\n            <input type=\"text\" id=\"lastName\" name=\"lastName\" value=\"" + physiciansList[0].lastName + "\">\n            </div> <div class=\"input\">\n            <label for=\"age\">Age:</label><br>\n            <input type=\"number\" id=\"age\" name=\"age\" value=\"" + physiciansList[0].age + "\">\n            </div> <div class=\"input\">\n            <label for=\"phoneNum\">Phone Number:</label><br>\n            <input type=\"text\" id=\"phoneNum\" name=\"phoneNum\" value=\"" + physiciansList[0].phoneNum + "\">\n            </div><div class=\"input\">\n            <label for=\"email\">Email:</label><br>\n            <input type=\"email\" id=\"email\" name=\"email\">\n            </div><div class=\"input\">\n            <label for=\"licenseNumber\">License Number:</label><br>\n            <input type=\"text\" id=\"licenseNumber\" name=\"licenseNumber\" value=\"" + physiciansList[0].licenseNumber + "\">\n            </div><div class=\"input\">\n            <label for=\"password\">Password:</label><br>\n            <input type=\"password\" id=\"password\" name=\"password\" value=\"" + physiciansList[0].password + "\">\n            </div><div class=\"input\">\n            <label for=\"isAdmin\">Admin:</label><br>\n            <input type=\"checkbox\" id=\"isAdmin\" name=\"isAdmin\" " + (((_a = physiciansList[0]) === null || _a === void 0 ? void 0 : _a.isAdmin) ? "checked" : "") + ">\n            </div> \n            <input type=\"submit\" value=\"UPDATE\">\n            </form>";
+                    tempHtml_9 += "</select>\n            </div>\n            <div class=\"input\">\n            <label for=\"firstName\">First Name:</label><br>\n            <input type=\"text\" id=\"firstName\" name=\"firstName\" value=\"" + physiciansList[0].firstName + "\">\n            </div><div class=\"input\">\n            <label for=\"lastName\">Last Name:</label><br>\n            <input type=\"text\" id=\"lastName\" name=\"lastName\" value=\"" + physiciansList[0].lastName + "\">\n            </div> <div class=\"input\">\n            <label for=\"age\">Age:</label><br>\n            <input type=\"number\" id=\"age\" name=\"age\" value=\"" + physiciansList[0].age + "\">\n            </div> <div class=\"input\">\n            <label for=\"phoneNum\">Phone Number:</label><br>\n            <input type=\"text\" id=\"phoneNum\" name=\"phoneNum\" value=\"" + physiciansList[0].phoneNum + "\">\n            </div><div class=\"input\">\n            <label for=\"email\">Email:</label><br>\n            <input type=\"email\" id=\"email\" name=\"email\" value=\"" + physiciansList[0].email + "\">\n            </div><div class=\"input\">\n            <label for=\"licenseNumber\">License Number:</label><br>\n            <input type=\"text\" id=\"licenseNumber\" name=\"licenseNumber\" value=\"" + physiciansList[0].licenseNumber + "\">\n            </div><div class=\"input\">\n            <label for=\"password\">Password:</label><br>\n            <input type=\"password\" id=\"password\" name=\"password\" value=\"" + physiciansList[0].password + "\">\n            </div><div class=\"input\">\n            <label for=\"isAdmin\">Admin:</label><br>\n            <input type=\"checkbox\" id=\"isAdmin\" name=\"isAdmin\" " + (((_a = physiciansList[0]) === null || _a === void 0 ? void 0 : _a.isAdmin) ? "checked" : "") + ">\n            </div> \n            <input type=\"submit\" value=\"UPDATE\">\n            </form>";
                     html.innerHTML = tempHtml_9;
                     return [3 /*break*/, 3];
                 case 2:
@@ -873,7 +874,7 @@ function hundlePhysicianUpdateSubmit(event) {
                     isAdmin = event.target.isAdmin.checked;
                     if (!id)
                         throw new Error("missing some details");
-                    return [4 /*yield*/, fetch("API/physician/update-physician", {
+                    return [4 /*yield*/, fetch("/API/physician/update-physician", {
                             method: "PATCH",
                             headers: {
                                 'Content-Type': 'application/json'
@@ -1027,7 +1028,7 @@ function hundlePatientUpdateSubmit(event) {
                     physicianId = event.target.physicianId.value;
                     if (!id)
                         throw new Error("missing some details");
-                    return [4 /*yield*/, fetch("API/patient/update-patient", {
+                    return [4 /*yield*/, fetch("/API/patient/update-patient", {
                             method: "PATCH",
                             headers: {
                                 'Content-Type': 'application/json'
@@ -1154,9 +1155,10 @@ function hundleMedicineUpdateSubmit(event) {
                     name = event.target.name.value;
                     dosagePerDay = event.target.dosagePerDay.value;
                     maxDuration = event.target.maxDuration.value;
+                    debugger;
                     if (!id)
                         throw new Error("missing some details");
-                    return [4 /*yield*/, fetch("API/medicine/update-medicine", {
+                    return [4 /*yield*/, fetch("/API/medicine/update-medicine", {
                             method: "PATCH",
                             headers: {
                                 'Content-Type': 'application/json'
