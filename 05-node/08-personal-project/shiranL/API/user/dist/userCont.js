@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.logOut = exports.getLoggedInUser = exports.logIn = exports.addUser = void 0;
+exports.allUsers = exports.logOut = exports.getLoggedInUser = exports.logIn = exports.addUser = void 0;
 var userModel_1 = require("./userModel");
 exports.addUser = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var _a, email, password, existingUser, user, userDB, error_1;
@@ -90,11 +90,9 @@ exports.logIn = function (req, res) { return __awaiter(void 0, void 0, void 0, f
                     // Passwords don't match, return an error response
                     return [2 /*return*/, res.status(401).json({ error: "Incorrect password" })];
                 }
-                // make all other users logOut
                 // Log out all other users by setting their 'isLogOn' property to 'false'
                 return [4 /*yield*/, userModel_1.UserModel.updateMany({ _id: { $ne: existingUser._id } }, { isLoggedIn: false })];
             case 2:
-                // make all other users logOut
                 // Log out all other users by setting their 'isLogOn' property to 'false'
                 _b.sent();
                 existingUser.isLoggedIn = true;
@@ -150,6 +148,27 @@ exports.logOut = function (req, res) { return __awaiter(void 0, void 0, void 0, 
                 error_4 = _a.sent();
                 console.error(error_4);
                 res.send({ error: error_4.message });
+                return [3 /*break*/, 3];
+            case 3: return [2 /*return*/];
+        }
+    });
+}); };
+exports.allUsers = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var allUsers_1, error_5;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                _a.trys.push([0, 2, , 3]);
+                return [4 /*yield*/, userModel_1.UserModel.find({})];
+            case 1:
+                allUsers_1 = _a.sent();
+                // Return the list of not admin users as a response
+                res.send({ ok: true, allUsers: allUsers_1 });
+                return [3 /*break*/, 3];
+            case 2:
+                error_5 = _a.sent();
+                console.error(error_5);
+                res.send({ error: error_5.message });
                 return [3 /*break*/, 3];
             case 3: return [2 /*return*/];
         }
