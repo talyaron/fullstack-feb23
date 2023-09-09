@@ -1,0 +1,1 @@
+{"version":3,"file":"usersRouter.js","sourceRoot":"","sources":["../../../API/users/usersRouter.ts"],"names":[],"mappings":";;;;;AAAA,sDAA8B;AAC9B,2CAAkD;AAClD,MAAM,UAAU,GAAG,iBAAO,CAAC,MAAM,EAAE,CAAC;AACpC,UAAU,CAAC,IAAI,CAAC,WAAW,EAAE,wBAAY,CAAC,CAAC,IAAI,CAAC,QAAQ,EAAE,iBAAK,CAAC,CAAC;AACjE,kBAAe,UAAU,CAAC"}

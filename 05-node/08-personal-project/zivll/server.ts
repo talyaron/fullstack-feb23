@@ -13,6 +13,8 @@ mongoose
   .catch((err) => console.error(err));
 import userRoutes from "./API/users/usersRouter";
 app.use("/API/users", userRoutes);
-import expensesRoutes from "./API/expence/expenseRouter";
+import expensesRoutes from "./API/expense/expenseRouter";
 app.use("/API/expense", expensesRoutes);
+import categoryRoutes from "./API/category/categoryRouter";
+app.use("/API/category", categoryRoutes);
 app.listen(port, () => console.log(`app is listening on port ${port}`));

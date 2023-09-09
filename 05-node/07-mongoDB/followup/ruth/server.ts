@@ -17,7 +17,7 @@ app.use(express.static("public"));
 app.use(express.json());
 
 
-mongoose.connect("mongodb+srv://ruturAdmin:turrut66@cluster0.k1el7dn.mongodb.net/")
+mongoose.connect("mongodb+srv://ruturAdmin:######@cluster0.k1el7dn.mongodb.net/")
 .then(()=>console.log("mongoose connected!"))
 .catch(err=>{
   console.error(err)
