@@ -49,7 +49,7 @@ function handelGetUserRecipe() {
 }
 function hendelAddRecipe(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var email_1, title, description, urlImg, newRecipe, response, recipes, error_1;
+        var email_1, title, description, urlImg, newRecipe, response, recipes_1, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -75,9 +75,9 @@ function hendelAddRecipe(ev) {
                     response = _a.sent();
                     return [4 /*yield*/, response.json()];
                 case 2:
-                    recipes = (_a.sent()).recipes;
-                    console.log(recipes);
-                    renderRecipes(recipes, document.querySelector("#userRecipes"));
+                    recipes_1 = (_a.sent()).recipes;
+                    console.log(recipes_1);
+                    renderRecipes(recipes_1, document.querySelector("#userRecipes"));
                     document.querySelector("form").reset();
                     return [3 /*break*/, 4];
                 case 3:
@@ -89,13 +89,17 @@ function hendelAddRecipe(ev) {
         });
     });
 }
-function hendelUpdateRecipe() {
-    renderUpdateForm(email);
+function hendelUpdateRecipe(ev) {
+    try {
+        ev.preventDefault();
+    }
+    catch (error) {
+    }
 }
 //render
 function renderRecipe(recipe) {
     try {
-        var html = "<h3>" + recipe.title + "</h3>\n                        <br>\n                      <p>" + recipe.description + "</p>";
+        var html = "<div id=\"updateRecipe\">\n                      <h3>" + recipe.title + "</h3>\n                      <br>\n                      <p>" + recipe.description + "</p>\n                      <img url=\"" + recipe.urlImg + "\">\n                      <br>\n                      <button onclick=\"hendelDeleteRecipe()\">Delet Recipe</button>\n                      <button onclick=\"renderUpdateForm()\">Update Recipe</button>\n                      </div>";
         return html;
     }
     catch (error) {
@@ -110,7 +114,6 @@ function renderRecipes(recipes, root) {
         var html = "<ul>";
         html += recipes.map(function (recipe) { return renderRecipe(recipe); }).join("");
         html += "<ul>";
-        html += "<button onclick=\"hendelUpdateRecipe()\">Update Recipe</button>;\n                <div id=\"renderUpdateForm\"></div>\n                ";
         root.innerHTML = html;
     }
     catch (error) {
@@ -118,12 +121,45 @@ function renderRecipes(recipes, root) {
         return "";
     }
 }
-function renderUpdateForm(email) {
+function renderUpdateForm(DivEl) {
+    try {
+        if (!DivEl)
+            throw new Error("no div element");
+        var html = "<form id=\"recipe_update\" onsubmit=\"hendelUpdateRecipeForm(event)\">\n                  <input type=\"text\" name=\"title\" placeholder=\"Recipe title\">\n                  <input type=\"text\" name=\"description\" placeholder=\"Recipe Instructions\">\n                  <input type=\"url\" name=\"imgUrl\" placeholder=\"image\">\n                  <button type=\"submit\">Update Recipe now</button>\n                  </forn>";
+        DivEl.innerHTML = html;
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+function hendelDeleteRecipe() {
+    return __awaiter(this, void 0, void 0, function () {
+        var response, recipes_2, error_2;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 3, , 4]);
+                    return [4 /*yield*/, fetch('/API/recipes/delete-recipe')];
+                case 1:
+                    response = _a.sent();
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    recipes_2 = (_a.sent()).recipes;
+                    console.log(recipes_2);
+                    renderRecipes(recipes_2, document.querySelector('#userRecipes'));
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_2 = _a.sent();
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
+            }
+        });
+    });
 }
 //controllers
 function GetUserRecipe(email) {
     return __awaiter(this, void 0, void 0, function () {
-        var response, data, error_2;
+        var response, data, error_3;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -138,7 +174,7 @@ function GetUserRecipe(email) {
                     renderRecipes(data.recipes, document.querySelector("#userRecipes"));
                     return [3 /*break*/, 4];
                 case 3:
-                    error_2 = _a.sent();
+                    error_3 = _a.sent();
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }

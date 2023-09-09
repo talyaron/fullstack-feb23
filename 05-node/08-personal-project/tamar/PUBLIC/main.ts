@@ -1,4 +1,4 @@
-import { Recipe } from "../API/recipes/recipesModel";
+import { Recipe, recipes } from "../API/recipes/recipesModel";
 
 // a function which get the email from the url query
 function getEmailFromQuery() {
@@ -47,16 +47,27 @@ async function hendelAddRecipe(ev) {
 
 }
 
-function hendelUpdateRecipe() {
-    renderUpdateForm(email)
+function hendelUpdateRecipe(ev) {
+   try {
+    ev.preventDefault();
+    
+   } catch (error) {
+    
+   }
 }
 
 //render
 function renderRecipe(recipe: Recipe) {
     try {
-        const html = `<h3>${recipe.title}</h3>
-                        <br>
-                      <p>${recipe.description}</p>`
+        const html = `<div id="updateRecipe">
+                      <h3>${recipe.title}</h3>
+                      <br>
+                      <p>${recipe.description}</p>
+                      <img url="${recipe.urlImg}">
+                      <br>
+                      <button onclick="hendelDeleteRecipe()">Delet Recipe</button>
+                      <button onclick="renderUpdateForm()">Update Recipe</button>
+                      </div>`
         return html;
     } catch (error) {
         console.error(error);
@@ -70,9 +81,6 @@ function renderRecipes(recipes: Recipe[], root: HTMLDivElement) {
         let html = "<ul>";
         html += recipes.map(recipe => renderRecipe(recipe)).join("");
         html += "<ul>";
-        html += `<button onclick="hendelUpdateRecipe()">Update Recipe</button>;
-                <div id="renderUpdateForm"></div>
-                `
 
         root.innerHTML = html;
 
@@ -82,10 +90,33 @@ function renderRecipes(recipes: Recipe[], root: HTMLDivElement) {
     }
 }
 
-function renderUpdateForm(email){
-    
+function renderUpdateForm(DivEl: HTMLDivElement){
+try {
+    if (!DivEl) throw new Error("no div element");
+    const html = `<form id="recipe_update" onsubmit="hendelUpdateRecipeForm(event)">
+                  <input type="text" name="title" placeholder="Recipe title">
+                  <input type="text" name="description" placeholder="Recipe Instructions">
+                  <input type="url" name="imgUrl" placeholder="image">
+                  <button type="submit">Update Recipe now</button>
+                  </forn>`
+    DivEl.innerHTML = html;
+} catch (error) {
+    console.error(error)
 }
 
+}
+
+async function hendelDeleteRecipe(){
+    try {
+        const response = await fetch('/API/recipes/delete-recipe');
+        //convert response to join data
+        const {recipes} = await response.json();
+        console.log(recipes);
+        renderRecipes(recipes, document.querySelector('#userRecipes'))
+    } catch (error) {
+        
+    }
+}
 //controllers
 async function GetUserRecipe(email: string) {
     try {
