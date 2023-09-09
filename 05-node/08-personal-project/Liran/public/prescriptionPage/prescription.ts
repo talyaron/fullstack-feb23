@@ -14,6 +14,21 @@ const medicines = getMedicinesDB().then(medicines => {
     renderForm(medicines, document.querySelector("#root"));
 });
 
+async function hundlePrescriptionSubmit(event) {
+    try {
+        debugger;
+        event.preventDefault();
+        const medicineId = document.querySelector<HTMLInputElement>("#medicine-select").value;
+        if (!patient) throw new Error("Patient not found");
+        const date = getTimeFormated(new Date());
+        addNewPrescription(medicineId, date, pId, physicianId);
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+
+
 
 
 
@@ -45,20 +60,6 @@ async function renderForm(medicines, root) {
         console.error(error);
     }
 }
-
-async function hundlePrescriptionSubmit(event) {
-    try {
-        debugger;
-        event.preventDefault();
-        const medicineId = document.querySelector<HTMLInputElement>("#medicine-select").value;
-        if (!patient) throw new Error("Patient not found");
-        const date = getTimeFormated(new Date());
-        addNewPrescription(medicineId, date, pId, physicianId);
-    } catch (error) {
-        console.error(error);
-    }
-}
-
 
 async function addNewPrescription(medicine, date, patient, physician) {
     try {

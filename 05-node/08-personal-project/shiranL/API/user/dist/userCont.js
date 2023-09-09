@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.allUsers = exports.logOut = exports.getLoggedInUser = exports.logIn = exports.addUser = void 0;
+exports.deleteUser = exports.updateUser = exports.getUserDetails = exports.allUsers = exports.logOut = exports.getLoggedInUser = exports.logIn = exports.addUser = void 0;
 var userModel_1 = require("./userModel");
 exports.addUser = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var _a, email, password, existingUser, user, userDB, error_1;
@@ -172,5 +172,82 @@ exports.allUsers = function (req, res) { return __awaiter(void 0, void 0, void 0
                 return [3 /*break*/, 3];
             case 3: return [2 /*return*/];
         }
+    });
+}); };
+exports.getUserDetails = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var userId, user, error_6;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                _a.trys.push([0, 2, , 3]);
+                userId = req.query.userId;
+                return [4 /*yield*/, userModel_1.UserModel.findById(userId)];
+            case 1:
+                user = _a.sent();
+                if (!user) {
+                    return [2 /*return*/, res.send({ error: "User not found" })];
+                }
+                // Return the user details
+                res.send({ ok: true, user: user });
+                return [3 /*break*/, 3];
+            case 2:
+                error_6 = _a.sent();
+                console.error(error_6);
+                res.send({ error: error_6.message });
+                return [3 /*break*/, 3];
+            case 3: return [2 /*return*/];
+        }
+    });
+}); };
+exports.updateUser = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var _a, newEmail, newPassword, isAdmin, userId, existingUser, error_7;
+    return __generator(this, function (_b) {
+        switch (_b.label) {
+            case 0:
+                _b.trys.push([0, 3, , 4]);
+                _a = req.body, newEmail = _a.newEmail, newPassword = _a.newPassword, isAdmin = _a.isAdmin;
+                userId = req.query.userId;
+                return [4 /*yield*/, userModel_1.UserModel.findById(userId)];
+            case 1:
+                existingUser = _b.sent();
+                if (!existingUser) {
+                    return [2 /*return*/, res.send({ error: "User not found" })];
+                }
+                // Update the user's email, password, and isAdmin if provided
+                if (newEmail) {
+                    existingUser.email = newEmail;
+                }
+                if (newPassword) {
+                    existingUser.password = newPassword;
+                }
+                if (isAdmin !== undefined) {
+                    existingUser.isAdmin = isAdmin;
+                }
+                // Save the updated user
+                return [4 /*yield*/, existingUser.save()];
+            case 2:
+                // Save the updated user
+                _b.sent();
+                res.send({ ok: true, existingUser: existingUser });
+                return [3 /*break*/, 4];
+            case 3:
+                error_7 = _b.sent();
+                console.error(error_7);
+                res.send({ error: error_7.message });
+                return [3 /*break*/, 4];
+            case 4: return [2 /*return*/];
+        }
+    });
+}); };
+exports.deleteUser = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    return __generator(this, function (_a) {
+        try {
+            res.send({ ok: true, message: "User deleted successfully" });
+        }
+        catch (error) {
+            console.error(error);
+            res.send({ error: error.message });
+        }
+        return [2 /*return*/];
     });
 }); };
