@@ -130,6 +130,10 @@ function renderUsersList(users) {
         var updateUserDiv = document.querySelector("#updateUserDiv");
         if (!updateUserDiv)
             throw new Error("updateUserDiv root not found");
+        //create div for select user
+        var selectUserDiv = document.createElement('div');
+        selectUserDiv.id = 'selectUserDiv';
+        updateUserDiv.appendChild(selectUserDiv);
         // Create a select element to choose a user
         var selectUser_1 = document.createElement('select');
         selectUser_1.id = 'selectUser';
@@ -167,9 +171,9 @@ function renderUsersList(users) {
         deleteButton.textContent = 'Delete';
         //deleteButton.onclick = async () => await handleDeleteUser();
         // Append select and buttons to updateUserDiv
-        updateUserDiv.appendChild(selectUser_1);
-        updateUserDiv.appendChild(updateButton);
-        updateUserDiv.appendChild(deleteButton);
+        selectUserDiv.appendChild(selectUser_1);
+        selectUserDiv.appendChild(updateButton);
+        selectUserDiv.appendChild(deleteButton);
     }
     catch (error) {
         console.error(error);
@@ -223,7 +227,7 @@ function openUpdateUserForm(userId) {
                     updateUserForm_1.appendChild(submitButton);
                     // Event handler for updating user details
                     updateUserForm_1.onsubmit = function (event) { return __awaiter(_this, void 0, void 0, function () {
-                        var updatedUser, response, responseData;
+                        var updatedUser, response, responseData, selectUserDiv, userdetailsDiv;
                         return __generator(this, function (_a) {
                             switch (_a.label) {
                                 case 0:
@@ -249,6 +253,14 @@ function openUpdateUserForm(userId) {
                                         throw new Error(responseData.message);
                                     }
                                     alert("User details updated successfully");
+                                    // clean the updateUserDiv
+                                    debugger;
+                                    selectUserDiv = document.querySelector("#selectUserDiv");
+                                    userdetailsDiv = document.querySelector("#userdetailsDiv");
+                                    if (!selectUserDiv || !userdetailsDiv)
+                                        throw new Error("selectUserDiv|userdetailsDiv root not found");
+                                    selectUserDiv.innerHTML = '';
+                                    userdetailsDiv.innerHTML = '';
                                     // Close the update user form and potentially refresh the user list
                                     updateUserForm_1.remove();
                                     return [2 /*return*/];

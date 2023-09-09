@@ -52,6 +52,12 @@ function renderUsersList(users) {
         const updateUserDiv = document.querySelector("#updateUserDiv") as HTMLDivElement;
         if (!updateUserDiv) throw new Error("updateUserDiv root not found");
 
+
+        //create div for select user
+        const selectUserDiv = document.createElement('div');
+        selectUserDiv.id = 'selectUserDiv';
+        updateUserDiv.appendChild(selectUserDiv);
+
         // Create a select element to choose a user
         const selectUser = document.createElement('select');
         selectUser.id = 'selectUser';
@@ -85,9 +91,9 @@ function renderUsersList(users) {
         //deleteButton.onclick = async () => await handleDeleteUser();
 
         // Append select and buttons to updateUserDiv
-        updateUserDiv.appendChild(selectUser);
-        updateUserDiv.appendChild(updateButton);
-        updateUserDiv.appendChild(deleteButton);
+        selectUserDiv.appendChild(selectUser);
+        selectUserDiv.appendChild(updateButton);
+        selectUserDiv.appendChild(deleteButton);
     } catch (error) {
         console.error(error);
     }
@@ -168,6 +174,15 @@ debugger
             }
 
             alert("User details updated successfully");
+
+            // clean the updateUserDiv
+            debugger
+            const selectUserDiv = document.querySelector("#selectUserDiv") as HTMLDivElement;
+            const userdetailsDiv= document.querySelector("#userdetailsDiv") as HTMLDivElement;
+            if (!selectUserDiv || !userdetailsDiv) throw new Error("selectUserDiv|userdetailsDiv root not found");
+            selectUserDiv.innerHTML = '';
+            userdetailsDiv.innerHTML = '';  
+            
 
             // Close the update user form and potentially refresh the user list
             updateUserForm.remove();
