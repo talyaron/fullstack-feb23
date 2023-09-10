@@ -118,8 +118,8 @@ function handleAddRelative(event) {
                     country = event.target.elements.country.value;
                     relationSelect = document.getElementById('relation');
                     selectedRelation = relationSelect.value;
-                    if (!fullName || !birthDate || !country || selectedRelation === 'choose') {
-                        throw new Error("Please complete all fields");
+                    if (!fullName || !birthDate || !country || selectedRelation === RelationshipType.choose) {
+                        throw new Error("Please complete all fields and select a valid relation");
                     }
                     newRelative = {
                         fullName: fullName,
