@@ -65,7 +65,11 @@ function handleLogin(ev) {
                         throw new Error(error);
                     }
                     //if everthink is OK, redirect to main page of the user
+<<<<<<< Updated upstream:05-node/07-mongoDB/followup/daniel/public/dist/login.js
                     window.location.href = "/main.html?email=" + email; //query
+=======
+                    window.location.href = "/orders.html";
+>>>>>>> Stashed changes:05-node/08-personal-project/Alex/public/dist/login.js
                     return [3 /*break*/, 4];
                 case 3:
                     error_1 = _b.sent();
