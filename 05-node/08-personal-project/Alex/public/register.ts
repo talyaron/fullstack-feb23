@@ -5,6 +5,7 @@ async function handleRegister(ev: any) {
       // get data from form
       password: ev.target.password.value,
       email: ev.target.email.value,
+      userName: ev.target.userName.value,
     };
 
     const response = await fetch("/API/users/register", {
@@ -15,8 +16,8 @@ async function handleRegister(ev: any) {
       },
       body: JSON.stringify(user),
     });
-    const { error } = await response.json(); // get data from server
-    console.log(error);
+    const { error, userDB} = await response.json(); // get data from server
+    console.log(userDB);
     if (error) {
       throw new Error(error);
     }

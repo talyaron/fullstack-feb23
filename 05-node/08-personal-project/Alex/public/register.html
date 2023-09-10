@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
-    <script src="./dist/register.js"></script>
+    <script src="./dist/register.js" defer></script>
+    <link rel="stylesheet" href="./dist/style.css">
 </head>
 
 <body>
@@ -13,8 +14,11 @@
     <form onsubmit="handleRegister(event)">
         <input type="email" name="email" placeholder="email">
         <input type="password" name="password" placeholder="Password">
+        <input type="text" name="userName" placeholder="User Name">
         <button type="submit">Register</button>
+        
     </form>
+    <a id="link" href="./Main.html">Home Page</a>
 </body>
 
 </html>

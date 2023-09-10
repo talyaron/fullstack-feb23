@@ -40,23 +40,21 @@ exports.login = exports.registerUser = void 0;
 var userModel_1 = require("./userModel");
 //register user 
 exports.registerUser = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var _a, email, password, user, userDB, error_1;
+    var _a, email, password, userName, user, userDB, error_1;
     return __generator(this, function (_b) {
         switch (_b.label) {
             case 0:
                 _b.trys.push([0, 2, , 3]);
-                _a = req.body, email = _a.email, password = _a.password;
+                _a = req.body, email = _a.email, password = _a.password, userName = _a.userName;
                 if (!email || !password)
                     throw new Error("Please complete all fields");
-                user = new userModel_1.UserModel({ email: email, password: password });
+                user = new userModel_1.UserModel({ email: email, password: password, userName: userName });
                 return [4 /*yield*/, user.save()];
             case 1:
                 userDB = _b.sent();
-                //check if user already exist
-                // const userExist = users.find((user) => user.email === email);
-                // if (userExist) throw new Error("User already exist");
-                // users.push(user);
-                res.send({ ok: true, user: userDB });
+                console.log(userDB);
+                res.send({ ok: true, userDB: userDB });
+                console.log(user);
                 return [3 /*break*/, 3];
             case 2:
                 error_1 = _b.sent();
@@ -67,19 +65,51 @@ exports.registerUser = function (req, res) { return __awaiter(void 0, void 0, vo
         }
     });
 }); };
-exports.login = function (req, res) {
-    try {
-        var _a = req.body, email_1 = _a.email, password_1 = _a.password;
-        if (!email_1 || !password_1)
-            throw new Error("Please complete all fields");
-        //check if user exist and password is correct
-        var user = userModel_1.users.find(function (user) { return user.email === email_1 && user.password === password_1; });
-        if (!user)
-            throw new Error("some of the details are incorrect");
-        res.send({ ok: true, email: user.email });
-    }
-    catch (error) {
-        console.error(error);
-        res.send({ error: error.message });
-    }
-};
+exports.login = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var _a, email_1, password_1, userDB, passwordMatch, error_2;
+    return __generator(this, function (_b) {
+        switch (_b.label) {
+            case 0:
+                _b.trys.push([0, 2, , 3]);
+                _a = req.body, email_1 = _a.email, password_1 = _a.password;
+                if (!email_1 || !password_1)
+                    throw new Error("Complete all fields to proceed");
+                return [4 /*yield*/, userModel_1.UserModel.findOne({ email: email_1, password: password_1 })];
+            case 1:
+                userDB = _b.sent();
+                // Check if the user exists
+                if (!userDB) {
+                    return [2 /*return*/, res.status(404).json({ error: 'User not found' })];
+                }
+                passwordMatch = userModel_1.UserModel.find(function (user) { return user.email === email_1 && user.password === password_1; });
+                //   const passwordMatch = user.(password, user.password);
+                if (!passwordMatch) {
+                    return [2 /*return*/, res.status(401).json({ error: 'Authentication failed' })];
+                }
+                // Authentication successful
+                // You can generate a JWT token here if needed and send it in the response
+                // For example: const token = generateToken(user);
+                res.send({ ok: true, email: userDB.email });
+                return [3 /*break*/, 3];
+            case 2:
+                error_2 = _b.sent();
+                console.error(error_2);
+                res.status(500).json({ error: 'Internal server error' });
+                return [3 /*break*/, 3];
+            case 3: return [2 /*return*/];
+        }
+    });
+}); };
+// export const login = (req: any, res: any) => {
+//     try {
+//         const { email, password } = req.body;
+//         if(!email || !password) throw new Error("Please complete all fields");
+//         //check if user exist and password is correct
+//         const user = users.find((user) => user.email === email && user.password === password);
+//         if (!user) throw new Error("some of the details are incorrect");
+//         res.send({ ok:true, email:user.email });
+//     } catch (error) {
+//         console.error(error);
+//         res.send({ error:error.message });
+//     }
+// }
