@@ -30,7 +30,7 @@ async function renderExpenceCalculator() {
       <select name="categoryName" id="categories">
       <option value="" disabled selected>בחר/י את הקטגוריה</option>
       ${categoriesHtml}
-      </select>
+      </select> <a href="" onclick="addCategory(event)" class="regular">הוספת קטגוריה חדשה</a>
     </div>
     <div class="user-box">
       <input
