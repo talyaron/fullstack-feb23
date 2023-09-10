@@ -4,14 +4,23 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
+const mongoose_1 = __importDefault(require("mongoose"));
 const app = express_1.default();
-const PORT = process.env.PORT || 3000;
+const port = process.env.PORT || 3000;
+//static files
 app.use(express_1.default.static("public"));
+//body
 app.use(express_1.default.json());
-const usersRoutes_1 = __importDefault(require("./API/Users/usersRoutes"));
+const usersRoutes_1 = __importDefault(require("./API/users/usersRoutes"));
 app.use("/API/users", usersRoutes_1.default);
-const imagesRoutes_1 = __importDefault(require("./API/Images/imagesRoutes"));
-app.use("/API/img", imagesRoutes_1.default);
-app.listen(PORT, () => {
-    console.log(`Example app listening on PORT ${PORT}`);
+const productsRoutes_1 = __importDefault(require("./API/products/productsRoutes"));
+app.use("/API/products", productsRoutes_1.default);
+mongoose_1.default
+    .connect("mongodb+srv://ruturAdmin:XZNzKBtxePpcnvMf@cluster0.k1el7dn.mongodb.net/")
+    .then(() => console.log("mongoose connected!"))
+    .catch((err) => {
+    console.error(err);
+});
+app.listen(port, () => {
+    console.log(`App listening on PORT:  ${port}`);
 });
