@@ -4,26 +4,33 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="./js/dist/sign-in.js"></script>
+    <link rel="stylesheet" href="./css/dist/style.css" />
     <title>Document</title>
   </head>
   <body>
     <h1>Welcome to our shared gallery</h1>
     <h2>to use the app sign in</h2>
-    <form onsubmit="handleSignIn(event)">
-      <input
-        type="text"
-        name="userName"
-        id="userName"
-        placeholder="User Name"
-      />
-      <input
-        type="password"
-        name="password"
-        id="password"
-        placeholder="password"
-      />
-      <input type="submit" value="sign-in" />
-    </form>
-    <div id="message"></div>
+    <div class="wrapper">
+      <div class="forms">
+        <div class="calculators">
+          <form onsubmit="handleSignIn(event)">
+            <input
+              type="text"
+              name="userName"
+              id="userName"
+              placeholder="User Name"
+            />
+            <input
+              type="password"
+              name="password"
+              id="password"
+              placeholder="password"
+            />
+            <input type="submit" value="sign-in" />
+          </form>
+        </div>
+      </div>
+      <div id="message"></div>
+    </div>
   </body>
 </html>

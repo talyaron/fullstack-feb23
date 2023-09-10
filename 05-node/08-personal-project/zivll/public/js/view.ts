@@ -109,6 +109,8 @@ async function renderResult(htmlElemnet: Element, expense?: number) {
     const userIncome = await getUserIncomeFromDB();
     if (userIncome !== null || undefined)
       htmlElemnet.innerHTML = `${userIncome}&#8362;`;
+    if (userIncome.message === "0") htmlElemnet.innerHTML = `${"0"}&#8362;`;
+
     if (expense) htmlElemnet.innerHTML = `${expense}&#8362;`;
     if (!htmlElemnet) throw new Error(`htmlElemnet not found`);
   } catch (error) {

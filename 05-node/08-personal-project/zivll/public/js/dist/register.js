@@ -36,34 +36,40 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 function handleRegister(event) {
     return __awaiter(this, void 0, void 0, function () {
-        var user, response, result, error_1;
+        var userName, email, password, response, result, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
                     event.preventDefault();
-                    user = {
-                        email: event.target.email.value,
-                        password: event.target.password.value
-                    };
+                    userName = event.target.userName.value;
+                    email = event.target.email.value;
+                    password = event.target.password.value;
+                    console.log(userName, email, password);
                     return [4 /*yield*/, fetch("/API/users/register", {
                             method: "POST",
                             headers: {
                                 "content-type": "application/json"
                             },
-                            body: JSON.stringify(user)
+                            body: JSON.stringify({
+                                userName: userName,
+                                email: email,
+                                password: password
+                            })
                         })];
                 case 1:
                     response = _a.sent();
                     return [4 /*yield*/, response.json()];
                 case 2:
                     result = _a.sent();
-                    console.log(result);
                     if (result.message === "User added successfully") {
-                        window.location.href = "/index.html?email=" + result.email;
+                        window.location.href = "/index.html?userName=" + userName;
+                    }
+                    else if (result.error === "Please complete all fields") {
+                        alert("" + result.error);
                     }
                     else {
-                        alert("" + result.message);
+                        alert(result.message);
                     }
                     return [3 /*break*/, 4];
                 case 3:

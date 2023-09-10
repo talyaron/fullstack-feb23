@@ -122,9 +122,12 @@ async function handleExpenceSubmit(ev) {
       }),
     });
     const result = await respone.json();
+    await getExpensesFromDB();
+    renderExpenceCalculator();
     renderExpencesTable();
     handleAccordionClick();
     calculateTotalExpense();
+    calculateBalance();
     // renderResult(resultRoot, expenseAmount.toString());
     // loadDataToLocalStorage()
     ev.target.reset();
@@ -151,6 +154,7 @@ async function getCategoriesFromDB() {
 // this functions gets the user income from DB
 async function getUserIncomeFromDB() {
   try {
+    // debugger;
     const urlParams = new URLSearchParams(window.location.search);
     const userName = urlParams.get("userName");
     const response = await fetch(`/API/users/get-income`, {
@@ -161,7 +165,9 @@ async function getUserIncomeFromDB() {
       body: JSON.stringify({ userName: userName }),
     });
     const result = await response.json();
-    return result;
+    // console.log(result);
+    // if (Number(result) > 0) return result;
+    return result.message;
   } catch (error) {
     console.error(error);
   }
@@ -335,14 +341,14 @@ async function calculateBalance() {
   try {
     const balanceRoot = document.querySelector(`.total-number--balance`);
     const incomeRoot = document.querySelector(`.total-number--income`);
+    const expenseRoot = document.querySelector(`.total-number--expense`);
     const allExpenses = await calculateTotalExpense();
     const userIncome = await getUserIncomeFromDB();
     incomeRoot.innerHTML = `${userIncome}&#8362;`;
+    expenseRoot.innerHTML = `${allExpenses}&#8362;`;
     if (!balanceRoot) throw new Error(`balance not found`);
-    balanceRoot.innerHTML = `${
-      parseFloat(userIncome) - (await allExpenses)
-    }&#8362;`;
-    if (parseFloat(userIncome) - (await allExpenses) > 0) {
+    balanceRoot.innerHTML = `${parseFloat(userIncome) - allExpenses}&#8362;`;
+    if (parseFloat(userIncome) - allExpenses > 0) {
       balanceRoot.classList.remove(`total-number--expense`);
       balanceRoot.classList.add(`total-number--income`);
     } else {
@@ -358,15 +364,15 @@ async function calculateBalance() {
 
 // revoke function onLoading
 window.onload = async () => {
-  //   await checkUser();
+  await checkUser();
   await getExpensesFromDB();
   await getCategoriesFromDB();
-
-  calculateBalance();
+  getUserIncomeFromDB();
   handleAccordionClick();
   renderExpenceCalculator();
   renderExpencesTable();
-  // renderResult(resultRoot, userIncome);
+  calculateBalance();
+  //   renderResult(resultRoot, userIncome);
 };
 function ExportToExcel(type, fn, dl) {
   var elt = document.querySelector("#tbl_exporttable_to_xls");
@@ -419,7 +425,7 @@ async function checkUser() {
     const urlParams = new URLSearchParams(window.location.search);
     const userName = urlParams.get("userName");
     console.log(userName);
-    if (!userName) {
+    if (!userName || userName === undefined) {
       window.location.href = "/register.html";
     }
     const response = await fetch("/API/users/check-user", {
@@ -427,16 +433,13 @@ async function checkUser() {
       headers: {
         "content-type": "application/json",
       },
-      body: JSON.stringify({ userName }),
+      body: JSON.stringify({ userName: userName }),
     });
-    console.log(response);
-
     const result = await response.json();
     console.log(result);
-
-    if (result.message === "user exist") {
-      window.location.href = "/index.html";
-    }
+    // if (result.message === "user exist") {
+    //   window.location.href = `/index.html?userName=${userName}`;
+    // }
     // } else {
     //   alert("user does not exist, please register");
     //   window.location.href = "/register.html";
@@ -447,6 +450,7 @@ async function checkUser() {
       alert("user does not exist, please register");
       window.location.href = "/register.html";
     }
+    if (result.error === "userName is missing") alert(`${result.error}`);
   } catch (error) {
     console.error(error);
   }
