@@ -74,11 +74,13 @@ function renderPost(post: _Post) {
 function renderPostWithTitle(post: _Post) {
     try {
         const html = `
-            <div>
-                <h2>${post.content}</h2>
-                <img src="${post.featuredImage}" alt="${post.category}">
-                <p>  "${post.category}"
-            </div>
+        <div class="post_container">
+        <div class="post">
+        <img src="${post.featuredImage}" alt="${post.content}">
+        <h2 class = "headPost">${post.content}</h2>
+        <p lass = "categoryPost">${post.category}</p>
+        </div>
+    </div>
         `;
         return html;
     } catch (error) {
@@ -90,7 +92,7 @@ function renderPostWithTitle(post: _Post) {
 function renderPosts(posts: _Post[], DIVElem: HTMLDivElement) {
     try {
         if (!DIVElem) throw new Error("no div element");
-        let html = "<ul>";
+        let html = "<ul class = list>";
 
         // Render each post with title
         html += posts.map(post => `<li>${renderPostWithTitle(post)}</li>`).join("");

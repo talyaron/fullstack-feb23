@@ -115,7 +115,7 @@ function renderPost(post) {
 // Function to render the post with a content
 function renderPostWithTitle(post) {
     try {
-        var html = "\n            <div>\n                <h2>" + post.content + "</h2>\n                <img src=\"" + post.featuredImage + "\" alt=\"" + post.category + "\">\n                <p>  \"" + post.category + "\"\n            </div>\n        ";
+        var html = "\n        <div class=\"post_container\">\n        <div class=\"post\">\n        <img src=\"" + post.featuredImage + "\" alt=\"" + post.content + "\">\n        <h2 class = \"headPost\">" + post.content + "</h2>\n        <p lass = \"categoryPost\">" + post.category + "</p>\n        </div>\n    </div>\n        ";
         return html;
     }
     catch (error) {
@@ -127,7 +127,7 @@ function renderPosts(posts, DIVElem) {
     try {
         if (!DIVElem)
             throw new Error("no div element");
-        var html = "<ul>";
+        var html = "<ul class = list>";
         // Render each post with title
         html += posts.map(function (post) { return "<li>" + renderPostWithTitle(post) + "</li>"; }).join("");
         html += "</ul>";
