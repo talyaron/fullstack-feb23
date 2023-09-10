@@ -1,4 +1,4 @@
-import { users } from '../users/userModel';
+import { users, UserModel  } from '../users/userModel';
 import { relatives, Relative, userRelatives, UserRelatives, RelativeModel } from './relativesModel';
 import { Relation } from '../enums/relations'
 
@@ -14,29 +14,30 @@ export async function getFamilyMembers(req: any, res: any) {
 
 export async function addRelative(req: any, res: any) {
     try {
-        const { fullName, birthDate, country, email } = req.body;
+        const { fullName, birthDate, country, relation, userEmail } = req.body;
 
-        if (!fullName || !country || !birthDate || !email) {
-            return res.status(400).send({ error: "Please complete all fields" })
+        if (!fullName || !country || !birthDate || !relation) {
+            return res.status(400).send({ error: "Please complete all fields" });
         }
 
-        const user = users.find((user: any) => user.email === email);
-        if (!user) {
-            return res.status(404).send({ error: "User not found" });
-        }
+        // Comment out the user check, assuming userEmail is the user's email.
+        // const user = await UserModel.findOne({ email: userEmail });
+        // if (!user) {
+        //     return res.status(404).send({ error: "User not found" });
+        // }
 
         const newRelative = new RelativeModel({
             fullName,
             birthDate,
             country,
-            relation: Relation.choose, // You can set the relation as needed
-            user: user._id
+            relation,
+            user: userEmail, // Associate the relative with the user based on userEmail
         });
 
         const relativeDB = await newRelative.save();
         console.log(relativeDB);
 
-        res.send({ ok: true })
+        res.send({ ok: true });
     } catch (error) {
         console.error(error);
         res.status(500).send({ error: error.message });
@@ -77,7 +78,7 @@ export async function updateRelation(req: any, res: any) {
     }
 }
 
-export function getUserRelatives(req: any, res: any) {
+export async function getUserRelatives(req: any, res: any) {
     try {
         //get email from query
         const { email } = req.query;
@@ -85,10 +86,8 @@ export function getUserRelatives(req: any, res: any) {
             throw new Error("email is required");
         }
         //get user relatives
-        const _userrelatives = userRelatives.filter((userrelative) => userrelative.user.email === email);
-        const _relatives = _userrelatives.map((userrelative) => userrelative.user); //returns only relatives of user
-
-        res.send({ relatives: _relatives });
+        const relativeDB = await RelativeModel.find({ email });
+        res.send({ relatives: relativeDB });
 
     } catch (error) {
         console.error(error);

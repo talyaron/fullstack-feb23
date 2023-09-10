@@ -102,26 +102,33 @@ function handleGetRelatives() {
     });
 }
 // Function to add a relative for a user
-function handleAddRelative(ev) {
+function handleAddRelative(event) {
     return __awaiter(this, void 0, void 0, function () {
-        var email, fullName, birthDate, country, newRelative, response, relatives, error_3;
+        var email, fullName, birthDate, country, relationSelect, selectedRelation, newRelative, response, relatives, error_3;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
-                    ev.preventDefault();
+                    event.preventDefault();
                     email = getEmailFromQuery();
                     if (!email)
                         throw new Error("No email");
-                    fullName = ev.target.elements.fullName.value;
-                    birthDate = ev.target.elements.birthDate.value;
-                    country = ev.target.elements.country.value;
-                    if (!fullName || !birthDate || !country) {
+                    fullName = event.target.elements.fullName.value;
+                    birthDate = event.target.elements.birthDate.value;
+                    country = event.target.elements.country.value;
+                    relationSelect = document.getElementById('relation');
+                    selectedRelation = relationSelect.value;
+                    if (!fullName || !birthDate || !country || selectedRelation === 'choose') {
                         throw new Error("Please complete all fields");
                     }
-                    newRelative = { fullName: fullName, birthDate: birthDate, country: country };
-                    console.log(newRelative);
-                    return [4 /*yield*/, fetch('/API/users/add-user-relative', {
+                    newRelative = {
+                        fullName: fullName,
+                        birthDate: birthDate,
+                        country: country,
+                        relation: selectedRelation,
+                        userEmail: email
+                    };
+                    return [4 /*yield*/, fetch('/API/relatives/add-relative', {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json'
@@ -130,6 +137,9 @@ function handleAddRelative(ev) {
                         })];
                 case 1:
                     response = _a.sent();
+                    if (!response.ok) {
+                        throw new Error("Server returned " + response.status + " " + response.statusText);
+                    }
                     return [4 /*yield*/, response.json()];
                 case 2:
                     relatives = (_a.sent()).relatives;
@@ -145,7 +155,6 @@ function handleAddRelative(ev) {
         });
     });
 }
-// // Replace this function with the one you have in your main.ts
 function getEmailFromQuery() {
     var urlParams = new URLSearchParams(window.location.search);
     return urlParams.get('email');
