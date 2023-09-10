@@ -77,7 +77,7 @@ function addRecipe(req, res) {
                 case 1:
                     recipeDB = _b.sent();
                     console.log(recipeDB);
-                    res.send({ ok: true });
+                    res.send({ ok: true, recipeDB: recipeDB });
                     return [3 /*break*/, 3];
                 case 2:
                     error_2 = _b.sent();
@@ -93,7 +93,7 @@ exports.addRecipe = addRecipe;
 //delete from DB by ID
 function deleteRecipe(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var id, recipeDB, error_3;
+        var id, recipesDB, error_3;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -101,8 +101,8 @@ function deleteRecipe(req, res) {
                     id = req.body.id;
                     return [4 /*yield*/, recipesModel_1.RecipeModel.findByIdAndDelete(id)];
                 case 1:
-                    recipeDB = _a.sent();
-                    res.send({ recipeDB: recipeDB });
+                    recipesDB = _a.sent();
+                    res.send({ recipesDB: recipesDB });
                     return [3 /*break*/, 3];
                 case 2:
                     error_3 = _a.sent();

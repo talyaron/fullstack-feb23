@@ -20,7 +20,7 @@ export async function addRecipe(req:any, res:any) {
         const recipeDB = await recipe.save(); //save to DB
         console.log(recipeDB)
 
-        res.send({ok: true});
+        res.send({ok: true, recipeDB});
     } catch (error) {
         console.error(error);
         res.status(500).send({ error: error.message });
@@ -31,8 +31,8 @@ export async function addRecipe(req:any, res:any) {
 export async function deleteRecipe(req:any, res:any) {
     try {
         const {id} = req.body 
-        const recipeDB = await RecipeModel.findByIdAndDelete(id)
-        res.send({recipeDB})
+        const recipesDB = await RecipeModel.findByIdAndDelete(id)
+        res.send({recipesDB})
     } catch (error) {
         console.error(error);
         res.status(500).send({ error: error.message });
