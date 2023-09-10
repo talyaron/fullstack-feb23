@@ -1,1 +1,1 @@
-add loign with cookie to your previous app
+Add login with a cookie to your previous project
