@@ -11,7 +11,7 @@ export class User {
 // Create a Mongoose user schema
 export const userSchema = new mongoose.Schema<User>({
     username: { type: String, required: true },
-    email: { type: String, required: true,  unique: true    },
+    email: { type: String, required: true   },
     // photos: [{ type: String }],
     // _id:{ type: String, required: false }
 });

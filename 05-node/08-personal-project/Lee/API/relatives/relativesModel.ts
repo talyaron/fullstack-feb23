@@ -40,16 +40,12 @@ export class UserRelatives {
 
 export const userRelatives: UserRelatives[] = [];
 
-export const RelativeSchema = new Schema<IRelative>({
-  fullName: { type: String },
-  birthDate: { type: String },
-  country: { type: String },
-  user: { type: Schema.Types.ObjectId, ref: 'users' },
-  relation: {
-    type: String,
-    enum: Object.values(Relation),
-    default: Relation.choose,
-  },
+const RelativeSchema = new Schema({
+  fullName: { type: String, required: true },
+  birthDate: { type: String, required: true },
+  country: { type: String, required: true },
+  relation: { type: String, enum: Object.values(Relation), default: Relation.choose },
+  user: { type: Schema.Types.ObjectId, ref: 'users', required: true }, // Reference to the user
 });
 
 export const RelativeModel = model<IRelative>('relatives', RelativeSchema);

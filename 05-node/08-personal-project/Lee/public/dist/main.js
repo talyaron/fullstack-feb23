@@ -35,6 +35,10 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 function renderRelatives(relativesData, targetElement) {
+    if (!relativesData || relativesData.length === 0) {
+        targetElement.innerHTML = '<p>No relatives found.</p>';
+        return;
+    }
     var relativesList = document.createElement('ul');
     relativesData.forEach(function (relative) {
         var relativeItem = document.createElement('li');

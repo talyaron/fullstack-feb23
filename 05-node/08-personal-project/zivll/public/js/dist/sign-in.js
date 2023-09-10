@@ -41,7 +41,6 @@ function handleSignIn(event) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
-                    debugger;
                     event.preventDefault();
                     userName = event.target.userName.value;
                     password = event.target.password.value;
@@ -58,9 +57,14 @@ function handleSignIn(event) {
                 case 2:
                     result = _a.sent();
                     console.log(result);
-                    console.log(result);
                     messageRoot = document.querySelector("#message");
-                    if (result.error === "email or password are incorrect") {
+                    if (result.message === "user does not exist, please register") {
+                        messageRoot.innerHTML = "<h3>" + result.message + "</h3><a href=\"/register.html\"><button>REGISTER NOW</button></a>";
+                    }
+                    else if (result.message === "Please complete all fields") {
+                        alert("" + result.message);
+                    }
+                    else if (result.error === "Incorrect password, please try again or register") {
                         messageRoot.innerHTML = "<h3>" + result.error + "</h3><a href=\"/register.html\"><button>REGISTER NOW</button></a>";
                     }
                     else {
