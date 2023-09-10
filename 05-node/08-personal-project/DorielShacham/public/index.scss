@@ -1,0 +1,32 @@
+body {
+    background-color:black;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    height: 100vh; 
+    margin: 0;
+}
+
+.container {
+    text-align: center;
+}
+
+h1, h3{
+    color:lime;
+}
+
+button {
+    padding: 10px 20px;
+    background-color:lime;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    margin: 10px;
+    transition: 0.3s;
+}
+
+button:hover {
+    opacity: 0.9;
+}

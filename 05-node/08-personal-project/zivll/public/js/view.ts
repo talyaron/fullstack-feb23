@@ -87,7 +87,6 @@ async function renderExpencesTable() {
     fillterdCategories.forEach((category) => {
       // console.log(userCategories);
       const html = document.querySelector(`#id-${getCategoryId(category)}`);
-      console.log(html);
       if (!html) throw new Error(`html not found`);
       expenses.forEach((expense: Expense) => {
         if (expense.categoryName === category) {
@@ -104,16 +103,17 @@ async function renderExpencesTable() {
   }
 }
 // this function is used to render the result area
-async function renderResult(htmlElemnet: Element, expense?: number) {
-  try {
-    const userIncome = await getUserIncomeFromDB();
-    if (userIncome !== null || undefined)
-      htmlElemnet.innerHTML = `${userIncome}&#8362;`;
-    if (userIncome.message === "0") htmlElemnet.innerHTML = `${"0"}&#8362;`;
+// async function renderResult(htmlElemnet: Element, expense?: number) {
+//   try {
+//     // const userIncome = await getUserIncomeFromDB();
+//     // if (userIncome !== null || undefined)
+//     //   htmlElemnet.innerHTML = `${userIncome}&#8362;`;
+//     // if (userIncome.message === "0") htmlElemnet.innerHTML = `${"0"}&#8362;`;
 
-    if (expense) htmlElemnet.innerHTML = `${expense}&#8362;`;
-    if (!htmlElemnet) throw new Error(`htmlElemnet not found`);
-  } catch (error) {
-    console.error(error);
-  }
-}
+//     // if (expense) htmlElemnet.innerHTML = `${expense}&#8362;`;
+//     // if (!htmlElemnet) throw new Error(`htmlElemnet not found`);
+//     calculateBalance();
+//   } catch (error) {
+//     console.error(error);
+//   }
+// }
