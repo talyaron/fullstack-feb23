@@ -3,15 +3,17 @@ import { UserModel } from "./usersModel";
 export const registerUser = async (req: any, res: any) => {
   try {
     const { userName, email, password } = req.body;
+    console.log({ userName, email, password });
+
     if (!userName || !email || !password)
       throw new Error("Please complete all fields");
     //check if user already exist
-    const userExist = await UserModel.find({ email });
+    const userExist = await UserModel.find({ userName });
     console.log(userExist);
     if (userExist.length === 0) {
       const user = new UserModel({ userName, email, password });
       await user.save();
-      res.send({ ok: true });
+      res.send({ message: "User added successfully" });
     } else {
       res.send({ message: "user is already registered" });
     }
@@ -44,8 +46,13 @@ export const getIncome = async (req: any, res: any) => {
     // console.log(userName);
 
     if (!userName) throw new Error(`Username not provided`);
-    const getIncome = await UserModel.findOne({ userName });
-    res.send(getIncome.userIncome);
+    const userNameFromDB = await UserModel.findOne({ userName });
+    if (!userNameFromDB.userIncome) {
+      res.send({ message: "0" });
+    } else {
+      res.send({ message: `${userNameFromDB.userIncome}` });
+    }
+    console.log(res);
   } catch (error) {
     console.error(error);
     res.status(500).send({ error: error.message });
@@ -62,27 +69,32 @@ export const login = async (req: any, res: any) => {
       userExist[0].userName === userName &&
       userExist[0].password === password
     ) {
-      console.log(userExist);
-
-      res.send(userExist);
+      res.send({ userName: userExist[0].userName });
+    } else {
+      throw new Error("Incorrect password, please try again or register");
     }
   } catch (error) {
     console.error(error);
     res.send({ error: error.message });
   }
 };
-export const checkUser = (req: any, res: any) => {
+export const checkUser = async (req: any, res: any) => {
   try {
     const { userName } = req.body;
     console.log(userName);
 
-    if (!userName) throw new Error(`email is missing`);
-    const userExists = UserModel.find({ userName });
+    if (!userName) throw new Error(`userName is missing`);
+    const userExists = await UserModel.find({ userName });
     console.log(userExists);
 
-    if (userExists) res.send({ message: "user exist" });
-    if (!userExists || userExists === undefined || userExists === null)
+    if (
+      !userExists ||
+      userExists === undefined ||
+      userExists === null ||
+      userExists.length === 0
+    )
       res.send({ message: "user does not exist" });
+    if (userExists) res.send({ message: "user exist" });
     // res.send({ email: email });
   } catch (error) {
     console.error(error);

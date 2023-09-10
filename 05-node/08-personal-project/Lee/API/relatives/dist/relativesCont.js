@@ -37,7 +37,6 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 exports.__esModule = true;
 exports.getUserRelatives = exports.updateRelation = exports.deleteRelative = exports.addRelative = exports.getFamilyMembers = void 0;
-var userModel_1 = require("../users/userModel");
 var relativesModel_1 = require("./relativesModel");
 var relations_1 = require("../enums/relations");
 function getFamilyMembers(req, res) {
@@ -64,25 +63,21 @@ function getFamilyMembers(req, res) {
 exports.getFamilyMembers = getFamilyMembers;
 function addRelative(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var _a, fullName, birthDate, country, email_1, user, newRelative, relativeDB, error_2;
+        var _a, fullName, birthDate, country, relation, userEmail, newRelative, relativeDB, error_2;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
                     _b.trys.push([0, 2, , 3]);
-                    _a = req.body, fullName = _a.fullName, birthDate = _a.birthDate, country = _a.country, email_1 = _a.email;
-                    if (!fullName || !country || !birthDate || !email_1) {
+                    _a = req.body, fullName = _a.fullName, birthDate = _a.birthDate, country = _a.country, relation = _a.relation, userEmail = _a.userEmail;
+                    if (!fullName || !country || !birthDate || !relation) {
                         return [2 /*return*/, res.status(400).send({ error: "Please complete all fields" })];
-                    }
-                    user = userModel_1.users.find(function (user) { return user.email === email_1; });
-                    if (!user) {
-                        return [2 /*return*/, res.status(404).send({ error: "User not found" })];
                     }
                     newRelative = new relativesModel_1.RelativeModel({
                         fullName: fullName,
                         birthDate: birthDate,
                         country: country,
-                        relation: relations_1.Relation.choose,
-                        user: user._id
+                        relation: relation,
+                        user: userEmail
                     });
                     return [4 /*yield*/, newRelative.save()];
                 case 1:
@@ -160,20 +155,29 @@ function updateRelation(req, res) {
 }
 exports.updateRelation = updateRelation;
 function getUserRelatives(req, res) {
-    try {
-        //get email from query
-        var email_2 = req.query.email;
-        if (!email_2) {
-            throw new Error("email is required");
-        }
-        //get user relatives
-        var _userrelatives = relativesModel_1.userRelatives.filter(function (userrelative) { return userrelative.user.email === email_2; });
-        var _relatives = _userrelatives.map(function (userrelative) { return userrelative.user; }); //returns only relatives of user
-        res.send({ relatives: _relatives });
-    }
-    catch (error) {
-        console.error(error);
-        res.status(500).send({ error: error.message });
-    }
+    return __awaiter(this, void 0, void 0, function () {
+        var email, relativeDB, error_5;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    email = req.query.email;
+                    if (!email) {
+                        throw new Error("email is required");
+                    }
+                    return [4 /*yield*/, relativesModel_1.RelativeModel.find({ email: email })];
+                case 1:
+                    relativeDB = _a.sent();
+                    res.send({ relatives: relativeDB });
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_5 = _a.sent();
+                    console.error(error_5);
+                    res.status(500).send({ error: error_5.message });
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
 }
 exports.getUserRelatives = getUserRelatives;

@@ -59,6 +59,7 @@ a:hover {
   color: aliceblue;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
+  cursor: pointer;
 }
 #submit:hover {
   background-color: #c1f076;

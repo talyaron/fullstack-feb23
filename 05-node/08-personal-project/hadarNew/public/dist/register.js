@@ -34,25 +34,18 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-function handleRegister(ev) {
+function handleRegister(event) {
     return __awaiter(this, void 0, void 0, function () {
         var user, response, error, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
-                    ev.preventDefault(); // stop form from submitting
-                    user = {
-                        // get data from form
-                        password: ev.target.password.value,
-                        email: ev.target.email.value
-                    };
-                    return [4 /*yield*/, fetch("/API/users/register", {
-                            // send data to server
+                    event.preventDefault();
+                    user = { password: event.target.password.value, email: event.target.email.value };
+                    return [4 /*yield*/, fetch("/API/user/register-user", {
                             method: "POST",
-                            headers: {
-                                "Content-Type": "application/json"
-                            },
+                            headers: { "Content-Type": "application/json" },
                             body: JSON.stringify(user)
                         })];
                 case 1:
@@ -64,7 +57,6 @@ function handleRegister(ev) {
                     if (error) {
                         throw new Error(error);
                     }
-                    //if everthink is OK, redirect to login page
                     window.location.href = "/login.html";
                     return [3 /*break*/, 4];
                 case 3:

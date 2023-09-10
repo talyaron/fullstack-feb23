@@ -34,27 +34,20 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-function handleLogin(ev) {
+function handleLogin(event) {
     return __awaiter(this, void 0, void 0, function () {
         var user, response, _a, error, email, error_1;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
                     _b.trys.push([0, 3, , 4]);
-                    ev.preventDefault(); // stop form from submitting
-                    user = {
-                        // get data from form
-                        password: ev.target.password.value,
-                        email: ev.target.email.value
-                    };
+                    event.preventDefault();
+                    user = { password: event.target.password.value, email: event.target.email.value };
                     if (!user.email || !user.password)
                         throw new Error("Please complete all fields");
-                    return [4 /*yield*/, fetch("/API/users/login", {
-                            // send data to server
-                            method: "POST",
-                            headers: {
-                                "Content-Type": "application/json"
-                            },
+                    return [4 /*yield*/, fetch('/API/user/login-user', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
                             body: JSON.stringify(user)
                         })];
                 case 1:
@@ -66,8 +59,7 @@ function handleLogin(ev) {
                     if (error) {
                         throw new Error(error);
                     }
-                    //if everthink is OK, redirect to main page of the user
-                    window.location.href = "/main.html?email=" + email; //query
+                    window.location.href = "/main.html?email=" + email;
                     return [3 /*break*/, 4];
                 case 3:
                     error_1 = _b.sent();

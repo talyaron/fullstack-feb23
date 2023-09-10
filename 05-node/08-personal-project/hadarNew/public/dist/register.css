@@ -1,0 +1,36 @@
+body {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  background-image: url(https://i.pinimg.com/564x/87/b1/bd/87b1bd46fe85bd66d34e7af7fa008002.jpg);
+}
+
+h1 {
+  display: flex;
+  justify-content: center;
+  color: #1f78bc;
+  font-size: 5vw;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+}
+form input {
+  display: block;
+  padding: 1vw;
+  border-radius: 2vw;
+  width: 20vw;
+  margin: auto;
+  margin-top: 2vw;
+}
+form button {
+  width: 10vw;
+  padding: 1vw;
+  margin: auto;
+  margin-top: 10px;
+  font-size: 1vw;
+  font-weight: bolder;
+  color: #1f78bc;
+  background-color: #c1ddf3;
+  border-radius: 4vw;
+}

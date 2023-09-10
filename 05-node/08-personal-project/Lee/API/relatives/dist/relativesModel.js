@@ -1,6 +1,6 @@
 "use strict";
 exports.__esModule = true;
-exports.RelativeModel = exports.RelativeSchema = exports.userRelatives = exports.UserRelatives = exports.relatives = exports.Relative = void 0;
+exports.RelativeModel = exports.userRelatives = exports.UserRelatives = exports.relatives = exports.Relative = void 0;
 var mongoose_1 = require("mongoose");
 var relations_1 = require("../enums/relations");
 var Relative = /** @class */ (function () {
@@ -29,15 +29,11 @@ var UserRelatives = /** @class */ (function () {
 }());
 exports.UserRelatives = UserRelatives;
 exports.userRelatives = [];
-exports.RelativeSchema = new mongoose_1.Schema({
-    fullName: { type: String },
-    birthDate: { type: String },
-    country: { type: String },
-    user: { type: mongoose_1.Schema.Types.ObjectId, ref: 'users' },
-    relation: {
-        type: String,
-        "enum": Object.values(relations_1.Relation),
-        "default": relations_1.Relation.choose
-    }
+var RelativeSchema = new mongoose_1.Schema({
+    fullName: { type: String, required: true },
+    birthDate: { type: String, required: true },
+    country: { type: String, required: true },
+    relation: { type: String, "enum": Object.values(relations_1.Relation), "default": relations_1.Relation.choose },
+    user: { type: mongoose_1.Schema.Types.ObjectId, ref: 'users', required: true }
 });
-exports.RelativeModel = mongoose_1.model('relatives', exports.RelativeSchema);
+exports.RelativeModel = mongoose_1.model('relatives', RelativeSchema);

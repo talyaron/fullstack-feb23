@@ -31,6 +31,32 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    &::-webkit-scrollbar {
+        width: 0.6em;
+        transition: all 0.2s ease-in-out;
+    }
+    &::-webkit-scrollbar-track {
+       background: hsl(224, 88%, 62%);
+       margin-block: 0.5em;
+       border-radius: 10px;
+       transition: all 0.2s ease-in-out;
+
+
+    }
+    &::-webkit-scrollbar-thumb{
+        background: hsla(203, 48%, 19%, 0.7);
+        border-radius: 10px;
+        cursor: pointer;
+        transition: all 0.2s ease-in-out;
+
+
+
+
+    }
+    &::-webkit-scrollbar-thumb:hover{
+        background: hsl(247, 86%, 8%);
+    }
+
 
 }
 
@@ -88,7 +114,26 @@ body {
     position: absolute;
     top: 2vh;
     left: 2vw;
+    &__btn{
+        cursor: pointer;
+        transition: all 200ms ease-in-out;
+        &:hover{
+            transform: scale(1.1);
+           
+            
+        }
+    }
+    
 
+}
+.infoRoot{
+    color: aliceblue;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    font-family: fantasy;
 }
 
 .docs {
@@ -251,6 +296,8 @@ body {
     z-index: 10;
     left: 34vw;
     margin: auto;
+    transition: all 200ms ease-in-out;
+    
     
 
     &__header {
@@ -274,6 +321,18 @@ body {
     &__doneBTN {
         @include button;
         cursor: pointer;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+    &__deleteBTN {
+        @include button;
+        cursor: pointer;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
     }
 }
 

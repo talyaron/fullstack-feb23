@@ -12,7 +12,7 @@ app.use(express_1.default.static("public"));
 //body
 app.use(express_1.default.json());
 //connect to mongoDB with mongoose
-mongoose_1.default.connect("mongodb+srv://hadaritzhaki:hadarmongo1303@cluster0.woft1rt.mongodb.net/")
+mongoose_1.default.connect("mongodb+srv://hadaritzhaki:hadarmongo1303@cluster0.woft1rt.mongodb.net/test")
     .then(() => {
     console.info("MongoDB connected");
 })
