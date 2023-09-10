@@ -514,6 +514,7 @@ function calculateBalance() {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
+                    console.log("calculateBalance");
                     balanceRoot = document.querySelector(".total-number--balance");
                     incomeRoot = document.querySelector(".total-number--income");
                     expenseRoot = document.querySelector(".total-number--expense");

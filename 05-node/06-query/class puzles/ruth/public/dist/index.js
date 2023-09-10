@@ -34,60 +34,56 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var Img = /** @class */ (function () {
-    function Img(url, title) {
-        this.url = url;
-        this.title = title;
-        this.id = Date.now().toString();
-    }
-    return Img;
-}());
-var User = /** @class */ (function () {
-    function User(_a) {
-        var email = _a.email, password = _a.password;
-        this.email = email;
-        this.password = password;
-    }
-    return User;
-}());
-function addImg(event) {
-    try {
-        event.preventDefault();
-        var imgSrc = event.target.imgSrc.value;
-        var imgTitle = event.target.title.value;
-        if (!imgSrc || !imgTitle)
-            throw new Error("img or title not found");
-        var newImg = new Img(imgSrc, imgTitle);
-        renderImg(newImg);
-        addImageToUser(newImg);
-    }
-    catch (error) {
-        console.error(error);
-    }
+function goMyStore() {
+    window.location.href = "./pages/myStore.html?email=" + getUserEmailByQuery();
 }
-function addImageToUser(newImg) {
+function getUserEmailByQuery() {
+    var urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get("email");
+}
+function getFid() {
     return __awaiter(this, void 0, void 0, function () {
-        var userName, postInit, response, image, error_1;
+        var response, products, html, root;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0:
-                    _a.trys.push([0, 3, , 4]);
-                    userName = getUserFromQuery();
-                    if (!userName)
-                        throw new Error("User not found");
-                    postInit = {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/json"
-                        },
-                        body: JSON.stringify({ userName: userName, newImg: newImg })
-                    };
-                    return [4 /*yield*/, fetch("/API/img/add-img-to-user", postInit)];
+                case 0: return [4 /*yield*/, fetch("/API/products/get-all-products")];
                 case 1:
                     response = _a.sent();
                     return [4 /*yield*/, response.json()];
                 case 2:
-                    image = (_a.sent()).image;
+                    products = (_a.sent()).products;
+                    html = products
+                        .map(function (product) {
+                        return "\n    <div class=\"fid__prodDiv id='" + product._id + "'\">\n          <img\n            src='" + product.imgUrl + "'\n            alt=\"\" />\n          <div class=\"fid__info\">\n            <p>title:" + product.title + "</p>\n            <p>price:" + product.price + "$</p>\n            <p>author:" + product.email + "</p>\n          </div>\n          <div class=\"likeAndCart\">\n            <span onclick=\"handleAddWishList(event)\" class=\"material-symbols-outlined\"> heart_plus </span>\n            <span onclick=\"handleAddCart(event)\" class=\"material-symbols-outlined\"> shopping_bag </span>\n          </div>\n        </div>\n    ";
+                    })
+                        .join(" ");
+                    root = document.querySelector(".fid");
+                    root.innerHTML = html;
+                    return [2 /*return*/];
+            }
+        });
+    });
+}
+function handleAddCart(event) {
+    return __awaiter(this, void 0, void 0, function () {
+        var id, userEmail, postInit, response, ok, error_1;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 3, , 4]);
+                    id = event.target.parentNode.id;
+                    userEmail = getUserEmailByQuery();
+                    postInit = {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ id: id, userEmail: userEmail })
+                    };
+                    return [4 /*yield*/, fetch("/API/products/add-product-to-cart", postInit)];
+                case 1:
+                    response = _a.sent();
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    ok = (_a.sent()).ok;
                     return [3 /*break*/, 4];
                 case 3:
                     error_1 = _a.sent();
@@ -98,127 +94,35 @@ function addImageToUser(newImg) {
         });
     });
 }
-function renderImg(newImg) {
-    console.log(newImg.title);
-    var html = "\n    <div class=\"imgBlock\" id=\"" + newImg.id + "\">\n    <img src=\"" + newImg.url + "\">\n    <h4>" + newImg.title + "</h4>\n    <div class=\"updateAndDelete\">\n    <button onclick=\"handleEdit(" + newImg.id + ")\" class=\"editBtn\"><span class=\"material-symbols-outlined\"> edit </span></button>\n    <button onclick=\"handleDelete(" + newImg.id + ")\" class=\"deleteBtn\"><span class=\"material-symbols-outlined\"> delete </span></button>\n    </div>\n</div>";
-    document.querySelector(".gallery").innerHTML += html;
-}
-function getUserFromQuery() {
-    try {
-        var urlStr = new URLSearchParams(window.location.search);
-        return urlStr.get("email");
-    }
-    catch (error) {
-        console.error(error.message);
-    }
-}
-function getImgsByEmail() {
+function handleAddWishList(event) {
     return __awaiter(this, void 0, void 0, function () {
-        var email, response, thisUserImgs, error_2;
+        var id, userEmail, postInit, response, ok, error_2;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
-                    email = getUserFromQuery();
-                    return [4 /*yield*/, fetch("API/img/get-imgs-by-user?email=" + email)];
-                case 1:
-                    response = _a.sent();
-                    return [4 /*yield*/, response.json()];
-                case 2:
-                    thisUserImgs = (_a.sent()).thisUserImgs;
-                    document.querySelector(".gallery").innerHTML += "";
-                    thisUserImgs.forEach(function (userImg) { return renderImg(userImg.image); });
-                    return [3 /*break*/, 4];
-                case 3:
-                    error_2 = _a.sent();
-                    console.error(error_2);
-                    return [3 /*break*/, 4];
-                case 4: return [2 /*return*/];
-            }
-        });
-    });
-}
-function handleDelete(id) {
-    return __awaiter(this, void 0, void 0, function () {
-        var deleteInit, response, ok, error_3;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    _a.trys.push([0, 3, , 4]);
-                    console.log("delete: " + id);
-                    deleteInit = {
-                        method: "DELETE",
-                        headers: {
-                            "Content-Type": "application/json"
-                        },
-                        body: JSON.stringify({ id: id })
+                    id = event.target;
+                    console.dir(id);
+                    if (!id)
+                        throw new Error("id not found");
+                    userEmail = getUserEmailByQuery();
+                    if (!userEmail)
+                        throw new Error("User email not found");
+                    postInit = {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ id: id, userEmail: userEmail })
                     };
-                    return [4 /*yield*/, fetch("/API/img/delete-img", deleteInit)];
+                    return [4 /*yield*/, fetch("/API/products/add-product-to-wishlist", postInit)];
                 case 1:
                     response = _a.sent();
                     return [4 /*yield*/, response.json()];
                 case 2:
                     ok = (_a.sent()).ok;
-                    if (!ok)
-                        throw new Error("Error deleting");
-                    document.getElementById("" + id).remove();
                     return [3 /*break*/, 4];
                 case 3:
-                    error_3 = _a.sent();
-                    console.error(error_3);
-                    return [3 /*break*/, 4];
-                case 4: return [2 /*return*/];
-            }
-        });
-    });
-}
-function handleEdit(id) {
-    try {
-        console.log("edit: " + id);
-        var imgDiv = document.getElementById("" + id);
-        var h4element = imgDiv.querySelector("h4");
-        var title = imgDiv.querySelector("h4").innerText;
-        console.log(title);
-        h4element.innerHTML = "<form onsubmit=\"editImg(event, " + id + ")\">\n <input class =\"updateTitle\" name=\"updateTitle\" value=\"" + title + "\">\n </form>";
-    }
-    catch (error) {
-        console.error(error);
-    }
-}
-function editImg(event, imgId) {
-    return __awaiter(this, void 0, void 0, function () {
-        var newTitle, patchInit, response, _a, ok, title, imgDiv, formElement, error_4;
-        return __generator(this, function (_b) {
-            switch (_b.label) {
-                case 0:
-                    _b.trys.push([0, 3, , 4]);
-                    event.preventDefault();
-                    newTitle = event.target.updateTitle.value;
-                    console.log(newTitle);
-                    patchInit = {
-                        method: "PATCH",
-                        headers: {
-                            "Content-Type": "application/json"
-                        },
-                        body: JSON.stringify({ imgId: imgId, newTitle: newTitle })
-                    };
-                    return [4 /*yield*/, fetch("API/img/update-title", patchInit)];
-                case 1:
-                    response = _b.sent();
-                    return [4 /*yield*/, response.json()];
-                case 2:
-                    _a = _b.sent(), ok = _a.ok, title = _a.title;
-                    if (!ok || !title) {
-                        throw new Error("something wrong in update-title");
-                    }
-                    imgDiv = document.getElementById("" + imgId);
-                    formElement = imgDiv.querySelector("h4");
-                    formElement.innerHTML = "" + title;
-                    console.log("editImg");
-                    return [3 /*break*/, 4];
-                case 3:
-                    error_4 = _b.sent();
-                    console.error(error_4);
+                    error_2 = _a.sent();
+                    console.error(error_2);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }

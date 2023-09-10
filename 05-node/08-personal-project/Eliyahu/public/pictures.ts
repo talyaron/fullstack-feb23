@@ -1,10 +1,36 @@
+class Picture {
+    id: string
+    publishDate: string
+    constructor(
+        public title: string,
+        public imgUrl: string,
+        public location: string,
+        public tags: string[],
+        public area: PictureArea
+    ) {
+        this.id = Math.random().toString(36).substr(2, 9);
+        this.publishDate = new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString('en-US', {
+            hour12: false,
+            hour: "numeric",
+            minute: "numeric"
+        })
+    }
+}
+enum PictureArea {
+    north = "צפון",
+    center = "מרכז",
+    south = "דרום"
+}
+
 async function getPictures() {
     try {
         const response = await fetch('API/pictures/get-pictures')
         const result = await response.json()
-        const { usersPictures } = result
-        if (!Array.isArray(usersPictures)) throw new Error("pictures is not array");
-        renderPictures(usersPictures)
+        const { pictures } = result
+        console.log(pictures);
+        
+        if (!Array.isArray(pictures)) throw new Error("pictures is not array");
+        renderPictures(pictures)
     } catch (error) {
         console.error(error.massage);
     }
@@ -21,7 +47,7 @@ async function handleAddPicture(ev: any) {
         const imageTags = [];
         document.querySelectorAll('input[type=checkbox]:checked').forEach(ev => imageTags.push(ev.attributes[2].value));
 
-        const picture = {
+        const _picture = {
             title: ev.target.title.value,
             imgUrl: ev.target.imgUrl.value,
             location: ev.target.location.value,
@@ -32,20 +58,20 @@ async function handleAddPicture(ev: any) {
         }
 
 
-        if (!picture.title || !picture.imgUrl || !picture.location || !picture.tags || !picture.area) throw new Error("Please complete all details");
+        if (!_picture.title || !_picture.imgUrl || !_picture.location || !_picture.tags || !_picture.area) throw new Error("Please complete all details");
 
         const response = await fetch('/API/pictures/add-picture', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(picture)
+            body: JSON.stringify(_picture)
         })
 
         const result = await response.json()
-        const { usersPictures, tags } = result
+        const { picture } = result
 
-        renderPictures(usersPictures)
+        renderPictures(picture)
 
     } catch (error) {
         console.error(error)
@@ -63,8 +89,8 @@ async function handleDeletePicture(id: string) {
             body: JSON.stringify({ id })
         })
         const result = await response.json()
-        const { usersPictures } = result
-        renderPictures(usersPictures)
+        const { pictures } = result
+        renderPictures(pictures)
 
     } catch (error) {
         console.error(error.massage);
@@ -152,20 +178,28 @@ function closeAdd() {
 }
 
 
-function renderPictureHtml(picture, user) {
+async function renderPictureHtml(picture:Picture, email:string) {
     try {
+        console.log(picture);
+        
+        const response = await fetch('/API/users/get-user-name')
 
+        const result = await response.json()
+        const { error, name } = result
+        if (error) throw new Error("Some of details are incorrect");
+         console.log(name);
+         
         let html = `<div class = "picture" id="${picture.id}">
         <div class = "picture_header">
         <div></div>
         <h3 >${picture.title}</h3>`
-        if (emailUser === user.email) {
+        if (email===emailUser) {
             html += `<p>תמונה שלי</p>
     <button class="material-symbols-rounded" onclick="renderUpdatePicture('${picture.title}','${picture.imgUrl}','${picture.location}','${picture.id}','${picture.tags.join(' ')}')">Edit</button>
     <button class="material-symbols-rounded" onclick="handleDeletePicture('${picture.id}')">delete</button>
     `
         } else {
-            html += `<p>${user.name}</p>`
+            html += `<p>${name}</p>`
         }
         html += `
         </div>
@@ -188,7 +222,6 @@ function renderPictureHtml(picture, user) {
 
 async function handleRenderByTag(tag:string){
     try {
-        debugger
         const response = await fetch('API/pictures/get-pictures')
         const result = await response.json()
         const { usersPictures } = result
@@ -207,12 +240,13 @@ async function handleRenderByTag(tag:string){
     }
 }
 
-function renderPictures(usersPictures) {
+function renderPictures(pictures) {
     try {
-        if (!Array.isArray(usersPictures)) throw new Error("usersPictures is not array");
+        
+        if (!Array.isArray(pictures)) throw new Error("usersPictures is not array");
 
         const allPicturesRoot = document.querySelector('#allPictures')
-        const allPicturesHtml = usersPictures.map(userPicture => renderPictureHtml(userPicture.picture, userPicture.user)).join('')
+        const allPicturesHtml = pictures.map(picture => renderPictureHtml(picture, picture.email)).join('')
         allPicturesRoot.innerHTML = allPicturesHtml
 
         closeAdd()
@@ -295,20 +329,14 @@ async function renderNav() {
             root.innerHTML = html
 
         }
-        const response = await fetch('/API/users/get-user-name', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(email)
-        })
+        const response = await fetch('/API/users/get-user-name')
 
         const result = await response.json()
-        const { error, userName } = result
+        const { error, name } = result
         if (error) throw new Error("Some of details are incorrect");
 
         const html = `<div class="nav">
-        <p>${userName}</p>
+        <p>${name}</p>
         <a class="logout material-symbols-rounded" href="./index.html">Logout</a>
     </div>`
         const root = document.querySelector('#nav') as HTMLDivElement
