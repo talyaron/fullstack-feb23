@@ -1,0 +1,31 @@
+body {
+    background-color:yellow;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center; /* Horizontal centering */
+    align-items: center; /* Vertical centering */
+    height: 100vh; /* Ensure the container takes the full viewport height */
+    margin: 0;
+}
+
+.container {
+    text-align: center; /* Center the text within the container */
+}
+
+h1 {
+    color:rgb(248, 12, 51);
+}
+
+button {
+    padding: 10px 20px;
+    background-color:red;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    margin: 10px;
+}
+
+button:hover {
+    background-color: rgb(247, 82, 82);
+}

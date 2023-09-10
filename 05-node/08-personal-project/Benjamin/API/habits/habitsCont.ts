@@ -1,4 +1,4 @@
-import { HabitSchema , HabitModelDB } from "./habitsModel";
+import { HabitSchema , HabitModelDB, doneHabitsShema , DoneHabitModelDB } from "./habitsModel";
 
 
 
@@ -14,6 +14,7 @@ export const addNewHabit = async (req:any,res:any) => {
         email: userEmail
     })
     console.log(habit);
+    res.send(true)
 }
 
 export const getUserHabits = async (req:any,res:any) => {
@@ -26,4 +27,38 @@ try {
 } catch (error) {
     console.error(error)
 }
+}
+export const habitDone = async (req:any, res:any) => {
+    try {
+       const  { name , categorie , status , email } = req.body;
+       const task = await DoneHabitModelDB.create({
+        name: name,
+        categorie: categorie,
+        email:email,
+        })
+        res.send(true);
+    } catch (error) {
+        console.error(error);
+    }
+}
+export const deleteHabit = async (req:any,res:any) => {
+    try {
+        const  { name , categorie , status } = req.body;
+        await HabitModelDB.deleteOne({name:name}); 
+        console.log("task deleted!")
+        res.send(true);
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+export const getDoneHabits = async (req:any,res:any) => {
+    try {
+        const {email} = req.query;
+        const doneHabits = await DoneHabitModelDB.find({email:email});
+        console.log(doneHabits)
+        res.send(doneHabits)
+    } catch (error) {
+        console.error(error);
+    }
 }
