@@ -156,8 +156,8 @@ function handleEdit(event) {
                     return [4 /*yield*/, response.json()];
                 case 2:
                     userData = _a.sent();
-                    html = "<form>";
-                    html += "<input type=\"text\">" + userData.username + "</input>\n                <input type=\"text\">" + userData.email + "</input>";
+                    html = "<form id=\"" + id + "\" onsubmit='handleSave(event)'>";
+                    html += "<input type=\"text\" name=\"username\" value=\"" + userData.users.username + "\"></input>\n                <input type=\"text\" name=\"email\" value=\"" + userData.users.email + "\"></input>\n                <input type=\"submit\"></input>";
                     html += "</form>";
                     document.querySelector(".userEdit").innerHTML = html;
                     return [3 /*break*/, 4];
@@ -170,6 +170,47 @@ function handleEdit(event) {
                     console.error(error_4);
                     return [3 /*break*/, 6];
                 case 6: return [2 /*return*/];
+            }
+        });
+    });
+}
+function handleSave(ev) {
+    return __awaiter(this, void 0, void 0, function () {
+        var form, id, username, email, data, response, error_5;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    ev.preventDefault();
+                    form = ev.target;
+                    id = form.id;
+                    username = form.username.value;
+                    email = form.email.value;
+                    data = { username: username, email: email, id: id };
+                    return [4 /*yield*/, fetch("/api/users/" + id, {
+                            method: "PUT",
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(data) // Convert data to JSON and send in the request body
+                        })];
+                case 1:
+                    response = _a.sent();
+                    if (response.ok) {
+                        handleGetUsers();
+                        document.querySelector(".userEdit").innerHTML = "";
+                        console.log('User data updated successfully');
+                    }
+                    else {
+                        // Handle errors here
+                        console.error('Error updating user data');
+                    }
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_5 = _a.sent();
+                    console.error(error_5);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
             }
         });
     });
