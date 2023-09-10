@@ -75,7 +75,7 @@ function BackHome() {
 //get all not Admin users
 function getAllUsers() {
     return __awaiter(this, void 0, void 0, function () {
-        var response, data, users, error_2;
+        var response, data, allUsers, error_2;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -89,8 +89,8 @@ function getAllUsers() {
                     if (!data.ok) {
                         throw new Error(data.message);
                     }
-                    users = data.users;
-                    return [2 /*return*/, users];
+                    allUsers = data.allUsers;
+                    return [2 /*return*/, allUsers];
                 case 3:
                     error_2 = _a.sent();
                     console.error(error_2);
@@ -100,10 +100,192 @@ function getAllUsers() {
         });
     });
 }
+function renderAllUsers() {
+    return __awaiter(this, void 0, void 0, function () {
+        var users, error_3;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    return [4 /*yield*/, getAllUsers()];
+                case 1:
+                    users = _a.sent();
+                    if (!users) {
+                        throw new Error("Users Not Found");
+                    }
+                    renderUsersList(users);
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_3 = _a.sent();
+                    console.error(error_3);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
+}
+function renderUsersList(users) {
+    var _this = this;
+    try {
+        var updateUserDiv = document.querySelector("#updateUserDiv");
+        if (!updateUserDiv)
+            throw new Error("updateUserDiv root not found");
+        //create div for select user
+        var selectUserDiv = document.createElement('div');
+        selectUserDiv.id = 'selectUserDiv';
+        updateUserDiv.appendChild(selectUserDiv);
+        // Create a select element to choose a user
+        var selectUser_1 = document.createElement('select');
+        selectUser_1.id = 'selectUser';
+        // Create options for each user
+        users.forEach(function (user) {
+            var option = document.createElement('option');
+            option.value = user._id; // Assuming each user has a unique ID
+            option.textContent = user.email; // Change this to the user's name or other identifier
+            selectUser_1.appendChild(option);
+        });
+        // Create update button
+        var updateButton = document.createElement('button');
+        updateButton.className = 'updateUserBtn';
+        updateButton.textContent = 'Update';
+        updateButton.onclick = function () { return __awaiter(_this, void 0, void 0, function () {
+            var selectUser, selectedUserId;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        debugger;
+                        selectUser = document.querySelector('#selectUser');
+                        selectedUserId = selectUser.value;
+                        // Call a function to open the update user form and populate it with user details
+                        return [4 /*yield*/, openUpdateUserForm(selectedUserId)];
+                    case 1:
+                        // Call a function to open the update user form and populate it with user details
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        }); };
+        // Create delete button
+        var deleteButton = document.createElement('button');
+        deleteButton.className = 'deleteUserBtn';
+        deleteButton.textContent = 'Delete';
+        //deleteButton.onclick = async () => await handleDeleteUser();
+        // Append select and buttons to updateUserDiv
+        selectUserDiv.appendChild(selectUser_1);
+        selectUserDiv.appendChild(updateButton);
+        selectUserDiv.appendChild(deleteButton);
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+function openUpdateUserForm(userId) {
+    return __awaiter(this, void 0, void 0, function () {
+        var response, data, userDetails, updateUserForm_1, emailInput_1, passwordInput_1, isAdminInput_1, submitButton, userDetailsDiv, error_4;
+        var _this = this;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 3, , 4]);
+                    return [4 /*yield*/, fetch("API/user/get-user-details?userId=" + userId, {
+                            method: "GET",
+                            headers: {
+                                "Content-Type": "application/json"
+                            }
+                        })];
+                case 1:
+                    response = _a.sent();
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    data = _a.sent();
+                    debugger;
+                    if (!data.ok) {
+                        throw new Error(data.message);
+                    }
+                    userDetails = data.user;
+                    updateUserForm_1 = document.createElement('form');
+                    updateUserForm_1.id = 'updateUserForm';
+                    emailInput_1 = document.createElement('input');
+                    emailInput_1.type = 'text';
+                    emailInput_1.name = 'email';
+                    emailInput_1.value = userDetails.email;
+                    passwordInput_1 = document.createElement('input');
+                    passwordInput_1.type = 'password';
+                    passwordInput_1.name = 'password';
+                    passwordInput_1.value = userDetails.password;
+                    isAdminInput_1 = document.createElement('input');
+                    isAdminInput_1.type = 'checkbox';
+                    isAdminInput_1.name = 'isAdmin';
+                    isAdminInput_1.checked = userDetails.isAdmin;
+                    submitButton = document.createElement('button');
+                    submitButton.type = 'submit';
+                    submitButton.textContent = 'Update User';
+                    // Add input fields and submit button to the form
+                    updateUserForm_1.appendChild(emailInput_1);
+                    updateUserForm_1.appendChild(passwordInput_1);
+                    updateUserForm_1.appendChild(isAdminInput_1);
+                    updateUserForm_1.appendChild(submitButton);
+                    // Event handler for updating user details
+                    updateUserForm_1.onsubmit = function (event) { return __awaiter(_this, void 0, void 0, function () {
+                        var updatedUser, response, responseData, selectUserDiv, userdetailsDiv;
+                        return __generator(this, function (_a) {
+                            switch (_a.label) {
+                                case 0:
+                                    event.preventDefault();
+                                    updatedUser = {
+                                        newEmail: emailInput_1.value,
+                                        newPassword: passwordInput_1.value,
+                                        isAdmin: isAdminInput_1.checked
+                                    };
+                                    return [4 /*yield*/, fetch("API/user/update-user?userId=" + userId, {
+                                            method: "PUT",
+                                            headers: {
+                                                "Content-Type": "application/json"
+                                            },
+                                            body: JSON.stringify(updatedUser)
+                                        })];
+                                case 1:
+                                    response = _a.sent();
+                                    return [4 /*yield*/, response.json()];
+                                case 2:
+                                    responseData = _a.sent();
+                                    if (!responseData.ok) {
+                                        throw new Error(responseData.message);
+                                    }
+                                    alert("User details updated successfully");
+                                    // clean the updateUserDiv
+                                    debugger;
+                                    selectUserDiv = document.querySelector("#selectUserDiv");
+                                    userdetailsDiv = document.querySelector("#userdetailsDiv");
+                                    if (!selectUserDiv || !userdetailsDiv)
+                                        throw new Error("selectUserDiv|userdetailsDiv root not found");
+                                    selectUserDiv.innerHTML = '';
+                                    userdetailsDiv.innerHTML = '';
+                                    // Close the update user form and potentially refresh the user list
+                                    updateUserForm_1.remove();
+                                    return [2 /*return*/];
+                            }
+                        });
+                    }); };
+                    userDetailsDiv = document.querySelector('#userdetailsDiv');
+                    if (!userDetailsDiv)
+                        throw new Error("userdetailsDiv root not found");
+                    userDetailsDiv.innerHTML = '';
+                    userDetailsDiv.appendChild(updateUserForm_1);
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_4 = _a.sent();
+                    console.error(error_4);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
+            }
+        });
+    });
+}
 // Render "Hello User" for logged-in user
 function renderHelloUser() {
     return __awaiter(this, void 0, void 0, function () {
-        var logInUser, helloUser, showAllUsersButton, error_3;
+        var logInUser, helloUser, updateUserDiv, showAllUsersButton, error_5;
         var _this = this;
         return __generator(this, function (_a) {
             switch (_a.label) {
@@ -116,13 +298,14 @@ function renderHelloUser() {
                         throw new Error("User Not Found");
                     }
                     helloUser = document.querySelector("#helloUser");
+                    updateUserDiv = document.querySelector("#updateUserDiv");
                     if (!helloUser)
                         throw new Error("helloUser root not found");
                     helloUser.innerHTML = "Hello " + logInUser.email;
                     // if user isAdmin create button to show all users and can updte admin
                     if (logInUser.isAdmin) {
                         showAllUsersButton = document.createElement('button');
-                        showAllUsersButton.className = 'showAllUsers';
+                        showAllUsersButton.className = 'showAllUsersBtn';
                         showAllUsersButton.textContent = 'Show All Users';
                         showAllUsersButton.onclick = function () { return __awaiter(_this, void 0, void 0, function () { return __generator(this, function (_a) {
                             switch (_a.label) {
@@ -130,12 +313,12 @@ function renderHelloUser() {
                                 case 1: return [2 /*return*/, _a.sent()];
                             }
                         }); }); };
-                        helloUser.appendChild(showAllUsersButton);
+                        updateUserDiv.appendChild(showAllUsersButton);
                     }
                     return [3 /*break*/, 3];
                 case 2:
-                    error_3 = _a.sent();
-                    console.error(error_3);
+                    error_5 = _a.sent();
+                    console.error(error_5);
                     return [3 /*break*/, 3];
                 case 3: return [2 /*return*/];
             }
@@ -144,7 +327,7 @@ function renderHelloUser() {
 }
 function getCurrentUser() {
     return __awaiter(this, void 0, void 0, function () {
-        var response, data, logInUser, error_4;
+        var response, data, logInUser, error_6;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -161,8 +344,8 @@ function getCurrentUser() {
                     logInUser = data.logInUser;
                     return [2 /*return*/, logInUser];
                 case 3:
-                    error_4 = _a.sent();
-                    console.error(error_4);
+                    error_6 = _a.sent();
+                    console.error(error_6);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }
@@ -172,7 +355,7 @@ function getCurrentUser() {
 // Function to handle adding a recipe
 function handleAddRecipe(event) {
     return __awaiter(this, void 0, void 0, function () {
-        var recipeName, recipeIngredients, recipeInstructions, imageUrl, category, user, userEmail, response, data, error_5;
+        var recipeName, recipeIngredients, recipeInstructions, imageUrl, category, user, userEmail, response, data, error_7;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -206,8 +389,8 @@ function handleAddRecipe(event) {
                     alert("Recipe added");
                     return [3 /*break*/, 5];
                 case 4:
-                    error_5 = _a.sent();
-                    console.error(error_5);
+                    error_7 = _a.sent();
+                    console.error(error_7);
                     return [3 /*break*/, 5];
                 case 5: return [2 /*return*/];
             }
@@ -251,7 +434,7 @@ function renderRecipe(recipe, isEmailExist, isAdmin, fromWhereICome) {
 }
 function handleDeleteRecipe(recipeId, fromWhereICome) {
     return __awaiter(this, void 0, void 0, function () {
-        var response, data, error_6;
+        var response, data, error_8;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -280,8 +463,8 @@ function handleDeleteRecipe(recipeId, fromWhereICome) {
                     }
                     return [3 /*break*/, 4];
                 case 3:
-                    error_6 = _a.sent();
-                    console.error(error_6);
+                    error_8 = _a.sent();
+                    console.error(error_8);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }
@@ -291,7 +474,7 @@ function handleDeleteRecipe(recipeId, fromWhereICome) {
 // Function to render all recipes
 function renderAllRecipes() {
     return __awaiter(this, void 0, void 0, function () {
-        var recipeListContainer, response, data, recipeList, user_1, error_7;
+        var recipeListContainer, response, data, recipeList, user_1, error_9;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -321,8 +504,8 @@ function renderAllRecipes() {
                     });
                     return [3 /*break*/, 5];
                 case 4:
-                    error_7 = _a.sent();
-                    console.error(error_7);
+                    error_9 = _a.sent();
+                    console.error(error_9);
                     return [3 /*break*/, 5];
                 case 5: return [2 /*return*/];
             }
@@ -332,7 +515,7 @@ function renderAllRecipes() {
 // Function to render user-specific recipes
 function renderMyRecipes() {
     return __awaiter(this, void 0, void 0, function () {
-        var user_2, response, data, recipeList, recipeListContainer, error_8;
+        var user_2, response, data, recipeList, recipeListContainer, error_10;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -367,8 +550,8 @@ function renderMyRecipes() {
                     });
                     return [3 /*break*/, 5];
                 case 4:
-                    error_8 = _a.sent();
-                    console.error(error_8);
+                    error_10 = _a.sent();
+                    console.error(error_10);
                     return [3 /*break*/, 5];
                 case 5: return [2 /*return*/];
             }

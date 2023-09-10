@@ -93,6 +93,36 @@ function openDocs() {
     document.body.addEventListener("mousedown", function () {
         docsRoot.style.display = "none";
     });
+    info();
+}
+function info() {
+    return __awaiter(this, void 0, void 0, function () {
+        var root, response, data, name, dateCreatd, date, year, month, day;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    root = document.querySelector(".infoRoot");
+                    return [4 /*yield*/, fetch("/API/users/get-user?email=" + email)];
+                case 1:
+                    response = _a.sent();
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    data = _a.sent();
+                    name = data[0].name;
+                    dateCreatd = data[0].createdAt;
+                    date = new Date(dateCreatd);
+                    year = date.getFullYear();
+                    month = date.getMonth() + 1;
+                    day = date.getDate();
+                    renderInfo(name, year, month, day, root);
+                    return [2 /*return*/];
+            }
+        });
+    });
+}
+function renderInfo(name, year, month, day, root) {
+    var html = "<h2>USER DATA:</h2><div class=\"name\">name:" + name + "</div><div class=\"date\">date created:" + day + "/" + month + "/" + year + "</div>";
+    root.innerHTML = html;
 }
 function newHabit() {
     var newHabitRoot = document.querySelector(".newHabit");
@@ -106,7 +136,6 @@ function handleNewHabit(ev) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
                     ev.preventDefault();
-                    debugger;
                     newHabitRoot = document.querySelector(".newHabit");
                     newHabitRoot.style.display = "none";
                     name = ev.target.name.value;
@@ -127,6 +156,12 @@ function handleNewHabit(ev) {
                     return [4 /*yield*/, response.json()];
                 case 2:
                     data = _a.sent();
+                    if (data !== true) {
+                        throw new Error("problem with server");
+                    }
+                    else {
+                        location.reload();
+                    }
                     return [3 /*break*/, 4];
                 case 3:
                     error_2 = _a.sent();
@@ -209,31 +244,103 @@ function printUserTasks(arr) {
     });
 }
 function printTaskByTime(task, root) {
-    var html = "<div onclick=\"taskDocs('" + task.name + "','" + task.categorie + "','" + task.status + "', " + task + ")\" class=\"task\">\n    <h1 class=\"task__header\">" + task.name + "</h1>\n    <h2 class=\"task__categorie\">" + task.categorie + "</h2>\n</div>";
+    var html = "<div onclick=\"taskDocs('" + task.name + "','" + task.categorie + "','" + task.status + "')\" class=\"task\">\n    <h1 class=\"task__header\">" + task.name + "</h1>\n    <h2 class=\"task__categorie\">" + task.categorie + "</h2>\n</div>";
     root.innerHTML += html;
 }
-function taskDocs(name, categorie, status, task) {
-    debugger;
+function taskDocs(name, categorie, status) {
     var root = document.querySelector(".taskDocsRoot");
     root.style.display = "flex";
-    var html = "<div class=\"taskDoc\">\n    <h1 class=\"taskDoc__header\">" + name + "</h1>\n    <h2 class=\"taskDoc__categorie\">" + categorie + "</h2>\n    <h2 class=\"taskDoc__status\">" + status + "</h2>\n    <button class=\"taskDoc__doneBTN\" onclick=\"taskDone(" + task + ")\">DONE!</button>\n</div>";
+    var html = "<div class=\"taskDoc\">\n    <h1 class=\"taskDoc__header\">" + name + "</h1>\n    <h2 class=\"taskDoc__categorie\">" + categorie + "</h2>\n    <h2 class=\"taskDoc__status\">" + status + "</h2>\n    <div class=\"taskDoc__doneBTN\" onclick=\"taskDone('" + name + "','" + categorie + "','" + status + "')\">DONE!</div>\n    <div class=\"taskDoc__deleteBTN\" onclick=\"deleteHabit('" + name + "','" + categorie + "','" + status + "')\">DELETE!</div>\n</div>";
     root.innerHTML = html;
-    document.body.addEventListener("mousedown", function () {
-        root.style.display = "none";
+    taskBTNeffect();
+}
+function taskBTNeffect() {
+    var doneBTN = document.querySelector(".taskDoc__doneBTN");
+    var deleteBTN = document.querySelector(".taskDoc__deleteBTN");
+    var taskDoc = document.querySelector(".taskDoc");
+    doneBTN.addEventListener("mouseover", function () {
+        taskDoc.style.backgroundColor = "rgba(45, 211, 45, 0.465)";
+    });
+    doneBTN.addEventListener("mouseout", function () {
+        taskDoc.style.backgroundColor = "transparent";
+        taskDoc.style.backdropFilter = "blur(20px)";
+    });
+    deleteBTN.addEventListener("mouseover", function () {
+        taskDoc.style.backgroundColor = "rgba(231, 27, 27, 0.58)";
+    });
+    deleteBTN.addEventListener("mouseout", function () {
+        taskDoc.style.backgroundColor = "transparent";
+        taskDoc.style.backdropFilter = "blur(20px)";
     });
 }
-function taskDone(task) {
+function taskDone(name, categorie, status) {
     return __awaiter(this, void 0, void 0, function () {
-        var response;
+        var root, response, data;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, fetch];
+                case 0:
+                    debugger;
+                    root = document.querySelector(".taskDoc");
+                    root.style.display = "none";
+                    console.log(name, categorie, status);
+                    return [4 /*yield*/, fetch("/API/habits/habitDone", {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({ name: name, categorie: categorie, status: status, email: email })
+                        })];
                 case 1:
                     response = _a.sent();
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    data = _a.sent();
+                    if (data !== true)
+                        throw new Error("problem with the server");
+                    deleteHabit(name, categorie, status);
                     return [2 /*return*/];
             }
         });
     });
+}
+function deleteHabit(name, categorie, status) {
+    return __awaiter(this, void 0, void 0, function () {
+        var response, data, error_4;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 3, , 4]);
+                    debugger;
+                    return [4 /*yield*/, fetch("/API/habits/deleteHabit", {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({ name: name, categorie: categorie, status: status })
+                        })];
+                case 1:
+                    response = _a.sent();
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    data = _a.sent();
+                    if (data !== true) {
+                        throw new Error("problem with server");
+                    }
+                    else {
+                        location.reload();
+                    }
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_4 = _a.sent();
+                    console.error(error_4);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
+            }
+        });
+    });
+}
+function redirectToDone() {
+    window.location.href = "../doneHabits/doneHabits.html?email=" + email;
 }
 //  quotes
 var Quote = /** @class */ (function () {
@@ -252,7 +359,6 @@ var quotes = [
     new Quote("Success is walking from failure to failure with no loss of enthusiasm.", "Winston Churchill"),
 ];
 function getRandomQuote(arr) {
-    debugger;
     var randomIndex = Math.floor(Math.random() * arr.length);
     return arr[randomIndex];
 }

@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.getUserHabits = exports.addNewHabit = void 0;
+exports.getDoneHabits = exports.deleteHabit = exports.habitDone = exports.getUserHabits = exports.addNewHabit = void 0;
 var habitsModel_1 = require("./habitsModel");
 exports.addNewHabit = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var _a, name, categorie, time, userEmail, habit;
@@ -57,6 +57,7 @@ exports.addNewHabit = function (req, res) { return __awaiter(void 0, void 0, voi
             case 1:
                 habit = _b.sent();
                 console.log(habit);
+                res.send(true);
                 return [2 /*return*/];
         }
     });
@@ -77,6 +78,72 @@ exports.getUserHabits = function (req, res) { return __awaiter(void 0, void 0, v
             case 2:
                 error_1 = _a.sent();
                 console.error(error_1);
+                return [3 /*break*/, 3];
+            case 3: return [2 /*return*/];
+        }
+    });
+}); };
+exports.habitDone = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var _a, name, categorie, status, email, task, error_2;
+    return __generator(this, function (_b) {
+        switch (_b.label) {
+            case 0:
+                _b.trys.push([0, 2, , 3]);
+                _a = req.body, name = _a.name, categorie = _a.categorie, status = _a.status, email = _a.email;
+                return [4 /*yield*/, habitsModel_1.DoneHabitModelDB.create({
+                        name: name,
+                        categorie: categorie,
+                        email: email
+                    })];
+            case 1:
+                task = _b.sent();
+                res.send(true);
+                return [3 /*break*/, 3];
+            case 2:
+                error_2 = _b.sent();
+                console.error(error_2);
+                return [3 /*break*/, 3];
+            case 3: return [2 /*return*/];
+        }
+    });
+}); };
+exports.deleteHabit = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var _a, name, categorie, status, error_3;
+    return __generator(this, function (_b) {
+        switch (_b.label) {
+            case 0:
+                _b.trys.push([0, 2, , 3]);
+                _a = req.body, name = _a.name, categorie = _a.categorie, status = _a.status;
+                return [4 /*yield*/, habitsModel_1.HabitModelDB.deleteOne({ name: name })];
+            case 1:
+                _b.sent();
+                console.log("task deleted!");
+                res.send(true);
+                return [3 /*break*/, 3];
+            case 2:
+                error_3 = _b.sent();
+                console.error(error_3);
+                return [3 /*break*/, 3];
+            case 3: return [2 /*return*/];
+        }
+    });
+}); };
+exports.getDoneHabits = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var email, doneHabits, error_4;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                _a.trys.push([0, 2, , 3]);
+                email = req.query.email;
+                return [4 /*yield*/, habitsModel_1.DoneHabitModelDB.find({ email: email })];
+            case 1:
+                doneHabits = _a.sent();
+                console.log(doneHabits);
+                res.send(doneHabits);
+                return [3 /*break*/, 3];
+            case 2:
+                error_4 = _a.sent();
+                console.error(error_4);
                 return [3 /*break*/, 3];
             case 3: return [2 /*return*/];
         }
