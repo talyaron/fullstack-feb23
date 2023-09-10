@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.updatePicture = exports.deletePicture = exports.addPicture = exports.getTags = exports.getPictures = void 0;
+exports.updatePicture = exports.deletePicture = exports.addPicture = exports.getTags = exports.getUserPictures = exports.getPictures = void 0;
 var picturesModels_1 = require("./picturesModels");
 function getPictures(req, res) {
     return __awaiter(this, void 0, void 0, function () {
@@ -60,41 +60,21 @@ function getPictures(req, res) {
     });
 }
 exports.getPictures = getPictures;
-exports.getTags = function (req, res) {
-    try {
-        res.send({ tags: picturesModels_1.tags });
-    }
-    catch (error) {
-        console.error(error.massage);
-    }
-};
-function addPicture(req, res) {
+function getUserPictures(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var picture, emailUser, title, imgUrl, location, tags_1, area, newTag, _picture, pictureDB, error_2;
+        var email, userPicturesDB, error_2;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-                    picture = req.body;
-                    emailUser = picture.emailUser;
-                    title = picture.title;
-                    imgUrl = picture.imgUrl;
-                    location = picture.location;
-                    tags_1 = picture.tags;
-                    area = picture.area;
-                    newTag = picture.newTag;
-                    if (newTag) {
-                        picture.tags.push(newTag);
-                        tags_1.push(newTag);
+                    email = req.query.email;
+                    if (!email) {
+                        throw new Error("email is required");
                     }
-                    _picture = new picturesModels_1.PictureModel({ title: title, imgUrl: imgUrl, location: location, tags: tags_1, area: area });
-                    return [4 /*yield*/, _picture.save()];
+                    return [4 /*yield*/, picturesModels_1.PictureModel.find({ email: email })];
                 case 1:
-                    pictureDB = _a.sent();
-                    console.log(pictureDB);
-                    // const currentUser = users.find(user => user.email === emailUser)
-                    // usersPictures.push(new UserPicture(currentUser, currentPicture))
-                    res.send({ ok: true });
+                    userPicturesDB = _a.sent();
+                    res.send({ userPictures: userPicturesDB });
                     return [3 /*break*/, 3];
                 case 2:
                     error_2 = _a.sent();
@@ -105,35 +85,109 @@ function addPicture(req, res) {
         });
     });
 }
+exports.getUserPictures = getUserPictures;
+exports.getTags = function (req, res) {
+    try {
+        res.send({ tags: picturesModels_1.tags });
+    }
+    catch (error) {
+        console.error(error.massage);
+    }
+};
+function addPicture(req, res) {
+    return __awaiter(this, void 0, void 0, function () {
+        var picture, title, imgUrl, location, pictureTags, area, newTag, publishDate, email, _picture, pictureDB, error_3;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    picture = req.body;
+                    title = picture.title;
+                    imgUrl = picture.imgUrl;
+                    location = picture.location;
+                    pictureTags = picture.tags;
+                    area = picture.area;
+                    newTag = picture.newTag;
+                    if (newTag) {
+                        pictureTags.push(newTag);
+                        picturesModels_1.tags.push(newTag);
+                    }
+                    publishDate = new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString('en-US', {
+                        hour12: false,
+                        hour: "numeric",
+                        minute: "numeric"
+                    });
+                    email = req.query.email;
+                    if (!email) {
+                        throw new Error("email is required");
+                    }
+                    _picture = new picturesModels_1.PictureModel({ title: title, imgUrl: imgUrl, location: location, tags: picturesModels_1.tags, area: area, publishDate: publishDate, email: email });
+                    return [4 /*yield*/, _picture.save()];
+                case 1:
+                    pictureDB = _a.sent();
+                    res.send({ ok: true, picture: pictureDB });
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_3 = _a.sent();
+                    console.error(error_3.massage);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
+}
 exports.addPicture = addPicture;
-exports.deletePicture = function (req, res) {
-    try {
-        var id_1 = req.body.id;
-        var indexAtUsersPictures = picturesModels_1.usersPictures.findIndex(function (element) { return element.picture.id === id_1; });
-        if (indexAtUsersPictures === -1) {
-            throw new Error("picture not found");
-        }
-        picturesModels_1.usersPictures.splice(indexAtUsersPictures, 1);
-        res.send({ usersPictures: picturesModels_1.usersPictures });
-    }
-    catch (error) {
-        console.error(error.massage);
-    }
-};
-exports.updatePicture = function (req, res) {
-    try {
-        var _a = req.body, title = _a.title, imgUrl = _a.imgUrl, location = _a.location, id_2 = _a.id;
-        if (!title || !imgUrl || !location || !id_2)
-            throw new Error("Please complete all details");
-        var pictureUser = picturesModels_1.usersPictures.find(function (element) { return element.picture.id === id_2; });
-        if (!pictureUser)
-            throw new Error("Picture not found");
-        pictureUser.picture.title = title;
-        pictureUser.picture.imgUrl = imgUrl;
-        pictureUser.picture.location = location;
-        res.send({ usersPictures: picturesModels_1.usersPictures });
-    }
-    catch (error) {
-        console.error(error.massage);
-    }
-};
+function deletePicture(req, res) {
+    return __awaiter(this, void 0, void 0, function () {
+        var id, pictureDB, picturesDB, error_4;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 3, , 4]);
+                    id = req.body.id;
+                    return [4 /*yield*/, picturesModels_1.PictureModel.findByIdAndDelete(id)];
+                case 1:
+                    pictureDB = _a.sent();
+                    return [4 /*yield*/, picturesModels_1.PictureModel.find({})];
+                case 2:
+                    picturesDB = _a.sent();
+                    res.send({ pictures: picturesDB });
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_4 = _a.sent();
+                    console.error(error_4.massage);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
+            }
+        });
+    });
+}
+exports.deletePicture = deletePicture;
+function updatePicture(req, res) {
+    return __awaiter(this, void 0, void 0, function () {
+        var _a, title, imgUrl, location, id, pictureDB, picturesDB, error_5;
+        return __generator(this, function (_b) {
+            switch (_b.label) {
+                case 0:
+                    _b.trys.push([0, 3, , 4]);
+                    _a = req.body, title = _a.title, imgUrl = _a.imgUrl, location = _a.location, id = _a.id;
+                    if (!title || !imgUrl || !location || !id)
+                        throw new Error("Please complete all details");
+                    return [4 /*yield*/, picturesModels_1.PictureModel.findByIdAndUpdate(id, { title: title, imgUrl: imgUrl, location: location }, { "new": true })];
+                case 1:
+                    pictureDB = _b.sent();
+                    return [4 /*yield*/, picturesModels_1.PictureModel.find({})];
+                case 2:
+                    picturesDB = _b.sent();
+                    res.send({ pictures: picturesDB });
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_5 = _b.sent();
+                    console.error(error_5.massage);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
+            }
+        });
+    });
+}
+exports.updatePicture = updatePicture;

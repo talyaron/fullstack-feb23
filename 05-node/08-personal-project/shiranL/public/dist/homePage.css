@@ -1,161 +1,99 @@
-/* Reset some default browser styles */
-body, h1, h2, h3, p {
+/* Reset some default styles */
+body, html {
   margin: 0;
   padding: 0;
-}
-
-/* Apply a background color to the body */
-body {
-  background-color: #f0f0f0;
   font-family: Arial, sans-serif;
 }
 
-/* Style the wapper */
+/* Define some reusable variables */
+/* Adjust the central container width as needed */
+/* Apply global styles */
+body {
+  background-color: #f4f4f4;
+}
+
 .wapper {
   display: flex;
-  flex-direction: row;
-  justify-content: center;
-  /* Center the content horizontally */
-  align-items: flex-start;
-  /* Align content to the top vertically */
-  min-height: 100vh;
-  /* Ensure at least the viewport height */
-}
-
-/* Style the centerContainer */
-.centerContainer {
-  max-width: 600px;
-  margin: 0 20px;
-  /* Add some space to the sides */
+  justify-content: space-between;
   padding: 20px;
-  background-color: #fff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-.centerContainer__heder {
-  background-color: #333;
-  color: #fff;
-  padding: 10px;
-  text-align: center;
 }
 
-/* Style the form */
-#addRecipeForm {
-  margin-top: 20px;
-  display: flex;
-  flex-direction: column;
-  /* Style the select field */
+.centerContainer {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 70%;
+  max-width: 1200px;
 }
-#addRecipeForm .input-field {
-  margin-bottom: 10px;
+
+.centerContainer__heder {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.input-field {
+  width: 100%;
   padding: 10px;
+  margin-bottom: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
 }
-#addRecipeForm #recipeCategory {
-  padding: 10px;
-}
 
-/* Style the buttons */
-.btn-container {
-  display: flex;
-  flex-wrap: wrap;
-  /* Allow buttons to wrap on smaller screens */
-  justify-content: space-between;
-  margin-top: 20px;
-}
-.btn-container .btn {
-  flex-basis: calc(50% - 10px);
-  /* 50% width with 10px spacing */
-  padding: 10px 20px;
-  background-color: #333;
+.btn {
+  background-color: #4caf50;
   color: #fff;
+  padding: 10px 20px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  margin-bottom: 10px;
-  /* Add margin between buttons */
-}
-.btn-container .btn:hover {
-  background-color: #555;
+  transition: background-color 0.3s ease;
 }
 
-/* Style the recipe container */
+.btn:hover {
+  background-color: #3d8b40;
+}
+
 .recipe-container {
   margin-top: 20px;
-  display: flex;
-  flex-wrap: wrap;
-  /* Allow recipes to wrap on smaller screens */
-  justify-content: space-between;
-}
-.recipe-container .recipeContainer__recipe {
-  flex-basis: calc(50% - 10px);
-  /* Two recipes per row with spacing */
-  background-color: #fff;
-  padding: 20px;
-  margin-bottom: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-.recipe-container .recipeContainer__recipe .recipeName {
-  font-size: 24px;
-  margin-bottom: 10px;
-}
-.recipe-container .recipeContainer__recipe .recipeImage {
-  max-width: 100%;
-  height: auto;
-  margin-bottom: 10px;
-}
-.recipe-container .recipeContainer__recipe .recipeIngredients, .recipe-container .recipeContainer__recipe .recipeInstructions, .recipe-container .recipeContainer__recipe .recipeCategory {
-  margin-bottom: 10px;
-}
-.recipe-container .recipeContainer__recipe .deleteRecipe {
-  background-color: #ff0000;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  padding: 5px 10px;
-  cursor: pointer;
-}
-.recipe-container .recipeContainer__recipe .deleteRecipe:hover {
-  background-color: #ff5555;
 }
 
-/* Add a border to the right side of the sideUpdaecontainer */
+/* Add styles for the sideUpdatecontainer */
 .sideUpdaecontainer {
-  height: 100%;
-  width: 250px;
-  position: absolute;
-  top: 0;
-  right: 0;
-  /* Add any other styling you want for the sideUpdaecontainer */
-  /* Set a default border for larger screens */
-  border: 2px solid #000;
-  /* Adjust the color and width as needed */
+  background-color: #f4f4f4;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  flex: 1;
+  /* Take up remaining space */
+  margin-left: 20px;
+  /* Add margin to separate it from the central container */
 }
 
-/* Media query for smaller screens */
-@media screen and (max-width: 768px) {
+/* Add styles for the updateUserForm */
+#updateUserForm {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+/* Add any additional styles you need for specific elements */
+/* Media query for responsiveness */
+@media (max-width: 768px) {
+  .wapper {
+    flex-direction: column;
+  }
+
   .centerContainer {
-    margin: 0 10px;
-    /* Reduce margin for smaller screens */
-  }
-
-  .btn-container .btn {
-    flex-basis: 100%;
-    /* Full width for buttons on smaller screens */
-  }
-
-  .recipe-container .recipeContainer__recipe {
-    flex-basis: 100%;
-    /* Full width for recipes on smaller screens */
+    width: 100%;
+    /* Take up full width on smaller screens */
+    margin: 0;
   }
 
   .sideUpdaecontainer {
-    display: none;
-  }
-
-  .showAllUsers {
-    display: none;
+    margin: 20px 0;
+    /* Add margin to separate it from the central container */
   }
 }

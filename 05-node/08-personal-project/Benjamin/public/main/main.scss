@@ -22,7 +22,41 @@
 
 
 
+@media only screen and (max-width: 1477px) {
+    .newHabitBtn {
+        width: 26vw;
+    }
+}
 
+@media only screen and (min-width: 1478px) {
+    .newHabitBtn {
+
+        width: 4vw;
+    }
+}
+@media only screen and (min-width: 1900px) {
+    .topLine {
+        width: 4vw;
+    }
+}
+@media only screen and (max-width: 1900px) {
+    .topLine {
+        width: 10vw;
+    }
+}
+@media only screen and (max-width: 826px) {
+    .topLine {
+        width: 20vw;
+    }
+    #logo{
+        font-size: 40px;
+    }
+}
+@media only screen and (min-width: 1900px) {
+    #logo {
+        width: 80px;
+    }
+}
 
 
 
@@ -31,19 +65,22 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
     &::-webkit-scrollbar {
         width: 0.6em;
         transition: all 0.2s ease-in-out;
     }
+
     &::-webkit-scrollbar-track {
-       background: hsl(224, 88%, 62%);
-       margin-block: 0.5em;
-       border-radius: 10px;
-       transition: all 0.2s ease-in-out;
+        background: hsl(224, 88%, 62%);
+        margin-block: 0.5em;
+        border-radius: 10px;
+        transition: all 0.2s ease-in-out;
 
 
     }
-    &::-webkit-scrollbar-thumb{
+
+    &::-webkit-scrollbar-thumb {
         background: hsla(203, 48%, 19%, 0.7);
         border-radius: 10px;
         cursor: pointer;
@@ -53,7 +90,8 @@ body {
 
 
     }
-    &::-webkit-scrollbar-thumb:hover{
+
+    &::-webkit-scrollbar-thumb:hover {
         background: hsl(247, 86%, 8%);
     }
 
@@ -71,7 +109,7 @@ body {
 }
 
 #logo {
-    font-size: 80px;
+
     color: white;
     text-shadow: 0 0 10px black;
     font-family: fantasy;
@@ -105,7 +143,7 @@ body {
 }
 
 .topLine {
-    width: 3.8vw;
+    
     height: 2vh;
     display: flex;
     flex-direction: row;
@@ -114,19 +152,22 @@ body {
     position: absolute;
     top: 2vh;
     left: 2vw;
-    &__btn{
+
+    &__btn {
         cursor: pointer;
         transition: all 200ms ease-in-out;
-        &:hover{
+
+        &:hover {
             transform: scale(1.1);
-           
-            
+
+
         }
     }
-    
+
 
 }
-.infoRoot{
+
+.infoRoot {
     color: aliceblue;
     display: flex;
     flex-direction: column;
@@ -153,6 +194,37 @@ body {
     position: absolute;
     top: 20vh;
     z-index: 10;
+    overflow-y: scroll;
+
+    &::-webkit-scrollbar {
+        width: 0.6em;
+        transition: all 0.2s ease-in-out;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: hsl(224, 88%, 62%);
+        margin-block: 0.5em;
+        border-radius: 10px;
+        transition: all 0.2s ease-in-out;
+
+
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: hsla(203, 48%, 19%, 0.7);
+        border-radius: 10px;
+        cursor: pointer;
+        transition: all 0.2s ease-in-out;
+
+
+
+
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+        background: hsl(247, 86%, 8%);
+    }
+
 
     @keyframes borderColor {
         0% {
@@ -199,7 +271,24 @@ body {
 }
 
 .newHabitBtn {
-    @include button;
+
+    height: 4vh;
+    background-color: rgba(78, 123, 248, 0.644);
+    border-radius: 20px;
+    cursor: pointer;
+    box-shadow: 2px 2px 10px black;
+    border: transparent;
+    font-family: fantasy;
+    color: aliceblue;
+    transition: all 0.2s ease-in-out;
+    margin-top: 10px;
+
+    &:hover {
+        background-color: rgba(172, 183, 212, 0.8);
+        color: black;
+        width: 4.5vw;
+
+    }
 }
 
 .newHabit {
@@ -278,7 +367,7 @@ body {
     }
 }
 
-.taskDoc{
+.taskDoc {
     width: 30vw;
     height: 50vh;
     background-color: transparent;
@@ -297,8 +386,8 @@ body {
     left: 34vw;
     margin: auto;
     transition: all 200ms ease-in-out;
-    
-    
+
+
 
     &__header {
         font-size: 30px;
@@ -306,18 +395,21 @@ body {
         text-shadow: 0 0 10px black;
         font-family: fantasy;
     }
+
     &__categorie {
         font-size: 20px;
         color: white;
         text-shadow: 0 0 10px black;
         font-family: fantasy;
     }
+
     &__status {
         font-size: 20px;
         color: white;
         text-shadow: 0 0 10px black;
         font-family: fantasy;
     }
+
     &__doneBTN {
         @include button;
         cursor: pointer;
@@ -326,6 +418,7 @@ body {
         justify-content: center;
         align-items: center;
     }
+
     &__deleteBTN {
         @include button;
         cursor: pointer;
@@ -407,19 +500,21 @@ body {
         overflow-y: scroll;
         overflow-x: hidden;
 
-       &::-webkit-scrollbar {
+        &::-webkit-scrollbar {
             width: 0.6em;
             transition: all 0.2s ease-in-out;
         }
+
         &::-webkit-scrollbar-track {
-           background: hsl(224, 88%, 62%);
-           margin-block: 0.5em;
-           border-radius: 10px;
-           transition: all 0.2s ease-in-out;
+            background: hsl(224, 88%, 62%);
+            margin-block: 0.5em;
+            border-radius: 10px;
+            transition: all 0.2s ease-in-out;
 
 
         }
-        &::-webkit-scrollbar-thumb{
+
+        &::-webkit-scrollbar-thumb {
             background: hsla(203, 48%, 19%, 0.7);
             border-radius: 10px;
             cursor: pointer;
@@ -429,7 +524,8 @@ body {
 
 
         }
-        &::-webkit-scrollbar-thumb:hover{
+
+        &::-webkit-scrollbar-thumb:hover {
             background: hsl(247, 86%, 8%);
         }
 

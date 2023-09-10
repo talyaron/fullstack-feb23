@@ -38,7 +38,6 @@ exports.UserPicture = UserPicture;
 exports.usersPictures = [];
 exports.tags = ['ים', 'מדבר', 'צבי', 'מעיין'];
 exports.PictureSchema = new mongoose_1.Schema({
-    // publishDate: String,
     title: String,
     imgUrl: String,
     location: String,
@@ -46,11 +45,13 @@ exports.PictureSchema = new mongoose_1.Schema({
     area: {
         type: String,
         "enum": [PictureArea]
-    }
-});
-exports.PictureSchema.methods.publishDate = new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString('en-US', {
-    hour12: false,
-    hour: "numeric",
-    minute: "numeric"
+    },
+    publishDate: String,
+    email: String
 });
 exports.PictureModel = mongoose_1.model("pictures", exports.PictureSchema);
+// export const UserPictureSchema = new Schema({
+//     user: {type:Schema.ObjectId, ref:'users'},
+//     picture: {type:Schema.ObjectId, ref:'pictures'}
+// })
+// export const UserPictureModel = model("usersPictures", UserPictureSchema)

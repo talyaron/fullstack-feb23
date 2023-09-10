@@ -127,13 +127,23 @@ function renderAllUsers() {
 function renderUsersList(users) {
     var _this = this;
     try {
+        //clrear divs 
         var updateUserDiv = document.querySelector("#updateUserDiv");
-        if (!updateUserDiv)
-            throw new Error("updateUserDiv root not found");
-        //create div for select user
+        var userdetailsDiv = document.querySelector("#userdetailsDiv");
+        if (!updateUserDiv || !userdetailsDiv)
+            throw new Error("updateUserDiv|userdetailsDiv root not found");
+        updateUserDiv.innerHTML = '';
+        userdetailsDiv.innerHTML = '';
+        // Create h1 admin users
+        var h1 = document.createElement('h1');
+        h1.textContent = 'Admin area';
+        // Create div for select user
         var selectUserDiv = document.createElement('div');
         selectUserDiv.id = 'selectUserDiv';
         updateUserDiv.appendChild(selectUserDiv);
+        // Label for select user    
+        var selectUserLabel = document.createElement('label');
+        selectUserLabel.textContent = 'Select User:';
         // Create a select element to choose a user
         var selectUser_1 = document.createElement('select');
         selectUser_1.id = 'selectUser';
@@ -148,12 +158,17 @@ function renderUsersList(users) {
         var updateButton = document.createElement('button');
         updateButton.className = 'updateUserBtn';
         updateButton.textContent = 'Update';
+        // Append select, update, and delete buttons to updateUserDiv
+        selectUserDiv.appendChild(h1);
+        selectUserDiv.appendChild(selectUserLabel);
+        selectUserDiv.appendChild(selectUser_1);
+        selectUserDiv.appendChild(updateButton);
+        // Handle the update button click event
         updateButton.onclick = function () { return __awaiter(_this, void 0, void 0, function () {
             var selectUser, selectedUserId;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        debugger;
                         selectUser = document.querySelector('#selectUser');
                         selectedUserId = selectUser.value;
                         // Call a function to open the update user form and populate it with user details
@@ -165,23 +180,55 @@ function renderUsersList(users) {
                 }
             });
         }); };
-        // Create delete button
-        var deleteButton = document.createElement('button');
-        deleteButton.className = 'deleteUserBtn';
-        deleteButton.textContent = 'Delete';
-        //deleteButton.onclick = async () => await handleDeleteUser();
-        // Append select and buttons to updateUserDiv
-        selectUserDiv.appendChild(selectUser_1);
-        selectUserDiv.appendChild(updateButton);
-        selectUserDiv.appendChild(deleteButton);
     }
     catch (error) {
         console.error(error);
     }
 }
+function handleDeleteUser() {
+    return __awaiter(this, void 0, void 0, function () {
+        var selectUser, selectedUserId, response, responseData, updateUserForm, error_4;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 4, , 5]);
+                    selectUser = document.querySelector('#selectUser');
+                    selectedUserId = selectUser.value;
+                    return [4 /*yield*/, fetch("API/user/delete-user?userId=" + selectedUserId, {
+                            method: "DELETE",
+                            headers: {
+                                "Content-Type": "application/json"
+                            }
+                        })];
+                case 1:
+                    response = _a.sent();
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    responseData = _a.sent();
+                    if (!responseData.ok) {
+                        throw new Error(responseData.message);
+                    }
+                    alert("User deleted successfully");
+                    updateUserForm = document.querySelector('#updateUserForm');
+                    updateUserForm.remove();
+                    //  refresh the user list here
+                    return [4 /*yield*/, renderAllUsers()];
+                case 3:
+                    //  refresh the user list here
+                    _a.sent();
+                    return [3 /*break*/, 5];
+                case 4:
+                    error_4 = _a.sent();
+                    console.error(error_4);
+                    return [3 /*break*/, 5];
+                case 5: return [2 /*return*/];
+            }
+        });
+    });
+}
 function openUpdateUserForm(userId) {
     return __awaiter(this, void 0, void 0, function () {
-        var response, data, userDetails, updateUserForm_1, emailInput_1, passwordInput_1, isAdminInput_1, submitButton, userDetailsDiv, error_4;
+        var response, data, userDetails, updateUserForm_1, emailLabel, emailInput_1, passwordLabel, passwordInput_1, isAdminLabel, isAdminInput_1, deleteButton, submitButton, userDetailsDiv, error_5;
         var _this = this;
         return __generator(this, function (_a) {
             switch (_a.label) {
@@ -198,36 +245,63 @@ function openUpdateUserForm(userId) {
                     return [4 /*yield*/, response.json()];
                 case 2:
                     data = _a.sent();
-                    debugger;
                     if (!data.ok) {
                         throw new Error(data.message);
                     }
                     userDetails = data.user;
                     updateUserForm_1 = document.createElement('form');
                     updateUserForm_1.id = 'updateUserForm';
+                    emailLabel = document.createElement('label');
+                    emailLabel.textContent = 'Email:';
                     emailInput_1 = document.createElement('input');
                     emailInput_1.type = 'text';
                     emailInput_1.name = 'email';
                     emailInput_1.value = userDetails.email;
+                    passwordLabel = document.createElement('label');
+                    passwordLabel.textContent = 'Password:';
                     passwordInput_1 = document.createElement('input');
                     passwordInput_1.type = 'password';
                     passwordInput_1.name = 'password';
                     passwordInput_1.value = userDetails.password;
+                    isAdminLabel = document.createElement('label');
+                    isAdminLabel.textContent = 'Is Admin:';
                     isAdminInput_1 = document.createElement('input');
                     isAdminInput_1.type = 'checkbox';
                     isAdminInput_1.name = 'isAdmin';
                     isAdminInput_1.checked = userDetails.isAdmin;
+                    deleteButton = document.createElement('button');
+                    deleteButton.className = 'deleteUserBtn';
+                    deleteButton.textContent = 'Delete';
+                    deleteButton.onclick = function () { return __awaiter(_this, void 0, void 0, function () {
+                        return __generator(this, function (_a) {
+                            switch (_a.label) {
+                                case 0: return [4 /*yield*/, handleDeleteUser()];
+                                case 1:
+                                    _a.sent();
+                                    return [2 /*return*/];
+                            }
+                        });
+                    }); };
                     submitButton = document.createElement('button');
                     submitButton.type = 'submit';
                     submitButton.textContent = 'Update User';
-                    // Add input fields and submit button to the form
+                    // Apply CSS to style the form elements
+                    updateUserForm_1.style.display = 'flex';
+                    updateUserForm_1.style.flexDirection = 'column';
+                    updateUserForm_1.style.alignItems = 'flex-start';
+                    updateUserForm_1.style.gap = '10px'; // Adjust the spacing as needed
+                    // Append input fields, labels, and submit button to the form
+                    updateUserForm_1.appendChild(emailLabel);
                     updateUserForm_1.appendChild(emailInput_1);
+                    updateUserForm_1.appendChild(passwordLabel);
                     updateUserForm_1.appendChild(passwordInput_1);
+                    updateUserForm_1.appendChild(isAdminLabel);
                     updateUserForm_1.appendChild(isAdminInput_1);
+                    updateUserForm_1.appendChild(deleteButton);
                     updateUserForm_1.appendChild(submitButton);
                     // Event handler for updating user details
                     updateUserForm_1.onsubmit = function (event) { return __awaiter(_this, void 0, void 0, function () {
-                        var updatedUser, response, responseData, selectUserDiv, userdetailsDiv;
+                        var updatedUser, response, responseData;
                         return __generator(this, function (_a) {
                             switch (_a.label) {
                                 case 0:
@@ -253,16 +327,13 @@ function openUpdateUserForm(userId) {
                                         throw new Error(responseData.message);
                                     }
                                     alert("User details updated successfully");
-                                    // clean the updateUserDiv
-                                    debugger;
-                                    selectUserDiv = document.querySelector("#selectUserDiv");
-                                    userdetailsDiv = document.querySelector("#userdetailsDiv");
-                                    if (!selectUserDiv || !userdetailsDiv)
-                                        throw new Error("selectUserDiv|userdetailsDiv root not found");
-                                    selectUserDiv.innerHTML = '';
-                                    userdetailsDiv.innerHTML = '';
                                     // Close the update user form and potentially refresh the user list
                                     updateUserForm_1.remove();
+                                    //  refresh the user list here
+                                    return [4 /*yield*/, renderAllUsers()];
+                                case 3:
+                                    //  refresh the user list here
+                                    _a.sent();
                                     return [2 /*return*/];
                             }
                         });
@@ -274,8 +345,8 @@ function openUpdateUserForm(userId) {
                     userDetailsDiv.appendChild(updateUserForm_1);
                     return [3 /*break*/, 4];
                 case 3:
-                    error_4 = _a.sent();
-                    console.error(error_4);
+                    error_5 = _a.sent();
+                    console.error(error_5);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }
@@ -285,12 +356,11 @@ function openUpdateUserForm(userId) {
 // Render "Hello User" for logged-in user
 function renderHelloUser() {
     return __awaiter(this, void 0, void 0, function () {
-        var logInUser, helloUser, updateUserDiv, showAllUsersButton, error_5;
-        var _this = this;
+        var logInUser, helloUser, updateUserDiv, error_6;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    _a.trys.push([0, 2, , 3]);
+                    _a.trys.push([0, 4, , 5]);
                     return [4 /*yield*/, getCurrentUser()];
                 case 1:
                     logInUser = _a.sent();
@@ -302,32 +372,24 @@ function renderHelloUser() {
                     if (!helloUser)
                         throw new Error("helloUser root not found");
                     helloUser.innerHTML = "Hello " + logInUser.email;
-                    // if user isAdmin create button to show all users and can updte admin
-                    if (logInUser.isAdmin) {
-                        showAllUsersButton = document.createElement('button');
-                        showAllUsersButton.className = 'showAllUsersBtn';
-                        showAllUsersButton.textContent = 'Show All Users';
-                        showAllUsersButton.onclick = function () { return __awaiter(_this, void 0, void 0, function () { return __generator(this, function (_a) {
-                            switch (_a.label) {
-                                case 0: return [4 /*yield*/, renderAllUsers()];
-                                case 1: return [2 /*return*/, _a.sent()];
-                            }
-                        }); }); };
-                        updateUserDiv.appendChild(showAllUsersButton);
-                    }
-                    return [3 /*break*/, 3];
+                    if (!logInUser.isAdmin) return [3 /*break*/, 3];
+                    return [4 /*yield*/, renderAllUsers()];
                 case 2:
-                    error_5 = _a.sent();
-                    console.error(error_5);
-                    return [3 /*break*/, 3];
-                case 3: return [2 /*return*/];
+                    _a.sent();
+                    _a.label = 3;
+                case 3: return [3 /*break*/, 5];
+                case 4:
+                    error_6 = _a.sent();
+                    console.error(error_6);
+                    return [3 /*break*/, 5];
+                case 5: return [2 /*return*/];
             }
         });
     });
 }
 function getCurrentUser() {
     return __awaiter(this, void 0, void 0, function () {
-        var response, data, logInUser, error_6;
+        var response, data, logInUser, error_7;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -344,8 +406,8 @@ function getCurrentUser() {
                     logInUser = data.logInUser;
                     return [2 /*return*/, logInUser];
                 case 3:
-                    error_6 = _a.sent();
-                    console.error(error_6);
+                    error_7 = _a.sent();
+                    console.error(error_7);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }
@@ -355,7 +417,7 @@ function getCurrentUser() {
 // Function to handle adding a recipe
 function handleAddRecipe(event) {
     return __awaiter(this, void 0, void 0, function () {
-        var recipeName, recipeIngredients, recipeInstructions, imageUrl, category, user, userEmail, response, data, error_7;
+        var recipeName, recipeIngredients, recipeInstructions, imageUrl, category, user, userEmail, response, data, error_8;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -389,8 +451,8 @@ function handleAddRecipe(event) {
                     alert("Recipe added");
                     return [3 /*break*/, 5];
                 case 4:
-                    error_7 = _a.sent();
-                    console.error(error_7);
+                    error_8 = _a.sent();
+                    console.error(error_8);
                     return [3 /*break*/, 5];
                 case 5: return [2 /*return*/];
             }
@@ -434,7 +496,7 @@ function renderRecipe(recipe, isEmailExist, isAdmin, fromWhereICome) {
 }
 function handleDeleteRecipe(recipeId, fromWhereICome) {
     return __awaiter(this, void 0, void 0, function () {
-        var response, data, error_8;
+        var response, data, error_9;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -463,8 +525,8 @@ function handleDeleteRecipe(recipeId, fromWhereICome) {
                     }
                     return [3 /*break*/, 4];
                 case 3:
-                    error_8 = _a.sent();
-                    console.error(error_8);
+                    error_9 = _a.sent();
+                    console.error(error_9);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }
@@ -474,7 +536,7 @@ function handleDeleteRecipe(recipeId, fromWhereICome) {
 // Function to render all recipes
 function renderAllRecipes() {
     return __awaiter(this, void 0, void 0, function () {
-        var recipeListContainer, response, data, recipeList, user_1, error_9;
+        var recipeListContainer, response, data, recipeList, user_1, error_10;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -504,8 +566,8 @@ function renderAllRecipes() {
                     });
                     return [3 /*break*/, 5];
                 case 4:
-                    error_9 = _a.sent();
-                    console.error(error_9);
+                    error_10 = _a.sent();
+                    console.error(error_10);
                     return [3 /*break*/, 5];
                 case 5: return [2 /*return*/];
             }
@@ -515,7 +577,7 @@ function renderAllRecipes() {
 // Function to render user-specific recipes
 function renderMyRecipes() {
     return __awaiter(this, void 0, void 0, function () {
-        var user_2, response, data, recipeList, recipeListContainer, error_10;
+        var user_2, response, data, recipeList, recipeListContainer, error_11;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -550,8 +612,8 @@ function renderMyRecipes() {
                     });
                     return [3 /*break*/, 5];
                 case 4:
-                    error_10 = _a.sent();
-                    console.error(error_10);
+                    error_11 = _a.sent();
+                    console.error(error_11);
                     return [3 /*break*/, 5];
                 case 5: return [2 /*return*/];
             }

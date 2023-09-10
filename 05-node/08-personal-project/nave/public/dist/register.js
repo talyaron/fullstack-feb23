@@ -36,11 +36,11 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 function handleRegister(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var user, response, error, error_1;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
+        var user, response, _a, error, userDB, error_1;
+        return __generator(this, function (_b) {
+            switch (_b.label) {
                 case 0:
-                    _a.trys.push([0, 3, , 4]);
+                    _b.trys.push([0, 3, , 4]);
                     ev.preventDefault(); // stop form from submitting
                     user = {
                         // get data from form
@@ -56,11 +56,11 @@ function handleRegister(ev) {
                             body: JSON.stringify(user)
                         })];
                 case 1:
-                    response = _a.sent();
+                    response = _b.sent();
                     return [4 /*yield*/, response.json()];
                 case 2:
-                    error = (_a.sent()).error;
-                    console.log(error);
+                    _a = _b.sent(), error = _a.error, userDB = _a.userDB;
+                    console.log(userDB);
                     if (error) {
                         throw new Error(error);
                     }
@@ -68,7 +68,7 @@ function handleRegister(ev) {
                     window.location.href = "/login.html";
                     return [3 /*break*/, 4];
                 case 3:
-                    error_1 = _a.sent();
+                    error_1 = _b.sent();
                     console.error(error_1);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
