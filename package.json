@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@types/chart.js": "^2.9.37",
+    "sass": "^1.63.4"
+  }
+}

@@ -26,7 +26,7 @@ interface Relative {
 // Function to get user's relatives from the server
 async function getRelativesFromServer(email: string) {
   try {
-    const response = await fetch(`/API/users/get-user-relatives?email=${email}`);
+    const response = await fetch(`/API/relatives/get-user-relatives?email=${email}`);
     const data = await response.json();
     return data.relatives;
   } catch (error) {
@@ -64,8 +64,8 @@ async function handleAddRelative(event) {
       const relationSelect = <HTMLSelectElement>document.getElementById('relation');
       const selectedRelation = relationSelect.value;
 
-      if (!fullName || !birthDate || !country || selectedRelation === 'choose') {
-          throw new Error("Please complete all fields");
+      if (!fullName || !birthDate || !country || selectedRelation === RelationshipType.choose) {
+          throw new Error("Please complete all fields and select a valid relation");
       }
 
       // Associate the new relative with the user by using their email.

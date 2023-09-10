@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./dist/homePage.js" defer></script>
+    <link rel="stylesheet" href="./dist/homePage.css">
+    <title>Home</title>
+</head>
+
+<body onload="renderHelloUser()">
+    <div class="wrapper">
+        <div class="centerContainer">
+            <div class="centerContainer__header">
+                <div id="helloUser"></div>
+            </div>
+
+            <!-- Form for adding a blog post -->
+            <form id="addBlogForm" onsubmit="handleAddBlog(event)">
+                <input type="text" name="blogTitle" id="blogTitle" class="input-field" placeholder="Blog Title" required>
+                <textarea name="blogDescription" id="blogDescription" class="input-field" placeholder="Blog Description"
+                    required></textarea>
+                <input type="submit" value="Add Blog" class="btn">
+            </form>
+
+            <!-- Buttons to logout and view blogs -->
+            <div class="btn-container">
+                <button id="logOutBtn" class="btn" onclick="handleLogout()">Log Out</button>
+                <button id="showAllBtn" class="btn" onclick="renderAllBlogs()">Show All</button>
+                <button id="showMyBtn" class="btn" onclick="renderMyBlogs()">Show My Blogs</button>
+            </div>
+
+            <div class="blog-container" id="blogContainer"></div>
+        </div>
+
+        <div class="sideUpdateContainer">
+            <div id="updateUserDiv"></div>
+            <div id="userDetailsDiv"></div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -94,7 +94,6 @@ function renderExpencesTable() {
                     fillterdCategories.forEach(function (category) {
                         // console.log(userCategories);
                         var html = document.querySelector("#id-" + getCategoryId(category));
-                        console.log(html);
                         if (!html)
                             throw new Error("html not found");
                         expenses.forEach(function (expense) {
@@ -114,31 +113,16 @@ function renderExpencesTable() {
     });
 }
 // this function is used to render the result area
-function renderResult(htmlElemnet, expense) {
-    return __awaiter(this, void 0, void 0, function () {
-        var userIncome, error_3;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    _a.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, getUserIncomeFromDB()];
-                case 1:
-                    userIncome = _a.sent();
-                    if (userIncome !== null || undefined)
-                        htmlElemnet.innerHTML = userIncome + "&#8362;";
-                    if (userIncome.message === "0")
-                        htmlElemnet.innerHTML = "0" + "&#8362;";
-                    if (expense)
-                        htmlElemnet.innerHTML = expense + "&#8362;";
-                    if (!htmlElemnet)
-                        throw new Error("htmlElemnet not found");
-                    return [3 /*break*/, 3];
-                case 2:
-                    error_3 = _a.sent();
-                    console.error(error_3);
-                    return [3 /*break*/, 3];
-                case 3: return [2 /*return*/];
-            }
-        });
-    });
-}
+// async function renderResult(htmlElemnet: Element, expense?: number) {
+//   try {
+//     // const userIncome = await getUserIncomeFromDB();
+//     // if (userIncome !== null || undefined)
+//     //   htmlElemnet.innerHTML = `${userIncome}&#8362;`;
+//     // if (userIncome.message === "0") htmlElemnet.innerHTML = `${"0"}&#8362;`;
+//     // if (expense) htmlElemnet.innerHTML = `${expense}&#8362;`;
+//     // if (!htmlElemnet) throw new Error(`htmlElemnet not found`);
+//     calculateBalance();
+//   } catch (error) {
+//     console.error(error);
+//   }
+// }

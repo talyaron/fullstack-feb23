@@ -59,7 +59,7 @@ function getRelativesFromServer(email) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
-                    return [4 /*yield*/, fetch("/API/users/get-user-relatives?email=" + email)];
+                    return [4 /*yield*/, fetch("/API/relatives/get-user-relatives?email=" + email)];
                 case 1:
                     response = _a.sent();
                     return [4 /*yield*/, response.json()];
@@ -118,8 +118,8 @@ function handleAddRelative(event) {
                     country = event.target.elements.country.value;
                     relationSelect = document.getElementById('relation');
                     selectedRelation = relationSelect.value;
-                    if (!fullName || !birthDate || !country || selectedRelation === 'choose') {
-                        throw new Error("Please complete all fields");
+                    if (!fullName || !birthDate || !country || selectedRelation === RelationshipType.choose) {
+                        throw new Error("Please complete all fields and select a valid relation");
                     }
                     newRelative = {
                         fullName: fullName,

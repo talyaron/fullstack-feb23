@@ -1,3 +1,37 @@
+@media only screen and (max-width: 1477px) {
+  .newHabitBtn {
+    width: 26vw;
+  }
+}
+@media only screen and (min-width: 1478px) {
+  .newHabitBtn {
+    width: 4vw;
+  }
+}
+@media only screen and (min-width: 1900px) {
+  .topLine {
+    width: 4vw;
+  }
+}
+@media only screen and (max-width: 1900px) {
+  .topLine {
+    width: 10vw;
+  }
+}
+@media only screen and (max-width: 826px) {
+  .topLine {
+    width: 20vw;
+  }
+
+  #logo {
+    font-size: 40px;
+  }
+}
+@media only screen and (min-width: 1900px) {
+  #logo {
+    width: 80px;
+  }
+}
 body {
   display: flex;
   flex-direction: column;
@@ -35,7 +69,6 @@ body::-webkit-scrollbar-thumb:hover {
 }
 
 #logo {
-  font-size: 80px;
   color: white;
   text-shadow: 0 0 10px black;
   font-family: fantasy;
@@ -65,7 +98,6 @@ body::-webkit-scrollbar-thumb:hover {
 }
 
 .topLine {
-  width: 3.8vw;
   height: 2vh;
   display: flex;
   flex-direction: row;
@@ -110,7 +142,27 @@ body::-webkit-scrollbar-thumb:hover {
   position: absolute;
   top: 20vh;
   z-index: 10;
+  overflow-y: scroll;
   display: none;
+}
+.docs::-webkit-scrollbar {
+  width: 0.6em;
+  transition: all 0.2s ease-in-out;
+}
+.docs::-webkit-scrollbar-track {
+  background: #4976f3;
+  margin-block: 0.5em;
+  border-radius: 10px;
+  transition: all 0.2s ease-in-out;
+}
+.docs::-webkit-scrollbar-thumb {
+  background: rgba(25, 54, 72, 0.7);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+.docs::-webkit-scrollbar-thumb:hover {
+  background: #070326;
 }
 @keyframes borderColor {
   0% {
@@ -145,7 +197,6 @@ body::-webkit-scrollbar-thumb:hover {
 }
 
 .newHabitBtn {
-  width: 4vw;
   height: 4vh;
   background-color: rgba(78, 123, 248, 0.644);
   border-radius: 20px;
