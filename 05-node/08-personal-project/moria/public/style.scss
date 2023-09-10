@@ -1,0 +1,113 @@
+body.home {
+    font-family: sans-serif;
+    background-image: linear-gradient(rgb(45, 81, 208), rgb(172, 172, 61));
+    overflow-x: none;
+
+    header {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        width: 50%;
+        margin: auto;
+        background-color: white;
+
+        ul {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            li {
+                list-style: none;
+
+                a {
+                    color: green;
+                    margin: 0 5px;
+                    text-decoration: none;
+                    font-size: 20px;
+                }
+            }
+        }
+
+    }
+
+    .main {
+        width: 100%;
+        height: 670px;
+        // background-image: linear-gradient(rgb(45, 81, 208), rgb(172, 172, 61));
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        // flex-direction: column;
+
+        .box {
+            background: white;
+            width: 120px;
+            height: 120px;
+            margin: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            font-size: 25px;
+        }
+
+        .logIn {
+            margin-left: 250px;
+            display: block;
+            // background-color: white;
+            // padding: 20px 20px;
+
+            button {
+                background: green;
+                // border-radius: 50%;
+                padding: 10px 15px;
+                margin: 5px;
+                font-size: 20px;
+
+                a {
+                    text-decoration: none;
+                    color: black;
+                }
+            }
+
+        }
+    }
+}
+
+body {
+
+
+    h1 {
+        text-align: center;
+    }
+
+    form.PersonalArea {
+        width: 550px;
+    }
+
+    button.succeeded {
+        display: flex;
+        flex-direction: column;
+        // width: 300px;
+        margin: 10px 450px;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        width: 300px;
+        margin: 0 auto;
+
+        input {
+            display: block;
+            margin: 10px 0;
+            padding: 1rem;
+            border-radius: 5px;
+
+        }
+
+        button {
+            padding: 10px;
+        }
+    }
+}
