@@ -10,45 +10,40 @@ export function getPosts(req: any, res: any) {
 }
 
 export function addPost(req: any, res: any) {
-  try {
-    const { content, featuredImage, postThumbnails, category, email } =
-      req.body;
-    console.log({
-      content,
-      featuredImage,
-      postThumbnails,
-      category,
-      email,
-    });
-    if (!content || !featuredImage || postThumbnails  || category)
-      throw new Error("Please complete all fields");
-    if (!email) throw new Error("no email");
+    try {
+      const { content, featuredImage, category, email } =
+        req.body;
+  
+      if (!content || !featuredImage  || !category)
+        throw new Error("Please complete all fields");
+      if (!email) throw new Error("no email");
+  
+      const newPost = new Post({
+         content,
+featuredImage,
+ category,
 
-    const newPost = new Post({
-      content,
-      featuredImage,
-      postThumbnails,
-      category,
-    });
-    posts.push(newPost);
-
-    //find user
-    const user = users.find((user: any) => user.email === email);
-    if (!user) throw new Error("user not found");
-    userPosts.push(new UserPost(user, newPost));
-
-    const _userPosts = userPosts.filter(
-      (UserPost) => UserPost.user.email === email
-    );
-
-    const _posts = _userPosts.map((UserPost) => UserPost.post); //returns only tasks of user
-
-    res.send({ posts: _posts });
-  } catch (error) {
-    console.error(error);
-    res.status(500).send({ error: error.message });
+      });
+      posts.push(newPost);
+  
+      //find user
+      const user = users.find((user: any) => user.email === email);
+      if (!user) throw new Error("user not found");
+      userPosts.push(new UserPost(user, newPost));
+  
+      const _userPosts = userPosts.filter(
+        (UserPost) => UserPost.user.email === email
+      );
+  
+      const _posts = _userPosts.map((UserPost) => UserPost.post); //returns only tasks of user
+  
+      res.send({ posts: _posts });
+    } catch (error) {
+      console.error(error);
+      res.status(500).send({ error: error.message });
+    }
   }
-}
+  
 export function getUserPosts(req: any, res: any) {
   try {
     //get email from query

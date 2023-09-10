@@ -1,34 +1,23 @@
 import { User } from "../users/userModel";
 
-export class Image {
-  imgUrl: string;
- 
-  constructor({ imgUrl }: { imgUrl: string;  }) {
-    this.imgUrl = imgUrl;
-    
-  }
-}
+
 
 export class Post {
   content: string;
-  featuredImage: Image; 
-  postThumbnails: Image[]; 
+  featuredImage: string; 
   category: string;
 
   constructor({
     content,
     featuredImage,
-    postThumbnails,
     category,
   }: {
     content: string;
-    featuredImage: Image;
-    postThumbnails: Image[];
+    featuredImage: string;
     category: string;
   }) {
     this.content = content;
     this.featuredImage = featuredImage;
-    this.postThumbnails = postThumbnails;
     this.category = category;
   }
 }
