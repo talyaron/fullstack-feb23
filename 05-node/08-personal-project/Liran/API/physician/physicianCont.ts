@@ -40,17 +40,8 @@ export async function updatePhysician(req: any, res: any) {
         debugger;
         const {  id,firstName, lastName, age, phoneNum, email, licenseNumber, password, isAdmin } = req.body;
         if (!id) throw new Error("id is required");
-        const physician = await PhysicianModel.findById(id);
-        if (!physician) throw new Error("physician not found");
-        if (firstName) physician.firstName = firstName;
-        if (lastName) physician.lastName = lastName;
-        if (age) physician.age = age;
-        if (phoneNum) physician.phoneNum = phoneNum;
-        if (email) physician.email = email;
-        if (licenseNumber) physician.licenseNumber = licenseNumber;
-        if(password) physician.password = password;
-        physician.isAdmin = isAdmin;
-        await physician.save();
+        const physicianDB = await PhysicianModel.findByIdAndUpdate(id, { firstName, lastName, age, phoneNum, email, licenseNumber, password, isAdmin })
+        await physicianDB.save();
         res.status(200).send({ message: "Physician updated successfully" });
     } catch (error) {
         console.error(error);

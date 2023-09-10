@@ -298,7 +298,7 @@ body {
       display: inline-block;
       // color: green;
     }
-    &__total-expence {
+    &__total-expense {
       text-align: center;
 
       grid-column: 2/3;
@@ -321,7 +321,7 @@ body {
     .total-number--income {
       color: green;
     }
-    .total-number--expence {
+    .total-number--expense {
       color: red;
     }
     .total-number--balance {

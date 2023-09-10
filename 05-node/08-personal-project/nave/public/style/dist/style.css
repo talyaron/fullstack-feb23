@@ -1,0 +1,65 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.btns {
+  display: flex;
+  margin: auto;
+  justify-content: center;
+}
+
+.button {
+  background-color: #ffffff;
+  border: solid #d34936 1px;
+  color: #d34936;
+  padding: 10px 50px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 5vh;
+  text-align: center;
+  text-decoration: none;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: "Assistant", sans-serif;
+  border-radius: 100px;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #d34936;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.hero {
+  width: 50vw;
+  height: 25vh;
+  display: block;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  margin: auto;
+}
+
+.h1 {
+  font-family: "Assistant", sans-serif;
+  font-size: 3em;
+  color: #d34936;
+  text-align: center;
+  margin: 20vh 0px 0px 0px;
+}
+
+.h2, p {
+  font-family: "Assistant", sans-serif;
+  font-size: 1.3em;
+  color: #000000;
+  text-align: center;
+  font-weight: 500;
+  margin: 20px 0px;
+}
+
+.p {
+  font-size: 1em;
+}

@@ -3,7 +3,7 @@ import { Schema, model } from 'mongoose';
 
 
 
-
+// DB models
 
 export const UserSchema = new Schema({
   name: String,
@@ -19,3 +19,4 @@ export const UserSchema = new Schema({
 });
 
 export const UserModelDB = model("users", UserSchema)
+

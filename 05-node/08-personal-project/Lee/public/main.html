@@ -1,29 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="./dist/user.js" defer></script>
     <script src="./dist/main.js" defer></script>
-    <script src="./dist/tasks.js" defer></script>
+    <script src="./dist/relatives.js" defer></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Shantell+Sans:wght@300&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="./dist/style.css">
 </head>
-<body onload="handleGetUsers()">
-    <h1>Hi All</h1>
-    <a href="./login.html">Login</a>
-    <a href="./register.html">Register</a>
-    <h2>Add Task</h2>
-    <form onsubmit="handeleAddTask(event)">
-        <input type="text" name="title" placeholder="task title">
-        <input type="text" name='description' placeholder="task description">
+
+<body>
+    <h1>Find your family members around the world!</h1>
+    <h2>Add Family Member</h2>
+    <form onsubmit="handleAddRelative(event)">
+        <input type="text" name="fullName" placeholder="Full Name">
+        <input type="date" name="birthDate" placeholder="Birth Date">
+        <input type="text" name="country" placeholder="Country">
+        <select name="relation" id="relation">
+            <option value="choose">Choose</option>
+            <option value="mother">Mother</option>
+            <option value="father">Father</option>
+            <option value="father">Brother</option>
+            <option value="father">Sister</option>
+            <option value="father">Sibling</option>
+            <option value="father">Granddaughter</option>
+            <option value="father">Grandson</option>
+            <option value="father">Uncle</option>
+            <option value="father">Aunt</option>
+            <option value="father">Cousin</option>
+            <option value="father">Niece</option>
+            <option value="father">Nephew</option>
+            <option value="father">other</option>
+        </select>
         <button type="submit">ADD</button>
     </form>
 
-    <button onclick="handleGetProducts()">GET Products</button>
-    <div id="tasks"></div>
-    <!--user-->
-    <button onclick="handleGetUser()">ADD USER</button>
-    <div id="userRoot"></div>
-
+    <button onclick="handleGetRelatives()">GET Family Members</button>
+    <div id="relatives"></div>
 </body>
+
 </html>
