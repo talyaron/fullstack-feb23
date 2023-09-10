@@ -102,7 +102,7 @@ async function hendelDeleteRecipe(id: string) {
                 body: JSON.stringify({ id })
             });
         //convert response to join data
-        const { recipes } = await response.json();
+        const { recipes } = await response.json();  
         console.log(recipes);       
         renderRecipes(recipes, document.querySelector('#userRecipes'))
     } catch (error) {
