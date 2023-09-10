@@ -64,8 +64,8 @@ async function handleAddRelative(event) {
       const relationSelect = <HTMLSelectElement>document.getElementById('relation');
       const selectedRelation = relationSelect.value;
 
-      if (!fullName || !birthDate || !country || selectedRelation === 'choose') {
-          throw new Error("Please complete all fields");
+      if (!fullName || !birthDate || !country || selectedRelation === RelationshipType.choose) {
+          throw new Error("Please complete all fields and select a valid relation");
       }
 
       // Associate the new relative with the user by using their email.

@@ -12,7 +12,7 @@ exports.User = User;
 // Create a Mongoose user schema
 exports.userSchema = new mongoose_1["default"].Schema({
     username: { type: String, required: true },
-    email: { type: String, required: true, unique: true }
+    email: { type: String, required: true }
 });
 // Create a Mongoose model for the User
 var UserModel = mongoose_1["default"].model('User', exports.userSchema);

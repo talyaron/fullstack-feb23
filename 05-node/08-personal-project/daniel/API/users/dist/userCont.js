@@ -36,61 +36,53 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.login = exports.registerUser = void 0;
+exports.loginUser = exports.registerUser = void 0;
 var userModel_1 = require("./userModel");
-//register user 
 exports.registerUser = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var _a, email, password, user, validationError;
-    return __generator(this, function (_b) {
-        try {
-            _a = req.body, email = _a.email, password = _a.password;
-            if (!email || !password)
-                throw new Error("Please complete all fields");
-            user = new userModel_1.UserModel({ email: email, password: password });
-            validationError = user.validateSync();
-            if (validationError) {
-                console.error("Validation error:", validationError);
-                res.status(400).json({ error: validationError.message });
-            }
-            else {
-                // Data is valid, proceed with saving
-                user.save()
-                    .then(function (userDB) {
-                    console.log("User saved:", userDB);
-                    res.status(201).json({ ok: true, user: userDB });
-                })["catch"](function (saveError) {
-                    console.error("Error saving user:", saveError);
-                    res.status(500).json({ error: "Failed to save user." });
-                });
-            }
-        }
-        catch (error) {
-            console.error(error);
-            res.status(500).json({ error: error.message });
-        }
-        return [2 /*return*/];
-    });
-}); };
-exports.login = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var _a, email, password, user, error_1;
+    var _a, email, password, user, userDB, error_1;
     return __generator(this, function (_b) {
         switch (_b.label) {
             case 0:
                 _b.trys.push([0, 2, , 3]);
                 _a = req.body, email = _a.email, password = _a.password;
                 if (!email || !password)
-                    throw new Error("Please complete all fields");
-                return [4 /*yield*/, userModel_1.UserModel.findOne({ email: email, password: password }).exec()];
+                    throw new Error("Please fill all fileds");
+                user = new userModel_1.User({ email: email, password: password });
+                return [4 /*yield*/, user.save()];
             case 1:
-                user = _b.sent();
-                if (!user)
-                    throw new Error("some of the details are incorrect");
-                res.send({ ok: true, email: user.email });
+                userDB = _b.sent();
+                console.log(userDB);
+                res.send({ ok: true, userDB: userDB });
                 return [3 /*break*/, 3];
             case 2:
                 error_1 = _b.sent();
                 console.error(error_1);
                 res.send({ error: error_1.message });
+                return [3 /*break*/, 3];
+            case 3: return [2 /*return*/];
+        }
+    });
+}); };
+exports.loginUser = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var _a, email, password, user, error_2;
+    return __generator(this, function (_b) {
+        switch (_b.label) {
+            case 0:
+                _b.trys.push([0, 2, , 3]);
+                _a = req.body, email = _a.email, password = _a.password;
+                if (!email || !password)
+                    throw new Error("Please fill all fileds");
+                return [4 /*yield*/, userModel_1.User.findOne({ email: email, password: password })];
+            case 1:
+                user = _b.sent();
+                if (!user)
+                    throw new Error("No user found");
+                res.send({ ok: true, email: user.email });
+                return [3 /*break*/, 3];
+            case 2:
+                error_2 = _b.sent();
+                console.error(error_2);
+                res.send({ error: error_2.message });
                 return [3 /*break*/, 3];
             case 3: return [2 /*return*/];
         }

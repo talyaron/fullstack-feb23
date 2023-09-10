@@ -34,117 +34,104 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var RelationshipType;
-(function (RelationshipType) {
-    RelationshipType["choose"] = "Choose";
-    RelationshipType["mother"] = "Mother";
-    RelationshipType["father"] = "Father";
-    RelationshipType["brother"] = "Brother";
-    RelationshipType["sister"] = "Sister";
-    RelationshipType["sibling"] = "Sibling";
-    RelationshipType["granddaughter"] = "Granddaughter";
-    RelationshipType["grandson"] = "Grandson";
-    RelationshipType["uncle"] = "Uncle";
-    RelationshipType["aunt"] = "Aunt";
-    RelationshipType["cousin"] = "Cousin";
-    RelationshipType["niece"] = "Niece";
-    RelationshipType["nephew"] = "Nephew";
-    RelationshipType["other"] = "other";
-})(RelationshipType || (RelationshipType = {}));
-// Function to get user's relatives from the server
-function getRelativesFromServer(email) {
+var TaskStatus;
+(function (TaskStatus) {
+    TaskStatus["done"] = "done";
+    TaskStatus["todo"] = "todo";
+})(TaskStatus || (TaskStatus = {}));
+//get tasks from server
+function getTasksFromServer() {
+    //get tasks from server
+}
+//render to screen
+function handleGetTasks() {
     return __awaiter(this, void 0, void 0, function () {
-        var response, data, error_1;
+        var response, tasks, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
-                    return [4 /*yield*/, fetch("/API/users/get-user-relatives?email=" + email)];
+                    return [4 /*yield*/, fetch('/API/tasks/get-tasks')];
                 case 1:
                     response = _a.sent();
                     return [4 /*yield*/, response.json()];
                 case 2:
-                    data = _a.sent();
-                    return [2 /*return*/, data.relatives];
+                    tasks = (_a.sent()).tasks;
+                    console.log(tasks);
+                    renderTasks(tasks, document.querySelector("#tasks"));
+                    return [3 /*break*/, 4];
                 case 3:
                     error_1 = _a.sent();
                     console.error(error_1);
-                    return [2 /*return*/, []];
+                    return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }
         });
     });
 }
-// Render relatives to the screen
-function handleGetRelatives() {
+function handeleAddTask(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var email, relatives, error_2;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    _a.trys.push([0, 2, , 3]);
-                    email = getEmailFromQuery();
-                    if (!email)
-                        throw new Error("No email");
-                    return [4 /*yield*/, getRelativesFromServer(email)];
-                case 1:
-                    relatives = _a.sent();
-                    console.log(relatives);
-                    renderRelatives(relatives, document.querySelector("#relatives"));
-                    return [3 /*break*/, 3];
-                case 2:
-                    error_2 = _a.sent();
-                    console.error(error_2);
-                    return [3 /*break*/, 3];
-                case 3: return [2 /*return*/];
-            }
-        });
-    });
-}
-// Function to add a relative for a user
-function handleAddRelative(event) {
-    return __awaiter(this, void 0, void 0, function () {
-        var email, fullName, birthDate, country, relationSelect, selectedRelation, newRelative, response, relatives, error_3;
+        var email, title, description, newTask, response, tasks, error_2;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
-                    event.preventDefault();
+                    ev.preventDefault();
                     email = getEmailFromQuery();
                     if (!email)
-                        throw new Error("No email");
-                    fullName = event.target.elements.fullName.value;
-                    birthDate = event.target.elements.birthDate.value;
-                    country = event.target.elements.country.value;
-                    relationSelect = document.getElementById('relation');
-                    selectedRelation = relationSelect.value;
-                    if (!fullName || !birthDate || !country || selectedRelation === RelationshipType.choose) {
-                        throw new Error("Please complete all fields and select a valid relation");
-                    }
-                    newRelative = {
-                        fullName: fullName,
-                        birthDate: birthDate,
-                        country: country,
-                        relation: selectedRelation,
-                        userEmail: email
-                    };
-                    return [4 /*yield*/, fetch('/API/relatives/add-relative', {
+                        throw new Error("no email");
+                    console.log(email);
+                    title = ev.target.elements.title.value;
+                    description = ev.target.elements.description.value;
+                    newTask = { title: title, description: description, email: email };
+                    console.log(newTask);
+                    return [4 /*yield*/, fetch('/API/tasks/add-task', {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json'
                             },
-                            body: JSON.stringify(newRelative)
+                            body: JSON.stringify(newTask)
                         })];
                 case 1:
                     response = _a.sent();
-                    if (!response.ok) {
-                        throw new Error("Server returned " + response.status + " " + response.statusText);
-                    }
                     return [4 /*yield*/, response.json()];
                 case 2:
-                    relatives = (_a.sent()).relatives;
-                    console.log(relatives);
-                    renderRelatives(relatives, document.querySelector("#relatives"));
+                    tasks = (_a.sent()).tasks;
+                    console.log(tasks);
+                    renderTasks(tasks, document.querySelector("#tasks"));
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_2 = _a.sent();
+                    console.error(error_2);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
+            }
+        });
+    });
+}
+function handleUpdateStatus(status, id) {
+    return __awaiter(this, void 0, void 0, function () {
+        var body, result, tasks, error_3;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 3, , 4]);
+                    console.log(status);
+                    body = { id: id, status: status };
+                    return [4 /*yield*/, fetch('/API/tasks/update-task-status', {
+                            method: 'PATCH',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(body)
+                        })];
+                case 1:
+                    result = _a.sent();
+                    return [4 /*yield*/, result.json()];
+                case 2:
+                    tasks = (_a.sent()).tasks;
+                    console.log(tasks);
+                    renderTasks(tasks, document.querySelector("#tasks"));
                     return [3 /*break*/, 4];
                 case 3:
                     error_3 = _a.sent();
@@ -155,7 +142,30 @@ function handleAddRelative(event) {
         });
     });
 }
-function getEmailFromQuery() {
-    var urlParams = new URLSearchParams(window.location.search);
-    return urlParams.get('email');
+function renderTask(task) {
+    try {
+        var html = task.status === TaskStatus.todo
+            ? "<li onclick=\"handleUpdateStatus('done', '" + task.id + "')\">" + task.title + " - " + task.description + "</li>"
+            :
+                "<li style=\"text-decoration: line-through;\" onclick=\"handleUpdateStatus('todo', '" + task.id + "')\">" + task.title + " - " + task.description + "</li>";
+        return html;
+    }
+    catch (error) {
+        console.error(error);
+        return "";
+    }
+}
+function renderTasks(tasks, DIVElem) {
+    try {
+        if (!DIVElem)
+            throw new Error("no div element");
+        var html = "<ul>";
+        html += tasks.map(function (task) { return renderTask(task); }).join("");
+        html += "</ul>";
+        DIVElem.innerHTML = html;
+    }
+    catch (error) {
+        console.error(error);
+        return "";
+    }
 }
