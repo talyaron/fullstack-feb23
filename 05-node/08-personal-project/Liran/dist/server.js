@@ -19,22 +19,16 @@ mongoose_1.default.connect("mongodb+srv://liranav26:Vhksci30@cluster0.d5q6v4v.mo
     .catch(err => {
     console.error(err);
 });
-// get router from patientsRouter
 const patientRoutes_1 = __importDefault(require("./API/patient/patientRoutes"));
-//tells express to use proudctsRouter on the intial route "/API/patients"
 app.use("/API/patient", patientRoutes_1.default);
-// get router from physiciansRouter
 const physicianRoutes_1 = __importDefault(require("./API/physician/physicianRoutes"));
-//tells express to use proudctsRouter on the intial route "/API/physicians"
 app.use("/API/physician", physicianRoutes_1.default);
-// get router from prescriptionsRouter
 const prescriptionRoutes_1 = __importDefault(require("./API/prescription/prescriptionRoutes"));
-//tells express to use proudctsRouter on the intial route "/API/prescriptions"
 app.use("/API/prescription", prescriptionRoutes_1.default);
-// get router from medicinesRouter
 const medicineRoutes_1 = __importDefault(require("./API/medicine/medicineRoutes"));
-//tells express to use proudctsRouter on the intial route "/API/medicines"
 app.use("/API/medicine", medicineRoutes_1.default);
+const visitRoutes_1 = __importDefault(require("./API/visit/visitRoutes"));
+app.use("/API/visit", visitRoutes_1.default);
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`);
 });

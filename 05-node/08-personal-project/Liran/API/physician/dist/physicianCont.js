@@ -115,7 +115,7 @@ function deletePhysician(req, res) {
 exports.deletePhysician = deletePhysician;
 function updatePhysician(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var _a, id, firstName, lastName, age, phoneNum, email, licenseNumber, password, isAdmin, physician, error_4;
+        var _a, id, firstName, lastName, age, phoneNum, email, licenseNumber, password, isAdmin, physicianDB, error_4;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
@@ -124,31 +124,11 @@ function updatePhysician(req, res) {
                     _a = req.body, id = _a.id, firstName = _a.firstName, lastName = _a.lastName, age = _a.age, phoneNum = _a.phoneNum, email = _a.email, licenseNumber = _a.licenseNumber, password = _a.password, isAdmin = _a.isAdmin;
                     if (!id)
                         throw new Error("id is required");
-                    return [4 /*yield*/, physicianModel_1.PhysicianModel.findById(id)];
-                case 1:
-                    physician = _b.sent();
-                    if (!physician)
-                        throw new Error("physician not found");
-                    if (firstName)
-                        physician.firstName = firstName;
-                    if (lastName)
-                        physician.lastName = lastName;
-                    if (age)
-                        physician.age = age;
-                    if (phoneNum)
-                        physician.phoneNum = phoneNum;
-                    if (email)
-                        physician.email = email;
-                    if (licenseNumber)
-                        physician.licenseNumber = licenseNumber;
-                    if (password)
-                        physician.password = password;
-                    if (isAdmin)
-                        physician.isAdmin = isAdmin;
                     return [4 /*yield*/, physician.save()];
+                case 1: return [4 /*yield*/, _b.sent()];
                 case 2:
-                    _b.sent();
-                    res.status(200).send({ message: "Patient updated successfully" });
+                    physicianDB = _b.sent();
+                    res.status(200).send({ message: "Physician updated successfully" });
                     return [3 /*break*/, 4];
                 case 3:
                     error_4 = _b.sent();

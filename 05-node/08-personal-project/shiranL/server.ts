@@ -24,6 +24,10 @@ import userRouters from "./API/user/userRoutes"
 //tells express to use proudctsRouter on the intial route "/API/users"
 app.use("/API/user", userRouters);
 
+// get router from recipeRoutes
+import recipeRouters from "./API/recipe/recipeRoutes"
+//tells express to use proudctsRouter on the intial route "/API/users"
+app.use("/API/recipe", recipeRouters);
 
 
 

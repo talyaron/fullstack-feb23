@@ -1,24 +1,27 @@
-// a function which get the email from the url query
 
-function getEmailFromQuery() {
-    const urlParams = new URLSearchParams(window.location.search);
-    return urlParams.get('email');
+
+function renderRelatives(relativesData, targetElement) {
+    const relativesList = document.createElement('ul');
+
+    relativesData.forEach(relative => {
+        const relativeItem = document.createElement('li');
+        relativeItem.textContent = `${relative.fullName} - ${relative.relation} - ${relative.birthDate} - ${relative.country}`;
+        relativesList.appendChild(relativeItem);
+    });
+
+    targetElement.innerHTML = ''; // Clear the target element
+    targetElement.appendChild(relativesList);
 }
 
-const email = getEmailFromQuery();
-console.log(email)
-
-// a function which get the user tasks from the server by email
-
-function handleGetUserTasks(){
-    getUserTasks(email);
-}
-async function getUserTasks(email:string) {
+// A function to get the user's relatives from the server by email
+async function getUserRelatives(email: string) {
     try {
-        const response = await fetch(`/API/users/get-users-task?email=${email}`);
+        const response = await fetch(`/API/relatives/get-users-relatives?email=${email}`);
         const data = await response.json();
-        console.log(data)
-        renderTasks(data.tasks, document.querySelector("#tasks"));
+        console.log(data);
+
+        // Assuming you have a rendering function for relatives, e.g., renderRelatives
+        renderRelatives(data.relatives, document.querySelector("#relatives"));
     } catch (error) {
         console.error(error);
     }

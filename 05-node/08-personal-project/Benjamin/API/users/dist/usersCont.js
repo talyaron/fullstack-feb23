@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.getUserName = exports.getUserData = exports.loginUser = exports.registerUser = void 0;
+exports.getUserData = exports.loginUser = exports.registerUser = void 0;
 var usersModel_1 = require("./usersModel");
 exports.registerUser = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var _a, name, email, password, user, error_1;
@@ -44,7 +44,6 @@ exports.registerUser = function (req, res) { return __awaiter(void 0, void 0, vo
         switch (_b.label) {
             case 0:
                 _b.trys.push([0, 2, , 3]);
-                console.log("i got the request");
                 _a = req.body, name = _a.name, email = _a.email, password = _a.password;
                 if (!name || !email || !password)
                     throw new Error("please complete all fields");
@@ -55,7 +54,6 @@ exports.registerUser = function (req, res) { return __awaiter(void 0, void 0, vo
                     })];
             case 1:
                 user = _b.sent();
-                console.log(user);
                 res.send({ ok: true, user: user });
                 return [3 /*break*/, 3];
             case 2:
@@ -75,10 +73,9 @@ exports.loginUser = function (req, res) { return __awaiter(void 0, void 0, void 
                 _a = req.body, email = _a.email, password = _a.password;
                 if (!(usersModel_1.UserModelDB.exists({ email: email })))
                     throw new Error("user dont excist");
-                return [4 /*yield*/, usersModel_1.UserModelDB.find({ email: email }, { password: password })];
+                return [4 /*yield*/, usersModel_1.UserModelDB.findOne({ email: email }, { password: password })];
             case 1:
                 user = _b.sent();
-                console.log(user);
                 if (!user)
                     throw new Error("some fields are incorrect");
                 res.send(user);
@@ -113,32 +110,5 @@ exports.getUserData = function (req, res) { return __awaiter(void 0, void 0, voi
                 return [3 /*break*/, 3];
             case 3: return [2 /*return*/];
         }
-    });
-}); };
-exports.getUserName = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var email;
-    return __generator(this, function (_a) {
-        try {
-            email = req.query.email;
-            console.log(email);
-            if (!(usersModel_1.UserModelDB.exists({ email: email })))
-                throw new Error("user dont excist");
-            usersModel_1.UserModelDB.findOne({ email: email }, 'name', function (err, user) {
-                if (err) {
-                    console.error(err);
-                    return;
-                }
-                if (user) {
-                    console.log('User name:', user.name);
-                }
-                else {
-                    console.log('User not found');
-                }
-            });
-        }
-        catch (error) {
-            console.error(error);
-        }
-        return [2 /*return*/];
     });
 }); };
