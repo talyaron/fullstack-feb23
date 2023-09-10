@@ -17,8 +17,8 @@ import userRouter from "./API/users/userRoutes";
 //tells express to use userRouter on the intial route "/API/users"
 app.use("/API/users", userRouter)
 
-import imgesRouter from "./API/imges/imgesRouters";
-app.use("/API/imges", imgesRouter);
+import postRouter from "./API/posts/postsRouters";
+app.use("/API/posts", postRouter);
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);

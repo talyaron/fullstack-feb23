@@ -38,22 +38,9 @@ export async function deletePatient(req: any, res: any) {
 export async function updatePatient(req: any, res: any) {
     try {
         const { id, firstName, lastName, patientId, age, phoneNum, weight, height, smoking, address, physicianId } = req.body;
-        if (!id) throw new Error("id is required");
-        const patient = await PatientModel.findById(id);
-        if (!patient) throw new Error("patient not found");
-        if (firstName) patient.firstName = firstName;
-        if (lastName) patient.lastName = lastName;
-        if (age) patient.age = age;
-        if (phoneNum) patient.phoneNum = phoneNum;
-        if (weight) patient.weight = weight;
-        if (height) patient.height = height;
-        patient.smoking = smoking;
-        if (address) patient.address = address;
-        if (physicianId) patient.physicianId = physicianId;
-        await patient.save();
+        const patientDB = await PatientModel.findByIdAndUpdate(id, { firstName, lastName, patientId, age, phoneNum, weight, height, smoking, address, physicianId });
+        await patientDB.save();
         res.status(200).send({ message: "Patient updated successfully" });
-
-
     } catch (error) {
         console.error(error);
         res.status(500).send({ error: error.message });

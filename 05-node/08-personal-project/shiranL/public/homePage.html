@@ -1,24 +1,56 @@
 <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script  src="./dist/homePage.js" defer  ></script>
-    <title>Document</title>
+    <script src="./dist/homePage.js" defer></script>
+    <link rel="stylesheet" href="./dist/homePage.css">
+    <title>Home</title>
 </head>
-<body onload="getCurrentUser()">
-    <h1>Home Page</h1>
-    <div id="helloUser"></div>
-    <!-- form for add img -->
-    <form onsubmit="handleAddImg(event)">
-        <input type="text" name="titel" placeholder="img description">
-        <input type="text" name="imgUrl" placeholder="img url">
-        <input type="submit" value="Upload Image" name="submit">
+<body onload="renderHelloUser()">
+    <div class="wapper">
+        <div class="centerContainer">
+            <div class="centerContainer__heder">
+                <div id="helloUser"></div>
+                
+            </div>
+     <!-- Form for adding a recipe -->
+     <form id="addRecipeForm" onsubmit="handleAddRecipe(event)">
+        <input type="text" name="recipeName" id="recipeName" class="input-field" placeholder="Recipe Name" required>
+        <input type="text" name="recipeIngredients" id="recipeIngredients" class="input-field" placeholder="Recipe Ingredients" required>
+        <input type="text" name="recipeInstructions" id="recipeInstructions" class="input-field" placeholder="Recipe Instructions" required>
+        <select name="recipeCategory" id="recipeCategory" class="input-field" required>
+            <option value="" disabled selected>Select Recipe Category</option>
+            <option value="Breakfast">Breakfast</option>
+            <option value="Lunch">Lunch</option>
+            <option value="Dinner">Dinner</option>
+            <option value="Snack">Snack</option>
+            <option value="Dessert">Dessert</option>
+            <option value="Other">Other</option>
+        </select>
+        <input type="text" name="imageUrl" id="imageUrl" class="input-field" placeholder="Recipe Image URL" required>
+        <input type="submit" value="Add Recipe" class="btn">
     </form>
-
-    <!-- btns to logout and back -->
-    <button onclick="handleLogout()">Logout</button>
-  
     
+    <!-- Buttons to logout and view recipes -->
+    <div class="btn-container">
+        <button id="logOutBtn" class="btn" onclick="handleLogout()">Log Out</button>
+        <button id="showAllBtn" class="btn" onclick="renderAllRecipes()">Show All</button>
+        <button id="showMyBtn" class="btn" onclick="renderMyRecipes()">Show My Recipes</button>
+    </div>
+    
+    <div class="recipe-container" id="recipeContainer"></div>
+            </div>
+           
+        </div>
+    
+        <div class="sideUpdaecontainer">
+            <div id="updateUserDiv"></div>
+            <div id="userdetailsDiv"></div>
+        </div>
+    </div>
+  
+   
 </body>
 </html>

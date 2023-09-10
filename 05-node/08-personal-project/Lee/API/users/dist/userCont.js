@@ -40,7 +40,39 @@ exports.login = exports.registerUser = void 0;
 var userModel_1 = require("./userModel");
 //register user 
 exports.registerUser = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var _a, email, password, user, userDB, error_1;
+    var _a, email, password, user, validationError;
+    return __generator(this, function (_b) {
+        try {
+            _a = req.body, email = _a.email, password = _a.password;
+            if (!email || !password)
+                throw new Error("Please complete all fields");
+            user = new userModel_1.UserModel({ email: email, password: password });
+            validationError = user.validateSync();
+            if (validationError) {
+                console.error("Validation error:", validationError);
+                res.status(400).json({ error: validationError.message });
+            }
+            else {
+                // Data is valid, proceed with saving
+                user.save()
+                    .then(function (userDB) {
+                    console.log("User saved:", userDB);
+                    res.status(201).json({ ok: true, user: userDB });
+                })["catch"](function (saveError) {
+                    console.error("Error saving user:", saveError);
+                    res.status(500).json({ error: "Failed to save user." });
+                });
+            }
+        }
+        catch (error) {
+            console.error(error);
+            res.status(500).json({ error: error.message });
+        }
+        return [2 /*return*/];
+    });
+}); };
+exports.login = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var _a, email, password, user, error_1;
     return __generator(this, function (_b) {
         switch (_b.label) {
             case 0:
@@ -48,16 +80,12 @@ exports.registerUser = function (req, res) { return __awaiter(void 0, void 0, vo
                 _a = req.body, email = _a.email, password = _a.password;
                 if (!email || !password)
                     throw new Error("Please complete all fields");
-                user = new userModel_1.UserModel({ email: email, password: password });
-                return [4 /*yield*/, user.save()];
+                return [4 /*yield*/, userModel_1.UserModel.findOne({ email: email, password: password }).exec()];
             case 1:
-                userDB = _b.sent();
-                console.log(userDB);
-                //check if user already exist
-                // const userExist = users.find((user) => user.email === email);
-                // if (userExist) throw new Error("User already exist");
-                // users.push(user);
-                res.send({ ok: true, user: userDB });
+                user = _b.sent();
+                if (!user)
+                    throw new Error("some of the details are incorrect");
+                res.send({ ok: true, email: user.email });
                 return [3 /*break*/, 3];
             case 2:
                 error_1 = _b.sent();
@@ -68,19 +96,3 @@ exports.registerUser = function (req, res) { return __awaiter(void 0, void 0, vo
         }
     });
 }); };
-exports.login = function (req, res) {
-    try {
-        var _a = req.body, email_1 = _a.email, password_1 = _a.password;
-        if (!email_1 || !password_1)
-            throw new Error("Please complete all fields");
-        //check if user exist and password is correct
-        var user = userModel_1.users.find(function (user) { return user.email === email_1 && user.password === password_1; });
-        if (!user)
-            throw new Error("some of the details are incorrect");
-        res.send({ ok: true, email: user.email });
-    }
-    catch (error) {
-        console.error(error);
-        res.send({ error: error.message });
-    }
-};

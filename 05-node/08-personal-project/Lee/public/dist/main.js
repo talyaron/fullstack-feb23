@@ -1,4 +1,3 @@
-// a function which get the email from the url query
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -35,31 +34,37 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-function getEmailFromQuery() {
-    var urlParams = new URLSearchParams(window.location.search);
-    return urlParams.get('email');
+function renderRelatives(relativesData, targetElement) {
+    if (!relativesData || relativesData.length === 0) {
+        targetElement.innerHTML = '<p>No relatives found.</p>';
+        return;
+    }
+    var relativesList = document.createElement('ul');
+    relativesData.forEach(function (relative) {
+        var relativeItem = document.createElement('li');
+        relativeItem.textContent = relative.fullName + " - " + relative.relation + " - " + relative.birthDate + " - " + relative.country;
+        relativesList.appendChild(relativeItem);
+    });
+    targetElement.innerHTML = ''; // Clear the target element
+    targetElement.appendChild(relativesList);
 }
-var email = getEmailFromQuery();
-console.log(email);
-// a function which get the user tasks from the server by email
-function handleGetUserTasks() {
-    getUserTasks(email);
-}
-function getUserTasks(email) {
+// A function to get the user's relatives from the server by email
+function getUserRelatives(email) {
     return __awaiter(this, void 0, void 0, function () {
         var response, data, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
-                    return [4 /*yield*/, fetch("/API/users/get-users-task?email=" + email)];
+                    return [4 /*yield*/, fetch("/API/relatives/get-users-relatives?email=" + email)];
                 case 1:
                     response = _a.sent();
                     return [4 /*yield*/, response.json()];
                 case 2:
                     data = _a.sent();
                     console.log(data);
-                    renderTasks(data.tasks, document.querySelector("#tasks"));
+                    // Assuming you have a rendering function for relatives, e.g., renderRelatives
+                    renderRelatives(data.relatives, document.querySelector("#relatives"));
                     return [3 /*break*/, 4];
                 case 3:
                     error_1 = _a.sent();

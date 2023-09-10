@@ -2,10 +2,17 @@ import { ExpenseModel } from "./expenseModel";
 
 export const addExpense = async (req: any, res: any) => {
   try {
-    const { name, category, categoryId, amount } = req.body;
-    if (!name || !category || !categoryId || !amount)
+    const { userName, expenseName, categoryName, expenseAmount } = req.body;
+    console.log(userName, expenseName, categoryName, expenseAmount);
+
+    if (!userName || !expenseName || !categoryName || !expenseAmount)
       throw new Error("please complete all fields");
-    const expences = new ExpenseModel({ name, category, categoryId, amount });
+    const expences = new ExpenseModel({
+      userName: userName,
+      expenseName: expenseName,
+      categoryName: categoryName,
+      expenseAmount: expenseAmount,
+    });
     await expences.save();
     res.send({ message: `expense added successfully` });
   } catch (error) {
@@ -24,16 +31,19 @@ export const getAllExpenses = async (req: any, res: any) => {
 };
 export const updateExpense = async (req: any, res: any) => {
   try {
-    const { id, name, amount } = req.body;
-    if (!id || !name || !amount)
+    const { _id, name, amount } = req.body;
+    console.log({ _id, name, amount });
+
+    if (!_id || !name || !amount) {
       throw new Error(`some of the parameters are missing`);
-    // const expenseToUpdate = await ExpenseModel.find({ id });
-    // console.log(expenseToUpdate);
-    const newExpense = { id, name, amount };
-    console.log(newExpense);
-    await ExpenseModel.findByIdAndUpdate(id, newExpense, { new: true });
-    // const taskDB = await TaskModel.findByIdAndUpdate(id, { status: TaskStatus.todo }, { new: true });
-    res.send({ message: `expense updated successfully` });
+    }
+    const filter = { _id: _id };
+    const newParameters = { expenseName: name, expenseAmount: amount };
+    // const newExpense = { id, name, amount };
+    // console.log(newExpense);
+    const update = await ExpenseModel.findByIdAndUpdate(filter, newParameters);
+    await update.save();
+    res.send({ ok: true });
   } catch (error) {
     console.error(error);
     res.status(500).send({ error: error.message });

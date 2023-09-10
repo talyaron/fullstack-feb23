@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.login = exports.registerUser = void 0;
+exports.checkUser = exports.login = exports.getIncome = exports.addIncome = exports.registerUser = void 0;
 var usersModel_1 = require("./usersModel");
 exports.registerUser = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var _a, userName, email, password, userExist, user, error_1;
@@ -45,9 +45,10 @@ exports.registerUser = function (req, res) { return __awaiter(void 0, void 0, vo
             case 0:
                 _b.trys.push([0, 5, , 6]);
                 _a = req.body, userName = _a.userName, email = _a.email, password = _a.password;
+                console.log({ userName: userName, email: email, password: password });
                 if (!userName || !email || !password)
                     throw new Error("Please complete all fields");
-                return [4 /*yield*/, usersModel_1.UserModel.find({ email: email })];
+                return [4 /*yield*/, usersModel_1.UserModel.find({ userName: userName })];
             case 1:
                 userExist = _b.sent();
                 console.log(userExist);
@@ -56,7 +57,7 @@ exports.registerUser = function (req, res) { return __awaiter(void 0, void 0, vo
                 return [4 /*yield*/, user.save()];
             case 2:
                 _b.sent();
-                res.send({ ok: true });
+                res.send({ message: "User added successfully" });
                 return [3 /*break*/, 4];
             case 3:
                 res.send({ message: "user is already registered" });
@@ -71,30 +72,125 @@ exports.registerUser = function (req, res) { return __awaiter(void 0, void 0, vo
         }
     });
 }); };
+exports.addIncome = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var _a, userName, userIncome, updateIncome, error_2;
+    return __generator(this, function (_b) {
+        switch (_b.label) {
+            case 0:
+                _b.trys.push([0, 3, , 4]);
+                _a = req.body, userName = _a.userName, userIncome = _a.userIncome;
+                if (!userName || !userIncome)
+                    throw new Error("some of the parameters are missing");
+                return [4 /*yield*/, usersModel_1.UserModel.findOneAndUpdate({
+                        userName: userName,
+                        userIncome: userIncome
+                    })];
+            case 1:
+                updateIncome = _b.sent();
+                // const income = new UserIncomeModel({ userName, userIncome });
+                return [4 /*yield*/, updateIncome.save()];
+            case 2:
+                // const income = new UserIncomeModel({ userName, userIncome });
+                _b.sent();
+                res.send({ ok: true });
+                return [3 /*break*/, 4];
+            case 3:
+                error_2 = _b.sent();
+                console.error(error_2);
+                res.status(500).send({ error: error_2.message });
+                return [3 /*break*/, 4];
+            case 4: return [2 /*return*/];
+        }
+    });
+}); };
+exports.getIncome = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var userName, userNameFromDB, error_3;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                _a.trys.push([0, 2, , 3]);
+                userName = req.body.userName;
+                // console.log(userName);
+                if (!userName)
+                    throw new Error("Username not provided");
+                return [4 /*yield*/, usersModel_1.UserModel.findOne({ userName: userName })];
+            case 1:
+                userNameFromDB = _a.sent();
+                if (!userNameFromDB.userIncome) {
+                    res.send({ message: "0" });
+                }
+                else {
+                    res.send({ message: "" + userNameFromDB.userIncome });
+                }
+                console.log(res);
+                return [3 /*break*/, 3];
+            case 2:
+                error_3 = _a.sent();
+                console.error(error_3);
+                res.status(500).send({ error: error_3.message });
+                return [3 /*break*/, 3];
+            case 3: return [2 /*return*/];
+        }
+    });
+}); };
 exports.login = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var _a, email, password, userExist, error_2;
+    var _a, userName, password, userExist, error_4;
     return __generator(this, function (_b) {
         switch (_b.label) {
             case 0:
                 _b.trys.push([0, 2, , 3]);
-                _a = req.body, email = _a.email, password = _a.password;
-                if (!email || !password)
+                _a = req.body, userName = _a.userName, password = _a.password;
+                if (!userName || !password)
                     throw new Error("Please complete all fields");
-                return [4 /*yield*/, usersModel_1.UserModel.find({ email: email })];
+                return [4 /*yield*/, usersModel_1.UserModel.find({ userName: userName })];
             case 1:
                 userExist = _b.sent();
                 if (userExist.length === 0) {
                     res.send({ message: "user does not exist, please register" });
                 }
-                else if (userExist[0].email === email &&
+                else if (userExist[0].userName === userName &&
                     userExist[0].password === password) {
-                    res.send({ ok: true });
+                    res.send({ userName: userExist[0].userName });
+                }
+                else {
+                    throw new Error("Incorrect password, please try again or register");
                 }
                 return [3 /*break*/, 3];
             case 2:
-                error_2 = _b.sent();
-                console.error(error_2);
-                res.send({ error: error_2.message });
+                error_4 = _b.sent();
+                console.error(error_4);
+                res.send({ error: error_4.message });
+                return [3 /*break*/, 3];
+            case 3: return [2 /*return*/];
+        }
+    });
+}); };
+exports.checkUser = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var userName, userExists, error_5;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                _a.trys.push([0, 2, , 3]);
+                userName = req.body.userName;
+                console.log(userName);
+                if (!userName)
+                    throw new Error("userName is missing");
+                return [4 /*yield*/, usersModel_1.UserModel.find({ userName: userName })];
+            case 1:
+                userExists = _a.sent();
+                console.log(userExists);
+                if (!userExists ||
+                    userExists === undefined ||
+                    userExists === null ||
+                    userExists.length === 0)
+                    res.send({ message: "user does not exist" });
+                if (userExists)
+                    res.send({ message: "user exist" });
+                return [3 /*break*/, 3];
+            case 2:
+                error_5 = _a.sent();
+                console.error(error_5);
+                res.status(500).send(error_5.message);
                 return [3 /*break*/, 3];
             case 3: return [2 /*return*/];
         }
