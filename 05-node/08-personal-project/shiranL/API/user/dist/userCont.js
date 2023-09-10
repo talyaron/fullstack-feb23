@@ -240,14 +240,25 @@ exports.updateUser = function (req, res) { return __awaiter(void 0, void 0, void
     });
 }); };
 exports.deleteUser = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var userId, existingUser, error_8;
     return __generator(this, function (_a) {
-        try {
-            res.send({ ok: true, message: "User deleted successfully" });
+        switch (_a.label) {
+            case 0:
+                _a.trys.push([0, 2, , 3]);
+                userId = req.query.userId;
+                return [4 /*yield*/, userModel_1.UserModel.findByIdAndDelete(userId)];
+            case 1:
+                existingUser = _a.sent();
+                if (!existingUser)
+                    return [2 /*return*/, res.send({ error: "User not found" })];
+                res.send({ ok: true, message: "User deleted successfully" });
+                return [3 /*break*/, 3];
+            case 2:
+                error_8 = _a.sent();
+                console.error(error_8);
+                res.send({ error: error_8.message });
+                return [3 /*break*/, 3];
+            case 3: return [2 /*return*/];
         }
-        catch (error) {
-            console.error(error);
-            res.send({ error: error.message });
-        }
-        return [2 /*return*/];
     });
 }); };
