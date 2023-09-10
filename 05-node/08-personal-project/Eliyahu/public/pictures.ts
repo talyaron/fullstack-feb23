@@ -1,8 +1,34 @@
+class Picture {
+    id: string
+    publishDate: string
+    constructor(
+        public title: string,
+        public imgUrl: string,
+        public location: string,
+        public tags: string[],
+        public area: PictureArea
+    ) {
+        this.id = Math.random().toString(36).substr(2, 9);
+        this.publishDate = new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString('en-US', {
+            hour12: false,
+            hour: "numeric",
+            minute: "numeric"
+        })
+    }
+}
+enum PictureArea {
+    north = "צפון",
+    center = "מרכז",
+    south = "דרום"
+}
+
 async function getPictures() {
     try {
         const response = await fetch('API/pictures/get-pictures')
         const result = await response.json()
         const { pictures } = result
+        console.log(pictures);
+        
         if (!Array.isArray(pictures)) throw new Error("pictures is not array");
         renderPictures(pictures)
     } catch (error) {
@@ -152,14 +178,17 @@ function closeAdd() {
 }
 
 
-async function renderPictureHtml(picture, email) {
+async function renderPictureHtml(picture:Picture, email:string) {
     try {
+        console.log(picture);
+        
         const response = await fetch('/API/users/get-user-name')
 
         const result = await response.json()
         const { error, name } = result
         if (error) throw new Error("Some of details are incorrect");
-        
+         console.log(name);
+         
         let html = `<div class = "picture" id="${picture.id}">
         <div class = "picture_header">
         <div></div>

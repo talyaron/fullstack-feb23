@@ -344,7 +344,9 @@ async function calculateTotalExpense() {
 
 // this function calculates the balance
 async function calculateBalance() {
+   
   try {
+    console.log("calculateBalance")
     const balanceRoot = document.querySelector(`.total-number--balance`);
     const incomeRoot = document.querySelector(`.total-number--income`);
     const expenseRoot = document.querySelector(`.total-number--expense`);
