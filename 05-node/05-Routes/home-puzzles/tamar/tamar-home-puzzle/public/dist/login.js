@@ -63,7 +63,7 @@ function handleLogin(ev) {
                     console.log(result);
                     if (result.ok) {
                         // if everthink is OK, redirect to main page of the user and pass the id of this user
-                        window.location.href = "/main.html?id=" + result.id;
+                        window.location.href = "/main.html?resultId=" + result.id;
                     }
                     loginForm = document.getElementById("loginForm");
                     loginForm.reset();

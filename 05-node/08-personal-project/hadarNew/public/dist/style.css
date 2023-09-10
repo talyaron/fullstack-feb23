@@ -1,0 +1,79 @@
+body {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  background-image: url(https://i.pinimg.com/564x/87/b1/bd/87b1bd46fe85bd66d34e7af7fa008002.jpg);
+}
+
+h1 {
+  background-color: #c1ddf3;
+  color: #ffffff;
+  font-size: 5vw;
+  display: flex;
+  justify-content: center;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  margin: auto;
+}
+.form input {
+  display: block;
+  margin: 50px 0;
+  padding: 0.6rem;
+  border-radius: 5px;
+  width: 200px;
+  margin: auto;
+}
+.form button {
+  width: 90px;
+  padding: 10px;
+  margin: auto;
+  margin-top: 10px;
+  font-size: 10px;
+  font-weight: bolder;
+  color: #1f78bc;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  background-color: #c1ddf3;
+  border-radius: 15px;
+}
+
+.getButton {
+  display: flex;
+  margin: auto;
+  margin-top: 20px;
+  margin-bottom: 70px;
+  padding: 10px 20px;
+  font-size: 15px;
+  font-weight: bolder;
+  color: #1f78bc;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  background-color: #c1ddf3;
+  border-radius: 15px;
+}
+
+.exerciseForm {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 40px;
+}
+.exerciseForm div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.exerciseForm div input {
+  width: 90px;
+  height: 20px;
+}
+
+.exerciseButton {
+  display: flex;
+  margin-top: 10px;
+  border-radius: 3px;
+  font-weight: bolder;
+  width: 60px;
+  color: #642e2e;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  background: #c79393 50%;
+}

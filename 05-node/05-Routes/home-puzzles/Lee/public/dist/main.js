@@ -40,7 +40,7 @@ function getEmailFromQuery() {
 }
 var email = getEmailFromQuery();
 console.log(email);
-function handleGetUserTasks() {
+function handleGetUserTasks(email) {
     getUserTasks(email);
 }
 function getUserTasks(email) {
@@ -69,3 +69,9 @@ function getUserTasks(email) {
     });
 }
 getUserTasks(email);
+var selectedUserEmail = '';
+function handleUserSelection() {
+    var userSelect = document.querySelector("#userSelect");
+    selectedUserEmail = userSelect.value;
+    handleGetUserTasks(selectedUserEmail);
+}

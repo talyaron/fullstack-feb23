@@ -1,0 +1,29 @@
+.btns{
+    display: flex;
+    margin: auto;
+    justify-content: center;
+
+}
+.button {
+    background-color: #ffffff;
+    border: solid #d34936 1px;
+    color: #d34936;
+    padding: 10px 50px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 5vh;
+    text-align: center;
+    text-decoration: none;
+    font-size: 1em;
+    font-weight: 500;
+    font-family: "Assistant", sans-serif;
+    border-radius: 100px;
+    cursor: pointer;
+
+}
+.button:hover {
+  background-color:$color-site-red; 
+  color: rgb(255, 255, 255);
+  border: none;
+  cursor:pointer ;
+}
