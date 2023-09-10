@@ -40,13 +40,13 @@ exports.login = exports.registerUser = void 0;
 var userModel_1 = require("./userModel");
 //register user 
 exports.registerUser = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var _a, email, password, familyMembers, user, validationError;
+    var _a, email, password, user, validationError;
     return __generator(this, function (_b) {
         try {
-            _a = req.body, email = _a.email, password = _a.password, familyMembers = _a.familyMembers;
+            _a = req.body, email = _a.email, password = _a.password;
             if (!email || !password)
                 throw new Error("Please complete all fields");
-            user = new userModel_1.UserModel({ email: email, password: password, familyMembers: familyMembers });
+            user = new userModel_1.UserModel({ email: email, password: password });
             validationError = user.validateSync();
             if (validationError) {
                 console.error("Validation error:", validationError);

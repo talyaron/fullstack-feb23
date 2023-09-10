@@ -49,32 +49,45 @@ async function handleGetRelatives() {
 }
 
 // Function to add a relative for a user
-async function handleAddRelative(ev: any) {
+async function handleAddRelative(event) {
   try {
-      ev.preventDefault();
+      event.preventDefault();
 
       const email = getEmailFromQuery();
       if (!email) throw new Error("No email");
 
-      const fullName = ev.target.elements.fullName.value;
-      const birthDate = ev.target.elements.birthDate.value;
-      const country = ev.target.elements.country.value;
+      const fullName = event.target.elements.fullName.value;
+      const birthDate = event.target.elements.birthDate.value;
+      const country = event.target.elements.country.value;
 
-      if (!fullName || !birthDate || !country) {
-          throw new Error("Please complete all fields");
+      // Cast the relationSelect element to HTMLSelectElement
+      const relationSelect = <HTMLSelectElement>document.getElementById('relation');
+      const selectedRelation = relationSelect.value;
+
+      if (!fullName || !birthDate || !country || selectedRelation === RelationshipType.choose) {
+          throw new Error("Please complete all fields and select a valid relation");
       }
 
       // Associate the new relative with the user by using their email.
-      const newRelative = { fullName, birthDate, country };
-      console.log(newRelative);
+      const newRelative = {
+          fullName,
+          birthDate,
+          country,
+          relation: selectedRelation,
+          userEmail: email, // Include the selected relation
+      };
 
-      const response = await fetch('/API/users/add-user-relative', {
+      const response = await fetch('/API/relatives/add-relative', {
           method: 'POST',
           headers: {
               'Content-Type': 'application/json',
           },
           body: JSON.stringify(newRelative),
       });
+
+      if (!response.ok) {
+          throw new Error(`Server returned ${response.status} ${response.statusText}`);
+      }
 
       const { relatives } = await response.json();
       console.log(relatives);
@@ -85,8 +98,6 @@ async function handleAddRelative(ev: any) {
   }
 }
 
-
-// // Replace this function with the one you have in your main.ts
 function getEmailFromQuery() {
   const urlParams = new URLSearchParams(window.location.search);
   return urlParams.get('email');

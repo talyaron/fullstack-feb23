@@ -45,9 +45,10 @@ exports.registerUser = function (req, res) { return __awaiter(void 0, void 0, vo
             case 0:
                 _b.trys.push([0, 5, , 6]);
                 _a = req.body, userName = _a.userName, email = _a.email, password = _a.password;
+                console.log({ userName: userName, email: email, password: password });
                 if (!userName || !email || !password)
                     throw new Error("Please complete all fields");
-                return [4 /*yield*/, usersModel_1.UserModel.find({ email: email })];
+                return [4 /*yield*/, usersModel_1.UserModel.find({ userName: userName })];
             case 1:
                 userExist = _b.sent();
                 console.log(userExist);
@@ -56,7 +57,7 @@ exports.registerUser = function (req, res) { return __awaiter(void 0, void 0, vo
                 return [4 /*yield*/, user.save()];
             case 2:
                 _b.sent();
-                res.send({ ok: true });
+                res.send({ message: "User added successfully" });
                 return [3 /*break*/, 4];
             case 3:
                 res.send({ message: "user is already registered" });
@@ -103,7 +104,7 @@ exports.addIncome = function (req, res) { return __awaiter(void 0, void 0, void 
     });
 }); };
 exports.getIncome = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var userName, getIncome_1, error_3;
+    var userName, userNameFromDB, error_3;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
@@ -114,8 +115,14 @@ exports.getIncome = function (req, res) { return __awaiter(void 0, void 0, void 
                     throw new Error("Username not provided");
                 return [4 /*yield*/, usersModel_1.UserModel.findOne({ userName: userName })];
             case 1:
-                getIncome_1 = _a.sent();
-                res.send(getIncome_1.userIncome);
+                userNameFromDB = _a.sent();
+                if (!userNameFromDB.userIncome) {
+                    res.send({ message: "0" });
+                }
+                else {
+                    res.send({ message: "" + userNameFromDB.userIncome });
+                }
+                console.log(res);
                 return [3 /*break*/, 3];
             case 2:
                 error_3 = _a.sent();
@@ -143,8 +150,10 @@ exports.login = function (req, res) { return __awaiter(void 0, void 0, void 0, f
                 }
                 else if (userExist[0].userName === userName &&
                     userExist[0].password === password) {
-                    console.log(userExist);
-                    res.send(userExist);
+                    res.send({ userName: userExist[0].userName });
+                }
+                else {
+                    throw new Error("Incorrect password, please try again or register");
                 }
                 return [3 /*break*/, 3];
             case 2:
@@ -156,22 +165,34 @@ exports.login = function (req, res) { return __awaiter(void 0, void 0, void 0, f
         }
     });
 }); };
-exports.checkUser = function (req, res) {
-    try {
-        var userName = req.body.userName;
-        console.log(userName);
-        if (!userName)
-            throw new Error("email is missing");
-        var userExists = usersModel_1.UserModel.find({ userName: userName });
-        console.log(userExists);
-        if (userExists)
-            res.send({ message: "user exist" });
-        if (!userExists || userExists === undefined || userExists === null)
-            res.send({ message: "user does not exist" });
-        // res.send({ email: email });
-    }
-    catch (error) {
-        console.error(error);
-        res.status(500).send(error.message);
-    }
-};
+exports.checkUser = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var userName, userExists, error_5;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                _a.trys.push([0, 2, , 3]);
+                userName = req.body.userName;
+                console.log(userName);
+                if (!userName)
+                    throw new Error("userName is missing");
+                return [4 /*yield*/, usersModel_1.UserModel.find({ userName: userName })];
+            case 1:
+                userExists = _a.sent();
+                console.log(userExists);
+                if (!userExists ||
+                    userExists === undefined ||
+                    userExists === null ||
+                    userExists.length === 0)
+                    res.send({ message: "user does not exist" });
+                if (userExists)
+                    res.send({ message: "user exist" });
+                return [3 /*break*/, 3];
+            case 2:
+                error_5 = _a.sent();
+                console.error(error_5);
+                res.status(500).send(error_5.message);
+                return [3 /*break*/, 3];
+            case 3: return [2 /*return*/];
+        }
+    });
+}); };

@@ -1,6 +1,11 @@
 
 
 function renderRelatives(relativesData, targetElement) {
+    if (!relativesData || relativesData.length === 0) {
+        targetElement.innerHTML = '<p>No relatives found.</p>';
+        return;
+    }
+
     const relativesList = document.createElement('ul');
 
     relativesData.forEach(relative => {
