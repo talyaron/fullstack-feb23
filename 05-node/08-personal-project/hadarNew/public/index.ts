@@ -52,16 +52,18 @@ async function getExercises() {
 function renderExercisesHTML(exercise: Exercise) {
   try {
     const html = `<div class="imgs">
-           <h1>${exercise.exercise}</h1>
+           
         </div>
-        <form class="imgForm" id=${exercise.id} onsubmit="updateImg(event)">
-        <input type="number" name="sets" value="${exercise.sets}" placeholder="sets" />
-        <input type="number" name="repetitions" value="${exercise.repetitions}" placeholder="repetitions" />
-        <input type="number" name="weight" value="${exercise.weight}" placeholder="weight" />
-        <input type="number" name="timer" value="${exercise.timer}" placeholder="timer" />
-        <button type="submit">update</button>
+        <form class="exerciseForm" id=${exercise.id} onsubmit="updateExercise(event)">
+        <div> <p>exercise</p> <input type="text" name="exercise" value="${exercise.exercise}" placeholder="exercise" /> </div>
+        <div> <p>sets</p> <input type="number" name="sets" value="${exercise.sets}" placeholder="sets" /></div>
+        <div> <p>repetitions</p> <input type="number" name="repetitions" value="${exercise.repetitions}" placeholder="repetitions" /></div>
+        <div> <p>weight</p> <input type="number" name="weight" value="${exercise.weight}" placeholder="weight" /></div>
+        <div> <p>timer</p> <input type="number" name="timer" value="${exercise.timer}" placeholder="timer" /></div>
+        <button class="exerciseButton" type="submit">update</button>
+        <button class="exerciseButton" onclick="handleDeleteExercise('${exercise.id}')">Delete</button>
         </form>
-        <button class="imgButton" onclick="handleDeleteImg('${exercise.id}')">Delete</button>`;
+        `;
     return html;
   } catch (error) {
     console.error(error);

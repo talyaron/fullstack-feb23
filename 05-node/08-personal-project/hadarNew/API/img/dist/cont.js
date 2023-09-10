@@ -3,7 +3,7 @@
 exports.__esModule = true;
 exports.updatEexercise = exports.deleteExercise = exports.addExercise = exports.getExercises = void 0;
 var model_1 = require("./model");
-var exercises = [];
+var exercises = [new model_1.Exercise({ exercise: "testefdnd" }, 3, 10, 10, 60), new model_1.Exercise({ exercise: "testefdnd" }, 3, 10, 10, 60)];
 exports.getExercises = function (req, res) {
     try {
         res.send({ exercises: exercises });

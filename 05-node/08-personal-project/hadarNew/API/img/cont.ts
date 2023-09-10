@@ -1,7 +1,7 @@
 //Taking the model from the model file
 
 import {Exercise} from "./model";
-let exercises: Exercise[] = [];
+let exercises: Exercise[] = [new Exercise({ exercise: "testefdnd" },3,10,10,60),new Exercise({ exercise: "testefdnd" },3,10,10,60)];
 
 export const getExercises = (req,res) =>{
     try {
