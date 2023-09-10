@@ -104,14 +104,46 @@ async function handleEdit(event) {
 
         if (response.ok) {
             const userData = await response.json();
-            let html = "<form>"
-            html += `<input type="text">${userData.username}</input>
-                <input type="text">${userData.email}</input>`
-                html+="</form>"
-document.querySelector(".userEdit").innerHTML = html;
+            let html = `<form id="${id}" onsubmit='handleSave(event)'>`
+            html += `<input type="text" name="username" value="${userData.users.username}"></input>
+                <input type="text" name="email" value="${userData.users.email}"></input>
+                <input type="submit"></input>`
+            html += "</form>"
+            document.querySelector(".userEdit").innerHTML = html;
+            // console.log(userData.users)
         } else {
-          
+
             console.error('Error fetching user data');
+        }
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+async function handleSave(ev) {
+    try {
+        ev.preventDefault();
+        const form = ev.target;
+        const id = form.id; // Get the id from the form's id input
+        const username = form.username.value;
+        const email = form.email.value;
+        const data = {username, email, id};
+
+        const response = await fetch(`/api/users/${id}`, {
+            method: "PUT",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data) // Convert data to JSON and send in the request body
+        });
+
+        if (response.ok) {
+            handleGetUsers();
+            document.querySelector(".userEdit").innerHTML = "";
+            console.log('User data updated successfully');
+        } else {
+            // Handle errors here
+            console.error('Error updating user data');
         }
     } catch (error) {
         console.error(error);
