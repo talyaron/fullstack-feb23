@@ -6,6 +6,7 @@ async function handleLogin(ev:any){
             password: ev.target.password.value,
             email: ev.target.email.value
         }
+        console.log(user);
         if(!user.email || !user.password) throw new Error("Please complete all fields");
         const response = await fetch('/API/users/login', { // send data to server
             method: 'POST',
@@ -21,7 +22,8 @@ async function handleLogin(ev:any){
             throw new Error(error);
         }
         //if everthink is OK, redirect to main page of the user
-        window.location.href = `/main.html?email=${email}`; //query
+        window.location.href = `/main.html`;
+        // window.location.href = `/main.html?email=${email}`; //query
     } catch (error) {
         console.error(error);
     }

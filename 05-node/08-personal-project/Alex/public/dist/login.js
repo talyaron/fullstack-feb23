@@ -46,6 +46,7 @@ function handleLogin(ev) {
                         password: ev.target.password.value,
                         email: ev.target.email.value
                     };
+                    console.log(user);
                     if (!user.email || !user.password)
                         throw new Error("Please complete all fields");
                     return [4 /*yield*/, fetch('/API/users/login', {
@@ -65,7 +66,7 @@ function handleLogin(ev) {
                         throw new Error(error);
                     }
                     //if everthink is OK, redirect to main page of the user
-                    window.location.href = "/main.html?email=" + email; //query
+                    window.location.href = "/main.html";
                     return [3 /*break*/, 4];
                 case 3:
                     error_1 = _b.sent();

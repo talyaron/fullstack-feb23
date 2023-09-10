@@ -1,6 +1,16 @@
+body{
+    text-align: center;
+  }
+
 h1, h2, p{
     text-align: center;
 }
+
+#link{
+    color: rgb(6, 6, 6) ;
+    
+    margin: 5vh;
+  }
 
 form{
     display: flex;
