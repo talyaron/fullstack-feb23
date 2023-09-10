@@ -62,7 +62,7 @@ function handleLogin(ev) {
                     return [4 /*yield*/, response.json()];
                 case 2:
                     _a = _b.sent(), error = _a.error, email = _a.email;
-                    console.log(error);
+                    console.log(email);
                     if (error)
                         throw new Error(error);
                     debugger;

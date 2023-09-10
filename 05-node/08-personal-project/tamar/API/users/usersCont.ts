@@ -22,11 +22,8 @@ export const loginUser = async (req: any, res:any) =>{
         const {userName, email, password} = req.body //get data from claient
         if(!userName || !email || !password) throw new Error("Please complete all fields");
 
-        const user = new UserModel({userName, email, password}) //create new user from data
-        console.log(user)
-
-        const userDB = await UserModel.findOne({user}) //find the user in DB
-        if(!userDB) throw new Error("No user found in DB");
+        const userDB = await UserModel.findOne({email, password}) //find the user in DB
+        if(!userDB) throw new Error("No user email or password found in DB");
         console.log(userDB)
         res.send({ok: true, email: userDB.email});
     } catch (error) {

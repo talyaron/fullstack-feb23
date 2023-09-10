@@ -68,7 +68,7 @@ exports.registerUser = function (req, res) { return __awaiter(void 0, void 0, vo
 }); };
 //login
 exports.loginUser = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var _a, userName, email, password, user, userDB, error_2;
+    var _a, userName, email, password, userDB, error_2;
     return __generator(this, function (_b) {
         switch (_b.label) {
             case 0:
@@ -77,15 +77,12 @@ exports.loginUser = function (req, res) { return __awaiter(void 0, void 0, void 
                 , userName = _a.userName, email = _a.email, password = _a.password;
                 if (!userName || !email || !password)
                     throw new Error("Please complete all fields");
-                user = new usersModle_1.UserModel({ userName: userName, email: email, password: password }) //create new user from data
-                ;
-                console.log(user);
-                return [4 /*yield*/, usersModle_1.UserModel.findOne({ user: user })]; //find the user in DB
+                return [4 /*yield*/, usersModle_1.UserModel.findOne({ email: email, password: password })]; //find the user in DB
             case 1:
                 userDB = _b.sent() //find the user in DB
                 ;
                 if (!userDB)
-                    throw new Error("No user found in DB");
+                    throw new Error("No user email or password found in DB");
                 console.log(userDB);
                 res.send({ ok: true, email: userDB.email });
                 return [3 /*break*/, 3];

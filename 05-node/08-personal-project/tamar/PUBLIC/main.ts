@@ -1,4 +1,11 @@
-import { Recipe, recipes } from "../API/recipes/recipesModel";
+//import { Recipe, recipes } from "../API/recipes/recipesModel";
+
+interface Recipe {
+    title: string;
+    description: string;
+    urlImg?: string
+    id: string;
+}
 
 // a function which get the email from the url query
 function getEmailFromQuery() {
@@ -10,7 +17,7 @@ const email = getEmailFromQuery();
 console.log(email)
 
 //hendel
-function handelGetUserRecipe(){
+function handelGetUserRecipes(){
     GetUserRecipe(email)
 }
 
