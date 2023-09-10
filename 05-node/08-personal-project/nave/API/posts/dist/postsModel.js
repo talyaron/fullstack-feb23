@@ -1,6 +1,7 @@
 "use strict";
 exports.__esModule = true;
-exports.userPosts = exports.UserPost = exports.posts = exports.Post = void 0;
+exports.userPosts = exports.UserPost = exports.PostModel = exports.PostSchema = exports.posts = exports.Post = void 0;
+var mongoose_1 = require("mongoose");
 var Post = /** @class */ (function () {
     function Post(_a) {
         var content = _a.content, featuredImage = _a.featuredImage, category = _a.category;
@@ -12,6 +13,12 @@ var Post = /** @class */ (function () {
 }());
 exports.Post = Post;
 exports.posts = [];
+exports.PostSchema = new mongoose_1.Schema({
+    content: String,
+    featuredImage: String,
+    category: String
+});
+exports.PostModel = mongoose_1.model("posts", exports.PostSchema);
 var UserPost = /** @class */ (function () {
     function UserPost(user, post) {
         this.user = user;

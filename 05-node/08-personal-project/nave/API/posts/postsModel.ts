@@ -1,4 +1,5 @@
 import { User } from "../users/userModel";
+import { Schema, model } from 'mongoose';
 
 
 
@@ -23,6 +24,13 @@ export class Post {
 }
 
 export const posts: Post[] = [];
+export const PostSchema = new Schema({
+  content: String,
+  featuredImage: String,
+  category: String,
+
+});
+export const PostModel = model("posts", PostSchema)
 
 export class UserPost {
   constructor(public user: User, public post: Post) {}

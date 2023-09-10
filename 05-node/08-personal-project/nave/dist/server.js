@@ -4,13 +4,21 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
+const mongoose_1 = __importDefault(require("mongoose"));
 const app = express_1.default();
 const port = process.env.PORT || 3000;
 //static files
 app.use(express_1.default.static("public"));
 //body
 app.use(express_1.default.json());
-//router to products
+//connect to mongoDB with mongoose
+mongoose_1.default.connect("mongodb+srv://vnavev:mDSAr2zEw0bzDM2a@cluster0.nzfjztb.mongodb.net/UserSchema")
+    .then(() => {
+    console.info("MongoDB connected");
+})
+    .catch(err => {
+    console.error(err);
+});
 // get router from userRouter
 const userRoutes_1 = __importDefault(require("./API/users/userRoutes"));
 //tells express to use userRouter on the intial route "/API/users"
