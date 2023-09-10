@@ -1,27 +1,35 @@
 import express from "express";
-import mongoose from "mongoose";
-
+import mongoose from 'mongoose';
 const app = express();
-const port = process.env.PORT || 3000;
-
-interface _Product {
-  title: string;
-  price: number;
-  imgUrl: string;
-}
+const port = process.env.PORT || 4000;
 
 //static files
 app.use(express.static("public"));
 
-//body
+//express
 app.use(express.json());
 
-
-mongoose.connect("mongodb+srv://doriel:HbJTsyEWNoU170t9@cluster0.k1el7dn.mongodb.net/test")
-.then(()=>console.log("mongoose connected!"))
+//connect to mongoDB with mongoose
+mongoose.connect("mongodb+srv://doriel:FgvVuOI8ROgkvs06@cluster0.wvdhcfc.mongodb.net/test")
+.then(()=>{
+  console.info("DB connected")
+})
 .catch(err=>{
   console.error(err)
 })
+
+// get router from usersRouter
+import userRouters from "./API/user/userRoutes"
+//tells express to use proudctsRouter on the intial route "/API/users"
+app.use("/API/user", userRouters);
+
+
+// Get router from blogRoutes
+import blogRouters from "./API/blog/blogRoutes";
+
+app.use("/API/blog", blogRouters);
+
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
-})
+});

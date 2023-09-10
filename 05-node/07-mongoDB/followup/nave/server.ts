@@ -11,14 +11,14 @@ app.use(express.static("public"));
 //body
 app.use(express.json());
 
-//connect to mongoDB with mongoose
-mongoose.connect("mongodb+srv://vnavev:mDSAr2zEw0bzDM2a@cluster0.nzfjztb.mongodb.net/")
-.then(()=>{
-  console.info("MongoDB connected")
-})
-.catch(err=>{
-  console.error(err)
-})
+// //connect to mongoDB with mongoose
+// mongoose.connect("mongodb+srv://vnavev:mDSAr2zEw0bzDM2a@cluster0.nzfjztb.mongodb.net/")
+// .then(()=>{
+//   console.info("MongoDB connected")
+// })
+// .catch(err=>{
+//   console.error(err)
+// })
 
 
 

@@ -23,8 +23,6 @@ async function handleLogin(ev: any) {
         console.log(error);
         if (error) throw new Error(error);
         window.location.href = `/main.html?email=${email}`
-
-
     } catch (error) {
         console.error(error.message);
 

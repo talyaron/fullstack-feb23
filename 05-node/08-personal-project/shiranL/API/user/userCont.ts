@@ -167,8 +167,15 @@ export const updateUser = async (req: any, res: any) => {
 export const deleteUser = async (req: any, res: any) => {
   try {
    
+    const userId = req.query.userId;
+    // Check if the provided userId exists
+    const existingUser = await UserModel.findByIdAndDelete(userId)
+
+   if (!existingUser )  return res.send({ error: "User not found" });
 
     res.send({ ok: true, message: "User deleted successfully" });
+    
+
   } catch (error) {
     console.error(error);
     res.send({ error: error.message });
