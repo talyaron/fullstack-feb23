@@ -4,8 +4,10 @@ interface Recipe {
     title: string;
     description: string;
     urlImg?: string
-    id: string;
+    _id: string;
 }
+
+const recipes: Recipe[] = [];
 
 // a function which get the email from the url query
 function getEmailFromQuery() {
@@ -13,11 +15,11 @@ function getEmailFromQuery() {
     return urlParams.get('email');
 }
 
-const email = getEmailFromQuery();
-console.log(email)
 
 //hendel
 function handelGetUserRecipes() {
+    const email = getEmailFromQuery();
+    console.log(email)
     GetUserRecipe(email)
 }
 
@@ -42,13 +44,11 @@ async function hendelAddRecipe(ev: any) {
         const response = await fetch('/API/recipes/add-recipe', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'content-type': 'application/json'
             },
             body: JSON.stringify(newRecipe)  //the data that send to the DB server in json-formatted string
         });
         const { recipes } = await response.json(); //and get the new recipes array from the server
-        console.log(recipes)
-
         renderRecipes(recipes, document.querySelector("#userRecipes"))
         document.querySelector("form").reset();
 
@@ -93,17 +93,21 @@ async function hendlUpdateRecipe(ev: any, id: string) {
 
 async function hendelDeleteRecipe(id: string) {
     try {
+        console.log(id)
+        const email = getEmailFromQuery();
+        if (!email) throw new Error("no email");
+        console.log(email)
         const response = await fetch('/API/recipes/delete-recipe'
             , {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ id })
+                body: JSON.stringify({ id, email })
             });
         //convert response to join data
-        const { recipes } = await response.json();  
-        console.log(recipes);       
+        const { recipes } = await response.json();
+        console.log(recipes);
         renderRecipes(recipes, document.querySelector('#userRecipes'))
     } catch (error) {
 
@@ -119,8 +123,8 @@ function renderRecipe(recipe: Recipe) {
                       <p>${recipe.description}</p>
                       <img url="${recipe.urlImg}">
                       <br>
-                      <button onclick="hendelDeleteRecipe(${recipe.id})">Delet Recipe</button>
-                      <button onclick="renderUpdateForm(${recipe.id})">Update Recipe</button>
+                      <button onclick="hendelDeleteRecipe('${recipe._id}')">Delet Recipe</button>
+                      <button onclick="renderUpdateForm('${recipe}')">Update Recipe</button>
                       </div>`
         return html;
     } catch (error) {
@@ -149,10 +153,10 @@ function renderRecipes(recipes: Recipe[], root: HTMLDivElement) {
     }
 }
 
-function renderUpdateForm(DivEl: HTMLDivElement) {
+function renderUpdateForm(recipe, DivEl: HTMLDivElement) {
     try {
         if (!DivEl) throw new Error("no div element");
-        const html = `<form id="recipe_update" onsubmit="hendlUpdateRecipe()">
+        const html = `<form id="recipe_update" onsubmit="hendlUpdateRecipe('${recipe._id}')">
                   <input type="text" name="title" placeholder="Recipe title">
                   <input type="text" name="description" placeholder="Recipe Instructions">
                   <input type="url" name="imgUrl" placeholder="image">
@@ -170,7 +174,7 @@ async function GetUserRecipe(email: string) {
     try {
         const response = await fetch(`/API/userRecipes/get-user-recipes?email=${email}`);
         const data = await response.json();
-        console.log(data)
+        console.log("data:", data)
         renderRecipes(data.recipes, document.querySelector("#userRecipes"))
     } catch (error) {
 

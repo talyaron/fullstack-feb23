@@ -35,42 +35,43 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var recipes = [];
 // a function which get the email from the url query
 function getEmailFromQuery() {
     var urlParams = new URLSearchParams(window.location.search);
     return urlParams.get('email');
 }
-var email = getEmailFromQuery();
-console.log(email);
 //hendel
 function handelGetUserRecipes() {
+    var email = getEmailFromQuery();
+    console.log(email);
     GetUserRecipe(email);
 }
 function hendelAddRecipe(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var email_1, title, description, urlImg, newRecipe, response, recipes, error_1;
+        var email, title, description, urlImg, newRecipe, response, recipes_1, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
                     ev.preventDefault();
                     console.dir(ev);
-                    email_1 = getEmailFromQuery();
-                    if (!email_1)
+                    email = getEmailFromQuery();
+                    if (!email)
                         throw new Error("no email");
-                    console.log(email_1);
+                    console.log(email);
                     title = ev.target.title.value;
                     console.log(title);
                     description = ev.target.description.value;
                     console.log(description);
                     urlImg = ev.target.querySelector('[name="imgUrl"]').value;
                     console.log(urlImg);
-                    newRecipe = { title: title, description: description, urlImg: urlImg, email: email_1 };
+                    newRecipe = { title: title, description: description, urlImg: urlImg, email: email };
                     console.log(newRecipe);
                     return [4 /*yield*/, fetch('/API/recipes/add-recipe', {
                             method: 'POST',
                             headers: {
-                                'Content-Type': 'application/json'
+                                'content-type': 'application/json'
                             },
                             body: JSON.stringify(newRecipe) //the data that send to the DB server in json-formatted string
                         })];
@@ -78,9 +79,8 @@ function hendelAddRecipe(ev) {
                     response = _a.sent();
                     return [4 /*yield*/, response.json()];
                 case 2:
-                    recipes = (_a.sent()).recipes;
-                    console.log(recipes);
-                    renderRecipes(recipes, document.querySelector("#userRecipes"));
+                    recipes_1 = (_a.sent()).recipes;
+                    renderRecipes(recipes_1, document.querySelector("#userRecipes"));
                     document.querySelector("form").reset();
                     return [3 /*break*/, 4];
                 case 3:
@@ -94,16 +94,16 @@ function hendelAddRecipe(ev) {
 }
 function hendlUpdateRecipe(ev, id) {
     return __awaiter(this, void 0, void 0, function () {
-        var email_2, bodyID, title, description, urlImg, updatRecipe, response, recipes, error_2;
+        var email, bodyID, title, description, urlImg, updatRecipe, response, recipes_2, error_2;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
                     ev.preventDefault();
-                    email_2 = getEmailFromQuery();
-                    if (!email_2)
+                    email = getEmailFromQuery();
+                    if (!email)
                         throw new Error("no email");
-                    console.log(email_2);
+                    console.log(email);
                     bodyID = { id: id };
                     if (!id)
                         throw new Error("no recipe id");
@@ -111,7 +111,7 @@ function hendlUpdateRecipe(ev, id) {
                     title = ev.target.element.title.value;
                     description = ev.target.element.description.value;
                     urlImg = ev.target.element.urlImg.value;
-                    updatRecipe = { title: title, description: description, urlImg: urlImg, email: email_2 };
+                    updatRecipe = { title: title, description: description, urlImg: urlImg, email: email };
                     console.log(updatRecipe);
                     return [4 /*yield*/, fetch('/API/recipes/update-recipe', {
                             method: 'PATCH',
@@ -124,9 +124,9 @@ function hendlUpdateRecipe(ev, id) {
                     response = _a.sent();
                     return [4 /*yield*/, response.json()];
                 case 2:
-                    recipes = (_a.sent()).recipes;
-                    console.log(recipes);
-                    renderRecipes(recipes, document.querySelector("#userRecipes"));
+                    recipes_2 = (_a.sent()).recipes;
+                    console.log(recipes_2);
+                    renderRecipes(recipes_2, document.querySelector("#userRecipes"));
                     document.querySelector("form").reset();
                     return [3 /*break*/, 4];
                 case 3:
@@ -140,25 +140,30 @@ function hendlUpdateRecipe(ev, id) {
 }
 function hendelDeleteRecipe(id) {
     return __awaiter(this, void 0, void 0, function () {
-        var response, recipes, error_3;
+        var email, response, recipes_3, error_3;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
+                    console.log(id);
+                    email = getEmailFromQuery();
+                    if (!email)
+                        throw new Error("no email");
+                    console.log(email);
                     return [4 /*yield*/, fetch('/API/recipes/delete-recipe', {
                             method: 'DELETE',
                             headers: {
                                 'Content-Type': 'application/json'
                             },
-                            body: JSON.stringify({ id: id })
+                            body: JSON.stringify({ id: id, email: email })
                         })];
                 case 1:
                     response = _a.sent();
                     return [4 /*yield*/, response.json()];
                 case 2:
-                    recipes = (_a.sent()).recipes;
-                    console.log(recipes);
-                    renderRecipes(recipes, document.querySelector('#userRecipes'));
+                    recipes_3 = (_a.sent()).recipes;
+                    console.log(recipes_3);
+                    renderRecipes(recipes_3, document.querySelector('#userRecipes'));
                     return [3 /*break*/, 4];
                 case 3:
                     error_3 = _a.sent();
@@ -171,7 +176,7 @@ function hendelDeleteRecipe(id) {
 //render
 function renderRecipe(recipe) {
     try {
-        var html = "<div id=\"updateRecipe\">\n                      <h3>" + recipe.title + "</h3>\n                      <br>\n                      <p>" + recipe.description + "</p>\n                      <img url=\"" + recipe.urlImg + "\">\n                      <br>\n                      <button onclick=\"hendelDeleteRecipe(" + recipe.id + ")\">Delet Recipe</button>\n                      <button onclick=\"renderUpdateForm(" + recipe.id + ")\">Update Recipe</button>\n                      </div>";
+        var html = "<div id=\"updateRecipe\">\n                      <h3>" + recipe.title + "</h3>\n                      <br>\n                      <p>" + recipe.description + "</p>\n                      <img url=\"" + recipe.urlImg + "\">\n                      <br>\n                      <button onclick=\"hendelDeleteRecipe('" + recipe._id + "')\">Delet Recipe</button>\n                      <button onclick=\"renderUpdateForm('" + recipe + "')\">Update Recipe</button>\n                      </div>";
         return html;
     }
     catch (error) {
@@ -196,11 +201,11 @@ function renderRecipes(recipes, root) {
         return "";
     }
 }
-function renderUpdateForm(DivEl) {
+function renderUpdateForm(recipe, DivEl) {
     try {
         if (!DivEl)
             throw new Error("no div element");
-        var html = "<form id=\"recipe_update\" onsubmit=\"hendlUpdateRecipe()\">\n                  <input type=\"text\" name=\"title\" placeholder=\"Recipe title\">\n                  <input type=\"text\" name=\"description\" placeholder=\"Recipe Instructions\">\n                  <input type=\"url\" name=\"imgUrl\" placeholder=\"image\">\n                  <button type=\"submit\">Update Recipe now</button>\n                  </forn>";
+        var html = "<form id=\"recipe_update\" onsubmit=\"hendlUpdateRecipe('" + recipe._id + "')\">\n                  <input type=\"text\" name=\"title\" placeholder=\"Recipe title\">\n                  <input type=\"text\" name=\"description\" placeholder=\"Recipe Instructions\">\n                  <input type=\"url\" name=\"imgUrl\" placeholder=\"image\">\n                  <button type=\"submit\">Update Recipe now</button>\n                  </forn>";
         DivEl.innerHTML = html;
     }
     catch (error) {
@@ -221,7 +226,7 @@ function GetUserRecipe(email) {
                     return [4 /*yield*/, response.json()];
                 case 2:
                     data = _a.sent();
-                    console.log(data);
+                    console.log("data:", data);
                     renderRecipes(data.recipes, document.querySelector("#userRecipes"));
                     return [3 /*break*/, 4];
                 case 3:

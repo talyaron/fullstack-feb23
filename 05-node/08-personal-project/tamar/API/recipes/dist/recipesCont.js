@@ -63,11 +63,11 @@ function getRecipes(req, res) {
 exports.getRecipes = getRecipes;
 function addRecipe(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var _a, title, description, urlImg, email, recipe, recipeDB, error_2;
+        var _a, title, description, urlImg, email, recipe, recipeDB, userRecipes, error_2;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
-                    _b.trys.push([0, 2, , 3]);
+                    _b.trys.push([0, 3, , 4]);
                     _a = req.body, title = _a.title, description = _a.description, urlImg = _a.urlImg, email = _a.email;
                     console.log({ title: title, description: description, urlImg: urlImg, email: email });
                     if (!title || !description)
@@ -77,14 +77,18 @@ function addRecipe(req, res) {
                 case 1:
                     recipeDB = _b.sent();
                     console.log(recipeDB);
-                    res.send({ ok: true, recipeDB: recipeDB });
-                    return [3 /*break*/, 3];
+                    return [4 /*yield*/, recipesModel_1.RecipeModel.find({ email: email })];
                 case 2:
+                    userRecipes = _b.sent();
+                    // Send the array of user's recipes as the response
+                    res.send({ recipes: userRecipes });
+                    return [3 /*break*/, 4];
+                case 3:
                     error_2 = _b.sent();
                     console.error(error_2);
                     res.status(500).send({ error: error_2.message });
-                    return [3 /*break*/, 3];
-                case 3: return [2 /*return*/];
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
             }
         });
     });
@@ -93,23 +97,31 @@ exports.addRecipe = addRecipe;
 //delete from DB by ID
 function deleteRecipe(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var id, recipesDB, error_3;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
+        var _a, id, email, userRecipes, error_3;
+        return __generator(this, function (_b) {
+            switch (_b.label) {
                 case 0:
-                    _a.trys.push([0, 2, , 3]);
-                    id = req.body.id;
-                    return [4 /*yield*/, recipesModel_1.RecipeModel.findByIdAndDelete(id)];
+                    _b.trys.push([0, 3, , 4]);
+                    _a = req.body, id = _a.id, email = _a.email;
+                    console.log(id);
+                    console.log(email);
+                    return [4 /*yield*/, recipesModel_1.RecipeModel.findByIdAndDelete(id)
+                        // Query the database to retrieve all recipes for the user
+                    ];
                 case 1:
-                    recipesDB = _a.sent();
-                    res.send({ recipesDB: recipesDB });
-                    return [3 /*break*/, 3];
+                    _b.sent();
+                    return [4 /*yield*/, recipesModel_1.RecipeModel.find({ email: email })];
                 case 2:
-                    error_3 = _a.sent();
+                    userRecipes = _b.sent();
+                    // Send the array of user's recipes as the response
+                    res.send({ recipes: userRecipes });
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_3 = _b.sent();
                     console.error(error_3);
                     res.status(500).send({ error: error_3.message });
-                    return [3 /*break*/, 3];
-                case 3: return [2 /*return*/];
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
             }
         });
     });
