@@ -6,7 +6,7 @@ import { User, UserModel, users } from "./userModel";
 export const registerUser = async (req: any, res: any) => {
   try {
     const { email, password } = req.body;
-    if (!email || !password) throw new Error("Please complete all fields");
+    if (!email || !password) throw new Error("Email or Password incorrect");
 
 
     const user = new UserModel({ email, password })

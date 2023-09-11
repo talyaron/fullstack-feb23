@@ -45,7 +45,7 @@ exports.registerUser = function (req, res) { return __awaiter(void 0, void 0, vo
         try {
             _a = req.body, email = _a.email, password = _a.password;
             if (!email || !password)
-                throw new Error("Please complete all fields");
+                throw new Error("Email or Password incorrect");
             user = new userModel_1.UserModel({ email: email, password: password });
             validationError = user.validateSync();
             if (validationError) {
