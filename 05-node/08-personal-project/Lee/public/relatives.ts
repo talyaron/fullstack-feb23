@@ -61,10 +61,10 @@ async function handleAddRelative(event) {
       const country = event.target.elements.country.value;
 
       // Cast the relationSelect element to HTMLSelectElement
-      const relationSelect = <HTMLSelectElement>document.getElementById('relation');
-      const selectedRelation = relationSelect.value;
+      const relationshipSelect = <HTMLSelectElement>document.getElementById('relation');
+      const selectedRelationship = relationshipSelect.value;
 
-      if (!fullName || !birthDate || !country || selectedRelation === RelationshipType.choose) {
+      if (!fullName || !birthDate || !country || selectedRelationship === RelationshipType.choose) {
           throw new Error("Please complete all fields and select a valid relation");
       }
 
@@ -73,7 +73,7 @@ async function handleAddRelative(event) {
           fullName,
           birthDate,
           country,
-          relation: selectedRelation,
+          relationship: selectedRelationship,
           userEmail: email, // Include the selected relation
       };
 
@@ -92,8 +92,9 @@ async function handleAddRelative(event) {
       const { relatives } = await response.json();
       console.log(relatives);
 
-      renderRelatives(relatives, document.querySelector("#relatives"));
-  } catch (error) {
+      await handleGetRelatives();
+
+    } catch (error) {
       console.error(error);
   }
 }
