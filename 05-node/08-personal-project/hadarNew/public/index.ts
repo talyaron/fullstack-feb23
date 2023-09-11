@@ -10,11 +10,11 @@ interface Exercise {
 async function handleAddexercise(event: any) {
   try {
     event.preventDefault();
-    const exercise = event.target.url.value;
-    const sets = event.target.url.value;
-    const repetitions = event.target.url.value;
-    const weight = event.target.url.value;
-    const timer = event.target.url.value;
+    const exercise = event.target.exercise.value;
+    const sets = event.target.sets.value;
+    const repetitions = event.target.repetitions.value;
+    const weight = event.target.weight.value;
+    const timer = event.target.timer.value;
 
     if (!exercise || !sets || !repetitions || !weight || !timer)
       throw new Error("Please complete all fields");
