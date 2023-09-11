@@ -1,8 +1,15 @@
 import { VisitModel } from "./visitModel";
 
-export const getVisits = async (req, res) => { 
+export const getVisits = async (req, res) => {
     try {
-        const visitsDB = await VisitModel.find({});
+        const { physician } = req.query;
+        let visitsDB;
+        if (!physician) {
+            visitsDB = await VisitModel.find({});
+        }
+        else {
+            visitsDB = await VisitModel.find({ physician })
+        }
         res.send({ visits: visitsDB });
     } catch (error) {
         console.error(error);
@@ -10,7 +17,7 @@ export const getVisits = async (req, res) => {
     }
 }
 
-export const addVisit = async (req, res) => { 
+export const addVisit = async (req, res) => {
     try {
         const { date, summary, patient, physician } = req.body;
         if (!date || !summary || !patient || !physician) throw new Error("Please complete all fields");
@@ -24,7 +31,7 @@ export const addVisit = async (req, res) => {
     }
 }
 
-export const deleteVisit = async (req, res) => { 
+export const deleteVisit = async (req, res) => {
     try {
         const { id } = req.body;
         const visitDB = await VisitModel.findByIdAndDelete(id);

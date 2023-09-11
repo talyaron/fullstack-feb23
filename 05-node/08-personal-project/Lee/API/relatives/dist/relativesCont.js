@@ -37,6 +37,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 exports.__esModule = true;
 exports.getUserRelatives = exports.updateRelation = exports.deleteRelative = exports.addRelative = exports.getFamilyMembers = void 0;
+var userModel_1 = require("../users/userModel");
 var relativesModel_1 = require("./relativesModel");
 var relations_1 = require("../enums/relations");
 function getFamilyMembers(req, res) {
@@ -63,14 +64,20 @@ function getFamilyMembers(req, res) {
 exports.getFamilyMembers = getFamilyMembers;
 function addRelative(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var _a, fullName, birthDate, country, relation, userEmail, newRelative, relativeDB, error_2;
+        var _a, fullName, birthDate, country, relation, userEmail, user, newRelative, relativeDB, error_2;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
-                    _b.trys.push([0, 2, , 3]);
+                    _b.trys.push([0, 3, , 4]);
                     _a = req.body, fullName = _a.fullName, birthDate = _a.birthDate, country = _a.country, relation = _a.relation, userEmail = _a.userEmail;
                     if (!fullName || !country || !birthDate || !relation) {
                         return [2 /*return*/, res.status(400).send({ error: "Please complete all fields" })];
+                    }
+                    return [4 /*yield*/, userModel_1.UserModel.findOne({ email: userEmail })];
+                case 1:
+                    user = _b.sent();
+                    if (!user) {
+                        return [2 /*return*/, res.status(404).send({ error: "User not found" })];
                     }
                     newRelative = new relativesModel_1.RelativeModel({
                         fullName: fullName,
@@ -80,17 +87,17 @@ function addRelative(req, res) {
                         user: userEmail
                     });
                     return [4 /*yield*/, newRelative.save()];
-                case 1:
+                case 2:
                     relativeDB = _b.sent();
                     console.log(relativeDB);
                     res.send({ ok: true });
-                    return [3 /*break*/, 3];
-                case 2:
+                    return [3 /*break*/, 4];
+                case 3:
                     error_2 = _b.sent();
                     console.error(error_2);
                     res.status(500).send({ error: error_2.message });
-                    return [3 /*break*/, 3];
-                case 3: return [2 /*return*/];
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
             }
         });
     });

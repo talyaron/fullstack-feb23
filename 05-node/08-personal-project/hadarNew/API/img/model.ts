@@ -5,7 +5,7 @@ export class Exercise{
     weight?: number;
     timer?: number;
     id?: string;
-    constructor({exercise}:{exercise: string;}, sets?: number, repetitions?: number, weight?: number, timer?: number){
+    constructor({ exercise, sets, repetitions, weight, timer }: { exercise: string; sets?: number; repetitions?: number; weight?: number; timer?: number; }) {
         this.exercise = exercise;
         this.sets = sets;
         this.repetitions = repetitions;
@@ -13,5 +13,6 @@ export class Exercise{
         this.timer = timer;
         this.id = Math.random().toString();
     }
+    
 }
 

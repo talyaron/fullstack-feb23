@@ -42,11 +42,11 @@ function handleAddexercise(event) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
                     event.preventDefault();
-                    exercise = event.target.url.value;
-                    sets = event.target.url.value;
-                    repetitions = event.target.url.value;
-                    weight = event.target.url.value;
-                    timer = event.target.url.value;
+                    exercise = event.target.exercise.value;
+                    sets = event.target.sets.value;
+                    repetitions = event.target.repetitions.value;
+                    weight = event.target.weight.value;
+                    timer = event.target.timer.value;
                     if (!exercise || !sets || !repetitions || !weight || !timer)
                         throw new Error("Please complete all fields");
                     _exercise = { exercise: exercise, sets: sets, repetitions: repetitions, weight: weight, timer: timer };

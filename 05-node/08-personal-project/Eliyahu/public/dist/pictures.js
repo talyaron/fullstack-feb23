@@ -34,6 +34,28 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var Picture = /** @class */ (function () {
+    function Picture(title, imgUrl, location, tags, area) {
+        this.title = title;
+        this.imgUrl = imgUrl;
+        this.location = location;
+        this.tags = tags;
+        this.area = area;
+        this.id = Math.random().toString(36).substr(2, 9);
+        this.publishDate = new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString('en-US', {
+            hour12: false,
+            hour: "numeric",
+            minute: "numeric"
+        });
+    }
+    return Picture;
+}());
+var PictureArea;
+(function (PictureArea) {
+    PictureArea["north"] = "\u05E6\u05E4\u05D5\u05DF";
+    PictureArea["center"] = "\u05DE\u05E8\u05DB\u05D6";
+    PictureArea["south"] = "\u05D3\u05E8\u05D5\u05DD";
+})(PictureArea || (PictureArea = {}));
 function getPictures() {
     return __awaiter(this, void 0, void 0, function () {
         var response, result, pictures, error_1;
@@ -48,6 +70,7 @@ function getPictures() {
                 case 2:
                     result = _a.sent();
                     pictures = result.pictures;
+                    console.log(pictures);
                     if (!Array.isArray(pictures))
                         throw new Error("pictures is not array");
                     renderPictures(pictures);
@@ -222,6 +245,7 @@ function renderPictureHtml(picture, email) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
+                    console.log(picture);
                     return [4 /*yield*/, fetch('/API/users/get-user-name')];
                 case 1:
                     response = _a.sent();
@@ -231,6 +255,7 @@ function renderPictureHtml(picture, email) {
                     error = result.error, name = result.name;
                     if (error)
                         throw new Error("Some of details are incorrect");
+                    console.log(name);
                     html_2 = "<div class = \"picture\" id=\"" + picture.id + "\">\n        <div class = \"picture_header\">\n        <div></div>\n        <h3 >" + picture.title + "</h3>";
                     if (email === emailUser) {
                         html_2 += "<p>\u05EA\u05DE\u05D5\u05E0\u05D4 \u05E9\u05DC\u05D9</p>\n    <button class=\"material-symbols-rounded\" onclick=\"renderUpdatePicture('" + picture.title + "','" + picture.imgUrl + "','" + picture.location + "','" + picture.id + "','" + picture.tags.join(' ') + "')\">Edit</button>\n    <button class=\"material-symbols-rounded\" onclick=\"handleDeletePicture('" + picture.id + "')\">delete</button>\n    ";
