@@ -1,4 +1,4 @@
-enum RelationshipType {
+enum RelationType {
   choose = "Choose",
   mother = "Mother",
   father = "Father",
@@ -20,13 +20,13 @@ interface Relative {
   fullName: string;
   birthDate: string;
   country: string;
-  relationship: RelationshipType;
+  relation: RelationType;
 }
 
 // Function to get user's relatives from the server
 async function getRelativesFromServer(email: string) {
   try {
-    const response = await fetch(`/API/relatives/get-user-relatives?email=${email}`);
+    const response = await fetch(`/API/relatives/get-users-relatives?email=${email}`);
     const data = await response.json();
     return data.relatives;
   } catch (error) {
@@ -61,19 +61,19 @@ async function handleAddRelative(event) {
       const country = event.target.elements.country.value;
 
       // Cast the relationSelect element to HTMLSelectElement
-      const relationshipSelect = <HTMLSelectElement>document.getElementById('relation');
-      const selectedRelationship = relationshipSelect.value;
+      const relationSelect = <HTMLSelectElement>document.getElementById('relation');
+      const selectedRelation = relationSelect.value;
 
-      if (!fullName || !birthDate || !country || selectedRelationship === RelationshipType.choose) {
+      if (!fullName || !birthDate || !country || selectedRelation === RelationType.choose) {
           throw new Error("Please complete all fields and select a valid relation");
       }
 
       // Associate the new relative with the user by using their email.
       const newRelative = {
-          fullName,
-          birthDate,
-          country,
-          relationship: selectedRelationship,
+          fullName: fullName,
+          birthDate: birthDate,
+          country: country,
+          relation: selectedRelation,
           userEmail: email, // Include the selected relation
       };
 

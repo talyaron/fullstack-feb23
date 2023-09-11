@@ -22,8 +22,9 @@ export async function addRelative(req: any, res: any) {
 
         
         const user = await UserModel.findOne({ email: userEmail });
+
         if (!user) {
-            return res.status(404).send({ error: "User not found" });
+            return res.status(404).send({ error: "User not found with the provided email" });
         }
 
         const newRelative = new RelativeModel({
@@ -31,13 +32,14 @@ export async function addRelative(req: any, res: any) {
             birthDate,
             country,
             relation,
-            user: userEmail, // Associate the relative with the user based on userEmail
+            user: user._id, // Associate the relative with the user based on userEmail
         });
 
         const relativeDB = await newRelative.save();
+        
         console.log(relativeDB);
 
-        res.send({ ok: true });
+        res.status(201).send({ ok: true });
     } catch (error) {
         console.error(error);
         res.status(500).send({ error: error.message });
