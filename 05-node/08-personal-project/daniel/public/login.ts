@@ -19,7 +19,7 @@ async function handleLogin(ev:any){
         if(error){
             throw new Error(error)
         }
-        
+    
         window.location.href = `./crossfit.html?email=${email}`
     } catch (error) {
         console.error(error)

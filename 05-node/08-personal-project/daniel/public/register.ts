@@ -11,10 +11,10 @@ async function handleRegister(ev:any) {
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(userData)
         });
-        const {error, user} = await response.json();
-        console.log(error);
+        const {error} = await response.json();
+        console.log(error) //if error not exist, you will get undefined
         if(error){
-            throw new Error("error");
+            throw new Error(error);
         }
         window.location.href = "/login.html"
         

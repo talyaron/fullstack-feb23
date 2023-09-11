@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.updateItem = exports.deleteItem = exports.getUserItems = exports.addItem = exports.getItem = void 0;
+exports.updateItemPrice = exports.deleteItem = exports.getUserItems = exports.addItem = exports.getItem = void 0;
 var crossfitModel_1 = require("./crossfitModel");
 exports.getItem = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var itemDB, error_1;
@@ -47,7 +47,7 @@ exports.getItem = function (req, res) { return __awaiter(void 0, void 0, void 0,
                 return [4 /*yield*/, crossfitModel_1.CrossfitItem.find({})];
             case 1:
                 itemDB = _a.sent();
-                res.send({ CrossfitItem: itemDB });
+                res.send({ items: itemDB });
                 return [3 /*break*/, 3];
             case 2:
                 error_1 = _a.sent();
@@ -58,19 +58,17 @@ exports.getItem = function (req, res) { return __awaiter(void 0, void 0, void 0,
     });
 }); };
 exports.addItem = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var _a, name, quantity, price, imgItem, email, crossfitItem, itemDB, error_2;
+    var _a, name, quantity, price, imgItem, item, itemDB, error_2;
     return __generator(this, function (_b) {
         switch (_b.label) {
             case 0:
                 _b.trys.push([0, 2, , 3]);
-                _a = req.body, name = _a.name, quantity = _a.quantity, price = _a.price, imgItem = _a.imgItem, email = _a.email;
-                console.log({ name: name, quantity: quantity, price: price, imgItem: imgItem, email: email });
+                _a = req.body, name = _a.name, quantity = _a.quantity, price = _a.price, imgItem = _a.imgItem;
+                console.log({ name: name, quantity: quantity, price: price, imgItem: imgItem });
                 if (!name || !quantity || !price || !imgItem)
                     throw new Error("Please fill all fileds");
-                if (!email)
-                    throw new Error("No email");
-                crossfitItem = new crossfitModel_1.CrossfitItem({ name: name, quantity: quantity, price: price, imgItem: imgItem, email: email });
-                return [4 /*yield*/, crossfitItem.save()];
+                item = new crossfitModel_1.CrossfitItem({ name: name, quantity: quantity, price: price, imgItem: imgItem });
+                return [4 /*yield*/, item.save()];
             case 1:
                 itemDB = _b.sent();
                 console.log(itemDB);
@@ -109,28 +107,50 @@ exports.getUserItems = function (req, res) { return __awaiter(void 0, void 0, vo
         }
     });
 }); };
+// export const getItem = async(req:any, res:any)=>{
+//     try {
+//         const {id} = req.query;
+//         const itemDB = await CrossfitItem.findById(id);
+//         // res.send({CrossfitItem:itemDB})
+//         res.status(200).json(itemDB);
+//     } catch (error) {
+//         console.error(error)
+//     }
+// }
+// export const getUserItems = async(req:any, res:any)=>{
+//     try {
+//         const items = await CrossfitItem.find({});
+//         res.send(200).json(items)
+//     } catch (error) {
+//         console.error(error);
+//         res.status(500).send({ error: error.message });
+//     }
+// }
 exports.deleteItem = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var id, itemDB, error_4;
+    var itemId, itemDB, items, error_4;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
-                _a.trys.push([0, 2, , 3]);
-                id = req.body.id;
-                return [4 /*yield*/, crossfitModel_1.CrossfitItem.findByIdAndDelete(id)];
+                _a.trys.push([0, 3, , 4]);
+                itemId = req.body.itemId;
+                return [4 /*yield*/, crossfitModel_1.CrossfitItem.findByIdAndDelete(itemId)];
             case 1:
                 itemDB = _a.sent();
-                res.send({ itemDB: itemDB });
-                return [3 /*break*/, 3];
+                return [4 /*yield*/, crossfitModel_1.CrossfitItem.find({})];
             case 2:
+                items = _a.sent();
+                res.send({ items: items });
+                return [3 /*break*/, 4];
+            case 3:
                 error_4 = _a.sent();
                 console.error(error_4);
                 res.status(500).send({ error: error_4.message });
-                return [3 /*break*/, 3];
-            case 3: return [2 /*return*/];
+                return [3 /*break*/, 4];
+            case 4: return [2 /*return*/];
         }
     });
 }); };
-exports.updateItem = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+exports.updateItemPrice = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var _a, price, id, itemDB, _b, error_5;
     return __generator(this, function (_c) {
         switch (_c.label) {

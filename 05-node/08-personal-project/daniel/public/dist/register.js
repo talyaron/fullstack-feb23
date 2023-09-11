@@ -36,11 +36,11 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 function handleRegister(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var userData, response, _a, error, user, error_1;
-        return __generator(this, function (_b) {
-            switch (_b.label) {
+        var userData, response, error, error_1;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
                 case 0:
-                    _b.trys.push([0, 3, , 4]);
+                    _a.trys.push([0, 3, , 4]);
                     ev.preventDefault();
                     userData = {
                         email: ev.target.email.value,
@@ -52,18 +52,18 @@ function handleRegister(ev) {
                             body: JSON.stringify(userData)
                         })];
                 case 1:
-                    response = _b.sent();
+                    response = _a.sent();
                     return [4 /*yield*/, response.json()];
                 case 2:
-                    _a = _b.sent(), error = _a.error, user = _a.user;
-                    console.log(error);
+                    error = (_a.sent()).error;
+                    console.log(error); //if error not exist, you will get undefined
                     if (error) {
-                        throw new Error("error");
+                        throw new Error(error);
                     }
                     window.location.href = "/login.html";
                     return [3 /*break*/, 4];
                 case 3:
-                    error_1 = _b.sent();
+                    error_1 = _a.sent();
                     console.error(error_1);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
