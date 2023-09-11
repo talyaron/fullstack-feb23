@@ -49,7 +49,7 @@ body {
   margin-bottom: 10px;
   padding: 10px;
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 4px;
 }
 #addRecipeForm #recipeCategory {
   padding: 10px;
@@ -70,7 +70,7 @@ body {
   background-color: #333;
   color: #fff;
   border: none;
-  border-radius: 5px;
+  border-radius: 4px;
   cursor: pointer;
   margin-bottom: 10px;
   /* Add margin between buttons */
@@ -80,44 +80,44 @@ body {
 }
 
 /* Style the recipe container */
-.recipe-container {
+.blog-container {
   margin-top: 20px;
   display: flex;
   flex-wrap: wrap;
   /* Allow recipes to wrap on smaller screens */
   justify-content: space-between;
 }
-.recipe-container .recipeContainer__recipe {
+.blog-container .blogContainer__blog {
   flex-basis: calc(50% - 10px);
   /* Two recipes per row with spacing */
   background-color: #fff;
   padding: 20px;
   margin-bottom: 20px;
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 4px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
-.recipe-container .recipeContainer__recipe .recipeName {
+.blog-container .blogContainer__blog .blogName {
   font-size: 24px;
   margin-bottom: 10px;
 }
-.recipe-container .recipeContainer__recipe .recipeImage {
+.blog-container .blogContainer__blog .blogImage {
   max-width: 100%;
   height: auto;
   margin-bottom: 10px;
 }
-.recipe-container .recipeContainer__recipe .recipeIngredients, .recipe-container .recipeContainer__recipe .recipeInstructions, .recipe-container .recipeContainer__recipe .recipeCategory {
+.blog-container .blogContainer__blog .recipeIngredients, .blog-container .blogContainer__blog .recipeInstructions, .blog-container .blogContainer__blog .recipeCategory {
   margin-bottom: 10px;
 }
-.recipe-container .recipeContainer__recipe .deleteRecipe {
+.blog-container .blogContainer__blog .deleteBlog {
   background-color: #ff0000;
   color: #fff;
   border: none;
-  border-radius: 5px;
+  border-radius: 4px;
   padding: 5px 10px;
   cursor: pointer;
 }
-.recipe-container .recipeContainer__recipe .deleteRecipe:hover {
+.blog-container .blogContainer__blog .deleteBlog:hover {
   background-color: #ff5555;
 }
 
@@ -146,7 +146,7 @@ body {
     /* Full width for buttons on smaller screens */
   }
 
-  .recipe-container .recipeContainer__recipe {
+  .blog-container .recipeContainer__recipe {
     flex-basis: 100%;
     /* Full width for recipes on smaller screens */
   }

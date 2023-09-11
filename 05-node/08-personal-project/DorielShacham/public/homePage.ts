@@ -1,5 +1,3 @@
-// TypeScript (homePage.js)
-
 // Function to handle logout
 async function handleLogout() {
     try {
@@ -209,7 +207,7 @@ async function renderHelloUser() {
         const helloUser = document.querySelector("#helloUser") as HTMLDivElement;
         const updateUserDiv=document.querySelector("#updateUserDiv") as HTMLDivElement; 
         if (!helloUser) throw new Error("helloUser root not found");
-        helloUser.innerHTML = `Hello ${logInUser.email}`;
+        helloUser.innerHTML = `Welcome ${logInUser.email}`;
         // if user isAdmin create button to show all users and can updte admin
         if (logInUser.isAdmin) {
             const showAllUsersButton = document.createElement('button');
@@ -269,90 +267,84 @@ async function handleAddRecipe(event: any) {
     }
 }
 
-// Function to render a recipe
-async function renderRecipe(recipe, isEmailExist, isAdmin,fromWhereICome) {
+// Function to render a blog
+async function handleAddBlog(event: any) {
     try {
-        if (!recipe) throw new Error("Recipe does not exist");
-        const recipeContainer = document.querySelector("#recipeContainer") as HTMLDivElement;
-        if (!recipeContainer) throw new Error("recipeContainer root not found");
+        event.preventDefault();
+        const blogTitle = event.target.blogTitle.value;
+        const blogDescription = event.target.blogDescription.value;
+        const user = await getCurrentUser();
+        const userEmail = user.email;
 
-        const recipeElement = document.createElement('div');
-        recipeElement.innerHTML = `
-            <h2 class="recipeName">${recipe.recipeName}</h2>
-            <img src="${recipe.imageUrl}" alt="recipe image" class="recipeImage">
-            <div class="recipeIngredients">${recipe.recipeIngredients}</div>
-            <div class="recipeInstructions">${recipe.recipeInstructions}</div>
-            <div class="recipeCategory">${recipe.category}</div>
-        
-        `;
+        const response = await fetch("API/blog/add-blog", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ title: blogTitle, description: blogDescription, userEmail }),
+        });
+        const data = await response.json();
 
-        if (isEmailExist || isAdmin) {
-            const deleteButton = document.createElement('button');
-            deleteButton.className = 'deleteRecipe';
-            deleteButton.textContent = 'Delete';
-            deleteButton.onclick =async () => await handleDeleteRecipe(recipe._id,fromWhereICome); // Pass the recipe ID to the function
-            recipeElement.appendChild(deleteButton);  
+        console.log(data);
+        if (!data.ok) {
+            throw new Error(data.message);
         }
-     
-
-        recipeContainer.appendChild(recipeElement);
+        alert("Blog added");
+        
     } catch (error) {
         console.error(error);
     }
 }
-async function handleDeleteRecipe(recipeId,fromWhereICome) {
+
+async function handleDeleteBlog(blogId, fromWhereICome) {
     try {
-        const response = await fetch("API/recipe/delete-recipe", {
+        const response = await fetch("API/blog/delete-blog", {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({ recipeId }),
+            body: JSON.stringify({ blogId }),
         });
         const data = await response.json();
         if (!data.ok) {
             throw new Error(data.message);
         }
-        alert("Recipe deleted");
-        if(fromWhereICome==="myRecipe"){
-            renderMyRecipes();
-
+        alert("Blog deleted");
+        if (fromWhereICome === "myBlogs") {
+            renderMyBlogs();
+        } else {
+            renderAllBlogs();
         }
-        else{
-            renderAllRecipes();
-        }
-
     } catch (error) {
         console.error(error);
-    }   
+    }
 }
-// Function to render all recipes
-async function renderAllRecipes() {
+
+async function renderAllBlogs() {
     try {
-        const recipeListContainer = document.querySelector("#recipeContainer") as HTMLDivElement;
-        if (!recipeListContainer) throw new Error("recipeContainer root not found");
-        recipeListContainer.innerHTML = "";
-        const response = await fetch("API/recipe/get-all-recipes");
+        const blogListContainer = document.querySelector("#blogContainer") as HTMLDivElement;
+        if (!blogListContainer) throw new Error("blogContainer root not found");
+        blogListContainer.innerHTML = "";
+        const response = await fetch("API/blog/get-all-blogs");
         const data = await response.json();
         if (!data.ok) {
             throw new Error(data.message);
         }
-        const { recipeList } = data;
+        const { blogList } = data;
         const user = await getCurrentUser();
         if (!user) {
             throw new Error("User Not Found");
         }
 
-        recipeList.forEach((recipe) => {
-            renderRecipe(recipe, false, user.isAdmin,'AllRecipes'); 
+        blogList.forEach((blog) => {
+            renderBlog(blog, false, user.isAdmin, 'AllBlogs');
         });
     } catch (error) {
-        console.error(error); 
+        console.error(error);
     }
 }
 
-// Function to render user-specific recipes
-async function renderMyRecipes() {
+async function renderMyBlogs() {
     try {
         // Get the currently logged-in user's email
         const user = await getCurrentUser();
@@ -360,8 +352,8 @@ async function renderMyRecipes() {
             throw new Error("User email not found.");
         }
 
-        // Send the user's email to the server to get their recipes 
-        const response = await fetch(`API/recipe/get-My-recipes?userEmail=${encodeURIComponent(user.email)}`, {
+        // Send the user's email to the server to get their blogs
+        const response = await fetch(`API/blog/get-my-blogs?userEmail=${encodeURIComponent(user.email)}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -372,16 +364,43 @@ async function renderMyRecipes() {
         if (!data.ok) {
             throw new Error(data.message);
         }
-        const { recipeList } = data;
-        const recipeListContainer = document.querySelector("#recipeContainer") as HTMLDivElement;
-        if (!recipeListContainer) throw new Error("recipeContainer root not found");
-        recipeListContainer.innerHTML = "";
-        recipeList.forEach((recipe) => {
-            renderRecipe(recipe, true, user.isAdmin,'myRecipe');
+        const { blogList } = data;
+        const blogListContainer = document.querySelector("#blogContainer") as HTMLDivElement;
+        if (!blogListContainer) throw a new Error("blogContainer root not found");
+        blogListContainer.innerHTML = "";
+        blogList.forEach((blog) => {
+            renderBlog(blog, true, user.isAdmin, 'myBlogs');
         });
     } catch (error) {
         console.error(error);
-    } 
+    }
 }
 
-// You can continue to define your other functions as needed.
+
+
+// async function handleAddBlog(event: any) {
+//     try {
+//         event.preventDefault();
+//         const blogTitle = event.target.blogTitle.value;
+//         const blogDescription = event.target.blogDescription.value;
+//         const user = await getCurrentUser();
+//         const userEmail = user.email;
+
+//         const response = await fetch("API/blog/add-blog", {
+//             method: "POST",
+//             headers: {
+//                 "Content-Type": "application/json",
+//             },
+//             body: JSON.stringify({ title: blogTitle, description: blogDescription, userEmail }),
+//         });
+//         const data = await response.json();
+
+//         console.log(data);
+//         if (!data.ok) {
+//             throw new Error(data.message);
+//         }
+//         alert("Blog added");
+//     } catch (error) {
+//         console.error(error);
+//     }
+// }
