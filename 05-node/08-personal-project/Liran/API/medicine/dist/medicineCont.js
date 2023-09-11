@@ -36,61 +36,56 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.updatePrescription = exports.deletePrescription = exports.addPrescription = exports.getPrescriptions = void 0;
-var prescriptionModel_1 = require("./prescriptionModel");
-function getPrescriptions(req, res) {
+exports.updateMedicine = exports.deleteMedicine = exports.addMedicine = exports.getMedicines = void 0;
+// import { tasks, TaskStatus, Task, userTasks, UserTasks, TaskModel } from './tasksModel';
+var medicineModel_1 = require("./medicineModel");
+function getMedicines(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var _a, email, patientId, date, prescriptionDB, error_1;
-        return __generator(this, function (_b) {
-            switch (_b.label) {
+        var _id, medicinesDB, error_1;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
                 case 0:
-                    _b.trys.push([0, 7, , 8]);
-                    _a = req.query, email = _a.email, patientId = _a.patientId, date = _a.date;
-                    prescriptionDB = void 0;
-                    if (!email) return [3 /*break*/, 2];
-                    return [4 /*yield*/, prescriptionModel_1.PrescriptionModel.find({ 'physician: email': email })];
+                    _a.trys.push([0, 5, , 6]);
+                    _id = req.query._id;
+                    medicinesDB = void 0;
+                    if (!_id) return [3 /*break*/, 2];
+                    return [4 /*yield*/, medicineModel_1.MedicineModel.findOne({ _id: _id })];
                 case 1:
-                    prescriptionDB = _b.sent();
-                    return [3 /*break*/, 6];
-                case 2:
-                    if (!(patientId && date)) return [3 /*break*/, 4];
-                    return [4 /*yield*/, prescriptionModel_1.PrescriptionModel.find({ 'patient: _id': patientId, date: date })];
+                    medicinesDB = _a.sent();
+                    return [3 /*break*/, 4];
+                case 2: return [4 /*yield*/, medicineModel_1.MedicineModel.find({})];
                 case 3:
-                    prescriptionDB = _b.sent();
+                    medicinesDB = _a.sent();
+                    _a.label = 4;
+                case 4:
+                    res.send({ medicines: medicinesDB });
                     return [3 /*break*/, 6];
-                case 4: return [4 /*yield*/, prescriptionModel_1.PrescriptionModel.find({})];
                 case 5:
-                    prescriptionDB = _b.sent();
-                    _b.label = 6;
-                case 6:
-                    res.send({ prescriptions: prescriptionDB });
-                    return [3 /*break*/, 8];
-                case 7:
-                    error_1 = _b.sent();
+                    error_1 = _a.sent();
                     console.error(error_1);
                     res.status(500).send({ error: error_1.message });
-                    return [3 /*break*/, 8];
-                case 8: return [2 /*return*/];
+                    return [3 /*break*/, 6];
+                case 6: return [2 /*return*/];
             }
         });
     });
 }
-exports.getPrescriptions = getPrescriptions;
-function addPrescription(req, res) {
+exports.getMedicines = getMedicines;
+function addMedicine(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var _a, patient, medicine, physician, date, prescription, prescriptionDB, error_2;
+        var _a, name, dosagePerDay, maxDuration, medicine, medicineDB, error_2;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
                     _b.trys.push([0, 2, , 3]);
-                    _a = req.body, patient = _a.patient, medicine = _a.medicine, physician = _a.physician, date = _a.date;
-                    if (!patient || !medicine || !physician || !date)
+                    _a = req.body, name = _a.name, dosagePerDay = _a.dosagePerDay, maxDuration = _a.maxDuration;
+                    if (!name || !dosagePerDay || !maxDuration)
                         throw new Error("Please complete all fields");
-                    prescription = new prescriptionModel_1.PrescriptionModel({ patient: patient, medicine: medicine, physician: physician, date: date });
-                    return [4 /*yield*/, prescription.save()];
+                    medicine = new medicineModel_1.MedicineModel({ name: name, dosagePerDay: dosagePerDay, maxDuration: maxDuration });
+                    return [4 /*yield*/, medicine.save()];
                 case 1:
-                    prescriptionDB = _b.sent();
-                    console.log(prescriptionDB);
+                    medicineDB = _b.sent();
+                    console.log(medicineDB);
                     res.send({ ok: true });
                     return [3 /*break*/, 3];
                 case 2:
@@ -103,18 +98,18 @@ function addPrescription(req, res) {
         });
     });
 }
-exports.addPrescription = addPrescription;
-function deletePrescription(req, res) {
+exports.addMedicine = addMedicine;
+function deleteMedicine(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var id, prescriptionDB, error_3;
+        var id, medicineDB, error_3;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
                     id = req.body.id;
-                    return [4 /*yield*/, prescriptionModel_1.PrescriptionModel.findByIdAndDelete(id)];
+                    return [4 /*yield*/, medicineModel_1.MedicineModel.findByIdAndDelete(id)];
                 case 1:
-                    prescriptionDB = _a.sent();
+                    medicineDB = _a.sent();
                     res.send({ ok: true });
                     return [3 /*break*/, 3];
                 case 2:
@@ -127,24 +122,24 @@ function deletePrescription(req, res) {
         });
     });
 }
-exports.deletePrescription = deletePrescription;
-function updatePrescription(req, res) {
+exports.deleteMedicine = deleteMedicine;
+function updateMedicine(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var _a, id, patient, medicine, physician, date, prescription, error_4;
+        var _a, id, name, dosagePerDay, maxDuration, medicine, error_4;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
                     _b.trys.push([0, 3, , 4]);
-                    _a = req.body, id = _a.id, patient = _a.patient, medicine = _a.medicine, physician = _a.physician, date = _a.date;
+                    _a = req.body, id = _a.id, name = _a.name, dosagePerDay = _a.dosagePerDay, maxDuration = _a.maxDuration;
                     if (!id)
                         throw new Error("id is required");
-                    return [4 /*yield*/, prescriptionModel_1.PrescriptionModel.findByIdAndUpdate(id, { patient: patient, medicine: medicine, physician: physician, date: date })];
+                    return [4 /*yield*/, medicineModel_1.MedicineModel.findByIdAndUpdate(id, { name: name, dosagePerDay: dosagePerDay, maxDuration: maxDuration })];
                 case 1:
-                    prescription = _b.sent();
-                    return [4 /*yield*/, prescription.save()];
+                    medicine = _b.sent();
+                    return [4 /*yield*/, medicine.save()];
                 case 2:
                     _b.sent();
-                    res.status(200).send({ message: "Prescription updated successfully" });
+                    res.status(200).send({ message: "Medicine updated successfully" });
                     return [3 /*break*/, 4];
                 case 3:
                     error_4 = _b.sent();
@@ -156,4 +151,4 @@ function updatePrescription(req, res) {
         });
     });
 }
-exports.updatePrescription = updatePrescription;
+exports.updateMedicine = updateMedicine;

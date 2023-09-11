@@ -44,6 +44,7 @@ body #root #header button {
 body #root #header button:hover {
   background-color: #0056b3;
   transform: scale(1.05);
+  cursor: pointer;
 }
 body #root #header h1 {
   font-size: 5rem;

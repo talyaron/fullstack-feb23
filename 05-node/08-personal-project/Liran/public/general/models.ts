@@ -36,9 +36,9 @@ class Medicine {
 
 class Prescription {
     constructor(public date: Date,
-        public patient: string,
-        public medicine: string,
-        public physician: string,
+        public patient: Patient,
+        public medicine: Medicine,
+        public physician: Physician,
         public _id: string
     ) { }
 }

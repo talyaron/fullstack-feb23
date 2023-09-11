@@ -2,11 +2,10 @@ import { PatientModel } from "./patientModel";
 
 export async function getPatients(req: any, res: any) {
     try {
-        debugger;
         const { physicianId, patientId } = req.query; // Extract the email query parameter
         let patients;
         if (patientId) {
-            patients = await PatientModel.findOne({ _id: patientId });
+            patients = await PatientModel.find({ _id: patientId });
         }
         else if (!physicianId) {
             patients = await PatientModel.find({});
@@ -27,7 +26,7 @@ export async function getPatients(req: any, res: any) {
 export async function addPatient(req: any, res: any) {
     try {
         const { firstName, lastName, patientId, age, phoneNum, weight, height, smoking, address, physicianId } = req.body;
-        if (!firstName || !lastName || !patientId || !age || !phoneNum || !weight || !height || !smoking || !address || !physicianId) throw new Error("Please complete all fields");
+        if (!firstName || !lastName || !patientId || !age || !phoneNum || !weight || !height || !address || !physicianId) throw new Error("Please complete all fields");
         const patient = new PatientModel({ firstName, lastName, patientId, age, phoneNum, weight, height, smoking, address, physicianId });
         const patientDB = await patient.save();
         console.log(patientDB);

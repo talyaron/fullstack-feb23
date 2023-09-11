@@ -48,9 +48,10 @@ function getPhysicians(req, res) {
                     _a = req.query, email = _a.email, _id = _a._id;
                     physician = void 0;
                     if (!_id) return [3 /*break*/, 2];
-                    return [4 /*yield*/, physicianModel_1.PhysicianModel.findOne({ _id: _id })];
+                    return [4 /*yield*/, physicianModel_1.PhysicianModel.find({ id: _id })];
                 case 1:
                     physician = _b.sent();
+                    console.log("User id found  " + _id);
                     return [3 /*break*/, 6];
                 case 2:
                     if (!!email) return [3 /*break*/, 4];
@@ -58,7 +59,7 @@ function getPhysicians(req, res) {
                 case 3:
                     physician = _b.sent();
                     return [3 /*break*/, 6];
-                case 4: return [4 /*yield*/, physicianModel_1.PhysicianModel.findOne({ email: email })];
+                case 4: return [4 /*yield*/, physicianModel_1.PhysicianModel.find({ email: email })];
                 case 5:
                     physician = _b.sent();
                     _b.label = 6;

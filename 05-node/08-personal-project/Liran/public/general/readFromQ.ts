@@ -107,6 +107,7 @@ async function getPatientDB(pId) {
         debugger;
         const response = await fetch(`/API/patient/get-patients?patientId=${pId}`);
         const result = await response.json();
+        debugger;
         const patient = result.patients;
         if (!patient) throw new Error("Patient not found");
         return patient;
@@ -128,11 +129,11 @@ async function getPatientName(patientId: string) {
     }
 }
 
-async function getPhysicianName(physicianId: string) {
+async function getPhysicianName(physicianEmail: string) {
     try {
-        debugger;
-        const response = await fetch(`/API/physician/get-physicians?_id=${physicianId}`);
+        const response = await fetch(`/API/physician/get-physicians?email=${physicianEmail}`);
         const data = await response.json();
+        debugger;
         const physician = data.physician;
         const physicianName = `Dr. ${physician.firstName} ${physician.lastName}`;
         return physicianName;
@@ -143,11 +144,9 @@ async function getPhysicianName(physicianId: string) {
 
 async function getMedicineName(medicineId: string) {
     try {
-        const response = await fetch("/API/medicine/get-medicines");
+        const response = await fetch("/API/medicine/get-medicines?_id=${medicineId}");
         const data = await response.json();
-        const medicine = data.medicines.find(medicine => medicine._id === medicineId);
-        debugger;
-        const medicineName = medicine.name;
+        const medicineName = data.medicines.name;
         return medicineName;
     } catch (error) {
         console.error(error);
@@ -160,17 +159,6 @@ async function getMedicinesDB() {
         const data = await response.json();
         const medicines = data.medicines
         return medicines;
-    } catch (error) {
-        console.error(error);
-    }
-}
-
-async function getVisitsAdminDB() {
-    try {
-        const response = await fetch(`/API/visit/get-visits`);
-        const result = await response.json();
-        const visits = result.visits;
-        return visits;
     } catch (error) {
         console.error(error);
     }
