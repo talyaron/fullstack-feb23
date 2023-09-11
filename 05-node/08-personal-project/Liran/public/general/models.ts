@@ -45,8 +45,8 @@ class Prescription {
 
 class Visit {
     constructor(public date: Date,
-        public patient: string,
-        public physician: string,
+        public patient: Patient,
+        public physician: Physician,
         public summary: string,
         public _id: string
     ) { }

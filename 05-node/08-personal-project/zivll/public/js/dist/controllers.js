@@ -456,13 +456,16 @@ function sortByCategory() {
     });
 }
 // this function is used to check and add new category
-function addCategory(newCategory) {
+function addCategory(event) {
     return __awaiter(this, void 0, void 0, function () {
-        var urlParams, userNameFromUrl, response, result, error_9;
+        var newCategory, urlParams, userNameFromUrl, response, result, error_9;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    _a.trys.push([0, 3, , 4]);
+                    _a.trys.push([0, 5, , 6]);
+                    event.preventDefault();
+                    console.dir(event);
+                    newCategory = prompt("מה שם הקטגוריה החדשה?");
                     urlParams = new URLSearchParams(window.location.search);
                     userNameFromUrl = urlParams.get("userName");
                     return [4 /*yield*/, fetch("/API/category/add-category", {
@@ -478,12 +481,23 @@ function addCategory(newCategory) {
                     return [4 /*yield*/, response.json()];
                 case 2:
                     result = _a.sent();
-                    return [3 /*break*/, 4];
+                    return [4 /*yield*/, getExpensesFromDB()];
                 case 3:
+                    _a.sent();
+                    return [4 /*yield*/, getCategoriesFromDB()];
+                case 4:
+                    _a.sent();
+                    getUserIncomeFromDB();
+                    handleAccordionClick();
+                    calculateBalance();
+                    renderExpenceCalculator();
+                    renderExpencesTable();
+                    return [3 /*break*/, 6];
+                case 5:
                     error_9 = _a.sent();
                     console.error(error_9);
-                    return [3 /*break*/, 4];
-                case 4: return [2 /*return*/];
+                    return [3 /*break*/, 6];
+                case 6: return [2 /*return*/];
             }
         });
     });
@@ -514,6 +528,7 @@ function calculateBalance() {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
+                    console.log("calculateBalance");
                     balanceRoot = document.querySelector(".total-number--balance");
                     incomeRoot = document.querySelector(".total-number--income");
                     expenseRoot = document.querySelector(".total-number--expense");

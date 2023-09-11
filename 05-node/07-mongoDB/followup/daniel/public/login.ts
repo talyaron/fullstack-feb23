@@ -21,7 +21,12 @@ async function handleLogin(ev:any){
             throw new Error(error);
         }
         //if everthink is OK, redirect to main page of the user
+<<<<<<< Updated upstream:05-node/07-mongoDB/followup/daniel/public/login.ts
         window.location.href = `/main.html?email=${email}`; //query
+=======
+        window.location.href = `/orders.html`;
+        // window.location.href = `/main.html?email=${email}`; //query
+>>>>>>> Stashed changes:05-node/08-personal-project/Alex/public/login.ts
     } catch (error) {
         console.error(error);
     }

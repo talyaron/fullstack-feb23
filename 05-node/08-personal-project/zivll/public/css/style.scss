@@ -74,7 +74,14 @@ body {
           color: #fff;
           margin-bottom: 20px;
         }
-        a {
+        .regular {
+          display: block;
+          margin-top: -20px;
+          margin-bottom: 20px;
+          color: #fff;
+          font-size: 0.8rem;
+        }
+        a:not(.regular) {
           position: relative;
           display: inline-block;
           padding: 10px 20px;
@@ -86,9 +93,11 @@ body {
           overflow: hidden;
           transition: 0.5s;
           margin-top: 5px;
+          // margin-bottom: 10px;
           letter-spacing: 4px;
           background-color: #03e9f4;
           border-radius: 5px;
+
           &:hover {
             background: #03e9f4;
             color: #fff;
@@ -96,6 +105,7 @@ body {
             box-shadow: 0 0 5px #03e9f4, 0 0 25px #03e9f4, 0 0 50px #03e9f4,
               0 0 100px #03e9f4;
           }
+
           span {
             position: absolute;
             display: block;

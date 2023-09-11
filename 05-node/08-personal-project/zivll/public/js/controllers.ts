@@ -307,8 +307,12 @@ async function sortByCategory() {
 }
 
 // this function is used to check and add new category
-async function addCategory(newCategory: string) {
+async function addCategory(event: any) {
   try {
+    event.preventDefault();
+    console.dir(event);
+
+    const newCategory = prompt("מה שם הקטגוריה החדשה?");
     const urlParams = new URLSearchParams(window.location.search);
     const userNameFromUrl = urlParams.get("userName");
     const response = await fetch("/API/category/add-category", {
@@ -320,6 +324,13 @@ async function addCategory(newCategory: string) {
       }),
     });
     const result = await response.json();
+    await getExpensesFromDB();
+    await getCategoriesFromDB();
+    getUserIncomeFromDB();
+    handleAccordionClick();
+    calculateBalance();
+    renderExpenceCalculator();
+    renderExpencesTable();
   } catch (error) {
     console.error(error);
   }
@@ -344,7 +355,9 @@ async function calculateTotalExpense() {
 
 // this function calculates the balance
 async function calculateBalance() {
+   
   try {
+    console.log("calculateBalance")
     const balanceRoot = document.querySelector(`.total-number--balance`);
     const incomeRoot = document.querySelector(`.total-number--income`);
     const expenseRoot = document.querySelector(`.total-number--expense`);

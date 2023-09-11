@@ -37,9 +37,10 @@ async function renderPhisicianPage() {
     try {
         const response = await fetch(`/API/physician/get-physicians?email=${physicianEmail}`);
         const data = await response.json();
-        console.log(data)
-        renderWelcomeP(data.physicians[0].lastName, document.querySelector("#root"));
+        const physician = data.physician;
 
+        console.log(data)
+        renderWelcomeP(physician.lastName, document.querySelector("#root"));
         renderPhysicianActions(document.querySelector("#header"));
     } catch (error) {
         console.error(error);
@@ -88,10 +89,11 @@ async function renderVisits(visits: Visit[]) {
         </tr>
         </table>
         </div>`;
+        debugger;
         const table = document.querySelector("table");
         const promises = visits.map(async (visit) => {
-            const physicianName = await getPhysicianName(visit.physician);
-            const patientName = await getPatientName(visit.patient);
+            const physicianName = await getPhysicianName(visit.physician._id);
+            const patientName = await getPatientName(visit.patient._id);
 
             table.innerHTML += `<tr>
             <td>${physicianName}</td>
@@ -142,49 +144,53 @@ async function renderPrescriptions(prescriptions: Prescription[]) {
     }
 }
 
-async function renderUpdatePatientP(patients: Patient[], html: HTMLDivElement) {
+async function renderUpdatePatientP(physicianID: string, html: HTMLDivElement) {
     try {
+        const response = await fetch(`/API/patient/get-patients?physicianId=${physicianID}`);
+        const data = await response.json();
+        const patients = data.patients;
         let tempHtml = `<h2>Update Patient</h2>
         <form onsubmit="hundlePatientUpdate(event)">
         <div class="input">
         <label for="id">Select patient</label><br>
         <select id="id" name="id" onchange="loadPatientInfo()">
         `;
-        const responseP = await fetch("/API/physician/get-physicians");
-        const dataP = await responseP.json();
-        const physicianID = dataP.physicians.find(physician => physician.email === physicianEmail)._id;
-        const response = await fetch("/API/patient/get-patients");
-        const data = await response.json();
-        const patientsList = data.patients.filter(patient => patient.physicianId === physicianID);
-        patientsList.forEach(patient => {
+        // const responseP = await fetch(`/API/physician/get-physicians?email=${physicianEmail}`);
+        // const dataP = await responseP.json();
+        // const physicianID = dataP.physicians._id;
+        // const response = await fetch("/API/patient/get-patients");
+        // const data = await response.json();
+        // const patientsList = data.patients.filter(patient => patient.physicianId === physicianID);
+        debugger;
+        patients.forEach(patient => {
             tempHtml += `<option value="${patient._id}"> ${patient.firstName} ${patient.lastName}</option>`;
         });
         tempHtml += `</select>
             </div>
             <div class="input">
             <label for="firstName">First Name:</label><br>
-            <input type="text" id="firstName" name="firstName" value="${patientsList[0].firstName}">
+            <input type="text" id="firstName" name="firstName" value="${patients[0].firstName}">
             </div><div class="input">
             <label for="lastName">Last Name:</label><br>
-            <input type="text" id="lastName" name="lastName" value="${patientsList[0].lastName}">
+            <input type="text" id="lastName" name="lastName" value="${patients[0].lastName}">
             </div> <div class="input">
             <label for="age">Age:</label><br>
-            <input type="number" id="age" name="age" value="${patientsList[0].age}">
+            <input type="number" id="age" name="age" value="${patients[0].age}">
             </div> <div class="input">
             <label for="phoneNum">Phone Number:</label><br>
-            <input type="text" id="phoneNum" name="phoneNum" value="${patientsList[0].phoneNum}">
+            <input type="text" id="phoneNum" name="phoneNum" value="${patients[0].phoneNum}">
             </div><div class="input">
             <label for="weight">Weight:</label><br>
-            <input type="number" id="weight" name="weight" value="${patientsList[0].weight}"> 
+            <input type="number" id="weight" name="weight" value="${patients[0].weight}"> 
             </div><div class="input">
             <label for="height">Height:</label><br>
-            <input type="number" id="height" name="height" value="${patientsList[0].height}">
+            <input type="number" id="height" name="height" value="${patients[0].height}">
             </div><div class="input">
             <label for="smoking">Smoking:</label><br>
-            <input type="checkbox" id="smoking" name="smoking" value="${patientsList[0].smoking}">
+            <input type="checkbox" id="smoking" name="smoking" value="${patients[0].smoking}">
             </div><div class="input">
             <label for="address">Address:</label><br>
-            <input type="text" id="address" name="address" value="${patientsList[0].address}">
+            <input type="text" id="address" name="address" value="${patients[0].address}">
             <div><label for="physicianId">Physician ID:</label><br>
             <input type="text" id="physicianId" name="physicianId" value="${physicianID}" readonly>
             </div>
@@ -262,7 +268,7 @@ function renderMedicines(medicines: Medicine[]) {
 }
 
 function formatDate(date: Date) {
-    debugger;
+
     const dateNew = new Date(date);
     const day = String(dateNew.getDate()).padStart(2, '0'); // Ensure two digits for day
     const month = String(dateNew.getMonth() + 1).padStart(2, '0'); // Ensure two digits for month (January is 0-based)
@@ -273,14 +279,11 @@ function formatDate(date: Date) {
 
 async function updatePatientP() {
     try {
-        const response = await fetch("/API/patient/get-patients");
-        const data = await response.json();
-        const responseP = await fetch("/API/physician/get-physicians");
+        const responseP = await fetch(`/API/physician/get-physicians?email=${physicianEmail}`);
         const dataP = await responseP.json();
-        const physicianID = dataP.physicians.find(physician => physician.email === physicianEmail)._id;
-        const patientList = data.patients.filter(patient => patient.physicianId === physicianID);
-        console.log(data);
-        renderUpdatePatientP(patientList, document.querySelector("#forms"));
+        const physicianID = dataP.physician._id;
+        debugger;
+        renderUpdatePatientP(physicianID, document.querySelector("#forms"));
     } catch (error) {
         console.error(error);
     }
@@ -296,7 +299,7 @@ async function loadPrescriptions() {
         const patientData = await patientResponse.json();
         const patients = patientData.patients.filter(patient => patient.physicianId === physician._id);
         const prescriptions = data.prescriptions.filter(prescription => prescription.physician === patients[0].physicianId);
-        debugger;
+
         renderPrescriptions(prescriptions);
     } catch (error) {
         console.error(error);
@@ -306,12 +309,12 @@ async function loadPrescriptions() {
 
 async function viewVisits() {
     try {
-        const response = await fetch("/API/visit/get-visits");
-        const data = await response.json();
-        const responseP = await fetch("/API/physician/get-physicians");
+        const responseP = await fetch(`/API/physician/get-physicians?email=${physicianEmail}`);
         const dataP = await responseP.json();
-        const physicianID = dataP.physicians.find(physician => physician.email === physicianEmail)._id;
-        const visits = data.visits.filter(visit => visit.physician === physicianID);
+        const physicianID = dataP.physician._id;
+        const response = await fetch(`/API/visit/get-visits?physicianId=${physicianID}`);
+        const data = await response.json();
+        const visits = data.visits;
         console.log(visits);
         renderVisits(visits);
     } catch (error) {
@@ -350,15 +353,12 @@ async function loadPatientInfo() {
 
 async function loadPatients() {
     try {
-        const responseP = await fetch("/API/physician/get-physicians");
+        const responseP = await fetch(`/API/physician/get-physicians?email=${physicianEmail}`);
         const dataP = await responseP.json();
-        console.log(dataP);
-
-        const physicianID = dataP.physicians.find(physician => physician.email === physicianEmail)._id;
-        const response = await fetch("/API/patient/get-patients");
+        const physicianID = dataP.physician._id;
+        const response = await fetch(`/API/patient/get-patients?physicianId=${physicianID}`);
         const data = await response.json();
-        console.log(data);
-        const patients: Patient[] = data.patients.filter(patient => patient.physicianId === physicianID);
+        const patients = data.patients;
         renderPatients(patients);
     } catch (error) {
         console.error(error);
@@ -369,12 +369,12 @@ async function loadPatients() {
 async function StartVisit(patientId: string) {
     try {
         console.log(patientId);
-        const response = await fetch("/API/patient/get-patients");
+        const response = await fetch(`/API/patient/get-patients?patientId=${patientId}`);
         const data = await response.json();
-
-        const patientID = data.patients.find(patient => patient._id === patientId);
+        debugger;
+        const patientID = data.patients._id;
         console.log(patientID);
-        window.location.href = `../visitPage/visit.html?_id=${patientID._id}&physicianEmail=${physicianEmail}`;
+        window.location.href = `../visitPage/visit.html?_id=${patientID}&physicianEmail=${physicianEmail}`;
     } catch (error) {
         console.error(error);
     }

@@ -36,31 +36,26 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 function hundleLogin(event) {
     return __awaiter(this, void 0, void 0, function () {
-        var email_1, password_1, admin, response, data, physician, error_1;
+        var email, password, admin, response, data, physician, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
                     event.preventDefault();
-                    debugger;
-                    email_1 = event.target.email.value;
-                    password_1 = event.target.password.value;
+                    email = event.target.email.value;
+                    password = event.target.password.value;
                     admin = event.target.admin.checked;
-                    if (!email_1 || !password_1)
+                    if (!email || !password)
                         throw new Error("missing some details");
-                    return [4 /*yield*/, fetch("API/physician/get-physicians", {
-                            method: "GET",
-                            headers: {
-                                'Content-Type': 'application/json'
-                            }
-                        })];
+                    return [4 /*yield*/, fetch("API/physician/get-physicians-login?email=" + email + "&password=" + password)];
                 case 1:
                     response = _a.sent();
                     return [4 /*yield*/, response.json()];
                 case 2:
                     data = _a.sent();
                     console.log(data.physicians);
-                    physician = data.physicians.find(function (physician) { return physician.email === email_1 && physician.password === password_1; });
+                    physician = data.physician;
+                    debugger;
                     if (!physician) {
                         alert("email or password are incorrect");
                         throw new Error("email or password are incorrect");
@@ -68,14 +63,14 @@ function hundleLogin(event) {
                     // if email and password are correct
                     if (physician.isAdmin && admin) {
                         alert("admin");
-                        window.location.href = "../adminPage/admin.html?physicianEmail=" + email_1;
+                        window.location.href = "../adminPage/admin.html?physicianEmail=" + email;
                     }
                     else if (!physician.isAdmin && admin) {
                         alert("You are not an admin, please login again");
                     }
                     else {
                         alert("physician");
-                        window.location.href = "../phisicianPage/physician.html?physicianEmail=" + email_1;
+                        window.location.href = "../phisicianPage/physician.html?physicianEmail=" + email;
                     }
                     return [3 /*break*/, 4];
                 case 3:
