@@ -34,129 +34,104 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-function handleAddItem(ev) {
+var TaskStatus;
+(function (TaskStatus) {
+    TaskStatus["done"] = "done";
+    TaskStatus["todo"] = "todo";
+})(TaskStatus || (TaskStatus = {}));
+//get tasks from server
+function getTasksFromServer() {
+    //get tasks from server
+}
+//render to screen
+function handleGetTasks() {
     return __awaiter(this, void 0, void 0, function () {
-        var name, quantity, imgItem, price, item, response, result, error_1;
+        var response, tasks, error_1;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 3, , 4]);
+                    return [4 /*yield*/, fetch('/API/tasks/get-tasks')];
+                case 1:
+                    response = _a.sent();
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    tasks = (_a.sent()).tasks;
+                    console.log(tasks);
+                    renderTasks(tasks, document.querySelector("#tasks"));
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_1 = _a.sent();
+                    console.error(error_1);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
+            }
+        });
+    });
+}
+function handeleAddTask(ev) {
+    return __awaiter(this, void 0, void 0, function () {
+        var email, title, description, newTask, response, tasks, error_2;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
                     ev.preventDefault();
-                    name = ev.target.name.value;
-                    quantity = ev.target.quantity.value;
-                    imgItem = ev.target.imgItem.value;
-                    price = ev.target.price.value;
-                    if (!name || !quantity || !imgItem || !price)
-                        throw new Error("Please fill all fileds");
-                    item = { name: name, quantity: quantity, imgItem: imgItem, price: price };
-                    return [4 /*yield*/, fetch("/API/crossfit/add-item", {
+                    email = getEmailFromQuery();
+                    if (!email)
+                        throw new Error("no email");
+                    console.log(email);
+                    title = ev.target.elements.title.value;
+                    description = ev.target.elements.description.value;
+                    newTask = { title: title, description: description, email: email };
+                    console.log(newTask);
+                    return [4 /*yield*/, fetch('/API/tasks/add-task', {
                             method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify(item)
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(newTask)
                         })];
                 case 1:
                     response = _a.sent();
                     return [4 /*yield*/, response.json()];
                 case 2:
-                    result = _a.sent();
-                    console.log(result);
+                    tasks = (_a.sent()).tasks;
+                    console.log(tasks);
+                    renderTasks(tasks, document.querySelector("#tasks"));
                     return [3 /*break*/, 4];
-                case 3:
-                    error_1 = _a.sent();
-                    console.error(error_1.message);
-                    return [3 /*break*/, 4];
-                case 4: return [2 /*return*/];
-            }
-        });
-    });
-}
-function getItems() {
-    return __awaiter(this, void 0, void 0, function () {
-        var response, result, items, error_2;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    _a.trys.push([0, 3, , 4]);
-                    return [4 /*yield*/, fetch('/API/crossfit/get-item')];
-                case 1:
-                    response = _a.sent();
-                    return [4 /*yield*/, response.json()];
-                case 2:
-                    result = _a.sent();
-                    items = result.items;
-                    if (!Array.isArray(items))
-                        throw new Error("Items are not array");
-                    console.log(items);
-                    console.log(result);
-                    return [2 /*return*/, items];
                 case 3:
                     error_2 = _a.sent();
                     console.error(error_2);
-                    return [2 /*return*/, []];
+                    return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }
         });
     });
 }
-function renderItemHtml(item) {
-    try {
-        var html = "<div class=\"item-container\">\n        <h2>name = \"" + item.name + "\"</h2>\n        <h2>quantity = \"" + item.quantity + "\"</h2>\n        <p>price = \"" + item.price + "\"</p>\n        <img src = \"" + item.imgItem + "\">\n        </div>\n        <form id=\"" + item._id + "\" onsubmit=\"handleUpdatePrice(event)\">\n           <input type=\"number\" name=\"price\" value=\"" + item.price + "\" placeholder=\"price\">\n           <button type=\"submit\">Update</button>\n        </form>\n        <button onclick=\"handleDeleteItem('" + item._id + "')\">Delete</button>\n        ";
-        return html;
-    }
-    catch (error) {
-        console.error(error);
-        return "";
-    }
-}
-function renderItems(items, HTMLElement) {
-    try {
-        if (!HTMLElement)
-            throw new Error("HTMLElement not found");
-        console.log(items);
-        if (!Array.isArray(items))
-            throw new Error("items are not array");
-        var itemsHTML = items.map(function (item) { return renderItemHtml(item); }).join("");
-        HTMLElement.innerHTML = itemsHTML;
-    }
-    catch (error) {
-        console.error(error);
-    }
-}
-function handleGetItem() {
+function handleUpdateStatus(status, id) {
     return __awaiter(this, void 0, void 0, function () {
-        var items, rootitem;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0: return [4 /*yield*/, getItems()];
-                case 1:
-                    items = _a.sent();
-                    rootitem = document.querySelector("#rootitem");
-                    renderItems(items, rootitem);
-                    return [2 /*return*/];
-            }
-        });
-    });
-}
-function handleDeleteItem(itemId) {
-    return __awaiter(this, void 0, void 0, function () {
-        var response, result, items, error_3;
+        var body, result, tasks, error_3;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
-                    console.log(itemId);
-                    return [4 /*yield*/, fetch('/API/crossfit/delete-item', {
-                            method: 'DELETE',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify({ itemId: itemId })
+                    console.log(status);
+                    body = { id: id, status: status };
+                    return [4 /*yield*/, fetch('/API/tasks/update-task-status', {
+                            method: 'PATCH',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(body)
                         })];
                 case 1:
-                    response = _a.sent();
-                    return [4 /*yield*/, response.json()];
-                case 2:
                     result = _a.sent();
-                    items = result.items;
-                    renderItems(items, document.querySelector("#rootitem"));
+                    return [4 /*yield*/, result.json()];
+                case 2:
+                    tasks = (_a.sent()).tasks;
+                    console.log(tasks);
+                    renderTasks(tasks, document.querySelector("#tasks"));
                     return [3 /*break*/, 4];
                 case 3:
                     error_3 = _a.sent();
@@ -166,4 +141,31 @@ function handleDeleteItem(itemId) {
             }
         });
     });
+}
+function renderTask(task) {
+    try {
+        var html = task.status === TaskStatus.todo
+            ? "<li onclick=\"handleUpdateStatus('done', '" + task.id + "')\">" + task.title + " - " + task.description + "</li>"
+            :
+                "<li style=\"text-decoration: line-through;\" onclick=\"handleUpdateStatus('todo', '" + task.id + "')\">" + task.title + " - " + task.description + "</li>";
+        return html;
+    }
+    catch (error) {
+        console.error(error);
+        return "";
+    }
+}
+function renderTasks(tasks, DIVElem) {
+    try {
+        if (!DIVElem)
+            throw new Error("no div element");
+        var html = "<ul>";
+        html += tasks.map(function (task) { return renderTask(task); }).join("");
+        html += "</ul>";
+        DIVElem.innerHTML = html;
+    }
+    catch (error) {
+        console.error(error);
+        return "";
+    }
 }

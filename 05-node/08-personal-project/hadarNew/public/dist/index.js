@@ -42,11 +42,11 @@ function handleAddexercise(event) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
                     event.preventDefault();
-                    exercise = event.target.url.value;
-                    sets = event.target.url.value;
-                    repetitions = event.target.url.value;
-                    weight = event.target.url.value;
-                    timer = event.target.url.value;
+                    exercise = event.target.exercise.value;
+                    sets = event.target.sets.value;
+                    repetitions = event.target.repetitions.value;
+                    weight = event.target.weight.value;
+                    timer = event.target.timer.value;
                     if (!exercise || !sets || !repetitions || !weight || !timer)
                         throw new Error("Please complete all fields");
                     _exercise = { exercise: exercise, sets: sets, repetitions: repetitions, weight: weight, timer: timer };
@@ -100,7 +100,7 @@ function getExercises() {
 }
 function renderExercisesHTML(exercise) {
     try {
-        var html = "<div class=\"imgs\">\n           \n        </div>\n        <form class=\"exerciseForm\" id=" + exercise.id + " onsubmit=\"updateExercise(event)\">\n        <div> <p>exercise</p> <input type=\"text\" name=\"exercise\" value=\"" + exercise.exercise + "\" placeholder=\"exercise\" /> </div>\n        <div> <p>sets</p> <input type=\"number\" name=\"sets\" value=\"" + exercise.sets + "\" placeholder=\"sets\" /></div>\n        <div> <p>repetitions</p> <input type=\"number\" name=\"repetitions\" value=\"" + exercise.repetitions + "\" placeholder=\"repetitions\" /></div>\n        <div> <p>weight</p> <input type=\"number\" name=\"weight\" value=\"" + exercise.weight + "\" placeholder=\"weight\" /></div>\n        <div> <p>timer</p> <input type=\"number\" name=\"timer\" value=\"" + exercise.timer + "\" placeholder=\"timer\" /></div>\n        <button class=\"exerciseButton\" type=\"submit\">update</button>\n        <button class=\"exerciseButton\" onclick=\"handleDeleteExercise('" + exercise.id + "')\">Delete</button>\n        </form>\n        ";
+        var html = "\n        <form class=\"exerciseForm\" id=\"" + exercise.id + "\" onsubmit=\"updateExercise(event)\">\n          <div> \n            <p >exercise</p> \n            <input type=\"text\" name=\"exercise\" value=\"" + exercise.exercise + "\" placeholder=\"exercise\" /> \n          </div>\n          <div> \n            <p>sets</p> \n            <input type=\"number\" name=\"sets\" value=\"" + exercise.sets + "\" placeholder=\"sets\" />\n          </div>\n          <div>\n            <p>repetitions</p>\n            <input type=\"number\" name=\"repetitions\" value=\"" + exercise.repetitions + "\" placeholder=\"repetitions\" />\n          </div>\n          <div> \n            <p>weight</p> \n            <input type=\"number\" name=\"weight\" value=\"" + exercise.weight + "\" placeholder=\"weight\" />\n          </div>\n          <div> \n            <p>timer</p> \n            <input type=\"number\" name=\"timer\" value=\"" + exercise.timer + "\" placeholder=\"timer\" />\n          </div>\n          <button class=\"exerciseButton\" type=\"submit\">update</button>\n          <button class=\"exerciseButton\" onclick=\"handleDeleteExercise('" + exercise.id + "')\">Delete</button>\n        </form>\n        ";
         return html;
     }
     catch (error) {
@@ -114,7 +114,9 @@ function renderExercises(exercises, HTMLElement) {
             throw new Error("HTMLElment is not found");
         if (!Array.isArray(exercises))
             throw new Error("exercises is not array");
-        var exercisesHTML = exercises.map(function (exercise) { return renderExercisesHTML(exercise); }).join("");
+        var exercisesHTML = exercises
+            .map(function (exercise) { return renderExercisesHTML(exercise); })
+            .join("");
         HTMLElement.innerHTML = exercisesHTML;
     }
     catch (error) {
@@ -173,11 +175,11 @@ function updateExercise(event) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
                     event.preventDefault();
-                    exercise = event.target.url.value;
-                    sets = event.target.url.value;
-                    repetitions = event.target.url.value;
-                    weight = event.target.url.value;
-                    timer = event.target.url.value;
+                    exercise = event.target.elements.exercise.value;
+                    sets = event.target.elements.sets.value;
+                    repetitions = event.target.repetitions.value;
+                    weight = event.target.weight.value;
+                    timer = event.target.timer.value;
                     id = event.target.id;
                     console.log(id, exercise, sets, repetitions, weight, timer);
                     return [4 /*yield*/, fetch("API/img/update-exercise", {

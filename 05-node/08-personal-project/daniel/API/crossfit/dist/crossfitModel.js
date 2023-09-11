@@ -2,7 +2,7 @@
 exports.__esModule = true;
 exports.CrossfitItem = exports.CrossfitSchema = void 0;
 var mongoose_1 = require("mongoose");
-exports.CrossfitSchema = new mongoose_1["default"].Schema({
+exports.CrossfitSchema = new mongoose_1.Schema({
     name: {
         type: String,
         require: [true, "Please enter a crossfit item name"]
@@ -20,10 +20,10 @@ exports.CrossfitSchema = new mongoose_1["default"].Schema({
         type: String,
         required: false
     },
-    email: String
-}, {
-    // to create two fileds: create & update
-    timestamps: true
+    email: {
+        type: String,
+        required: false
+    }
 });
 // model
-exports.CrossfitItem = mongoose_1["default"].model('CrossfitItem', exports.CrossfitSchema);
+exports.CrossfitItem = mongoose_1.model('items', exports.CrossfitSchema);

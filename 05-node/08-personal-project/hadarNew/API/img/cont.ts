@@ -1,7 +1,7 @@
 //Taking the model from the model file
 
 import {Exercise} from "./model";
-let exercises: Exercise[] = [new Exercise({ exercise: "testefdnd" },3,10,10,60),new Exercise({ exercise: "testefdnd" },3,10,10,60)];
+let exercises: Exercise[] = [new Exercise({ exercise: "test", sets: 3, repetitions: 10 })];
 
 export const getExercises = (req,res) =>{
     try {
@@ -13,6 +13,7 @@ export const getExercises = (req,res) =>{
 
 export const addExercise = (req, res) =>{
     try {
+        console.log(exercises)
         const exercise: Exercise = req.body;
         exercises.push(new Exercise(exercise))
         res.send({exercises})
@@ -32,7 +33,7 @@ export const deleteExercise = (req, res) =>{
     }
 }
 
-export const updatEexercise= (req, res) =>{
+export const updateEexercise= (req, res) =>{
     try {
         const {exercise,sets,repetitions,weight,timer,id} = req.body;
         console.log(req.body);
