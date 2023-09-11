@@ -219,7 +219,7 @@ function getPatientDB(pId) {
                 case 2:
                     result = _a.sent();
                     debugger;
-                    patient = result.patients;
+                    patient = result.patients[0];
                     if (!patient)
                         throw new Error("Patient not found");
                     return [2 /*return*/, patient];
@@ -245,9 +245,9 @@ function getPatientName(patientId) {
                     return [4 /*yield*/, response.json()];
                 case 2:
                     data = _a.sent();
-                    patient = data.patients;
+                    patient = data.patients[0];
                     debugger;
-                    patientName = patient ? patient.firstName + " " + patient.lastName : "patient not found";
+                    patientName = patient ? patient[0].firstName + " " + patient[0].lastName : "patient not found";
                     return [2 /*return*/, patientName];
                 case 3:
                     error_7 = _a.sent();
@@ -273,7 +273,7 @@ function getPhysicianName(physicianEmail) {
                     data = _a.sent();
                     debugger;
                     physician = data.physician;
-                    physicianName = "Dr. " + physician.firstName + " " + physician.lastName;
+                    physicianName = physician[0].firstName + " " + physician[0].lastName;
                     return [2 /*return*/, physicianName];
                 case 3:
                     error_8 = _a.sent();

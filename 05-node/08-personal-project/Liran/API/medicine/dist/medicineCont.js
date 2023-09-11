@@ -41,15 +41,15 @@ exports.updateMedicine = exports.deleteMedicine = exports.addMedicine = exports.
 var medicineModel_1 = require("./medicineModel");
 function getMedicines(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var _id, medicinesDB, error_1;
+        var name, medicinesDB, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 5, , 6]);
-                    _id = req.query._id;
+                    name = req.query.name;
                     medicinesDB = void 0;
-                    if (!_id) return [3 /*break*/, 2];
-                    return [4 /*yield*/, medicineModel_1.MedicineModel.findOne({ _id: _id })];
+                    if (!name) return [3 /*break*/, 2];
+                    return [4 /*yield*/, medicineModel_1.MedicineModel.find({ name: name })];
                 case 1:
                     medicinesDB = _a.sent();
                     return [3 /*break*/, 4];
@@ -58,7 +58,7 @@ function getMedicines(req, res) {
                     medicinesDB = _a.sent();
                     _a.label = 4;
                 case 4:
-                    res.send({ medicines: medicinesDB });
+                    res.send({ medicinesDB: medicinesDB });
                     return [3 /*break*/, 6];
                 case 5:
                     error_1 = _a.sent();

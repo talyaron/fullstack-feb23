@@ -2,20 +2,18 @@ import { PatientModel } from "./patientModel";
 
 export async function getPatients(req: any, res: any) {
     try {
-        const { physicianId, patientId } = req.query; // Extract the email query parameter
+        const { physicianId, patientId } = req.query; 
         let patients;
         if (patientId) {
-            patients = await PatientModel.find({ _id: patientId });
+            patients = await PatientModel.findOne({ id: patientId });
         }
         else if (!physicianId) {
             patients = await PatientModel.find({});
         }
         else {
-            // Fetch the physician with the specified email from the database using PhysicianModel
             patients = await PatientModel.find({ physicianId });
 
         }
-        // Send the fetched physician data as a JSON response
         res.send({ patients });
     } catch (error) {
         console.error(error);

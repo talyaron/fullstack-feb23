@@ -48,7 +48,7 @@ function getPatients(req, res) {
                     _a = req.query, physicianId = _a.physicianId, patientId = _a.patientId;
                     patients = void 0;
                     if (!patientId) return [3 /*break*/, 2];
-                    return [4 /*yield*/, patientModel_1.PatientModel.find({ _id: patientId })];
+                    return [4 /*yield*/, patientModel_1.PatientModel.findOne({ id: patientId })];
                 case 1:
                     patients = _b.sent();
                     return [3 /*break*/, 6];
@@ -60,11 +60,9 @@ function getPatients(req, res) {
                     return [3 /*break*/, 6];
                 case 4: return [4 /*yield*/, patientModel_1.PatientModel.find({ physicianId: physicianId })];
                 case 5:
-                    // Fetch the physician with the specified email from the database using PhysicianModel
                     patients = _b.sent();
                     _b.label = 6;
                 case 6:
-                    // Send the fetched physician data as a JSON response
                     res.send({ patients: patients });
                     return [3 /*break*/, 8];
                 case 7:

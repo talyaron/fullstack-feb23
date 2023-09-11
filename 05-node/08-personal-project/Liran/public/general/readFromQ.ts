@@ -108,7 +108,7 @@ async function getPatientDB(pId) {
         const response = await fetch(`/API/patient/get-patients?patientId=${pId}`);
         const result = await response.json();
         debugger;
-        const patient = result.patients;
+        const patient = result.patients[0];
         if (!patient) throw new Error("Patient not found");
         return patient;
     } catch (error) {
@@ -120,9 +120,9 @@ async function getPatientName(patientId: string) {
     try {
         const response = await fetch(`/API/patient/get-patients?patientId=${patientId}`);
         const data = await response.json();
-        const patient = data.patients
+        const patient = data.patients[0];
         debugger;
-        const patientName = patient ? `${patient.firstName} ${patient.lastName}` : "patient not found";
+        const patientName = patient ? `${patient[0].firstName} ${patient[0].lastName}` : "patient not found";
         return patientName;
     } catch (error) {
         console.error(error);
@@ -135,7 +135,7 @@ async function getPhysicianName(physicianEmail: string) {
         const data = await response.json();
         debugger;
         const physician = data.physician;
-        const physicianName = `Dr. ${physician.firstName} ${physician.lastName}`;
+        const physicianName = `${physician[0].firstName} ${physician[0].lastName}`;
         return physicianName;
     } catch (error) {
         console.error(error);
