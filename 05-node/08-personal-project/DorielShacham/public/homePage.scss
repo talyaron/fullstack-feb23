@@ -1,166 +1,95 @@
-/* Reset some default browser styles */
-body, h1, h2, h3, p {
+body {
+    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-}
-
-/* Apply a background color to the body */
-body {
     background-color: #f0f0f0;
-    font-family: Arial, sans-serif;
 }
 
-/* Style the wapper */
-.wapper {
-    display: flex;
-    flex-direction: row;
-    justify-content: center; /* Center the content horizontally */
-    align-items: flex-start; /* Align content to the top vertically */
-    min-height: 100vh; /* Ensure at least the viewport height */
-}
-
-/* Style the centerContainer */
-.centerContainer {
-    max-width: 600px;
-    
-    margin: 0 20px; /* Add some space to the sides */
-    padding: 20px;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-
-    &__heder {
-        background-color: #333;
-        color: #fff;
-        padding: 10px;
-        text-align: center;
-    }
-}
-
-/* Style the form */
-#addRecipeForm {
-    margin-top: 20px;
+.wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
-
-    .input-field {
-        margin-bottom: 10px;
-        padding: 10px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-    }
-
-    /* Style the select field */
-    #recipeCategory {
-        padding: 10px;
-    }
+    background-color: white;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
 }
 
-/* Style the buttons */
-.btn-container {
+header {
+    background-color: orangered;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+main {
+    padding: 20px;
     display: flex;
-    flex-wrap: wrap; /* Allow buttons to wrap on smaller screens */
-    justify-content: space-between;
-    margin-top: 20px;
-
-    .btn {
-        flex-basis: calc(50% - 10px); /* 50% width with 10px spacing */
-        padding: 10px 20px;
-        background-color: #333;
-        color: #fff;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        margin-bottom: 10px; /* Add margin between buttons */
-    }
-
-    .btn:hover {
-        background-color: #555;
-    }
+    flex-direction: column;
+    gap: 20px;
 }
 
-/* Style the recipe container */
+.blog-form h2 {
+    font-size: 20px;
+}
+
+input[type="text"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+input[type="submit"] {
+    background-color: orangered;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.blog-options {
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn {
+    background-color: orangered;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
 .blog-container {
-    margin-top: 20px;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+}
+
+#sideUpdateContainer {
+    background-color: #f0f0f0;
+    padding: 20px;
     display: flex;
-    flex-wrap: wrap; /* Allow recipes to wrap on smaller screens */
-    justify-content: space-between;
-
-    .blogContainer__blog {
-        flex-basis: calc(50% - 10px); /* Two recipes per row with spacing */
-        background-color: #fff;
-        padding: 20px;
-        margin-bottom: 20px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-
-        .blogName {
-            font-size: 24px;
-            margin-bottom: 10px;
-        }
-
-        .blogImage {
-            max-width: 100%;
-            height: auto;
-            margin-bottom: 10px;
-        }
-
-        .recipeIngredients, .recipeInstructions, .recipeCategory {
-            margin-bottom: 10px;
-        }
-
-        .deleteBlog {
-            background-color: #ff0000;
-            color: #fff;
-            border: none;
-            border-radius: 4px;
-            padding: 5px 10px;
-            cursor: pointer;
-        }
-
-        .deleteBlog:hover {
-            background-color: #ff5555;
-        }
-    }
+    flex-direction: column;
+    gap: 20px;
 }
 
-/* Add a border to the right side of the sideUpdaecontainer */
-.sideUpdaecontainer {
-    height: 100%;
-    width: 250px;
-    position: absolute;
-    top: 0;
-    right: 0;
-
-    /* Add any other styling you want for the sideUpdaecontainer */
-
-    /* Set a default border for larger screens */
-    border: 2px solid #000; /* Adjust the color and width as needed */
-}
-
-/* Media query for smaller screens */
-@media screen and (max-width: 768px) {
-   
-    .centerContainer {
-        margin: 0 10px; /* Reduce margin for smaller screens */
-    }
-
-    .btn-container {
-        .btn {
-            flex-basis: 100%; /* Full width for buttons on smaller screens */
-        }
-    }
-
-    .blog-container {
-        .recipeContainer__recipe {
-            flex-basis: 100%; /* Full width for recipes on smaller screens */
-        }
-    }
-    .sideUpdaecontainer {
-        display: none;
-    }
-    .showAllUsers{
-        display: none;
-    }
-
+.welcome-message {
+    font-size: 20px;
+    font-weight: bold;
+    color: black; 
 }

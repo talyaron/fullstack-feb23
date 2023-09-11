@@ -300,7 +300,7 @@ function renderHelloUser() {
                     updateUserDiv = document.querySelector("#updateUserDiv");
                     if (!helloUser)
                         throw new Error("helloUser root not found");
-                    helloUser.innerHTML = "Welcome " + logInUser.email;
+                    helloUser.innerHTML = "Welcome <span class=\"welcome-message\">" + logInUser.email + "</span>";
                     // if user isAdmin create button to show all users and can updte admin
                     if (logInUser.isAdmin) {
                         showAllUsersButton = document.createElement('button');
@@ -351,55 +351,10 @@ function getCurrentUser() {
         });
     });
 }
-// Function to handle adding a recipe
-function handleAddRecipe(event) {
-    return __awaiter(this, void 0, void 0, function () {
-        var recipeName, recipeIngredients, recipeInstructions, imageUrl, category, user, userEmail, response, data, error_7;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    _a.trys.push([0, 4, , 5]);
-                    event.preventDefault();
-                    recipeName = event.target.recipeName.value;
-                    recipeIngredients = event.target.recipeIngredients.value;
-                    recipeInstructions = event.target.recipeInstructions.value;
-                    imageUrl = event.target.imageUrl.value;
-                    category = event.target.recipeCategory.value;
-                    return [4 /*yield*/, getCurrentUser()];
-                case 1:
-                    user = _a.sent();
-                    userEmail = user.email;
-                    return [4 /*yield*/, fetch("API/recipe/add-recipe", {
-                            method: "POST",
-                            headers: {
-                                "Content-Type": "application/json"
-                            },
-                            body: JSON.stringify({ recipeName: recipeName, recipeIngredients: recipeIngredients, recipeInstructions: recipeInstructions, imageUrl: imageUrl, category: category, userEmail: userEmail })
-                        })];
-                case 2:
-                    response = _a.sent();
-                    return [4 /*yield*/, response.json()];
-                case 3:
-                    data = _a.sent();
-                    console.log(data);
-                    if (!data.ok) {
-                        throw new Error(data.message);
-                    }
-                    alert("Recipe added");
-                    return [3 /*break*/, 5];
-                case 4:
-                    error_7 = _a.sent();
-                    console.error(error_7);
-                    return [3 /*break*/, 5];
-                case 5: return [2 /*return*/];
-            }
-        });
-    });
-}
 // Function to render a blog
 function handleAddBlog(event) {
     return __awaiter(this, void 0, void 0, function () {
-        var blogTitle, blogDescription, user, userEmail, response, data, error_8;
+        var blogTitle, blogDescription, user, userEmail, response, data, error_7;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -430,8 +385,8 @@ function handleAddBlog(event) {
                     alert("Blog added");
                     return [3 /*break*/, 5];
                 case 4:
-                    error_8 = _a.sent();
-                    console.error(error_8);
+                    error_7 = _a.sent();
+                    console.error(error_7);
                     return [3 /*break*/, 5];
                 case 5: return [2 /*return*/];
             }
@@ -440,7 +395,7 @@ function handleAddBlog(event) {
 }
 function handleDeleteBlog(blogId, fromWhereICome) {
     return __awaiter(this, void 0, void 0, function () {
-        var response, data, error_9;
+        var response, data, error_8;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -469,8 +424,8 @@ function handleDeleteBlog(blogId, fromWhereICome) {
                     }
                     return [3 /*break*/, 4];
                 case 3:
-                    error_9 = _a.sent();
-                    console.error(error_9);
+                    error_8 = _a.sent();
+                    console.error(error_8);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }
@@ -479,38 +434,39 @@ function handleDeleteBlog(blogId, fromWhereICome) {
 }
 function renderAllBlogs() {
     return __awaiter(this, void 0, void 0, function () {
-        var blogListContainer, response, data, blogList, user_1, error_10;
+        var user_1, response, data, blogList, blogContainer_1, error_9;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 4, , 5]);
-                    blogListContainer = document.querySelector("#blogContainer");
-                    if (!blogListContainer)
-                        throw new Error("blogContainer root not found");
-                    blogListContainer.innerHTML = "";
-                    return [4 /*yield*/, fetch("API/blog/get-all-blogs")];
+                    return [4 /*yield*/, getCurrentUser()];
                 case 1:
+                    user_1 = _a.sent();
+                    if (!user_1) {
+                        throw new Error("User Not Found");
+                    }
+                    return [4 /*yield*/, fetch("API/blog/get-all-blogs")];
+                case 2:
                     response = _a.sent();
                     return [4 /*yield*/, response.json()];
-                case 2:
+                case 3:
                     data = _a.sent();
                     if (!data.ok) {
                         throw new Error(data.message);
                     }
                     blogList = data.blogList;
-                    return [4 /*yield*/, getCurrentUser()];
-                case 3:
-                    user_1 = _a.sent();
-                    if (!user_1) {
-                        throw new Error("User Not Found");
-                    }
+                    blogContainer_1 = document.querySelector("#blogContainer");
+                    if (!blogContainer_1)
+                        throw new Error("blogContainer root not found");
+                    blogContainer_1.innerHTML = '';
                     blogList.forEach(function (blog) {
-                        renderBlog(blog, false, user_1.isAdmin, 'AllBlogs');
+                        var isUserBlog = blog.userEmail === user_1.email;
+                        renderBlogItem(blog, isUserBlog, user_1.isAdmin, 'AllBlogs', blog.userEmail, blogContainer_1);
                     });
                     return [3 /*break*/, 5];
                 case 4:
-                    error_10 = _a.sent();
-                    console.error(error_10);
+                    error_9 = _a.sent();
+                    console.error(error_9);
                     return [3 /*break*/, 5];
                 case 5: return [2 /*return*/];
             }
@@ -519,7 +475,7 @@ function renderAllBlogs() {
 }
 function renderMyBlogs() {
     return __awaiter(this, void 0, void 0, function () {
-        var user_2, response, data, blogList, blogListContainer, error_11;
+        var user_2, response, data, blogList, blogContainer_2, error_10;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -542,48 +498,44 @@ function renderMyBlogs() {
                 case 3:
                     data = _a.sent();
                     if (!data.ok) {
-                        throw new Error(data.message);
+                        alert("You currently do not have a blog.");
+                        return [2 /*return*/]; // Exit the function early to prevent further execution
                     }
                     blogList = data.blogList;
-                    blogListContainer = document.querySelector("#blogContainer");
-                    if (!blogListContainer)
-                        throw a;
-                    new Error("blogContainer root not found");
-                    blogListContainer.innerHTML = "";
+                    blogContainer_2 = document.querySelector("#blogContainer");
+                    if (!blogContainer_2)
+                        throw new Error("blogContainer root not found");
+                    blogContainer_2.innerHTML = '';
                     blogList.forEach(function (blog) {
-                        renderBlog(blog, true, user_2.isAdmin, 'myBlogs');
+                        var isUserBlog = true;
+                        renderBlogItem(blog, isUserBlog, user_2.isAdmin, 'myBlogs', user_2.email, blogContainer_2);
                     });
                     return [3 /*break*/, 5];
                 case 4:
-                    error_11 = _a.sent();
-                    console.error(error_11);
+                    error_10 = _a.sent();
+                    console.error(error_10);
                     return [3 /*break*/, 5];
                 case 5: return [2 /*return*/];
             }
         });
     });
 }
-// async function handleAddBlog(event: any) {
-//     try {
-//         event.preventDefault();
-//         const blogTitle = event.target.blogTitle.value;
-//         const blogDescription = event.target.blogDescription.value;
-//         const user = await getCurrentUser();
-//         const userEmail = user.email;
-//         const response = await fetch("API/blog/add-blog", {
-//             method: "POST",
-//             headers: {
-//                 "Content-Type": "application/json",
-//             },
-//             body: JSON.stringify({ title: blogTitle, description: blogDescription, userEmail }),
-//         });
-//         const data = await response.json();
-//         console.log(data);
-//         if (!data.ok) {
-//             throw new Error(data.message);
-//         }
-//         alert("Blog added");
-//     } catch (error) {
-//         console.error(error);
-//     }
-// }
+function renderBlogItem(blog, isUserBlog, isAdmin, fromWhereICome, userEmail, container) {
+    var _this = this;
+    var blogContainer = container;
+    var blogElement = document.createElement('div');
+    blogElement.innerHTML = "\n        <h2 class=\"blogTitle\">" + blog.title + "</h2>\n        <p class=\"blogDescription\">" + blog.description + "</p>\n        <p> Author: " + userEmail + "</p>\n    ";
+    if (isAdmin || isUserBlog) {
+        var deleteButton = document.createElement('button');
+        deleteButton.className = 'deleteBlog';
+        deleteButton.textContent = 'Delete';
+        deleteButton.onclick = function () { return __awaiter(_this, void 0, void 0, function () { return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, handleDeleteBlog(blog._id, fromWhereICome)];
+                case 1: return [2 /*return*/, _a.sent()];
+            }
+        }); }); };
+        blogElement.appendChild(deleteButton);
+    }
+    blogContainer.appendChild(blogElement);
+}

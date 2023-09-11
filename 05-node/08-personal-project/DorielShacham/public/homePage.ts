@@ -45,7 +45,7 @@ async function renderAllUsers() {
         console.error(error);
     }
 }
-function renderUsersList(users) {
+function renderUsersList(users: any[]) {
     try {
         const updateUserDiv = document.querySelector("#updateUserDiv") as HTMLDivElement;
         if (!updateUserDiv) throw new Error("updateUserDiv root not found");
@@ -61,7 +61,7 @@ function renderUsersList(users) {
         selectUser.id = 'selectUser';
 
         // Create options for each user
-        users.forEach(user => {
+        users.forEach((user: { _id: string; email: string | null; }) => {
             const option = document.createElement('option');
             option.value = user._id; // Assuming each user has a unique ID
             option.textContent = user.email; // Change this to the user's name or other identifier
@@ -96,7 +96,7 @@ function renderUsersList(users) {
         console.error(error);
     }
 }
-async function openUpdateUserForm(userId) {
+async function openUpdateUserForm(userId: string) {
     try {
         // Fetch user details based on the userId from the API
         const response = await fetch(`API/user/get-user-details?userId=${userId}`, {
@@ -207,7 +207,7 @@ async function renderHelloUser() {
         const helloUser = document.querySelector("#helloUser") as HTMLDivElement;
         const updateUserDiv=document.querySelector("#updateUserDiv") as HTMLDivElement; 
         if (!helloUser) throw new Error("helloUser root not found");
-        helloUser.innerHTML = `Welcome ${logInUser.email}`;
+        helloUser.innerHTML = `Welcome <span class="welcome-message">${logInUser.email}</span>`;
         // if user isAdmin create button to show all users and can updte admin
         if (logInUser.isAdmin) {
             const showAllUsersButton = document.createElement('button');
@@ -236,36 +236,6 @@ async function getCurrentUser() {
     }
 }
 
-// Function to handle adding a recipe
-async function handleAddRecipe(event: any) {
-    try {
-        event.preventDefault();
-        const recipeName = event.target.recipeName.value;
-        const recipeIngredients = event.target.recipeIngredients.value;
-        const recipeInstructions = event.target.recipeInstructions.value;
-        const imageUrl = event.target.imageUrl.value;
-        const category = event.target.recipeCategory.value;
-        const user = await getCurrentUser();
-        const userEmail = user.email;
-
-        const response = await fetch("API/recipe/add-recipe", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ recipeName, recipeIngredients, recipeInstructions, imageUrl, category, userEmail }),
-        });
-        const data = await response.json();
-
-        console.log(data);
-        if (!data.ok) {
-            throw new Error(data.message);
-        }
-        alert("Recipe added");
-    } catch (error) {
-        console.error(error);
-    }
-}
 
 // Function to render a blog
 async function handleAddBlog(event: any) {
@@ -296,7 +266,7 @@ async function handleAddBlog(event: any) {
     }
 }
 
-async function handleDeleteBlog(blogId, fromWhereICome) {
+async function handleDeleteBlog(blogId: any, fromWhereICome: string) {
     try {
         const response = await fetch("API/blog/delete-blog", {
             method: "DELETE",
@@ -322,22 +292,27 @@ async function handleDeleteBlog(blogId, fromWhereICome) {
 
 async function renderAllBlogs() {
     try {
-        const blogListContainer = document.querySelector("#blogContainer") as HTMLDivElement;
-        if (!blogListContainer) throw new Error("blogContainer root not found");
-        blogListContainer.innerHTML = "";
-        const response = await fetch("API/blog/get-all-blogs");
-        const data = await response.json();
-        if (!data.ok) {
-            throw new Error(data.message);
-        }
-        const { blogList } = data;
         const user = await getCurrentUser();
         if (!user) {
             throw new Error("User Not Found");
         }
 
+        const response = await fetch("API/blog/get-all-blogs");
+        const data = await response.json();
+
+        if (!data.ok) {
+            throw new Error(data.message);
+        }
+
+        const { blogList } = data;
+        const blogContainer = document.querySelector("#blogContainer") as HTMLDivElement;
+        if (!blogContainer) throw new Error("blogContainer root not found");
+        
+        blogContainer.innerHTML = '';
+
         blogList.forEach((blog) => {
-            renderBlog(blog, false, user.isAdmin, 'AllBlogs');
+            const isUserBlog = blog.userEmail === user.email;
+            renderBlogItem(blog, isUserBlog, user.isAdmin, 'AllBlogs', blog.userEmail, blogContainer);
         });
     } catch (error) {
         console.error(error);
@@ -346,13 +321,11 @@ async function renderAllBlogs() {
 
 async function renderMyBlogs() {
     try {
-        // Get the currently logged-in user's email
         const user = await getCurrentUser();
         if (!user || !user.email) {
             throw new Error("User email not found.");
         }
 
-        // Send the user's email to the server to get their blogs
         const response = await fetch(`API/blog/get-my-blogs?userEmail=${encodeURIComponent(user.email)}`, {
             method: "GET",
             headers: {
@@ -361,15 +334,21 @@ async function renderMyBlogs() {
         });
 
         const data = await response.json();
+
         if (!data.ok) {
-            throw new Error(data.message);
+            alert("You currently do not have a blog.");
+            return; // Exit the function early to prevent further execution
         }
+
         const { blogList } = data;
-        const blogListContainer = document.querySelector("#blogContainer") as HTMLDivElement;
-        if (!blogListContainer) throw a new Error("blogContainer root not found");
-        blogListContainer.innerHTML = "";
+        const blogContainer = document.querySelector("#blogContainer") as HTMLDivElement;
+        if (!blogContainer) throw new Error("blogContainer root not found");
+
+        blogContainer.innerHTML = '';
+
         blogList.forEach((blog) => {
-            renderBlog(blog, true, user.isAdmin, 'myBlogs');
+            const isUserBlog = true;
+            renderBlogItem(blog, isUserBlog, user.isAdmin, 'myBlogs', user.email, blogContainer);
         });
     } catch (error) {
         console.error(error);
@@ -377,30 +356,22 @@ async function renderMyBlogs() {
 }
 
 
+function renderBlogItem(blog: any, isUserBlog: boolean, isAdmin: boolean, fromWhereICome: string, userEmail: string, container: HTMLDivElement) {
+    const blogContainer = container;
+    const blogElement = document.createElement('div');
+    blogElement.innerHTML = `
+        <h2 class="blogTitle">${blog.title}</h2>
+        <p class="blogDescription">${blog.description}</p>
+        <p> Author: ${userEmail}</p>
+    `;
 
-// async function handleAddBlog(event: any) {
-//     try {
-//         event.preventDefault();
-//         const blogTitle = event.target.blogTitle.value;
-//         const blogDescription = event.target.blogDescription.value;
-//         const user = await getCurrentUser();
-//         const userEmail = user.email;
+    if (isAdmin || isUserBlog) {
+        const deleteButton = document.createElement('button');
+        deleteButton.className = 'deleteBlog';
+        deleteButton.textContent = 'Delete';
+        deleteButton.onclick = async () => await handleDeleteBlog(blog._id, fromWhereICome);
+        blogElement.appendChild(deleteButton);
+    }
 
-//         const response = await fetch("API/blog/add-blog", {
-//             method: "POST",
-//             headers: {
-//                 "Content-Type": "application/json",
-//             },
-//             body: JSON.stringify({ title: blogTitle, description: blogDescription, userEmail }),
-//         });
-//         const data = await response.json();
-
-//         console.log(data);
-//         if (!data.ok) {
-//             throw new Error(data.message);
-//         }
-//         alert("Blog added");
-//     } catch (error) {
-//         console.error(error);
-//     }
-// }
+    blogContainer.appendChild(blogElement);
+}
