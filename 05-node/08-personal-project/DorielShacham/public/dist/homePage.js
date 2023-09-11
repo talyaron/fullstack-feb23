@@ -499,7 +499,7 @@ function renderMyBlogs() {
                     data = _a.sent();
                     if (!data.ok) {
                         alert("You currently do not have a blog.");
-                        return [2 /*return*/]; // Exit the function early to prevent further execution
+                        return [2 /*return*/];
                     }
                     blogList = data.blogList;
                     blogContainer_2 = document.querySelector("#blogContainer");

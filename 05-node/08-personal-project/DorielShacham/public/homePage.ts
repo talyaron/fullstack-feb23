@@ -337,7 +337,7 @@ async function renderMyBlogs() {
 
         if (!data.ok) {
             alert("You currently do not have a blog.");
-            return; // Exit the function early to prevent further execution
+            return;
         }
 
         const { blogList } = data;
