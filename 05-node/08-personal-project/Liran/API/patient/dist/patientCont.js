@@ -40,22 +40,40 @@ exports.updatePatient = exports.deletePatient = exports.addPatient = exports.get
 var patientModel_1 = require("./patientModel");
 function getPatients(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var patientsDB, error_1;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
+        var _a, physicianId, patientId, patients, error_1;
+        return __generator(this, function (_b) {
+            switch (_b.label) {
                 case 0:
-                    _a.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, patientModel_1.PatientModel.find({})];
+                    _b.trys.push([0, 7, , 8]);
+                    debugger;
+                    _a = req.query, physicianId = _a.physicianId, patientId = _a.patientId;
+                    patients = void 0;
+                    if (!patientId) return [3 /*break*/, 2];
+                    return [4 /*yield*/, patientModel_1.PatientModel.findOne({ _id: patientId })];
                 case 1:
-                    patientsDB = _a.sent();
-                    res.send({ patients: patientsDB });
-                    return [3 /*break*/, 3];
+                    patients = _b.sent();
+                    return [3 /*break*/, 6];
                 case 2:
-                    error_1 = _a.sent();
+                    if (!!physicianId) return [3 /*break*/, 4];
+                    return [4 /*yield*/, patientModel_1.PatientModel.find({})];
+                case 3:
+                    patients = _b.sent();
+                    return [3 /*break*/, 6];
+                case 4: return [4 /*yield*/, patientModel_1.PatientModel.find({ physicianId: physicianId })];
+                case 5:
+                    // Fetch the physician with the specified email from the database using PhysicianModel
+                    patients = _b.sent();
+                    _b.label = 6;
+                case 6:
+                    // Send the fetched physician data as a JSON response
+                    res.send({ patients: patients });
+                    return [3 /*break*/, 8];
+                case 7:
+                    error_1 = _b.sent();
                     console.error(error_1);
                     res.status(500).send({ error: error_1.message });
-                    return [3 /*break*/, 3];
-                case 3: return [2 /*return*/];
+                    return [3 /*break*/, 8];
+                case 8: return [2 /*return*/];
             }
         });
     });

@@ -136,13 +136,14 @@ function getPhysicianDB(pEmail) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
-                    return [4 /*yield*/, fetch("/API/physician/get-physicians")];
+                    return [4 /*yield*/, fetch("/API/physician/get-physicians?email=" + pEmail)];
                 case 1:
                     response = _a.sent();
                     return [4 /*yield*/, response.json()];
                 case 2:
                     result = _a.sent();
-                    physician = result.physicians.find(function (physician) { return physician.email === pEmail; });
+                    debugger;
+                    physician = result.physician;
                     if (!physician)
                         throw new Error("Physician not found");
                     return [2 /*return*/, physician];
@@ -210,14 +211,14 @@ function getPatientDB(pId) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
-                    return [4 /*yield*/, fetch("/API/patient/get-patients")];
+                    debugger;
+                    return [4 /*yield*/, fetch("/API/patient/get-patients?patientId=" + pId)];
                 case 1:
                     response = _a.sent();
                     return [4 /*yield*/, response.json()];
                 case 2:
                     result = _a.sent();
-                    debugger;
-                    patient = result.patients.find(function (patient) { return patient._id === pId; });
+                    patient = result.patients;
                     if (!patient)
                         throw new Error("Patient not found");
                     return [2 /*return*/, patient];
@@ -237,14 +238,15 @@ function getPatientName(patientId) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
-                    return [4 /*yield*/, fetch("/API/patient/get-patients")];
+                    return [4 /*yield*/, fetch("/API/patient/get-patients?patientId=" + patientId)];
                 case 1:
                     response = _a.sent();
                     return [4 /*yield*/, response.json()];
                 case 2:
                     data = _a.sent();
-                    patient = data.patients.find(function (patient) { return patient._id === patientId; });
-                    patientName = patient.firstName + " " + patient.lastName;
+                    patient = data.patients;
+                    debugger;
+                    patientName = patient ? patient.firstName + " " + patient.lastName : "patient not found";
                     return [2 /*return*/, patientName];
                 case 3:
                     error_7 = _a.sent();
@@ -262,13 +264,14 @@ function getPhysicianName(physicianId) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
-                    return [4 /*yield*/, fetch("/API/physician/get-physicians")];
+                    debugger;
+                    return [4 /*yield*/, fetch("/API/physician/get-physicians?_id=" + physicianId)];
                 case 1:
                     response = _a.sent();
                     return [4 /*yield*/, response.json()];
                 case 2:
                     data = _a.sent();
-                    physician = data.physicians.find(function (physician) { return physician._id === physicianId; });
+                    physician = data.physician;
                     physicianName = "Dr. " + physician.firstName + " " + physician.lastName;
                     return [2 /*return*/, physicianName];
                 case 3:

@@ -20,11 +20,11 @@ export async function addRelative(req: any, res: any) {
             return res.status(400).send({ error: "Please complete all fields" });
         }
 
-        // Comment out the user check, assuming userEmail is the user's email.
-        // const user = await UserModel.findOne({ email: userEmail });
-        // if (!user) {
-        //     return res.status(404).send({ error: "User not found" });
-        // }
+        
+        const user = await UserModel.findOne({ email: userEmail });
+        if (!user) {
+            return res.status(404).send({ error: "User not found" });
+        }
 
         const newRelative = new RelativeModel({
             fullName,

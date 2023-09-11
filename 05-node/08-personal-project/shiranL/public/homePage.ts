@@ -49,14 +49,25 @@ async function renderAllUsers() {
 }
 function renderUsersList(users) {
     try {
+        //clrear divs 
         const updateUserDiv = document.querySelector("#updateUserDiv") as HTMLDivElement;
-        if (!updateUserDiv) throw new Error("updateUserDiv root not found");
+        const userdetailsDiv = document.querySelector("#userdetailsDiv") as HTMLDivElement;
+        if (!updateUserDiv || !userdetailsDiv) throw new Error("updateUserDiv|userdetailsDiv root not found");
+        updateUserDiv.innerHTML = '';
+        userdetailsDiv.innerHTML = '';
 
+        // Create h1 admin users
+        const h1 = document.createElement('h1');
+        h1.textContent = 'Admin area';
 
-        //create div for select user
+        // Create div for select user
         const selectUserDiv = document.createElement('div');
         selectUserDiv.id = 'selectUserDiv';
         updateUserDiv.appendChild(selectUserDiv);
+
+        // Label for select user    
+        const selectUserLabel = document.createElement('label');
+        selectUserLabel.textContent = 'Select User:';
 
         // Create a select element to choose a user
         const selectUser = document.createElement('select');
@@ -74,29 +85,62 @@ function renderUsersList(users) {
         const updateButton = document.createElement('button');
         updateButton.className = 'updateUserBtn';
         updateButton.textContent = 'Update';
+
+
+        // Append select, update, and delete buttons to updateUserDiv
+        selectUserDiv.appendChild(h1);
+        selectUserDiv.appendChild(selectUserLabel);
+        selectUserDiv.appendChild(selectUser);
+        selectUserDiv.appendChild(updateButton);
      
+
+        // Handle the update button click event
         updateButton.onclick = async () => {
-            debugger;
+            // get the selected user ID from the select element
             const selectUser = document.querySelector('#selectUser') as HTMLSelectElement;
             const selectedUserId = selectUser.value;
-        
+
             // Call a function to open the update user form and populate it with user details
             await openUpdateUserForm(selectedUserId);
         };
 
-        // Create delete button
-        const deleteButton = document.createElement('button');
-        deleteButton.className = 'deleteUserBtn';
-        deleteButton.textContent = 'Delete';
-        //deleteButton.onclick = async () => await handleDeleteUser();
-
-        // Append select and buttons to updateUserDiv
-        selectUserDiv.appendChild(selectUser);
-        selectUserDiv.appendChild(updateButton);
-        selectUserDiv.appendChild(deleteButton);
     } catch (error) {
         console.error(error);
     }
+}
+
+async function handleDeleteUser() {
+    try {
+        // Get the selected user ID from the select element
+        const selectUser = document.querySelector('#selectUser') as HTMLSelectElement;
+        const selectedUserId = selectUser.value;
+
+        // Send a request to delete the user based on the userId
+        const response = await fetch(`API/user/delete-user?userId=${selectedUserId}`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
+
+        const responseData = await response.json();
+
+        if (!responseData.ok) {
+            throw new Error(responseData.message);
+        }
+
+        alert("User deleted successfully");
+        //reload admin area
+        // Close the update user form and potentially refresh the user list
+        const updateUserForm = document.querySelector('#updateUserForm') as HTMLFormElement;
+        updateUserForm.remove();
+        //  refresh the user list here
+        await renderAllUsers();
+
+        // You may want to refresh the user list here
+    } catch (error) {
+        console.error(error);
+    } 
 }
 async function openUpdateUserForm(userId) {
     try {
@@ -109,7 +153,6 @@ async function openUpdateUserForm(userId) {
         });
 
         const data = await response.json();
-debugger
         if (!data.ok) {
             throw new Error(data.message);
         }
@@ -117,42 +160,73 @@ debugger
         const userDetails = data.user; // Assuming the API response contains user details
 
         // Create a form for updating user details
-        const updateUserForm = document.createElement('form');
-        updateUserForm.id = 'updateUserForm';
+       // Create a form for updating user details
+const updateUserForm = document.createElement('form');
+updateUserForm.id = 'updateUserForm';
 
-        // Create input fields for user details
-        const emailInput = document.createElement('input');
-        emailInput.type = 'text';
-        emailInput.name = 'email';
-        emailInput.value = userDetails.email;
+// Create a label and input field for the email
+const emailLabel = document.createElement('label');
+emailLabel.textContent = 'Email:';
+const emailInput = document.createElement('input');
+emailInput.type = 'text';
+emailInput.name = 'email';
+emailInput.value = userDetails.email;
 
-        const passwordInput = document.createElement('input');
-        passwordInput.type = 'password';
-        passwordInput.name = 'password';
-        passwordInput.value = userDetails.password;
+// Create a label and input field for the password
+const passwordLabel = document.createElement('label');
+passwordLabel.textContent = 'Password:';
+const passwordInput = document.createElement('input');
+passwordInput.type = 'password';
+passwordInput.name = 'password';
+passwordInput.value = userDetails.password;
 
-        const isAdminInput = document.createElement('input');
-        isAdminInput.type = 'checkbox';
-        isAdminInput.name = 'isAdmin';
-        isAdminInput.checked = userDetails.isAdmin;
+// Create a label for the isAdmin checkbox
+const isAdminLabel = document.createElement('label');
+isAdminLabel.textContent = 'Is Admin:';
 
-        // Create a submit button to update user details
-        const submitButton = document.createElement('button');
-        submitButton.type = 'submit';
-        submitButton.textContent = 'Update User';
+// Create the isAdmin checkbox
+const isAdminInput = document.createElement('input');
+isAdminInput.type = 'checkbox';
+isAdminInput.name = 'isAdmin';
+isAdminInput.checked = userDetails.isAdmin;
 
-        // Add input fields and submit button to the form
-        updateUserForm.appendChild(emailInput);
-        updateUserForm.appendChild(passwordInput);
-        updateUserForm.appendChild(isAdminInput);
-        updateUserForm.appendChild(submitButton);
+// Create delete user button
+const deleteButton = document.createElement('button');
+deleteButton.className = 'deleteUserBtn';
+deleteButton.textContent = 'Delete';
+deleteButton.onclick = async () => {
+    await handleDeleteUser();
+};  
 
-        // Event handler for updating user details
-        updateUserForm.onsubmit = async (event) => {
+
+// Create a submit button to update user details
+const submitButton = document.createElement('button');
+submitButton.type = 'submit';
+submitButton.textContent = 'Update User';
+
+// Apply CSS to style the form elements
+updateUserForm.style.display = 'flex';
+updateUserForm.style.flexDirection = 'column';
+updateUserForm.style.alignItems = 'flex-start';
+updateUserForm.style.gap = '10px'; // Adjust the spacing as needed
+
+// Append input fields, labels, and submit button to the form
+updateUserForm.appendChild(emailLabel);
+updateUserForm.appendChild(emailInput);
+updateUserForm.appendChild(passwordLabel);
+updateUserForm.appendChild(passwordInput);
+updateUserForm.appendChild(isAdminLabel);
+updateUserForm.appendChild(isAdminInput);
+updateUserForm.appendChild(deleteButton);
+updateUserForm.appendChild(submitButton);
+
+
+// Event handler for updating user details
+    updateUserForm.onsubmit = async (event) => {
             event.preventDefault();
 
             // Get updated user details from the form
-            const updatedUser = {
+        const updatedUser = {
                 newEmail: emailInput.value,
                 newPassword: passwordInput.value,
                 isAdmin: isAdminInput.checked,
@@ -175,18 +249,10 @@ debugger
 
             alert("User details updated successfully");
 
-            // clean the updateUserDiv
-            debugger
-            const selectUserDiv = document.querySelector("#selectUserDiv") as HTMLDivElement;
-            const userdetailsDiv= document.querySelector("#userdetailsDiv") as HTMLDivElement;
-            if (!selectUserDiv || !userdetailsDiv) throw new Error("selectUserDiv|userdetailsDiv root not found");
-            selectUserDiv.innerHTML = '';
-            userdetailsDiv.innerHTML = '';  
-            
-
             // Close the update user form and potentially refresh the user list
             updateUserForm.remove();
-            // You may want to refresh the user list here
+            //  refresh the user list here
+            await renderAllUsers();
         };
 
         // Append the form to the userdetailsDiv
@@ -212,11 +278,8 @@ async function renderHelloUser() {
         helloUser.innerHTML = `Hello ${logInUser.email}`;
         // if user isAdmin create button to show all users and can updte admin
         if (logInUser.isAdmin) {
-            const showAllUsersButton = document.createElement('button');
-            showAllUsersButton.className = 'showAllUsersBtn';
-            showAllUsersButton.textContent = 'Show All Users';
-            showAllUsersButton.onclick = async () => await renderAllUsers();
-            updateUserDiv.appendChild(showAllUsersButton);
+            await renderAllUsers();
+          
         }   
        
     } catch (error) {

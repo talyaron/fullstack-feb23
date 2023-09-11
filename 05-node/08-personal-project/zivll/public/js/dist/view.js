@@ -57,7 +57,7 @@ function renderExpenceCalculator() {
                     expensesRoots = document.querySelector("#expenses-calculators");
                     if (!expensesRoots)
                         throw new Error("expensesRoots not found");
-                    expensesRoots.innerHTML = " <h3>\u05D4\u05D5\u05E6\u05D0\u05D5\u05EA \u05D7\u05D5\u05D3\u05E9\u05D9\u05D5\u05EA</h3>\n    <div class=\"user-box\">\n      <input\n        type=\"text\"\n        name=\"expenseName\"\n        id=\"expenseName\" required\n      />\n      <label for=\"expenseName\">\u05E9\u05DD \u05D4\u05D4\u05D5\u05E6\u05D0\u05D4:</label>\n    </div>\n    <div class=\"user-box\">\n      <label for=\"categories\"\n        >\u05DE\u05D4 \u05D4\u05E7\u05D8\u05D2\u05D5\u05E8\u05D9\u05D4 \u05D4\u05DE\u05EA\u05D0\u05D9\u05DE\u05D4 \u05E2\u05D1\u05D5\u05E8 \u05D4\u05D4\u05D5\u05E6\u05D0\u05D4 \u05E9\u05DC\u05DA?</label\n      >\n      <select name=\"categoryName\" id=\"categories\">\n      <option value=\"\" disabled selected>\u05D1\u05D7\u05E8/\u05D9 \u05D0\u05EA \u05D4\u05E7\u05D8\u05D2\u05D5\u05E8\u05D9\u05D4</option>\n      " + categoriesHtml + "\n      </select>\n    </div>\n    <div class=\"user-box\">\n      <input\n        type=\"number\"\n        name=\"expenseAmount\"\n        id=\"expenseAmount\" required \n      />\n      <label for=\"expenseAmount\">\u05DE\u05D4 \u05E1\u05DB\u05D5\u05DD \u05D4\u05D4\u05D5\u05E6\u05D0\u05D4 \u05E9\u05DC\u05DA?</label>\n    </div>\n    \n    <input type=\"submit\" value=\"\u05D4\u05D5\u05E1\u05E3\" />";
+                    expensesRoots.innerHTML = " <h3>\u05D4\u05D5\u05E6\u05D0\u05D5\u05EA \u05D7\u05D5\u05D3\u05E9\u05D9\u05D5\u05EA</h3>\n    <div class=\"user-box\">\n      <input\n        type=\"text\"\n        name=\"expenseName\"\n        id=\"expenseName\" required\n      />\n      <label for=\"expenseName\">\u05E9\u05DD \u05D4\u05D4\u05D5\u05E6\u05D0\u05D4:</label>\n    </div>\n    <div class=\"user-box\">\n      <label for=\"categories\"\n        >\u05DE\u05D4 \u05D4\u05E7\u05D8\u05D2\u05D5\u05E8\u05D9\u05D4 \u05D4\u05DE\u05EA\u05D0\u05D9\u05DE\u05D4 \u05E2\u05D1\u05D5\u05E8 \u05D4\u05D4\u05D5\u05E6\u05D0\u05D4 \u05E9\u05DC\u05DA?</label\n      >\n      <select name=\"categoryName\" id=\"categories\">\n      <option value=\"\" disabled selected>\u05D1\u05D7\u05E8/\u05D9 \u05D0\u05EA \u05D4\u05E7\u05D8\u05D2\u05D5\u05E8\u05D9\u05D4</option>\n      " + categoriesHtml + "\n      </select> <a href=\"\" onclick=\"addCategory(event)\" class=\"regular\">\u05D4\u05D5\u05E1\u05E4\u05EA \u05E7\u05D8\u05D2\u05D5\u05E8\u05D9\u05D4 \u05D7\u05D3\u05E9\u05D4</a>\n    </div>\n    <div class=\"user-box\">\n      <input\n        type=\"number\"\n        name=\"expenseAmount\"\n        id=\"expenseAmount\" required \n      />\n      <label for=\"expenseAmount\">\u05DE\u05D4 \u05E1\u05DB\u05D5\u05DD \u05D4\u05D4\u05D5\u05E6\u05D0\u05D4 \u05E9\u05DC\u05DA?</label>\n    </div>\n    \n    <input type=\"submit\" value=\"\u05D4\u05D5\u05E1\u05E3\" />";
                     return [3 /*break*/, 4];
                 case 3:
                     error_1 = _a.sent();
@@ -94,7 +94,6 @@ function renderExpencesTable() {
                     fillterdCategories.forEach(function (category) {
                         // console.log(userCategories);
                         var html = document.querySelector("#id-" + getCategoryId(category));
-                        console.log(html);
                         if (!html)
                             throw new Error("html not found");
                         expenses.forEach(function (expense) {
@@ -114,31 +113,16 @@ function renderExpencesTable() {
     });
 }
 // this function is used to render the result area
-function renderResult(htmlElemnet, expense) {
-    return __awaiter(this, void 0, void 0, function () {
-        var userIncome, error_3;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    _a.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, getUserIncomeFromDB()];
-                case 1:
-                    userIncome = _a.sent();
-                    if (userIncome !== null || undefined)
-                        htmlElemnet.innerHTML = userIncome + "&#8362;";
-                    if (userIncome.message === "0")
-                        htmlElemnet.innerHTML = "0" + "&#8362;";
-                    if (expense)
-                        htmlElemnet.innerHTML = expense + "&#8362;";
-                    if (!htmlElemnet)
-                        throw new Error("htmlElemnet not found");
-                    return [3 /*break*/, 3];
-                case 2:
-                    error_3 = _a.sent();
-                    console.error(error_3);
-                    return [3 /*break*/, 3];
-                case 3: return [2 /*return*/];
-            }
-        });
-    });
-}
+// async function renderResult(htmlElemnet: Element, expense?: number) {
+//   try {
+//     // const userIncome = await getUserIncomeFromDB();
+//     // if (userIncome !== null || undefined)
+//     //   htmlElemnet.innerHTML = `${userIncome}&#8362;`;
+//     // if (userIncome.message === "0") htmlElemnet.innerHTML = `${"0"}&#8362;`;
+//     // if (expense) htmlElemnet.innerHTML = `${expense}&#8362;`;
+//     // if (!htmlElemnet) throw new Error(`htmlElemnet not found`);
+//     calculateBalance();
+//   } catch (error) {
+//     console.error(error);
+//   }
+// }

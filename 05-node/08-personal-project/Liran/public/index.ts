@@ -1,20 +1,15 @@
 async function hundleLogin(event) {
     try {
         event.preventDefault();
-        debugger;
         const email = event.target.email.value;
         const password = event.target.password.value;
         const admin = event.target.admin.checked;
         if (!email || !password) throw new Error("missing some details");
-        const response = await fetch("API/physician/get-physicians", {
-            method: "GET",
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
+        const response = await fetch(`API/physician/get-physicians-login?email=${email}&password=${password}`)
         const data = await response.json();
         console.log(data.physicians);
-        const physician: Physician = data.physicians.find(physician => physician.email === email && physician.password === password);
+        const physician = data.physician;
+        debugger;
         if (!physician) {
             alert("email or password are incorrect");
             throw new Error("email or password are incorrect");

@@ -1,5 +1,5 @@
-import { Schema,model } from "mongoose";
-import { User } from "../users/userModels";
+import { Schema, model } from "mongoose";
+import { User, UserSchema } from "../users/userModels";
 
 export enum PictureArea {
     north = "צפון",
@@ -40,7 +40,6 @@ export const usersPictures: UserPicture[] = []
 export const tags: string[] = ['ים', 'מדבר', 'צבי', 'מעיין']
 
 export const PictureSchema = new Schema({
-    // publishDate: String,
     title: String,
     imgUrl: String,
     location: String,
@@ -48,13 +47,16 @@ export const PictureSchema = new Schema({
     area: {
         type: String,
         enum: [PictureArea]
-    }
-})
-
-PictureSchema.methods.publishDate =  new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString('en-US', {
-    hour12: false,
-    hour: "numeric",
-    minute: "numeric"
+    },
+    publishDate: String,
+    email: String
 })
 
 export const PictureModel = model("pictures", PictureSchema)
+
+// export const UserPictureSchema = new Schema({
+//     user: {type:Schema.ObjectId, ref:'users'},
+//     picture: {type:Schema.ObjectId, ref:'pictures'}
+// })
+
+// export const UserPictureModel = model("usersPictures", UserPictureSchema)

@@ -59,7 +59,7 @@ function getRelativesFromServer(email) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
-                    return [4 /*yield*/, fetch("/API/users/get-user-relatives?email=" + email)];
+                    return [4 /*yield*/, fetch("/API/relatives/get-user-relatives?email=" + email)];
                 case 1:
                     response = _a.sent();
                     return [4 /*yield*/, response.json()];
@@ -104,11 +104,11 @@ function handleGetRelatives() {
 // Function to add a relative for a user
 function handleAddRelative(event) {
     return __awaiter(this, void 0, void 0, function () {
-        var email, fullName, birthDate, country, relationSelect, selectedRelation, newRelative, response, relatives, error_3;
+        var email, fullName, birthDate, country, relationshipSelect, selectedRelationship, newRelative, response, relatives, error_3;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    _a.trys.push([0, 3, , 4]);
+                    _a.trys.push([0, 4, , 5]);
                     event.preventDefault();
                     email = getEmailFromQuery();
                     if (!email)
@@ -116,16 +116,16 @@ function handleAddRelative(event) {
                     fullName = event.target.elements.fullName.value;
                     birthDate = event.target.elements.birthDate.value;
                     country = event.target.elements.country.value;
-                    relationSelect = document.getElementById('relation');
-                    selectedRelation = relationSelect.value;
-                    if (!fullName || !birthDate || !country || selectedRelation === RelationshipType.choose) {
+                    relationshipSelect = document.getElementById('relation');
+                    selectedRelationship = relationshipSelect.value;
+                    if (!fullName || !birthDate || !country || selectedRelationship === RelationshipType.choose) {
                         throw new Error("Please complete all fields and select a valid relation");
                     }
                     newRelative = {
                         fullName: fullName,
                         birthDate: birthDate,
                         country: country,
-                        relation: selectedRelation,
+                        relationship: selectedRelationship,
                         userEmail: email
                     };
                     return [4 /*yield*/, fetch('/API/relatives/add-relative', {
@@ -144,13 +144,15 @@ function handleAddRelative(event) {
                 case 2:
                     relatives = (_a.sent()).relatives;
                     console.log(relatives);
-                    renderRelatives(relatives, document.querySelector("#relatives"));
-                    return [3 /*break*/, 4];
+                    return [4 /*yield*/, handleGetRelatives()];
                 case 3:
+                    _a.sent();
+                    return [3 /*break*/, 5];
+                case 4:
                     error_3 = _a.sent();
                     console.error(error_3);
-                    return [3 /*break*/, 4];
-                case 4: return [2 /*return*/];
+                    return [3 /*break*/, 5];
+                case 5: return [2 /*return*/];
             }
         });
     });

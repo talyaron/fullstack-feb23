@@ -42,7 +42,6 @@ async function handleAccordionClick() {
   //   await getUserIncomeFromDB();
   await renderExpencesTable();
   const accordion = document.querySelectorAll(`.thead`);
-  console.log(accordion);
 
   // this method will take care the accordion functionality
   accordion.forEach((head) => {
@@ -93,7 +92,6 @@ async function addIncomeToDB(userName: string, userIncome: string) {
       body: JSON.stringify({ userName: userName, userIncome: userIncome }),
     });
     const result = await response.json();
-    console.log(result);
     calculateBalance();
   } catch (error) {
     console.error(error);
@@ -131,7 +129,6 @@ async function handleExpenceSubmit(ev) {
     // renderResult(resultRoot, expenseAmount.toString());
     // loadDataToLocalStorage()
     ev.target.reset();
-    console.log(ev);
   } catch (error) {
     console.error(error);
   }
@@ -179,7 +176,6 @@ async function getExpensesFromDB() {
     const allExpenses = await response.json();
     const ExpensesByUserName = sortExpensesByUserName(allExpenses);
     expenses = [...ExpensesByUserName];
-    console.log(expenses);
 
     return expenses;
   } catch (error) {
@@ -198,9 +194,14 @@ async function deleteExpense(ev) {
     });
 
     const result = await response.json();
-    console.log(result);
-    renderExpencesTable();
+    await getExpensesFromDB();
+    await getCategoriesFromDB();
+    getUserIncomeFromDB();
+    handleAccordionClick();
     calculateBalance();
+    renderExpenceCalculator();
+    renderExpencesTable();
+    // window.location.reload();
   } catch (error) {
     console.error(error);
   }
@@ -225,10 +226,13 @@ async function editExpense(ev) {
       body: JSON.stringify({ _id: _id, name: name, amount: amount }),
     });
     const result = await resposne.json();
-    console.log(result);
-
-    renderExpencesTable();
+    await getExpensesFromDB();
+    await getCategoriesFromDB();
+    getUserIncomeFromDB();
+    handleAccordionClick();
     calculateBalance();
+    renderExpenceCalculator();
+    renderExpencesTable();
     // window.location.reload();
   } catch (error) {
     console.error(error);
@@ -303,8 +307,12 @@ async function sortByCategory() {
 }
 
 // this function is used to check and add new category
-async function addCategory(newCategory: string) {
+async function addCategory(event: any) {
   try {
+    event.preventDefault();
+    console.dir(event);
+
+    const newCategory = prompt("מה שם הקטגוריה החדשה?");
     const urlParams = new URLSearchParams(window.location.search);
     const userNameFromUrl = urlParams.get("userName");
     const response = await fetch("/API/category/add-category", {
@@ -316,7 +324,13 @@ async function addCategory(newCategory: string) {
       }),
     });
     const result = await response.json();
-    console.log(result);
+    await getExpensesFromDB();
+    await getCategoriesFromDB();
+    getUserIncomeFromDB();
+    handleAccordionClick();
+    calculateBalance();
+    renderExpenceCalculator();
+    renderExpencesTable();
   } catch (error) {
     console.error(error);
   }
@@ -332,13 +346,18 @@ async function calculateTotalExpense() {
   expenses.forEach((expense) => {
     totalExpence += Number(expense.expenseAmount);
   });
-  renderResult(resultRoot, totalExpence);
+  //   renderResult(resultRoot, totalExpence);
+  //   calculateBalance();
+  //   renderExpenceCalculator();
+  //   renderExpencesTable();
   return totalExpence;
 }
 
 // this function calculates the balance
 async function calculateBalance() {
+   
   try {
+    console.log("calculateBalance")
     const balanceRoot = document.querySelector(`.total-number--balance`);
     const incomeRoot = document.querySelector(`.total-number--income`);
     const expenseRoot = document.querySelector(`.total-number--expense`);
@@ -369,9 +388,9 @@ window.onload = async () => {
   await getCategoriesFromDB();
   getUserIncomeFromDB();
   handleAccordionClick();
+  calculateBalance();
   renderExpenceCalculator();
   renderExpencesTable();
-  calculateBalance();
   //   renderResult(resultRoot, userIncome);
 };
 function ExportToExcel(type, fn, dl) {
@@ -424,7 +443,7 @@ async function checkUser() {
   try {
     const urlParams = new URLSearchParams(window.location.search);
     const userName = urlParams.get("userName");
-    console.log(userName);
+
     if (!userName || userName === undefined) {
       window.location.href = "/register.html";
     }
@@ -436,7 +455,7 @@ async function checkUser() {
       body: JSON.stringify({ userName: userName }),
     });
     const result = await response.json();
-    console.log(result);
+
     // if (result.message === "user exist") {
     //   window.location.href = `/index.html?userName=${userName}`;
     // }
@@ -444,7 +463,6 @@ async function checkUser() {
     //   alert("user does not exist, please register");
     //   window.location.href = "/register.html";
     // }
-    console.log(result.message);
 
     if (result.message === "user does not exist") {
       alert("user does not exist, please register");
