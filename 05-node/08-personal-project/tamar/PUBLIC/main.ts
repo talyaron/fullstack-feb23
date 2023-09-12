@@ -149,8 +149,15 @@ function renderRecipe(recipe: Recipe) {
                         <img src='${recipe.urlImg}'>
                         <br>
                         <button onclick="hendelDeleteRecipe('${recipe._id}')">Delet Recipe</button>
-                        <button onclick="renderUpdateForm('${recipeJson}', document.querySelector('#updateRecipe'))">Update Recipe</button>
-                        <div id="updateRecipe"></div>
+                        <button onclick="renderUpdateForm('${recipeJson}')">Update Recipe</button>
+                        <div class="Recipe_update">
+                            <form id="recipe_update" onsubmit="hendlUpdateRecipe(event,'${recipe._id}')">
+                                <input type="text" name="title" placeholder="${recipe.title}">
+                                <textarea  type="text" rows="20" cols="30" name="description" placeholder="${recipe.description}"></textarea>
+                                <input type="url" name="imgUrl" placeholder="${recipe.urlImg}">
+                                <button type="submit">Update Recipe now</button>
+                            </form>
+                        </div>
                       </div>`
         return html;
     } catch (error) {
@@ -177,27 +184,6 @@ function renderRecipes(recipes: Recipe[], root: HTMLDivElement) {
         console.error(error);
         return "";
     }
-}
-
-function renderUpdateForm(recipeJSON:string, DivEl: HTMLDivElement) {
-    try {
-        console.log("recipeJSON in renderUpdateForm:", recipeJSON)
-        if (!DivEl || !recipeJSON) throw new Error("no div element or recipe");
-
-        const recipe = JSON.parse(recipeJSON); // Parse the JSON string to get the recipe object
-        console.log(recipe); // Now you should see the recipe object correctly
-
-        const html = `<form id="recipe_update" onsubmit="hendlUpdateRecipe(event,'${recipe._id}')">
-                        <input type="text" name="title" placeholder="${recipe.title}">
-                        <textarea  type="text" rows="20" cols="30" name="description" placeholder="${recipe.description}"></textarea>
-                        <input type="url" name="imgUrl" placeholder="${recipe.urlImg}">
-                        <button type="submit">Update Recipe now</button>
-                      </form>`
-        DivEl.innerHTML = html;
-    } catch (error) {
-        console.error(error)
-    }
-
 }
 
 //controllers

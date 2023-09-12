@@ -211,7 +211,7 @@ function renderRecipe(recipe) {
         console.log("recipeJson in renderRecipe:", recipeJson);
         if (recipeJson === "")
             throw new Error("the resipeJson string is empty");
-        var html = "<div class=\"recipe\">\n                        <h3>" + recipe.title + "</h3>\n                        <br>\n                        <p>" + recipe.description + "</p>\n                        <img src='" + recipe.urlImg + "'>\n                        <br>\n                        <button onclick=\"hendelDeleteRecipe('" + recipe._id + "')\">Delet Recipe</button>\n                        <button onclick=\"renderUpdateForm('" + recipeJson + "', document.querySelector('#updateRecipe'))\">Update Recipe</button>\n                        <div id=\"updateRecipe\"></div>\n                      </div>";
+        var html = "<div class=\"recipe\">\n                        <h3>" + recipe.title + "</h3>\n                        <br>\n                        <p>" + recipe.description + "</p>\n                        <img src='" + recipe.urlImg + "'>\n                        <br>\n                        <button onclick=\"hendelDeleteRecipe('" + recipe._id + "')\">Delet Recipe</button>\n                        <button onclick=\"renderUpdateForm('" + recipeJson + "')\">Update Recipe</button>\n                        <div class=\"Recipe_update\">\n                            <form id=\"recipe_update\" onsubmit=\"hendlUpdateRecipe(event,'" + recipe._id + "')\">\n                                <input type=\"text\" name=\"title\" placeholder=\"" + recipe.title + "\">\n                                <textarea  type=\"text\" rows=\"20\" cols=\"30\" name=\"description\" placeholder=\"" + recipe.description + "\"></textarea>\n                                <input type=\"url\" name=\"imgUrl\" placeholder=\"" + recipe.urlImg + "\">\n                                <button type=\"submit\">Update Recipe now</button>\n                            </form>\n                        </div>\n                      </div>";
         return html;
     }
     catch (error) {
@@ -234,20 +234,6 @@ function renderRecipes(recipes, root) {
     catch (error) {
         console.error(error);
         return "";
-    }
-}
-function renderUpdateForm(recipeJSON, DivEl) {
-    try {
-        console.log("recipeJSON in renderUpdateForm:", recipeJSON);
-        if (!DivEl || !recipeJSON)
-            throw new Error("no div element or recipe");
-        var recipe = JSON.parse(recipeJSON); // Parse the JSON string to get the recipe object
-        console.log(recipe); // Now you should see the recipe object correctly
-        var html = "<form id=\"recipe_update\" onsubmit=\"hendlUpdateRecipe(event,'" + recipe._id + "')\">\n                        <input type=\"text\" name=\"title\" placeholder=\"" + recipe.title + "\">\n                        <textarea  type=\"text\" rows=\"20\" cols=\"30\" name=\"description\" placeholder=\"" + recipe.description + "\"></textarea>\n                        <input type=\"url\" name=\"imgUrl\" placeholder=\"" + recipe.urlImg + "\">\n                        <button type=\"submit\">Update Recipe now</button>\n                      </form>";
-        DivEl.innerHTML = html;
-    }
-    catch (error) {
-        console.error(error);
     }
 }
 //controllers
