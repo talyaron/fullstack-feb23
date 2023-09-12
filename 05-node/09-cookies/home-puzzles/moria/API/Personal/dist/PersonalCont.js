@@ -36,55 +36,65 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.login = exports.registerUser = void 0;
-var userModel_1 = require("./userModel");
-exports.registerUser = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var _a, name, email_1, password, date, user, userDB, userExist, error_1;
-    return __generator(this, function (_b) {
-        switch (_b.label) {
+exports.getUserName = exports.getUserAppointments = exports.getAppointment = void 0;
+var userModel_1 = require("../user2/userModel");
+var PersonalModel_1 = require("./PersonalModel");
+exports.getAppointment = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var appointment, field, doctor, date, currentAppointment, currentAppointmentDB, error_1;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
             case 0:
-                _b.trys.push([0, 2, , 3]);
-                _a = req.body, name = _a.name, email_1 = _a.email, password = _a.password, date = _a.date;
-                if (!email_1 || !password || !name || !date)
-                    throw new Error("Please complete all fields");
-                user = new userModel_1.UserModel({ name: name, email: email_1, password: password, date: date });
-                return [4 /*yield*/, user.save()];
+                _a.trys.push([0, 2, , 3]);
+                appointment = req.body;
+                field = appointment.field;
+                doctor = appointment.doctor;
+                date = appointment.date;
+                currentAppointment = new PersonalModel_1.PersonalModel({ field: field, doctor: doctor, date: date });
+                return [4 /*yield*/, currentAppointment.save()];
             case 1:
-                userDB = _b.sent();
-                console.log(userDB);
-                userExist = userModel_1.users.find(function (user) { return user.email === email_1; });
-                if (userExist) {
-                    throw new Error("This email address already exist");
-                }
-                res.send({ ok: true, userDB: userDB });
+                currentAppointmentDB = _a.sent();
                 return [3 /*break*/, 3];
             case 2:
-                error_1 = _b.sent();
-                console.error(error_1.message);
+                error_1 = _a.sent();
+                console.error(error_1.massage);
                 return [3 /*break*/, 3];
             case 3: return [2 /*return*/];
         }
     });
 }); };
-exports.login = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var _a, email, password, user, error_2;
-    return __generator(this, function (_b) {
-        switch (_b.label) {
+exports.getUserAppointments = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var PersonalsDB, error_2;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
             case 0:
-                _b.trys.push([0, 2, , 3]);
-                _a = req.body, email = _a.email, password = _a.password;
-                if (!(userModel_1.UserModel.exists({ email: email })))
-                    throw new Error("user dont excist");
-                return [4 /*yield*/, userModel_1.UserModel.findOne({ email: email, password: password }).exec()];
+                _a.trys.push([0, 2, , 3]);
+                return [4 /*yield*/, PersonalModel_1.PersonalModel.find({})];
             case 1:
-                user = _b.sent();
-                if (!user)
-                    throw new Error("Some of details are incorrect");
-                res.send(user);
+                PersonalsDB = _a.sent();
+                res.send({ appointments: PersonalsDB });
                 return [3 /*break*/, 3];
             case 2:
-                error_2 = _b.sent();
-                console.error(error_2.message);
+                error_2 = _a.sent();
+                console.error(error_2);
+                return [3 /*break*/, 3];
+            case 3: return [2 /*return*/];
+        }
+    });
+}); };
+exports.getUserName = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var UserNameDB, error_3;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                _a.trys.push([0, 2, , 3]);
+                return [4 /*yield*/, userModel_1.UserModel.find({})];
+            case 1:
+                UserNameDB = _a.sent();
+                res.send({ users: UserNameDB });
+                return [3 /*break*/, 3];
+            case 2:
+                error_3 = _a.sent();
+                console.error(error_3);
                 return [3 /*break*/, 3];
             case 3: return [2 /*return*/];
         }
