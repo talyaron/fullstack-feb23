@@ -39,28 +39,23 @@ exports.__esModule = true;
 exports.login = exports.registerUser = void 0;
 var userModel_1 = require("./userModel");
 exports.registerUser = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var _a, name, email_1, password, date, user, userDB, userExist, error_1;
+    var _a, email, password, user, userDB, error_1;
     return __generator(this, function (_b) {
         switch (_b.label) {
             case 0:
                 _b.trys.push([0, 2, , 3]);
-                _a = req.body, name = _a.name, email_1 = _a.email, password = _a.password, date = _a.date;
-                if (!email_1 || !password || !name || !date)
-                    throw new Error("Please complete all fields");
-                user = new userModel_1.UserModel({ name: name, email: email_1, password: password, date: date });
+                _a = req.body, email = _a.email, password = _a.password;
+                if (!email || !password)
+                    throw new Error("Please fill all fields");
+                user = new userModel_1.UserModel({ email: email, password: password });
                 return [4 /*yield*/, user.save()];
             case 1:
                 userDB = _b.sent();
-                console.log(userDB);
-                userExist = userModel_1.users.find(function (user) { return user.email === email_1; });
-                if (userExist) {
-                    throw new Error("This email address already exist");
-                }
-                res.send({ ok: true, userDB: userDB });
+                res.send({ userDB: userDB });
                 return [3 /*break*/, 3];
             case 2:
                 error_1 = _b.sent();
-                console.error(error_1.message);
+                console.error(error_1);
                 return [3 /*break*/, 3];
             case 3: return [2 /*return*/];
         }
@@ -73,18 +68,27 @@ exports.login = function (req, res) { return __awaiter(void 0, void 0, void 0, f
             case 0:
                 _b.trys.push([0, 2, , 3]);
                 _a = req.body, email = _a.email, password = _a.password;
-                if (!(userModel_1.UserModel.exists({ email: email })))
-                    throw new Error("user dont excist");
-                return [4 /*yield*/, userModel_1.UserModel.findOne({ email: email, password: password }).exec()];
+                if (!email || !password)
+                    throw new Error("Please fill all fields");
+                return [4 /*yield*/, userModel_1.UserModel.findOne({ email: email })];
             case 1:
                 user = _b.sent();
-                if (!user)
-                    throw new Error("Some of details are incorrect");
-                res.send(user);
+                if (!user) {
+                    return [2 /*return*/, res.status(401).json({ error: "User not found" })];
+                }
+                if (password === user.password) {
+                    // Passwords match; user is authenticated
+                    return [2 /*return*/, res.json({ ok: true, email: user.email })];
+                }
+                else {
+                    // Passwords do not match
+                    return [2 /*return*/, res.status(401).json({ error: "Invalid credentials" })];
+                }
                 return [3 /*break*/, 3];
             case 2:
                 error_2 = _b.sent();
-                console.error(error_2.message);
+                console.error(error_2);
+                res.status(500).json({ error: "Server error" });
                 return [3 /*break*/, 3];
             case 3: return [2 /*return*/];
         }

@@ -1,18 +1,21 @@
 html {
-    background-color: rgb(7, 131, 169);
+    background-image: url("https://img.freepik.com/premium-photo/tree-life_780593-3699.jpg?size=626&ext=jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    @media (max-width:900px) {
+        background-image: url("https://img.freepik.com/premium-photo/tree-life_780593-3699.jpg?size=626&ext=jpg");
+        background-repeat: repeat-y;
+     
     
+    }
 
 body {
-    color: white;
+    color: rgb(6, 100, 45);
     text-align: center;
     margin: 3rem;
     font-family: "Quicksand", sans-serif;
     font-size: 17px;
-
-    img {
-        margin: 1rem;
-        width: 250px;
-    }
 
     form {
         display: flex;
@@ -24,16 +27,16 @@ body {
             margin-bottom: .5rem;
             height: 25px;
             border: 2px solid rgb(39, 84, 100);
-        }
 
-        select {
-            height: 30px;
         }
+        
 
         label {
             margin: .2rem;
             font-size: 18px;
         }
+
+      
 
     }
 }
