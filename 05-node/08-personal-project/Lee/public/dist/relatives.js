@@ -49,7 +49,7 @@ var RelationType;
     RelationType["cousin"] = "Cousin";
     RelationType["niece"] = "Niece";
     RelationType["nephew"] = "Nephew";
-    RelationType["other"] = "other";
+    RelationType["other"] = "Other";
 })(RelationType || (RelationType = {}));
 // Function to get user's relatives from the server
 function getRelativesFromServer(email) {
