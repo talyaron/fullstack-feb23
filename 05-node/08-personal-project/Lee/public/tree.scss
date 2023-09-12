@@ -2,6 +2,14 @@ html {
     background-image: url("https://img.freepik.com/premium-photo/tree-life_780593-3699.jpg?size=626&ext=jpg");
     background-repeat: no-repeat;
     background-size: cover;
+
+    @media (max-width:900px) {
+        background-image: url("https://img.freepik.com/premium-photo/tree-life_780593-3699.jpg?size=626&ext=jpg");
+        background-repeat: repeat-y;
+     
+    
+    }
+
 body {
     color: rgb(6, 100, 45);
     text-align: center;
