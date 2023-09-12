@@ -10,7 +10,7 @@ body {
         margin: auto;
 
         /* Style for the form wrapper */
-        form{
+        form {
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -21,6 +21,7 @@ body {
             background-color: #0c8c9f5f;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
             text-align: center;
+
             /* Style for the form elements */
             input {
                 display: block;
@@ -32,11 +33,11 @@ body {
                 font-weight: bold;
                 color: #333;
                 background-color: #ffff;
-                border:none;
+                border: none;
                 border-radius: 4px;
                 box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.1);
                 transition: border-color 0.3s ease;
-                
+
                 &:focus {
                     outline: none;
                     border-color: #06a0ab;
@@ -61,7 +62,10 @@ body {
             }
 
 
+
+
         }
+
         /* Style for buttons */
         button {
             display: inline-block;
@@ -92,17 +96,14 @@ body {
     h1 {
         font-family: 'Roboto', sans-serif;
         font-size: 4rem;
-        /* Adjust the font size to your liking */
-        color: #333;
-        /* Set the text color */
+        // color: #333;
+        background-clip: text;
+        background: -webkit-linear-gradient(#f6f6f6, #0048ff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
         text-align: center;
-        /* Center-align the text */
         letter-spacing: 2px;
-        /* Add letter spacing for a decorative effect */
         text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-        /* Add a subtle text shadow for depth */
-
-        /* Add a decorative underline using a pseudo-element */
         position: relative;
     }
 

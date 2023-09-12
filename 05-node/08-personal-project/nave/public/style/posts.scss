@@ -1,0 +1,131 @@
+$font-family: 'Assistant', sans-serif;
+$font-size-heading: 2em;
+$font-size-sub-heading: 1.3em;
+$font-size-text: 1.0em;
+$color-site-red: #FF4F5A;
+$color-site-black:#000000 ;
+$color-site-white: #ffff;
+body {
+    font-family: $font-family;
+    background-color: $color-site-white;
+    margin: 0;
+    padding: 0;
+}
+h1, h2 {
+    text-align: center;
+    color: $color-site-black; /* צבע כותרות */
+}
+
+a {
+    display: block;
+    margin: 10px;
+    text-align: center;
+    color: $color-site-red; /* צבע קישורים */
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* סגנון לטופס הוספת פוסט */
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 30vw;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: $color-site-white; /* צבע רקע טופס */
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+input[type="text"],
+input[type="url"] {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid $color-site-red; /* גבולות השדות */
+    border-radius: 5px;
+}
+
+button[type="submit"] {
+    background-color: $color-site-red; /* צבע רקע כפתור הוספה */
+    color: $color-site-white; /* צבע טקסט כפתור הוספה */
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background-color: darken($color-site-red, 10%); /* צבע רקע כפתור הוספה בעת היעברות */
+}
+
+button[type="submit"]:focus {
+    outline: none;
+}
+.list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* מגריל עמודות עם רוחב מינימלי של 300px ומצויין במידת הצורך */
+    grid-gap: 20px; /* מרווח בין הפוסטים */
+    margin: 10px;
+    justify-content: space-evenly;
+}
+
+/* סגנון לפוסטים */
+.post {
+    background-color: #ffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    text-align: center;
+    padding: 10px;
+}
+
+/* סגנון לתמונה בפוסט */
+.post img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* סגנון לכותרת בפוסט */
+.post h2 {
+    font-size: 1.5rem;
+    margin: 10px 0;
+    color: $color-site-red;
+    font-family: $font-family;
+    font-size: $font-size-heading;
+}
+
+/* סגנון לקטגוריה בפוסט */
+.post p {
+    color: $color-site-black;
+    margin: 5px 0;
+    font-family: $font-family;
+    font-size: $font-size-sub-heading;
+    color: $color-site-black;
+
+}
+
+/* סגנון לכפתורי עריכה ומחיקה בפוסט */
+.post .buttons button {
+    padding: 5px 10px;
+    background-color: $color-site-red;
+    color: $color-site-white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.post .buttons button:hover {
+    background-color: darken($color-site-red, 10%); /* הצזיזו את הצבע האדום לגוון כהה יותר בעת ההיעברות */
+}
+
+/* CSS עבור מסך מובייל - פוסט אחד בשורה */
+@media (max-width: 768px) {
+    .post {
+        flex-basis: 100%; /* פוסט אחד בשורה במובייל */
+    }
+}

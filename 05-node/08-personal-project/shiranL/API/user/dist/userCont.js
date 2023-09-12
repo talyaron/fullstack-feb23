@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.logOut = exports.getLoggedInUser = exports.logIn = exports.addUser = void 0;
+exports.deleteUser = exports.updateUser = exports.getUserDetails = exports.allUsers = exports.logOut = exports.getLoggedInUser = exports.logIn = exports.addUser = void 0;
 var userModel_1 = require("./userModel");
 exports.addUser = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var _a, email, password, existingUser, user, userDB, error_1;
@@ -90,11 +90,9 @@ exports.logIn = function (req, res) { return __awaiter(void 0, void 0, void 0, f
                     // Passwords don't match, return an error response
                     return [2 /*return*/, res.status(401).json({ error: "Incorrect password" })];
                 }
-                // make all other users logOut
                 // Log out all other users by setting their 'isLogOn' property to 'false'
                 return [4 /*yield*/, userModel_1.UserModel.updateMany({ _id: { $ne: existingUser._id } }, { isLoggedIn: false })];
             case 2:
-                // make all other users logOut
                 // Log out all other users by setting their 'isLogOn' property to 'false'
                 _b.sent();
                 existingUser.isLoggedIn = true;
@@ -150,6 +148,115 @@ exports.logOut = function (req, res) { return __awaiter(void 0, void 0, void 0, 
                 error_4 = _a.sent();
                 console.error(error_4);
                 res.send({ error: error_4.message });
+                return [3 /*break*/, 3];
+            case 3: return [2 /*return*/];
+        }
+    });
+}); };
+exports.allUsers = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var allUsers_1, error_5;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                _a.trys.push([0, 2, , 3]);
+                return [4 /*yield*/, userModel_1.UserModel.find({})];
+            case 1:
+                allUsers_1 = _a.sent();
+                // Return the list of not admin users as a response
+                res.send({ ok: true, allUsers: allUsers_1 });
+                return [3 /*break*/, 3];
+            case 2:
+                error_5 = _a.sent();
+                console.error(error_5);
+                res.send({ error: error_5.message });
+                return [3 /*break*/, 3];
+            case 3: return [2 /*return*/];
+        }
+    });
+}); };
+exports.getUserDetails = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var userId, user, error_6;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                _a.trys.push([0, 2, , 3]);
+                userId = req.query.userId;
+                return [4 /*yield*/, userModel_1.UserModel.findById(userId)];
+            case 1:
+                user = _a.sent();
+                if (!user) {
+                    return [2 /*return*/, res.send({ error: "User not found" })];
+                }
+                // Return the user details
+                res.send({ ok: true, user: user });
+                return [3 /*break*/, 3];
+            case 2:
+                error_6 = _a.sent();
+                console.error(error_6);
+                res.send({ error: error_6.message });
+                return [3 /*break*/, 3];
+            case 3: return [2 /*return*/];
+        }
+    });
+}); };
+exports.updateUser = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var _a, newEmail, newPassword, isAdmin, userId, existingUser, error_7;
+    return __generator(this, function (_b) {
+        switch (_b.label) {
+            case 0:
+                _b.trys.push([0, 3, , 4]);
+                _a = req.body, newEmail = _a.newEmail, newPassword = _a.newPassword, isAdmin = _a.isAdmin;
+                userId = req.query.userId;
+                return [4 /*yield*/, userModel_1.UserModel.findById(userId)];
+            case 1:
+                existingUser = _b.sent();
+                if (!existingUser) {
+                    return [2 /*return*/, res.send({ error: "User not found" })];
+                }
+                // Update the user's email, password, and isAdmin if provided
+                if (newEmail) {
+                    existingUser.email = newEmail;
+                }
+                if (newPassword) {
+                    existingUser.password = newPassword;
+                }
+                if (isAdmin !== undefined) {
+                    existingUser.isAdmin = isAdmin;
+                }
+                // Save the updated user
+                return [4 /*yield*/, existingUser.save()];
+            case 2:
+                // Save the updated user
+                _b.sent();
+                res.send({ ok: true, existingUser: existingUser });
+                return [3 /*break*/, 4];
+            case 3:
+                error_7 = _b.sent();
+                console.error(error_7);
+                res.send({ error: error_7.message });
+                return [3 /*break*/, 4];
+            case 4: return [2 /*return*/];
+        }
+    });
+}); };
+exports.deleteUser = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var userId, existingUser, error_8;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                _a.trys.push([0, 2, , 3]);
+                userId = req.query.userId;
+                return [4 /*yield*/, userModel_1.UserModel.findByIdAndDelete(userId)];
+            case 1:
+                existingUser = _a.sent();
+                if (!existingUser)
+                    return [2 /*return*/, res.send({ error: "User not found" })];
+                res.send({ ok: true, message: "User deleted successfully" });
+                return [3 /*break*/, 3];
+            case 2:
+                error_8 = _a.sent();
+                console.error(error_8);
+                res.send({ error: error_8.message });
                 return [3 /*break*/, 3];
             case 3: return [2 /*return*/];
         }

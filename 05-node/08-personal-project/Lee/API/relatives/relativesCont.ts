@@ -1,86 +1,101 @@
-import { users } from '../users/userModel';
-import { relatives, Relation, Relative, userRelatives, UserRelatives } from './relativesModel';
+import { users, UserModel  } from '../users/userModel';
+import { relatives, Relative, userRelatives, UserRelatives, RelativeModel } from './relativesModel';
+import { Relation } from '../enums/relations'
 
-export function getRelatives(req: any, res: any) {
+
+export async function getFamilyMembers(req: any, res: any) {
     try {
-        res.send({ relatives });
+        const relativesDB = await RelativeModel.find({})
+        res.send({ relatives: relativesDB });
     } catch (error) {
         console.error(error);
     }
 }
 
-export function addRelative(req: any, res: any) {
+export async function addRelative(req: any, res: any) {
     try {
-        const { fullName, country, email } = req.body;
-        console.log({ fullName, country, email })
-        if (!fullName || !country) throw new Error("Please complete all fields");
-        if (!email) throw new Error("no email");
+        const { fullName, birthDate, country, relation, userEmail } = req.body;
 
-        const newRelative = new Relative(fullName, country, Relation.choose);
-        relatives.push(newRelative);
+        if (!fullName || !country || !birthDate || !relation) {
+            return res.status(400).send({ error: "Please complete all fields" });
+        }
 
-        //find user
-        const user = users.find((user: any) => user.email === email);
-        if (!user) throw new Error("user not found");
+        
+        const user = await UserModel.findOne({ email: userEmail });
 
-        userRelatives.push(new userRelatives(user, newRelative));
-        console.log(userRelatives);
-        const userRelatives = userRelatives.filter((userrelative) => userrelative.user.email === email);
+        if (!user) {
+            return res.status(404).send({ error: "User not found with the provided email" });
+        }
 
-        const _relatives = _userRelatives.map((userrelative) => userrelative.relative); //returns only relatives of user
+        const newRelative = new RelativeModel({
+            fullName,
+            birthDate,
+            country,
+            relation,
+            user: user._id, // Associate the relative with the user based on userEmail
+        });
 
-        res.send({ relatives: _relatives });
+        const relativeDB = await newRelative.save();
+        
+        console.log(relativeDB);
+
+        res.status(201).send({ ok: true });
     } catch (error) {
         console.error(error);
         res.status(500).send({ error: error.message });
     }
 }
 
-export function deleteRelative(req: any, res: any) {
+
+export async function deleteRelative(req: any, res: any) {
     try {
         const { id } = req.body;
-        const index = relatives.findIndex((relative) => relative.id === id);
-        if (index === -1) {
-            throw new Error("relative not found");
-        }
-        relatives.splice(index, 1);
-        res.send({ relatives });
+        const relativeDB = await RelativeModel.findByIdAndDelete(id);
+        res.send({ relativeDB });
     } catch (error) {
         console.error(error);
         res.status(500).send({ error: error.message });
     }
 }
 
-export function updateRelation(req: any, res: any) {
+export async function updateRelation(req: any, res: any) {
     try {
         const { id, relation } = req.body;
-        const index = relatives.findIndex((relative) => relative.id === id);
-        if (index === -1) {
-            throw new Error("relative not found");
+        const relative = await RelativeModel.findById(id)
+        if (!relative) {
+
+            throw new Error("relative not found")
         }
-        // if (status !== relation.done && status !== TaskStatus.todo) {
-        //     throw new Error("status not valid");
-        // }
-        relatives[index].changeRelation(relation);
-        res.send({ relatives });
+        if (relation === Relation.choose) {
+            throw new Error("Please choose a valid relation")
+        }
+
+        relative.relation = relation
+        await relative.save()
+
+        res.send({ message: "Relation updated successfully", relative });
     } catch (error) {
         console.error(error);
-        res.status(500).send({ error: error.message });
+        res.status(400).send({ error: error.message });
     }
 }
 
-export function getUserRelatives(req: any, res: any) {
+export async function getUserRelatives(req: any, res: any) {
     try {
         //get email from query
         const { email } = req.query;
         if (!email) {
             throw new Error("email is required");
         }
-        //get user relatives
-        const _userrelatives = userRelatives.filter((userrelative) => userrelative.user.email === email);
-        const _relatives = _userrelatives.map((userrelative) => userrelative.user); //returns only relatives of user
+        const user = await UserModel.findOne({ email });
 
-        res.send({ relatives: _relatives });
+        if (!user) {
+            throw new Error("User not found with the provided email");
+        }
+
+        // Get user's relatives
+        const relativeDB = await RelativeModel.find({ user: user._id });
+        res.send({ relatives: relativeDB });
 
     } catch (error) {
         console.error(error);

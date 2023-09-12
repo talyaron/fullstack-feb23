@@ -1,109 +1,55 @@
-body {
-  background-color: #e9e9e9;
+* {
+  padding: 0%;
+  margin: 0%;
+}
+
+nav {
+  background-color: rgb(255, 255, 255);
+  //   align-items: center;
+  display: flex;
+  height: 80px;
+  text-align: center;
+  padding: 20px;
+  border-bottom: 1px solid #b1b1b1;
+  justify-content: space-around;
+  div {
+    display: flex;
+    a {
+      height: 60px;
+      padding: 40px 10px 0px 10px;
+      text-decoration: none;
+      color: #b1b1b1;
+      &:hover {
+        // background-color: rgb(198, 198, 198);
+        color: rgb(71, 71, 71);
+      }
+    }
+    img {
+      height: 100px;
+      padding: 0px 10px 0px 0px;
+      text-decoration: none;
+      color: #b1b1b1;
+    }
+  }
+}
+
+.wrapper {
   display: flex;
   justify-content: center;
-  text-align: center;
-  .wrapper {
+  .fid {
+    // border: 1px solid gray;
+    width: 50%;
+    padding: 15px 20%;
+    display: flex;
     justify-content: center;
-    text-align: center;
-    width: 70%;
-  }
-}
-
-h1 {
-  color: #251940;
-  text-align: center;
-}
-
-form {
-  margin-top: 20px;
-  text-align: center;
-  background-color: #e8e8e8;
-  border-radius: 20px;
-  width: 500px;
-  margin-left: calc(50% - 250px);
-  padding: 10px;
-  box-shadow: 3px 4px 15px 3px #251940;
-  display: flex;
-  justify-content: space-between;
-}
-
-button {
-  background-color: #382760;
-  color: white;
-  border-radius: 10px;
-  box-shadow: 3px 3px 10px 0px #251940;
-  padding: 5px 10px;
-  margin: 5px;
-  min-width: 30px;
-  border: 1px solid black;
-  &:hover {
-    cursor: pointer;
-    scale: 1.01;
-  }
-}
-input {
-  height: 25px;
-  border-radius: 20px;
-  padding: 10px;
-  margin: 5px 10px;
-}
-
-.gallery {
-  display: flex;
-  border-radius: 10px;
-  width: 720px;
-  flex-wrap: wrap;
-  padding: 10px 20px;
-  margin: 0;
-  margin-top: 15px;
-  background-color: white;
-  .imgBlock {
-    position: relative;
-    width: 170px;
-    height: 200px;
-    margin: 7px;
-    padding: 2px;
-    box-shadow: 0px 0px 10px 3px #b5b5b5;
-    background-color: #e9e9e9;
-    img {
-      width: 150px;
-      height: 170px;
-
-      object-fit: cover;
-    }
-    h4 {
-      padding: 0%;
-      margin: 0;
-      font-size: 12px;
-      width: 134px;
-      color: #8f7db9;
-    }
-    .updateTitle {
-      padding: 0%;
-      margin: 0;
-      font-size: 12px;
-      width: 134px;
-      color: #8f7db9;
-    }
-    form {
-      width: fit-content;
-      margin: 0;
-      padding: 0%;
-    }
-    .updateAndDelete {
-      position: absolute;
-      top: 0px;
-
-      right: 0px;
-      button {
-        width: 10px;
-        height:30px;
-        padding: 0;
-        margin: 6px 2px ;
-        span {
-          font-size: 20px;
-        }
+    flex-direction: column;
+    &__prodDiv {
+      margin: 10px;
+      text-align: center;
+      border: 1px solid #b1b1b1;
+      padding: 10px 0px;
+      img {
+        width: 90%;
       }
     }
   }

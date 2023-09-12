@@ -2,17 +2,51 @@ import { PhysicianModel } from "./physicianModel";
 
 export async function getPhysicians(req: any, res: any) {
     try {
-        const physiciansDB = await PhysicianModel.find({});
-        res.send({ physicians: physiciansDB });
+        const { email, _id } = req.query; // Extract the email query parameter
+        let physician;
+        if (_id) {
+            physician = await PhysicianModel.find({ id: _id });
+            console.log(`User id found  ${_id}`);
+        }
+        else if (!email) {
+            physician = await PhysicianModel.find({});
+        }
+        // Fetch the physician with the specified email from the database using PhysicianModel
+        else {
+            physician = await PhysicianModel.find({ email: email });
+        }
+        if (!physician) {
+            return res.status(404).send({ error: 'Physician not found.' });
+        }
+
+        // Send the fetched physician data as a JSON response
+        res.send({ physician });
     } catch (error) {
         console.error(error);
         res.status(500).send({ error: error.message });
     }
 }
- 
+
+export async function getPhysiciansLogin(req: any, res: any) {
+    try {
+        const { email, password } = req.query; // Extract the email query parameter
+        const physician = await PhysicianModel.findOne({ email: email, password: password });
+        if (physician === undefined) {
+            return res.status(404).send({ error: 'Physician not found.' });
+        }
+        console.log(physician);
+        // Send the fetched physician data as a JSON response
+        res.send({ physician });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send({ error: error.message });
+    }
+}
+
+
 export async function addPhysician(req: any, res: any) {
     try {
-        const { firstName, lastName, age, phoneNum, email, licenseNumber, password,isAdmin } = req.body;
+        const { firstName, lastName, age, phoneNum, email, licenseNumber, password, isAdmin } = req.body;
         if (!firstName || !lastName || !age || !phoneNum || !email || !licenseNumber || !password) throw new Error("Please complete all fields");
         const physician = new PhysicianModel({ firstName, lastName, age, phoneNum, email, licenseNumber, isAdmin, password });
         const physicianDB = await physician.save();
@@ -35,22 +69,13 @@ export async function deletePhysician(req: any, res: any) {
     }
 }
 
-export async function updatePhysician(req: any, res: any) { 
+export async function updatePhysician(req: any, res: any) {
     try {
         debugger;
-        const {  id,firstName, lastName, age, phoneNum, email, licenseNumber, password, isAdmin } = req.body;
+        const { id, firstName, lastName, age, phoneNum, email, licenseNumber, password, isAdmin } = req.body;
         if (!id) throw new Error("id is required");
-        const physician = await PhysicianModel.findById(id);
-        if (!physician) throw new Error("physician not found");
-        if (firstName) physician.firstName = firstName;
-        if (lastName) physician.lastName = lastName;
-        if (age) physician.age = age;
-        if (phoneNum) physician.phoneNum = phoneNum;
-        if (email) physician.email = email;
-        if (licenseNumber) physician.licenseNumber = licenseNumber;
-        if(password) physician.password = password;
-        physician.isAdmin = isAdmin;
-        await physician.save();
+        const physicianDB = await PhysicianModel.findByIdAndUpdate(id, { firstName, lastName, age, phoneNum, email, licenseNumber, password, isAdmin })
+        await physicianDB.save();
         res.status(200).send({ message: "Physician updated successfully" });
     } catch (error) {
         console.error(error);

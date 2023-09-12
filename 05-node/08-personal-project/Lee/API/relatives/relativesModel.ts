@@ -1,24 +1,20 @@
-import { User } from "../users/userModel";
+import { model, Schema, Document } from 'mongoose';
+import { Relation } from '../enums/relations';
+import { User } from '../users/userModel';
 
-export enum Relation {
-  choose = "Choose",
-  mother = "Mother",
-  father = "Father",
-  brother = "Brother",
-  sister = "Sister",
-  sibling = "Sibling",
-  granddaughter = "Granddaughter",
-  grandson = "Grandson",
-  uncle = "Uncle",
-  aunt = "Aunt",
-  cousin = "Cousin"
-
+export interface IRelative extends Document {
+  fullName: string;
+  birthDate: string;
+  country: string;
+  relation: Relation;
+  user: User;
 }
 
 export class Relative {
   id: string;
   constructor(
     public fullName: string,
+    public birthDate: string,
     public country: string,
     public relation: Relation
   ) {
@@ -32,22 +28,24 @@ export class Relative {
 
 export const relatives: Relative[] = [];
 
-// export class UserTasks {
-//   id: string;
-//   constructor(public user: User, public task: Task) {
-//     this.id = Math.random().toString(36).substr(2, 9);
-//   }
-// }
+export class UserRelatives {
+  id: string;
+  isVerified: boolean;
 
-// export const userTasks: UserTasks[] = [];
+  constructor(public user: User, public relative: Relative) {
+    this.id = Math.random().toString(36).substr(2, 9);
+    this.isVerified = false;
+  }
+}
 
-//join collection (class)
+export const userRelatives: UserRelatives[] = [];
 
-export class UserRelatives{
-    id:string
-    constructor(public user:User,public task:Task){
-        this.id = Math.random().toString(36).substr(2, 9);
-    }
-}   
+const RelativeSchema = new Schema({
+  fullName: { type: String, required: true },
+  birthDate: { type: String, required: true },
+  country: { type: String, required: true },
+  relation: { type: String, enum: Object.values(Relation), default: Relation.choose },
+  user: { type: Schema.Types.ObjectId, ref: 'users', required: true }, // Reference to the user
+});
 
-export const userRelatives:UserRelatives[] = [];
+export const RelativeModel = model<IRelative>('relatives', RelativeSchema);

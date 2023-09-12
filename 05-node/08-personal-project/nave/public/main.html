@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style/dist/posts.css">
+    <script src="./dist/main.js" defer></script>
+    <script src="./dist/posts.js" defer></script>
+
+</head>
+<!-- <body onload="handleGetUsers()"> -->
+<body>
+    <h1>Hi All</h1>
+    <a href="./login.html">Login</a>
+    <a href="./register.html">Register</a>
+    <h2>Add Task</h2>
+    <form onsubmit="handeleAddPost(event)">
+        <input type="text" name="content" placeholder="post content">
+       <input type="url" name="featuredImage" placeholder="img url">
+       <input type="text" name="category" placeholder="post category">
+       <!-- <label for="files"> הוסיפו תמונות גלרייה לפוסט</label>
+       <input type="file" id="files" name="files" multiple placeholder="postThumbnails"> -->
+       <button type="submit">ADD</button>
+    </form>
+
+    <button onclick="handleGetPosts()">GET Images</button>
+    <div id="posts"></div>
+    
+
+</body>
+</html>

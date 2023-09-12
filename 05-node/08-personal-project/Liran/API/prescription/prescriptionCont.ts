@@ -2,13 +2,22 @@ import { PrescriptionModel } from "./prescriptionModel";
 
 export async function getPrescriptions(req, res) {
     try {
-        const prescriptionsDB = await PrescriptionModel.find({});
-        res.send({ prescriptions: prescriptionsDB });
+        const { email , patientId, date} = req.query;
+        let prescriptionDB;
+        if (email) {
+            prescriptionDB = await PrescriptionModel.find({ 'physician: email': email });
+        }
+        else if(patientId && date)
+            prescriptionDB = await PrescriptionModel.find({ 'patient: _id': patientId  , date});
+        else
+        prescriptionDB = await PrescriptionModel.find({ });
+        res.send({ prescriptions: prescriptionDB });
     } catch (error) {
         console.error(error);
         res.status(500).send({ error: error.message });
     }
 }
+
 
 export async function addPrescription(req, res) {
     try {
@@ -39,13 +48,9 @@ export async function updatePrescription(req: any, res: any) {
     try {
         const { id, patient, medicine, physician, date } = req.body;
         if (!id) throw new Error("id is required");
-        const prescription = await PrescriptionModel.findById(id);
-        if (!prescription) throw new Error("prescription not found");
-        if (patient) prescription.patient = patient;
-        if (medicine) prescription.medicine = medicine;
-        if (physician) prescription.physician = physician;
-        if (date) prescription.date = date;
-        res.send({ ok: true });
+        const prescription = await PrescriptionModel.findByIdAndUpdate(id, { patient, medicine, physician, date });
+        await prescription.save();
+        res.status(200).send({ message: "Prescription updated successfully" });
     } catch (error) {
         console.error(error);
         res.status(500).send({ error: error.message });

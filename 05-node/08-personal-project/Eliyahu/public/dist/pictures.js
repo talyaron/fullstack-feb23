@@ -34,9 +34,31 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var Picture = /** @class */ (function () {
+    function Picture(title, imgUrl, location, tags, area) {
+        this.title = title;
+        this.imgUrl = imgUrl;
+        this.location = location;
+        this.tags = tags;
+        this.area = area;
+        this.id = Math.random().toString(36).substr(2, 9);
+        this.publishDate = new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString('en-US', {
+            hour12: false,
+            hour: "numeric",
+            minute: "numeric"
+        });
+    }
+    return Picture;
+}());
+var PictureArea;
+(function (PictureArea) {
+    PictureArea["north"] = "\u05E6\u05E4\u05D5\u05DF";
+    PictureArea["center"] = "\u05DE\u05E8\u05DB\u05D6";
+    PictureArea["south"] = "\u05D3\u05E8\u05D5\u05DD";
+})(PictureArea || (PictureArea = {}));
 function getPictures() {
     return __awaiter(this, void 0, void 0, function () {
-        var response, result, usersPictures, error_1;
+        var response, result, pictures, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -47,10 +69,11 @@ function getPictures() {
                     return [4 /*yield*/, response.json()];
                 case 2:
                     result = _a.sent();
-                    usersPictures = result.usersPictures;
-                    if (!Array.isArray(usersPictures))
+                    pictures = result.pictures;
+                    console.log(pictures);
+                    if (!Array.isArray(pictures))
                         throw new Error("pictures is not array");
-                    renderPictures(usersPictures);
+                    renderPictures(pictures);
                     return [3 /*break*/, 4];
                 case 3:
                     error_1 = _a.sent();
@@ -65,7 +88,7 @@ getPictures();
 var emailUser = window.location.search.toString().replace('?email=', '');
 function handleAddPicture(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var imageTags_1, picture, response, result, usersPictures, tags, error_2;
+        var imageTags_1, _picture, response, result, picture, error_2;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -73,7 +96,7 @@ function handleAddPicture(ev) {
                     ev.preventDefault();
                     imageTags_1 = [];
                     document.querySelectorAll('input[type=checkbox]:checked').forEach(function (ev) { return imageTags_1.push(ev.attributes[2].value); });
-                    picture = {
+                    _picture = {
                         title: ev.target.title.value,
                         imgUrl: ev.target.imgUrl.value,
                         location: ev.target.location.value,
@@ -82,22 +105,22 @@ function handleAddPicture(ev) {
                         emailUser: emailUser,
                         newTag: ev.target.newTag.value
                     };
-                    if (!picture.title || !picture.imgUrl || !picture.location || !picture.tags || !picture.area)
+                    if (!_picture.title || !_picture.imgUrl || !_picture.location || !_picture.tags || !_picture.area)
                         throw new Error("Please complete all details");
                     return [4 /*yield*/, fetch('/API/pictures/add-picture', {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json'
                             },
-                            body: JSON.stringify(picture)
+                            body: JSON.stringify(_picture)
                         })];
                 case 1:
                     response = _a.sent();
                     return [4 /*yield*/, response.json()];
                 case 2:
                     result = _a.sent();
-                    usersPictures = result.usersPictures, tags = result.tags;
-                    renderPictures(usersPictures);
+                    picture = result.picture;
+                    renderPictures(picture);
                     return [3 /*break*/, 4];
                 case 3:
                     error_2 = _a.sent();
@@ -110,7 +133,7 @@ function handleAddPicture(ev) {
 }
 function handleDeletePicture(id) {
     return __awaiter(this, void 0, void 0, function () {
-        var response, result, usersPictures, error_3;
+        var response, result, pictures, error_3;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -127,8 +150,8 @@ function handleDeletePicture(id) {
                     return [4 /*yield*/, response.json()];
                 case 2:
                     result = _a.sent();
-                    usersPictures = result.usersPictures;
-                    renderPictures(usersPictures);
+                    pictures = result.pictures;
+                    renderPictures(pictures);
                     return [3 /*break*/, 4];
                 case 3:
                     error_3 = _a.sent();
@@ -215,32 +238,51 @@ function closeAdd() {
         console.error(error.massage);
     }
 }
-function renderPictureHtml(picture, user) {
-    try {
-        var html_2 = "<div class = \"picture\" id=\"" + picture.id + "\">\n        <div class = \"picture_header\">\n        <div></div>\n        <h3 >" + picture.title + "</h3>";
-        if (emailUser === user.email) {
-            html_2 += "<p>\u05EA\u05DE\u05D5\u05E0\u05D4 \u05E9\u05DC\u05D9</p>\n    <button class=\"material-symbols-rounded\" onclick=\"renderUpdatePicture('" + picture.title + "','" + picture.imgUrl + "','" + picture.location + "','" + picture.id + "','" + picture.tags.join(' ') + "')\">Edit</button>\n    <button class=\"material-symbols-rounded\" onclick=\"handleDeletePicture('" + picture.id + "')\">delete</button>\n    ";
-        }
-        else {
-            html_2 += "<p>" + user.name + "</p>";
-        }
-        html_2 += "\n        </div>\n        <img src=\"" + picture.imgUrl + "\">\n        <div class = \"picture_body\">\n        <p>" + picture.location + "</p>\n        <p> " + picture.publishDate + "</p>\n        </div>\n        <div class=\"tags\">";
-        picture.tags.forEach(function (tag) { return html_2 += "<button onclick=\"handleRenderByTag('" + tag + "')\">" + tag + "</button>"; });
-        html_2 += "</div>\n        </div>";
-        return html_2;
-    }
-    catch (error) {
-        console.error(error.massage);
-    }
-}
-function handleRenderByTag(tag) {
+function renderPictureHtml(picture, email) {
     return __awaiter(this, void 0, void 0, function () {
-        var response, result, usersPictures, usersPicturesByTag, html, allPicturesRoot, error_6;
+        var response, result, error, name, html_2, error_6;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
-                    debugger;
+                    console.log(picture);
+                    return [4 /*yield*/, fetch('/API/users/get-user-name')];
+                case 1:
+                    response = _a.sent();
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    result = _a.sent();
+                    error = result.error, name = result.name;
+                    if (error)
+                        throw new Error("Some of details are incorrect");
+                    console.log(name);
+                    html_2 = "<div class = \"picture\" id=\"" + picture.id + "\">\n        <div class = \"picture_header\">\n        <div></div>\n        <h3 >" + picture.title + "</h3>";
+                    if (email === emailUser) {
+                        html_2 += "<p>\u05EA\u05DE\u05D5\u05E0\u05D4 \u05E9\u05DC\u05D9</p>\n    <button class=\"material-symbols-rounded\" onclick=\"renderUpdatePicture('" + picture.title + "','" + picture.imgUrl + "','" + picture.location + "','" + picture.id + "','" + picture.tags.join(' ') + "')\">Edit</button>\n    <button class=\"material-symbols-rounded\" onclick=\"handleDeletePicture('" + picture.id + "')\">delete</button>\n    ";
+                    }
+                    else {
+                        html_2 += "<p>" + name + "</p>";
+                    }
+                    html_2 += "\n        </div>\n        <img src=\"" + picture.imgUrl + "\">\n        <div class = \"picture_body\">\n        <p>" + picture.location + "</p>\n        <p> " + picture.publishDate + "</p>\n        </div>\n        <div class=\"tags\">";
+                    picture.tags.forEach(function (tag) { return html_2 += "<button onclick=\"handleRenderByTag('" + tag + "')\">" + tag + "</button>"; });
+                    html_2 += "</div>\n        </div>";
+                    return [2 /*return*/, html_2];
+                case 3:
+                    error_6 = _a.sent();
+                    console.error(error_6.massage);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
+            }
+        });
+    });
+}
+function handleRenderByTag(tag) {
+    return __awaiter(this, void 0, void 0, function () {
+        var response, result, usersPictures, usersPicturesByTag, html, allPicturesRoot, error_7;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 3, , 4]);
                     return [4 /*yield*/, fetch('API/pictures/get-pictures')];
                 case 1:
                     response = _a.sent();
@@ -257,20 +299,20 @@ function handleRenderByTag(tag) {
                     allPicturesRoot.innerHTML += html;
                     return [3 /*break*/, 4];
                 case 3:
-                    error_6 = _a.sent();
-                    console.error(error_6.massage);
+                    error_7 = _a.sent();
+                    console.error(error_7.massage);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }
         });
     });
 }
-function renderPictures(usersPictures) {
+function renderPictures(pictures) {
     try {
-        if (!Array.isArray(usersPictures))
+        if (!Array.isArray(pictures))
             throw new Error("usersPictures is not array");
         var allPicturesRoot = document.querySelector('#allPictures');
-        var allPicturesHtml = usersPictures.map(function (userPicture) { return renderPictureHtml(userPicture.picture, userPicture.user); }).join('');
+        var allPicturesHtml = pictures.map(function (picture) { return renderPictureHtml(picture, picture.email); }).join('');
         allPicturesRoot.innerHTML = allPicturesHtml;
         closeAdd();
         // if (emailUser === 'admin@gmail.com') {
@@ -291,7 +333,7 @@ function renderPictures(usersPictures) {
 }
 function renderUpdatePicture(title, imgUrl, location, id, tagsAsString) {
     return __awaiter(this, void 0, void 0, function () {
-        var response, result, tags, html, editRoot, error_7;
+        var response, result, tags, html, editRoot, error_8;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -325,8 +367,8 @@ function renderUpdatePicture(title, imgUrl, location, id, tagsAsString) {
                     editRoot.innerHTML = html;
                     return [3 /*break*/, 4];
                 case 3:
-                    error_7 = _a.sent();
-                    console.error(error_7.massage);
+                    error_8 = _a.sent();
+                    console.error(error_8.massage);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }
@@ -335,7 +377,7 @@ function renderUpdatePicture(title, imgUrl, location, id, tagsAsString) {
 }
 function renderNav() {
     return __awaiter(this, void 0, void 0, function () {
-        var email, html_3, root_1, response, result, error, userName, html, root, error_8;
+        var email, html_3, root_1, response, result, error, name, html, root, error_9;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -346,28 +388,22 @@ function renderNav() {
                         root_1 = document.querySelector('#nav');
                         root_1.innerHTML = html_3;
                     }
-                    return [4 /*yield*/, fetch('/API/users/get-user-name', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json'
-                            },
-                            body: JSON.stringify(email)
-                        })];
+                    return [4 /*yield*/, fetch('/API/users/get-user-name')];
                 case 1:
                     response = _a.sent();
                     return [4 /*yield*/, response.json()];
                 case 2:
                     result = _a.sent();
-                    error = result.error, userName = result.userName;
+                    error = result.error, name = result.name;
                     if (error)
                         throw new Error("Some of details are incorrect");
-                    html = "<div class=\"nav\">\n        <p>" + userName + "</p>\n        <a class=\"logout material-symbols-rounded\" href=\"./index.html\">Logout</a>\n    </div>";
+                    html = "<div class=\"nav\">\n        <p>" + name + "</p>\n        <a class=\"logout material-symbols-rounded\" href=\"./index.html\">Logout</a>\n    </div>";
                     root = document.querySelector('#nav');
                     root.innerHTML = html;
                     return [3 /*break*/, 4];
                 case 3:
-                    error_8 = _a.sent();
-                    console.error(error_8.massage);
+                    error_9 = _a.sent();
+                    console.error(error_9.massage);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }

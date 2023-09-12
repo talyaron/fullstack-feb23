@@ -1,20 +1,15 @@
 async function hundleLogin(event) {
     try {
         event.preventDefault();
-        debugger;
         const email = event.target.email.value;
         const password = event.target.password.value;
         const admin = event.target.admin.checked;
         if (!email || !password) throw new Error("missing some details");
-        const response = await fetch("API/physician/get-physicians", {
-            method: "GET",
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
+        const response = await fetch(`API/physician/get-physicians-login?email=${email}&password=${password}`)
         const data = await response.json();
         console.log(data.physicians);
-        const physician: Physician = data.physicians.find(physician => physician.email === email && physician.password === password);
+        const physician = data.physician;
+        debugger;
         if (!physician) {
             alert("email or password are incorrect");
             throw new Error("email or password are incorrect");
@@ -22,11 +17,14 @@ async function hundleLogin(event) {
         // if email and password are correct
         if (physician.isAdmin && admin) {
             alert("admin");
-            window.location.href = `admin.html?email=${email}`
+            window.location.href = `../adminPage/admin.html?physicianEmail=${email}`
+        }
+        else if (!physician.isAdmin && admin) {
+            alert("You are not an admin, please login again");
         }
         else {
             alert("physician");
-            window.location.href = `physician.html?email=${email}`;
+            window.location.href = `../phisicianPage/physician.html?physicianEmail=${email}`;
         }
 
     } catch (error) {

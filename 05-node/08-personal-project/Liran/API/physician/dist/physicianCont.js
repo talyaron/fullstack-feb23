@@ -36,34 +36,83 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.updatePhysician = exports.deletePhysician = exports.addPhysician = exports.getPhysicians = void 0;
+exports.updatePhysician = exports.deletePhysician = exports.addPhysician = exports.getPhysiciansLogin = exports.getPhysicians = void 0;
 var physicianModel_1 = require("./physicianModel");
 function getPhysicians(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var physiciansDB, error_1;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
+        var _a, email, _id, physician, error_1;
+        return __generator(this, function (_b) {
+            switch (_b.label) {
                 case 0:
-                    _a.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, physicianModel_1.PhysicianModel.find({})];
+                    _b.trys.push([0, 7, , 8]);
+                    _a = req.query, email = _a.email, _id = _a._id;
+                    physician = void 0;
+                    if (!_id) return [3 /*break*/, 2];
+                    return [4 /*yield*/, physicianModel_1.PhysicianModel.find({ id: _id })];
                 case 1:
-                    physiciansDB = _a.sent();
-                    res.send({ physicians: physiciansDB });
-                    return [3 /*break*/, 3];
+                    physician = _b.sent();
+                    console.log("User id found  " + _id);
+                    return [3 /*break*/, 6];
                 case 2:
-                    error_1 = _a.sent();
+                    if (!!email) return [3 /*break*/, 4];
+                    return [4 /*yield*/, physicianModel_1.PhysicianModel.find({})];
+                case 3:
+                    physician = _b.sent();
+                    return [3 /*break*/, 6];
+                case 4: return [4 /*yield*/, physicianModel_1.PhysicianModel.find({ email: email })];
+                case 5:
+                    physician = _b.sent();
+                    _b.label = 6;
+                case 6:
+                    if (!physician) {
+                        return [2 /*return*/, res.status(404).send({ error: 'Physician not found.' })];
+                    }
+                    // Send the fetched physician data as a JSON response
+                    res.send({ physician: physician });
+                    return [3 /*break*/, 8];
+                case 7:
+                    error_1 = _b.sent();
                     console.error(error_1);
                     res.status(500).send({ error: error_1.message });
+                    return [3 /*break*/, 8];
+                case 8: return [2 /*return*/];
+            }
+        });
+    });
+}
+exports.getPhysicians = getPhysicians;
+function getPhysiciansLogin(req, res) {
+    return __awaiter(this, void 0, void 0, function () {
+        var _a, email, password, physician, error_2;
+        return __generator(this, function (_b) {
+            switch (_b.label) {
+                case 0:
+                    _b.trys.push([0, 2, , 3]);
+                    _a = req.query, email = _a.email, password = _a.password;
+                    return [4 /*yield*/, physicianModel_1.PhysicianModel.findOne({ email: email, password: password })];
+                case 1:
+                    physician = _b.sent();
+                    if (physician === undefined) {
+                        return [2 /*return*/, res.status(404).send({ error: 'Physician not found.' })];
+                    }
+                    console.log(physician);
+                    // Send the fetched physician data as a JSON response
+                    res.send({ physician: physician });
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_2 = _b.sent();
+                    console.error(error_2);
+                    res.status(500).send({ error: error_2.message });
                     return [3 /*break*/, 3];
                 case 3: return [2 /*return*/];
             }
         });
     });
 }
-exports.getPhysicians = getPhysicians;
+exports.getPhysiciansLogin = getPhysiciansLogin;
 function addPhysician(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var _a, firstName, lastName, age, phoneNum, email, licenseNumber, password, isAdmin, physician, physicianDB, error_2;
+        var _a, firstName, lastName, age, phoneNum, email, licenseNumber, password, isAdmin, physician, physicianDB, error_3;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
@@ -79,9 +128,9 @@ function addPhysician(req, res) {
                     res.send({ ok: true });
                     return [3 /*break*/, 3];
                 case 2:
-                    error_2 = _b.sent();
-                    console.error(error_2);
-                    res.status(500).send({ error: error_2.message });
+                    error_3 = _b.sent();
+                    console.error(error_3);
+                    res.status(500).send({ error: error_3.message });
                     return [3 /*break*/, 3];
                 case 3: return [2 /*return*/];
             }
@@ -91,7 +140,7 @@ function addPhysician(req, res) {
 exports.addPhysician = addPhysician;
 function deletePhysician(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var id, physicianDB, error_3;
+        var id, physicianDB, error_4;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -103,9 +152,9 @@ function deletePhysician(req, res) {
                     res.send({ ok: true });
                     return [3 /*break*/, 3];
                 case 2:
-                    error_3 = _a.sent();
-                    console.error(error_3);
-                    res.status(500).send({ error: error_3.message });
+                    error_4 = _a.sent();
+                    console.error(error_4);
+                    res.status(500).send({ error: error_4.message });
                     return [3 /*break*/, 3];
                 case 3: return [2 /*return*/];
             }
@@ -115,7 +164,7 @@ function deletePhysician(req, res) {
 exports.deletePhysician = deletePhysician;
 function updatePhysician(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var _a, id, firstName, lastName, age, phoneNum, email, licenseNumber, password, isAdmin, physician, error_4;
+        var _a, id, firstName, lastName, age, phoneNum, email, licenseNumber, password, isAdmin, physicianDB, error_5;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
@@ -124,36 +173,18 @@ function updatePhysician(req, res) {
                     _a = req.body, id = _a.id, firstName = _a.firstName, lastName = _a.lastName, age = _a.age, phoneNum = _a.phoneNum, email = _a.email, licenseNumber = _a.licenseNumber, password = _a.password, isAdmin = _a.isAdmin;
                     if (!id)
                         throw new Error("id is required");
-                    return [4 /*yield*/, physicianModel_1.PhysicianModel.findById(id)];
+                    return [4 /*yield*/, physicianModel_1.PhysicianModel.findByIdAndUpdate(id, { firstName: firstName, lastName: lastName, age: age, phoneNum: phoneNum, email: email, licenseNumber: licenseNumber, password: password, isAdmin: isAdmin })];
                 case 1:
-                    physician = _b.sent();
-                    if (!physician)
-                        throw new Error("physician not found");
-                    if (firstName)
-                        physician.firstName = firstName;
-                    if (lastName)
-                        physician.lastName = lastName;
-                    if (age)
-                        physician.age = age;
-                    if (phoneNum)
-                        physician.phoneNum = phoneNum;
-                    if (email)
-                        physician.email = email;
-                    if (licenseNumber)
-                        physician.licenseNumber = licenseNumber;
-                    if (password)
-                        physician.password = password;
-                    if (isAdmin)
-                        physician.isAdmin = isAdmin;
-                    return [4 /*yield*/, physician.save()];
+                    physicianDB = _b.sent();
+                    return [4 /*yield*/, physicianDB.save()];
                 case 2:
                     _b.sent();
-                    res.status(200).send({ message: "Patient updated successfully" });
+                    res.status(200).send({ message: "Physician updated successfully" });
                     return [3 /*break*/, 4];
                 case 3:
-                    error_4 = _b.sent();
-                    console.error(error_4);
-                    res.status(500).send({ error: error_4.message });
+                    error_5 = _b.sent();
+                    console.error(error_5);
+                    res.status(500).send({ error: error_5.message });
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }
