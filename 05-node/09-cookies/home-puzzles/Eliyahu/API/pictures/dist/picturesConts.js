@@ -120,7 +120,7 @@ exports.getTags = function (req, res) {
 };
 function addPicture(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var picture, title, imgUrl, location, pictureTags, area, newTag, publishDate, email, userDB, userName, _picture, picturesDB, error_4;
+        var picture, title, imgUrl, location, pictureTags, newTag, publishDate, email, userDB, userName, _picture, picturesDB, error_4;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -130,7 +130,6 @@ function addPicture(req, res) {
                     imgUrl = picture.imgUrl;
                     location = picture.location;
                     pictureTags = picture.tags;
-                    area = picture.area;
                     newTag = picture.newTag;
                     if (newTag) {
                         pictureTags.push(newTag);
@@ -142,7 +141,6 @@ function addPicture(req, res) {
                         minute: "numeric"
                     });
                     email = req.query.email;
-                    // console.log(email);
                     if (!email) {
                         throw new Error("email is required");
                     }
@@ -150,17 +148,12 @@ function addPicture(req, res) {
                 case 1:
                     userDB = _a.sent();
                     userName = userDB.name;
-                    return [4 /*yield*/, (new picturesModels_1.PictureModel({ title: title, imgUrl: imgUrl, location: location, tags: picturesModels_1.tags, area: area, publishDate: publishDate, email: email, userName: userName })).save()];
+                    return [4 /*yield*/, (new picturesModels_1.PictureModel({ title: title, imgUrl: imgUrl, location: location, tags: pictureTags, publishDate: publishDate, email: email, userName: userName })).save()];
                 case 2:
                     _picture = _a.sent();
-                    return [4 /*yield*/, picturesModels_1.PictureModel.find({})
-                        // console.log(picturesDB);
-                        // console.log(picturesDB);
-                    ];
+                    return [4 /*yield*/, picturesModels_1.PictureModel.find({})];
                 case 3:
                     picturesDB = _a.sent();
-                    // console.log(picturesDB);
-                    // console.log(picturesDB);
                     res.send({ ok: true, pictures: picturesDB });
                     return [3 /*break*/, 5];
                 case 4:

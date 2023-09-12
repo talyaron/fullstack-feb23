@@ -42,7 +42,7 @@ exports.PictureSchema = new mongoose_1.Schema({
     imgUrl: String,
     location: String,
     tags: [String],
-    area: String,
+    // area: String,
     publishDate: String,
     email: String,
     userName: String

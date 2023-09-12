@@ -44,7 +44,7 @@ export const PictureSchema = new Schema({
     imgUrl: String,
     location: String,
     tags: [String],
-    area: String,
+    // area: String,
     publishDate: String,
     email: String,
     userName:String

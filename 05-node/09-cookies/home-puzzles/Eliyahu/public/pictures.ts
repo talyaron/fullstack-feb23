@@ -25,14 +25,13 @@ async function handleAddPicture(ev: any) {
             title: ev.target.title.value,
             imgUrl: ev.target.imgUrl.value,
             location: ev.target.location.value,
-            tags: imageTags,
-            area: ev.target.area.value,
+            tags:imageTags,
+            // area: ev.target.area.value,
             newTag: ev.target.newTag.value,
         }
-        // console.log(_picture);
 
 
-        if (!_picture.title || !_picture.imgUrl || !_picture.location || !_picture.tags || !_picture.area) throw new Error("Please complete all details");
+        if (!_picture.title || !_picture.imgUrl || !_picture.location || !_picture.tags) throw new Error("Please complete all details");
 
         const response = await fetch(`/API/pictures/add-picture?email=${emailUser}`, {
             method: 'POST',
@@ -81,33 +80,13 @@ async function handleUpdatePicture(ev: any) {
         const tags: string[] = []
         const testes = document.querySelectorAll(".editTags") as NodeListOf<HTMLSelectElement>
         testes.forEach(select => {
-
             const output = select.value
             if(output){
-
                 tags.push(output)
             }
         })
 
-        console.log(tags);
-        
-        // const selectTags = document.querySelector("#editTags") as HTMLSelectElement
-
-
-        // ('#editTags').find('select').each(function(){
-        //     tags.push({
-        //       selectName: (this).attr('name'),
-        //       optionValue: [] // i want all the options values to be contained either in array or any other way
-
-        //     });
-        //  });
-
-        // const tags = ev.target.editTags.value
-        // const area = ev.target.editArea.value
         const id = ev.target.id
-
-        // console.log(title, imgUrl, location, id);
-
 
         const response = await fetch('API/pictures/update-picture', {
             method: 'PATCH',
@@ -134,19 +113,24 @@ async function renderAddPicture() {
         const { tags } = result
         if (!Array.isArray(tags)) throw new Error("tags is not array");
 
+
+        // <div>
+        // <p>באיזה אזור בארץ צולמה התמונה? </p>
+        // <input type="radio" name="area" value="north">
+        // <label for="north">צפון</label>
+        // <input type="radio" name="area" value="center">
+        // <label for="north">מרכז</label>
+        // <input type="radio" name="area" value="south">
+        // <label for="north">דרום</label>
+        // </div>
+
+
+
         let html = `<form onsubmit="handleAddPicture(event)">
         <input type="text" name="title" placeholder="נושא" required>
         <input type="url" name="imgUrl" placeholder="קישור לתמונה">
         <input type="text" name="location" placeholder="היכן צולמה התמונה?">
-        <div>
-        <p>באיזה אזור בארץ צולמה התמונה? </p>
-        <input type="radio" name="area" value="north">
-        <label for="north">צפון</label>
-        <input type="radio" name="area" value="center">
-        <label for="north">מרכז</label>
-        <input type="radio" name="area" value="south">
-        <label for="north">דרום</label>
-        </div>
+       
         <div class="tags" id="tags">
         <p>בחר תגיות לתמונה:</p>`
         tags.forEach(tag => html += ` <div>
@@ -260,7 +244,6 @@ async function handleRenderByUser() {
 
 async function handleRenderByTag(tag: string) {
     try {
-        console.log(tag);
 
         const response = await fetch(`API/pictures/get-pictures-by-tag?tag=${tag}`)
         const result = await response.json()

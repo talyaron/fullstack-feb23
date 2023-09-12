@@ -80,19 +80,19 @@ function login(req, res) {
                     _a = req.body, email = _a.email, password = _a.password;
                     if (!email || !password)
                         throw new Error("Please complete all fields");
-                    return [4 /*yield*/, userModels_1.UserModel.findOne({ email: email })
-                        // const user = users.find(user => user.email === email && user.password === password)
-                        // if (!user) throw new Error("Some of details are incorrect");
-                    ];
+                    return [4 /*yield*/, userModels_1.UserModel.findOne({ email: email })];
                 case 1:
                     userDB = _b.sent();
-                    // const user = users.find(user => user.email === email && user.password === password)
-                    // if (!user) throw new Error("Some of details are incorrect");
+                    if (!userDB)
+                        throw new Error("user not exist or password is inncorect");
+                    res.cookie("user", userDB._id, { maxAge: 60000, httpOnly: true });
                     res.send({ ok: true, email: email });
                     return [3 /*break*/, 3];
                 case 2:
                     error_2 = _b.sent();
                     console.error(error_2.message);
+                    res.status(500).send(error_2.message);
+                    res.send({ ok: false, message: error_2.message });
                     return [3 /*break*/, 3];
                 case 3: return [2 /*return*/];
             }

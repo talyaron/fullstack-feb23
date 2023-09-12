@@ -78,11 +78,10 @@ function handleAddPicture(ev) {
                         imgUrl: ev.target.imgUrl.value,
                         location: ev.target.location.value,
                         tags: imageTags_1,
-                        area: ev.target.area.value,
+                        // area: ev.target.area.value,
                         newTag: ev.target.newTag.value
                     };
-                    // console.log(_picture);
-                    if (!_picture.title || !_picture.imgUrl || !_picture.location || !_picture.tags || !_picture.area)
+                    if (!_picture.title || !_picture.imgUrl || !_picture.location || !_picture.tags)
                         throw new Error("Please complete all details");
                     return [4 /*yield*/, fetch("/API/pictures/add-picture?email=" + emailUser, {
                             method: 'POST',
@@ -158,7 +157,6 @@ function handleUpdatePicture(ev) {
                             tags_1.push(output);
                         }
                     });
-                    console.log(tags_1);
                     id = ev.target.id;
                     return [4 /*yield*/, fetch('API/pictures/update-picture', {
                             method: 'PATCH',
@@ -200,7 +198,7 @@ function renderAddPicture() {
                     tags = result.tags;
                     if (!Array.isArray(tags))
                         throw new Error("tags is not array");
-                    html_1 = "<form onsubmit=\"handleAddPicture(event)\">\n        <input type=\"text\" name=\"title\" placeholder=\"\u05E0\u05D5\u05E9\u05D0\" required>\n        <input type=\"url\" name=\"imgUrl\" placeholder=\"\u05E7\u05D9\u05E9\u05D5\u05E8 \u05DC\u05EA\u05DE\u05D5\u05E0\u05D4\">\n        <input type=\"text\" name=\"location\" placeholder=\"\u05D4\u05D9\u05DB\u05DF \u05E6\u05D5\u05DC\u05DE\u05D4 \u05D4\u05EA\u05DE\u05D5\u05E0\u05D4?\">\n        <div>\n        <p>\u05D1\u05D0\u05D9\u05D6\u05D4 \u05D0\u05D6\u05D5\u05E8 \u05D1\u05D0\u05E8\u05E5 \u05E6\u05D5\u05DC\u05DE\u05D4 \u05D4\u05EA\u05DE\u05D5\u05E0\u05D4? </p>\n        <input type=\"radio\" name=\"area\" value=\"north\">\n        <label for=\"north\">\u05E6\u05E4\u05D5\u05DF</label>\n        <input type=\"radio\" name=\"area\" value=\"center\">\n        <label for=\"north\">\u05DE\u05E8\u05DB\u05D6</label>\n        <input type=\"radio\" name=\"area\" value=\"south\">\n        <label for=\"north\">\u05D3\u05E8\u05D5\u05DD</label>\n        </div>\n        <div class=\"tags\" id=\"tags\">\n        <p>\u05D1\u05D7\u05E8 \u05EA\u05D2\u05D9\u05D5\u05EA \u05DC\u05EA\u05DE\u05D5\u05E0\u05D4:</p>";
+                    html_1 = "<form onsubmit=\"handleAddPicture(event)\">\n        <input type=\"text\" name=\"title\" placeholder=\"\u05E0\u05D5\u05E9\u05D0\" required>\n        <input type=\"url\" name=\"imgUrl\" placeholder=\"\u05E7\u05D9\u05E9\u05D5\u05E8 \u05DC\u05EA\u05DE\u05D5\u05E0\u05D4\">\n        <input type=\"text\" name=\"location\" placeholder=\"\u05D4\u05D9\u05DB\u05DF \u05E6\u05D5\u05DC\u05DE\u05D4 \u05D4\u05EA\u05DE\u05D5\u05E0\u05D4?\">\n       \n        <div class=\"tags\" id=\"tags\">\n        <p>\u05D1\u05D7\u05E8 \u05EA\u05D2\u05D9\u05D5\u05EA \u05DC\u05EA\u05DE\u05D5\u05E0\u05D4:</p>";
                     tags.forEach(function (tag) { return html_1 += " <div>\n        <input type=\"checkbox\" name=\"tags\" value=\"" + tag + "\">\n        <label for=\"" + tag + "\">" + tag + "</label>\n        </div>"; });
                     html_1 += "<input type=\"text\" name=\"newTag\" placeholder=\"\u05D4\u05D6\u05DF \u05EA\u05D2\u05D9\u05EA \u05D7\u05D3\u05E9\u05D4\">\n        </div>\n       <div>\n            <button type=\"submit\" class=\"material-symbols-rounded\">check</button>\n            <button onclick=\"closeAdd()\" class=\"material-symbols-rounded\">close</button>\n        </div>\n        </form>";
                     root = document.querySelector('#add');
@@ -296,7 +294,6 @@ function handleRenderByTag(tag) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
-                    console.log(tag);
                     return [4 /*yield*/, fetch("API/pictures/get-pictures-by-tag?tag=" + tag)];
                 case 1:
                     response = _a.sent();

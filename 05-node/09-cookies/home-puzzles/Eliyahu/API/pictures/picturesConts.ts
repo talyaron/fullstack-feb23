@@ -13,8 +13,8 @@ export async function getPictures(req: any, res: any) {
 
 export async function getPicturesByTag(req: any, res: any) {
     try {
-        const {tag} = req.query
-        const picturesDB = await PictureModel.find({tags: tag})
+        const { tag } = req.query
+        const picturesDB = await PictureModel.find({ tags: tag })
         res.send({ pictures: picturesDB })
     } catch (error) {
         console.error(error.massage)
@@ -52,7 +52,7 @@ export async function addPicture(req: any, res: any) {
         const imgUrl = picture.imgUrl
         const location = picture.location
         const pictureTags = picture.tags
-        const area = picture.area
+        // const area = picture.area
         const { newTag } = picture
         if (newTag) {
             pictureTags.push(newTag)
@@ -65,28 +65,18 @@ export async function addPicture(req: any, res: any) {
             minute: "numeric"
         })
         const { email } = req.query;
-        // console.log(email);
-
         if (!email) {
             throw new Error("email is required");
         }
 
         const userDB = await UserModel.findOne({ email })
         const userName = userDB.name
-        // console.log(userName);
+      
+        const _picture = await (new PictureModel({ title, imgUrl, location, tags:pictureTags, publishDate, email, userName })).save()
 
-
-        const _picture = await (new PictureModel({ title, imgUrl, location, tags, area, publishDate, email, userName })).save()
-        
-        
         const picturesDB = await PictureModel.find({})
-        // console.log(picturesDB);
 
-
-
-        // console.log(picturesDB);
-
-        res.send({ ok: true,pictures:picturesDB })
+        res.send({ ok: true, pictures: picturesDB })
     } catch (error) {
         console.error(error.massage)
 
@@ -107,10 +97,10 @@ export async function deletePicture(req: any, res: any) {
 
 export async function updatePicture(req: any, res: any) {
     try {
-        const { title, imgUrl, location,tags, id } = req.body
+        const { title, imgUrl, location, tags, id } = req.body
         if (!title || !imgUrl || !location || !tags || !id) throw new Error("Please complete all details");
 
-        const pictureDB = await PictureModel.findByIdAndUpdate(id, { title: title, imgUrl: imgUrl, location: location, tags:tags }, { new: true })
+        const pictureDB = await PictureModel.findByIdAndUpdate(id, { title: title, imgUrl: imgUrl, location: location, tags: tags }, { new: true })
         const picturesDB = await PictureModel.find({})
         res.send({ pictures: picturesDB })
     } catch (error) {

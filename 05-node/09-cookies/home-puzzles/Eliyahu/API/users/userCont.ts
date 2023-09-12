@@ -23,14 +23,15 @@ export async function login(req: any, res: any) {
         if (!email || !password) throw new Error("Please complete all fields");
 
         const userDB = await UserModel.findOne({ email })
+        if (!userDB) throw new Error("user not exist or password is inncorect");
 
-        // const user = users.find(user => user.email === email && user.password === password)
-        // if (!user) throw new Error("Some of details are incorrect");
-
+        res.cookie("user", userDB._id, { maxAge: 60000, httpOnly: true })
         res.send({ ok: true, email: email })
 
     } catch (error) {
         console.error(error.message);
+        res.status(500).send(error.message); 
+        res.send({ok:false, message:error.message});
     }
 }
 
