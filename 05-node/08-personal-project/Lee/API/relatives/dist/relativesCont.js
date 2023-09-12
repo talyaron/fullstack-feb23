@@ -77,20 +77,20 @@ function addRelative(req, res) {
                 case 1:
                     user = _b.sent();
                     if (!user) {
-                        return [2 /*return*/, res.status(404).send({ error: "User not found" })];
+                        return [2 /*return*/, res.status(404).send({ error: "User not found with the provided email" })];
                     }
                     newRelative = new relativesModel_1.RelativeModel({
                         fullName: fullName,
                         birthDate: birthDate,
                         country: country,
                         relation: relation,
-                        user: userEmail
+                        user: user._id
                     });
                     return [4 /*yield*/, newRelative.save()];
                 case 2:
                     relativeDB = _b.sent();
                     console.log(relativeDB);
-                    res.send({ ok: true });
+                    res.status(201).send({ ok: true });
                     return [3 /*break*/, 4];
                 case 3:
                     error_2 = _b.sent();

@@ -45,11 +45,10 @@ function getPatients(req, res) {
             switch (_b.label) {
                 case 0:
                     _b.trys.push([0, 7, , 8]);
-                    debugger;
                     _a = req.query, physicianId = _a.physicianId, patientId = _a.patientId;
                     patients = void 0;
                     if (!patientId) return [3 /*break*/, 2];
-                    return [4 /*yield*/, patientModel_1.PatientModel.findOne({ _id: patientId })];
+                    return [4 /*yield*/, patientModel_1.PatientModel.findOne({ id: patientId })];
                 case 1:
                     patients = _b.sent();
                     return [3 /*break*/, 6];
@@ -61,11 +60,9 @@ function getPatients(req, res) {
                     return [3 /*break*/, 6];
                 case 4: return [4 /*yield*/, patientModel_1.PatientModel.find({ physicianId: physicianId })];
                 case 5:
-                    // Fetch the physician with the specified email from the database using PhysicianModel
                     patients = _b.sent();
                     _b.label = 6;
                 case 6:
-                    // Send the fetched physician data as a JSON response
                     res.send({ patients: patients });
                     return [3 /*break*/, 8];
                 case 7:
@@ -87,7 +84,7 @@ function addPatient(req, res) {
                 case 0:
                     _b.trys.push([0, 2, , 3]);
                     _a = req.body, firstName = _a.firstName, lastName = _a.lastName, patientId = _a.patientId, age = _a.age, phoneNum = _a.phoneNum, weight = _a.weight, height = _a.height, smoking = _a.smoking, address = _a.address, physicianId = _a.physicianId;
-                    if (!firstName || !lastName || !patientId || !age || !phoneNum || !weight || !height || !smoking || !address || !physicianId)
+                    if (!firstName || !lastName || !patientId || !age || !phoneNum || !weight || !height || !address || !physicianId)
                         throw new Error("Please complete all fields");
                     patient = new patientModel_1.PatientModel({ firstName: firstName, lastName: lastName, patientId: patientId, age: age, phoneNum: phoneNum, weight: weight, height: height, smoking: smoking, address: address, physicianId: physicianId });
                     return [4 /*yield*/, patient.save()];

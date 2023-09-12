@@ -1,20 +1,10 @@
 "use strict";
 exports.__esModule = true;
 exports.User = exports.UserSchema = void 0;
-// import { Schema,model } from "mongoose";
+// import mongoose from 'mongoose';
+// import Schema from 'mongoose';
 var mongoose_1 = require("mongoose");
-// export class UserClass {
-//     email: string;
-//     password: string;
-//     id: string;
-//     constructor({ email, password}:{email:string;
-//         password: string;}){
-//         this.email = email;
-//         this.password = password;
-//         this.id = Math.random().toString();
-//     }
-// }
-exports.UserSchema = new mongoose_1["default"].Schema({
+exports.UserSchema = new mongoose_1.Schema({
     email: {
         type: String,
         required: true
@@ -26,5 +16,4 @@ exports.UserSchema = new mongoose_1["default"].Schema({
     }
 });
 // Model like an instance from a class and the "User"-is a class
-exports.User = mongoose_1["default"].model("User", exports.UserSchema);
-// export const users: UserClass[] =[]
+exports.User = mongoose_1.model("User", exports.UserSchema);

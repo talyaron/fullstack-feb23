@@ -1,15 +1,22 @@
-import { User  } from "./userModel";
+import { User } from "./userModel";
 
 export const registerUser = async (req:any, res:any)=>{
     try {
         const { email, password } = req.body;
-        if(!email || !password) throw new Error("Please fill all fileds");
 
-        const user = new User({ email, password });
-        const userDB = await user.save();
-        console.log(userDB);
+        if(!email || !password) throw new Error("Please fill all fileds");
+        const userExist = await User.findOne({email, password})
+        console.log(userExist);
+
+        if(!userExist){
+            const user = new User({ email, password });
+    
+            await user.save();
+            console.log(user);
+
+            res.send({ ok:true, user });
+        } else throw new Error("User is already exists")
         
-        res.send({ ok:true, userDB });
     } catch (error) {
         console.error(error);
         res.send({ error:error.message });

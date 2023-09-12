@@ -335,6 +335,7 @@ function hundlePatientSubmit(event) {
                     smoking = event.target.smoking.checked;
                     address = event.target.address.value;
                     physicianId = event.target.physicianId.value;
+                    debugger;
                     if (!firstName || !lastName || !patientId || !age || !phoneNum || !weight || !height || !address || !physicianId)
                         throw new Error("missing some details");
                     return [4 /*yield*/, fetch("/API/patient/add-patient", {
@@ -581,26 +582,30 @@ function renderWelcome(lastName, root) {
 }
 function renderDeletePhysician(html) {
     return __awaiter(this, void 0, void 0, function () {
-        var tempHtml_1, physiciansList, error_10;
+        var tempHtml_1, response, data, physiciansList, error_10;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    _a.trys.push([0, 2, , 3]);
+                    _a.trys.push([0, 3, , 4]);
                     tempHtml_1 = "<h2>Delete Physician</h2>\n        <form onsubmit=\"hundlePhysicianDeleteSubmit(event)\">\n        <div class=\"input\">\n        <label for=\"id\">Select physician</label><br>\n        <select id=\"id\" name=\"id\">\n        ";
-                    return [4 /*yield*/, getPhysiciansList()];
+                    return [4 /*yield*/, fetch("/API/physician/get-physicians")];
                 case 1:
-                    physiciansList = _a.sent();
+                    response = _a.sent();
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    data = _a.sent();
+                    physiciansList = data.physician;
                     physiciansList.forEach(function (physician) {
                         tempHtml_1 += "<option value=\"" + physician._id + "\"> Dr. " + physician.firstName + " " + physician.lastName + "</option>";
                     });
                     tempHtml_1 += "</select>\n            </div>\n            <input type=\"submit\" value=\"DELETE\">\n            </form>";
                     html.innerHTML = tempHtml_1;
-                    return [3 /*break*/, 3];
-                case 2:
+                    return [3 /*break*/, 4];
+                case 3:
                     error_10 = _a.sent();
                     console.error(error_10);
-                    return [3 /*break*/, 3];
-                case 3: return [2 /*return*/];
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
             }
         });
     });
@@ -637,52 +642,60 @@ function renderMedicineList(html) {
 }
 function renderDeletePatient(html) {
     return __awaiter(this, void 0, void 0, function () {
-        var tempHtml_3, patientsList, error_12;
+        var tempHtml_3, response, data, patientsList, error_12;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    _a.trys.push([0, 2, , 3]);
+                    _a.trys.push([0, 3, , 4]);
                     tempHtml_3 = "<h2>Delete Patient</h2>\n        <form onsubmit=\"hundlePatientDeleteSubmit(event)\">\n        <div class=\"input\">\n        <label for=\"id\">Select patient</label><br>\n        <select id=\"id\" name=\"id\">\n        ";
-                    return [4 /*yield*/, getPatientsList()];
+                    return [4 /*yield*/, fetch("/API/patient/get-patients")];
                 case 1:
-                    patientsList = _a.sent();
+                    response = _a.sent();
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    data = _a.sent();
+                    patientsList = data.patients;
                     patientsList.forEach(function (patient) {
                         tempHtml_3 += "<option value=\"" + patient._id + "\"> " + patient.firstName + " " + patient.lastName + "</option>";
                     });
                     tempHtml_3 += "</select>\n            </div>\n            <input type=\"submit\" value=\"DELETE\">\n            </form>";
                     html.innerHTML = tempHtml_3;
-                    return [3 /*break*/, 3];
-                case 2:
+                    return [3 /*break*/, 4];
+                case 3:
                     error_12 = _a.sent();
                     console.error(error_12);
-                    return [3 /*break*/, 3];
-                case 3: return [2 /*return*/];
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
             }
         });
     });
 }
 function renderDeleteMedicine(html) {
     return __awaiter(this, void 0, void 0, function () {
-        var tempHtml_4, medicinesList, error_13;
+        var tempHtml_4, response, data, medicinesList, error_13;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    _a.trys.push([0, 2, , 3]);
+                    _a.trys.push([0, 3, , 4]);
                     tempHtml_4 = "<h2>Delete Medicine</h2>\n        <form onsubmit=\"hundleMedicineDeleteSubmit(event)\">\n        <div class=\"input\">\n        <label for=\"id\">Select medicine</label><br>\n        <select id=\"id\" name=\"id\">\n        ";
-                    return [4 /*yield*/, getMedicinesList()];
+                    return [4 /*yield*/, fetch("/API/medicine/get-medicines")];
                 case 1:
-                    medicinesList = _a.sent();
+                    response = _a.sent();
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    data = _a.sent();
+                    medicinesList = data.medicines;
                     medicinesList.forEach(function (medicine) {
                         tempHtml_4 += "<option value=\"" + medicine._id + "\"> " + medicine.name + "</option>";
                     });
                     tempHtml_4 += "</select>\n            </div>\n            <input type=\"submit\" value=\"DELETE\">\n            </form>";
                     html.innerHTML = tempHtml_4;
-                    return [3 /*break*/, 3];
-                case 2:
+                    return [3 /*break*/, 4];
+                case 3:
                     error_13 = _a.sent();
                     console.error(error_13);
-                    return [3 /*break*/, 3];
-                case 3: return [2 /*return*/];
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
             }
         });
     });
@@ -700,7 +713,7 @@ function renderPhysicianList(html) {
                     return [4 /*yield*/, response.json()];
                 case 2:
                     data = _a.sent();
-                    physiciansList = data.physicians;
+                    physiciansList = data.physician;
                     tempHtml_5 = "<h2>Physician List</h2>\n        <table>\n        <tr>\n        <th>First Name</th>\n        <th>Last Name</th>\n        <th>Age</th>\n        <th>Phone Number</th>\n        <th>Email</th>\n        <th>License Number</th>\n        <th>Admin</th>\n        </tr>";
                     physiciansList.forEach(function (physician) {
                         tempHtml_5 += "<tr>\n            <td>" + physician.firstName + "</td>\n            <td>" + physician.lastName + "</td>\n            <td>" + physician.age + "</td>\n            <td>" + physician.phoneNum + "</td>\n            <td>" + physician.email + "</td>\n            <td>" + physician.licenseNumber + "</td>\n            <td>" + physician.isAdmin + "</td>\n            </tr>";
@@ -731,7 +744,8 @@ function renderAdminPage() {
                 case 2:
                     data = _a.sent();
                     console.log(data);
-                    renderWelcome(data.physicians[0].lastName, document.querySelector("#root"));
+                    debugger;
+                    renderWelcome(data.physician.lastName, document.querySelector("#root"));
                     renderAdminActions(document.querySelector("#header"));
                     return [3 /*break*/, 4];
                 case 3:
@@ -771,8 +785,9 @@ function renderPatientList(html) {
                     return [4 /*yield*/, responsePhysician.json()];
                 case 4:
                     dataPhysician = _a.sent();
-                    physiciansList = dataPhysician.physicians;
+                    physiciansList = dataPhysician.physician;
                     patientsList = data.patients;
+                    debugger;
                     tempHtml_6 = "<h2>Patient List</h2>\n        <table>\n        <tr>\n        <th>First Name</th>\n        <th>Last Name</th>\n        <th>ID</th>\n        <th>Age</th>\n        <th>Phone Number</th>\n        <th>Weight</th>\n        <th>Height</th>\n        <th>Smoking</th>\n        <th>Address</th>\n        <th>Physician</th>\n        </tr>";
                     promise = patientsList.map(function (patient) { return __awaiter(_this, void 0, void 0, function () {
                         var physicianName;
@@ -803,26 +818,31 @@ function renderPatientList(html) {
 }
 function renderAddPatient(html) {
     return __awaiter(this, void 0, void 0, function () {
-        var tempHtml_7, physiciansList, error_17;
+        var tempHtml_7, response, data, physiciansList, error_17;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    _a.trys.push([0, 2, , 3]);
+                    _a.trys.push([0, 3, , 4]);
                     tempHtml_7 = "<h2>Add Patient</h2>\n        <form onsubmit=\"hundlePatientSubmit(event)\">\n            <div class=\"input\">\n            <label for=\"firstName\">First Name:</label><br>\n            <input type=\"text\" id=\"firstName\" name=\"firstName\">\n            </div><div class=\"input\">\n            <label for=\"lastName\">Last Name:</label><br>\n            <input type=\"text\" id=\"lastName\" name=\"lastName\">\n            </div> <div class=\"input\">\n            <label for=\"patientId\">ID:</label><br>\n            <input type=\"text\" id=\"patientId\" name=\"patientId\">\n            </div><div class=\"input\">\n            <label for=\"age\">Age:</label><br>\n            <input type=\"number\" id=\"age\" name=\"age\">\n            </div> <div class=\"input\">\n            <label for=\"phoneNum\">Phone Number:</label><br>\n            <input type=\"text\" id=\"phoneNum\" name=\"phoneNum\">\n            </div><div class=\"input\">\n            <label for=\"weight\">Weight:</label><br>\n            <input type=\"number\" id=\"weight\" name=\"weight\">\n            </div><div class=\"input\">\n            <label for=\"height\">Height:</label><br>\n            <input type=\"number\" id=\"height\" name=\"height\">\n            </div><div class=\"input\">\n            <label for=\"smoking\">Smoking:</label><br>\n            <input type=\"checkbox\" id=\"smoking\" name=\"smoking\">\n            </div><div class=\"input\">\n            <label for=\"address\">Address:</label><br>\n            <input type=\"text\" id=\"address\" name=\"address\">\n            </div><div class=\"input\">\n            <label for=\"physicianId\">Select physician</label><br>\n            <select id=\"physicianId\" name=\"physicianId\">\n            ";
-                    return [4 /*yield*/, getPhysiciansList()];
+                    return [4 /*yield*/, fetch("/API/physician/get-physicians")];
                 case 1:
-                    physiciansList = _a.sent();
+                    response = _a.sent();
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    data = _a.sent();
+                    physiciansList = data.physician;
+                    debugger;
                     physiciansList.forEach(function (physician) {
                         tempHtml_7 += "<option value=\"" + physician._id + "\"> Dr. " + physician.firstName + " " + physician.lastName + "</option>";
                     });
                     tempHtml_7 += "</select>\n            </div>\n            <input type=\"submit\" value=\"ADD\">\n        </form>";
                     html.innerHTML = tempHtml_7;
-                    return [3 /*break*/, 3];
-                case 2:
+                    return [3 /*break*/, 4];
+                case 3:
                     error_17 = _a.sent();
                     console.error(error_17);
-                    return [3 /*break*/, 3];
-                case 3: return [2 /*return*/];
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
             }
         });
     });
@@ -838,132 +858,148 @@ function renderAddMedicine(html) {
 function renderUpdatePhysician(html) {
     var _a;
     return __awaiter(this, void 0, void 0, function () {
-        var tempHtml_8, physiciansList, error_18;
+        var tempHtml_8, response, data, physiciansList, error_18;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
-                    _b.trys.push([0, 2, , 3]);
+                    _b.trys.push([0, 3, , 4]);
                     tempHtml_8 = "<h2>Update Physician</h2>\n        <form onsubmit=\"hundlePhysicianUpdateSubmit(event)\">\n        <div class=\"input\">\n        <label for=\"id\">Select physician</label><br>\n        <select id=\"id\" name=\"id\" onchange=\"loadDetails()\">\n        ";
-                    return [4 /*yield*/, getPhysiciansList()];
+                    return [4 /*yield*/, fetch("/API/physician/get-physicians")];
                 case 1:
-                    physiciansList = _b.sent();
+                    response = _b.sent();
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    data = _b.sent();
+                    physiciansList = data.physician;
                     physiciansList.forEach(function (physician) {
                         tempHtml_8 += "<option value=\"" + physician._id + "\"> Dr. " + physician.firstName + " " + physician.lastName + "</option>";
                     });
                     tempHtml_8 += "</select>\n            </div>\n            <div class=\"input\">\n            <label for=\"firstName\">First Name:</label><br>\n            <input type=\"text\" id=\"firstName\" name=\"firstName\" value=\"" + physiciansList[0].firstName + "\">\n            </div><div class=\"input\">\n            <label for=\"lastName\">Last Name:</label><br>\n            <input type=\"text\" id=\"lastName\" name=\"lastName\" value=\"" + physiciansList[0].lastName + "\">\n            </div> <div class=\"input\">\n            <label for=\"age\">Age:</label><br>\n            <input type=\"number\" id=\"age\" name=\"age\" value=\"" + physiciansList[0].age + "\">\n            </div> <div class=\"input\">\n            <label for=\"phoneNum\">Phone Number:</label><br>\n            <input type=\"text\" id=\"phoneNum\" name=\"phoneNum\" value=\"" + physiciansList[0].phoneNum + "\">\n            </div><div class=\"input\">\n            <label for=\"email\">Email:</label><br>\n            <input type=\"email\" id=\"email\" name=\"email\" value=\"" + physiciansList[0].email + "\">\n            </div><div class=\"input\">\n            <label for=\"licenseNumber\">License Number:</label><br>\n            <input type=\"text\" id=\"licenseNumber\" name=\"licenseNumber\" value=\"" + physiciansList[0].licenseNumber + "\">\n            </div><div class=\"input\">\n            <label for=\"password\">Password:</label><br>\n            <input type=\"password\" id=\"password\" name=\"password\" value=\"" + physiciansList[0].password + "\">\n            </div><div class=\"input\">\n            <label for=\"isAdmin\">Admin:</label><br>\n            <input type=\"checkbox\" id=\"isAdmin\" name=\"isAdmin\" " + (((_a = physiciansList[0]) === null || _a === void 0 ? void 0 : _a.isAdmin) ? "checked" : "") + ">\n            </div> \n            <input type=\"submit\" value=\"UPDATE\">\n            </form>";
                     html.innerHTML = tempHtml_8;
-                    return [3 /*break*/, 3];
-                case 2:
+                    return [3 /*break*/, 4];
+                case 3:
                     error_18 = _b.sent();
                     console.error(error_18);
-                    return [3 /*break*/, 3];
-                case 3: return [2 /*return*/];
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
             }
         });
     });
 }
 function renderUpdatePatient(html) {
     return __awaiter(this, void 0, void 0, function () {
-        var tempHtml_9, patientsList, physiciansList, error_19;
+        var tempHtml_9, response, data, patientsList, responsePhysician, dataPhysician, physiciansList, error_19;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    _a.trys.push([0, 3, , 4]);
+                    _a.trys.push([0, 5, , 6]);
                     tempHtml_9 = "<h2>Update Patient</h2>\n        <form onsubmit=\"hundlePatientUpdateSubmit(event)\">\n        <div class=\"input\">\n        <label for=\"id\">Select patient</label><br>\n        <select id=\"id\" name=\"id\" onchange=\"loadPatientDetails()\">\n        ";
-                    return [4 /*yield*/, getPatientsList()];
+                    return [4 /*yield*/, fetch("/API/patient/get-patients")];
                 case 1:
-                    patientsList = _a.sent();
+                    response = _a.sent();
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    data = _a.sent();
+                    patientsList = data.patient;
+                    debugger;
                     patientsList.forEach(function (patient) {
                         tempHtml_9 += "<option value=\"" + patient._id + "\"> " + patient.firstName + " " + patient.lastName + "</option>";
                     });
                     tempHtml_9 += "</select>\n            </div>\n            <div class=\"input\">\n            <label for=\"firstName\">First Name:</label><br>\n            <input type=\"text\" id=\"firstName\" name=\"firstName\" value=\"" + patientsList[0].firstName + "\">\n            </div><div class=\"input\">\n            <label for=\"lastName\">Last Name:</label><br>\n            <input type=\"text\" id=\"lastName\" name=\"lastName\" value=\"" + patientsList[0].lastName + "\">\n            </div> <div class=\"input\">\n            <label for=\"age\">Age:</label><br>\n            <input type=\"number\" id=\"age\" name=\"age\" value=\"" + patientsList[0].age + "\">\n            </div> <div class=\"input\">\n            <label for=\"phoneNum\">Phone Number:</label><br>\n            <input type=\"text\" id=\"phoneNum\" name=\"phoneNum\" value=\"" + patientsList[0].phoneNum + "\">\n            </div><div class=\"input\">\n            <label for=\"weight\">Weight:</label><br>\n            <input type=\"number\" id=\"weight\" name=\"weight\" value=\"" + patientsList[0].weight + "\">\n            </div><div class=\"input\">\n            <label for=\"height\">Height:</label><br>\n            <input type=\"number\" id=\"height\" name=\"height\" value=\"" + patientsList[0].height + "\">\n            </div><div class=\"input\">\n            <label for=\"smoking\">Smoking:</label><br>\n            <input type=\"checkbox\" id=\"smoking\" name=\"smoking\" " + (patientsList[0].smoking ? "checked" : "") + ">\n            </div><div class=\"input\">\n            <label for=\"address\">Address:</label><br>\n            <input type=\"text\" id=\"address\" name=\"address\" value=\"" + patientsList[0].address + "\">\n            </div><div class=\"input\">\n            <label for=\"physicianId\">Select physician</label><br>\n            <select id=\"physicianId\" name=\"physicianId\">\n            ";
-                    return [4 /*yield*/, getPhysiciansList()];
-                case 2:
-                    physiciansList = _a.sent();
+                    return [4 /*yield*/, fetch("/API/physician/get-physicians")];
+                case 3:
+                    responsePhysician = _a.sent();
+                    return [4 /*yield*/, responsePhysician.json()];
+                case 4:
+                    dataPhysician = _a.sent();
+                    physiciansList = dataPhysician.physician;
                     physiciansList.forEach(function (physician) {
                         tempHtml_9 += "<option value=\"" + physician._id + "\"> Dr. " + physician.firstName + " " + physician.lastName + "</option>";
                     });
                     tempHtml_9 += "</select>\n            </div>\n            <input type=\"submit\" value=\"UPDATE\">\n        </form>";
                     html.innerHTML = tempHtml_9;
-                    return [3 /*break*/, 4];
-                case 3:
+                    return [3 /*break*/, 6];
+                case 5:
                     error_19 = _a.sent();
                     console.error(error_19);
-                    return [3 /*break*/, 4];
-                case 4: return [2 /*return*/];
+                    return [3 /*break*/, 6];
+                case 6: return [2 /*return*/];
             }
         });
     });
 }
 function renderUpdateMedicine(html) {
     return __awaiter(this, void 0, void 0, function () {
-        var tempHtml_10, medicinesList, error_20;
+        var tempHtml_10, response, data, medicinesList, error_20;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    _a.trys.push([0, 2, , 3]);
+                    _a.trys.push([0, 3, , 4]);
                     tempHtml_10 = "<h2>Update Medicine</h2>\n        <form onsubmit=\"hundleMedicineUpdateSubmit(event)\">\n        <div class=\"input\">\n        <label for=\"id\">Select medicine</label><br>\n        <select id=\"id\" name=\"id\" onchange=\"loadMedicineDetails()\">\n        ";
-                    return [4 /*yield*/, getMedicinesList()];
+                    return [4 /*yield*/, fetch("/API/medicine/get-medicines")];
                 case 1:
-                    medicinesList = _a.sent();
+                    response = _a.sent();
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    data = _a.sent();
+                    medicinesList = data.medicines;
                     medicinesList.forEach(function (medicine) {
                         tempHtml_10 += "<option value=\"" + medicine._id + "\"> " + medicine.name + "</option>";
                     });
                     tempHtml_10 += "</select>\n            </div>\n            <div class=\"input\">\n            <label for=\"name\">Name:</label><br>\n            <input type=\"text\" id=\"name\" name=\"name\" value=\"" + medicinesList[0].name + "\">\n            </div><div class=\"input\">\n            <label for=\"dosagePerDay\">Dosage Per Day:</label><br>\n            <input type=\"number\" id=\"dosagePerDay\" name=\"dosagePerDay\" value=\"" + medicinesList[0].dosagePerDay + "\">\n            </div> <div class=\"input\">\n            <label for=\"maxDuration\">Max Duration:</label><br>\n            <input type=\"number\" id=\"maxDuration\" name=\"maxDuration\" value=\"" + medicinesList[0].maxDuration + "\">\n            </div>\n            <input type=\"submit\" value=\"UPDATE\">\n        </form>";
                     html.innerHTML = tempHtml_10;
-                    return [3 /*break*/, 3];
-                case 2:
+                    return [3 /*break*/, 4];
+                case 3:
                     error_20 = _a.sent();
                     console.error(error_20);
-                    return [3 /*break*/, 3];
-                case 3: return [2 /*return*/];
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
             }
         });
     });
 }
 function renderVisitsList(html) {
     return __awaiter(this, void 0, void 0, function () {
-        var visitsList, tempHtml_11, promise, error_21;
+        var response, data, visitsList, tempHtml_11, promise, error_21;
         var _this = this;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    _a.trys.push([0, 3, , 4]);
-                    return [4 /*yield*/, getVisitsAdminDB()];
+                    _a.trys.push([0, 4, , 5]);
+                    return [4 /*yield*/, fetch("/API/visit/get-visits")];
                 case 1:
-                    visitsList = _a.sent();
+                    response = _a.sent();
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    data = _a.sent();
+                    visitsList = data.visits;
                     tempHtml_11 = "<h2>Visits List</h2>\n        <table>\n        <tr>\n        <th>Date</th>\n        <th>Patient Name</th>\n        <th>Physician Name</th>\n        <th>summary</th>\n        <th>prescription</th>\n        </tr>";
                     promise = visitsList.map(function (visit) { return __awaiter(_this, void 0, void 0, function () {
-                        var patientName, physicianName, formattedDate, checkPrescription;
+                        var formattedDate, checkPrescription;
                         return __generator(this, function (_a) {
                             switch (_a.label) {
-                                case 0: return [4 /*yield*/, getPatientName(visit.patient)];
-                                case 1:
-                                    patientName = _a.sent();
-                                    return [4 /*yield*/, getPhysicianName(visit.physician)];
-                                case 2:
-                                    physicianName = _a.sent();
+                                case 0:
                                     formattedDate = getTimeFormated(new Date(visit.date));
                                     return [4 /*yield*/, checkPrescriptionExist(visit.patient, visit.date)];
-                                case 3:
+                                case 1:
                                     checkPrescription = _a.sent();
                                     debugger;
-                                    tempHtml_11 += "<tr>\n            <td>" + formattedDate + "</td>\n            <td>" + patientName + "</td>\n            <td>" + physicianName + "</td>\n            <td><button onclick=\"hundleSummary('" + visit._id + "')\">Open Summary</button></td>\n            <td><button onclick=\"hundlePrescription('" + (!checkPrescription ? 'disabled' : checkPrescription) + "')\" " + (!checkPrescription ? 'disabled' : "") + ">Open Prescription</button></td>\n            </tr>";
+                                    tempHtml_11 += "<tr>\n            <td>" + formattedDate + "</td>\n            <td>" + visit.patient.firstName + " " + visit.patient.lastName + "</td>\n            <td>Dr. " + visit.physician.firstName + " " + visit.physician.lastName + "</td>\n            <td><button onclick=\"hundleSummary('" + visit._id + "')\">Open Summary</button></td>\n            <td><button onclick=\"hundlePrescription('" + (!checkPrescription ? 'disabled' : checkPrescription) + "')\" " + (!checkPrescription ? 'disabled' : "") + ">Open Prescription</button></td>\n            </tr>";
                                     return [2 /*return*/];
                             }
                         });
                     }); });
                     return [4 /*yield*/, Promise.all(promise)];
-                case 2:
+                case 3:
                     _a.sent();
                     tempHtml_11 += "</table>";
                     html.innerHTML = tempHtml_11;
-                    return [3 /*break*/, 4];
-                case 3:
+                    return [3 /*break*/, 5];
+                case 4:
                     error_21 = _a.sent();
                     console.error(error_21);
-                    return [3 /*break*/, 4];
-                case 4: return [2 /*return*/];
+                    return [3 /*break*/, 5];
+                case 5: return [2 /*return*/];
             }
         });
     });
@@ -1074,19 +1110,19 @@ function getPatientsList() {
 }
 function loadDetails() {
     return __awaiter(this, void 0, void 0, function () {
-        var id_2, response, data, physician, idInput, firstNameInput, lastNameInput, ageInput, phoneNumInput, emailInput, licenseNumberInput, passwordInput, isAdminCheckbox, error_26;
+        var id, response, data, physician, idInput, firstNameInput, lastNameInput, ageInput, phoneNumInput, emailInput, licenseNumberInput, passwordInput, isAdminCheckbox, error_26;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
-                    id_2 = document.querySelector("#id").value;
-                    return [4 /*yield*/, fetch("/API/physician/get-physicians")];
+                    id = document.querySelector("#id").value;
+                    return [4 /*yield*/, fetch("/API/physician/get-physicians?_id=" + id)];
                 case 1:
                     response = _a.sent();
                     return [4 /*yield*/, response.json()];
                 case 2:
                     data = _a.sent();
-                    physician = data.physicians.find(function (physician) { return physician._id === id_2; });
+                    physician = data.physician;
                     idInput = document.querySelector("#id");
                     firstNameInput = document.querySelector("#firstName");
                     lastNameInput = document.querySelector("#lastName");
@@ -1116,19 +1152,19 @@ function loadDetails() {
 }
 function loadPatientDetails() {
     return __awaiter(this, void 0, void 0, function () {
-        var id_3, response, data, patient, idInput, firstNameInput, lastNameInput, ageInput, phoneNumInput, weightInput, heightInput, smokingCheckbox, addressInput, physicianIdInput, error_27;
+        var id, response, data, patient, idInput, firstNameInput, lastNameInput, ageInput, phoneNumInput, weightInput, heightInput, smokingCheckbox, addressInput, physicianIdInput, error_27;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
-                    id_3 = document.querySelector("#id").value;
-                    return [4 /*yield*/, fetch("/API/patient/get-patients")];
+                    id = document.querySelector("#id").value;
+                    return [4 /*yield*/, fetch("/API/patient/get-patients?patientId=" + id)];
                 case 1:
                     response = _a.sent();
                     return [4 /*yield*/, response.json()];
                 case 2:
                     data = _a.sent();
-                    patient = data.patients.find(function (patient) { return patient._id === id_3; });
+                    patient = data.patient;
                     idInput = document.querySelector("#id");
                     firstNameInput = document.querySelector("#firstName");
                     lastNameInput = document.querySelector("#lastName");
@@ -1165,7 +1201,7 @@ function checkPrescriptionExist(patientId, date) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
-                    return [4 /*yield*/, fetch("/API/prescription/get-prescriptions")];
+                    return [4 /*yield*/, fetch("/API/prescription/get-prescriptions?patientId=" + patientId + "&date=" + date)];
                 case 1:
                     response = _a.sent();
                     return [4 /*yield*/, response.json()];

@@ -1,36 +1,29 @@
 
-debugger;
+
 const pEmail = getEmailFromQuery();
 let physicianId;
-const physician = getPhysicianDB(pEmail).then(physician => {
-    console.log(physician);
-    physicianId = physician._id;
-});
+const physician = getPhysicianDB(pEmail).then();
 const pId = getPatientIdFromQuery();
-const patient = getPatientDB(pId).then(patient => {
-    console.log(patient);
-});
+const patient = getPatientDB(pId).then();
+debugger;
 const medicines = getMedicinesDB().then(medicines => {
     renderForm(medicines, document.querySelector("#root"));
 });
 
 async function hundlePrescriptionSubmit(event) {
     try {
-        debugger;
         event.preventDefault();
         const medicineId = document.querySelector<HTMLInputElement>("#medicine-select").value;
+        const response = await fetch(`/API/medicine/get-medicines?_id=${medicineId}`);
+        const result = await response.json();
+        const medicine = result.medicines;
         if (!patient) throw new Error("Patient not found");
         const date = getTimeFormated(new Date());
-        addNewPrescription(medicineId, date, pId, physicianId);
+        addNewPrescription(medicine, date, patient, physician);
     } catch (error) {
         console.error(error);
     }
 }
-
-
-
-
-
 
 async function renderForm(medicines, root) {
     try {
@@ -88,7 +81,7 @@ async function loadMedicineInfo() {
         const medicine = result.medicines.find(medicine => medicine._id === medicineId);
         const dosagePerDay = document.querySelector<HTMLInputElement>("#dosage-per-day");
         const duration = document.querySelector<HTMLInputElement>("#duration");
-        debugger;
+
         dosagePerDay.value = medicine.dosagePerDay;
         duration.value = medicine.maxDuration;
     } catch (error) {

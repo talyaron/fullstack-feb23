@@ -111,6 +111,7 @@ async function renderVisits(visits: Visit[]) {
 
 async function renderPrescriptions(prescriptions: Prescription[]) {
     try {
+        debugger;
         const root = document.querySelector("#forms");
         root.innerHTML = "";
         root.innerHTML += `<div id="prescriptions">
@@ -126,14 +127,13 @@ async function renderPrescriptions(prescriptions: Prescription[]) {
         </div>`;
         const table = document.querySelector("table");
         const promises = prescriptions.map(async (prescription) => {
-            const physicianName = await getPhysicianName(prescription.physician);
-            const patientName = await getPatientName(prescription.patient);
-            const medicineName = await getMedicineName(prescription.medicine);
-
+            const physicianName = await getPhysicianName(physicianEmail);
+            const patientName = await getPatientName(prescription.patient._id);
+            debugger;
             table.innerHTML += `<tr>
-            <td>${physicianName}</td>
+            <td>Dr. ${physicianName}</td>
             <td>${patientName}</td>
-            <td>${medicineName}</td>
+            <td>${prescription.medicine.name}</td>
             <td>${formatDate(prescription.date)}</td>
             </tr>`;
         });
@@ -291,15 +291,10 @@ async function updatePatientP() {
 
 async function loadPrescriptions() {
     try {
-        const response = await fetch("/API/prescription/get-prescriptions");
+        const response = await fetch(`/API/prescription/get-prescriptions?physicianEmail=${physicianEmail}`);
         const data = await response.json();
         console.log(data);
-        const physician = await getPhysicianDB(physicianEmail);
-        const patientResponse = await fetch("/API/patient/get-patients");
-        const patientData = await patientResponse.json();
-        const patients = patientData.patients.filter(patient => patient.physicianId === physician._id);
-        const prescriptions = data.prescriptions.filter(prescription => prescription.physician === patients[0].physicianId);
-
+        const prescriptions = data.prescriptions;
         renderPrescriptions(prescriptions);
     } catch (error) {
         console.error(error);
@@ -355,7 +350,8 @@ async function loadPatients() {
     try {
         const responseP = await fetch(`/API/physician/get-physicians?email=${physicianEmail}`);
         const dataP = await responseP.json();
-        const physicianID = dataP.physician._id;
+        debugger;
+        const physicianID = dataP.physician[0]._id;
         const response = await fetch(`/API/patient/get-patients?physicianId=${physicianID}`);
         const data = await response.json();
         const patients = data.patients;

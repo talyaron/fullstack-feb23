@@ -171,24 +171,23 @@ function renderPrescriptions(prescriptions) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
+                    debugger;
                     root = document.querySelector("#forms");
                     root.innerHTML = "";
                     root.innerHTML += "<div id=\"prescriptions\">\n        <h2>Prescriptions</h2>\n        <table>\n        <tr>\n        <th>Physician</th>\n        <th>Patient</th>\n        <th>Medicine</th>\n        <th>Supply Date</th>\n        </tr>\n        </table>\n        </div>";
                     table_2 = document.querySelector("table");
                     promises = prescriptions.map(function (prescription) { return __awaiter(_this, void 0, void 0, function () {
-                        var physicianName, patientName, medicineName;
+                        var physicianName, patientName;
                         return __generator(this, function (_a) {
                             switch (_a.label) {
-                                case 0: return [4 /*yield*/, getPhysicianName(prescription.physician)];
+                                case 0: return [4 /*yield*/, getPhysicianName(physicianEmail)];
                                 case 1:
                                     physicianName = _a.sent();
-                                    return [4 /*yield*/, getPatientName(prescription.patient)];
+                                    return [4 /*yield*/, getPatientName(prescription.patient._id)];
                                 case 2:
                                     patientName = _a.sent();
-                                    return [4 /*yield*/, getMedicineName(prescription.medicine)];
-                                case 3:
-                                    medicineName = _a.sent();
-                                    table_2.innerHTML += "<tr>\n            <td>" + physicianName + "</td>\n            <td>" + patientName + "</td>\n            <td>" + medicineName + "</td>\n            <td>" + formatDate(prescription.date) + "</td>\n            </tr>";
+                                    debugger;
+                                    table_2.innerHTML += "<tr>\n            <td>Dr. " + physicianName + "</td>\n            <td>" + patientName + "</td>\n            <td>" + prescription.medicine.name + "</td>\n            <td>" + formatDate(prescription.date) + "</td>\n            </tr>";
                                     return [2 /*return*/];
                             }
                         });
@@ -307,36 +306,26 @@ function updatePatientP() {
 }
 function loadPrescriptions() {
     return __awaiter(this, void 0, void 0, function () {
-        var response, data, physician_1, patientResponse, patientData, patients_1, prescriptions, error_7;
+        var response, data, prescriptions, error_7;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    _a.trys.push([0, 6, , 7]);
-                    return [4 /*yield*/, fetch("/API/prescription/get-prescriptions")];
+                    _a.trys.push([0, 3, , 4]);
+                    return [4 /*yield*/, fetch("/API/prescription/get-prescriptions?physicianEmail=" + physicianEmail)];
                 case 1:
                     response = _a.sent();
                     return [4 /*yield*/, response.json()];
                 case 2:
                     data = _a.sent();
                     console.log(data);
-                    return [4 /*yield*/, getPhysicianDB(physicianEmail)];
-                case 3:
-                    physician_1 = _a.sent();
-                    return [4 /*yield*/, fetch("/API/patient/get-patients")];
-                case 4:
-                    patientResponse = _a.sent();
-                    return [4 /*yield*/, patientResponse.json()];
-                case 5:
-                    patientData = _a.sent();
-                    patients_1 = patientData.patients.filter(function (patient) { return patient.physicianId === physician_1._id; });
-                    prescriptions = data.prescriptions.filter(function (prescription) { return prescription.physician === patients_1[0].physicianId; });
+                    prescriptions = data.prescriptions;
                     renderPrescriptions(prescriptions);
-                    return [3 /*break*/, 7];
-                case 6:
+                    return [3 /*break*/, 4];
+                case 3:
                     error_7 = _a.sent();
                     console.error(error_7);
-                    return [3 /*break*/, 7];
-                case 7: return [2 /*return*/];
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
             }
         });
     });
@@ -429,7 +418,8 @@ function loadPatients() {
                     return [4 /*yield*/, responseP.json()];
                 case 2:
                     dataP = _a.sent();
-                    physicianID = dataP.physician._id;
+                    debugger;
+                    physicianID = dataP.physician[0]._id;
                     return [4 /*yield*/, fetch("/API/patient/get-patients?physicianId=" + physicianID)];
                 case 3:
                     response = _a.sent();

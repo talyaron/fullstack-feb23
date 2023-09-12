@@ -2,13 +2,22 @@ import { PrescriptionModel } from "./prescriptionModel";
 
 export async function getPrescriptions(req, res) {
     try {
-        const prescriptionsDB = await PrescriptionModel.find({});
-        res.send({ prescriptions: prescriptionsDB });
+        const { email , patientId, date} = req.query;
+        let prescriptionDB;
+        if (email) {
+            prescriptionDB = await PrescriptionModel.find({ 'physician: email': email });
+        }
+        else if(patientId && date)
+            prescriptionDB = await PrescriptionModel.find({ 'patient: _id': patientId  , date});
+        else
+        prescriptionDB = await PrescriptionModel.find({ });
+        res.send({ prescriptions: prescriptionDB });
     } catch (error) {
         console.error(error);
         res.status(500).send({ error: error.message });
     }
 }
+
 
 export async function addPrescription(req, res) {
     try {

@@ -49,12 +49,13 @@ function renderPrescription(prescription, root) {
                         throw new Error("No prescription");
                     if (!root)
                         throw new Error("No root");
-                    return [4 /*yield*/, getMedicineName(prescription.medicine)];
+                    return [4 /*yield*/, getMedicineName(prescription.medicine._id)];
                 case 1:
                     medicineName = _a.sent();
-                    return [4 /*yield*/, getPhysicianName(prescription.physician)];
+                    return [4 /*yield*/, getPhysicianName(prescription.physician._id)];
                 case 2:
                     physicianName = _a.sent();
+                    debugger;
                     root.innerHTML = "<h1>Prescription</h1>\n        <div id=\"prescription\">\n        <p>Medicine: " + medicineName + "</p>\n        <p>Date: " + getTimeFormated(new Date(prescription.date)) + "</p>\n        <p>Physician: " + physicianName + "</p>\n        </div>\n        <button onclick=\"window.close()\">Close</button>";
                     return [3 /*break*/, 4];
                 case 3:

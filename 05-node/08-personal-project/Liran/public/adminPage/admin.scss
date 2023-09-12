@@ -45,6 +45,7 @@ body {
                 &:hover {
                     background-color: #0056b3;
                     transform: scale(1.05);
+                    cursor: pointer;
                 }
             }
 
@@ -52,9 +53,9 @@ body {
                 font-size: 5rem;
                 // color: #fff;
                 background-clip: text;
-                background: -webkit-linear-gradient( rgb(1, 254, 111), rgba(15, 4, 233, 0.581));
+                background: -webkit-linear-gradient(rgb(1, 254, 111), rgba(15, 4, 233, 0.581));
                 -webkit-background-clip: text;
-                -webkit-text-fill-color: transparent;    
+                -webkit-text-fill-color: transparent;
                 text-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
             }
         }

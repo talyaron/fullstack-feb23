@@ -225,6 +225,7 @@ async function hundlePatientSubmit(event) {
         const smoking = event.target.smoking.checked;
         const address = event.target.address.value;
         const physicianId = event.target.physicianId.value;
+        debugger;
         if (!firstName || !lastName || !patientId || !age || !phoneNum || !weight || !height || !address || !physicianId) throw new Error("missing some details");
         const response = await fetch("/API/patient/add-patient", {
             method: "POST",
@@ -439,7 +440,9 @@ async function renderDeletePhysician(html: HTMLDivElement) {
         <label for="id">Select physician</label><br>
         <select id="id" name="id">
         `;
-        const physiciansList = await getPhysiciansList();
+        const response = await fetch("/API/physician/get-physicians");
+        const data = await response.json();
+        const physiciansList: Physician[] = data.physician;
         physiciansList.forEach(physician => {
             tempHtml += `<option value="${physician._id}"> Dr. ${physician.firstName} ${physician.lastName}</option>`;
         });
@@ -488,7 +491,9 @@ async function renderDeletePatient(html: HTMLDivElement) {
         <label for="id">Select patient</label><br>
         <select id="id" name="id">
         `;
-        const patientsList = await getPatientsList();
+        const response = await fetch("/API/patient/get-patients");
+        const data = await response.json();
+        const patientsList: Patient[] = data.patients;
         patientsList.forEach(patient => {
             tempHtml += `<option value="${patient._id}"> ${patient.firstName} ${patient.lastName}</option>`;
         });
@@ -510,7 +515,9 @@ async function renderDeleteMedicine(html: HTMLDivElement) {
         <label for="id">Select medicine</label><br>
         <select id="id" name="id">
         `;
-        const medicinesList = await getMedicinesList();
+        const response = await fetch("/API/medicine/get-medicines");
+        const data = await response.json();
+        const medicinesList: Medicine[] = data.medicines;
         medicinesList.forEach(medicine => {
             tempHtml += `<option value="${medicine._id}"> ${medicine.name}</option>`;
         });
@@ -529,7 +536,7 @@ async function renderPhysicianList(html: HTMLDivElement) {
     try {
         const response = await fetch("/API/physician/get-physicians");
         const data = await response.json();
-        const physiciansList: Physician[] = data.physicians;
+        const physiciansList: Physician[] = data.physician;
         let tempHtml = `<h2>Physician List</h2>
         <table>
         <tr>
@@ -565,7 +572,8 @@ async function renderAdminPage() {
         const response = await fetch(`/API/physician/get-physicians?email=${email}`);
         const data = await response.json();
         console.log(data)
-        renderWelcome(data.physicians[0].lastName, document.querySelector("#root"));
+        debugger
+        renderWelcome(data.physician.lastName, document.querySelector("#root"));
         renderAdminActions(document.querySelector("#header"));
     } catch (error) {
         console.error(error);
@@ -603,8 +611,9 @@ async function renderPatientList(html: HTMLDivElement) {
         const data = await response.json();
         const responsePhysician = await fetch("/API/physician/get-physicians");
         const dataPhysician = await responsePhysician.json();
-        const physiciansList: Physician[] = dataPhysician.physicians;
+        const physiciansList: Physician[] = dataPhysician.physician;
         const patientsList: Patient[] = data.patients;
+        debugger;
         let tempHtml = `<h2>Patient List</h2>
         <table>
         <tr>
@@ -679,7 +688,10 @@ async function renderAddPatient(html: HTMLDivElement) {
             <label for="physicianId">Select physician</label><br>
             <select id="physicianId" name="physicianId">
             `;
-        const physiciansList = await getPhysiciansList();
+        const response = await fetch("/API/physician/get-physicians");
+        const data = await response.json();
+        const physiciansList: Physician[] = data.physician;
+        debugger;
         physiciansList.forEach(physician => {
             tempHtml += `<option value="${physician._id}"> Dr. ${physician.firstName} ${physician.lastName}</option>`;
         });
@@ -724,7 +736,9 @@ async function renderUpdatePhysician(html: HTMLDivElement) {
         <label for="id">Select physician</label><br>
         <select id="id" name="id" onchange="loadDetails()">
         `;
-        const physiciansList = await getPhysiciansList();
+        const response = await fetch("/API/physician/get-physicians");
+        const data = await response.json();
+        const physiciansList: Physician[] = data.physician;
         physiciansList.forEach(physician => {
 
             tempHtml += `<option value="${physician._id}"> Dr. ${physician.firstName} ${physician.lastName}</option>`;
@@ -772,8 +786,10 @@ async function renderUpdatePatient(html: HTMLDivElement) {
         <label for="id">Select patient</label><br>
         <select id="id" name="id" onchange="loadPatientDetails()">
         `;
-        const patientsList = await getPatientsList();
-
+        const response = await fetch("/API/patient/get-patients");
+        const data = await response.json();
+        const patientsList: Patient[] = data.patient;
+        debugger;
         patientsList.forEach(patient => {
             tempHtml += `<option value="${patient._id}"> ${patient.firstName} ${patient.lastName}</option>`;
         });
@@ -807,7 +823,9 @@ async function renderUpdatePatient(html: HTMLDivElement) {
             <label for="physicianId">Select physician</label><br>
             <select id="physicianId" name="physicianId">
             `;
-        const physiciansList = await getPhysiciansList();
+        const responsePhysician = await fetch("/API/physician/get-physicians");
+        const dataPhysician = await responsePhysician.json();
+        const physiciansList: Physician[] = dataPhysician.physician;
         physiciansList.forEach(physician => {
             tempHtml += `<option value="${physician._id}"> Dr. ${physician.firstName} ${physician.lastName}</option>`;
         });
@@ -829,7 +847,9 @@ async function renderUpdateMedicine(html: HTMLDivElement) {
         <label for="id">Select medicine</label><br>
         <select id="id" name="id" onchange="loadMedicineDetails()">
         `;
-        const medicinesList = await getMedicinesList();
+        const response = await fetch("/API/medicine/get-medicines");
+        const data = await response.json();
+        const medicinesList: Medicine[] = data.medicines;
         medicinesList.forEach(medicine => {
             tempHtml += `<option value="${medicine._id}"> ${medicine.name}</option>`;
         });
@@ -855,7 +875,9 @@ async function renderUpdateMedicine(html: HTMLDivElement) {
 
 async function renderVisitsList(html: HTMLDivElement) {
     try {
-        const visitsList = await getVisitsAdminDB();
+        const response = await fetch("/API/visit/get-visits");
+        const data = await response.json();
+        const visitsList: Visit[] = data.visits;
         let tempHtml = `<h2>Visits List</h2>
         <table>
         <tr>
@@ -866,15 +888,13 @@ async function renderVisitsList(html: HTMLDivElement) {
         <th>prescription</th>
         </tr>`;
         const promise = visitsList.map(async (visit) => {
-            const patientName = await getPatientName(visit.patient);
-            const physicianName = await getPhysicianName(visit.physician);
             const formattedDate = getTimeFormated(new Date(visit.date));
             const checkPrescription = await checkPrescriptionExist(visit.patient, visit.date);
             debugger;
             tempHtml += `<tr>
             <td>${formattedDate}</td>
-            <td>${patientName}</td>
-            <td>${physicianName}</td>
+            <td>${visit.patient.firstName} ${visit.patient.lastName}</td>
+            <td>Dr. ${visit.physician.firstName} ${visit.physician.lastName}</td>
             <td><button onclick="hundleSummary('${visit._id}')">Open Summary</button></td>
             <td><button onclick="hundlePrescription('${!checkPrescription ? 'disabled' : checkPrescription}')" ${!checkPrescription ? 'disabled' : ""}>Open Prescription</button></td>
             </tr>`;
@@ -942,10 +962,9 @@ async function getPatientsList() {
 async function loadDetails() {
     try {
         const id = document.querySelector<HTMLInputElement>("#id").value;
-        const response = await fetch(`/API/physician/get-physicians`);
+        const response = await fetch(`/API/physician/get-physicians?_id=${id}`);
         const data = await response.json();
-
-        const physician: Physician = data.physicians.find(physician => physician._id === id);
+        const physician: Physician = data.physician;
         const idInput = document.querySelector<HTMLInputElement>("#id");
         const firstNameInput = document.querySelector<HTMLInputElement>("#firstName");
         const lastNameInput = document.querySelector<HTMLInputElement>("#lastName");
@@ -971,9 +990,9 @@ async function loadDetails() {
 async function loadPatientDetails() {
     try {
         const id = document.querySelector<HTMLInputElement>("#id").value;
-        const response = await fetch(`/API/patient/get-patients`);
+        const response = await fetch(`/API/patient/get-patients?patientId=${id}`);
         const data = await response.json();
-        const patient: Patient = data.patients.find(patient => patient._id === id);
+        const patient: Patient = data.patient;
         const idInput = document.querySelector<HTMLInputElement>("#id");
         const firstNameInput = document.querySelector<HTMLInputElement>("#firstName");
         const lastNameInput = document.querySelector<HTMLInputElement>("#lastName");
@@ -1000,7 +1019,7 @@ async function loadPatientDetails() {
 
 async function checkPrescriptionExist(patientId, date) {
     try {
-        const response = await fetch(`/API/prescription/get-prescriptions`);
+        const response = await fetch(`/API/prescription/get-prescriptions?patientId=${patientId}&date=${date}`);
         const data = await response.json();
         const prescriptions = data.prescriptions;
         const prescriptionExist = prescriptions.find(prescription => prescription.patient === patientId && prescription.date === date);

@@ -116,13 +116,19 @@ function hundleCloseVisit(ev) {
 }
 function submitVisitForm(summary) {
     return __awaiter(this, void 0, void 0, function () {
-        var date, visit, response, result, error_2;
+        var date, patient, physician, visit, response, result, error_2;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    _a.trys.push([0, 3, , 4]);
+                    _a.trys.push([0, 5, , 6]);
                     date = getTimeFormated(new Date());
-                    visit = { date: date, patient: patientID, physician: physId, summary: summary };
+                    return [4 /*yield*/, getPatientDB(patientID)];
+                case 1:
+                    patient = _a.sent();
+                    return [4 /*yield*/, getPhysicianDB(physicianE)];
+                case 2:
+                    physician = _a.sent();
+                    visit = { date: date, patient: patient, physician: physician, summary: summary };
                     debugger;
                     return [4 /*yield*/, fetch("/API/visit/add-visit", {
                             method: "POST",
@@ -131,21 +137,21 @@ function submitVisitForm(summary) {
                             },
                             body: JSON.stringify(visit)
                         })];
-                case 1:
+                case 3:
                     response = _a.sent();
                     return [4 /*yield*/, response.json()];
-                case 2:
+                case 4:
                     result = _a.sent();
                     if (result.error)
                         throw new Error(result.error);
                     alert("Visit added successfully");
                     window.location.href = "../phisicianPage/physician.html?physicianEmail=" + physicianE;
-                    return [3 /*break*/, 4];
-                case 3:
+                    return [3 /*break*/, 6];
+                case 5:
                     error_2 = _a.sent();
                     console.error(error_2);
-                    return [3 /*break*/, 4];
-                case 4: return [2 /*return*/];
+                    return [3 /*break*/, 6];
+                case 6: return [2 /*return*/];
             }
         });
     });

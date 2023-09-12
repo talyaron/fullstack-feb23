@@ -40,22 +40,37 @@ exports.updatePrescription = exports.deletePrescription = exports.addPrescriptio
 var prescriptionModel_1 = require("./prescriptionModel");
 function getPrescriptions(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var prescriptionsDB, error_1;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
+        var _a, email, patientId, date, prescriptionDB, error_1;
+        return __generator(this, function (_b) {
+            switch (_b.label) {
                 case 0:
-                    _a.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, prescriptionModel_1.PrescriptionModel.find({})];
+                    _b.trys.push([0, 7, , 8]);
+                    _a = req.query, email = _a.email, patientId = _a.patientId, date = _a.date;
+                    prescriptionDB = void 0;
+                    if (!email) return [3 /*break*/, 2];
+                    return [4 /*yield*/, prescriptionModel_1.PrescriptionModel.find({ 'physician: email': email })];
                 case 1:
-                    prescriptionsDB = _a.sent();
-                    res.send({ prescriptions: prescriptionsDB });
-                    return [3 /*break*/, 3];
+                    prescriptionDB = _b.sent();
+                    return [3 /*break*/, 6];
                 case 2:
-                    error_1 = _a.sent();
+                    if (!(patientId && date)) return [3 /*break*/, 4];
+                    return [4 /*yield*/, prescriptionModel_1.PrescriptionModel.find({ 'patient: _id': patientId, date: date })];
+                case 3:
+                    prescriptionDB = _b.sent();
+                    return [3 /*break*/, 6];
+                case 4: return [4 /*yield*/, prescriptionModel_1.PrescriptionModel.find({})];
+                case 5:
+                    prescriptionDB = _b.sent();
+                    _b.label = 6;
+                case 6:
+                    res.send({ prescriptions: prescriptionDB });
+                    return [3 /*break*/, 8];
+                case 7:
+                    error_1 = _b.sent();
                     console.error(error_1);
                     res.status(500).send({ error: error_1.message });
-                    return [3 /*break*/, 3];
-                case 3: return [2 /*return*/];
+                    return [3 /*break*/, 8];
+                case 8: return [2 /*return*/];
             }
         });
     });

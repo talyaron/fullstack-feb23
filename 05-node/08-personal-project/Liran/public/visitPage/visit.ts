@@ -98,7 +98,9 @@ function hundleCloseVisit(ev) {
 async function submitVisitForm(summary) {
     try {
         const date = getTimeFormated(new Date());
-        const visit = { date: date, patient: patientID, physician: physId, summary: summary };
+        const patient = await getPatientDB(patientID);
+        const physician = await getPhysicianDB(physicianE);
+        const visit = { date: date, patient: patient, physician: physician, summary: summary };
         debugger;
         const response = await fetch(`/API/visit/add-visit`, {
             method: "POST",

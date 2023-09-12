@@ -39,27 +39,34 @@ exports.__esModule = true;
 exports.loginUser = exports.registerUser = void 0;
 var userModel_1 = require("./userModel");
 exports.registerUser = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var _a, email, password, user, userDB, error_1;
+    var _a, email, password, userExist, user, error_1;
     return __generator(this, function (_b) {
         switch (_b.label) {
             case 0:
-                _b.trys.push([0, 2, , 3]);
+                _b.trys.push([0, 5, , 6]);
                 _a = req.body, email = _a.email, password = _a.password;
                 if (!email || !password)
                     throw new Error("Please fill all fileds");
+                return [4 /*yield*/, userModel_1.User.findOne({ email: email, password: password })];
+            case 1:
+                userExist = _b.sent();
+                console.log(userExist);
+                if (!!userExist) return [3 /*break*/, 3];
                 user = new userModel_1.User({ email: email, password: password });
                 return [4 /*yield*/, user.save()];
-            case 1:
-                userDB = _b.sent();
-                console.log(userDB);
-                res.send({ ok: true, userDB: userDB });
-                return [3 /*break*/, 3];
             case 2:
+                _b.sent();
+                console.log(user);
+                res.send({ ok: true, user: user });
+                return [3 /*break*/, 4];
+            case 3: throw new Error("User is already exists");
+            case 4: return [3 /*break*/, 6];
+            case 5:
                 error_1 = _b.sent();
                 console.error(error_1);
                 res.send({ error: error_1.message });
-                return [3 /*break*/, 3];
-            case 3: return [2 /*return*/];
+                return [3 /*break*/, 6];
+            case 6: return [2 /*return*/];
         }
     });
 }); };

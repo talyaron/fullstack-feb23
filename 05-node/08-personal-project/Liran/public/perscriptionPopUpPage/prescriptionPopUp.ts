@@ -7,8 +7,9 @@ async function renderPrescription(prescription, root) {
     try {
         if (!prescription) throw new Error("No prescription");
         if (!root) throw new Error("No root");
-        const medicineName = await getMedicineName(prescription.medicine);
-        const physicianName = await getPhysicianName(prescription.physician);
+        const medicineName = await getMedicineName(prescription.medicine._id);
+        const physicianName = await getPhysicianName(prescription.physician._id);
+        debugger;
         root.innerHTML = `<h1>Prescription</h1>
         <div id="prescription">
         <p>Medicine: ${medicineName}</p>
