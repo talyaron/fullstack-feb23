@@ -87,8 +87,14 @@ export async function getUserRelatives(req: any, res: any) {
         if (!email) {
             throw new Error("email is required");
         }
-        //get user relatives
-        const relativeDB = await RelativeModel.find({ email });
+        const user = await UserModel.findOne({ email });
+
+        if (!user) {
+            throw new Error("User not found with the provided email");
+        }
+
+        // Get user's relatives
+        const relativeDB = await RelativeModel.find({ user: user._id });
         res.send({ relatives: relativeDB });
 
     } catch (error) {
