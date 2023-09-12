@@ -24,7 +24,7 @@ export const loginUser = async (req: any, res: any) => {
 
         const userDB = await UserModel.findOne({ email, password }) //find the user in DB
         if (!userDB) throw new Error("No user email or password found in DB");
-        console.log(userDB)
+        console.log("userdb:",userDB)
         res.send({ ok: true, email: userDB.email });
     } catch (error) {
         console.error(error)

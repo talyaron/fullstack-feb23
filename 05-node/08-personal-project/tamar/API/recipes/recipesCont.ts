@@ -63,32 +63,20 @@ export async function updateRecipe(req:any, res:any) {
         const currentRecipe = await RecipeModel.findById(id); //find current recipe by id
         if(!currentRecipe) throw new Error("recipe not found"); 
 
-        //the current items are extracted and store in "_" variables
-        const {title:_title, description:_description, urlImg:_urlImg} = currentRecipe;
-
-        if(title === ""){
-            const recipeDB = await RecipeModel.findByIdAndUpdate(id, {title:_title}, { new: true });
-            res.send({ recipeDB });
-        } else {
-            const recipeDB = await RecipeModel.findByIdAndUpdate(id, {title:title}, { new: true });
-            res.send({ recipeDB });
+        // Update the recipe properties
+        if (title) {
+            currentRecipe.title = title;
+        }
+        if (description) {
+            currentRecipe.description = description;
+        }
+        if (urlImg) {
+            currentRecipe.urlImg = urlImg;
         }
 
-        if(description === ""){
-            const recipeDB = await RecipeModel.findByIdAndUpdate(id, {description:_description}, { new: true });
-            res.send({ recipeDB });
-        } else {
-            const recipeDB = await RecipeModel.findByIdAndUpdate(id, {description:description}, { new: true });
-            res.send({ recipeDB });
-        }
-
-        if(urlImg === ""){
-            const recipeDB = await RecipeModel.findByIdAndUpdate(id, {urlImg:_urlImg}, { new: true });
-            res.send({ recipeDB });
-        } else {
-            const recipeDB = await RecipeModel.findByIdAndUpdate(id, {urlImg:urlImg}, { new: true });
-            res.send({ recipeDB });
-        }
+        // Save the updated recipe
+        const updatedRecipe = await currentRecipe.save();
+        res.send({ updatedRecipe });
         
     } catch (error) {
         console.error(error);

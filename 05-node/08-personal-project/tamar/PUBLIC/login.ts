@@ -19,9 +19,9 @@ async function handleLogin(ev){
             body: JSON.stringify(user)
         });
         const {error, email} = await response.json(); //get response (data) from server for the action
-        console.log(email);
+        console.log("email:",email);
         if (error) throw new Error(error);
-    debugger;
+   
         //if all ok, redirect to main page of the user by his email
         window.location.href = `/main.html?email=${email}`;  //query
         

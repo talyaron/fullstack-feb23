@@ -129,24 +129,20 @@ function hendelAddRecipe(ev) {
 }
 function hendlUpdateRecipe(ev, id) {
     return __awaiter(this, void 0, void 0, function () {
-        var email, bodyID, title, description, urlImg, updatRecipe, response, recipes_2, error_3;
+        var bodyID, title, description, urlImg, updatRecipe, response, recipes_2, error_3;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
                     ev.preventDefault();
-                    email = getEmailFromQuery();
-                    if (!email)
-                        throw new Error("no email");
-                    console.log(email);
                     bodyID = { id: id };
                     if (!id)
                         throw new Error("no recipe id");
                     console.log(bodyID);
-                    title = ev.target.element.title.value;
-                    description = ev.target.element.description.value;
-                    urlImg = ev.target.element.urlImg.value;
-                    updatRecipe = { title: title, description: description, urlImg: urlImg, email: email };
+                    title = ev.target.title.value;
+                    description = ev.target.description.value;
+                    urlImg = ev.target.urlImg.value;
+                    updatRecipe = { title: title, description: description, urlImg: urlImg };
                     console.log(updatRecipe);
                     return [4 /*yield*/, fetch('/API/recipes/update-recipe', {
                             method: 'PATCH',
@@ -211,7 +207,11 @@ function hendelDeleteRecipe(id) {
 //render
 function renderRecipe(recipe) {
     try {
-        var html = "<div id=\"updateRecipe\">\n                      <h3>" + recipe.title + "</h3>\n                      <br>\n                      <p>" + recipe.description + "</p>\n                      <img url=\"" + recipe.urlImg + "\">\n                      <br>\n                      <button onclick=\"hendelDeleteRecipe('" + recipe._id + "')\">Delet Recipe</button>\n                      <button onclick=\"renderUpdateForm('" + recipe + "')\">Update Recipe</button>\n                      </div>";
+        var recipeJson = JSON.stringify(recipe);
+        console.log("recipeJson in renderRecipe:", recipeJson);
+        if (recipeJson === "")
+            throw new Error("the resipeJson string is empty");
+        var html = "<div class=\"recipe\">\n                        <h3>" + recipe.title + "</h3>\n                        <br>\n                        <p>" + recipe.description + "</p>\n                        <img src='" + recipe.urlImg + "'>\n                        <br>\n                        <button onclick=\"hendelDeleteRecipe('" + recipe._id + "')\">Delet Recipe</button>\n                        <button onclick=\"renderUpdateForm('" + recipeJson + "', document.querySelector('#updateRecipe'))\">Update Recipe</button>\n                        <div id=\"updateRecipe\"></div>\n                      </div>";
         return html;
     }
     catch (error) {
@@ -236,11 +236,14 @@ function renderRecipes(recipes, root) {
         return "";
     }
 }
-function renderUpdateForm(recipe, DivEl) {
+function renderUpdateForm(recipeJSON, DivEl) {
     try {
-        if (!DivEl)
-            throw new Error("no div element");
-        var html = "<form id=\"recipe_update\" onsubmit=\"hendlUpdateRecipe('" + recipe._id + "')\">\n                  <input type=\"text\" name=\"title\" placeholder=\"Recipe title\">\n                  <input type=\"text\" name=\"description\" placeholder=\"Recipe Instructions\">\n                  <input type=\"url\" name=\"imgUrl\" placeholder=\"image\">\n                  <button type=\"submit\">Update Recipe now</button>\n                  </forn>";
+        console.log("recipeJSON in renderUpdateForm:", recipeJSON);
+        if (!DivEl || !recipeJSON)
+            throw new Error("no div element or recipe");
+        var recipe = JSON.parse(recipeJSON); // Parse the JSON string to get the recipe object
+        console.log(recipe); // Now you should see the recipe object correctly
+        var html = "<form id=\"recipe_update\" onsubmit=\"hendlUpdateRecipe(event,'" + recipe._id + "')\">\n                        <input type=\"text\" name=\"title\" placeholder=\"" + recipe.title + "\">\n                        <textarea  type=\"text\" rows=\"20\" cols=\"30\" name=\"description\" placeholder=\"" + recipe.description + "\"></textarea>\n                        <input type=\"url\" name=\"imgUrl\" placeholder=\"" + recipe.urlImg + "\">\n                        <button type=\"submit\">Update Recipe now</button>\n                      </form>";
         DivEl.innerHTML = html;
     }
     catch (error) {

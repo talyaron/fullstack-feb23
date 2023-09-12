@@ -62,10 +62,9 @@ function handleLogin(ev) {
                     return [4 /*yield*/, response.json()];
                 case 2:
                     _a = _b.sent(), error = _a.error, email = _a.email;
-                    console.log(email);
+                    console.log("email:", email);
                     if (error)
                         throw new Error(error);
-                    debugger;
                     //if all ok, redirect to main page of the user by his email
                     window.location.href = "/main.html?email=" + email; //query
                     return [3 /*break*/, 4];
