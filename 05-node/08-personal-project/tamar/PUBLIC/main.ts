@@ -23,6 +23,28 @@ function handelGetUserRecipes() {
     GetUserRecipe(email)
 }
 
+async function hendelDeleteUser(){
+    try {
+        const email = getEmailFromQuery();
+        if (!email) throw new Error("no email");
+        console.log(email)
+        const response = await fetch('/API/users/delete-user'
+            , {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ email })
+            });
+        //convert response to join data
+        const { users } = await response.json();
+        console.log(users);
+        window.location.href = "/index.html"
+    } catch (error) {
+        console.error(error)
+    }
+}
+
 async function hendelAddRecipe(ev: any) {
     try {
         ev.preventDefault();

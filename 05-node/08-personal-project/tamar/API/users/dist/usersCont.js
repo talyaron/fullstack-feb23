@@ -126,23 +126,29 @@ exports.getUser = getUser;
 //delete
 function deleteUser(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var id, userDB, error_4;
+        var email, usersDB, error_4;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    _a.trys.push([0, 2, , 3]);
-                    id = req.body.id;
-                    return [4 /*yield*/, usersModle_1.UserModel.findByIdAndDelete(id)];
+                    _a.trys.push([0, 3, , 4]);
+                    email = req.body.email;
+                    return [4 /*yield*/, usersModle_1.UserModel.findOneAndDelete(email)
+                        // Query the database to retrieve all recipes for the user
+                    ];
                 case 1:
-                    userDB = _a.sent();
-                    res.send({ userDB: userDB });
-                    return [3 /*break*/, 3];
+                    _a.sent();
+                    return [4 /*yield*/, usersModle_1.UserModel.find({ email: email })];
                 case 2:
+                    usersDB = _a.sent();
+                    // Send the array of users as the response
+                    res.send({ usersDB: usersDB });
+                    return [3 /*break*/, 4];
+                case 3:
                     error_4 = _a.sent();
                     console.error(error_4);
                     res.status(500).send({ error: error_4.message });
-                    return [3 /*break*/, 3];
-                case 3: return [2 /*return*/];
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
             }
         });
     });

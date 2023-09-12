@@ -47,9 +47,44 @@ function handelGetUserRecipes() {
     console.log(email);
     GetUserRecipe(email);
 }
+function hendelDeleteUser() {
+    return __awaiter(this, void 0, void 0, function () {
+        var email, response, users, error_1;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 3, , 4]);
+                    email = getEmailFromQuery();
+                    if (!email)
+                        throw new Error("no email");
+                    console.log(email);
+                    return [4 /*yield*/, fetch('/API/users/delete-user', {
+                            method: 'DELETE',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({ email: email })
+                        })];
+                case 1:
+                    response = _a.sent();
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    users = (_a.sent()).users;
+                    console.log(users);
+                    window.location.href = "/index.html";
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_1 = _a.sent();
+                    console.error(error_1);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
+            }
+        });
+    });
+}
 function hendelAddRecipe(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var email, title, description, urlImg, newRecipe, response, recipes_1, error_1;
+        var email, title, description, urlImg, newRecipe, response, recipes_1, error_2;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -84,8 +119,8 @@ function hendelAddRecipe(ev) {
                     document.querySelector("form").reset();
                     return [3 /*break*/, 4];
                 case 3:
-                    error_1 = _a.sent();
-                    console.error(error_1);
+                    error_2 = _a.sent();
+                    console.error(error_2);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }
@@ -94,7 +129,7 @@ function hendelAddRecipe(ev) {
 }
 function hendlUpdateRecipe(ev, id) {
     return __awaiter(this, void 0, void 0, function () {
-        var email, bodyID, title, description, urlImg, updatRecipe, response, recipes_2, error_2;
+        var email, bodyID, title, description, urlImg, updatRecipe, response, recipes_2, error_3;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -130,8 +165,8 @@ function hendlUpdateRecipe(ev, id) {
                     document.querySelector("form").reset();
                     return [3 /*break*/, 4];
                 case 3:
-                    error_2 = _a.sent();
-                    console.error(error_2);
+                    error_3 = _a.sent();
+                    console.error(error_3);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }
@@ -140,7 +175,7 @@ function hendlUpdateRecipe(ev, id) {
 }
 function hendelDeleteRecipe(id) {
     return __awaiter(this, void 0, void 0, function () {
-        var email, response, recipes_3, error_3;
+        var email, response, recipes_3, error_4;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -166,7 +201,7 @@ function hendelDeleteRecipe(id) {
                     renderRecipes(recipes_3, document.querySelector('#userRecipes'));
                     return [3 /*break*/, 4];
                 case 3:
-                    error_3 = _a.sent();
+                    error_4 = _a.sent();
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }
@@ -215,7 +250,7 @@ function renderUpdateForm(recipe, DivEl) {
 //controllers
 function GetUserRecipe(email) {
     return __awaiter(this, void 0, void 0, function () {
-        var response, data, error_4;
+        var response, data, error_5;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -230,7 +265,7 @@ function GetUserRecipe(email) {
                     renderRecipes(data.recipes, document.querySelector("#userRecipes"));
                     return [3 /*break*/, 4];
                 case 3:
-                    error_4 = _a.sent();
+                    error_5 = _a.sent();
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }
