@@ -2,16 +2,20 @@ import { PrescriptionModel } from "./prescriptionModel";
 
 export async function getPrescriptions(req, res) {
     try {
-        const { email , patientId, date} = req.query;
-        let prescriptionDB;
-        if (email) {
-            prescriptionDB = await PrescriptionModel.find({ 'physician: email': email });
+        const { email: email, _id: patientId } = req.query;
+        console.log(email, patientId);
+        let prescriptions;
+        if (email !== undefined) {
+            prescriptions = await PrescriptionModel.find({ 'physician.email': email });
         }
-        else if(patientId && date)
-            prescriptionDB = await PrescriptionModel.find({ 'patient: _id': patientId  , date});
+        else if (patientId) {
+            prescriptions = await PrescriptionModel.find({ 'patient._id': patientId });
+            console.log('prescriptions id + date');
+        }
         else
-        prescriptionDB = await PrescriptionModel.find({ });
-        res.send({ prescriptions: prescriptionDB });
+            prescriptions = await PrescriptionModel.find({});
+        console.log(prescriptions);
+        res.send({ prescriptions });
     } catch (error) {
         console.error(error);
         res.status(500).send({ error: error.message });
@@ -21,9 +25,10 @@ export async function getPrescriptions(req, res) {
 
 export async function addPrescription(req, res) {
     try {
-        const { patient, medicine, physician, date } = req.body;
+        const { patient: patient, medicine: medicine, physician: physician, date: date } = req.body;
+        console.log(patient, medicine, physician, date);
         if (!patient || !medicine || !physician || !date) throw new Error("Please complete all fields");
-        const prescription = new PrescriptionModel({ patient, medicine, physician, date });
+        const prescription = new PrescriptionModel({ patient: patient, medicine: medicine, physician: physician, date: date });
         const prescriptionDB = await prescription.save();
         console.log(prescriptionDB);
         res.send({ ok: true });

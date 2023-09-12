@@ -2,13 +2,16 @@ import { VisitModel } from "./visitModel";
 
 export const getVisits = async (req, res) => {
     try {
-        const { physician } = req.query;
+        const { physicianId, _id: patientId } = req.query;
         let visitsDB;
-        if (!physician) {
+        if (patientId) {
+            visitsDB = await VisitModel.find({ 'patient._id': patientId });
+        }
+        else if (!physicianId) {
             visitsDB = await VisitModel.find({});
         }
         else {
-            visitsDB = await VisitModel.find({ physician })
+            visitsDB = await VisitModel.find({ 'physician._id': physicianId })
         }
         res.send({ visits: visitsDB });
     } catch (error) {

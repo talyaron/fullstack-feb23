@@ -39,8 +39,7 @@ var patId = getPatientIdFromQuery();
 renderPatientHistory(patId, document.querySelector("#root"));
 function renderPatientHistory(pId, root) {
     return __awaiter(this, void 0, void 0, function () {
-        var patient, visits, medicines, html_1, prescriptions, promises, error_1;
-        var _this = this;
+        var response, result, visits, medicines, html_1, responsePrescriptions, resultPrescriptions, prescriptions, htmlRows, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -49,41 +48,37 @@ function renderPatientHistory(pId, root) {
                         throw new Error("No patient id");
                     if (!root)
                         throw new Error("No root");
-                    return [4 /*yield*/, getPatientDB(pId)];
+                    return [4 /*yield*/, fetch("/API/visit/get-visits?_id=" + pId)];
                 case 1:
-                    patient = _a.sent();
-                    return [4 /*yield*/, getVisitsDB(pId)];
+                    response = _a.sent();
+                    return [4 /*yield*/, response.json()];
                 case 2:
-                    visits = _a.sent();
+                    result = _a.sent();
+                    debugger;
+                    visits = result.visits;
                     return [4 /*yield*/, getMedicinesDB()];
                 case 3:
                     medicines = _a.sent();
-                    html_1 = "<h1>" + patient.firstName + " " + patient.lastName + "<br>ID: " + patient.patientId + "</h1>\n        <div id=\"visits\">\n        <h2>Visits</h2>\n        <table>\n        <tr>\n        <th>Date</th>\n        <th>Summary</th>\n        </tr>";
+                    html_1 = "<h1>" + visits[0].patient.firstName + " " + visits[0].patient.lastName + "<br>ID: " + visits[0].patient.patientId + "</h1>\n        <div id=\"visits\">\n        <h2>Visits</h2>\n        <table>\n        <tr>\n        <th>Date</th>\n        <th>Summary</th>\n        </tr>";
                     visits.forEach(function (visit) {
                         html_1 += "<tr>\n            <td>" + getTimeFormated(new Date(visit.date)) + "</td>\n            <td>" + visit.summary + "</td>\n            </tr>";
                     });
                     html_1 += "</table>\n        </div>";
                     html_1 += "<div id=\"prescriptions\">\n        <h2>Prescriptions</h2>\n        <table>\n        <tr>\n        <th>Date</th>\n        <th>Medicine</th>\n        </tr>";
-                    return [4 /*yield*/, getPrescriptionsDB(pId)];
+                    return [4 /*yield*/, fetch("/API/prescription/get-prescriptions?_id=" + pId)];
                 case 4:
-                    prescriptions = _a.sent();
-                    debugger;
-                    promises = prescriptions.map(function (prescription) { return __awaiter(_this, void 0, void 0, function () {
-                        var medName, formattedDate;
-                        return __generator(this, function (_a) {
-                            switch (_a.label) {
-                                case 0: return [4 /*yield*/, getMedicineName(prescription.medicine)];
-                                case 1:
-                                    medName = _a.sent();
-                                    formattedDate = getTimeFormated(new Date(prescription.date));
-                                    html_1 += "<tr>\n                <td>" + formattedDate + "</td>\n                <td>" + medName + "</td>\n            </tr>";
-                                    return [2 /*return*/];
-                            }
-                        });
-                    }); });
-                    return [4 /*yield*/, Promise.all(promises)];
+                    responsePrescriptions = _a.sent();
+                    return [4 /*yield*/, responsePrescriptions.json()];
                 case 5:
-                    _a.sent();
+                    resultPrescriptions = _a.sent();
+                    prescriptions = resultPrescriptions.prescriptions;
+                    debugger;
+                    htmlRows = prescriptions.map(function (prescription) {
+                        var medName = prescription.medicine.name;
+                        var formattedDate = getTimeFormated(new Date(prescription.date));
+                        return "<tr>\n                <td>" + formattedDate + "</td>\n                <td>" + medName + "</td>\n            </tr>";
+                    });
+                    html_1 += htmlRows.join('');
                     html_1 += "</table>\n        <br><br>\n        </div>\n        <button onclick=\"goBack()\">Back</button>";
                     root.innerHTML = html_1;
                     return [3 /*break*/, 7];

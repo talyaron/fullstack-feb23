@@ -89,11 +89,13 @@ async function renderVisits(visits: Visit[]) {
         </tr>
         </table>
         </div>`;
-        debugger;
         const table = document.querySelector("table");
         const promises = visits.map(async (visit) => {
-            const physicianName = await getPhysicianName(visit.physician._id);
-            const patientName = await getPatientName(visit.patient._id);
+            const responseP = await fetch(`/API/physician/get-physicians?email=${physicianEmail}`);
+            const dataP = await responseP.json();
+            const physicianName = `Dr. ${dataP.physician.firstName} ${dataP.physician.lastName}`;
+            const patientName = visit.patient.firstName + " " + visit.patient.lastName;
+            debugger;
 
             table.innerHTML += `<tr>
             <td>${physicianName}</td>
@@ -144,11 +146,12 @@ async function renderPrescriptions(prescriptions: Prescription[]) {
     }
 }
 
-async function renderUpdatePatientP(physicianID: string, html: HTMLDivElement) {
+async function renderUpdatePatientP(physicianId: string, html: HTMLDivElement) {
     try {
-        const response = await fetch(`/API/patient/get-patients?physicianId=${physicianID}`);
+        const response = await fetch(`/API/patient/get-patients?physicianId=${physicianId}`);
         const data = await response.json();
         const patients = data.patients;
+        debugger;
         let tempHtml = `<h2>Update Patient</h2>
         <form onsubmit="hundlePatientUpdate(event)">
         <div class="input">
@@ -192,7 +195,7 @@ async function renderUpdatePatientP(physicianID: string, html: HTMLDivElement) {
             <label for="address">Address:</label><br>
             <input type="text" id="address" name="address" value="${patients[0].address}">
             <div><label for="physicianId">Physician ID:</label><br>
-            <input type="text" id="physicianId" name="physicianId" value="${physicianID}" readonly>
+            <input type="text" id="physicianId" name="physicianId" value="${physicianId}" readonly>
             </div>
             </div>`;
         tempHtml += `<input type="submit" value="UPDATE">
@@ -291,7 +294,7 @@ async function updatePatientP() {
 
 async function loadPrescriptions() {
     try {
-        const response = await fetch(`/API/prescription/get-prescriptions?physicianEmail=${physicianEmail}`);
+        const response = await fetch(`/API/prescription/get-prescriptions?email=${physicianEmail}`);
         const data = await response.json();
         console.log(data);
         const prescriptions = data.prescriptions;
@@ -350,11 +353,12 @@ async function loadPatients() {
     try {
         const responseP = await fetch(`/API/physician/get-physicians?email=${physicianEmail}`);
         const dataP = await responseP.json();
+        const physicianId = dataP.physician._id;
         debugger;
-        const physicianID = dataP.physician[0]._id;
-        const response = await fetch(`/API/patient/get-patients?physicianId=${physicianID}`);
+        const response = await fetch(`/API/patient/get-patients?physicianId=${physicianId}`);
         const data = await response.json();
         const patients = data.patients;
+        debugger;
         renderPatients(patients);
     } catch (error) {
         console.error(error);
@@ -362,15 +366,10 @@ async function loadPatients() {
 }
 
 
-async function StartVisit(patientId: string) {
+async function StartVisit(_id: string) {
     try {
-        console.log(patientId);
-        const response = await fetch(`/API/patient/get-patients?patientId=${patientId}`);
-        const data = await response.json();
-        debugger;
-        const patientID = data.patients._id;
-        console.log(patientID);
-        window.location.href = `../visitPage/visit.html?_id=${patientID}&physicianEmail=${physicianEmail}`;
+        console.log(_id);
+        window.location.href = `../visitPage/visit.html?_id=${_id}&email=${physicianEmail}`;
     } catch (error) {
         console.error(error);
     }
@@ -380,6 +379,7 @@ async function loadMedicines() {
     try {
         const response = await fetch("/API/medicine/get-medicines");
         const data = await response.json();
+        debugger;
         console.log(data);
         renderMedicines(data.medicines);
     } catch (error) {

@@ -39,31 +39,37 @@ exports.__esModule = true;
 exports.deleteVisit = exports.addVisit = exports.getVisits = void 0;
 var visitModel_1 = require("./visitModel");
 exports.getVisits = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var physician, visitsDB, error_1;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
+    var _a, physicianId, patientId, visitsDB, error_1;
+    return __generator(this, function (_b) {
+        switch (_b.label) {
             case 0:
-                _a.trys.push([0, 5, , 6]);
-                physician = req.query.physician;
+                _b.trys.push([0, 7, , 8]);
+                _a = req.query, physicianId = _a.physicianId, patientId = _a._id;
                 visitsDB = void 0;
-                if (!!physician) return [3 /*break*/, 2];
-                return [4 /*yield*/, visitModel_1.VisitModel.find({})];
+                if (!patientId) return [3 /*break*/, 2];
+                return [4 /*yield*/, visitModel_1.VisitModel.find({ 'patient._id': patientId })];
             case 1:
-                visitsDB = _a.sent();
-                return [3 /*break*/, 4];
-            case 2: return [4 /*yield*/, visitModel_1.VisitModel.find({ physician: physician })];
-            case 3:
-                visitsDB = _a.sent();
-                _a.label = 4;
-            case 4:
-                res.send({ visits: visitsDB });
+                visitsDB = _b.sent();
                 return [3 /*break*/, 6];
+            case 2:
+                if (!!physicianId) return [3 /*break*/, 4];
+                return [4 /*yield*/, visitModel_1.VisitModel.find({})];
+            case 3:
+                visitsDB = _b.sent();
+                return [3 /*break*/, 6];
+            case 4: return [4 /*yield*/, visitModel_1.VisitModel.find({ 'physician._id': physicianId })];
             case 5:
-                error_1 = _a.sent();
+                visitsDB = _b.sent();
+                _b.label = 6;
+            case 6:
+                res.send({ visits: visitsDB });
+                return [3 /*break*/, 8];
+            case 7:
+                error_1 = _b.sent();
                 console.error(error_1);
                 res.status(500).send({ error: error_1.message });
-                return [3 /*break*/, 6];
-            case 6: return [2 /*return*/];
+                return [3 /*break*/, 8];
+            case 8: return [2 /*return*/];
         }
     });
 }); };

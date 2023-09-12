@@ -34,43 +34,31 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+debugger;
 var patientID = getPatientIdFromQuery();
 var physicianE = getEmailFromQuery();
-var phys = getPhysicianDB(physicianE);
-var physId;
-var currPatient = getPatientDB(patientID).then(function (patient) {
-    physId = patient.physicianId;
-    renderVisitForm(patient, document.querySelector("#root"));
-});
-function renderVisitForm(patient, root) {
-    try {
-        debugger;
-        if (!patient)
-            throw new Error("Patient not found");
-        if (!root)
-            throw new Error("Root not found");
-        var html = "<div id=\"forms\">\n        <form onsubmit=\"submitVisitForm(event)\"> \n        <div>\n            <label>Date:</label>\n            <input type=\"date\" id=\"visit-date\" name=\"visit-date\" value=\"" + new Date().toISOString().split("T")[0] + "\" readonly></div>\n            <div><label>First Name:</label>\n            <input type=\"text\" id=\"visit-first-name\" name=\"visit-first-name\" value=\"" + patient.firstName + "\" readonly></div>\n            <div><label>Last Name:</label>\n            <input type=\"text\" id=\"visit-last-name\" name=\"visit-last-name\" value=\"" + patient.lastName + "\" readonly></div>\n            <div><label>Age:</label>\n            <input type=\"number\" id=\"visit-age\" name=\"visit-age\" value=\"" + patient.age + "\" readonly></div>\n            <div><label>Phone Number:</label>\n            <input type=\"tel\" id=\"visit-phone-number\" name=\"visit-phone-number\" value=\"" + patient.phoneNum + "\" readonly></div>\n            <div><label>Weight:</label>\n            <input type=\"number\" id=\"visit-weight\" name=\"visit-weight\" value=\"" + patient.weight + "\" readonly></div>\n            <div><label>Height:</label>\n            <input type=\"number\" id=\"visit-height\" name=\"visit-height\" value=\"" + patient.height + "\" readonly></div>\n            <div><label>Smoking:</label>\n            <input type=\"checkbox\" id=\"visit-smoking\" name=\"visit-smoking\" value=\"" + patient.smoking + "\" disabled></div>\n            <div><label>Visit Summary:</label>\n            <textarea id=\"visit-description\" name=\"visit-description\" rows=\"14\" cols=\"50\" required></textarea></div>\n            <div><button type=\"button\" onclick=\"writePrescription('" + patient._id + "')\">Write Prescription</button></div>\n            <div><button type=\"button\" onclick=\"hundleLoadHistory()\">History</button></div>\n            <div><button onclick=\"hundleCloseVisit(event)\">Close Visit</button></div>\n        </form></div>\n        <button onclick=\"window.location.href = '../phisicianPage/physician.html?physicianEmail=" + physicianE + "'\">Back</button>";
-        root.innerHTML += html;
-    }
-    catch (error) {
-        console.error(error);
-    }
-}
-function hundleLoadHistory() {
+renderVisitForm(document.querySelector("#root"));
+function renderVisitForm(root) {
     return __awaiter(this, void 0, void 0, function () {
-        var response, result, visits, error_1;
+        var response, result, patient, html, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
-                    return [4 /*yield*/, fetch("/API/visit/get-visits")];
+                    return [4 /*yield*/, fetch("/API/patient/get-patients?_id=" + patientID)];
                 case 1:
                     response = _a.sent();
                     return [4 /*yield*/, response.json()];
                 case 2:
                     result = _a.sent();
-                    visits = result.visits.filter(function (visit) { return visit.patient === patientID; });
-                    renderHistoryPopUp();
+                    debugger;
+                    patient = result.patients;
+                    if (!patient)
+                        throw new Error("Patient not found");
+                    if (!root)
+                        throw new Error("Root not found");
+                    html = "<div id=\"forms\">\n        <form onsubmit=\"submitVisitForm(event)\"> \n        <div>\n            <label>Date:</label>\n            <input type=\"date\" id=\"visit-date\" name=\"visit-date\" value=\"" + new Date().toISOString().split("T")[0] + "\" readonly></div>\n            <div><label>First Name:</label>\n            <input type=\"text\" id=\"visit-first-name\" name=\"visit-first-name\" value=\"" + patient.firstName + "\" readonly></div>\n            <div><label>Last Name:</label>\n            <input type=\"text\" id=\"visit-last-name\" name=\"visit-last-name\" value=\"" + patient.lastName + "\" readonly></div>\n            <div><label>Age:</label>\n            <input type=\"number\" id=\"visit-age\" name=\"visit-age\" value=\"" + patient.age + "\" readonly></div>\n            <div><label>Phone Number:</label>\n            <input type=\"tel\" id=\"visit-phone-number\" name=\"visit-phone-number\" value=\"" + patient.phoneNum + "\" readonly></div>\n            <div><label>Weight:</label>\n            <input type=\"number\" id=\"visit-weight\" name=\"visit-weight\" value=\"" + patient.weight + "\" readonly></div>\n            <div><label>Height:</label>\n            <input type=\"number\" id=\"visit-height\" name=\"visit-height\" value=\"" + patient.height + "\" readonly></div>\n            <div><label>Smoking:</label>\n            <input type=\"checkbox\" id=\"visit-smoking\" name=\"visit-smoking\" value=\"" + patient.smoking + "\" disabled></div>\n            <div><label>Visit Summary:</label>\n            <textarea id=\"visit-description\" name=\"visit-description\" rows=\"14\" cols=\"50\" required></textarea></div>\n            <div><button type=\"button\" onclick=\"writePrescription('" + patient._id + "')\">Write Prescription</button></div>\n            <div><button type=\"button\" onclick=\"hundleLoadHistory()\">History</button></div>\n            <div><button onclick=\"hundleCloseVisit(event)\">Close Visit</button></div>\n        </form></div>\n        <button onclick=\"window.location.href = '../phisicianPage/physician.html?email=" + physicianE + "'\">Back</button>";
+                    root.innerHTML += html;
                     return [3 /*break*/, 4];
                 case 3:
                     error_1 = _a.sent();
@@ -81,9 +69,34 @@ function hundleLoadHistory() {
         });
     });
 }
+function hundleLoadHistory() {
+    return __awaiter(this, void 0, void 0, function () {
+        var response, result, visits, error_2;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 3, , 4]);
+                    return [4 /*yield*/, fetch("/API/visit/get-visits?_id=" + patientID)];
+                case 1:
+                    response = _a.sent();
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    result = _a.sent();
+                    visits = result.visits;
+                    renderHistoryPopUp();
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_2 = _a.sent();
+                    console.error(error_2);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
+            }
+        });
+    });
+}
 function renderHistoryPopUp() {
     try {
-        var popupURL = "../historyPage/history.html?_id=" + patientID + "&physicianEmail=" + physicianE; // Replace with the actual URL of your popup page
+        var popupURL = "../historyPage/history.html?_id=" + patientID + "&email=" + physicianE; // Replace with the actual URL of your popup page
         // Define the size and position of the popup window
         var popupWidth = 500;
         var popupHeight = 600;
@@ -116,12 +129,12 @@ function hundleCloseVisit(ev) {
 }
 function submitVisitForm(summary) {
     return __awaiter(this, void 0, void 0, function () {
-        var date, patient, physician, visit, response, result, error_2;
+        var date, patient, physician, visit, response, result, error_3;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 5, , 6]);
-                    date = getTimeFormated(new Date());
+                    date = new Date();
                     return [4 /*yield*/, getPatientDB(patientID)];
                 case 1:
                     patient = _a.sent();
@@ -145,11 +158,11 @@ function submitVisitForm(summary) {
                     if (result.error)
                         throw new Error(result.error);
                     alert("Visit added successfully");
-                    window.location.href = "../phisicianPage/physician.html?physicianEmail=" + physicianE;
+                    window.location.href = "../phisicianPage/physician.html?email=" + physicianE;
                     return [3 /*break*/, 6];
                 case 5:
-                    error_2 = _a.sent();
-                    console.error(error_2);
+                    error_3 = _a.sent();
+                    console.error(error_3);
                     return [3 /*break*/, 6];
                 case 6: return [2 /*return*/];
             }
@@ -161,7 +174,7 @@ function writePrescription(patientId) {
         var popupURL, popupWidth, popupHeight, left, top, popupWindow;
         return __generator(this, function (_a) {
             try {
-                popupURL = "../prescriptionPage/prescription.html?_id=" + patientId + "&physicianEmail=" + physicianE;
+                popupURL = "../prescriptionPage/prescription.html?_id=" + patientId + "&email=" + physicianE;
                 popupWidth = 400;
                 popupHeight = 300;
                 left = (window.innerWidth - popupWidth) / 2;
@@ -181,23 +194,23 @@ function writePrescription(patientId) {
 }
 function getPatientData(patientId) {
     return __awaiter(this, void 0, void 0, function () {
-        var response, result, patient, error_3;
+        var response, result, patient, error_4;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
-                    return [4 /*yield*/, fetch("/api/patient/get-patients")];
+                    return [4 /*yield*/, fetch("/api/patient/get-patients?patientId=" + patientId)];
                 case 1:
                     response = _a.sent();
                     return [4 /*yield*/, response.json()];
                 case 2:
                     result = _a.sent();
-                    patient = result.patients.find(function (patient) { return patient._id === patientId; });
+                    patient = result.patients;
                     debugger;
                     return [2 /*return*/, patient];
                 case 3:
-                    error_3 = _a.sent();
-                    console.error(error_3);
+                    error_4 = _a.sent();
+                    console.error(error_4);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }

@@ -1,15 +1,14 @@
+debugger;
 const patientID = getPatientIdFromQuery();
 const physicianE = getEmailFromQuery();
-const phys = getPhysicianDB(physicianE);
-let physId;
-const currPatient = getPatientDB(patientID).then(patient => {
-    physId = patient.physicianId;
-    renderVisitForm(patient, document.querySelector("#root"));
-});
+renderVisitForm(document.querySelector("#root"));
 
-function renderVisitForm(patient, root: HTMLDivElement) {
+async function renderVisitForm(root: HTMLDivElement) {
     try {
+        const response = await fetch(`/API/patient/get-patients?_id=${patientID}`);
+        const result = await response.json();
         debugger;
+        const patient = result.patients;
         if (!patient) throw new Error("Patient not found");
         if (!root) throw new Error("Root not found");
         let html = `<div id="forms">
@@ -37,7 +36,7 @@ function renderVisitForm(patient, root: HTMLDivElement) {
             <div><button type="button" onclick="hundleLoadHistory()">History</button></div>
             <div><button onclick="hundleCloseVisit(event)">Close Visit</button></div>
         </form></div>
-        <button onclick="window.location.href = '../phisicianPage/physician.html?physicianEmail=${physicianE}'">Back</button>`
+        <button onclick="window.location.href = '../phisicianPage/physician.html?email=${physicianE}'">Back</button>`
 
         root.innerHTML += html;
     } catch (error) {
@@ -47,9 +46,9 @@ function renderVisitForm(patient, root: HTMLDivElement) {
 
 async function hundleLoadHistory() {
     try {
-        const response = await fetch(`/API/visit/get-visits`);
+        const response = await fetch(`/API/visit/get-visits?_id=${patientID}`);
         const result = await response.json();
-        const visits = result.visits.filter(visit => visit.patient === patientID);
+        const visits = result.visits;
         renderHistoryPopUp();
     } catch (error) {
         console.error(error);
@@ -58,7 +57,7 @@ async function hundleLoadHistory() {
 
 function renderHistoryPopUp() {
     try {
-        const popupURL = `../historyPage/history.html?_id=${patientID}&physicianEmail=${physicianE}`; // Replace with the actual URL of your popup page
+        const popupURL = `../historyPage/history.html?_id=${patientID}&email=${physicianE}`; // Replace with the actual URL of your popup page
         // Define the size and position of the popup window
         const popupWidth = 500;
         const popupHeight = 600;
@@ -97,7 +96,7 @@ function hundleCloseVisit(ev) {
 
 async function submitVisitForm(summary) {
     try {
-        const date = getTimeFormated(new Date());
+        const date = new Date();
         const patient = await getPatientDB(patientID);
         const physician = await getPhysicianDB(physicianE);
         const visit = { date: date, patient: patient, physician: physician, summary: summary };
@@ -112,7 +111,7 @@ async function submitVisitForm(summary) {
         const result = await response.json();
         if (result.error) throw new Error(result.error);
         alert("Visit added successfully");
-        window.location.href = `../phisicianPage/physician.html?physicianEmail=${physicianE}`;
+        window.location.href = `../phisicianPage/physician.html?email=${physicianE}`;
     } catch (error) {
         console.error(error);
     }
@@ -120,7 +119,7 @@ async function submitVisitForm(summary) {
 
 async function writePrescription(patientId) {
     try {
-        const popupURL = `../prescriptionPage/prescription.html?_id=${patientId}&physicianEmail=${physicianE}`; // Replace with the actual URL of your popup page
+        const popupURL = `../prescriptionPage/prescription.html?_id=${patientId}&email=${physicianE}`; // Replace with the actual URL of your popup page
         // Define the size and position of the popup window
         const popupWidth = 400;
         const popupHeight = 300;
@@ -142,9 +141,9 @@ async function writePrescription(patientId) {
 
 async function getPatientData(patientId) {
     try {
-        const response = await fetch(`/api/patient/get-patients`)
+        const response = await fetch(`/api/patient/get-patients?patientId=${patientId}`)
         const result = await response.json();
-        const patient = result.patients.find(patient => patient._id === patientId);
+        const patient = result.patients
         debugger;
         return patient;
     } catch (error) {

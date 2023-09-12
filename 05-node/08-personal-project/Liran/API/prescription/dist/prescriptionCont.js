@@ -40,30 +40,33 @@ exports.updatePrescription = exports.deletePrescription = exports.addPrescriptio
 var prescriptionModel_1 = require("./prescriptionModel");
 function getPrescriptions(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var _a, email, patientId, date, prescriptionDB, error_1;
+        var _a, email, patientId, prescriptions, error_1;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
                     _b.trys.push([0, 7, , 8]);
-                    _a = req.query, email = _a.email, patientId = _a.patientId, date = _a.date;
-                    prescriptionDB = void 0;
-                    if (!email) return [3 /*break*/, 2];
-                    return [4 /*yield*/, prescriptionModel_1.PrescriptionModel.find({ 'physician: email': email })];
+                    _a = req.query, email = _a.email, patientId = _a._id;
+                    console.log(email, patientId);
+                    prescriptions = void 0;
+                    if (!(email !== undefined)) return [3 /*break*/, 2];
+                    return [4 /*yield*/, prescriptionModel_1.PrescriptionModel.find({ 'physician.email': email })];
                 case 1:
-                    prescriptionDB = _b.sent();
+                    prescriptions = _b.sent();
                     return [3 /*break*/, 6];
                 case 2:
-                    if (!(patientId && date)) return [3 /*break*/, 4];
-                    return [4 /*yield*/, prescriptionModel_1.PrescriptionModel.find({ 'patient: _id': patientId, date: date })];
+                    if (!patientId) return [3 /*break*/, 4];
+                    return [4 /*yield*/, prescriptionModel_1.PrescriptionModel.find({ 'patient._id': patientId })];
                 case 3:
-                    prescriptionDB = _b.sent();
+                    prescriptions = _b.sent();
+                    console.log('prescriptions id + date');
                     return [3 /*break*/, 6];
                 case 4: return [4 /*yield*/, prescriptionModel_1.PrescriptionModel.find({})];
                 case 5:
-                    prescriptionDB = _b.sent();
+                    prescriptions = _b.sent();
                     _b.label = 6;
                 case 6:
-                    res.send({ prescriptions: prescriptionDB });
+                    console.log(prescriptions);
+                    res.send({ prescriptions: prescriptions });
                     return [3 /*break*/, 8];
                 case 7:
                     error_1 = _b.sent();
@@ -84,6 +87,7 @@ function addPrescription(req, res) {
                 case 0:
                     _b.trys.push([0, 2, , 3]);
                     _a = req.body, patient = _a.patient, medicine = _a.medicine, physician = _a.physician, date = _a.date;
+                    console.log(patient, medicine, physician, date);
                     if (!patient || !medicine || !physician || !date)
                         throw new Error("Please complete all fields");
                     prescription = new prescriptionModel_1.PrescriptionModel({ patient: patient, medicine: medicine, physician: physician, date: date });

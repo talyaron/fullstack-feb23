@@ -1,15 +1,11 @@
 
 
 const pEmail = getEmailFromQuery();
-let physicianId;
-const physician = getPhysicianDB(pEmail).then();
-const pId = getPatientIdFromQuery();
-const patient = getPatientDB(pId).then();
+const patientId = getPatientIdFromQuery();
 debugger;
 const medicines = getMedicinesDB().then(medicines => {
     renderForm(medicines, document.querySelector("#root"));
 });
-
 async function hundlePrescriptionSubmit(event) {
     try {
         event.preventDefault();
@@ -17,8 +13,15 @@ async function hundlePrescriptionSubmit(event) {
         const response = await fetch(`/API/medicine/get-medicines?_id=${medicineId}`);
         const result = await response.json();
         const medicine = result.medicines;
+        const responseP = await fetch(`/API/physician/get-physicians?email=${pEmail}`);
+        const resultP = await responseP.json();
+        const physician = resultP.physician;
+        const responsePa = await fetch(`/API/patient/get-patients?_id=${patientId}`);
+        const resultPa = await responsePa.json();
+        const patient = resultPa.patients;
+        debugger;
         if (!patient) throw new Error("Patient not found");
-        const date = getTimeFormated(new Date());
+        const date = new Date();
         addNewPrescription(medicine, date, patient, physician);
     } catch (error) {
         console.error(error);
@@ -54,8 +57,10 @@ async function renderForm(medicines, root) {
     }
 }
 
-async function addNewPrescription(medicine, date, patient, physician) {
+async function addNewPrescription(medicine: Medicine, date: Date, patient, physician) {
     try {
+        console.log(physician);
+        debugger;
         const response = await fetch(`/API/prescription/add-prescription`, {
             method: "POST",
             headers: {

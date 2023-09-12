@@ -3,12 +3,12 @@ const currPrescription = getPrescriptionFromDB(prescriptionIdFromQuery).then((pr
     renderPrescription(prescription, document.querySelector('#root'));
 });
 
-async function renderPrescription(prescription, root) {
+function renderPrescription(prescription, root) {
     try {
         if (!prescription) throw new Error("No prescription");
         if (!root) throw new Error("No root");
-        const medicineName = await getMedicineName(prescription.medicine._id);
-        const physicianName = await getPhysicianName(prescription.physician._id);
+        const medicineName = prescription.medicine.name;
+        const physicianName = `Dr. ${prescription.physician.firstName} ${prescription.physician.lastName}`;
         debugger;
         root.innerHTML = `<h1>Prescription</h1>
         <div id="prescription">

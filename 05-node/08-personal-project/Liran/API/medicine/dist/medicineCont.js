@@ -41,31 +41,37 @@ exports.updateMedicine = exports.deleteMedicine = exports.addMedicine = exports.
 var medicineModel_1 = require("./medicineModel");
 function getMedicines(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var name, medicinesDB, error_1;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
+        var _a, name, _id, medicines, error_1;
+        return __generator(this, function (_b) {
+            switch (_b.label) {
                 case 0:
-                    _a.trys.push([0, 5, , 6]);
-                    name = req.query.name;
-                    medicinesDB = void 0;
+                    _b.trys.push([0, 7, , 8]);
+                    _a = req.query, name = _a.name, _id = _a._id;
+                    medicines = void 0;
                     if (!name) return [3 /*break*/, 2];
-                    return [4 /*yield*/, medicineModel_1.MedicineModel.find({ name: name })];
+                    return [4 /*yield*/, medicineModel_1.MedicineModel.findOne({ name: name })];
                 case 1:
-                    medicinesDB = _a.sent();
-                    return [3 /*break*/, 4];
-                case 2: return [4 /*yield*/, medicineModel_1.MedicineModel.find({})];
-                case 3:
-                    medicinesDB = _a.sent();
-                    _a.label = 4;
-                case 4:
-                    res.send({ medicinesDB: medicinesDB });
+                    medicines = _b.sent();
                     return [3 /*break*/, 6];
+                case 2:
+                    if (!_id) return [3 /*break*/, 4];
+                    return [4 /*yield*/, medicineModel_1.MedicineModel.findOne({ _id: _id })];
+                case 3:
+                    medicines = _b.sent();
+                    return [3 /*break*/, 6];
+                case 4: return [4 /*yield*/, medicineModel_1.MedicineModel.find({})];
                 case 5:
-                    error_1 = _a.sent();
+                    medicines = _b.sent();
+                    _b.label = 6;
+                case 6:
+                    res.send({ medicines: medicines });
+                    return [3 /*break*/, 8];
+                case 7:
+                    error_1 = _b.sent();
                     console.error(error_1);
                     res.status(500).send({ error: error_1.message });
-                    return [3 /*break*/, 6];
-                case 6: return [2 /*return*/];
+                    return [3 /*break*/, 8];
+                case 8: return [2 /*return*/];
             }
         });
     });

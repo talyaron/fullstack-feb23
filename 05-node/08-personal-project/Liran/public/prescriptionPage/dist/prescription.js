@@ -35,21 +35,18 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 var pEmail = getEmailFromQuery();
-var physicianId;
-var physician = getPhysicianDB(pEmail).then();
-var pId = getPatientIdFromQuery();
-var patient = getPatientDB(pId).then();
+var patientId = getPatientIdFromQuery();
 debugger;
 var medicines = getMedicinesDB().then(function (medicines) {
     renderForm(medicines, document.querySelector("#root"));
 });
 function hundlePrescriptionSubmit(event) {
     return __awaiter(this, void 0, void 0, function () {
-        var medicineId, response, result, medicine, date, error_1;
+        var medicineId, response, result, medicine, responseP, resultP, physician, responsePa, resultPa, patient, date, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    _a.trys.push([0, 3, , 4]);
+                    _a.trys.push([0, 7, , 8]);
                     event.preventDefault();
                     medicineId = document.querySelector("#medicine-select").value;
                     return [4 /*yield*/, fetch("/API/medicine/get-medicines?_id=" + medicineId)];
@@ -59,16 +56,31 @@ function hundlePrescriptionSubmit(event) {
                 case 2:
                     result = _a.sent();
                     medicine = result.medicines;
+                    return [4 /*yield*/, fetch("/API/physician/get-physicians?email=" + pEmail)];
+                case 3:
+                    responseP = _a.sent();
+                    return [4 /*yield*/, responseP.json()];
+                case 4:
+                    resultP = _a.sent();
+                    physician = resultP.physician;
+                    return [4 /*yield*/, fetch("/API/patient/get-patients?_id=" + patientId)];
+                case 5:
+                    responsePa = _a.sent();
+                    return [4 /*yield*/, responsePa.json()];
+                case 6:
+                    resultPa = _a.sent();
+                    patient = resultPa.patients;
+                    debugger;
                     if (!patient)
                         throw new Error("Patient not found");
-                    date = getTimeFormated(new Date());
+                    date = new Date();
                     addNewPrescription(medicine, date, patient, physician);
-                    return [3 /*break*/, 4];
-                case 3:
+                    return [3 /*break*/, 8];
+                case 7:
                     error_1 = _a.sent();
                     console.error(error_1);
-                    return [3 /*break*/, 4];
-                case 4: return [2 /*return*/];
+                    return [3 /*break*/, 8];
+                case 8: return [2 /*return*/];
             }
         });
     });
@@ -103,6 +115,8 @@ function addNewPrescription(medicine, date, patient, physician) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
+                    console.log(physician);
+                    debugger;
                     return [4 /*yield*/, fetch("/API/prescription/add-prescription", {
                             method: "POST",
                             headers: {
