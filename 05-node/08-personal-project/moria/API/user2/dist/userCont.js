@@ -90,31 +90,3 @@ exports.login = function (req, res) { return __awaiter(void 0, void 0, void 0, f
         }
     });
 }); };
-// export const loginAdmin = (req: any, res: any) => {
-//     try {
-//         const { adminEmail } = req.body
-//         const admin = 'Admin'
-//         if (!adminEmail) throw new Error("Missing email Aamin");
-//         res.send({ ok: true, adminEmail, admin })
-//     } catch (error) {
-//         console.error(error.message);
-//     }
-// }
-// export const getUserName = async (req: any, res: any) => {
-//     try {
-//         const { email } = req.query;
-//         if (!(UserModel.exists({ email: email }))) throw new Error("user dont excist");
-//         const user = await UserModel.find({ email: email });
-//         if (!user) throw new Error("some fields are incorrect");
-//         res.send(user);
-//     } catch (error) {
-//         console.error(error);
-//     }
-// }
-// export const getUserName = async (req, res) => {
-//     try {
-//         res.send({  });
-//     } catch (error) {
-//         console.error(error);
-//     }
-// };
