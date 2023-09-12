@@ -12,7 +12,7 @@ enum RelationType {
   cousin = "Cousin",
   niece = "Niece",
   nephew = "Nephew",
-  other = "other"
+  other = "Other"
 }
 
 interface Relative {
