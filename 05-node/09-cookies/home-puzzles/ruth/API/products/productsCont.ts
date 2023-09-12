@@ -5,25 +5,31 @@ import UserModel from "../users/usersModel";
 export async function createProduct(req, res) {
   try {
     const { newProd, userEmail } = req.body;
-    log(newProd, userEmail);
     const findOwner = await UserModel.findOne({ email: userEmail });
-    if (!findOwner) throw new Error("Couldnt find owner");
+    if (!findOwner) throw new Error("Couldn't find owner");
     const product = new ProductModel({
       imgUrl: newProd.imgUrl,
       price: newProd.price,
       title: newProd.title,
       description: newProd.description,
       email: userEmail,
+      customersWishList: [],
+      customersCart: [],
     });
     const productDB = await product.save();
-
+    console.log(productDB);
     res.send({ ok: true, newProduct: productDB });
-  } catch (error) {}
+  } catch (error) {
+    console.error(error);
+  }
 }
 
 export async function getProductByOwnerEmail(req, res) {
   try {
-    const userEmail = req.query.email;
+    const userId = req.cookies.user;
+    const userDB = await UserModel.findById(userId);
+    const userEmail = userDB.email;
+
     if (!userEmail) throw new Error("email not found");
     const usersProducts = await ProductModel.find({ email: userEmail });
     console.log(usersProducts);

@@ -4,11 +4,17 @@
 }
 
 input {
-  border: none !important;
+  border: none;
   width: 6px;
 }
 
 nav {
+  .logo {
+    &:hover {
+      cursor: pointer;
+      background-color: #b1b1b1;
+    }
+  }
   background-color: rgb(255, 255, 255);
   //   align-items: center;
   display: flex;
@@ -25,8 +31,8 @@ nav {
       text-decoration: none;
       color: #b1b1b1;
       &:hover {
-        // background-color: rgb(198, 198, 198);
-        color: rgb(71, 71, 71);
+        background-color: rgb(198, 198, 198);
+        color: rgb(0, 0, 0);
       }
     }
     img {

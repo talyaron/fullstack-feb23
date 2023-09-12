@@ -35,11 +35,28 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 function goMyStore() {
-    window.location.href = "./pages/myStore.html?email=" + getUserEmailByQuery();
+    window.location.href = "./pages/myStore.html";
 }
-function getUserEmailByQuery() {
-    var urlParams = new URLSearchParams(window.location.search);
-    return urlParams.get("email");
+// function getUserEmailByQuery() {
+//   const urlParams = new URLSearchParams(window.location.search);
+//   return urlParams.get("email");
+// }
+function getUserFromCookie() {
+    return __awaiter(this, void 0, void 0, function () {
+        var response, userEmail;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, fetch("/API/user/get-user-from-cookie")];
+                case 1:
+                    response = _a.sent();
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    userEmail = (_a.sent()).userEmail;
+                    console.log(userEmail);
+                    return [2 /*return*/, userEmail];
+            }
+        });
+    });
 }
 function getFid() {
     return __awaiter(this, void 0, void 0, function () {
@@ -54,7 +71,7 @@ function getFid() {
                     products = (_a.sent()).products;
                     html = products
                         .map(function (product) {
-                        return "\n    <div class=\"fid__prodDiv id='" + product._id + "'\">\n          <img\n            src='" + product.imgUrl + "'\n            alt=\"\" />\n          <div class=\"fid__info\">\n            <p>title:" + product.title + "</p>\n            <p>price:" + product.price + "$</p>\n            <p>author:" + product.email + "</p>\n          </div>\n          <div class=\"likeAndCart\">\n            <span onclick=\"handleAddWishList(event)\" class=\"material-symbols-outlined\"> heart_plus </span>\n            <span onclick=\"handleAddCart(event)\" class=\"material-symbols-outlined\"> shopping_bag </span>\n          </div>\n        </div>\n    ";
+                        return "\n    <div class=\"fid__prodDiv id='" + product._id + "'\">\n          <img\n            src='" + product.imgUrl + "'\n            alt=\"\" />\n          <div class=\"fid__info\">\n            <h4>title: " + product.title + "</h4>\n            <p>price: " + product.price + "$</p>\n            <p>" + product.description + "</p>\n            <p>author:  " + product.email + "</p>\n          </div>\n          <div class=\"likeAndCart\">\n            <span onclick=\"handleAddWishList(event)\" class=\"material-symbols-outlined\"> heart_plus </span>\n            <span onclick=\"handleAddCart(event)\" class=\"material-symbols-outlined\"> shopping_bag </span>\n          </div>\n        </div>\n    ";
                     })
                         .join(" ");
                     root = document.querySelector(".fid");
@@ -70,26 +87,28 @@ function handleAddCart(event) {
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    _a.trys.push([0, 3, , 4]);
+                    _a.trys.push([0, 4, , 5]);
                     id = event.target.parentNode.id;
-                    userEmail = getUserEmailByQuery();
+                    return [4 /*yield*/, getUserFromCookie()];
+                case 1:
+                    userEmail = _a.sent();
                     postInit = {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
                         body: JSON.stringify({ id: id, userEmail: userEmail })
                     };
                     return [4 /*yield*/, fetch("/API/products/add-product-to-cart", postInit)];
-                case 1:
+                case 2:
                     response = _a.sent();
                     return [4 /*yield*/, response.json()];
-                case 2:
-                    ok = (_a.sent()).ok;
-                    return [3 /*break*/, 4];
                 case 3:
+                    ok = (_a.sent()).ok;
+                    return [3 /*break*/, 5];
+                case 4:
                     error_1 = _a.sent();
                     console.error(error_1);
-                    return [3 /*break*/, 4];
-                case 4: return [2 /*return*/];
+                    return [3 /*break*/, 5];
+                case 5: return [2 /*return*/];
             }
         });
     });
@@ -100,12 +119,14 @@ function handleAddWishList(event) {
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    _a.trys.push([0, 3, , 4]);
+                    _a.trys.push([0, 4, , 5]);
                     id = event.target;
                     console.dir(id);
                     if (!id)
                         throw new Error("id not found");
-                    userEmail = getUserEmailByQuery();
+                    return [4 /*yield*/, getUserFromCookie()];
+                case 1:
+                    userEmail = _a.sent();
                     if (!userEmail)
                         throw new Error("User email not found");
                     postInit = {
@@ -114,17 +135,17 @@ function handleAddWishList(event) {
                         body: JSON.stringify({ id: id, userEmail: userEmail })
                     };
                     return [4 /*yield*/, fetch("/API/products/add-product-to-wishlist", postInit)];
-                case 1:
+                case 2:
                     response = _a.sent();
                     return [4 /*yield*/, response.json()];
-                case 2:
-                    ok = (_a.sent()).ok;
-                    return [3 /*break*/, 4];
                 case 3:
+                    ok = (_a.sent()).ok;
+                    return [3 /*break*/, 5];
+                case 4:
                     error_2 = _a.sent();
                     console.error(error_2);
-                    return [3 /*break*/, 4];
-                case 4: return [2 /*return*/];
+                    return [3 /*break*/, 5];
+                case 5: return [2 /*return*/];
             }
         });
     });

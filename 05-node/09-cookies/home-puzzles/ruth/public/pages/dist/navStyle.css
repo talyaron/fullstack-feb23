@@ -4,7 +4,7 @@
 }
 
 input {
-  border: none !important;
+  border: none;
   width: 6px;
 }
 
@@ -17,6 +17,10 @@ nav {
   border-bottom: 1px solid #b1b1b1;
   justify-content: space-around;
 }
+nav .logo:hover {
+  cursor: pointer;
+  background-color: #b1b1b1;
+}
 nav div {
   display: flex;
 }
@@ -27,7 +31,8 @@ nav div a {
   color: #b1b1b1;
 }
 nav div a:hover {
-  color: #474747;
+  background-color: #c6c6c6;
+  color: black;
 }
 nav div img {
   height: 100px;

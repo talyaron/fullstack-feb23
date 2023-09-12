@@ -1,10 +1,17 @@
 function goMyStore() {
-  window.location.href = `./pages/myStore.html?email=${getUserEmailByQuery()}`;
+  window.location.href = `./pages/myStore.html`;
 }
 
-function getUserEmailByQuery() {
-  const urlParams = new URLSearchParams(window.location.search);
-  return urlParams.get("email");
+// function getUserEmailByQuery() {
+//   const urlParams = new URLSearchParams(window.location.search);
+//   return urlParams.get("email");
+// }
+
+async function getUserFromCookie() {
+  const response = await fetch("/API/user/get-user-from-cookie");
+  const { userEmail } = await response.json();
+  console.log(userEmail);
+  return userEmail;
 }
 
 async function getFid() {
@@ -18,9 +25,10 @@ async function getFid() {
             src='${product.imgUrl}'
             alt="" />
           <div class="fid__info">
-            <p>title:${product.title}</p>
-            <p>price:${product.price}$</p>
-            <p>author:${product.email}</p>
+            <h4>title: ${product.title}</h4>
+            <p>price: ${product.price}$</p>
+            <p>${product.description}</p>
+            <p>author:  ${product.email}</p>
           </div>
           <div class="likeAndCart">
             <span onclick="handleAddWishList(event)" class="material-symbols-outlined"> heart_plus </span>
@@ -37,7 +45,7 @@ async function getFid() {
 async function handleAddCart(event) {
   try {
     const id = event.target.parentNode.id;
-    const userEmail = getUserEmailByQuery();
+    const userEmail = await getUserFromCookie();
     const postInit = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -56,7 +64,7 @@ async function handleAddWishList(event) {
     const id = event.target;
     console.dir(id);
     if (!id) throw new Error("id not found");
-    const userEmail = getUserEmailByQuery();
+    const userEmail = await getUserFromCookie();
     if (!userEmail) throw new Error("User email not found");
     const postInit = {
       method: "POST",

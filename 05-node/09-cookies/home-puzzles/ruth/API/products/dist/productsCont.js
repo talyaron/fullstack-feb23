@@ -48,26 +48,29 @@ function createProduct(req, res) {
                 case 0:
                     _b.trys.push([0, 3, , 4]);
                     _a = req.body, newProd = _a.newProd, userEmail = _a.userEmail;
-                    console_1.log(newProd, userEmail);
                     return [4 /*yield*/, usersModel_1["default"].findOne({ email: userEmail })];
                 case 1:
                     findOwner = _b.sent();
                     if (!findOwner)
-                        throw new Error("Couldnt find owner");
+                        throw new Error("Couldn't find owner");
                     product = new productsModel_1["default"]({
                         imgUrl: newProd.imgUrl,
                         price: newProd.price,
                         title: newProd.title,
                         description: newProd.description,
-                        email: userEmail
+                        email: userEmail,
+                        customersWishList: [],
+                        customersCart: []
                     });
                     return [4 /*yield*/, product.save()];
                 case 2:
                     productDB = _b.sent();
+                    console.log(productDB);
                     res.send({ ok: true, newProduct: productDB });
                     return [3 /*break*/, 4];
                 case 3:
                     error_1 = _b.sent();
+                    console.error(error_1);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }
@@ -77,27 +80,31 @@ function createProduct(req, res) {
 exports.createProduct = createProduct;
 function getProductByOwnerEmail(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var userEmail, usersProducts, error_2;
+        var userId, userDB, userEmail, usersProducts, error_2;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    _a.trys.push([0, 2, , 3]);
-                    userEmail = req.query.email;
+                    _a.trys.push([0, 3, , 4]);
+                    userId = req.cookies.user;
+                    return [4 /*yield*/, usersModel_1["default"].findById(userId)];
+                case 1:
+                    userDB = _a.sent();
+                    userEmail = userDB.email;
                     if (!userEmail)
                         throw new Error("email not found");
                     return [4 /*yield*/, productsModel_1["default"].find({ email: userEmail })];
-                case 1:
+                case 2:
                     usersProducts = _a.sent();
                     console.log(usersProducts);
                     if (!usersProducts)
                         throw new Error("user's products not found");
                     res.send({ usersProducts: usersProducts });
-                    return [3 /*break*/, 3];
-                case 2:
+                    return [3 /*break*/, 4];
+                case 3:
                     error_2 = _a.sent();
                     console.error(error_2);
-                    return [3 /*break*/, 3];
-                case 3: return [2 /*return*/];
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
             }
         });
     });

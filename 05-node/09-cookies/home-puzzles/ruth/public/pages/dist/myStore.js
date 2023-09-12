@@ -43,19 +43,51 @@ var Product = /** @class */ (function () {
     }
     return Product;
 }());
+function checkLogin() {
+    return __awaiter(this, void 0, void 0, function () {
+        var userEmail, halloUserDiv, error_1;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    return [4 /*yield*/, getUserFromCookie()];
+                case 1:
+                    userEmail = _a.sent();
+                    console.log(userEmail);
+                    if (!userEmail || userEmail === null || userEmail === undefined) {
+                        alert("you need to login first");
+                        throw new Error("you need to login first");
+                    }
+                    if (userEmail) {
+                        halloUserDiv = document.querySelector(".halloUserDiv");
+                        halloUserDiv.innerText = "welcome to " + userEmail.split("@")[0] + " store";
+                    }
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_1 = _a.sent();
+                    console.error(error_1);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
+}
 function handleAddProduct(event) {
     return __awaiter(this, void 0, void 0, function () {
-        var imgUrl, price, title, description, userEmail, form, newProd, postInit, response, _a, ok, newProduct, error_1;
+        var imgUrl, price, title, description, userEmail, form, newProd, postInit, response, _a, ok, newProduct, error_2;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
-                    _b.trys.push([0, 3, , 4]);
+                    _b.trys.push([0, 4, , 5]);
                     event.preventDefault();
                     imgUrl = event.target.imgUrl.value;
                     price = event.target.price.value;
                     title = event.target.title.value;
                     description = event.target.description.value;
-                    userEmail = getUserEmailByQuery();
+                    return [4 /*yield*/, getUserFromCookie()];
+                case 1:
+                    userEmail = _b.sent();
+                    console.log(imgUrl, price, title, description, userEmail);
                     if (!imgUrl || !price || !title || !description || !userEmail)
                         throw new Error("Some fields are empty");
                     form = document.querySelector(".myForm");
@@ -69,25 +101,46 @@ function handleAddProduct(event) {
                         body: JSON.stringify({ newProd: newProd, userEmail: userEmail })
                     };
                     return [4 /*yield*/, fetch("/API/products/create-product", postInit)];
-                case 1:
+                case 2:
                     response = _b.sent();
                     return [4 /*yield*/, response.json()];
-                case 2:
-                    _a = _b.sent(), ok = _a.ok, newProduct = _a.newProduct;
-                    renderMyStore();
-                    return [3 /*break*/, 4];
                 case 3:
-                    error_1 = _b.sent();
-                    console.error(error_1.message);
-                    return [3 /*break*/, 4];
-                case 4: return [2 /*return*/];
+                    _a = _b.sent(), ok = _a.ok, newProduct = _a.newProduct;
+                    if (!ok || !newProduct)
+                        throw new Error("product not create on DB server error");
+                    renderMyStore();
+                    return [3 /*break*/, 5];
+                case 4:
+                    error_2 = _b.sent();
+                    console.error(error_2.message);
+                    return [3 /*break*/, 5];
+                case 5: return [2 /*return*/];
             }
         });
     });
 }
-function getUserEmailByQuery() {
-    var urlParams = new URLSearchParams(window.location.search);
-    return urlParams.get("email");
+// function getUserEmailByQuery() {
+//   const urlParams = new URLSearchParams(window.location.search);
+//   return urlParams.get("email");
+// }
+function getUserFromCookie() {
+    return __awaiter(this, void 0, void 0, function () {
+        var response, data, userEmail;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, fetch("/API/users/get-user-from-cookie")];
+                case 1:
+                    response = _a.sent();
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    data = _a.sent();
+                    return [4 /*yield*/, data];
+                case 3:
+                    userEmail = (_a.sent()).userEmail;
+                    return [2 /*return*/, userEmail];
+            }
+        });
+    });
 }
 function handleDeleteProduct(event) {
     return __awaiter(this, void 0, void 0, function () {
@@ -98,39 +151,41 @@ function handleDeleteProduct(event) {
 }
 function renderMyStore() {
     return __awaiter(this, void 0, void 0, function () {
-        var userEmail, response, usersProducts, html, root, error_2;
+        var userEmail, response, usersProducts, html, root, error_3;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    _a.trys.push([0, 3, , 4]);
-                    userEmail = getUserEmailByQuery();
-                    console.log(userEmail);
-                    return [4 /*yield*/, fetch("/API/products/get-products-by-owner-email?email=" + userEmail)];
+                    _a.trys.push([0, 4, , 5]);
+                    return [4 /*yield*/, getUserFromCookie()];
                 case 1:
+                    userEmail = _a.sent();
+                    console.log(userEmail);
+                    return [4 /*yield*/, fetch("/API/products/get-products-by-owner-email")];
+                case 2:
                     response = _a.sent();
                     return [4 /*yield*/, response.json()];
-                case 2:
+                case 3:
                     usersProducts = (_a.sent()).usersProducts;
                     html = usersProducts
                         .map(function (product) {
-                        return "\n      <div class=\"storeGallery__productDiv\" id = \"" + product._id + "\">\n          <img src=" + product.imgUrl + " alt=\"\" />\n          <form id =\"" + product._id + "\" onsubmit=\"handleUpdate(event, '" + product._id + "')\" class=\"fid__info\">\n          <label>title:</label>\n            <input id=\"title\" name=\"title\" type=\"text\" value = \"" + product.title + "\"></input><br>\n            <label>price:</label>\n            <input id=\"price\" name=\"price\" type=\"number\" value = \"" + product.price + "\">$</input><br>\n            <label> description: </label>\n            <input id=\"description\" name=\"description\" value=\"" + product.description + "\"></input><br>\n            <p>author:" + product.email + "</p><br>\n          \n          <div class=\"likeAndCart\">\n          <button type=\"submit\" >update</button>\n          <button type=\"button\" onclick='handleDeleteProdByOwner(event , \"" + product._id + "\")'> <span class=\"material-symbols-outlined\"> delete </span></button>\n          </form>\n          </div>\n        </div>";
+                        return "\n      <div class=\"storeGallery__productDiv\" id = \"" + product._id + "\">\n          <img src=" + product.imgUrl + " alt=\"\" />\n          <form id =\"" + product._id + "\" onsubmit=\"handleUpdate(event, '" + product._id + "')\" class=\"fid__info\">\n          <label>title:</label>\n            <input id=\"title\" name=\"title\" type=\"text\" value = \"" + product.title + "\"></input><br>\n            <label>price:</label>\n            <input id=\"price\" name=\"price\" type=\"number\" value = \"" + product.price + "\">$</input><br>\n            <label> description: </label><br>\n            <textarea id=\"description\" name=\"description\">" + product.description + "</textarea><br>\n            <p>" + product.email + "</p><br>\n          \n          <div class=\"likeAndCart\">\n          <button type=\"submit\" >update</button>\n          <button type=\"button\" onclick='handleDeleteProdByOwner(event , \"" + product._id + "\")'> <span class=\"material-symbols-outlined\"> delete </span></button>\n          </form>\n          </div>\n        </div>";
                     })
                         .join(" ");
                     root = document.querySelector(".storeGallery");
                     root.innerHTML = html;
-                    return [3 /*break*/, 4];
-                case 3:
-                    error_2 = _a.sent();
-                    console.error(error_2);
-                    return [3 /*break*/, 4];
-                case 4: return [2 /*return*/];
+                    return [3 /*break*/, 5];
+                case 4:
+                    error_3 = _a.sent();
+                    console.error(error_3);
+                    return [3 /*break*/, 5];
+                case 5: return [2 /*return*/];
             }
         });
     });
 }
 function handleUpdate(event, id) {
     return __awaiter(this, void 0, void 0, function () {
-        var newTitle, newPrice, newDescription, patchInit, response, ok, error_3;
+        var newTitle, newPrice, newDescription, patchInit, response, ok, error_4;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -163,8 +218,8 @@ function handleUpdate(event, id) {
                     renderMyStore();
                     return [3 /*break*/, 4];
                 case 3:
-                    error_3 = _a.sent();
-                    console.error(error_3);
+                    error_4 = _a.sent();
+                    console.error(error_4);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }
@@ -173,7 +228,7 @@ function handleUpdate(event, id) {
 }
 function handleDeleteProdByOwner(event, id) {
     return __awaiter(this, void 0, void 0, function () {
-        var deleteInit, response, ok, error_4;
+        var deleteInit, response, ok, error_5;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -194,8 +249,8 @@ function handleDeleteProdByOwner(event, id) {
                     renderMyStore();
                     return [3 /*break*/, 4];
                 case 3:
-                    error_4 = _a.sent();
-                    console.error(error_4);
+                    error_5 = _a.sent();
+                    console.error(error_5);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }

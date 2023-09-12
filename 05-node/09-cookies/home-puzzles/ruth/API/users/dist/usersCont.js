@@ -36,12 +36,12 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.register = exports.login = void 0;
+exports.getUserFromCookie = exports.register = exports.login = void 0;
 var console_1 = require("console");
 var usersModel_1 = require("./usersModel");
 function login(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var _a, email, password, user, error_1;
+        var _a, email, password, userDB, error_1;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
@@ -49,12 +49,13 @@ function login(req, res) {
                     _a = req.body, email = _a.email, password = _a.password;
                     if (!email || !password)
                         throw new Error("some of the parameters not valid");
-                    return [4 /*yield*/, usersModel_1["default"].find({ email: email, password: password })];
+                    return [4 /*yield*/, usersModel_1["default"].findOne({ email: email, password: password })];
                 case 1:
-                    user = _b.sent();
-                    if (!user)
+                    userDB = _b.sent();
+                    if (!userDB)
                         throw new Error("Incorrect email or password");
-                    res.send({ user: user, ok: true });
+                    res.cookie("user", userDB._id, { maxAge: 1000 * 60 * 100, httpOnly: true });
+                    res.send({ ok: true, user: userDB });
                     console_1.log(email + " ! ! ! -- LOGIN SUCCESSFUL ! ! !");
                     return [3 /*break*/, 3];
                 case 2:
@@ -104,3 +105,32 @@ function register(req, res) {
     });
 }
 exports.register = register;
+function getUserFromCookie(req, res) {
+    return __awaiter(this, void 0, void 0, function () {
+        var userId, userDB, error_3;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    userId = req.cookies.user;
+                    if (!userId) {
+                        res.send({ ok: false, user: null, userEmail: null });
+                        throw new Error("no user in cookie");
+                    }
+                    return [4 /*yield*/, usersModel_1["default"].findById(userId)];
+                case 1:
+                    userDB = _a.sent();
+                    if (!userDB)
+                        throw new Error("user not found on DB");
+                    res.send({ ok: true, user: userDB, userEmail: userDB.email });
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_3 = _a.sent();
+                    console.error(error_3.massage);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
+}
+exports.getUserFromCookie = getUserFromCookie;

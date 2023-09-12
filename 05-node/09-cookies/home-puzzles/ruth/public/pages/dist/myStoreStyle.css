@@ -1,6 +1,61 @@
-.storeGallery__productDiv input {
+@charset "UTF-8";
+.halloUserDiv {
+  margin: 15px 0px;
+  font-family: cursive;
+  font-weight: 100;
+}
+
+.myForm input {
+  border: 1px solid #000000;
+  width: fit-content;
+  min-width: 80px;
+  text-align: center;
+  padding: 5px;
+}
+.myForm button {
+  text-align: center;
+  border: 1px solid #000000;
+  border-radius: 0%;
+  padding: 5px;
+  margin: 5px 0px;
+}
+
+.storeGallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.storeGallery__productDiv {
+  width: 300px;
+  margin: 10px;
+  text-align: center;
+  border: 1px solid #bfbfbf;
+  padding: 10px 0px;
+  display: inline-block;
+}
+.storeGallery__productDiv label {
+  margin: 5px;
+  width: 50px;
+  font-weight: bolder;
+}
+.storeGallery__productDiv input,
+.storeGallery__productDiv textarea {
   border: none;
+  width: fit-content;
+  width: 50px;
+  min-height: 30px;
+  /* גובה מינימלי */
+  max-height: 150px;
+  /* גובה מרבי */
+  overflow-y: auto;
+  font-family: Arial, sans-serif;
+}
+.storeGallery__productDiv textarea {
+  min-width: 140px;
 }
 .storeGallery__productDiv img {
-  max-width: 140px;
+  max-width: 260px;
+}
+.storeGallery__productDiv img {
+  width: 90%;
 }

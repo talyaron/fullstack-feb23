@@ -1,10 +1,11 @@
-import express from "express"
-import { login, register } from "./usersCont";
+import express from "express";
+import { getUserFromCookie, login, register } from "./usersCont";
 
-const router = express.Router()
+const router = express.Router();
 
 router
-    .post("/login", login)
-    .post("/register", register)
+  .get("/get-user-from-cookie", getUserFromCookie)
+  .post("/login", login)
+  .post("/register", register);
 
 export default router;

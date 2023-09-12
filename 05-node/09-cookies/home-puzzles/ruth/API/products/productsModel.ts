@@ -6,10 +6,31 @@ const productSchema = new Schema({
   price: Number,
   title: String,
   description: String,
-  email: String,
+  email: { type: String, required: true },
   customersCart: [String],
   customersWishList: [String],
 });
 
 const ProductModel = mongoose.model("product", productSchema);
 export default ProductModel;
+
+// customersCart: {
+//   type: [String],
+//   require: false,
+//   validate: {
+//     validator: function (value) {
+//       return !this.customersCart.includes(value);
+//     },
+//     message: "Value in customersCart must be unique",
+//   },
+// },
+// customersWishList: {
+//   type: [String],
+//   require: false,
+//   validate: {
+//     validator: function (value) {
+//       return !this.customersWishList.includes(value);
+//     },
+//     message: "Value in customersWishList must be unique",
+//   },
+// },

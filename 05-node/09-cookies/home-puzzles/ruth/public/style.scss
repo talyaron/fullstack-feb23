@@ -10,6 +10,7 @@ nav {
   height: 80px;
   text-align: center;
   padding: 20px;
+  padding-top: 0%;
   border-bottom: 1px solid #b1b1b1;
   justify-content: space-around;
   div {
@@ -20,7 +21,7 @@ nav {
       text-decoration: none;
       color: #b1b1b1;
       &:hover {
-        // background-color: rgb(198, 198, 198);
+        background-color: #67c46d;
         color: rgb(71, 71, 71);
       }
     }
@@ -29,6 +30,9 @@ nav {
       padding: 0px 10px 0px 0px;
       text-decoration: none;
       color: #b1b1b1;
+      &:hover {
+        cursor: pointer;
+      }
     }
   }
 }

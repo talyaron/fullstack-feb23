@@ -11,23 +11,24 @@
     <link rel="stylesheet" href="./dist/style.css" />
     <title>my store</title>
   </head>
-  <body>
+  <body onload="checkLogin(), renderMyStore()">
     <nav>
       <div class="leftSide">
-        <a href="./pages/login.html">login</a>
-        <a href="./pages/login.html">logout</a>
-        <a href="./pages/register.html">register</a>
+        <a href="login.html">login</a>
+        <a href="login.html">logout</a>
+        <a href="register.html">register</a>
       </div>
       <div class="logo">
         <img onclick="goHomePage()" src="../src/socialMarket.png" alt="" />
       </div>
       <div class="rightSide">
-        <a href="./pages/wishlist.html">wishlist</a>
-        <a href="./pages/wishlist.html">cart</a>
-        <a onclick="goMyStore()">my Store</a>
+        <a href="wishlist.html">wishlist</a>
+        <a href="wishlist.html">cart</a>
+        <a href="myStore.html">my Store</a>
       </div>
     </nav>
 
+    <h2 class="halloUserDiv"></h2>
     <form class="myForm" onsubmit="handleAddProduct(event)">
       <input type="url" name="imgUrl" placeholder="img-url" />
       <input type="number" name="price" placeholder="price" />
@@ -36,7 +37,7 @@
       <button type="submit">add product to sale</button>
     </form>
 
-    <button type="button" onclick="renderMyStore()">get by user</button>
+    <!-- <button type="button" onclick="renderMyStore()">get by user</button> -->
 
     <div class="storeGallery">
       <div class="storeGallery__productDiv"></div>

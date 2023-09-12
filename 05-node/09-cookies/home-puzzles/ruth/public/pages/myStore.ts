@@ -7,6 +7,26 @@ class Product {
   ) {}
 }
 
+async function checkLogin() {
+  try {
+    const userEmail = await getUserFromCookie();
+    console.log(userEmail);
+
+    if (!userEmail || userEmail === null || userEmail === undefined) {
+      alert("you need to login first");
+      throw new Error("you need to login first");
+    }
+    if (userEmail) {
+      const halloUserDiv = document.querySelector(
+        ".halloUserDiv",
+      ) as HTMLDivElement;
+      halloUserDiv.innerText = `welcome to ${userEmail.split("@")[0]} store`;
+    }
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 async function handleAddProduct(event) {
   try {
     event.preventDefault();
@@ -14,7 +34,9 @@ async function handleAddProduct(event) {
     const price = event.target.price.value;
     const title = event.target.title.value;
     const description = event.target.description.value;
-    const userEmail = getUserEmailByQuery();
+    const userEmail = await getUserFromCookie();
+
+    console.log(imgUrl, price, title, description, userEmail);
 
     if (!imgUrl || !price || !title || !description || !userEmail)
       throw new Error("Some fields are empty");
@@ -33,15 +55,24 @@ async function handleAddProduct(event) {
 
     const response = await fetch("/API/products/create-product", postInit);
     const { ok, newProduct } = await response.json();
+    if (!ok || !newProduct)
+      throw new Error("product not create on DB server error");
     renderMyStore();
   } catch (error) {
     console.error(error.message);
   }
 }
 
-function getUserEmailByQuery() {
-  const urlParams = new URLSearchParams(window.location.search);
-  return urlParams.get("email");
+// function getUserEmailByQuery() {
+//   const urlParams = new URLSearchParams(window.location.search);
+//   return urlParams.get("email");
+// }
+
+async function getUserFromCookie() {
+  const response = await fetch("/API/users/get-user-from-cookie");
+  const data = await response.json();
+  const { userEmail } = await data;
+  return userEmail;
 }
 
 async function handleDeleteProduct(event) {
@@ -50,11 +81,9 @@ async function handleDeleteProduct(event) {
 
 async function renderMyStore() {
   try {
-    const userEmail = getUserEmailByQuery();
+    const userEmail = await getUserFromCookie();
     console.log(userEmail);
-    const response = await fetch(
-      `/API/products/get-products-by-owner-email?email=${userEmail}`,
-    );
+    const response = await fetch(`/API/products/get-products-by-owner-email`);
     const { usersProducts } = await response.json();
     const html = usersProducts
       .map((product) => {
@@ -66,9 +95,9 @@ async function renderMyStore() {
             <input id="title" name="title" type="text" value = "${product.title}"></input><br>
             <label>price:</label>
             <input id="price" name="price" type="number" value = "${product.price}">$</input><br>
-            <label> description: </label>
-            <input id="description" name="description" value="${product.description}"></input><br>
-            <p>author:${product.email}</p><br>
+            <label> description: </label><br>
+            <textarea id="description" name="description">${product.description}</textarea><br>
+            <p>${product.email}</p><br>
           
           <div class="likeAndCart">
           <button type="submit" >update</button>

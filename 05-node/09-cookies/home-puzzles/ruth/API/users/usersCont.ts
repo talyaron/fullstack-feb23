@@ -6,9 +6,10 @@ export async function login(req, res) {
     const { email, password } = req.body;
     if (!email || !password)
       throw new Error("some of the parameters not valid");
-    const user = await UserModel.find({ email: email, password: password });
-    if (!user) throw new Error("Incorrect email or password");
-    res.send({ user, ok: true });
+    const userDB = await UserModel.findOne({ email, password });
+    if (!userDB) throw new Error("Incorrect email or password");
+    res.cookie("user", userDB._id, { maxAge: 1000 * 60 * 100, httpOnly: true });
+    res.send({ ok: true, user: userDB });
     log(email + " ! ! ! -- LOGIN SUCCESSFUL ! ! !");
   } catch (error) {
     console.error(error.message);
@@ -28,5 +29,21 @@ export async function register(req, res) {
   } catch (error) {
     console.log(await UserModel.find({}));
     console.error(error.message);
+  }
+}
+
+export async function getUserFromCookie(req, res) {
+  try {
+    const userId = req.cookies.user;
+    if (!userId) {
+      res.send({ ok: false, user: null, userEmail: null });
+      throw new Error("no user in cookie");
+    }
+    //find user on db
+    const userDB = await UserModel.findById(userId);
+    if (!userDB) throw new Error("user not found on DB");
+    res.send({ ok: true, user: userDB, userEmail: userDB.email });
+  } catch (error) {
+    console.error(error.massage);
   }
 }

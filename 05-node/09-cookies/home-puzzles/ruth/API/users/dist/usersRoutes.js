@@ -4,6 +4,7 @@ var express_1 = require("express");
 var usersCont_1 = require("./usersCont");
 var router = express_1["default"].Router();
 router
+    .get("/get-user-from-cookie", usersCont_1.getUserFromCookie)
     .post("/login", usersCont_1.login)
     .post("/register", usersCont_1.register);
 exports["default"] = router;

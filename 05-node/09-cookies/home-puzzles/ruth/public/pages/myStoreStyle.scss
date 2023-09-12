@@ -1,11 +1,62 @@
+.halloUserDiv {
+  margin: 15px 0px;
+  // text-align: center;/
+  font-family: cursive;
+  font-weight: 100;
+}
+.myForm {
+  input {
+    border: 1px solid #000000;
+    width: fit-content;
+    min-width: 80px;
+    text-align: center;
+    padding: 5px;
+  }
+  button {
+    text-align: center;
+    border: 1px solid #000000;
+    border-radius: 0%;
+    padding: 5px;
+    margin: 5px 0px;
+  }
+}
 .storeGallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   &__productDiv {
-    input {
+    width: 300px;
+    label {
+      margin: 5px;
+      width: 50px;
+      font-weight: bolder;
+    }
+    input,
+    textarea {
       border: none;
+      width: fit-content;
+      width: 50px;
+      min-height: 30px; /* גובה מינימלי */
+      max-height: 150px; /* גובה מרבי */
+      overflow-y: auto;
+      font-family: Arial, sans-serif;
+    }
+    textarea {
+      min-width: 140px;
+    }
+    img {
+      max-width: 260px;
     }
 
+    margin: 10px;
+    text-align: center;
+    border: 1px solid rgb(191, 191, 191);
+    padding: 10px 0px;
+    display: inline-block;
     img {
-      max-width: 140px;
+      width: 90%;
+      &:hover {
+      }
     }
   }
 }
