@@ -22,10 +22,11 @@ export async function login(req: any, res: any) {
         const { email, password } = req.body
         if (!email || !password) throw new Error("Please complete all fields");
 
+
         const userDB = await UserModel.findOne({ email })
         if (!userDB) throw new Error("user not exist or password is inncorect");
 
-        res.cookie("user", userDB._id, { maxAge: 60000, httpOnly: true })
+        res.cookie("user", userDB._id, { maxAge: 1000*60*30, httpOnly: true })
         res.send({ ok: true, email: email })
 
     } catch (error) {
@@ -58,3 +59,20 @@ export async function getUserName(req: any, res: any) {
 
     }
 }
+
+
+export async function getUser(req:any, res:any){
+    try {
+      //get user id from cookie
+      const userId = req.cookies.user;
+      if(!userId) throw new Error("no user in cookies"); 
+      //find user in DB
+      const userDB = await UserModel.findById(userId);
+      if(!userDB) throw new Error("user dosnt exist in DB");
+      res.send({ok:true, user:userDB});
+      
+    } catch (error) {
+      console.error(error);
+      res.status(500).send(error.message); 
+    }
+  }

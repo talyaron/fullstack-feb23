@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.getUserName = exports.loginAdmin = exports.login = exports.registerUser = void 0;
+exports.getUser = exports.getUserName = exports.loginAdmin = exports.login = exports.registerUser = void 0;
 var userModels_1 = require("./userModels");
 function registerUser(req, res) {
     return __awaiter(this, void 0, void 0, function () {
@@ -85,7 +85,7 @@ function login(req, res) {
                     userDB = _b.sent();
                     if (!userDB)
                         throw new Error("user not exist or password is inncorect");
-                    res.cookie("user", userDB._id, { maxAge: 60000, httpOnly: true });
+                    res.cookie("user", userDB._id, { maxAge: 1000 * 60 * 30, httpOnly: true });
                     res.send({ ok: true, email: email });
                     return [3 /*break*/, 3];
                 case 2:
@@ -138,3 +138,31 @@ function getUserName(req, res) {
     });
 }
 exports.getUserName = getUserName;
+function getUser(req, res) {
+    return __awaiter(this, void 0, void 0, function () {
+        var userId, userDB, error_4;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    userId = req.cookies.user;
+                    if (!userId)
+                        throw new Error("no user in cookies");
+                    return [4 /*yield*/, userModels_1.UserModel.findById(userId)];
+                case 1:
+                    userDB = _a.sent();
+                    if (!userDB)
+                        throw new Error("user dosnt exist in DB");
+                    res.send({ ok: true, user: userDB });
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_4 = _a.sent();
+                    console.error(error_4);
+                    res.status(500).send(error_4.message);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
+}
+exports.getUser = getUser;
