@@ -63,10 +63,14 @@ function handleLogin(ev) {
                     _a = _b.sent(), error = _a.error, email = _a.email;
                     console.log(error);
                     if (error) {
-                        throw new Error(error);
+                        throw new Error();
                     }
-                    //if everthink is OK, redirect to main page of the user
-                    window.location.href = "/main.html";
+                    if (user.email === "talita@gahoooo.com") {
+                        window.location.href = "/itemsMan.html?email=" + email; //query
+                    }
+                    else {
+                        window.location.href = "/orders.html?email=" + email; //query
+                    }
                     return [3 /*break*/, 4];
                 case 3:
                     error_1 = _b.sent();

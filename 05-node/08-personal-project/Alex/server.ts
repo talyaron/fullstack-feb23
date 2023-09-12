@@ -30,8 +30,8 @@ mongoose.connect("mongodb+srv://athegreat5:4VspRIIT6N27mtbn@cluster0.g7gvful.mon
 // //tells express to use userRouter on the intial route "/API/users"
  app.use("/API/users", userRouter)
 
-// import tasksRouter from "./API/tasks/tasksRoutes";
-// app.use("/API/tasks", tasksRouter);
+import itemRouter from "./API/items/itemRoutes";
+app.use("/API/items", itemRouter);
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);

@@ -19,10 +19,14 @@ async function handleLogin(ev:any){
         const {error, email} = await response.json(); // get data from server
         console.log(error);
         if (error) {
-            throw new Error(error);
+            throw new Error();
         }
-        //if everthink is OK, redirect to main page of the user
-        window.location.href = `/main.html`;
+
+        if(user.email === "talita@gahoooo.com") {
+            window.location.href = `/itemsMan.html?email=${email}`; //query
+        } else {
+            window.location.href = `/orders.html?email=${email}`; //query
+        }
         // window.location.href = `/main.html?email=${email}`; //query
     } catch (error) {
         console.error(error);

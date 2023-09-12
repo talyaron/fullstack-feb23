@@ -7,6 +7,11 @@ export const registerUser = async (req: any, res: any) => {
     const { email, password , userName} = req.body;
     if(!email || !password) throw new Error("Please complete all fields");
     const user = new UserModel({ email, password ,userName});
+     // Check if the email already exists in the database
+    const existingUser = await UserModel.findOne({ email });
+        if (existingUser) {
+          return res.status(400).json({ error: "Email already exists" });
+     }
     const userDB = await user.save();
     console.log(userDB);
 
@@ -30,19 +35,6 @@ export const login = async (req: any, res: any) => {
       if (!userDB) {
         return res.status(404).json({ error: 'User not found' });
       }
-  
-      // Compare the provided password with the hashed password
-      const passwordMatch =  UserModel.find((user) => user.email === email && user.password === password);
-    //   const passwordMatch = user.(password, user.password);
-  
-      if (!passwordMatch) {
-        return res.status(401).json({ error: 'Authentication failed' });
-      }
-  
-      // Authentication successful
-      // You can generate a JWT token here if needed and send it in the response
-      // For example: const token = generateToken(user);
-  
       res.send({ok: true, email: userDB.email});
     } catch (error) {
       console.error(error);
@@ -50,19 +42,21 @@ export const login = async (req: any, res: any) => {
     }
   };
 
-// export const login = (req: any, res: any) => {
-//     try {
-//         const { email, password } = req.body;
-//         if(!email || !password) throw new Error("Please complete all fields");
-//         //check if user exist and password is correct
-//         const user = users.find((user) => user.email === email && user.password === password);
-//         if (!user) throw new Error("some of the details are incorrect");
-//         res.send({ ok:true, email:user.email });
-//     } catch (error) {
-//         console.error(error);
-//         res.send({ error:error.message });
-//     }
-// }
+  export const getUserName = async (req: any, res: any) => {
+    try {
+      const { email } = req.body;  
+
+      const userDB = await UserModel.findOne({ email });
+
+      
+      console.log(userDB);
+      
+
+      res.send({ok: true, userName: userDB.userName});
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
 
 

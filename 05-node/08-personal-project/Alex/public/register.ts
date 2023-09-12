@@ -22,7 +22,7 @@ async function handleRegister(ev: any) {
       throw new Error(error);
     }
     //if everthink is OK, redirect to login page
-    window.location.href = "/login.html";
+    window.location.href = "/orders.html";
   } catch (error) {
     console.error(error);
   }

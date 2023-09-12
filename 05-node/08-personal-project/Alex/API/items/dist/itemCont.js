@@ -1,3 +1,4 @@
+"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -34,58 +35,57 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-function getEmailFromQuery() {
-    var urlParams = new URLSearchParams(window.location.search);
-    console.log(urlParams);
-    return urlParams.get('email');
-}
-var _email = getEmailFromQuery();
-console.log(_email);
-getUserName(_email);
-function getUserName(email) {
-    return __awaiter(this, void 0, void 0, function () {
-        var response, userName, error_1;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    _a.trys.push([0, 3, , 4]);
-                    return [4 /*yield*/, fetch("/API/users/getUserName?email=" + email)];
-                case 1:
-                    response = _a.sent();
-                    return [4 /*yield*/, response.json()];
-                case 2:
-                    userName = _a.sent();
-                    console.log(userName);
-                    return [3 /*break*/, 4];
-                case 3:
-                    error_1 = _a.sent();
-                    console.error(error_1);
-                    return [3 /*break*/, 4];
-                case 4: return [2 /*return*/];
-            }
-        });
+exports.__esModule = true;
+exports.addItem = void 0;
+var itemModel_1 = require("./itemModel");
+// Add Item
+exports.addItem = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var _a, itemName, itemDesc, itemUrl, item, itemDB, error_1;
+    return __generator(this, function (_b) {
+        switch (_b.label) {
+            case 0:
+                _b.trys.push([0, 2, , 3]);
+                _a = req.body, itemName = _a.itemName, itemDesc = _a.itemDesc, itemUrl = _a.itemUrl;
+                if (!itemName || !itemDesc || !itemUrl)
+                    throw new Error("Please complete all fields");
+                item = new itemModel_1.ItemModel({ itemName: itemName, itemDesc: itemDesc, itemUrl: itemUrl });
+                return [4 /*yield*/, item.save()];
+            case 1:
+                itemDB = _b.sent();
+                console.log(itemDB);
+                res.send({ ok: true, itemDB: itemDB });
+                console.log(item);
+                return [3 /*break*/, 3];
+            case 2:
+                error_1 = _b.sent();
+                console.error(error_1);
+                res.send({ error: error_1.message });
+                return [3 /*break*/, 3];
+            case 3: return [2 /*return*/];
+        }
     });
-}
-// getUserName(_email);
-// async function getUserName(_email:string) {
+}); };
+// export const login = async (req: any, res: any) => {
 //     try {
-//         const response = await fetch(`/API/users/getUserName?email=${_email}`);
-//         const userName = await response.json();
-//         console.log(userName);
-//         // renderWelcomMasage(userName , document.querySelector("#welcomMasage"))
-//         // renderTasks(data.tasks, document.querySelector("#tasks"));
+//       const { email, password } = req.body;  
+//       if(!email||!password) throw new Error("Complete all fields to proceed")
+//       const userDB = await UserModel.findOne({ email,password });
+//       // Check if the user exists
+//       if (!userDB) {
+//         return res.status(404).json({ error: 'User not found' });
+//       }
+//       // Compare the provided password with the hashed password
+//       const passwordMatch =  UserModel.find((user) => user.email === email && user.password === password);
+//     //   const passwordMatch = user.(password, user.password);
+//       if (!passwordMatch) {
+//         return res.status(401).json({ error: 'Authentication failed' });
+//       }
+//       // Authentication successful
+//       // You can generate a JWT token here if needed and send it in the response
+//       // For example: const token = generateToken(user);
+//       res.send({ok: true, email: userDB.email});
 //     } catch (error) {
-//         console.error(error);
+//       console.error(error);
+//       res.status(500).json({ error: 'Internal server error' });
 //     }
-// }
-// function renderWelcomMasage(userName: string) {
-//     try {
-//       const html = `
-//         <h3>HI , ${userName}</h3>`
-//       return html;
-//     } catch (error) {
-//       console.error(error)
-//       return ""
-//     }
-//   }
-//   getUserName(_email);
+//   };
