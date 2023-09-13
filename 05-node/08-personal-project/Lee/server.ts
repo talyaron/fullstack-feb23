@@ -25,6 +25,13 @@ app.use("/API/users", userRouter)
 import relativesRoutes from "./API/relatives/relativesRoutes";
 app.use("/API/relatives", relativesRoutes);
 
+app.use((err, req, res, next) => {
+  console.error(err);
+  res.status(500).json({ error: 'Something went wrong.' });
+});
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
+
+
