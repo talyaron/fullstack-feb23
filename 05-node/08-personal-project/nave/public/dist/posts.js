@@ -40,7 +40,7 @@ function getPostsFromServer() {
 }
 function handleGetPosts() {
     return __awaiter(this, void 0, void 0, function () {
-        var response, posts, error_1;
+        var response, data, posts, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -50,7 +50,8 @@ function handleGetPosts() {
                     response = _a.sent();
                     return [4 /*yield*/, response.json()];
                 case 2:
-                    posts = (_a.sent()).posts;
+                    data = _a.sent();
+                    posts = data.posts;
                     console.log(posts);
                     renderPosts(posts, document.querySelector("#posts"));
                     return [3 /*break*/, 4];
@@ -65,7 +66,7 @@ function handleGetPosts() {
 }
 function handeleAddPost(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var email, content, featuredImage, category, newPost, response, posts, error_2;
+        var email, content, featuredImage, category, newPost, response, data, posts, error_2;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -77,9 +78,6 @@ function handeleAddPost(ev) {
                     content = ev.target.elements.content.value;
                     featuredImage = ev.target.elements.featuredImage.value;
                     category = ev.target.elements.category.value;
-                    console.log("Title:", content);
-                    console.log("PostUrl:", featuredImage);
-                    console.log("PostCategory:", category);
                     newPost = { content: content, featuredImage: featuredImage, category: category, email: email };
                     console.log("New Post:", newPost);
                     return [4 /*yield*/, fetch('/API/posts/add-post', {
@@ -91,10 +89,14 @@ function handeleAddPost(ev) {
                         })];
                 case 1:
                     response = _a.sent();
+                    if (!response.ok) {
+                        throw new Error("Server returned " + response.status + " " + response.statusText);
+                    }
                     return [4 /*yield*/, response.json()];
                 case 2:
-                    posts = (_a.sent()).posts;
-                    console.log("Posts:", posts);
+                    data = _a.sent();
+                    posts = data.posts;
+                    console.log(posts);
                     renderPosts(posts, document.querySelector("#posts"));
                     return [3 /*break*/, 4];
                 case 3:
@@ -106,9 +108,42 @@ function handeleAddPost(ev) {
         });
     });
 }
+// async function handeleAddPost(ev: any) {
+//     try {
+//         ev.preventDefault();
+//         const email = getEmailFromQuery();
+//         if (!email) throw new Error("no email");
+//         const content = ev.target.elements.content.value;
+//         const featuredImage = ev.target.elements.featuredImage.value;
+//         const category = ev.target.elements.category.value;
+//         console.log("Title:", content);
+//         console.log("PostUrl:", featuredImage);
+//         console.log("PostCategory:", category);
+//         const newPost = { content, featuredImage, category, email };
+//         console.log("New Post:", newPost);
+//         const response = await fetch('/API/posts/add-post', {
+//             method: 'POST',
+//             headers: {
+//                 'Content-Type': 'application/json'
+//             },
+//             body: JSON.stringify(newPost)
+//         });
+//         if (!response.ok) {
+//             throw new Error(`Server returned ${response.status} ${response.statusText}`);
+//         }
+//         const data = await response.json();
+//         const {posts} = data.posts; // כאן אתה מביא את כל הפוסטים מהשרת
+// ;
+//         // const { posts } =  await response.json();
+//         console.log("Posts:", posts);
+//         renderPosts(posts, document.querySelector("#posts"));
+//     } catch (error) {
+//         console.error(error);
+//     }
+// }
 function renderPost(post) {
     try {
-        var html = "<img src=\"" + post.featuredImage + "\" alt=\"" + post.content + "\">\n        <p> = \"" + post.category + "\"";
+        var html = "<img src=\"" + post.featuredImage + "\" alt=\"" + post.content + "\">\n<p>" + post.category + "</p>";
         return html;
     }
     catch (error) {
@@ -117,9 +152,9 @@ function renderPost(post) {
     }
 }
 // Function to render the post with a content
-function renderPostWithTitle(post) {
+function renderPostWithTitle(posts) {
     try {
-        var html = "\n        <div class=\"post_container\">\n        <div class=\"post\">\n        <img src=\"" + post.featuredImage + "\" alt=\"" + post.content + "\">\n        <h2 class = \"headPost\">" + post.content + "</h2>\n        <p lass = \"categoryPost\">" + post.category + "</p>\n        </div>\n    </div>\n        ";
+        var html = "\n        <div class=\"post_container\">\n        <div class=\"post\">\n        <img src=\"" + posts.featuredImage + "\" alt=\"" + posts.content + "\">\n        <h2 class = \"headPost\">" + posts.content + "</h2>\n        <p class=\"categoryPost\">" + posts.category + "</p>\n        </div>\n    </div>\n        ";
         return html;
     }
     catch (error) {
@@ -127,25 +162,12 @@ function renderPostWithTitle(post) {
         return "";
     }
 }
-// function renderPosts(posts: Post[], DIVElem: HTMLDivElement) {
-//     try {
-//         if (!DIVElem) throw new Error("no div element");
-//         let html = "<ul class = list>";
-//         // Render each post with title
-//         html += posts.map(post => `<li>${renderPostWithTitle(post)}</li>`).join("");
-//         html += "</ul>";
-//         DIVElem.innerHTML = html;
-//     } catch (error) {
-//         console.error(error);
-//         return "";
-//     }
-// }
 function renderPosts(posts, DIVElem) {
     try {
         if (!DIVElem)
             throw new Error("no div element");
         var html = "<ul>";
-        html += posts.map(function (post) { return renderPost(post); }).join("");
+        html += posts.map(function (post) { return renderPostWithTitle(post); }).join("");
         html += "</ul>";
         DIVElem.innerHTML = html;
     }

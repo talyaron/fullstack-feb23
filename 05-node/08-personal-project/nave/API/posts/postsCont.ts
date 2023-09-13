@@ -1,4 +1,4 @@
-import { users } from "../users/userModel";
+import { users , UserModel, } from "../users/userModel";
 import { Post, PostModel, UserPost, posts, userPosts } from "./postsModel";
 
 
@@ -19,12 +19,12 @@ export async function addPost(req: any, res: any) {
     if (!content || !featuredImage  || !category)
     throw new Error("Please complete all fields");
   if (!email) throw new Error("no email");
+  // const user = await UserModel.findOne({ email: email });
   const post = new PostModel({content, featuredImage, category});
       const postDB = await post.save();
       console.log( "Posts111:",postDB);
-      const userPosts = await PostModel.find({email})
-      console.log( "Posts112:",postDB);
-      res.send({ posts:userPosts });
+      // const postsDB = await PostModel.find({email})
+      res.send({ posts: postDB });
     } catch (error) {
         console.error(error);
         res.status(500).send({ error: error.message });

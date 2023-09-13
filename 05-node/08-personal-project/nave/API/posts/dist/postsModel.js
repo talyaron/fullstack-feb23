@@ -1,6 +1,6 @@
 "use strict";
 exports.__esModule = true;
-exports.UserPost = exports.PostModel = exports.PostSchema = exports.posts = exports.userPosts = exports.UserPosts = exports.Post = void 0;
+exports.userPosts = exports.UserPost = exports.PostModel = exports.PostSchema = exports.posts = exports.Post = void 0;
 var mongoose_1 = require("mongoose");
 var Post = /** @class */ (function () {
     function Post(_a) {
@@ -12,16 +12,6 @@ var Post = /** @class */ (function () {
     return Post;
 }());
 exports.Post = Post;
-var UserPosts = /** @class */ (function () {
-    function UserPosts(user, post) {
-        this.user = user;
-        this.post = post;
-        this.id = Math.random().toString(36).substr(2, 9);
-    }
-    return UserPosts;
-}());
-exports.UserPosts = UserPosts;
-exports.userPosts = [];
 exports.posts = [];
 exports.PostSchema = new mongoose_1.Schema({
     content: String,
@@ -37,3 +27,4 @@ var UserPost = /** @class */ (function () {
     return UserPost;
 }());
 exports.UserPost = UserPost;
+exports.userPosts = [];

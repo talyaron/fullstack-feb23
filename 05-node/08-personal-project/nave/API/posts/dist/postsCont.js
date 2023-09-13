@@ -62,11 +62,11 @@ function getPosts(req, res) {
 exports.getPosts = getPosts;
 function addPost(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var _a, content, featuredImage, category, email, post, postDB, userPosts_1, error_2;
+        var _a, content, featuredImage, category, email, post, postDB, error_2;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
-                    _b.trys.push([0, 3, , 4]);
+                    _b.trys.push([0, 2, , 3]);
                     _a = req.body, content = _a.content, featuredImage = _a.featuredImage, category = _a.category, email = _a.email;
                     if (!content || !featuredImage || !category)
                         throw new Error("Please complete all fields");
@@ -77,18 +77,15 @@ function addPost(req, res) {
                 case 1:
                     postDB = _b.sent();
                     console.log("Posts111:", postDB);
-                    return [4 /*yield*/, postsModel_1.PostModel.find({ email: email })];
+                    // const postsDB = await PostModel.find({email})
+                    res.send({ posts: postDB });
+                    return [3 /*break*/, 3];
                 case 2:
-                    userPosts_1 = _b.sent();
-                    console.log("Posts112:", postDB);
-                    res.send({ posts: userPosts_1 });
-                    return [3 /*break*/, 4];
-                case 3:
                     error_2 = _b.sent();
                     console.error(error_2);
                     res.status(500).send({ error: error_2.message });
-                    return [3 /*break*/, 4];
-                case 4: return [2 /*return*/];
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
             }
         });
     });
