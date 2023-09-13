@@ -53,16 +53,16 @@ async function getItems(){
 function renderItemHtml(item:CrossfitItem ) {
     try {
         const html = `<div class="item-container">
-        <h2>name = "${item.name}"</h2>
-        <h2>quantity = "${item.quantity}"</h2>
-        <p>price = "${item.price}"</p>
+        <h2>name: ${item.name}</h2>
+        <p>quantity: ${item.quantity}</p>
+        <p>price: ${item.price}</p>
         <img src = "${item.imgItem}">
         </div>
         <form id="${item._id}" onsubmit="handleUpdatePrice(event)">
            <input type="number" name="price" value="${item.price}" placeholder="price">
            <button type="submit">Update</button>
         </form>
-        <button onclick="handleDeleteItem('${item._id}')">Delete</button>
+        <button id="delete" onclick="handleDeleteItem('${item._id}')">Delete</button>
         `
         return html;
     } catch (error) {
@@ -125,6 +125,17 @@ async function handleUpdatePrice(ev:any){
         console.log(result);
         const { items } = result;
         renderItems(items, document.querySelector('#rootitem') as HTMLDivElement);
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+async function handleGetUser(){
+    try {
+        //Ask server to get the user
+        const response = await fetch('API/users/get-user');
+        const data = await response.json();
+        console.log(data)
     } catch (error) {
         console.error(error)
     }
