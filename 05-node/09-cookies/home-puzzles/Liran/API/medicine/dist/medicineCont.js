@@ -55,7 +55,7 @@ function getMedicines(req, res) {
                     return [3 /*break*/, 6];
                 case 2:
                     if (!_id) return [3 /*break*/, 4];
-                    return [4 /*yield*/, medicineModel_1.MedicineModel.findOne({ _id: _id })];
+                    return [4 /*yield*/, medicineModel_1.MedicineModel.findById(_id)];
                 case 3:
                     medicines = _b.sent();
                     return [3 /*break*/, 6];

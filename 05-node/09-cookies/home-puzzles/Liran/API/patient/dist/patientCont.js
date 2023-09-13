@@ -50,7 +50,7 @@ function getPatients(req, res) {
                     patients = void 0;
                     if (!patientId) return [3 /*break*/, 2];
                     console.log('patientId');
-                    return [4 /*yield*/, patientModel_1.PatientModel.findOne({ _id: patientId })];
+                    return [4 /*yield*/, patientModel_1.PatientModel.findById(patientId)];
                 case 1:
                     patients = _b.sent();
                     return [3 /*break*/, 6];

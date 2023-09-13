@@ -34,11 +34,41 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var physicianEmail = getEmailFromQuery();
-renderPhisicianPage();
+var physicianEmail;
+var currPhysicianLogged = hundleGetUserLogged().then(function (currPhysicianLogged) {
+    currPhysicianLogged = currPhysicianLogged;
+    debugger;
+    physicianEmail = currPhysicianLogged.email;
+    renderPhysicianPage();
+});
+function hundleGetUserLogged() {
+    return __awaiter(this, void 0, void 0, function () {
+        var response, data, physician, error_1;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 3, , 4]);
+                    return [4 /*yield*/, fetch("/API/physician/get-user")];
+                case 1:
+                    response = _a.sent();
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    data = _a.sent();
+                    debugger;
+                    physician = data.physician;
+                    return [2 /*return*/, physician];
+                case 3:
+                    error_1 = _a.sent();
+                    console.error(error_1);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
+            }
+        });
+    });
+}
 function hundlePatientUpdate(event) {
     return __awaiter(this, void 0, void 0, function () {
-        var id, firstName, lastName, age, phoneNum, weight, height, smoking, address, physicianId, response, data, error_1;
+        var id, firstName, lastName, age, phoneNum, weight, height, smoking, address, physicianId, response, data, error_2;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -71,17 +101,17 @@ function hundlePatientUpdate(event) {
                     window.location.href = "physician.html?physicianEmail=" + physicianEmail;
                     return [3 /*break*/, 4];
                 case 3:
-                    error_1 = _a.sent();
-                    console.error(error_1);
+                    error_2 = _a.sent();
+                    console.error(error_2);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }
         });
     });
 }
-function renderPhisicianPage() {
+function renderPhysicianPage() {
     return __awaiter(this, void 0, void 0, function () {
-        var response, data, physician, error_2;
+        var response, data, physician, error_3;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -92,14 +122,15 @@ function renderPhisicianPage() {
                     return [4 /*yield*/, response.json()];
                 case 2:
                     data = _a.sent();
+                    debugger;
                     physician = data.physician;
                     console.log(data);
                     renderWelcomeP(physician.lastName, document.querySelector("#root"));
                     renderPhysicianActions(document.querySelector("#header"));
                     return [3 /*break*/, 4];
                 case 3:
-                    error_2 = _a.sent();
-                    console.error(error_2);
+                    error_3 = _a.sent();
+                    console.error(error_3);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }
@@ -124,7 +155,7 @@ function renderPhysicianActions(html) {
 }
 function renderVisits(visits) {
     return __awaiter(this, void 0, void 0, function () {
-        var root, table_1, promises, error_3;
+        var root, table_1, promises, error_4;
         var _this = this;
         return __generator(this, function (_a) {
             switch (_a.label) {
@@ -157,8 +188,8 @@ function renderVisits(visits) {
                     _a.sent();
                     return [3 /*break*/, 3];
                 case 2:
-                    error_3 = _a.sent();
-                    console.error(error_3);
+                    error_4 = _a.sent();
+                    console.error(error_4);
                     return [3 /*break*/, 3];
                 case 3: return [2 /*return*/];
             }
@@ -167,7 +198,7 @@ function renderVisits(visits) {
 }
 function renderPrescriptions(prescriptions) {
     return __awaiter(this, void 0, void 0, function () {
-        var root, table_2, promises, error_4;
+        var root, table_2, promises, error_5;
         var _this = this;
         return __generator(this, function (_a) {
             switch (_a.label) {
@@ -199,8 +230,8 @@ function renderPrescriptions(prescriptions) {
                     _a.sent();
                     return [3 /*break*/, 3];
                 case 2:
-                    error_4 = _a.sent();
-                    console.error(error_4);
+                    error_5 = _a.sent();
+                    console.error(error_5);
                     return [3 /*break*/, 3];
                 case 3: return [2 /*return*/];
             }
@@ -209,7 +240,7 @@ function renderPrescriptions(prescriptions) {
 }
 function renderUpdatePatientP(physicianId, html) {
     return __awaiter(this, void 0, void 0, function () {
-        var response, data, patients, tempHtml_1, error_5;
+        var response, data, patients, tempHtml_1, error_6;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -238,8 +269,8 @@ function renderUpdatePatientP(physicianId, html) {
                     html.innerHTML = tempHtml_1;
                     return [3 /*break*/, 4];
                 case 3:
-                    error_5 = _a.sent();
-                    console.error(error_5);
+                    error_6 = _a.sent();
+                    console.error(error_6);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }
@@ -283,7 +314,7 @@ function formatDate(date) {
 }
 function updatePatientP() {
     return __awaiter(this, void 0, void 0, function () {
-        var responseP, dataP, physicianID, error_6;
+        var responseP, dataP, physicianID, error_7;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -299,8 +330,8 @@ function updatePatientP() {
                     renderUpdatePatientP(physicianID, document.querySelector("#forms"));
                     return [3 /*break*/, 4];
                 case 3:
-                    error_6 = _a.sent();
-                    console.error(error_6);
+                    error_7 = _a.sent();
+                    console.error(error_7);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }
@@ -309,7 +340,7 @@ function updatePatientP() {
 }
 function loadPrescriptions() {
     return __awaiter(this, void 0, void 0, function () {
-        var response, data, prescriptions, error_7;
+        var response, data, prescriptions, error_8;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -325,8 +356,8 @@ function loadPrescriptions() {
                     renderPrescriptions(prescriptions);
                     return [3 /*break*/, 4];
                 case 3:
-                    error_7 = _a.sent();
-                    console.error(error_7);
+                    error_8 = _a.sent();
+                    console.error(error_8);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }
@@ -335,7 +366,7 @@ function loadPrescriptions() {
 }
 function viewVisits() {
     return __awaiter(this, void 0, void 0, function () {
-        var responseP, dataP, physicianID, response, data, visits, error_8;
+        var responseP, dataP, physicianID, response, data, visits, error_9;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -358,8 +389,8 @@ function viewVisits() {
                     renderVisits(visits);
                     return [3 /*break*/, 6];
                 case 5:
-                    error_8 = _a.sent();
-                    console.error(error_8);
+                    error_9 = _a.sent();
+                    console.error(error_9);
                     return [3 /*break*/, 6];
                 case 6: return [2 /*return*/];
             }
@@ -368,7 +399,7 @@ function viewVisits() {
 }
 function loadPatientInfo() {
     return __awaiter(this, void 0, void 0, function () {
-        var id_1, response, data, patient, idInput, firstNameInput, lastNameInput, ageInput, phoneNumInput, weightInput, heightInput, smokingCheckbox, addressInput, error_9;
+        var id_1, response, data, patient, idInput, firstNameInput, lastNameInput, ageInput, phoneNumInput, weightInput, heightInput, smokingCheckbox, addressInput, error_10;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -400,8 +431,8 @@ function loadPatientInfo() {
                     addressInput.value = patient.address;
                     return [3 /*break*/, 4];
                 case 3:
-                    error_9 = _a.sent();
-                    console.error(error_9);
+                    error_10 = _a.sent();
+                    console.error(error_10);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }
@@ -410,7 +441,7 @@ function loadPatientInfo() {
 }
 function loadPatients() {
     return __awaiter(this, void 0, void 0, function () {
-        var responseP, dataP, physicianId, response, data, patients, error_10;
+        var responseP, dataP, physicianId, response, data, patients, error_11;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -434,8 +465,8 @@ function loadPatients() {
                     renderPatients(patients);
                     return [3 /*break*/, 6];
                 case 5:
-                    error_10 = _a.sent();
-                    console.error(error_10);
+                    error_11 = _a.sent();
+                    console.error(error_11);
                     return [3 /*break*/, 6];
                 case 6: return [2 /*return*/];
             }
@@ -458,7 +489,7 @@ function StartVisit(_id) {
 }
 function loadMedicines() {
     return __awaiter(this, void 0, void 0, function () {
-        var response, data, error_11;
+        var response, data, error_12;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -474,8 +505,8 @@ function loadMedicines() {
                     renderMedicines(data.medicines);
                     return [3 /*break*/, 4];
                 case 3:
-                    error_11 = _a.sent();
-                    console.error(error_11);
+                    error_12 = _a.sent();
+                    console.error(error_12);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }

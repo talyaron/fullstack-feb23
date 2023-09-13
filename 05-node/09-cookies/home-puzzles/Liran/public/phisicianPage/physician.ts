@@ -1,5 +1,22 @@
-const physicianEmail = getEmailFromQuery();
-renderPhisicianPage();
+let physicianEmail: string;
+const currPhysicianLogged = hundleGetUserLogged().then(currPhysicianLogged => {
+    currPhysicianLogged = currPhysicianLogged;
+    debugger;
+    physicianEmail = currPhysicianLogged.email;
+    renderPhysicianPage();
+});
+
+async function hundleGetUserLogged() {
+    try {
+        const response = await fetch("/API/physician/get-user");
+        const data = await response.json();
+        debugger;
+        const physician = data.physician;
+        return physician;
+    } catch (error) {
+        console.error(error);
+    }
+}
 
 async function hundlePatientUpdate(event) {
     try {
@@ -33,12 +50,12 @@ async function hundlePatientUpdate(event) {
 }
 
 
-async function renderPhisicianPage() {
+async function renderPhysicianPage() {
     try {
         const response = await fetch(`/API/physician/get-physicians?email=${physicianEmail}`);
         const data = await response.json();
+        debugger;
         const physician = data.physician;
-
         console.log(data)
         renderWelcomeP(physician.lastName, document.querySelector("#root"));
         renderPhysicianActions(document.querySelector("#header"));

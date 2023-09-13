@@ -7,7 +7,7 @@ export async function getPatients(req: any, res: any) {
         let patients;
         if (patientId) {
             console.log('patientId')
-            patients = await PatientModel.findOne({ _id: patientId });
+            patients = await PatientModel.findById(patientId);
         }
         else if (!physicianId) {
             console.log('no physicianId')

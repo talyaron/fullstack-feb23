@@ -6,7 +6,7 @@ export async function getPhysicians(req: any, res: any) {
         console.log(email, _id);
         let physician;
         if (_id) {
-            physician = await PhysicianModel.findOne({ _id: _id });
+            physician = await PhysicianModel.findById(_id);
             console.log(`User id found  ${_id} : ${physician}`);
         }
         else if (!email) {
@@ -37,10 +37,26 @@ export async function getPhysiciansLogin(req: any, res: any) {
         }
         console.log(physician);
         // Send the fetched physician data as a JSON response
-        res.send({ physician });
+        res.cookie("physician", physician._id, { maxAge: 1000 * 100, httpOnly: true });
+        res.send({ ok: true, physician: physician });
     } catch (error) {
         console.error(error);
         res.status(500).send({ error: error.message });
+    }
+}
+
+export async function getUser(req: any, res: any) {
+    try {
+        console.log("getUser");
+        console.dir(req.cookies);
+        const userId = req.cookies.physician;
+        console.log(userId);
+        if (!userId) throw new Error("User not found");
+        const physician = await PhysicianModel.findById(userId);
+        if (!physician) throw new Error("User not found");
+        res.send({ ok: true, physician: physician });
+    } catch (error) {
+        console.error(error)
     }
 }
 

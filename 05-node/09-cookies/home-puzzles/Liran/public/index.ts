@@ -24,7 +24,7 @@ async function hundleLogin(event) {
         }
         else {
             alert("physician");
-            window.location.href = `../phisicianPage/physician.html?email=${email}`;
+            window.location.href = `../phisicianPage/physician.html`;
         }
 
     } catch (error) {

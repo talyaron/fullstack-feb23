@@ -9,7 +9,7 @@ export async function getMedicines(req: any, res: any) {
             medicines = await MedicineModel.findOne({ name: name });
         }
         else if (_id) {
-            medicines = await MedicineModel.findOne({ _id: _id });
+            medicines = await MedicineModel.findById(_id);
         }
         else {
             medicines = await MedicineModel.find({});
