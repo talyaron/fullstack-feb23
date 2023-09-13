@@ -48,7 +48,12 @@ export const login = async (req: any, res: any) => {
 
 export async function getUserAndRelatives(email: string) {
   try {
-    const user = await UserModel.findOne({ email }).populate('familyMembers').exec();
+    const user = await UserModel.findOne({ email })
+    .populate({
+      path: "familyMembers",
+      model: UserModel,
+    })
+    .exec();
 
     if (!user) {
       throw new Error("User not found with the provided email");

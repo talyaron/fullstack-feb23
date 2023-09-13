@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const mongoose_1 = __importDefault(require("mongoose"));
 const cookie_parser_1 = __importDefault(require("cookie-parser"));
+const PhysicianMiddlware_1 = require("./API/physician/PhysicianMiddlware");
 const app = express_1.default();
 const port = process.env.PORT || 3000;
 app.use(cookie_parser_1.default());
@@ -21,6 +22,7 @@ mongoose_1.default.connect("mongodb+srv://liranav26:Vhksci30@cluster0.d5q6v4v.mo
     .catch(err => {
     console.error(err);
 });
+app.use(PhysicianMiddlware_1.getLoggedUser);
 const patientRoutes_1 = __importDefault(require("./API/patient/patientRoutes"));
 app.use("/API/patient", patientRoutes_1.default);
 const physicianRoutes_1 = __importDefault(require("./API/physician/physicianRoutes"));

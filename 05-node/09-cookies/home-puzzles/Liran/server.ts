@@ -1,6 +1,7 @@
 import express from "express";
 import mongoose from 'mongoose';
 import cookieParser from 'cookie-parser'
+import {getLoggedUser} from "./API/physician/PhysicianMiddlware";
 
 
 const app = express();
@@ -15,6 +16,8 @@ app.use(express.static("public"));
 //body
 app.use(express.json());
 
+
+
 //connect to mongoDB with mongoose
 mongoose.connect("mongodb+srv://liranav26:Vhksci30@cluster0.d5q6v4v.mongodb.net/Clinic")
   .then(() => {
@@ -23,6 +26,8 @@ mongoose.connect("mongodb+srv://liranav26:Vhksci30@cluster0.d5q6v4v.mongodb.net/
   .catch(err => {
     console.error(err)
   })
+
+  app.use(getLoggedUser)
 
 
 import patientRouters from "./API/patient/patientRoutes"
@@ -38,6 +43,7 @@ import medicineRouters from "./API/medicine/medicineRoutes"
 app.use("/API/medicine", medicineRouters);
 
 import visitRouters from "./API/visit/visitRoutes"
+
 app.use("/API/visit", visitRouters);
 
 app.listen(port, () => {

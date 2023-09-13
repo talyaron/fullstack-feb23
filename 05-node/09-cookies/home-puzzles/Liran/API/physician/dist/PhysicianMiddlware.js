@@ -1,3 +1,4 @@
+"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -34,45 +35,71 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-function renderRelatives(relativesData, targetElement) {
-    if (!relativesData || relativesData.length === 0) {
-        targetElement.innerHTML = '<p>No relatives found.</p>';
-        return;
-    }
-    var relativesList = document.createElement('ul');
-    relativesList.style.listStyle = 'none';
-    relativesData.forEach(function (relative) {
-        var relativeItem = document.createElement('li');
-        relativeItem.textContent = relative.fullName + " - " + relative.relation + " - " + relative.birthDate + " - " + relative.country;
-        relativesList.appendChild(relativeItem);
-    });
-    targetElement.innerHTML = ''; // Clear the target element
-    targetElement.appendChild(relativesList);
-}
-// A function to get the user's relatives from the server by email
-function getUserRelatives(email) {
+exports.__esModule = true;
+exports.getLoggedUser = exports.isAdmin = void 0;
+var physicianModel_1 = require("./physicianModel");
+function isAdmin(req, res, next) {
     return __awaiter(this, void 0, void 0, function () {
-        var response, data, error_1;
+        var userId, physician, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    _a.trys.push([0, 3, , 4]);
-                    return [4 /*yield*/, fetch("/API/relatives/get-users-relatives?email=" + email)];
+                    _a.trys.push([0, 2, , 3]);
+                    userId = req.cookies.physician;
+                    if (!userId)
+                        throw new Error("User not found on cookie");
+                    return [4 /*yield*/, physicianModel_1.PhysicianModel.findById(userId)];
                 case 1:
-                    response = _a.sent();
-                    return [4 /*yield*/, response.json()];
+                    physician = _a.sent();
+                    if (!physician)
+                        throw new Error("User not found on database");
+                    //check if the user is admin (from Database)
+                    if (physician.isAdmin) {
+                        next(); // continue to the next controller
+                    }
+                    else {
+                        res.status(401).send({ error: "Unauthorized" });
+                    }
+                    return [3 /*break*/, 3];
                 case 2:
-                    data = _a.sent();
-                    console.log(data);
-                    // Assuming you have a rendering function for relatives, e.g., renderRelatives
-                    renderRelatives(data.relatives, document.querySelector("#relatives"));
-                    return [3 /*break*/, 4];
-                case 3:
                     error_1 = _a.sent();
                     console.error(error_1);
-                    return [3 /*break*/, 4];
-                case 4: return [2 /*return*/];
+                    res.status(500).send({ error: error_1.message });
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
             }
         });
     });
 }
+exports.isAdmin = isAdmin;
+//create middleware function which gets the user from the cookie
+function getLoggedUser(req, res, next) {
+    return __awaiter(this, void 0, void 0, function () {
+        var physicianId, physicianDB, error_2;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    physicianId = req.cookies.physician;
+                    return [4 /*yield*/, physicianModel_1.PhysicianModel.findById(physicianId)];
+                case 1:
+                    physicianDB = _a.sent();
+                    if (!physicianDB) {
+                        req.user = null;
+                    }
+                    else {
+                        req.user = physicianDB;
+                    }
+                    next();
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_2 = _a.sent();
+                    console.error(error_2);
+                    res.status(500).send({ error: error_2.message });
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
+}
+exports.getLoggedUser = getLoggedUser;
