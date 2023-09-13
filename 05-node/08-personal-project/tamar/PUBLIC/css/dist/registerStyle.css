@@ -8,6 +8,10 @@ h1 {
   color: brown;
 }
 
+p {
+  text-align: left;
+}
+
 .Recipe_update {
   display: none;
 }

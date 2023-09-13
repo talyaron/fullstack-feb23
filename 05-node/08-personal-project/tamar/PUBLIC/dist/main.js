@@ -268,14 +268,7 @@ function renderUpdateForm(recpieId) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
-                    return [4 /*yield*/, fetch("/API/Recipes/get-one-recipe" // get recpie by id
-                        , {
-                            method: 'GET',
-                            headers: {
-                                'Content-Type': 'application/json'
-                            },
-                            body: JSON.stringify({ recpieId: recpieId })
-                        })];
+                    return [4 /*yield*/, fetch("/API/Recipes/get-one-recipe?id=" + recpieId)];
                 case 1:
                     response = _a.sent();
                     return [4 /*yield*/, response.json()];

@@ -191,14 +191,7 @@ async function GetUserRecipe(email: string) {
 
 async function renderUpdateForm(recpieId) {
     try {
-        const response = await fetch(`/API/Recipes/get-one-recipe` // get recpie by id
-        , {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ recpieId })
-        });
+        const response = await fetch(`/API/Recipes/get-one-recipe?id=${recpieId}`); // get recpie by id
         const data = await response.json(); //recpie
         const updateForm = document.querySelector(".recipe_update") as HTMLFormElement
         if(!updateForm)throw new Error("no html element");    
