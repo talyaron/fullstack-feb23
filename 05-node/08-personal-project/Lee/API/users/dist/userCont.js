@@ -103,7 +103,12 @@ function getUserAndRelatives(email) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, userModel_1.UserModel.findOne({ email: email }).populate('familyMembers').exec()];
+                    return [4 /*yield*/, userModel_1.UserModel.findOne({ email: email })
+                            .populate({
+                            path: "familyMembers",
+                            model: userModel_1.UserModel
+                        })
+                            .exec()];
                 case 1:
                     user = _a.sent();
                     if (!user) {
