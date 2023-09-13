@@ -14,6 +14,10 @@ async function handleAddUser(ev:any) {
             body: JSON.stringify(user),
         });
         const data = await response.json(); 
+        if (!data.ok) {
+            alert(data.error);
+            throw new Error(data.error);
+        }
             
         const {userDB}=data;
         console.log(data,userDB);  

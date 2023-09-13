@@ -5,14 +5,27 @@ async function getPictures() {
         const { pictures } = result
         if (!Array.isArray(pictures)) throw new Error("pictures is not array");
         renderPictures(pictures)
+
+        const showAllBtn = document.querySelector('#showAll') as HTMLButtonElement
+        showAllBtn.style.display='none'
     } catch (error) {
         console.error(error.massage);
     }
 }
 
 getPictures()
+async function handleGetUser() {
+    try {
+        const response = await fetch("API/users/get-user");
+        const data = await response.json();
+        const { user } = data
 
-const emailUser = window.location.search.toString().replace('?email=', '')
+    } catch (error) {
+        console.error(error.massage);
+    }
+}
+
+// const emailUser = window.location.search.toString().replace('?email=', '')
 
 async function handleAddPicture(ev: any) {
     try {
@@ -25,7 +38,7 @@ async function handleAddPicture(ev: any) {
             title: ev.target.title.value,
             imgUrl: ev.target.imgUrl.value,
             location: ev.target.location.value,
-            tags:imageTags,
+            tags: imageTags,
             // area: ev.target.area.value,
             newTag: ev.target.newTag.value,
         }
@@ -33,7 +46,7 @@ async function handleAddPicture(ev: any) {
 
         if (!_picture.title || !_picture.imgUrl || !_picture.location || !_picture.tags) throw new Error("Please complete all details");
 
-        const response = await fetch(`/API/pictures/add-picture?email=${emailUser}`, {
+        const response = await fetch(`/API/pictures/add-picture`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -81,7 +94,7 @@ async function handleUpdatePicture(ev: any) {
         const testes = document.querySelectorAll(".editTags") as NodeListOf<HTMLSelectElement>
         testes.forEach(select => {
             const output = select.value
-            if(output){
+            if (output) {
                 tags.push(output)
             }
         })
@@ -164,36 +177,21 @@ function closeAdd() {
 }
 
 
-// async function getUserName(email: string) {
-//     try {
-//         const response = await fetch(`/API/users/get-user-name?email=${email}`)
-//         const result = await response.json()
-//         const { error, name } = result
-//         if (error) throw new Error("Some of details are incorrect");
-//         console.log(name);
-
-//         return name as string
-//     } catch (error) {
-//         console.error(error.massage);
-//     }
-// }
-
-function renderPictureHtml(picture, email: string) {
+function renderPictureHtml(picture, pictureEmail: string, userEmail:string) {
     try {
-
-
+       
         let html = `<div class = "picture" id="id${picture._id}">
         <div class = "picture_header">
         <div></div>
         <h3 >${picture.title}</h3>`
-        if (emailUser === 'admin@gmail.com') {
-            html += `<p>${picture.userName}</p>
-            <button class="material-symbols-rounded" onclick="renderUpdatePicture('${picture.title}','${picture.imgUrl}','${picture.location}','${picture._id}','${picture.tags.join(' ')}')">Edit</button>
-            <button class="material-symbols-rounded" onclick="handleDeletePicture('${picture._id}')">delete</button>
-            `
-        } else {
+        // if (emailUser === 'admin@gmail.com') {
+        //     html += `<p>${picture.userName}</p>
+        //     <button class="material-symbols-rounded" onclick="renderUpdatePicture('${picture.title}','${picture.imgUrl}','${picture.location}','${picture._id}','${picture.tags.join(' ')}')">Edit</button>
+        //     <button class="material-symbols-rounded" onclick="handleDeletePicture('${picture._id}')">delete</button>
+        //     `
+        // } else {
 
-            if (email === emailUser) {
+            if (pictureEmail === userEmail) {
                 html += `<p>תמונה שלי</p>
                 <button class="material-symbols-rounded" onclick="renderUpdatePicture('${picture.title}','${picture.imgUrl}','${picture.location}','${picture._id}','${picture.tags.join(' ')}')">Edit</button>
                 <button class="material-symbols-rounded" onclick="handleDeletePicture('${picture._id}')">delete</button>
@@ -201,11 +199,11 @@ function renderPictureHtml(picture, email: string) {
             } else {
                 html += `<p>${picture.userName}</p>`
             }
-        }
+        // }
 
         html += `
         </div>
-        <img src="${picture.imgUrl}">
+        <img id="img${picture._id}" onclick="handleShow('${picture._id}','${picture.imgUrl}' )" src="${picture.imgUrl}">
         <div class = "picture_body">
         <p>${picture.location}</p>
         <p> ${picture.publishDate}</p>
@@ -222,19 +220,45 @@ function renderPictureHtml(picture, email: string) {
     }
 }
 
+function handleShow(id:string, imgUrl:string){
+    try {
+        const divRoot = document.querySelector(`#id${id}`) as HTMLDivElement
+        divRoot.innerHTML+=`<button id="btnClose" onclick="getPictures()" class="material-symbols-rounded">close</button>`
+        const imgRoot = document.querySelector(`#img${id}`) as HTMLImageElement
+        const btnCloseRoot = document.querySelector(`#btnClose`) as HTMLButtonElement
+        divRoot.style.position = 'absolute'
+        divRoot.style.top='5%'
+        divRoot.style.width='80%'
+        divRoot.style.height='90%'
+        divRoot.style.zIndex='1'
+        imgRoot.style.width = '85%'
+        imgRoot.style.height = '80%'
+        imgRoot.style.pointerEvents='none'
+        imgRoot.style.marginTop='5px'
+        imgRoot.style.borderRadius='5%'
+        btnCloseRoot.style.position='absolute'
+        btnCloseRoot.style.left='1%'
+        btnCloseRoot.style.top='50%'
+    } catch (error) {
+        console.error(error.massage);
+        
+    }
+}
+
 async function handleRenderByUser() {
     try {
-        const response = await fetch(`API/pictures/get-pictures-by-user?email=${emailUser}`)
+        const response = await fetch(`API/pictures/get-pictures-by-user`)
         const result = await response.json()
         const { pictures } = result
         if (!Array.isArray(pictures)) throw new Error("pictures is not array");
 
 
         renderPictures(pictures)
-
-        const html = `<button onclick="getPictures()">הצג הכל</button>`
-        const allPicturesRoot = document.querySelector('#allPictures')
-        allPicturesRoot.innerHTML += html
+        const showAllBtn = document.querySelector('#showAll') as HTMLButtonElement
+        showAllBtn.style.display='inline-flex'
+        // const html = `<button id ="showAll" onclick="getPictures()">הצג הכל</button>`
+        // const allPicturesRoot = document.querySelector('#allPictures')
+        // allPicturesRoot.innerHTML += html
 
     } catch (error) {
         console.error(error.massage);
@@ -253,22 +277,28 @@ async function handleRenderByTag(tag: string) {
         // const picturesByTag = pictures.filter(el => el.picture.tags.includes(tag))
 
         renderPictures(pictures)
-
-        const html = `<button onclick="getPictures()">הצג הכל</button>`
-        const allPicturesRoot = document.querySelector('#allPictures')
-        allPicturesRoot.innerHTML += html
+        const showAllBtn = document.querySelector('#showAll') as HTMLButtonElement
+        showAllBtn.style.display='inline-flex'
+        // const html = `<button id ="showAll" onclick="getPictures()">הצג הכל</button>`
+        // const allPicturesRoot = document.querySelector('#allPictures')
+        // allPicturesRoot.innerHTML += html
 
     } catch (error) {
         console.error(error.massage);
     }
 }
 
-function renderPictures(pictures) {
+async function renderPictures(pictures) {
     try {
+
+        const response = await fetch("API/users/get-user");
+        const data = await response.json();
+        const { user } = data
+        
         if (!Array.isArray(pictures)) throw new Error("usersPictures is not array");
 
         const allPicturesRoot = document.querySelector('#allPictures') as HTMLDivElement
-        const allPicturesHtml = pictures.map(picture => renderPictureHtml(picture, picture.email)).join('')
+        const allPicturesHtml = pictures.map(picture => renderPictureHtml(picture, picture.email,user.email)).join('')
         allPicturesRoot.innerHTML = allPicturesHtml
 
         closeAdd()
@@ -329,25 +359,25 @@ async function renderUpdatePicture(title: string, imgUrl: string, location: stri
 
 async function renderNav() {
     try {
-        const email = { emailUser }
 
-        if (emailUser === 'admin@gmail.com') {
-            const html = `<div class="nav">
-        <p>Admin</p>
-        <a class="logout material-symbols-rounded" href="./index.html">Logout</a>
-    </div>`
-            const root = document.querySelector('#nav') as HTMLDivElement
-            root.innerHTML = html
+        const response = await fetch("API/users/get-user");
+        const data = await response.json();
+        const { ok, user } = data
 
-        }
-        const response = await fetch(`/API/users/get-user-name?email=${emailUser}`)
+        if (!ok) throw new Error("Some of details are incorrect");
 
-        const result = await response.json()
-        const { error, name } = result
-        if (error) throw new Error("Some of details are incorrect");
+    //     if (emailUser === 'admin@gmail.com') {
+    //         const html = `<div class="nav">
+    //     <p>Admin</p>
+    //     <a class="logout material-symbols-rounded" href="./index.html">Logout</a>
+    // </div>`
+    //         const root = document.querySelector('#nav') as HTMLDivElement
+    //         root.innerHTML = html
+
+    //     }
 
         const html = `<div class="nav">
-        <p>${name}</p>
+        <p>${user.name}</p>
         <a class="logout material-symbols-rounded" href="./index.html">Logout</a>
     </div>`
         const root = document.querySelector('#nav') as HTMLDivElement

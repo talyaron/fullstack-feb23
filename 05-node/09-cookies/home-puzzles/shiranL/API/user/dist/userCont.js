@@ -130,27 +130,22 @@ exports.getLoggedInUser = function (req, res) { return __awaiter(void 0, void 0,
     });
 }); };
 exports.logOut = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var error_4;
     return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0:
-                _a.trys.push([0, 2, , 3]);
-                return [4 /*yield*/, userModel_1.UserModel.updateMany({}, { isLoggedIn: false })];
-            case 1:
-                _a.sent();
-                res.send({ ok: true });
-                return [3 /*break*/, 3];
-            case 2:
-                error_4 = _a.sent();
-                console.error(error_4);
-                res.send({ error: error_4.message });
-                return [3 /*break*/, 3];
-            case 3: return [2 /*return*/];
+        try {
+            // Delete the "user" cookie
+            res.clearCookie("user");
+            // Return a success response
+            res.send({ ok: true });
         }
+        catch (error) {
+            console.error(error);
+            res.send({ error: error.message });
+        }
+        return [2 /*return*/];
     });
 }); };
 exports.allUsers = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var allUsers_1, error_5;
+    var allUsers_1, error_4;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
@@ -162,16 +157,16 @@ exports.allUsers = function (req, res) { return __awaiter(void 0, void 0, void 0
                 res.send({ ok: true, allUsers: allUsers_1 });
                 return [3 /*break*/, 3];
             case 2:
-                error_5 = _a.sent();
-                console.error(error_5);
-                res.send({ error: error_5.message });
+                error_4 = _a.sent();
+                console.error(error_4);
+                res.send({ error: error_4.message });
                 return [3 /*break*/, 3];
             case 3: return [2 /*return*/];
         }
     });
 }); };
 exports.getUserDetails = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var userId, user, error_6;
+    var userId, user, error_5;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
@@ -187,16 +182,16 @@ exports.getUserDetails = function (req, res) { return __awaiter(void 0, void 0, 
                 res.send({ ok: true, user: user });
                 return [3 /*break*/, 3];
             case 2:
-                error_6 = _a.sent();
-                console.error(error_6);
-                res.send({ error: error_6.message });
+                error_5 = _a.sent();
+                console.error(error_5);
+                res.send({ error: error_5.message });
                 return [3 /*break*/, 3];
             case 3: return [2 /*return*/];
         }
     });
 }); };
 exports.updateUser = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var _a, newEmail, newPassword, isAdmin, userId, existingUser, error_7;
+    var _a, newEmail, newPassword, isAdmin, userId, existingUser, error_6;
     return __generator(this, function (_b) {
         switch (_b.label) {
             case 0:
@@ -227,16 +222,16 @@ exports.updateUser = function (req, res) { return __awaiter(void 0, void 0, void
                 res.send({ ok: true, existingUser: existingUser });
                 return [3 /*break*/, 4];
             case 3:
-                error_7 = _b.sent();
-                console.error(error_7);
-                res.send({ error: error_7.message });
+                error_6 = _b.sent();
+                console.error(error_6);
+                res.send({ error: error_6.message });
                 return [3 /*break*/, 4];
             case 4: return [2 /*return*/];
         }
     });
 }); };
 exports.deleteUser = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var userId, existingUser, error_8;
+    var userId, existingUser, error_7;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
@@ -250,9 +245,9 @@ exports.deleteUser = function (req, res) { return __awaiter(void 0, void 0, void
                 res.send({ ok: true, message: "User deleted successfully" });
                 return [3 /*break*/, 3];
             case 2:
-                error_8 = _a.sent();
-                console.error(error_8);
-                res.send({ error: error_8.message });
+                error_7 = _a.sent();
+                console.error(error_7);
+                res.send({ error: error_7.message });
                 return [3 /*break*/, 3];
             case 3: return [2 /*return*/];
         }

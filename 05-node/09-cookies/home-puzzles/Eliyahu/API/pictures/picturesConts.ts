@@ -24,10 +24,15 @@ export async function getPicturesByTag(req: any, res: any) {
 
 export async function getUserPictures(req: any, res: any) {
     try {
-        const { email } = req.query;
-        if (!email) {
-            throw new Error("email is required");
-        }
+        const userId = req.cookies.user;
+        if(!userId) throw new Error("no user in cookies"); 
+        const userDB = await UserModel.findById(userId);
+        if(!userDB) throw new Error("user dosnt exist in DB")
+  
+          const email = userDB.email
+          if (!email) {
+              throw new Error("email is required");
+          }
         const userPicturesDB = await PictureModel.find({ email: email })
         res.send({ pictures: userPicturesDB })
         // const usersPicturesDB = await UserPictureModel.find({})
@@ -52,7 +57,6 @@ export async function addPicture(req: any, res: any) {
         const imgUrl = picture.imgUrl
         const location = picture.location
         const pictureTags = picture.tags
-        // const area = picture.area
         const { newTag } = picture
         if (newTag) {
             pictureTags.push(newTag)
@@ -64,12 +68,17 @@ export async function addPicture(req: any, res: any) {
             hour: "numeric",
             minute: "numeric"
         })
-        const { email } = req.query;
+
+        const userId = req.cookies.user;
+      if(!userId) throw new Error("no user in cookies"); 
+      const userDB = await UserModel.findById(userId);
+      if(!userDB) throw new Error("user dosnt exist in DB")
+
+        const email = userDB.email
         if (!email) {
             throw new Error("email is required");
         }
 
-        const userDB = await UserModel.findOne({ email })
         const userName = userDB.name
       
         const _picture = await (new PictureModel({ title, imgUrl, location, tags:pictureTags, publishDate, email, userName })).save()
