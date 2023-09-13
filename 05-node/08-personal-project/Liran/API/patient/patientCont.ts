@@ -2,17 +2,20 @@ import { PatientModel } from "./patientModel";
 
 export async function getPatients(req: any, res: any) {
     try {
-        const { physicianId, patientId } = req.query; 
+        const { physicianId: physicianId, _id: patientId } = req.query;
+        console.log(physicianId, patientId);
         let patients;
         if (patientId) {
-            patients = await PatientModel.findOne({ id: patientId });
+            console.log('patientId')
+            patients = await PatientModel.findOne({ _id: patientId });
         }
         else if (!physicianId) {
+            console.log('no physicianId')
             patients = await PatientModel.find({});
         }
         else {
-            patients = await PatientModel.find({ physicianId });
-
+            patients = await PatientModel.find({ physicianId: physicianId });
+            console.log('physicianId')
         }
         res.send({ patients });
     } catch (error) {

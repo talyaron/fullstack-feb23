@@ -163,26 +163,32 @@ function updateRelation(req, res) {
 exports.updateRelation = updateRelation;
 function getUserRelatives(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var email, relativeDB, error_5;
+        var email, user, relativeDB, error_5;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    _a.trys.push([0, 2, , 3]);
+                    _a.trys.push([0, 3, , 4]);
                     email = req.query.email;
                     if (!email) {
                         throw new Error("email is required");
                     }
-                    return [4 /*yield*/, relativesModel_1.RelativeModel.find({ email: email })];
+                    return [4 /*yield*/, userModel_1.UserModel.findOne({ email: email })];
                 case 1:
+                    user = _a.sent();
+                    if (!user) {
+                        throw new Error("User not found with the provided email");
+                    }
+                    return [4 /*yield*/, relativesModel_1.RelativeModel.find({ user: user._id })];
+                case 2:
                     relativeDB = _a.sent();
                     res.send({ relatives: relativeDB });
-                    return [3 /*break*/, 3];
-                case 2:
+                    return [3 /*break*/, 4];
+                case 3:
                     error_5 = _a.sent();
                     console.error(error_5);
                     res.status(500).send({ error: error_5.message });
-                    return [3 /*break*/, 3];
-                case 3: return [2 /*return*/];
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
             }
         });
     });
