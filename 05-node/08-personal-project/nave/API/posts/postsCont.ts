@@ -2,10 +2,11 @@ import { users } from "../users/userModel";
 import { Post, PostModel, UserPost, posts, userPosts } from "./postsModel";
 
 
+
 export async function getPosts(req: any, res: any) {
   try {
       const postsDB = await PostModel.find({});
-      res.send({ posts: postsDB });
+      res.send({ ok:true, posts: postsDB });
   } catch (error) {
       console.error(error);
   }
@@ -20,14 +21,20 @@ export async function addPost(req: any, res: any) {
   if (!email) throw new Error("no email");
   const post = new PostModel({content, featuredImage, category});
       const postDB = await post.save();
-      console.log(postDB);
-      res.send({ ok: true });
+      console.log( "Posts111:",postDB);
+      const userPosts = await PostModel.find({email})
+      console.log( "Posts112:",postDB);
+      res.send({ posts:userPosts });
     } catch (error) {
         console.error(error);
         res.status(500).send({ error: error.message });
     }
+
 }
-  //     posts.push(newPost);
+
+
+
+     
   
     
   //     const user = users.find((user: any) => user.email === email);
@@ -65,4 +72,5 @@ export async function addPost(req: any, res: any) {
         res.status(500).send({ error: error.message });
     }
 }
+
 
