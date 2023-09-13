@@ -39,17 +39,30 @@ exports.__esModule = true;
 exports.getUserPosts = exports.addPost = exports.getPosts = void 0;
 var postsModel_1 = require("./postsModel");
 function getPosts(req, res) {
-    try {
-        res.send({ posts: postsModel_1.posts });
-    }
-    catch (error) {
-        console.error(error);
-    }
+    return __awaiter(this, void 0, void 0, function () {
+        var postsDB, error_1;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    return [4 /*yield*/, postsModel_1.PostModel.find({})];
+                case 1:
+                    postsDB = _a.sent();
+                    res.send({ posts: postsDB });
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_1 = _a.sent();
+                    console.error(error_1);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
 }
 exports.getPosts = getPosts;
 function addPost(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var _a, content, featuredImage, category, email, post, postDB, error_1;
+        var _a, content, featuredImage, category, email, post, postDB, error_2;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
@@ -60,29 +73,16 @@ function addPost(req, res) {
                     if (!email)
                         throw new Error("no email");
                     post = new postsModel_1.PostModel({ content: content, featuredImage: featuredImage, category: category });
-                    return [4 /*yield*/, post.save];
+                    return [4 /*yield*/, post.save()];
                 case 1:
                     postDB = _b.sent();
-                    //       const newPost = new Post({
-                    //          content,
-                    // featuredImage,
-                    //  category,
-                    //       });
-                    //       posts.push(newPost);
-                    //find user
-                    // const user = users.find((user: any) => user.email === email);
-                    // if (!user) throw new Error("user not found");
-                    // userPosts.push(new UserPost(user, newPost));
-                    // const _userPosts = userPosts.filter(
-                    //   (UserPost) => UserPost.user.email === email
-                    // );
-                    // const _posts = _userPosts.map((UserPost) => UserPost.post); //returns only tasks of user
+                    console.log(postDB);
                     res.send({ ok: true });
                     return [3 /*break*/, 3];
                 case 2:
-                    error_1 = _b.sent();
-                    console.error(error_1);
-                    res.status(500).send({ error: error_1.message });
+                    error_2 = _b.sent();
+                    console.error(error_2);
+                    res.status(500).send({ error: error_2.message });
                     return [3 /*break*/, 3];
                 case 3: return [2 /*return*/];
             }
@@ -90,20 +90,44 @@ function addPost(req, res) {
     });
 }
 exports.addPost = addPost;
+//     posts.push(newPost);
+//     const user = users.find((user: any) => user.email === email);
+//     if (!user) throw new Error("user not found");
+//     userPosts.push(new UserPost(user, newPost));
+//     const _userPosts = userPosts.filter(
+//       (UserPost) => UserPost.user.email === email
+//     );
+//     const _posts = _userPosts.map((UserPost) => UserPost.post); //returns only tasks of user
+//     res.send({ ok:true });
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).send({ error: error.message });
+//   }
+// }
 function getUserPosts(req, res) {
-    try {
-        //get email from query
-        var email_1 = req.query.email;
-        if (!email_1) {
-            throw new Error("email is required");
-        }
-        var _userPosts = postsModel_1.userPosts.filter(function (userPost) { return userPost.user.email === email_1; });
-        var _posts = _userPosts.map(function (UserPosts) { return UserPosts.post; });
-        res.send({ posts: _posts });
-    }
-    catch (error) {
-        console.error(error);
-        res.status(500).send({ error: error.message });
-    }
+    return __awaiter(this, void 0, void 0, function () {
+        var email, postsDB, error_3;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    email = req.query.email;
+                    if (!email) {
+                        throw new Error("email is required");
+                    }
+                    return [4 /*yield*/, postsModel_1.PostModel.find({ email: email })];
+                case 1:
+                    postsDB = _a.sent();
+                    res.send({ posts: postsDB });
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_3 = _a.sent();
+                    console.error(error_3);
+                    res.status(500).send({ error: error_3.message });
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
 }
 exports.getUserPosts = getUserPosts;
