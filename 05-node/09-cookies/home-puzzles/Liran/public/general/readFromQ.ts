@@ -166,3 +166,14 @@ async function getMedicinesDB() {
     }
 }
 
+async function hundleGetUserLogged() {
+    try {
+        const response = await fetch("/API/physician/get-user");
+        const data = await response.json();
+        debugger;
+        const physician = data.physician;
+        return physician;
+    } catch (error) {
+        console.error(error);
+    }
+}

@@ -63,7 +63,7 @@ function hundleLogin(event) {
                     // if email and password are correct
                     if (physician.isAdmin && admin) {
                         alert("admin");
-                        window.location.href = "../adminPage/admin.html?email=" + email;
+                        window.location.href = "../adminPage/admin.html";
                     }
                     else if (!physician.isAdmin && admin) {
                         alert("You are not an admin, please login again");

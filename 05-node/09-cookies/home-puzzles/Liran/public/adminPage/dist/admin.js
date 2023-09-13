@@ -34,9 +34,18 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var email = getEmailFromQuery();
-console.log(email);
-renderAdminPage();
+var email;
+var currAdminLogged = hundleGetUserLogged().then(function (currAdminLogged) {
+    if (currAdminLogged === undefined) {
+        currAdminLogged = getEmailFromQuery();
+    }
+    else {
+        currAdminLogged = currAdminLogged;
+        debugger;
+        email = currAdminLogged.email;
+        renderAdminPage();
+    }
+});
 function hundleVisitsList() {
     return __awaiter(this, void 0, void 0, function () {
         return __generator(this, function (_a) {

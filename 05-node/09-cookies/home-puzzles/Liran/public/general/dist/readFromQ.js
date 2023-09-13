@@ -334,3 +334,28 @@ function getMedicinesDB() {
         });
     });
 }
+function hundleGetUserLogged() {
+    return __awaiter(this, void 0, void 0, function () {
+        var response, data, physician, error_11;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 3, , 4]);
+                    return [4 /*yield*/, fetch("/API/physician/get-user")];
+                case 1:
+                    response = _a.sent();
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    data = _a.sent();
+                    debugger;
+                    physician = data.physician;
+                    return [2 /*return*/, physician];
+                case 3:
+                    error_11 = _a.sent();
+                    console.error(error_11);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
+            }
+        });
+    });
+}
