@@ -107,3 +107,25 @@ async function handleDeleteItem(itemId:string) {
         console.error(error)
     }
 }
+
+async function handleUpdatePrice(ev:any){
+    try {
+        ev.preventDefault();
+        const price = ev.target.price.value;
+        const id = ev.target.id;
+        console.log( id, price );
+
+        const response = await fetch('/API/crossfit/update-item-price', {
+            method: 'PATCH',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({ id, price })
+        })
+
+        const result = await response.json();
+        console.log(result);
+        const { items } = result;
+        renderItems(items, document.querySelector('#rootitem') as HTMLDivElement);
+    } catch (error) {
+        console.error(error)
+    }
+}

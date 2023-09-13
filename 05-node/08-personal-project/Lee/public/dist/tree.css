@@ -3,12 +3,29 @@ html {
   background-repeat: no-repeat;
   background-size: cover;
 }
+@media (max-width: 900px) {
+  html {
+    background-image: url("https://img.freepik.com/premium-photo/tree-life_780593-3699.jpg?size=626&ext=jpg");
+    background-repeat: repeat-y;
+  }
+}
 html body {
   color: #06642d;
   text-align: center;
   margin: 3rem;
   font-family: "Quicksand", sans-serif;
-  font-size: 17px;
+  font-size: 18px;
+  font-weight: 800;
+}
+html body h1 {
+  margin: auto;
+  width: 400px;
+  background-color: rgba(250, 246, 243, 0.622);
+}
+html body h2 {
+  margin: 0.3rem auto auto auto;
+  width: 550px;
+  background-color: rgba(250, 246, 243, 0.622);
 }
 html body form {
   display: flex;

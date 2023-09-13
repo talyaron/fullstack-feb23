@@ -34,6 +34,10 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+//get tasks from server
+function getPostsFromServer() {
+    //get tasks from server
+}
 function handleGetPosts() {
     return __awaiter(this, void 0, void 0, function () {
         var response, posts, error_1;
@@ -75,10 +79,10 @@ function handeleAddPost(ev) {
                     category = ev.target.elements.category.value;
                     console.log("Title:", content);
                     console.log("PostUrl:", featuredImage);
-                    console.log("PostUrl:", category);
+                    console.log("PostCategory:", category);
                     newPost = { content: content, featuredImage: featuredImage, category: category, email: email };
                     console.log("New Post:", newPost);
-                    return [4 /*yield*/, fetch('http://localhost:3000/API/posts/add-post', {
+                    return [4 /*yield*/, fetch('/API/posts/add-post', {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json'
@@ -123,13 +127,25 @@ function renderPostWithTitle(post) {
         return "";
     }
 }
+// function renderPosts(posts: Post[], DIVElem: HTMLDivElement) {
+//     try {
+//         if (!DIVElem) throw new Error("no div element");
+//         let html = "<ul class = list>";
+//         // Render each post with title
+//         html += posts.map(post => `<li>${renderPostWithTitle(post)}</li>`).join("");
+//         html += "</ul>";
+//         DIVElem.innerHTML = html;
+//     } catch (error) {
+//         console.error(error);
+//         return "";
+//     }
+// }
 function renderPosts(posts, DIVElem) {
     try {
         if (!DIVElem)
             throw new Error("no div element");
-        var html = "<ul class = list>";
-        // Render each post with title
-        html += posts.map(function (post) { return "<li>" + renderPostWithTitle(post) + "</li>"; }).join("");
+        var html = "<ul>";
+        html += posts.map(function (post) { return renderPost(post); }).join("");
         html += "</ul>";
         DIVElem.innerHTML = html;
     }

@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 function getPictures() {
     return __awaiter(this, void 0, void 0, function () {
-        var response, result, pictures, error_1;
+        var response, result, pictures, showAllBtn, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -51,6 +51,8 @@ function getPictures() {
                     if (!Array.isArray(pictures))
                         throw new Error("pictures is not array");
                     renderPictures(pictures);
+                    showAllBtn = document.querySelector('#showAll');
+                    showAllBtn.style.display = 'none';
                     return [3 /*break*/, 4];
                 case 3:
                     error_1 = _a.sent();
@@ -62,10 +64,34 @@ function getPictures() {
     });
 }
 getPictures();
-var emailUser = window.location.search.toString().replace('?email=', '');
+function handleGetUser() {
+    return __awaiter(this, void 0, void 0, function () {
+        var response, data, user, error_2;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 3, , 4]);
+                    return [4 /*yield*/, fetch("API/users/get-user")];
+                case 1:
+                    response = _a.sent();
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    data = _a.sent();
+                    user = data.user;
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_2 = _a.sent();
+                    console.error(error_2.massage);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
+            }
+        });
+    });
+}
+// const emailUser = window.location.search.toString().replace('?email=', '')
 function handleAddPicture(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var imageTags_1, _picture, response, result, pictures, error_2;
+        var imageTags_1, _picture, response, result, pictures, error_3;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -83,7 +109,7 @@ function handleAddPicture(ev) {
                     };
                     if (!_picture.title || !_picture.imgUrl || !_picture.location || !_picture.tags)
                         throw new Error("Please complete all details");
-                    return [4 /*yield*/, fetch("/API/pictures/add-picture?email=" + emailUser, {
+                    return [4 /*yield*/, fetch("/API/pictures/add-picture", {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json'
@@ -99,8 +125,8 @@ function handleAddPicture(ev) {
                     renderPictures(pictures);
                     return [3 /*break*/, 4];
                 case 3:
-                    error_2 = _a.sent();
-                    console.error(error_2);
+                    error_3 = _a.sent();
+                    console.error(error_3);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }
@@ -109,7 +135,7 @@ function handleAddPicture(ev) {
 }
 function handleDeletePicture(id) {
     return __awaiter(this, void 0, void 0, function () {
-        var response, result, pictures, error_3;
+        var response, result, pictures, error_4;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -130,8 +156,8 @@ function handleDeletePicture(id) {
                     renderPictures(pictures);
                     return [3 /*break*/, 4];
                 case 3:
-                    error_3 = _a.sent();
-                    console.error(error_3.massage);
+                    error_4 = _a.sent();
+                    console.error(error_4.massage);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }
@@ -140,7 +166,7 @@ function handleDeletePicture(id) {
 }
 function handleUpdatePicture(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var title, imgUrl, location, tags_1, testes, id, response, result, pictures, error_4;
+        var title, imgUrl, location, tags_1, testes, id, response, result, pictures, error_5;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -174,8 +200,8 @@ function handleUpdatePicture(ev) {
                     renderPictures(pictures);
                     return [3 /*break*/, 4];
                 case 3:
-                    error_4 = _a.sent();
-                    console.error(error_4.massage);
+                    error_5 = _a.sent();
+                    console.error(error_5.massage);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }
@@ -184,7 +210,7 @@ function handleUpdatePicture(ev) {
 }
 function renderAddPicture() {
     return __awaiter(this, void 0, void 0, function () {
-        var response, result, tags, html_1, root, error_5;
+        var response, result, tags, html_1, root, error_6;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -205,8 +231,8 @@ function renderAddPicture() {
                     root.innerHTML = html_1;
                     return [3 /*break*/, 4];
                 case 3:
-                    error_5 = _a.sent();
-                    console.error(error_5.massage);
+                    error_6 = _a.sent();
+                    console.error(error_6.massage);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }
@@ -222,33 +248,23 @@ function closeAdd() {
         console.error(error.massage);
     }
 }
-// async function getUserName(email: string) {
-//     try {
-//         const response = await fetch(`/API/users/get-user-name?email=${email}`)
-//         const result = await response.json()
-//         const { error, name } = result
-//         if (error) throw new Error("Some of details are incorrect");
-//         console.log(name);
-//         return name as string
-//     } catch (error) {
-//         console.error(error.massage);
-//     }
-// }
-function renderPictureHtml(picture, email) {
+function renderPictureHtml(picture, pictureEmail, userEmail) {
     try {
         var html_2 = "<div class = \"picture\" id=\"id" + picture._id + "\">\n        <div class = \"picture_header\">\n        <div></div>\n        <h3 >" + picture.title + "</h3>";
-        if (emailUser === 'admin@gmail.com') {
-            html_2 += "<p>" + picture.userName + "</p>\n            <button class=\"material-symbols-rounded\" onclick=\"renderUpdatePicture('" + picture.title + "','" + picture.imgUrl + "','" + picture.location + "','" + picture._id + "','" + picture.tags.join(' ') + "')\">Edit</button>\n            <button class=\"material-symbols-rounded\" onclick=\"handleDeletePicture('" + picture._id + "')\">delete</button>\n            ";
+        // if (emailUser === 'admin@gmail.com') {
+        //     html += `<p>${picture.userName}</p>
+        //     <button class="material-symbols-rounded" onclick="renderUpdatePicture('${picture.title}','${picture.imgUrl}','${picture.location}','${picture._id}','${picture.tags.join(' ')}')">Edit</button>
+        //     <button class="material-symbols-rounded" onclick="handleDeletePicture('${picture._id}')">delete</button>
+        //     `
+        // } else {
+        if (pictureEmail === userEmail) {
+            html_2 += "<p>\u05EA\u05DE\u05D5\u05E0\u05D4 \u05E9\u05DC\u05D9</p>\n                <button class=\"material-symbols-rounded\" onclick=\"renderUpdatePicture('" + picture.title + "','" + picture.imgUrl + "','" + picture.location + "','" + picture._id + "','" + picture.tags.join(' ') + "')\">Edit</button>\n                <button class=\"material-symbols-rounded\" onclick=\"handleDeletePicture('" + picture._id + "')\">delete</button>\n                ";
         }
         else {
-            if (email === emailUser) {
-                html_2 += "<p>\u05EA\u05DE\u05D5\u05E0\u05D4 \u05E9\u05DC\u05D9</p>\n                <button class=\"material-symbols-rounded\" onclick=\"renderUpdatePicture('" + picture.title + "','" + picture.imgUrl + "','" + picture.location + "','" + picture._id + "','" + picture.tags.join(' ') + "')\">Edit</button>\n                <button class=\"material-symbols-rounded\" onclick=\"handleDeletePicture('" + picture._id + "')\">delete</button>\n                ";
-            }
-            else {
-                html_2 += "<p>" + picture.userName + "</p>";
-            }
+            html_2 += "<p>" + picture.userName + "</p>";
         }
-        html_2 += "\n        </div>\n        <img src=\"" + picture.imgUrl + "\">\n        <div class = \"picture_body\">\n        <p>" + picture.location + "</p>\n        <p> " + picture.publishDate + "</p>\n        </div>\n        <div class=\"tags\">";
+        // }
+        html_2 += "\n        </div>\n        <img id=\"img" + picture._id + "\" onclick=\"handleShow('" + picture._id + "','" + picture.imgUrl + "' )\" src=\"" + picture.imgUrl + "\">\n        <div class = \"picture_body\">\n        <p>" + picture.location + "</p>\n        <p> " + picture.publishDate + "</p>\n        </div>\n        <div class=\"tags\">";
         picture.tags.forEach(function (tag) { return html_2 += "<button onclick=\"handleRenderByTag('" + tag + "')\">" + tag + "</button>"; });
         html_2 += "</div>\n        </div>";
         return html_2;
@@ -257,14 +273,38 @@ function renderPictureHtml(picture, email) {
         console.error(error.massage);
     }
 }
+function handleShow(id, imgUrl) {
+    try {
+        var divRoot = document.querySelector("#id" + id);
+        divRoot.innerHTML += "<button id=\"btnClose\" onclick=\"getPictures()\" class=\"material-symbols-rounded\">close</button>";
+        var imgRoot = document.querySelector("#img" + id);
+        var btnCloseRoot = document.querySelector("#btnClose");
+        divRoot.style.position = 'absolute';
+        divRoot.style.top = '5%';
+        divRoot.style.width = '80%';
+        divRoot.style.height = '90%';
+        divRoot.style.zIndex = '1';
+        imgRoot.style.width = '85%';
+        imgRoot.style.height = '80%';
+        imgRoot.style.pointerEvents = 'none';
+        imgRoot.style.marginTop = '5px';
+        imgRoot.style.borderRadius = '5%';
+        btnCloseRoot.style.position = 'absolute';
+        btnCloseRoot.style.left = '1%';
+        btnCloseRoot.style.top = '50%';
+    }
+    catch (error) {
+        console.error(error.massage);
+    }
+}
 function handleRenderByUser() {
     return __awaiter(this, void 0, void 0, function () {
-        var response, result, pictures, html, allPicturesRoot, error_6;
+        var response, result, pictures, showAllBtn, error_7;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
-                    return [4 /*yield*/, fetch("API/pictures/get-pictures-by-user?email=" + emailUser)];
+                    return [4 /*yield*/, fetch("API/pictures/get-pictures-by-user")];
                 case 1:
                     response = _a.sent();
                     return [4 /*yield*/, response.json()];
@@ -274,13 +314,12 @@ function handleRenderByUser() {
                     if (!Array.isArray(pictures))
                         throw new Error("pictures is not array");
                     renderPictures(pictures);
-                    html = "<button onclick=\"getPictures()\">\u05D4\u05E6\u05D2 \u05D4\u05DB\u05DC</button>";
-                    allPicturesRoot = document.querySelector('#allPictures');
-                    allPicturesRoot.innerHTML += html;
+                    showAllBtn = document.querySelector('#showAll');
+                    showAllBtn.style.display = 'inline-flex';
                     return [3 /*break*/, 4];
                 case 3:
-                    error_6 = _a.sent();
-                    console.error(error_6.massage);
+                    error_7 = _a.sent();
+                    console.error(error_7.massage);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }
@@ -289,7 +328,7 @@ function handleRenderByUser() {
 }
 function handleRenderByTag(tag) {
     return __awaiter(this, void 0, void 0, function () {
-        var response, result, pictures, html, allPicturesRoot, error_7;
+        var response, result, pictures, showAllBtn, error_8;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -305,13 +344,12 @@ function handleRenderByTag(tag) {
                         throw new Error("pictures is not array");
                     // const picturesByTag = pictures.filter(el => el.picture.tags.includes(tag))
                     renderPictures(pictures);
-                    html = "<button onclick=\"getPictures()\">\u05D4\u05E6\u05D2 \u05D4\u05DB\u05DC</button>";
-                    allPicturesRoot = document.querySelector('#allPictures');
-                    allPicturesRoot.innerHTML += html;
+                    showAllBtn = document.querySelector('#showAll');
+                    showAllBtn.style.display = 'inline-flex';
                     return [3 /*break*/, 4];
                 case 3:
-                    error_7 = _a.sent();
-                    console.error(error_7.massage);
+                    error_8 = _a.sent();
+                    console.error(error_8.massage);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }
@@ -319,21 +357,38 @@ function handleRenderByTag(tag) {
     });
 }
 function renderPictures(pictures) {
-    try {
-        if (!Array.isArray(pictures))
-            throw new Error("usersPictures is not array");
-        var allPicturesRoot = document.querySelector('#allPictures');
-        var allPicturesHtml = pictures.map(function (picture) { return renderPictureHtml(picture, picture.email); }).join('');
-        allPicturesRoot.innerHTML = allPicturesHtml;
-        closeAdd();
-    }
-    catch (error) {
-        console.error(error.massage);
-    }
+    return __awaiter(this, void 0, void 0, function () {
+        var response, data, user_1, allPicturesRoot, allPicturesHtml, error_9;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 3, , 4]);
+                    return [4 /*yield*/, fetch("API/users/get-user")];
+                case 1:
+                    response = _a.sent();
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    data = _a.sent();
+                    user_1 = data.user;
+                    if (!Array.isArray(pictures))
+                        throw new Error("usersPictures is not array");
+                    allPicturesRoot = document.querySelector('#allPictures');
+                    allPicturesHtml = pictures.map(function (picture) { return renderPictureHtml(picture, picture.email, user_1.email); }).join('');
+                    allPicturesRoot.innerHTML = allPicturesHtml;
+                    closeAdd();
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_9 = _a.sent();
+                    console.error(error_9.massage);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
+            }
+        });
+    });
 }
 function renderUpdatePicture(title, imgUrl, location, id, tagsAsString) {
     return __awaiter(this, void 0, void 0, function () {
-        var response, result, tags_2, html, chosenTags, editRoot, error_8;
+        var response, result, tags_2, html, chosenTags, editRoot, error_10;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -364,8 +419,8 @@ function renderUpdatePicture(title, imgUrl, location, id, tagsAsString) {
                     editRoot.innerHTML = html;
                     return [3 /*break*/, 4];
                 case 3:
-                    error_8 = _a.sent();
-                    console.error(error_8.massage);
+                    error_10 = _a.sent();
+                    console.error(error_10.massage);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }
@@ -374,33 +429,27 @@ function renderUpdatePicture(title, imgUrl, location, id, tagsAsString) {
 }
 function renderNav() {
     return __awaiter(this, void 0, void 0, function () {
-        var email, html_3, root_1, response, result, error, name, html, root, error_9;
+        var response, data, ok, user, html, root, error_11;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
-                    email = { emailUser: emailUser };
-                    if (emailUser === 'admin@gmail.com') {
-                        html_3 = "<div class=\"nav\">\n        <p>Admin</p>\n        <a class=\"logout material-symbols-rounded\" href=\"./index.html\">Logout</a>\n    </div>";
-                        root_1 = document.querySelector('#nav');
-                        root_1.innerHTML = html_3;
-                    }
-                    return [4 /*yield*/, fetch("/API/users/get-user-name?email=" + emailUser)];
+                    return [4 /*yield*/, fetch("API/users/get-user")];
                 case 1:
                     response = _a.sent();
                     return [4 /*yield*/, response.json()];
                 case 2:
-                    result = _a.sent();
-                    error = result.error, name = result.name;
-                    if (error)
+                    data = _a.sent();
+                    ok = data.ok, user = data.user;
+                    if (!ok)
                         throw new Error("Some of details are incorrect");
-                    html = "<div class=\"nav\">\n        <p>" + name + "</p>\n        <a class=\"logout material-symbols-rounded\" href=\"./index.html\">Logout</a>\n    </div>";
+                    html = "<div class=\"nav\">\n        <p>" + user.name + "</p>\n        <a class=\"logout material-symbols-rounded\" href=\"./index.html\">Logout</a>\n    </div>";
                     root = document.querySelector('#nav');
                     root.innerHTML = html;
                     return [3 /*break*/, 4];
                 case 3:
-                    error_9 = _a.sent();
-                    console.error(error_9.massage);
+                    error_11 = _a.sent();
+                    console.error(error_11.massage);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }

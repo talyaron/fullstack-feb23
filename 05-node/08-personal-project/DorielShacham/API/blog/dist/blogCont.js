@@ -37,7 +37,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 exports.__esModule = true;
 exports.deleteBlog = exports.getUserBlogs = exports.getAllBlogs = exports.addBlog = void 0;
-var _blogModel_1 = require("./ blogModel");
+var blogModel_1 = require("./blogModel");
 var mongoose_1 = require("mongoose");
 // Add a blog
 function addBlog(req, res) {
@@ -51,7 +51,7 @@ function addBlog(req, res) {
                     if (!title || !description || !userEmail) {
                         return [2 /*return*/, res.status(400).json({ msg: "Missing required fields" })];
                     }
-                    blog = new _blogModel_1["default"]({ title: title, description: description, userEmail: userEmail });
+                    blog = new blogModel_1["default"]({ title: title, description: description, userEmail: userEmail });
                     return [4 /*yield*/, blog.save()];
                 case 1:
                     blogDB = _b.sent();
@@ -75,7 +75,7 @@ function getAllBlogs(req, res) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, _blogModel_1["default"].find()];
+                    return [4 /*yield*/, blogModel_1["default"].find()];
                 case 1:
                     blogs = _a.sent();
                     if (!blogs || blogs.length === 0) {
@@ -102,7 +102,7 @@ function getUserBlogs(req, res) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
                     userEmail = req.query.userEmail;
-                    return [4 /*yield*/, _blogModel_1["default"].find({ userEmail: userEmail })];
+                    return [4 /*yield*/, blogModel_1["default"].find({ userEmail: userEmail })];
                 case 1:
                     blogs = _a.sent();
                     if (!blogs || blogs.length === 0) {
@@ -132,7 +132,7 @@ function deleteBlog(req, res) {
                     if (!mongoose_1.isValidObjectId(blogId)) {
                         return [2 /*return*/, res.status(400).json({ message: "Invalid blog ID" })];
                     }
-                    return [4 /*yield*/, _blogModel_1["default"].findByIdAndRemove(blogId)];
+                    return [4 /*yield*/, blogModel_1["default"].findByIdAndRemove(blogId)];
                 case 1:
                     deletedBlog = _a.sent();
                     if (!deletedBlog) {

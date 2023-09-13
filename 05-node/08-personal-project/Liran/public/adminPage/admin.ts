@@ -37,7 +37,7 @@ async function hundlePhysicianUpdateSubmit(event) {
         const data = await response.json();
         console.log(data);
         alert("Physician updated successfully");
-        window.location.href = `admin.html?physicianEmail=${email}`;
+        window.location.href = `admin.html?email=${email}`;
     } catch (error) {
         console.error(error);
     }
@@ -61,7 +61,7 @@ async function hundleMedicineSubmit(event) {
         const data = await response.json();
         console.log(data);
         alert("Medicine added successfully");
-        window.location.href = `admin.html?physicianEmail=${email}`;
+        window.location.href = `admin.html?email=${email}`;
     } catch (error) {
         console.error(error);
     }
@@ -108,7 +108,7 @@ async function hundlePatientUpdateSubmit(event) {
         const data = await response.json();
         console.log(data);
         alert("Patient updated successfully");
-        window.location.href = `admin.html?physicianEmail=${email}`;
+        window.location.href = `admin.html?email=${email}`;
     } catch (error) {
         console.error(error);
     }
@@ -130,7 +130,7 @@ async function hundleMedicineUpdateSubmit(event) {
         const name = event.target.name.value;
         const dosagePerDay = event.target.dosagePerDay.value;
         const maxDuration = event.target.maxDuration.value;
-        debugger;
+
         if (!id) throw new Error("missing some details");
         const response = await fetch("/API/medicine/update-medicine", {
             method: "PATCH",
@@ -142,7 +142,7 @@ async function hundleMedicineUpdateSubmit(event) {
         const data = await response.json();
         console.log(data);
         alert("Medicine updated successfully");
-        window.location.href = `admin.html?physicianEmail=${email}`;
+        window.location.href = `admin.html?email=${email}`;
     } catch (error) {
         console.error(error);
     }
@@ -225,7 +225,7 @@ async function hundlePatientSubmit(event) {
         const smoking = event.target.smoking.checked;
         const address = event.target.address.value;
         const physicianId = event.target.physicianId.value;
-        debugger;
+
         if (!firstName || !lastName || !patientId || !age || !phoneNum || !weight || !height || !address || !physicianId) throw new Error("missing some details");
         const response = await fetch("/API/patient/add-patient", {
             method: "POST",
@@ -237,7 +237,7 @@ async function hundlePatientSubmit(event) {
         const data = await response.json();
         console.log(data);
         if (data.ok) alert("Patient added successfully");
-        window.location.href = `admin.html?physicianEmail=${email}`;
+        window.location.href = `admin.html?email=${email}`;
     } catch (error) {
         console.error(error);
     }
@@ -274,7 +274,7 @@ async function hundlePhysicianDeleteSubmit(event) {
         const data = await response.json();
         console.log(data);
         alert("Physician deleted successfully");
-        window.location.href = `admin.html?physicianEmail=${email}`;
+        window.location.href = `admin.html?email=${email}`;
     } catch (error) {
         console.error(error);
     }
@@ -303,7 +303,7 @@ async function hundlePatientDeleteSubmit(event) {
         const data = await response.json();
         console.log(data);
         alert("Patient deleted successfully");
-        window.location.href = `admin.html?physicianEmail=${email}`;
+        window.location.href = `admin.html?email=${email}`;
     } catch (error) {
         console.error(error);
     }
@@ -334,7 +334,7 @@ async function hundleMedicineDeleteSubmit(event) {
         const data = await response.json();
         console.log(data);
         alert("Medicine deleted successfully");
-        window.location.href = `admin.html?physicianEmail=${email}`;
+        window.location.href = `admin.html?email=${email}`;
     } catch (error) {
         console.error(error);
     }
@@ -359,7 +359,7 @@ async function hundlePhysicianSubmit(event) {
         const licenseNumber = event.target.licenseNumber.value;
         const password = event.target.password.value;
         const isAdmin = event.target.isAdmin.checked;
-        debugger;
+
         if (!firstName || !lastName || !age || !phoneNum || !email || !licenseNumber || !password) throw new Error("missing some details");
         const response = await fetch("/API/physician/add-physician", {
             method: "POST",
@@ -371,7 +371,7 @@ async function hundlePhysicianSubmit(event) {
         const data = await response.json();
         console.log(data);
         alert("Physician added successfully");
-        window.location.href = `admin.html?physicianEmail=${email}`;
+        window.location.href = `admin.html?email=${email}`;
     } catch (error) {
         console.error(error);
     }
@@ -611,9 +611,9 @@ async function renderPatientList(html: HTMLDivElement) {
         const data = await response.json();
         const responsePhysician = await fetch("/API/physician/get-physicians");
         const dataPhysician = await responsePhysician.json();
-        const physiciansList: Physician[] = dataPhysician.physician;
-        const patientsList: Patient[] = data.patients;
-        debugger;
+        const physiciansList = dataPhysician.physician;
+        const patientsList = data.patients;
+
         let tempHtml = `<h2>Patient List</h2>
         <table>
         <tr>
@@ -629,8 +629,8 @@ async function renderPatientList(html: HTMLDivElement) {
         <th>Physician</th>
         </tr>`;
         const promise = patientsList.map(async (patient) => {
-            const physicianName = await getPhysicianName(patient.physicianId);
 
+            const physicianName = await getPhysicianName(physiciansList.find(p => p._id === patient.physicianId).email);
             tempHtml += `<tr>
             <td>${patient.firstName}</td>
             <td>${patient.lastName}</td>
@@ -691,7 +691,7 @@ async function renderAddPatient(html: HTMLDivElement) {
         const response = await fetch("/API/physician/get-physicians");
         const data = await response.json();
         const physiciansList: Physician[] = data.physician;
-        debugger;
+
         physiciansList.forEach(physician => {
             tempHtml += `<option value="${physician._id}"> Dr. ${physician.firstName} ${physician.lastName}</option>`;
         });
@@ -788,8 +788,7 @@ async function renderUpdatePatient(html: HTMLDivElement) {
         `;
         const response = await fetch("/API/patient/get-patients");
         const data = await response.json();
-        const patientsList: Patient[] = data.patient;
-        debugger;
+        const patientsList = data.patients;
         patientsList.forEach(patient => {
             tempHtml += `<option value="${patient._id}"> ${patient.firstName} ${patient.lastName}</option>`;
         });
@@ -877,7 +876,8 @@ async function renderVisitsList(html: HTMLDivElement) {
     try {
         const response = await fetch("/API/visit/get-visits");
         const data = await response.json();
-        const visitsList: Visit[] = data.visits;
+        const visitsList = data.visits;
+
         let tempHtml = `<h2>Visits List</h2>
         <table>
         <tr>
@@ -889,7 +889,7 @@ async function renderVisitsList(html: HTMLDivElement) {
         </tr>`;
         const promise = visitsList.map(async (visit) => {
             const formattedDate = getTimeFormated(new Date(visit.date));
-            const checkPrescription = await checkPrescriptionExist(visit.patient, visit.date);
+            const checkPrescription = await checkPrescriptionExist(visit.patient, formattedDate);
             debugger;
             tempHtml += `<tr>
             <td>${formattedDate}</td>
@@ -961,11 +961,11 @@ async function getPatientsList() {
 
 async function loadDetails() {
     try {
-        const id = document.querySelector<HTMLInputElement>("#id").value;
-        const response = await fetch(`/API/physician/get-physicians?_id=${id}`);
+        const _id = document.querySelector<HTMLInputElement>("#id").value;
+        const response = await fetch(`/API/physician/get-physicians?_id=${_id}`);
         const data = await response.json();
-        const physician: Physician = data.physician;
-        const idInput = document.querySelector<HTMLInputElement>("#id");
+        const physician = data.physician;
+
         const firstNameInput = document.querySelector<HTMLInputElement>("#firstName");
         const lastNameInput = document.querySelector<HTMLInputElement>("#lastName");
         const ageInput = document.querySelector<HTMLInputElement>("#age");
@@ -989,11 +989,12 @@ async function loadDetails() {
 
 async function loadPatientDetails() {
     try {
-        const id = document.querySelector<HTMLInputElement>("#id").value;
-        const response = await fetch(`/API/patient/get-patients?patientId=${id}`);
+        const _id = document.querySelector<HTMLInputElement>("#id").value;
+        const response = await fetch(`/API/patient/get-patients?_id=${_id}`);
         const data = await response.json();
-        const patient: Patient = data.patient;
-        const idInput = document.querySelector<HTMLInputElement>("#id");
+        console.log(_id)
+
+        const patient = data.patients;
         const firstNameInput = document.querySelector<HTMLInputElement>("#firstName");
         const lastNameInput = document.querySelector<HTMLInputElement>("#lastName");
         const ageInput = document.querySelector<HTMLInputElement>("#age");
@@ -1003,6 +1004,7 @@ async function loadPatientDetails() {
         const smokingCheckbox = document.querySelector<HTMLInputElement>("#smoking");
         const addressInput = document.querySelector<HTMLInputElement>("#address");
         const physicianIdInput = document.querySelector<HTMLInputElement>("#physicianId");
+
         firstNameInput.value = patient.firstName;
         lastNameInput.value = patient.lastName;
         ageInput.value = patient.age.toString();
@@ -1017,13 +1019,15 @@ async function loadPatientDetails() {
     }
 }
 
-async function checkPrescriptionExist(patientId, date) {
+async function checkPrescriptionExist(patient, date) {
     try {
-        const response = await fetch(`/API/prescription/get-prescriptions?patientId=${patientId}&date=${date}`);
+        const response = await fetch(`/API/prescription/get-prescriptions?_id=${patient._id}`);
         const data = await response.json();
+        debugger;
         const prescriptions = data.prescriptions;
-        const prescriptionExist = prescriptions.find(prescription => prescription.patient === patientId && prescription.date === date);
-        return prescriptionExist ? prescriptionExist._id : false;
+        const prescription = prescriptions.find(prescription => getTimeFormated(new Date(prescription.date)) === date);
+        debugger;
+        return prescriptions ? prescriptions[0]._id : false;
     } catch (error) {
         console.error(error);
     }

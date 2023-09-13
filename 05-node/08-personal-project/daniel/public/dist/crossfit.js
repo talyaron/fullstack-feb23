@@ -167,3 +167,37 @@ function handleDeleteItem(itemId) {
         });
     });
 }
+function handleUpdatePrice(ev) {
+    return __awaiter(this, void 0, void 0, function () {
+        var price, id, response, result, items, error_4;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 3, , 4]);
+                    ev.preventDefault();
+                    price = ev.target.price.value;
+                    id = ev.target.id;
+                    console.log(id, price);
+                    return [4 /*yield*/, fetch('/API/crossfit/update-item-price', {
+                            method: 'PATCH',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ id: id, price: price })
+                        })];
+                case 1:
+                    response = _a.sent();
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    result = _a.sent();
+                    console.log(result);
+                    items = result.items;
+                    renderItems(items, document.querySelector('#rootitem'));
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_4 = _a.sent();
+                    console.error(error_4);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
+            }
+        });
+    });
+}
