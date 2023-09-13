@@ -9,7 +9,7 @@
 /* Apply styling to the body */
 body {
   font-family: Arial, sans-serif;
-  background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTdy3ZbojBRhIb9f0jqDPJy5oOe3EjX3JNnuw&usqp=CAU");
+  background-image: url("./dist/images/food2.jpg");
   background-size: cover;
   /* Cover the entire viewport */
   background-repeat: no-repeat;
