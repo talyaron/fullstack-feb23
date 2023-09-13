@@ -39,6 +39,8 @@ export const login = async (req: any, res: any) => {
 
     const user = await UserModel.findOne({ email, password }).exec();
     if (!user) throw new Error("some of the details are incorrect");
+
+    res.cookie("user", user._id, { maxAge: 1000 * 100, httpOnly: true })
     res.send({ ok: true, email: user.email });
   } catch (error) {
     console.error(error);
