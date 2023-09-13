@@ -16,6 +16,10 @@ exports.users = [];
 exports.UserSchema = new mongoose_1.Schema({
     name: String,
     email: String,
-    password: String
+    password: String,
+    isAdmin: {
+        type: Boolean,
+        "default": false
+    }
 });
 exports.UserModel = mongoose_1.model("users", exports.UserSchema);

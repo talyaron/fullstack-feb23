@@ -26,13 +26,13 @@ export async function login(req: any, res: any) {
         const userDB = await UserModel.findOne({ email })
         if (!userDB) throw new Error("user not exist or password is inncorect");
 
-        res.cookie("user", userDB._id, { maxAge: 1000*60*30, httpOnly: true })
+        res.cookie("user", userDB._id, { maxAge: 1000 * 60 * 30, httpOnly: true })
         res.send({ ok: true, email: email })
 
     } catch (error) {
         console.error(error.message);
-        res.status(500).send(error.message); 
-        res.send({ok:false, message:error.message});
+        res.status(500).send(error.message);
+        res.send({ ok: false, message: error.message });
     }
 }
 
@@ -61,18 +61,35 @@ export async function getUserName(req: any, res: any) {
 }
 
 
-export async function getUser(req:any, res:any){
+export async function getUser(req: any, res: any) {
     try {
-      //get user id from cookie
-      const userId = req.cookies.user;
-      if(!userId) throw new Error("no user in cookies"); 
-      //find user in DB
-      const userDB = await UserModel.findById(userId);
-      if(!userDB) throw new Error("user dosnt exist in DB");
-      res.send({ok:true, user:userDB});
-      
+        //get user id from cookie
+        const userId = req.cookies.user;
+        if (!userId) throw new Error("no user in cookies");
+        //find user in DB
+        const userDB = await UserModel.findById(userId);
+        if (!userDB) throw new Error("user dosnt exist in DB");
+        res.send({ ok: true, user: userDB });
+
     } catch (error) {
-      console.error(error);
-      res.status(500).send(error.message); 
+        console.error(error);
+        res.status(500).send(error.message);
     }
-  }
+}
+
+export async function isAdmin(req: any, res: any, next: Function) {
+    try {
+        const userId = req.cookies.user
+        if (!userId) throw new Error("no user in cookies");
+        const userDB = await UserModel.findById(userId);
+        if (!userDB) throw new Error("user dosnt exist in DB");
+        if (userDB.isAdmin) {
+            next();
+        }else{
+            res.status(401).send('not authorized')
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).send(error.message);
+    }
+}
