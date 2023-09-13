@@ -127,51 +127,9 @@ function hendelAddRecipe(ev) {
         });
     });
 }
-function hendlUpdateRecipe(ev, id) {
-    return __awaiter(this, void 0, void 0, function () {
-        var bodyID, title, description, urlImg, updatRecipe, response, recipes_2, error_3;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    _a.trys.push([0, 3, , 4]);
-                    ev.preventDefault();
-                    bodyID = { id: id };
-                    if (!id)
-                        throw new Error("no recipe id");
-                    console.log(bodyID);
-                    title = ev.target.title.value;
-                    description = ev.target.description.value;
-                    urlImg = ev.target.urlImg.value;
-                    updatRecipe = { title: title, description: description, urlImg: urlImg };
-                    console.log(updatRecipe);
-                    return [4 /*yield*/, fetch('/API/recipes/update-recipe', {
-                            method: 'PATCH',
-                            headers: {
-                                'Content-Type': 'application/json'
-                            },
-                            body: JSON.stringify(updatRecipe)
-                        })];
-                case 1:
-                    response = _a.sent();
-                    return [4 /*yield*/, response.json()];
-                case 2:
-                    recipes_2 = (_a.sent()).recipes;
-                    console.log(recipes_2);
-                    renderRecipes(recipes_2, document.querySelector("#userRecipes"));
-                    document.querySelector("form").reset();
-                    return [3 /*break*/, 4];
-                case 3:
-                    error_3 = _a.sent();
-                    console.error(error_3);
-                    return [3 /*break*/, 4];
-                case 4: return [2 /*return*/];
-            }
-        });
-    });
-}
 function hendelDeleteRecipe(id) {
     return __awaiter(this, void 0, void 0, function () {
-        var email, response, recipes_3, error_4;
+        var email, response, recipes_2, error_3;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -192,26 +150,27 @@ function hendelDeleteRecipe(id) {
                     response = _a.sent();
                     return [4 /*yield*/, response.json()];
                 case 2:
-                    recipes_3 = (_a.sent()).recipes;
-                    console.log(recipes_3);
-                    renderRecipes(recipes_3, document.querySelector('#userRecipes'));
+                    recipes_2 = (_a.sent()).recipes;
+                    console.log(recipes_2);
+                    renderRecipes(recipes_2, document.querySelector('#userRecipes'));
                     return [3 /*break*/, 4];
                 case 3:
-                    error_4 = _a.sent();
+                    error_3 = _a.sent();
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }
         });
     });
 }
+function hendelUpdate(id) {
+    window.location.href = "/updateRecipe.html?recipeId=" + id; //query
+}
 //render
 function renderRecipe(recipe) {
     try {
-        var recipeJson = JSON.stringify(recipe);
-        console.log("recipeJson in renderRecipe:", recipeJson);
-        if (recipeJson === "")
-            throw new Error("the resipeJson string is empty");
-        var html = "<div class=\"recipe\">\n                        <h3>" + recipe.title + "</h3>\n                        <br>\n                        <p>" + recipe.description + "</p>\n                        <img src='" + recipe.urlImg + "'>\n                        <br>\n                        <button onclick=\"hendelDeleteRecipe('" + recipe._id + "')\">Delet Recipe</button>\n                        <button onclick=\"renderUpdateForm('" + recipeJson + "')\">Update Recipe</button>\n                        <div class=\"Recipe_update\">\n                            <form id=\"recipe_update\" onsubmit=\"hendlUpdateRecipe(event,'" + recipe._id + "')\">\n                                <input type=\"text\" name=\"title\" placeholder=\"" + recipe.title + "\">\n                                <textarea  type=\"text\" rows=\"20\" cols=\"30\" name=\"description\" placeholder=\"" + recipe.description + "\"></textarea>\n                                <input type=\"url\" name=\"imgUrl\" placeholder=\"" + recipe.urlImg + "\">\n                                <button type=\"submit\">Update Recipe now</button>\n                            </form>\n                        </div>\n                      </div>";
+        if (!recipe)
+            throw new Error("error geting recipe");
+        var html = "<div class=\"recipe_div\">\n                        <h3>" + recipe.title + "</h3>\n                        <br>\n                        <p>" + recipe.description + "</p>\n                        <img src='" + recipe.urlImg + "'>\n                        <br>\n                        <button onclick=\"hendelDeleteRecipe('" + recipe._id + "')\">Delet Recipe</button>\n                        <button onclick=\"hendelUpdate('" + recipe._id + "')\">Update Recipe</button>\n                       </div>";
         return html;
     }
     catch (error) {
@@ -239,7 +198,7 @@ function renderRecipes(recipes, root) {
 //controllers
 function GetUserRecipe(email) {
     return __awaiter(this, void 0, void 0, function () {
-        var response, data, error_5;
+        var response, data, error_4;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -254,7 +213,7 @@ function GetUserRecipe(email) {
                     renderRecipes(data.recipes, document.querySelector("#userRecipes"));
                     return [3 /*break*/, 4];
                 case 3:
-                    error_5 = _a.sent();
+                    error_4 = _a.sent();
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }

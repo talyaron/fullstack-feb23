@@ -1,11 +1,27 @@
 import { RecipeModel } from "./recipesModel"
 
 export async function getRecipes(req:any, res:any) {
-    try {
+    try {       
         const recipesDB = await RecipeModel.find({}) //breing all recipes from DB
         res.send({ recipes:recipesDB})
     } catch (error) {
         console.error(error)
+    }
+}
+
+export async function getRecipe(req:any, res:any){
+    try {
+        //get the id from query
+        const {id} = req.query;  
+        if (!id) throw new Error("no recipe id required");
+
+        const recipeDB = await RecipeModel.find({id}) //bring the specific recipe from DB
+        console.log(recipeDB)
+        
+        res.send(recipeDB)
+    } catch (error) {
+        console.error(error);
+        res.status(500).send({ error: error.message }); 
     }
 }
 

@@ -42,3 +42,7 @@ form input {
 form button {
   padding: 20px;
 }
+
+#recipe_div {
+  display: block;
+}
