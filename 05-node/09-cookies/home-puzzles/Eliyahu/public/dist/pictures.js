@@ -264,7 +264,7 @@ function renderPictureHtml(picture, pictureEmail, userEmail) {
             html_2 += "<p>" + picture.userName + "</p>";
         }
         // }
-        html_2 += "\n        </div>\n        <img id=\"img" + picture._id + "\" onclick=\"handleShow('" + picture._id + "','" + picture.imgUrl + "' )\" src=\"" + picture.imgUrl + "\">\n        <div class = \"picture_body\">\n        <p>" + picture.location + "</p>\n        <p> " + picture.publishDate + "</p>\n        </div>\n        <div class=\"tags\">";
+        html_2 += "\n        </div>\n        <img id=\"img" + picture._id + "\" onclick=\"handleShow('" + picture._id + "')\" src=\"" + picture.imgUrl + "\">\n        <div class = \"picture_body\">\n        <p>" + picture.location + "</p>\n        <p> " + picture.publishDate + "</p>\n        </div>\n        <div class=\"tags\">";
         picture.tags.forEach(function (tag) { return html_2 += "<button onclick=\"handleRenderByTag('" + tag + "')\">" + tag + "</button>"; });
         html_2 += "</div>\n        </div>";
         return html_2;
@@ -273,7 +273,7 @@ function renderPictureHtml(picture, pictureEmail, userEmail) {
         console.error(error.massage);
     }
 }
-function handleShow(id, imgUrl) {
+function handleShow(id) {
     try {
         var divRoot = document.querySelector("#id" + id);
         divRoot.innerHTML += "<button id=\"btnClose\" onclick=\"getPictures()\" class=\"material-symbols-rounded\">close</button>";
@@ -284,11 +284,11 @@ function handleShow(id, imgUrl) {
         divRoot.style.width = '80%';
         divRoot.style.height = '90%';
         divRoot.style.zIndex = '1';
-        imgRoot.style.width = '85%';
-        imgRoot.style.height = '80%';
-        imgRoot.style.pointerEvents = 'none';
-        imgRoot.style.marginTop = '5px';
-        imgRoot.style.borderRadius = '5%';
+        divRoot.style.backgroundImage = "url(\"" + imgRoot.src + "\")";
+        divRoot.style.backgroundRepeat = "no-repeat";
+        divRoot.style.backgroundSize = "cover";
+        divRoot.style.backgroundPosition = "center";
+        imgRoot.style.display = 'none';
         btnCloseRoot.style.position = 'absolute';
         btnCloseRoot.style.left = '1%';
         btnCloseRoot.style.top = '50%';
