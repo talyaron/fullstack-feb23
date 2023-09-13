@@ -7,6 +7,9 @@ body .material-symbols-rounded {
   padding: 2px;
   font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
 }
+body #showAll {
+  display: none;
+}
 
 .nav {
   height: 50px;
@@ -45,11 +48,18 @@ a.logout:hover {
 
 .allPictures {
   margin: auto;
+  margin-top: 20px;
   width: 75vw;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
   gap: 3vw;
+}
+.allPictures button#showAll {
+  height: fit-content;
+  position: absolute;
+  top: 14vh;
+  left: 35vw;
 }
 
 #add form {
@@ -66,20 +76,23 @@ a.logout:hover {
 
 .picture {
   margin: auto;
-  width: 20vw;
+  height: 17vw;
+  width: 15vw;
   margin-bottom: 10px;
   background-color: white;
   border-radius: 10px;
   border: 1px #aaaaaa solid;
+  position: relative;
 }
 .picture_header, .picture_body {
   display: flex;
+  gap: 2px;
   justify-content: space-between;
   padding: 0 8px;
 }
 .picture_header p, .picture_body p {
-  margin-left: 10px;
-  font-size: medium;
+  margin-left: 4px;
+  font-size: 12px;
   text-align: left;
 }
 .picture_header {
@@ -87,9 +100,12 @@ a.logout:hover {
   height: fit-content;
   align-items: center;
 }
+.picture_header button {
+  font-size: 15px;
+}
 .picture_header h3 {
   margin-left: 10px;
-  font-size: medium;
+  font-size: 15px;
   text-align: left;
   margin-top: 5px;
   margin-bottom: 0px;
@@ -116,4 +132,23 @@ a.logout:hover {
 }
 .picture img {
   max-width: 80%;
+  height: 50%;
+}
+.picture img:hover {
+  max-width: 95%;
+  height: 55%;
+  z-index: 1;
+  margin-bottom: -6%;
+  border-radius: 5%;
+  box-shadow: 1px 1px 3px black;
+}
+
+.tags {
+  display: flex;
+  gap: 2px;
+  justify-content: center;
+}
+.tags button {
+  font-size: 12px;
+  margin-top: 10px;
 }

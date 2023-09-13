@@ -12,6 +12,9 @@ body {
             'opsz' 24
     }
 
+    #showAll {
+        display: none;
+    }
 }
 
 .nav {
@@ -56,11 +59,19 @@ a.logout {
 
 .allPictures {
     margin: auto;
+    margin-top: 20px;
     width: 75vw;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
     gap: 3vw;
+
+    button#showAll {
+        height: fit-content;
+        position: absolute;
+        top: 14vh;
+        left: 35vw;
+    }
 }
 
 #add {
@@ -80,24 +91,25 @@ a.logout {
 }
 
 .picture {
-
     margin: auto;
-
-    width: 20vw;
+    height: 17vw;
+    width: 15vw;
     margin-bottom: 10px;
     background-color: rgb(255, 255, 255);
     border-radius: 10px;
     border: 1px rgb(170, 170, 170) solid;
+    position: relative;
 
     &_header,
     &_body {
         display: flex;
+        gap: 2px;
         justify-content: space-between;
         padding: 0 8px;
 
         p {
-            margin-left: 10px;
-            font-size: medium;
+            margin-left: 4px;
+            font-size: 12px;
             text-align: left;
         }
     }
@@ -107,9 +119,13 @@ a.logout {
         height: fit-content;
         align-items: center;
 
+        button {
+            font-size: 15px;
+        }
+
         h3 {
             margin-left: 10px;
-            font-size: medium;
+            font-size: 15px;
             text-align: left;
             margin-top: 5px;
             margin-bottom: 0px;
@@ -119,7 +135,7 @@ a.logout {
     }
 
     &_body {
-      
+
         height: fit-content;
         margin-top: -5px;
         margin-bottom: -10px;
@@ -136,6 +152,7 @@ a.logout {
         justify-content: space-between;
         padding-top: 5px;
         z-index: 1;
+
     }
 
     .edit {
@@ -146,5 +163,26 @@ a.logout {
 
     img {
         max-width: 80%;
+        height: 50%;
+
+        &:hover {
+            max-width: 95%;
+            height: 55%;
+            z-index: 1;
+            margin-bottom: -6%;
+        border-radius: 5%;
+            box-shadow: 1px 1px 3px black;
+        }
+    }
+}
+
+.tags {
+    display: flex;
+    gap: 2px;
+    justify-content: center;
+
+    button {
+        font-size: 12px;
+        margin-top: 10px;
     }
 }

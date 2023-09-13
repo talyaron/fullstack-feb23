@@ -66,7 +66,7 @@ function handleLogin(ev) {
                     console.log(error);
                     if (error)
                         throw new Error(error);
-                    window.location.href = "/main.html?email=" + email;
+                    window.location.href = "/main.html";
                     return [3 /*break*/, 4];
                 case 3:
                     error_1 = _b.sent();
