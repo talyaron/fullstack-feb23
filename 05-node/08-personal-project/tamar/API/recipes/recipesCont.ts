@@ -9,6 +9,19 @@ export async function getRecipes(req:any, res:any) {
     }
 }
 
+export async function getOneRecipe(req:any, res:any) {
+    try {
+        const {id} = req.query
+        if (!id) {
+            throw new Error("id is required");
+        }
+        const recipesDB = await RecipeModel.find({id}) //breing one recipe from DB
+        res.send({ recipes:recipesDB})
+    } catch (error) {
+        console.error(error)
+    }
+}
+
 export async function addRecipe(req:any, res:any) {
     try {
         const {title, description, urlImg, email} = req.body
@@ -19,12 +32,6 @@ export async function addRecipe(req:any, res:any) {
         const recipe = new RecipeModel({title, description, urlImg, email})
         const recipeDB = await recipe.save(); //save to DB
         console.log(recipeDB)
-        //if (!Array.isArray(recipeDB)) throw new Error("recipes in server are not array");  
-        // console.log("server Type of recipesDB:", typeof recipeDB);
-        // console.log("server Content of recipesDB:", recipeDB);
-        
-        // res.send({recipeDB});  //need to send back the new array of recipes!! how?
-
                 // Query the database to retrieve all recipes for the user
                 const userRecipes = await RecipeModel.find({ email });
 

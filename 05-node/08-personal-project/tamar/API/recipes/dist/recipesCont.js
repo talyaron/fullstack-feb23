@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.updateRecipe = exports.deleteRecipe = exports.addRecipe = exports.getRecipes = void 0;
+exports.updateRecipe = exports.deleteRecipe = exports.addRecipe = exports.getOneRecipe = exports.getRecipes = void 0;
 var recipesModel_1 = require("./recipesModel");
 function getRecipes(req, res) {
     return __awaiter(this, void 0, void 0, function () {
@@ -61,9 +61,36 @@ function getRecipes(req, res) {
     });
 }
 exports.getRecipes = getRecipes;
+function getOneRecipe(req, res) {
+    return __awaiter(this, void 0, void 0, function () {
+        var id, recipesDB, error_2;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    id = req.query.id;
+                    if (!id) {
+                        throw new Error("id is required");
+                    }
+                    return [4 /*yield*/, recipesModel_1.RecipeModel.find({ id: id })]; //breing one recipe from DB
+                case 1:
+                    recipesDB = _a.sent() //breing one recipe from DB
+                    ;
+                    res.send({ recipes: recipesDB });
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_2 = _a.sent();
+                    console.error(error_2);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
+}
+exports.getOneRecipe = getOneRecipe;
 function addRecipe(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var _a, title, description, urlImg, email, recipe, recipeDB, userRecipes, error_2;
+        var _a, title, description, urlImg, email, recipe, recipeDB, userRecipes, error_3;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
@@ -84,9 +111,9 @@ function addRecipe(req, res) {
                     res.send({ recipes: userRecipes });
                     return [3 /*break*/, 4];
                 case 3:
-                    error_2 = _b.sent();
-                    console.error(error_2);
-                    res.status(500).send({ error: error_2.message });
+                    error_3 = _b.sent();
+                    console.error(error_3);
+                    res.status(500).send({ error: error_3.message });
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }
@@ -97,7 +124,7 @@ exports.addRecipe = addRecipe;
 //delete from DB by ID
 function deleteRecipe(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var _a, id, email, userRecipes, error_3;
+        var _a, id, email, userRecipes, error_4;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
@@ -117,9 +144,9 @@ function deleteRecipe(req, res) {
                     res.send({ recipes: userRecipes });
                     return [3 /*break*/, 4];
                 case 3:
-                    error_3 = _b.sent();
-                    console.error(error_3);
-                    res.status(500).send({ error: error_3.message });
+                    error_4 = _b.sent();
+                    console.error(error_4);
+                    res.status(500).send({ error: error_4.message });
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }
@@ -130,7 +157,7 @@ exports.deleteRecipe = deleteRecipe;
 //update DB by ID
 function updateRecipe(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var _a, id, title, description, urlImg, currentRecipe, updatedRecipe, error_4;
+        var _a, id, title, description, urlImg, currentRecipe, updatedRecipe, error_5;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
@@ -158,9 +185,9 @@ function updateRecipe(req, res) {
                     res.send({ updatedRecipe: updatedRecipe });
                     return [3 /*break*/, 4];
                 case 3:
-                    error_4 = _b.sent();
-                    console.error(error_4);
-                    res.status(500).send({ error: error_4.message });
+                    error_5 = _b.sent();
+                    console.error(error_5);
+                    res.status(500).send({ error: error_5.message });
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }

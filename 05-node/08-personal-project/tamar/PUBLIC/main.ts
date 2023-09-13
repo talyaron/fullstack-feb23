@@ -15,7 +15,7 @@ function getEmailFromQuery() {
     return urlParams.get('email');
 }
 
-//hendel
+//handle
 function handelGetUserRecipes() {
     const email = getEmailFromQuery();
     console.log(email)
@@ -79,29 +79,30 @@ async function hendelAddRecipe(ev: any) {
 
 }
 
-async function hendlUpdateRecipe(ev: any, id: string) {
+// TODO:
+async function hendlUpdateRecipe(ev: any) {
     try {
         ev.preventDefault();
-        // const email = getEmailFromQuery();
-        // if (!email) throw new Error("no email");
-        // console.log(email)
-        const bodyID = { id };
-        if (!id) throw new Error("no recipe id");
-        console.log(bodyID)
+        const recipeId = ev.target.id
+        if (!recipeId) {} //error handle
         //get the updated data
-        const title = ev.target.title.value
-        const description = ev.target.description.value
-        const urlImg = ev.target.urlImg.value;
-        const updatRecipe = { title, description, urlImg }
-        console.log(updatRecipe);
+        const title = ev.target.titleUpdate.value
+        const description = ev.target.descriptionUpdate.value
+        const urlImg = ev.target.urlImgUpdate.value;
+        const updateRecipe = {id: recipeId, title, description, urlImg }
+        console.log(updateRecipe);
         //send the updated recipe to the server/DB
         const response = await fetch('/API/recipes/update-recipe', {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(updatRecipe)
+            body: JSON.stringify(updateRecipe)
         });
+        const updateForm = document.querySelector(".recipe_update") as HTMLFormElement
+        if(!updateForm) //error handle
+        updateForm.style.display = "none"
+        //reset inputs
         const { recipes } = await response.json(); //and get the new recipes array from the server
         console.log(recipes)
 
@@ -137,11 +138,7 @@ async function hendelDeleteRecipe(id: string) {
 
 //render
 function renderRecipe(recipe: Recipe) {
-    try {
-        const recipeJson = JSON.stringify(recipe);
-        console.log("recipeJson in renderRecipe:", recipeJson)
-        if (recipeJson === "") throw new Error("the resipeJson string is empty");
-        
+    try {        
         const html = `<div class="recipe">
                         <h3>${recipe.title}</h3>
                         <br>
@@ -149,15 +146,7 @@ function renderRecipe(recipe: Recipe) {
                         <img src='${recipe.urlImg}'>
                         <br>
                         <button onclick="hendelDeleteRecipe('${recipe._id}')">Delet Recipe</button>
-                        <button onclick="renderUpdateForm('${recipeJson}')">Update Recipe</button>
-                        <div class="Recipe_update">
-                            <form id="recipe_update" onsubmit="hendlUpdateRecipe(event,'${recipe._id}')">
-                                <input type="text" name="title" placeholder="${recipe.title}">
-                                <textarea  type="text" rows="20" cols="30" name="description" placeholder="${recipe.description}"></textarea>
-                                <input type="url" name="imgUrl" placeholder="${recipe.urlImg}">
-                                <button type="submit">Update Recipe now</button>
-                            </form>
-                        </div>
+                        <button onclick="renderUpdateForm('${recipe._id}')">Update Recipe</button>
                       </div>`
         return html;
     } catch (error) {
@@ -194,7 +183,36 @@ async function GetUserRecipe(email: string) {
         console.log("data:", data)
         renderRecipes(data.recipes, document.querySelector("#userRecipes"))
     } catch (error) {
-
+        console.error(error)
     }
 
+}
+// TODO:
+
+async function renderUpdateForm(recpieId) {
+    try {
+        const response = await fetch(`/API/Recipes/get-one-recipe` // get recpie by id
+        , {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ recpieId })
+        });
+        const data = await response.json(); //recpie
+        const updateForm = document.querySelector(".recipe_update") as HTMLFormElement
+        if(!updateForm)throw new Error("no html element");    
+        updateForm.style.display = "flex"
+        updateForm.setAttribute("id", data.recipe._id)
+        //see the form with the data
+        const inputName = document.querySelector("#titleUpdate") as HTMLInputElement;
+        const inputDescriptiom = document.querySelector("#descriptionUpdate") as HTMLInputElement;
+        const inputImgUrl = document.querySelector("#imgUrlUpdate") as HTMLInputElement;        
+        inputName.value = data.recipe.title 
+        inputDescriptiom.value = data.recipe.description 
+        inputImgUrl.value = data.recipe.imgUrl
+
+    } catch (error) {
+        console.error(error)
+    }
 }
