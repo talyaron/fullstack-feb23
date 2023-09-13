@@ -1,5 +1,5 @@
-import { users , UserModel, } from "../users/userModel";
-import { Post, PostModel, UserPost, posts, userPosts } from "./postsModel";
+// import { users , UserModel, } from "../users/userModel";
+import {  PostModel,   } from "./postsModel";
 
 
 

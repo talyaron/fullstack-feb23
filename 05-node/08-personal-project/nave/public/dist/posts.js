@@ -66,7 +66,7 @@ function handleGetPosts() {
 }
 function handeleAddPost(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var email, content, featuredImage, category, newPost, response, data, posts, error_2;
+        var email, content, featuredImage, category, newPost, response, data, posts, newPostsAsArray, error_2;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -97,7 +97,8 @@ function handeleAddPost(ev) {
                     data = _a.sent();
                     posts = data.posts;
                     console.log(posts);
-                    renderPosts(posts, document.querySelector("#posts"));
+                    newPostsAsArray = [newPost];
+                    renderPosts(newPostsAsArray, document.querySelector("#posts"));
                     return [3 /*break*/, 4];
                 case 3:
                     error_2 = _a.sent();
@@ -108,39 +109,6 @@ function handeleAddPost(ev) {
         });
     });
 }
-// async function handeleAddPost(ev: any) {
-//     try {
-//         ev.preventDefault();
-//         const email = getEmailFromQuery();
-//         if (!email) throw new Error("no email");
-//         const content = ev.target.elements.content.value;
-//         const featuredImage = ev.target.elements.featuredImage.value;
-//         const category = ev.target.elements.category.value;
-//         console.log("Title:", content);
-//         console.log("PostUrl:", featuredImage);
-//         console.log("PostCategory:", category);
-//         const newPost = { content, featuredImage, category, email };
-//         console.log("New Post:", newPost);
-//         const response = await fetch('/API/posts/add-post', {
-//             method: 'POST',
-//             headers: {
-//                 'Content-Type': 'application/json'
-//             },
-//             body: JSON.stringify(newPost)
-//         });
-//         if (!response.ok) {
-//             throw new Error(`Server returned ${response.status} ${response.statusText}`);
-//         }
-//         const data = await response.json();
-//         const {posts} = data.posts; // כאן אתה מביא את כל הפוסטים מהשרת
-// ;
-//         // const { posts } =  await response.json();
-//         console.log("Posts:", posts);
-//         renderPosts(posts, document.querySelector("#posts"));
-//     } catch (error) {
-//         console.error(error);
-//     }
-// }
 function renderPost(post) {
     try {
         var html = "<img src=\"" + post.featuredImage + "\" alt=\"" + post.content + "\">\n<p>" + post.category + "</p>";
@@ -154,7 +122,7 @@ function renderPost(post) {
 // Function to render the post with a content
 function renderPostWithTitle(posts) {
     try {
-        var html = "\n        <div class=\"post_container\">\n        <div class=\"post\">\n        <img src=\"" + posts.featuredImage + "\" alt=\"" + posts.content + "\">\n        <h2 class = \"headPost\">" + posts.content + "</h2>\n        <p class=\"categoryPost\">" + posts.category + "</p>\n        </div>\n    </div>\n        ";
+        var html = "\n        <div class=\"post_container\">\n        <div class=\"post\">\n        <img src=\"" + posts.featuredImage + "\">\n        <h2 class = \"headPost\">" + posts.content + "</h2>\n        <p class=\"categoryPost\">" + posts.category + "</p>\n        </div>\n    </div>\n        ";
         return html;
     }
     catch (error) {
@@ -164,6 +132,7 @@ function renderPostWithTitle(posts) {
 }
 function renderPosts(posts, DIVElem) {
     try {
+        debugger;
         if (!DIVElem)
             throw new Error("no div element");
         var html = "<ul>";

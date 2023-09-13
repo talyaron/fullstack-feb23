@@ -37,6 +37,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 exports.__esModule = true;
 exports.getUserPosts = exports.addPost = exports.getPosts = void 0;
+// import { users , UserModel, } from "../users/userModel";
 var postsModel_1 = require("./postsModel");
 function getPosts(req, res) {
     return __awaiter(this, void 0, void 0, function () {
