@@ -114,37 +114,23 @@ function getPhysiciansLogin(req, res) {
 exports.getPhysiciansLogin = getPhysiciansLogin;
 function getUser(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var userId, physician, error_3;
+        var physician;
         return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    _a.trys.push([0, 2, , 3]);
-                    console.log("getUser");
-                    console.dir(req.cookies);
-                    userId = req.cookies.physician;
-                    console.log(userId);
-                    if (!userId)
-                        throw new Error("User not found");
-                    return [4 /*yield*/, physicianModel_1.PhysicianModel.findById(userId)];
-                case 1:
-                    physician = _a.sent();
-                    if (!physician)
-                        throw new Error("User not found");
-                    res.send({ ok: true, physician: physician });
-                    return [3 /*break*/, 3];
-                case 2:
-                    error_3 = _a.sent();
-                    console.error(error_3);
-                    return [3 /*break*/, 3];
-                case 3: return [2 /*return*/];
+            try {
+                physician = req.user;
+                res.send({ ok: true, physician: physician });
             }
+            catch (error) {
+                console.error(error);
+            }
+            return [2 /*return*/];
         });
     });
 }
 exports.getUser = getUser;
 function addPhysician(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var _a, firstName, lastName, age, phoneNum, email, licenseNumber, password, isAdmin, physician, physicianDB, error_4;
+        var _a, firstName, lastName, age, phoneNum, email, licenseNumber, password, isAdmin, physician, physicianDB, error_3;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
@@ -160,9 +146,9 @@ function addPhysician(req, res) {
                     res.send({ ok: true });
                     return [3 /*break*/, 3];
                 case 2:
-                    error_4 = _b.sent();
-                    console.error(error_4);
-                    res.status(500).send({ error: error_4.message });
+                    error_3 = _b.sent();
+                    console.error(error_3);
+                    res.status(500).send({ error: error_3.message });
                     return [3 /*break*/, 3];
                 case 3: return [2 /*return*/];
             }
@@ -172,7 +158,7 @@ function addPhysician(req, res) {
 exports.addPhysician = addPhysician;
 function deletePhysician(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var id, physicianDB, error_5;
+        var id, physicianDB, error_4;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -184,9 +170,9 @@ function deletePhysician(req, res) {
                     res.send({ ok: true });
                     return [3 /*break*/, 3];
                 case 2:
-                    error_5 = _a.sent();
-                    console.error(error_5);
-                    res.status(500).send({ error: error_5.message });
+                    error_4 = _a.sent();
+                    console.error(error_4);
+                    res.status(500).send({ error: error_4.message });
                     return [3 /*break*/, 3];
                 case 3: return [2 /*return*/];
             }
@@ -196,7 +182,7 @@ function deletePhysician(req, res) {
 exports.deletePhysician = deletePhysician;
 function updatePhysician(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var _a, id, firstName, lastName, age, phoneNum, email, licenseNumber, password, isAdmin, physicianDB, error_6;
+        var _a, id, firstName, lastName, age, phoneNum, email, licenseNumber, password, isAdmin, physicianDB, error_5;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
@@ -214,9 +200,9 @@ function updatePhysician(req, res) {
                     res.status(200).send({ message: "Physician updated successfully" });
                     return [3 /*break*/, 4];
                 case 3:
-                    error_6 = _b.sent();
-                    console.error(error_6);
-                    res.status(500).send({ error: error_6.message });
+                    error_5 = _b.sent();
+                    console.error(error_5);
+                    res.status(500).send({ error: error_5.message });
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }

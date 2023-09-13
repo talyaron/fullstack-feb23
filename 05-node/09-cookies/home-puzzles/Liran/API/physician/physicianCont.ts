@@ -30,6 +30,9 @@ export async function getPhysicians(req: any, res: any) {
 
 export async function getPhysiciansLogin(req: any, res: any) {
     try {
+
+
+
         const { email, password } = req.query; // Extract the email query parameter
         const physician = await PhysicianModel.findOne({ email: email, password: password });
         if (physician === undefined) {
@@ -47,13 +50,15 @@ export async function getPhysiciansLogin(req: any, res: any) {
 
 export async function getUser(req: any, res: any) {
     try {
-        console.log("getUser");
-        console.dir(req.cookies);
-        const userId = req.cookies.physician;
-        console.log(userId);
-        if (!userId) throw new Error("User not found");
-        const physician = await PhysicianModel.findById(userId);
-        if (!physician) throw new Error("User not found");
+        // console.log("getUser");
+        // console.dir(req.cookies);
+        // const userId = req.cookies.physician;
+        // console.log(userId);
+        // if (!userId) throw new Error("User not found");
+        // const physician = await PhysicianModel.findById(userId);
+        // if (!physician) throw new Error("User not found");
+        const physician = req.user;
+        
         res.send({ ok: true, physician: physician });
     } catch (error) {
         console.error(error)
@@ -63,6 +68,12 @@ export async function getUser(req: any, res: any) {
 
 export async function addPhysician(req: any, res: any) {
     try {
+
+         //get the user from the cookie
+        //get the user from the database
+        //check if the user is admin (from Database)
+        // if user is not adnin throw error of unauthorized (401)
+
         const { firstName, lastName, age, phoneNum, email, licenseNumber, password, isAdmin } = req.body;
         if (!firstName || !lastName || !age || !phoneNum || !email || !licenseNumber || !password) throw new Error("Please complete all fields");
         const physician = new PhysicianModel({ firstName, lastName, age, phoneNum, email, licenseNumber, isAdmin, password });
@@ -78,6 +89,18 @@ export async function addPhysician(req: any, res: any) {
 export async function deletePhysician(req: any, res: any) {
     try {
         const { id } = req.body;
+
+        //how can I know if the user is Admin?  
+
+        // option one: put in the cookie the isAdmin flag //easy to hack
+
+        // option two: in the Database add a flag isAdmin //less easy to hack
+
+        //get the user from the cookie
+        //get the user from the database
+        //check if the user is admin (from Database)
+        // if user is not adnin throw error of unauthorized (401)
+
         const physicianDB = await PhysicianModel.findByIdAndDelete(id);
         res.send({ ok: true });
     } catch (error) {
