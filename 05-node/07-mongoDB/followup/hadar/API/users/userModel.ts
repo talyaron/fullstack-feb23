@@ -1,3 +1,5 @@
+import {Schema, model} from 'mongoose';
+
 export class User {
   email: string;
   password: string;
@@ -9,5 +11,12 @@ export class User {
     this.id = Math.random().toString();
   }
 }
+
+export const UserSchema= new Schema({
+  email: String,
+  password: String  
+})
+
+export const UserModel= model("users",UserSchema)
 
 export const users: User[] = [];

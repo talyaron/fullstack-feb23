@@ -1,12 +1,11 @@
 import express from "express";
-import { login, registerUser } from "./userCont";
-import { getUserRelatives } from "../relatives/relativesCont";
+import { login, registerUser, getUserAndRelatives  } from "./userCont";
 const router = express.Router();
 
 router
-.get('/get-user-relatives',getUserRelatives)
 .post("/register", registerUser)
 .post("/login", login)
+.get("/userWithRelatives", getUserAndRelatives)
 
 
 export default router;

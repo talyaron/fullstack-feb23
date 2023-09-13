@@ -335,7 +335,7 @@ async function handleAddRecipe(event: any) {
 }
 
 // Function to render a recipe
-async function renderRecipe(recipe, isEmailExist, isAdmin,fromWhereICome) {
+async function renderRecipe(recipe, isEmailExist, isAdmin, fromWhereICome) {
     try {
         if (!recipe) throw new Error("Recipe does not exist");
         const recipeContainer = document.querySelector("#recipeContainer") as HTMLDivElement;
@@ -345,11 +345,26 @@ async function renderRecipe(recipe, isEmailExist, isAdmin,fromWhereICome) {
         recipeElement.innerHTML = `
             <h2 class="recipeName">${recipe.recipeName}</h2>
             <img src="${recipe.imageUrl}" alt="recipe image" class="recipeImage">
-            <div class="recipeIngredients">${recipe.recipeIngredients}</div>
             <div class="recipeInstructions">${recipe.recipeInstructions}</div>
             <div class="recipeCategory">${recipe.category}</div>
-        
         `;
+
+        // Create a list for ingredients
+        const ingredientsList = document.createElement('ul');
+        ingredientsList.className = 'recipeIngredientsList';
+
+        // Split ingredients into an array
+        const ingredientsArray = recipe.recipeIngredients.split(',');
+
+        // Loop through the ingredients array and create list items
+        ingredientsArray.forEach((ingredient) => { 
+            const listItem = document.createElement('li');
+            listItem.textContent = ingredient.trim(); // Trim any leading/trailing spaces
+            ingredientsList.appendChild(listItem);
+        });
+
+        // Append the ingredients list to the recipe element
+        recipeElement.appendChild(ingredientsList);
 
         if (isEmailExist || isAdmin) {
             const deleteButton = document.createElement('button');
@@ -358,13 +373,13 @@ async function renderRecipe(recipe, isEmailExist, isAdmin,fromWhereICome) {
             deleteButton.onclick =async () => await handleDeleteRecipe(recipe._id,fromWhereICome); // Pass the recipe ID to the function
             recipeElement.appendChild(deleteButton);  
         }
-     
 
         recipeContainer.appendChild(recipeElement);
     } catch (error) {
         console.error(error);
     }
 }
+
 async function handleDeleteRecipe(recipeId,fromWhereICome) {
     try {
         const response = await fetch("API/recipe/delete-recipe", {
