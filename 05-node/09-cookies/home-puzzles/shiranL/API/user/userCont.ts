@@ -62,12 +62,13 @@ export const logIn= async (req:any,res:any)=>{
 export const getLoggedInUser= async (req:any,res:any)=>{
   try {
   
-     const userId = req.cookies.user;
-     if(!userId) throw new Error("no user in cookies"); 
-     //find user in DB
-    const userDB = await UserModel.findById(userId);
-    if(!userDB) throw new Error("user dosnt exist in DB");
-    res.send({ ok:true, logInUser:userDB});
+    //  const userId = req.cookies.user;
+    //  if(!userId) throw new Error("no user in cookies"); 
+    //  //find user in DB
+    // const userDB = await UserModel.findById(userId);
+    // if(!userDB) throw new Error("user dosnt exist in DB");
+      const userDB=req.user
+       res.send({ ok:true, logInUser:userDB});
 
  
   } catch (error) {
