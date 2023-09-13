@@ -3,8 +3,18 @@ import { MedicineModel } from './medicineModel';
 
 export async function getMedicines(req: any, res: any) {
     try {
-        const medicinesDB = await MedicineModel.find({});
-        res.send({ medicines: medicinesDB });
+        const { name: name, _id: _id } = req.query;
+        let medicines;
+        if (name) {
+            medicines = await MedicineModel.findOne({ name: name });
+        }
+        else if (_id) {
+            medicines = await MedicineModel.findOne({ _id: _id });
+        }
+        else {
+            medicines = await MedicineModel.find({});
+        }
+        res.send({ medicines });
     } catch (error) {
         console.error(error);
         res.status(500).send({ error: error.message });

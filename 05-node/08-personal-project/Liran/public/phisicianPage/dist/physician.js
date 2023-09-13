@@ -133,18 +133,20 @@ function renderVisits(visits) {
                     root = document.querySelector("#forms");
                     root.innerHTML = "";
                     root.innerHTML += "<div id=\"visits\">\n        <h2>Visits</h2>\n        <table>\n        <tr>\n        <th>Physician</th>\n        <th>Patient</th>\n        <th>Date</th>\n        <th>Summary</th>\n        </tr>\n        </table>\n        </div>";
-                    debugger;
                     table_1 = document.querySelector("table");
                     promises = visits.map(function (visit) { return __awaiter(_this, void 0, void 0, function () {
-                        var physicianName, patientName;
+                        var responseP, dataP, physicianName, patientName;
                         return __generator(this, function (_a) {
                             switch (_a.label) {
-                                case 0: return [4 /*yield*/, getPhysicianName(visit.physician._id)];
+                                case 0: return [4 /*yield*/, fetch("/API/physician/get-physicians?email=" + physicianEmail)];
                                 case 1:
-                                    physicianName = _a.sent();
-                                    return [4 /*yield*/, getPatientName(visit.patient._id)];
+                                    responseP = _a.sent();
+                                    return [4 /*yield*/, responseP.json()];
                                 case 2:
-                                    patientName = _a.sent();
+                                    dataP = _a.sent();
+                                    physicianName = "Dr. " + dataP.physician.firstName + " " + dataP.physician.lastName;
+                                    patientName = visit.patient.firstName + " " + visit.patient.lastName;
+                                    debugger;
                                     table_1.innerHTML += "<tr>\n            <td>" + physicianName + "</td>\n            <td>" + patientName + "</td>\n            <td>" + formatDate(visit.date) + "</td>\n            <td>" + visit.summary + "</td>\n            </tr>";
                                     return [2 /*return*/];
                             }
@@ -171,24 +173,23 @@ function renderPrescriptions(prescriptions) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
+                    debugger;
                     root = document.querySelector("#forms");
                     root.innerHTML = "";
                     root.innerHTML += "<div id=\"prescriptions\">\n        <h2>Prescriptions</h2>\n        <table>\n        <tr>\n        <th>Physician</th>\n        <th>Patient</th>\n        <th>Medicine</th>\n        <th>Supply Date</th>\n        </tr>\n        </table>\n        </div>";
                     table_2 = document.querySelector("table");
                     promises = prescriptions.map(function (prescription) { return __awaiter(_this, void 0, void 0, function () {
-                        var physicianName, patientName, medicineName;
+                        var physicianName, patientName;
                         return __generator(this, function (_a) {
                             switch (_a.label) {
-                                case 0: return [4 /*yield*/, getPhysicianName(prescription.physician)];
+                                case 0: return [4 /*yield*/, getPhysicianName(physicianEmail)];
                                 case 1:
                                     physicianName = _a.sent();
-                                    return [4 /*yield*/, getPatientName(prescription.patient)];
+                                    return [4 /*yield*/, getPatientName(prescription.patient._id)];
                                 case 2:
                                     patientName = _a.sent();
-                                    return [4 /*yield*/, getMedicineName(prescription.medicine)];
-                                case 3:
-                                    medicineName = _a.sent();
-                                    table_2.innerHTML += "<tr>\n            <td>" + physicianName + "</td>\n            <td>" + patientName + "</td>\n            <td>" + medicineName + "</td>\n            <td>" + formatDate(prescription.date) + "</td>\n            </tr>";
+                                    debugger;
+                                    table_2.innerHTML += "<tr>\n            <td>Dr. " + physicianName + "</td>\n            <td>" + patientName + "</td>\n            <td>" + prescription.medicine.name + "</td>\n            <td>" + formatDate(prescription.date) + "</td>\n            </tr>";
                                     return [2 /*return*/];
                             }
                         });
@@ -206,20 +207,21 @@ function renderPrescriptions(prescriptions) {
         });
     });
 }
-function renderUpdatePatientP(physicianID, html) {
+function renderUpdatePatientP(physicianId, html) {
     return __awaiter(this, void 0, void 0, function () {
         var response, data, patients, tempHtml_1, error_5;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
-                    return [4 /*yield*/, fetch("/API/patient/get-patients?physicianId=" + physicianID)];
+                    return [4 /*yield*/, fetch("/API/patient/get-patients?physicianId=" + physicianId)];
                 case 1:
                     response = _a.sent();
                     return [4 /*yield*/, response.json()];
                 case 2:
                     data = _a.sent();
                     patients = data.patients;
+                    debugger;
                     tempHtml_1 = "<h2>Update Patient</h2>\n        <form onsubmit=\"hundlePatientUpdate(event)\">\n        <div class=\"input\">\n        <label for=\"id\">Select patient</label><br>\n        <select id=\"id\" name=\"id\" onchange=\"loadPatientInfo()\">\n        ";
                     // const responseP = await fetch(`/API/physician/get-physicians?email=${physicianEmail}`);
                     // const dataP = await responseP.json();
@@ -231,7 +233,7 @@ function renderUpdatePatientP(physicianID, html) {
                     patients.forEach(function (patient) {
                         tempHtml_1 += "<option value=\"" + patient._id + "\"> " + patient.firstName + " " + patient.lastName + "</option>";
                     });
-                    tempHtml_1 += "</select>\n            </div>\n            <div class=\"input\">\n            <label for=\"firstName\">First Name:</label><br>\n            <input type=\"text\" id=\"firstName\" name=\"firstName\" value=\"" + patients[0].firstName + "\">\n            </div><div class=\"input\">\n            <label for=\"lastName\">Last Name:</label><br>\n            <input type=\"text\" id=\"lastName\" name=\"lastName\" value=\"" + patients[0].lastName + "\">\n            </div> <div class=\"input\">\n            <label for=\"age\">Age:</label><br>\n            <input type=\"number\" id=\"age\" name=\"age\" value=\"" + patients[0].age + "\">\n            </div> <div class=\"input\">\n            <label for=\"phoneNum\">Phone Number:</label><br>\n            <input type=\"text\" id=\"phoneNum\" name=\"phoneNum\" value=\"" + patients[0].phoneNum + "\">\n            </div><div class=\"input\">\n            <label for=\"weight\">Weight:</label><br>\n            <input type=\"number\" id=\"weight\" name=\"weight\" value=\"" + patients[0].weight + "\"> \n            </div><div class=\"input\">\n            <label for=\"height\">Height:</label><br>\n            <input type=\"number\" id=\"height\" name=\"height\" value=\"" + patients[0].height + "\">\n            </div><div class=\"input\">\n            <label for=\"smoking\">Smoking:</label><br>\n            <input type=\"checkbox\" id=\"smoking\" name=\"smoking\" value=\"" + patients[0].smoking + "\">\n            </div><div class=\"input\">\n            <label for=\"address\">Address:</label><br>\n            <input type=\"text\" id=\"address\" name=\"address\" value=\"" + patients[0].address + "\">\n            <div><label for=\"physicianId\">Physician ID:</label><br>\n            <input type=\"text\" id=\"physicianId\" name=\"physicianId\" value=\"" + physicianID + "\" readonly>\n            </div>\n            </div>";
+                    tempHtml_1 += "</select>\n            </div>\n            <div class=\"input\">\n            <label for=\"firstName\">First Name:</label><br>\n            <input type=\"text\" id=\"firstName\" name=\"firstName\" value=\"" + patients[0].firstName + "\">\n            </div><div class=\"input\">\n            <label for=\"lastName\">Last Name:</label><br>\n            <input type=\"text\" id=\"lastName\" name=\"lastName\" value=\"" + patients[0].lastName + "\">\n            </div> <div class=\"input\">\n            <label for=\"age\">Age:</label><br>\n            <input type=\"number\" id=\"age\" name=\"age\" value=\"" + patients[0].age + "\">\n            </div> <div class=\"input\">\n            <label for=\"phoneNum\">Phone Number:</label><br>\n            <input type=\"text\" id=\"phoneNum\" name=\"phoneNum\" value=\"" + patients[0].phoneNum + "\">\n            </div><div class=\"input\">\n            <label for=\"weight\">Weight:</label><br>\n            <input type=\"number\" id=\"weight\" name=\"weight\" value=\"" + patients[0].weight + "\"> \n            </div><div class=\"input\">\n            <label for=\"height\">Height:</label><br>\n            <input type=\"number\" id=\"height\" name=\"height\" value=\"" + patients[0].height + "\">\n            </div><div class=\"input\">\n            <label for=\"smoking\">Smoking:</label><br>\n            <input type=\"checkbox\" id=\"smoking\" name=\"smoking\" value=\"" + patients[0].smoking + "\">\n            </div><div class=\"input\">\n            <label for=\"address\">Address:</label><br>\n            <input type=\"text\" id=\"address\" name=\"address\" value=\"" + patients[0].address + "\">\n            <div><label for=\"physicianId\">Physician ID:</label><br>\n            <input type=\"text\" id=\"physicianId\" name=\"physicianId\" value=\"" + physicianId + "\" readonly>\n            </div>\n            </div>";
                     tempHtml_1 += "<input type=\"submit\" value=\"UPDATE\">\n        </form>";
                     html.innerHTML = tempHtml_1;
                     return [3 /*break*/, 4];
@@ -307,36 +309,26 @@ function updatePatientP() {
 }
 function loadPrescriptions() {
     return __awaiter(this, void 0, void 0, function () {
-        var response, data, physician_1, patientResponse, patientData, patients_1, prescriptions, error_7;
+        var response, data, prescriptions, error_7;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    _a.trys.push([0, 6, , 7]);
-                    return [4 /*yield*/, fetch("/API/prescription/get-prescriptions")];
+                    _a.trys.push([0, 3, , 4]);
+                    return [4 /*yield*/, fetch("/API/prescription/get-prescriptions?email=" + physicianEmail)];
                 case 1:
                     response = _a.sent();
                     return [4 /*yield*/, response.json()];
                 case 2:
                     data = _a.sent();
                     console.log(data);
-                    return [4 /*yield*/, getPhysicianDB(physicianEmail)];
-                case 3:
-                    physician_1 = _a.sent();
-                    return [4 /*yield*/, fetch("/API/patient/get-patients")];
-                case 4:
-                    patientResponse = _a.sent();
-                    return [4 /*yield*/, patientResponse.json()];
-                case 5:
-                    patientData = _a.sent();
-                    patients_1 = patientData.patients.filter(function (patient) { return patient.physicianId === physician_1._id; });
-                    prescriptions = data.prescriptions.filter(function (prescription) { return prescription.physician === patients_1[0].physicianId; });
+                    prescriptions = data.prescriptions;
                     renderPrescriptions(prescriptions);
-                    return [3 /*break*/, 7];
-                case 6:
+                    return [3 /*break*/, 4];
+                case 3:
                     error_7 = _a.sent();
                     console.error(error_7);
-                    return [3 /*break*/, 7];
-                case 7: return [2 /*return*/];
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
             }
         });
     });
@@ -418,7 +410,7 @@ function loadPatientInfo() {
 }
 function loadPatients() {
     return __awaiter(this, void 0, void 0, function () {
-        var responseP, dataP, physicianID, response, data, patients, error_10;
+        var responseP, dataP, physicianId, response, data, patients, error_10;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -429,14 +421,16 @@ function loadPatients() {
                     return [4 /*yield*/, responseP.json()];
                 case 2:
                     dataP = _a.sent();
-                    physicianID = dataP.physician._id;
-                    return [4 /*yield*/, fetch("/API/patient/get-patients?physicianId=" + physicianID)];
+                    physicianId = dataP.physician._id;
+                    debugger;
+                    return [4 /*yield*/, fetch("/API/patient/get-patients?physicianId=" + physicianId)];
                 case 3:
                     response = _a.sent();
                     return [4 /*yield*/, response.json()];
                 case 4:
                     data = _a.sent();
                     patients = data.patients;
+                    debugger;
                     renderPatients(patients);
                     return [3 /*break*/, 6];
                 case 5:
@@ -448,37 +442,23 @@ function loadPatients() {
         });
     });
 }
-function StartVisit(patientId) {
+function StartVisit(_id) {
     return __awaiter(this, void 0, void 0, function () {
-        var response, data, patientID, error_11;
         return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    _a.trys.push([0, 3, , 4]);
-                    console.log(patientId);
-                    return [4 /*yield*/, fetch("/API/patient/get-patients?patientId=" + patientId)];
-                case 1:
-                    response = _a.sent();
-                    return [4 /*yield*/, response.json()];
-                case 2:
-                    data = _a.sent();
-                    debugger;
-                    patientID = data.patients._id;
-                    console.log(patientID);
-                    window.location.href = "../visitPage/visit.html?_id=" + patientID + "&physicianEmail=" + physicianEmail;
-                    return [3 /*break*/, 4];
-                case 3:
-                    error_11 = _a.sent();
-                    console.error(error_11);
-                    return [3 /*break*/, 4];
-                case 4: return [2 /*return*/];
+            try {
+                console.log(_id);
+                window.location.href = "../visitPage/visit.html?_id=" + _id + "&email=" + physicianEmail;
             }
+            catch (error) {
+                console.error(error);
+            }
+            return [2 /*return*/];
         });
     });
 }
 function loadMedicines() {
     return __awaiter(this, void 0, void 0, function () {
-        var response, data, error_12;
+        var response, data, error_11;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -489,12 +469,13 @@ function loadMedicines() {
                     return [4 /*yield*/, response.json()];
                 case 2:
                     data = _a.sent();
+                    debugger;
                     console.log(data);
                     renderMedicines(data.medicines);
                     return [3 /*break*/, 4];
                 case 3:
-                    error_12 = _a.sent();
-                    console.error(error_12);
+                    error_11 = _a.sent();
+                    console.error(error_11);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }

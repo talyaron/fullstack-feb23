@@ -1,10 +1,15 @@
 
-interface _Post{
+interface UserPosts{
     featuredImage:string;
     content:string;
     category:string;
 }
+//get tasks from server
+function getPostsFromServer(){
+    //get tasks from server
+    
 
+}
 
 async function handleGetPosts() {
     try {
@@ -35,20 +40,21 @@ async function handeleAddPost(ev: any) {
         
         console.log("Title:", content);
         console.log("PostUrl:", featuredImage);
-        console.log("PostUrl:", category);
+        console.log("PostCategory:", category);
 
         
         
         const newPost = { content, featuredImage,category, email };
         console.log("New Post:", newPost);
 
-        const response = await fetch('http://localhost:3000/API/posts/add-post', {
+        const response = await fetch('/API/posts/add-post', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(newPost)
         });
+        
         
 
         const { posts } = await response.json();
@@ -59,7 +65,7 @@ async function handeleAddPost(ev: any) {
         console.error(error);
     }
 }
-function renderPost(post: _Post) {
+function renderPost(post: UserPosts) {
     try {
         const html = `<img src="${post.featuredImage}" alt="${post.content}">
         <p> = "${post.category}"`;
@@ -71,7 +77,7 @@ function renderPost(post: _Post) {
 }
 
 // Function to render the post with a content
-function renderPostWithTitle(post: _Post) {
+function renderPostWithTitle(post: UserPosts) {
     try {
         const html = `
         <div class="post_container">
@@ -89,18 +95,32 @@ function renderPostWithTitle(post: _Post) {
     }
 }
 
-function renderPosts(posts: _Post[], DIVElem: HTMLDivElement) {
+// function renderPosts(posts: Post[], DIVElem: HTMLDivElement) {
+//     try {
+//         if (!DIVElem) throw new Error("no div element");
+//         let html = "<ul class = list>";
+
+//         // Render each post with title
+//         html += posts.map(post => `<li>${renderPostWithTitle(post)}</li>`).join("");
+
+//         html += "</ul>";
+//         DIVElem.innerHTML = html;
+//     } catch (error) {
+//         console.error(error);
+//         return "";
+//     }
+// }
+function renderPosts(posts: UserPosts[], DIVElem: HTMLDivElement) {
     try {
         if (!DIVElem) throw new Error("no div element");
-        let html = "<ul class = list>";
-
-        // Render each post with title
-        html += posts.map(post => `<li>${renderPostWithTitle(post)}</li>`).join("");
-
+        let html = "<ul>";
+        html += posts.map(post => renderPost(post)).join("");
         html += "</ul>";
+
         DIVElem.innerHTML = html;
     } catch (error) {
         console.error(error);
         return "";
     }
 }
+  
