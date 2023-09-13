@@ -1,9 +1,14 @@
 let physicianEmail: string;
 const currPhysicianLogged = hundleGetUserLogged().then(currPhysicianLogged => {
-    currPhysicianLogged = currPhysicianLogged;
-    debugger;
-    physicianEmail = currPhysicianLogged.email;
-    renderPhysicianPage();
+    if (currPhysicianLogged === undefined) {
+        currPhysicianLogged = getEmailFromQuery();
+    }
+    else {
+        currPhysicianLogged = currPhysicianLogged;
+        debugger;
+        physicianEmail = currPhysicianLogged.email;
+        renderPhysicianPage();
+    }
 });
 
 async function hundleGetUserLogged() {

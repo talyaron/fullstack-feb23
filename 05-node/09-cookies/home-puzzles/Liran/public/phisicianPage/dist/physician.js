@@ -36,10 +36,15 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 var physicianEmail;
 var currPhysicianLogged = hundleGetUserLogged().then(function (currPhysicianLogged) {
-    currPhysicianLogged = currPhysicianLogged;
-    debugger;
-    physicianEmail = currPhysicianLogged.email;
-    renderPhysicianPage();
+    if (currPhysicianLogged === undefined) {
+        currPhysicianLogged = getEmailFromQuery();
+    }
+    else {
+        currPhysicianLogged = currPhysicianLogged;
+        debugger;
+        physicianEmail = currPhysicianLogged.email;
+        renderPhysicianPage();
+    }
 });
 function hundleGetUserLogged() {
     return __awaiter(this, void 0, void 0, function () {
