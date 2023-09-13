@@ -1,6 +1,5 @@
 import { UserModel } from "./userModel";
 
-
 export const addUser = async (req: any, res: any) => {
   try {
     const { email, password } = req.body;
@@ -54,7 +53,7 @@ export const logIn = async (req: any, res: any) => {
     // Return a success response
 
     res.send({ ok: true, existingUser });
-  } catch (error) {
+  } catch (error: any) {
     console.error(error);
     res.send({ error: error.message });
   }
@@ -66,7 +65,7 @@ export const getLoggedInUser = async (req: any, res: any) => {
     if (!logInUser) return res.send({ error: "User not found" });
 
     res.send({ ok: true, logInUser });
-  } catch (error) {
+  } catch (error: any) {
     console.error(error);
     res.send({ error: error.message });
   }
@@ -77,7 +76,7 @@ export const logOut = async (req: any, res: any) => {
     await UserModel.updateMany({}, { isLoggedIn: false });
 
     res.send({ ok: true });
-  } catch (error) {
+  } catch (error: any) {
     console.error(error);
     res.send({ error: error.message });
   }
@@ -90,13 +89,13 @@ export const allUsers = async (req: any, res: any) => {
 
     // Return the list of not admin users as a response
     res.send({ ok: true, allUsers });
-  } catch (error) {
+  } catch (error: any) {
     console.error(error);
     res.send({ error: error.message });
   }
 };
 
-export const getUserDetails = async (req, res) => {
+export const getUserDetails = async (req: any, res: any) => {
   try {
     const userId = req.query.userId;
 
@@ -109,7 +108,7 @@ export const getUserDetails = async (req, res) => {
 
     // Return the user details
     res.send({ ok: true, user });
-  } catch (error) {
+  } catch (error: any) {
     console.error(error);
     res.send({ error: error.message });
   }
@@ -141,7 +140,7 @@ export const updateUser = async (req: any, res: any) => {
     await existingUser.save();
 
     res.send({ ok: true, existingUser });
-  } catch (error) {
+  } catch (error: any) {
     console.error(error);
     res.send({ error: error.message });
   }
@@ -150,7 +149,7 @@ export const updateUser = async (req: any, res: any) => {
 export const deleteUser = async (req: any, res: any) => {
   try {
     res.send({ ok: true, message: "User deleted successfully" });
-  } catch (error) {
+  } catch (error: any) {
     console.error(error);
     res.send({ error: error.message });
   }

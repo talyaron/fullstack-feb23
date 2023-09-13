@@ -1,4 +1,4 @@
-import BlogModel from "./ blogModel";
+import BlogModel from "./blogModel";
 import mongoose, { isValidObjectId } from 'mongoose';
 
 // Add a blog

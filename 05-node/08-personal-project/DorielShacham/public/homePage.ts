@@ -1,5 +1,3 @@
-// TypeScript (homePage.js)
-
 // Function to handle logout
 async function handleLogout() {
     try {
@@ -47,7 +45,7 @@ async function renderAllUsers() {
         console.error(error);
     }
 }
-function renderUsersList(users) {
+function renderUsersList(users: any[]) {
     try {
         const updateUserDiv = document.querySelector("#updateUserDiv") as HTMLDivElement;
         if (!updateUserDiv) throw new Error("updateUserDiv root not found");
@@ -63,7 +61,7 @@ function renderUsersList(users) {
         selectUser.id = 'selectUser';
 
         // Create options for each user
-        users.forEach(user => {
+        users.forEach((user: { _id: string; email: string | null; }) => {
             const option = document.createElement('option');
             option.value = user._id; // Assuming each user has a unique ID
             option.textContent = user.email; // Change this to the user's name or other identifier
@@ -98,7 +96,7 @@ function renderUsersList(users) {
         console.error(error);
     }
 }
-async function openUpdateUserForm(userId) {
+async function openUpdateUserForm(userId: string) {
     try {
         // Fetch user details based on the userId from the API
         const response = await fetch(`API/user/get-user-details?userId=${userId}`, {
@@ -114,8 +112,8 @@ debugger
             throw new Error(data.message);
         }
 
-        const userDetails = data.user; // Assuming the API response contains user details
-
+        const userDetails = data.user; 
+        
         // Create a form for updating user details
         const updateUserForm = document.createElement('form');
         updateUserForm.id = 'updateUserForm';
@@ -209,7 +207,7 @@ async function renderHelloUser() {
         const helloUser = document.querySelector("#helloUser") as HTMLDivElement;
         const updateUserDiv=document.querySelector("#updateUserDiv") as HTMLDivElement; 
         if (!helloUser) throw new Error("helloUser root not found");
-        helloUser.innerHTML = `Hello ${logInUser.email}`;
+        helloUser.innerHTML = `Welcome <span class="welcome-message">${logInUser.email}</span>`;
         // if user isAdmin create button to show all users and can updte admin
         if (logInUser.isAdmin) {
             const showAllUsersButton = document.createElement('button');
@@ -238,24 +236,22 @@ async function getCurrentUser() {
     }
 }
 
-// Function to handle adding a recipe
-async function handleAddRecipe(event: any) {
+
+// Function to render a blog
+async function handleAddBlog(event: any) {
     try {
         event.preventDefault();
-        const recipeName = event.target.recipeName.value;
-        const recipeIngredients = event.target.recipeIngredients.value;
-        const recipeInstructions = event.target.recipeInstructions.value;
-        const imageUrl = event.target.imageUrl.value;
-        const category = event.target.recipeCategory.value;
+        const blogTitle = event.target.blogTitle.value;
+        const blogDescription = event.target.blogDescription.value;
         const user = await getCurrentUser();
         const userEmail = user.email;
 
-        const response = await fetch("API/recipe/add-recipe", {
+        const response = await fetch("API/blog/add-blog", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({ recipeName, recipeIngredients, recipeInstructions, imageUrl, category, userEmail }),
+            body: JSON.stringify({ title: blogTitle, description: blogDescription, userEmail }),
         });
         const data = await response.json();
 
@@ -263,105 +259,74 @@ async function handleAddRecipe(event: any) {
         if (!data.ok) {
             throw new Error(data.message);
         }
-        alert("Recipe added");
-    } catch (error) {
-        console.error(error);
-    }
-}
-
-// Function to render a recipe
-async function renderRecipe(recipe, isEmailExist, isAdmin,fromWhereICome) {
-    try {
-        if (!recipe) throw new Error("Recipe does not exist");
-        const recipeContainer = document.querySelector("#recipeContainer") as HTMLDivElement;
-        if (!recipeContainer) throw new Error("recipeContainer root not found");
-
-        const recipeElement = document.createElement('div');
-        recipeElement.innerHTML = `
-            <h2 class="recipeName">${recipe.recipeName}</h2>
-            <img src="${recipe.imageUrl}" alt="recipe image" class="recipeImage">
-            <div class="recipeIngredients">${recipe.recipeIngredients}</div>
-            <div class="recipeInstructions">${recipe.recipeInstructions}</div>
-            <div class="recipeCategory">${recipe.category}</div>
+        alert("Blog added");
         
-        `;
-
-        if (isEmailExist || isAdmin) {
-            const deleteButton = document.createElement('button');
-            deleteButton.className = 'deleteRecipe';
-            deleteButton.textContent = 'Delete';
-            deleteButton.onclick =async () => await handleDeleteRecipe(recipe._id,fromWhereICome); // Pass the recipe ID to the function
-            recipeElement.appendChild(deleteButton);  
-        }
-     
-
-        recipeContainer.appendChild(recipeElement);
     } catch (error) {
         console.error(error);
     }
 }
-async function handleDeleteRecipe(recipeId,fromWhereICome) {
+
+async function handleDeleteBlog(blogId: any, fromWhereICome: string) {
     try {
-        const response = await fetch("API/recipe/delete-recipe", {
+        const response = await fetch("API/blog/delete-blog", {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({ recipeId }),
+            body: JSON.stringify({ blogId }),
         });
         const data = await response.json();
         if (!data.ok) {
             throw new Error(data.message);
         }
-        alert("Recipe deleted");
-        if(fromWhereICome==="myRecipe"){
-            renderMyRecipes();
-
+        alert("Blog deleted");
+        if (fromWhereICome === "myBlogs") {
+            renderMyBlogs();
+        } else {
+            renderAllBlogs();
         }
-        else{
-            renderAllRecipes();
-        }
-
     } catch (error) {
         console.error(error);
-    }   
+    }
 }
-// Function to render all recipes
-async function renderAllRecipes() {
+
+async function renderAllBlogs() {
     try {
-        const recipeListContainer = document.querySelector("#recipeContainer") as HTMLDivElement;
-        if (!recipeListContainer) throw new Error("recipeContainer root not found");
-        recipeListContainer.innerHTML = "";
-        const response = await fetch("API/recipe/get-all-recipes");
-        const data = await response.json();
-        if (!data.ok) {
-            throw new Error(data.message);
-        }
-        const { recipeList } = data;
         const user = await getCurrentUser();
         if (!user) {
             throw new Error("User Not Found");
         }
 
-        recipeList.forEach((recipe) => {
-            renderRecipe(recipe, false, user.isAdmin,'AllRecipes'); 
+        const response = await fetch("API/blog/get-all-blogs");
+        const data = await response.json();
+
+        if (!data.ok) {
+            throw new Error(data.message);
+        }
+
+        const { blogList } = data;
+        const blogContainer = document.querySelector("#blogContainer") as HTMLDivElement;
+        if (!blogContainer) throw new Error("blogContainer root not found");
+        
+        blogContainer.innerHTML = '';
+
+        blogList.forEach((blog) => {
+            const isUserBlog = blog.userEmail === user.email;
+            renderBlogItem(blog, isUserBlog, user.isAdmin, 'AllBlogs', blog.userEmail, blogContainer);
         });
     } catch (error) {
-        console.error(error); 
+        console.error(error);
     }
 }
 
-// Function to render user-specific recipes
-async function renderMyRecipes() {
+async function renderMyBlogs() {
     try {
-        // Get the currently logged-in user's email
         const user = await getCurrentUser();
         if (!user || !user.email) {
             throw new Error("User email not found.");
         }
 
-        // Send the user's email to the server to get their recipes 
-        const response = await fetch(`API/recipe/get-My-recipes?userEmail=${encodeURIComponent(user.email)}`, {
+        const response = await fetch(`API/blog/get-my-blogs?userEmail=${encodeURIComponent(user.email)}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -369,19 +334,44 @@ async function renderMyRecipes() {
         });
 
         const data = await response.json();
+
         if (!data.ok) {
-            throw new Error(data.message);
+            alert("You currently do not have a blog.");
+            return;
         }
-        const { recipeList } = data;
-        const recipeListContainer = document.querySelector("#recipeContainer") as HTMLDivElement;
-        if (!recipeListContainer) throw new Error("recipeContainer root not found");
-        recipeListContainer.innerHTML = "";
-        recipeList.forEach((recipe) => {
-            renderRecipe(recipe, true, user.isAdmin,'myRecipe');
+
+        const { blogList } = data;
+        const blogContainer = document.querySelector("#blogContainer") as HTMLDivElement;
+        if (!blogContainer) throw new Error("blogContainer root not found");
+
+        blogContainer.innerHTML = '';
+
+        blogList.forEach((blog) => {
+            const isUserBlog = true;
+            renderBlogItem(blog, isUserBlog, user.isAdmin, 'myBlogs', user.email, blogContainer);
         });
     } catch (error) {
         console.error(error);
-    } 
+    }
 }
 
-// You can continue to define your other functions as needed.
+
+function renderBlogItem(blog: any, isUserBlog: boolean, isAdmin: boolean, fromWhereICome: string, userEmail: string, container: HTMLDivElement) {
+    const blogContainer = container;
+    const blogElement = document.createElement('div');
+    blogElement.innerHTML = `
+        <h2 class="blogTitle">${blog.title}</h2>
+        <p class="blogDescription">${blog.description}</p>
+        <p> Author: ${userEmail}</p>
+    `;
+
+    if (isAdmin || isUserBlog) {
+        const deleteButton = document.createElement('button');
+        deleteButton.className = 'deleteBlog';
+        deleteButton.textContent = 'Delete';
+        deleteButton.onclick = async () => await handleDeleteBlog(blog._id, fromWhereICome);
+        blogElement.appendChild(deleteButton);
+    }
+
+    blogContainer.appendChild(blogElement);
+}

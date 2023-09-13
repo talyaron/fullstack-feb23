@@ -7,27 +7,20 @@ const express_1 = __importDefault(require("express"));
 const mongoose_1 = __importDefault(require("mongoose"));
 const cookie_parser_1 = __importDefault(require("cookie-parser"));
 const app = express_1.default();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 4000;
 app.use(cookie_parser_1.default());
-//static files
 app.use(express_1.default.static("public"));
-//express
+//body
 app.use(express_1.default.json());
-//connect to mongoDB with mongoose
-mongoose_1.default.connect("mongodb+srv://doriel:FgvVuOI8ROgkvs06@cluster0.wvdhcfc.mongodb.net/test")
-    .then(() => {
-    console.info("DB connected");
-})
+mongoose_1.default.connect("mongodb+srv://zakman336:QRIVRDi84s0ptqPE@cluster0.wv8pxxd.mongodb.net/test")
+    .then(() => console.log("mongoose connected!"))
     .catch(err => {
     console.error(err);
 });
 // get router from usersRouter
-const userRoutes_1 = __importDefault(require("./API/user/userRoutes"));
+const userRouter_1 = __importDefault(require("./API/users/userRouter"));
 //tells express to use proudctsRouter on the intial route "/API/users"
-app.use("/API/user", userRoutes_1.default);
-// Get router from blogRoutes
-const blogRoutes_1 = __importDefault(require("./API/blog/blogRoutes"));
-app.use("/API/blog", blogRoutes_1.default);
+app.use("/API/users", userRouter_1.default);
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`);
 });

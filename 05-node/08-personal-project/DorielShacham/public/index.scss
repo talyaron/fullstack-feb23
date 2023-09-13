@@ -1,5 +1,5 @@
 body {
-    background-color:black;
+    background-color:white;
     font-family: Arial, sans-serif;
     display: flex;
     justify-content: center; 
@@ -13,15 +13,15 @@ body {
 }
 
 h1, h3{
-    color:lime;
+    color:orangered;
 }
 
 button {
     padding: 10px 20px;
-    background-color:lime;
+    background-color:orangered;
     color: #fff;
     border: none;
-    border-radius: 3px;
+    border-radius: 4px;
     cursor: pointer;
     margin: 10px;
     transition: 0.3s;
