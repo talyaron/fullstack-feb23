@@ -1,4 +1,3 @@
-// TypeScript (homePage.js)
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -301,7 +300,7 @@ function renderHelloUser() {
                     updateUserDiv = document.querySelector("#updateUserDiv");
                     if (!helloUser)
                         throw new Error("helloUser root not found");
-                    helloUser.innerHTML = "Hello " + logInUser.email;
+                    helloUser.innerHTML = "Welcome <span class=\"welcome-message\">" + logInUser.email + "</span>";
                     // if user isAdmin create button to show all users and can updte admin
                     if (logInUser.isAdmin) {
                         showAllUsersButton = document.createElement('button');
@@ -352,30 +351,27 @@ function getCurrentUser() {
         });
     });
 }
-// Function to handle adding a recipe
-function handleAddRecipe(event) {
+// Function to render a blog
+function handleAddBlog(event) {
     return __awaiter(this, void 0, void 0, function () {
-        var recipeName, recipeIngredients, recipeInstructions, imageUrl, category, user, userEmail, response, data, error_7;
+        var blogTitle, blogDescription, user, userEmail, response, data, error_7;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 4, , 5]);
                     event.preventDefault();
-                    recipeName = event.target.recipeName.value;
-                    recipeIngredients = event.target.recipeIngredients.value;
-                    recipeInstructions = event.target.recipeInstructions.value;
-                    imageUrl = event.target.imageUrl.value;
-                    category = event.target.recipeCategory.value;
+                    blogTitle = event.target.blogTitle.value;
+                    blogDescription = event.target.blogDescription.value;
                     return [4 /*yield*/, getCurrentUser()];
                 case 1:
                     user = _a.sent();
                     userEmail = user.email;
-                    return [4 /*yield*/, fetch("API/recipe/add-recipe", {
+                    return [4 /*yield*/, fetch("API/blog/add-blog", {
                             method: "POST",
                             headers: {
                                 "Content-Type": "application/json"
                             },
-                            body: JSON.stringify({ recipeName: recipeName, recipeIngredients: recipeIngredients, recipeInstructions: recipeInstructions, imageUrl: imageUrl, category: category, userEmail: userEmail })
+                            body: JSON.stringify({ title: blogTitle, description: blogDescription, userEmail: userEmail })
                         })];
                 case 2:
                     response = _a.sent();
@@ -386,7 +382,7 @@ function handleAddRecipe(event) {
                     if (!data.ok) {
                         throw new Error(data.message);
                     }
-                    alert("Recipe added");
+                    alert("Blog added");
                     return [3 /*break*/, 5];
                 case 4:
                     error_7 = _a.sent();
@@ -397,54 +393,19 @@ function handleAddRecipe(event) {
         });
     });
 }
-// Function to render a recipe
-function renderRecipe(recipe, isEmailExist, isAdmin, fromWhereICome) {
-    return __awaiter(this, void 0, void 0, function () {
-        var recipeContainer, recipeElement, deleteButton;
-        var _this = this;
-        return __generator(this, function (_a) {
-            try {
-                if (!recipe)
-                    throw new Error("Recipe does not exist");
-                recipeContainer = document.querySelector("#recipeContainer");
-                if (!recipeContainer)
-                    throw new Error("recipeContainer root not found");
-                recipeElement = document.createElement('div');
-                recipeElement.innerHTML = "\n            <h2 class=\"recipeName\">" + recipe.recipeName + "</h2>\n            <img src=\"" + recipe.imageUrl + "\" alt=\"recipe image\" class=\"recipeImage\">\n            <div class=\"recipeIngredients\">" + recipe.recipeIngredients + "</div>\n            <div class=\"recipeInstructions\">" + recipe.recipeInstructions + "</div>\n            <div class=\"recipeCategory\">" + recipe.category + "</div>\n        \n        ";
-                if (isEmailExist || isAdmin) {
-                    deleteButton = document.createElement('button');
-                    deleteButton.className = 'deleteRecipe';
-                    deleteButton.textContent = 'Delete';
-                    deleteButton.onclick = function () { return __awaiter(_this, void 0, void 0, function () { return __generator(this, function (_a) {
-                        switch (_a.label) {
-                            case 0: return [4 /*yield*/, handleDeleteRecipe(recipe._id, fromWhereICome)];
-                            case 1: return [2 /*return*/, _a.sent()];
-                        }
-                    }); }); }; // Pass the recipe ID to the function
-                    recipeElement.appendChild(deleteButton);
-                }
-                recipeContainer.appendChild(recipeElement);
-            }
-            catch (error) {
-                console.error(error);
-            }
-            return [2 /*return*/];
-        });
-    });
-}
-function handleDeleteRecipe(recipeId, fromWhereICome) {
+function handleDeleteBlog(blogId, fromWhereICome) {
     return __awaiter(this, void 0, void 0, function () {
         var response, data, error_8;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
-                    return [4 /*yield*/, fetch("API/recipe/delete-recipe", {
+                    return [4 /*yield*/, fetch("API/blog/delete-blog", {
                             method: "DELETE",
                             headers: {
                                 "Content-Type": "application/json"
                             },
-                            body: JSON.stringify({ recipeId: recipeId })
+                            body: JSON.stringify({ blogId: blogId })
                         })];
                 case 1:
                     response = _a.sent();
@@ -454,12 +415,12 @@ function handleDeleteRecipe(recipeId, fromWhereICome) {
                     if (!data.ok) {
                         throw new Error(data.message);
                     }
-                    alert("Recipe deleted");
-                    if (fromWhereICome === "myRecipe") {
-                        renderMyRecipes();
+                    alert("Blog deleted");
+                    if (fromWhereICome === "myBlogs") {
+                        renderMyBlogs();
                     }
                     else {
-                        renderAllRecipes();
+                        renderAllBlogs();
                     }
                     return [3 /*break*/, 4];
                 case 3:
@@ -471,36 +432,36 @@ function handleDeleteRecipe(recipeId, fromWhereICome) {
         });
     });
 }
-// Function to render all recipes
-function renderAllRecipes() {
+function renderAllBlogs() {
     return __awaiter(this, void 0, void 0, function () {
-        var recipeListContainer, response, data, recipeList, user_1, error_9;
+        var user_1, response, data, blogList, blogContainer_1, error_9;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 4, , 5]);
-                    recipeListContainer = document.querySelector("#recipeContainer");
-                    if (!recipeListContainer)
-                        throw new Error("recipeContainer root not found");
-                    recipeListContainer.innerHTML = "";
-                    return [4 /*yield*/, fetch("API/recipe/get-all-recipes")];
-                case 1:
-                    response = _a.sent();
-                    return [4 /*yield*/, response.json()];
-                case 2:
-                    data = _a.sent();
-                    if (!data.ok) {
-                        throw new Error(data.message);
-                    }
-                    recipeList = data.recipeList;
                     return [4 /*yield*/, getCurrentUser()];
-                case 3:
+                case 1:
                     user_1 = _a.sent();
                     if (!user_1) {
                         throw new Error("User Not Found");
                     }
-                    recipeList.forEach(function (recipe) {
-                        renderRecipe(recipe, false, user_1.isAdmin, 'AllRecipes');
+                    return [4 /*yield*/, fetch("API/blog/get-all-blogs")];
+                case 2:
+                    response = _a.sent();
+                    return [4 /*yield*/, response.json()];
+                case 3:
+                    data = _a.sent();
+                    if (!data.ok) {
+                        throw new Error(data.message);
+                    }
+                    blogList = data.blogList;
+                    blogContainer_1 = document.querySelector("#blogContainer");
+                    if (!blogContainer_1)
+                        throw new Error("blogContainer root not found");
+                    blogContainer_1.innerHTML = '';
+                    blogList.forEach(function (blog) {
+                        var isUserBlog = blog.userEmail === user_1.email;
+                        renderBlogItem(blog, isUserBlog, user_1.isAdmin, 'AllBlogs', blog.userEmail, blogContainer_1);
                     });
                     return [3 /*break*/, 5];
                 case 4:
@@ -512,10 +473,9 @@ function renderAllRecipes() {
         });
     });
 }
-// Function to render user-specific recipes
-function renderMyRecipes() {
+function renderMyBlogs() {
     return __awaiter(this, void 0, void 0, function () {
-        var user_2, response, data, recipeList, recipeListContainer, error_10;
+        var user_2, response, data, blogList, blogContainer_2, error_10;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -526,7 +486,7 @@ function renderMyRecipes() {
                     if (!user_2 || !user_2.email) {
                         throw new Error("User email not found.");
                     }
-                    return [4 /*yield*/, fetch("API/recipe/get-My-recipes?userEmail=" + encodeURIComponent(user_2.email), {
+                    return [4 /*yield*/, fetch("API/blog/get-my-blogs?userEmail=" + encodeURIComponent(user_2.email), {
                             method: "GET",
                             headers: {
                                 "Content-Type": "application/json"
@@ -538,15 +498,17 @@ function renderMyRecipes() {
                 case 3:
                     data = _a.sent();
                     if (!data.ok) {
-                        throw new Error(data.message);
+                        alert("You currently do not have a blog.");
+                        return [2 /*return*/];
                     }
-                    recipeList = data.recipeList;
-                    recipeListContainer = document.querySelector("#recipeContainer");
-                    if (!recipeListContainer)
-                        throw new Error("recipeContainer root not found");
-                    recipeListContainer.innerHTML = "";
-                    recipeList.forEach(function (recipe) {
-                        renderRecipe(recipe, true, user_2.isAdmin, 'myRecipe');
+                    blogList = data.blogList;
+                    blogContainer_2 = document.querySelector("#blogContainer");
+                    if (!blogContainer_2)
+                        throw new Error("blogContainer root not found");
+                    blogContainer_2.innerHTML = '';
+                    blogList.forEach(function (blog) {
+                        var isUserBlog = true;
+                        renderBlogItem(blog, isUserBlog, user_2.isAdmin, 'myBlogs', user_2.email, blogContainer_2);
                     });
                     return [3 /*break*/, 5];
                 case 4:
@@ -558,4 +520,22 @@ function renderMyRecipes() {
         });
     });
 }
-// You can continue to define your other functions as needed.
+function renderBlogItem(blog, isUserBlog, isAdmin, fromWhereICome, userEmail, container) {
+    var _this = this;
+    var blogContainer = container;
+    var blogElement = document.createElement('div');
+    blogElement.innerHTML = "\n        <h2 class=\"blogTitle\">" + blog.title + "</h2>\n        <p class=\"blogDescription\">" + blog.description + "</p>\n        <p> Author: " + userEmail + "</p>\n    ";
+    if (isAdmin || isUserBlog) {
+        var deleteButton = document.createElement('button');
+        deleteButton.className = 'deleteBlog';
+        deleteButton.textContent = 'Delete';
+        deleteButton.onclick = function () { return __awaiter(_this, void 0, void 0, function () { return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, handleDeleteBlog(blog._id, fromWhereICome)];
+                case 1: return [2 /*return*/, _a.sent()];
+            }
+        }); }); };
+        blogElement.appendChild(deleteButton);
+    }
+    blogContainer.appendChild(blogElement);
+}
