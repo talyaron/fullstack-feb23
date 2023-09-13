@@ -1,7 +1,16 @@
 
-const email = getEmailFromQuery();
-console.log(email)
-renderAdminPage();
+let email: string;
+const currAdminLogged = hundleGetUserLogged().then(currAdminLogged => {
+    if (currAdminLogged === undefined) {
+        currAdminLogged = getEmailFromQuery();
+    }
+    else {
+        currAdminLogged = currAdminLogged;
+        debugger;
+        email = currAdminLogged.email;
+        renderAdminPage();
+    }
+});
 
 
 async function hundleVisitsList() {

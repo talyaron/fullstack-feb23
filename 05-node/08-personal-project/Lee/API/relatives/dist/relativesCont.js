@@ -42,19 +42,36 @@ var relativesModel_1 = require("./relativesModel");
 var relations_1 = require("../enums/relations");
 function getFamilyMembers(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var relativesDB, error_1;
+        var relativesDB, relativesWithUsers, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, relativesModel_1.RelativeModel.find({})];
+                    return [4 /*yield*/, relativesModel_1.RelativeModel.find({}).populate('user').exec()];
                 case 1:
                     relativesDB = _a.sent();
-                    res.send({ relatives: relativesDB });
+                    relativesWithUsers = relativesDB.map(function (relative) {
+                        var user = relative.user;
+                        return {
+                            id: relative._id,
+                            fullName: relative.fullName,
+                            birthDate: relative.birthDate,
+                            country: relative.country,
+                            relation: relative.relation,
+                            user: {
+                                _id: user._id,
+                                userName: user.userName,
+                                gender: user.gender,
+                                email: user.email
+                            }
+                        };
+                    });
+                    res.send({ relatives: relativesWithUsers });
                     return [3 /*break*/, 3];
                 case 2:
                     error_1 = _a.sent();
                     console.error(error_1);
+                    res.status(500).send({ error: error_1.message });
                     return [3 /*break*/, 3];
                 case 3: return [2 /*return*/];
             }

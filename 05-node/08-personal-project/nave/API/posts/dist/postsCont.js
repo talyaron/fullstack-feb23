@@ -48,7 +48,7 @@ function getPosts(req, res) {
                     return [4 /*yield*/, postsModel_1.PostModel.find({})];
                 case 1:
                     postsDB = _a.sent();
-                    res.send({ posts: postsDB });
+                    res.send({ ok: true, posts: postsDB });
                     return [3 /*break*/, 3];
                 case 2:
                     error_1 = _a.sent();
@@ -62,11 +62,11 @@ function getPosts(req, res) {
 exports.getPosts = getPosts;
 function addPost(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var _a, content, featuredImage, category, email, post, postDB, error_2;
+        var _a, content, featuredImage, category, email, post, postDB, userPosts_1, error_2;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
-                    _b.trys.push([0, 2, , 3]);
+                    _b.trys.push([0, 3, , 4]);
                     _a = req.body, content = _a.content, featuredImage = _a.featuredImage, category = _a.category, email = _a.email;
                     if (!content || !featuredImage || !category)
                         throw new Error("Please complete all fields");
@@ -76,21 +76,24 @@ function addPost(req, res) {
                     return [4 /*yield*/, post.save()];
                 case 1:
                     postDB = _b.sent();
-                    console.log(postDB);
-                    res.send({ ok: true });
-                    return [3 /*break*/, 3];
+                    console.log("Posts111:", postDB);
+                    return [4 /*yield*/, postsModel_1.PostModel.find({ email: email })];
                 case 2:
+                    userPosts_1 = _b.sent();
+                    console.log("Posts112:", postDB);
+                    res.send({ posts: userPosts_1 });
+                    return [3 /*break*/, 4];
+                case 3:
                     error_2 = _b.sent();
                     console.error(error_2);
                     res.status(500).send({ error: error_2.message });
-                    return [3 /*break*/, 3];
-                case 3: return [2 /*return*/];
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
             }
         });
     });
 }
 exports.addPost = addPost;
-//     posts.push(newPost);
 //     const user = users.find((user: any) => user.email === email);
 //     if (!user) throw new Error("user not found");
 //     userPosts.push(new UserPost(user, newPost));

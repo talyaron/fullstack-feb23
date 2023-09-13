@@ -29,7 +29,7 @@ exports.UserSchema = new mongoose_1.Schema({
     gender: { type: String, "enum": Object.values(Gender), required: false },
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
-    familyMembers: [{ type: mongoose_1.Schema.Types.ObjectId, ref: 'User' }]
+    familyMembers: [{ type: mongoose_1.Schema.Types.ObjectId, ref: 'users' }]
 });
 exports.UserModel = mongoose_1.model("users", exports.UserSchema);
 exports.users = [];

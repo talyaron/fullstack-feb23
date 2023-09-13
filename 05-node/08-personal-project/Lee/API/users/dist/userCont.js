@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.login = exports.registerUser = void 0;
+exports.getUserAndRelatives = exports.login = exports.registerUser = void 0;
 var userModel_1 = require("./userModel");
 //register user 
 exports.registerUser = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
@@ -96,3 +96,32 @@ exports.login = function (req, res) { return __awaiter(void 0, void 0, void 0, f
         }
     });
 }); };
+function getUserAndRelatives(email) {
+    return __awaiter(this, void 0, void 0, function () {
+        var user, error_2;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    return [4 /*yield*/, userModel_1.UserModel.findOne({ email: email })
+                            .populate({
+                            path: "familyMembers",
+                            model: userModel_1.UserModel
+                        })
+                            .exec()];
+                case 1:
+                    user = _a.sent();
+                    if (!user) {
+                        throw new Error("User not found with the provided email");
+                    }
+                    return [2 /*return*/, user];
+                case 2:
+                    error_2 = _a.sent();
+                    console.error(error_2);
+                    throw error_2;
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
+}
+exports.getUserAndRelatives = getUserAndRelatives;

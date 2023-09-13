@@ -1,5 +1,5 @@
 
-interface Post{
+interface UserPosts{
     featuredImage:string;
     content:string;
     category:string;
@@ -55,6 +55,7 @@ async function handeleAddPost(ev: any) {
             body: JSON.stringify(newPost)
         });
         
+        
 
         const { posts } = await response.json();
         console.log("Posts:", posts);
@@ -64,7 +65,7 @@ async function handeleAddPost(ev: any) {
         console.error(error);
     }
 }
-function renderPost(post: Post) {
+function renderPost(post: UserPosts) {
     try {
         const html = `<img src="${post.featuredImage}" alt="${post.content}">
         <p> = "${post.category}"`;
@@ -76,7 +77,7 @@ function renderPost(post: Post) {
 }
 
 // Function to render the post with a content
-function renderPostWithTitle(post: Post) {
+function renderPostWithTitle(post: UserPosts) {
     try {
         const html = `
         <div class="post_container">
@@ -109,7 +110,7 @@ function renderPostWithTitle(post: Post) {
 //         return "";
 //     }
 // }
-function renderPosts(posts: Post[], DIVElem: HTMLDivElement) {
+function renderPosts(posts: UserPosts[], DIVElem: HTMLDivElement) {
     try {
         if (!DIVElem) throw new Error("no div element");
         let html = "<ul>";

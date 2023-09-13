@@ -6,8 +6,6 @@ html {
     @media (max-width:900px) {
         background-image: url("https://img.freepik.com/premium-photo/tree-life_780593-3699.jpg?size=626&ext=jpg");
         background-repeat: repeat-y;
-     
-    
     }
 
 body {
@@ -15,7 +13,20 @@ body {
     text-align: center;
     margin: 3rem;
     font-family: "Quicksand", sans-serif;
-    font-size: 17px;
+    font-size: 18px;
+    font-weight: 800;
+
+    h1 {
+        margin: auto;
+        width: 400px;
+        background-color: rgba(250, 246, 243, 0.622);
+        
+    }
+  h2 {
+        margin: 0.3rem auto auto auto;
+        width: 550px;
+        background-color: rgba(250, 246, 243, 0.622);  
+    }
 
     form {
         display: flex;
@@ -27,7 +38,6 @@ body {
             margin-bottom: .5rem;
             height: 25px;
             border: 2px solid rgb(39, 84, 100);
-
         }
         
 
@@ -35,9 +45,6 @@ body {
             margin: .2rem;
             font-size: 18px;
         }
-
-      
-
     }
 }
 button {
@@ -49,7 +56,5 @@ button {
     &:hover {
         background-color: rgb(41, 93, 111);
     }
-
    }
-
 }

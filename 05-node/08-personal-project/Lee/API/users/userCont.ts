@@ -1,16 +1,12 @@
 import { User, UserModel, users } from "./userModel";
 
-
-
 //register user 
 export const registerUser = async (req: any, res: any) => {
   try {
     const { email, password } = req.body;
     if (!email || !password) throw new Error("Email or Password incorrect");
 
-
     const user = new UserModel({ email, password })
-
     const validationError = user.validateSync();
 
     if (validationError) {
@@ -50,3 +46,22 @@ export const login = async (req: any, res: any) => {
   }
 }
 
+export async function getUserAndRelatives(email: string) {
+  try {
+    const user = await UserModel.findOne({ email })
+    .populate({
+      path: "familyMembers",
+      model: UserModel,
+    })
+    .exec();
+
+    if (!user) {
+      throw new Error("User not found with the provided email");
+    }
+
+    return user;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+}
