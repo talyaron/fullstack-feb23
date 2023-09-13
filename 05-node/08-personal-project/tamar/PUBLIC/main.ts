@@ -100,6 +100,7 @@ async function hendlUpdateRecipe(ev: any) {
             body: JSON.stringify(updateRecipe)
         });
         const updateForm = document.querySelector(".recipe_update") as HTMLFormElement
+        //console.log("updateForm:", updateForm)
         if(!updateForm) //error handle
         updateForm.style.display = "none"
         //reset inputs
@@ -142,7 +143,7 @@ function renderRecipe(recipe: Recipe) {
         const html = `<div class="recipe">
                         <h3>${recipe.title}</h3>
                         <br>
-                        <p>${recipe.description}</p>
+                        <p class="recipe_description">${recipe.description}</p>
                         <img src='${recipe.urlImg}'>
                         <br>
                         <button onclick="hendelDeleteRecipe('${recipe._id}')">Delet Recipe</button>
@@ -189,12 +190,18 @@ async function GetUserRecipe(email: string) {
 }
 // TODO:
 
-async function renderUpdateForm(recpieId) {
+async function renderUpdateForm(recpieId: string) {
     try {
         const response = await fetch(`/API/Recipes/get-one-recipe?id=${recpieId}`); // get recpie by id
+        console.log(response)
+        
         const data = await response.json(); //recpie
-        const updateForm = document.querySelector(".recipe_update") as HTMLFormElement
+        console.log(data)
+
+        const updateForm = document.getElementsByClassName("recipe_update")
+        console.log("updateForm1:", updateForm)
         if(!updateForm)throw new Error("no html element");    
+        
         updateForm.style.display = "flex"
         updateForm.setAttribute("id", data.recipe._id)
         //see the form with the data

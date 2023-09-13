@@ -153,6 +153,7 @@ function hendlUpdateRecipe(ev) {
                 case 1:
                     response = _a.sent();
                     updateForm = document.querySelector(".recipe_update");
+                    //console.log("updateForm:", updateForm)
                     if (!updateForm) //error handle
                         updateForm.style.display = "none";
                     return [4 /*yield*/, response.json()];
@@ -209,7 +210,7 @@ function hendelDeleteRecipe(id) {
 //render
 function renderRecipe(recipe) {
     try {
-        var html = "<div class=\"recipe\">\n                        <h3>" + recipe.title + "</h3>\n                        <br>\n                        <p>" + recipe.description + "</p>\n                        <img src='" + recipe.urlImg + "'>\n                        <br>\n                        <button onclick=\"hendelDeleteRecipe('" + recipe._id + "')\">Delet Recipe</button>\n                        <button onclick=\"renderUpdateForm('" + recipe._id + "')\">Update Recipe</button>\n                      </div>";
+        var html = "<div class=\"recipe\">\n                        <h3>" + recipe.title + "</h3>\n                        <br>\n                        <p class=\"recipe_description\">" + recipe.description + "</p>\n                        <img src='" + recipe.urlImg + "'>\n                        <br>\n                        <button onclick=\"hendelDeleteRecipe('" + recipe._id + "')\">Delet Recipe</button>\n                        <button onclick=\"renderUpdateForm('" + recipe._id + "')\">Update Recipe</button>\n                      </div>";
         return html;
     }
     catch (error) {
@@ -271,10 +272,13 @@ function renderUpdateForm(recpieId) {
                     return [4 /*yield*/, fetch("/API/Recipes/get-one-recipe?id=" + recpieId)];
                 case 1:
                     response = _a.sent();
+                    console.log(response);
                     return [4 /*yield*/, response.json()];
                 case 2:
                     data = _a.sent();
-                    updateForm = document.querySelector(".recipe_update");
+                    console.log(data);
+                    updateForm = document.getElementsByClassName("recipe_update");
+                    console.log("updateForm1:", updateForm);
                     if (!updateForm)
                         throw new Error("no html element");
                     updateForm.style.display = "flex";

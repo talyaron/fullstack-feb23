@@ -15,7 +15,8 @@ export async function getOneRecipe(req:any, res:any) {
         if (!id) {
             throw new Error("id is required");
         }
-        const recipesDB = await RecipeModel.find({id}) //breing one recipe from DB
+        const recipesDB = await RecipeModel.findById(id) //breing one recipe from DB
+        console.log("one recipe in db:", recipesDB)
         res.send({ recipes:recipesDB})
     } catch (error) {
         console.error(error)

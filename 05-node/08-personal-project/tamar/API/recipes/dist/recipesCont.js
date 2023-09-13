@@ -72,10 +72,11 @@ function getOneRecipe(req, res) {
                     if (!id) {
                         throw new Error("id is required");
                     }
-                    return [4 /*yield*/, recipesModel_1.RecipeModel.find({ id: id })]; //breing one recipe from DB
+                    return [4 /*yield*/, recipesModel_1.RecipeModel.findById(id)]; //breing one recipe from DB
                 case 1:
                     recipesDB = _a.sent() //breing one recipe from DB
                     ;
+                    console.log("one recipe in db:", recipesDB);
                     res.send({ recipes: recipesDB });
                     return [3 /*break*/, 3];
                 case 2:

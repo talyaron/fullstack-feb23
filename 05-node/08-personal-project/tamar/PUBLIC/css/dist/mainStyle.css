@@ -28,7 +28,6 @@ img {
 }
 
 form {
-  display: flex;
   flex-direction: column;
   width: 300px;
   margin: 0 auto;
@@ -41,4 +40,17 @@ form input {
 }
 form button {
   padding: 20px;
+}
+
+.recipe_add {
+  display: flex;
+}
+
+.recipe_update {
+  display: flex;
+}
+
+.recipe_description {
+  text-align: justify;
+  font-family: "Times New Roman", Times, serif;
 }
