@@ -50,7 +50,7 @@ function renderUsersList(users: any[]) {
         const updateUserDiv = document.querySelector("#updateUserDiv") as HTMLDivElement;
         if (!updateUserDiv) throw new Error("updateUserDiv root not found");
 
-
+updateUserDiv.innerHTML = " "
         //create div for select user
         const selectUserDiv = document.createElement('div');
         selectUserDiv.id = 'selectUserDiv';
@@ -86,7 +86,7 @@ function renderUsersList(users: any[]) {
         const deleteButton = document.createElement('button');
         deleteButton.className = 'deleteUserBtn';
         deleteButton.textContent = 'Delete';
-        //deleteButton.onclick = async () => await handleDeleteUser();
+        deleteButton.onclick = async () => await handleDeleteUser();
 
         // Append select and buttons to updateUserDiv
         selectUserDiv.appendChild(selectUser);
@@ -375,3 +375,40 @@ function renderBlogItem(blog: any, isUserBlog: boolean, isAdmin: boolean, fromWh
 
     blogContainer.appendChild(blogElement);
 }
+
+
+//Delete users function
+async function handleDeleteUser() {
+    try {
+        // Get the selected user ID from the select element
+        const selectUser = document.querySelector('#selectUser') as HTMLSelectElement;
+        const selectedUserId = selectUser.value;
+
+        // Send a request to delete the user based on the userId
+        const response = await fetch(`API/user/delete-user?userId=${selectedUserId}`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
+
+        const responseData = await response.json();
+
+        if (!responseData.ok) {
+            throw new Error(responseData.message);
+        }
+
+        alert("User deleted successfully");
+        //reload admin area
+        // Close the update user form and potentially refresh the user list
+        const updateUserForm = document.querySelector("#selectUserDiv > button.deleteUserBtn") as HTMLFormElement;
+        updateUserForm.remove();
+        //  refresh the user list here
+        await renderAllUsers();
+
+        // You may want to refresh the user list here
+    } catch (error) {
+        console.error(error);
+    } 
+}
+

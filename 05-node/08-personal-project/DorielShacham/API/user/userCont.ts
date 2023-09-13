@@ -50,7 +50,10 @@ export const logIn = async (req: any, res: any) => {
     existingUser.isLoggedIn = true;
     await existingUser.save();
 
-    // Return a success response
+    res.cookie("user", existingUser._id, {
+      maxAge: 1000 * 1000,
+      httpOnly: true,
+    });
 
     res.send({ ok: true, existingUser });
   } catch (error: any) {
@@ -61,9 +64,9 @@ export const logIn = async (req: any, res: any) => {
 
 export const getLoggedInUser = async (req: any, res: any) => {
   try {
-    const logInUser = await UserModel.findOne({ isLoggedIn: true });
-    if (!logInUser) return res.send({ error: "User not found" });
-
+    // const logInUser = await UserModel.findOne({ isLoggedIn: true });
+    // if (!logInUser) return res.send({ error: "User not found" });
+    const logInUser = req.user;
     res.send({ ok: true, logInUser });
   } catch (error: any) {
     console.error(error);
@@ -148,8 +151,17 @@ export const updateUser = async (req: any, res: any) => {
 
 export const deleteUser = async (req: any, res: any) => {
   try {
+   
+    const userId = req.query.userId;
+    // Check if the provided userId exists
+    const existingUser = await UserModel.findByIdAndDelete(userId)
+
+   if (!existingUser )  return res.send({ error: "User not found" });
+
     res.send({ ok: true, message: "User deleted successfully" });
-  } catch (error: any) {
+    
+
+  } catch (error) {
     console.error(error);
     res.send({ error: error.message });
   }

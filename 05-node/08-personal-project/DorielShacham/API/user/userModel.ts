@@ -14,6 +14,5 @@ export const UserSchema = new Schema({
       }
   });
 
-
   //users collection in the DB
   export const UserModel = model("users", UserSchema)
