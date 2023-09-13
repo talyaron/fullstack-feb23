@@ -22,6 +22,14 @@ export class Post {
     this.category = category;
   }
 }
+export class UserPosts{
+  id:string
+  constructor(public user:User,public post:Post){
+      this.id = Math.random().toString(36).substr(2, 9);
+  }
+}   
+
+export const userPosts:UserPosts[] = [];
 
 export const posts: Post[] = [];
 export const PostSchema = new Schema({
@@ -36,4 +44,4 @@ export class UserPost {
   constructor(public user: User, public post: Post) {}
 }
 
-export const userPosts: UserPost[] = [];
+
