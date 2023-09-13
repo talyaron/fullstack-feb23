@@ -7,8 +7,8 @@ function goMyStore() {
 //   return urlParams.get("email");
 // }
 
-async function getUserFromCookie() {
-  const response = await fetch("/API/user/get-user-from-cookie");
+export async function getUserFromCookie() {
+  const response = await fetch("/API/users/get-user-from-cookie");
   const { userEmail } = await response.json();
   console.log(userEmail);
   return userEmail;
@@ -20,7 +20,7 @@ async function getFid() {
   const html = products
     .map((product) => {
       return `
-    <div class="fid__prodDiv id='${product._id}'">
+    <div class="fid__prodDiv" id='${product._id}'>
           <img
             src='${product.imgUrl}'
             alt="" />
@@ -44,12 +44,14 @@ async function getFid() {
 
 async function handleAddCart(event) {
   try {
-    const id = event.target.parentNode.id;
+    const prodId = event.target.parentNode.parentNode.id;
+    console.log(prodId);
+    if (!prodId) throw new Error("id not found");
     const userEmail = await getUserFromCookie();
     const postInit = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ id, userEmail }),
+      body: JSON.stringify({ prodId, userEmail }),
     };
 
     const response = await fetch("/API/products/add-product-to-cart", postInit);
@@ -61,15 +63,15 @@ async function handleAddCart(event) {
 
 async function handleAddWishList(event) {
   try {
-    const id = event.target;
-    console.dir(id);
-    if (!id) throw new Error("id not found");
+    const prodId = event.target.parentNode.parentNode.id;
+    console.log(prodId);
+    if (!prodId) throw new Error("id not found");
     const userEmail = await getUserFromCookie();
     if (!userEmail) throw new Error("User email not found");
     const postInit = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ id, userEmail }),
+      body: JSON.stringify({ prodId, userEmail }),
     };
     const response = await fetch(
       "/API/products/add-product-to-wishlist",

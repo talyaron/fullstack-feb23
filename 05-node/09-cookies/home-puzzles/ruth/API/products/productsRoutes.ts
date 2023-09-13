@@ -6,12 +6,14 @@ import {
   deleteProduct,
   getAllProducts,
   getProductByOwnerEmail,
+  getProductsToWishlist,
   updateProductInfo,
 } from "./productsCont";
 const router = express.Router();
 
 router
   .get("/get-products-by-owner-email", getProductByOwnerEmail)
+  .get("/get-Wishlist-by-email", getProductsToWishlist)
   .post("/create-product", createProduct)
   .post("/add-product-to-cart", addProductToCart)
   .post("/add-product-to-wishlist", addProductToWishList)

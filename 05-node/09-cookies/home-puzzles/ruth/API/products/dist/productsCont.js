@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.addProductToWishList = exports.addProductToCart = exports.getAllProducts = exports.deleteProduct = exports.updateProductInfo = exports.getProductByOwnerEmail = exports.createProduct = void 0;
+exports.getProductsToWishlist = exports.addProductToWishList = exports.addProductToCart = exports.getAllProducts = exports.deleteProduct = exports.updateProductInfo = exports.getProductByOwnerEmail = exports.createProduct = void 0;
 var console_1 = require("console");
 var productsModel_1 = require("./productsModel");
 var usersModel_1 = require("../users/usersModel");
@@ -147,11 +147,11 @@ function deleteProduct(req, res) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
                     id = req.body.id;
-                    return [4 /*yield*/, productsModel_1["default"].findOneAndDelete({ id: id })];
+                    return [4 /*yield*/, productsModel_1["default"].findOneAndDelete({ _id: id })];
                 case 1:
                     currentProduct = _a.sent();
                     if (!currentProduct) {
-                        return [2 /*return*/, res.status(404).json({ message: "מוצר לא נמצא" })];
+                        return [2 /*return*/, res.status(404).json({ message: "product not found!" })];
                     }
                     res.send({ ok: true });
                     console_1.log("delete success");
@@ -190,39 +190,91 @@ function getAllProducts(req, res) {
 exports.getAllProducts = getAllProducts;
 function addProductToCart(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var _a, id, userEmail, newCustomer;
+        var _a, prodId, userEmail, newCustomer, error_6;
         return __generator(this, function (_b) {
-            try {
-                _a = req.body, id = _a.id, userEmail = _a.userEmail;
-                newCustomer = productsModel_1["default"].findOneAndUpdate({ _id: id, customersCart: { $ne: userEmail } }, { $addToSet: { customersCart: userEmail } }, { "new": true });
-                if (!newCustomer)
-                    throw new Error("Customer not found or already add this product to his cart");
-                res.send({ ok: true });
+            switch (_b.label) {
+                case 0:
+                    _b.trys.push([0, 2, , 3]);
+                    _a = req.body, prodId = _a.prodId, userEmail = _a.userEmail;
+                    if (!userEmail || !prodId)
+                        throw new Error("product id or email not provided");
+                    return [4 /*yield*/, productsModel_1["default"].findOneAndUpdate({ _id: prodId, customersCart: { $ne: userEmail } }, { $addToSet: { customersCart: userEmail } }, { "new": true })];
+                case 1:
+                    newCustomer = _b.sent();
+                    if (!newCustomer)
+                        throw new Error("Customer not found or already add this product to his cart");
+                    res.send({ ok: true });
+                    console.log(prodId + " add to cart");
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_6 = _b.sent();
+                    console.error(error_6.massage);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
             }
-            catch (error) {
-                console.error(error.massage);
-            }
-            return [2 /*return*/];
         });
     });
 }
 exports.addProductToCart = addProductToCart;
 function addProductToWishList(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var _a, id, userEmail, newCustomer;
+        var _a, prodId, userEmail, newCustomer, error_7;
         return __generator(this, function (_b) {
-            try {
-                _a = req.body, id = _a.id, userEmail = _a.userEmail;
-                newCustomer = productsModel_1["default"].findOneAndUpdate({ _id: id, customersWishList: { $ne: userEmail } }, { $addToSet: { customersWishList: userEmail } }, { "new": true });
-                if (!newCustomer)
-                    throw new Error("Customer not found or already add this product to his wishList");
-                res.send({ ok: true });
+            switch (_b.label) {
+                case 0:
+                    _b.trys.push([0, 2, , 3]);
+                    _a = req.body, prodId = _a.prodId, userEmail = _a.userEmail;
+                    if (!userEmail || !prodId)
+                        throw new Error("product id or email not provided");
+                    return [4 /*yield*/, productsModel_1["default"].findOneAndUpdate({ _id: prodId, customersWishList: { $ne: userEmail } }, { $addToSet: { customersWishList: userEmail } }, { "new": true })];
+                case 1:
+                    newCustomer = _b.sent();
+                    if (!newCustomer) {
+                        throw new Error("Customer not found or already added this product to his wish list");
+                    }
+                    else if (newCustomer.customersWishList.includes(userEmail)) {
+                        throw new Error("Product already added to customer's wish list.");
+                    }
+                    res.send({ ok: true });
+                    console.log(prodId + " add to wishlist");
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_7 = _b.sent();
+                    console.error(error_7.massage);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
             }
-            catch (error) {
-                console.error(error.massage);
-            }
-            return [2 /*return*/];
         });
     });
 }
 exports.addProductToWishList = addProductToWishList;
+//-----------------------------wishlist--------------------------------
+function getProductsToWishlist(req, res) {
+    return __awaiter(this, void 0, void 0, function () {
+        var userEmail, productsDB, error_8;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    userEmail = req.cookies.user;
+                    if (!userEmail)
+                        throw new Error("user not found in cookie");
+                    return [4 /*yield*/, productsModel_1["default"].find({
+                            customersWishList: { $elemMatch: { $eq: userEmail } }
+                        }).exec()];
+                case 1:
+                    productsDB = _a.sent();
+                    if (!productsDB)
+                        throw new Error("products not found");
+                    res.send({ productsDB: productsDB });
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_8 = _a.sent();
+                    console.error(error_8.message);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
+}
+exports.getProductsToWishlist = getProductsToWishlist;

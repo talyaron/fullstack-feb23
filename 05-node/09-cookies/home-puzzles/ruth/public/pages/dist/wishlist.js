@@ -1,4 +1,3 @@
-"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -35,15 +34,6 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-exports.__esModule = true;
-exports.getUserFromCookie = void 0;
-function goMyStore() {
-    window.location.href = "./pages/myStore.html";
-}
-// function getUserEmailByQuery() {
-//   const urlParams = new URLSearchParams(window.location.search);
-//   return urlParams.get("email");
-// }
 function getUserFromCookie() {
     return __awaiter(this, void 0, void 0, function () {
         var response, userEmail;
@@ -61,56 +51,24 @@ function getUserFromCookie() {
         });
     });
 }
-exports.getUserFromCookie = getUserFromCookie;
-function getFid() {
+function checkLogin() {
     return __awaiter(this, void 0, void 0, function () {
-        var response, products, html, root;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0: return [4 /*yield*/, fetch("/API/products/get-all-products")];
-                case 1:
-                    response = _a.sent();
-                    return [4 /*yield*/, response.json()];
-                case 2:
-                    products = (_a.sent()).products;
-                    html = products
-                        .map(function (product) {
-                        return "\n    <div class=\"fid__prodDiv\" id='" + product._id + "'>\n          <img\n            src='" + product.imgUrl + "'\n            alt=\"\" />\n          <div class=\"fid__info\">\n            <h4>title: " + product.title + "</h4>\n            <p>price: " + product.price + "$</p>\n            <p>" + product.description + "</p>\n            <p>author:  " + product.email + "</p>\n          </div>\n          <div class=\"likeAndCart\">\n            <span onclick=\"handleAddWishList(event)\" class=\"material-symbols-outlined\"> heart_plus </span>\n            <span onclick=\"handleAddCart(event)\" class=\"material-symbols-outlined\"> shopping_bag </span>\n          </div>\n        </div>\n    ";
-                    })
-                        .join(" ");
-                    root = document.querySelector(".fid");
-                    root.innerHTML = html;
-                    return [2 /*return*/];
-            }
-        });
-    });
-}
-function handleAddCart(event) {
-    return __awaiter(this, void 0, void 0, function () {
-        var prodId, userEmail, postInit, response, ok, error_1;
+        var userEmail, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 4, , 5]);
-                    prodId = event.target.parentNode.parentNode.id;
-                    console.log(prodId);
-                    if (!prodId)
-                        throw new Error("id not found");
                     return [4 /*yield*/, getUserFromCookie()];
                 case 1:
                     userEmail = _a.sent();
-                    postInit = {
-                        method: "POST",
-                        headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify({ prodId: prodId, userEmail: userEmail })
-                    };
-                    return [4 /*yield*/, fetch("/API/products/add-product-to-cart", postInit)];
+                    console.log(userEmail);
+                    if (!(!userEmail || userEmail === null || userEmail === undefined)) return [3 /*break*/, 3];
+                    return [4 /*yield*/, alert("you need to login first")];
                 case 2:
-                    response = _a.sent();
-                    return [4 /*yield*/, response.json()];
-                case 3:
-                    ok = (_a.sent()).ok;
-                    return [3 /*break*/, 5];
+                    _a.sent();
+                    window.location.href = "./login.html";
+                    throw new Error("you need to login first");
+                case 3: return [3 /*break*/, 5];
                 case 4:
                     error_1 = _a.sent();
                     console.error(error_1);
@@ -120,39 +78,28 @@ function handleAddCart(event) {
         });
     });
 }
-function handleAddWishList(event) {
+function renderWishlist() {
     return __awaiter(this, void 0, void 0, function () {
-        var prodId, userEmail, postInit, response, ok, error_2;
+        var response, productsDB, error_2;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    _a.trys.push([0, 4, , 5]);
-                    prodId = event.target.parentNode.parentNode.id;
-                    console.log(prodId);
-                    if (!prodId)
-                        throw new Error("id not found");
-                    return [4 /*yield*/, getUserFromCookie()];
+                    _a.trys.push([0, 3, , 4]);
+                    return [4 /*yield*/, fetch("/API/products/get-Wishlist-by-email")];
                 case 1:
-                    userEmail = _a.sent();
-                    if (!userEmail)
-                        throw new Error("User email not found");
-                    postInit = {
-                        method: "POST",
-                        headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify({ prodId: prodId, userEmail: userEmail })
-                    };
-                    return [4 /*yield*/, fetch("/API/products/add-product-to-wishlist", postInit)];
-                case 2:
                     response = _a.sent();
                     return [4 /*yield*/, response.json()];
+                case 2:
+                    productsDB = (_a.sent()).productsDB;
+                    if (!productsDB)
+                        throw new Error("No products database found");
+                    console.log(productsDB);
+                    return [3 /*break*/, 4];
                 case 3:
-                    ok = (_a.sent()).ok;
-                    return [3 /*break*/, 5];
-                case 4:
                     error_2 = _a.sent();
                     console.error(error_2);
-                    return [3 /*break*/, 5];
-                case 5: return [2 /*return*/];
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
             }
         });
     });

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./dist/navStyle.css" />
+    <script src="./dist/wishlist.js" defer></script>
+    <title>social market - wishlist</title>
+  </head>
+  <body onload="checkLogin(), renderWishlist()">
+    <nav>
+      <div class="leftSide">
+        <a href="login.html">login</a>
+        <a href="login.html">logout</a>
+        <a href="register.html">register</a>
+      </div>
+      <div class="logo">
+        <img onclick="goHomePage()" src="../src/socialMarket.png" alt="" />
+      </div>
+      <div class="rightSide">
+        <a href="wishlist.html">wishlist</a>
+        <a href="cart.html">cart</a>
+        <a href="myStore.html">my Store</a>
+      </div>
+    </nav>
+  </body>
+</html>

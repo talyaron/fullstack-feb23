@@ -1,3 +1,4 @@
+import { userImgs } from "./../../../../../07-mongoDB/followup/shiranL/API/images/imgModel";
 import { log } from "console";
 import ProductModel from "./productsModel";
 import UserModel from "../users/usersModel";
@@ -63,9 +64,9 @@ export async function updateProductInfo(req, res) {
 export async function deleteProduct(req, res) {
   try {
     const { id } = req.body;
-    const currentProduct = await ProductModel.findOneAndDelete({ id: id });
+    const currentProduct = await ProductModel.findOneAndDelete({ _id: id });
     if (!currentProduct) {
-      return res.status(404).json({ message: "מוצר לא נמצא" });
+      return res.status(404).json({ message: "product not found!" });
     }
     res.send({ ok: true });
     log("delete success");
@@ -85,9 +86,11 @@ export async function getAllProducts(req, res) {
 
 export async function addProductToCart(req, res) {
   try {
-    const { id, userEmail } = req.body;
-    const newCustomer = ProductModel.findOneAndUpdate(
-      { _id: id, customersCart: { $ne: userEmail } },
+    const { prodId, userEmail } = req.body;
+    if (!userEmail || !prodId)
+      throw new Error("product id or email not provided");
+    const newCustomer = await ProductModel.findOneAndUpdate(
+      { _id: prodId, customersCart: { $ne: userEmail } },
       { $addToSet: { customersCart: userEmail } },
       { new: true },
     );
@@ -96,6 +99,7 @@ export async function addProductToCart(req, res) {
         "Customer not found or already add this product to his cart",
       );
     res.send({ ok: true });
+    console.log(`${prodId} add to cart`);
   } catch (error) {
     console.error(error.massage);
   }
@@ -103,18 +107,42 @@ export async function addProductToCart(req, res) {
 
 export async function addProductToWishList(req, res) {
   try {
-    const { id, userEmail } = req.body;
-    const newCustomer = ProductModel.findOneAndUpdate(
-      { _id: id, customersWishList: { $ne: userEmail } },
+    const { prodId, userEmail } = req.body;
+    if (!userEmail || !prodId)
+      throw new Error("product id or email not provided");
+
+    const newCustomer = await ProductModel.findOneAndUpdate(
+      { _id: prodId, customersWishList: { $ne: userEmail } },
       { $addToSet: { customersWishList: userEmail } },
       { new: true },
     );
-    if (!newCustomer)
+
+    if (!newCustomer) {
       throw new Error(
-        "Customer not found or already add this product to his wishList",
+        "Customer not found or already added this product to his wish list",
       );
+    } else if (newCustomer.customersWishList.includes(userEmail)) {
+      throw new Error("Product already added to customer's wish list.");
+    }
     res.send({ ok: true });
+    console.log(`${prodId} add to wishlist`);
   } catch (error) {
     console.error(error.massage);
+  }
+}
+
+//-----------------------------wishlist--------------------------------
+
+export async function getProductsToWishlist(req, res) {
+  try {
+    const userEmail = req.cookies.user;
+    if (!userEmail) throw new Error("user not found in cookie");
+    const productsDB = await ProductModel.find({
+      customersWishList: { $elemMatch: { $eq: userEmail } },
+    }).exec();
+    if (!productsDB) throw new Error("products not found");
+    res.send({ productsDB });
+  } catch (error) {
+    console.error(error.message);
   }
 }

@@ -68,7 +68,7 @@ async function handleAddProduct(event) {
 //   return urlParams.get("email");
 // }
 
-async function getUserFromCookie() {
+export async function getUserFromCookie() {
   const response = await fetch("/API/users/get-user-from-cookie");
   const data = await response.json();
   const { userEmail } = await data;
@@ -152,6 +152,7 @@ async function handleDeleteProdByOwner(event, id) {
     const deleteInit = {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id }),
     };
     const response = await fetch("/API/products/delete-product", deleteInit);
     const { ok } = await response.json();
