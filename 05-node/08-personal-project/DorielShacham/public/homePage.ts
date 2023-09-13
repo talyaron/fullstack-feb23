@@ -112,8 +112,8 @@ debugger
             throw new Error(data.message);
         }
 
-        const userDetails = data.user; // Assuming the API response contains user details
-
+        const userDetails = data.user; 
+        
         // Create a form for updating user details
         const updateUserForm = document.createElement('form');
         updateUserForm.id = 'updateUserForm';

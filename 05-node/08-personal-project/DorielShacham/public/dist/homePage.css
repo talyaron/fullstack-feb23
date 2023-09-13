@@ -93,3 +93,14 @@ input[type=submit] {
   font-weight: bold;
   color: black;
 }
+
+#logOutBtn {
+  border: 2px solid white;
+  padding: 10px;
+  margin: 10px;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  opacity: 0.8;
+}
