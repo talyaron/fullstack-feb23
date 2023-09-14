@@ -36,12 +36,13 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 function getEmailFromQuery() {
     var urlParams = new URLSearchParams(window.location.search);
-    return urlParams.get('physicianEmail');
+    console.log("in fet emial from query " + urlParams.get('email'));
+    return urlParams.get('email');
 }
 function getPhysicianEmailFromQuery() {
     try {
         var params = new URLSearchParams(window.location.search);
-        return params.get("physicianEmail");
+        return params.get("email");
     }
     catch (error) {
         console.error(error);
@@ -129,14 +130,14 @@ function getTimeFormated(date) {
         console.error(error);
     }
 }
-function getPhysicianDB(pEmail) {
+function getPhysicianDB(email) {
     return __awaiter(this, void 0, void 0, function () {
         var response, result, physician, error_3;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
-                    return [4 /*yield*/, fetch("/API/physician/get-physicians?email=" + pEmail)];
+                    return [4 /*yield*/, fetch("/API/physician/get-physicians?email=" + email)];
                 case 1:
                     response = _a.sent();
                     return [4 /*yield*/, response.json()];
@@ -204,7 +205,7 @@ function getPrescriptionsDB(pId) {
         });
     });
 }
-function getPatientDB(pId) {
+function getPatientDB(patientId) {
     return __awaiter(this, void 0, void 0, function () {
         var response, result, patient, error_6;
         return __generator(this, function (_a) {
@@ -212,12 +213,13 @@ function getPatientDB(pId) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
                     debugger;
-                    return [4 /*yield*/, fetch("/API/patient/get-patients?patientId=" + pId)];
+                    return [4 /*yield*/, fetch("/API/patient/get-patients?_id=" + patientId)];
                 case 1:
                     response = _a.sent();
                     return [4 /*yield*/, response.json()];
                 case 2:
                     result = _a.sent();
+                    debugger;
                     patient = result.patients;
                     if (!patient)
                         throw new Error("Patient not found");
@@ -238,7 +240,7 @@ function getPatientName(patientId) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
-                    return [4 /*yield*/, fetch("/API/patient/get-patients?patientId=" + patientId)];
+                    return [4 /*yield*/, fetch("/API/patient/get-patients?_id=" + patientId)];
                 case 1:
                     response = _a.sent();
                     return [4 /*yield*/, response.json()];
@@ -257,22 +259,22 @@ function getPatientName(patientId) {
         });
     });
 }
-function getPhysicianName(physicianId) {
+function getPhysicianName(physicianEmail) {
     return __awaiter(this, void 0, void 0, function () {
         var response, data, physician, physicianName, error_8;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
-                    debugger;
-                    return [4 /*yield*/, fetch("/API/physician/get-physicians?_id=" + physicianId)];
+                    return [4 /*yield*/, fetch("/API/physician/get-physicians?email=" + physicianEmail)];
                 case 1:
                     response = _a.sent();
                     return [4 /*yield*/, response.json()];
                 case 2:
                     data = _a.sent();
+                    debugger;
                     physician = data.physician;
-                    physicianName = "Dr. " + physician.firstName + " " + physician.lastName;
+                    physicianName = physician.firstName + " " + physician.lastName;
                     return [2 /*return*/, physicianName];
                 case 3:
                     error_8 = _a.sent();
@@ -285,20 +287,19 @@ function getPhysicianName(physicianId) {
 }
 function getMedicineName(medicineId) {
     return __awaiter(this, void 0, void 0, function () {
-        var response, data, medicine, medicineName, error_9;
+        var response, data, medicineName, error_9;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
-                    return [4 /*yield*/, fetch("/API/medicine/get-medicines")];
+                    return [4 /*yield*/, fetch("/API/medicine/get-medicines?_id=${medicineId}")];
                 case 1:
                     response = _a.sent();
                     return [4 /*yield*/, response.json()];
                 case 2:
                     data = _a.sent();
-                    medicine = data.medicines.find(function (medicine) { return medicine._id === medicineId; });
                     debugger;
-                    medicineName = medicine.name;
+                    medicineName = data.medicines.name;
                     return [2 /*return*/, medicineName];
                 case 3:
                     error_9 = _a.sent();
@@ -327,30 +328,6 @@ function getMedicinesDB() {
                 case 3:
                     error_10 = _a.sent();
                     console.error(error_10);
-                    return [3 /*break*/, 4];
-                case 4: return [2 /*return*/];
-            }
-        });
-    });
-}
-function getVisitsAdminDB() {
-    return __awaiter(this, void 0, void 0, function () {
-        var response, result, visits, error_11;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    _a.trys.push([0, 3, , 4]);
-                    return [4 /*yield*/, fetch("/API/visit/get-visits")];
-                case 1:
-                    response = _a.sent();
-                    return [4 /*yield*/, response.json()];
-                case 2:
-                    result = _a.sent();
-                    visits = result.visits;
-                    return [2 /*return*/, visits];
-                case 3:
-                    error_11 = _a.sent();
-                    console.error(error_11);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }

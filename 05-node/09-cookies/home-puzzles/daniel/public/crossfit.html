@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./dist/crossfit.js" defer></script>
+    <script src="./dist/register.js" defer></script>
+    <link rel="stylesheet" href="./dist/crossfit.css">
+    <title>Crossfit Page</title>
+</head>
+<body onload="handleGetUser()">
+    <div class="container">
+    <h1>Crossfit Shop</h1>
+    <div class="crossfit">
+        <img src="https://images.pexels.com/photos/4397841/pexels-photo-4397841.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
+        <h2>Let's choose what to order</h2>
+    <form onsubmit="handleAddItem(event)">
+        <input type="name" name="name" placeholder="Name item">
+        <input type="number" name="quantity" placeholder="quantity">
+        <input type="url" name="imgItem" placeholder="Image item">
+        <input type="number" name="price" placeholder="Price">
+        <button type="submit">Add</button>
+    </form>
+</div>
+    <button id="getItems" onclick="handleGetItem()">Get items</button>
+    <div id="rootitem"></div>
+</div>
+</body>
+</html>

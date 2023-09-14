@@ -1,4 +1,10 @@
 //login page    
+//goToSignUp    
+function goToSignUp() {
+    window.location.href = `SignUp.html`;
+}
+
+
 
 async function handleLogIn(event) {
     try {

@@ -30,9 +30,14 @@ export const UserSchema = new Schema({
   gender: { type: String, enum: Object.values(Gender), required: false },
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
-  familyMembers: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+  familyMembers: [{ type: Schema.Types.ObjectId, ref: 'users' }],
+  isAdmin: {type: Boolean,
+    default: false}
 });
 
+
+
 export const UserModel = model("users", UserSchema)
+
 
 export const users: User[] = [];

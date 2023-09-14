@@ -1,3 +1,4 @@
+const cookieParser = require('cookie-parser')
 import express from "express";
 import mongoose from 'mongoose';
 const app = express();
@@ -10,6 +11,9 @@ app.use(express.static("public"));
 
 //body
 app.use(express.json());
+
+app.use(cookieParser());
+
 
 mongoose.connect("mongodb+srv://leedee:Omer2021!@cluster0.pe6xuzr.mongodb.net/test").then (() => {
   console.info("MongoDB connected")
@@ -25,6 +29,13 @@ app.use("/API/users", userRouter)
 import relativesRoutes from "./API/relatives/relativesRoutes";
 app.use("/API/relatives", relativesRoutes);
 
+app.use((err, req, res, next) => {
+  console.error(err);
+  res.status(500).json({ error: 'Something went wrong.' });
+});
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
+
+

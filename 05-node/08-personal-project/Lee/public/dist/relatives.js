@@ -34,23 +34,23 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var RelationshipType;
-(function (RelationshipType) {
-    RelationshipType["choose"] = "Choose";
-    RelationshipType["mother"] = "Mother";
-    RelationshipType["father"] = "Father";
-    RelationshipType["brother"] = "Brother";
-    RelationshipType["sister"] = "Sister";
-    RelationshipType["sibling"] = "Sibling";
-    RelationshipType["granddaughter"] = "Granddaughter";
-    RelationshipType["grandson"] = "Grandson";
-    RelationshipType["uncle"] = "Uncle";
-    RelationshipType["aunt"] = "Aunt";
-    RelationshipType["cousin"] = "Cousin";
-    RelationshipType["niece"] = "Niece";
-    RelationshipType["nephew"] = "Nephew";
-    RelationshipType["other"] = "other";
-})(RelationshipType || (RelationshipType = {}));
+var RelationType;
+(function (RelationType) {
+    RelationType["choose"] = "Choose";
+    RelationType["mother"] = "Mother";
+    RelationType["father"] = "Father";
+    RelationType["brother"] = "Brother";
+    RelationType["sister"] = "Sister";
+    RelationType["sibling"] = "Sibling";
+    RelationType["granddaughter"] = "Granddaughter";
+    RelationType["grandson"] = "Grandson";
+    RelationType["uncle"] = "Uncle";
+    RelationType["aunt"] = "Aunt";
+    RelationType["cousin"] = "Cousin";
+    RelationType["niece"] = "Niece";
+    RelationType["nephew"] = "Nephew";
+    RelationType["other"] = "Other";
+})(RelationType || (RelationType = {}));
 // Function to get user's relatives from the server
 function getRelativesFromServer(email) {
     return __awaiter(this, void 0, void 0, function () {
@@ -59,7 +59,7 @@ function getRelativesFromServer(email) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
-                    return [4 /*yield*/, fetch("/API/relatives/get-user-relatives?email=" + email)];
+                    return [4 /*yield*/, fetch("/API/relatives/get-users-relatives?email=" + email)];
                 case 1:
                     response = _a.sent();
                     return [4 /*yield*/, response.json()];
@@ -104,7 +104,7 @@ function handleGetRelatives() {
 // Function to add a relative for a user
 function handleAddRelative(event) {
     return __awaiter(this, void 0, void 0, function () {
-        var email, fullName, birthDate, country, relationshipSelect, selectedRelationship, newRelative, response, relatives, error_3;
+        var email, fullName, birthDate, country, relationSelect, selectedRelation, newRelative, response, relatives, error_3;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -116,16 +116,16 @@ function handleAddRelative(event) {
                     fullName = event.target.elements.fullName.value;
                     birthDate = event.target.elements.birthDate.value;
                     country = event.target.elements.country.value;
-                    relationshipSelect = document.getElementById('relation');
-                    selectedRelationship = relationshipSelect.value;
-                    if (!fullName || !birthDate || !country || selectedRelationship === RelationshipType.choose) {
+                    relationSelect = document.getElementById('relation');
+                    selectedRelation = relationSelect.value;
+                    if (!fullName || !birthDate || !country || selectedRelation === RelationType.choose) {
                         throw new Error("Please complete all fields and select a valid relation");
                     }
                     newRelative = {
                         fullName: fullName,
                         birthDate: birthDate,
                         country: country,
-                        relationship: selectedRelationship,
+                        relation: selectedRelation,
                         userEmail: email
                     };
                     return [4 /*yield*/, fetch('/API/relatives/add-relative', {

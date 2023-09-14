@@ -1,0 +1,28 @@
+h1 {
+  text-align: center;
+  color: #7e7e8b;
+}
+
+.register {
+  position: relative;
+}
+.register img {
+  background: url("https://www.gymnazo.com/wp-content/uploads/2019/04/action-athlete-barbell-841130.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 65vw;
+  height: 75vh;
+  position: absolute;
+  left: 15%;
+}
+.register form {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  text-align: center;
+  top: 180px;
+  left: 45vw;
+}
+.register form input {
+  margin-bottom: 6px;
+}

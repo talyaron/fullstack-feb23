@@ -2,21 +2,21 @@ import { PatientModel } from "./patientModel";
 
 export async function getPatients(req: any, res: any) {
     try {
-        debugger;
-        const { physicianId, patientId } = req.query; // Extract the email query parameter
+        const { physicianId: physicianId, _id: patientId } = req.query;
+        console.log(physicianId, patientId);
         let patients;
         if (patientId) {
+            console.log('patientId')
             patients = await PatientModel.findOne({ _id: patientId });
         }
         else if (!physicianId) {
+            console.log('no physicianId')
             patients = await PatientModel.find({});
         }
         else {
-            // Fetch the physician with the specified email from the database using PhysicianModel
-            patients = await PatientModel.find({ physicianId });
-
+            patients = await PatientModel.find({ physicianId: physicianId });
+            console.log('physicianId')
         }
-        // Send the fetched physician data as a JSON response
         res.send({ patients });
     } catch (error) {
         console.error(error);
@@ -27,7 +27,7 @@ export async function getPatients(req: any, res: any) {
 export async function addPatient(req: any, res: any) {
     try {
         const { firstName, lastName, patientId, age, phoneNum, weight, height, smoking, address, physicianId } = req.body;
-        if (!firstName || !lastName || !patientId || !age || !phoneNum || !weight || !height || !smoking || !address || !physicianId) throw new Error("Please complete all fields");
+        if (!firstName || !lastName || !patientId || !age || !phoneNum || !weight || !height || !address || !physicianId) throw new Error("Please complete all fields");
         const patient = new PatientModel({ firstName, lastName, patientId, age, phoneNum, weight, height, smoking, address, physicianId });
         const patientDB = await patient.save();
         console.log(patientDB);

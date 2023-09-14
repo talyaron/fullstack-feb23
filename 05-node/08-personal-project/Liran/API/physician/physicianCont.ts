@@ -2,17 +2,19 @@ import { PhysicianModel } from "./physicianModel";
 
 export async function getPhysicians(req: any, res: any) {
     try {
-        const { email, _id } = req.query; // Extract the email query parameter
+        const { email: email, _id: _id } = req.query; // Extract the email query parameter
+        console.log(email, _id);
         let physician;
         if (_id) {
-            physician = await PhysicianModel.findOne({ _id });
+            physician = await PhysicianModel.findOne({ _id: _id });
+            console.log(`User id found  ${_id} : ${physician}`);
         }
         else if (!email) {
             physician = await PhysicianModel.find({});
         }
         // Fetch the physician with the specified email from the database using PhysicianModel
         else {
-            physician = await PhysicianModel.findOne({ email });
+            physician = await PhysicianModel.findOne({ email: email });
         }
         if (!physician) {
             return res.status(404).send({ error: 'Physician not found.' });
@@ -29,7 +31,7 @@ export async function getPhysicians(req: any, res: any) {
 export async function getPhysiciansLogin(req: any, res: any) {
     try {
         const { email, password } = req.query; // Extract the email query parameter
-        const physician = await PhysicianModel.findOne({ email:email, password:password });
+        const physician = await PhysicianModel.findOne({ email: email, password: password });
         if (physician === undefined) {
             return res.status(404).send({ error: 'Physician not found.' });
         }

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./dist/style.css">
+    <script src="./dist/PersonalArea.js" defer></script>
+</head>
+
+<body>
+    <div id="root"></div>
+    <form class="PersonalArea" onsubmit="getAppointment(event)">
+        <h2><select id="field">
+                <option value="אף אוזן גרון">אף אוזן גרון </option>
+                <option value="עור">עור </option>
+                <option value="שניים">שניים </option>
+                <option value="עניים">עניים</option>
+            </select> באיזה תחום תרצה לקבוע תור</h2>
+        <h2><select id="doctor">
+                <option value="ד'ר קרול צאושו">ד"ר קרול צאושו</option>
+                <option value="ד'ר טלי פרידמן">ד"ר טלי פרידמן</option>
+                <option value="ד'ר צבי סגל">ד"ר צבי סגל</option>
+                <option value="ד'ר יעל בועז">ד"ר יעל בועז</option>
+            </select> לאיזה רופא תרצה לקבוע תור</h2>
+        <h2><select id="date">
+                <option value="10/10/23">10/10/23 </option>
+                <option value="23/10/23">23/10/23 </option>
+                <option value="13/11/13">13/11/23 </option>
+                <option value="29/11/23">29/11/23 </option>
+            </select> לאיזה תאריך תרצה לקבוע תור</h2>
+
+        <div>
+            <button type="submit">קבע תור</button>
+        </div>
+    </form>
+    <div id="succeeded"></div>
+    <button class="succeeded" onclick="handleGetAppointments()"> הקלק כדי לראות התורים שלך</button>
+    <div id="appointments"></div>
+</body>
+
+</html>

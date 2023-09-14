@@ -7,6 +7,7 @@ function renderRelatives(relativesData, targetElement) {
     }
 
     const relativesList = document.createElement('ul');
+     relativesList.style.listStyle = 'none';
 
     relativesData.forEach(relative => {
         const relativeItem = document.createElement('li');
