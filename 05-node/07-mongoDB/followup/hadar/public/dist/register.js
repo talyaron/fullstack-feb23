@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 function handleRegister(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var user, response, _a, error, _user, error_1;
+        var user, response, _a, error, userDB, error_1;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
@@ -59,8 +59,8 @@ function handleRegister(ev) {
                     response = _b.sent();
                     return [4 /*yield*/, response.json()];
                 case 2:
-                    _a = _b.sent(), error = _a.error, _user = _a.user;
-                    console.log(user);
+                    _a = _b.sent(), error = _a.error, userDB = _a.userDB;
+                    console.log(userDB);
                     console.log(error);
                     if (error) {
                         throw new Error(error);
