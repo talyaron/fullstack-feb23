@@ -1,0 +1,36 @@
+h1 {
+    display: flex;
+    justify-content: center;
+    color: #442664;
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+    font-size: 5vw;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    margin: auto;
+    input {
+      display: block;
+      padding: 0.6rem;
+      border-radius: 5px;
+      width: 200px;
+      margin: auto;
+      margin-top: 10px;
+    }
+    button {
+      width: 90px;
+      padding: 10px;
+      margin: auto;
+      margin-top: 10px;
+      font-size: 10px;
+      font-weight: bolder;
+      color: #442664;
+      font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+        sans-serif;
+      background: rgb(203, 181, 213) 50%,;
+      border-radius: 15px;
+    }
+  }
+  

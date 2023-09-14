@@ -13,7 +13,7 @@ export async function getTasks(req: any, res: any) {
 export async function addTask(req: any, res: any) {
     try {
         const { title, description, email } = req.body;
-        console.log({ title, description, email })
+       
         if (!title || !description) throw new Error("Please complete all fields");
         if (!email) throw new Error("no email");
         //add task using mongoose

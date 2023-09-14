@@ -6,7 +6,7 @@ function getEmailFromQuery() {
 const email = getEmailFromQuery()
 console.log(email)
 
-function handleGetUserTasks() {
+function handleGetUserTasks(email: string) {
     getUserTasks(email)
 }
 
@@ -23,3 +23,15 @@ async function getUserTasks(email: string) {
 }
 
 getUserTasks(email)
+
+let selectedUserEmail = '';
+
+function handleUserSelection() {
+  const userSelect = document.querySelector("#userSelect");
+  selectedUserEmail = userSelect.value;
+  handleGetUserTasks(selectedUserEmail); 
+}
+
+
+
+

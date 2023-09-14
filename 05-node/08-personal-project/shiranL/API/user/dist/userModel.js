@@ -21,10 +21,11 @@ exports.UserSchema = new mongoose_1.Schema({
         type: Boolean,
         "default": false
     },
-    isLogOn: {
+    isLoggedIn: {
         type: Boolean,
         "default": false
     }
 });
+// Method to compare a plain text password with the hashed password in the database
 //users collection in the DB
 exports.UserModel = mongoose_1.model("users", exports.UserSchema);

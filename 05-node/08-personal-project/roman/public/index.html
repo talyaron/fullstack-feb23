@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./dist/index.js" defer></script>
+</head>
+<body>
+<div class="wrapper">
+    <div class="addUser">
+        <h2>Add User</h2>
+        <form onsubmit="handleAddUser(event)">
+                       <label for="username">UserName:</label>
+                       <input type="text" name="username" placeholder="Enter username"><br><br>
+                       <label for="email">Email: </label>
+                      <input type="email" name="email" placeholder="Enter Email" required autofocus><br>
+                        <input type="submit" value="add user">
+            
+        </form>
+        <button onclick="handleGetUsers(event)">GET USERS</button>
+    </div>
+    <div class="users">
+    </div>
+    <div class="userEdit"></div>
+</div>
+</body>
+</html>

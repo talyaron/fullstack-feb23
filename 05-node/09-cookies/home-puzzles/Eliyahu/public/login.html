@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./dist/login.js" defer></script>
+    <link rel="stylesheet" href="./dist/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Carter+One&family=Sedgwick+Ave+Display&display=swap"
+        rel="stylesheet">
+</head>
+
+<body dir="rtl">
+    <div class="loginForm">
+        <h1>כניסה</h1>
+        <form class="login" onsubmit="handleLogin(event)">
+            <input type="email" name="email" placeholder="אימייל" required>
+            <input type="password" name="password" placeholder="סיסמה" required>
+            <div>
+                <a class="back" href="./index.html">חזור</a>
+                <button type="submit">התחבר</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="img log">
+        <h2 class="art">הארץ הטובה</h2>
+        <h3 class="art">ברוך הבא לגלריה</h3>
+    </div>
+</body>
+
+</html>

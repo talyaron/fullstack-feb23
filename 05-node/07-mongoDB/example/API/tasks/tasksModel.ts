@@ -40,7 +40,7 @@ export const userTasks:UserTasks[] = [];
 export const TaskSchema = new Schema({
     title: String,
     description: String,
-    email: String,
+    email: String, //help us query all the user's tasks
     status: {
         type: String,
         enum: [TaskStatus],

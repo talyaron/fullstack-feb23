@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./dist/index.js" defer></script>
+    <link rel="stylesheet" href="./dist/style.css">
+
+</head>
+<body>
+    <div class="wrapper">
+    <h1>add image</h1>
+    <form onsubmit="handleAddImage(event)">
+        <input type="text" name="name" placeholder="Enter Image Name">
+        <input type="url" name="imgUrl" placeholder="Enter image URL">
+        <input type="submit" value="add image">
+    </form>
+    <button onclick="handleGetImages()">RENDER IMAGES</button>
+    <div id="images">
+     
+    </div>
+    <div class="popup">
+     
+    </div>
+</div>
+</body>
+</html>

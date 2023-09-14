@@ -68,7 +68,6 @@ function addTask(req, res) {
                 case 0:
                     _b.trys.push([0, 2, , 3]);
                     _a = req.body, title = _a.title, description = _a.description, email = _a.email;
-                    console.log({ title: title, description: description, email: email });
                     if (!title || !description)
                         throw new Error("Please complete all fields");
                     if (!email)

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script defer src="./dist/LogIn.js"></script>
+    <link rel="stylesheet" href="./dist/LogIn.css">
+    <title>Log In</title>
+</head>
+<body>
+    <div class="registration">
+        <button class="back-btn" onclick="goToSignUp()">Sign Up</button> 
+     </div>
+
+    <div class="wapper">
+
+      
+        <h1>Welcome to the Best Recipes You've Ever Seen</h1>
+       
+        <!-- not here yet? -->
+
+        <h2>Log In to Get Started</h2>
+        <form id="logInForm" onsubmit="handleLogIn(event)">
+            <input type="text" name="email" id="email" required placeholder="Email">
+            <input type="password" name="password" id="password" required placeholder="Password">
+            <button type="submit">Log In</button>
+        </form>
+
+    </div>
+ 
+ 
+</body>
+</html>

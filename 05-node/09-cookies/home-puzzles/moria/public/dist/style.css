@@ -1,0 +1,86 @@
+body.home {
+  font-family: sans-serif;
+  background-image: linear-gradient(#2d51d0, #acac3d);
+  overflow-x: none;
+}
+body.home header {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 50%;
+  margin: auto;
+  background-color: white;
+}
+body.home header ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+body.home header ul li {
+  list-style: none;
+}
+body.home header ul li a {
+  color: green;
+  margin: 0 5px;
+  text-decoration: none;
+  font-size: 20px;
+}
+body.home .main {
+  width: 100%;
+  height: 670px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+body.home .main .box {
+  background: white;
+  width: 120px;
+  height: 120px;
+  margin: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 25px;
+}
+body.home .main .logIn {
+  margin-left: 250px;
+  display: block;
+}
+body.home .main .logIn button {
+  background: green;
+  padding: 10px 15px;
+  margin: 5px;
+  font-size: 20px;
+}
+body.home .main .logIn button a {
+  text-decoration: none;
+  color: black;
+}
+
+body h1 {
+  text-align: center;
+}
+body form.PersonalArea {
+  width: 550px;
+}
+body button.succeeded {
+  display: flex;
+  flex-direction: column;
+  margin: 10px 450px;
+}
+body form {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  margin: 0 auto;
+}
+body form input {
+  display: block;
+  margin: 10px 0;
+  padding: 1rem;
+  border-radius: 5px;
+}
+body form button {
+  padding: 10px;
+}
