@@ -41,7 +41,7 @@ function getEmailFromQuery() {
     var urlParams = new URLSearchParams(window.location.search);
     return urlParams.get('email');
 }
-//hendel
+//handle
 function handelGetUserRecipes() {
     var email = getEmailFromQuery();
     console.log(email);
@@ -127,9 +127,56 @@ function hendelAddRecipe(ev) {
         });
     });
 }
+// TODO:
+function handleUpdateRecpie(ev) {
+    return __awaiter(this, void 0, void 0, function () {
+        var urlParams, email, recipeId, title, description, urlImg, updateRecipe, response, updateForm, recipes_2, error_3;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 3, , 4]);
+                    ev.preventDefault();
+                    urlParams = new URLSearchParams(window.location.search);
+                    email = urlParams.get('email');
+                    recipeId = ev.target.id;
+                    if (!recipeId) { } //error handle
+                    title = ev.target.titleUpdate.value;
+                    description = ev.target.descriptionUpdate.value;
+                    urlImg = ev.target.imgUrlUpdate.value;
+                    updateRecipe = { id: recipeId, title: title, description: description, urlImg: urlImg, email: email };
+                    console.log(updateRecipe);
+                    return [4 /*yield*/, fetch('/API/recipes/update-recipe', {
+                            method: 'PATCH',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(updateRecipe)
+                        })];
+                case 1:
+                    response = _a.sent();
+                    updateForm = document.querySelector(".recipe_update");
+                    //console.log("updateForm:", updateForm)
+                    if (!updateForm) //error handle
+                        updateForm.style.display = "none";
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    recipes_2 = (_a.sent()).recipes;
+                    console.log(recipes_2);
+                    renderRecipes(recipes_2, document.querySelector("#userRecipes"));
+                    document.querySelector("form").reset();
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_3 = _a.sent();
+                    console.error(error_3);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
+            }
+        });
+    });
+}
 function hendelDeleteRecipe(id) {
     return __awaiter(this, void 0, void 0, function () {
-        var email, response, recipes_2, error_3;
+        var email, response, recipes_3, error_4;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -150,27 +197,22 @@ function hendelDeleteRecipe(id) {
                     response = _a.sent();
                     return [4 /*yield*/, response.json()];
                 case 2:
-                    recipes_2 = (_a.sent()).recipes;
-                    console.log(recipes_2);
-                    renderRecipes(recipes_2, document.querySelector('#userRecipes'));
+                    recipes_3 = (_a.sent()).recipes;
+                    console.log(recipes_3);
+                    renderRecipes(recipes_3, document.querySelector('#userRecipes'));
                     return [3 /*break*/, 4];
                 case 3:
-                    error_3 = _a.sent();
+                    error_4 = _a.sent();
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }
         });
     });
 }
-function hendelUpdate(id) {
-    window.location.href = "/updateRecipe.html?recipeId=" + id; //query
-}
 //render
 function renderRecipe(recipe) {
     try {
-        if (!recipe)
-            throw new Error("error geting recipe");
-        var html = "<div class=\"recipe_div\">\n                        <h3>" + recipe.title + "</h3>\n                        <br>\n                        <p>" + recipe.description + "</p>\n                        <img src='" + recipe.urlImg + "'>\n                        <br>\n                        <button onclick=\"hendelDeleteRecipe('" + recipe._id + "')\">Delet Recipe</button>\n                        <button onclick=\"hendelUpdate('" + recipe._id + "')\">Update Recipe</button>\n                       </div>";
+        var html = "<div class=\"recipe\">\n                        <h3>" + recipe.title + "</h3>\n                        <br>\n                        <p class=\"recipe_description\">" + recipe.description + "</p>\n                        <img src='" + recipe.urlImg + "'>\n                        <br>\n                        <button onclick=\"hendelDeleteRecipe('" + recipe._id + "')\">Delet Recipe</button>\n                        <button onclick=\"renderUpdateForm('" + recipe._id + "')\">Update Recipe</button>\n                      </div>";
         return html;
     }
     catch (error) {
@@ -198,7 +240,7 @@ function renderRecipes(recipes, root) {
 //controllers
 function GetUserRecipe(email) {
     return __awaiter(this, void 0, void 0, function () {
-        var response, data, error_4;
+        var response, data, error_5;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -213,7 +255,46 @@ function GetUserRecipe(email) {
                     renderRecipes(data.recipes, document.querySelector("#userRecipes"));
                     return [3 /*break*/, 4];
                 case 3:
-                    error_4 = _a.sent();
+                    error_5 = _a.sent();
+                    console.error(error_5);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
+            }
+        });
+    });
+}
+// TODO:
+function renderUpdateForm(recpieId) {
+    return __awaiter(this, void 0, void 0, function () {
+        var response, data, updateForm, inputName, inputDescriptiom, inputImgUrl, error_6;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 3, , 4]);
+                    return [4 /*yield*/, fetch("/API/Recipes/get-one-recipe?id=" + recpieId)];
+                case 1:
+                    response = _a.sent();
+                    console.log(response);
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    data = _a.sent();
+                    console.log(data);
+                    updateForm = document.querySelector(".recipe_update");
+                    console.log("updateForm1:", updateForm);
+                    if (!updateForm)
+                        throw new Error("no html element");
+                    updateForm.style.display = "flex";
+                    updateForm.setAttribute("id", data.recipes._id);
+                    inputName = document.querySelector("#titleUpdate");
+                    inputDescriptiom = document.querySelector("#descriptionUpdate");
+                    inputImgUrl = document.querySelector("#imgUrlUpdate");
+                    inputName.value = data.recipes.title;
+                    inputDescriptiom.value = data.recipes.description;
+                    inputImgUrl.value = data.recipes.urlImg;
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_6 = _a.sent();
+                    console.error(error_6);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }

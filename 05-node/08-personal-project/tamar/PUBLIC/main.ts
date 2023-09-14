@@ -15,7 +15,7 @@ function getEmailFromQuery() {
     return urlParams.get('email');
 }
 
-//hendel
+//handle
 function handelGetUserRecipes() {
     const email = getEmailFromQuery();
     console.log(email)
@@ -79,6 +79,45 @@ async function hendelAddRecipe(ev: any) {
 
 }
 
+// TODO:
+async function handleUpdateRecpie(ev: any) {
+    try {
+        ev.preventDefault();
+        const urlParams = new URLSearchParams(window.location.search);
+        const email=urlParams.get('email');
+        const recipeId = ev.target.id
+        if (!recipeId) {} //error handle
+        //get the updated data
+        
+        const title = ev.target.titleUpdate.value
+        const description = ev.target.descriptionUpdate.value
+        
+        const urlImg = ev.target.imgUrlUpdate.value;
+        const updateRecipe = {id: recipeId, title, description, urlImg, email}
+        console.log(updateRecipe);
+        //send the updated recipe to the server/DB
+        const response = await fetch('/API/recipes/update-recipe', {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(updateRecipe)
+        });
+        const updateForm = document.querySelector(".recipe_update") as HTMLFormElement
+        //console.log("updateForm:", updateForm)
+        if(!updateForm) //error handle
+        updateForm.style.display = "none"
+        //reset inputs
+        const { recipes } = await response.json(); //and get the new recipes array from the server
+        console.log(recipes)
+
+        renderRecipes(recipes, document.querySelector("#userRecipes"))
+        document.querySelector("form").reset();
+    } catch (error) {
+        console.error(error)
+    }
+}
+
 async function hendelDeleteRecipe(id: string) {
     try {
         console.log(id)
@@ -102,25 +141,18 @@ async function hendelDeleteRecipe(id: string) {
     }
 }
 
-function hendelUpdate(id: string){
-    window.location.href = `/updateRecipe.html?recipeId=${id}`;  //query
-}
-
 //render
 function renderRecipe(recipe: Recipe) {
-    try {
-        if (!recipe) throw new Error("error geting recipe");
-        
-        const html =  `<div class="recipe_div">
+    try {        
+        const html = `<div class="recipe">
                         <h3>${recipe.title}</h3>
                         <br>
-                        <p>${recipe.description}</p>
+                        <p class="recipe_description">${recipe.description}</p>
                         <img src='${recipe.urlImg}'>
                         <br>
                         <button onclick="hendelDeleteRecipe('${recipe._id}')">Delet Recipe</button>
-                        <button onclick="hendelUpdate('${recipe._id}')">Update Recipe</button>
-                       </div>`
-                     
+                        <button onclick="renderUpdateForm('${recipe._id}')">Update Recipe</button>
+                      </div>`
         return html;
     } catch (error) {
         console.error(error);
@@ -156,7 +188,35 @@ async function GetUserRecipe(email: string) {
         console.log("data:", data)
         renderRecipes(data.recipes, document.querySelector("#userRecipes"))
     } catch (error) {
-
+        console.error(error)
     }
 
+}
+// TODO:
+
+async function renderUpdateForm(recpieId: string) {
+    try {
+        const response = await fetch(`/API/Recipes/get-one-recipe?id=${recpieId}`); // get recpie by id
+        console.log(response)
+        
+        const data = await response.json(); //recpies
+        console.log(data)
+
+        const updateForm = document.querySelector(".recipe_update") as HTMLFormElement
+        console.log("updateForm1:", updateForm)
+        if(!updateForm)throw new Error("no html element");    
+        
+        updateForm.style.display = "flex"
+        updateForm.setAttribute("id", data.recipes._id)
+        //see the form with the data
+        const inputName = document.querySelector("#titleUpdate") as HTMLInputElement;
+        const inputDescriptiom = document.querySelector("#descriptionUpdate") as HTMLInputElement;
+        const inputImgUrl = document.querySelector("#imgUrlUpdate") as HTMLInputElement;        
+        inputName.value = data.recipes.title 
+        inputDescriptiom.value = data.recipes.description 
+        inputImgUrl.value = data.recipes.urlImg
+
+    } catch (error) {
+        console.error(error)
+    }
 }

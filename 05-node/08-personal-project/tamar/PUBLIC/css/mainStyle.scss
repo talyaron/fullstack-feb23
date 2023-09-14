@@ -17,10 +17,6 @@ h2{
     color: rgb(212, 26, 44);
 }
 
-p{
-
-}
-
 img {
     height: 100px;
 }
@@ -32,7 +28,6 @@ img {
 }
 
 form{
-    display: flex;
     flex-direction: column;
     width: 300px;
     margin: 0 auto;
@@ -48,6 +43,15 @@ form{
     }
 }
 
-#recipe_div{
-    display: block;
+.recipe_add{
+    display: flex;
+}
+
+.recipe_update{
+    display: flex;
+}
+
+.recipe_description{
+    text-align: justify;
+    font-family: 'Times New Roman', Times, serif;
 }
