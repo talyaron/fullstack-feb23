@@ -19,7 +19,7 @@ app.use("/API/users", usersRoutes_1.default);
 const productsRoutes_1 = __importDefault(require("./API/products/productsRoutes"));
 app.use("/API/products", productsRoutes_1.default);
 mongoose_1.default
-    .connect("mongodb+srv://ruturAdmin:XZNzKBtxePpcnvMf@cluster0.k1el7dn.mongodb.net/")
+    .connect("mongodb+srv://ruturAdmin:LV2P9k2GChkceqJ@cluster0.k1el7dn.mongodb.net/")
     .then(() => console.log("mongoose connected!"))
     .catch((err) => {
     console.error(err);

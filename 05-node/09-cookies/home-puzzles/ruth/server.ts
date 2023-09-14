@@ -22,7 +22,7 @@ app.use("/API/products", productRouter);
 
 mongoose
   .connect(
-    "mongodb+srv://ruturAdmin:XZNzKBtxePpcnvMf@cluster0.k1el7dn.mongodb.net/",
+    "mongodb+srv://ruturAdmin:LV2P9k2GChkceqJ@cluster0.k1el7dn.mongodb.net/",
   )
   .then(() => console.log("mongoose connected!"))
   .catch((err) => {

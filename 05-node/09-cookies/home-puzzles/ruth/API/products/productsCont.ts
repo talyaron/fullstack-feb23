@@ -1,19 +1,19 @@
-import { userImgs } from "./../../../../../07-mongoDB/followup/shiranL/API/images/imgModel";
 import { log } from "console";
 import ProductModel from "./productsModel";
 import UserModel from "../users/usersModel";
 
 export async function createProduct(req, res) {
   try {
-    const { newProd, userEmail } = req.body;
-    const findOwner = await UserModel.findOne({ email: userEmail });
-    if (!findOwner) throw new Error("Couldn't find owner");
+    const { newProd } = req.body;
+    const owner = req.user;
+    if (!owner) throw new Error("you need to login first");
+
     const product = new ProductModel({
       imgUrl: newProd.imgUrl,
       price: newProd.price,
       title: newProd.title,
       description: newProd.description,
-      email: userEmail,
+      email: owner.email,
       customersWishList: [],
       customersCart: [],
     });
@@ -27,14 +27,20 @@ export async function createProduct(req, res) {
 
 export async function getProductByOwnerEmail(req, res) {
   try {
-    const userId = req.cookies.user;
-    const userDB = await UserModel.findById(userId);
+    const userDB = req.user;
     const userEmail = userDB.email;
 
     if (!userEmail) throw new Error("email not found");
+
+    if (userDB.isAdmin) {
+      const allProducts = await ProductModel.find({});
+      res.send({ allProducts });
+      return;
+    }
+
     const usersProducts = await ProductModel.find({ email: userEmail });
-    console.log(usersProducts);
     if (!usersProducts) throw new Error("user's products not found");
+
     res.send({ usersProducts });
   } catch (error) {
     console.error(error);

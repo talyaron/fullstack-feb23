@@ -39,40 +39,37 @@ exports.__esModule = true;
 exports.getProductsToWishlist = exports.addProductToWishList = exports.addProductToCart = exports.getAllProducts = exports.deleteProduct = exports.updateProductInfo = exports.getProductByOwnerEmail = exports.createProduct = void 0;
 var console_1 = require("console");
 var productsModel_1 = require("./productsModel");
-var usersModel_1 = require("../users/usersModel");
 function createProduct(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var _a, newProd, userEmail, findOwner, product, productDB, error_1;
-        return __generator(this, function (_b) {
-            switch (_b.label) {
+        var newProd, owner, product, productDB, error_1;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
                 case 0:
-                    _b.trys.push([0, 3, , 4]);
-                    _a = req.body, newProd = _a.newProd, userEmail = _a.userEmail;
-                    return [4 /*yield*/, usersModel_1["default"].findOne({ email: userEmail })];
-                case 1:
-                    findOwner = _b.sent();
-                    if (!findOwner)
-                        throw new Error("Couldn't find owner");
+                    _a.trys.push([0, 2, , 3]);
+                    newProd = req.body.newProd;
+                    owner = req.user;
+                    if (!owner)
+                        throw new Error("you need to login first");
                     product = new productsModel_1["default"]({
                         imgUrl: newProd.imgUrl,
                         price: newProd.price,
                         title: newProd.title,
                         description: newProd.description,
-                        email: userEmail,
+                        email: owner.email,
                         customersWishList: [],
                         customersCart: []
                     });
                     return [4 /*yield*/, product.save()];
-                case 2:
-                    productDB = _b.sent();
+                case 1:
+                    productDB = _a.sent();
                     console.log(productDB);
                     res.send({ ok: true, newProduct: productDB });
-                    return [3 /*break*/, 4];
-                case 3:
-                    error_1 = _b.sent();
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_1 = _a.sent();
                     console.error(error_1);
-                    return [3 /*break*/, 4];
-                case 4: return [2 /*return*/];
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
             }
         });
     });
@@ -80,31 +77,33 @@ function createProduct(req, res) {
 exports.createProduct = createProduct;
 function getProductByOwnerEmail(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var userId, userDB, userEmail, usersProducts, error_2;
+        var userDB, userEmail, allProducts, usersProducts, error_2;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    _a.trys.push([0, 3, , 4]);
-                    userId = req.cookies.user;
-                    return [4 /*yield*/, usersModel_1["default"].findById(userId)];
-                case 1:
-                    userDB = _a.sent();
+                    _a.trys.push([0, 4, , 5]);
+                    userDB = req.user;
                     userEmail = userDB.email;
                     if (!userEmail)
                         throw new Error("email not found");
-                    return [4 /*yield*/, productsModel_1["default"].find({ email: userEmail })];
-                case 2:
+                    if (!userDB.isAdmin) return [3 /*break*/, 2];
+                    return [4 /*yield*/, productsModel_1["default"].find({})];
+                case 1:
+                    allProducts = _a.sent();
+                    res.send({ allProducts: allProducts });
+                    return [2 /*return*/];
+                case 2: return [4 /*yield*/, productsModel_1["default"].find({ email: userEmail })];
+                case 3:
                     usersProducts = _a.sent();
-                    console.log(usersProducts);
                     if (!usersProducts)
                         throw new Error("user's products not found");
                     res.send({ usersProducts: usersProducts });
-                    return [3 /*break*/, 4];
-                case 3:
+                    return [3 /*break*/, 5];
+                case 4:
                     error_2 = _a.sent();
                     console.error(error_2);
-                    return [3 /*break*/, 4];
-                case 4: return [2 /*return*/];
+                    return [3 /*break*/, 5];
+                case 5: return [2 /*return*/];
             }
         });
     });

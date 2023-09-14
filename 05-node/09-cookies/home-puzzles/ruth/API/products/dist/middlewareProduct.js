@@ -36,38 +36,65 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.UserSchema = void 0;
-var mongoose_1 = require("mongoose");
-var Schema = mongoose_1["default"].Schema, model = mongoose_1["default"].model;
-exports.UserSchema = new Schema({
-    email: {
-        type: String,
-        required: true,
-        unique: true
-    },
-    password: String,
-    isAdmin: { type: Boolean, "default": false }
-});
-var UserModel = model("users", exports.UserSchema);
-exports["default"] = UserModel;
-function createAdmin() {
+exports.isAdmin = exports.getUser = void 0;
+var usersModel_1 = require("../users/usersModel");
+function getUser(req, res, next) {
     return __awaiter(this, void 0, void 0, function () {
-        var admin, adminDB;
+        var userId, userDB, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    admin = new UserModel({
-                        email: "manager@manager.com",
-                        password: "1234567890",
-                        isAdmin: true
-                    });
-                    return [4 /*yield*/, admin.save()];
+                    _a.trys.push([0, 2, , 3]);
+                    userId = req.cookies.user;
+                    if (!userId)
+                        throw new Error("user id not found in cookie");
+                    return [4 /*yield*/, usersModel_1["default"].findById(userId)];
                 case 1:
-                    adminDB = _a.sent();
-                    console.log("admin successfully created");
-                    return [2 /*return*/];
+                    userDB = _a.sent();
+                    if (!userDB) {
+                        req.user = null;
+                    }
+                    else {
+                        req.user = userDB;
+                    }
+                    next();
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_1 = _a.sent();
+                    console.error(error_1);
+                    res.status(500).send({ error: error_1.message });
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
             }
         });
     });
 }
-// createAdmin();
+exports.getUser = getUser;
+function isAdmin(req, res, next) {
+    return __awaiter(this, void 0, void 0, function () {
+        var userId, userDB, error_2;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    userId = req.cookies.user;
+                    if (!userId)
+                        throw new Error("user id not found in cookie");
+                    return [4 /*yield*/, usersModel_1["default"].findById(userId)];
+                case 1:
+                    userDB = _a.sent();
+                    if (!userDB.isAdmin) {
+                        res.status(401).send("unauthorized error");
+                    }
+                    next();
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_2 = _a.sent();
+                    console.error(error_2);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
+}
+exports.isAdmin = isAdmin;
