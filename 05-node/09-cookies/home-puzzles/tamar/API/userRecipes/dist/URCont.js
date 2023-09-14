@@ -46,6 +46,8 @@ function getUserRecipes(req, res) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
                     userID = req.cookie.user;
+                    console.log("userID after login:", userID);
+                    debugger;
                     if (!userID) {
                         throw new Error("userID is required");
                     }

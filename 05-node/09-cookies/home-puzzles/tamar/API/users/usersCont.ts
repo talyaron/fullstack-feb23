@@ -17,8 +17,9 @@ export const registerUser = async (req: any, res: any) => {
 }
 
 //login
-export const loginUser = async (req: any, res: any) => {
+export async function loginUser(req: any, res: any) {
     try {
+        debugger
         const { userName, email, password } = req.body //get data from claient
         if (!userName || !email || !password) throw new Error("Please complete all fields");
         //check if user exist in DB
@@ -27,7 +28,7 @@ export const loginUser = async (req: any, res: any) => {
         console.log("userdb:",userDB)
         //create cookie
         res.cookie("user", userDB._id, {maxAge: 1000*1000, httpOnly: true});
-        res.send({ ok: true, email: userDB.email });
+        res.send({ ok: true });
     } catch (error) {
         console.error(error)
         res.send({ error: error.massage })
@@ -45,7 +46,7 @@ export async function getUser(req: any, res: any) {
         const userDB = await UserModel.findById(userId);
         if(!userDB) throw new Error("user not in DB");
         
-        res.send({ users: userDB });
+        res.send({ok: true, users: userDB });
 
     } catch (error) {
         console.error(error);

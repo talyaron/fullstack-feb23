@@ -18,8 +18,15 @@ export class User {
 
 export const UserSchema = new Schema({
     userName: String,
-    email: String,
-    password: String,
+    email: {
+        type: String,
+        require: true,
+        unique: true,
+    },
+    password: {
+        type: String,
+        require: true,
+    }
 });
 
 //"users" will be the name of this collection in the DB

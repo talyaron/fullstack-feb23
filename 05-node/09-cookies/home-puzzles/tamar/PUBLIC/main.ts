@@ -10,6 +10,18 @@ interface Recipe {
 const recipes: Recipe[] = [];
 
 //handle
+async function handleGetUser() {
+    try {
+        //ask server to get the user id
+        const response = await fetch('/API/users/get-user');
+        const data = await response.json();
+        console.log(data)
+
+    } catch (error) {
+        console.error(error)
+    }
+}
+
 function handelGetUserRecipes() {
     GetUserRecipe()
 }
@@ -40,11 +52,7 @@ async function hendelAddRecipe(ev: any) {
     try {
         ev.preventDefault();
         console.dir(ev)
-        //identify the user by email 
-        // const email = getEmailFromQuery();
-        // if (!email) throw new Error("no email");
-        // console.log(email)
-        //create the new recipe of the user
+        //create the new recipe of the user from the form
         const title = ev.target.title.value
         console.log(title)
         const description = ev.target.description.value
@@ -72,50 +80,47 @@ async function hendelAddRecipe(ev: any) {
 }
 
 
-async function handleUpdateRecpie(ev: any) {
-    try {
-        ev.preventDefault();
-        const urlParams = new URLSearchParams(window.location.search);
-        const email=urlParams.get('email');
-        const recipeId = ev.target.id
-        if (!recipeId) {} //error handle
-        //get the updated data
+// async function handleUpdateRecpie(ev: any) {
+//     try {
+//         ev.preventDefault();
+//         const urlParams = new URLSearchParams(window.location.search);
+//         const email=urlParams.get('email');
+//         const recipeId = ev.target.id
+//         if (!recipeId) {} //error handle
+//         //get the updated data
         
-        const title = ev.target.titleUpdate.value
-        const description = ev.target.descriptionUpdate.value
+//         const title = ev.target.titleUpdate.value
+//         const description = ev.target.descriptionUpdate.value
         
-        const urlImg = ev.target.imgUrlUpdate.value;
-        const updateRecipe = {id: recipeId, title, description, urlImg, email}
-        console.log(updateRecipe);
-        //send the updated recipe to the server/DB
-        const response = await fetch('/API/recipes/update-recipe', {
-            method: 'PATCH',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(updateRecipe)
-        });
-        const updateForm = document.querySelector(".recipe_update") as HTMLFormElement
-        //console.log("updateForm:", updateForm)
-        if(!updateForm) //error handle
-        updateForm.style.display = "none"
-        //reset inputs
-        const { recipes } = await response.json(); //and get the new recipes array from the server
-        console.log(recipes)
+//         const urlImg = ev.target.imgUrlUpdate.value;
+//         const updateRecipe = {id: recipeId, title, description, urlImg, email}
+//         console.log(updateRecipe);
+//         //send the updated recipe to the server/DB
+//         const response = await fetch('/API/recipes/update-recipe', {
+//             method: 'PATCH',
+//             headers: {
+//                 'Content-Type': 'application/json'
+//             },
+//             body: JSON.stringify(updateRecipe)
+//         });
+//         const updateForm = document.querySelector(".recipe_update") as HTMLFormElement
+//         //console.log("updateForm:", updateForm)
+//         if(!updateForm) //error handle
+//         updateForm.style.display = "none"
+//         //reset inputs
+//         const { recipes } = await response.json(); //and get the new recipes array from the server
+//         console.log(recipes)
 
-        renderRecipes(recipes, document.querySelector("#userRecipes"))
-        document.querySelector("form").reset();
-    } catch (error) {
-        console.error(error)
-    }
-}
+//         renderRecipes(recipes, document.querySelector("#userRecipes"))
+//         document.querySelector("form").reset();
+//     } catch (error) {
+//         console.error(error)
+//     }
+// }
 
 async function hendelDeleteRecipe(id: string) {
     try {
-        console.log(id)
-        // const email = getEmailFromQuery();
-        // if (!email) throw new Error("no email");
-        // console.log(email)
+        console.log(id)  //the recipe id
         const response = await fetch('/API/recipes/delete-recipe'
             , {
                 method: 'DELETE',

@@ -1,4 +1,4 @@
-async function handleLogin(ev){
+async function handleLogin(ev) {
     try {
         ev.preventDefault();
         //get user info from the form 
@@ -8,7 +8,7 @@ async function handleLogin(ev){
             password: ev.target.password.value
         };
         console.log(user)
-        if(!user.email || !user.userName || !user.password) throw new Error("Please complete all fields");
+        if (!user.email || !user.userName || !user.password) throw new Error("Please complete all fields");
 
         //send data to server/DB
         const response = await fetch("/API/users/login", {
@@ -18,13 +18,15 @@ async function handleLogin(ev){
             },
             body: JSON.stringify(user)
         });
-        const {error, email} = await response.json(); //get response (data) from server for the action
-        console.log("email:",email);
-        if (error) throw new Error(error);
-   
-        //if all ok, redirect to main page of the user by his email
-        window.location.href = `/main.html`;  //query
-        
+        const answer = await response.json(); //get response (data) from server for the action
+        if (!answer.ok) { throw new Error(answer.massage) }
+        else {
+            //if all ok, redirect to main page of the user by his email
+            window.location.href = `/main.html`; 
+        }
+
+
+
     } catch (error) {
         console.error(error)
     }

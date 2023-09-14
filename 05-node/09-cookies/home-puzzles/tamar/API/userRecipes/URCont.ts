@@ -2,8 +2,10 @@ import { RecipeModel } from "../recipes/recipesModel";
 
 export async function getUserRecipes(req:any, res:any) {
     try {
-        //get user id from coolie
+        //get user id from cookie
         const userID = req.cookie.user; //speshel identefayer
+        console.log("userID after login:", userID)
+        debugger
         if (!userID) {
             throw new Error("userID is required");
         }
