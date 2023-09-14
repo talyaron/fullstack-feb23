@@ -6,6 +6,13 @@ export const registerUser = async (req: any, res: any) => {
     const { email, password } = req.body;
     if (!email || !password) throw new Error("Email or Password incorrect");
 
+     // Check if a user with the same email already exists
+     const existingUser = await UserModel.findOne({ email }).exec();
+     if (existingUser) {
+       return res.status(400).json({ error: "User with this email already exists." });
+     }
+
+    // If no user with the same email exists, create a new user
     const user = new UserModel({ email, password })
     const validationError = user.validateSync();
 
@@ -51,11 +58,11 @@ export const login = async (req: any, res: any) => {
 export async function getUserAndRelatives(email: string) {
   try {
     const user = await UserModel.findOne({ email })
-    .populate({
-      path: "familyMembers",
-      model: UserModel,
-    })
-    .exec();
+      .populate({
+        path: "familyMembers",
+        model: UserModel,
+      })
+      .exec();
 
     if (!user) {
       throw new Error("User not found with the provided email");
