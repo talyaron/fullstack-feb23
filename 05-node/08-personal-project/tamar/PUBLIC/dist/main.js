@@ -128,20 +128,22 @@ function hendelAddRecipe(ev) {
     });
 }
 // TODO:
-function hendlUpdateRecipe(ev) {
+function handleUpdateRecpie(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var recipeId, title, description, urlImg, updateRecipe, response, updateForm, recipes_2, error_3;
+        var urlParams, email, recipeId, title, description, urlImg, updateRecipe, response, updateForm, recipes_2, error_3;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
                     ev.preventDefault();
+                    urlParams = new URLSearchParams(window.location.search);
+                    email = urlParams.get('email');
                     recipeId = ev.target.id;
                     if (!recipeId) { } //error handle
                     title = ev.target.titleUpdate.value;
                     description = ev.target.descriptionUpdate.value;
-                    urlImg = ev.target.urlImgUpdate.value;
-                    updateRecipe = { id: recipeId, title: title, description: description, urlImg: urlImg };
+                    urlImg = ev.target.imgUrlUpdate.value;
+                    updateRecipe = { id: recipeId, title: title, description: description, urlImg: urlImg, email: email };
                     console.log(updateRecipe);
                     return [4 /*yield*/, fetch('/API/recipes/update-recipe', {
                             method: 'PATCH',
@@ -277,18 +279,18 @@ function renderUpdateForm(recpieId) {
                 case 2:
                     data = _a.sent();
                     console.log(data);
-                    updateForm = document.getElementsByClassName("recipe_update");
+                    updateForm = document.querySelector(".recipe_update");
                     console.log("updateForm1:", updateForm);
                     if (!updateForm)
                         throw new Error("no html element");
                     updateForm.style.display = "flex";
-                    updateForm.setAttribute("id", data.recipe._id);
+                    updateForm.setAttribute("id", data.recipes._id);
                     inputName = document.querySelector("#titleUpdate");
                     inputDescriptiom = document.querySelector("#descriptionUpdate");
                     inputImgUrl = document.querySelector("#imgUrlUpdate");
-                    inputName.value = data.recipe.title;
-                    inputDescriptiom.value = data.recipe.description;
-                    inputImgUrl.value = data.recipe.imgUrl;
+                    inputName.value = data.recipes.title;
+                    inputDescriptiom.value = data.recipes.description;
+                    inputImgUrl.value = data.recipes.urlImg;
                     return [3 /*break*/, 4];
                 case 3:
                     error_6 = _a.sent();

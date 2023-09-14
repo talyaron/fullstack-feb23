@@ -21,14 +21,15 @@
     <h3>Your Recipes Collection:</h3>
     <div id="userRecipes"></div>
 
-        <form class="recipe_update" onsubmit="handleUpdateRecpie(event)">
-            <input type="text" name="titleUpdate" id="titleUpdate" placeholder="Recipe title">
-            <textarea type="text" rows="20" cols="30" id="descriptionUpdate" name="descriptionUpdate"
-                placeholder="Recipe Instructions"></textarea>
-            <input type="url" id="imgUrlUpdate" name="imgUrlUpdate" placeholder="image url">
-            <button type="submit">Update Recipe</button>
-        </form>
     
+    <form class="recipe_update" onsubmit="handleUpdateRecpie(event)">
+        <input type="text" name="titleUpdate" id="titleUpdate" placeholder="Recipe title">
+        <textarea type="text" rows="20" cols="30" id="descriptionUpdate" name="descriptionUpdate"
+            placeholder="Recipe Instructions"></textarea>
+        <input type="url" id="imgUrlUpdate" name="imgUrlUpdate" placeholder="image url">
+        <button type="submit">Update Recipe</button>
+    </form>
+
     <button onclick="hendelDeleteUser()">Delete User</button>
 
 </body>

@@ -45,10 +45,9 @@ function getRecipes(req, res) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, recipesModel_1.RecipeModel.find({})]; //breing all recipes from DB
+                    return [4 /*yield*/, recipesModel_1.RecipeModel.find({})];
                 case 1:
-                    recipesDB = _a.sent() //breing all recipes from DB
-                    ;
+                    recipesDB = _a.sent();
                     res.send({ recipes: recipesDB });
                     return [3 /*break*/, 3];
                 case 2:
@@ -72,10 +71,9 @@ function getOneRecipe(req, res) {
                     if (!id) {
                         throw new Error("id is required");
                     }
-                    return [4 /*yield*/, recipesModel_1.RecipeModel.findById(id)]; //breing one recipe from DB
+                    return [4 /*yield*/, recipesModel_1.RecipeModel.findById(id)];
                 case 1:
-                    recipesDB = _a.sent() //breing one recipe from DB
-                    ;
+                    recipesDB = _a.sent();
                     console.log("one recipe in db:", recipesDB);
                     res.send({ recipes: recipesDB });
                     return [3 /*break*/, 3];
@@ -133,9 +131,7 @@ function deleteRecipe(req, res) {
                     _a = req.body, id = _a.id, email = _a.email;
                     console.log(id);
                     console.log(email);
-                    return [4 /*yield*/, recipesModel_1.RecipeModel.findByIdAndDelete(id)
-                        // Query the database to retrieve all recipes for the user
-                    ];
+                    return [4 /*yield*/, recipesModel_1.RecipeModel.findByIdAndDelete(id)];
                 case 1:
                     _b.sent();
                     return [4 /*yield*/, recipesModel_1.RecipeModel.find({ email: email })];
@@ -158,13 +154,12 @@ exports.deleteRecipe = deleteRecipe;
 //update DB by ID
 function updateRecipe(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var _a, id, title, description, urlImg, currentRecipe, updatedRecipe, error_5;
+        var _a, id, title, description, urlImg, email, currentRecipe, updatedRecipe, userRecipes, error_5;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
-                    _b.trys.push([0, 3, , 4]);
-                    _a = req.body //the data fron claient store in this variables
-                    , id = _a.id, title = _a.title, description = _a.description, urlImg = _a.urlImg;
+                    _b.trys.push([0, 4, , 5]);
+                    _a = req.body, id = _a.id, title = _a.title, description = _a.description, urlImg = _a.urlImg, email = _a.email;
                     return [4 /*yield*/, recipesModel_1.RecipeModel.findById(id)];
                 case 1:
                     currentRecipe = _b.sent();
@@ -183,14 +178,18 @@ function updateRecipe(req, res) {
                     return [4 /*yield*/, currentRecipe.save()];
                 case 2:
                     updatedRecipe = _b.sent();
-                    res.send({ updatedRecipe: updatedRecipe });
-                    return [3 /*break*/, 4];
+                    return [4 /*yield*/, recipesModel_1.RecipeModel.find({ email: email })];
                 case 3:
+                    userRecipes = _b.sent();
+                    // Send the array of user's recipes as the response
+                    res.send({ recipes: userRecipes });
+                    return [3 /*break*/, 5];
+                case 4:
                     error_5 = _b.sent();
                     console.error(error_5);
                     res.status(500).send({ error: error_5.message });
-                    return [3 /*break*/, 4];
-                case 4: return [2 /*return*/];
+                    return [3 /*break*/, 5];
+                case 5: return [2 /*return*/];
             }
         });
     });

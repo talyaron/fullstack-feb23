@@ -80,16 +80,20 @@ async function hendelAddRecipe(ev: any) {
 }
 
 // TODO:
-async function hendlUpdateRecipe(ev: any) {
+async function handleUpdateRecpie(ev: any) {
     try {
         ev.preventDefault();
+        const urlParams = new URLSearchParams(window.location.search);
+        const email=urlParams.get('email');
         const recipeId = ev.target.id
         if (!recipeId) {} //error handle
         //get the updated data
+        
         const title = ev.target.titleUpdate.value
         const description = ev.target.descriptionUpdate.value
-        const urlImg = ev.target.urlImgUpdate.value;
-        const updateRecipe = {id: recipeId, title, description, urlImg }
+        
+        const urlImg = ev.target.imgUrlUpdate.value;
+        const updateRecipe = {id: recipeId, title, description, urlImg, email}
         console.log(updateRecipe);
         //send the updated recipe to the server/DB
         const response = await fetch('/API/recipes/update-recipe', {
@@ -195,22 +199,22 @@ async function renderUpdateForm(recpieId: string) {
         const response = await fetch(`/API/Recipes/get-one-recipe?id=${recpieId}`); // get recpie by id
         console.log(response)
         
-        const data = await response.json(); //recpie
+        const data = await response.json(); //recpies
         console.log(data)
 
-        const updateForm = document.getElementsByClassName("recipe_update")
+        const updateForm = document.querySelector(".recipe_update") as HTMLFormElement
         console.log("updateForm1:", updateForm)
         if(!updateForm)throw new Error("no html element");    
         
         updateForm.style.display = "flex"
-        updateForm.setAttribute("id", data.recipe._id)
+        updateForm.setAttribute("id", data.recipes._id)
         //see the form with the data
         const inputName = document.querySelector("#titleUpdate") as HTMLInputElement;
         const inputDescriptiom = document.querySelector("#descriptionUpdate") as HTMLInputElement;
         const inputImgUrl = document.querySelector("#imgUrlUpdate") as HTMLInputElement;        
-        inputName.value = data.recipe.title 
-        inputDescriptiom.value = data.recipe.description 
-        inputImgUrl.value = data.recipe.imgUrl
+        inputName.value = data.recipes.title 
+        inputDescriptiom.value = data.recipes.description 
+        inputImgUrl.value = data.recipes.urlImg
 
     } catch (error) {
         console.error(error)
