@@ -36,42 +36,35 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 var recipes = [];
-// a function which get the email from the url query
-function getEmailFromQuery() {
-    var urlParams = new URLSearchParams(window.location.search);
-    return urlParams.get('email');
-}
 //handle
 function handelGetUserRecipes() {
-    var email = getEmailFromQuery();
-    console.log(email);
-    GetUserRecipe(email);
+    GetUserRecipe();
 }
 function hendelDeleteUser() {
     return __awaiter(this, void 0, void 0, function () {
-        var email, response, users, error_1;
+        var response, answer, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
-                    email = getEmailFromQuery();
-                    if (!email)
-                        throw new Error("no email");
-                    console.log(email);
                     return [4 /*yield*/, fetch('/API/users/delete-user', {
                             method: 'DELETE',
                             headers: {
                                 'Content-Type': 'application/json'
-                            },
-                            body: JSON.stringify({ email: email })
+                            }
                         })];
                 case 1:
                     response = _a.sent();
                     return [4 /*yield*/, response.json()];
                 case 2:
-                    users = (_a.sent()).users;
-                    console.log(users);
-                    window.location.href = "/index.html";
+                    answer = (_a.sent()).answer;
+                    console.log(answer);
+                    if (answer) {
+                        window.location.href = "/index.html";
+                    }
+                    else {
+                        throw new Error("user not deleted");
+                    }
                     return [3 /*break*/, 4];
                 case 3:
                     error_1 = _a.sent();
@@ -84,24 +77,20 @@ function hendelDeleteUser() {
 }
 function hendelAddRecipe(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var email, title, description, urlImg, newRecipe, response, recipes_1, error_2;
+        var title, description, urlImg, newRecipe, response, recipes_1, error_2;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
                     ev.preventDefault();
                     console.dir(ev);
-                    email = getEmailFromQuery();
-                    if (!email)
-                        throw new Error("no email");
-                    console.log(email);
                     title = ev.target.title.value;
                     console.log(title);
                     description = ev.target.description.value;
                     console.log(description);
                     urlImg = ev.target.querySelector('[name="imgUrl"]').value;
                     console.log(urlImg);
-                    newRecipe = { title: title, description: description, urlImg: urlImg, email: email };
+                    newRecipe = { title: title, description: description, urlImg: urlImg };
                     console.log(newRecipe);
                     return [4 /*yield*/, fetch('/API/recipes/add-recipe', {
                             method: 'POST',
@@ -127,7 +116,6 @@ function hendelAddRecipe(ev) {
         });
     });
 }
-// TODO:
 function handleUpdateRecpie(ev) {
     return __awaiter(this, void 0, void 0, function () {
         var urlParams, email, recipeId, title, description, urlImg, updateRecipe, response, updateForm, recipes_2, error_3;
@@ -176,22 +164,18 @@ function handleUpdateRecpie(ev) {
 }
 function hendelDeleteRecipe(id) {
     return __awaiter(this, void 0, void 0, function () {
-        var email, response, recipes_3, error_4;
+        var response, recipes_3, error_4;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
                     console.log(id);
-                    email = getEmailFromQuery();
-                    if (!email)
-                        throw new Error("no email");
-                    console.log(email);
                     return [4 /*yield*/, fetch('/API/recipes/delete-recipe', {
                             method: 'DELETE',
                             headers: {
                                 'Content-Type': 'application/json'
                             },
-                            body: JSON.stringify({ id: id, email: email })
+                            body: JSON.stringify({ id: id })
                         })];
                 case 1:
                     response = _a.sent();
@@ -238,14 +222,14 @@ function renderRecipes(recipes, root) {
     }
 }
 //controllers
-function GetUserRecipe(email) {
+function GetUserRecipe() {
     return __awaiter(this, void 0, void 0, function () {
         var response, data, error_5;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
-                    return [4 /*yield*/, fetch("/API/userRecipes/get-user-recipes?email=" + email)];
+                    return [4 /*yield*/, fetch("/API/userRecipes/get-user-recipes")];
                 case 1:
                     response = _a.sent();
                     return [4 /*yield*/, response.json()];
@@ -263,15 +247,14 @@ function GetUserRecipe(email) {
         });
     });
 }
-// TODO:
-function renderUpdateForm(recpieId) {
+function renderUpdateForm(recipeId) {
     return __awaiter(this, void 0, void 0, function () {
         var response, data, updateForm, inputName, inputDescriptiom, inputImgUrl, error_6;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
-                    return [4 /*yield*/, fetch("/API/Recipes/get-one-recipe?id=" + recpieId)];
+                    return [4 /*yield*/, fetch("/API/Recipes/get-one-recipe?id=" + recipeId)];
                 case 1:
                     response = _a.sent();
                     console.log(response);

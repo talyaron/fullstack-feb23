@@ -84,6 +84,8 @@ exports.loginUser = function (req, res) { return __awaiter(void 0, void 0, void 
                 if (!userDB)
                     throw new Error("No user email or password found in DB");
                 console.log("userdb:", userDB);
+                //create cookie
+                res.cookie("user", userDB._id, { maxAge: 1000 * 1000, httpOnly: true });
                 res.send({ ok: true, email: userDB.email });
                 return [3 /*break*/, 3];
             case 2:
@@ -98,18 +100,19 @@ exports.loginUser = function (req, res) { return __awaiter(void 0, void 0, void 
 //get
 function getUser(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var email, userDB, error_3;
+        var userId, userDB, error_3;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-                    email = req.query.email;
-                    if (!email) {
-                        throw new Error("email is required");
-                    }
-                    return [4 /*yield*/, usersModle_1.UserModel.find({ email: email })];
+                    userId = req.cookie.user;
+                    if (!userId)
+                        throw new Error("no user in cookies");
+                    return [4 /*yield*/, usersModle_1.UserModel.findById(userId)];
                 case 1:
                     userDB = _a.sent();
+                    if (!userDB)
+                        throw new Error("user not in DB");
                     res.send({ users: userDB });
                     return [3 /*break*/, 3];
                 case 2:
@@ -126,29 +129,28 @@ exports.getUser = getUser;
 //delete
 function deleteUser(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var email, usersDB, error_4;
+        var userId, error_4;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    _a.trys.push([0, 3, , 4]);
-                    email = req.body.email;
-                    return [4 /*yield*/, usersModle_1.UserModel.findOneAndDelete(email)
-                        // Query the database to retrieve all recipes for the user
-                    ];
+                    _a.trys.push([0, 2, , 3]);
+                    userId = req.cookie.user;
+                    if (!userId)
+                        throw new Error("no user in cookies");
+                    //find user by id and delete
+                    return [4 /*yield*/, usersModle_1.UserModel.findByIdAndDelete(userId)];
                 case 1:
+                    //find user by id and delete
                     _a.sent();
-                    return [4 /*yield*/, usersModle_1.UserModel.find({ email: email })];
+                    // Send ok if succead
+                    res.send({ ok: true });
+                    return [3 /*break*/, 3];
                 case 2:
-                    usersDB = _a.sent();
-                    // Send the array of users as the response
-                    res.send({ usersDB: usersDB });
-                    return [3 /*break*/, 4];
-                case 3:
                     error_4 = _a.sent();
                     console.error(error_4);
                     res.status(500).send({ error: error_4.message });
-                    return [3 /*break*/, 4];
-                case 4: return [2 /*return*/];
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
             }
         });
     });

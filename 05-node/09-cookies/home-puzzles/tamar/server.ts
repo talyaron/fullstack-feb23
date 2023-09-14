@@ -2,8 +2,10 @@ import express from "express";
 const app = express();
 const port = process.env.PORT || 3000;
 import mongoose from 'mongoose';  //connect to mongoDB
+import cookieParser from 'cookie-parser';
 
 //middlware for using parser
+app.use(cookieParser())
 
 //static files
 app.use(express.static("PUBLIC"))

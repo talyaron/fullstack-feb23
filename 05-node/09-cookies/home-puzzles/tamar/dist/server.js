@@ -7,7 +7,9 @@ const express_1 = __importDefault(require("express"));
 const app = express_1.default();
 const port = process.env.PORT || 3000;
 const mongoose_1 = __importDefault(require("mongoose")); //connect to mongoDB
+const cookie_parser_1 = __importDefault(require("cookie-parser"));
 //middlware for using parser
+app.use(cookie_parser_1.default());
 //static files
 app.use(express_1.default.static("PUBLIC"));
 //body

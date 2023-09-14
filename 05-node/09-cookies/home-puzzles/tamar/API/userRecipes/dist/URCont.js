@@ -40,19 +40,20 @@ exports.getUserRecipes = void 0;
 var recipesModel_1 = require("../recipes/recipesModel");
 function getUserRecipes(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var email, recipeDB, error_1;
+        var userID, recipeDB, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-                    email = req.query.email;
-                    if (!email) {
-                        throw new Error("email is required");
+                    userID = req.cookie.user;
+                    if (!userID) {
+                        throw new Error("userID is required");
                     }
-                    console.log(email);
-                    return [4 /*yield*/, recipesModel_1.RecipeModel.find({ email: email })];
+                    console.log(userID);
+                    return [4 /*yield*/, recipesModel_1.RecipeModel.findById(userID)];
                 case 1:
                     recipeDB = _a.sent();
+                    console.log(recipeDB);
                     res.send({ recipes: recipeDB });
                     return [3 /*break*/, 3];
                 case 2:

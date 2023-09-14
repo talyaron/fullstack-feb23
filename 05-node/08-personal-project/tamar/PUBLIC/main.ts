@@ -79,16 +79,16 @@ async function hendelAddRecipe(ev: any) {
 
 }
 
-// TODO:
+
 async function handleUpdateRecpie(ev: any) {
     try {
         ev.preventDefault();
         const urlParams = new URLSearchParams(window.location.search);
         const email=urlParams.get('email');
         const recipeId = ev.target.id
-        if (!recipeId) {} //error handle
-        //get the updated data
+        if (!recipeId)throw new Error("no recipe id");
         
+        //get the updated data
         const title = ev.target.titleUpdate.value
         const description = ev.target.descriptionUpdate.value
         

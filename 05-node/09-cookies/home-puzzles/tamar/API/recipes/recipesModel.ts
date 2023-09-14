@@ -20,7 +20,7 @@ export const RecipeSchema = new Schema({
     title: String,
     description: String,
     urlImg: String,
-    email: {
+    userId: {
         type: String,
         required: true
     }

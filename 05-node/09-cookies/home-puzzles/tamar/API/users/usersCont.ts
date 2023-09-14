@@ -21,10 +21,12 @@ export const loginUser = async (req: any, res: any) => {
     try {
         const { userName, email, password } = req.body //get data from claient
         if (!userName || !email || !password) throw new Error("Please complete all fields");
-
+        //check if user exist in DB
         const userDB = await UserModel.findOne({ email, password }) //find the user in DB
         if (!userDB) throw new Error("No user email or password found in DB");
         console.log("userdb:",userDB)
+        //create cookie
+        res.cookie("user", userDB._id, {maxAge: 1000*1000, httpOnly: true});
         res.send({ ok: true, email: userDB.email });
     } catch (error) {
         console.error(error)
@@ -35,13 +37,14 @@ export const loginUser = async (req: any, res: any) => {
 //get
 export async function getUser(req: any, res: any) {
     try {
-        //get email from query
-        const { email } = req.query; //speshel identefayer
-        if (!email) {
-            throw new Error("email is required");
-        }
-
-        const userDB = await UserModel.find({ email });
+        //get user id fron cookie
+        const userId = req.cookie.user;
+        if (!userId) throw new Error("no user in cookies");
+        
+        //find user in DB
+        const userDB = await UserModel.findById(userId);
+        if(!userDB) throw new Error("user not in DB");
+        
         res.send({ users: userDB });
 
     } catch (error) {
@@ -53,13 +56,15 @@ export async function getUser(req: any, res: any) {
 //delete
 export async function deleteUser(req: any, res: any) {
     try {
-        const { email } = req.body
-        await UserModel.findOneAndDelete(email)
-        // Query the database to retrieve all recipes for the user
-        const usersDB = await UserModel.find({ email });
+        //get user id fron cookie
+        const userId = req.cookie.user;
+        if (!userId) throw new Error("no user in cookies");
 
-        // Send the array of users as the response
-        res.send({ usersDB });
+        //find user by id and delete
+        await UserModel.findByIdAndDelete(userId);
+
+        // Send ok if succead
+        res.send({ ok: true });
     } catch (error) {
         console.error(error);
         res.status(500).send({ error: error.message });

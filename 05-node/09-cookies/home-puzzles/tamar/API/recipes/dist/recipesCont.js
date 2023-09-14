@@ -40,14 +40,17 @@ exports.updateRecipe = exports.deleteRecipe = exports.addRecipe = exports.getOne
 var recipesModel_1 = require("./recipesModel");
 function getRecipes(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var recipesDB, error_1;
+        var userID, recipesDB, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, recipesModel_1.RecipeModel.find({})];
+                    userID = req.cookie.user;
+                    console.log("user id in getRecipes:", userID);
+                    return [4 /*yield*/, recipesModel_1.RecipeModel.findById(userID)];
                 case 1:
                     recipesDB = _a.sent();
+                    console.log(recipesDB);
                     res.send({ recipes: recipesDB });
                     return [3 /*break*/, 3];
                 case 2:
@@ -89,23 +92,26 @@ function getOneRecipe(req, res) {
 exports.getOneRecipe = getOneRecipe;
 function addRecipe(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var _a, title, description, urlImg, email, recipe, recipeDB, userRecipes, error_3;
+        var _a, title, description, urlImg, userId, recipe, recipeDB, userRecipes, error_3;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
                     _b.trys.push([0, 3, , 4]);
-                    _a = req.body, title = _a.title, description = _a.description, urlImg = _a.urlImg, email = _a.email;
-                    console.log({ title: title, description: description, urlImg: urlImg, email: email });
+                    _a = req.body, title = _a.title, description = _a.description, urlImg = _a.urlImg;
+                    console.log({ title: title, description: description, urlImg: urlImg });
                     if (!title || !description)
                         throw new Error("Please complete title and/or description fields");
-                    recipe = new recipesModel_1.RecipeModel({ title: title, description: description, urlImg: urlImg, email: email });
+                    userId = req.cookie.user;
+                    console.log("add recipe userID:", userId);
+                    recipe = new recipesModel_1.RecipeModel({ title: title, description: description, urlImg: urlImg, userId: userId });
                     return [4 /*yield*/, recipe.save()];
                 case 1:
                     recipeDB = _b.sent();
                     console.log(recipeDB);
-                    return [4 /*yield*/, recipesModel_1.RecipeModel.find({ email: email })];
+                    return [4 /*yield*/, recipesModel_1.RecipeModel.findById(userId)];
                 case 2:
                     userRecipes = _b.sent();
+                    console.log("user recipes:", userRecipes);
                     // Send the array of user's recipes as the response
                     res.send({ recipes: userRecipes });
                     return [3 /*break*/, 4];

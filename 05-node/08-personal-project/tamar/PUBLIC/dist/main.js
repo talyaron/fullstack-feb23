@@ -127,7 +127,6 @@ function hendelAddRecipe(ev) {
         });
     });
 }
-// TODO:
 function handleUpdateRecpie(ev) {
     return __awaiter(this, void 0, void 0, function () {
         var urlParams, email, recipeId, title, description, urlImg, updateRecipe, response, updateForm, recipes_2, error_3;
@@ -139,7 +138,8 @@ function handleUpdateRecpie(ev) {
                     urlParams = new URLSearchParams(window.location.search);
                     email = urlParams.get('email');
                     recipeId = ev.target.id;
-                    if (!recipeId) { } //error handle
+                    if (!recipeId)
+                        throw new Error("no recipe id");
                     title = ev.target.titleUpdate.value;
                     description = ev.target.descriptionUpdate.value;
                     urlImg = ev.target.imgUrlUpdate.value;

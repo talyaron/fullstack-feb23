@@ -66,7 +66,7 @@ function handleLogin(ev) {
                     if (error)
                         throw new Error(error);
                     //if all ok, redirect to main page of the user by his email
-                    window.location.href = "/main.html?email=" + email; //query
+                    window.location.href = "/main.html"; //query
                     return [3 /*break*/, 4];
                 case 3:
                     error_1 = _b.sent();

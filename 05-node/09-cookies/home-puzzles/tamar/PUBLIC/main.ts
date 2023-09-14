@@ -9,36 +9,28 @@ interface Recipe {
 
 const recipes: Recipe[] = [];
 
-// a function which get the email from the url query
-function getEmailFromQuery() {
-    const urlParams = new URLSearchParams(window.location.search);
-    return urlParams.get('email');
-}
-
 //handle
 function handelGetUserRecipes() {
-    const email = getEmailFromQuery();
-    console.log(email)
-    GetUserRecipe(email)
+    GetUserRecipe()
 }
 
 async function hendelDeleteUser(){
     try {
-        const email = getEmailFromQuery();
-        if (!email) throw new Error("no email");
-        console.log(email)
         const response = await fetch('/API/users/delete-user'
             , {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ email })
             });
         //convert response to join data
-        const { users } = await response.json();
-        console.log(users);
-        window.location.href = "/index.html"
+        const { answer } = await response.json();
+        console.log(answer);
+        if(answer){ 
+            window.location.href = "/index.html"
+        } else {
+            throw new Error("user not deleted");
+        }
     } catch (error) {
         console.error(error)
     }
@@ -49,9 +41,9 @@ async function hendelAddRecipe(ev: any) {
         ev.preventDefault();
         console.dir(ev)
         //identify the user by email 
-        const email = getEmailFromQuery();
-        if (!email) throw new Error("no email");
-        console.log(email)
+        // const email = getEmailFromQuery();
+        // if (!email) throw new Error("no email");
+        // console.log(email)
         //create the new recipe of the user
         const title = ev.target.title.value
         console.log(title)
@@ -59,7 +51,7 @@ async function hendelAddRecipe(ev: any) {
         console.log(description)
         const urlImg = ev.target.querySelector('[name="imgUrl"]').value;
         console.log(urlImg)
-        const newRecipe = { title, description, urlImg, email }
+        const newRecipe = { title, description, urlImg }
         console.log(newRecipe);
         //send the new recipe to the server/DB
         const response = await fetch('/API/recipes/add-recipe', {
@@ -79,7 +71,7 @@ async function hendelAddRecipe(ev: any) {
 
 }
 
-// TODO:
+
 async function handleUpdateRecpie(ev: any) {
     try {
         ev.preventDefault();
@@ -121,16 +113,16 @@ async function handleUpdateRecpie(ev: any) {
 async function hendelDeleteRecipe(id: string) {
     try {
         console.log(id)
-        const email = getEmailFromQuery();
-        if (!email) throw new Error("no email");
-        console.log(email)
+        // const email = getEmailFromQuery();
+        // if (!email) throw new Error("no email");
+        // console.log(email)
         const response = await fetch('/API/recipes/delete-recipe'
             , {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ id, email })
+                body: JSON.stringify({ id })
             });
         //convert response to join data
         const { recipes } = await response.json();
@@ -181,9 +173,9 @@ function renderRecipes(recipes: Recipe[], root: HTMLDivElement) {
 }
 
 //controllers
-async function GetUserRecipe(email: string) {
+async function GetUserRecipe() {
     try {
-        const response = await fetch(`/API/userRecipes/get-user-recipes?email=${email}`);
+        const response = await fetch(`/API/userRecipes/get-user-recipes`);
         const data = await response.json();
         console.log("data:", data)
         renderRecipes(data.recipes, document.querySelector("#userRecipes"))
@@ -192,11 +184,10 @@ async function GetUserRecipe(email: string) {
     }
 
 }
-// TODO:
 
-async function renderUpdateForm(recpieId: string) {
+async function renderUpdateForm(recipeId: string) {
     try {
-        const response = await fetch(`/API/Recipes/get-one-recipe?id=${recpieId}`); // get recpie by id
+        const response = await fetch(`/API/Recipes/get-one-recipe?id=${recipeId}`); // get recpie by id
         console.log(response)
         
         const data = await response.json(); //recpies
