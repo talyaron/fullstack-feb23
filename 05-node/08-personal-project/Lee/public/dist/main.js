@@ -40,6 +40,7 @@ function renderRelatives(relativesData, targetElement) {
         return;
     }
     var relativesList = document.createElement('ul');
+    relativesList.style.listStyle = 'none';
     relativesData.forEach(function (relative) {
         var relativeItem = document.createElement('li');
         relativeItem.textContent = relative.fullName + " - " + relative.relation + " - " + relative.birthDate + " - " + relative.country;

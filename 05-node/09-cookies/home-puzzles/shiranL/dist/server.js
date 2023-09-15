@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const mongoose_1 = __importDefault(require("mongoose"));
 const cookie_parser_1 = __importDefault(require("cookie-parser"));
+const userMiddlware_1 = require("./API/user/userMiddlware");
 const app = express_1.default();
 const port = process.env.PORT || 3000;
 //middlware for using parser
@@ -22,6 +23,7 @@ mongoose_1.default.connect("mongodb+srv://shiranlasry1:jf1EdIVAk2IXUUKU@cluster0
     .catch(err => {
     console.error(err);
 });
+app.use(userMiddlware_1.getLoggedUser);
 // get router from usersRouter
 const userRoutes_1 = __importDefault(require("./API/user/userRoutes"));
 //tells express to use proudctsRouter on the intial route "/API/users"

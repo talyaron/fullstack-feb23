@@ -75,6 +75,14 @@ button[type="submit"]:focus {
 }
 
 /* סגנון לפוסטים */
+.posts{
+    display: flex;
+    justify-content: center;
+    margin: auto;
+
+
+
+}
 .post {
     background-color: #ffff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);

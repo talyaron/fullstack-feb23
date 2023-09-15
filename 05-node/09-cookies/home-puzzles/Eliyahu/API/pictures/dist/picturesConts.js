@@ -86,25 +86,33 @@ function getPicturesByTag(req, res) {
 exports.getPicturesByTag = getPicturesByTag;
 function getUserPictures(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var email, userPicturesDB, error_3;
+        var userId, userDB, email, userPicturesDB, error_3;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    _a.trys.push([0, 2, , 3]);
-                    email = req.query.email;
+                    _a.trys.push([0, 3, , 4]);
+                    userId = req.cookies.user;
+                    if (!userId)
+                        throw new Error("no user in cookies");
+                    return [4 /*yield*/, userModels_1.UserModel.findById(userId)];
+                case 1:
+                    userDB = _a.sent();
+                    if (!userDB)
+                        throw new Error("user dosnt exist in DB");
+                    email = userDB.email;
                     if (!email) {
                         throw new Error("email is required");
                     }
                     return [4 /*yield*/, picturesModels_1.PictureModel.find({ email: email })];
-                case 1:
+                case 2:
                     userPicturesDB = _a.sent();
                     res.send({ pictures: userPicturesDB });
-                    return [3 /*break*/, 3];
-                case 2:
+                    return [3 /*break*/, 4];
+                case 3:
                     error_3 = _a.sent();
                     console.error(error_3.massage);
-                    return [3 /*break*/, 3];
-                case 3: return [2 /*return*/];
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
             }
         });
     });
@@ -120,7 +128,7 @@ exports.getTags = function (req, res) {
 };
 function addPicture(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var picture, title, imgUrl, location, pictureTags, newTag, publishDate, email, userDB, userName, _picture, picturesDB, error_4;
+        var picture, title, imgUrl, location, pictureTags, newTag, publishDate, userId, userDB, email, userName, _picture, picturesDB, error_4;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -140,13 +148,18 @@ function addPicture(req, res) {
                         hour: "numeric",
                         minute: "numeric"
                     });
-                    email = req.query.email;
+                    userId = req.cookies.user;
+                    if (!userId)
+                        throw new Error("no user in cookies");
+                    return [4 /*yield*/, userModels_1.UserModel.findById(userId)];
+                case 1:
+                    userDB = _a.sent();
+                    if (!userDB)
+                        throw new Error("user dosnt exist in DB");
+                    email = userDB.email;
                     if (!email) {
                         throw new Error("email is required");
                     }
-                    return [4 /*yield*/, userModels_1.UserModel.findOne({ email: email })];
-                case 1:
-                    userDB = _a.sent();
                     userName = userDB.name;
                     return [4 /*yield*/, (new picturesModels_1.PictureModel({ title: title, imgUrl: imgUrl, location: location, tags: pictureTags, publishDate: publishDate, email: email, userName: userName })).save()];
                 case 2:

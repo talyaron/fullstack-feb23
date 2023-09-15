@@ -15,8 +15,8 @@ async function handleRegister(ev: any) {
       },
       body: JSON.stringify(user),
     });
-    const { error, user: _user } = await response.json(); // get data from server
-    console.log(user)
+    const { error, userDB } = await response.json(); // get data from server
+    console.log(userDB)
     console.log(error);
     if (error) {
       throw new Error(error);

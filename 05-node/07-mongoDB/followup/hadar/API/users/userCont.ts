@@ -19,7 +19,7 @@ export const registerUser = async (req: any, res: any) => {
     // const userExist = users.find((user) => user.email === email);
     // if (userExist) throw new Error("User already exist");
     // users.push(user);
-    res.send({ ok:true, user: userDB });
+    res.send({ ok:true, userDB });
 
   } catch (error) {
     console.error(error);

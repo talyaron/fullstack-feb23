@@ -22,7 +22,7 @@ async function handleLogin(ev: any) {
         const { error, email } = await response.json()
         console.log(error);
         if (error) throw new Error(error);
-        window.location.href = `/main.html?email=${email}`
+        window.location.href = `/main.html`
     } catch (error) {
         console.error(error.message);
 

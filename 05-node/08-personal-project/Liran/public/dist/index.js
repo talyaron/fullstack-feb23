@@ -63,14 +63,14 @@ function hundleLogin(event) {
                     // if email and password are correct
                     if (physician.isAdmin && admin) {
                         alert("admin");
-                        window.location.href = "../adminPage/admin.html?physicianEmail=" + email;
+                        window.location.href = "../adminPage/admin.html?email=" + email;
                     }
                     else if (!physician.isAdmin && admin) {
                         alert("You are not an admin, please login again");
                     }
                     else {
                         alert("physician");
-                        window.location.href = "../phisicianPage/physician.html?physicianEmail=" + email;
+                        window.location.href = "../phisicianPage/physician.html?email=" + email;
                     }
                     return [3 /*break*/, 4];
                 case 3:

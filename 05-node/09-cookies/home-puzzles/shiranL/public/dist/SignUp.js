@@ -59,6 +59,10 @@ function handleAddUser(ev) {
                     return [4 /*yield*/, response.json()];
                 case 2:
                     data = _a.sent();
+                    if (!data.ok) {
+                        alert(data.error);
+                        throw new Error(data.error);
+                    }
                     userDB = data.userDB;
                     console.log(data, userDB);
                     // go to Log in page   

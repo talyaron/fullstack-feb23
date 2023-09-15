@@ -45,15 +45,18 @@ function getPatients(req, res) {
             switch (_b.label) {
                 case 0:
                     _b.trys.push([0, 7, , 8]);
-                    _a = req.query, physicianId = _a.physicianId, patientId = _a.patientId;
+                    _a = req.query, physicianId = _a.physicianId, patientId = _a._id;
+                    console.log(physicianId, patientId);
                     patients = void 0;
                     if (!patientId) return [3 /*break*/, 2];
-                    return [4 /*yield*/, patientModel_1.PatientModel.findOne({ id: patientId })];
+                    console.log('patientId');
+                    return [4 /*yield*/, patientModel_1.PatientModel.findOne({ _id: patientId })];
                 case 1:
                     patients = _b.sent();
                     return [3 /*break*/, 6];
                 case 2:
                     if (!!physicianId) return [3 /*break*/, 4];
+                    console.log('no physicianId');
                     return [4 /*yield*/, patientModel_1.PatientModel.find({})];
                 case 3:
                     patients = _b.sent();
@@ -61,6 +64,7 @@ function getPatients(req, res) {
                 case 4: return [4 /*yield*/, patientModel_1.PatientModel.find({ physicianId: physicianId })];
                 case 5:
                     patients = _b.sent();
+                    console.log('physicianId');
                     _b.label = 6;
                 case 6:
                     res.send({ patients: patients });

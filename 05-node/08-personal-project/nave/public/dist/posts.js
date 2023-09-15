@@ -34,9 +34,13 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+//get tasks from server
+function getPostsFromServer() {
+    //get tasks from server
+}
 function handleGetPosts() {
     return __awaiter(this, void 0, void 0, function () {
-        var response, posts, error_1;
+        var response, data, posts, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -46,7 +50,8 @@ function handleGetPosts() {
                     response = _a.sent();
                     return [4 /*yield*/, response.json()];
                 case 2:
-                    posts = (_a.sent()).posts;
+                    data = _a.sent();
+                    posts = data.posts;
                     console.log(posts);
                     renderPosts(posts, document.querySelector("#posts"));
                     return [3 /*break*/, 4];
@@ -61,7 +66,7 @@ function handleGetPosts() {
 }
 function handeleAddPost(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var email, content, featuredImage, category, newPost, response, posts, error_2;
+        var email, content, featuredImage, category, newPost, response, data, posts, newPostsAsArray, error_2;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -73,12 +78,9 @@ function handeleAddPost(ev) {
                     content = ev.target.elements.content.value;
                     featuredImage = ev.target.elements.featuredImage.value;
                     category = ev.target.elements.category.value;
-                    console.log("Title:", content);
-                    console.log("PostUrl:", featuredImage);
-                    console.log("PostUrl:", category);
                     newPost = { content: content, featuredImage: featuredImage, category: category, email: email };
                     console.log("New Post:", newPost);
-                    return [4 /*yield*/, fetch('http://localhost:3000/API/posts/add-post', {
+                    return [4 /*yield*/, fetch('/API/posts/add-post', {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json'
@@ -87,11 +89,16 @@ function handeleAddPost(ev) {
                         })];
                 case 1:
                     response = _a.sent();
+                    if (!response.ok) {
+                        throw new Error("Server returned " + response.status + " " + response.statusText);
+                    }
                     return [4 /*yield*/, response.json()];
                 case 2:
-                    posts = (_a.sent()).posts;
-                    console.log("Posts:", posts);
-                    renderPosts(posts, document.querySelector("#posts"));
+                    data = _a.sent();
+                    posts = data.posts;
+                    console.log(posts);
+                    newPostsAsArray = [newPost];
+                    renderPosts(newPostsAsArray, document.querySelector("#posts"));
                     return [3 /*break*/, 4];
                 case 3:
                     error_2 = _a.sent();
@@ -104,7 +111,7 @@ function handeleAddPost(ev) {
 }
 function renderPost(post) {
     try {
-        var html = "<img src=\"" + post.featuredImage + "\" alt=\"" + post.content + "\">\n        <p> = \"" + post.category + "\"";
+        var html = "<img src=\"" + post.featuredImage + "\" alt=\"" + post.content + "\">\n<p>" + post.category + "</p>";
         return html;
     }
     catch (error) {
@@ -113,9 +120,9 @@ function renderPost(post) {
     }
 }
 // Function to render the post with a content
-function renderPostWithTitle(post) {
+function renderPostWithTitle(posts) {
     try {
-        var html = "\n        <div class=\"post_container\">\n        <div class=\"post\">\n        <img src=\"" + post.featuredImage + "\" alt=\"" + post.content + "\">\n        <h2 class = \"headPost\">" + post.content + "</h2>\n        <p lass = \"categoryPost\">" + post.category + "</p>\n        </div>\n    </div>\n        ";
+        var html = "\n        <div class=\"post_container\">\n        <div class=\"post\">\n        <img src=\"" + posts.featuredImage + "\">\n        <h2 class = \"headPost\">" + posts.content + "</h2>\n        <p class=\"categoryPost\">" + posts.category + "</p>\n        </div>\n    </div>\n        ";
         return html;
     }
     catch (error) {
@@ -125,11 +132,11 @@ function renderPostWithTitle(post) {
 }
 function renderPosts(posts, DIVElem) {
     try {
+        debugger;
         if (!DIVElem)
             throw new Error("no div element");
-        var html = "<ul class = list>";
-        // Render each post with title
-        html += posts.map(function (post) { return "<li>" + renderPostWithTitle(post) + "</li>"; }).join("");
+        var html = "<ul>";
+        html += posts.map(function (post) { return renderPostWithTitle(post); }).join("");
         html += "</ul>";
         DIVElem.innerHTML = html;
     }

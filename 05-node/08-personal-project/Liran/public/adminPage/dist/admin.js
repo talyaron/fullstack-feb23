@@ -83,7 +83,7 @@ function hundlePhysicianUpdateSubmit(event) {
                     data = _a.sent();
                     console.log(data);
                     alert("Physician updated successfully");
-                    window.location.href = "admin.html?physicianEmail=" + email_1;
+                    window.location.href = "admin.html?email=" + email_1;
                     return [3 /*break*/, 4];
                 case 3:
                     error_1 = _a.sent();
@@ -121,7 +121,7 @@ function hundleMedicineSubmit(event) {
                     data = _a.sent();
                     console.log(data);
                     alert("Medicine added successfully");
-                    window.location.href = "admin.html?physicianEmail=" + email;
+                    window.location.href = "admin.html?email=" + email;
                     return [3 /*break*/, 4];
                 case 3:
                     error_2 = _a.sent();
@@ -182,7 +182,7 @@ function hundlePatientUpdateSubmit(event) {
                     data = _a.sent();
                     console.log(data);
                     alert("Patient updated successfully");
-                    window.location.href = "admin.html?physicianEmail=" + email;
+                    window.location.href = "admin.html?email=" + email;
                     return [3 /*break*/, 4];
                 case 3:
                     error_3 = _a.sent();
@@ -213,7 +213,6 @@ function hundleMedicineUpdateSubmit(event) {
                     name = event.target.name.value;
                     dosagePerDay = event.target.dosagePerDay.value;
                     maxDuration = event.target.maxDuration.value;
-                    debugger;
                     if (!id)
                         throw new Error("missing some details");
                     return [4 /*yield*/, fetch("/API/medicine/update-medicine", {
@@ -230,7 +229,7 @@ function hundleMedicineUpdateSubmit(event) {
                     data = _a.sent();
                     console.log(data);
                     alert("Medicine updated successfully");
-                    window.location.href = "admin.html?physicianEmail=" + email;
+                    window.location.href = "admin.html?email=" + email;
                     return [3 /*break*/, 4];
                 case 3:
                     error_4 = _a.sent();
@@ -335,7 +334,6 @@ function hundlePatientSubmit(event) {
                     smoking = event.target.smoking.checked;
                     address = event.target.address.value;
                     physicianId = event.target.physicianId.value;
-                    debugger;
                     if (!firstName || !lastName || !patientId || !age || !phoneNum || !weight || !height || !address || !physicianId)
                         throw new Error("missing some details");
                     return [4 /*yield*/, fetch("/API/patient/add-patient", {
@@ -353,7 +351,7 @@ function hundlePatientSubmit(event) {
                     console.log(data);
                     if (data.ok)
                         alert("Patient added successfully");
-                    window.location.href = "admin.html?physicianEmail=" + email;
+                    window.location.href = "admin.html?email=" + email;
                     return [3 /*break*/, 4];
                 case 3:
                     error_5 = _a.sent();
@@ -405,7 +403,7 @@ function hundlePhysicianDeleteSubmit(event) {
                     data = _a.sent();
                     console.log(data);
                     alert("Physician deleted successfully");
-                    window.location.href = "admin.html?physicianEmail=" + email;
+                    window.location.href = "admin.html?email=" + email;
                     return [3 /*break*/, 4];
                 case 3:
                     error_6 = _a.sent();
@@ -449,7 +447,7 @@ function hundlePatientDeleteSubmit(event) {
                     data = _a.sent();
                     console.log(data);
                     alert("Patient deleted successfully");
-                    window.location.href = "admin.html?physicianEmail=" + email;
+                    window.location.href = "admin.html?email=" + email;
                     return [3 /*break*/, 4];
                 case 3:
                     error_7 = _a.sent();
@@ -493,7 +491,7 @@ function hundleMedicineDeleteSubmit(event) {
                     data = _a.sent();
                     console.log(data);
                     alert("Medicine deleted successfully");
-                    window.location.href = "admin.html?physicianEmail=" + email;
+                    window.location.href = "admin.html?email=" + email;
                     return [3 /*break*/, 4];
                 case 3:
                     error_8 = _a.sent();
@@ -528,7 +526,6 @@ function hundlePhysicianSubmit(event) {
                     licenseNumber = event.target.licenseNumber.value;
                     password = event.target.password.value;
                     isAdmin = event.target.isAdmin.checked;
-                    debugger;
                     if (!firstName || !lastName || !age || !phoneNum || !email_2 || !licenseNumber || !password)
                         throw new Error("missing some details");
                     return [4 /*yield*/, fetch("/API/physician/add-physician", {
@@ -545,7 +542,7 @@ function hundlePhysicianSubmit(event) {
                     data = _a.sent();
                     console.log(data);
                     alert("Physician added successfully");
-                    window.location.href = "admin.html?physicianEmail=" + email_2;
+                    window.location.href = "admin.html?email=" + email_2;
                     return [3 /*break*/, 4];
                 case 3:
                     error_9 = _a.sent();
@@ -767,7 +764,7 @@ function renderAdminActions(root) {
 }
 function renderPatientList(html) {
     return __awaiter(this, void 0, void 0, function () {
-        var response, data, responsePhysician, dataPhysician, physiciansList, patientsList, tempHtml_6, promise, error_16;
+        var response, data, responsePhysician, dataPhysician, physiciansList_1, patientsList, tempHtml_6, promise, error_16;
         var _this = this;
         return __generator(this, function (_a) {
             switch (_a.label) {
@@ -785,15 +782,14 @@ function renderPatientList(html) {
                     return [4 /*yield*/, responsePhysician.json()];
                 case 4:
                     dataPhysician = _a.sent();
-                    physiciansList = dataPhysician.physician;
+                    physiciansList_1 = dataPhysician.physician;
                     patientsList = data.patients;
-                    debugger;
                     tempHtml_6 = "<h2>Patient List</h2>\n        <table>\n        <tr>\n        <th>First Name</th>\n        <th>Last Name</th>\n        <th>ID</th>\n        <th>Age</th>\n        <th>Phone Number</th>\n        <th>Weight</th>\n        <th>Height</th>\n        <th>Smoking</th>\n        <th>Address</th>\n        <th>Physician</th>\n        </tr>";
                     promise = patientsList.map(function (patient) { return __awaiter(_this, void 0, void 0, function () {
                         var physicianName;
                         return __generator(this, function (_a) {
                             switch (_a.label) {
-                                case 0: return [4 /*yield*/, getPhysicianName(patient.physicianId)];
+                                case 0: return [4 /*yield*/, getPhysicianName(physiciansList_1.find(function (p) { return p._id === patient.physicianId; }).email)];
                                 case 1:
                                     physicianName = _a.sent();
                                     tempHtml_6 += "<tr>\n            <td>" + patient.firstName + "</td>\n            <td>" + patient.lastName + "</td>\n            <td>" + patient.patientId + "</td>\n            <td>" + patient.age + "</td>\n            <td>" + patient.phoneNum + "</td>\n            <td>" + patient.weight + "</td>\n            <td>" + patient.height + "</td>\n            <td>" + patient.smoking + "</td>\n            <td>" + patient.address + "</td>\n            <td>" + physicianName + "</td>\n            </tr>";
@@ -831,7 +827,6 @@ function renderAddPatient(html) {
                 case 2:
                     data = _a.sent();
                     physiciansList = data.physician;
-                    debugger;
                     physiciansList.forEach(function (physician) {
                         tempHtml_7 += "<option value=\"" + physician._id + "\"> Dr. " + physician.firstName + " " + physician.lastName + "</option>";
                     });
@@ -900,8 +895,7 @@ function renderUpdatePatient(html) {
                     return [4 /*yield*/, response.json()];
                 case 2:
                     data = _a.sent();
-                    patientsList = data.patient;
-                    debugger;
+                    patientsList = data.patients;
                     patientsList.forEach(function (patient) {
                         tempHtml_9 += "<option value=\"" + patient._id + "\"> " + patient.firstName + " " + patient.lastName + "</option>";
                     });
@@ -980,7 +974,7 @@ function renderVisitsList(html) {
                             switch (_a.label) {
                                 case 0:
                                     formattedDate = getTimeFormated(new Date(visit.date));
-                                    return [4 /*yield*/, checkPrescriptionExist(visit.patient, visit.date)];
+                                    return [4 /*yield*/, checkPrescriptionExist(visit.patient, formattedDate)];
                                 case 1:
                                     checkPrescription = _a.sent();
                                     debugger;
@@ -1110,20 +1104,19 @@ function getPatientsList() {
 }
 function loadDetails() {
     return __awaiter(this, void 0, void 0, function () {
-        var id, response, data, physician, idInput, firstNameInput, lastNameInput, ageInput, phoneNumInput, emailInput, licenseNumberInput, passwordInput, isAdminCheckbox, error_26;
+        var _id, response, data, physician, firstNameInput, lastNameInput, ageInput, phoneNumInput, emailInput, licenseNumberInput, passwordInput, isAdminCheckbox, error_26;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
-                    id = document.querySelector("#id").value;
-                    return [4 /*yield*/, fetch("/API/physician/get-physicians?_id=" + id)];
+                    _id = document.querySelector("#id").value;
+                    return [4 /*yield*/, fetch("/API/physician/get-physicians?_id=" + _id)];
                 case 1:
                     response = _a.sent();
                     return [4 /*yield*/, response.json()];
                 case 2:
                     data = _a.sent();
                     physician = data.physician;
-                    idInput = document.querySelector("#id");
                     firstNameInput = document.querySelector("#firstName");
                     lastNameInput = document.querySelector("#lastName");
                     ageInput = document.querySelector("#age");
@@ -1152,20 +1145,20 @@ function loadDetails() {
 }
 function loadPatientDetails() {
     return __awaiter(this, void 0, void 0, function () {
-        var id, response, data, patient, idInput, firstNameInput, lastNameInput, ageInput, phoneNumInput, weightInput, heightInput, smokingCheckbox, addressInput, physicianIdInput, error_27;
+        var _id, response, data, patient, firstNameInput, lastNameInput, ageInput, phoneNumInput, weightInput, heightInput, smokingCheckbox, addressInput, physicianIdInput, error_27;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
-                    id = document.querySelector("#id").value;
-                    return [4 /*yield*/, fetch("/API/patient/get-patients?patientId=" + id)];
+                    _id = document.querySelector("#id").value;
+                    return [4 /*yield*/, fetch("/API/patient/get-patients?_id=" + _id)];
                 case 1:
                     response = _a.sent();
                     return [4 /*yield*/, response.json()];
                 case 2:
                     data = _a.sent();
-                    patient = data.patient;
-                    idInput = document.querySelector("#id");
+                    console.log(_id);
+                    patient = data.patients;
                     firstNameInput = document.querySelector("#firstName");
                     lastNameInput = document.querySelector("#lastName");
                     ageInput = document.querySelector("#age");
@@ -1194,22 +1187,24 @@ function loadPatientDetails() {
         });
     });
 }
-function checkPrescriptionExist(patientId, date) {
+function checkPrescriptionExist(patient, date) {
     return __awaiter(this, void 0, void 0, function () {
-        var response, data, prescriptions, prescriptionExist, error_28;
+        var response, data, prescriptions, prescription, error_28;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
-                    return [4 /*yield*/, fetch("/API/prescription/get-prescriptions?patientId=" + patientId + "&date=" + date)];
+                    return [4 /*yield*/, fetch("/API/prescription/get-prescriptions?_id=" + patient._id)];
                 case 1:
                     response = _a.sent();
                     return [4 /*yield*/, response.json()];
                 case 2:
                     data = _a.sent();
+                    debugger;
                     prescriptions = data.prescriptions;
-                    prescriptionExist = prescriptions.find(function (prescription) { return prescription.patient === patientId && prescription.date === date; });
-                    return [2 /*return*/, prescriptionExist ? prescriptionExist._id : false];
+                    prescription = prescriptions.find(function (prescription) { return getTimeFormated(new Date(prescription.date)) === date; });
+                    debugger;
+                    return [2 /*return*/, prescriptions ? prescriptions[0]._id : false];
                 case 3:
                     error_28 = _a.sent();
                     console.error(error_28);

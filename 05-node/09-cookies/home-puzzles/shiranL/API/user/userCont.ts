@@ -61,15 +61,14 @@ export const logIn= async (req:any,res:any)=>{
 
 export const getLoggedInUser= async (req:any,res:any)=>{
   try {
-    // const logInUser = await UserModel.findOne({ isLoggedIn: true });
-    // if (!logInUser)  return res.send({ error: "User not found" });
-    //get user id from cookie
-     const userId = req.cookies.user;
-     if(!userId) throw new Error("no user in cookies"); 
-     //find user in DB
-    const userDB = await UserModel.findById(userId);
-    if(!userDB) throw new Error("user dosnt exist in DB");
-    res.send({ ok:true, logInUser:userDB});
+  
+    //  const userId = req.cookies.user;
+    //  if(!userId) throw new Error("no user in cookies"); 
+    //  //find user in DB
+    // const userDB = await UserModel.findById(userId);
+    // if(!userDB) throw new Error("user dosnt exist in DB");
+      const userDB=req.user
+       res.send({ ok:true, logInUser:userDB});
 
  
   } catch (error) {
@@ -82,9 +81,14 @@ export const getLoggedInUser= async (req:any,res:any)=>{
 
 export const logOut= async (req:any,res:any)=>{
   try {
-    await UserModel.updateMany({}, { isLoggedIn: false });
+    
+     // Delete the "user" cookie
+     res.clearCookie("user");
+    
+     // Return a success response
+     res.send({ ok: true });
 
-    res.send({ok:true});
+  
  
   } catch (error) {
     console.error(error);

@@ -463,7 +463,7 @@ function handleAddRecipe(event) {
 // Function to render a recipe
 function renderRecipe(recipe, isEmailExist, isAdmin, fromWhereICome) {
     return __awaiter(this, void 0, void 0, function () {
-        var recipeContainer, recipeElement, deleteButton;
+        var recipeContainer, recipeElement, ingredientsList_1, ingredientsArray, deleteButton;
         var _this = this;
         return __generator(this, function (_a) {
             try {
@@ -473,7 +473,18 @@ function renderRecipe(recipe, isEmailExist, isAdmin, fromWhereICome) {
                 if (!recipeContainer)
                     throw new Error("recipeContainer root not found");
                 recipeElement = document.createElement('div');
-                recipeElement.innerHTML = "\n            <h2 class=\"recipeName\">" + recipe.recipeName + "</h2>\n            <img src=\"" + recipe.imageUrl + "\" alt=\"recipe image\" class=\"recipeImage\">\n            <div class=\"recipeIngredients\">" + recipe.recipeIngredients + "</div>\n            <div class=\"recipeInstructions\">" + recipe.recipeInstructions + "</div>\n            <div class=\"recipeCategory\">" + recipe.category + "</div>\n        \n        ";
+                recipeElement.innerHTML = "\n            <h2 class=\"recipeName\">" + recipe.recipeName + "</h2>\n            <img src=\"" + recipe.imageUrl + "\" alt=\"recipe image\" class=\"recipeImage\">\n            <div class=\"recipeInstructions\">" + recipe.recipeInstructions + "</div>\n            <div class=\"recipeCategory\">" + recipe.category + "</div>\n        ";
+                ingredientsList_1 = document.createElement('ul');
+                ingredientsList_1.className = 'recipeIngredientsList';
+                ingredientsArray = recipe.recipeIngredients.split(',');
+                // Loop through the ingredients array and create list items
+                ingredientsArray.forEach(function (ingredient) {
+                    var listItem = document.createElement('li');
+                    listItem.textContent = ingredient.trim(); // Trim any leading/trailing spaces
+                    ingredientsList_1.appendChild(listItem);
+                });
+                // Append the ingredients list to the recipe element
+                recipeElement.appendChild(ingredientsList_1);
                 if (isEmailExist || isAdmin) {
                     deleteButton = document.createElement('button');
                     deleteButton.className = 'deleteRecipe';

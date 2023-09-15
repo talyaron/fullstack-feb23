@@ -5,10 +5,31 @@ import { Relation } from '../enums/relations'
 
 export async function getFamilyMembers(req: any, res: any) {
     try {
-        const relativesDB = await RelativeModel.find({})
-        res.send({ relatives: relativesDB });
+        // Find all relatives and populate the 'user' field to get user details
+        const relativesDB = await RelativeModel.find({}).populate('user').exec();
+
+        // Map the relatives data to include user information
+        const relativesWithUsers = relativesDB.map((relative) => {
+            const user = relative.user;
+            return {
+                id: relative._id,
+                fullName: relative.fullName,
+                birthDate: relative.birthDate,
+                country: relative.country,
+                relation: relative.relation,
+                user: {
+                    _id: user._id,
+                    userName: user.userName,
+                    gender: user.gender,
+                    email: user.email,
+                },
+            };
+        });
+
+        res.send({ relatives: relativesWithUsers });
     } catch (error) {
         console.error(error);
+        res.status(500).send({ error: error.message });
     }
 }
 
@@ -87,8 +108,14 @@ export async function getUserRelatives(req: any, res: any) {
         if (!email) {
             throw new Error("email is required");
         }
-        //get user relatives
-        const relativeDB = await RelativeModel.find({ email });
+        const user = await UserModel.findOne({ email });
+
+        if (!user) {
+            throw new Error("User not found with the provided email");
+        }
+
+        // Get user's relatives
+        const relativeDB = await RelativeModel.find({ user: user._id });
         res.send({ relatives: relativeDB });
 
     } catch (error) {
