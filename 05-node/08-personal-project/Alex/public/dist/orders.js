@@ -41,21 +41,24 @@ function getEmailFromQuery() {
 }
 var _email = getEmailFromQuery();
 console.log(_email);
-getUserName(_email);
-function getUserName(email) {
+function handleGetItems() {
+    getItems();
+}
+function getItems() {
     return __awaiter(this, void 0, void 0, function () {
-        var response, userName, error_1;
+        var response, data, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
-                    return [4 /*yield*/, fetch("/API/users/getUserName?email=" + email)];
+                    return [4 /*yield*/, fetch("/API/items/getItems")];
                 case 1:
                     response = _a.sent();
                     return [4 /*yield*/, response.json()];
                 case 2:
-                    userName = _a.sent();
-                    console.log(userName);
+                    data = _a.sent();
+                    console.log(data);
+                    renderTasks(data.items, document.querySelector("#items"));
                     return [3 /*break*/, 4];
                 case 3:
                     error_1 = _a.sent();
@@ -66,6 +69,17 @@ function getUserName(email) {
         });
     });
 }
+// getUserName(_email);
+// async function getUserName(email:string) {
+//     try {
+//         const response = await fetch(`/API/users/getUserName?email=${email}`);
+//         const userName = await response.json();
+//         console.log(userName)
+//         // renderTasks(userName.tasks, document.querySelector("#welcomMasage"));
+//     } catch (error) {
+//         console.error(error);
+//     }
+// }
 // getUserName(_email);
 // async function getUserName(_email:string) {
 //     try {

@@ -19,33 +19,11 @@ export const addItem = async (req: any, res: any) => {
   }
 }
 
-// export const login = async (req: any, res: any) => {
-//     try {
-//       const { email, password } = req.body;  
-      
-//       if(!email||!password) throw new Error("Complete all fields to proceed")
-//       const userDB = await UserModel.findOne({ email,password });
-  
-//       // Check if the user exists
-//       if (!userDB) {
-//         return res.status(404).json({ error: 'User not found' });
-//       }
-  
-//       // Compare the provided password with the hashed password
-//       const passwordMatch =  UserModel.find((user) => user.email === email && user.password === password);
-//     //   const passwordMatch = user.(password, user.password);
-  
-//       if (!passwordMatch) {
-//         return res.status(401).json({ error: 'Authentication failed' });
-//       }
-  
-//       // Authentication successful
-//       // You can generate a JWT token here if needed and send it in the response
-//       // For example: const token = generateToken(user);
-  
-//       res.send({ok: true, email: userDB.email});
-//     } catch (error) {
-//       console.error(error);
-//       res.status(500).json({ error: 'Internal server error' });
-//     }
-//   };
+// get items
+export function getItems(req: any, res: any) {
+  try {
+      res.send({ ItemModel });
+  } catch (error) {
+      console.error(error);
+  }
+}

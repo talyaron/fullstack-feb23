@@ -1,8 +1,9 @@
 import express from "express";
-import { addItem } from "./itemCont";
+import { addItem ,getItems} from "./itemCont";
 const router = express.Router();
 
-router.post("/addItem", addItem);
+router.post("/addItem", addItem)
+      .get("/getItems", getItems)
 
 
 export default router;

@@ -9,19 +9,34 @@ function getEmailFromQuery() {
 const _email  = getEmailFromQuery();
 console.log(_email)
 
-
-getUserName(_email);
-
-async function getUserName(email:string) {
+function handleGetItems(){
+    getItems();
+}
+async function getItems() {
     try {
-        const response = await fetch(`/API/users/getUserName?email=${email}`);
-        const userName = await response.json();
-        console.log(userName)
-        // renderTasks(userName.tasks, document.querySelector("#welcomMasage"));
+        const response = await fetch(`/API/items/getItems`);
+        const data = await response.json();
+        console.log(data)
+        
+        renderTasks(data.items, document.querySelector("#items"));
     } catch (error) {
         console.error(error);
     }
 }
+
+
+// getUserName(_email);
+
+// async function getUserName(email:string) {
+//     try {
+//         const response = await fetch(`/API/users/getUserName?email=${email}`);
+//         const userName = await response.json();
+//         console.log(userName)
+//         // renderTasks(userName.tasks, document.querySelector("#welcomMasage"));
+//     } catch (error) {
+//         console.error(error);
+//     }
+// }
 
 // getUserName(_email);
 // async function getUserName(_email:string) {
