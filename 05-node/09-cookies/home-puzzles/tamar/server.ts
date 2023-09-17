@@ -1,8 +1,9 @@
 import express from "express";
-const app = express();
-const port = process.env.PORT || 3000;
 import mongoose from 'mongoose';  //connect to mongoDB
 import cookieParser from 'cookie-parser';
+
+const app = express();
+const port = process.env.PORT || 3000;
 
 //middlware for using parser
 app.use(cookieParser())

@@ -13,7 +13,7 @@ var User = /** @class */ (function () {
     return User;
 }());
 exports.User = User;
-//define schema
+//define user schema
 exports.UserSchema = new mongoose_1.Schema({
     userName: String,
     email: {

@@ -55,7 +55,7 @@ exports.registerUser = function (req, res) { return __awaiter(void 0, void 0, vo
             case 1:
                 userDB = _b.sent();
                 console.log(userDB);
-                res.send({ ok: true, userDB: userDB });
+                res.send({ ok: true });
                 return [3 /*break*/, 3];
             case 2:
                 error_1 = _b.sent();
@@ -74,26 +74,26 @@ function loginUser(req, res) {
             switch (_b.label) {
                 case 0:
                     _b.trys.push([0, 2, , 3]);
-                    debugger;
                     _a = req.body //get data from claient
                     , userName = _a.userName, email = _a.email, password = _a.password;
                     if (!userName || !email || !password)
                         throw new Error("Please complete all fields");
-                    return [4 /*yield*/, usersModle_1.UserModel.findOne({ email: email, password: password })]; //find the user in DB
+                    return [4 /*yield*/, usersModle_1.UserModel.findOne({ email: email, password: password })]; //find the user in DB by email and password
                 case 1:
-                    userDB = _b.sent() //find the user in DB
+                    userDB = _b.sent() //find the user in DB by email and password
                     ;
                     if (!userDB)
-                        throw new Error("No user email or password found in DB");
+                        throw new Error("user not exist or password is inncorect");
                     console.log("userdb:", userDB);
                     //create cookie
-                    res.cookie("user", userDB._id, { maxAge: 1000 * 1000, httpOnly: true });
+                    res.cookie("user", userDB._id, { maxAge: 1000 * 1000, httpOnly: true }); //cookie name will be "user" and it contain the userId from DB
                     res.send({ ok: true });
                     return [3 /*break*/, 3];
                 case 2:
                     error_2 = _b.sent();
                     console.error(error_2);
-                    res.send({ error: error_2.massage });
+                    res.status(500).send(error_2.message);
+                    res.send({ ok: false, message: error_2.message });
                     return [3 /*break*/, 3];
                 case 3: return [2 /*return*/];
             }
@@ -101,7 +101,7 @@ function loginUser(req, res) {
     });
 }
 exports.loginUser = loginUser;
-//get
+//get user by cookie data
 function getUser(req, res) {
     return __awaiter(this, void 0, void 0, function () {
         var userId, userDB, error_3;
@@ -109,14 +109,14 @@ function getUser(req, res) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-                    userId = req.cookie.user;
+                    userId = req.cookies.user;
                     if (!userId)
                         throw new Error("no user in cookies");
                     return [4 /*yield*/, usersModle_1.UserModel.findById(userId)];
                 case 1:
                     userDB = _a.sent();
                     if (!userDB)
-                        throw new Error("user not in DB");
+                        throw new Error("user dosn't exist in DB");
                     res.send({ ok: true, users: userDB });
                     return [3 /*break*/, 3];
                 case 2:
@@ -138,7 +138,7 @@ function deleteUser(req, res) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-                    userId = req.cookie.user;
+                    userId = req.cookies.user;
                     if (!userId)
                         throw new Error("no user in cookies");
                     //find user by id and delete

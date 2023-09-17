@@ -14,7 +14,7 @@ export class User {
     }
 }
 
-//define schema
+//define user schema
 
 export const UserSchema = new Schema({
     userName: String,

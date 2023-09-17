@@ -1,9 +1,8 @@
 import express from 'express'
-import {getRecipes, addRecipe, deleteRecipe,  getOneRecipe} from "./recipesCont"
+import {addRecipe, deleteRecipe,  getOneRecipe} from "./recipesCont"
 const router = express.Router();
 
-router.get('/get-recipes', getRecipes)
-      .get('/get-one-recipe', getOneRecipe)
+router.get('/get-one-recipe', getOneRecipe)
       .post('/add-recipe', addRecipe)
       .delete('/delete-recipe', deleteRecipe);
       //.patch('/update-recipe', updateRecipe );

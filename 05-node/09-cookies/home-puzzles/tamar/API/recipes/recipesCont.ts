@@ -1,17 +1,5 @@
 import { RecipeModel } from "./recipesModel";
 
-export async function getRecipes(req: any, res: any) {
-  try {
-    const userID = req.cookie.user
-    console.log("user id in getRecipes:", userID)
-    const recipesDB = await RecipeModel.findById(userID); //breing all recipes of user from DB
-    console.log(recipesDB)
-    res.send({ recipes: recipesDB });
-  } catch (error) {
-    console.error(error);
-  }
-}
-
 export async function getOneRecipe(req: any, res: any) {
   try {
     const { id } = req.query;
@@ -35,18 +23,18 @@ export async function addRecipe(req: any, res: any) {
       throw new Error("Please complete title and/or description fields");
 
     //get user id from cookie
-    const userId = req.cookie.user
+    const userId = req.cookies.user
     console.log("add-recipe userID:", userId)
 
     //add recipe using mongoose
     const newRecipe = new RecipeModel({ title, description, urlImg, userId });
     const recipeDB = await newRecipe.save(); //save to DB
     console.log(recipeDB);
-    
+
     // Query the database to retrieve all recipes for the user
-    const userRecipes = await RecipeModel.findById(userId);
+    const userRecipes = await RecipeModel.find({ userId });
     console.log("user's recipes:", userRecipes)
-    
+
     // Send the array of user's recipes as the response
     res.send({ recipes: userRecipes });
   } catch (error) {
@@ -61,14 +49,14 @@ export async function deleteRecipe(req: any, res: any) {
     const { id } = req.body; //recipe's id
     console.log(id);
     await RecipeModel.findByIdAndDelete(id);
-    
-     //get user id from cookie
-     const userId = req.cookie.user
-     console.log("add-recipe userID:", userId)
- 
+
+    //get user id from cookie
+    const userId = req.cookies.user
+    console.log("add-recipe userID:", userId)
+
 
     // Query the database to retrieve all recipes for the user
-    const userRecipes = await RecipeModel.findById(userId);
+    const userRecipes = await RecipeModel.find({ userId });
 
     // Send the array of user's recipes as the response
     res.send({ recipes: userRecipes });
@@ -78,10 +66,10 @@ export async function deleteRecipe(req: any, res: any) {
   }
 }
 
-//update DB by ID
+//update DB by recipe-ID and user-id
 // export async function updateRecipe(req: any, res: any) {
 //   try {
-//     const { id, title, description, urlImg, email } = req.body; //the data fron claient store in this variables
+//     const { id, title, description, urlImg } = req.body; //the data fron claient store in this variables
 
 //     const currentRecipe = await RecipeModel.findById(id); //find current recipe by id
 //     if (!currentRecipe) throw new Error("recipe not found");
@@ -97,10 +85,15 @@ export async function deleteRecipe(req: any, res: any) {
 //       currentRecipe.urlImg = urlImg;
 //     }
 
-//     // Save the updated recipe
+//     //get user id from cookie
+//     const userId = req.cookies.user
+//     console.log("add-recipe userID:", userId)
+
+//     // Save the updated recipe to the user
 //     const updatedRecipe = await currentRecipe.save();
+
 //     // Query the database to retrieve all recipes for the user
-//     const userRecipes = await RecipeModel.find({ email });
+//     const userRecipes = await RecipeModel.find({ userId });
 
 //     // Send the array of user's recipes as the response
 //     res.send({ recipes: userRecipes });

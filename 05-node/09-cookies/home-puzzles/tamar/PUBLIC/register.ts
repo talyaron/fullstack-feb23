@@ -7,18 +7,20 @@ async function handleRegister(ev){
             email: ev.target.email.value,
             password: ev.target.password.value
         };
-
+        if(!user.userName || !user.email || !user.password) throw new Error("missing details");
+        
         //save the user in server/DB
-        const response = await fetch("/API/users/register", {
+        const response = await fetch("API/users/register", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify(user)
         });
-        const {error} = await response.json(); //get response from server to the action
-        console.log(error);
-        if (error) throw new Error("");
+        
+        const data = await response.json(); //get response from server to the action (data===ok||error)
+        console.log(data);
+        if (data) throw new Error("data is error");
 
         //if all ok, redirect to login page
         window.location.href = "/login.html"

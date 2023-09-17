@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 function handleRegister(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var user, response, error, error_1;
+        var user, response, data, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -47,7 +47,9 @@ function handleRegister(ev) {
                         email: ev.target.email.value,
                         password: ev.target.password.value
                     };
-                    return [4 /*yield*/, fetch("/API/users/register", {
+                    if (!user.userName || !user.email || !user.password)
+                        throw new Error("missing details");
+                    return [4 /*yield*/, fetch("API/users/register", {
                             method: "POST",
                             headers: {
                                 "Content-Type": "application/json"
@@ -58,10 +60,10 @@ function handleRegister(ev) {
                     response = _a.sent();
                     return [4 /*yield*/, response.json()];
                 case 2:
-                    error = (_a.sent()).error;
-                    console.log(error);
-                    if (error)
-                        throw new Error("");
+                    data = _a.sent();
+                    console.log(data);
+                    if (data)
+                        throw new Error("data is error");
                     //if all ok, redirect to login page
                     window.location.href = "/login.html";
                     return [3 /*break*/, 4];

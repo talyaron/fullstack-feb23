@@ -45,17 +45,17 @@ function getUserRecipes(req, res) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-                    userID = req.cookie.user;
+                    userID = req.cookies.user;
                     console.log("userID after login:", userID);
-                    debugger;
                     if (!userID) {
                         throw new Error("userID is required");
                     }
-                    console.log(userID);
-                    return [4 /*yield*/, recipesModel_1.RecipeModel.findById(userID)];
+                    return [4 /*yield*/, recipesModel_1.RecipeModel.find({ userID: userID })];
                 case 1:
                     recipeDB = _a.sent();
-                    console.log(recipeDB);
+                    if (!recipeDB)
+                        throw new Error("no recipeDS found");
+                    console.log("user recipe from DB in getUserRecipe:", recipeDB);
                     res.send({ recipes: recipeDB });
                     return [3 /*break*/, 3];
                 case 2:

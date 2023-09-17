@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 function handleLogin(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var user, response, answer, error_1;
+        var user, response, data, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -50,7 +50,7 @@ function handleLogin(ev) {
                     console.log(user);
                     if (!user.email || !user.userName || !user.password)
                         throw new Error("Please complete all fields");
-                    return [4 /*yield*/, fetch("/API/users/login", {
+                    return [4 /*yield*/, fetch("API/users/login", {
                             method: "POST",
                             headers: {
                                 "Content-Type": "application/json"
@@ -61,12 +61,12 @@ function handleLogin(ev) {
                     response = _a.sent();
                     return [4 /*yield*/, response.json()];
                 case 2:
-                    answer = _a.sent();
-                    if (!answer.ok) {
-                        throw new Error(answer.massage);
+                    data = _a.sent();
+                    if (!data.ok) {
+                        throw new Error(data.massage);
                     }
                     else {
-                        //if all ok, redirect to main page of the user by his email
+                        //if all ok, redirect to main page of the user
                         window.location.href = "/main.html";
                     }
                     return [3 /*break*/, 4];

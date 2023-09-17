@@ -3,7 +3,8 @@
 interface Recipe {
     title: string;
     description: string;
-    urlImg?: string
+    urlImg?: string;
+    userId: string;   //new
     _id: string;
 }
 
@@ -13,10 +14,10 @@ const recipes: Recipe[] = [];
 async function handleGetUser() {
     try {
         //ask server to get the user id
-        const response = await fetch('/API/users/get-user');
+        const response = await fetch('API/users/get-user');
         const data = await response.json();
         console.log(data)
-
+        handelGetUserRecipes();
     } catch (error) {
         console.error(error)
     }
@@ -36,9 +37,9 @@ async function hendelDeleteUser(){
                 },
             });
         //convert response to join data
-        const { answer } = await response.json();
-        console.log(answer);
-        if(answer){ 
+        const { data } = await response.json();
+        console.log(data);
+        if(data){ 
             window.location.href = "/index.html"
         } else {
             throw new Error("user not deleted");
@@ -69,7 +70,8 @@ async function hendelAddRecipe(ev: any) {
             },
             body: JSON.stringify(newRecipe)  //the data that send to the DB server in json-formatted string
         });
-        const { recipes } = await response.json(); //and get the new recipes array from the server
+        const recipes = await response.json(); //and get the new recipes array from the server
+        console.log("the recupes after add:", recipes)
         renderRecipes(recipes, document.querySelector("#userRecipes"))
         document.querySelector("form").reset();
 
@@ -83,17 +85,17 @@ async function hendelAddRecipe(ev: any) {
 // async function handleUpdateRecpie(ev: any) {
 //     try {
 //         ev.preventDefault();
-//         const urlParams = new URLSearchParams(window.location.search);
-//         const email=urlParams.get('email');
+//         //const urlParams = new URLSearchParams(window.location.search);
+//         //const email=urlParams.get('email');
 //         const recipeId = ev.target.id
-//         if (!recipeId) {} //error handle
-//         //get the updated data
+//         if (!recipeId) throw new Error("recipe id missing");
         
+//         //get the updated data
 //         const title = ev.target.titleUpdate.value
 //         const description = ev.target.descriptionUpdate.value
-        
 //         const urlImg = ev.target.imgUrlUpdate.value;
-//         const updateRecipe = {id: recipeId, title, description, urlImg, email}
+
+//         const updateRecipe = {id: recipeId, title, description, urlImg}
 //         console.log(updateRecipe);
 //         //send the updated recipe to the server/DB
 //         const response = await fetch('/API/recipes/update-recipe', {
@@ -108,7 +110,7 @@ async function hendelAddRecipe(ev: any) {
 //         if(!updateForm) //error handle
 //         updateForm.style.display = "none"
 //         //reset inputs
-//         const { recipes } = await response.json(); //and get the new recipes array from the server
+//         const recipes  = await response.json(); //and get the new recipes array from the server
 //         console.log(recipes)
 
 //         renderRecipes(recipes, document.querySelector("#userRecipes"))
@@ -130,7 +132,7 @@ async function hendelDeleteRecipe(id: string) {
                 body: JSON.stringify({ id })
             });
         //convert response to join data
-        const { recipes } = await response.json();
+        const recipes  = await response.json();
         console.log(recipes);
         renderRecipes(recipes, document.querySelector('#userRecipes'))
     } catch (error) {
@@ -182,7 +184,7 @@ async function GetUserRecipe() {
     try {
         const response = await fetch(`/API/userRecipes/get-user-recipes`);
         const data = await response.json();
-        console.log("data:", data)
+        console.log("the recipes after getUserRecipes:", data.recipes)
         renderRecipes(data.recipes, document.querySelector("#userRecipes"))
     } catch (error) {
         console.error(error)

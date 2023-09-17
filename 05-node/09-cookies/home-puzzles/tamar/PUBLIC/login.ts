@@ -11,17 +11,18 @@ async function handleLogin(ev) {
         if (!user.email || !user.userName || !user.password) throw new Error("Please complete all fields");
 
         //send data to server/DB
-        const response = await fetch("/API/users/login", {
+        const response = await fetch("API/users/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify(user)
         });
-        const answer = await response.json(); //get response (data) from server for the action
-        if (!answer.ok) { throw new Error(answer.massage) }
+
+        const data = await response.json(); //get response (data) from server for the action
+        if (!data.ok) { throw new Error(data.massage) }
         else {
-            //if all ok, redirect to main page of the user by his email
+            //if all ok, redirect to main page of the user
             window.location.href = `/main.html`; 
         }
 

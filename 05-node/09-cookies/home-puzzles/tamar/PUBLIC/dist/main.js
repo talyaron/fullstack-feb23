@@ -44,13 +44,14 @@ function handleGetUser() {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
-                    return [4 /*yield*/, fetch('/API/users/get-user')];
+                    return [4 /*yield*/, fetch('API/users/get-user')];
                 case 1:
                     response = _a.sent();
                     return [4 /*yield*/, response.json()];
                 case 2:
                     data = _a.sent();
                     console.log(data);
+                    handelGetUserRecipes();
                     return [3 /*break*/, 4];
                 case 3:
                     error_1 = _a.sent();
@@ -66,7 +67,7 @@ function handelGetUserRecipes() {
 }
 function hendelDeleteUser() {
     return __awaiter(this, void 0, void 0, function () {
-        var response, answer, error_2;
+        var response, data, error_2;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -81,9 +82,9 @@ function hendelDeleteUser() {
                     response = _a.sent();
                     return [4 /*yield*/, response.json()];
                 case 2:
-                    answer = (_a.sent()).answer;
-                    console.log(answer);
-                    if (answer) {
+                    data = (_a.sent()).data;
+                    console.log(data);
+                    if (data) {
                         window.location.href = "/index.html";
                     }
                     else {
@@ -127,7 +128,8 @@ function hendelAddRecipe(ev) {
                     response = _a.sent();
                     return [4 /*yield*/, response.json()];
                 case 2:
-                    recipes_1 = (_a.sent()).recipes;
+                    recipes_1 = _a.sent();
+                    console.log("the recupes after add:", recipes_1);
                     renderRecipes(recipes_1, document.querySelector("#userRecipes"));
                     document.querySelector("form").reset();
                     return [3 /*break*/, 4];
@@ -143,15 +145,15 @@ function hendelAddRecipe(ev) {
 // async function handleUpdateRecpie(ev: any) {
 //     try {
 //         ev.preventDefault();
-//         const urlParams = new URLSearchParams(window.location.search);
-//         const email=urlParams.get('email');
+//         //const urlParams = new URLSearchParams(window.location.search);
+//         //const email=urlParams.get('email');
 //         const recipeId = ev.target.id
-//         if (!recipeId) {} //error handle
+//         if (!recipeId) throw new Error("recipe id missing");
 //         //get the updated data
 //         const title = ev.target.titleUpdate.value
 //         const description = ev.target.descriptionUpdate.value
 //         const urlImg = ev.target.imgUrlUpdate.value;
-//         const updateRecipe = {id: recipeId, title, description, urlImg, email}
+//         const updateRecipe = {id: recipeId, title, description, urlImg}
 //         console.log(updateRecipe);
 //         //send the updated recipe to the server/DB
 //         const response = await fetch('/API/recipes/update-recipe', {
@@ -166,7 +168,7 @@ function hendelAddRecipe(ev) {
 //         if(!updateForm) //error handle
 //         updateForm.style.display = "none"
 //         //reset inputs
-//         const { recipes } = await response.json(); //and get the new recipes array from the server
+//         const recipes  = await response.json(); //and get the new recipes array from the server
 //         console.log(recipes)
 //         renderRecipes(recipes, document.querySelector("#userRecipes"))
 //         document.querySelector("form").reset();
@@ -193,7 +195,7 @@ function hendelDeleteRecipe(id) {
                     response = _a.sent();
                     return [4 /*yield*/, response.json()];
                 case 2:
-                    recipes_2 = (_a.sent()).recipes;
+                    recipes_2 = _a.sent();
                     console.log(recipes_2);
                     renderRecipes(recipes_2, document.querySelector('#userRecipes'));
                     return [3 /*break*/, 4];
@@ -247,7 +249,7 @@ function GetUserRecipe() {
                     return [4 /*yield*/, response.json()];
                 case 2:
                     data = _a.sent();
-                    console.log("data:", data);
+                    console.log("the recipes after getUserRecipes:", data.recipes);
                     renderRecipes(data.recipes, document.querySelector("#userRecipes"));
                     return [3 /*break*/, 4];
                 case 3:
