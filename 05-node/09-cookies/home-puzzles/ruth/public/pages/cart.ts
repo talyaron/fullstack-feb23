@@ -68,7 +68,7 @@ async function handleDeleteProdFromCart(event, prodId) {
       },
       body: JSON.stringify({ prodId }),
     };
-    const response = await fetch("/API/products/delete-cart-prod");
+    const response = await fetch("/API/products/delete-cart-prod", deleteInit);
     const { ok } = await response.json();
     if (!ok)
       throw new Error("something wrong in server side the product not deleted");

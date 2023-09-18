@@ -130,7 +130,7 @@ function handleDeleteProdFromCart(event, prodId) {
                         },
                         body: JSON.stringify({ prodId: prodId })
                     };
-                    return [4 /*yield*/, fetch("/API/products/delete-cart-prod")];
+                    return [4 /*yield*/, fetch("/API/products/delete-cart-prod", deleteInit)];
                 case 1:
                     response = _a.sent();
                     return [4 /*yield*/, response.json()];

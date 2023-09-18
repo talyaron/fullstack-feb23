@@ -1,0 +1,66 @@
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Butterfly+Kids&family=IBM+Plex+Sans+Hebrew&family=Lugrasimo&family=Noto+Serif:ital,wght@0,100;0,300;0,400;0,500;1,300&family=Open+Sans:wght@300;400&family=Oswald&family=Playfair+Display:ital,wght@1,500&family=Raleway&family=Rubik:ital,wght@0,400;0,500;1,300;1,400&family=Ysabeau+Infant:ital,wght@0,300;1,300&family=Ysabeau+SC:wght@300&display=swap");
+
+* {
+  padding: 0px;
+  margin: 0%;
+  color: #bdeaff;
+  text-shadow: 3px 2px 4px #19323ebe;
+  font-family: Raleway;
+  // box-shadow:  1px 1px 3px 4px #19323e;
+}
+
+nav {
+  display: block;
+  background-color: #ffff;
+  margin-bottom: 40px;
+  img {
+    width: 150px;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+body {
+  background-color: #255165;
+  text-align: center;
+
+  .wrapper {
+    display: flex;
+    justify-content: center;
+    h3 {
+      margin: 20px;
+      font-weight: 00;
+    }
+    form {
+      input {
+        border: 1px solid #8c8c8c;
+        padding: 12px;
+        color: #000000;
+        text-shadow: none;
+        width: 190px;
+        margin: 5px;
+      }
+      button {
+        width: 80px;
+        border: 1px solid #8c8c8c;
+        background-color: #73db7a;
+        color: #000000;
+        padding: 10px;
+        margin: 10px;
+        border-radius: 40px;
+        transition: all 0.2s;
+
+        &:hover {
+          cursor: pointer;
+          padding: 7px 10px;
+        }
+
+        a {
+          text-decoration: none;
+          text-shadow: none;
+          color: #6c6c6c;
+        }
+      }
+    }
+  }
+}

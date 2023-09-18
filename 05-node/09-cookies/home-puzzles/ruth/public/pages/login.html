@@ -4,16 +4,25 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="./dist/login.js" defer></script>
+    <link rel="stylesheet" href="./dist/login&regisStyle.css" />
     <title>Document</title>
   </head>
   <body>
-    <form onsubmit="handleLogin(event)" class="login">
-      <label for="login">Login:</label><br />
-      <input id="login" type="email" name="email" /><br />
-      <label for="password">password:</label><br />
-      <input id="password" type="password" name="password" /><br />
-      <button type="submit">login</button>
-      <button><a href="./register.html">register</a></button>
-    </form>
+    <nav>
+      <div class="logo">
+        <img onclick="goHomePage()" src="../src/socialMarket.png" alt="" />
+      </div>
+    </nav>
+    <div class="wrapper">
+      <form onsubmit="handleLogin(event)" class="login">
+        <h3>Login</h3>
+        <label for="email">email:</label><br />
+        <input id="email" type="email" name="email" /><br />
+        <label for="password">password:</label><br />
+        <input id="password" type="password" name="password" /><br />
+        <button type="submit">login</button>
+        <button><a href="./register.html">register</a></button>
+      </form>
+    </div>
   </body>
 </html>

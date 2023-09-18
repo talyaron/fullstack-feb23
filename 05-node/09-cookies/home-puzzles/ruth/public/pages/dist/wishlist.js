@@ -130,7 +130,7 @@ function handleDeleteProdFromWishList(event, prodId) {
                         },
                         body: JSON.stringify({ prodId: prodId })
                     };
-                    return [4 /*yield*/, fetch("/API/products/delete-wishlist-prod")];
+                    return [4 /*yield*/, fetch("/API/products/delete-wishlist-prod", deleteInit)];
                 case 1:
                     response = _a.sent();
                     return [4 /*yield*/, response.json()];

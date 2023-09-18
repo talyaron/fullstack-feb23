@@ -68,7 +68,10 @@ async function handleDeleteProdFromWishList(event, prodId) {
       },
       body: JSON.stringify({ prodId }),
     };
-    const response = await fetch("/API/products/delete-wishlist-prod");
+    const response = await fetch(
+      "/API/products/delete-wishlist-prod",
+      deleteInit,
+    );
     const { ok } = await response.json();
     if (!ok)
       throw new Error("something wrong in server side the product not deleted");
