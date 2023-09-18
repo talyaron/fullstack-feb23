@@ -13,7 +13,9 @@ async function checkLogin() {
     console.log(userEmail);
 
     if (!userEmail || userEmail === null || userEmail === undefined) {
-      alert("you need to login first");
+      await alert("you need to login first");
+      window.location.href = "./login.html";
+
       throw new Error("you need to login first");
     }
     if (userEmail) {

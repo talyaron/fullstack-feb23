@@ -34,7 +34,7 @@ export async function getProductByOwnerEmail(req, res) {
 
     if (userDB.isAdmin) {
       const allProducts = await ProductModel.find({});
-      res.send({ allProducts });
+      res.send({ usersProducts: allProducts });
       return;
     }
 
@@ -141,7 +141,8 @@ export async function addProductToWishList(req, res) {
 
 export async function getProductsToWishlist(req, res) {
   try {
-    const userEmail = req.cookies.user;
+    const userDB = req.user;
+    const userEmail = userDB.email;
     if (!userEmail) throw new Error("user not found in cookie");
     const productsDB = await ProductModel.find({
       customersWishList: { $elemMatch: { $eq: userEmail } },
@@ -150,5 +151,68 @@ export async function getProductsToWishlist(req, res) {
     res.send({ productsDB });
   } catch (error) {
     console.error(error.message);
+  }
+}
+
+export async function deleteWishlistProduct(req, res) {
+  try {
+    const userDB = req.user;
+    const emailToRemove = userDB.email;
+    const { prodId } = req.body;
+
+    const productDB = await ProductModel.findById(prodId);
+
+    if (!productDB) {
+      throw new Error("product not found");
+    }
+
+    const indexToRemove = productDB.customersWishList.indexOf(emailToRemove);
+    if (indexToRemove !== -1) {
+      productDB.customersWishList.splice(indexToRemove, 1);
+    }
+    await productDB.save();
+    res.send({ ok: true });
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+//--------------------cart----------------------------------------------------------
+
+export async function getProductsToCart(req, res) {
+  try {
+    const userDB = req.user;
+    const userEmail = userDB.email;
+    if (!userEmail) throw new Error("user not found in cookie");
+    const productsDB = await ProductModel.find({
+      customersCart: { $elemMatch: { $eq: userEmail } },
+    }).exec();
+    if (!productsDB) throw new Error("products not found");
+    res.send({ productsDB });
+  } catch (error) {
+    console.error(error.message);
+  }
+}
+
+export async function deleteCartProduct(req, res) {
+  try {
+    const userDB = req.user;
+    const emailToRemove = userDB.email;
+    const { prodId } = req.body;
+
+    const productDB = await ProductModel.findById(prodId);
+
+    if (!productDB) {
+      throw new Error("product not found");
+    }
+
+    const indexToRemove = productDB.customersCart.indexOf(emailToRemove);
+    if (indexToRemove !== -1) {
+      productDB.customersCart.splice(indexToRemove, 1);
+    }
+    await productDB.save();
+    res.send({ ok: true });
+  } catch (error) {
+    console.error(error);
   }
 }

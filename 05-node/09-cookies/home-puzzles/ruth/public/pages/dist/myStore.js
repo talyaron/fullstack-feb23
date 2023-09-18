@@ -52,25 +52,28 @@ function checkLogin() {
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    _a.trys.push([0, 2, , 3]);
+                    _a.trys.push([0, 4, , 5]);
                     return [4 /*yield*/, getUserFromCookie()];
                 case 1:
                     userEmail = _a.sent();
                     console.log(userEmail);
-                    if (!userEmail || userEmail === null || userEmail === undefined) {
-                        alert("you need to login first");
-                        throw new Error("you need to login first");
-                    }
+                    if (!(!userEmail || userEmail === null || userEmail === undefined)) return [3 /*break*/, 3];
+                    return [4 /*yield*/, alert("you need to login first")];
+                case 2:
+                    _a.sent();
+                    window.location.href = "./login.html";
+                    throw new Error("you need to login first");
+                case 3:
                     if (userEmail) {
                         halloUserDiv = document.querySelector(".halloUserDiv");
                         halloUserDiv.innerText = "welcome to " + userEmail.split("@")[0] + " store";
                     }
-                    return [3 /*break*/, 3];
-                case 2:
+                    return [3 /*break*/, 5];
+                case 4:
                     error_1 = _a.sent();
                     console.error(error_1);
-                    return [3 /*break*/, 3];
-                case 3: return [2 /*return*/];
+                    return [3 /*break*/, 5];
+                case 5: return [2 /*return*/];
             }
         });
     });

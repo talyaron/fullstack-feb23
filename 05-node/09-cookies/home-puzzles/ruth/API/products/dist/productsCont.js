@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.getProductsToWishlist = exports.addProductToWishList = exports.addProductToCart = exports.getAllProducts = exports.deleteProduct = exports.updateProductInfo = exports.getProductByOwnerEmail = exports.createProduct = void 0;
+exports.deleteCartProduct = exports.getProductsToCart = exports.deleteWishlistProduct = exports.getProductsToWishlist = exports.addProductToWishList = exports.addProductToCart = exports.getAllProducts = exports.deleteProduct = exports.updateProductInfo = exports.getProductByOwnerEmail = exports.createProduct = void 0;
 var console_1 = require("console");
 var productsModel_1 = require("./productsModel");
 function createProduct(req, res) {
@@ -90,7 +90,7 @@ function getProductByOwnerEmail(req, res) {
                     return [4 /*yield*/, productsModel_1["default"].find({})];
                 case 1:
                     allProducts = _a.sent();
-                    res.send({ allProducts: allProducts });
+                    res.send({ usersProducts: allProducts });
                     return [2 /*return*/];
                 case 2: return [4 /*yield*/, productsModel_1["default"].find({ email: userEmail })];
                 case 3:
@@ -250,12 +250,13 @@ exports.addProductToWishList = addProductToWishList;
 //-----------------------------wishlist--------------------------------
 function getProductsToWishlist(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var userEmail, productsDB, error_8;
+        var userDB, userEmail, productsDB, error_8;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-                    userEmail = req.cookies.user;
+                    userDB = req.user;
+                    userEmail = userDB.email;
                     if (!userEmail)
                         throw new Error("user not found in cookie");
                     return [4 /*yield*/, productsModel_1["default"].find({
@@ -277,3 +278,104 @@ function getProductsToWishlist(req, res) {
     });
 }
 exports.getProductsToWishlist = getProductsToWishlist;
+function deleteWishlistProduct(req, res) {
+    return __awaiter(this, void 0, void 0, function () {
+        var userDB, emailToRemove, prodId, productDB, indexToRemove, error_9;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 3, , 4]);
+                    userDB = req.user;
+                    emailToRemove = userDB.email;
+                    prodId = req.body.prodId;
+                    return [4 /*yield*/, productsModel_1["default"].findById(prodId)];
+                case 1:
+                    productDB = _a.sent();
+                    if (!productDB) {
+                        throw new Error("product not found");
+                    }
+                    indexToRemove = productDB.customersWishList.indexOf(emailToRemove);
+                    if (indexToRemove !== -1) {
+                        productDB.customersWishList.splice(indexToRemove, 1);
+                    }
+                    return [4 /*yield*/, productDB.save()];
+                case 2:
+                    _a.sent();
+                    res.send({ ok: true });
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_9 = _a.sent();
+                    console.error(error_9);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
+            }
+        });
+    });
+}
+exports.deleteWishlistProduct = deleteWishlistProduct;
+//--------------------cart----------------------------------------------------------
+function getProductsToCart(req, res) {
+    return __awaiter(this, void 0, void 0, function () {
+        var userDB, userEmail, productsDB, error_10;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    userDB = req.user;
+                    userEmail = userDB.email;
+                    if (!userEmail)
+                        throw new Error("user not found in cookie");
+                    return [4 /*yield*/, productsModel_1["default"].find({
+                            customersCart: { $elemMatch: { $eq: userEmail } }
+                        }).exec()];
+                case 1:
+                    productsDB = _a.sent();
+                    if (!productsDB)
+                        throw new Error("products not found");
+                    res.send({ productsDB: productsDB });
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_10 = _a.sent();
+                    console.error(error_10.message);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
+}
+exports.getProductsToCart = getProductsToCart;
+function deleteCartProduct(req, res) {
+    return __awaiter(this, void 0, void 0, function () {
+        var userDB, emailToRemove, prodId, productDB, indexToRemove, error_11;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 3, , 4]);
+                    userDB = req.user;
+                    emailToRemove = userDB.email;
+                    prodId = req.body.prodId;
+                    return [4 /*yield*/, productsModel_1["default"].findById(prodId)];
+                case 1:
+                    productDB = _a.sent();
+                    if (!productDB) {
+                        throw new Error("product not found");
+                    }
+                    indexToRemove = productDB.customersCart.indexOf(emailToRemove);
+                    if (indexToRemove !== -1) {
+                        productDB.customersCart.splice(indexToRemove, 1);
+                    }
+                    return [4 /*yield*/, productDB.save()];
+                case 2:
+                    _a.sent();
+                    res.send({ ok: true });
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_11 = _a.sent();
+                    console.error(error_11);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
+            }
+        });
+    });
+}
+exports.deleteCartProduct = deleteCartProduct;

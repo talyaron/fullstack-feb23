@@ -22,10 +22,53 @@ async function checkLogin() {
 
 async function renderWishlist() {
   try {
-    const response = await fetch("/API/products/get-Wishlist-by-email");
-    const  { productsDB }  = await response.json();
+    const response = await fetch("/API/products/get-wishlist-by-email");
+    const { productsDB } = await response.json();
     if (!productsDB) throw new Error("No products database found");
-    console.log(productsDB);
+    const html = productsDB
+      .map((product) => {
+        return `
+      <div class="storeGallery__productDiv" id = "${product._id}">
+          <img src=${product.imgUrl} alt="" />
+          <form id ="${product._id}" class="fid__info">
+          <label>title:</label>
+            <p id="title" name="title">${product.title}</p><br>
+            <p id="price" name="price">${product.price}$</p><br>
+            <label> description: </label><br>
+            <p id="description" name="description">${product.description}</p><br>
+            <p>${product.email}</p><br>
+          
+          <div class="likeAndCart">
+          <button type="button" onclick='handleDeleteProdFromWishList(event , "${product._id}")'><span class="material-symbols-sharp"> heart_minus </span></button>
+          </form>
+          </div>
+        </div>`;
+      })
+      .join(" ");
+
+    const root = document.querySelector(".wishlistDiv") as HTMLDivElement;
+    console.log(root);
+    root.innerHTML = html;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+async function handleDeleteProdFromCart(event, prodId) {
+  try {
+    if (!prodId) throw new Error("id is required");
+    const deleteInit = {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ prodId }),
+    };
+    const response = await fetch("/API/products/delete-cart-prod");
+    const { ok } = await response.json();
+    if (!ok)
+      throw new Error("something wrong in server side the product not deleted");
+    renderWishlist();
   } catch (error) {
     console.error(error);
   }

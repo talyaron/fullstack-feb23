@@ -1,0 +1,50 @@
+@charset "UTF-8";
+.wishlistDiv,
+.cartDiv {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.wishlistDiv__productDiv,
+.cartDiv__productDiv {
+  width: 300px;
+  margin: 10px;
+  text-align: center;
+  border: 1px solid #bfbfbf;
+  padding: 10px 0px;
+  display: inline-block;
+}
+.wishlistDiv__productDiv label,
+.cartDiv__productDiv label {
+  margin: 5px;
+  width: 50px;
+  font-weight: bolder;
+}
+.wishlistDiv__productDiv input,
+.wishlistDiv__productDiv textarea,
+.cartDiv__productDiv input,
+.cartDiv__productDiv textarea {
+  border: none;
+  width: fit-content;
+  width: 50px;
+  min-height: 30px;
+  /* גובה מינימלי */
+  max-height: 150px;
+  /* גובה מרבי */
+  overflow-y: auto;
+  font-family: Arial, sans-serif;
+}
+.wishlistDiv__productDiv textarea,
+.cartDiv__productDiv textarea {
+  min-width: 140px;
+}
+.wishlistDiv__productDiv img,
+.cartDiv__productDiv img {
+  max-width: 260px;
+  max-height: 260px;
+  object-fit: cover;
+}
+.wishlistDiv__productDiv img,
+.cartDiv__productDiv img {
+  width: 90%;
+}

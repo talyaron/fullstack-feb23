@@ -78,14 +78,14 @@ function checkLogin() {
         });
     });
 }
-function renderWishlist() {
+function renderCart() {
     return __awaiter(this, void 0, void 0, function () {
         var response, productsDB, html, root, error_2;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
-                    return [4 /*yield*/, fetch("/API/products/get-wishlist-by-email")];
+                    return [4 /*yield*/, fetch("/API/products/get-cart-by-email")];
                 case 1:
                     response = _a.sent();
                     return [4 /*yield*/, response.json()];
@@ -95,7 +95,7 @@ function renderWishlist() {
                         throw new Error("No products database found");
                     html = productsDB
                         .map(function (product) {
-                        return "\n      <div class=\"storeGallery__productDiv\" id = \"" + product._id + "\">\n          <img src=" + product.imgUrl + " alt=\"\" />\n          <form id =\"" + product._id + "\" class=\"fid__info\">\n          <label>title:</label>\n            <p id=\"title\" name=\"title\">" + product.title + "</p><br>\n            <p id=\"price\" name=\"price\">" + product.price + "$</p><br>\n            <label> description: </label><br>\n            <p id=\"description\" name=\"description\">" + product.description + "</p><br>\n            <p>" + product.email + "</p><br>\n          \n          <div class=\"likeAndCart\">\n          <button type=\"button\" onclick='handleDeleteProdFromWishList(event , \"" + product._id + "\")'><span class=\"material-symbols-sharp\"> heart_minus </span></button>\n          </form>\n          </div>\n        </div>";
+                        return "\n        <div class=\"storeGallery__productDiv\" id = \"" + product._id + "\">\n            <img src=" + product.imgUrl + " alt=\"\" />\n            <form id =\"" + product._id + "\" class=\"fid__info\">\n            <label>title:</label>\n              <p id=\"title\" name=\"title\">" + product.title + "</p><br>\n              <p id=\"price\" name=\"price\">" + product.price + "$</p><br>\n              <label> description: </label><br>\n              <p id=\"description\" name=\"description\">" + product.description + "</p><br>\n              <p>" + product.email + "</p><br>\n            \n            <div class=\"likeAndCart\">\n            <button type=\"button\" onclick='handleDeleteProdFromCart(event , \"" + product._id + "\")'><span class=\"material-symbols-outlined\"> delete </span></button>\n            </form>\n            </div>\n          </div>";
                     })
                         .join(" ");
                     root = document.querySelector(".wishlistDiv");
@@ -135,7 +135,7 @@ function handleDeleteProdFromCart(event, prodId) {
                     ok = (_a.sent()).ok;
                     if (!ok)
                         throw new Error("something wrong in server side the product not deleted");
-                    renderWishlist();
+                    renderCart();
                     return [3 /*break*/, 4];
                 case 3:
                     error_3 = _a.sent();

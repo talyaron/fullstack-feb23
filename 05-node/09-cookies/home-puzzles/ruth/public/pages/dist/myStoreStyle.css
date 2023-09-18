@@ -55,6 +55,8 @@
 }
 .storeGallery__productDiv img {
   max-width: 260px;
+  max-height: 260px;
+  object-fit: cover;
 }
 .storeGallery__productDiv img {
   width: 90%;
