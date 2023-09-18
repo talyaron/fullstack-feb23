@@ -4,13 +4,18 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="./dist/register.js" defer></script>
+    <link rel="stylesheet" href="./dist/login&regisStyle.css" />
     <link rel="stylesheet" href="./dist/login.css" />
     <title>Register</title>
   </head>
   <body>
+    <nav>
+      <div class="logo">
+        <img onclick="goHomePage()" src="../src/socialMarket.png" alt="" />
+      </div>
+    </nav>
     <div class="wrapper">
-      <h1>Register</h1>
-
+      <h3>Register</h3>
       <form onsubmit="handleRegister(event)">
         <input name="email" type="text" placeholder="email:" /><br />
         <input name="password" type="password" placeholder="password" /><br />

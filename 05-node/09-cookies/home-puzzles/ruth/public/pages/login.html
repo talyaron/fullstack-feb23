@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="./dist/login.js" defer></script>
     <link rel="stylesheet" href="./dist/login&regisStyle.css" />
-    <title>Document</title>
+    <title>Login</title>
   </head>
   <body>
     <nav>
@@ -14,12 +14,11 @@
       </div>
     </nav>
     <div class="wrapper">
+      <h3>Login</h3>
+
       <form onsubmit="handleLogin(event)" class="login">
-        <h3>Login</h3>
-        <label for="email">email:</label><br />
-        <input id="email" type="email" name="email" /><br />
-        <label for="password">password:</label><br />
-        <input id="password" type="password" name="password" /><br />
+        <input id="email" type="email" name="email" placeholder="email" /><br />
+        <input id="password" type="password" name="password" placeholder="password" /><br />
         <button type="submit">login</button>
         <button><a href="./register.html">register</a></button>
       </form>
