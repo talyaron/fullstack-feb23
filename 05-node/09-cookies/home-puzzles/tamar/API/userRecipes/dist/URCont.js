@@ -40,23 +40,21 @@ exports.getUserRecipes = void 0;
 var recipesModel_1 = require("../recipes/recipesModel");
 function getUserRecipes(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var userID, recipeDB, error_1;
+        var userId, userRecipesDB, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-                    userID = req.cookies.user;
-                    console.log("userID after login:", userID);
-                    if (!userID) {
+                    userId = req.cookies.user;
+                    console.log("userID after login:", userId);
+                    if (!userId) {
                         throw new Error("userID is required");
                     }
-                    return [4 /*yield*/, recipesModel_1.RecipeModel.find({ userID: userID })];
+                    return [4 /*yield*/, recipesModel_1.RecipeModel.find({ userId: userId })];
                 case 1:
-                    recipeDB = _a.sent();
-                    if (!recipeDB)
-                        throw new Error("no recipeDS found");
-                    console.log("user recipe from DB in getUserRecipe:", recipeDB);
-                    res.send({ recipes: recipeDB });
+                    userRecipesDB = _a.sent();
+                    console.log("user recipe from DB in getUserRecipe:", userRecipesDB);
+                    res.send({ recipes: userRecipesDB });
                     return [3 /*break*/, 3];
                 case 2:
                     error_1 = _a.sent();

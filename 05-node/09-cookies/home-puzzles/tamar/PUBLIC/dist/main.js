@@ -51,7 +51,7 @@ function handleGetUser() {
                 case 2:
                     data = _a.sent();
                     console.log(data);
-                    handelGetUserRecipes();
+                    GetUserRecipe();
                     return [3 /*break*/, 4];
                 case 3:
                     error_1 = _a.sent();
@@ -61,9 +61,6 @@ function handleGetUser() {
             }
         });
     });
-}
-function handelGetUserRecipes() {
-    GetUserRecipe();
 }
 function hendelDeleteUser() {
     return __awaiter(this, void 0, void 0, function () {

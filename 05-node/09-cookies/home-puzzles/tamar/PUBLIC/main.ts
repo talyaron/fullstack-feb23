@@ -17,14 +17,10 @@ async function handleGetUser() {
         const response = await fetch('API/users/get-user');
         const data = await response.json();
         console.log(data)
-        handelGetUserRecipes();
+        GetUserRecipe()
     } catch (error) {
         console.error(error)
     }
-}
-
-function handelGetUserRecipes() {
-    GetUserRecipe()
 }
 
 async function hendelDeleteUser(){

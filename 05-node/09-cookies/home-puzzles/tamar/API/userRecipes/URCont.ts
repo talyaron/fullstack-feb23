@@ -3,16 +3,17 @@ import { RecipeModel } from "../recipes/recipesModel";
 export async function getUserRecipes(req:any, res:any) {
     try {
         //get user id from cookie
-        const userID = req.cookies.user; //speshel identefayer
-        console.log("userID after login:", userID)
-        if (!userID) {
+        const userId = req.cookies.user; //speshel identefayer
+        console.log("userID after login:", userId)
+        if (!userId) {
             throw new Error("userID is required");
         }
-        const recipeDB = await RecipeModel.find({userID});
-        if(!recipeDB)throw new Error("no recipeDS found");
-        console.log("user recipe from DB in getUserRecipe:", recipeDB)
         
-        res.send({ recipes: recipeDB });
+        const userRecipesDB = await RecipeModel.find({ userId });
+     
+        console.log("user recipe from DB in getUserRecipe:", userRecipesDB)
+        
+        res.send({ recipes: userRecipesDB });
 
     } catch (error) {
         console.error(error);
