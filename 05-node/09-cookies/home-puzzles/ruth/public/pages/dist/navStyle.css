@@ -13,6 +13,10 @@ nav {
   border-bottom: 1px solid #b1b1b1;
   justify-content: space-around;
 }
+nav .active {
+  background-color: #67c46d;
+  color: black;
+}
 nav div {
   display: flex;
 }
@@ -20,6 +24,7 @@ nav div a {
   height: 60px;
   padding: 40px 10px 0px 10px;
   text-decoration: none;
+  width: 70px;
   color: #b1b1b1;
 }
 nav div a:hover {

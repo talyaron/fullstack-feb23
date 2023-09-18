@@ -1,4 +1,7 @@
 "use strict";
+// function goMyStore() {
+//   window.location.href = `./pages/myStore.html`;
+// }
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -37,9 +40,6 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 exports.__esModule = true;
 exports.getUserFromCookie = void 0;
-function goMyStore() {
-    window.location.href = "./pages/myStore.html";
-}
 // function getUserEmailByQuery() {
 //   const urlParams = new URLSearchParams(window.location.search);
 //   return urlParams.get("email");
@@ -75,7 +75,7 @@ function getFid() {
                     products = (_a.sent()).products;
                     html = products
                         .map(function (product) {
-                        return "\n    <div class=\"fid__prodDiv\" id='" + product._id + "'>\n          <img\n            src='" + product.imgUrl + "'\n            alt=\"\" />\n          <div class=\"fid__info\">\n            <h4>title: " + product.title + "</h4>\n            <p>price: " + product.price + "$</p>\n            <p>" + product.description + "</p>\n            <p>author:  " + product.email + "</p>\n          </div>\n          <div class=\"likeAndCart\">\n            <span onclick=\"handleAddWishList(event)\" class=\"material-symbols-outlined\"> heart_plus </span>\n            <span onclick=\"handleAddCart(event)\" class=\"material-symbols-outlined\"> shopping_bag </span>\n          </div>\n        </div>\n    ";
+                        return "\n    <div class=\"fid__prodDiv\" id='" + product._id + "'>\n          <img\n            src='" + product.imgUrl + "'\n            alt=\"\" />\n          <div class=\"fid__info\">\n            <h4>" + product.title + "</h4>\n            <p>price: " + product.price + "$</p>\n            <p>" + product.description + "</p>\n            <p>author:  " + product.email + "</p>\n          </div>\n          <div class=\"likeAndCart\">\n            <span onclick=\"handleAddWishList(event)\" class=\"material-symbols-outlined\"> heart_plus </span>\n            <span onclick=\"handleAddCart(event)\" class=\"material-symbols-outlined\"> shopping_bag </span>\n          </div>\n        </div>\n    ";
                     })
                         .join(" ");
                     root = document.querySelector(".fid");

@@ -1,10 +1,18 @@
+body {
+  background-color: #cee4cf;
+}
+
 .halloUserDiv {
   margin: 15px 0px;
   // text-align: center;/
   font-family: cursive;
   font-weight: 100;
+  background-color: #cee4cf;
 }
 .myForm {
+  text-align: center;
+  background-color: #cee4cf;
+
   input {
     border: 1px solid #000000;
     width: fit-content;
@@ -24,8 +32,11 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  background-color: #cee4cf;
+
   &__productDiv {
     width: 300px;
+    background-color: rgb(255, 255, 255);
     label {
       margin: 5px;
       width: 50px;
@@ -58,6 +69,19 @@
     img {
       width: 90%;
       &:hover {
+      }
+    }
+    button {
+      position: relative;
+      bottom: 0px;
+      margin: 10px;
+      span {
+        fill: #67c46d;
+        &:hover {
+          color: #67c4c4;
+          cursor: pointer;
+          text-shadow: 0px 0px 2px rgba(0, 0, 0, 0.292);
+        }
       }
     }
   }

@@ -1,6 +1,6 @@
-function goMyStore() {
-  window.location.href = `./pages/myStore.html`;
-}
+// function goMyStore() {
+//   window.location.href = `./pages/myStore.html`;
+// }
 
 // function getUserEmailByQuery() {
 //   const urlParams = new URLSearchParams(window.location.search);
@@ -25,7 +25,7 @@ async function getFid() {
             src='${product.imgUrl}'
             alt="" />
           <div class="fid__info">
-            <h4>title: ${product.title}</h4>
+            <h4>${product.title}</h4>
             <p>price: ${product.price}$</p>
             <p>${product.description}</p>
             <p>author:  ${product.email}</p>

@@ -2,6 +2,10 @@
   padding: 0%;
   margin: 0%;
 }
+* {
+  padding: 0%;
+  margin: 0%;
+}
 
 nav {
   background-color: rgb(255, 255, 255);
@@ -13,12 +17,17 @@ nav {
   padding-top: 0%;
   border-bottom: 1px solid #b1b1b1;
   justify-content: space-around;
+  .active {
+    background-color: #67c46d;
+    color: black;
+  }
   div {
     display: flex;
     a {
       height: 60px;
       padding: 40px 10px 0px 10px;
       text-decoration: none;
+      width: 70px;
       color: #b1b1b1;
       &:hover {
         background-color: #67c46d;
@@ -40,6 +49,7 @@ nav {
 .wrapper {
   display: flex;
   justify-content: center;
+  background-color: #cee4cf;
   .fid {
     // border: 1px solid gray;
     width: 50%;
@@ -51,9 +61,22 @@ nav {
       margin: 10px;
       text-align: center;
       border: 1px solid #b1b1b1;
+      background-color: whitesmoke;
       padding: 10px 0px;
       img {
         width: 90%;
+        max-width: 300px;
+        max-height: 300px;
+        object-fit: cover;
+      }
+      span {
+        padding: 10px;
+        fill: #67c46d;
+        &:hover {
+          color: #67c4c4;
+          cursor: pointer;
+          text-shadow: 0px 0px 2px rgba(0, 0, 0, 0.292);
+        }
       }
     }
   }
