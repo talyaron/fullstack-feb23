@@ -42,7 +42,10 @@ function handleRegister(event) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
                     event.preventDefault();
-                    user = { password: event.target.password.value, email: event.target.email.value };
+                    user = {
+                        password: event.target.password.value,
+                        email: event.target.email.value
+                    };
                     return [4 /*yield*/, fetch("/API/user/register-user", {
                             method: "POST",
                             headers: { "Content-Type": "application/json" },
