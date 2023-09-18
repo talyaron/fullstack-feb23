@@ -78,43 +78,43 @@ async function hendelAddRecipe(ev: any) {
 }
 
 
-// async function handleUpdateRecpie(ev: any) {
-//     try {
-//         ev.preventDefault();
-//         //const urlParams = new URLSearchParams(window.location.search);
-//         //const email=urlParams.get('email');
-//         const recipeId = ev.target.id
-//         if (!recipeId) throw new Error("recipe id missing");
+async function handleUpdateRecpie(ev: any) {
+    try {
+        ev.preventDefault();
+        //const urlParams = new URLSearchParams(window.location.search);
+        //const email=urlParams.get('email');
+        const recipeId = ev.target.id
+        if (!recipeId) throw new Error("recipe id missing");
         
-//         //get the updated data
-//         const title = ev.target.titleUpdate.value
-//         const description = ev.target.descriptionUpdate.value
-//         const urlImg = ev.target.imgUrlUpdate.value;
+        //get the updated data
+        const title = ev.target.titleUpdate.value
+        const description = ev.target.descriptionUpdate.value
+        const urlImg = ev.target.imgUrlUpdate.value;
 
-//         const updateRecipe = {id: recipeId, title, description, urlImg}
-//         console.log(updateRecipe);
-//         //send the updated recipe to the server/DB
-//         const response = await fetch('/API/recipes/update-recipe', {
-//             method: 'PATCH',
-//             headers: {
-//                 'Content-Type': 'application/json'
-//             },
-//             body: JSON.stringify(updateRecipe)
-//         });
-//         const updateForm = document.querySelector(".recipe_update") as HTMLFormElement
-//         //console.log("updateForm:", updateForm)
-//         if(!updateForm) //error handle
-//         updateForm.style.display = "none"
-//         //reset inputs
-//         const recipes  = await response.json(); //and get the new recipes array from the server
-//         console.log(recipes)
+        const updateRecipe = {id: recipeId, title, description, urlImg}
+        console.log(updateRecipe);
+        //send the updated recipe to the server/DB
+        const response = await fetch('/API/recipes/update-recipe', {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(updateRecipe)
+        });
+        const updateForm = document.querySelector(".recipe_update") as HTMLFormElement
+        //console.log("updateForm:", updateForm)
+        if(!updateForm) //error handle
+        updateForm.style.display = "none"
+        //reset inputs
+        const data  = await response.json(); //and get the new recipes array from the server
+        console.log("in update the recipes data:", data.recipes)
 
-//         renderRecipes(recipes, document.querySelector("#userRecipes"))
-//         document.querySelector("form").reset();
-//     } catch (error) {
-//         console.error(error)
-//     }
-// }
+        renderRecipes(data.recipes, document.querySelector("#userRecipes"))
+        document.querySelector("form").reset();
+    } catch (error) {
+        console.error(error)
+    }
+}
 
 async function hendelDeleteRecipe(id: string) {
     try {

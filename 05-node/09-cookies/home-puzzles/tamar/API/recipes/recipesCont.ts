@@ -67,38 +67,39 @@ export async function deleteRecipe(req: any, res: any) {
 }
 
 //update DB by recipe-ID and user-id
-// export async function updateRecipe(req: any, res: any) {
-//   try {
-//     const { id, title, description, urlImg } = req.body; //the data fron claient store in this variables
+export async function updateRecipe(req: any, res: any) {
+  try {
+    const { id, title, description, urlImg } = req.body; //the data fron claient store in this variables
 
-//     const currentRecipe = await RecipeModel.findById(id); //find current recipe by id
-//     if (!currentRecipe) throw new Error("recipe not found");
+    const currentRecipe = await RecipeModel.findById(id); //find current recipe by id
+    if (!currentRecipe) throw new Error("recipe not found");
 
-//     // Update the recipe properties
-//     if (title) {
-//       currentRecipe.title = title;
-//     }
-//     if (description) {
-//       currentRecipe.description = description;
-//     }
-//     if (urlImg) {
-//       currentRecipe.urlImg = urlImg;
-//     }
+    // Update the recipe properties
+    if (title) {
+      currentRecipe.title = title;
+    }
+    if (description) {
+      currentRecipe.description = description;
+    }
+    if (urlImg) {
+      currentRecipe.urlImg = urlImg;
+    }
 
-//     //get user id from cookie
-//     const userId = req.cookies.user
-//     console.log("add-recipe userID:", userId)
+    //get user id from cookie
+    const userId = req.cookies.user
+    console.log("add-recipe userID:", userId)
 
-//     // Save the updated recipe to the user
-//     const updatedRecipe = await currentRecipe.save();
+    // Save the updated recipe to the user
+    const updatedRecipe = await currentRecipe.save();
+    console.log(updatedRecipe)
 
-//     // Query the database to retrieve all recipes for the user
-//     const userRecipes = await RecipeModel.find({ userId });
+    // Query the database to retrieve all recipes for the user
+    const userRecipes = await RecipeModel.find({ userId });
 
-//     // Send the array of user's recipes as the response
-//     res.send({ recipes: userRecipes });
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).send({ error: error.message });
-//   }
-// }
+    // Send the array of user's recipes as the response
+    res.send({ recipes: userRecipes });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send({ error: error.message });
+  }
+}

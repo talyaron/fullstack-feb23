@@ -139,43 +139,54 @@ function hendelAddRecipe(ev) {
         });
     });
 }
-// async function handleUpdateRecpie(ev: any) {
-//     try {
-//         ev.preventDefault();
-//         //const urlParams = new URLSearchParams(window.location.search);
-//         //const email=urlParams.get('email');
-//         const recipeId = ev.target.id
-//         if (!recipeId) throw new Error("recipe id missing");
-//         //get the updated data
-//         const title = ev.target.titleUpdate.value
-//         const description = ev.target.descriptionUpdate.value
-//         const urlImg = ev.target.imgUrlUpdate.value;
-//         const updateRecipe = {id: recipeId, title, description, urlImg}
-//         console.log(updateRecipe);
-//         //send the updated recipe to the server/DB
-//         const response = await fetch('/API/recipes/update-recipe', {
-//             method: 'PATCH',
-//             headers: {
-//                 'Content-Type': 'application/json'
-//             },
-//             body: JSON.stringify(updateRecipe)
-//         });
-//         const updateForm = document.querySelector(".recipe_update") as HTMLFormElement
-//         //console.log("updateForm:", updateForm)
-//         if(!updateForm) //error handle
-//         updateForm.style.display = "none"
-//         //reset inputs
-//         const recipes  = await response.json(); //and get the new recipes array from the server
-//         console.log(recipes)
-//         renderRecipes(recipes, document.querySelector("#userRecipes"))
-//         document.querySelector("form").reset();
-//     } catch (error) {
-//         console.error(error)
-//     }
-// }
+function handleUpdateRecpie(ev) {
+    return __awaiter(this, void 0, void 0, function () {
+        var recipeId, title, description, urlImg, updateRecipe, response, updateForm, data, error_4;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 3, , 4]);
+                    ev.preventDefault();
+                    recipeId = ev.target.id;
+                    if (!recipeId)
+                        throw new Error("recipe id missing");
+                    title = ev.target.titleUpdate.value;
+                    description = ev.target.descriptionUpdate.value;
+                    urlImg = ev.target.imgUrlUpdate.value;
+                    updateRecipe = { id: recipeId, title: title, description: description, urlImg: urlImg };
+                    console.log(updateRecipe);
+                    return [4 /*yield*/, fetch('/API/recipes/update-recipe', {
+                            method: 'PATCH',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(updateRecipe)
+                        })];
+                case 1:
+                    response = _a.sent();
+                    updateForm = document.querySelector(".recipe_update");
+                    //console.log("updateForm:", updateForm)
+                    if (!updateForm) //error handle
+                        updateForm.style.display = "none";
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    data = _a.sent();
+                    console.log("in update the recipes data:", data.recipes);
+                    renderRecipes(data.recipes, document.querySelector("#userRecipes"));
+                    document.querySelector("form").reset();
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_4 = _a.sent();
+                    console.error(error_4);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
+            }
+        });
+    });
+}
 function hendelDeleteRecipe(id) {
     return __awaiter(this, void 0, void 0, function () {
-        var response, recipes_2, error_4;
+        var response, recipes_2, error_5;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -197,7 +208,7 @@ function hendelDeleteRecipe(id) {
                     renderRecipes(recipes_2, document.querySelector('#userRecipes'));
                     return [3 /*break*/, 4];
                 case 3:
-                    error_4 = _a.sent();
+                    error_5 = _a.sent();
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }
@@ -235,7 +246,7 @@ function renderRecipes(recipes, root) {
 //controllers
 function GetUserRecipe() {
     return __awaiter(this, void 0, void 0, function () {
-        var response, data, error_5;
+        var response, data, error_6;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -250,8 +261,8 @@ function GetUserRecipe() {
                     renderRecipes(data.recipes, document.querySelector("#userRecipes"));
                     return [3 /*break*/, 4];
                 case 3:
-                    error_5 = _a.sent();
-                    console.error(error_5);
+                    error_6 = _a.sent();
+                    console.error(error_6);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }
@@ -260,7 +271,7 @@ function GetUserRecipe() {
 }
 function renderUpdateForm(recipeId) {
     return __awaiter(this, void 0, void 0, function () {
-        var response, data, updateForm, inputName, inputDescriptiom, inputImgUrl, error_6;
+        var response, data, updateForm, inputName, inputDescriptiom, inputImgUrl, error_7;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -287,8 +298,8 @@ function renderUpdateForm(recipeId) {
                     inputImgUrl.value = data.recipes.urlImg;
                     return [3 /*break*/, 4];
                 case 3:
-                    error_6 = _a.sent();
-                    console.error(error_6);
+                    error_7 = _a.sent();
+                    console.error(error_7);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }
