@@ -51,6 +51,9 @@ function getUserFromCookie() {
         });
     });
 }
+function goHomePage() {
+    window.location.href = "../index.html";
+}
 function checkLogin() {
     return __awaiter(this, void 0, void 0, function () {
         var userEmail, error_1;
@@ -98,7 +101,7 @@ function renderCart() {
                         return "\n        <div class=\"storeGallery__productDiv\" id = \"" + product._id + "\">\n            <img src=" + product.imgUrl + " alt=\"\" />\n            <form id =\"" + product._id + "\" class=\"fid__info\">\n            <label>title:</label>\n              <p id=\"title\" name=\"title\">" + product.title + "</p><br>\n              <p id=\"price\" name=\"price\">" + product.price + "$</p><br>\n              <label> description: </label><br>\n              <p id=\"description\" name=\"description\">" + product.description + "</p><br>\n              <p>" + product.email + "</p><br>\n            \n            <div class=\"likeAndCart\">\n            <button type=\"button\" onclick='handleDeleteProdFromCart(event , \"" + product._id + "\")'><span class=\"material-symbols-outlined\"> delete </span></button>\n            </form>\n            </div>\n          </div>";
                     })
                         .join(" ");
-                    root = document.querySelector(".wishlistDiv");
+                    root = document.querySelector(".cartDiv");
                     console.log(root);
                     root.innerHTML = html;
                     return [3 /*break*/, 4];

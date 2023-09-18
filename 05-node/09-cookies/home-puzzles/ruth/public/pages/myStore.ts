@@ -70,7 +70,7 @@ async function handleAddProduct(event) {
 //   return urlParams.get("email");
 // }
 
-export async function getUserFromCookie() {
+async function getUserFromCookie() {
   const response = await fetch("/API/users/get-user-from-cookie");
   const data = await response.json();
   const { userEmail } = await data;

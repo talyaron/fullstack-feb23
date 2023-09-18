@@ -51,6 +51,9 @@ function getUserFromCookie() {
         });
     });
 }
+function goHomePage() {
+    window.location.href = "../index.html";
+}
 function checkLogin() {
     return __awaiter(this, void 0, void 0, function () {
         var userEmail, error_1;
@@ -111,7 +114,7 @@ function renderWishlist() {
         });
     });
 }
-function handleDeleteProdFromCart(event, prodId) {
+function handleDeleteProdFromWishList(event, prodId) {
     return __awaiter(this, void 0, void 0, function () {
         var deleteInit, response, ok, error_3;
         return __generator(this, function (_a) {
@@ -127,7 +130,7 @@ function handleDeleteProdFromCart(event, prodId) {
                         },
                         body: JSON.stringify({ prodId: prodId })
                     };
-                    return [4 /*yield*/, fetch("/API/products/delete-cart-prod")];
+                    return [4 /*yield*/, fetch("/API/products/delete-wishlist-prod")];
                 case 1:
                     response = _a.sent();
                     return [4 /*yield*/, response.json()];

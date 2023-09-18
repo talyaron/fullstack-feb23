@@ -1,4 +1,3 @@
-"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -35,8 +34,6 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-exports.__esModule = true;
-exports.getUserFromCookie = void 0;
 var Product = /** @class */ (function () {
     function Product(imgUrl, price, title, description) {
         this.imgUrl = imgUrl;
@@ -148,7 +145,6 @@ function getUserFromCookie() {
         });
     });
 }
-exports.getUserFromCookie = getUserFromCookie;
 function handleDeleteProduct(event) {
     return __awaiter(this, void 0, void 0, function () {
         return __generator(this, function (_a) {

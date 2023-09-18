@@ -5,6 +5,10 @@ async function getUserFromCookie() {
   return userEmail;
 }
 
+function goHomePage() {
+  window.location.href = "../index.html";
+}
+
 async function checkLogin() {
   try {
     const userEmail = await getUserFromCookie();
@@ -46,7 +50,7 @@ async function renderCart() {
       })
       .join(" ");
 
-    const root = document.querySelector(".wishlistDiv") as HTMLDivElement;
+    const root = document.querySelector(".cartDiv") as HTMLDivElement;
     console.log(root);
     root.innerHTML = html;
   } catch (error) {

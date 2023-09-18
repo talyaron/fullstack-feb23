@@ -5,6 +5,10 @@ async function getUserFromCookie() {
   return userEmail;
 }
 
+function goHomePage() {
+  window.location.href = "../index.html";
+}
+
 async function checkLogin() {
   try {
     const userEmail = await getUserFromCookie();
@@ -54,7 +58,7 @@ async function renderWishlist() {
   }
 }
 
-async function handleDeleteProdFromCart(event, prodId) {
+async function handleDeleteProdFromWishList(event, prodId) {
   try {
     if (!prodId) throw new Error("id is required");
     const deleteInit = {
@@ -64,7 +68,7 @@ async function handleDeleteProdFromCart(event, prodId) {
       },
       body: JSON.stringify({ prodId }),
     };
-    const response = await fetch("/API/products/delete-cart-prod");
+    const response = await fetch("/API/products/delete-wishlist-prod");
     const { ok } = await response.json();
     if (!ok)
       throw new Error("something wrong in server side the product not deleted");
