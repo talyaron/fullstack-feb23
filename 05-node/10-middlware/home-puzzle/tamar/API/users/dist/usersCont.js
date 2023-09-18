@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.deleteUser = exports.getUser = exports.loginUser = exports.registerUser = void 0;
+exports.isAdmin = exports.deleteUser = exports.getUser = exports.loginUser = exports.registerUser = void 0;
 var usersModle_1 = require("./usersModle");
 //register
 exports.registerUser = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
@@ -160,3 +160,38 @@ function deleteUser(req, res) {
     });
 }
 exports.deleteUser = deleteUser;
+//is-admin
+function isAdmin(req, res, next) {
+    return __awaiter(this, void 0, void 0, function () {
+        var userId, userDB, error_5;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    userId = req.cookies.user;
+                    if (!userId)
+                        throw new Error("User not found on cookie");
+                    return [4 /*yield*/, usersModle_1.UserModel.findById(userId)];
+                case 1:
+                    userDB = _a.sent();
+                    if (!userDB)
+                        throw new Error("user dosn't exist in DB");
+                    //check if the user is admin (from Database)
+                    if (userDB.isAdmin) {
+                        next(); //continue 
+                    }
+                    else { // if user is not adnin throw error of unauthorized (401)
+                        res.status(401).send({ error: "Unauthorized" });
+                    }
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_5 = _a.sent();
+                    console.error(error_5);
+                    res.ststus(500).send({ error: error_5.massage });
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
+}
+exports.isAdmin = isAdmin;

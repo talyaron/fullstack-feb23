@@ -5,5 +5,5 @@ var usersCont_1 = require("./usersCont");
 var router = express_1["default"].Router();
 router.post("/register", usersCont_1.registerUser)
     .post("/login", usersCont_1.loginUser)
-    .get("/get-user", usersCont_1.getUser)["delete"]("/delete-user", usersCont_1.deleteUser);
+    .get("/get-user", usersCont_1.getUser)["delete"]("/delete-user", usersCont_1.isAdmin, usersCont_1.deleteUser);
 exports["default"] = router;

@@ -71,3 +71,27 @@ export async function deleteUser(req: any, res: any) {
         res.status(500).send({ error: error.message });
     }
 }
+
+//is-admin
+export async function isAdmin(req: any, res: any, next:Function) {
+    try {
+        //get the user from the cookie
+        const userId = req.cookies.user
+        if (!userId) throw new Error("User not found on cookie");
+        
+        //get the user from the database
+        const userDB = await UserModel.findById(userId);
+        if(!userDB) throw new Error("user dosn't exist in DB");
+        
+        //check if the user is admin (from Database)
+        if(userDB.isAdmin){
+            next() //continue 
+        } else {  // if user is not adnin throw error of unauthorized (401)
+            res.status(401).send({error: "Unauthorized"});
+            }
+               
+    } catch (error) {
+        console.error(error)
+        res.ststus(500).send({error: error.massage})
+    }
+}

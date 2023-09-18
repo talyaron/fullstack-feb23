@@ -24,6 +24,10 @@ exports.UserSchema = new mongoose_1.Schema({
     password: {
         type: String,
         require: true
+    },
+    isAdmin: {
+        type: Boolean,
+        "default": false
     }
 });
 //"users" will be the name of this collection in the DB
