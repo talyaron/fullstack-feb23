@@ -36,60 +36,35 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.DoneHabitModelDB = exports.doneHabitsShema = exports.HabitModelDB = exports.HabitSchema = void 0;
-var mongoose_1 = require("mongoose");
-var cron = require('node-cron');
-// DB models
-exports.HabitSchema = new mongoose_1.Schema({
-    name: String,
-    categorie: String,
-    time: String,
-    status: String,
-    email: String,
-    createdAt: {
-        type: Date,
-        immutable: true,
-        "default": function () { return Date.now(); }
-    },
-    doneToday: {
-        type: Boolean,
-        "default": false
-    }
-});
-exports.HabitModelDB = mongoose_1.model("habits", exports.HabitSchema);
-var resetDoneTodayJob = cron.schedule('0 0 * * *', function () { return __awaiter(void 0, void 0, void 0, function () {
-    var error_1;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0:
-                _a.trys.push([0, 2, , 3]);
-                // Reset the doneToday property to false for all habits
-                return [4 /*yield*/, exports.HabitModelDB.updateMany({}, { $set: { doneToday: false } })];
-            case 1:
-                // Reset the doneToday property to false for all habits
-                _a.sent();
-                console.log('doneToday properties reset to false for all habits.');
-                return [3 /*break*/, 3];
-            case 2:
-                error_1 = _a.sent();
-                console.error('Error resetting doneToday properties:', error_1);
-                return [3 /*break*/, 3];
-            case 3: return [2 /*return*/];
-        }
+exports.getLoggedUser = void 0;
+var usersModel_1 = require("../users/usersModel");
+function getLoggedUser(req, res, next) {
+    return __awaiter(this, void 0, void 0, function () {
+        var userID, userDB, error_1;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    userID = req.cookies.user;
+                    return [4 /*yield*/, usersModel_1.UserModelDB.findById(userID)];
+                case 1:
+                    userDB = _a.sent();
+                    if (!userDB) {
+                        req.user = null;
+                    }
+                    else {
+                        req.user = userDB;
+                    }
+                    next();
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_1 = _a.sent();
+                    console.error(error_1);
+                    res.status(500).send({ error: error_1.message });
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
     });
-}); });
-// Start the cron job
-resetDoneTodayJob.start();
-exports.doneHabitsShema = new mongoose_1.Schema({
-    name: String,
-    categorie: String,
-    email: String,
-    timeHabited: String,
-    dateStarted: Date,
-    timeDone: {
-        type: Date,
-        immutable: true,
-        "default": function () { return Date.now(); }
-    }
-});
-exports.DoneHabitModelDB = mongoose_1.model("DoneHabits", exports.doneHabitsShema);
+}
+exports.getLoggedUser = getLoggedUser;
