@@ -29,7 +29,7 @@ function renderRelatives(relativesData, targetElement) {
         const birthDateYear = birthDateParts[0];
 
         const birthDateText = document.createElement('span');
-        birthDateText.textContent = ` - born on: `;
+        birthDateText.textContent = ` - born in: `;
 
         const boldBirthDate = document.createElement('span');
         boldBirthDate.style.fontWeight = 'bold';
