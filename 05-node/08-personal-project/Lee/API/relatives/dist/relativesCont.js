@@ -119,7 +119,7 @@ function addRelative(req, res) {
                 case 3:
                     relativeDB = _b.sent();
                     console.log(relativeDB);
-                    res.status(201).send({ ok: true });
+                    res.status(201).send({ ok: true, relative: relativeDB });
                     return [3 /*break*/, 5];
                 case 4:
                     error_2 = _b.sent();

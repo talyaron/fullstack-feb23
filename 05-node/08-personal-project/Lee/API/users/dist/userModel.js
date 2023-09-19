@@ -4,9 +4,9 @@ exports.users = exports.UserModel = exports.UserSchema = exports.User = exports.
 var mongoose_1 = require("mongoose");
 var Gender;
 (function (Gender) {
-    Gender["male"] = "Male";
-    Gender["female"] = "Female";
-    Gender["other"] = "Other";
+    Gender["Male"] = "Male";
+    Gender["Female"] = "Female";
+    Gender["Other"] = "Other";
 })(Gender = exports.Gender || (exports.Gender = {}));
 var User = /** @class */ (function () {
     function User(_a) {

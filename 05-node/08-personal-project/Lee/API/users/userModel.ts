@@ -1,9 +1,9 @@
 import { Schema, model } from 'mongoose';
 
 export enum Gender {
-  male = "Male",
-  female = "Female", 
-  other = "Other"
+  Male = "Male",
+  Female = "Female", 
+  Other = "Other"
 }
 
 export class User {
@@ -38,6 +38,5 @@ export const UserSchema = new Schema({
 
 
 export const UserModel = model("users", UserSchema)
-
 
 export const users: User[] = [];

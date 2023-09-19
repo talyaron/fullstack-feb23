@@ -57,7 +57,7 @@ function renderRelatives(relativesData, targetElement) {
         var birthDateMonth = birthDateParts[1];
         var birthDateYear = birthDateParts[0];
         var birthDateText = document.createElement('span');
-        birthDateText.textContent = " - born on: ";
+        birthDateText.textContent = " - born in: ";
         var boldBirthDate = document.createElement('span');
         boldBirthDate.style.fontWeight = 'bold';
         boldBirthDate.textContent = birthDateDay + "-" + birthDateMonth + "-" + birthDateYear;

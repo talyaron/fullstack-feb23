@@ -71,7 +71,7 @@ export async function addRelative(req: any, res: any) {
         
         console.log(relativeDB);
 
-        res.status(201).send({ ok: true });
+        res.status(201).send({ ok: true, relative: relativeDB });
     } catch (error) {
         console.error(error);
         res.status(500).send({ error: error.message });
