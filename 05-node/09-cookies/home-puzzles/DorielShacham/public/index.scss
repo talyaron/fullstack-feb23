@@ -1,32 +1,323 @@
+/* Smooth scroll animation */
+html {
+    scroll-behavior: smooth;
+    width: 100%;
+}
+
 body {
-    background-color:white;
     font-family: Arial, sans-serif;
-    display: flex;
-    justify-content: center; 
-    align-items: center; 
-    height: 100vh; 
     margin: 0;
+    width: 100%;
+    overflow-x: hidden;
+
+    a {
+        text-decoration: none;
+
+    }
 }
 
-.container {
-    text-align: center;
+header {
+    background-color: #333;
 }
 
-h1, h3{
-    color:orangered;
+.navbar {
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    z-index: 2;
+    width: 100%;
+    background-color: #333;
 }
 
-button {
-    padding: 10px 20px;
-    background-color:orangered;
-    color: #fff;
+.navbar ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.navbar li {
+    margin: 0 10px;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.navbar a:hover {
+    color: #e74c3c;
+}
+
+.auth-buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.auth-buttons button {
+    margin-left: 10px;
+    padding: 12px 20px;
+    background-color: #e74c3c;
+    color: white;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    margin: 10px;
-    transition: 0.3s;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
 }
 
-button:hover {
-    opacity: 0.9;
+.auth-buttons button:hover {
+    background-color: #c0392b;
+}
+
+.arrow-container {
+    position: fixed;
+    top: 100px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+    color: #e74c3c;
+    font-size: 16px;
+}
+
+.arrow {
+    width: 0;
+    height: 0;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-bottom: 30px solid #e74c3c;
+    margin-right: 10px;
+}
+
+.message {
+    font-size: 16px;
+}
+
+
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    font-family: 'Roboto';
+    text-align: center;
+    color: #f5f5f5;
+}
+
+.hero {
+    background: url('https://st2.depositphotos.com/26272052/43107/v/600/depositphotos_431078780-stock-video-green-line-broken-robot-icon.jpg') no-repeat center;
+    background-size: cover;
+    background-color: rgba(0, 0, 0, 0.75);
+    background-blend-mode: multiply;
+    height: 100%;
+    width: 100vw;
+}
+
+.inner-text {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 50px;
+
+    @media only screen and (min-width: 320px) {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    @media only screen and (min-width: 400px) {
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+
+    @media only screen and (min-width: 680px) {
+        font-size: 75px;
+    }
+
+    @media only screen and (min-width: 950px) {
+        font-size: 100px;
+    }
+}
+
+.p1 {
+    display: inline-block;
+    font-size: 1em;
+    font-weight: 900;
+    marign: 0;
+    line-height: 1;
+
+    @media only screen and (max-width: 465px) {
+        display: block;
+        position: absolute;
+        top: -25%;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
+
+#changingText {
+    display: inline-block;
+    font-size: 1em;
+    font-weight: 100;
+    marign: 0;
+    line-height: 1;
+    color: #e74c3c;
+
+    @media only screen and (max-width: 465px) {
+        position: relative;
+        top: 0.6em;
+    }
+}
+
+.changing-text {
+    transition: opacity 0.5s ease-in-out;
+}
+
+
+.hero-down {
+    position: absolute;
+    bottom: 0;
+    font-size: 2em;
+    width: 2em;
+    height: 2em;
+    color: #f5f5f5;
+    border-radius: 100%;
+
+    &:hover,
+    &:focus {
+        color: #ccc;
+    }
+
+    &:active {
+        color: #f5f5f5;
+    }
+
+    .btn-react {
+        background-color: #f5f5f5;
+        height: 100%;
+        width: 100%;
+        border-radius: 100%;
+        opacity: 0;
+        position: absolute;
+    }
+
+    i {
+        vertical-align: bottom;
+        position: relative;
+        top: 0.1em;
+    }
+}
+
+.section {
+    width: 100vw;
+    text-align: center;
+    padding: 100px;
+    background-color: black;
+}
+
+.section h2 {
+    font-size: 24px;
+    background: #e74c3c;
+    padding: 10px;
+}
+
+.section.odd {
+    color: white;
+    background-color: black;
+
+    a {
+        color: white;
+    }
+}
+
+
+.section.even {
+    color: black;
+    background-color: white;
+
+    a {
+        color: black;
+    }
+}
+
+.section .content {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 40px;
+}
+
+.section .content .text {
+    width: 45%;
+}
+
+/* Media query for mobile devices */
+@media (max-width: 767px) {
+    .section .content {
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    .section .content .text {
+        width: 100%;
+    }
+
+    .section .content .gif {
+        width: 100%;
+        order: 0;
+    }
+}
+
+.text-container {
+    position: relative;
+    width: 500px;
+    left: 250px;
+    visibility: hidden;
+}
+
+.text-container.animate #automation-text,
+.text-container.animate #in-text {
+    visibility: visible;
+    animation: fadeIn 1.5s ease-in-out;
+    font-size: xx-large;
+    font-weight: bold;
+}
+
+.text-container.animate #section-title {
+    color: #e74c3c;
+    visibility: visible;
+    animation: fadeIn 1.5s ease-in-out;
+    font-size: xx-large;
+    font-weight: bold;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.footer {
+    width: 100%;
+    background-color: #333;
+    padding: 20px;
+    text-align: center;
+    color: white;
+    position: relative;
 }

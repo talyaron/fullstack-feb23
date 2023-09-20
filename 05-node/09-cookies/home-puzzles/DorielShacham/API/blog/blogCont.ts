@@ -4,13 +4,13 @@ import mongoose, { isValidObjectId } from 'mongoose';
 // Add a blog
 export async function addBlog(req:any, res:any) {
     try {
-        const { title, description, userEmail } = req.body;
+        const { title, description, userEmail, imageUrl } = req.body;
 
-        if (!title || !description || !userEmail) {
+        if (!title || !description || !userEmail || !imageUrl) {
             return res.status(400).json({ msg: "Missing required fields" });
         }
 
-        const blog = new BlogModel({ title, description, userEmail });
+        const blog = new BlogModel({ title, description, userEmail, imageUrl });
         const blogDB = await blog.save();
         res.send({ ok: true, blogDB });
 

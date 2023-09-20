@@ -1,7 +1,8 @@
+"use strict";
+exports.__esModule = true;
 // models/blogModel.ts
-import { Schema, model } from 'mongoose';
-
-const blogSchema = new Schema({
+var mongoose_1 = require("mongoose");
+var blogSchema = new mongoose_1.Schema({
     title: {
         type: String,
         required: [true, "Please enter a blog title"]
@@ -15,15 +16,13 @@ const blogSchema = new Schema({
         required: true
     },
     imageUrl: {
-        type: String, 
+        type: String,
         required: true
     },
     date: {
         type: Date,
-        default: Date.now
+        "default": Date.now
     }
 });
-
-const BlogModel = model("Blog", blogSchema);
-
-export default BlogModel;
+var BlogModel = mongoose_1.model("Blog", blogSchema);
+exports["default"] = BlogModel;
