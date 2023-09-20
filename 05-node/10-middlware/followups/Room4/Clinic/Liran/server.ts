@@ -24,7 +24,7 @@ mongoose.connect("mongodb+srv://liranav26:Vhksci30@cluster0.d5q6v4v.mongodb.net/
     console.error(err)
   })
 
-app.use(isAdmin)
+// app.use(isAdmin)
 
 import patientRouters from "./API/patient/patientRoutes"
 app.use("/API/patient", patientRouters);
