@@ -88,7 +88,6 @@ function handleGetUser() {
         });
     });
 }
-// const emailUser = window.location.search.toString().replace('?email=', '')
 function handleAddPicture(ev) {
     return __awaiter(this, void 0, void 0, function () {
         var imageTags_1, _picture, response, result, pictures, error_3;
@@ -210,11 +209,11 @@ function handleUpdatePicture(ev) {
 }
 function renderAddPicture() {
     return __awaiter(this, void 0, void 0, function () {
-        var response, result, tags, html_1, root, error_6;
+        var response, result, tags, data, ok, user, html_1, root, text, html, messagesRoot, error_6;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    _a.trys.push([0, 3, , 4]);
+                    _a.trys.push([0, 5, , 6]);
                     return [4 /*yield*/, fetch('API/pictures/get-tags')];
                 case 1:
                     response = _a.sent();
@@ -224,17 +223,37 @@ function renderAddPicture() {
                     tags = result.tags;
                     if (!Array.isArray(tags))
                         throw new Error("tags is not array");
-                    html_1 = "<form onsubmit=\"handleAddPicture(event)\">\n        <input type=\"text\" name=\"title\" placeholder=\"\u05E0\u05D5\u05E9\u05D0\" required>\n        <input type=\"url\" name=\"imgUrl\" placeholder=\"\u05E7\u05D9\u05E9\u05D5\u05E8 \u05DC\u05EA\u05DE\u05D5\u05E0\u05D4\">\n        <input type=\"text\" name=\"location\" placeholder=\"\u05D4\u05D9\u05DB\u05DF \u05E6\u05D5\u05DC\u05DE\u05D4 \u05D4\u05EA\u05DE\u05D5\u05E0\u05D4?\">\n       \n        <div class=\"tags\" id=\"tags\">\n        <p>\u05D1\u05D7\u05E8 \u05EA\u05D2\u05D9\u05D5\u05EA \u05DC\u05EA\u05DE\u05D5\u05E0\u05D4:</p>";
-                    tags.forEach(function (tag) { return html_1 += " <div>\n        <input type=\"checkbox\" name=\"tags\" value=\"" + tag + "\">\n        <label for=\"" + tag + "\">" + tag + "</label>\n        </div>"; });
-                    html_1 += "<input type=\"text\" name=\"newTag\" placeholder=\"\u05D4\u05D6\u05DF \u05EA\u05D2\u05D9\u05EA \u05D7\u05D3\u05E9\u05D4\">\n        </div>\n       <div>\n            <button type=\"submit\" class=\"material-symbols-rounded\">check</button>\n            <button onclick=\"closeAdd()\" class=\"material-symbols-rounded\">close</button>\n        </div>\n        </form>";
-                    root = document.querySelector('#add');
-                    root.innerHTML = html_1;
-                    return [3 /*break*/, 4];
+                    return [4 /*yield*/, fetch("API/users/get-user")];
                 case 3:
+                    response = _a.sent();
+                    return [4 /*yield*/, response.json()];
+                case 4:
+                    data = _a.sent();
+                    ok = data.ok, user = data.user;
+                    if (!ok)
+                        throw new Error("Some of details are incorrect");
+                    if ((user.isPremium) || (user.isAdmin)) {
+                        html_1 = "<form onsubmit=\"handleAddPicture(event)\">\n    <input type=\"text\" name=\"title\" placeholder=\"\u05E0\u05D5\u05E9\u05D0\" required>\n    <input type=\"url\" name=\"imgUrl\" placeholder=\"\u05E7\u05D9\u05E9\u05D5\u05E8 \u05DC\u05EA\u05DE\u05D5\u05E0\u05D4\">\n    <input type=\"text\" name=\"location\" placeholder=\"\u05D4\u05D9\u05DB\u05DF \u05E6\u05D5\u05DC\u05DE\u05D4 \u05D4\u05EA\u05DE\u05D5\u05E0\u05D4?\">\n   \n    <div class=\"tags\" id=\"tags\">\n    <p>\u05D1\u05D7\u05E8 \u05EA\u05D2\u05D9\u05D5\u05EA \u05DC\u05EA\u05DE\u05D5\u05E0\u05D4:</p>";
+                        tags.forEach(function (tag) { return html_1 += " <div>\n    <input type=\"checkbox\" name=\"tags\" value=\"" + tag + "\">\n    <label for=\"" + tag + "\">" + tag + "</label>\n    </div>"; });
+                        html_1 += "<input type=\"text\" name=\"newTag\" placeholder=\"\u05D4\u05D6\u05DF \u05EA\u05D2\u05D9\u05EA \u05D7\u05D3\u05E9\u05D4\">\n    </div>\n   <div>\n        <button type=\"submit\" class=\"material-symbols-rounded\">check</button>\n        <button onclick=\"closeAdd()\" class=\"material-symbols-rounded\">close</button>\n    </div>\n    </form>";
+                        root = document.querySelector('#add');
+                        root.innerHTML = html_1;
+                    }
+                    else {
+                        text = "רק משתמשי פרימיום יכולים להעלות תמונות \nמעוניין לשדרג לפרימיום?";
+                        if (confirm(text) === true) {
+                            alert("בקשתך נשלחה למנהלי הגלריה");
+                            html = "<p> \u05E9\u05DC\u05D5\u05DD. <br> \u05D4\u05DE\u05E9\u05EA\u05DE\u05E9 " + user.name + " \u05DE\u05D1\u05E7\u05E9 \u05DC\u05E9\u05D3\u05E8\u05D2 \u05D0\u05EA \u05D4\u05D7\u05E9\u05D1\u05D5\u05DF \u05E9\u05DC\u05D5 \u05DC\u05E4\u05E8\u05D9\u05DE\u05D9\u05D5\u05DD </p>\n                <button onclick=\"setAsPremium('" + user._id + "', true)\" class=\"material-symbols-rounded\">check</button>";
+                            messagesRoot = document.querySelector('#messages');
+                            messagesRoot.innerHTML = html;
+                        }
+                    }
+                    return [3 /*break*/, 6];
+                case 5:
                     error_6 = _a.sent();
                     console.error(error_6.massage);
-                    return [3 /*break*/, 4];
-                case 4: return [2 /*return*/];
+                    return [3 /*break*/, 6];
+                case 6: return [2 /*return*/];
             }
         });
     });
@@ -248,26 +267,32 @@ function closeAdd() {
         console.error(error.massage);
     }
 }
-function renderPictureHtml(picture, pictureEmail, userEmail) {
+function renderPictureHtml(picture, pictureEmail, userEmail, isAdmin) {
     try {
         var html_2 = "<div class = \"picture\" id=\"id" + picture._id + "\">\n        <div class = \"picture_header\">\n        <div></div>\n        <h3 >" + picture.title + "</h3>";
-        // if (emailUser === 'admin@gmail.com') {
-        //     html += `<p>${picture.userName}</p>
-        //     <button class="material-symbols-rounded" onclick="renderUpdatePicture('${picture.title}','${picture.imgUrl}','${picture.location}','${picture._id}','${picture.tags.join(' ')}')">Edit</button>
-        //     <button class="material-symbols-rounded" onclick="handleDeletePicture('${picture._id}')">delete</button>
-        //     `
-        // } else {
-        if (pictureEmail === userEmail) {
-            html_2 += "<p>\u05EA\u05DE\u05D5\u05E0\u05D4 \u05E9\u05DC\u05D9</p>\n                <button class=\"material-symbols-rounded\" onclick=\"renderUpdatePicture('" + picture.title + "','" + picture.imgUrl + "','" + picture.location + "','" + picture._id + "','" + picture.tags.join(' ') + "')\">Edit</button>\n                <button class=\"material-symbols-rounded\" onclick=\"handleDeletePicture('" + picture._id + "')\">delete</button>\n                ";
+        if (isAdmin) {
+            html_2 += "<p>" + picture.userName + "</p>\n             <button class=\"material-symbols-rounded\" onclick=\"renderUpdatePicture('" + picture.title + "','" + picture.imgUrl + "','" + picture.location + "','" + picture._id + "','" + picture.tags.join(' ') + "')\">Edit</button>\n             <button class=\"material-symbols-rounded\" onclick=\"handleDeletePicture('" + picture._id + "')\">delete</button>\n           ";
         }
         else {
-            html_2 += "<p>" + picture.userName + "</p>";
+            if (pictureEmail === userEmail) {
+                html_2 += "<p>\u05EA\u05DE\u05D5\u05E0\u05D4 \u05E9\u05DC\u05D9</p>\n                <button class=\"material-symbols-rounded\" onclick=\"renderUpdatePicture('" + picture.title + "','" + picture.imgUrl + "','" + picture.location + "','" + picture._id + "','" + picture.tags.join(' ') + "')\">Edit</button>\n                <button class=\"material-symbols-rounded\" onclick=\"handleDeletePicture('" + picture._id + "')\">delete</button>\n                ";
+            }
+            else {
+                html_2 += "<p>" + picture.userName + "</p>";
+            }
         }
-        // }
         html_2 += "\n        </div>\n        <img id=\"img" + picture._id + "\" onclick=\"handleShow('" + picture._id + "')\" src=\"" + picture.imgUrl + "\">\n        <div class = \"picture_body\">\n        <p>" + picture.location + "</p>\n        <p> " + picture.publishDate + "</p>\n        </div>\n        <div class=\"tags\">";
         picture.tags.forEach(function (tag) { return html_2 += "<button onclick=\"handleRenderByTag('" + tag + "')\">" + tag + "</button>"; });
-        html_2 += "</div>\n        </div>";
+        html_2 += "\n        <button class=\"like\" onclick=\"toggle(this)\"></button></div>\n        </div>";
         return html_2;
+    }
+    catch (error) {
+        console.error(error.massage);
+    }
+}
+function toggle(x) {
+    try {
+        x.classList.toggle("noLike");
     }
     catch (error) {
         console.error(error.massage);
@@ -342,7 +367,6 @@ function handleRenderByTag(tag) {
                     pictures = result.pictures;
                     if (!Array.isArray(pictures))
                         throw new Error("pictures is not array");
-                    // const picturesByTag = pictures.filter(el => el.picture.tags.includes(tag))
                     renderPictures(pictures);
                     showAllBtn = document.querySelector('#showAll');
                     showAllBtn.style.display = 'inline-flex';
@@ -373,7 +397,7 @@ function renderPictures(pictures) {
                     if (!Array.isArray(pictures))
                         throw new Error("usersPictures is not array");
                     allPicturesRoot = document.querySelector('#allPictures');
-                    allPicturesHtml = pictures.map(function (picture) { return renderPictureHtml(picture, picture.email, user_1.email); }).join('');
+                    allPicturesHtml = pictures.map(function (picture) { return renderPictureHtml(picture, picture.email, user_1.email, user_1.isAdmin); }).join('');
                     allPicturesRoot.innerHTML = allPicturesHtml;
                     closeAdd();
                     return [3 /*break*/, 4];
@@ -443,7 +467,19 @@ function renderNav() {
                     ok = data.ok, user = data.user;
                     if (!ok)
                         throw new Error("Some of details are incorrect");
-                    html = "<div class=\"nav\">\n        <p>" + user.name + "</p>\n        <a class=\"logout material-symbols-rounded\" href=\"./index.html\">Logout</a>\n    </div>";
+                    html = "<div class=\"nav\">";
+                    if (user.isPremium) {
+                        html += "<p> &#11088 " + user.name + "</p>";
+                    }
+                    else {
+                        if (user.isAdmin) {
+                            html += "<p>  &#128275; " + user.name + "</p>";
+                        }
+                        else {
+                            html += " <p>" + user.name + "</p>";
+                        }
+                    }
+                    html += "<a class=\"logout material-symbols-rounded\" href =\"./index.html\"> Logout </a>\n            </div>";
                     root = document.querySelector('#nav');
                     root.innerHTML = html;
                     return [3 /*break*/, 4];
@@ -457,3 +493,233 @@ function renderNav() {
     });
 }
 renderNav();
+function isAdmin() {
+    return __awaiter(this, void 0, void 0, function () {
+        var response, data, ok, user, showUsersButton, usersRoot, messagesRoot, error_12;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 3, , 4]);
+                    return [4 /*yield*/, fetch("API/users/get-user")];
+                case 1:
+                    response = _a.sent();
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    data = _a.sent();
+                    ok = data.ok, user = data.user;
+                    if (!ok)
+                        throw new Error("Some of details are incorrect");
+                    showUsersButton = document.querySelector("#showUsers");
+                    usersRoot = document.querySelector("#users");
+                    messagesRoot = document.querySelector('#messages');
+                    if (user.isAdmin) {
+                        showUsersButton.style.display = 'inline-flex';
+                        usersRoot.style.display = 'block';
+                        messagesRoot.style.display = 'block';
+                    }
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_12 = _a.sent();
+                    console.error(error_12.massage);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
+            }
+        });
+    });
+}
+function isPremium() {
+    return __awaiter(this, void 0, void 0, function () {
+        var response, data, ok, user, myPictureBtn, error_13;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 3, , 4]);
+                    return [4 /*yield*/, fetch("API/users/get-user")];
+                case 1:
+                    response = _a.sent();
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    data = _a.sent();
+                    ok = data.ok, user = data.user;
+                    if (!ok)
+                        throw new Error("Some of details are incorrect");
+                    myPictureBtn = document.querySelector("#myPicture");
+                    if (user.isPremium) {
+                        myPictureBtn.style.display = 'inline-flex';
+                    }
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_13 = _a.sent();
+                    console.error(error_13.massage);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
+            }
+        });
+    });
+}
+function renderUsers() {
+    return __awaiter(this, void 0, void 0, function () {
+        var response, result, users, html_3, usersRoot, allPicturesRoot, error_14;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 3, , 4]);
+                    return [4 /*yield*/, fetch('API/users/get-users')];
+                case 1:
+                    response = _a.sent();
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    result = _a.sent();
+                    users = result.users;
+                    if (!Array.isArray(users))
+                        throw new Error("users is not array");
+                    html_3 = "<table>\n        <tr>\n        <th> \u05E9\u05DD \u05DE\u05E9\u05EA\u05DE\u05E9 </th>\n        <th> premium </th>\n        <th> admin </th>\n        </tr>";
+                    users.forEach(function (user) {
+                        html_3 += "\n            <tr>\n                <td>" + user.name + "</td>\n                <td>";
+                        if (user.isPremium) {
+                            html_3 += "<input type=\"checkbox\" name=\"isPremium\" id=\"premium" + user._id + "\" checked>";
+                        }
+                        else {
+                            html_3 += "<input type=\"checkbox\" name=\"isPremium\" id=\"premium" + user._id + "\">";
+                        }
+                        html_3 += "</td>\n                <td>";
+                        if (user.isAdmin) {
+                            html_3 += "<input type=\"checkbox\" name=\"isAdmin\" id=\"admin" + user._id + "\" checked>";
+                        }
+                        else {
+                            html_3 += "<input type=\"checkbox\" name=\"isAdmin\" id=\"admin" + user._id + "\">";
+                        }
+                        html_3 += "</td>\n            </tr>";
+                    });
+                    html_3 += " </table>\n        <button onclick=\"closeRenderUsers()\" class=\"material-symbols-rounded\">close</button>\n        <button onclick=\"setUserProperty()\" class=\"material-symbols-rounded\">check</button>\n        ";
+                    usersRoot = document.querySelector("#users");
+                    usersRoot.style.display = 'block';
+                    usersRoot.style.position = 'relative';
+                    usersRoot.style.width = '40vw';
+                    usersRoot.style.height = '40vh';
+                    usersRoot.style.margin = 'auto';
+                    usersRoot.innerHTML = html_3;
+                    allPicturesRoot = document.querySelector('#allPictures');
+                    allPicturesRoot.style.display = 'none';
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_14 = _a.sent();
+                    console.error(error_14.massage);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
+            }
+        });
+    });
+}
+function closeRenderUsers() {
+    try {
+        var usersRoot = document.querySelector("#users");
+        usersRoot.style.display = 'none';
+        var allPicturesRoot = document.querySelector('#allPictures');
+        allPicturesRoot.style.display = 'flex';
+    }
+    catch (error) {
+        console.error(error.massage);
+    }
+}
+function setUserProperty() {
+    return __awaiter(this, void 0, void 0, function () {
+        var response, result, users, usersRoot, allPicturesRoot, error_15;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 3, , 4]);
+                    return [4 /*yield*/, fetch('API/users/get-users')];
+                case 1:
+                    response = _a.sent();
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    result = _a.sent();
+                    users = result.users;
+                    if (!Array.isArray(users))
+                        throw new Error("users is not array");
+                    users.forEach(function (user) {
+                        var id = user._id;
+                        var isPremiumCheck = document.querySelector("#premium" + id);
+                        var isAdminCheck = document.querySelector("#admin" + id);
+                        if (isPremiumCheck.checked) {
+                            setAsPremium(id, true);
+                        }
+                        else {
+                            setAsPremium(id, false);
+                        }
+                        if (isAdminCheck.checked) {
+                            setAsAdmin(id, true);
+                        }
+                        else {
+                            setAsAdmin(id, false);
+                        }
+                    });
+                    usersRoot = document.querySelector("#users");
+                    usersRoot.style.display = 'none';
+                    allPicturesRoot = document.querySelector('#allPictures');
+                    allPicturesRoot.style.display = 'flex';
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_15 = _a.sent();
+                    console.error(error_15.massage);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
+            }
+        });
+    });
+}
+function setAsPremium(id, isPremium) {
+    return __awaiter(this, void 0, void 0, function () {
+        var response, error_16;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    return [4 /*yield*/, fetch('API/users/set-premium', {
+                            method: 'PATCH',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({ id: id, isPremium: isPremium })
+                        })];
+                case 1:
+                    response = _a.sent();
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_16 = _a.sent();
+                    console.error(error_16.massage);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
+}
+function setAsAdmin(id, isAdmin) {
+    return __awaiter(this, void 0, void 0, function () {
+        var response, error_17;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    return [4 /*yield*/, fetch('API/users/set-admin', {
+                            method: 'PATCH',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({ id: id, isAdmin: isAdmin })
+                        })];
+                case 1:
+                    response = _a.sent();
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_17 = _a.sent();
+                    console.error(error_17.massage);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
+}
+isAdmin();
+isPremium();

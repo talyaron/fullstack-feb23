@@ -16,6 +16,10 @@ export const UserSchema = new Schema({
     isAdmin: {
         type: Boolean,
         default: false
+    },
+    isPremium: {
+        type: Boolean,
+        default: false
     }
 })
 

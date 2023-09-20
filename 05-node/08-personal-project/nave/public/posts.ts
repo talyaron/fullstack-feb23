@@ -29,8 +29,8 @@ async function handeleAddPost(ev: any) {
     try {
         
         ev.preventDefault();
-        const email = getEmailFromQuery();
-        if (!email) throw new Error("no email");
+        // const email = getEmailFromQuery();
+        // if (!email) throw new Error("no email");
         
         const content = ev.target.elements.content.value;
         const featuredImage = ev.target.elements.featuredImage.value;
@@ -91,15 +91,15 @@ function renderPostWithTitle(posts:Post) {
 
 function renderPosts(posts: Post[], DIVElem: HTMLDivElement) {
     try {
-        debugger
         if (!DIVElem) throw new Error("no div element");
-        let html = "<ul>";
-html += posts.map(post => renderPostWithTitle(post)).join("");
-html += "</ul>";
 
-        DIVElem.innerHTML = html;
+        posts.forEach(post => {
+            const postHtml = renderPostWithTitle(post);
+            const postElement = document.createElement('coloumn');
+            postElement.innerHTML = postHtml;
+            DIVElem.appendChild(postElement);
+        });
     } catch (error) {
         console.error(error);
-        return "";
     }
 }

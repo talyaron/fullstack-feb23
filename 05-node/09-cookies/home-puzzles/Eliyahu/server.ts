@@ -18,8 +18,12 @@ mongoose.connect("mongodb+srv://eliyahuBasson:2PNwya1QXHKD3VGx@cluster0.af1ziou.
   console.error(err)
 })
 
+
 import picturesRouter from './API/pictures/picturesRouter'
 import userRouter from './API/users/userRouter'
+import { getLoggedUser } from "./API/users/userMiddleware";
+
+app.use(getLoggedUser)
 app.use('/API/pictures', picturesRouter)
 app.use('/API/users', userRouter)
 

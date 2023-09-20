@@ -1,6 +1,3 @@
-// async function handleLogin(ev:any){
-//     try {
-//         ev.preventDefault(); // stop form from submitting
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -37,74 +34,40 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-//         const user = {  // get data from form
-//             password: ev.target.password.value,
-//             email: ev.target.email.value
-//         }
-//         if(!user.email || !user.password) throw new Error("Please complete all fields");
-//         const response = await fetch('/API/users/login', { // send data to server
-//             method: 'POST',
-//             headers: {
-//                 'Content-Type': 'application/json'
-//             },
-//             body: JSON.stringify(user)
-//         });
-//         const {error, email} = await response.json(); // get data from server
-//         console.log(error);
-//         if (error) {
-//             throw new Error(error);
-//         }
-//         //if everthink is OK, redirect to main page of the user
-//         window.location.href = `/main.html?email=${email}`; //query
-//     } catch (error) {
-//         console.error(error);
-//     }
-// }
-function handleLogin(event) {
+function picturesShow() {
     return __awaiter(this, void 0, void 0, function () {
-        var email, password, admin, response, data, user, error_1;
+        var response, result, pictures, index, imgsRoot, imgUrl, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
-                    event.preventDefault();
-                    email = event.target.email.value;
-                    password = event.target.password.value;
-                    admin = event.target.admin.checked;
-                    if (!email || !password)
-                        throw new Error("missing some details");
-                    return [4 /*yield*/, fetch("API/users/get-user-login?email=" + email + "&password=" + password)];
+                    return [4 /*yield*/, fetch('API/pictures/get-pictures')];
                 case 1:
                     response = _a.sent();
                     return [4 /*yield*/, response.json()];
                 case 2:
-                    data = _a.sent();
-                    console.log(data.user);
-                    user = data.users;
-                    debugger;
-                    if (!user) {
-                        alert("email or password are incorrect");
-                        throw new Error("email or password are incorrect");
-                    }
-                    // if email and password are correct
-                    if (user.isAdmin && admin) {
-                        alert("admin");
-                        window.location.href = "../adminPage/admin.html";
-                    }
-                    else if (!user.isAdmin && admin) {
-                        alert("You are not an admin, please login again");
-                    }
-                    else {
-                        alert("user");
-                        window.location.href = "main.html";
-                    }
+                    result = _a.sent();
+                    pictures = result.pictures;
+                    if (!Array.isArray(pictures))
+                        throw new Error("pictures is not array");
+                    index = Math.floor(Math.random() * pictures.length);
+                    imgsRoot = document.querySelector('#imgs');
+                    imgUrl = pictures[index].imgUrl;
+                    imgsRoot.style.backgroundImage = "url(\"" + imgUrl + "\")";
+                    imgsRoot.innerHTML =
+                        "<p>" + pictures[index].title + ".   " + pictures[index].location + ".   " + pictures[index].userName + " </p>";
+                    imgsRoot.style.color = 'white';
+                    imgsRoot.style.textAlign = 'center';
+                    imgsRoot.style.fontSize = 'large';
                     return [3 /*break*/, 4];
                 case 3:
                     error_1 = _a.sent();
-                    console.error(error_1);
+                    console.error(error_1.massage);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }
         });
     });
 }
+picturesShow();
+setInterval(picturesShow, 4000);
