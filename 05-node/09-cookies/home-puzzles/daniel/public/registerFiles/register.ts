@@ -2,6 +2,9 @@ async function handleRegister(ev:any) {
     try {
         ev.preventDefault()
         const userData = {
+            userName: ev.target.userName.value,
+            birthDate: ev.target.birthDate.valueAsNumber,
+            phoneNumber: ev.target.phoneNumber.valueAsNumber,
             email: ev.target.email.value,
             password: ev.target.password.value
         }
@@ -16,8 +19,7 @@ async function handleRegister(ev:any) {
         if(error){
             throw new Error(error);
         }
-        window.location.href = "/login.html"
-        
+        window.location.href = "../loginFiles/login.html"
     } catch (error) {
         console.error(error);
     }

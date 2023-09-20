@@ -20,7 +20,7 @@ async function handleLogin(ev:any){
             throw new Error(error)
         }
     
-        window.location.href = `crossfit.html`
+        window.location.href = `../mainFiles/main.html`
     } catch (error) {
         console.error(error)
     }

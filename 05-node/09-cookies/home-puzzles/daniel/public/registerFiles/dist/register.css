@@ -14,6 +14,7 @@ h1 {
   height: 75vh;
   position: absolute;
   left: 15%;
+  border-radius: 50px;
 }
 .register form {
   display: flex;
@@ -25,4 +26,11 @@ h1 {
 }
 .register form input {
   margin-bottom: 6px;
+}
+.register form a {
+  text-decoration: none;
+  color: #cfcfcf;
+  font-size: 30px;
+  text-shadow: #232119 1px 0 10px;
+  font-weight: 900;
 }
