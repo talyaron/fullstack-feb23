@@ -1,4 +1,5 @@
-import { secret } from "../userCont";
+const {SECRET} = process.env;
+const secret = SECRET;
 
 const jwt = require('jwt-simple');
 

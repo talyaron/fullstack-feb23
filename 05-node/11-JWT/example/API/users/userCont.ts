@@ -1,7 +1,10 @@
 import { User, UserModel, users } from "./userModel";
+const bcrypt = require('bcrypt');
 const jwt = require('jwt-simple');
-export const secret = 'kdghdkjghYkdjfghkjdfghjk';
+const { SECRET } = process.env;
+const secret = SECRET;
 
+const saltRounds = 10;
 
 //register user 
 export const registerUser = async (req: any, res: any) => {
@@ -12,7 +15,10 @@ export const registerUser = async (req: any, res: any) => {
     //this was in typescript
     // const user = new User({ email, password });
 
-    const user = new UserModel({ email, password });
+    //encrypt password with bcrypt.js
+    const hash = await bcrypt.hash(password, saltRounds);
+
+    const user = new UserModel({ email, password: hash });
     const userDB = await user.save();
     console.log(userDB)
     //check if user already exist
@@ -32,12 +38,23 @@ export const login = async (req: any, res: any) => {
     const { email, password } = req.body;
     if (!email || !password) throw new Error("Please complete all fields");
     //check if user exist and password is correct
-    const user = await UserModel.findOne({ email, password });
-    if (!user) throw new Error("some of the details are incorrect");
-    
+    const userDB = await UserModel.findOne({ email });
+
+    if (!userDB) throw new Error("some of the details are incorrect");
+
+    const { password: hash } = userDB;
+    //  { password} = user;
+    //  const hash = password;
+
+    if (!hash) throw new Error("some of the details are incorrect");
+
+    //check if hash password is equal to the password that the user entered
+    const match:boolean = await bcrypt.compare(password, hash);
+    if (!match) throw new Error("some of the details are incorrect");
+
     const cookie = {
-      uid: user._id,
-      role: user.role || "user",
+      uid: userDB._id,
+      role: userDB.role || "user",
     }
     //incript with JWT
     // encode
@@ -48,7 +65,7 @@ export const login = async (req: any, res: any) => {
     res.send({ ok: true });
   } catch (error) {
     console.error(error);
-    res.send({ error: error.message });
+    res.status(401).send({ error: error.message });
   }
 }
 
