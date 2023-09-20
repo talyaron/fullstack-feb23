@@ -4,3 +4,7 @@
 .storeGallery__productDiv img {
   max-width: 140px;
 }
+
+* {
+  font-family: Arial, Helvetica, sans-serif;
+}
