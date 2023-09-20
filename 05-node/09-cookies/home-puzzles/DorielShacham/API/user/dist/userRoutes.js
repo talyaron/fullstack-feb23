@@ -11,5 +11,5 @@ router
     .get("/get-log-in-user", userCont_1.getLoggedInUser)
     .post("/log-out", userCont_1.logOut)
     .get("/get-all-users", userMiddleware_1.isAdmin, userCont_1.allUsers)
-    .put("/update-user", userCont_1.updateUser)["delete"]("/delete-user", userCont_1.deleteUser)
+    .put("/update-user", userMiddleware_1.isAdmin, userCont_1.updateUser)["delete"]("/delete-user", userMiddleware_1.isAdmin, userCont_1.deleteUser)
     .get("/get-user-details", userCont_1.getUserDetails);

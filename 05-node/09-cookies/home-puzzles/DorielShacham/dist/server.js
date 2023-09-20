@@ -8,17 +8,19 @@ const mongoose_1 = __importDefault(require("mongoose"));
 const cookie_parser_1 = __importDefault(require("cookie-parser"));
 const userMiddleware_1 = require("./API/user/userMiddleware");
 const blogMiddleware_1 = require("./API/blog/blogMiddleware");
+require("dotenv/config");
 const app = express_1.default();
 const port = process.env.PORT || 3000;
 app.use(cookie_parser_1.default());
 //static files
 app.use(express_1.default.static("public"));
+// console.log(process.env.MONGO_URI);
 //express
 app.use(express_1.default.json());
 app.use(userMiddleware_1.getLoggedUser);
 app.use(blogMiddleware_1.getUserBlog);
 //connect to mongoDB with mongoose
-mongoose_1.default.connect("mongodb+srv://doriel:FgvVuOI8ROgkvs06@cluster0.wvdhcfc.mongodb.net/test")
+mongoose_1.default.connect(process.env.MONGO_URI)
     .then(() => {
     console.info("DataBase is connected");
 })

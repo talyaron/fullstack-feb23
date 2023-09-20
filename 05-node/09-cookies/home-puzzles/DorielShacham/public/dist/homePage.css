@@ -2,7 +2,8 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #f0f0f0;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
 }
 
 .wrapper {
@@ -33,7 +34,7 @@ header h1 {
 }
 
 main {
-  background-color: rgba(0, 0, 0, 0.9);
+  background-color: rgba(0, 0, 0, 0.8);
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -134,7 +135,7 @@ main {
 }
 
 #sideUpdateContainer {
-  background-color: #f0f0f0;
+  background-color: rgba(0, 0, 0, 0.8);
   padding: 20px;
   display: flex;
   flex-direction: column;

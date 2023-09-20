@@ -1,4 +1,13 @@
 import { UserModel } from "./userModel";
+// const jwt = require('jwt-simple');
+
+const {SECRET} = process.env;
+const secret = SECRET;
+
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
+
+// console.log(process.env)
 
 export const addUser = async (req: any, res: any) => {
   try {
@@ -12,7 +21,12 @@ export const addUser = async (req: any, res: any) => {
       // User with the same email already exists, return an error response
       return res.send({ error: "User already exists with this email" });
     }
-    const user = new UserModel({ email, password });
+
+    //bycrpyt 
+    // const hash = bcrypt.hash(password, saltRounds);
+  
+
+    const user = new UserModel({ email, password }); // password: hash}
     const userDB = await user.save();
     console.log(userDB);
 
@@ -30,6 +44,11 @@ export const logIn = async (req: any, res: any) => {
 
     // find if email exsist
     const existingUser = await UserModel.findOne({ email });
+    
+    // //bycript code
+    // const {password:hash} = userDB;
+    // if(!hash) throw new Error("some bycrypt error");
+    
     if (!existingUser) {
       // User with the same email already exists, return an error response
       return res.send({ error: "User not found" });
