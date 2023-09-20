@@ -1,6 +1,4 @@
-// async function handleLogin(ev:any){
-//     try {
-//         ev.preventDefault(); // stop form from submitting
+"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -37,74 +35,71 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-//         const user = {  // get data from form
-//             password: ev.target.password.value,
-//             email: ev.target.email.value
-//         }
-//         if(!user.email || !user.password) throw new Error("Please complete all fields");
-//         const response = await fetch('/API/users/login', { // send data to server
-//             method: 'POST',
-//             headers: {
-//                 'Content-Type': 'application/json'
-//             },
-//             body: JSON.stringify(user)
-//         });
-//         const {error, email} = await response.json(); // get data from server
-//         console.log(error);
-//         if (error) {
-//             throw new Error(error);
-//         }
-//         //if everthink is OK, redirect to main page of the user
-//         window.location.href = `/main.html?email=${email}`; //query
-//     } catch (error) {
-//         console.error(error);
-//     }
-// }
-function handleLogin(event) {
+exports.__esModule = true;
+exports.getLoggedUser = exports.isAdmin = void 0;
+var userModel_1 = require("./userModel");
+function isAdmin(req, res, next) {
     return __awaiter(this, void 0, void 0, function () {
-        var email, password, admin, response, data, user, error_1;
+        var userId, user, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    _a.trys.push([0, 3, , 4]);
-                    event.preventDefault();
-                    email = event.target.email.value;
-                    password = event.target.password.value;
-                    admin = event.target.admin.checked;
-                    if (!email || !password)
-                        throw new Error("missing some details");
-                    return [4 /*yield*/, fetch("API/users/get-user-login?email=" + email + "&password=" + password)];
+                    _a.trys.push([0, 2, , 3]);
+                    userId = req.cookies.user;
+                    if (!userId)
+                        throw new Error("User not found on cookie");
+                    return [4 /*yield*/, userModel_1.UserModel.findById(userId)];
                 case 1:
-                    response = _a.sent();
-                    return [4 /*yield*/, response.json()];
-                case 2:
-                    data = _a.sent();
-                    console.log(data.user);
-                    user = data.users;
-                    debugger;
-                    if (!user) {
-                        alert("email or password are incorrect");
-                        throw new Error("email or password are incorrect");
-                    }
-                    // if email and password are correct
-                    if (user.isAdmin && admin) {
-                        alert("admin");
-                        window.location.href = "../adminPage/admin.html";
-                    }
-                    else if (!user.isAdmin && admin) {
-                        alert("You are not an admin, please login again");
+                    user = _a.sent();
+                    if (!user)
+                        throw new Error("User not found on database");
+                    //check if the user is admin (from Database)
+                    if (user.isAdmin) {
+                        next(); // continue to the next controller
                     }
                     else {
-                        alert("user");
-                        window.location.href = "main.html";
+                        res.status(401).send({ error: "Unauthorized" });
                     }
-                    return [3 /*break*/, 4];
-                case 3:
+                    return [3 /*break*/, 3];
+                case 2:
                     error_1 = _a.sent();
                     console.error(error_1);
-                    return [3 /*break*/, 4];
-                case 4: return [2 /*return*/];
+                    res.status(500).send({ error: error_1.message });
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
             }
         });
     });
 }
+exports.isAdmin = isAdmin;
+//create middleware function which gets the user from the cookie
+function getLoggedUser(req, res, next) {
+    return __awaiter(this, void 0, void 0, function () {
+        var userId, userDB, error_2;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    userId = req.cookies.user;
+                    return [4 /*yield*/, userModel_1.UserModel.findById(userId)];
+                case 1:
+                    userDB = _a.sent();
+                    if (!userDB) {
+                        req.user = null;
+                    }
+                    else {
+                        req.user = userDB;
+                    }
+                    next();
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_2 = _a.sent();
+                    console.error(error_2);
+                    res.status(500).send({ error: error_2.message });
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
+}
+exports.getLoggedUser = getLoggedUser;

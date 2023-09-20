@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const mongoose_1 = __importDefault(require("mongoose"));
 const cookie_parser_1 = __importDefault(require("cookie-parser"));
+const userMiddle_1 = require("./API/users/userMiddle");
 const app = express_1.default();
 const port = process.env.PORT || 3000;
 //static files
@@ -21,6 +22,7 @@ mongoose_1.default.connect("mongodb+srv://vnavev:mDSAr2zEw0bzDM2a@cluster0.nzfjz
     .catch(err => {
     console.error(err);
 });
+app.use(userMiddle_1.getLoggedUser);
 // get router from userRouter
 const userRoutes_1 = __importDefault(require("./API/users/userRoutes"));
 //tells express to use userRouter on the intial route "/API/users"

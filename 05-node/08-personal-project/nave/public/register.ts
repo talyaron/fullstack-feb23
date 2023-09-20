@@ -7,7 +7,7 @@ async function handleRegister(ev: any) {
       email: ev.target.email.value,
     };
 
-    const response = await fetch("/API/users/register", {
+    const response = await fetch("/API/users/register-user", {
       // send data to server
       method: "POST",
       headers: {

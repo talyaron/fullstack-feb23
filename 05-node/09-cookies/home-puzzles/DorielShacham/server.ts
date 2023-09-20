@@ -17,7 +17,7 @@ app.use(getUserBlog);
 //connect to mongoDB with mongoose
 mongoose.connect("mongodb+srv://doriel:FgvVuOI8ROgkvs06@cluster0.wvdhcfc.mongodb.net/test")
 .then(()=>{
-  console.info("DB connected")
+  console.info("DataBase is connected")
 })
 .catch(err=>{
   console.error(err)
