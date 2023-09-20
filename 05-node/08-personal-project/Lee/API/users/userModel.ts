@@ -31,11 +31,9 @@ export const UserSchema = new Schema({
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
   familyMembers: [{ type: Schema.Types.ObjectId, ref: 'users' }],
-  // isAdmin: {type: Boolean,
-  //   default: false}
+  isAdmin: {type: Boolean,
+    default: false}
 });
-
-
 
 export const UserModel = model("users", UserSchema)
 

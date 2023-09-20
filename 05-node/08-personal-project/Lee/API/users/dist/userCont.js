@@ -95,7 +95,7 @@ exports.login = function (req, res) { return __awaiter(void 0, void 0, void 0, f
                 user = _b.sent();
                 if (!user)
                     throw new Error("some of the details are incorrect");
-                res.cookie("user", user._id, { maxAge: 1000 * 100, httpOnly: true });
+                res.cookie("user", user._id, { maxAge: 900000, httpOnly: true });
                 res.send({ ok: true, email: user.email });
                 return [3 /*break*/, 3];
             case 2:
