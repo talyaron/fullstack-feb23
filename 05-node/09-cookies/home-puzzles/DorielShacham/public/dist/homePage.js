@@ -537,7 +537,9 @@ function renderBlogItem(blog, isUserBlog, isAdmin, fromWhereICome, userEmail, co
     var _this = this;
     var blogContainer = container;
     var blogElement = document.createElement('div');
-    blogElement.innerHTML = "\n        <h2 class=\"blogTitle\">" + blog.title + "</h2>\n        <p class=\"blogDescription\">" + blog.description + "</p>\n        <p> Author: " + userEmail + "</p>\n        <img src=\"" + blog.imageUrl + "\" alt=\"Blog Image\"> \n    ";
+    blogElement.classList.add('blog-post');
+    blogElement.innerHTML = "\n        <p> Author: " + userEmail + "</p>\n        <h2 class=\"blogTitle\">" + blog.title + "</h2>\n        <img class=\"blogImage\" src=\"" + blog.imageUrl + "\" alt=\"Blog Image\">\n        <p class=\"blogDescription\">" + blog.description + "</p>\n    ";
+    // <button class="deleteButton" onclick="handleDeleteBlog('${blog._id}', '${fromWhereICome}')">Delete Blog</button>
     if (isAdmin || isUserBlog) {
         var deleteButton = document.createElement('button');
         deleteButton.className = 'deleteBlog';

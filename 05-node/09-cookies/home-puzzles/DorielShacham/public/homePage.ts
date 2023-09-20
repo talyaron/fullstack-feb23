@@ -366,13 +366,15 @@ async function renderMyBlogs() {
 function renderBlogItem(blog: any, isUserBlog: boolean, isAdmin: boolean, fromWhereICome: string, userEmail: string, container: HTMLDivElement, imageUrl: string) {
     const blogContainer = container;
     const blogElement = document.createElement('div');
+    blogElement.classList.add('blog-post');
     blogElement.innerHTML = `
-        <h2 class="blogTitle">${blog.title}</h2>
-        <p class="blogDescription">${blog.description}</p>
         <p> Author: ${userEmail}</p>
-        <img src="${blog.imageUrl}" alt="Blog Image"> 
+        <h2 class="blogTitle">${blog.title}</h2>
+        <img class="blogImage" src="${blog.imageUrl}" alt="Blog Image">
+        <p class="blogDescription">${blog.description}</p>
     `;
-
+    // <button class="deleteButton" onclick="handleDeleteBlog('${blog._id}', '${fromWhereICome}')">Delete Blog</button>
+  
     if (isAdmin || isUserBlog) {
         const deleteButton = document.createElement('button');
         deleteButton.className = 'deleteBlog';
