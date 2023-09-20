@@ -62,9 +62,10 @@ function getDoneHabits() {
     });
 }
 var DoneHabit = /** @class */ (function () {
-    function DoneHabit(name, categorie, timeDone) {
+    function DoneHabit(name, categorie, dateStarted, timeDone) {
         this.name = name;
         this.categorie = categorie;
+        this.dateStarted = dateStarted;
         this.timeDone = timeDone;
     }
     return DoneHabit;
@@ -74,18 +75,45 @@ function exportData(data) {
         var name = obj.name;
         var categorie = obj.categorie;
         var date = obj.timeDone;
-        console.log(date);
+        var dateStarted = obj.dateStarted;
+        console.log(date, dateStarted);
         var root = document.querySelector(".doneHabits");
-        renderData(name, categorie, date, root);
+        renderData(name, categorie, dateStarted, date, root);
     });
 }
-function renderData(name, categorie, date, root) {
-    console.log(name, categorie, date);
+function CALCtimePassed(days, hours, minutes, seconds) {
+    if (days == 0 && hours == 0 && minutes == 0) {
+        return seconds + " seconds";
+    }
+    if (days == 0 && hours == 0 && minutes != 0) {
+        return minutes + " minutes, " + seconds + " seconds";
+    }
+    if (days == 0 && hours != 0 && minutes != 0) {
+        return hours + " hours, " + minutes + " minutes, " + seconds + " seconds";
+    }
+    if (days != 0 && hours != 0 && minutes != 0) {
+        return days + " days, " + hours + " hours, " + minutes + " minutes, " + seconds + " seconds";
+    }
+}
+function renderData(name, categorie, dateStarted, date, root) {
     var dateObject = new Date(date);
     var year = dateObject.getFullYear();
     var month = dateObject.getMonth() + 1;
     var day = dateObject.getDate();
-    var html = "<div class=\"doneHabits__habit\">\n    <h1 class=\"doneHabits__habit__header\">" + name + "</h1>\n    <h2 class=\"doneHabits__habit__categorie\">" + categorie + "</h2>\n    <h2 class=\"doneHabits__habit__date\">" + day + "/" + month + "/" + year + "</h2>\n</div>";
+    var dateObjectStarted = new Date(dateStarted);
+    var timeDifferenceInMilliseconds = dateObject.getTime() - dateObjectStarted.getTime();
+    // Convert the time difference to the desired units (e.g., hours, minutes, seconds)
+    var millisecondsInASecond = 1000;
+    var millisecondsInAMinute = 60 * millisecondsInASecond;
+    var millisecondsInAnHour = 60 * millisecondsInAMinute;
+    var millisecondsInADay = 24 * millisecondsInAnHour;
+    var days = Math.floor(timeDifferenceInMilliseconds / millisecondsInADay);
+    var hours = Math.floor((timeDifferenceInMilliseconds % millisecondsInADay) / millisecondsInAnHour);
+    var minutes = Math.floor((timeDifferenceInMilliseconds % millisecondsInAnHour) / millisecondsInAMinute);
+    var seconds = Math.floor((timeDifferenceInMilliseconds % millisecondsInAMinute) / millisecondsInASecond);
+    var timePassed = CALCtimePassed(days, hours, minutes, seconds);
+    console.log(timePassed);
+    var html = "<div class=\"doneHabits__habit\">\n    <h1 class=\"doneHabits__habit__header\">" + name + "</h1>\n    <h2 class=\"doneHabits__habit__categorie\">" + categorie + "</h2>\n    <h2 class=\"doneHabits__habit__date\">" + day + "/" + month + "/" + year + "</h2>\n    <h2 class=\"doneHabits__habit__date\">Time Habited: " + timePassed + "</h2>\n</div>";
     root.innerHTML += html;
 }
 function backToMain() {

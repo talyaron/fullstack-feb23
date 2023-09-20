@@ -1,18 +1,21 @@
-enum RelationType {
-  choose = "Choose",
-  mother = "Mother",
-  father = "Father",
-  brother = "Brother",
-  sister = "Sister",
-  sibling = "Sibling",
-  granddaughter = "Granddaughter",
-  grandson = "Grandson",
-  uncle = "Uncle",
-  aunt = "Aunt",
-  cousin = "Cousin",
-  niece = "Niece",
-  nephew = "Nephew",
-  other = "Other"
+enum Relation {
+  Choose = "Choose",
+  Mother = "Mother",
+  Father = "Father",
+  Brother = "Brother",
+  Sister = "Sister",
+  Sibling = "Sibling",
+  Spouse = "Spouse",
+  Son = "Son",
+  Daughter = "Daughter",
+  Granddaughter = "Granddaughter",
+  Grandson = "Grandson",
+  Uncle = "Uncle",
+  Aunt = "Aunt",
+  Cousin = "Cousin",
+  Niece = "Niece",
+  Nephew = "Nephew",
+  Other = "Other"
 }
 
 interface Relative {
@@ -20,32 +23,7 @@ interface Relative {
   fullName: string;
   birthDate: string;
   country: string;
-  relation: RelationType;
-}
-
-// Function to get user's relatives from the server
-async function getRelativesFromServer(email: string) {
-  try {
-    const response = await fetch(`/API/relatives/get-users-relatives?email=${email}`);
-    const data = await response.json();
-    return data.relatives;
-  } catch (error) {
-    console.error(error);
-    return [];
-  }
-}
-
-// Render relatives to the screen
-async function handleGetRelatives() {
-  try {
-    const email = getEmailFromQuery();
-    if (!email) throw new Error("No email");
-    const relatives = await getRelativesFromServer(email);
-    console.log(relatives);
-    renderRelatives(relatives, document.querySelector("#relatives"));
-  } catch (error) {
-    console.error(error);
-  }
+  relation: Relation;
 }
 
 // Function to add a relative for a user
@@ -64,7 +42,7 @@ async function handleAddRelative(event) {
       const relationSelect = <HTMLSelectElement>document.getElementById('relation');
       const selectedRelation = relationSelect.value;
 
-      if (!fullName || !birthDate || !country || selectedRelation === RelationType.choose) {
+      if (!fullName || !birthDate || !country || selectedRelation === Relation.Choose) {
           throw new Error("Please complete all fields and select a valid relation");
       }
 
@@ -98,6 +76,32 @@ async function handleAddRelative(event) {
       console.error(error);
   }
 }
+
+// Function to get user's relatives from the server
+async function getRelativesFromServer(email: string) {
+  try {
+    const response = await fetch(`/API/relatives/get-user-relatives?email=${email}`);
+    const data = await response.json();
+    return data.relatives;
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
+}
+
+// Render relatives to the screen
+async function handleGetRelatives() {
+  try {
+    const email = getEmailFromQuery();
+    if (!email) throw new Error("No email");
+    const relatives = await getRelativesFromServer(email);
+    console.log(relatives);
+    renderRelatives(relatives, document.querySelector("#relatives"));
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 
 function getEmailFromQuery() {
   const urlParams = new URLSearchParams(window.location.search);

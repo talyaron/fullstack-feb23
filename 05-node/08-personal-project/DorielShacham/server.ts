@@ -1,6 +1,7 @@
 import express from "express";
 import mongoose from 'mongoose';
 import cookieParser from 'cookie-parser';
+import {getLoggedUser} from "./API/user/userMiddleware";
 const app = express();
 const port = process.env.PORT || 3000;
 
@@ -10,7 +11,7 @@ app.use(express.static("public"));
 
 //express
 app.use(express.json());
-
+app.use(getLoggedUser);
 //connect to mongoDB with mongoose
 mongoose.connect("mongodb+srv://doriel:FgvVuOI8ROgkvs06@cluster0.wvdhcfc.mongodb.net/test")
 .then(()=>{

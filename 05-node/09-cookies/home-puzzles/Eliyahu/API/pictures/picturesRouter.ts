@@ -1,5 +1,6 @@
 import express from "express";
 import { addPicture, deletePicture, getPictures, getPicturesByTag, getTags, getUserPictures, updatePicture } from "./picturesConts";
+import { isAdmin } from "../users/userMiddleware";
 
 const router = express.Router();
 

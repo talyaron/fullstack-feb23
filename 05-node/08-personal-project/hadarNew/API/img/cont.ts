@@ -1,52 +1,66 @@
 //Taking the model from the model file
 
-import {Exercise} from "./model";
+import {Exercise, ExerciseModel} from "./model";
 let exercises: Exercise[] = [new Exercise({ exercise: "test", sets: 3, repetitions: 10 })];
 
-export const getExercises = (req,res) =>{
+export const getExercises = async (req,res) =>{
     try {
-        res.send({exercises})
+        const tasksDB = await ExerciseModel.find({})
+        res.send({exercises: tasksDB})
     } catch (error) {
         console.error(error.message);
     }
 }
 
-export const addExercise = (req, res) =>{
+export const addExercise = async (req, res) =>{
     try {
-        console.log(exercises)
-        const exercise: Exercise = req.body;
-        exercises.push(new Exercise(exercise))
-        res.send({exercises})
+        const { exercise,sets,repetitions,weight,timer} = req.body;
+        console.log({ exercise,sets,repetitions,weight,timer })
+
+        // exercises.push(new Exercise(exercise))
+
+        //add task using mongoose
+        const _exercise= new ExerciseModel({exercise,sets,repetitions,weight,timer})
+        const exerciseDB=await _exercise.save();
+        console.log(exerciseDB)
+
+
+        res.send({ok:true})
 
     } catch (error) {
         console.error(error.message);
+        res.status(500).send({ error: error.message });
     }
 }
 
-export const deleteExercise = (req, res) =>{
+export const deleteExercise = async (req, res) =>{
     try {
         const {id} = req.body;
-        exercises= exercises.filter((exercise) =>exercise.id !== id);
+        const exerciseDB = await ExerciseModel.findByIdAndDelete(id);
+        // exercises= exercises.filter((exercise) =>exercise.id !== id);
         res.send({exercises})
     } catch (error) {
-        console.error(error.message);
+        console.error(error);
+        res.status(500).send({ error: error.message });
     }
 }
 
-export const updateEexercise= (req, res) =>{
+export const updateEexercise= async (req, res) =>{
     try {
         const {exercise,sets,repetitions,weight,timer,id} = req.body;
         console.log(req.body);
-        if (!exercise || !sets || !repetitions || !weight || !timer || !id) throw new Error("Please complete all fields");
-        const _exercise = exercises.find((exercise) => exercise.id === id);
+        const exerciseDB= await ExerciseModel.findById(id);
+        if (!exerciseDB) throw new Error("exercise not found");
+        // if (!exercise || !sets || !repetitions || !weight || !timer || !id) throw new Error("exersice not found");
+        // const _exercise = exercises.find((exercise) => exercise.id === id);
 
-        if (!_exercise) throw new Error("exercise not found");
-        _exercise.exercise = exercise;
-        _exercise.sets = sets;
-        _exercise.repetitions = repetitions;
-        _exercise.weight = weight;
-        _exercise.timer = timer;
-        res.send({ exercises });
+
+        exerciseDB.exercise = await ExerciseModel.findByIdAndUpdate(id, {exercise}) ;
+        exerciseDB.sets = await ExerciseModel.findByIdAndUpdate(id, {sets}) ;
+        exerciseDB.repetitions = await ExerciseModel.findByIdAndUpdate(id, {repetitions}) ;
+        exerciseDB.weight = await ExerciseModel.findByIdAndUpdate(id, {weight}) ;
+        exerciseDB.timer = await ExerciseModel.findByIdAndUpdate(id, {timer}) ;
+        res.send({ ExerciseModel });
     } catch (error) {
         console.error(error);
         res.send({ error });

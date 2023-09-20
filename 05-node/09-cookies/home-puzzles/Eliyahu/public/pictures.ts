@@ -203,7 +203,7 @@ function renderPictureHtml(picture, pictureEmail: string, userEmail:string) {
 
         html += `
         </div>
-        <img id="img${picture._id}" onclick="handleShow('${picture._id}','${picture.imgUrl}' )" src="${picture.imgUrl}">
+        <img id="img${picture._id}" onclick="handleShow('${picture._id}')" src="${picture.imgUrl}">
         <div class = "picture_body">
         <p>${picture.location}</p>
         <p> ${picture.publishDate}</p>
@@ -220,8 +220,9 @@ function renderPictureHtml(picture, pictureEmail: string, userEmail:string) {
     }
 }
 
-function handleShow(id:string, imgUrl:string){
+function handleShow(id:string){
     try {
+
         const divRoot = document.querySelector(`#id${id}`) as HTMLDivElement
         divRoot.innerHTML+=`<button id="btnClose" onclick="getPictures()" class="material-symbols-rounded">close</button>`
         const imgRoot = document.querySelector(`#img${id}`) as HTMLImageElement
@@ -231,11 +232,11 @@ function handleShow(id:string, imgUrl:string){
         divRoot.style.width='80%'
         divRoot.style.height='90%'
         divRoot.style.zIndex='1'
-        imgRoot.style.width = '85%'
-        imgRoot.style.height = '80%'
-        imgRoot.style.pointerEvents='none'
-        imgRoot.style.marginTop='5px'
-        imgRoot.style.borderRadius='5%'
+        divRoot.style.backgroundImage = `url("${imgRoot.src}")`
+        divRoot.style.backgroundRepeat = `no-repeat`
+        divRoot.style.backgroundSize = `cover`
+        divRoot.style.backgroundPosition = `center`
+        imgRoot.style.display='none'
         btnCloseRoot.style.position='absolute'
         btnCloseRoot.style.left='1%'
         btnCloseRoot.style.top='50%'

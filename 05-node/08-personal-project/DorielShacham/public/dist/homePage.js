@@ -129,6 +129,7 @@ function renderUsersList(users) {
         var updateUserDiv = document.querySelector("#updateUserDiv");
         if (!updateUserDiv)
             throw new Error("updateUserDiv root not found");
+        updateUserDiv.innerHTML = " ";
         //create div for select user
         var selectUserDiv = document.createElement('div');
         selectUserDiv.id = 'selectUserDiv';
@@ -168,7 +169,12 @@ function renderUsersList(users) {
         var deleteButton = document.createElement('button');
         deleteButton.className = 'deleteUserBtn';
         deleteButton.textContent = 'Delete';
-        //deleteButton.onclick = async () => await handleDeleteUser();
+        deleteButton.onclick = function () { return __awaiter(_this, void 0, void 0, function () { return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, handleDeleteUser()];
+                case 1: return [2 /*return*/, _a.sent()];
+            }
+        }); }); };
         // Append select and buttons to updateUserDiv
         selectUserDiv.appendChild(selectUser_1);
         selectUserDiv.appendChild(updateButton);
@@ -538,4 +544,46 @@ function renderBlogItem(blog, isUserBlog, isAdmin, fromWhereICome, userEmail, co
         blogElement.appendChild(deleteButton);
     }
     blogContainer.appendChild(blogElement);
+}
+//Delete users function
+function handleDeleteUser() {
+    return __awaiter(this, void 0, void 0, function () {
+        var selectUser, selectedUserId, response, responseData, updateUserForm, error_11;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 4, , 5]);
+                    selectUser = document.querySelector('#selectUser');
+                    selectedUserId = selectUser.value;
+                    return [4 /*yield*/, fetch("API/user/delete-user?userId=" + selectedUserId, {
+                            method: "DELETE",
+                            headers: {
+                                "Content-Type": "application/json"
+                            }
+                        })];
+                case 1:
+                    response = _a.sent();
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    responseData = _a.sent();
+                    if (!responseData.ok) {
+                        throw new Error(responseData.message);
+                    }
+                    alert("User deleted successfully");
+                    updateUserForm = document.querySelector("#selectUserDiv > button.deleteUserBtn");
+                    updateUserForm.remove();
+                    //  refresh the user list here
+                    return [4 /*yield*/, renderAllUsers()];
+                case 3:
+                    //  refresh the user list here
+                    _a.sent();
+                    return [3 /*break*/, 5];
+                case 4:
+                    error_11 = _a.sent();
+                    console.error(error_11);
+                    return [3 /*break*/, 5];
+                case 5: return [2 /*return*/];
+            }
+        });
+    });
 }

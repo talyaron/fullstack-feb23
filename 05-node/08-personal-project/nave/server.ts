@@ -1,5 +1,7 @@
 import express from "express";
 import mongoose from 'mongoose';
+import cookieParser from 'cookie-parser';
+
 const app = express();
 const port = process.env.PORT || 3000;
 
@@ -7,6 +9,8 @@ const port = process.env.PORT || 3000;
 
 //static files
 app.use(express.static("public"));
+app.use(cookieParser());
+
 
 //body
 app.use(express.json());
