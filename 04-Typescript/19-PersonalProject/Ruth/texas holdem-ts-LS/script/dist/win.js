@@ -63,7 +63,7 @@ function getBestHandForEachPlayer(player) {
         return arrayHandCards;
     }
     else {
-        for (var i = 0; i <= 5 - arrayHandCards.length + 1; i++) {
+        for (var i = 0; i < 5 - arrayHandCards.length + 1; i++) {
             var uniqArrayCards = thisCards.filter(function (card) { return !arrayHandCards.includes(card); });
             arrayHandCards.push(uniqArrayCards[i]);
         }
@@ -120,7 +120,8 @@ function getHandName(cards) {
         }
         case 2: {
             var cardNumber = getTwoPairs(cards)[0].cardNumber;
-            return "Tow pair " + cardNumber;
+            var cardNum2 = getTwoPairs(cards)[3].cardNumber;
+            return "Tow pair " + cardNumber + " and " + cardNum2;
         }
         case 1: {
             var cardNumber = getPair(cards)[0].cardNumber;
