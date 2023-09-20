@@ -1,3 +1,4 @@
+import { CrossfitItem } from "../../API/crossfit/crossfitModel";
 
 interface CrossfitItem {
     name: string;
@@ -8,7 +9,7 @@ interface CrossfitItem {
     _id?: string;
 }
 
-
+// const rope:CrossfitItem = {name: "rope",quantity:2,price: 250,imgItem:"https://images.pexels.com/photos/45056/pexels-photo-45056.jpeg?auto=compress&cs=tinysrgb&w=400"}
 
 async function handleAddItem(ev:any) {
     try {

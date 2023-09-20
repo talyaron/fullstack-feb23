@@ -1,6 +1,5 @@
 html {
     background-color: rgb(7, 131, 169);
-    
 
 body {
     color: white;
@@ -35,19 +34,21 @@ body {
             margin: .2rem;
             font-size: 18px;
         }
-
     }
+    #deleteButton,
+    #updateButton {
+        display: none;
 }
+
 button {
     height: 35px;
-    margin: 1rem;
+    margin-top: 1rem;
     border: 2px solid rgb(39, 84, 100);
     background-color: rgb(92, 154, 177);
 
     &:hover {
         background-color: rgb(41, 93, 111);
     }
-
    }
-
+}
 }

@@ -360,7 +360,7 @@ function getCurrentUser() {
 // Function to render a blog
 function handleAddBlog(event) {
     return __awaiter(this, void 0, void 0, function () {
-        var blogTitle, blogDescription, user, userEmail, response, data, error_7;
+        var blogTitle, blogDescription, blogImageURL, user, userEmail, formData, response, data, error_7;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -368,16 +368,23 @@ function handleAddBlog(event) {
                     event.preventDefault();
                     blogTitle = event.target.blogTitle.value;
                     blogDescription = event.target.blogDescription.value;
+                    blogImageURL = event.target.blogImageURL.value;
                     return [4 /*yield*/, getCurrentUser()];
                 case 1:
                     user = _a.sent();
                     userEmail = user.email;
+                    formData = {
+                        title: blogTitle,
+                        description: blogDescription,
+                        userEmail: userEmail,
+                        imageUrl: blogImageURL
+                    };
                     return [4 /*yield*/, fetch("API/blog/add-blog", {
                             method: "POST",
                             headers: {
                                 "Content-Type": "application/json"
                             },
-                            body: JSON.stringify({ title: blogTitle, description: blogDescription, userEmail: userEmail })
+                            body: JSON.stringify(formData)
                         })];
                 case 2:
                     response = _a.sent();
@@ -467,7 +474,7 @@ function renderAllBlogs() {
                     blogContainer_1.innerHTML = '';
                     blogList.forEach(function (blog) {
                         var isUserBlog = blog.userEmail === user_1.email;
-                        renderBlogItem(blog, isUserBlog, user_1.isAdmin, 'AllBlogs', blog.userEmail, blogContainer_1);
+                        renderBlogItem(blog, isUserBlog, user_1.isAdmin, 'AllBlogs', blog.userEmail, blogContainer_1, user_1.imageUrl); ///@@@/test user.imageURL
                     });
                     return [3 /*break*/, 5];
                 case 4:
@@ -514,7 +521,7 @@ function renderMyBlogs() {
                     blogContainer_2.innerHTML = '';
                     blogList.forEach(function (blog) {
                         var isUserBlog = true;
-                        renderBlogItem(blog, isUserBlog, user_2.isAdmin, 'myBlogs', user_2.email, blogContainer_2);
+                        renderBlogItem(blog, isUserBlog, user_2.isAdmin, 'myBlogs', user_2.email, blogContainer_2, user_2.imageUrl);
                     });
                     return [3 /*break*/, 5];
                 case 4:
@@ -526,11 +533,13 @@ function renderMyBlogs() {
         });
     });
 }
-function renderBlogItem(blog, isUserBlog, isAdmin, fromWhereICome, userEmail, container) {
+function renderBlogItem(blog, isUserBlog, isAdmin, fromWhereICome, userEmail, container, imageUrl) {
     var _this = this;
     var blogContainer = container;
     var blogElement = document.createElement('div');
-    blogElement.innerHTML = "\n        <h2 class=\"blogTitle\">" + blog.title + "</h2>\n        <p class=\"blogDescription\">" + blog.description + "</p>\n        <p> Author: " + userEmail + "</p>\n    ";
+    blogElement.classList.add('blog-post');
+    blogElement.innerHTML = "\n        <p> Author: " + userEmail + "</p>\n        <h2 class=\"blogTitle\">" + blog.title + "</h2>\n        <img class=\"blogImage\" src=\"" + blog.imageUrl + "\" alt=\"Blog Image\">\n        <p class=\"blogDescription\">" + blog.description + "</p>\n    ";
+    // <button class="deleteButton" onclick="handleDeleteBlog('${blog._id}', '${fromWhereICome}')">Delete Blog</button>
     if (isAdmin || isUserBlog) {
         var deleteButton = document.createElement('button');
         deleteButton.className = 'deleteBlog';

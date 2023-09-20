@@ -62,7 +62,7 @@ function handleLogin(ev) {
                     if (error) {
                         throw new Error(error);
                     }
-                    window.location.href = "crossfit.html";
+                    window.location.href = "../mainFiles/main.html";
                     return [3 /*break*/, 4];
                 case 3:
                     error_1 = _b.sent();
