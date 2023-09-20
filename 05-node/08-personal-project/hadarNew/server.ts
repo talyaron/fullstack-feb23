@@ -1,6 +1,6 @@
 import express from "express";
 import mongoose from "mongoose";
-import cookieParder from 'cookie-parder';
+import cookieParser from 'cookie-parser';
 const app = express();
 const port= process.env.PORT || 3000;
 

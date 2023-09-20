@@ -124,16 +124,19 @@ body::-webkit-scrollbar-thumb:hover {
   color: white;
   text-shadow: 0 0 10px black;
   font-family: fantasy;
+  margin: 2px;
 }
 .doneHabits__habit__categorie {
   font-size: 20px;
   color: white;
   text-shadow: 0 0 10px black;
   font-family: fantasy;
+  margin: 2px;
 }
 .doneHabits__habit__date {
   font-size: 20px;
   color: white;
   text-shadow: 0 0 10px black;
   font-family: fantasy;
+  margin: 2px;
 }

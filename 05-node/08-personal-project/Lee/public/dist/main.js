@@ -43,7 +43,36 @@ function renderRelatives(relativesData, targetElement) {
     relativesList.style.listStyle = 'none';
     relativesData.forEach(function (relative) {
         var relativeItem = document.createElement('li');
-        relativeItem.textContent = relative.fullName + " - " + relative.relation + " - " + relative.birthDate + " - " + relative.country;
+        var boldFullName = document.createElement('span');
+        boldFullName.style.fontWeight = 'bold';
+        boldFullName.textContent = relative.fullName;
+        var relationText = document.createElement('span');
+        relationText.textContent = " is my: ";
+        var boldRelation = document.createElement('span');
+        boldRelation.style.fontWeight = 'bold';
+        boldRelation.textContent = relative.relation;
+        // Split the birthDate into day, month, and year
+        var birthDateParts = relative.birthDate.split('-');
+        var birthDateDay = birthDateParts[2];
+        var birthDateMonth = birthDateParts[1];
+        var birthDateYear = birthDateParts[0];
+        var birthDateText = document.createElement('span');
+        birthDateText.textContent = " - born in: ";
+        var boldBirthDate = document.createElement('span');
+        boldBirthDate.style.fontWeight = 'bold';
+        boldBirthDate.textContent = birthDateDay + "-" + birthDateMonth + "-" + birthDateYear;
+        var countryText = document.createElement('span');
+        countryText.textContent = " - lives in: ";
+        var boldCountry = document.createElement('span');
+        boldCountry.style.fontWeight = 'bold';
+        boldCountry.textContent = relative.country;
+        relativeItem.appendChild(boldFullName);
+        relativeItem.appendChild(relationText);
+        relativeItem.appendChild(boldRelation);
+        relativeItem.appendChild(birthDateText);
+        relativeItem.appendChild(boldBirthDate);
+        relativeItem.appendChild(countryText);
+        relativeItem.appendChild(boldCountry);
         relativesList.appendChild(relativeItem);
     });
     targetElement.innerHTML = ''; // Clear the target element

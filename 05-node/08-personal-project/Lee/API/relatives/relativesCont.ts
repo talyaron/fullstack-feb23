@@ -3,7 +3,7 @@ import { relatives, Relative, userRelatives, UserRelatives, RelativeModel } from
 import { Relation } from '../enums/relations'
 
 
-export async function getFamilyMembers(req: any, res: any) {
+export async function getRelatives (req: any, res: any) {
     try {
         // Find all relatives and populate the 'user' field to get user details
         const relativesDB = await RelativeModel.find({}).populate('user').exec();
@@ -40,12 +40,23 @@ export async function addRelative(req: any, res: any) {
         if (!fullName || !country || !birthDate || !relation) {
             return res.status(400).send({ error: "Please complete all fields" });
         }
-
         
         const user = await UserModel.findOne({ email: userEmail });
 
         if (!user) {
             return res.status(404).send({ error: "User not found with the provided email" });
+        }
+
+        const existingRelative = await RelativeModel.findOne({
+            fullName,
+            birthDate,
+            country,
+            relation,
+            user: user._id,
+        });
+
+        if (existingRelative) {
+            return res.status(400).send({ error: "Family member with the same details already exists" });
         }
 
         const newRelative = new RelativeModel({
@@ -60,7 +71,7 @@ export async function addRelative(req: any, res: any) {
         
         console.log(relativeDB);
 
-        res.status(201).send({ ok: true });
+        res.status(201).send({ ok: true, relative: relativeDB });
     } catch (error) {
         console.error(error);
         res.status(500).send({ error: error.message });
@@ -87,7 +98,7 @@ export async function updateRelation(req: any, res: any) {
 
             throw new Error("relative not found")
         }
-        if (relation === Relation.choose) {
+        if (relation === Relation.Choose) {
             throw new Error("Please choose a valid relation")
         }
 
