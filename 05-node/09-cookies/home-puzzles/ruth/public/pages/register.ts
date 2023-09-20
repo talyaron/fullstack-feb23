@@ -18,7 +18,7 @@ async function handleRegister(event) {
       alert(error.message);
       throw new Error(error);
     }
-    window.location.href = "/login.html";
+    window.location.href = "./login.html";
   } catch (error) {
     console.error(error.message);
   }

@@ -238,33 +238,41 @@ async function getCurrentUser() {
 
 
 // Function to render a blog
-async function handleAddBlog(event: any) {
+async function handleAddBlog(event) {
     try {
         event.preventDefault();
         const blogTitle = event.target.blogTitle.value;
         const blogDescription = event.target.blogDescription.value;
+        const blogImageURL = event.target.blogImageURL.value; // Get the provided image URL
         const user = await getCurrentUser();
         const userEmail = user.email;
+
+        const formData = {
+            title: blogTitle,
+            description: blogDescription,
+            userEmail: userEmail,
+            imageUrl: blogImageURL, // Add the image URL to the form data
+        };
 
         const response = await fetch("API/blog/add-blog", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({ title: blogTitle, description: blogDescription, userEmail }),
+            body: JSON.stringify(formData),
         });
-        const data = await response.json();
 
+        const data = await response.json();
         console.log(data);
         if (!data.ok) {
             throw new Error(data.message);
         }
         alert("Blog added");
-        
     } catch (error) {
         console.error(error);
     }
 }
+
 
 async function handleDeleteBlog(blogId: any, fromWhereICome: string) {
     try {
@@ -296,7 +304,6 @@ async function renderAllBlogs() {
         if (!user) {
             throw new Error("User Not Found");
         }
-
         const response = await fetch("API/blog/get-all-blogs");
         const data = await response.json();
 
@@ -312,7 +319,7 @@ async function renderAllBlogs() {
 
         blogList.forEach((blog) => {
             const isUserBlog = blog.userEmail === user.email;
-            renderBlogItem(blog, isUserBlog, user.isAdmin, 'AllBlogs', blog.userEmail, blogContainer);
+            renderBlogItem(blog, isUserBlog, user.isAdmin, 'AllBlogs', blog.userEmail, blogContainer, user.imageUrl);                         ///@@@/test user.imageURL
         });
     } catch (error) {
         console.error(error);
@@ -348,7 +355,7 @@ async function renderMyBlogs() {
 
         blogList.forEach((blog) => {
             const isUserBlog = true;
-            renderBlogItem(blog, isUserBlog, user.isAdmin, 'myBlogs', user.email, blogContainer);
+            renderBlogItem(blog, isUserBlog, user.isAdmin, 'myBlogs', user.email, blogContainer, user.imageUrl);
         });
     } catch (error) {
         console.error(error);
@@ -356,13 +363,14 @@ async function renderMyBlogs() {
 }
 
 
-function renderBlogItem(blog: any, isUserBlog: boolean, isAdmin: boolean, fromWhereICome: string, userEmail: string, container: HTMLDivElement) {
+function renderBlogItem(blog: any, isUserBlog: boolean, isAdmin: boolean, fromWhereICome: string, userEmail: string, container: HTMLDivElement, imageUrl: string) {
     const blogContainer = container;
     const blogElement = document.createElement('div');
     blogElement.innerHTML = `
         <h2 class="blogTitle">${blog.title}</h2>
         <p class="blogDescription">${blog.description}</p>
         <p> Author: ${userEmail}</p>
+        <img src="${blog.imageUrl}" alt="Blog Image"> 
     `;
 
     if (isAdmin || isUserBlog) {
