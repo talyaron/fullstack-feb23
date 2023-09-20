@@ -335,6 +335,30 @@ body::-webkit-scrollbar-thumb:hover {
   text-shadow: 0 0 10px black;
   font-family: fantasy;
 }
+.taskDoc__doneTodayBTN {
+  width: 4vw;
+  height: 4vh;
+  background-color: rgba(78, 123, 248, 0.644);
+  border-radius: 20px;
+  cursor: pointer;
+  box-shadow: 2px 2px 10px black;
+  border: transparent;
+  font-family: fantasy;
+  color: aliceblue;
+  transition: all 0.2s ease-in-out;
+  margin-top: 10px;
+  width: 8vw;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.taskDoc__doneTodayBTN:hover {
+  background-color: rgba(172, 183, 212, 0.8);
+  color: black;
+  width: 4.5vw;
+}
 .taskDoc__doneBTN {
   width: 4vw;
   height: 4vh;
@@ -347,6 +371,7 @@ body::-webkit-scrollbar-thumb:hover {
   color: aliceblue;
   transition: all 0.2s ease-in-out;
   margin-top: 10px;
+  width: 8vw;
   cursor: pointer;
   display: flex;
   flex-direction: row;
@@ -380,6 +405,47 @@ body::-webkit-scrollbar-thumb:hover {
   background-color: rgba(172, 183, 212, 0.8);
   color: black;
   width: 4.5vw;
+}
+.taskDoc__changeTimeBTN {
+  width: 4vw;
+  height: 4vh;
+  background-color: rgba(78, 123, 248, 0.644);
+  border-radius: 20px;
+  cursor: pointer;
+  box-shadow: 2px 2px 10px black;
+  border: transparent;
+  font-family: fantasy;
+  color: aliceblue;
+  transition: all 0.2s ease-in-out;
+  margin-top: 10px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 6vw;
+}
+.taskDoc__changeTimeBTN:hover {
+  background-color: rgba(172, 183, 212, 0.8);
+  color: black;
+  width: 4.5vw;
+}
+
+.changeTime {
+  position: absolute;
+  width: 10vw;
+  height: 10vh;
+  background-color: aliceblue;
+  border-radius: 10px;
+  border: 2px solid white;
+  box-shadow: 2px 2px 10px black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: fantasy;
+  z-index: 40;
+  display: none;
 }
 
 .quoteRoot {
@@ -486,6 +552,67 @@ body::-webkit-scrollbar-thumb:hover {
   text-shadow: 0 0 10px black;
   font-family: fantasy;
   margin: 0;
+}
+
+.Done {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 255, 0, 0.438);
+  backdrop-filter: blur(20px);
+  border-radius: 10px;
+  border: 4px solid #60b7fd;
+  box-shadow: 2px 2px 10px black;
+  width: 80%;
+  height: 8vh;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+.Done:hover {
+  width: 90%;
+  background-color: rgba(0, 255, 0, 0.733);
+}
+.Done .task__header {
+  font-size: 30px;
+  color: white;
+  text-shadow: 0 0 10px black;
+  font-family: fantasy;
+  margin: 0;
+}
+.Done .task__categorie {
+  font-size: 20px;
+  color: white;
+  text-shadow: 0 0 10px black;
+  font-family: fantasy;
+  margin: 0;
+}
+
+.exitBTN {
+  position: absolute;
+  width: 4vw;
+  height: 4vh;
+  background-color: rgba(78, 123, 248, 0.644);
+  border-radius: 20px;
+  cursor: pointer;
+  box-shadow: 2px 2px 10px black;
+  border: transparent;
+  font-family: fantasy;
+  color: aliceblue;
+  transition: all 0.2s ease-in-out;
+  margin-top: 10px;
+  top: 2vh;
+  left: 2vw;
+  width: 2vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.exitBTN:hover {
+  background-color: rgba(172, 183, 212, 0.8);
+  color: black;
+  width: 4.5vw;
 }
 
 #morning {

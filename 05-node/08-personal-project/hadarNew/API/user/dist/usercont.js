@@ -40,7 +40,42 @@ exports.loginUser = exports.registerUser = void 0;
 var usermodel_1 = require("./usermodel");
 //register user
 exports.registerUser = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var _a, email, password, user, userDB, error_1;
+    var _a, email, password, existingUser, user, userDB, error_1;
+    return __generator(this, function (_b) {
+        switch (_b.label) {
+            case 0:
+                _b.trys.push([0, 3, , 4]);
+                _a = req.body, email = _a.email, password = _a.password;
+                if (!email || !password)
+                    throw new Error("Please complete all fields");
+                return [4 /*yield*/, usermodel_1.UserModel.findOne({ email: email }).exec()];
+            case 1:
+                existingUser = _b.sent();
+                if (existingUser) {
+                    return [2 /*return*/, res.status(400).json({ error: "User with this email already exists." })];
+                }
+                user = new usermodel_1.UserModel({ email: email, password: password });
+                return [4 /*yield*/, user.save()];
+            case 2:
+                userDB = _b.sent();
+                console.log(userDB);
+                // const userExist = users.find((user) => user.email === email);
+                // if (userExist) throw new Error("User already exists");
+                // users.push(user);
+                res.send({ ok: true, userDB: userDB });
+                return [3 /*break*/, 4];
+            case 3:
+                error_1 = _b.sent();
+                console.error(error_1);
+                res.send({ error: error_1.message });
+                return [3 /*break*/, 4];
+            case 4: return [2 /*return*/];
+        }
+    });
+}); };
+// login user
+exports.loginUser = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var _a, email, password, user, error_2;
     return __generator(this, function (_b) {
         switch (_b.label) {
             case 0:
@@ -48,42 +83,20 @@ exports.registerUser = function (req, res) { return __awaiter(void 0, void 0, vo
                 _a = req.body, email = _a.email, password = _a.password;
                 if (!email || !password)
                     throw new Error("Please complete all fields");
-                user = new usermodel_1.UserModel({ email: email, password: password });
-                return [4 /*yield*/, user.save()];
+                return [4 /*yield*/, usermodel_1.UserModel.findOne({ email: email, password: password }).exec()];
             case 1:
-                userDB = _b.sent();
-                console.log(userDB);
-                // const userExist = users.find((user) => user.email === email);
-                // if (userExist) throw new Error("User already exists");
-                // users.push(user);
-                res.send({ ok: true, userDB: userDB });
+                user = _b.sent();
+                if (!user)
+                    throw new Error("some of the details are incorrect");
+                res.cookie("user", user._id, { maxAge: 1000 * 100, httpOnly: true });
+                res.send({ ok: true, email: user.email });
                 return [3 /*break*/, 3];
             case 2:
-                error_1 = _b.sent();
-                console.error(error_1);
-                res.send({ error: error_1.message });
+                error_2 = _b.sent();
+                console.error(error_2);
+                res.send({ error: error_2.message });
                 return [3 /*break*/, 3];
             case 3: return [2 /*return*/];
         }
-    });
-}); };
-// login user
-exports.loginUser = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var _a, email_1, password_1, user;
-    return __generator(this, function (_b) {
-        try {
-            _a = req.body, email_1 = _a.email, password_1 = _a.password;
-            if (!email_1 || !password_1)
-                throw new Error("Please complete all fields");
-            user = usermodel_1.users.find(function (user) { return user.email === email_1 && user.password === password_1; });
-            if (!user)
-                throw new Error("some of the details are incorrect");
-            res.send({ ok: true, email: user.email });
-        }
-        catch (error) {
-            console.error(error);
-            res.send({ error: error.message });
-        }
-        return [2 /*return*/];
     });
 }); };

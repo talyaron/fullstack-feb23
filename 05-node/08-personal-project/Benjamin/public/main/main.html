@@ -59,6 +59,7 @@
     <button class="newHabitBtn" onclick="newHabit()">Add new habit!</button>
     <div class="newHabit">
         <h1>ADD NEW HABIT!</h1>
+        <div class="exitBTN" onclick="exitNewHabit()"><i class="fas fa-door-closed fa-lg door-closed" style="color: #ffffff;"></i></div>
         <form class="newHabit__form" onsubmit="handleNewHabit(event)">
             <label for="name">name your task!</label>
             <input class="newHabit__form__txt" type="text" name="name" placeholder="name your habit!">
@@ -92,6 +93,8 @@
         </div>
     </div>
     <div class="taskDocsRoot"></div>
+  <div class="changeTime"></div>  
+
 
 </body>
 

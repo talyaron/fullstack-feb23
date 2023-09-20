@@ -17,7 +17,7 @@ function checkWinner(players: Player[]) {
       }
     }
   }
-  winnerPlayer.chips += Number(localStorage.getItem("dilersChips")!)
+  winnerPlayer.chips += Number(localStorage.getItem("dilersChips")!);
   return winnerPlayer;
 }
 
@@ -72,7 +72,7 @@ function getBestHandForEachPlayer(player: Player) {
   if (arrayHandCards.length == 5) {
     return arrayHandCards;
   } else {
-    for (let i = 0; i <= 5 - arrayHandCards.length + 1; i++) {
+    for (let i = 0; i < 5 - arrayHandCards.length + 1; i++) {
       let uniqArrayCards: Card[] = thisCards.filter(
         (card) => !arrayHandCards.includes(card),
       );
@@ -135,7 +135,8 @@ function getHandName(cards) {
     }
     case 2: {
       const cardNumber = getTwoPairs(cards)![0].cardNumber;
-      return `Tow pair ${cardNumber}`;
+      const cardNum2 = getTwoPairs(cards)![3].cardNumber;
+      return `Tow pair ${cardNumber} and ${cardNum2}`;
     }
     case 1: {
       const cardNumber = getPair(cards)![0].cardNumber;
