@@ -1,5 +1,9 @@
 import express from "express";
 import mongoose from 'mongoose';
+import cookieParser from 'cookie-parser';
+import {getLoggedUser} from "./API/users/userMiddle";
+
+
 const app = express();
 const port = process.env.PORT || 3000;
 
@@ -7,6 +11,8 @@ const port = process.env.PORT || 3000;
 
 //static files
 app.use(express.static("public"));
+app.use(cookieParser());
+
 
 //body
 app.use(express.json());
@@ -19,7 +25,7 @@ mongoose.connect("mongodb+srv://vnavev:mDSAr2zEw0bzDM2a@cluster0.nzfjztb.mongodb
 .catch(err=>{
   console.error(err)
 })
-
+app.use(getLoggedUser)
 
 // get router from userRouter
 import userRouter from "./API/users/userRoutes";

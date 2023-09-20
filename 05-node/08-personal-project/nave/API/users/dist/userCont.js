@@ -36,48 +36,93 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.login = exports.registerUser = void 0;
+exports.getUser = exports.getUserLogin = exports.getUsers = void 0;
 var userModel_1 = require("./userModel");
-//register user 
-exports.registerUser = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var _a, email, password, user, userDB, error_1;
-    return __generator(this, function (_b) {
-        switch (_b.label) {
-            case 0:
-                _b.trys.push([0, 2, , 3]);
-                _a = req.body, email = _a.email, password = _a.password;
-                if (!email || !password)
-                    throw new Error("Please complete all fields");
-                user = new userModel_1.UserModel({ email: email, password: password });
-                return [4 /*yield*/, user.save()];
-            case 1:
-                userDB = _b.sent();
-                console.log(userDB);
-                res.send({ ok: true, userDB: userDB });
-                return [3 /*break*/, 3];
-            case 2:
-                error_1 = _b.sent();
-                console.error(error_1);
-                res.send({ error: error_1.message });
-                return [3 /*break*/, 3];
-            case 3: return [2 /*return*/];
-        }
+function getUsers(req, res) {
+    return __awaiter(this, void 0, void 0, function () {
+        var _a, email, _id, user, error_1;
+        return __generator(this, function (_b) {
+            switch (_b.label) {
+                case 0:
+                    _b.trys.push([0, 7, , 8]);
+                    _a = req.query, email = _a.email, _id = _a._id;
+                    console.log(email, _id);
+                    user = void 0;
+                    if (!_id) return [3 /*break*/, 2];
+                    return [4 /*yield*/, userModel_1.UserModel.findById(_id)];
+                case 1:
+                    user = _b.sent();
+                    console.log("User id found  " + _id + " : " + user);
+                    return [3 /*break*/, 6];
+                case 2:
+                    if (!!email) return [3 /*break*/, 4];
+                    return [4 /*yield*/, userModel_1.UserModel.find({})];
+                case 3:
+                    user = _b.sent();
+                    return [3 /*break*/, 6];
+                case 4: return [4 /*yield*/, userModel_1.UserModel.findOne({ email: email })];
+                case 5:
+                    user = _b.sent();
+                    _b.label = 6;
+                case 6:
+                    if (!user) {
+                        return [2 /*return*/, res.status(404).send({ error: 'user not found.' })];
+                    }
+                    res.send({ user: user });
+                    return [3 /*break*/, 8];
+                case 7:
+                    error_1 = _b.sent();
+                    console.error(error_1);
+                    res.status(500).send({ error: error_1.message });
+                    return [3 /*break*/, 8];
+                case 8: return [2 /*return*/];
+            }
+        });
     });
-}); };
-exports.login = function (req, res) {
-    try {
-        var _a = req.body, email_1 = _a.email, password_1 = _a.password;
-        if (!email_1 || !password_1)
-            throw new Error("Please complete all fields");
-        //check if user exist and password is correct
-        var user = new userModel_1.UserModel({ email: email_1, password: password_1 });
-        var _user = userModel_1.users.find(function (user) { return user.email === email_1 && user.password === password_1; });
-        if (!user)
-            throw new Error("some of the details are incorrect");
-        res.send({ ok: true, email: user.email });
-    }
-    catch (error) {
-        console.error(error);
-        res.send({ error: error.message });
-    }
-};
+}
+exports.getUsers = getUsers;
+function getUserLogin(req, res) {
+    return __awaiter(this, void 0, void 0, function () {
+        var _a, email, password, user, error_2;
+        return __generator(this, function (_b) {
+            switch (_b.label) {
+                case 0:
+                    _b.trys.push([0, 2, , 3]);
+                    _a = req.query, email = _a.email, password = _a.password;
+                    return [4 /*yield*/, userModel_1.UserModel.findOne({ email: email, password: password })];
+                case 1:
+                    user = _b.sent();
+                    if (user === undefined) {
+                        return [2 /*return*/, res.status(404).send({ error: 'user not found.' })];
+                    }
+                    console.log(user);
+                    // Send the fetched physician data as a JSON response
+                    res.send({ user: user });
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_2 = _b.sent();
+                    console.error(error_2);
+                    res.status(500).send({ error: error_2.message });
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
+}
+exports.getUserLogin = getUserLogin;
+function getUser(req, res) {
+    return __awaiter(this, void 0, void 0, function () {
+        var user;
+        return __generator(this, function (_a) {
+            try {
+                user = req.user;
+                res.send({ ok: true, user: user });
+            }
+            catch (error) {
+                console.error(error);
+            }
+            return [2 /*return*/];
+        });
+    });
+}
+exports.getUser = getUser;

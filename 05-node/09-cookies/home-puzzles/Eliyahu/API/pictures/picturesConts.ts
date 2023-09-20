@@ -118,3 +118,17 @@ export async function updatePicture(req: any, res: any) {
     }
 }
 
+export async function getNextPicture(req:any, res:any){
+    try {
+        const {id} = req.query
+        if(!id) throw new Error("can not find id");
+
+        const pictureDB = await PictureModel.findById(id)
+        const index = await PictureModel.ensureIndexes()
+        console.log(index);
+        
+    } catch (error) {
+        console.error(error.massage)
+        
+    }
+}

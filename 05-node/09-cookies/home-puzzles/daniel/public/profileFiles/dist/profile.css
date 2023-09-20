@@ -1,0 +1,103 @@
+body {
+  background: #b5c7a7;
+  background: linear-gradient(270deg, #b5c7a7 11%, #8ae3dc 74%, #e9e4d7 100%, #04e1e4 100%);
+}
+
+h1 {
+  text-align: center;
+  font-size: 70px;
+  color: #68936e;
+}
+
+.addDetails {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+}
+.addDetails form {
+  display: flex;
+  flex-direction: column;
+  width: 20%;
+  margin: auto;
+}
+.addDetails input {
+  display: flex;
+  flex-direction: column;
+}
+.addDetails #getDetails {
+  width: 20%;
+  margin: auto;
+}
+
+.imgProf {
+  text-align: center;
+}
+.imgProf img {
+  border-radius: 150px;
+}
+
+.container {
+  border: 2px solid white;
+  background-color: white;
+  width: 30%;
+  margin: auto;
+  border-radius: 12px;
+  margin-top: 30px;
+}
+.container__personalTitle {
+  justify-content: flex-end;
+  display: flex;
+  align-items: center;
+}
+.container__personalTitle img {
+  width: 20px;
+  position: absolute;
+}
+
+h2 {
+  border: 2px solid #dddcdc;
+  background-color: #dddcdc;
+  margin: auto;
+}
+
+.businesses {
+  display: flex;
+  margin-left: 40px;
+  align-items: center;
+  padding-bottom: 10px;
+  margin-top: 5px;
+  line-height: 0px;
+}
+.businesses__img img {
+  width: 40px;
+  margin-right: 10px;
+}
+.businesses__callUs img {
+  width: 30px;
+}
+.businesses__name {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+}
+.businesses__name p {
+  color: #19cf19;
+  margin-top: 0px;
+}
+
+.PersonalDetails__birthday {
+  display: flex;
+  margin-left: 40px;
+  align-items: center;
+}
+.PersonalDetails__birthday img {
+  width: 30px;
+}
+.PersonalDetails__phone {
+  display: flex;
+  margin-left: 40px;
+}
+.PersonalDetails__phone img {
+  width: 30px;
+}

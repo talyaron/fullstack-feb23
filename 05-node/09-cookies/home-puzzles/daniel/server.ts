@@ -1,6 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
 import cookieParser from 'cookie-parser';
+import {getLoggedUser} from './API/users/userMiddleware'
 
 const app = express();
 const port = process.env.PORT || 3020;
@@ -12,6 +13,8 @@ app.use(express.static("public"));
 
 //body
 app.use(express.json());
+
+app.use(getLoggedUser)
 
 // Connect
 mongoose.connect("mongodb+srv://danieltov:PAJK6J2dQZqB2kQz@cluster0.il5wznm.mongodb.net/cookies")
@@ -29,6 +32,9 @@ app.use("/API/users", userRouter)
 
 import crossfitRouter from "./API/crossfit/crossfitRouter";
 app.use("/API/crossfit", crossfitRouter);
+
+import profileRouter from "./API/profile/profileRouter";
+app.use("/API/profile", profileRouter);
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);

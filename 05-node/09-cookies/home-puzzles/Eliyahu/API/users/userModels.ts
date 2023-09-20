@@ -12,7 +12,15 @@ export const users: User[] = []
 export const UserSchema = new Schema({
     name: String,
     email: String,
-    password: String
+    password: String,
+    isAdmin: {
+        type: Boolean,
+        default: false
+    },
+    isPremium: {
+        type: Boolean,
+        default: false
+    }
 })
 
 export const UserModel = model("users", UserSchema)

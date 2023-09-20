@@ -1,3 +1,5 @@
+import {Schema, model} from 'mongoose';
+
 export class Exercise{
     exercise: string;
     sets?: number;
@@ -16,3 +18,14 @@ export class Exercise{
     
 }
 
+//Schema
+export const ExerciseSchema= new Schema({
+    exercise: String,
+    sets: Number,
+    repetitions: Number,
+    weight: Number,
+    timer: Number
+})
+
+//Model
+export const ExerciseModel= model("exersices",ExerciseSchema)

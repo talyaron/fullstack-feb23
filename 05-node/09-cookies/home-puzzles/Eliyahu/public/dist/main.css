@@ -1,13 +1,24 @@
+@charset "UTF-8";
 body {
   text-align: center;
   background-color: #414246;
   color: #000000;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
 }
 body .material-symbols-rounded {
   padding: 2px;
   font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
 }
 body #showAll {
+  display: none;
+}
+body #myPicture {
+  display: none;
+}
+
+#messages {
   display: none;
 }
 
@@ -142,6 +153,24 @@ a.logout:hover {
   border-radius: 5%;
   box-shadow: 1px 1px 3px black;
 }
+.picture .like {
+  border: none;
+  height: 20px;
+  width: 20px;
+  background-image: url("https://דפי-צביעה-להדפסה.co.il/wp-content/uploads/2021/01/Untitled-design-6-9.jpg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  cursor: pointer;
+}
+.picture .noLike {
+  border: none;
+  height: 20px;
+  background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/9632/heart.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-color: #00000000;
+  cursor: pointer;
+}
 
 .tags {
   display: flex;
@@ -151,4 +180,29 @@ a.logout:hover {
 .tags button {
   font-size: 12px;
   margin-top: 10px;
+}
+
+#showUsers {
+  display: none;
+}
+
+#users {
+  display: none;
+  height: 20vh;
+  color: white;
+  position: absolute;
+  right: 10px;
+}
+#users table {
+  margin-top: 20px;
+  width: 40vw;
+  margin-bottom: 20px;
+}
+#users table td {
+  background-color: #696e7a;
+  height: 25px;
+}
+#users table th {
+  background-color: #000000;
+  height: 30px;
 }

@@ -1,3 +1,5 @@
+import {Schema, model} from 'mongoose';
+
 export class User {
   email: string;
   password: string;
@@ -10,3 +12,11 @@ export class User {
 }
 
 export let users: User[] = [];
+
+//mongoDB
+export const UserSchema= new Schema({
+  email: String,
+  password: String  
+})
+
+export const UserModel= model("usersPro",UserSchema)

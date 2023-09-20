@@ -6,9 +6,6 @@ async function handleLogin(ev: any) {
             password: ev.target.password.value,
             email: ev.target.email.value
         }
-        if (user.email === 'admin@gmail.com' && user.password === 'admin') {
-            window.location.href = `/main.html?email=${user.email}`
-        }
 
         if (!user.email || !user.password) throw new Error("Please complete all fields");
 

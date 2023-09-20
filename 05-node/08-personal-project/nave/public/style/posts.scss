@@ -2,7 +2,7 @@ $font-family: 'Assistant', sans-serif;
 $font-size-heading: 2em;
 $font-size-sub-heading: 1.3em;
 $font-size-text: 1.0em;
-$color-site-red: #FF4F5A;
+$color-site-red: #FB2823;
 $color-site-black:#000000 ;
 $color-site-white: #ffff;
 body {
@@ -48,6 +48,7 @@ input[type="url"] {
     margin: 5px 0;
     border: 1px solid $color-site-red; /* גבולות השדות */
     border-radius: 5px;
+    font-family:$font-family;
 }
 
 button[type="submit"] {
@@ -57,6 +58,7 @@ button[type="submit"] {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    font-family:$font-family;
 }
 
 button[type="submit"]:hover {
@@ -75,6 +77,19 @@ button[type="submit"]:focus {
 }
 
 /* סגנון לפוסטים */
+#posts{
+    
+        display: grid;
+        grid-template-columns: auto auto auto auto;
+        gap: 10px;
+        background-color:$color-site-red;
+        width: 80vw;
+        justify-content: center;
+        margin: auto;
+      
+}
+
+    
 .post {
     background-color: #ffff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);

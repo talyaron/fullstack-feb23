@@ -71,6 +71,12 @@ function getUserData() {
         });
     });
 }
+function exitNewHabit() {
+    var root = document.querySelector(".newHabit");
+    var taskRoot = document.querySelector(".taskDocsRoot");
+    root.style.display = "none";
+    taskRoot.style.display = "none";
+}
 function greeting(name) {
     return __awaiter(this, void 0, void 0, function () {
         var root, html;
@@ -196,12 +202,13 @@ var Status;
     Status["done"] = "done";
 })(Status || (Status = {}));
 var UserTasks = /** @class */ (function () {
-    function UserTasks(name, categorie, time, status, email) {
+    function UserTasks(name, categorie, time, status, email, _id) {
         this.name = name;
         this.categorie = categorie;
         this.time = time;
         this.status = status;
         this.email = email;
+        this._id = _id;
     }
     return UserTasks;
 }());
@@ -244,19 +251,102 @@ function printUserTasks(arr) {
     });
 }
 function printTaskByTime(task, root) {
-    var html = "<div onclick=\"taskDocs('" + task.name + "','" + task.categorie + "','" + task.status + "')\" class=\"task\">\n    <h1 class=\"task__header\">" + task.name + "</h1>\n    <h2 class=\"task__categorie\">" + task.categorie + "</h2>\n</div>";
+    var html = "<div onclick=\"taskDocs('" + task.name + "','" + task.categorie + "','" + task.status + "')\" class=\"task\" id=\"" + task._id + "\">\n    <h1 class=\"task__header\">" + task.name + "</h1>\n    <h2 class=\"task__categorie\">" + task.categorie + "</h2>\n</div>";
     root.innerHTML += html;
 }
 function taskDocs(name, categorie, status) {
     var root = document.querySelector(".taskDocsRoot");
     root.style.display = "flex";
-    var html = "<div class=\"taskDoc\">\n    <h1 class=\"taskDoc__header\">" + name + "</h1>\n    <h2 class=\"taskDoc__categorie\">" + categorie + "</h2>\n    <h2 class=\"taskDoc__status\">" + status + "</h2>\n    <div class=\"taskDoc__doneBTN\" onclick=\"taskDone('" + name + "','" + categorie + "','" + status + "')\">DONE!</div>\n    <div class=\"taskDoc__deleteBTN\" onclick=\"deleteHabit('" + name + "','" + categorie + "','" + status + "')\">DELETE!</div>\n</div>";
+    var html = "<div class=\"taskDoc\">\n    <div class=\"exitBTN\" onclick=\"exitNewHabit()\"><i class=\"fas fa-door-closed fa-lg door-closed\" style=\"color: #ffffff;\"></i></div>\n\n    <h1 class=\"taskDoc__header\">" + name + "</h1>\n    <h2 class=\"taskDoc__categorie\">" + categorie + "</h2>\n    <h2 class=\"taskDoc__status\">" + status + "</h2>\n    <div class=\"taskDoc__doneTodayBTN\" onclick=\"habitdoneToday('" + name + "','" + categorie + "','" + status + "')\">DONE Today!</div>\n    <div class=\"taskDoc__doneBTN\" onclick=\"taskDone('" + name + "','" + categorie + "','" + status + "')\">DONE Forever!</div>\n    <div class=\"taskDoc__deleteBTN\" onclick=\"deleteHabit('" + name + "','" + categorie + "','" + status + "')\">DELETE!</div>\n    <div class=\"taskDoc__changeTimeBTN\" onclick=\"changeHabitTime('" + name + "','" + categorie + "','" + status + "')\">change Time</div>\n\n</div>";
     root.innerHTML = html;
     taskBTNeffect();
+}
+function changeHabitTime(name, categorie, status) {
+    return __awaiter(this, void 0, void 0, function () {
+        var response, data, time, root, error_4;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 3, , 4]);
+                    return [4 /*yield*/, fetch("/API/habits/getHabitTime?email=" + email, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({ name: name, categorie: categorie })
+                        })];
+                case 1:
+                    response = _a.sent();
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    data = _a.sent();
+                    console.log(data.time);
+                    time = data.time;
+                    root = document.querySelector(".changeTime");
+                    changeHabitTimeForm(name, categorie, status, time, root);
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_4 = _a.sent();
+                    console.error(error_4);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
+            }
+        });
+    });
+}
+function changeHabitTimeForm(name, categorie, status, time, root) {
+    var html = htmlForm(time);
+    root.innerHTML += html;
+    root.style.display = "flex";
+}
+function htmlForm(time) {
+    if (time == "morning") {
+        return "<form onsubmit=\"HandlechangeTime(event)\">\n        <select class=\"ChangeTimeSelect\" name=\"changetime\" id=\"changetime\">\n            <option value=\"afternoon\">afternoon</option>\n            <option value=\"evening\">evening</option>\n        </select>\n        <input type=\"submit\" placeholder=\"submit\">\n    </form>";
+    }
+    if (time == "afternoon") {
+        return "<form onsubmit=\"HandlechangeTime(event)\">\n        <select class=\"ChangeTimeSelect\" name=\"changetime\" id=\"changetime\">\n            <option value=\"morning\">morning</option>\n            <option value=\"evening\">evening</option>\n        </select>\n        <input type=\"submit\" placeholder=\"submit\">\n    </form>";
+    }
+    if (time == "evening") {
+        return "<form onsubmit=\"HandlechangeTime(event)\">\n        <select class=\"ChangeTimeSelect\" name=\"changetime\" id=\"changetime\">\n            <option value=\"morning\">morning</option>\n            <option value=\"afternoon\">afternoon</option>\n        </select>\n        <input type=\"submit\" placeholder=\"submit\">\n    </form>";
+    }
+}
+function HandlechangeTime(ev) {
+    return __awaiter(this, void 0, void 0, function () {
+        var changetimeTo, response, data, error_5;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 3, , 4]);
+                    ev.preventDefault();
+                    changetimeTo = ev.target.changetime.value;
+                    return [4 /*yield*/, fetch("/API/habits/changeTimeTo", {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({ changetimeTo: changetimeTo })
+                        })];
+                case 1:
+                    response = _a.sent();
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    data = _a.sent();
+                    location.reload();
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_5 = _a.sent();
+                    console.error(error_5);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
+            }
+        });
+    });
 }
 function taskBTNeffect() {
     var doneBTN = document.querySelector(".taskDoc__doneBTN");
     var deleteBTN = document.querySelector(".taskDoc__deleteBTN");
+    var changeTimeBTN = document.querySelector(".taskDoc__changeTimeBTN");
+    var doneTodayBTN = document.querySelector(".taskDoc__doneTodayBTN");
     var taskDoc = document.querySelector(".taskDoc");
     doneBTN.addEventListener("mouseover", function () {
         taskDoc.style.backgroundColor = "rgba(45, 211, 45, 0.465)";
@@ -272,6 +362,24 @@ function taskBTNeffect() {
         taskDoc.style.backgroundColor = "transparent";
         taskDoc.style.backdropFilter = "blur(20px)";
     });
+    changeTimeBTN.addEventListener("mouseover", function () {
+        taskDoc.style.backgroundColor = "rgb(217,193,193)";
+        taskDoc.style.background = " linear-gradient(90deg, rgba(217,193,193,1) 34%, rgba(86,198,226,1) 80%)";
+    });
+    changeTimeBTN.addEventListener("mouseout", function () {
+        taskDoc.style.backgroundColor = "transparent";
+        taskDoc.style.background = "transparent";
+        taskDoc.style.backdropFilter = "blur(20px)";
+    });
+    doneTodayBTN.addEventListener("mouseover", function () {
+        taskDoc.style.backgroundColor = "rgb(73,205,166)";
+        taskDoc.style.background = "linear-gradient(90deg, rgba(73,205,166,1) 34%, rgba(86,226,112,1) 80%)";
+    });
+    doneTodayBTN.addEventListener("mouseout", function () {
+        taskDoc.style.backgroundColor = "transparent";
+        taskDoc.style.background = "transparent";
+        taskDoc.style.backdropFilter = "blur(20px)";
+    });
 }
 function taskDone(name, categorie, status) {
     return __awaiter(this, void 0, void 0, function () {
@@ -279,10 +387,8 @@ function taskDone(name, categorie, status) {
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    debugger;
                     root = document.querySelector(".taskDoc");
                     root.style.display = "none";
-                    console.log(name, categorie, status);
                     return [4 /*yield*/, fetch("/API/habits/habitDone", {
                             method: 'POST',
                             headers: {
@@ -305,12 +411,11 @@ function taskDone(name, categorie, status) {
 }
 function deleteHabit(name, categorie, status) {
     return __awaiter(this, void 0, void 0, function () {
-        var response, data, error_4;
+        var response, data, error_6;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
-                    debugger;
                     return [4 /*yield*/, fetch("/API/habits/deleteHabit", {
                             method: 'POST',
                             headers: {
@@ -331,8 +436,8 @@ function deleteHabit(name, categorie, status) {
                     }
                     return [3 /*break*/, 4];
                 case 3:
-                    error_4 = _a.sent();
-                    console.error(error_4);
+                    error_6 = _a.sent();
+                    console.error(error_6);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }
@@ -341,6 +446,59 @@ function deleteHabit(name, categorie, status) {
 }
 function redirectToDone() {
     window.location.href = "../doneHabits/doneHabits.html?email=" + email;
+}
+function habitdoneToday(name, categorie, status) {
+    return __awaiter(this, void 0, void 0, function () {
+        var response, data;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, fetch("/API/habits/HabitDoneToday", {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ name: name, categorie: categorie })
+                    })];
+                case 1:
+                    response = _a.sent();
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    data = _a.sent();
+                    return [2 /*return*/];
+            }
+        });
+    });
+}
+window.addEventListener("load", changeDoneToday);
+function changeDoneToday() {
+    return __awaiter(this, void 0, void 0, function () {
+        var response, data;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, fetch("/API/habits/getDoneTodayHabits")];
+                case 1:
+                    response = _a.sent();
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    data = _a.sent();
+                    console.log(data);
+                    data.forEach(function (obj) {
+                        addClasslist(obj._id);
+                    });
+                    return [2 /*return*/];
+            }
+        });
+    });
+}
+function addClasslist(id) {
+    var root = document.getElementById(id);
+    if (root) {
+        root.classList.add('Done');
+        root.classList.remove('task');
+    }
+    else {
+        console.error("Element with ID \"" + id + "\" not found.");
+    }
 }
 //  quotes
 var Quote = /** @class */ (function () {

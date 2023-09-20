@@ -4,9 +4,9 @@ exports.users = exports.UserModel = exports.UserSchema = exports.User = exports.
 var mongoose_1 = require("mongoose");
 var Gender;
 (function (Gender) {
-    Gender["male"] = "Male";
-    Gender["female"] = "Female";
-    Gender["other"] = "Other";
+    Gender["Male"] = "Male";
+    Gender["Female"] = "Female";
+    Gender["Other"] = "Other";
 })(Gender = exports.Gender || (exports.Gender = {}));
 var User = /** @class */ (function () {
     function User(_a) {
@@ -29,7 +29,9 @@ exports.UserSchema = new mongoose_1.Schema({
     gender: { type: String, "enum": Object.values(Gender), required: false },
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
-    familyMembers: [{ type: mongoose_1.Schema.Types.ObjectId, ref: 'users' }]
+    familyMembers: [{ type: mongoose_1.Schema.Types.ObjectId, ref: 'users' }],
+    isAdmin: { type: Boolean,
+        "default": false }
 });
 exports.UserModel = mongoose_1.model("users", exports.UserSchema);
 exports.users = [];

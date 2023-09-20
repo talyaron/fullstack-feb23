@@ -1,0 +1,37 @@
+body {
+  background: #4a3a44;
+  background: linear-gradient(90deg, #4a3a44 12%, #626379 35%, #7a8dae 67%, #94bbe9 89%);
+  width: 100vw;
+  height: 90vh;
+  text-align: center;
+}
+
+.container {
+  display: flex;
+  justify-content: space-evenly;
+  padding-top: 104px;
+}
+.container a {
+  color: #694a6f;
+  text-decoration: none;
+  font-size: 35px;
+  border: 2px solid white;
+  border-radius: 30px;
+  padding: 10px;
+  background-color: #c0b7c1;
+  transition: all 0.2s ease-in-out;
+}
+
+h1 {
+  font-size: 70px;
+  color: azure;
+}
+
+img {
+  width: 30%;
+  padding-top: 95px;
+}
+
+a:hover {
+  transform: scale(1.1);
+}

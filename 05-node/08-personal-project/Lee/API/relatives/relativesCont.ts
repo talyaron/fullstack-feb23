@@ -3,7 +3,9 @@ import { relatives, Relative, userRelatives, UserRelatives, RelativeModel } from
 import { Relation } from '../enums/relations'
 
 
-export async function getFamilyMembers(req: any, res: any) {
+
+
+export async function getRelatives (req: any, res: any) {
     try {
         // Find all relatives and populate the 'user' field to get user details
         const relativesDB = await RelativeModel.find({}).populate('user').exec();
@@ -40,12 +42,23 @@ export async function addRelative(req: any, res: any) {
         if (!fullName || !country || !birthDate || !relation) {
             return res.status(400).send({ error: "Please complete all fields" });
         }
-
         
         const user = await UserModel.findOne({ email: userEmail });
 
         if (!user) {
             return res.status(404).send({ error: "User not found with the provided email" });
+        }
+
+        const existingRelative = await RelativeModel.findOne({
+            fullName,
+            birthDate,
+            country,
+            relation,
+            user: user._id,
+        });
+
+        if (existingRelative) {
+            return res.status(400).send({ error: "Family member with the same details already exists" });
         }
 
         const newRelative = new RelativeModel({
@@ -60,7 +73,7 @@ export async function addRelative(req: any, res: any) {
         
         console.log(relativeDB);
 
-        res.status(201).send({ ok: true });
+        res.status(201).send({ ok: true, relative: relativeDB });
     } catch (error) {
         console.error(error);
         res.status(500).send({ error: error.message });
@@ -70,31 +83,48 @@ export async function addRelative(req: any, res: any) {
 
 export async function deleteRelative(req: any, res: any) {
     try {
-        const { id } = req.body;
-        const relativeDB = await RelativeModel.findByIdAndDelete(id);
-        res.send({ relativeDB });
+        const { relativeId } = req.params;
+        const relativeDB = await RelativeModel.findByIdAndDelete(relativeId);
+        if (!relativeDB) {
+            return res.status(404).send({ error: "Relative not found" });
+          }
+          const relatives = await RelativeModel.find({}); // Fetch all relatives
+          res.send({ relativeDB, relatives }); // Send the deleted relative and the updated list
     } catch (error) {
         console.error(error);
         res.status(500).send({ error: error.message });
     }
 }
 
-export async function updateRelation(req: any, res: any) {
+export async function updateRelative(req: any, res: any) {
     try {
-        const { id, relation } = req.body;
-        const relative = await RelativeModel.findById(id)
+        const { id, fullName, birthDate, country, relation } = req.body;
+
+        // Find the relative by ID
+        const relative = await RelativeModel.findById(id);
+
         if (!relative) {
-
-            throw new Error("relative not found")
-        }
-        if (relation === Relation.choose) {
-            throw new Error("Please choose a valid relation")
+            return res.status(404).send({ error: "Relative not found" });
         }
 
-        relative.relation = relation
-        await relative.save()
+        // Update the relative's information if provided
+        if (fullName) {
+            relative.fullName = fullName;
+        }
+        if (birthDate) {
+            relative.birthDate = birthDate;
+        }
+        if (country) {
+            relative.country = country;
+        }
+        if (relation) {
+            relative.relation = relation;
+        }
 
-        res.send({ message: "Relation updated successfully", relative });
+        // Save the updated relative
+        const updatedRelative = await relative.save();
+
+        res.send({ message: "Relative updated successfully", relative: updatedRelative });
     } catch (error) {
         console.error(error);
         res.status(400).send({ error: error.message });
@@ -115,8 +145,8 @@ export async function getUserRelatives(req: any, res: any) {
         }
 
         // Get user's relatives
-        const relativeDB = await RelativeModel.find({ user: user._id });
-        res.send({ relatives: relativeDB });
+        const relativesDB = await RelativeModel.find({ user: user._id });
+        res.send({ relatives: relativesDB });
 
     } catch (error) {
         console.error(error);

@@ -36,25 +36,48 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.getUserPosts = exports.addPost = exports.getPosts = void 0;
+exports.getUserPosts = exports.updatePost = exports.deletePost = exports.addPost = exports.getPosts = void 0;
+var userModel_1 = require("../users/userModel");
 var postsModel_1 = require("./postsModel");
 function getPosts(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var postsDB, error_1;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
+        var _a, email, _id, user, error_1;
+        return __generator(this, function (_b) {
+            switch (_b.label) {
                 case 0:
-                    _a.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, postsModel_1.PostModel.find({})];
+                    _b.trys.push([0, 7, , 8]);
+                    _a = req.query, email = _a.email, _id = _a._id;
+                    console.log(email, _id);
+                    user = void 0;
+                    if (!_id) return [3 /*break*/, 2];
+                    return [4 /*yield*/, userModel_1.UserModel.findOne({ _id: _id })];
                 case 1:
-                    postsDB = _a.sent();
-                    res.send({ ok: true, posts: postsDB });
-                    return [3 /*break*/, 3];
+                    user = _b.sent();
+                    console.log("User id found  " + _id + " : " + user);
+                    return [3 /*break*/, 6];
                 case 2:
-                    error_1 = _a.sent();
+                    if (!!email) return [3 /*break*/, 4];
+                    return [4 /*yield*/, userModel_1.UserModel.find({})];
+                case 3:
+                    user = _b.sent();
+                    return [3 /*break*/, 6];
+                case 4: return [4 /*yield*/, userModel_1.UserModel.findOne({ email: email })];
+                case 5:
+                    user = _b.sent();
+                    _b.label = 6;
+                case 6:
+                    if (!user) {
+                        return [2 /*return*/, res.status(404).send({ error: 'user not found.' })];
+                    }
+                    // Send the fetched physician data as a JSON response
+                    res.send({ user: user });
+                    return [3 /*break*/, 8];
+                case 7:
+                    error_1 = _b.sent();
                     console.error(error_1);
-                    return [3 /*break*/, 3];
-                case 3: return [2 /*return*/];
+                    res.status(500).send({ error: error_1.message });
+                    return [3 /*break*/, 8];
+                case 8: return [2 /*return*/];
             }
         });
     });
@@ -62,38 +85,112 @@ function getPosts(req, res) {
 exports.getPosts = getPosts;
 function addPost(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var _a, content, featuredImage, category, email, post, postDB, userPosts_1, error_2;
+        var _a, content, featuredImage, category, isAdmin, post, postDB, error_2;
+        return __generator(this, function (_b) {
+            switch (_b.label) {
+                case 0:
+                    _b.trys.push([0, 2, , 3]);
+                    _a = req.body, content = _a.content, featuredImage = _a.featuredImage, category = _a.category, isAdmin = _a.isAdmin;
+                    if (!content || !featuredImage || !category)
+                        throw new Error("Please complete all fields");
+                    post = new postsModel_1.PostModel({ content: content, featuredImage: featuredImage, category: category, isAdmin: isAdmin });
+                    return [4 /*yield*/, post.save()];
+                case 1:
+                    postDB = _b.sent();
+                    console.log(postDB);
+                    res.send({ ok: true });
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_2 = _b.sent();
+                    console.error(error_2);
+                    res.status(500).send({ error: error_2.message });
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
+}
+exports.addPost = addPost;
+function deletePost(req, res) {
+    return __awaiter(this, void 0, void 0, function () {
+        var id, postDB, error_3;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    id = req.body.id;
+                    return [4 /*yield*/, postsModel_1.PostModel.findByIdAndDelete(id)];
+                case 1:
+                    postDB = _a.sent();
+                    res.send({ ok: true });
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_3 = _a.sent();
+                    console.error(error_3);
+                    res.status(500).send({ error: error_3.message });
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
+}
+exports.deletePost = deletePost;
+function updatePost(req, res) {
+    return __awaiter(this, void 0, void 0, function () {
+        var _a, id, content, featuredImage, category, isAdmin, postDB, error_4;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
                     _b.trys.push([0, 3, , 4]);
-                    _a = req.body, content = _a.content, featuredImage = _a.featuredImage, category = _a.category, email = _a.email;
-                    if (!content || !featuredImage || !category)
-                        throw new Error("Please complete all fields");
-                    if (!email)
-                        throw new Error("no email");
-                    post = new postsModel_1.PostModel({ content: content, featuredImage: featuredImage, category: category });
-                    return [4 /*yield*/, post.save()];
+                    debugger;
+                    _a = req.body, id = _a.id, content = _a.content, featuredImage = _a.featuredImage, category = _a.category, isAdmin = _a.isAdmin;
+                    if (!id)
+                        throw new Error("id is required");
+                    return [4 /*yield*/, postsModel_1.PostModel.findByIdAndUpdate(id, { content: content, featuredImage: featuredImage, category: category, isAdmin: isAdmin })];
                 case 1:
                     postDB = _b.sent();
-                    console.log("Posts111:", postDB);
-                    return [4 /*yield*/, postsModel_1.PostModel.find({ email: email })];
+                    return [4 /*yield*/, postDB.save()];
                 case 2:
-                    userPosts_1 = _b.sent();
-                    console.log("Posts112:", postDB);
-                    res.send({ posts: userPosts_1 });
+                    _b.sent();
+                    res.status(200).send({ message: "post updated successfully" });
                     return [3 /*break*/, 4];
                 case 3:
-                    error_2 = _b.sent();
-                    console.error(error_2);
-                    res.status(500).send({ error: error_2.message });
+                    error_4 = _b.sent();
+                    console.error(error_4);
+                    res.status(500).send({ error: error_4.message });
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }
         });
     });
 }
-exports.addPost = addPost;
+exports.updatePost = updatePost;
+// import { users , UserModel, } from "../users/userModel";
+// export async function getPosts(req: any, res: any) {
+//   try {
+//       const postsDB = await PostModel.find({});
+//       res.send({ ok:true, posts: postsDB });
+//   } catch (error) {
+//       console.error(error);
+//   }
+// }
+// export async function addPost(req: any, res: any) {
+//   try {
+//     const { content, featuredImage, category,email } = req.body;
+//     if (!content || !featuredImage  || !category)
+//     throw new Error("Please complete all fields");
+//   if (!email) throw new Error("no email");
+//   // const user = await UserModel.findOne({ email: email });
+//   const post = new PostModel({content, featuredImage, category});
+//       const postDB = await post.save();
+//       console.log( "Posts111:",postDB);
+//       // const postsDB = await PostModel.find({email})
+//       res.send({ posts: postDB });
+//     } catch (error) {
+//         console.error(error);
+//         res.status(500).send({ error: error.message });
+//     }
+// }
 //     const user = users.find((user: any) => user.email === email);
 //     if (!user) throw new Error("user not found");
 //     userPosts.push(new UserPost(user, newPost));
@@ -109,7 +206,7 @@ exports.addPost = addPost;
 // }
 function getUserPosts(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var email, postsDB, error_3;
+        var email, postsDB, error_5;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -124,9 +221,9 @@ function getUserPosts(req, res) {
                     res.send({ posts: postsDB });
                     return [3 /*break*/, 3];
                 case 2:
-                    error_3 = _a.sent();
-                    console.error(error_3);
-                    res.status(500).send({ error: error_3.message });
+                    error_5 = _a.sent();
+                    console.error(error_5);
+                    res.status(500).send({ error: error_5.message });
                     return [3 /*break*/, 3];
                 case 3: return [2 /*return*/];
             }

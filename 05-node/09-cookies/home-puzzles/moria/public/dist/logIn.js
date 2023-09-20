@@ -36,16 +36,17 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 function handleLogin(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var user, response, _a, error, email, error_1;
-        return __generator(this, function (_b) {
-            switch (_b.label) {
+        var user, response, data, error_1;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
                 case 0:
-                    _b.trys.push([0, 3, , 4]);
+                    _a.trys.push([0, 3, , 4]);
                     ev.preventDefault();
                     user = {
                         password: ev.target.password.value,
                         email: ev.target.email.value
                     };
+                    console.log(user);
                     if (user.email === 'admin@gmail.com' && user.password === 'admin') {
                         window.location.href = "/main.html?email=" + user.email;
                     }
@@ -59,17 +60,19 @@ function handleLogin(ev) {
                             body: JSON.stringify(user)
                         })];
                 case 1:
-                    response = _b.sent();
+                    response = _a.sent();
                     return [4 /*yield*/, response.json()];
                 case 2:
-                    _a = _b.sent(), error = _a.error, email = _a.email;
-                    console.log(error);
-                    if (error)
-                        throw new Error(error);
-                    window.location.href = "/PersonalArea.html?email=" + email;
+                    data = _a.sent();
+                    if (!data.ok) {
+                        throw new Error(data.message);
+                    }
+                    else {
+                        // window.location.href = `PersonalArea.html`;
+                    }
                     return [3 /*break*/, 4];
                 case 3:
-                    error_1 = _b.sent();
+                    error_1 = _a.sent();
                     console.error(error_1.message);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];

@@ -57,7 +57,7 @@ exports.registerUser = function (req, res) { return __awaiter(void 0, void 0, vo
                 // const userExist = users.find((user) => user.email === email);
                 // if (userExist) throw new Error("User already exist");
                 // users.push(user);
-                res.send({ ok: true, user: userDB });
+                res.send({ ok: true, userDB: userDB });
                 return [3 /*break*/, 3];
             case 2:
                 error_1 = _b.sent();

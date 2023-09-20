@@ -20,6 +20,8 @@ mongoose_1.default.connect("mongodb+srv://eliyahuBasson:2PNwya1QXHKD3VGx@cluster
 });
 const picturesRouter_1 = __importDefault(require("./API/pictures/picturesRouter"));
 const userRouter_1 = __importDefault(require("./API/users/userRouter"));
+const userMiddleware_1 = require("./API/users/userMiddleware");
+app.use(userMiddleware_1.getLoggedUser);
 app.use('/API/pictures', picturesRouter_1.default);
 app.use('/API/users', userRouter_1.default);
 app.listen(port, () => {

@@ -24,6 +24,13 @@ async function getUserData() {
     }
 }
 
+function exitNewHabit() {
+    const root = document.querySelector(".newHabit") as HTMLDivElement
+    const taskRoot = document.querySelector(".taskDocsRoot") as HTMLDivElement
+    root.style.display = "none"
+    taskRoot.style.display = "none"
+}
+
 async function greeting(name) {
     try {
         const root = document.querySelector('#nameGreetingRoot');
@@ -53,11 +60,11 @@ async function info() {
     const year = date.getFullYear();
     const month = date.getMonth() + 1;
     const day = date.getDate();
-    renderInfo(name, year, month, day, root );
+    renderInfo(name, year, month, day, root);
 }
-function renderInfo(name, year, month, day, root:HTMLDivElement){
-const html = `<h2>USER DATA:</h2><div class="name">name:${name}</div><div class="date">date created:${day}/${month}/${year}</div>`
-root.innerHTML = html;
+function renderInfo(name, year, month, day, root: HTMLDivElement) {
+    const html = `<h2>USER DATA:</h2><div class="name">name:${name}</div><div class="date">date created:${day}/${month}/${year}</div>`
+    root.innerHTML = html;
 }
 function newHabit() {
     const newHabitRoot = document.querySelector(".newHabit") as HTMLDivElement;
@@ -125,12 +132,14 @@ class UserTasks {
         public categorie: Categorie,
         public time: Time,
         public status: Status,
-        public email: string
+        public email: string,
+        public _id: string
     ) { }
 }
 
 async function getUserTasks() {
     try {
+
         const response = await fetch(`/API/habits/get-user-habits?email=${email}`);
         const data = await response.json();
         printUserTasks(data);
@@ -159,7 +168,7 @@ function printUserTasks(arr: UserTasks[]) {
 }
 
 function printTaskByTime(task: UserTasks, root: HTMLDivElement) {
-    const html = `<div onclick="taskDocs('${task.name}','${task.categorie}','${task.status}')" class="task">
+    const html = `<div onclick="taskDocs('${task.name}','${task.categorie}','${task.status}')" class="task" id="${task._id}">
     <h1 class="task__header">${task.name}</h1>
     <h2 class="task__categorie">${task.categorie}</h2>
 </div>`
@@ -170,20 +179,106 @@ function taskDocs(name: string, categorie: string, status: string) {
     const root = document.querySelector(".taskDocsRoot") as HTMLElement;
     root.style.display = "flex"
     const html = `<div class="taskDoc">
+    <div class="exitBTN" onclick="exitNewHabit()"><i class="fas fa-door-closed fa-lg door-closed" style="color: #ffffff;"></i></div>
+
     <h1 class="taskDoc__header">${name}</h1>
     <h2 class="taskDoc__categorie">${categorie}</h2>
     <h2 class="taskDoc__status">${status}</h2>
-    <div class="taskDoc__doneBTN" onclick="taskDone('${name}','${categorie}','${status}')">DONE!</div>
+    <div class="taskDoc__doneTodayBTN" onclick="habitdoneToday('${name}','${categorie}','${status}')">DONE Today!</div>
+    <div class="taskDoc__doneBTN" onclick="taskDone('${name}','${categorie}','${status}')">DONE Forever!</div>
     <div class="taskDoc__deleteBTN" onclick="deleteHabit('${name}','${categorie}','${status}')">DELETE!</div>
+    <div class="taskDoc__changeTimeBTN" onclick="changeHabitTime('${name}','${categorie}','${status}')">change Time</div>
+
 </div>`;
     root.innerHTML = html;
     taskBTNeffect()
 
 }
 
+async function changeHabitTime(name, categorie, status) {
+    try {
+        const response = await fetch(`/API/habits/getHabitTime?email=${email}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ name, categorie })
+        })
+        const data = await response.json();
+        console.log(data.time)
+        const time = data.time;
+        const root = document.querySelector(".changeTime") as HTMLDivElement
+        changeHabitTimeForm(name, categorie, status, time, root)
+    } catch (error) {
+        console.error(error)
+    }
+
+
+}
+
+function changeHabitTimeForm(name, categorie, status, time, root: HTMLDivElement) {
+    const html = htmlForm(time)
+
+    root.innerHTML += html;
+    root.style.display = "flex"
+
+}
+
+
+function htmlForm(time) {
+    if (time == "morning") {
+        return `<form onsubmit="HandlechangeTime(event)">
+        <select class="ChangeTimeSelect" name="changetime" id="changetime">
+            <option value="afternoon">afternoon</option>
+            <option value="evening">evening</option>
+        </select>
+        <input type="submit" placeholder="submit">
+    </form>`
+    }
+    if (time == "afternoon") {
+        return `<form onsubmit="HandlechangeTime(event)">
+        <select class="ChangeTimeSelect" name="changetime" id="changetime">
+            <option value="morning">morning</option>
+            <option value="evening">evening</option>
+        </select>
+        <input type="submit" placeholder="submit">
+    </form>`
+    }
+    if (time == "evening") {
+        return `<form onsubmit="HandlechangeTime(event)">
+        <select class="ChangeTimeSelect" name="changetime" id="changetime">
+            <option value="morning">morning</option>
+            <option value="afternoon">afternoon</option>
+        </select>
+        <input type="submit" placeholder="submit">
+    </form>`
+    }
+}
+
+async function HandlechangeTime(ev: any) {
+    try {
+        ev.preventDefault();
+        const changetimeTo = ev.target.changetime.value;
+        const response = await fetch(`/API/habits/changeTimeTo`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ changetimeTo })
+        })
+        const data = await response.json();
+        location.reload();
+
+    } catch (error) {
+        console.error(error)
+    }
+}
+
 function taskBTNeffect() {
     const doneBTN = document.querySelector(".taskDoc__doneBTN") as HTMLElement;
     const deleteBTN = document.querySelector(".taskDoc__deleteBTN") as HTMLElement;
+    const changeTimeBTN = document.querySelector(".taskDoc__changeTimeBTN") as HTMLElement;
+    const doneTodayBTN = document.querySelector(".taskDoc__doneTodayBTN") as HTMLElement;
 
     const taskDoc = document.querySelector(".taskDoc") as HTMLElement;
     doneBTN.addEventListener("mouseover", () => {
@@ -200,12 +295,35 @@ function taskBTNeffect() {
         taskDoc.style.backgroundColor = "transparent";
         taskDoc.style.backdropFilter = "blur(20px)";
     })
+    changeTimeBTN.addEventListener("mouseover", () => {
+        taskDoc.style.backgroundColor = "rgb(217,193,193)";
+        taskDoc.style.background = " linear-gradient(90deg, rgba(217,193,193,1) 34%, rgba(86,198,226,1) 80%)";
+    })
+    changeTimeBTN.addEventListener("mouseout", () => {
+        taskDoc.style.backgroundColor = "transparent";
+        taskDoc.style.background = "transparent";
+        taskDoc.style.backdropFilter = "blur(20px)";
+    })
+    doneTodayBTN.addEventListener("mouseover", () => {
+        taskDoc.style.backgroundColor = "rgb(73,205,166)";
+        taskDoc.style.background = "linear-gradient(90deg, rgba(73,205,166,1) 34%, rgba(86,226,112,1) 80%)";
+
+
+    })
+    doneTodayBTN.addEventListener("mouseout", () => {
+        taskDoc.style.backgroundColor = "transparent";
+        taskDoc.style.background = "transparent";
+        taskDoc.style.backdropFilter = "blur(20px)";
+    })
 }
+
+
+
+
 async function taskDone(name: string, categorie: string, status: string) {
-    debugger;
     const root = document.querySelector(".taskDoc") as HTMLElement;
     root.style.display = "none"
-    console.log(name, categorie, status);
+
 
     const response = await fetch("/API/habits/habitDone", {
         method: 'POST',
@@ -222,7 +340,7 @@ async function taskDone(name: string, categorie: string, status: string) {
 
 async function deleteHabit(name, categorie, status) {
     try {
-        debugger;
+       
         const response = await fetch("/API/habits/deleteHabit", {
             method: 'POST',
             headers: {
@@ -247,15 +365,37 @@ function redirectToDone() {
     window.location.href = `../doneHabits/doneHabits.html?email=${email}`
 }
 
+async function habitdoneToday(name, categorie, status,) {
+    const response = await fetch("/API/habits/HabitDoneToday", {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ name, categorie })
+    })
+    const data = await response.json()
 
+}
+window.addEventListener("load", changeDoneToday);
+async function changeDoneToday() {
+    const response = await fetch(`/API/habits/getDoneTodayHabits`);
+    const data = await response.json();
+    console.log(data)
+    data.forEach(obj => {
+        addClasslist(obj._id)
+    })
 
+}
 
-
-
-
-
-
-
+function addClasslist(id) {
+    const root = document.getElementById(id);
+    if (root) {
+      root.classList.add('Done');
+      root.classList.remove('task')
+    } else {
+      console.error(`Element with ID "${id}" not found.`);
+    }
+  }
 
 
 

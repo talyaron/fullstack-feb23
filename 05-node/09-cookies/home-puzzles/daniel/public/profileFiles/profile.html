@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./dist/profile.js" defer></script>
+    <link rel="stylesheet" href="./dist/profile.css">
+    <title>Profile</title>
+</head>
+<body>
+    <h1>Profile</h1>
+    <div class="imgProf">
+        <img src="https://img.favpng.com/9/14/17/computer-icons-social-media-png-favpng-QsaBd8gnpzK2HRZn6X15nbNX2_t.jpg" alt="">
+    </div>
+    <p></p>
+    <div class="addDetails">
+        <form onsubmit="handleAddDetail(event)">
+            <input type="text" name="userName" placeholder="userName">
+            <!-- <input type="text" name="crossfitName" placeholder="crossfitName"> -->
+            <input type="text"  name="status" placeholder="status">
+            <!-- <input type="url" name="iconImg" placeholder="iconImg"> -->
+            <input type="date" name="birthDate" placeholder="birthDate">
+            <input type="number" name="phoneNumber" placeholder="phoneNumber">
+            <button type="submit">SAVE</button>
+        </form>
+        <button id="getDetails" onclick="handleGetDetails()">Get details</button>
+        <div id="rootDetail"></div>
+    </div>
+    <!-- <div class="container">
+        <h2 style="border-radius: 10px 10px 0px 0px;">Businesses</h2>
+        <div class="businesses">
+            <div class="businesses__img">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRbC6osuqiBNnqVRRl9p9LzG-iLUjFDO3cSg&usqp=CAU" alt="">
+            </div>
+            <div class="businesses__name">
+                <div class="businesses__status">
+                    <h3>CrossFit Rishon City</h3>
+                    <p><span>Active</span></p>
+
+                </div>
+                <div class="businesses__callUs">
+                    <img src="https://www.svgrepo.com//show/17430/phone-call.svg" alt="">
+                    <img src="https://cdn-icons-png.flaticon.com/512/7613/7613767.png" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="container__personalTitle">
+            <h2 style="position: relative; width: 100%;">Personal Details</h2>
+            <img src="https://cdn-icons-png.flaticon.com/128/747/747994.png" alt="">
+        </div>
+        <div class="PersonalDetails">
+            <div class="PersonalDetails__birthday">
+                <img src="https://cdn-icons-png.flaticon.com/512/1412/1412443.png" alt="">
+                <p>01/04/2002</p>
+            </div>
+            <div class="PersonalDetails__phone">
+                <img src="https://www.svgrepo.com/show/6064/phone-call.svg" alt="">
+                <p>050-5078909</p>
+            </div>
+        </div>
+    </div> -->
+</body>
+</html>
