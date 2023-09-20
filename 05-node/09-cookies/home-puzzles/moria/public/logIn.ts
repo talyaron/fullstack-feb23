@@ -6,6 +6,7 @@ async function handleLogin(ev: any) {
             password: ev.target.password.value,
             email: ev.target.email.value
         }
+        console.log(user)
         if (user.email === 'admin@gmail.com' && user.password === 'admin') {
 
             window.location.href = `/main.html?email=${user.email}`
@@ -20,11 +21,14 @@ async function handleLogin(ev: any) {
             },
             body: JSON.stringify(user)
         })
-        const { error, email } = await response.json()
-        console.log(error);
-        if (error) throw new Error(error);
-        window.location.href = `/PersonalArea.html?email=${email}`
+        const data = await response.json();
 
+        if (!data.ok) {
+            throw new Error(data.message);
+        } else {
+
+            // window.location.href = `PersonalArea.html`;
+        }
 
     } catch (error) {
         console.error(error.message);

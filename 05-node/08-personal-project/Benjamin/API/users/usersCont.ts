@@ -26,6 +26,8 @@ export const loginUser = async (req: any, res: any) => {
         const user = await UserModelDB.findOne({email:email}, {password:password});
        
         if(!user) throw new Error("some fields are incorrect");
+        
+        res.cookie("user", user._id ,{maxAge: 1000*60*60*24 , httpOnly:true})
         res.send(user);
 
 

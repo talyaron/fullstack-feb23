@@ -13,12 +13,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
+const cron = require('node-cron');
 const app = express_1.default();
 const port = process.env.PORT || 3000;
 //static files
 app.use(express_1.default.static("public"));
 //body
 app.use(express_1.default.json());
+const cookieParser = require('cookie-parser');
+app.use(cookieParser());
 const usersRouter_1 = __importDefault(require("./API/users/usersRouter"));
 app.use("/API/users", usersRouter_1.default);
 const habitsRouter_1 = __importDefault(require("./API/habits/habitsRouter"));

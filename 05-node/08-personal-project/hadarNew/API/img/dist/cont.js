@@ -1,56 +1,155 @@
 "use strict";
 //Taking the model from the model file
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
 exports.__esModule = true;
 exports.updateEexercise = exports.deleteExercise = exports.addExercise = exports.getExercises = void 0;
 var model_1 = require("./model");
 var exercises = [new model_1.Exercise({ exercise: "test", sets: 3, repetitions: 10 })];
-exports.getExercises = function (req, res) {
-    try {
-        res.send({ exercises: exercises });
-    }
-    catch (error) {
-        console.error(error.message);
-    }
-};
-exports.addExercise = function (req, res) {
-    try {
-        console.log(exercises);
-        var exercise = req.body;
-        exercises.push(new model_1.Exercise(exercise));
-        res.send({ exercises: exercises });
-    }
-    catch (error) {
-        console.error(error.message);
-    }
-};
-exports.deleteExercise = function (req, res) {
-    try {
-        var id_1 = req.body.id;
-        exercises = exercises.filter(function (exercise) { return exercise.id !== id_1; });
-        res.send({ exercises: exercises });
-    }
-    catch (error) {
-        console.error(error.message);
-    }
-};
-exports.updateEexercise = function (req, res) {
-    try {
-        var _a = req.body, exercise = _a.exercise, sets = _a.sets, repetitions = _a.repetitions, weight = _a.weight, timer = _a.timer, id_2 = _a.id;
-        console.log(req.body);
-        if (!exercise || !sets || !repetitions || !weight || !timer || !id_2)
-            throw new Error("Please complete all fields");
-        var _exercise = exercises.find(function (exercise) { return exercise.id === id_2; });
-        if (!_exercise)
-            throw new Error("exercise not found");
-        _exercise.exercise = exercise;
-        _exercise.sets = sets;
-        _exercise.repetitions = repetitions;
-        _exercise.weight = weight;
-        _exercise.timer = timer;
-        res.send({ exercises: exercises });
-    }
-    catch (error) {
-        console.error(error);
-        res.send({ error: error });
-    }
-};
+exports.getExercises = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var tasksDB, error_1;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                _a.trys.push([0, 2, , 3]);
+                return [4 /*yield*/, model_1.ExerciseModel.find({})];
+            case 1:
+                tasksDB = _a.sent();
+                res.send({ exercises: tasksDB });
+                return [3 /*break*/, 3];
+            case 2:
+                error_1 = _a.sent();
+                console.error(error_1.message);
+                return [3 /*break*/, 3];
+            case 3: return [2 /*return*/];
+        }
+    });
+}); };
+exports.addExercise = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var _a, exercise, sets, repetitions, weight, timer, _exercise, exerciseDB, error_2;
+    return __generator(this, function (_b) {
+        switch (_b.label) {
+            case 0:
+                _b.trys.push([0, 2, , 3]);
+                _a = req.body, exercise = _a.exercise, sets = _a.sets, repetitions = _a.repetitions, weight = _a.weight, timer = _a.timer;
+                console.log({ exercise: exercise, sets: sets, repetitions: repetitions, weight: weight, timer: timer });
+                _exercise = new model_1.ExerciseModel({ exercise: exercise, sets: sets, repetitions: repetitions, weight: weight, timer: timer });
+                return [4 /*yield*/, _exercise.save()];
+            case 1:
+                exerciseDB = _b.sent();
+                console.log(exerciseDB);
+                res.send({ ok: true });
+                return [3 /*break*/, 3];
+            case 2:
+                error_2 = _b.sent();
+                console.error(error_2.message);
+                res.status(500).send({ error: error_2.message });
+                return [3 /*break*/, 3];
+            case 3: return [2 /*return*/];
+        }
+    });
+}); };
+exports.deleteExercise = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var id, exerciseDB, error_3;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                _a.trys.push([0, 2, , 3]);
+                id = req.body.id;
+                return [4 /*yield*/, model_1.ExerciseModel.findByIdAndDelete(id)];
+            case 1:
+                exerciseDB = _a.sent();
+                // exercises= exercises.filter((exercise) =>exercise.id !== id);
+                res.send({ exercises: exercises });
+                return [3 /*break*/, 3];
+            case 2:
+                error_3 = _a.sent();
+                console.error(error_3);
+                res.status(500).send({ error: error_3.message });
+                return [3 /*break*/, 3];
+            case 3: return [2 /*return*/];
+        }
+    });
+}); };
+exports.updateEexercise = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var _a, exercise, sets, repetitions, weight, timer, id, exerciseDB, _b, _c, _d, _e, _f, error_4;
+    return __generator(this, function (_g) {
+        switch (_g.label) {
+            case 0:
+                _g.trys.push([0, 7, , 8]);
+                _a = req.body, exercise = _a.exercise, sets = _a.sets, repetitions = _a.repetitions, weight = _a.weight, timer = _a.timer, id = _a.id;
+                console.log(req.body);
+                return [4 /*yield*/, model_1.ExerciseModel.findById(id)];
+            case 1:
+                exerciseDB = _g.sent();
+                if (!exerciseDB)
+                    throw new Error("exercise not found");
+                // if (!exercise || !sets || !repetitions || !weight || !timer || !id) throw new Error("exersice not found");
+                // const _exercise = exercises.find((exercise) => exercise.id === id);
+                _b = exerciseDB;
+                return [4 /*yield*/, model_1.ExerciseModel.findByIdAndUpdate(id, { exercise: exercise })];
+            case 2:
+                // if (!exercise || !sets || !repetitions || !weight || !timer || !id) throw new Error("exersice not found");
+                // const _exercise = exercises.find((exercise) => exercise.id === id);
+                _b.exercise = _g.sent();
+                _c = exerciseDB;
+                return [4 /*yield*/, model_1.ExerciseModel.findByIdAndUpdate(id, { sets: sets })];
+            case 3:
+                _c.sets = _g.sent();
+                _d = exerciseDB;
+                return [4 /*yield*/, model_1.ExerciseModel.findByIdAndUpdate(id, { repetitions: repetitions })];
+            case 4:
+                _d.repetitions = _g.sent();
+                _e = exerciseDB;
+                return [4 /*yield*/, model_1.ExerciseModel.findByIdAndUpdate(id, { weight: weight })];
+            case 5:
+                _e.weight = _g.sent();
+                _f = exerciseDB;
+                return [4 /*yield*/, model_1.ExerciseModel.findByIdAndUpdate(id, { timer: timer })];
+            case 6:
+                _f.timer = _g.sent();
+                res.send({ ExerciseModel: model_1.ExerciseModel });
+                return [3 /*break*/, 8];
+            case 7:
+                error_4 = _g.sent();
+                console.error(error_4);
+                res.send({ error: error_4 });
+                return [3 /*break*/, 8];
+            case 8: return [2 /*return*/];
+        }
+    });
+}); };

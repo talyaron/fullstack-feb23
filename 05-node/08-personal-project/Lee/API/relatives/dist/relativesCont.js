@@ -36,11 +36,11 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.getUserRelatives = exports.updateRelation = exports.deleteRelative = exports.addRelative = exports.getFamilyMembers = void 0;
+exports.getUserRelatives = exports.updateRelation = exports.deleteRelative = exports.addRelative = exports.getRelatives = void 0;
 var userModel_1 = require("../users/userModel");
 var relativesModel_1 = require("./relativesModel");
 var relations_1 = require("../enums/relations");
-function getFamilyMembers(req, res) {
+function getRelatives(req, res) {
     return __awaiter(this, void 0, void 0, function () {
         var relativesDB, relativesWithUsers, error_1;
         return __generator(this, function (_a) {
@@ -78,14 +78,14 @@ function getFamilyMembers(req, res) {
         });
     });
 }
-exports.getFamilyMembers = getFamilyMembers;
+exports.getRelatives = getRelatives;
 function addRelative(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var _a, fullName, birthDate, country, relation, userEmail, user, newRelative, relativeDB, error_2;
+        var _a, fullName, birthDate, country, relation, userEmail, user, existingRelative, newRelative, relativeDB, error_2;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
-                    _b.trys.push([0, 3, , 4]);
+                    _b.trys.push([0, 4, , 5]);
                     _a = req.body, fullName = _a.fullName, birthDate = _a.birthDate, country = _a.country, relation = _a.relation, userEmail = _a.userEmail;
                     if (!fullName || !country || !birthDate || !relation) {
                         return [2 /*return*/, res.status(400).send({ error: "Please complete all fields" })];
@@ -96,6 +96,18 @@ function addRelative(req, res) {
                     if (!user) {
                         return [2 /*return*/, res.status(404).send({ error: "User not found with the provided email" })];
                     }
+                    return [4 /*yield*/, relativesModel_1.RelativeModel.findOne({
+                            fullName: fullName,
+                            birthDate: birthDate,
+                            country: country,
+                            relation: relation,
+                            user: user._id
+                        })];
+                case 2:
+                    existingRelative = _b.sent();
+                    if (existingRelative) {
+                        return [2 /*return*/, res.status(400).send({ error: "Family member with the same details already exists" })];
+                    }
                     newRelative = new relativesModel_1.RelativeModel({
                         fullName: fullName,
                         birthDate: birthDate,
@@ -104,17 +116,17 @@ function addRelative(req, res) {
                         user: user._id
                     });
                     return [4 /*yield*/, newRelative.save()];
-                case 2:
+                case 3:
                     relativeDB = _b.sent();
                     console.log(relativeDB);
-                    res.status(201).send({ ok: true });
-                    return [3 /*break*/, 4];
-                case 3:
+                    res.status(201).send({ ok: true, relative: relativeDB });
+                    return [3 /*break*/, 5];
+                case 4:
                     error_2 = _b.sent();
                     console.error(error_2);
                     res.status(500).send({ error: error_2.message });
-                    return [3 /*break*/, 4];
-                case 4: return [2 /*return*/];
+                    return [3 /*break*/, 5];
+                case 5: return [2 /*return*/];
             }
         });
     });
@@ -158,7 +170,7 @@ function updateRelation(req, res) {
                     if (!relative) {
                         throw new Error("relative not found");
                     }
-                    if (relation === relations_1.Relation.choose) {
+                    if (relation === relations_1.Relation.Choose) {
                         throw new Error("Please choose a valid relation");
                     }
                     relative.relation = relation;
