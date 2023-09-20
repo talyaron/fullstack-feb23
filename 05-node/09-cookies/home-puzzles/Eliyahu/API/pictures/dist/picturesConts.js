@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.updatePicture = exports.deletePicture = exports.addPicture = exports.getTags = exports.getUserPictures = exports.getPicturesByTag = exports.getPictures = void 0;
+exports.getNextPicture = exports.updatePicture = exports.deletePicture = exports.addPicture = exports.getTags = exports.getUserPictures = exports.getPicturesByTag = exports.getPictures = void 0;
 var userModels_1 = require("../users/userModels");
 var picturesModels_1 = require("./picturesModels");
 function getPictures(req, res) {
@@ -233,3 +233,31 @@ function updatePicture(req, res) {
     });
 }
 exports.updatePicture = updatePicture;
+function getNextPicture(req, res) {
+    return __awaiter(this, void 0, void 0, function () {
+        var id, pictureDB, index, error_7;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 3, , 4]);
+                    id = req.query.id;
+                    if (!id)
+                        throw new Error("can not find id");
+                    return [4 /*yield*/, picturesModels_1.PictureModel.findById(id)];
+                case 1:
+                    pictureDB = _a.sent();
+                    return [4 /*yield*/, picturesModels_1.PictureModel.ensureIndexes()];
+                case 2:
+                    index = _a.sent();
+                    console.log(index);
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_7 = _a.sent();
+                    console.error(error_7.massage);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
+            }
+        });
+    });
+}
+exports.getNextPicture = getNextPicture;

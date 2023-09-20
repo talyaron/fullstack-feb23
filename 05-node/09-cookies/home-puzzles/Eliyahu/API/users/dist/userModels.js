@@ -20,6 +20,10 @@ exports.UserSchema = new mongoose_1.Schema({
     isAdmin: {
         type: Boolean,
         "default": false
+    },
+    isPremium: {
+        type: Boolean,
+        "default": false
     }
 });
 exports.UserModel = mongoose_1.model("users", exports.UserSchema);

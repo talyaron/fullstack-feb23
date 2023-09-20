@@ -1,6 +1,6 @@
 import express from "express";
-import { addPicture, deletePicture, getPictures, getPicturesByTag, getTags, getUserPictures, updatePicture } from "./picturesConts";
-import { isAdmin } from "../users/userMiddleware";
+import { addPicture, deletePicture, getNextPicture, getPictures, getPicturesByTag, getTags, getUserPictures, updatePicture } from "./picturesConts";
+import { isAdmin, isPremium } from "../users/userMiddleware";
 
 const router = express.Router();
 
@@ -9,7 +9,9 @@ router
     .get('/get-tags', getTags)
     .get('/get-pictures-by-tag', getPicturesByTag)
     .get('/get-pictures-by-user', getUserPictures)
-    .post('/add-picture', addPicture)
+    .get('/get-next-picture',getNextPicture)
+    
+    .post('/add-picture', isPremium, addPicture)
 
     .delete('/delete-picture', deletePicture)
 
