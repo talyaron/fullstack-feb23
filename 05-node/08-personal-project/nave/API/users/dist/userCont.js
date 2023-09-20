@@ -36,11 +36,36 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.getUser = exports.getUserLogin = exports.getUsers = void 0;
+exports.getUser = exports.getUserLogin = exports.getUsers = exports.registerUser = void 0;
 var userModel_1 = require("./userModel");
+exports.registerUser = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var _a, email, password, user, userDB, error_1;
+    return __generator(this, function (_b) {
+        switch (_b.label) {
+            case 0:
+                _b.trys.push([0, 2, , 3]);
+                _a = req.body, email = _a.email, password = _a.password;
+                if (!email || !password)
+                    throw new Error("Please complete all fields");
+                user = new userModel_1.UserModel({ email: email, password: password });
+                return [4 /*yield*/, user.save()];
+            case 1:
+                userDB = _b.sent();
+                console.log(userDB);
+                res.send({ ok: true, userDB: userDB });
+                return [3 /*break*/, 3];
+            case 2:
+                error_1 = _b.sent();
+                console.error(error_1);
+                res.send({ error: error_1.message });
+                return [3 /*break*/, 3];
+            case 3: return [2 /*return*/];
+        }
+    });
+}); };
 function getUsers(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var _a, email, _id, user, error_1;
+        var _a, email, _id, user, error_2;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
@@ -71,9 +96,9 @@ function getUsers(req, res) {
                     res.send({ user: user });
                     return [3 /*break*/, 8];
                 case 7:
-                    error_1 = _b.sent();
-                    console.error(error_1);
-                    res.status(500).send({ error: error_1.message });
+                    error_2 = _b.sent();
+                    console.error(error_2);
+                    res.status(500).send({ error: error_2.message });
                     return [3 /*break*/, 8];
                 case 8: return [2 /*return*/];
             }
@@ -83,7 +108,7 @@ function getUsers(req, res) {
 exports.getUsers = getUsers;
 function getUserLogin(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var _a, email, password, user, error_2;
+        var _a, email, password, user, error_3;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
@@ -100,9 +125,9 @@ function getUserLogin(req, res) {
                     res.send({ user: user });
                     return [3 /*break*/, 3];
                 case 2:
-                    error_2 = _b.sent();
-                    console.error(error_2);
-                    res.status(500).send({ error: error_2.message });
+                    error_3 = _b.sent();
+                    console.error(error_3);
+                    res.status(500).send({ error: error_3.message });
                     return [3 /*break*/, 3];
                 case 3: return [2 /*return*/];
             }
