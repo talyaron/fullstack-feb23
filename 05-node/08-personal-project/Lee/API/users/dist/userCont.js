@@ -82,7 +82,7 @@ exports.registerUser = function (req, res) { return __awaiter(void 0, void 0, vo
     });
 }); };
 exports.login = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var _a, email, password, user, error_2;
+    var _a, email, password, user, isAdmin, error_2;
     return __generator(this, function (_b) {
         switch (_b.label) {
             case 0:
@@ -95,8 +95,9 @@ exports.login = function (req, res) { return __awaiter(void 0, void 0, void 0, f
                 user = _b.sent();
                 if (!user)
                     throw new Error("some of the details are incorrect");
+                isAdmin = user.isAdmin;
                 res.cookie("user", user._id, { maxAge: 900000, httpOnly: true });
-                res.send({ ok: true, email: user.email });
+                res.send({ ok: true, email: user.email, isAdmin: isAdmin });
                 return [3 /*break*/, 3];
             case 2:
                 error_2 = _b.sent();

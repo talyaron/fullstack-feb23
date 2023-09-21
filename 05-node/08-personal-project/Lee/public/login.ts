@@ -15,13 +15,19 @@ async function handleLogin(ev:any){
             body: JSON.stringify(user)
         });
 
-        const {error, email} = await response.json(); // get data from server
+        const { error, email, isAdmin } = await response.json(); // get data from server
         console.log(error);
         if (error) {
             throw new Error(error);
         }
-        //if everthink is OK, redirect to main page of the user
-        window.location.href = `/main.html?email=${email}`; //query
+
+        if (isAdmin) {
+            // Redirect admin user to admin.html
+            window.location.href = '/admin.html';
+        } else {
+            // Redirect regular user to main.html
+            window.location.href = `/main.html?email=${email}`;
+        }
     } catch (error) {
         console.error(error);
     }
