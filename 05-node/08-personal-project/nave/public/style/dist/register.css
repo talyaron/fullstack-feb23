@@ -24,7 +24,7 @@
   font-family: "Assistant", sans-serif;
 }
 .register .coloum1 .formRegister {
-  font-size: 3em;
+  font-size: 1em;
   color: #ffff;
   font-family: "Assistant", sans-serif;
   display: grid;
@@ -83,4 +83,8 @@ input[type=password i] {
   border-radius: 5px;
   border: none;
   cursor: pointer;
+}
+
+.label {
+  text-align: center;
 }

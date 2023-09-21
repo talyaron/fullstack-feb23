@@ -7,7 +7,7 @@ const router = express.Router();
 
 router
     .post("/add-blog", addBlog)
-    .get("/get-all-blogs", getAllBlogs)
+    .get("/get-all-blogs",getUserBlog, getAllBlogs)
     .get("/get-my-blogs",getUserBlog, getUserBlogs)
     .delete("/delete-blog", deleteBlog);
 

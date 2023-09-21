@@ -38,6 +38,12 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 exports.__esModule = true;
 exports.deleteUser = exports.updateUser = exports.getUserDetails = exports.allUsers = exports.logOut = exports.getLoggedInUser = exports.logIn = exports.addUser = void 0;
 var userModel_1 = require("./userModel");
+// const jwt = require('jwt-simple');
+var SECRET = process.env.SECRET;
+var secret = SECRET;
+var bcrypt = require('bcrypt');
+var saltRounds = 10;
+// console.log(process.env)
 exports.addUser = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var _a, email, password, existingUser, user, userDB, error_1;
     return __generator(this, function (_b) {
@@ -82,6 +88,9 @@ exports.logIn = function (req, res) { return __awaiter(void 0, void 0, void 0, f
                 return [4 /*yield*/, userModel_1.UserModel.findOne({ email: email })];
             case 1:
                 existingUser = _b.sent();
+                // //bycript code
+                // const {password:hash} = userDB;
+                // if(!hash) throw new Error("some bycrypt error");
                 if (!existingUser) {
                     // User with the same email already exists, return an error response
                     return [2 /*return*/, res.send({ error: "User not found" })];

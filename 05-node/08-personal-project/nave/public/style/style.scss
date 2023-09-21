@@ -1,8 +1,9 @@
 $font-family: 'Assistant', sans-serif;
 $font-size-heading: 3em;
-$font-size-sub-heading: 1.3em;
+$font-size-sub-heading: 2.3em;
+$font-size-big-heading:2.2em;
 $font-size-text: 1.0em;
-$color-site-red: #EE0000;
+$color-site-red: #FB2823;
 $color-site-black:#000000 ;
 $color-site-white: #ffff;
 * {
@@ -12,24 +13,25 @@ $color-site-white: #ffff;
   @import "style_btn";
   @import url("register");
 
-.hero{
+.column1{
+  display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    background-image: url("top.jpg");
+    height:100vh;
     width: 100vw;
-    height:85vh;
-    background-image:url("./dist/v915-techi-056.jpg") ;
     background-repeat: no-repeat, repeat;
     background-size: cover;
-    display: block;
-    justify-content: center;
-    align-items: center;
-    align-content: center;
-     margin: auto;}
+
+    }
+  
     
 .h1{
     font-family:$font-family;
     font-size: $font-size-heading;
-    color:$color-site-red;
+    color:$color-site-black;
     text-align: center;
-    margin: -72vh  0px 0px 0px ;
+    
     
 
 }
@@ -38,7 +40,7 @@ $color-site-white: #ffff;
     font-size: $font-size-sub-heading;
     color:$color-site-black;
     text-align: center;
-    font-weight: 500;
+    font-weight: 600;
     margin: 20px  0px ;}
 .p{
     
@@ -48,7 +50,7 @@ $color-site-white: #ffff;
 
 }
 .allheader {
-    background-color:$color-site-red;
+    background-color:$color-site-black;
     position: sticky;
         top: 0;
         offset: 10px; ;
@@ -56,7 +58,7 @@ $color-site-white: #ffff;
   }
   
   .header {
-    background-color: $color-site-red;
+    background-color: $color-site-black;
     display: flex;
     justify-content: center;
     padding-right: 17%;
@@ -85,7 +87,7 @@ $color-site-white: #ffff;
     padding-left: 25px;
   }
   .nav a:hover {
-    color: $color-site-black;
+    color: $color-site-red;
     text-decoration: underline solid 1px $color-site-black;
   }
   
@@ -237,4 +239,5 @@ $color-site-white: #ffff;
   margin-top: 2vh
 }
   }
+  
   

@@ -66,15 +66,12 @@ function handleGetPosts() {
 }
 function handeleAddPost(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var email, content, featuredImage, category, newPost, response, data, posts, newPostsAsArray, error_2;
+        var content, featuredImage, category, newPost, response, data, posts, newPostsAsArray, error_2;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
                     ev.preventDefault();
-                    email = getEmailFromQuery();
-                    if (!email)
-                        throw new Error("no email");
                     content = ev.target.elements.content.value;
                     featuredImage = ev.target.elements.featuredImage.value;
                     category = ev.target.elements.category.value;
@@ -132,16 +129,16 @@ function renderPostWithTitle(posts) {
 }
 function renderPosts(posts, DIVElem) {
     try {
-        debugger;
         if (!DIVElem)
             throw new Error("no div element");
-        var html = "<ul>";
-        html += posts.map(function (post) { return renderPostWithTitle(post); }).join("");
-        html += "</ul>";
-        DIVElem.innerHTML = html;
+        posts.forEach(function (post) {
+            var postHtml = renderPostWithTitle(post);
+            var postElement = document.createElement('coloumn');
+            postElement.innerHTML = postHtml;
+            DIVElem.appendChild(postElement);
+        });
     }
     catch (error) {
         console.error(error);
-        return "";
     }
 }

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./style/dist/style.css">
     <link rel="stylesheet" href="./style/dist/style_btn.css">
+    <link rel="stylesheet" href="./style/dist/aboutUs.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -16,20 +17,20 @@
 <body dir="rtl">
     <div class="allheader"> 
         <div  class="header">
-          <img class="logo" src="blogi-logo-removebg-preview.png">
-          <img class="menu-button" src="more.svg" active="false" onclick="toggleMenu()">
+          <img class="logo" src="./imgs/blogi-logo-removebg-preview.png">
+          <img class="menu-button" src="./imgs/more.svg" active="false" onclick="toggleMenu()">
            <nav class="nav" id="nav">
             
-            <a href="../home-page/homepage.html">עמוד הבית</a>
-             <a href="../home/main.html"> הבלוג שלי </a>
-             <a href="../home/Income.html#expensesFormDiv">בלוגים נוספים</a>
-             <a href="../home-page/homepage.html#about-us">קצת עלינו</a>
+            <a href="./index.html">עמוד הבית</a>
+             <a href="./main.html"> הבלוג שלי </a>
+             <a href="./main.html">בלוגים נוספים</a>
+             <a href="./index.html#about-us">קצת עלינו</a>
              <a href="../home-page/homepage.html#contact">יצירת קשר</a>
           
           </nav>
           
           <a href="../register/register.html">
-            <img class="user" src="user.svg" alt="">
+            <img class="user" src="./imgs/user.svg" alt="">
           </a>
        
     
@@ -40,17 +41,33 @@
     </div>
   
     <div class="column1">
-      <img src="v915-techi-056.jpg" class="hero" alt="">
-  </div>
     <h1 class="h1">ברוכים הבאים לפלטפורמת הבלוגים שלנו</h1>
-    <h2 class="h2">הפלטפורמה שמביאה אליך את הכלים הטובים ביותר ליצירת ושיתוף של פוסטים מרהיבים.</h2>
-    <p class="p"> "הפלטפורמה שלנו היא המקום הטוב ביותר לשתף את רעיונותיכם,<br>
-         לכתוב פוסטים מרהיבים ולהיות חלק מקהילת הכתיבה המרשימה שלנו.<br>
-         בואו להירשם חינם ותצטרפו לאלפי משתמשים שכבר נהנים מהמגוון והאפשרויות שהפלטפורמה שלנו מציעה.
-         <br> כתבו, שתפו רעיונות, והתנסו בכתיבה מרהיבה - הכל בקלות ובחינם.
-          הצטרפו עכשיו והתחילו לכתוב את הסיפורים שלכם!"</p> </div>
+    <h2 class="h2">הפלטפורמה שמביאה אליך את הכלים הטובים ביותר<br> ליצירת ושיתוף של פוסטים מרהיבים.</h2>
+  
           <div class="btns"> 
           <button class="button"  onclick="window.location.href='./register.html'">הרשמה</button>
           <button class="button"  onclick="window.location.href='./login.html'">התחברות</button></div>
+        </div>
+
+          <section dir="rtl" class="about-us" id="about-us">
+            <div class="container">
+              <div class="content-wrapper">
+                <div class="text">
+                  <h2 class="h4">קצת על התוכנה</h2>
+                  <p  class="h3">  
+                    ברוכים הבאים ל"בלוגי", אתר המוקדש לעולם הבלוגים.<br> אנו נלהבים לספק פלטפורמה לאנשים להביע את מחשבותיהם, הידע והחוויות שלהם באמצעות כוח הכתיבה.<br>
+                    
+                    ב"בבלוגי", אנו מאמינים שלכל אחד יש סיפור לספר ותובנות ייחודיות לשתף.<br> בין אם אתה סופר שואף, מומחה בתחומך, או פשוט מישהו עם תשוקה לכתיבה,<br> האתר שלנו הוא המקום המושלם עבורך להציג את הכישרון שלך ולהתחבר לקהילה עם דעות דומות.<br>  </h3>
+                    <br><a href="../register/register.html" class="button"> להרשמה > </a>
+
+                </div>
+               
+                <div class="image">
+                  <img src="./imgs/arrangement-desk-elements-red-background.jpg" alt="Our Image">
+                  
+                </div>
+              </div>
+            </div>
+          </section>
 </body>
 </html>

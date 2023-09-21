@@ -1,0 +1,36 @@
+h1 {
+  text-align: center;
+  color: #7e7e8b;
+}
+
+.login {
+  position: relative;
+}
+.login img {
+  background: url("https://images.pexels.com/photos/3757370/pexels-photo-3757370.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 65vw;
+  height: 80vh;
+  position: absolute;
+  left: 15%;
+  border-radius: 50px;
+}
+.login form {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  text-align: center;
+  top: 180px;
+  left: 45vw;
+}
+.login form input {
+  margin-bottom: 6px;
+}
+.login form a {
+  text-decoration: none;
+  color: #7f3131;
+  font-size: 30px;
+  text-shadow: #232119 1px 0 10px;
+  font-weight: 900;
+}
