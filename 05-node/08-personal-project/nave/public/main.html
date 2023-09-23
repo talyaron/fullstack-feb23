@@ -5,23 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="style/dist/posts.css">
+    <link rel="stylesheet" href="style/dist/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="./dist/main.js" defer></script>
     <script src="./dist/posts.js" defer></script>
 
 </head>
 <!-- <body onload="handleGetUsers()"> -->
-<body>
-    <h1>Hi All</h1>
-    <a href="./login.html">Login</a>
-    <a href="./register.html">Register</a>
-    <h2>Add Task</h2>
+    <body dir="rtl">
+        <div class="allheader"> 
+            <div  class="header">
+              <img class="logo" src="./imgs/blogi-logo-removebg-preview.png">
+              <img class="menu-button" src="./imgs/more.svg" active="false" onclick="toggleMenu()">
+               <nav class="nav" id="nav">
+                
+                <a href="./index.html">עמוד הבית</a>
+                 <a href="./main.html"> הבלוג שלי </a>
+                 <a href="./main.html">בלוגים נוספים</a>
+                 <a href="./index.html#about-us">קצת עלינו</a>
+                 <a href="../home-page/homepage.html#contact">יצירת קשר</a>
+              
+              </nav>
+              
+              <a href="../register/register.html">
+                <img class="user" src="./imgs/user.svg" alt="">
+              </a>
+           
+        
+           
+          </div>
+        </div>
+        <div class="popup" id="popup">
+        </div>
+    <h2>הוסף פוסט חדש </h2>
     <form onsubmit="handeleAddPost(event)">
-        <input type="text" name="content" placeholder="post content">
-       <input type="url" name="featuredImage" placeholder="img url">
-       <input type="text" name="category" placeholder="post category">
+        <input type="text" name="content" placeholder="תוכן הפוסט">
+       <input type="url" name="featuredImage" placeholder="תמונה ראשית">
+       <input type="text" name="category" placeholder="קטגוריית פוסט">
        <!-- <label for="files"> הוסיפו תמונות גלרייה לפוסט</label>
        <input type="file" id="files" name="files" multiple placeholder="postThumbnails"> -->
-       <button type="submit">ADD</button>
+       <button type="submit">הוספה</button>
     </form>
 
     <button onclick="handleGetPosts()">GET Images</button>

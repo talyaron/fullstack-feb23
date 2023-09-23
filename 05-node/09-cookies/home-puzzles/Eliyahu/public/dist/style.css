@@ -35,15 +35,20 @@ h2 {
   font-weight: bold;
 }
 
-.img {
+.imgs {
   position: absolute;
-  width: 95vw;
-  height: 95vh;
-  background-image: url("https://www.rosh-hanikra.com/wp-content/uploads/2021/06/DSC01978-min.jpg");
+  left: 0px;
+  top: 0px;
+  width: 50vw;
+  height: 100vh;
   background-size: cover;
   overflow: hidden;
   background-position: top;
   z-index: -1;
+  transition: all 0.5s;
+}
+.imgs p {
+  background-color: #00000080;
 }
 
 .log, .reg {

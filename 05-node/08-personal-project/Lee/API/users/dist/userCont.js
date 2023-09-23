@@ -36,8 +36,10 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.getUserAndRelatives = exports.login = exports.registerUser = void 0;
+exports.getUserAndRelatives = exports.login = exports.registerUser = exports.secret = void 0;
 var userModel_1 = require("./userModel");
+var jwt = require('jwt-simple');
+exports.secret = 'hkjhkjvnbdtyrhjkhwerwbnmbjhju';
 //register user 
 exports.registerUser = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var _a, email, password, existingUser, user, validationError, error_1;
@@ -82,7 +84,7 @@ exports.registerUser = function (req, res) { return __awaiter(void 0, void 0, vo
     });
 }); };
 exports.login = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var _a, email, password, user, error_2;
+    var _a, email, password, user, isAdmin, cookie, token, error_2;
     return __generator(this, function (_b) {
         switch (_b.label) {
             case 0:
@@ -95,8 +97,14 @@ exports.login = function (req, res) { return __awaiter(void 0, void 0, void 0, f
                 user = _b.sent();
                 if (!user)
                     throw new Error("some of the details are incorrect");
-                res.cookie("user", user._id, { maxAge: 900000, httpOnly: true });
-                res.send({ ok: true, email: user.email });
+                isAdmin = user.isAdmin;
+                cookie = {
+                    uid: user._id
+                };
+                token = jwt.encode(cookie, exports.secret);
+                console.log(token);
+                res.cookie("user", token, { httpOnly: true, maxAge: 900000 });
+                res.send({ ok: true, email: user.email, isAdmin: isAdmin });
                 return [3 /*break*/, 3];
             case 2:
                 error_2 = _b.sent();
@@ -107,13 +115,14 @@ exports.login = function (req, res) { return __awaiter(void 0, void 0, void 0, f
         }
     });
 }); };
-function getUserAndRelatives(email) {
+function getUserAndRelatives(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var user, error_3;
+        var email, user, error_3;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
+                    email = req.user.email;
                     return [4 /*yield*/, userModel_1.UserModel.findOne({ email: email })
                             .populate({
                             path: "familyMembers",
@@ -125,11 +134,12 @@ function getUserAndRelatives(email) {
                     if (!user) {
                         throw new Error("User not found with the provided email");
                     }
-                    return [2 /*return*/, user];
+                    return [2 /*return*/, res.json({ user: user })]; // Return the user and relatives as JSON
                 case 2:
                     error_3 = _a.sent();
                     console.error(error_3);
-                    throw error_3;
+                    res.status(500).json({ error: error_3.message });
+                    return [3 /*break*/, 3];
                 case 3: return [2 /*return*/];
             }
         });

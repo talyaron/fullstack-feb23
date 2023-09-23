@@ -38,6 +38,9 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 exports.__esModule = true;
 exports.isAdmin = exports.getLoggedUser = void 0;
 var userModel_1 = require("./userModel");
+// const jwt = require('jwt-simple');
+var SECRET = process.env.SECRET;
+var secert = SECRET;
 function getLoggedUser(req, res, next) {
     return __awaiter(this, void 0, void 0, function () {
         var userId, userDB, error_1;

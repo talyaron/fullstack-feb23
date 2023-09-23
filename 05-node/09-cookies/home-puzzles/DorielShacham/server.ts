@@ -3,6 +3,8 @@ import mongoose from 'mongoose';
 import cookieParser from 'cookie-parser';
 import {getLoggedUser} from "./API/user/userMiddleware";
 import { getUserBlog } from "./API/blog/blogMiddleware";
+import 'dotenv/config';
+
 const app = express();
 const port = process.env.PORT || 3000;
 
@@ -10,14 +12,15 @@ app.use(cookieParser());
 //static files
 app.use(express.static("public"));
 
+// console.log(process.env.MONGO_URI);
 //express
 app.use(express.json());
 app.use(getLoggedUser);
 app.use(getUserBlog);
 //connect to mongoDB with mongoose
-mongoose.connect("mongodb+srv://doriel:FgvVuOI8ROgkvs06@cluster0.wvdhcfc.mongodb.net/test")
+mongoose.connect(process.env.MONGO_URI)
 .then(()=>{
-  console.info("DB connected")
+  console.info("DataBase is connected")
 })
 .catch(err=>{
   console.error(err)
