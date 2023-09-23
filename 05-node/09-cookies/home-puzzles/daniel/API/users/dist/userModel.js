@@ -37,6 +37,6 @@ exports.User = mongoose_1.model("User", exports.UserSchema);
 module.exports = {
     UserSchema: exports.UserSchema,
     users: [
-        { id: 1, userName: 'tovdaniel', email: 'tov@gmail.com', isAdmin: true }
+        { userName: 'tovdaniel', email: 'tov@gmail.com', isAdmin: true }
     ]
 };
