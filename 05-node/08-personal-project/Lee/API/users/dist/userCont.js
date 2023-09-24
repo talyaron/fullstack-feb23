@@ -92,34 +92,42 @@ exports.registerUser = function (req, res) { return __awaiter(void 0, void 0, vo
     });
 }); };
 exports.login = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var _a, email, password, user, isAdmin, cookie, token, error_2;
+    var _a, email, password, userDB, hash, match, isAdmin, cookie, token, error_2;
     return __generator(this, function (_b) {
         switch (_b.label) {
             case 0:
-                _b.trys.push([0, 2, , 3]);
+                _b.trys.push([0, 3, , 4]);
                 _a = req.body, email = _a.email, password = _a.password;
                 if (!email || !password)
                     throw new Error("Please complete all fields");
-                return [4 /*yield*/, userModel_1.UserModel.findOne({ email: email, password: password }).exec()];
+                return [4 /*yield*/, userModel_1.UserModel.findOne({ email: email }).exec()];
             case 1:
-                user = _b.sent();
-                if (!user)
+                userDB = _b.sent();
+                if (!userDB)
                     throw new Error("some of the details are incorrect");
-                isAdmin = user.isAdmin;
+                hash = userDB.password;
+                if (!hash)
+                    throw new Error("some of the detail are incorrect");
+                return [4 /*yield*/, bcrypt.compare(password, hash)];
+            case 2:
+                match = _b.sent();
+                if (!match)
+                    throw new Error("some of the detail are incorrect");
+                isAdmin = userDB.isAdmin;
                 cookie = {
-                    uid: user._id
+                    uid: userDB._id
                 };
                 token = jwt.encode(cookie, secret);
                 console.log(token);
                 res.cookie("user", token, { httpOnly: true, maxAge: 900000 });
-                res.send({ ok: true, email: user.email, isAdmin: isAdmin });
-                return [3 /*break*/, 3];
-            case 2:
+                res.send({ ok: true, email: userDB.email, isAdmin: isAdmin });
+                return [3 /*break*/, 4];
+            case 3:
                 error_2 = _b.sent();
                 console.error(error_2);
-                res.send({ error: error_2.message });
-                return [3 /*break*/, 3];
-            case 3: return [2 /*return*/];
+                res.status(401).send({ error: error_2.message });
+                return [3 /*break*/, 4];
+            case 4: return [2 /*return*/];
         }
     });
 }); };

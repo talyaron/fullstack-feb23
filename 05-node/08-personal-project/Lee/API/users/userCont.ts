@@ -50,16 +50,24 @@ export const login = async (req: any, res: any) => {
   try {
     const { email, password } = req.body;
     if (!email || !password) throw new Error("Please complete all fields");
+
     //check if user exist and password is correct
 
-    const user = await UserModel.findOne({ email, password }).exec();
-    if (!user) throw new Error("some of the details are incorrect");
+    const userDB = await UserModel.findOne({ email }).exec();
+    if (!userDB) throw new Error("some of the details are incorrect");
+
+    const {password: hash} = userDB
+
+    if(!hash) throw new Error("some of the detail are incorrect")
+
+    const match:Boolean = await bcrypt.compare(password, hash)
+    if (!match) throw new Error("some of the detail are incorrect")
 
     // Determine if the user is an admin
-    const isAdmin = user.isAdmin;
+    const isAdmin = userDB.isAdmin;
 
     const cookie = {
-      uid: user._id,
+      uid: userDB._id,
     }
 
      // encode
@@ -67,12 +75,11 @@ export const login = async (req: any, res: any) => {
      console.log(token)
     
     res.cookie("user", token, {  httpOnly: true, maxAge: 900000 })
-    res.send({ ok: true, email: user.email, isAdmin });
-
+    res.send({ ok: true, email: userDB.email, isAdmin });
 
   } catch (error) {
     console.error(error);
-    res.send({ error: error.message });
+    res.status(401).send({ error: error.message });
   }
 }
 
