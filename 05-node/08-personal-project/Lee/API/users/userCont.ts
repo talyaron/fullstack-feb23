@@ -1,11 +1,18 @@
 import { User, UserModel, users } from "./userModel";
+const bcrypt = require('bcrypt')
 const jwt = require('jwt-simple');
-export const secret = 'hkjhkjvnbdtyrhjkhwerwbnmbjhju';
+const {SECRET} = process.env
+const secret = SECRET
+
+const saltRounds = 10
+
 //register user 
 export const registerUser = async (req: any, res: any) => {
   try {
     const { email, password } = req.body;
     if (!email || !password) throw new Error("Email or Password incorrect");
+
+    const hash = await bcrypt.hash(password, saltRounds)
 
     // Check if a user with the same email already exists
     const existingUser = await UserModel.findOne({ email }).exec();
@@ -14,7 +21,7 @@ export const registerUser = async (req: any, res: any) => {
     }
 
     // If no user with the same email exists, create a new user
-    const user = new UserModel({ email, password })
+    const user = new UserModel({ email, password: hash })
     const validationError = user.validateSync();
 
     if (validationError) {

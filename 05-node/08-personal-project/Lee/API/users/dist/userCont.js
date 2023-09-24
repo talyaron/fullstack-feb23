@@ -36,27 +36,35 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.getUserAndRelatives = exports.login = exports.registerUser = exports.secret = void 0;
+exports.getUserAndRelatives = exports.login = exports.registerUser = void 0;
 var userModel_1 = require("./userModel");
+var bcrypt = require('bcrypt');
 var jwt = require('jwt-simple');
-exports.secret = 'hkjhkjvnbdtyrhjkhwerwbnmbjhju';
+var SECRET = process.env.SECRET;
+var secret = SECRET;
+var saltRounds = 10;
 //register user 
 exports.registerUser = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var _a, email, password, existingUser, user, validationError, error_1;
+    var _a, email, password, hash, existingUser, user, validationError, error_1;
     return __generator(this, function (_b) {
         switch (_b.label) {
             case 0:
-                _b.trys.push([0, 2, , 3]);
+                _b.trys.push([0, 3, , 4]);
                 _a = req.body, email = _a.email, password = _a.password;
                 if (!email || !password)
                     throw new Error("Email or Password incorrect");
-                return [4 /*yield*/, userModel_1.UserModel.findOne({ email: email }).exec()];
+                return [4 /*yield*/, bcrypt.hash(password, saltRounds)
+                    // Check if a user with the same email already exists
+                ];
             case 1:
+                hash = _b.sent();
+                return [4 /*yield*/, userModel_1.UserModel.findOne({ email: email }).exec()];
+            case 2:
                 existingUser = _b.sent();
                 if (existingUser) {
                     return [2 /*return*/, res.status(400).json({ error: "User with this email already exists." })];
                 }
-                user = new userModel_1.UserModel({ email: email, password: password });
+                user = new userModel_1.UserModel({ email: email, password: hash });
                 validationError = user.validateSync();
                 if (validationError) {
                     console.error("Validation error:", validationError);
@@ -73,13 +81,13 @@ exports.registerUser = function (req, res) { return __awaiter(void 0, void 0, vo
                         res.status(500).json({ error: "Failed to save user." });
                     });
                 }
-                return [3 /*break*/, 3];
-            case 2:
+                return [3 /*break*/, 4];
+            case 3:
                 error_1 = _b.sent();
                 console.error(error_1);
                 res.status(500).json({ error: error_1.message });
-                return [3 /*break*/, 3];
-            case 3: return [2 /*return*/];
+                return [3 /*break*/, 4];
+            case 4: return [2 /*return*/];
         }
     });
 }); };
@@ -101,7 +109,7 @@ exports.login = function (req, res) { return __awaiter(void 0, void 0, void 0, f
                 cookie = {
                     uid: user._id
                 };
-                token = jwt.encode(cookie, exports.secret);
+                token = jwt.encode(cookie, secret);
                 console.log(token);
                 res.cookie("user", token, { httpOnly: true, maxAge: 900000 });
                 res.send({ ok: true, email: user.email, isAdmin: isAdmin });

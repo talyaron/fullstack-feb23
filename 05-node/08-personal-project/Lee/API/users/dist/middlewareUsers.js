@@ -1,7 +1,8 @@
 "use strict";
 exports.__esModule = true;
 exports.isAdmin = void 0;
-var userCont_1 = require("../users/userCont");
+var SECRET = process.env.SECRET;
+var secret = SECRET;
 var userModel_1 = require("../users/userModel");
 var jwt = require('jwt-simple');
 function isAdmin(req, res, next) {
@@ -9,7 +10,7 @@ function isAdmin(req, res, next) {
         var token = req.cookies.user;
         if (!token)
             throw new Error("no token");
-        var cookie = jwt.decode(token, userCont_1.secret);
+        var cookie = jwt.decode(token, secret);
         var uid = cookie.uid;
         userModel_1.UserModel.findById(uid, function (err, user) {
             if (err || !user || !user.isAdmin) {
