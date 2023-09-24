@@ -36,25 +36,25 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.getItems = exports.addItem = void 0;
-var itemModel_1 = require("./itemModel");
-// Add Item
-exports.addItem = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var _a, itemName, itemDesc, itemUrl, item, itemDB, error_1;
+exports.createOrder = void 0;
+var orderModel_1 = require("./orderModel");
+//register user 
+exports.createOrder = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var _a, userName, userMail, orderItems, order, orderDB, error_1;
     return __generator(this, function (_b) {
         switch (_b.label) {
             case 0:
                 _b.trys.push([0, 2, , 3]);
-                _a = req.body, itemName = _a.itemName, itemDesc = _a.itemDesc, itemUrl = _a.itemUrl;
-                if (!itemName || !itemDesc || !itemUrl)
+                _a = req.body, userName = _a.userName, userMail = _a.userMail, orderItems = _a.orderItems;
+                if (!userName || !userMail || !orderItems || orderItems.length === 0)
                     throw new Error("Please complete all fields");
-                item = new itemModel_1.ItemModel({ itemName: itemName, itemDesc: itemDesc, itemUrl: itemUrl });
-                return [4 /*yield*/, item.save()];
+                order = new orderModel_1.OrderModel({ userName: userName, userMail: userMail, orderItems: orderItems });
+                return [4 /*yield*/, order.save()];
             case 1:
-                itemDB = _b.sent();
-                console.log(itemDB);
-                res.send({ ok: true, itemDB: itemDB });
-                console.log(item);
+                orderDB = _b.sent();
+                console.log(orderDB);
+                res.send({ ok: true, orderDB: orderDB });
+                console.log(order);
                 return [3 /*break*/, 3];
             case 2:
                 error_1 = _b.sent();
@@ -65,43 +65,3 @@ exports.addItem = function (req, res) { return __awaiter(void 0, void 0, void 0,
         }
     });
 }); };
-// get items
-// export async function getItems(req: any, res: any) {
-//   try {
-//     // Specify the fields you want to include in the response
-//     const fieldsToInclude = ['itemName', 'itemDesc', 'itemUrl'];
-//     // Create a projection object based on the fields to include
-//     const projection = fieldsToInclude.reduce((acc, field) => {
-//       acc[field] = 1;
-//       return acc;
-//     }, {});
-//     const itemsDB: any[] = await ItemModel.find({}, projection);
-//     res.send({ items: itemsDB });
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).send({ error: error.message });
-//   }
-// }
-function getItems(req, res) {
-    return __awaiter(this, void 0, void 0, function () {
-        var itemsDB, error_2;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    _a.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, itemModel_1.ItemModel.find({})];
-                case 1:
-                    itemsDB = _a.sent();
-                    res.send({ items: itemsDB });
-                    return [3 /*break*/, 3];
-                case 2:
-                    error_2 = _a.sent();
-                    console.error(error_2);
-                    res.status(500).send({ error: error_2.message });
-                    return [3 /*break*/, 3];
-                case 3: return [2 /*return*/];
-            }
-        });
-    });
-}
-exports.getItems = getItems;

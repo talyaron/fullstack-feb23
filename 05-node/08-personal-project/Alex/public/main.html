@@ -11,14 +11,15 @@
 <!-- <body onload="handleGetUsers()"> -->
     <body >   
     <h1>The Great Order Maker</h1>
-    <a id="link" href="./login.html">Login</a>
-    <a id="link" href="./register.html">Register</a>
-    <h2>Add Task</h2>
-    <form onsubmit="handeleAddTask(event)">
-        <input type="text" name="title" placeholder="task title">
-        <input type="text" name='description' placeholder="task description">
-        <button type="submit">ADD</button>
+    <form onsubmit="handleLogin(event)">
+        <input type="email" name="email" placeholder="email">
+        <input type="password" name="password" placeholder="Password">
+        <button type="submit">Login</button>
     </form>
+    <div>Need to sighn in? Please go through the
+    <a id="link" href="./register.html">Register</a>
+    </div>
+
 
     <button onclick="handleGetProducts()">GET Products</button>
     <div id="tasks"></div>

@@ -33,6 +33,9 @@ mongoose.connect("mongodb+srv://athegreat5:4VspRIIT6N27mtbn@cluster0.g7gvful.mon
 import itemRouter from "./API/items/itemRoutes";
 app.use("/API/items", itemRouter);
 
+import orderRouter from "./API/orders/orderRoutes";
+app.use("/API/orders", orderRouter);
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });

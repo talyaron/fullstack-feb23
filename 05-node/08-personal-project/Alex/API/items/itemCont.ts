@@ -1,4 +1,4 @@
-import {  ItemModel } from "./itemModel";
+import  { ItemModel } from "./itemModel";
 
 
 // Add Item
@@ -20,10 +20,33 @@ export const addItem = async (req: any, res: any) => {
 }
 
 // get items
-export function getItems(req: any, res: any) {
+// export async function getItems(req: any, res: any) {
+//   try {
+//     // Specify the fields you want to include in the response
+//     const fieldsToInclude = ['itemName', 'itemDesc', 'itemUrl'];
+
+//     // Create a projection object based on the fields to include
+//     const projection = fieldsToInclude.reduce((acc, field) => {
+//       acc[field] = 1;
+//       return acc;
+//     }, {});
+
+//     const itemsDB: any[] = await ItemModel.find({}, projection);
+    
+
+//     res.send({ items: itemsDB });
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).send({ error: error.message });
+//   }
+// }
+
+export async function getItems(req: any, res: any) {
   try {
-      res.send({ ItemModel });
+      const itemsDB = await ItemModel.find({});
+      res.send({ items : itemsDB });
   } catch (error) {
       console.error(error);
+      res.status(500).send({ error: error.message });
   }
 }

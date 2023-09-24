@@ -70,3 +70,50 @@ function getUserTasks(email) {
         });
     });
 }
+function handleLogin(ev) {
+    return __awaiter(this, void 0, void 0, function () {
+        var user, response, _a, error, email_1, error_2;
+        return __generator(this, function (_b) {
+            switch (_b.label) {
+                case 0:
+                    _b.trys.push([0, 3, , 4]);
+                    ev.preventDefault(); // stop form from submitting
+                    user = {
+                        password: ev.target.password.value,
+                        email: ev.target.email.value
+                    };
+                    console.log(user);
+                    if (!user.email || !user.password)
+                        throw new Error("Please complete all fields");
+                    return [4 /*yield*/, fetch('/API/users/login', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(user)
+                        })];
+                case 1:
+                    response = _b.sent();
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    _a = _b.sent(), error = _a.error, email_1 = _a.email;
+                    console.log(error);
+                    if (error) {
+                        throw new Error();
+                    }
+                    if (user.email === "talita@gahoooo.com") {
+                        window.location.href = "/itemsMan.html?email=" + email_1; //query
+                    }
+                    else {
+                        window.location.href = "/orders.html?email=" + email_1; //query
+                    }
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_2 = _b.sent();
+                    console.error(error_2);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
+            }
+        });
+    });
+}

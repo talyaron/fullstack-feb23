@@ -9,58 +9,55 @@ function getEmailFromQuery() {
 const _email  = getEmailFromQuery();
 console.log(_email)
 
-function handleGetItems(){
-    getItems();
-}
-async function getItems() {
-    try {
-        const response = await fetch(`/API/items/getItems`);
-        const data = await response.json();
-        console.log(data)
-        
-        renderTasks(data.items, document.querySelector("#items"));
-    } catch (error) {
-        console.error(error);
-    }
-}
+showItems(document.querySelector("#items"));
 
-
-// getUserName(_email);
-
-// async function getUserName(email:string) {
+// async function showItems(items: HTMLDivElement) {
 //     try {
-//         const response = await fetch(`/API/users/getUserName?email=${email}`);
-//         const userName = await response.json();
-//         console.log(userName)
-//         // renderTasks(userName.tasks, document.querySelector("#welcomMasage"));
+//       const response = await fetch(`/API/items/getItems`);
+//       const itemData = await response.json(); // Assuming the API returns an object
+  
+//       console.log(itemData);
+  
+//       // Create an HTML structure for displaying the item data
+//       const itemHTML = `
+//         <div class="itemName">${itemData.itemName}</div>
+//         <div class="itemDesc">${itemData.itemDesc}</div>
+//         <img src="${itemData.itemUrl}>
+//         // <div class="itemImg">${itemData.itemUrl}</div>
+//       `;
+  
+//       // Append the HTML to the 'items' div
+//       items.innerHTML = itemHTML;
 //     } catch (error) {
-//         console.error(error);
-//     }
-// }
-
-// getUserName(_email);
-// async function getUserName(_email:string) {
-//     try {
-//         const response = await fetch(`/API/users/getUserName?email=${_email}`);
-//         const userName = await response.json();
-//         console.log(userName);
-//         // renderWelcomMasage(userName , document.querySelector("#welcomMasage"))
-//         // renderTasks(data.tasks, document.querySelector("#tasks"));
-//     } catch (error) {
-//         console.error(error);
-//     }
-// }
-
-
-// function renderWelcomMasage(userName: string) {
-//     try {
-//       const html = `
-//         <h3>HI , ${userName}</h3>`
-
-//       return html;
-//     } catch (error) {
-//       console.error(error)
-//       return ""
+//       console.error(error);
 //     }
 //   }
-//   getUserName(_email);
+  
+
+  async function showItems(itemsContainer: HTMLDivElement) {
+    try {
+      const response = await fetch(`/API/items/getItems`);
+      const { items } = await response.json(); // Extract the "items" array
+  
+      console.log(items);
+  
+      // Create HTML to display the items
+      const itemHTML = items.map((item) => `
+        <div class="item">
+          <div class="itemName">${item.itemName}</div>
+          <div class="itemDesc">${item.itemDesc}</div>
+          <img src="${item.itemUrl}" id="img" alt="${item.itemName}" />
+          <form onsubmit="handlecreateOrder(event)">
+          <button type="submit">Add to Order</button>
+          <button type="delete">Remove from Order</button>
+      </form>
+        </div>
+      `).join('');
+  
+      // Set the HTML content of the itemsContainer
+      itemsContainer.innerHTML = itemHTML;
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  
