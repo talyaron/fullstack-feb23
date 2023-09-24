@@ -8,7 +8,7 @@ exports.UserSchema = new Schema({
     password: String,
     userName: String
 });
-exports.UserModel = model("users");
+exports.UserModel = model("users", exports.UserSchema);
 // export default UserModel;
 var User = /** @class */ (function () {
     function User(_a) {

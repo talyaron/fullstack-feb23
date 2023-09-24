@@ -36,27 +36,25 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.login = exports.registerUser = void 0;
-var userModel_1 = require("./userModel");
-//register user 
-exports.registerUser = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var _a, email, password, user, userDB, error_1;
+exports.getItems = exports.addItem = void 0;
+var itemModel_1 = require("./itemModel");
+// Add Item
+exports.addItem = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var _a, itemName, itemDesc, itemUrl, item, itemDB, error_1;
     return __generator(this, function (_b) {
         switch (_b.label) {
             case 0:
                 _b.trys.push([0, 2, , 3]);
-                _a = req.body, email = _a.email, password = _a.password;
-                if (!email || !password)
+                _a = req.body, itemName = _a.itemName, itemDesc = _a.itemDesc, itemUrl = _a.itemUrl;
+                if (!itemName || !itemDesc || !itemUrl)
                     throw new Error("Please complete all fields");
-                user = new userModel_1.UserModel({ email: email, password: password });
-                return [4 /*yield*/, user.save()];
+                item = new itemModel_1.ItemModel({ itemName: itemName, itemDesc: itemDesc, itemUrl: itemUrl });
+                return [4 /*yield*/, item.save()];
             case 1:
-                userDB = _b.sent();
-                //check if user already exist
-                // const userExist = users.find((user) => user.email === email);
-                // if (userExist) throw new Error("User already exist");
-                // users.push(user);
-                res.send({ ok: true, user: userDB });
+                itemDB = _b.sent();
+                console.log(itemDB);
+                res.send({ ok: true, itemDB: itemDB });
+                console.log(item);
                 return [3 /*break*/, 3];
             case 2:
                 error_1 = _b.sent();
@@ -67,19 +65,43 @@ exports.registerUser = function (req, res) { return __awaiter(void 0, void 0, vo
         }
     });
 }); };
-exports.login = function (req, res) {
-    try {
-        var _a = req.body, email_1 = _a.email, password_1 = _a.password;
-        if (!email_1 || !password_1)
-            throw new Error("Please complete all fields");
-        //check if user exist and password is correct
-        var user = userModel_1.users.find(function (user) { return user.email === email_1 && user.password === password_1; });
-        if (!user)
-            throw new Error("some of the details are incorrect");
-        res.send({ ok: true, email: user.email });
-    }
-    catch (error) {
-        console.error(error);
-        res.send({ error: error.message });
-    }
-};
+// get items
+// export async function getItems(req: any, res: any) {
+//   try {
+//     // Specify the fields you want to include in the response
+//     const fieldsToInclude = ['itemName', 'itemDesc', 'itemUrl'];
+//     // Create a projection object based on the fields to include
+//     const projection = fieldsToInclude.reduce((acc, field) => {
+//       acc[field] = 1;
+//       return acc;
+//     }, {});
+//     const itemsDB: any[] = await ItemModel.find({}, projection);
+//     res.send({ items: itemsDB });
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).send({ error: error.message });
+//   }
+// }
+function getItems(req, res) {
+    return __awaiter(this, void 0, void 0, function () {
+        var itemsDB, error_2;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    return [4 /*yield*/, itemModel_1.ItemModel.find({})];
+                case 1:
+                    itemsDB = _a.sent();
+                    res.send({ items: itemsDB });
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_2 = _a.sent();
+                    console.error(error_2);
+                    res.status(500).send({ error: error_2.message });
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
+}
+exports.getItems = getItems;

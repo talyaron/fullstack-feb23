@@ -1,0 +1,38 @@
+body{
+    text-align: center;
+  }
+
+h1, h2, p{
+    text-align: center;
+}
+
+#link{
+    color: rgb(6, 6, 6) ;
+    
+    margin: 5vh;
+  }
+
+form{
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    margin: 0 auto;
+    input{
+        display: block;
+        margin: 10px 0;
+        padding: 1rem;
+        border-radius: 8px;
+
+    }
+    button{
+        padding: 20px;
+        border-radius: 12px;
+        height: 15px;
+        margin: 10px 0;
+        ;
+    }
+}
+#img{
+    width: 50vw;
+    max-width: 200px;
+}

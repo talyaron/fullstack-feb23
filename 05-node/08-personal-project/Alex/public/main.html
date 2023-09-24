@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./dist/main.js" defer></script>
+    <script src="./dist/tasks.js" defer></script>
+    <link rel="stylesheet" href="./dist/style.css">
+</head>
+<!-- <body onload="handleGetUsers()"> -->
+    <body >   
+    <h1>The Great Order Maker</h1>
+    <form onsubmit="handleLogin(event)">
+        <input type="email" name="email" placeholder="email">
+        <input type="password" name="password" placeholder="Password">
+        <button type="submit">Login</button>
+    </form>
+    <div>Need to sighn in? Please go through the
+    <a id="link" href="./register.html">Register</a>
+    </div>
+
+
+    <button onclick="handleGetProducts()">GET Products</button>
+    <div id="tasks"></div>
+    <!--user-->
+    <button onclick="handleGetUser()">ADD USER</button>
+    <div id="userRoot"></div>
+
+</body>
+</html>

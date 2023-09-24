@@ -36,27 +36,25 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.login = exports.registerUser = void 0;
-var userModel_1 = require("./userModel");
+exports.createOrder = void 0;
+var orderModel_1 = require("./orderModel");
 //register user 
-exports.registerUser = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var _a, email, password, user, userDB, error_1;
+exports.createOrder = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var _a, userName, userMail, orderItems, order, orderDB, error_1;
     return __generator(this, function (_b) {
         switch (_b.label) {
             case 0:
                 _b.trys.push([0, 2, , 3]);
-                _a = req.body, email = _a.email, password = _a.password;
-                if (!email || !password)
+                _a = req.body, userName = _a.userName, userMail = _a.userMail, orderItems = _a.orderItems;
+                if (!userName || !userMail || !orderItems || orderItems.length === 0)
                     throw new Error("Please complete all fields");
-                user = new userModel_1.UserModel({ email: email, password: password });
-                return [4 /*yield*/, user.save()];
+                order = new orderModel_1.OrderModel({ userName: userName, userMail: userMail, orderItems: orderItems });
+                return [4 /*yield*/, order.save()];
             case 1:
-                userDB = _b.sent();
-                //check if user already exist
-                // const userExist = users.find((user) => user.email === email);
-                // if (userExist) throw new Error("User already exist");
-                // users.push(user);
-                res.send({ ok: true, user: userDB });
+                orderDB = _b.sent();
+                console.log(orderDB);
+                res.send({ ok: true, orderDB: orderDB });
+                console.log(order);
                 return [3 /*break*/, 3];
             case 2:
                 error_1 = _b.sent();
@@ -67,19 +65,3 @@ exports.registerUser = function (req, res) { return __awaiter(void 0, void 0, vo
         }
     });
 }); };
-exports.login = function (req, res) {
-    try {
-        var _a = req.body, email_1 = _a.email, password_1 = _a.password;
-        if (!email_1 || !password_1)
-            throw new Error("Please complete all fields");
-        //check if user exist and password is correct
-        var user = userModel_1.users.find(function (user) { return user.email === email_1 && user.password === password_1; });
-        if (!user)
-            throw new Error("some of the details are incorrect");
-        res.send({ ok: true, email: user.email });
-    }
-    catch (error) {
-        console.error(error);
-        res.send({ error: error.message });
-    }
-};
