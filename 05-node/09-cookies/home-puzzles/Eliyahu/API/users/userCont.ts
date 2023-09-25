@@ -26,7 +26,7 @@ export async function login(req: any, res: any) {
         const userDB = await UserModel.findOne({ email })
         if (!userDB) throw new Error("user not exist or password is inncorect");
 
-        res.cookie("user", userDB._id, { maxAge: 1000 * 60 * 30, httpOnly: true })
+        res.cookie("user", userDB._id, { maxAge: 1000 * 60 * 10, httpOnly: true })
         res.send({ ok: true, email: email })
 
     } catch (error) {
@@ -36,16 +36,16 @@ export async function login(req: any, res: any) {
     }
 }
 
-export const loginAdmin = (req: any, res: any) => {
-    try {
-        const { adminEmail } = req.body
-        const admin = 'Admin'
-        if (!adminEmail) throw new Error("Missing email Aamin");
-        res.send({ ok: true, adminEmail, admin })
-    } catch (error) {
-        console.error(error.message);
-    }
-}
+// export const loginAdmin = (req: any, res: any) => {
+//     try {
+//         const { adminEmail } = req.body
+//         const admin = 'Admin'
+//         if (!adminEmail) throw new Error("Missing email Aamin");
+//         res.send({ ok: true, adminEmail, admin })
+//     } catch (error) {
+//         console.error(error.message);
+//     }
+// }
 
 export async function getUserName(req: any, res: any) {
     try {
@@ -63,11 +63,7 @@ export async function getUserName(req: any, res: any) {
 
 export async function getUser(req: any, res: any) {
     try {
-        //get user id from cookie
-        const userId = req.cookies.user;
-        if (!userId) throw new Error("no user in cookies");
-        //find user in DB
-        const userDB = await UserModel.findById(userId);
+        const userDB = await req.user;
         if (!userDB) throw new Error("user dosnt exist in DB");
         res.send({ ok: true, user: userDB });
 
@@ -77,3 +73,37 @@ export async function getUser(req: any, res: any) {
     }
 }
 
+export async function getUsers(req: any, res: any) {
+    try {
+        const usersDB = await UserModel.find({})
+        res.send({ users: usersDB })
+    } catch (error) {
+        console.error(error.massage)
+    }
+}
+
+export async function setPremium(req: any, res: any) {
+    try {
+        const { id, isPremium } = req.body
+        const userDB = await UserModel.findById(id)
+        if (userDB.isPremium != isPremium) {
+            const userDB = await UserModel.findByIdAndUpdate(id, { isPremium: isPremium }, { new: true })
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).send(error.message);
+    }
+}
+
+export async function setAdmin(req: any, res: any) {
+    try {
+        const { id, isAdmin } = req.body
+        const userDB = await UserModel.findById(id)
+        if (userDB.isAdmin != isAdmin) {
+            const userDB = await UserModel.findByIdAndUpdate(id, { isAdmin: isAdmin }, { new: true })
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).send(error.message);
+    }
+}

@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>הארץ הטובה</title>
     <link rel="stylesheet" href="./dist/main.css">
-    <script src="./dist/pictures.js" defer></script>
+    <script src="./dist/main.js" defer></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Carter+One&family=Sedgwick+Ave+Display&display=swap"
@@ -17,10 +17,14 @@
 <body dir="rtl">
     <div id="nav"></div>
     <h1>גלריית הארץ הטובה</h1>
-    <button onclick="renderAddPicture()">העלה תמונה</button>
-    <button onclick="handleRenderByUser()">התמונות שלי</button>
+    <button onclick="renderAddPicture()">&#11088 העלה תמונה</button>
+    <button id="myPicture" onclick="handleRenderByUser()">&#11088 התמונות שלי</button>
     <button id ="showAll" onclick="getPictures()">הצג הכל</button>
+    <button id="showUsers" onclick="renderUsers()">הצג משתמשים</button>
+    <div id="users">
+    </div>
     <div id="add"></div>
+    <div id="messages"></div>
        <div class="allPictures" id="allPictures">        
     </div>
 </body>

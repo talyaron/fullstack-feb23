@@ -42,16 +42,16 @@ var mongoose_1 = require("mongoose");
 // Add a blog
 function addBlog(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var _a, title, description, userEmail, blog, blogDB, err_1;
+        var _a, title, description, userEmail, imageUrl, blog, blogDB, err_1;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
                     _b.trys.push([0, 2, , 3]);
-                    _a = req.body, title = _a.title, description = _a.description, userEmail = _a.userEmail;
-                    if (!title || !description || !userEmail) {
+                    _a = req.body, title = _a.title, description = _a.description, userEmail = _a.userEmail, imageUrl = _a.imageUrl;
+                    if (!title || !description || !userEmail || !imageUrl) {
                         return [2 /*return*/, res.status(400).json({ msg: "Missing required fields" })];
                     }
-                    blog = new blogModel_1["default"]({ title: title, description: description, userEmail: userEmail });
+                    blog = new blogModel_1["default"]({ title: title, description: description, userEmail: userEmail, imageUrl: imageUrl });
                     return [4 /*yield*/, blog.save()];
                 case 1:
                     blogDB = _b.sent();

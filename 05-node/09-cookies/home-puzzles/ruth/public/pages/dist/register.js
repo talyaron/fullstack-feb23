@@ -62,7 +62,7 @@ function handleRegister(event) {
                         alert(error.message);
                         throw new Error(error);
                     }
-                    window.location.href = "/login.html";
+                    window.location.href = "./login.html";
                     return [3 /*break*/, 4];
                 case 3:
                     error_1 = _a.sent();

@@ -8,6 +8,7 @@ async function handleLogIn(event) {
         console.log(user)
         if (!user.email || !user.password)
             throw new Error("missing some details");
+
         const response = await fetch("API/user/log-in", {
             method: "POST",
             headers: {
@@ -21,7 +22,7 @@ async function handleLogIn(event) {
         if (!data.ok) {
             throw new Error(data.message);
         } else {
-            // go to home page   with user email
+            // go to home page   
             window.location.href = `homePage.html`;
         }
 

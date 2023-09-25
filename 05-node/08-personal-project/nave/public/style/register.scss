@@ -33,7 +33,7 @@ $color-site-white: #ffff;
             font-family: $font-family;
         }
         .formRegister{
-            font-size: $font-size-heading;
+            font-size: $font-size-text;
             color: $color-site-white;
             font-family: $font-family;
             display: grid;
@@ -112,4 +112,7 @@ width:100%;
 
     border: none;
     cursor: pointer;}
- 
+    
+    .label{
+        text-align: center;
+       }

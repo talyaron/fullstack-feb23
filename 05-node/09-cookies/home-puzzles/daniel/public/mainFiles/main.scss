@@ -1,0 +1,35 @@
+body {
+    background: rgb(74,58,68);
+    background: linear-gradient(90deg, rgba(74,58,68,1) 12%, rgba(98,99,121,1) 35%, rgba(122,141,174,1) 67%, rgba(148,187,233,1) 89%);
+    width: 100vw;
+    height: 90vh;
+    text-align: center;
+}
+
+.container{
+    display: flex;
+    justify-content: space-evenly;
+    padding-top: 104px;
+    a{
+        color: #694a6f;
+    text-decoration: none;
+    font-size: 35px;
+    border: 2px solid white;
+    border-radius: 30px;
+    padding: 10px;
+    background-color: #c0b7c1;
+    transition: all .2s ease-in-out;
+    }
+}
+h1{
+    font-size: 70px;
+    color: azure;
+}
+
+img{
+    width: 30%;
+    padding-top: 95px;
+}
+a:hover {
+    transform: scale(1.1);
+}

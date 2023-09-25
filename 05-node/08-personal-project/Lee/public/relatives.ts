@@ -80,7 +80,7 @@ async function handleAddRelative(event) {
 // Function to get user's relatives from the server
 async function getRelativesFromServer(email: string) {
   try {
-    const response = await fetch(`/API/relatives/get-users-relatives?email=${email}`);
+    const response = await fetch(`/API/relatives/get-user-relatives?email=${email}`);
     const data = await response.json();
     return data.relatives;
   } catch (error) {

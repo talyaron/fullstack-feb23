@@ -12,7 +12,7 @@ router
 .get("/get-log-in-user", getLoggedInUser)
 .post("/log-out",logOut)
 .get("/get-all-users",isAdmin ,allUsers) 
-.put("/update-user", updateUser) // Use a PUT request to update a user
-.delete("/delete-user", deleteUser) // Use a DELETE request to delete a user
+.put("/update-user",isAdmin, updateUser)
+.delete("/delete-user",isAdmin, deleteUser)
 .get("/get-user-details", getUserDetails);
 

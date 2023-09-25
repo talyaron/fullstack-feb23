@@ -118,7 +118,7 @@ function getRelativesFromServer(email) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
-                    return [4 /*yield*/, fetch("/API/relatives/get-users-relatives?email=" + email)];
+                    return [4 /*yield*/, fetch("/API/relatives/get-user-relatives?email=" + email)];
                 case 1:
                     response = _a.sent();
                     return [4 /*yield*/, response.json()];

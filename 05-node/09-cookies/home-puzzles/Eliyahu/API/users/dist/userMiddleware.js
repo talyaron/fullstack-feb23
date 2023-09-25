@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.isAdmin = void 0;
+exports.getLoggedUser = exports.isPremium = exports.isAdmin = void 0;
 var userModels_1 = require("./userModels");
 function isAdmin(req, res, next) {
     return __awaiter(this, void 0, void 0, function () {
@@ -71,3 +71,51 @@ function isAdmin(req, res, next) {
     });
 }
 exports.isAdmin = isAdmin;
+function isPremium(req, res, next) {
+    try {
+        var userDB = req.user;
+        if (!userDB)
+            throw new Error("user dosnt exist in DB");
+        if (userDB.isPremium) {
+            next();
+        }
+        else {
+            res.status(401).send('not authorized');
+        }
+    }
+    catch (error) {
+        console.error(error);
+        res.status(500).send(error.message);
+    }
+}
+exports.isPremium = isPremium;
+function getLoggedUser(req, res, next) {
+    return __awaiter(this, void 0, void 0, function () {
+        var userId, userDB, error_2;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    userId = req.cookies.user;
+                    return [4 /*yield*/, userModels_1.UserModel.findById(userId)];
+                case 1:
+                    userDB = _a.sent();
+                    if (!userDB) {
+                        req.user = null;
+                    }
+                    else {
+                        req.user = userDB;
+                    }
+                    next();
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_2 = _a.sent();
+                    console.error(error_2);
+                    res.status(500).send({ error: error_2.message });
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
+}
+exports.getLoggedUser = getLoggedUser;

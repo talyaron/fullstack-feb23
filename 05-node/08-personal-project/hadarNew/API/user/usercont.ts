@@ -9,6 +9,12 @@ export const registerUser = async (req, res) => {
     //ts
     // const user = new User({ email, password });
 
+     // Check if a user with the same email already exists
+     const existingUser = await UserModel.findOne({ email }).exec();
+     if (existingUser) {
+       return res.status(400).json({ error: "User with this email already exists." });
+     }
+
     //mongo
     const user = new UserModel({ email, password });
     const userDB= await user.save();
@@ -31,10 +37,9 @@ export const loginUser = async (req, res) => {
     const { email, password } = req.body;
     if (!email || !password) throw new Error("Please complete all fields");
 
-    const user = users.find(
-      (user) => user.email === email && user.password === password
-    );
+    const user = await UserModel.findOne({ email, password }).exec();
     if (!user) throw new Error("some of the details are incorrect");
+    res.cookie("user", user._id, { maxAge: 1000 * 100, httpOnly: true })
     res.send({ ok: true, email: user.email });
   } catch (error) {
     console.error(error);

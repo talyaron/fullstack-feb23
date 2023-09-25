@@ -1,5 +1,12 @@
 import { UserModel } from "./userModel";
 
+// const jwt = require('jwt-simple');
+
+const {SECRET} = process.env;
+const secert = SECRET;
+
+
+
 export async function getLoggedUser(req: any, res: any, next: Function) {
   try {
     const userId = req.cookies.user;

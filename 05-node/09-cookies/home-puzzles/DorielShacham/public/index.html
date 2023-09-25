@@ -1,20 +1,284 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link type="text/css" rel="stylesheet" href="./dist/index.css">
     <script src="./dist/index.js" defer></script>
-    <title>The best recipes</title>
+    <title>Automation Blog</title>
 </head>
+
 <body>
-    <div class="container">
-        <h1>Automation Blog</h1>
-        <h3>Sign up & Log in to join thusends of automation developers</h3>
-        <div id="root">
-            <button onclick="handleLoginPage()">Log In</button>
-            <button onclick="handleSignUpPage()">Sign Up</button>
-        </div>
+    <header>
+        <nav class="navbar">
+            <ul>
+                <li><a href="#section1">Selenium</a></li>
+                <li><a href="#section2">Playwright</a></li>
+                <li><a href="#section3">WebDriverIO</a></li>
+                <li><a href="#section4">Cypress</a></li>
+                <li><a href="#section5">Jest</a></li>
+                <li><a href="#section6">Puppeteer</a></li>
+                <li><a href="#section7">Appium</a></li>
+                <li><a href="#section8">TestCafe</a></li>
+                <li><a href="#section9">Nightwatch.js</a></li>
+            </ul>
+            <div class="auth-buttons">
+                <button onclick="handleLoginPage()">Log In</button>
+                <button onclick="handleSignUpPage()">Sign Up</button>
+            </div>
+        </nav>
+    </header>
+
+    <div class="arrow-container">
+        <div class="message">Sign up to see the blogs!</div>
+        <div class="arrow"></div>
     </div>
-</body>
-</html>
+
+    <section class="hero">
+        <div class="inner-text">
+            <p class="p1">QA</p>
+            <div id="changingText" class="changing-text"></div>
+        </div>
+        <a class="hero-down" href="#section1">
+            <div class="btn-react"></div>
+            <i class="fa fa-chevron-down"></i>
+        </a>
+    </section>
+    
+
+
+    <div class="container">
+        <section id="section1" class="section odd">
+            <div class="content">
+                <div class="text">
+                    <h2><a href="https://www.selenium.dev/">Selenium</a></h2>
+                    <p>
+                        Selenium is a powerful and flexible automation tool primarily used for automating web
+                        applications for testing purposes. It allows testers and developers to write scripts in various
+                        programming languages like Java, Python, and more, to simulate user interactions with web
+                        applications.
+                    </p>
+                    <p>
+                        Selenium provides a suite of tools to automate web browsers, each with a specific role. Selenium
+                        WebDriver is the most popular component, offering a programming interface to create and run test
+                        cases. It interacts with a browser as a real user would, making it a crucial tool for functional
+                        testing.
+                    </p>
+                    <p>
+                        With Selenium WebDriver, you can perform actions such as clicking buttons, filling forms,
+                        navigating through pages, and more. Its versatility and compatibility with various browsers make
+                        it an essential tool for automated testing of web applications across different platforms.
+                    </p>
+                </div>
+                <div class="text-container" id="text-container">
+                    <span id="automation-text">Automation</span>
+                    <span id="in-text">In</span>
+                    <span id="section-title"></span>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="section2" class="section even">
+            <div class="content">
+                <div class="text">
+                    <h2><a href="https://playwright.dev/">Playwright</a></h2>
+                    <p>
+                        Playwright is a modern automation tool for web testing and browser automation. It was created by
+                        Microsoft and provides a single API to automate Chromium, WebKit, and Firefox browsers. This
+                        enables cross-browser testing with a unified and consistent interface.
+                    </p>
+                    <p>
+                        Playwright is gaining popularity due to its strong emphasis on automation principles like
+                        reliability, parallelism, and cross-browser coverage. It allows you to write automation scripts
+                        in JavaScript or TypeScript and provides powerful features to interact with web pages and
+                        perform testing tasks effectively.
+                    </p>
+                </div>
+                <div class="text-container" id="text-container">
+                    <span id="automation-text">Automation</span>
+                    <span id="in-text">In</span>
+                    <span id="section-title"></span>
+                </div>
+            </div>
+        </section>
+
+        <section id="section3" class="section odd">
+            <div class="content">
+                <div class="text">
+                    <h2><a href="https://webdriver.io/">WebDriverIO</a></h2>
+                    <p>
+                        WebDriverIO is a popular end-to-end testing framework for web applications. It provides a set of
+                        browser automation APIs in a simple and concise manner, making it easier to write tests.
+                        WebDriverIO is based on the WebDriver protocol and is compatible with various testing services
+                        and frameworks.
+                    </p>
+                    <p>
+                        With WebDriverIO, you can automate browser actions, perform assertions, and create comprehensive
+                        test suites. It supports multiple testing frameworks like Mocha, Jasmine, and Cucumber, allowing
+                        you to choose the one that suits your testing needs. WebDriverIO's flexibility and extensive
+                        feature set make it a valuable tool for automated testing.
+                    </p>
+                </div>
+                <div class="text-container" id="text-container">
+                    <span id="automation-text">Automation</span>
+                    <span id="in-text">In</span>
+                    <span id="section-title"></span>
+                </div>
+            </div>
+        </section>
+
+        <section id="section4" class="section even">
+            <div class="content">
+                <div class="text">
+                    <h2><a href="https://www.cypress.io/">Cypress</a></h2>
+                    <p>
+                        Cypress is a modern end-to-end testing framework designed to simplify the testing process for
+                        web applications. It allows you to write real-time tests in JavaScript, giving you the ability
+                        to see exactly what's happening at every step of the test execution. Cypress provides a rich set
+                        of features for testing interactions, assertions, and network requests, making it a powerful
+                        tool for web testing.
+                    </p>
+                    <p>
+                        Cypress runs in the same context as the application being tested, enabling you to observe and
+                        control your application's behavior easily. It offers a fast and reliable testing experience,
+                        making it a popular choice among developers and testers for writing comprehensive and effective
+                        tests.
+                    </p>
+                </div>
+                <div class="text-container" id="text-container">
+                    <span id="automation-text">Automation</span>
+                    <span id="in-text">In</span>
+                    <span id="section-title"></span>
+                </div>
+            </div>
+        </section>
+
+        <section id="section5" class="section odd">
+            <div class="content">
+                <div class="text">
+                    <h2><a href="https://jestjs.io/">Jest</a></h2>
+                    <p>
+                        Jest is a widely used JavaScript testing framework maintained by Facebook. It is known for its
+                        simplicity and ease of use, making it an excellent choice for both unit and integration testing.
+                        Jest is particularly popular in the React ecosystem, but it can be used for any JavaScript
+                        project.
+                    </p>
+                    <p>
+                        Jest provides a built-in assertion library, mocking capabilities, and parallel test execution.
+                        It also offers snapshot testing, allowing you to capture the expected output of a component and
+                        compare it to future changes automatically. Jest's zero-config setup and robust features make it
+                        a preferred testing framework for many developers.
+                    </p>
+                </div>
+                <div class="text-container" id="text-container">
+                    <span id="automation-text">Automation</span>
+                    <span id="in-text">In</span>
+                    <span id="section-title"></span>
+                </div>
+            </div>
+        </section>
+
+        <section id="section6" class="section even">
+            <div class="content">
+                <div class="text">
+                    <h2><a href="https://pptr.dev/">Puppeteer</a></h2>
+                    <p>
+                        Puppeteer is a Node.js library developed by Google that provides a high-level API for headless
+                        Chrome or Chromium browsers. It is commonly used for automating web tasks, such as web scraping,
+                        taking screenshots, and generating PDFs.
+                    </p>
+                    <p>
+                        Puppeteer makes it easy to perform tasks like navigating pages, interacting with elements, and
+                        capturing data from websites. Its integration with Chrome DevTools offers advanced debugging
+                        capabilities for web automation.
+                    </p>
+                    <p>
+                        Puppeteer is a versatile tool suitable for various use cases, from web scraping and testing to
+                        generating performance reports for web applications.
+                    </p>
+                </div>
+                <div class="text-container" id="text-container">
+                    <span id="automation-text">Automation</span>
+                    <span id="in-text">In</span>
+                    <span id="section-title"></span>
+                </div>
+            </div>
+        </section>
+
+        <section id="section7" class="section odd">
+            <div class="content">
+                <div class="text">
+                    <h2><a href="https://appium.io/docs/en/2.1/">Appium</a></h2>
+                    <p>
+                        Appium is an open-source tool for automating mobile applications on Android and iOS platforms.
+                        It allows you to write tests using the same APIs that you use for web automation, making it easy
+                        to test both web and mobile applications using a single framework.
+                    </p>
+                    <p>
+                        Appium supports multiple programming languages and provides a consistent and flexible way to
+                        automate mobile app interactions, making it a popular choice for mobile application testing.
+                    </p>
+                </div>
+                <div class="text-container" id="text-container">
+                    <span id="automation-text">Automation</span>
+                    <span id="in-text">In</span>
+                    <span id="section-title"></span>
+                </div>
+            </div>
+        </section>
+
+        <section id="section8" class="section even">
+            <div class="content">
+                <div class="text">
+                    <h2><a href="https://testcafe.io/">TestCafe</a></h2>
+                    <p>
+                        TestCafe is a free and open-source automation framework for web testing. It allows you to write
+                        tests in JavaScript and TypeScript and provides a simple and intuitive API for automating
+                        browser interactions.
+                    </p>
+                    <p>
+                        TestCafe runs tests on all popular browsers and platforms and doesn't require browser plugins,
+                        making it easy to set up and use. It offers features like parallel test execution, smart wait
+                        mechanisms, and automatic handling of page load events.
+                    </p>
+                </div>
+                <div class="text-container" id="text-container">
+                    <span id="automation-text">Automation</span>
+                    <span id="in-text">In</span>
+                    <span id="section-title"></span>
+                </div>
+            </div>
+        </section>
+
+        <section id="section9" class="section odd">
+            <div class="content">
+                <div class="text">
+                    <h2><a href="https://nightwatchjs.org/">Nightwatch.js</a></h2>
+                    <p>
+                        Nightwatch.js is an automated testing framework for web applications and websites, written in
+                        Node.js. It uses the WebDriver API to perform browser automation and allows you to write tests
+                        in a straightforward and descriptive manner using JavaScript.
+                    </p>
+                    <p>
+                        NightwatchJS supports parallel test execution, custom assertions, and various built-in commands
+                        to interact with web elements and perform common testing actions. It provides detailed reporting
+                        and integrates with popular CI/CD tools for seamless automation in the development pipeline.
+                    </p>
+                </div>
+                <div class="text-container" id="text-container">
+                    <span id="automation-text">Automation</span>
+                    <span id="in-text">In</span>
+                    <span id="section-title"></span>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer class="footer">
+        <div>
+            <p>2023 Licences</p>
+            <p>Copy Right Reserved</p>
+            <p>Made by Doriel Shacham</p>
+        </div

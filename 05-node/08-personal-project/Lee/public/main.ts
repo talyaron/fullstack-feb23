@@ -1,66 +1,43 @@
+import { relatives } from "../API/relatives/relativesModel";
+
 
 
 function renderRelatives(relativesData, targetElement) {
+    targetElement.innerHTML = ''; // Clear the target element
+
     if (!relativesData || relativesData.length === 0) {
         targetElement.innerHTML = '<p>No relatives found.</p>';
         return;
     }
 
     const relativesList = document.createElement('ul');
-     relativesList.style.listStyle = 'none';
+    relativesList.style.listStyle = 'none';
 
     relativesData.forEach(relative => {
         const relativeItem = document.createElement('li');
-        const boldFullName = document.createElement('span');
-        boldFullName.style.fontWeight = 'bold';
-        boldFullName.textContent = relative.fullName;
 
-        const relationText = document.createElement('span');
-        relationText.textContent = ` is my: `;
+        const birthDate = new Date(relative.birthDate);
+        const formattedBirthDate = `${birthDate.getDate()}-${birthDate.getMonth() + 1}-${birthDate.getFullYear()}`;
 
-        const boldRelation = document.createElement('span');
-        boldRelation.style.fontWeight = 'bold';
-        boldRelation.textContent = relative.relation;
-
-        // Split the birthDate into day, month, and year
-        const birthDateParts = relative.birthDate.split('-');
-        const birthDateDay = birthDateParts[2];
-        const birthDateMonth = birthDateParts[1];
-        const birthDateYear = birthDateParts[0];
-
-        const birthDateText = document.createElement('span');
-        birthDateText.textContent = ` - born on: `;
-
-        const boldBirthDate = document.createElement('span');
-        boldBirthDate.style.fontWeight = 'bold';
-        boldBirthDate.textContent = `${birthDateDay}-${birthDateMonth}-${birthDateYear}`;
-
-        const countryText = document.createElement('span');
-        countryText.textContent = ` - lives in: `;
-
-        const boldCountry = document.createElement('span');
-        boldCountry.style.fontWeight = 'bold';
-        boldCountry.textContent = relative.country;
-
-        relativeItem.appendChild(boldFullName);
-        relativeItem.appendChild(relationText);
-        relativeItem.appendChild(boldRelation);
-        relativeItem.appendChild(birthDateText);
-        relativeItem.appendChild(boldBirthDate);
-        relativeItem.appendChild(countryText);
-        relativeItem.appendChild(boldCountry);
+        relativeItem.innerHTML = `
+        <span style="font-weight: bold">${relative.fullName}</span> is my:
+        <span style="font-weight: bold">${relative.relation}</span> - born in:
+        <span style="font-weight: bold">${formattedBirthDate}</span> - lives in:
+        <span style="font-weight: bold">${relative.country}</span>
+        <button onclick="handleUpdateRelatives('${relative.id}')">Update</button>
+        <button onclick="handleDeleteRelatives('${relative.id}')">Delete</button>
+      `;
         relativesList.appendChild(relativeItem);
     });
 
-    targetElement.innerHTML = ''; // Clear the target element
     targetElement.appendChild(relativesList);
 }
 
 
 // A function to get the user's relatives from the server by email
-async function getUserRelatives(email: string) {
+export async function getUserRelatives(email: string) {
     try {
-        const response = await fetch(`/API/relatives/get-users-relatives?email=${email}`);
+        const response = await fetch(`/API/relatives/get-user-relatives?email=${email}`);
         const data = await response.json();
         console.log(data);
 
@@ -70,6 +47,50 @@ async function getUserRelatives(email: string) {
         console.error(error);
     }
 }
+
+
+export async function handleDeleteRelatives(relativeId: string) {
+    try {
+        console.log(relativeId);
+        const response = await fetch(`/API/relatives/delete-relative/${relativeId}`, {
+            method: 'DELETE',
+            headers: { 'Content-Type': 'application/json' },
+        });
+
+        if (response.status === 200) {
+            const result = await response.json();
+            if (result && result.relativeDB) {
+                console.log("Relative deleted successfully.");
+                // Update the UI or take other actions here.
+            } else {
+                console.error("Server response is missing 'relativeDB' property.");
+            }
+        } else if (response.status === 404) {
+            console.error("Relative not found");
+        } else {
+            // Handle other status codes or errors
+            const errorData = await response.json(); // Parse error response from server
+            console.error("Error:", errorData.error); // Display the specific error message from the server
+        }
+
+    } catch (error) {
+        console.error("An unexpected error occurred:", error);
+    }
+}
+
+async function handleGetUserAndRelatives (){
+    try {
+        
+        const response = await fetch("API/users/userWithRelatives")
+        const data = await response.json()
+        console.log(data)
+    } catch (error) {
+        console.error(error)
+        
+    }
+}
+
+handleGetUserAndRelatives()
 
 
 

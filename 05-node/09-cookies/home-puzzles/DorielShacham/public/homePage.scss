@@ -2,20 +2,19 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f0f0f0;
+    background-color: rgba(0,0,0,0.800);
+    color: white;
 }
 
 .wrapper {
     max-width: 1200px;
     margin: 0 auto;
-    display: flex;
-    flex-direction: column;
     background-color: white;
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
 }
 
 header {
-    background-color: orangered;
+    background-color: #e74c3c;
     color: white;
     text-align: center;
     padding: 20px;
@@ -27,44 +26,60 @@ header h1 {
     font-size: 24px;
 }
 
+#helloUser {
+    padding: 10px;
+    .welcome-message {
+        color: black;
+    }
+}
+
+
 main {
+    background-color: rgba(0, 0, 0, 0.800);
     padding: 20px;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    align-items: center;
+}
+
+.blog-form {
+    width: 80%;
+    margin-bottom: 20px;
 }
 
 .blog-form h2 {
     font-size: 20px;
-}
-
-input[type="text"],
-textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
+    text-align: center;
     margin-bottom: 10px;
 }
 
-input[type="submit"] {
-    background-color: orangered;
+.blog-form input[type="text"],
+.blog-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.blog-form input[type="submit"] {
+    background-color: #e74c3c;
     color: white;
     border: none;
     border-radius: 5px;
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
+    width: 100%;
 }
 
 .blog-options {
+    width: 80%;
     display: flex;
     justify-content: space-between;
+    margin-bottom: 20px;
 }
 
-.btn {
-    background-color: orangered;
+.blog-options .btn {
+    background-color: #e74c3c;
     color: white;
     border: none;
     border-radius: 5px;
@@ -73,33 +88,79 @@ input[type="submit"] {
     cursor: pointer;
 }
 
+.blog-options .btn:hover {
+    background-color: #e74c3c;
+}
+
+
 .blog-container {
-    background-color: white;
+    color: white;
+    background-color: black;
     border: 1px solid #ccc;
     border-radius: 5px;
     padding: 20px;
-}
+  
+    .blog-post {
+      margin-bottom: 20px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #ccc;
+  
+      .blogTitle {
+        text-align: center;
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+  
+      .blogImage {
+        width: 100%;
+        max-height: 200px; 
+        object-fit: cover;
+        display: block;
+        margin: 0 auto;
+        margin-bottom: 10px;
+      }
+  
+      .blogDescription {
+        margin-bottom: 10px;
+      }
+  
+      .deleteBlog {
+        display: block;
+        margin: 0 auto;
+        padding: 10px 20px;
+        border: 1px solid #e74c3c;
+        background-color: #e74c3c;
+        color: white;
+        border-radius: 5px;
+        cursor: pointer;
+  
+        &:hover {
+          background-color: #c0392b;
+          border: 1px solid #c0392b;
+        }
+      }
+    }
+  }
 
 #sideUpdateContainer {
-    background-color: #f0f0f0;
+    background-color: rgba(0, 0, 0, 0.800);
     padding: 20px;
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
 
-.welcome-message {
-    font-size: 20px;
-    font-weight: bold;
-    color: black; 
-}
-
-#logOutBtn{
-    border:2px solid white;
+#logOutBtn, #homePath {
+    border: 2px solid white;
     padding: 10px;
     margin: 10px;
     transition: 0.3s;
 }
-.btn:hover{
+
+.btn {
+    border-radius: 5px;
+}
+
+.btn:hover {
     opacity: 0.8;
 }
