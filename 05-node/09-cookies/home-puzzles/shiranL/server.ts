@@ -1,7 +1,7 @@
 import express from "express";
 import mongoose from 'mongoose';
 import cookieParser from 'cookie-parser';
-import {getLoggedUser} from "./API/user/userMiddlware";
+import {getLoggedUser,isAdmin} from "./API/user/userMiddlware";
 
 
 const app = express();
@@ -25,7 +25,9 @@ mongoose.connect("mongodb+srv://shiranlasry1:jf1EdIVAk2IXUUKU@cluster0.hsoq9u5.m
 .catch(err=>{
   console.error(err)
 })
-app.use(getLoggedUser)
+app.use(getLoggedUser);
+
+
 // get router from usersRouter
 import userRouters from "./API/user/userRoutes"
 //tells express to use proudctsRouter on the intial route "/API/users"

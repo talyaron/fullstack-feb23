@@ -8,7 +8,7 @@ function goToSignUp() {
 
 async function handleLogIn(event) {
     try {
-        
+        debugger
         event.preventDefault();
         const email = event.target.email.value;
         const password = event.target.password.value;
@@ -22,7 +22,7 @@ async function handleLogIn(event) {
             },
             body: JSON.stringify(user),
         });
-        
+        debugger
         const data = await response.json();
         
         
