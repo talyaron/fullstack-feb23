@@ -10,7 +10,7 @@
 /* Apply styling to the body */
 body {
     font-family: Arial, sans-serif;
-    background-image: url('./images/food2.jpg');
+    background-image: url('./images/chocolate.jpg');
     background-size: cover; /* Cover the entire viewport */
     background-repeat: no-repeat; /* Prevent image from repeating */
 }
@@ -32,7 +32,7 @@ body {
 /* Change the color of the headings */
 h1 {
     font-size: 24px;
-    color: #fc67cd; /* Blue color */
+    color: #ff15b5; /* Blue color */
 }
 
 h2 {
@@ -53,7 +53,7 @@ p {
 
 /* Style the button */
 .back-btn {
-    background-color: #ff7f50; /* Coral color */
+    background-color: #93032c; /* Coral color */
     color: #fff;
     border: none;
     border-radius: 4px;
@@ -65,7 +65,7 @@ p {
 
     /* Hover effect to make the button slightly darker */
     &:hover {
-        background-color: #ff6347; /* Darker coral color */
+        background-color: #fc93b1; /* Darker coral color */
     }
 }
 
@@ -84,11 +84,14 @@ input[type="password"] {
 }
 
 button[type="submit"] {
-    background-color: #fc67cd; /* Blue color */
+    background-color: #fc93b1; /* Blue color */
     color: #fff;
     border: none;
     border-radius: 4px;
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
+    &:hover {
+        background-color: #f31956; /* Darker coral color */
+    }
 }

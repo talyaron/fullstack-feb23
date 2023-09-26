@@ -5,16 +5,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="./dist/homePage.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="./dist/homePage.css">
     <title>Home</title>
 </head>
 <body onload="renderHelloUser()">
     <div class="wapper">
-        <div class="centerContainer">
+        <div id="bar">
+            <div id="helloUserDiv"></div>
+            <div id="icons">
+                <i class="fas fa-shopping-cart"></i> <!-- Cart icon -->
+                <i class="fas fa-user"></i> <!-- Account icon -->
+                <i class="fas fa-sign-out-alt"></i> <!-- Log Out icon -->
+            </div>
+        </div>
+        <div id="admin_area">
+           
+        </div>
+        <div id="customers_area"></div>
+    </div>
+
+
+
+        <!-- <div class="centerContainer">
             <div class="centerContainer__heder">
                 <div id="helloUser"></div>
             </div>
-     <!-- Form for adding a recipe -->
+      Form for adding a recipe 
      <form id="addRecipeForm" onsubmit="handleAddRecipe(event)">
         <input type="text" name="recipeName" id="recipeName" class="input-field" placeholder="Recipe Name" required>
         <input type="text" name="recipeIngredients" id="recipeIngredients" class="input-field" placeholder="Recipe Ingredients" required>
@@ -32,7 +49,7 @@
         <input type="submit" value="Add Recipe" class="btn">
     </form>
     
-    <!-- Buttons to logout and view recipes -->
+     Buttons to logout and view recipes 
     <div class="btn-container">
         <button id="logOutBtn" class="btn" onclick="handleLogout()">Log Out</button>
         <button id="showAllBtn" class="btn" onclick="renderAllRecipes()">Show All</button>
@@ -45,8 +62,8 @@
         <div class="sideUpdaecontainer">
             <div id="updateUserDiv"></div>
             <div id="userdetailsDiv"></div>
-        </div>
-    </div>
+        </div> -->
+    
   
    
 </body>

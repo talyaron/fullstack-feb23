@@ -46,6 +46,7 @@ function handleLogIn(event) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
+                    debugger;
                     event.preventDefault();
                     email = event.target.email.value;
                     password = event.target.password.value;
@@ -61,6 +62,7 @@ function handleLogIn(event) {
                         })];
                 case 1:
                     response = _a.sent();
+                    debugger;
                     return [4 /*yield*/, response.json()];
                 case 2:
                     data = _a.sent();
