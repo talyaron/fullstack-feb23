@@ -42,8 +42,8 @@
         </select>
         <button type="submit">ADD</button>
     </form>
-    <button onclick="handleGetRelatives()">GET Your Family Members</button>
-    <button onclick="handleGetRelatives()">GET All Users Family Members</button>
+    <div><button onclick="handleGetRelatives()">GET Your Family Members</button></div>
+    <div></div><button onclick="handleGetAllUsersRelatives()">GET All Users Family Members</button></div>
     <button type="hidden" id="deleteButton" onclick="handleDeleteRelatives()">Delete</button>
     <button type="hidden" id="updateButton" onclick="handleUpdateRelatives()">Update</button>
 
@@ -51,6 +51,8 @@
 
 
     <div id="relatives"></div>
+    <div id="user-relatives-container"></div>
+
     <img src="img/dead-sea-scroll-no-bg.png" alt="scroll">
 
 
