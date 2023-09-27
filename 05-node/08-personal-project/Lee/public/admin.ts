@@ -34,19 +34,53 @@ function renderRelatives(relativesData, targetElement) {
 }
 
 
-// A function to get the user's relatives from the server by email
-export async function getUserRelatives(email: string) {
-    try {
-        const response = await fetch(`/API/relatives/get-user-relatives?email=${email}`);
-        const data = await response.json();
-        console.log(data);
 
-        // Assuming you have a rendering function for relatives, e.g., renderRelatives
-        renderRelatives(data.relatives, document.querySelector("#relatives"));
+async function handleGetAllUsersRelatives() {
+    try {
+      const response = await fetch('/API/users/userWithRelatives');
+      const data = await response.json();
+  
+      if (data.user) {
+        const userRelativesContainer = document.querySelector("#user-relatives-container");
+        userRelativesContainer.innerHTML = ''; // Clear the container
+  
+        const user = data.user;
+  
+        const userName = document.createElement('h2');
+        userName.textContent = user.userName || 'User Name';
+  
+        const relativesList = document.createElement('ul');
+        relativesList.style.listStyle = 'none';
+  
+        user.familyMembers.forEach(relative => {
+          const relativeItem = document.createElement('li');
+  
+          const birthDate = new Date(relative.birthDate);
+          const formattedBirthDate = `${birthDate.getDate()}-${birthDate.getMonth() + 1}-${birthDate.getFullYear()}`;
+  
+          relativeItem.innerHTML = `
+            <span style="font-weight: bold">${relative.fullName}</span> is my:
+            <span style="font-weight: bold">${relative.relation}</span> - born in:
+            <span style="font-weight: bold">${formattedBirthDate}</span> - lives in:
+            <span style="font-weight: bold">${relative.country}</span>
+            <button onclick="handleUpdateRelatives('${relative._id}')">Update</button>
+            <button onclick="handleDeleteRelatives('${relative._id}')">Delete</button>
+          `;
+          relativesList.appendChild(relativeItem);
+        });
+  
+        userRelativesContainer.appendChild(userName);
+        userRelativesContainer.appendChild(relativesList);
+      } else {
+        console.log("No user and relatives found.");
+      }
     } catch (error) {
-        console.error(error);
+      console.error("An error occurred while fetching and rendering users and relatives:", error);
     }
-}
+  }
+  
+  // Call the function when the admin page loads
+  window.addEventListener('load', handleGetAllUsersRelatives);
 
 
 export async function handleDeleteRelatives(relativeId: string) {

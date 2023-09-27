@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.getLoggedUser = void 0;
+exports.isAdmin = exports.getLoggedUser = void 0;
 var userModel_1 = require("./userModel");
 function getLoggedUser(req, res, next) {
     return __awaiter(this, void 0, void 0, function () {
@@ -68,3 +68,37 @@ function getLoggedUser(req, res, next) {
     });
 }
 exports.getLoggedUser = getLoggedUser;
+function isAdmin(req, res, next) {
+    return __awaiter(this, void 0, void 0, function () {
+        var userId, user, error_2;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    userId = req.user;
+                    if (!userId)
+                        throw new Error("User not found on cookie");
+                    return [4 /*yield*/, userModel_1.UserModel.findById(userId)];
+                case 1:
+                    user = _a.sent();
+                    if (!user)
+                        throw new Error("User not found on database");
+                    //check if the user is admin (from Database)
+                    if (user.isAdmin) {
+                        next(); // continue to the next controller
+                    }
+                    else { // if user is not adnin throw error of unauthorized (401)
+                        res.status(401).send({ error: "Unauthorized" });
+                    }
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_2 = _a.sent();
+                    console.error(error_2);
+                    res.status(500).send({ error: error_2.message });
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
+}
+exports.isAdmin = isAdmin;
