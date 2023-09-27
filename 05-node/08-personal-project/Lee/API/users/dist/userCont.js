@@ -36,25 +36,35 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.getUserAndRelatives = exports.login = exports.registerUser = void 0;
+exports.getAllUsersAndRelatives = exports.getUserAndRelatives = exports.login = exports.registerUser = void 0;
 var userModel_1 = require("./userModel");
+var bcrypt = require('bcrypt');
+var jwt = require('jwt-simple');
+var SECRET = process.env.SECRET;
+var secret = SECRET;
+var saltRounds = 10;
 //register user 
 exports.registerUser = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var _a, email, password, existingUser, user, validationError, error_1;
+    var _a, email, password, hash, existingUser, user, validationError, error_1;
     return __generator(this, function (_b) {
         switch (_b.label) {
             case 0:
-                _b.trys.push([0, 2, , 3]);
+                _b.trys.push([0, 3, , 4]);
                 _a = req.body, email = _a.email, password = _a.password;
                 if (!email || !password)
                     throw new Error("Email or Password incorrect");
-                return [4 /*yield*/, userModel_1.UserModel.findOne({ email: email }).exec()];
+                return [4 /*yield*/, bcrypt.hash(password, saltRounds)
+                    // Check if a user with the same email already exists
+                ];
             case 1:
+                hash = _b.sent();
+                return [4 /*yield*/, userModel_1.UserModel.findOne({ email: email }).exec()];
+            case 2:
                 existingUser = _b.sent();
                 if (existingUser) {
                     return [2 /*return*/, res.status(400).json({ error: "User with this email already exists." })];
                 }
-                user = new userModel_1.UserModel({ email: email, password: password });
+                user = new userModel_1.UserModel({ email: email, password: hash });
                 validationError = user.validateSync();
                 if (validationError) {
                     console.error("Validation error:", validationError);
@@ -71,68 +81,105 @@ exports.registerUser = function (req, res) { return __awaiter(void 0, void 0, vo
                         res.status(500).json({ error: "Failed to save user." });
                     });
                 }
-                return [3 /*break*/, 3];
-            case 2:
+                return [3 /*break*/, 4];
+            case 3:
                 error_1 = _b.sent();
                 console.error(error_1);
                 res.status(500).json({ error: error_1.message });
-                return [3 /*break*/, 3];
-            case 3: return [2 /*return*/];
+                return [3 /*break*/, 4];
+            case 4: return [2 /*return*/];
         }
     });
 }); };
 exports.login = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var _a, email, password, user, error_2;
+    var _a, email, password, userDB, isAdmin, cookie, token, error_2;
     return __generator(this, function (_b) {
         switch (_b.label) {
             case 0:
                 _b.trys.push([0, 2, , 3]);
                 _a = req.body, email = _a.email, password = _a.password;
-                if (!email || !password)
+                if (!email || !password) {
                     throw new Error("Please complete all fields");
-                return [4 /*yield*/, userModel_1.UserModel.findOne({ email: email, password: password }).exec()];
+                }
+                return [4 /*yield*/, userModel_1.UserModel.findOne({ email: email }).exec()];
             case 1:
-                user = _b.sent();
-                if (!user)
-                    throw new Error("some of the details are incorrect");
-                res.cookie("user", user._id, { maxAge: 900000, httpOnly: true });
-                res.send({ ok: true, email: user.email });
+                userDB = _b.sent();
+                if (!userDB)
+                    throw new Error("User not found");
+                isAdmin = userDB.isAdmin;
+                cookie = {
+                    uid: userDB._id
+                };
+                console.log("User found: " + userDB.email);
+                console.log("isAdmin: " + isAdmin);
+                token = jwt.encode(cookie, secret);
+                console.log(token);
+                res.cookie("user", token, { httpOnly: true, maxAge: 900000 });
+                res.send({ ok: true, email: userDB.email, isAdmin: isAdmin });
                 return [3 /*break*/, 3];
             case 2:
                 error_2 = _b.sent();
                 console.error(error_2);
-                res.send({ error: error_2.message });
+                res.status(401).send({ error: error_2.message });
                 return [3 /*break*/, 3];
             case 3: return [2 /*return*/];
         }
     });
 }); };
-function getUserAndRelatives(email) {
+function getUserAndRelatives(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var user, error_3;
+        var usersWithRelatives, error_3;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, userModel_1.UserModel.findOne({ email: email })
+                    return [4 /*yield*/, userModel_1.UserModel.find({})
                             .populate({
                             path: "familyMembers",
                             model: userModel_1.UserModel
                         })
                             .exec()];
                 case 1:
-                    user = _a.sent();
-                    if (!user) {
-                        throw new Error("User not found with the provided email");
+                    usersWithRelatives = _a.sent();
+                    if (!usersWithRelatives || usersWithRelatives.length === 0) {
+                        return [2 /*return*/, res.status(404).json({ error: "No users and relatives found." })];
                     }
-                    return [2 /*return*/, user];
+                    return [2 /*return*/, res.json({ users: usersWithRelatives })]; // Return the user and relatives as JSON
                 case 2:
                     error_3 = _a.sent();
                     console.error(error_3);
-                    throw error_3;
+                    res.status(500).json({ error: error_3.message });
+                    return [3 /*break*/, 3];
                 case 3: return [2 /*return*/];
             }
         });
     });
 }
 exports.getUserAndRelatives = getUserAndRelatives;
+function getAllUsersAndRelatives(req, res) {
+    return __awaiter(this, void 0, void 0, function () {
+        var users_1, error_4;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    return [4 /*yield*/, userModel_1.UserModel.find({})
+                            .populate({
+                            path: "familyMembers",
+                            model: userModel_1.UserModel
+                        })
+                            .exec()];
+                case 1:
+                    users_1 = _a.sent();
+                    return [2 /*return*/, res.json({ users: users_1 })]; // Return all users and relatives as JSON
+                case 2:
+                    error_4 = _a.sent();
+                    console.error(error_4);
+                    res.status(500).json({ error: error_4.message });
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
+}
+exports.getAllUsersAndRelatives = getAllUsersAndRelatives;

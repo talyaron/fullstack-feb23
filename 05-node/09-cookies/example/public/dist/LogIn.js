@@ -67,7 +67,7 @@ function handleLogIn(event) {
                         throw new Error(data.message);
                     }
                     else {
-                        // go to home page   with user email
+                        // go to home page   
                         window.location.href = "homePage.html";
                     }
                     return [3 /*break*/, 4];

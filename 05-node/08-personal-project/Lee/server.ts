@@ -1,21 +1,22 @@
 const cookieParser = require('cookie-parser')
 import express from "express";
 import mongoose from 'mongoose';
+import 'dotenv/config'
+
+
 const app = express();
 const port = process.env.PORT || 3000;
 
-
+app.use(cookieParser());
 
 //static files
 app.use(express.static("public"));
 
 //body
 app.use(express.json());
+const {MONGO_URI} = process.env
 
-app.use(cookieParser());
-
-
-mongoose.connect("mongodb+srv://leedee:Omer2021!@cluster0.pe6xuzr.mongodb.net/test").then (() => {
+mongoose.connect(MONGO_URI).then (() => {
   console.info("MongoDB connected")
 }).catch(err =>{console.error(err)})
 

@@ -1,102 +1,48 @@
-/* Reset some default styles */
-body, html {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
+/* Import any additional stylesheets as needed */
+
+body {
+  margin: 0; /* Remove default margin */
+  padding: 0; /* Remove default padding */
+  font-family: Arial, Helvetica, sans-serif; /* Use a font that is available on all systems */
+}
+
+.wrapper {
+  /* Your existing wrapper styles */
+}
+
+#bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #333; /* Change the background color as desired */
+  color: #fff; /* Change the text color as desired */
+  padding: 10px 0; /* Adjust padding as needed */
+  text-align: center; /* Center the text horizontally */
+display: flex;
+justify-content: start;
+ 
+
+  #helloUserDiv {
+      /* Styles for helloUserDiv inside the navigation bar */
+      font-weight: bold; /* Example style, adjust as needed */
+      font-size: 18px; /* Example font size, adjust as needed */
   }
-  
-  /* Define some reusable variables */
-  $primary-color: #007bff;
-  $secondary-color: #333;
-  $button-bg-color: #4caf50;
-  $button-text-color: #fff;
-  $container-width: 70%; /* Adjust the central container width as needed */
-  
-  /* Apply global styles */
-  body {
-    background-color: #f4f4f4;
-  }
-  
-  .wapper {
-    display: flex;
-    justify-content: space-between;
-    padding: 20px;
-  }
-  
-  .centerContainer {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    width: $container-width;
-    max-width: 1200px;
-  }
-  
-  .centerContainer__heder {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  .input-field {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  .btn {
-    background-color: $button-bg-color;
-    color: $button-text-color;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .btn:hover {
-    background-color: darken($button-bg-color, 10%);
-  }
-  
-  .recipe-container {
-    margin-top: 20px;
-  }
-  
-  /* Add styles for the sideUpdatecontainer */
-  .sideUpdaecontainer {
-    background-color: #f4f4f4;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 20px;
-    flex: 1; /* Take up remaining space */
-    margin-left: 20px; /* Add margin to separate it from the central container */
-  }
-  
-  /* Add styles for the updateUserForm */
-  #updateUserForm {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-  }
-  
-  /* Add any additional styles you need for specific elements */
-  
-  /* Media query for responsiveness */
-  @media (max-width: 768px) {
-    .wapper {
-      flex-direction: column;
+  #icons {
+    font-size: 24px; /* Adjust the icon size as needed */
+    margin-top: 10px; /* Adjust the spacing between the text and icons as needed */
+    i {
+        margin-right: 20px; /* Adjust the spacing between icons as needed */
     }
-  
-    .centerContainer {
-      width: 100%; /* Take up full width on smaller screens */
-      margin: 0;
-    }
-  
-    .sideUpdaecontainer {
-      margin: 20px 0; /* Add margin to separate it from the central container */
-    }
-  }
-  
+}
+}
+
+#admin_area {
+  /* Your existing admin_area styles */
+}
+
+#customers_area {
+  /* Your existing customers_area styles */
+}
+
+/* Define other styles as needed */

@@ -78,7 +78,19 @@ export async function handleDeleteRelatives(relativeId: string) {
     }
 }
 
+async function handleGetUserAndRelatives (){
+    try {
+        
+        const response = await fetch("API/users/userWithRelatives")
+        const data = await response.json()
+        console.log(data)
+    } catch (error) {
+        console.error(error)
+        
+    }
+}
 
+handleGetUserAndRelatives()
 
 
 

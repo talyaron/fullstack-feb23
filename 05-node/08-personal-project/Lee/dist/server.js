@@ -6,14 +6,16 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const cookieParser = require('cookie-parser');
 const express_1 = __importDefault(require("express"));
 const mongoose_1 = __importDefault(require("mongoose"));
+require("dotenv/config");
 const app = express_1.default();
 const port = process.env.PORT || 3000;
+app.use(cookieParser());
 //static files
 app.use(express_1.default.static("public"));
 //body
 app.use(express_1.default.json());
-app.use(cookieParser());
-mongoose_1.default.connect("mongodb+srv://leedee:Omer2021!@cluster0.pe6xuzr.mongodb.net/test").then(() => {
+const { MONGO_URI } = process.env;
+mongoose_1.default.connect(MONGO_URI).then(() => {
     console.info("MongoDB connected");
 }).catch(err => { console.error(err); });
 //router to products

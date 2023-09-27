@@ -1,5 +1,39 @@
 // TypeScript (homePage.js)
+async function renderHelloUser() {
+    try {
+        const logInUser = await getCurrentUser();
+        if (!logInUser) {
+            throw new Error("User Not Found");
+        }
+        const helloUserDiv = document.querySelector("#helloUserDiv") as HTMLDivElement;
+        if (!helloUserDiv) throw new Error("helloUser root not found");
+        // if user isAdmin create button to show all users and can updte admin
+        if (logInUser.isAdmin) {
+            helloUserDiv.innerHTML = `Hello Admin ${logInUser.email}`;
+        }  
+        else
+            helloUserDiv.innerHTML = `Hello ${logInUser.email}`;     
+       
+    } catch (error) {
+        console.error(error);
+    }
+}
 
+async function getCurrentUser() {
+    try {
+        const response = await fetch("API/user/get-log-in-user");
+        const data = await response.json();
+        if (!data.ok) {
+            throw new Error(data.message);
+        }
+        console.log(data);
+        
+        const { logInUser } = data;
+        return logInUser;
+    } catch (error) {
+        console.error(error);
+    }
+}
 // Function to handle logout
 async function handleLogout() {
     try {
@@ -264,204 +298,165 @@ updateUserForm.appendChild(submitButton);
         console.error(error);
     }
 }
+// // Function to handle adding a recipe
+// async function handleAddRecipe(event: any) {
+//     try {
+//         event.preventDefault();
+//         const recipeName = event.target.recipeName.value;
+//         const recipeIngredients = event.target.recipeIngredients.value;
+//         const recipeInstructions = event.target.recipeInstructions.value;
+//         const imageUrl = event.target.imageUrl.value;
+//         const category = event.target.recipeCategory.value;
+//         const user = await getCurrentUser();
+//         const userEmail = user.email;
 
-// Render "Hello User" for logged-in user
-async function renderHelloUser() {
-    try {
-        const logInUser = await getCurrentUser();
-        if (!logInUser) {
-            throw new Error("User Not Found");
-        }
-        const helloUser = document.querySelector("#helloUser") as HTMLDivElement;
-        const updateUserDiv=document.querySelector("#updateUserDiv") as HTMLDivElement; 
-        if (!helloUser) throw new Error("helloUser root not found");
-        helloUser.innerHTML = `Hello ${logInUser.email}`;
-        // if user isAdmin create button to show all users and can updte admin
-        if (logInUser.isAdmin) {
-            await renderAllUsers();
-          
-        }   
-       
-    } catch (error) {
-        console.error(error);
-    }
-}
+//         const response = await fetch("API/recipe/add-recipe", {
+//             method: "POST",
+//             headers: {
+//                 "Content-Type": "application/json",
+//             },
+//             body: JSON.stringify({ recipeName, recipeIngredients, recipeInstructions, imageUrl, category, userEmail }),
+//         });
+//         const data = await response.json();
 
-async function getCurrentUser() {
-    try {
-        const response = await fetch("API/user/get-log-in-user");
-        const data = await response.json();
-        if (!data.ok) {
-            throw new Error(data.message);
-        }
-        console.log(data);
-        
-        const { logInUser } = data;
-        return logInUser;
-    } catch (error) {
-        console.error(error);
-    }
-}
+//         console.log(data);
+//         if (!data.ok) {
+//             throw new Error(data.message);
+//         }
+//         alert("Recipe added");
+//     } catch (error) {
+//         console.error(error);
+//     }
+// }
 
-// Function to handle adding a recipe
-async function handleAddRecipe(event: any) {
-    try {
-        event.preventDefault();
-        const recipeName = event.target.recipeName.value;
-        const recipeIngredients = event.target.recipeIngredients.value;
-        const recipeInstructions = event.target.recipeInstructions.value;
-        const imageUrl = event.target.imageUrl.value;
-        const category = event.target.recipeCategory.value;
-        const user = await getCurrentUser();
-        const userEmail = user.email;
+// // Function to render a recipe
+// async function renderRecipe(recipe, isEmailExist, isAdmin, fromWhereICome) {
+//     try {
+//         if (!recipe) throw new Error("Recipe does not exist");
+//         const recipeContainer = document.querySelector("#recipeContainer") as HTMLDivElement;
+//         if (!recipeContainer) throw new Error("recipeContainer root not found");
 
-        const response = await fetch("API/recipe/add-recipe", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ recipeName, recipeIngredients, recipeInstructions, imageUrl, category, userEmail }),
-        });
-        const data = await response.json();
+//         const recipeElement = document.createElement('div');
+//         recipeElement.innerHTML = `
+//             <h2 class="recipeName">${recipe.recipeName}</h2>
+//             <img src="${recipe.imageUrl}" alt="recipe image" class="recipeImage">
+//             <div class="recipeInstructions">${recipe.recipeInstructions}</div>
+//             <div class="recipeCategory">${recipe.category}</div>
+//         `;
 
-        console.log(data);
-        if (!data.ok) {
-            throw new Error(data.message);
-        }
-        alert("Recipe added");
-    } catch (error) {
-        console.error(error);
-    }
-}
+//         // Create a list for ingredients
+//         const ingredientsList = document.createElement('ul');
+//         ingredientsList.className = 'recipeIngredientsList';
 
-// Function to render a recipe
-async function renderRecipe(recipe, isEmailExist, isAdmin, fromWhereICome) {
-    try {
-        if (!recipe) throw new Error("Recipe does not exist");
-        const recipeContainer = document.querySelector("#recipeContainer") as HTMLDivElement;
-        if (!recipeContainer) throw new Error("recipeContainer root not found");
+//         // Split ingredients into an array
+//         const ingredientsArray = recipe.recipeIngredients.split(',');
 
-        const recipeElement = document.createElement('div');
-        recipeElement.innerHTML = `
-            <h2 class="recipeName">${recipe.recipeName}</h2>
-            <img src="${recipe.imageUrl}" alt="recipe image" class="recipeImage">
-            <div class="recipeInstructions">${recipe.recipeInstructions}</div>
-            <div class="recipeCategory">${recipe.category}</div>
-        `;
+//         // Loop through the ingredients array and create list items
+//         ingredientsArray.forEach((ingredient) => { 
+//             const listItem = document.createElement('li');
+//             listItem.textContent = ingredient.trim(); // Trim any leading/trailing spaces
+//             ingredientsList.appendChild(listItem);
+//         });
 
-        // Create a list for ingredients
-        const ingredientsList = document.createElement('ul');
-        ingredientsList.className = 'recipeIngredientsList';
+//         // Append the ingredients list to the recipe element
+//         recipeElement.appendChild(ingredientsList);
 
-        // Split ingredients into an array
-        const ingredientsArray = recipe.recipeIngredients.split(',');
+//         if (isEmailExist || isAdmin) {
+//             const deleteButton = document.createElement('button');
+//             deleteButton.className = 'deleteRecipe';
+//             deleteButton.textContent = 'Delete';
+//             deleteButton.onclick =async () => await handleDeleteRecipe(recipe._id,fromWhereICome); // Pass the recipe ID to the function
+//             recipeElement.appendChild(deleteButton);  
+//         }
 
-        // Loop through the ingredients array and create list items
-        ingredientsArray.forEach((ingredient) => { 
-            const listItem = document.createElement('li');
-            listItem.textContent = ingredient.trim(); // Trim any leading/trailing spaces
-            ingredientsList.appendChild(listItem);
-        });
+//         recipeContainer.appendChild(recipeElement);
+//     } catch (error) {
+//         console.error(error);
+//     }
+// }
 
-        // Append the ingredients list to the recipe element
-        recipeElement.appendChild(ingredientsList);
+// async function handleDeleteRecipe(recipeId,fromWhereICome) {
+//     try {
+//         const response = await fetch("API/recipe/delete-recipe", {
+//             method: "DELETE",
+//             headers: {
+//                 "Content-Type": "application/json",
+//             },
+//             body: JSON.stringify({ recipeId }),
+//         });
+//         const data = await response.json();
+//         if (!data.ok) {
+//             throw new Error(data.message);
+//         }
+//         alert("Recipe deleted");
+//         if(fromWhereICome==="myRecipe"){
+//             renderMyRecipes();
 
-        if (isEmailExist || isAdmin) {
-            const deleteButton = document.createElement('button');
-            deleteButton.className = 'deleteRecipe';
-            deleteButton.textContent = 'Delete';
-            deleteButton.onclick =async () => await handleDeleteRecipe(recipe._id,fromWhereICome); // Pass the recipe ID to the function
-            recipeElement.appendChild(deleteButton);  
-        }
+//         }
+//         else{
+//             renderAllRecipes();
+//         }
 
-        recipeContainer.appendChild(recipeElement);
-    } catch (error) {
-        console.error(error);
-    }
-}
+//     } catch (error) {
+//         console.error(error);
+//     }   
+// }
+// // Function to render all recipes
+// async function renderAllRecipes() {
+//     try {
+//         const recipeListContainer = document.querySelector("#recipeContainer") as HTMLDivElement;
+//         if (!recipeListContainer) throw new Error("recipeContainer root not found");
+//         recipeListContainer.innerHTML = "";
+//         const response = await fetch("API/recipe/get-all-recipes");
+//         const data = await response.json();
+//         if (!data.ok) {
+//             throw new Error(data.message);
+//         }
+//         const { recipeList } = data;
+//         const user = await getCurrentUser();
+//         if (!user) {
+//             throw new Error("User Not Found");
+//         }
 
-async function handleDeleteRecipe(recipeId,fromWhereICome) {
-    try {
-        const response = await fetch("API/recipe/delete-recipe", {
-            method: "DELETE",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ recipeId }),
-        });
-        const data = await response.json();
-        if (!data.ok) {
-            throw new Error(data.message);
-        }
-        alert("Recipe deleted");
-        if(fromWhereICome==="myRecipe"){
-            renderMyRecipes();
+//         recipeList.forEach((recipe) => {
+//             renderRecipe(recipe, false, user.isAdmin,'AllRecipes'); 
+//         });
+//     } catch (error) {
+//         console.error(error); 
+//     }
+// }
 
-        }
-        else{
-            renderAllRecipes();
-        }
+// // Function to render user-specific recipes
+// async function renderMyRecipes() {
+//     try {
+//         // Get the currently logged-in user's email
+//         const user = await getCurrentUser();
+//         if (!user || !user.email) {
+//             throw new Error("User email not found.");
+//         }
 
-    } catch (error) {
-        console.error(error);
-    }   
-}
-// Function to render all recipes
-async function renderAllRecipes() {
-    try {
-        const recipeListContainer = document.querySelector("#recipeContainer") as HTMLDivElement;
-        if (!recipeListContainer) throw new Error("recipeContainer root not found");
-        recipeListContainer.innerHTML = "";
-        const response = await fetch("API/recipe/get-all-recipes");
-        const data = await response.json();
-        if (!data.ok) {
-            throw new Error(data.message);
-        }
-        const { recipeList } = data;
-        const user = await getCurrentUser();
-        if (!user) {
-            throw new Error("User Not Found");
-        }
+//         // Send the user's email to the server to get their recipes 
+//         const response = await fetch(`API/recipe/get-My-recipes?userEmail=${encodeURIComponent(user.email)}`, {
+//             method: "GET",
+//             headers: {
+//                 "Content-Type": "application/json",
+//             },
+//         });
 
-        recipeList.forEach((recipe) => {
-            renderRecipe(recipe, false, user.isAdmin,'AllRecipes'); 
-        });
-    } catch (error) {
-        console.error(error); 
-    }
-}
+//         const data = await response.json();
+//         if (!data.ok) {
+//             throw new Error(data.message);
+//         }
+//         const { recipeList } = data;
+//         const recipeListContainer = document.querySelector("#recipeContainer") as HTMLDivElement;
+//         if (!recipeListContainer) throw new Error("recipeContainer root not found");
+//         recipeListContainer.innerHTML = "";
+//         recipeList.forEach((recipe) => {
+//             renderRecipe(recipe, true, user.isAdmin,'myRecipe');
+//         });
+//     } catch (error) {
+//         console.error(error);
+//     } 
+// }
 
-// Function to render user-specific recipes
-async function renderMyRecipes() {
-    try {
-        // Get the currently logged-in user's email
-        const user = await getCurrentUser();
-        if (!user || !user.email) {
-            throw new Error("User email not found.");
-        }
-
-        // Send the user's email to the server to get their recipes 
-        const response = await fetch(`API/recipe/get-My-recipes?userEmail=${encodeURIComponent(user.email)}`, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-            },
-        });
-
-        const data = await response.json();
-        if (!data.ok) {
-            throw new Error(data.message);
-        }
-        const { recipeList } = data;
-        const recipeListContainer = document.querySelector("#recipeContainer") as HTMLDivElement;
-        if (!recipeListContainer) throw new Error("recipeContainer root not found");
-        recipeListContainer.innerHTML = "";
-        recipeList.forEach((recipe) => {
-            renderRecipe(recipe, true, user.isAdmin,'myRecipe');
-        });
-    } catch (error) {
-        console.error(error);
-    } 
-}
-
-// You can continue to define your other functions as needed.
+// // You can continue to define your other functions as needed.
