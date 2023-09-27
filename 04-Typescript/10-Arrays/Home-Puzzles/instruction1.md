@@ -1,4 +1,4 @@
-Easy:
+xEasy:
 
 Exercise 1: Create an array called "colors" with three
 different color names. Print the second element of the array.
