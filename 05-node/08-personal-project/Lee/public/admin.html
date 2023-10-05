@@ -42,9 +42,9 @@
         </select>
         <button type="submit">ADD</button>
     </form>
-    <div><button onclick="handleGetRelatives()">GET Your Family Members</button></div>
-    <div></div><button onclick="handleGetAllUsersRelatives()">GET All Users Family Members</button></div>
-    <button type="hidden" id="deleteButton" onclick="handleDeleteRelatives()">Delete</button>
+    <div><button onclick="handleGetRelatives()">Display Your Family Members</button></div>
+    <div></div><button onclick="handleGetAllUsersRelatives()">Display All Users Family Members</button></div>
+    <button type="hidden" id="deleteButton" onclick="handleDeleteRelatives('${relative.id}')">Delete</button>
     <button type="hidden" id="updateButton" onclick="handleUpdateRelatives()">Update</button>
 
     <h2>Manage Family Members</h2>
