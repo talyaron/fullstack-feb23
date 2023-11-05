@@ -3,7 +3,6 @@ exports.__esModule = true;
 exports.isAdmin = void 0;
 var SECRET = process.env.SECRET;
 var secret = SECRET;
-// import {UserModel} from "../users/userModel"
 var jwt = require('jwt-simple');
 function isAdmin(req, res, next) {
     // Get the token from the request headers or cookies
