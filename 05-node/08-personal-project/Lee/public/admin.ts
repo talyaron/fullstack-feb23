@@ -2,6 +2,7 @@ import { relatives } from "../API/relatives/relativesModel";
 
 
 
+
 function renderRelatives(relativesData, targetElement) {
     targetElement.innerHTML = ''; // Clear the target element
 
@@ -34,22 +35,65 @@ function renderRelatives(relativesData, targetElement) {
 }
 
 
-// A function to get the user's relatives from the server by email
-export async function getUserRelatives(email: string) {
-    try {
-        const response = await fetch(`/API/relatives/get-user-relatives?email=${email}`);
-        const data = await response.json();
-        console.log(data);
 
-        // Assuming you have a rendering function for relatives, e.g., renderRelatives
-        renderRelatives(data.relatives, document.querySelector("#relatives"));
-    } catch (error) {
-        console.error(error);
-    }
+async function handleGetAllUsersRelatives() {
+  try {
+      const authToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiI2NTAxZTY2Yzk7NWJiNDJmMDlkZmVjYTkifQ.nLRTK0EojgproqBmIFRDhGEr-_WZw0x-SjCoqYpM6Nk'; // Replace with your actual authentication token
+
+      const response = await fetch('/API/users/allUsersWithRelatives', {
+          headers: {
+              'Authorization': `Bearer ${authToken}`, // Include the token in the Authorization header
+          },
+      });
+
+      const data = await response.json();
+
+      if (data.user) {
+          const userRelativesContainer = document.querySelector("#user-relatives-container");
+          userRelativesContainer.innerHTML = ''; // Clear the container
+
+          const user = data.user;
+
+          if (user.isAdmin) {
+              const userName = document.createElement('h2');
+              userName.textContent = user.userName || 'User Name';
+
+              const relativesList = document.createElement('ul');
+              relativesList.style.listStyle = 'none';
+
+              user.familyMembers.forEach(relative => {
+                  const relativeItem = document.createElement('li');
+
+                  const birthDate = new Date(relative.birthDate);
+                  const formattedBirthDate = `${birthDate.getDate()}-${birthDate.getMonth() + 1}-${birthDate.getFullYear()}`;
+
+                  relativeItem.innerHTML = `
+                      <span style="font-weight: bold">${relative.fullName}</span> is my:
+                      <span style="font-weight: bold">${relative.relation}</span> - born in:
+                      <span style="font-weight: bold">${formattedBirthDate}</span> - lives in:
+                      <span style="font-weight: bold">${relative.country}</span>
+                      <button onclick="handleUpdateRelatives('${relative._id}')">Update</button>
+                      <button onclick="handleDeleteRelatives('${relative.id}')">Delete</button>
+                  `;
+                  relativesList.appendChild(relativeItem);
+              });
+
+              userRelativesContainer.appendChild(userName);
+              userRelativesContainer.appendChild(relativesList);
+          }
+      } else {
+          console.error("Unauthorized: User does not have admin privileges.");
+      }
+  } catch (error) {
+      console.error("An error occurred while fetching and rendering users and relatives:", error);
+  }
 }
 
+// Call the function when the admin page loads
+window.addEventListener('load', handleGetAllUsersRelatives);
 
-export async function handleDeleteRelatives(relativeId: string) {
+
+ async function handleDeleteRelatives(relativeId: string) {
     try {
         console.log(relativeId);
         const response = await fetch(`/API/relatives/delete-relative/${relativeId}`, {
@@ -77,6 +121,49 @@ export async function handleDeleteRelatives(relativeId: string) {
         console.error("An unexpected error occurred:", error);
     }
 }
+
+function renderUsersAndRelatives(usersData, targetElement) {
+  targetElement.innerHTML = ''; // Clear the target element
+
+  if (!usersData || usersData.length === 0) {
+      targetElement.innerHTML = '<p>No users found.</p>';
+      return;
+  }
+
+  usersData.forEach(user => {
+      const userContainer = document.createElement('div');
+      userContainer.classList.add('user-container'); // Add a CSS class for styling
+
+      const userName = document.createElement('h2');
+      userName.textContent = user.userName || 'User Name';
+
+      const relativesList = document.createElement('ul');
+      relativesList.style.listStyle = 'none';
+
+      user.familyMembers.forEach(relative => {
+          const relativeItem = document.createElement('li');
+
+          const birthDate = new Date(relative.birthDate);
+          const formattedBirthDate = `${birthDate.getDate()}-${birthDate.getMonth() + 1}-${birthDate.getFullYear()}`;
+
+          relativeItem.innerHTML = `
+              <span style="font-weight: bold">${relative.fullName}</span> is my:
+              <span style="font-weight: bold">${relative.relation}</span> - born in:
+              <span style="font-weight: bold">${formattedBirthDate}</span> - lives in:
+              <span style="font-weight: bold">${relative.country}</span>
+              <button onclick="handleUpdateRelatives('${relative._id}')">Update</button>
+              <button onclick="handleDeleteRelatives('${relative._id}')">Delete</button>
+          `;
+          relativesList.appendChild(relativeItem);
+      });
+
+      userContainer.appendChild(userName);
+      userContainer.appendChild(relativesList);
+
+      targetElement.appendChild(userContainer);
+  });
+}
+
 
 
 

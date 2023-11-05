@@ -25,7 +25,6 @@ function renderRelatives(relativesData, targetElement) {
         <span style="font-weight: bold">${formattedBirthDate}</span> - lives in:
         <span style="font-weight: bold">${relative.country}</span>
         <button onclick="handleUpdateRelatives('${relative.id}')">Update</button>
-        <button onclick="handleDeleteRelatives('${relative.id}')">Delete</button>
       `;
         relativesList.appendChild(relativeItem);
     });
@@ -49,34 +48,34 @@ export async function getUserRelatives(email: string) {
 }
 
 
-export async function handleDeleteRelatives(relativeId: string) {
-    try {
-        console.log(relativeId);
-        const response = await fetch(`/API/relatives/delete-relative/${relativeId}`, {
-            method: 'DELETE',
-            headers: { 'Content-Type': 'application/json' },
-        });
+// export async function handleDeleteRelatives(relativeId: string) {
+//     try {
+//         console.log(relativeId);
+//         const response = await fetch(`/API/relatives/delete-relative/${relativeId}`, {
+//             method: 'DELETE',
+//             headers: { 'Content-Type': 'application/json' },
+//         });
 
-        if (response.status === 200) {
-            const result = await response.json();
-            if (result && result.relativeDB) {
-                console.log("Relative deleted successfully.");
-                // Update the UI or take other actions here.
-            } else {
-                console.error("Server response is missing 'relativeDB' property.");
-            }
-        } else if (response.status === 404) {
-            console.error("Relative not found");
-        } else {
-            // Handle other status codes or errors
-            const errorData = await response.json(); // Parse error response from server
-            console.error("Error:", errorData.error); // Display the specific error message from the server
-        }
+//         if (response.status === 200) {
+//             const result = await response.json();
+//             if (result && result.relativeDB) {
+//                 console.log("Relative deleted successfully.");
+//                 // Update the UI or take other actions here.
+//             } else {
+//                 console.error("Server response is missing 'relativeDB' property.");
+//             }
+//         } else if (response.status === 404) {
+//             console.error("Relative not found");
+//         } else {
+//             // Handle other status codes or errors
+//             const errorData = await response.json(); // Parse error response from server
+//             console.error("Error:", errorData.error); // Display the specific error message from the server
+//         }
 
-    } catch (error) {
-        console.error("An unexpected error occurred:", error);
-    }
-}
+//     } catch (error) {
+//         console.error("An unexpected error occurred:", error);
+//     }
+// }
 
 async function handleGetUserAndRelatives (){
     try {

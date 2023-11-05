@@ -46,12 +46,13 @@ function handleLogin(ev) {
                         password: ev.target.password.value,
                         email: ev.target.email.value
                     };
-                    if (!user.email || !user.password)
+                    if (!user.email || !user.password) {
                         throw new Error("Please complete all fields");
-                    return [4 /*yield*/, fetch('/API/users/login', {
-                            method: 'POST',
+                    }
+                    return [4 /*yield*/, fetch("/API/users/login", {
+                            method: "POST",
                             headers: {
-                                'Content-Type': 'application/json'
+                                "Content-Type": "application/json"
                             },
                             body: JSON.stringify(user)
                         })];
@@ -66,7 +67,7 @@ function handleLogin(ev) {
                     }
                     if (isAdmin) {
                         // Redirect admin user to admin.html
-                        window.location.href = '/admin.html';
+                        window.location.href = "/admin.html?email=" + email;
                     }
                     else {
                         // Redirect regular user to main.html

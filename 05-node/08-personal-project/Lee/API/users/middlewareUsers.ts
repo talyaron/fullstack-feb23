@@ -5,20 +5,28 @@ import {UserModel} from "../users/userModel"
 const jwt = require('jwt-simple');
 
 export function isAdmin(req, res, next) {
-    try {
-      const token = req.cookies.user;
-      if (!token) throw new Error("no token");
-      const cookie = jwt.decode(token, secret);
-      const { uid } = cookie;
-  
-      UserModel.findById(uid, (err, user) => {
-        if (err || !user || !user.isAdmin) {
-          throw new Error("User is not an admin");
-        }
-        req.user = user;
-        next();
-      });
-    } catch (error) {
-      res.status(401).send({ error: error.message });
+  // Get the token from the request headers or cookies
+  const token = req.headers.authorization || req.cookies.user;
+
+  if (!token) {
+    return res.status(401).json({ error: "Unauthorized" });
+  }
+
+  try {
+    // Decode and verify the token
+    const decodedToken = jwt.decode(token, secret);
+
+    // Check if the user has admin privileges
+    if (decodedToken.isAdmin) {
+      // User is an admin, proceed to the next middleware or route handler
+      req.user = decodedToken;
+      next();
+    } else {
+      // User is not an admin, return unauthorized
+      return res.status(401).json({ error: "Unauthorized" });
     }
+  } catch (error) {
+    // Token verification failed
+    return res.status(401).json({ error: "Unauthorized" });
+  }
 }
