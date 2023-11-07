@@ -10,7 +10,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 
-<body>
+<body onload="handleCheckIfUserIsconnected()">
     <form onsubmit="handleRegister(event)">
         <input type="email" id="email" required>
         <input type="password" id="password" required>

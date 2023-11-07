@@ -17,3 +17,17 @@ const handleRegister = async (ev) => {
         console.error(error)
     }
 }
+
+// decoding cookie example - client side
+
+async function handleCheckIfUserIsconnected() {
+    try {
+      //@ts-ignore
+      const { data } = await axios.get("/api/users/get-user-by-cookie");
+      const { userDB } = data;
+  
+      console.log("user has connected!")
+    } catch (error) {
+      console.error(error);
+    }
+  }

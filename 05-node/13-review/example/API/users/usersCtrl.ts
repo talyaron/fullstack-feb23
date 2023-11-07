@@ -33,3 +33,25 @@ export async function register(req:express.Request, res:express.Response) {
         res.send({register: false, error: error.messgae})
     }
 }
+
+// decoding cookie example - backend
+
+export async function getUser(req: express.Request, res: express.Response) {
+    try {
+        const secret = process.env.JWT_SECRET;
+        if (!secret) throw new Error("Couldn't load secret from .env");
+  
+        const { userID } = req.cookies;
+        if (!userID) throw new Error("Couldn't find user from cookies");
+  
+        const decodedUserId = jwt.decode(userID, secret);
+        const { userId } = decodedUserId;
+  
+        const userDB = await UserModel.findById(userId);
+        if (!userDB) throw new Error(`Couldn't find user id with the id: ${userId}`);
+        
+        res.send({ userDB });
+    } catch (error) {
+        res.send({ error: error.message })
+    }
+  }
