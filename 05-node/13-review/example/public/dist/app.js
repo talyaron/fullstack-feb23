@@ -61,3 +61,26 @@ var handleRegister = function (ev) { return __awaiter(_this, void 0, void 0, fun
         }
     });
 }); };
+// decoding cookie example - client side
+function handleCheckIfUserIsconnected() {
+    return __awaiter(this, void 0, void 0, function () {
+        var data, userDB, error_2;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    return [4 /*yield*/, axios.get("/api/users/get-user-by-cookie")];
+                case 1:
+                    data = (_a.sent()).data;
+                    userDB = data.userDB;
+                    console.log("user has connected!");
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_2 = _a.sent();
+                    console.error(error_2);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
+}
