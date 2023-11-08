@@ -1,4 +1,10 @@
 import { User, UserModel, users } from "./userModel";
+const bcrypt = require('bcrypt')
+const jwt = require('jwt-simple');
+const {SECRET} = process.env
+const secret = SECRET
+
+const saltRounds = 10
 
 //register user 
 export const registerUser = async (req: any, res: any) => {
@@ -6,14 +12,16 @@ export const registerUser = async (req: any, res: any) => {
     const { email, password } = req.body;
     if (!email || !password) throw new Error("Email or Password incorrect");
 
-     // Check if a user with the same email already exists
-     const existingUser = await UserModel.findOne({ email }).exec();
-     if (existingUser) {
-       return res.status(400).json({ error: "User with this email already exists." });
-     }
+    const hash = await bcrypt.hash(password, saltRounds)
+
+    // Check if a user with the same email already exists
+    const existingUser = await UserModel.findOne({ email }).exec();
+    if (existingUser) {
+      return res.status(400).json({ error: "User with this email already exists." });
+    }
 
     // If no user with the same email exists, create a new user
-    const user = new UserModel({ email, password })
+    const user = new UserModel({ email, password: hash })
     const validationError = user.validateSync();
 
     if (validationError) {
@@ -41,36 +49,82 @@ export const registerUser = async (req: any, res: any) => {
 export const login = async (req: any, res: any) => {
   try {
     const { email, password } = req.body;
-    if (!email || !password) throw new Error("Please complete all fields");
+    if (!email || !password) {
+      throw new Error("Please complete all fields")
+    }
+
     //check if user exist and password is correct
 
-    const user = await UserModel.findOne({ email, password }).exec();
-    if (!user) throw new Error("some of the details are incorrect");
+    const userDB = await UserModel.findOne({ email }).exec();
+    if (!userDB) throw new Error("User not found");
 
-    res.cookie("user", user._id, { maxAge: 900000, httpOnly: true })
-    res.send({ ok: true, email: user.email });
+    // const {password: hash} = userDB
+
+    // if(!hash) throw new Error("some of the detail are incorrect")
+
+    // const match:Boolean = await bcrypt.compare(password, hash)
+    // if (!match) throw new Error("some of the detail are incorrect")
+
+    // Determine if the user is an admin
+    const {isAdmin} = userDB;
+
+    const cookie = {
+      uid: userDB._id,
+    }
+
+    
+    console.log(`User found: ${userDB.email}`);
+    console.log(`isAdmin: ${isAdmin}`);
+
+     // encode
+     const token = jwt.encode(cookie, secret);
+     console.log(token)
+    
+    res.cookie("user", token, {  httpOnly: true, maxAge: 900000 })
+    res.send({ ok: true, email: userDB.email, isAdmin });
+
   } catch (error) {
     console.error(error);
-    res.send({ error: error.message });
+    res.status(401).send({ error: error.message });
   }
 }
 
-export async function getUserAndRelatives(email: string) {
+export async function getUserAndRelatives(req: any, res: any) {
   try {
-    const user = await UserModel.findOne({ email })
+    const usersWithRelatives = await UserModel.find({})
       .populate({
         path: "familyMembers",
         model: UserModel,
       })
       .exec();
 
-    if (!user) {
-      throw new Error("User not found with the provided email");
+    if (!usersWithRelatives || usersWithRelatives.length === 0) {
+      return res.status(404).json({ error: "No users and relatives found." });
     }
 
-    return user;
+    return res.json({ users: usersWithRelatives }); // Return the user and relatives as JSON
   } catch (error) {
     console.error(error);
-    throw error;
+    res.status(500).json({ error: error.message });
   }
 }
+
+
+export async function getAllUsersAndRelatives(req: any, res: any) {
+  try {
+    // Fetch all users with relatives (you can customize this query as needed)
+    const users = await UserModel.find({})
+      .populate({
+        path: "familyMembers",
+        model: UserModel,
+      })
+      .exec();
+
+    return res.json({ users }); // Return all users and relatives as JSON
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: error.message });
+  }
+}
+
+

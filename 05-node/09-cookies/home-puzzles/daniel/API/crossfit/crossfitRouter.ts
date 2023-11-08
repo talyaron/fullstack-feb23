@@ -1,5 +1,6 @@
 import express from 'express'
 import { getItem, addItem ,getUserItems, deleteItem, updateItemPrice} from './crossfitCont'
+import {  getUseritem } from './crossfitMiddleware'
 const router = express.Router()
 
 router .get('/get-item', getItem)

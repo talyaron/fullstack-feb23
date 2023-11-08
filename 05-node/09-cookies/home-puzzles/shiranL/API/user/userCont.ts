@@ -50,7 +50,6 @@ export const logIn= async (req:any,res:any)=>{
     // Return a success response
     res.send({ ok:true, existingUser});
 
- 
   } catch (error) {
     console.error(error);
     res.send({ error:error.message });  
@@ -62,11 +61,6 @@ export const logIn= async (req:any,res:any)=>{
 export const getLoggedInUser= async (req:any,res:any)=>{
   try {
   
-    //  const userId = req.cookies.user;
-    //  if(!userId) throw new Error("no user in cookies"); 
-    //  //find user in DB
-    // const userDB = await UserModel.findById(userId);
-    // if(!userDB) throw new Error("user dosnt exist in DB");
       const userDB=req.user
        res.send({ ok:true, logInUser:userDB});
 

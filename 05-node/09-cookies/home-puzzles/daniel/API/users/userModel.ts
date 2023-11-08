@@ -36,7 +36,7 @@ export const User = model("User", UserSchema)
 module.exports = {
     UserSchema:UserSchema,
     users: [
-        {id:1, userName:'tovdaniel',email: 'tov@gmail.com', isAdmin:true}
+        { userName:'tovdaniel',email: 'tov@gmail.com', isAdmin:true}
     ]
 }
 
