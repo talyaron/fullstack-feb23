@@ -1,6 +1,10 @@
 import express from "express";
 import mongoose from "mongoose";
+import { userLogedIn } from "./API/users/usersCont";
+import cookieParser from "cookie-parser";
 const app = express();
+app.use(cookieParser());
+// app.use(userLogedIn);
 const port = process.env.PORT || 3000;
 app.use(express.static("public"));
 app.use(express.json());

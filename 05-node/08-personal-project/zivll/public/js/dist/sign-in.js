@@ -56,7 +56,6 @@ function handleSignIn(event) {
                     return [4 /*yield*/, response.json()];
                 case 2:
                     result = _a.sent();
-                    console.log(result);
                     messageRoot = document.querySelector("#message");
                     if (result.message === "user does not exist, please register") {
                         messageRoot.innerHTML = "<h3>" + result.message + "</h3><a href=\"/register.html\"><button>REGISTER NOW</button></a>";

@@ -7,6 +7,8 @@ userRoutes
     .post("/register", usersCont_1.registerUser)
     .post("/login", usersCont_1.login)
     .patch("/add-income", usersCont_1.addIncome)
-    .post("/get-income", usersCont_1.getIncome)
-    .post("/check-user", usersCont_1.checkUser);
+    .get("/get-income", usersCont_1.getIncome)
+    .get("/check-user", usersCont_1.checkUser)
+    .get("/get-user-id", usersCont_1.getUserId);
+// /get-user-id
 exports["default"] = userRoutes;

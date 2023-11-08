@@ -5,6 +5,7 @@ export const UserSchema = new Schema({
   email: String,
   password: String,
   userIncome: String,
+  isAdmin: { type: "boolean", default: false },
 });
 
 export const UserModel = model("users", UserSchema);
@@ -18,13 +19,3 @@ export const UserCategoriesModel = model(
   "UserCategories",
   UserCategoriesSchema
 );
-
-// export const UserIncomeSchema = new Schema({
-//   userName: String,
-//   userIncome: String,
-// });
-// export const UserIncomeModel = model("userIncomeModel", UserIncomeSchema);
-// this class is used to define the categories that the user use
-
-// these array contains all user categories
-// const userCategories: UserCategories[] = [];

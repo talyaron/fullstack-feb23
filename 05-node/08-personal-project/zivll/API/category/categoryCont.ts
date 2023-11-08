@@ -21,6 +21,8 @@ export const addCategoey = async (req: any, res: any) => {
 export const getCategories = async (req: any, res: any) => {
   try {
     const allCategories = await CategoryModel.find({});
+    //  category.userName === userNameFromUrl ||
+    // category.userName === "genericCategory"
     res.send({ allCategories });
   } catch (error) {
     console.error(error);
