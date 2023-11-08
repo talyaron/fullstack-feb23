@@ -34,21 +34,24 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-function handleLogin(event) {
+function handleLogin(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var user, response, _a, error, email, error_1;
+        var dateUser, response, _a, error, email, error_1;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
                     _b.trys.push([0, 3, , 4]);
-                    event.preventDefault();
-                    user = { password: event.target.password.value, email: event.target.email.value, isAdmin: event.target.isAdmin.value };
-                    if (!user.email || !user.password || !user.isAdmin)
-                        throw new Error("Please complete all fields");
-                    return [4 /*yield*/, fetch('/API/user/login-user', {
+                    ev.preventDefault();
+                    dateUser = {
+                        email: ev.target.email.value,
+                        password: ev.target.password.value
+                    };
+                    if (!dateUser.email || !dateUser.password)
+                        throw new Error("please fill all fileds");
+                    return [4 /*yield*/, fetch('/API/users/login', {
                             method: 'POST',
                             headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify(user)
+                            body: JSON.stringify(dateUser)
                         })];
                 case 1:
                     response = _b.sent();
@@ -59,7 +62,7 @@ function handleLogin(event) {
                     if (error) {
                         throw new Error(error);
                     }
-                    window.location.href = "/main.html?email=" + email;
+                    window.location.href = "crossfit.html";
                     return [3 /*break*/, 4];
                 case 3:
                     error_1 = _b.sent();

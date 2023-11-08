@@ -34,35 +34,36 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-function handleLogin(event) {
+function handleRegister(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var user, response, _a, error, email, error_1;
-        return __generator(this, function (_b) {
-            switch (_b.label) {
+        var userData, response, error, error_1;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
                 case 0:
-                    _b.trys.push([0, 3, , 4]);
-                    event.preventDefault();
-                    user = { password: event.target.password.value, email: event.target.email.value, isAdmin: event.target.isAdmin.value };
-                    if (!user.email || !user.password || !user.isAdmin)
-                        throw new Error("Please complete all fields");
-                    return [4 /*yield*/, fetch('/API/user/login-user', {
+                    _a.trys.push([0, 3, , 4]);
+                    ev.preventDefault();
+                    userData = {
+                        email: ev.target.email.value,
+                        password: ev.target.password.value
+                    };
+                    return [4 /*yield*/, fetch('/API/users/register', {
                             method: 'POST',
                             headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify(user)
+                            body: JSON.stringify(userData)
                         })];
                 case 1:
-                    response = _b.sent();
+                    response = _a.sent();
                     return [4 /*yield*/, response.json()];
                 case 2:
-                    _a = _b.sent(), error = _a.error, email = _a.email;
-                    console.log(error);
+                    error = (_a.sent()).error;
+                    console.log(error); //if error not exist, you will get undefined
                     if (error) {
                         throw new Error(error);
                     }
-                    window.location.href = "/main.html?email=" + email;
+                    window.location.href = "/login.html";
                     return [3 /*break*/, 4];
                 case 3:
-                    error_1 = _b.sent();
+                    error_1 = _a.sent();
                     console.error(error_1);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];

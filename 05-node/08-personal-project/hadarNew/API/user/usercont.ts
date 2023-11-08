@@ -4,8 +4,8 @@ import { User, users,UserModel } from "./usermodel";
 
 export const registerUser = async (req, res) => {
   try {
-    const { email, password } = req.body;
-    if (!email || !password) throw new Error("Please complete all fields");
+    const { email, password,isAdmin } = req.body;
+    if (!email || !password || !isAdmin) throw new Error("Please complete all fields");
     //ts
     // const user = new User({ email, password });
 
@@ -16,7 +16,7 @@ export const registerUser = async (req, res) => {
      }
 
     //mongo
-    const user = new UserModel({ email, password });
+    const user = new UserModel({ email, password, isAdmin });
     const userDB= await user.save();
     console.log(userDB)
 
@@ -34,10 +34,10 @@ export const registerUser = async (req, res) => {
 
 export const loginUser = async (req, res) => {
   try {
-    const { email, password } = req.body;
-    if (!email || !password) throw new Error("Please complete all fields");
+    const { email, password, isAdmin } = req.body;
+    if (!email || !password || !isAdmin) throw new Error("Please complete all fields");
 
-    const user = await UserModel.findOne({ email, password }).exec();
+    const user = await UserModel.findOne({ email, password, isAdmin }).exec();
     if (!user) throw new Error("some of the details are incorrect");
     res.cookie("user", user._id, { maxAge: 1000 * 100, httpOnly: true })
     res.send({ ok: true, email: user.email });
