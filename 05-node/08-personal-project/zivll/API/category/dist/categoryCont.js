@@ -79,6 +79,8 @@ exports.getCategories = function (req, res) { return __awaiter(void 0, void 0, v
                 return [4 /*yield*/, categoryModel_1.CategoryModel.find({})];
             case 1:
                 allCategories = _a.sent();
+                //  category.userName === userNameFromUrl ||
+                // category.userName === "genericCategory"
                 res.send({ allCategories: allCategories });
                 return [3 /*break*/, 3];
             case 2:

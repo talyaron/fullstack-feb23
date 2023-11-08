@@ -342,17 +342,23 @@ body {
   width: 75px;
   text-align: left;
 }
+.wrapper .expenses-table td a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
 .wrapper .expenses-table td .edit {
   cursor: pointer;
   color: #0f81c7;
   width: 30px;
-  height: auto;
+  height: 100%;
 }
 .wrapper .expenses-table td .delete {
   cursor: pointer;
   color: red;
   width: 30px;
-  height: auto;
+  height: 100%;
 }
 .wrapper .expenses-table .thead {
   transition: 0.4s;
@@ -375,7 +381,12 @@ body {
 .wrapper .expenses-table tr {
   width: 100%;
   border-bottom: solid 1px rgba(0, 0, 0, 0.151);
+  position: relative;
   height: 40px;
+}
+.wrapper .expenses-table .thead .table-head,
+.wrapper .expenses-table tr .table-head {
+  width: 100%;
 }
 .wrapper .expenses-table .thead .collapse-icon,
 .wrapper .expenses-table tr .collapse-icon {

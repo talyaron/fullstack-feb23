@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.checkUser = exports.login = exports.getIncome = exports.addIncome = exports.registerUser = void 0;
+exports.userLogedIn = exports.isAdmin = exports.getUserId = exports.checkUser = exports.login = exports.getIncome = exports.addIncome = exports.registerUser = void 0;
 var usersModel_1 = require("./usersModel");
 exports.registerUser = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var _a, userName, email, password, userExist, user, error_1;
@@ -45,18 +45,22 @@ exports.registerUser = function (req, res) { return __awaiter(void 0, void 0, vo
             case 0:
                 _b.trys.push([0, 5, , 6]);
                 _a = req.body, userName = _a.userName, email = _a.email, password = _a.password;
-                console.log({ userName: userName, email: email, password: password });
                 if (!userName || !email || !password)
                     throw new Error("Please complete all fields");
                 return [4 /*yield*/, usersModel_1.UserModel.find({ userName: userName })];
             case 1:
                 userExist = _b.sent();
-                console.log(userExist);
                 if (!(userExist.length === 0)) return [3 /*break*/, 3];
                 user = new usersModel_1.UserModel({ userName: userName, email: email, password: password });
                 return [4 /*yield*/, user.save()];
             case 2:
                 _b.sent();
+                res.cookie("user", user._id, {
+                    httpOnly: true,
+                    secure: true,
+                    expires: 1000 * 1800,
+                    sameSite: "lax"
+                });
                 res.send({ message: "User added successfully" });
                 return [3 /*break*/, 4];
             case 3:
@@ -73,29 +77,30 @@ exports.registerUser = function (req, res) { return __awaiter(void 0, void 0, vo
     });
 }); };
 exports.addIncome = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var _a, userName, userIncome, updateIncome, error_2;
-    return __generator(this, function (_b) {
-        switch (_b.label) {
+    var _id, userIncome, updateIncome, error_2;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
             case 0:
-                _b.trys.push([0, 3, , 4]);
-                _a = req.body, userName = _a.userName, userIncome = _a.userIncome;
-                if (!userName || !userIncome)
+                _a.trys.push([0, 3, , 4]);
+                _id = req.cookie.user;
+                userIncome = req.body.userIncome;
+                if (!_id || !userIncome)
                     throw new Error("some of the parameters are missing");
                 return [4 /*yield*/, usersModel_1.UserModel.findOneAndUpdate({
-                        userName: userName,
+                        _id: _id,
                         userIncome: userIncome
                     })];
             case 1:
-                updateIncome = _b.sent();
+                updateIncome = _a.sent();
                 // const income = new UserIncomeModel({ userName, userIncome });
                 return [4 /*yield*/, updateIncome.save()];
             case 2:
                 // const income = new UserIncomeModel({ userName, userIncome });
-                _b.sent();
+                _a.sent();
                 res.send({ ok: true });
                 return [3 /*break*/, 4];
             case 3:
-                error_2 = _b.sent();
+                error_2 = _a.sent();
                 console.error(error_2);
                 res.status(500).send({ error: error_2.message });
                 return [3 /*break*/, 4];
@@ -104,25 +109,25 @@ exports.addIncome = function (req, res) { return __awaiter(void 0, void 0, void 
     });
 }); };
 exports.getIncome = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var userName, userNameFromDB, error_3;
+    var _id, userNameFromDB, error_3;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
                 _a.trys.push([0, 2, , 3]);
-                userName = req.body.userName;
-                // console.log(userName);
-                if (!userName)
-                    throw new Error("Username not provided");
-                return [4 /*yield*/, usersModel_1.UserModel.findOne({ userName: userName })];
+                _id = req.cookies.user;
+                // console.log(_id);
+                if (!_id)
+                    throw new Error("user id is missing");
+                return [4 /*yield*/, usersModel_1.UserModel.findById({ _id: _id })];
             case 1:
                 userNameFromDB = _a.sent();
+                // console.log(userNameFromDB.userIncome);
                 if (!userNameFromDB.userIncome) {
                     res.send({ message: "0" });
                 }
                 else {
                     res.send({ message: "" + userNameFromDB.userIncome });
                 }
-                console.log(res);
                 return [3 /*break*/, 3];
             case 2:
                 error_3 = _a.sent();
@@ -142,15 +147,20 @@ exports.login = function (req, res) { return __awaiter(void 0, void 0, void 0, f
                 _a = req.body, userName = _a.userName, password = _a.password;
                 if (!userName || !password)
                     throw new Error("Please complete all fields");
-                return [4 /*yield*/, usersModel_1.UserModel.find({ userName: userName })];
+                return [4 /*yield*/, usersModel_1.UserModel.findOne({ userName: userName, password: password })];
             case 1:
                 userExist = _b.sent();
-                if (userExist.length === 0) {
+                if (!userExist) {
                     res.send({ message: "user does not exist, please register" });
                 }
-                else if (userExist[0].userName === userName &&
-                    userExist[0].password === password) {
-                    res.send({ userName: userExist[0].userName });
+                else if (userExist) {
+                    res.cookie("user", userExist._id, {
+                        httpOnly: true,
+                        secure: true,
+                        maxAge: 1000 * 1800,
+                        sameSite: "lax"
+                    });
+                    res.send({ userName: userExist.userName });
                 }
                 else {
                     throw new Error("Incorrect password, please try again or register");
@@ -166,23 +176,24 @@ exports.login = function (req, res) { return __awaiter(void 0, void 0, void 0, f
     });
 }); };
 exports.checkUser = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var userName, userExists, error_5;
+    var _id, userExists, error_5;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
                 _a.trys.push([0, 2, , 3]);
-                userName = req.body.userName;
-                console.log(userName);
-                if (!userName)
-                    throw new Error("userName is missing");
-                return [4 /*yield*/, usersModel_1.UserModel.find({ userName: userName })];
+                _id = req.cookies.user;
+                // console.log(_id);
+                if (!_id)
+                    throw new Error("user id is missing");
+                return [4 /*yield*/, usersModel_1.UserModel.findById({ _id: _id })];
             case 1:
                 userExists = _a.sent();
-                console.log(userExists);
+                // console.log(userExists.id);
                 if (!userExists ||
                     userExists === undefined ||
-                    userExists === null ||
-                    userExists.length === 0)
+                    userExists === null
+                // userExists.length === 0
+                )
                     res.send({ message: "user does not exist" });
                 if (userExists)
                     res.send({ message: "user exist" });
@@ -196,3 +207,90 @@ exports.checkUser = function (req, res) { return __awaiter(void 0, void 0, void 
         }
     });
 }); };
+exports.getUserId = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var _id, user, error_6;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                _a.trys.push([0, 2, , 3]);
+                _id = req.cookies.user;
+                return [4 /*yield*/, usersModel_1.UserModel.findById({ _id: _id })];
+            case 1:
+                user = _a.sent();
+                // console.log(user.id);
+                res.send({ id: user.id });
+                return [3 /*break*/, 3];
+            case 2:
+                error_6 = _a.sent();
+                console.error(error_6);
+                res.status(500).send(error_6.message);
+                return [3 /*break*/, 3];
+            case 3: return [2 /*return*/];
+        }
+    });
+}); };
+function isAdmin(req, res, next) {
+    return __awaiter(this, void 0, void 0, function () {
+        var userId, userDB, error_7;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    userId = req.cookies.user;
+                    if (!userId)
+                        throw new Error("User not found");
+                    return [4 /*yield*/, usersModel_1.UserModel.findById(userId)];
+                case 1:
+                    userDB = _a.sent();
+                    if (userDB.isAdmin) {
+                        next();
+                    }
+                    else {
+                        res.status(401).send("not authorized");
+                    }
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_7 = _a.sent();
+                    console.error(error_7);
+                    res.status(500).send(error_7.message);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
+}
+exports.isAdmin = isAdmin;
+function userLogedIn(req, res, next) {
+    return __awaiter(this, void 0, void 0, function () {
+        var userId, userDB, error_8;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    userId = req.cookies.user;
+                    console.log(userId);
+                    if (!userId)
+                        throw new Error("User not found");
+                    return [4 /*yield*/, usersModel_1.UserModel.findById(userId)];
+                case 1:
+                    userDB = _a.sent();
+                    if (userDB) {
+                        req.user = userDB;
+                        console.log(req.user);
+                        next();
+                    }
+                    else {
+                        res.status(404).send("user not found in database");
+                    }
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_8 = _a.sent();
+                    console.error(error_8);
+                    res.status(500).send(error_8.message);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
+}
+exports.userLogedIn = userLogedIn;

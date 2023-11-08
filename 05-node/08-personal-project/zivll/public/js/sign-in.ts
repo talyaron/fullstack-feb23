@@ -11,7 +11,6 @@ async function handleSignIn(event: any) {
       body: JSON.stringify({ userName: userName, password: password }),
     });
     const result = await response.json();
-    console.log(result);
     const messageRoot = document.querySelector("#message");
 
     if (result.message === "user does not exist, please register") {

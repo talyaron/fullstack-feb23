@@ -5,12 +5,15 @@ import {
   login,
   registerUser,
   checkUser,
+  getUserId,
 } from "./usersCont";
 const userRoutes = express.Router();
 userRoutes
   .post("/register", registerUser)
   .post("/login", login)
   .patch("/add-income", addIncome)
-  .post("/get-income", getIncome)
-  .post("/check-user", checkUser);
+  .get("/get-income", getIncome)
+  .get("/check-user", checkUser)
+  .get("/get-user-id", getUserId);
+// /get-user-id
 export default userRoutes;

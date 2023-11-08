@@ -1,3 +1,4 @@
+import { UserModel } from "../users/usersModel";
 import { ExpenseModel } from "./expenseModel";
 
 export const addExpense = async (req: any, res: any) => {
@@ -20,10 +21,15 @@ export const addExpense = async (req: any, res: any) => {
     res.status(500).send({ error: error.message });
   }
 };
-export const getAllExpenses = async (req: any, res: any) => {
+export const getUserExpenses = async (req: any, res: any) => {
   try {
+    const _id = req.cookies.user;
+    const user = await UserModel.findById({ _id });
     const allExpences = await ExpenseModel.find({});
-    res.send(allExpences);
+    const userExpenses = allExpences.filter(
+      (expense) => expense.userName === user.userName
+    );
+    res.send(userExpenses);
   } catch (error) {
     console.error(error);
     res.status(500).send({ error: error.message });
@@ -41,7 +47,7 @@ export const updateExpense = async (req: any, res: any) => {
     const newParameters = { expenseName: name, expenseAmount: amount };
     // const newExpense = { id, name, amount };
     // console.log(newExpense);
-    const update = await ExpenseModel.findByIdAndUpdate(filter, newParameters);
+    const update = await ExpenseModel.findByIdAndUpdate(filter);
     await update.save();
     res.send({ ok: true });
   } catch (error) {

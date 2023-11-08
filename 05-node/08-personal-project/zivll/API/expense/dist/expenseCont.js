@@ -36,7 +36,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.deleteExpense = exports.updateExpense = exports.getAllExpenses = exports.addExpense = void 0;
+exports.deleteExpense = exports.updateExpense = exports.getUserExpenses = exports.addExpense = void 0;
+var usersModel_1 = require("../users/usersModel");
 var expenseModel_1 = require("./expenseModel");
 exports.addExpense = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var _a, userName, expenseName, categoryName, expenseAmount, expences, error_1;
@@ -68,23 +69,28 @@ exports.addExpense = function (req, res) { return __awaiter(void 0, void 0, void
         }
     });
 }); };
-exports.getAllExpenses = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var allExpences, error_2;
+exports.getUserExpenses = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var _id, user_1, allExpences, userExpenses, error_2;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
-                _a.trys.push([0, 2, , 3]);
-                return [4 /*yield*/, expenseModel_1.ExpenseModel.find({})];
+                _a.trys.push([0, 3, , 4]);
+                _id = req.cookies.user;
+                return [4 /*yield*/, usersModel_1.UserModel.findById({ _id: _id })];
             case 1:
-                allExpences = _a.sent();
-                res.send(allExpences);
-                return [3 /*break*/, 3];
+                user_1 = _a.sent();
+                return [4 /*yield*/, expenseModel_1.ExpenseModel.find({})];
             case 2:
+                allExpences = _a.sent();
+                userExpenses = allExpences.filter(function (expense) { return expense.userName === user_1.userName; });
+                res.send(userExpenses);
+                return [3 /*break*/, 4];
+            case 3:
                 error_2 = _a.sent();
                 console.error(error_2);
                 res.status(500).send({ error: error_2.message });
-                return [3 /*break*/, 3];
-            case 3: return [2 /*return*/];
+                return [3 /*break*/, 4];
+            case 4: return [2 /*return*/];
         }
     });
 }); };
@@ -101,7 +107,7 @@ exports.updateExpense = function (req, res) { return __awaiter(void 0, void 0, v
                 }
                 filter = { _id: _id };
                 newParameters = { expenseName: name, expenseAmount: amount };
-                return [4 /*yield*/, expenseModel_1.ExpenseModel.findByIdAndUpdate(filter, newParameters)];
+                return [4 /*yield*/, expenseModel_1.ExpenseModel.findByIdAndUpdate(filter)];
             case 1:
                 update = _b.sent();
                 return [4 /*yield*/, update.save()];
