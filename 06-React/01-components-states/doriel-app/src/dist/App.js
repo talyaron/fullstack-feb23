@@ -25,7 +25,7 @@ function App() {
             id: blogs.length + 1,
             title: 'Blog Title',
             content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-            image: 'https://via.placeholder.com/150'
+            image: 'https://assets.fortnitecreativehq.com/wp-content/uploads/2020/11/24084718/7153-0441-1172.jpg'
         };
         setBlogs(__spreadArrays(blogs, [newBlog]));
         setBackgroundColor(getRandomColor());
