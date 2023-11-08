@@ -48,8 +48,6 @@ var expenses = [];
 // this function handling the income submit
 function handleIncomeSubmit(ev) {
     try {
-        var urlParams = new URLSearchParams(window.location.search);
-        var userName = urlParams.get("userName");
         ev.preventDefault();
         if (!ev || !ev.target)
             throw new Error("event not found");
@@ -57,10 +55,9 @@ function handleIncomeSubmit(ev) {
         var resultRoot = document.querySelector(".total-number--income");
         if (!resultRoot)
             throw new Error("resultRoot not found");
-        // renderResult(resultRoot, userIncome);
         calculateBalance();
         ev.target.reset();
-        addIncomeToDB(userName, userIncome);
+        addIncomeToDB(userIncome);
     }
     catch (error) {
         console.error(error);
@@ -78,10 +75,8 @@ function handleAccordionClick() {
                     return [4 /*yield*/, getExpensesFromDB()];
                 case 2:
                     _a.sent();
-                    //   await getUserIncomeFromDB();
                     return [4 /*yield*/, renderExpencesTable()];
                 case 3:
-                    //   await getUserIncomeFromDB();
                     _a.sent();
                     accordion = document.querySelectorAll(".thead");
                     // this method will take care the accordion functionality
@@ -115,7 +110,7 @@ function handleAccordionClick() {
         });
     });
 }
-function addIncomeToDB(userName, userIncome) {
+function addIncomeToDB(userIncome) {
     return __awaiter(this, void 0, void 0, function () {
         var response, result, error_1;
         return __generator(this, function (_a) {
@@ -125,7 +120,7 @@ function addIncomeToDB(userName, userIncome) {
                     return [4 /*yield*/, fetch("/API/users/add-income", {
                             method: "PATCH",
                             headers: { "content-type": "application/json" },
-                            body: JSON.stringify({ userName: userName, userIncome: userIncome })
+                            body: JSON.stringify({ userIncome: userIncome })
                         })];
                 case 1:
                     response = _a.sent();
@@ -146,7 +141,7 @@ function addIncomeToDB(userName, userIncome) {
 // this function handling the expence submit
 function handleExpenceSubmit(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var resultRoot, urlParams, userName, expenseName, categoryName, expenseAmount, respone, result, error_2;
+        var resultRoot, expenseName, categoryName, expenseAmount, respone, result, error_2;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -155,8 +150,6 @@ function handleExpenceSubmit(ev) {
                     resultRoot = document.querySelector(".total-number--expense");
                     if (!resultRoot)
                         throw new Error("resultRoot not found");
-                    urlParams = new URLSearchParams(window.location.search);
-                    userName = urlParams.get("userName");
                     expenseName = ev.target.expenseName.value;
                     categoryName = ev.target.categoryName.value;
                     expenseAmount = ev.target.expenseAmount.valueAsNumber;
@@ -164,7 +157,6 @@ function handleExpenceSubmit(ev) {
                             method: "POST",
                             headers: { "content-type": "application/json" },
                             body: JSON.stringify({
-                                userName: userName,
                                 expenseName: expenseName,
                                 categoryName: categoryName,
                                 expenseAmount: expenseAmount
@@ -183,8 +175,6 @@ function handleExpenceSubmit(ev) {
                     handleAccordionClick();
                     calculateTotalExpense();
                     calculateBalance();
-                    // renderResult(resultRoot, expenseAmount.toString());
-                    // loadDataToLocalStorage()
                     ev.target.reset();
                     return [3 /*break*/, 5];
                 case 4:
@@ -228,27 +218,17 @@ function getCategoriesFromDB() {
 // this functions gets the user income from DB
 function getUserIncomeFromDB() {
     return __awaiter(this, void 0, void 0, function () {
-        var urlParams, userName, response, result, error_4;
+        var response, result, error_4;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
-                    urlParams = new URLSearchParams(window.location.search);
-                    userName = urlParams.get("userName");
-                    return [4 /*yield*/, fetch("/API/users/get-income", {
-                            method: "POST",
-                            headers: {
-                                "content-type": "application/json"
-                            },
-                            body: JSON.stringify({ userName: userName })
-                        })];
+                    return [4 /*yield*/, fetch("/API/users/get-income")];
                 case 1:
                     response = _a.sent();
                     return [4 /*yield*/, response.json()];
                 case 2:
                     result = _a.sent();
-                    // console.log(result);
-                    // if (Number(result) > 0) return result;
                     return [2 /*return*/, result.message];
                 case 3:
                     error_4 = _a.sent();
@@ -262,20 +242,19 @@ function getUserIncomeFromDB() {
 // this function gets Expenses from DB
 function getExpensesFromDB() {
     return __awaiter(this, void 0, void 0, function () {
-        var response, allExpenses, ExpensesByUserName, error_5;
+        var response, userExpenses, error_5;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
-                    return [4 /*yield*/, fetch("/API/expense/get-all-expenses")];
+                    return [4 /*yield*/, fetch("/API/expense/get-user-expenses")];
                 case 1:
                     response = _a.sent();
                     return [4 /*yield*/, response.json()];
                 case 2:
-                    allExpenses = _a.sent();
-                    ExpensesByUserName = sortExpensesByUserName(allExpenses);
-                    expenses = __spreadArrays(ExpensesByUserName);
-                    return [2 /*return*/, expenses];
+                    userExpenses = _a.sent();
+                    expenses = __spreadArrays(userExpenses);
+                    return [2 /*return*/, userExpenses];
                 case 3:
                     error_5 = _a.sent();
                     console.error(error_5);
@@ -309,7 +288,6 @@ function deleteExpense(ev) {
                     return [4 /*yield*/, getCategoriesFromDB()];
                 case 4:
                     _a.sent();
-                    getUserIncomeFromDB();
                     handleAccordionClick();
                     calculateBalance();
                     renderExpenceCalculator();
@@ -357,7 +335,6 @@ function editExpense(ev) {
                     return [4 /*yield*/, getCategoriesFromDB()];
                 case 4:
                     _a.sent();
-                    getUserIncomeFromDB();
                     handleAccordionClick();
                     calculateBalance();
                     renderExpenceCalculator();
@@ -399,40 +376,32 @@ function sortCategoriesByUserName(categories) {
 // this function sort the categories by user name and actual expenses
 function sortCategoriesByUserActualExpenses(expenses) {
     return __awaiter(this, void 0, void 0, function () {
-        var categoriesByExpenses, error_8;
+        var categoriesByExpenses;
         return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    _a.trys.push([0, 3, , 4]);
-                    return [4 /*yield*/, getExpensesFromDB()];
-                case 1:
-                    _a.sent();
-                    return [4 /*yield*/, getUserIncomeFromDB()];
-                case 2:
-                    _a.sent();
-                    categoriesByExpenses = removeDuplicates(expenses);
-                    return [2 /*return*/, categoriesByExpenses];
-                case 3:
-                    error_8 = _a.sent();
-                    console.error(error_8);
-                    return [3 /*break*/, 4];
-                case 4: return [2 /*return*/];
+            try {
+                categoriesByExpenses = removeDuplicates(expenses);
+                return [2 /*return*/, categoriesByExpenses];
             }
+            catch (error) {
+                console.error(error);
+            }
+            return [2 /*return*/];
         });
     });
 }
 // this function sorted the categories by user names
-function sortExpensesByUserName(expenses) {
-    try {
-        var urlParams = new URLSearchParams(window.location.search);
-        var userNameFromUrl_2 = urlParams.get("userName");
-        var expensesByUserName = expenses.filter(function (expense) { return expense.userName === userNameFromUrl_2; });
-        return expensesByUserName;
-    }
-    catch (error) {
-        console.error(error);
-    }
-}
+// function sortExpensesByUserName(expenses: Expense[]) {
+//   try {
+//     const urlParams = new URLSearchParams(window.location.search);
+//     const userNameFromUrl = urlParams.get("userName");
+//     const expensesByUserName = expenses.filter(
+//       (expense) => expense.userName === userNameFromUrl
+//     );
+//     return expensesByUserName;
+//   } catch (error) {
+//     console.error(error);
+//   }
+// }
 // this function sort the expences by category alfabetically
 function sortByCategory() {
     return __awaiter(this, void 0, void 0, function () {
@@ -458,7 +427,7 @@ function sortByCategory() {
 // this function is used to check and add new category
 function addCategory(event) {
     return __awaiter(this, void 0, void 0, function () {
-        var newCategory, urlParams, userNameFromUrl, response, result, error_9;
+        var newCategory, urlParams, userNameFromUrl, response, result, error_8;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -487,15 +456,14 @@ function addCategory(event) {
                     return [4 /*yield*/, getCategoriesFromDB()];
                 case 4:
                     _a.sent();
-                    getUserIncomeFromDB();
                     handleAccordionClick();
                     calculateBalance();
                     renderExpenceCalculator();
                     renderExpencesTable();
                     return [3 /*break*/, 6];
                 case 5:
-                    error_9 = _a.sent();
-                    console.error(error_9);
+                    error_8 = _a.sent();
+                    console.error(error_8);
                     return [3 /*break*/, 6];
                 case 6: return [2 /*return*/];
             }
@@ -512,10 +480,6 @@ function calculateTotalExpense() {
             expenses.forEach(function (expense) {
                 totalExpence += Number(expense.expenseAmount);
             });
-            //   renderResult(resultRoot, totalExpence);
-            //   calculateBalance();
-            //   renderExpenceCalculator();
-            //   renderExpencesTable();
             return [2 /*return*/, totalExpence];
         });
     });
@@ -523,12 +487,11 @@ function calculateTotalExpense() {
 // this function calculates the balance
 function calculateBalance() {
     return __awaiter(this, void 0, void 0, function () {
-        var balanceRoot, incomeRoot, expenseRoot, allExpenses, userIncome, error_10;
+        var balanceRoot, incomeRoot, expenseRoot, allExpenses, userIncome, error_9;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
-                    console.log("calculateBalance");
                     balanceRoot = document.querySelector(".total-number--balance");
                     incomeRoot = document.querySelector(".total-number--income");
                     expenseRoot = document.querySelector(".total-number--expense");
@@ -553,8 +516,8 @@ function calculateBalance() {
                     }
                     return [3 /*break*/, 4];
                 case 3:
-                    error_10 = _a.sent();
-                    console.error(error_10);
+                    error_9 = _a.sent();
+                    console.error(error_9);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }
@@ -575,7 +538,6 @@ window.onload = function () { return __awaiter(_this, void 0, void 0, function (
                 return [4 /*yield*/, getCategoriesFromDB()];
             case 3:
                 _a.sent();
-                getUserIncomeFromDB();
                 handleAccordionClick();
                 calculateBalance();
                 renderExpenceCalculator();
@@ -632,30 +594,49 @@ function sortObjectsByProperty(a, b) {
     }
     return 0;
 }
-function checkUser() {
+function getUserID() {
     return __awaiter(this, void 0, void 0, function () {
-        var urlParams, userName, response, result, error_11;
+        var userId, id, error_10;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
-                    urlParams = new URLSearchParams(window.location.search);
-                    userName = urlParams.get("userName");
-                    if (!userName || userName === undefined) {
+                    return [4 /*yield*/, fetch("/API/users/get-user-id")];
+                case 1:
+                    userId = _a.sent();
+                    return [4 /*yield*/, userId.json()];
+                case 2:
+                    id = _a.sent();
+                    return [2 /*return*/, id.id];
+                case 3:
+                    error_10 = _a.sent();
+                    console.error(error_10);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
+            }
+        });
+    });
+}
+function checkUser() {
+    return __awaiter(this, void 0, void 0, function () {
+        var id, response, result, error_11;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 4, , 5]);
+                    return [4 /*yield*/, getUserID()];
+                case 1:
+                    id = _a.sent();
+                    if (!id || id === undefined || id.ok === false) {
                         window.location.href = "/register.html";
                     }
-                    return [4 /*yield*/, fetch("/API/users/check-user", {
-                            method: "POST",
-                            headers: {
-                                "content-type": "application/json"
-                            },
-                            body: JSON.stringify({ userName: userName })
-                        })];
-                case 1:
+                    return [4 /*yield*/, fetch("/API/users/check-user")];
+                case 2:
                     response = _a.sent();
                     return [4 /*yield*/, response.json()];
-                case 2:
+                case 3:
                     result = _a.sent();
+                    // debugger;
                     // if (result.message === "user exist") {
                     //   window.location.href = `/index.html?userName=${userName}`;
                     // }
@@ -669,12 +650,12 @@ function checkUser() {
                     }
                     if (result.error === "userName is missing")
                         alert("" + result.error);
-                    return [3 /*break*/, 4];
-                case 3:
+                    return [3 /*break*/, 5];
+                case 4:
                     error_11 = _a.sent();
                     console.error(error_11);
-                    return [3 /*break*/, 4];
-                case 4: return [2 /*return*/];
+                    return [3 /*break*/, 5];
+                case 5: return [2 /*return*/];
             }
         });
     });

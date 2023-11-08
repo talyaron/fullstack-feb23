@@ -4,6 +4,7 @@ async function handleRegister(event) {
     const user = {
       password: event.target.password.value,
       email: event.target.email.value,
+      isAdmin: event.target.isAdmin.value
     };
 
     const response = await fetch("/API/user/register-user", {

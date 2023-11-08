@@ -34,46 +34,39 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-function handleLogIn(event) {
+function handleLogin(event) {
     return __awaiter(this, void 0, void 0, function () {
-        var email, password, user, response, data, error_1;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
+        var email, password, postInit, response, _a, error, ok, error_1;
+        return __generator(this, function (_b) {
+            switch (_b.label) {
                 case 0:
-                    _a.trys.push([0, 3, , 4]);
+                    _b.trys.push([0, 3, , 4]);
                     event.preventDefault();
-                    console.dir(event.target);
-                    email = event.target.email.value;
+                    email = event.target.email.value.toLowerCase();
                     password = event.target.password.value;
-                    user = { email: email, password: password };
-                    console.log(user);
-                    if (!user.email || !user.password)
-                        throw new Error("missing some details");
-                    return [4 /*yield*/, fetch("API/users/login", {
-                            method: "POST",
-                            headers: {
-                                "content-type": "application/json"
-                            },
-                            body: JSON.stringify(user)
-                        })];
+                    postInit = {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({ email: email, password: password })
+                    };
+                    return [4 /*yield*/, fetch("/API/users/login", postInit)];
                 case 1:
-                    response = _a.sent();
+                    response = _b.sent();
                     return [4 /*yield*/, response.json()];
                 case 2:
-                    data = _a.sent();
-                    console.log(data);
-                    // if data is not ok
-                    if (!data.ok) {
-                        throw new Error(data.message);
-                    }
-                    else {
-                        // go to home page   with user email
-                        window.location.href = "homePage.html";
+                    _a = _b.sent(), error = _a.error, ok = _a.ok;
+                    console.log(error);
+                    if (ok)
+                        window.location.href = "/index.html?email=" + email;
+                    if (error) {
+                        throw new Error(error);
                     }
                     return [3 /*break*/, 4];
                 case 3:
-                    error_1 = _a.sent();
-                    console.error(error_1);
+                    error_1 = _b.sent();
+                    console.error(error_1.message);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }

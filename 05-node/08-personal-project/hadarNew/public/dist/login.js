@@ -42,8 +42,8 @@ function handleLogin(event) {
                 case 0:
                     _b.trys.push([0, 3, , 4]);
                     event.preventDefault();
-                    user = { password: event.target.password.value, email: event.target.email.value };
-                    if (!user.email || !user.password)
+                    user = { password: event.target.password.value, email: event.target.email.value, isAdmin: event.target.isAdmin.value };
+                    if (!user.email || !user.password || !user.isAdmin)
                         throw new Error("Please complete all fields");
                     return [4 /*yield*/, fetch('/API/user/login-user', {
                             method: 'POST',

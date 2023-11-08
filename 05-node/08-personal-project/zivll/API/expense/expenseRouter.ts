@@ -1,15 +1,15 @@
 import express from "express";
 import {
   addExpense,
-  getAllExpenses,
   updateExpense,
   deleteExpense,
+  getUserExpenses,
 } from "./expenseCont";
 
 const expensesRoutes = express.Router();
 expensesRoutes
   .post("/add-expense", addExpense)
-  .get("/get-all-expenses", getAllExpenses)
+  .get("/get-user-expenses", getUserExpenses)
   .patch("/update-expense", updateExpense)
   .delete("/delete-expense", deleteExpense);
 export default expensesRoutes;

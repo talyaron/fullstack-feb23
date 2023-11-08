@@ -1,36 +1,25 @@
-async function handleLogIn(event) {
+async function handleLogin(event) {
     try {
-        event.preventDefault();
-        console.dir(event.target)
-        const email = event.target.email.value;
-        const password = event.target.password.value;
-        const user = { email, password };
-        console.log(user)
-        if (!user.email || !user.password)
-            throw new Error("missing some details");
-        const response = await fetch("API/users/login", {
-            method: "POST",
-            headers: {
-                "content-type": "application/json",
-            },
-            body: JSON.stringify(user),
-        });
-        const data = await response.json();
-        console.log(data)
-        // if data is not ok
-        if (!data.ok) {
-            throw new Error(data.message);
-        } else {
-            // go to home page   with user email
-            window.location.href = `homePage.html`;
-        }
-
-        // go to home page   with user email
-        //  window.location.href = `homePage.html?email=${data.user.email}`;
-        
+      event.preventDefault();
+      const email = event.target.email.value.toLowerCase();
+      const password = event.target.password.value;
+      const postInit = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      };
+  
+      const response = await fetch("/API/users/login", postInit);
+      const { error, ok } = await response.json(); // get data from server
+      console.log(error);
+      if (ok) window.location.href = `/index.html?email=${email}`;
+      if (error) {
+        throw new Error(error);
+      }
     } catch (error) {
-        console.error(error);
-        
+      console.error(error.message);
     }
-    
-}
+  }
+  
