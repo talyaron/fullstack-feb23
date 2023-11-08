@@ -1,3 +1,4 @@
+"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -34,39 +35,40 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-function handleLogin(event) {
+exports.__esModule = true;
+exports.isAdmin = void 0;
+var usermodel_1 = require("./usermodel");
+function isAdmin(req, res, next) {
     return __awaiter(this, void 0, void 0, function () {
-        var user, response, _a, error, email, error_1;
-        return __generator(this, function (_b) {
-            switch (_b.label) {
+        var userId, physician, error_1;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
                 case 0:
-                    _b.trys.push([0, 3, , 4]);
-                    event.preventDefault();
-                    user = { password: event.target.password.value, email: event.target.email.value, isAdmin: event.target.isAdmin.value };
-                    if (!user.email || !user.password || !user.isAdmin)
-                        throw new Error("Please complete all fields");
-                    return [4 /*yield*/, fetch('/API/user/login-user', {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify(user)
-                        })];
+                    _a.trys.push([0, 2, , 3]);
+                    userId = req.cookies.user;
+                    if (!userId)
+                        throw new Error("User not found on cookie");
+                    return [4 /*yield*/, usermodel_1.UserModel.findById(userId)];
                 case 1:
-                    response = _b.sent();
-                    return [4 /*yield*/, response.json()];
-                case 2:
-                    _a = _b.sent(), error = _a.error, email = _a.email;
-                    console.log(error);
-                    if (error) {
-                        throw new Error(error);
+                    physician = _a.sent();
+                    if (!physician)
+                        throw new Error("User not found on database");
+                    //check if the user is admin (from Database)
+                    if (user.isAdmin) {
+                        next(); // continue to the next controller
                     }
-                    window.location.href = "/main.html?email=" + email;
-                    return [3 /*break*/, 4];
-                case 3:
-                    error_1 = _b.sent();
+                    else {
+                        res.status(401).send({ error: "Unauthorized" });
+                    }
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_1 = _a.sent();
                     console.error(error_1);
-                    return [3 /*break*/, 4];
-                case 4: return [2 /*return*/];
+                    res.status(500).send({ error: error_1.message });
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
             }
         });
     });
 }
+exports.isAdmin = isAdmin;

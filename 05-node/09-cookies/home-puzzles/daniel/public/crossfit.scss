@@ -1,0 +1,85 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+
+form {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    margin-bottom: 40px;
+    border: 2px solid #67849b;
+    padding: 24px;
+    background-color: #67849b;
+}
+
+h1{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    color: #c0cdff;
+    font-size: 60px;
+    text-shadow: #37352e 1px 0 10px;
+}
+
+body > button{
+    position: relative;
+    left: 43%;
+    width: 14%;
+    padding: 12px;
+    border-radius: 12px;
+    margin-bottom: 40px;
+}
+
+input{
+    margin-bottom: 10px;
+}
+
+.crossfit{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+
+    h2{
+        color: #b19d7f;
+        text-shadow: #1a1a18 1px 0 2px;
+        font-size: 50px;
+        margin: 0;
+    }
+
+    p{
+        text-shadow: #1a1a18 1px 0 2px;
+        background-color: #c0cdff;
+        font-size: 30px;
+        margin: 3px;
+    }
+
+    #delete{
+        background-color: #283669;
+        color: wheat;
+        margin-bottom: 45px;
+    }
+}
+h1{
+    text-align: center;
+    color: #7e7e8b;
+}
+
+    
+    .item-container{
+        text-align: center;
+        h2{
+            color: #67849b;
+        }
+
+        #delete button{
+            display: flex;
+            width:100%;
+        }
+}

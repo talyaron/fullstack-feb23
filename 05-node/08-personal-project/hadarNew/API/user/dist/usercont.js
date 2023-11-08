@@ -40,13 +40,13 @@ exports.loginUser = exports.registerUser = void 0;
 var usermodel_1 = require("./usermodel");
 //register user
 exports.registerUser = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var _a, email, password, existingUser, user, userDB, error_1;
+    var _a, email, password, isAdmin, existingUser, user, userDB, error_1;
     return __generator(this, function (_b) {
         switch (_b.label) {
             case 0:
                 _b.trys.push([0, 3, , 4]);
-                _a = req.body, email = _a.email, password = _a.password;
-                if (!email || !password)
+                _a = req.body, email = _a.email, password = _a.password, isAdmin = _a.isAdmin;
+                if (!email || !password || !isAdmin)
                     throw new Error("Please complete all fields");
                 return [4 /*yield*/, usermodel_1.UserModel.findOne({ email: email }).exec()];
             case 1:
@@ -54,7 +54,7 @@ exports.registerUser = function (req, res) { return __awaiter(void 0, void 0, vo
                 if (existingUser) {
                     return [2 /*return*/, res.status(400).json({ error: "User with this email already exists." })];
                 }
-                user = new usermodel_1.UserModel({ email: email, password: password });
+                user = new usermodel_1.UserModel({ email: email, password: password, isAdmin: isAdmin });
                 return [4 /*yield*/, user.save()];
             case 2:
                 userDB = _b.sent();
@@ -75,15 +75,15 @@ exports.registerUser = function (req, res) { return __awaiter(void 0, void 0, vo
 }); };
 // login user
 exports.loginUser = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var _a, email, password, user, error_2;
+    var _a, email, password, isAdmin, user, error_2;
     return __generator(this, function (_b) {
         switch (_b.label) {
             case 0:
                 _b.trys.push([0, 2, , 3]);
-                _a = req.body, email = _a.email, password = _a.password;
-                if (!email || !password)
+                _a = req.body, email = _a.email, password = _a.password, isAdmin = _a.isAdmin;
+                if (!email || !password || !isAdmin)
                     throw new Error("Please complete all fields");
-                return [4 /*yield*/, usermodel_1.UserModel.findOne({ email: email, password: password }).exec()];
+                return [4 /*yield*/, usermodel_1.UserModel.findOne({ email: email, password: password, isAdmin: isAdmin }).exec()];
             case 1:
                 user = _b.sent();
                 if (!user)

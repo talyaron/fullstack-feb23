@@ -16,7 +16,11 @@ export let users: User[] = [];
 //mongoDB
 export const UserSchema= new Schema({
   email: String,
-  password: String  
+  password: String,
+  isAdmin: {
+    type: Boolean,
+    default: false
+  }
 })
 
 export const UserModel= model("usersPro",UserSchema)

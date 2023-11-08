@@ -44,7 +44,8 @@ function handleRegister(event) {
                     event.preventDefault();
                     user = {
                         password: event.target.password.value,
-                        email: event.target.email.value
+                        email: event.target.email.value,
+                        isAdmin: event.target.isAdmin.value
                     };
                     return [4 /*yield*/, fetch("/API/user/register-user", {
                             method: "POST",
