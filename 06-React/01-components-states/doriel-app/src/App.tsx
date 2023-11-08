@@ -26,7 +26,7 @@ function App() {
       id: blogs.length + 1,
       title: 'Blog Title',
       content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-      image: 'https://cdn4.vectorstock.com/i/1000x1000/85/28/happy-lol-guy-meme-face-for-any-design-vector-10638528.jpg',
+      image: 'https://assets.fortnitecreativehq.com/wp-content/uploads/2020/11/24084718/7153-0441-1172.jpg',
     };
     setBlogs([...blogs, newBlog]);
 
