@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
-
 
 const Circle = ({ color }: { color: string }) => {
   const circleStyle = {
@@ -15,14 +14,23 @@ const Circle = ({ color }: { color: string }) => {
 
 const ColorPicker = ({ setColor }: { setColor: React.Dispatch<React.SetStateAction<string>> }) => {
   const handleColorChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setColor(e.target.value);
+    const selectedColor = e.target.value;
+    setColor(selectedColor);
+    localStorage.setItem('selectedColor', selectedColor);
   };
 
   return <input type="color" onChange={handleColorChange} />;
 };
 
 const App = () => {
-  const [circleColor, setCircleColor] = useState('#000000');
+  const [circleColor, setCircleColor] = useState<string>(() => {
+    const savedColor = localStorage.getItem('selectedColor');
+    return savedColor || '#000000';
+  });
+
+  useEffect(() => {
+    localStorage.setItem('selectedColor', circleColor);
+  }, [circleColor]);
 
   return (
     <div>
