@@ -36,3 +36,15 @@
     transform: rotate(360deg);
   }
 }
+
+#my-circle{
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+ border: 1px solid black;
+ 
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
