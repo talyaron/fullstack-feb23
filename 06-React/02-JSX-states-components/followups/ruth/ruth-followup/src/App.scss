@@ -1,0 +1,44 @@
+body{
+  background-color: lightblue;
+}
+.posts{
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  .Post{
+    border-radius: 15px;
+   
+    width: 200px;
+    // height: 400px;
+    color: rgb(0, 0, 0);
+    background-color: rgb(255, 255, 255);
+    .tag{
+      background-color: orange;
+      color: white;
+      margin: 3px ;
+      padding: 2px 10px;
+      border-radius: 100px;
+    }
+    .featherdImg{
+      width: 100%;
+      border-radius:15px 15px 00px 0px;
+      
+    }
+    .auther{
+      display: flex;
+      flex-direction:row ;
+      .autherImg{
+        width: 40px;
+        height: 40px;
+        border-radius: 20px;
+        object-fit: cover ;
+      
+      }
+      .autherInfo{
+        *{
+          margin: 0;
+        }
+      }
+  }
+  }
+}
