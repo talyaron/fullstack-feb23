@@ -1,0 +1,20 @@
+.App {
+  text-align: center;
+}
+
+input[type=color] {
+  display: none;
+}
+span {
+border-radius: 50%;
+width: 100px;
+height: 100px; 
+background-color:rgb(115, 0, 255);
+display:inline-block;
+margin: 40px;
+}
+
+textarea {
+  margin: 20px;
+}
+
