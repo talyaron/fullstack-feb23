@@ -3,27 +3,35 @@ import logo from './logo.svg';
 import './App.css';
 
 function App() {
-  const [counterState, setCounterState] = useState(0)
-  const text = "my name is gili"
-  let counter = 0;
-  console.log("component is rendered")
+  const [counter, setCounter] = useState<number>(0);
+  const [text, setText] = useState<string>("")
 
   const addOne = () => {
-    counter++
-    console.log(counter)
+    setCounter(counter + 1)
   }
-  const addOneState = () => {
-   setCounterState(counterState + 1)
-    console.log(counterState)
+
+  function removeOne() {
+    setCounter(counter -1)
   }
+
+  const changeName = () => {
+    const username = prompt("add your name!")
+    if (username){
+      setText(username)
+    } else {
+      alert("please provide name!")
+    }
+  }
+  
 
   return (
     <div className="App">
-      <p>Hello! {text}</p>
+      <p>Hello {text}!</p>
       <p>count: {counter}</p>
-      <p>count State: {counterState}</p>
-      <button onClick={addOne}>ADD</button>
-      <button onClick={addOneState}>ADD To state</button>
+      <button onClick={addOne}>ADD 1</button>
+      <button onClick={removeOne}>REMOVE 1</button>
+      <button onClick={changeName}>ADD NAME</button>
+      <input type="color"/>
     </div>
   );
 }
