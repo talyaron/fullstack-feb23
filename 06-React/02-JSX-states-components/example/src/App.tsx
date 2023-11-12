@@ -10,6 +10,7 @@ function App() {
      <Article/>
      <Article/>
      <Article/>
+     <article className="article">hello</article>
     </div>
   );
 }
