@@ -1,0 +1,56 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+
+  gap: 30px;
+  .circle {
+    height: 500px;
+    width: 500px;
+    background-color: #bbb;
+    border-radius: 50%;
+    // display: inline-block;
+  }
+
+  .colorPicker {
+    display: flex;
+
+    gap: 5px;
+
+    .square {
+      width: 50px;
+      height: 50px;
+      cursor: pointer;
+    }
+    .beige {
+      background-color: beige;
+    }
+    .red {
+      background-color: red;
+    }
+    .black {
+      background-color: black;
+    }
+    .yellow {
+      background-color: yellow;
+    }
+    .green {
+      background-color: green;
+    }
+    .purple {
+      background-color: purple;
+    }
+    .pink {
+      background-color: pink;
+    }
+    .orange {
+      background-color: orange;
+    }
+    .aqua {
+      background-color: aqua;
+    }
+  }
+}

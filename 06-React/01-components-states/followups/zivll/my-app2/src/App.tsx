@@ -1,35 +1,38 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
 
+import "./App.scss";
+//create a circle, and by using a color picker, when a colour is picked, change the color of the circle
 function App() {
-  const [count, setCount] = useState(0)
+  const [color, setColor] = useState("#bbb");
+  const changeColor = () => {
+    const newColor = prompt("please select a color");
+    if (newColor === null) alert("you have to select a color");
+    else setColor(newColor);
+  };
+  const changeColorByListener = (ev: any) => {
+    setColor(ev.target.classList[1]);
+  };
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <div className="circle" style={{ backgroundColor: `${color}` }}></div>
+      <button onClick={changeColor}>
+        Change the color of the circle by typing the hex code
+      </button>
+      <p>or click on one of the circles</p>
+      <div className="colorPicker">
+        <div className="square beige" onClick={changeColorByListener}></div>
+        <div className="square red" onClick={changeColorByListener}></div>
+        <div className="square black" onClick={changeColorByListener}></div>
+        <div className="square yellow" onClick={changeColorByListener}></div>
+        <div className="square green" onClick={changeColorByListener}></div>
+        <div className="square purple" onClick={changeColorByListener}></div>
+        <div className="square pink" onClick={changeColorByListener}></div>
+        <div className="square orange" onClick={changeColorByListener}></div>
+        <div className="square aqua" onClick={changeColorByListener}></div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
