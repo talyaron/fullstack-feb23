@@ -1,4 +1,4 @@
-import React from 'react'
+//import React from 'react'
 import './card.scss'
 
 const Card = () => {
@@ -6,14 +6,15 @@ const Card = () => {
     <div className='rupper'>
       <img className='headImg'></img>
       <div className='articleConteiner'>
-        <button className=''></button>
-        <h1>Article title</h1>
-        <p className='articleP'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, repudiandae doloribus porro consequuntur reiciendis officiis deserunt vero quaerat quae, possimus culpa quas facilis numquam veritatis expedita perferendis enim sunt amet?</p>
+        <button className='articleBtn'>topic</button>
+        <h3 className='articleH'>Article title</h3>
+        <p className='articleP'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, repudiandae doloribus porro consequuntur reici</p>
       </div>
-      <footer>
+      <footer className='articleFooter'>
         <img className='userImg'></img>
-        <h4 className='name'>user name</h4>
-        <h4 className='time'>time</h4>
+        <div className='h5rupper'>
+        <h5 className='name'>user name</h5>
+        <h5 className='time'>time</h5></div>
       </footer>
     </div>
   )

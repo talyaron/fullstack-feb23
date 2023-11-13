@@ -2,16 +2,61 @@
     border-radius: 15px;
     background-color: white;
     width: 300px;
-    height: 450px;
+    height: 550px;
   }
   
   .headImg {
     height: 40%;
     width: 100%;
+    border-start-end-radius: 15px;
+    border-start-start-radius: 15px;
     background-image: url("https://media-cdn.tripadvisor.com/media/photo-s/10/c4/23/16/highland-view-bed-and.jpg");
   }
+
+ .articleBtn {
+  background-color: plum;
+  border-radius: 15px;
+  font-size: 5px;
+  text-align: center;
+ } 
 
   .articleConteiner {
     text-align: left;
     padding: 15px;
+    height: 40%;
+
+  }
+
+  .articleH {
+    margin: 2px;
+  } 
+
+  .articleP {
+    margin: 2px;
+  }
+
+  .articleFooter{ 
+    margin-top: 2px;
+    margin-left: 15px;
+    height: 10%;
+    display: flex;
+  }
+
+  .userImg {
+    height: 50px;
+    width: 50px;
+    background-position: center;
+    background-size: cover;
+    border-radius: 50%;
+    float: left;;
+    background-image: url("https://pyxis.nymag.com/v1/imgs/67c/875/52bd43d25619788121137d066059738be4-taylor-swift.jpg") ;
+  }
+
+  h5 {
+    margin: 1px;
+    width: fit-content;
+  }
+
+  .h5rupper {
+    margin-left: 8px;
   }
