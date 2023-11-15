@@ -1,0 +1,57 @@
+:root {
+  --bg-color: #ccc;
+}
+
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: var(--bg-color);
+}
+
+.wrapper{
+  
+  .cards{
+    display: flex;
+    text-align: left;
+   
+    flex-direction: column;
+    border-radius: 5px;
+    border: #888;
+    border-radius: 15px;
+    background-color:white;
+    width: 20rem;
+    height: 25rem;
+    h1{font-size: 1rem; color: black;}
+    p{ color: grey}
+
+    .picture{
+      background-color: bisque;
+      height: 50%;
+      border-radius: 15px 15px 0 0;
+    }
+    .contents{
+      padding: 1rem;
+    }
+
+    .profile{
+      background-color: #888;
+    }
+  }
+}
