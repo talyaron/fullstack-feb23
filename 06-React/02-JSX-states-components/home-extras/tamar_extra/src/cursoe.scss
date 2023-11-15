@@ -1,0 +1,17 @@
+.main-cursor {
+  z-index: 10000;
+
+  pointer-events: none;
+  // overflow: hidden;
+  transform: translate3d(0, 0, 0);
+  position: fixed;
+}
+
+
+.main-cursor-background {
+    width: 30px;
+    height: 30px;
+    background: red;
+    border-radius: 50%;
+}
+
