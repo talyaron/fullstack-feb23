@@ -6,7 +6,7 @@ const users = [
     email: "Sincere@april.biz",
     phone: "1-770-736-8031 x56442",
     website: "hildegard.org",
-    age: 30
+    age: 30,
   },
   {
     id: 2,
@@ -15,7 +15,7 @@ const users = [
     email: "Shanna@melissa.tv",
     phone: "010-692-6593 x09125",
     website: "anastasia.net",
-    age: 27
+    age: 27,
   },
   {
     id: 3,
@@ -24,7 +24,7 @@ const users = [
     email: "Nathan@yesenia.net",
     phone: "1-463-123-4447",
     website: "ramiro.info",
-    age: 28
+    age: 28,
   },
   {
     id: 4,
@@ -33,7 +33,7 @@ const users = [
     email: "Julianne.OConner@kory.org",
     phone: "493-170-9623 x156",
     website: "kale.biz",
-    age: 35
+    age: 35,
   },
   {
     id: 5,
@@ -42,7 +42,7 @@ const users = [
     email: "Lucio_Hettinger@annie.ca",
     phone: "(254)954-1289",
     website: "demarco.info",
-    age: 39
+    age: 39,
   },
   {
     id: 6,
@@ -51,7 +51,7 @@ const users = [
     email: "Karley_Dach@jasper.info",
     phone: "1-477-935-8478 x6424",
     website: "ola.org",
-    age: 24
+    age: 24,
   },
   {
     id: 7,
@@ -60,7 +60,7 @@ const users = [
     email: "Telly.Hoeger@billy.biz",
     phone: "210.067.6132",
     website: "elvis.io",
-    age: 25
+    age: 25,
   },
   {
     id: 8,
@@ -69,7 +69,7 @@ const users = [
     email: "Sherwood@rosamond.me",
     phone: "586.493.6943 x140",
     website: "jacynthe.com",
-    age: 29
+    age: 29,
   },
   {
     id: 9,
@@ -78,7 +78,7 @@ const users = [
     email: "Chaim_McDermott@dana.io",
     phone: "(775)976-6794 x41206",
     website: "conrad.com",
-    age: 28
+    age: 28,
   },
   {
     id: 10,
@@ -87,7 +87,7 @@ const users = [
     email: "Rey.Padberg@karina.biz",
     phone: "024-648-3804",
     website: "ambrose.net",
-    age: 30
+    age: 30,
   },
 ];
-export default users
+export default users;
