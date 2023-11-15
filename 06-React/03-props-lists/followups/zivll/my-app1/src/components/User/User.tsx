@@ -1,5 +1,4 @@
 import React, { FC } from 'react'
-import users from './users'
 interface UserProps {
     id: string,
     name: string,
