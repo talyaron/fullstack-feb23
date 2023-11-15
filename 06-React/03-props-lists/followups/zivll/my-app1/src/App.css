@@ -1,7 +1,28 @@
 .App {
   text-align: center;
+  display: flex;
+  justify-content: center;
 }
-
+.cards{
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  height: 100%;
+  background-color: antiquewhite;
+  gap: 3%;
+  align-items: center;
+  justify-content: center;
+}
+.card{
+  height: 70%;
+  border-radius: 10%;
+  background-color: #61dafb;
+  display: flex;
+  padding: 15px;
+  align-items: center;
+  justify-content:center;
+  flex-direction: column;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
