@@ -1,25 +1,24 @@
-import React from 'react'
+import React, { useState } from 'react';
+import './Article.scss';
 
-const Article = () => {
-    const reactLogo = 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1280px-React-icon.svg.png'
+const Article = ({ title, content, imgSrc,id }) => {
+  const [clickCount, setClickCount] = useState(0);
+
+  const handleButtonClick = () => {
+    setClickCount(clickCount + 1);
+  };
+
   return (
-    <>
-       <section>
-        <div className='square' style={ {background:'black', height:'500px', width:'500px', color:'white'}} >
-          <div className='logo'>
-            <img id='myLogo' src={reactLogo} alt='react logo' />
-          </div>
-          <div className='heder'>
-            <p>React</p>
-          </div>
-          <div className='text'>
-            <p>React is a free and open-source front-end JavaScript library for building user interfaces or UI components.</p>
-          </div>
-        </div>
-       
-      </section>
-    </>
-  )
+    <div className='card'>
+      {imgSrc && <img id='card-img-top' src={imgSrc} alt='Article Image' />}
+      <h1 className='card-title'>{title}</h1>
+      <p className='card-text'>{content}</p>
+      <button className='btn btn-primary' onClick={handleButtonClick}>
+       Read More
+      </button>
+      <p>Readers: {clickCount}</p>  
+    </div>
+  );
 }
 
-export default Article
+export default Article;
