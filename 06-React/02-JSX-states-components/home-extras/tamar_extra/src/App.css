@@ -1,0 +1,27 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.color{
+  height: 250px;
+  width: 250px;
+  background-color: blueviolet;
+}
+.color:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+  background-color: aquamarine;
+}
+
+.follow {
+  height: 100px;
+  width: 100px;
+  background-color: red;
+  border-radius: 100%;
+  /* display: flex; */
+  position: relative;
+  
+}
+
