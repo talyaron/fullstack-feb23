@@ -1,12 +1,13 @@
+
+2. create a title and paragraph component and pass strings into it with props.
+<!-- ------create the same component, but pass the string as a children prop -->
+
 1. create 3 user objects.
 create user card components that recieve these users as props. make sure to deal with empty fields.
 
-2. create a title and paragraph component and pass strings into it with props.
-create the same component, but pass the string as a children prop
+<!-- 3. create a animal card component, animal should have type (cat, dog etc), name and age, color the background of the component by the type of the animal (cat = purple, dog = blue, etc);
 
-3. create a animal card component, animal should have type (cat, dog etc), name anf age, color the background of the component by the type of the animal (cat = purple, dog = blue, etc);
-
-4. create a button component, and deliver the onclick method as props.
+4. create a button component, and deliver the onclick method as props. -->
 
 
 
