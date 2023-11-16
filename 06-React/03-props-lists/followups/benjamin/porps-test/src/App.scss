@@ -47,17 +47,16 @@
   gap: 10px; /* Adjusts the space between grid items */
 }
 
-.shop{
+.sub{
 border-radius: 50%;
 background-color: rgb(94, 116, 116);
-width: 50px;
+width: 70px;
 height: 50px;
-padding: 10px;
+padding: 1px;
 cursor: pointer;
 transition: all 0.2s ease-in-out;
 &:hover{
   background-color: rgb(43, 209, 209);
-  color: white;
   transform: scale(1.1);
 }
 }

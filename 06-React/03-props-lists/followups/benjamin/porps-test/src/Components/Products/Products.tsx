@@ -20,11 +20,13 @@ const Products: FC<ProductProps> = ({ name, price, img, addToCart, removeToCart}
   };
 
   const romoveAmount = () => {
+    if(amount > 0){
     setAmount((prevAmount) => prevAmount - 1);
+    }
   };
 
   return (
-    <Card style={{ width: "18rem" }}>
+    <Card className="card" style={{ width: "18rem" }}>
       <Card.Img variant="top" src={img} />
       <Card.Body>
         <Card.Title>{name}</Card.Title>

@@ -6,6 +6,9 @@ import User from "./Components/User/User";
 import Products from "./Components/Products/Products";
 import { productsList } from "./util/ProductsList";
 import Offcanvas from "react-bootstrap/Offcanvas";
+import Card from "react-bootstrap/Card";
+import Modal from 'react-bootstrap/Modal';
+
 
 function App() {
   const [name, setName] = useState("");
@@ -14,16 +17,23 @@ function App() {
   const [cartTotal, setCartTotal] = useState(0);
   const [show, setShow] = useState(false);
   const [productsDisplay, setProductsDisplay] = useState("none");
+  const [showModal, setShowModal] = useState(false);
+
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const handleCloseModal = () => setShowModal(false);
+  const handleShowModal = () => setShowModal(true);
 
   const addToCart = (price: number) => {
     setCartTotal((prevCartTotal) => prevCartTotal + price);
   };
 
   const removeToCart = (price: number) => {
+    if(cartTotal > 0){
     setCartTotal((prevCartTotal) => prevCartTotal - price);
+    }
   };
 
   const handleForm: React.FormEventHandler<HTMLFormElement> = (ev) => {
@@ -75,7 +85,7 @@ function App() {
         </Button>
       </Form>
       <User className="user" key={email} name={name} email={email} />
-      <div style={{display: productsDisplay}} className="products">
+      <div style={{ display: productsDisplay }} className="products">
         {productsList.map((product) => (
           <Products
             key={product.name}
@@ -105,9 +115,34 @@ function App() {
           <Offcanvas.Title>Cart</Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
-        {cartTotal} ₪
+          <Card>
+            <Card.Header>{name} cart</Card.Header>
+            <Card.Body>
+              <Card.Title>final payment</Card.Title>
+              <Card.Text>
+              initial sum : {cartTotal} ₪
+              </Card.Text>
+              <Button  onClick={handleShowModal} variant="primary">pay</Button>
+            </Card.Body>
+          </Card>
+       
         </Offcanvas.Body>
       </Offcanvas>
+
+      <Modal show={showModal} onHide={handleCloseModal}>
+        <Modal.Header closeButton>
+          <Modal.Title>payment</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>{cartTotal} ₪</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            pay
+          </Button>
+          <Button variant="primary" onClick={handleClose}>
+          Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </>
   );
 }
