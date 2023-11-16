@@ -7,17 +7,19 @@ interface ProductProps {
     price: number;
     category: string;
     children?: React.ReactNode; 
+    // Step 4: Define a prop for the callback function
+  onAddToList: () => void;
   }
 
-const Product :FC<ProductProps> = ({id,name,imgSrc,price,category,children}) => {
+const Product :FC<ProductProps> = ({id,name,imgSrc,price,category,children,onAddToList }) => {
   return (
     <div className='ProductCard'>
-        {children}
+        {/* {children} */}
         <img className='ProductCard__Img' src={imgSrc} alt={name} />
         <h1 className='ProductCard__name'>{name}</h1>
         <p className='ProductCard__price'>Price: {price}</p>
         <p className='ProductCard__category'>Category: {category}</p>
-        <button className='ProductCard__button'>Add To List</button>
+        <button className='ProductCard__button' onClick={onAddToList}>Add To List</button>
       
     </div>
   )
