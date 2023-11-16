@@ -17,6 +17,8 @@ const Title: FC<TitleProps> = ({ header }) => {
 
 export default Title;
 
+
+//another why to write the last function (same same)
 export function TitleTitle({ header }: TitleProps) {
-  return <div>Title</div>;
+  return <div>{header}</div>;
 }
