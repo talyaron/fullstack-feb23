@@ -7,7 +7,7 @@ function App() {
 const [counter, setCounter] = useState<number>(1);
 const [text, setText] = useState<string>("");
 const [color, setColor] = useState ("")
-const [year, setYear] = useState<number>(0);
+const [age, setAge] = useState<number>(0);
 
 const multiply2 = () => {
   setCounter(counter*2)
@@ -22,10 +22,11 @@ const changeName = () => {
   }
 }
 
-const changeYear = () => {
-  prompt("add your year")
+const calculateAge = () => {
+  const addYear= Number(prompt("add your birthday year"))
   const currentYear = new Date().getFullYear();
-  setYear(currentYear-year)
+  const myAge= currentYear-addYear
+  setAge(myAge)
 
 }
 
@@ -40,8 +41,8 @@ const changeYear = () => {
       <div style={{backgroundColor:color}} className="circle">
       <input type="color" value={color} onChange={(e)=> setColor(e.target.value)}/>
       </div>
-      <button onClick={changeYear}> ADD BIRTH YEAR</button>
-      <p>your age:{year}</p>
+      <button onClick={calculateAge}> ADD BIRTH YEAR</button>
+      <p>your age:{age}</p>
       
     </div>
   );
