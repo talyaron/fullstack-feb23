@@ -12,11 +12,11 @@ type StoreItemProps = {
 export function StoreItem({ id, name, price, imgUrl }: StoreItemProps) {
   const {
     getItemQuantity,
-    increaseCartQuantity, 
+    increaseCartQuantity,
     decreaseCartQuantity,
     removeFromCart,
-  } = useShoppingCart()
-const quantity = getItemQuantity(id);
+  } = useShoppingCart();
+  const quantity = getItemQuantity(id);
   return (
     <Card className="h-100">
       <Card.Img
@@ -32,7 +32,9 @@ const quantity = getItemQuantity(id);
         </Card.Title>
         <div className="mt-auto">
           {quantity === 0 ? (
-            <Button className="w-100" onClick={() => increaseCartQuantity(id)}>+ Add To Cart</Button>
+            <Button className="w-100" onClick={() => increaseCartQuantity(id)}>
+              + Add To Cart
+            </Button>
           ) : (
             <div
               className="d-flex align-items-center flex-column"
@@ -44,14 +46,18 @@ const quantity = getItemQuantity(id);
               >
                 <Button onClick={() => increaseCartQuantity(id)}>+</Button>
                 <div>
-                <span className="fs-3">{quantity}</span> In Cart
-            
+                  <span className="fs-3">{quantity}</span> In Cart
                 </div>
 
                 <Button onClick={() => decreaseCartQuantity(id)}>-</Button>
               </div>
-              <Button onClick={() => removeFromCart(id)} variant="danger" size="sm" >Remove</Button>
-        
+              <Button
+                onClick={() => removeFromCart(id)}
+                variant="danger"
+                size="sm"
+              >
+                Remove
+              </Button>
             </div>
           )}
         </div>
