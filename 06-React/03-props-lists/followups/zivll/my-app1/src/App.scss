@@ -3,7 +3,7 @@
   display: flex;
   justify-content: center;
 }
-.cards{
+.cards {
   display: flex;
   flex-wrap: wrap;
   width: 100%;
@@ -12,16 +12,24 @@
   gap: 3%;
   align-items: center;
   justify-content: center;
-}
-.card{
-  height: 70%;
-  border-radius: 10%;
-  background-color: #61dafb;
-  display: flex;
-  padding: 15px;
-  align-items: center;
-  justify-content:center;
-  flex-direction: column;
+
+  .card {
+    margin: 1%;
+    height: 70%;
+    border-radius: 10%;
+    background-color: #61dafb;
+    display: flex;
+    padding: 15px;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+  .dinamic-card {
+    button {
+      margin: 5px;
+      padding: 5px 10px;
+    }
+  }
 }
 .App-logo {
   height: 40vmin;

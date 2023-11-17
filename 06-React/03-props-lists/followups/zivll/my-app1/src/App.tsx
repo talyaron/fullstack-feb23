@@ -1,8 +1,8 @@
 import React from 'react';
 import './App.scss';
-import User from './components/User/User';
 import { users } from './components/User/users';
 import { Card } from './components/card/CardUser';
+import DinamicCard from './components/dinamic-card/DinamicCard';
 
 
 function App() {
@@ -11,7 +11,8 @@ function App() {
       <div className="cards">
         {users.map((user) => {
           return <Card key={user.email} email={user.email} userName={user.username} />;
-        })}     </div>
+        })}     <div><DinamicCard /></div>  </div>
+
 
     </div>
 
