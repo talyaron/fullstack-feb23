@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.scss';
 import AnimalCard from './components/animal-card/AnimalCard';
 import { animals } from './utilities/animals';
+import Button from './components/button/Button';
 
 function App() {
   return (

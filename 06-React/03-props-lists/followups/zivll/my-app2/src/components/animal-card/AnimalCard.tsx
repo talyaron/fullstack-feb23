@@ -2,8 +2,9 @@
 
 import React, { FC } from 'react'
 import { animals } from '../../utilities/animals'
+import Button from '../button/Button';
 
-interface AnimalCardProps {
+export interface AnimalCardProps {
     type: string,
     name: string,
     age: number,
