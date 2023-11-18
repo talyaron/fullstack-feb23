@@ -1,14 +1,14 @@
 [
   {
     "id": 1,
-    "name": "Book",
+    "name": "The Book of Kells",
     "price": 44.40,
     "imgUrl": "/imgs/book.jpg"
   },
   {
     "id": 2,
-    "name": "Computer",
-    "price": 7499,
+    "name": "MacBook Air",
+    "price": 3999,
     "imgUrl": "/imgs/computer.jpg"
   },
   {
@@ -19,8 +19,20 @@
   },
   {
     "id": 4,
-    "name": "Car",
+    "name": "Yellow Beetle",
     "price": 61000,
     "imgUrl": "/imgs/car.jpg"
+  },
+  {
+    "id": 5,
+    "name": "Solo 3 Gold",
+    "price": 2100,
+    "imgUrl": "/imgs/earphones.jpeg"
+  },
+  {
+    "id": 6,
+    "name": "Indian Spices Set",
+    "price": 185.85,
+    "imgUrl": "/imgs/spices.png"
   }
 ]
