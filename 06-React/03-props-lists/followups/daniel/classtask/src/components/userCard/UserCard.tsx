@@ -1,7 +1,7 @@
 // 1. create 3 user objects.
 // create user card components that recieve these users as props. make sure to deal with empty fields.
 
-import React,{FC, useState} from 'react'
+import React,{FC} from 'react'
 
 interface UserCardProps {
       id: number,
@@ -19,11 +19,17 @@ interface UserCardProps {
 //   email: string;
 // }
 
-const User: FC<UserCardProps> = ({ id, name, username,email,phone, website,age}) => {
-  const [userCard, setUserCard] = useState<UserCardProps | null>();
+const UserCard: FC<UserCardProps> = ({ id, name, username,email,phone, website,age}) => {
+  // const [userCard, setUserCard] = useState<UserCardProps | null>();
   return <div>
-    {id} {name} {username} {email} {phone} {website} {age}
+    <p>{id}</p>
+    <p>{name}</p>
+    <p>{username}</p>
+    <p>{email}</p>
+    <p>{phone}</p>
+    <p>{website}</p>
+    <p>{age}</p>
     </div>;
 };
 
-export default User;
+export default UserCard;
