@@ -1,25 +1,11 @@
-import React from "react";
-import './App.css'
-import People from './People'
+import './App.css';
+import Login from './Login';
+import Welcome from './Welcome';
 
-function App() {
+const App = () => {
+  const isLoggedIn = !!localStorage.getItem('username');
 
-   const firstUser = {
-    firstName: "Lee",
-    age: 20,
-    hobbie: "skydive"
-  }
+  return <>{isLoggedIn ? <Welcome /> : <Login />}</>;
+};
 
-  const welcome = "Welcome"
-
-  return (
-    <>
-        <People first={firstUser.firstName} age={firstUser.age} hobbie={firstUser.hobbie}>
-          <p>{welcome}</p>
-          <p>bye</p>
-        </People>
-    </>
-  )
-}
-
-export default App
+export default App;
