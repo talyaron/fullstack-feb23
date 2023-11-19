@@ -1,0 +1,40 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  direction: rtl;
+  .main {
+    display: grid;
+    grid-template-columns: 80% 1fr;
+    // grid-template-rows: repeat(3);
+    position: relative;
+    .title {
+      grid-column: 1/-1;
+    }
+    .products {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      .product {
+        img {
+          max-width: 100%;
+        }
+        // .fullprice {
+        // }
+        // .category {
+        // }
+      }
+    }
+    .cart {
+      border: 1px solid black;
+      min-height: 1000px;
+      height: fit-content;
+      width: auto;
+      float: left;
+      position: sticky;
+      overflow: auto;
+      top: 100px;
+    }
+  }
+}
