@@ -53,6 +53,7 @@ export function Home() {
           <span className="text-muted">© 2023 MyStore</span>
         </div>
       </footer>
+      
     </div>
   );
 }
