@@ -1,0 +1,42 @@
+body{
+  background-color: rgb(54, 119, 209);
+}
+
+
+.wrapper{
+  background-color: rgb(216, 216, 216);
+  padding: 30px;
+  border-radius: 20px;
+  input{
+    padding: 5px;
+    height: 30px;
+    border-radius: 10px;
+    margin:10px;
+  }
+  .listDiv{
+    .itemDiv{
+align-items: center;
+text-align: center;
+background-color: rgb(255, 255, 255);
+      padding-top: 10px;
+      height: 50px;
+      margin:5px ;
+      border-radius: 10px;
+      span{
+        padding: 10px;
+      }
+      .btns{
+     float: right;
+      }
+        button{
+          min-width: 30px;
+          padding: 5px;
+          margin: 2px;
+          background-color: rgb(222, 221, 221);
+          color: rgb(0, 0, 0);
+        }
+      
+    }
+  }
+
+}
