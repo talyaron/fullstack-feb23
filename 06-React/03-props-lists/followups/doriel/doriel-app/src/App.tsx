@@ -5,7 +5,11 @@ import Welcome from './Welcome';
 const App = () => {
   const isLoggedIn = !!localStorage.getItem('username');
 
-  return <>{isLoggedIn ? <Welcome /> : <Login />}</>;
+  return <>
+  <div>
+  {isLoggedIn ? <Welcome /> : <Login />}
+  </div>
+  </>;
 };
 
 export default App;
