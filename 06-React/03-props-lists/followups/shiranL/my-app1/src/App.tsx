@@ -96,8 +96,7 @@ function App() {
         <div className='products-header'>
           <h1>Products</h1>
           <input
-    type='text'
-    placeholder='Search products...' value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)}/>
+            type='text' placeholder='Search products...' value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)}/>
           <button className='products-header__button' onClick={handleAddNewClick}>
             Add New
           </button>
