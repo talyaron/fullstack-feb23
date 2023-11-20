@@ -17,7 +17,7 @@ export interface Product {
     images: string[];
 }
 
-const Card: FC<Product> = ({ title, description, price, brand, category, images, discountPercentage }) => {
+const Card: FC<Product> = ({ title, description, price, brand, category, images, discountPercentage, rating }) => {
     const color = categorysColor(category);
 
     const fullprice = (price * discountPercentage) / 100 + price
@@ -27,7 +27,8 @@ const Card: FC<Product> = ({ title, description, price, brand, category, images,
             <h3>{brand}, {title}</h3>
             <p>{description}</p>
             <h4>{price}$</h4>
-            <h4 className='fullprice'>{fullprice}$</h4>
+            <p>rating: {rating}</p>
+            <h4 className='fullprice'>{Math.round(fullprice)}$</h4>
             <div className="category" style={{ backgroundColor: `${color}` }}>{category}</div>
             {/* <div className="category" style={{ backgroundColor: `${color}` }}>{category}</div> */}
 

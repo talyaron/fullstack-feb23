@@ -20,6 +20,25 @@ function App() {
     return total;
   }
   const [cart, setCart] = useState<Product[]>([])
+
+  const [sortProductsList, setSortProductsList] = useState(products.products)
+  const sortProducts = () => {
+    const newProductsList = sortProductsList.sort((a, b) => {
+      if (a.rating < b.rating) {
+        return -1;
+      }
+      if (a.rating > b.rating) {
+        return 1;
+      }
+      return 0;
+    })
+    setSortProductsList([...newProductsList])
+  }
+
+
+
+
+
   const addItem = (ev) => {
     const userProduct = products.products.find(
       (product) => product.id === parseInt(ev.target.value)
@@ -34,16 +53,21 @@ function App() {
     );
     if (cart === undefined || userProduct === undefined) return;
     setCart(userProduct)
-  }
+  };
+
+
+
+
   return (
 
     <div className='main'>
       <div className="title">
+        <button onClick={sortProducts}>Sort products by ratings</button>
         <h1>Welcome to my store</h1>
       </div>
       <div className="products">
 
-        {products.products.map((product) => {
+        {sortProductsList.map((product) => {
           return <div className="product">
             <Card key={product.id} title={product.title} description={product.description} price={product.price} brand={product.brand} category={product.category} images={product.images} discountPercentage={product.discountPercentage} id={product.id} rating={product.rating} stock={product.stock} thumbnail={product.thumbnail} />
             <button onClick={addItem} value={product.id}>ADD</button>
