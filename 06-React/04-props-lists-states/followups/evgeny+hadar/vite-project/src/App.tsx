@@ -4,10 +4,12 @@ import viteLogo from '/vite.svg'
 import './App.scss'
 import { products } from './assets/products'
 
+
 function App() {
   const [count, setCount] = useState(0)
-
-  console.log({products})
+  const productList = products.products
+  let userId = productList[0].id
+  console.log(userId)
 
   return (
     <>
