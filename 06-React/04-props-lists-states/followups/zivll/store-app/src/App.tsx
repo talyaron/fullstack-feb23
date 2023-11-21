@@ -35,10 +35,6 @@ function App() {
     setSortProductsList([...newProductsList])
   }
 
-
-
-
-
   const addItem = (ev) => {
     const userProduct = products.products.find(
       (product) => product.id === parseInt(ev.target.value)
@@ -54,9 +50,6 @@ function App() {
     if (cart === undefined || userProduct === undefined) return;
     setCart(userProduct)
   };
-
-
-
 
   return (
 
@@ -84,7 +77,8 @@ function App() {
         {cart.map((product) => {
           return <div className='cart-item'>
             <CartItem id={product.id} title={product.title} description={product.description} price={product.price} brand={product.brand} category={product.category} images={product.images} discountPercentage={product.discountPercentage} rating={product.rating} stock={product.stock} thumbnail={product.thumbnail} />
-            <button onClick={removeItem} value={product.id}>REMOVE</button>
+            <button onClick={removeItem} value={product.id}>X
+            </button>
           </div>
         })}
         <div className="sum"><h3>
