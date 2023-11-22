@@ -1,0 +1,118 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  // direction: rtl;
+  .main {
+    display: grid;
+    grid-template-columns: 80% 1fr;
+    // grid-template-rows: repeat(3);
+    position: relative;
+    .title {
+      grid-column: 1/-1;
+    }
+    .products {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      .product {
+        // border: 1px solid black;
+        padding: 20px;
+        margin: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        button {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          background-color: #dff9fb;
+        }
+        .card {
+          position: relative;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          height: -webkit-fill-available;
+
+          img {
+            max-height: 25%;
+            max-width: 100%;
+          }
+          .category {
+            position: absolute;
+            right: -20%;
+            top: -5%;
+            // background-color: aqua;
+            border-radius: 20px;
+            padding: 5px 10px;
+            width: fit-content;
+            font-size: 0.6rem;
+          }
+        }
+
+        // .fullprice {
+        // }
+        // .category {
+        // }
+      }
+    }
+
+    .cart {
+      border: 0.5px solid black;
+      background-color: #dee2e6;
+      border-radius: 20px;
+      height: fit-content;
+      max-height: 90vh;
+      width: auto;
+      float: left;
+      position: sticky;
+      overflow: auto;
+      top: 0px;
+      overflow-y: scroll;
+      scrollbar-color: #fff;
+      scrollbar-track-color: #fff;
+      .cart-item {
+        position: relative;
+        align-items: center;
+        // padding: 20px;
+        margin: 20px 10px;
+        border-bottom: 1px solid black;
+        display: flex;
+        justify-content: space-between;
+        text-align: left;
+        button {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: fit-content;
+          height: auto;
+          padding: 5px 10px;
+          font-size: 1.1rem;
+          background-color: #dee2e6;
+        }
+        .delete {
+          width: 24px;
+          height: 24px;
+          color: #555;
+        }
+        img {
+          max-width: 60%;
+          max-height: auto;
+        }
+        .category {
+          position: absolute;
+          right: -3%;
+          top: -1%;
+          // background-color: aqua;
+          border-radius: 20px;
+          padding: 5px 10px;
+          width: fit-content;
+          font-size: 0.5rem;
+        }
+      }
+    }
+  }
+}
