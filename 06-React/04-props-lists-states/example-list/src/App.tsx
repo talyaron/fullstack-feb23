@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./App.css";
 import { images } from "./util/images";
+import ImageCard from "./components/ImageCard";
 
 function App() {
   const [imagesArr, setImages] = useState<any[]>(images);
@@ -13,7 +14,7 @@ function App() {
     //     return image
     //   }
     // })
-    
+
     // setImages(newArr)
 
     setImages(
@@ -21,23 +22,24 @@ function App() {
         return image.id != ev.target.value;
       })
     );
-  }
+  };
 
   const handleUpdate = (ev) => {
-    const newTitle = prompt("Enter new Title")
-    setImages(imagesArr.map((image) => {
-      if(image.id == ev.target.value) {
-        return {...image, title: newTitle}
-      } else {
-        return image
-      }
-    }))
-  }
-
+    const newTitle = prompt("Enter new Title");
+    setImages(
+      imagesArr.map((image) => {
+        if (image.id == ev.target.value) {
+          return { ...image, title: newTitle };
+        } else {
+          return image;
+        }
+      })
+    );
+  };
 
   return (
     <div>
-      {imagesArr.map((image, idx) => {
+      {/* {imagesArr.map((image, idx) => {
         return (
           <div key={image.id}>
             {idx}
@@ -46,6 +48,16 @@ function App() {
             <button onClick={handleRemove} value={image.id}>DELETE</button>
             <button onClick={handleUpdate} value={image.id}>UPDATE</button>
           </div>
+        );
+      })} */}
+      {imagesArr.map((image) => {
+        return (
+          <ImageCard
+            key={image.id}
+            image={image}
+            handleRemove={handleRemove}
+            handleUpdate={handleUpdate}
+          />
         );
       })}
     </div>
