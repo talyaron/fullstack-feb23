@@ -24,8 +24,11 @@ const App: React.FC = () => {
   };
 
   const addProduct = (id: number) => {
-    setProducts((newProducts) => newProducts.filter((product) => product.id += id));
-    console.log("add")
+    const productToAdd = products.find((product) => product.id === id);
+    if (productToAdd) {
+      setProducts((newProducts) => newProducts.concat({...productToAdd}));
+      console.log("add");
+    }
   };
 
   const filteredProducts = showHighlyRated
