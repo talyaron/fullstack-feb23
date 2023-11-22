@@ -1,4 +1,6 @@
-export const images = [
+import { Image } from "../types/types";
+
+export const images:Image[] = [
   {
     albumId: 1,
     id: 1,
