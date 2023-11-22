@@ -19,8 +19,6 @@ export function StoreItem({ id, name, price, rating, imgUrl }: StoreItemProps) {
   } = useShoppingCart();
   const quantity = getItemQuantity(id);
 
-  // const isHighlyRated = (rating: number) => rating > 4;
-
   return (
     <>
       <Card>
