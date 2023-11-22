@@ -55,8 +55,9 @@ function App() {
 
     <div className='main'>
       <div className="title">
-        <button onClick={sortProducts}>Sort products by ratings</button>
         <h1>Welcome to my store</h1>
+        <button onClick={sortProducts}>Sort products by ratings</button>
+
       </div>
       <div className="products">
 
