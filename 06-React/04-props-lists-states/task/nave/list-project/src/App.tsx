@@ -1,7 +1,6 @@
 import { useState } from "react";
 import "./App.css";
 import { products } from "./util/products";
-import { images } from './../../../../example-list/src/util/images';
 // 1. given a list of product, render a list of product cards that showcases the product information.
 
 // 2. by button press, user can remove an item from the list.
