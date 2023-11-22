@@ -1,0 +1,76 @@
+@mixin colorText {
+  color: #bfb7a8;
+}
+
+@mixin colorTextOther {
+  color: #14120d;
+}
+
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+.smartphones{
+  background-color: #505165;
+  @include colorTextOther;
+}
+.laptops{
+  background-color: #e09c9c;
+  color: #6b3045;
+}
+.fragrances{
+  background-color: #543c3c;
+  @include colorText;
+}
+.skincare{
+  background-color: #431515;
+  @include colorText;
+}
+.groceries{
+  background-color: #695f5f;
+  @include colorTextOther;
+}
+.home-decoration{
+  background-color: #733232;
+  @include colorText;
+} 
+
+.information{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    span{
+      font-weight: 900;
+    }
+  }
+  
+  h1{
+    text-decoration: underline;
+    font-family: "Times New Roman", Times, serif;
+  }
+
+.btn {
+    width: 16%;
+    margin: auto;
+    border-radius: 12px;
+    border: 1px solid rgb(195, 182, 182);
+    margin-bottom: 12px;
+
+    &:hover {
+      width: 20%;
+      font-size: 20px;
+    }
+}
+
