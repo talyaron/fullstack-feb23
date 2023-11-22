@@ -8,7 +8,7 @@ pass a user object to User.tsx. user must have a name, lastname, id and a counte
 for each user render a counter. the counter should have a + button and a - button, and add 1 or substract 1 from the user's counter.
 
 ## Task 4.
-Create a new functional component Navbar.tsx. whenever you click on one of the users car, the navbar header will change to the current user name. 
+Create a new functional component Navbar.tsx. whenever you click on one of the users card, the navbar header will change to the current user name. 
 
 ## Task 5
 after clicking 5 times per user counter, the background of the card should change to a random color.
@@ -23,4 +23,4 @@ on button click from App.tsx , add a new blog post. user should be prompt for a 
 Edit should prompt the user for a new body. delete should delete the post.
 
 ## task 8 
-add to the blog post which user "written" it. use the name of the user that appears on the navbar.
+add to the blog-post which user "written" it. use the name of the user that appears on the navbar.
