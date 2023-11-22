@@ -11,6 +11,8 @@ function App() {
   const [count, setCount] = useState(0);
   const [body, setBody] = useState("");
   const [usersArr, setUsersArr] = useState<JSX.Element[]>([]);
+  const [clickedUserId, setClickedUserId] = useState<number | null>(null);
+
 
   const addNewUser = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -24,6 +26,15 @@ function App() {
 
     setUsersArr([...usersArr, newUser]);
   };
+  const handleUserClick = (userId:number) => {
+    setClickedUserId(userId);
+  }
+
+  const userStyle = (userId:number) => ({
+    backgroundColor: userId === clickedUserId ? 'red' : 'transparent',
+    
+  });
+
 
   return (
     <>
@@ -46,7 +57,13 @@ function App() {
           </Form>
 
           {usersArr.map((user) => (
-            <div key={user.props.id}>{user}</div>
+            <div
+            onClick={() => handleUserClick(user.props.id)}
+            style={userStyle(user.props.id)}
+              key={user.props.id}
+            >
+              {user}
+            </div>
           ))}
         </div>
         <div className="second">
