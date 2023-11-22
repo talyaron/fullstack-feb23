@@ -1,0 +1,48 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.product {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 5px solid black;
+  margin-bottom: 50px;
+  width: 400px;
+  height: 500px;
+  border-radius: 20px;
+  transition: all 200ms ease-in-out;
+  cursor: pointer;
+  &:hover{
+    transform: scale(1.05);
+  }
+}
+
+.carImg {
+  width: 80%;
+  height: 200px;
+}
+
+.brand {
+  color: rgb(27, 74, 74);
+  font-size: 20px;
+  transition: all 200ms ease-in-out;
+  border-radius: 20px;
+
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  cursor: pointer;
+
+  &:hover {
+    background-color: aquamarine;
+  }
+}
+
+.productsCont {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+}

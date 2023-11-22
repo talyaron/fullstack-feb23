@@ -5,6 +5,7 @@ import Counter from "./components/Counter";
 import Button from "./components/Button";
 
 function App() {
+  const [count, setCount] = useState(0)
   const [color, setColor] = useState("red");
   const [size, setSize] = useState(1);
   const handleColorChange = () => {
@@ -28,6 +29,8 @@ function App() {
 
       <Button handleClick={handleColorChange} />
       <Button handleClick={handleSize} />
+
+      <Counter count={count} setCount={setCount}/>
     </div>
   );
 }

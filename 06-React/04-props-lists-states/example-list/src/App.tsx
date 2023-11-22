@@ -3,7 +3,7 @@ import "./App.css";
 import { images } from "./util/images";
 
 function App() {
-  const [imagesArr, setImages] = useState(images);
+  const [imagesArr, setImages] = useState<any[]>(images);
 
   const handleRemove = (ev) => {
     // const newArr = imagesArr.filter((image) => {
@@ -23,6 +23,17 @@ function App() {
     );
   }
 
+  const handleUpdate = (ev) => {
+    const newTitle = prompt("Enter new Title")
+    setImages(imagesArr.map((image) => {
+      if(image.id == ev.target.value) {
+        return {...image, title: newTitle}
+      } else {
+        return image
+      }
+    }))
+  }
+
 
   return (
     <div>
@@ -33,6 +44,7 @@ function App() {
             <h5>{image.title}</h5>
             <img src={image.url} alt={image.title} />
             <button onClick={handleRemove} value={image.id}>DELETE</button>
+            <button onClick={handleUpdate} value={image.id}>UPDATE</button>
           </div>
         );
       })}
