@@ -2,10 +2,10 @@
 create new project named after your name. Inside off the src directory create a new directory components to store your new components. Create file src/components/User.tsx and update the src/App.tsx. -->finish
 
 ## Task 2.
-pass a user object to User.tsx. user must have a name, lastname, id and a counter (number) = 0. create at least 3 users and render them.
+pass a user object to User.tsx. user must have a name, lastname, id and a counter (number) = 0. create at least 3 users and render them. -->finish
 
 ## Task 3.
-for each user render a counter. the counter should have a + button and a - button, and add 1 or substract 1 from the user's counter.
+for each user render a counter. the counter should have a + button and a - button, and add 1 or substract 1 from the user's counter. -->finish
 
 ## Task 4.
 after clicking 5 times per user counter, the background of the card should change to a random color.
