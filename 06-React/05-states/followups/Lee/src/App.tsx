@@ -1,5 +1,6 @@
 import './App.css'; // Import the CSS file
 import UserList from './components/UserList';
+// import Counter from './components/counter'
 
 const App = () => {
   const users = [
@@ -9,6 +10,7 @@ const App = () => {
       "lastName": "Monir",
       "icon":"😊"
     },
+    
     {
       "id": 2,
       "firstName": "Ronnie",
@@ -31,12 +33,14 @@ const App = () => {
     {
       "id": 5,
       "firstName": "Inbar",
-      "lastName": "Ayalon"
+      "lastName": "Ayalon",
+      "icon":"😘"
     },
     {
       "id": 6,
       "firstName": "Idan",
-      "lastName": "Ayalon"
+      "lastName": "Ayalon",
+      "icon":"😁"
       
     }
   ];

@@ -14,7 +14,8 @@ const User: React.FC<{ user: User }> = ({ user }) => {
   return (
     <div>
       <h2>{`${user.firstName} ${user.lastName}`}</h2>
-      <p>ID: {user.id}</p>
+      <h3>ID: {user.id}</h3>
+      <p>{user.icon}</p>
 
       {/* a ternary code to present the icon only when the condition is filled */}
       

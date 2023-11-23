@@ -1,15 +1,15 @@
-import React, { useState } from "react"; 
+import { useState } from "react"; 
 
 import "./App.css"; 
 
 const App = () => { 
 const [counter, setCounter] = useState(0) 
 
-const handleClick1 = () => { 
+const handleAdd = () => { 
 	setCounter(counter + 1) 
 } 
 
-const handleClick2 = () => { 
+const handleSub = () => { 
 	setCounter(counter - 1) 
 } 
 
@@ -43,7 +43,7 @@ return (
 		borderRadius: '8%', 
 		color: 'white', 
 		}} 
-		onClick={handleClick1}>Increment</button> 
+		onClick={handleAdd}>Increment</button> 
 		<button style={{ 
 		fontSize: '60%', 
 		position: 'relative', 
@@ -53,7 +53,7 @@ return (
 		borderRadius: '8%', 
 		color: 'white', 
 		}} 
-		onClick={handleClick2}>Decrement</button> 
+		onClick={handleSub}>Decrement</button> 
 	</div> 
 	</div> 
 ) 
