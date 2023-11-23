@@ -6,22 +6,27 @@ const App = () => {
     {
       "id": 1,
       "firstName": "Linor",
-      "lastName": "Monir"
+      "lastName": "Monir",
+      "icon":"😊"
     },
     {
       "id": 2,
       "firstName": "Ronnie",
-      "lastName": "Rachma"
+      "lastName": "Rachma",
+      "icon":"👌"
     },
     {
       "id": 3,
       "firstName": "Keren",
-      "lastName": "Black"
+      "lastName": "Black",
+      "icon":"❤️"
+
     },
     {
       "id": 4,
       "firstName": "Ofra",
-      "lastName": "Ayalon"
+      "lastName": "Ayalon",
+      "icon":"❤️"
     },
     {
       "id": 5,
