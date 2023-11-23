@@ -9,23 +9,41 @@ import Button from '../components/Button'
 
 function App() {
   
-  const productList = products.products
+  let productList = products.products
  
-  const [showList, setShowList] = useState(false);
+  const [showList, setShowList] = useState(true);
+  const [showNewList, setShowNewList] = useState(false);
   
-  let userId = productList[0].id
-  console.log(userId)
+ 
+
 
   function renderList(){
     setShowList(!showList)
+    
   }
 
+  const test=()=>{
+    let newArr:any=[]
+    productList.map((Product)=>{
+
+      let search= Product.rating
+      if(search>4.50){
+        
+        newArr.push(Product)
+        
+      }
+    })
+
+     productList =newArr
+
+  }
   
   
   return (
     <div className='mainlist'>
     
      <Button handleClick={renderList} freetext='showlist' > </Button>
+     <Button handleClick={test} freetext='show above4.5' > </Button>
      {showList && (
       <div className='productlist'>
       <Product products={products} />

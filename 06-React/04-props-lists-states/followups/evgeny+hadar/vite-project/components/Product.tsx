@@ -16,14 +16,31 @@ const Product = ({products}) => {
       })
     );
   }
+  const getCategoryColor = (category) => {
+    const categoryColors = {
+      smartphones: 'lightblue',
+      laptops: 'lightgreen',
+      fragrances:'yellow',
+      skincare:'brown',
+      groceries:'green'
+      // Add more categories and colors as needed
+    };
 
- 
+    return categoryColors[category] || 'white';
+  };
+  
+
+
   
   return (
     <div className='productlist__items'>
+      
       {productsArr.map((product) => {
+        const backgroundColor = getCategoryColor(product.category);
+        
+
         return (
-          <div className='productlist__items__item' key={product.id}>
+          <div className='productlist__items__item' key={product.id} style={{ backgroundColor: backgroundColor }}>
            
               <>
                 <img src={product.thumbnail} alt="" />
