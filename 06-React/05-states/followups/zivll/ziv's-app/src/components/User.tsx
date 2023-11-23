@@ -1,5 +1,4 @@
-import React, { FC } from 'react'
-import { counter, decreaseCounter, increasCounter } from '../controllers/counter'
+import { FC } from 'react'
 
 export interface UserProps {
     name: string,
