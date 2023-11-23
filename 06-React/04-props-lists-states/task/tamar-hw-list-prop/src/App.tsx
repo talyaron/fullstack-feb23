@@ -6,7 +6,7 @@ import ProductCard from './component/Card'
 function App() {
   const [productsArr, setProducts] = useState<any[]>(products)
 
-  const handleRemove = (ev) => {
+  const handleRemove = (ev:any) => {
     setProducts(
       productsArr.filter((product) => {
         return product.id != ev.target.value;
@@ -19,6 +19,7 @@ function App() {
     <div>
       {productsArr.map((product) => (
         <ProductCard
+          id = {product.id}
           key={product.id}
           title={product.title}
           description={product.description}
@@ -29,8 +30,7 @@ function App() {
           brand={product.brand}
           category={product.category}
           thumbnail={product.thumbnail}
-          handleRemove={handleRemove}
-        /> 
+          handleRemove={handleRemove}/> 
       ))}
     </div>
     </>

@@ -1,8 +1,8 @@
 import React, { FC } from 'react'
 import BgColor from './bgcolor';
-import { products } from '../data/products';
+// import { products } from '../data/products';
 
-interface Card {
+interface CardProp {
     id: number;
     title: string;
     description: string;
@@ -14,12 +14,12 @@ interface Card {
     category: string;
     thumbnail: string;
     images?: string;
-    handleRemove: any;
+    handleRemove: (ev: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }
 
-const ProductCard: FC<Card> = ({id, title, description, price, discountPercentage, rating, stock, brand, category, thumbnail, handleRemove }) => {
+const ProductCard: FC<CardProp> = ({ id, title, description, price, discountPercentage, rating, stock, brand, category, thumbnail, handleRemove }) => {
     return (
-        <div className='productCard' key={id} style={{backgroundColor: `${BgColor({category})}`}}>
+        <div className='productCard' key={id} style={{ backgroundColor: `${BgColor({ category })}` }}>
             <h3>{title}</h3>
             <p>{description}</p>
             <p>price: {price}</p>
@@ -29,7 +29,8 @@ const ProductCard: FC<Card> = ({id, title, description, price, discountPercentag
             <p>brand: {brand}</p>
             <p>category: {category}</p>
             <img src={thumbnail} />
-            <button onClick={handleRemove} value={id}>DELETE</button>  
+            <br />
+            <button className='btnCrd' onClick={handleRemove} value={id}>DELETE</button>
         </div>
     )
 }

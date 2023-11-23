@@ -6,15 +6,15 @@ interface BgColorProps {
 
 const BgColor: FC<BgColorProps> = ({category}) => {
 switch (category) {
-    case 'smartphones': return "purple"
+    case 'smartphones': return "indianred"
 
     case 'laptops': return 'blue'
 
-    case 'fragrances': return 'yellow'
+    case 'fragrances': return 'darksalmon'
 
     case 'skincare': return 'green'
 
-    case 'groceries': return 'orang'
+    case 'groceries': return 'orange'
 
     case 'home-decoration': return 'red'
 
