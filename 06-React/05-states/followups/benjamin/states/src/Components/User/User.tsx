@@ -57,7 +57,7 @@ const User: FC<UserProps> = ({ id, name, lastName, emoji }) => {
 
   return (
     <div>
-      <Card style={{ width: "18rem", backgroundColor: bgColor }}>
+      <Card className="user" style={{ width: "18rem", backgroundColor: bgColor }}>
         <Card.Body>
             <CardText>{counterDivide() ? <p>{emoji}</p> : null }</CardText>
           <Card.Title>

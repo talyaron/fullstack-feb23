@@ -5,6 +5,7 @@ import ButtonGroup from 'react-bootstrap/ButtonGroup';
 
 
 interface PostProps {
+  key: number;
   title: string;
   body: string
   setBody: Dispatch<SetStateAction<string>>
@@ -19,7 +20,7 @@ const setBodyFunc = () =>{
    
 
   return (
-    <Card>
+    <Card className="post">
       <Card.Header>{title}</Card.Header>
       <Card.Body>
         <Card.Text>{body}</Card.Text>

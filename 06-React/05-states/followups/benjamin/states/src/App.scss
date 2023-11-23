@@ -39,7 +39,27 @@
   width: 35vw;
   height: 95vh;
   border: 1px black solid;
-  background-color: aquamarine;
   box-shadow: 2px 2px gray;
   border-radius: 20px;
+  background-image: url(https://images.pexels.com/photos/2310641/pexels-photo-2310641.jpeg?cs=srgb&dl=pexels-eberhard-grossgasteiger-2310641.jpg&fm=jpg);
+  background-size: cover;
+  opacity: 0.8;
+
+  
+}
+
+.post{
+  background-color: transparent;
+  backdrop-filter: blur(20px);
+  width: 20vw;
+  height: fit-content;
+}
+
+.user{
+cursor: pointer;
+transition: all 200ms ease-in-out;
+&:hover{
+  background-color: rgb(161, 223, 223);
+}
+
 }
