@@ -10,7 +10,7 @@ import Button from '../components/Button'
 function App() {
   
   const productList = products.products
-  const [productsArr,setProducts]= useState<any[]>(productList)
+ 
   const [showList, setShowList] = useState(false);
   
   let userId = productList[0].id

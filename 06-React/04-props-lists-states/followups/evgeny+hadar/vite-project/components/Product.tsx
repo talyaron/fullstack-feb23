@@ -7,7 +7,7 @@ const Product = ({products}) => {
   
   const productList = products.products
   const [productsArr,setProducts]= useState<any[]>(productList)
-
+  
 
   const handleRemove=(ev)=>{
     setProducts(
@@ -16,26 +16,33 @@ const Product = ({products}) => {
       })
     );
   }
-   
+
+ 
+  
   return (
     <div className='productlist__items'>
-
-      {productsArr.map((products) => {
+      {productsArr.map((product) => {
         return (
-          <div className='productlist__items__item' key={products.id} >
-            <img src={products.thumbnail} alt="" />
-            <h3>Category:{products.category}</h3>
-            <h3>name: {products.title}</h3>
-            <h3>Brand:{products.brand}</h3>
-            <h3>Rating:{products.rating}</h3>
-            <h3>Price:{products.price}</h3>
-            
-            <button className='buttonstyle' onClick={handleRemove}  value={products.id}> Remove</button>
-            </div>
+          <div className='productlist__items__item' key={product.id}>
+           
+              <>
+                <img src={product.thumbnail} alt="" />
+                <h3>Category: {product.category}</h3>
+                <h3>Name: {product.title}</h3>
+                <h3>Brand: {product.brand}</h3>
+                <h3>Rating: {product.rating}</h3>
+                <h3>Price: {product.price}</h3>
+                <div className='CRUDbuttons'>
+                  <button className='buttonstyle' onClick={handleRemove} value={product.id}> Remove</button>
+                 
+                </div>
+              </>
+           
+          </div>
         );
       })}
     </div>
-  )
+  );
 }
 
 export default Product

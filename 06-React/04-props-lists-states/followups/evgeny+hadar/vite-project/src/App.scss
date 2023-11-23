@@ -22,10 +22,10 @@
   background-color: bisque;
   color: black;
   width: 70rem; /* Set your desired width */
-  height: 40rem; /* Set your desired height */
+  height: fit-content; /* Set your desired height */
   overflow: auto; /* or overflow: scroll; */
   border: 1px solid #0a0606;
-  box-shadow: 0 5px 10px solid rgb(222, 19, 19);
+
 
   &__items{
     display: flex;
