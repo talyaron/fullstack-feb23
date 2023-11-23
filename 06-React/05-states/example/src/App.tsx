@@ -110,6 +110,8 @@ function App() {
         </button>
         {/* TODO: add example to remove*/}
       </header>
+
+      {num ? <p>num is truthy</p> : <p>num is false</p>}
     </div>
   );
 }
