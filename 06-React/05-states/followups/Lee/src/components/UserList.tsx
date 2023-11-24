@@ -1,16 +1,18 @@
-// UserList.tsx
 import React from 'react';
-import SingleUser from './User'; // Import the renamed type
+import User from './User';
 
 type UserListProps = {
-  users: SingleUser[];
+  users: User[];
 };
 
 const UserList: React.FC<UserListProps> = ({ users }) => {
+
   return (
     <div>
       {users.map((user) => (
-        <SingleUser key={user.id} user={user} />
+        <div key={user.id}>
+          <User user={user} />
+        </div>
       ))}
     </div>
   );

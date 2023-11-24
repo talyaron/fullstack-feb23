@@ -1,6 +1,6 @@
-import './App.css'; // Import the CSS file
+import './App.css'; 
 import UserList from './components/UserList';
-// import Counter from './components/counter'
+
 
 const App = () => {
   const users = [
