@@ -1,5 +1,5 @@
 // AddToStoreForm.tsx
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useStore } from '../context/ShoppingCartContext';
 
 const AddToStoreForm = () => {
