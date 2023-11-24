@@ -1,6 +1,7 @@
 import React from 'react';
 import User from './User';
 
+
 type UserListProps = {
   users: User[];
 };
