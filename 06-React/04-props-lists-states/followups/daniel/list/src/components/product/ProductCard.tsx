@@ -2,8 +2,11 @@ import { useState } from 'react';
 import products from '../../util/Products';
 
 
+
+
 const ProductCard = () => {
     const [productsArr, setProducts] = useState<any[]>(products.products);
+    const getUniqueCategoty = Array.from(new Set(productsArr.map((product)=> product.category)))
 
   const handleRemove = (ev:any) => {
     setProducts(productsArr.filter((product) =>{
@@ -17,40 +20,20 @@ const ProductCard = () => {
     }))
   }
 
-  const selectSmartphones =()=>{
-    setProducts(productsArr.filter((product)=>{
-        return product.category == 'smartphones'
-    }))
+  const selectCategory =(category:string)=>{
+    setProducts(productsArr.filter((product)=> product.category === category));
   }
 
-  const selectLaptops =()=>{
-    setProducts(productsArr.filter((product)=>{
-        return product.category == 'laptops'
-    }))
-  }
-
-  const selectFragrances =()=>{
-    setProducts(productsArr.filter((product)=>{
-        return product.category == 'fragrances'
-    }))
-  }
-
-  const selectSkincare =()=>{
-    setProducts(productsArr.filter((product)=>{
-        return product.category == 'skincare'
-    }))
-  }
-  
-
-
+ 
   
   return (
     <div style={{display:'flex', lineHeight: '35px', flexDirection: 'column'}}>
         <button className='btn' onClick={selectRating}>Above 4.5 rating</button>
-        <button onClick={selectSmartphones}>Smartphones</button>
-        <button onClick={selectLaptops}>Laptops</button>
-        <button onClick={selectFragrances}>Fragrances</button>
-        <button onClick={selectSkincare}>skincare</button>
+        {getUniqueCategoty.map((category)=> (
+          <button style={{width:'25%', margin: 'auto'}} className={category} onClick={()=> selectCategory(category)}>{category}</button>
+        ))}
+        <br />
+        <br />
         {productsArr.map((product)=>{
           return(
             <div style={{fontSize:'17px', marginBottom: '20px', borderRadius: '70px'}} className={product.category} key={product.id}>

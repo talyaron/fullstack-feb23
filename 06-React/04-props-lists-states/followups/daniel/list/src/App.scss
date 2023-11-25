@@ -6,6 +6,11 @@
   color: #14120d;
 }
 
+@mixin btnCategory{
+  width: 50%;
+  border-radius: 12px;
+}
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
