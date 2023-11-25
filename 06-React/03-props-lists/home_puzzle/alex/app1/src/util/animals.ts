@@ -28,5 +28,5 @@ export const animals = [
    breed : "Milk Snake",
    name : "Milky",
    age : 3
-} dog
+} 
 ]
