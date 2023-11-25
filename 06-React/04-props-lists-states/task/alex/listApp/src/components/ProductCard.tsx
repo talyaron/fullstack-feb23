@@ -6,6 +6,7 @@ interface ProductCardProps{
     product: Product;
     handleRemove: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
     handleUpdate: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+    
 }
 
 
