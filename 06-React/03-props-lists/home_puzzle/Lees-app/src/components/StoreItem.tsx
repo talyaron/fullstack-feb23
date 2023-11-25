@@ -1,6 +1,6 @@
 import { Button, Card } from "react-bootstrap";
 import { formatCurrency } from "../utilities/formatCurrency";
-import { useShoppingCart } from "../context/shoppingCartContext";
+import { useShoppingCart } from "../context/ShoppingCartContext";
 
 type StoreItemProps = {
   id: number;
@@ -25,7 +25,7 @@ export function StoreItem({ id, name, price, rating, imgUrl }: StoreItemProps) {
         <Card.Img
           variant="top"
           src={imgUrl}
-          height="235px"
+          height="200px"
           style={{ objectFit: "cover" }}
         />
         <Card.Body className="d-flex flex-column">
