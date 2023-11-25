@@ -9,7 +9,16 @@ function App() {
   const [filteredProducts, setFilteredProducts] = useState<any[]>([]);
 
   const filterHighRatedProducts = () => {
-    const highRatedProducts = productArr.filter((product) => product.rating >= 4.5);
+    // const adjustbleRating:number = prompt("Please enter rating");
+    const inputRating = prompt("Please enter rating");
+    if (inputRating === null || isNaN(Number(inputRating))) {
+      alert("Please enter a valid number for rating");
+      return;
+    }
+  
+    const adjustableRating = Number(inputRating);
+
+    const highRatedProducts = productArr.filter((product) => product.rating >= adjustableRating);
     setFilteredProducts(highRatedProducts);
     setShowHighRated(true);
   };
@@ -26,7 +35,13 @@ function App() {
 
   const handleUpdate = (event: React.MouseEvent<HTMLButtonElement>) => {
     const productIdToUpdate = event.currentTarget.value;
-    const newPrice = prompt("Enter updated price");
+    const inputPrice = prompt("Enter updated price");
+    if (inputPrice === null || isNaN(Number(inputPrice))) {
+      alert("Please enter a valid number for new price");
+      return;
+    }
+  
+    const newPrice = Number(inputPrice);
     setProducts((prevProducts) =>
       prevProducts.map((product) =>
         product.id === productIdToUpdate ? { ...product, price: newPrice } : product
