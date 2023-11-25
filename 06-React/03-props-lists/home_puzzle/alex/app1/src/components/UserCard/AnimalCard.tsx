@@ -25,8 +25,8 @@ const AnimalCard:FC<AnimalCardProps> = ({type,breed,name,age} ) => {
                      backgroundColor}}>
             <h1>{name}</h1>
             <p>{type}</p>
-            <p>{breed}</p>
-            <p>{age}</p>
+            <p>Breed: {breed}</p>
+            <p>Age: {age}</p>
         </div>
     )
 }
