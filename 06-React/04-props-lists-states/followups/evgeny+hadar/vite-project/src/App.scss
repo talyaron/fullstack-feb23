@@ -3,12 +3,16 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  
 }
 .buttonstyle{
   height: 2rem;
   width: 5rem;
-  background-color: grey;
+  background-color: rgb(203, 200, 196);
   text-align: center;
+  border: 2px solid gray;
+  border-radius: 5px;
+  margin: 2px;
 }
 .mainlist{
   display: flex;
@@ -19,18 +23,20 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: bisque;
+  background-color: rgb(203, 200, 196);
   color: black;
   width: 70rem; /* Set your desired width */
   height: fit-content; /* Set your desired height */
   overflow: auto; /* or overflow: scroll; */
-  border: 1px solid #0a0606;
+  border: 10px solid  rgb(158, 155, 151);
+  margin-top: 1rem;
 
 
   &__items{
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    margin: 2rem;
     &__item{
       width: 15rem;
       height: fit-content;
@@ -38,6 +44,7 @@
       box-shadow: 0 5px 10px solid rgba(222, 19, 19, 0.623);
       border-radius: 5px;
       border: 1px solid black;
+      
       img{
         width: 100%;
         border-radius: 5px 5px 0 0;

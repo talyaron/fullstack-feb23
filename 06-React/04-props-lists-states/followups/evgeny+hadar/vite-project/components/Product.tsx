@@ -19,10 +19,10 @@ const Product = ({products}) => {
   const getCategoryColor = (category) => {
     const categoryColors = {
       smartphones: 'lightblue',
-      laptops: 'lightgreen',
-      fragrances:'yellow',
+      laptops: 'grey',
+      fragrances:'pink',
       skincare:'brown',
-      groceries:'green'
+      groceries:'lightgrey',
       // Add more categories and colors as needed
     };
 
