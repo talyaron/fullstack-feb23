@@ -1,4 +1,5 @@
 import React, { ReactNode, createContext, useState } from 'react';
+import { useContext } from 'react';
 
 type StoreItem = {
   id: number;

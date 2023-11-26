@@ -12,7 +12,7 @@
 // };
 
 // export function StoreItem({ id, name, price, rating, imgUrl, onDelete }: StoreItemProps) {
-export function StoreItem() {
+export function StoreItem(item) {
   // const {
   //   getItemQuantity,
   //   increaseCartQuantity,
@@ -21,7 +21,9 @@ export function StoreItem() {
   // } = useShoppingCart();
   // const quantity = getItemQuantity(id);
 
-  return (<></>) }
+  return (<div>
+    {JSON.stringify(item)}
+  </div>) }
   //   <Card className="h-100">
   //     <Card.Img
   //       variant="top"
