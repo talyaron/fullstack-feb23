@@ -1,57 +1,57 @@
-import React , {FC, useState} from 'react'
-import Item from './Item'
-import products, { Product } from '../data/products'
-import { createArrColorByCategory } from '../util/functions'
+import React, { FC } from 'react';
+import Item from './Item';
+import { Product } from '../data/products';
+import { createArrColorByCategory } from '../util/functions';
 
 interface ItemGalleryProps {
-items:Product[]
-handleDelete:(ev:any)=>void
+  items: Product[];
+  handleDelete: (itemId: number) => void;
 }
 
+const ItemGallery: FC<ItemGalleryProps> = ({ items, handleDelete }) => {
+  const [itemsState, setItemsState] = React.useState(items);
+  const colorByCat = createArrColorByCategory(items);
 
-const ItemGallery:FC<ItemGalleryProps> = ({items , handleDelete}) => {
-    const [itemsState , setItemsState] = useState(items)
-    const colorByCat =  createArrColorByCategory(items)
-
+  console.log(itemsState)
     const handleSortByRating = (ev:any)=> {
-        switch (ev.target.value) {
-            case "highestRating":
-                const sortItemsArr = itemsState.filter(item => item.rating > 4)
-                setItemsState(sortItemsArr)
+        const value = ev.target.value;
+        let sortedItems = [...items];
+    
+        switch (value) {
+          case "highestRating":
+            sortedItems = sortedItems.filter(item => item.rating > 4);
+            break;
+          case "noSorting":
+             sortedItems = items
+            setItemsState(sortedItems);
                 break;
-
-        case "noSorting":
-            const originalArray = items
-            setItemsState(originalArray)
-                break;
-
-        case "byAB":
-            const sortItemsArrByAB = products.sort((a, b) => a.title.localeCompare(b.title));
-            setItemsState(sortItemsArrByAB)
-                break;
-
-            default:
-                break;
+          break;
+          case "byAB":
+            sortedItems = sortedItems.sort((a, b) => a.title.localeCompare(b.title));
+            break;
+          default:
+            break;
         }
-    }
 
+        setItemsState(sortedItems);
+    }
     return (
         <div className='wrapper'>
-         <label htmlFor="selectBox">
+          <label htmlFor="selectBox">
             sort item by:  
-        <select className='selectBox' onChange={handleSortByRating}>
-            <option value="noSorting">no sorting</option>
-            <option value="highestRating">highest rating</option>
-            <option value="byAB">according to A-B</option>
-        </select>
-       </label>
-        <div className='itemGalleryDiv'>
-            {itemsState.map(product =>{
-                return <Item item={product} handleClick={handleDelete} colorCatArr={colorByCat}/>
+            <select className='selectBox' onChange={handleSortByRating}>
+              <option value="noSorting">no sorting</option>
+              <option value="highestRating">highest rating</option>
+              <option value="byAB">according to A-B</option>
+            </select>
+          </label>
+          <div className='itemGalleryDiv'>
+            {itemsState.map(product => {
+              return <Item key={product.id} item={product} handleClick={handleDelete} colorCatArr={colorByCat} />;
             })}
+          </div>
         </div>
-            </div>
-    )
-}
-
-export default ItemGallery
+      );
+    };
+    
+    export default ItemGallery;
