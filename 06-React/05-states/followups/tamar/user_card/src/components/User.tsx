@@ -20,6 +20,13 @@ const handleAdd = () => {
   const handleRemove = () => {
     setCounter(counter - 1)
   }
+
+  // const randomColor = () => {
+  //   return '#'+(0x1000000+Math.random()*0xffffff).toString(16).substr(1,6);
+  // }
+
+  // {counter=>5 ? bg={randomColor} : null}
+
   return (
     <div className='userCard'>
       <h3>{name}</h3>
