@@ -1,8 +1,5 @@
 
-import React from 'react'
 
 export const About = () => {
-  return (
-    <div>About</div>
-  )
+  return <h1>about</h1>
 }
