@@ -47,10 +47,6 @@ export function Store() {
       <h1>Store</h1>
       <p>Test</p>
       <form>
-        <input type="text" placeholder="name" />
-        <input type="number" placeholder="price" />
-        <input type="number" placeholder="rating" />
-        <input type="text" placeholder="img" />
         <button onClick={handleAddProduct} type="submit">
           ADD
         </button>
