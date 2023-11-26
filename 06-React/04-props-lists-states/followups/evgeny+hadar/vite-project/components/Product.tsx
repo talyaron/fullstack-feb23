@@ -26,7 +26,7 @@ const Product = ({products}) => {
       // Add more categories and colors as needed
     };
 
-    return categoryColors[category] || 'white';
+    return categoryColors[category] || 'black';
   };
   
 
