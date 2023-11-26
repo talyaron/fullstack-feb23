@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { ReactNode, createContext, useState } from 'react';
 
 type StoreItem = {
   id: number;
@@ -14,17 +14,21 @@ type StoreContextType = {
   deleteFromStore: (id: number) => void;
 };
 
-const StoreContext = createContext<StoreContextType | undefined>(undefined);
+export const StoreContext = createContext<StoreContextType | undefined>(undefined);
 
-export const useStore = () => {
-  const context = useContext(StoreContext);
-  if (!context) {
-    throw new Error('useStore must be used within a StoreProvider');
-  }
-  return context;
-};
+// export const useStore = () => {
+//   const context = useContext(StoreContext);
+//   if (!context) {
+//     throw new Error('useStore must be used within a StoreProvider');
+//   }
+//   return context;
+// };
 
-export const StoreProvider: React.FC = ({ children }) => {
+interface StoreContextProps {
+  children: ReactNode
+}
+
+export const StoreProvider: React.FC<StoreContextProps> = ({ children }) => {
   const [storeItems, setStoreItems] = useState<StoreItem[]>([]);
 
   const addToStore = (item: StoreItem) => {

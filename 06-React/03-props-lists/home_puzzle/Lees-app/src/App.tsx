@@ -6,7 +6,8 @@ import { Store } from "./pages/Store";
 import { About } from "./pages/About";
 import { Navbar } from "./components/Navbar";
 import { ShoppingCartProvider } from "./context/shoppingCartContext";
-import { StoreProvider } from "../path/to/StoreContext"; // Import StoreProvider
+// import { StoreProvider } from "../path/to/StoreContext"; // Import StoreProvider
+import { StoreProvider } from "./context/StoreContext"; // Import StoreProvider
 
 function App() {
   return (
