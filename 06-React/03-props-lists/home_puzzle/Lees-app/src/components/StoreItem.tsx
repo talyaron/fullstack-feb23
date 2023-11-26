@@ -8,9 +8,10 @@ type StoreItemProps = {
   price: number;
   rating: number;
   imgUrl: string;
+  onDelete: (id: number) => void;
 };
 
-export function StoreItem({ id, name, price, rating, imgUrl }: StoreItemProps) {
+export function StoreItem({ id, name, price, rating, imgUrl, onDelete }: StoreItemProps) {
   const {
     getItemQuantity,
     increaseCartQuantity,
@@ -39,6 +40,7 @@ export function StoreItem({ id, name, price, rating, imgUrl }: StoreItemProps) {
     </div>
   )}
 
+<<<<<<< Updated upstream
   <div className="mt-auto">
           {quantity === 0 ? (
             <Button className="w-100" onClick={() => increaseCartQuantity(id)}>
@@ -49,6 +51,26 @@ export function StoreItem({ id, name, price, rating, imgUrl }: StoreItemProps) {
               className="d-flex align-items-center flex-column"
               style={{ gap: ".5rem" }}
             >
+=======
+          <div className="mt-auto">
+            {quantity === 0 ? (
+              <>
+                <Button
+                  className="w-100"
+                  onClick={() => increaseCartQuantity(id)}
+                >
+                  + Add To Cart
+                </Button>
+                <Button
+                  className="w-100 mt-2"
+                  variant="danger"
+                  onClick={() => onDelete(id)} // Call onDelete prop for deleting from store
+                >
+                  Delete from Store
+                </Button>
+              </>
+            ) : (
+>>>>>>> Stashed changes
               <div
                 className="d-flex align-item-center justify-content-center"
                 style={{ gap: ".5rem" }}
@@ -57,7 +79,17 @@ export function StoreItem({ id, name, price, rating, imgUrl }: StoreItemProps) {
                 <div>
                   <span className="fs-3">{quantity}</span> In Cart
                 </div>
+<<<<<<< Updated upstream
                 <Button onClick={() => decreaseCartQuantity(id)}>-</Button>
+=======
+                <Button
+                  onClick={() => removeFromCart(id)}
+                  variant="danger"
+                  size="sm"
+                >
+                  Remove from Cart
+                </Button>
+>>>>>>> Stashed changes
               </div>
               <Button
                 onClick={() => removeFromCart(id)}
