@@ -6,12 +6,14 @@ interface UserCardProp {
   lastname: string;
   id: number;
   counter: number;
+  emoji?: string;
   handleAdd: (ev: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   handleRemove: (ev: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }
 
-const UserCard: FC<UserCardProp> = ({ id, name, lastname }) => {
+const UserCard: FC<UserCardProp> = ({ id, name, lastname, emoji }) => {
 const [counter, setCounter] = useState(0)
+let randomColor = Math.floor(Math.random()*16777215).toString(16);
 
 const handleAdd = () => {
     setCounter(counter + 1)
@@ -21,14 +23,10 @@ const handleAdd = () => {
     setCounter(counter - 1)
   }
 
-//   const randomColor = () => { 
-//     return '#'+(0x1000000+Math.random()*0xffffff).toString(16).substr(1,6);
-//    }
-// {counter >= 5 ? {randomColor} : null}
-
   return (
-    <div className='userCard' style={{backgroundColor: }}>
+    <div className='userCard' style={{background: counter >= 5 ? '#'+ randomColor : 'white' }}>
       <h3>{name}</h3>
+      <b>{(counter%10) === 0 ? <p>{emoji}</p> : null}</b>
       <h3>{lastname}</h3>
       <button onClick={handleAdd} value={id}>+</button>
       <b>{counter}</b>

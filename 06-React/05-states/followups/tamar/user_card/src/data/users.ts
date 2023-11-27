@@ -3,6 +3,7 @@ export const users = [
     id: 1,
     name: "Leanne ",
     lastname: "Graham",
+    emoji:"😉"
   },
   {
     id: 2,
@@ -13,6 +14,7 @@ export const users = [
     id: 3,
     name: "Clementine ",
     lastname: "Bauch",
+    emoji:"🫠"
   },
   {
     id: 4,
@@ -23,11 +25,13 @@ export const users = [
     id: 5,
     name: "Chelsey Dietrich",
     lastname: "Dietrich",
+    emoji:"🙂"
   },
   {
     id: 6,
     name: "Dennis ",
     lastname: "Schulist",
+    emoji: "😊"
   },
   {
     id: 7,
@@ -48,5 +52,6 @@ export const users = [
     id: 10,
     name: "Clementina ",
     lastname: "DuBuque",
+    emoji: "🙃"
   },
 ];
