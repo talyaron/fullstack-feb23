@@ -24,7 +24,7 @@
     "id": 4,
     "name": "Yellow Beetle",
     "price": 61000,
-    "rating": 4.1,
+    "rating": 3.8,
     "imgUrl": "/imgs/car.jpg"
   },
   {
@@ -38,7 +38,7 @@
     "id": 6,
     "name": "Indian Spices Set",
     "price": 185.85,
-    "rating": 4,
+    "rating": 4.2,
     "imgUrl": "/imgs/spices.png"
   }
 ]
