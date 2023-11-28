@@ -32,9 +32,9 @@ function App() {
 
     console.log("Remove button clicked");
     console.log("Product ID:", event.currentTarget.value);
-
+console.table(productArr)
     const productIdToRemove = event.currentTarget.value;
-    setProducts((prevProducts) => prevProducts.filter((product) => product.id !== productIdToRemove));
+    setProducts((prevProducts) => prevProducts.filter((product) => product.id != productIdToRemove));
   };
 
   const handleUpdate = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -42,7 +42,7 @@ function App() {
     console.log("Update button clicked");
     console.log("Product ID:", event.currentTarget.value);
 
-    const productIdToUpdate = event.currentTarget.value;
+    const productIdToUpdate1 = event.currentTarget.value;
     const inputPrice = prompt("Enter updated price");
     if (inputPrice === null || isNaN(Number(inputPrice))) {
       alert("Please enter a valid number for new price");
@@ -53,7 +53,7 @@ function App() {
     
     setProducts((prevProducts) =>
       prevProducts.map((product) =>
-        product.id === productIdToUpdate ? { ...product, price: newPrice } : product
+        product.id = productIdToUpdate1 ? { ...product, price: newPrice } : product
       )
     );
   };
