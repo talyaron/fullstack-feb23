@@ -4,18 +4,21 @@ export const users = [
         firstName: 'Leanne Graham',
         lastName: 'Bret',
         counter: 0,
+        emoji: '😊'
     },
     {
         id: 2,
         firstName: 'Ervin Howell',
         lastName: 'Antonette',
         counter: 0,
+        emoji: '😊'
     },
     {
         id: 3,
         firstName: 'Clementine Bauch',
         lastName: 'Samantha',
         counter: 0,
+        emoji: '😊'
     },
     {
         id: 4,

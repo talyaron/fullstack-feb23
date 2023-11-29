@@ -1,4 +1,5 @@
 import React, { FC } from 'react'
+import './Navbar.scss'
 
 interface NavbarProps {
 
@@ -7,7 +8,7 @@ interface NavbarProps {
 
 const Navbar: FC<NavbarProps> = ({ navName }) => {
     return (
-        <div>
+        <div className='navbar'>
             <h1>{navName}</h1>
         </div>
     )
