@@ -16,3 +16,12 @@
   align-items: center;
   justify-content: center;
 }
+.btn-user-name:hover {
+  all: none;
+}
+.btn-user-name:visited {
+  all: none;
+}
+.btn-user-name:focus {
+  all: none;
+}

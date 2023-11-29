@@ -27,22 +27,32 @@ function App() {
     setCounter(updatedCounter);
   };
 
-
+  const [userName, setUserName] = useState<string>("")
+  const setUserNameFunction = (ev: React.MouseEvent<HTMLButtonElement>) => {
+    // debugger
+    const un = ev.currentTarget.value;
+    setUserName(un)
+  };
   return (
+    <div className="header">
+      hello {userName}
+      <div className='users-cards'>
+        {users.map((user, i) =>
+          <button onClick={setUserNameFunction} value={user.name} className='btn-user-name'>
+            <div className="user-card">
 
-    <div className='users-cards'>
-      {users.map((user, i) =>
+              <User key={user.id} name={user.name} lastname={user.lastname} id={user.id} counter={0} />
+              {/* {setUserNameFunction(user.name)} */}
+              <button onClick={increasCounter} value={i}>+</button>
+              <p>counter: {counter[i].count}</p>
+              {/* <button onClick={increasCounter}></button> */}
+              <button onClick={decreaseCounter} value={i}>-</button>
+              {/* <button onClick={setUserNameFunction} value={user.name}></button> */}
+            </div>
+          </button>
 
-        <div className="user-card">
-          <User key={user.id} name={user.name} lastname={user.lastname} id={user.id} counter={0} />
-          <button onClick={increasCounter} value={i}>+</button>
-          <p>counter: {counter[i].count}</p>
-          {/* <button onClick={increasCounter}></button> */}
-          <button onClick={decreaseCounter} value={i}>-</button>
-        </div>
-
-      )}
-
+        )}
+      </div>
     </div>
 
   )
