@@ -8,7 +8,7 @@ function App() {
   const [count, setCount] = useState(0);
   const [color, setColor] = useState("green");
   const [time, setTime] = useState(0);
-  const [users, setUsers] = useState<User>([]);
+  const [users, setUsers] = useState([]);
 
   // let x = 3
   // x++
