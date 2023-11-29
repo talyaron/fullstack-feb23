@@ -18,10 +18,15 @@
 }
 .btn-user-name:hover {
   all: none;
+  cursor: auto;
+  border-color: white;
 }
 .btn-user-name:visited {
   all: none;
 }
 .btn-user-name:focus {
+  all: none;
+}
+.btn-user-name:focus-visible {
   all: none;
 }
