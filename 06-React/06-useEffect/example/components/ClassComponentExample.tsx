@@ -25,6 +25,7 @@ class CounterClass extends Component<MyProps, MyState> {
     }
   };
 
+
   render(): ReactNode {
     return (
       <>
