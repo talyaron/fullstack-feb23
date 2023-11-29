@@ -1,7 +1,11 @@
 ## followup level
 
 1. create an effect that run once when the component is mounting only. in that effect, change the title to your name only once.
-2. create a button, onClick, change the title of the doctument to the amount clicked. make sure the component still gets your name whrn mounting.
+2. create a button, onClick, change the title of the doctument to the amount clicked. make sure the component still gets your name when mounting.
+
+// mount: Gili
+// on Click "User Clicked ${counter} times
+// on Click "User Clicked 1 times
 
 ## Easy
 
