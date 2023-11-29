@@ -1,6 +1,6 @@
 
-export default function Navbar(name: string) {
+export default function Navbar({user}) {
   return (
-    <div>hello {name}</div>
+    <div>hello {user.name}</div>
   )
 }

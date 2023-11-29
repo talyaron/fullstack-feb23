@@ -1,6 +1,7 @@
 import React, { FC } from 'react'
 import { useState } from "react";
-import Navbar from './Navbar';
+//import Navbar from './Navbar';
+import setUsername from "../App";
 
 interface UserCardProp {
   name: string;
@@ -8,6 +9,7 @@ interface UserCardProp {
   id: number;
   counter: number;
   emoji?: string;
+  onClic: () => void;
   handleAdd: (ev: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   handleRemove: (ev: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }
@@ -25,14 +27,13 @@ const handleAdd = () => {
   }
 
   return (
-    <div onClick={()=>Navbar(name)} className='userCard' style={{background: counter >= 5 ? '#'+ randomColor : 'white' }}>
+    <div className='userCard' style={{background: counter >= 5 ? '#'+ randomColor : 'white' }}>
       <h3>{name}</h3>
-      <b>{(counter%10) === 0 ? <p>{emoji}</p> : null}</b>
+      {(counter%10) === 0 ? <b>{emoji}</b> : null}
       <h3>{lastname}</h3>
       <button onClick={handleAdd} value={id}>+</button>
       <b>{counter}</b>
-      <button onClick={handleRemove} value={id}>-</button>
-      
+      <button onClick={handleRemove} value={id}>-</button>  
     </div>
   )
 }
