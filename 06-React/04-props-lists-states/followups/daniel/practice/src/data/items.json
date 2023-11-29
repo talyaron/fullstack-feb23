@@ -1,0 +1,26 @@
+[
+    {
+        "id":1,
+        "name": "Book",
+        "price": 80.99,
+        "imgUrl": "https://m.media-amazon.com/images/I/713jIoMO3UL._AC_UF1000,1000_QL80_.jpg"
+    },
+    {
+        "id":2,
+        "name": "Book",
+        "price": 70.49,
+        "imgUrl": "https://ehkern.files.wordpress.com/2022/08/harari_homo-deus.jpg?w=1024"
+    },
+    {
+        "id":3,
+        "name": "Book",
+        "price": 100,
+        "imgUrl": "https://sclsnj.org/wp-content/uploads/Last-Watch.jpg"
+    },
+    {
+        "id":4,
+        "name": "Book",
+        "price": 70,
+        "imgUrl": "https://miblart.com/wp-content/uploads/2021/03/img_6054aa9f5d3d0.png"
+    }
+]

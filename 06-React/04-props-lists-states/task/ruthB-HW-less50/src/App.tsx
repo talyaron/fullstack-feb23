@@ -1,16 +1,21 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import Item from './component/Item'
+import { useState } from 'react';
+import './App.scss';
+import ItemGallery from './component/itemGallery';
+import products from './data/products';
 
 function App() {
+  const [itemsArr, setItemsArr] = useState(products);
+
+  const handleDelete = (itemId: number) => {
+    const newArr = itemsArr.filter(item => item.id !== itemId);
+    setItemsArr(newArr);
+  };
 
   return (
     <>
-     <Item/>
+      <ItemGallery items= {itemsArr} handleDelete={handleDelete}></ItemGallery>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
