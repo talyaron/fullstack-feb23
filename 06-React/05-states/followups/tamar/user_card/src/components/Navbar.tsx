@@ -1,5 +1,6 @@
-export default function Navbar() {
+
+export default function Navbar(name: string) {
   return (
-    <div>temp navbar</div>
+    <div>hello {name}</div>
   )
 }

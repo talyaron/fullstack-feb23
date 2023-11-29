@@ -1,5 +1,6 @@
 import React, { FC } from 'react'
 import { useState } from "react";
+import Navbar from './Navbar';
 
 interface UserCardProp {
   name: string;
@@ -24,7 +25,7 @@ const handleAdd = () => {
   }
 
   return (
-    <div className='userCard' style={{background: counter >= 5 ? '#'+ randomColor : 'white' }}>
+    <div onClick={()=>Navbar(name)} className='userCard' style={{background: counter >= 5 ? '#'+ randomColor : 'white' }}>
       <h3>{name}</h3>
       <b>{(counter%10) === 0 ? <p>{emoji}</p> : null}</b>
       <h3>{lastname}</h3>

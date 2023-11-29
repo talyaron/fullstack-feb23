@@ -7,12 +7,10 @@ import { useState } from "react";
 
 function App() {
   const [userArr, setUserArr] = useState<any[]>(users)
-
+  const [user, setUser] = useState({username: "gest"})
   return (
     <>
-    <Navbar
-      changenme = {}
-    />
+    <Navbar/>
       {userArr.map((user) => {
         return (
           <UserCard
@@ -24,6 +22,7 @@ function App() {
             handleAdd={user.handleAdd}
             counter={user.counter}
             handleRemove={user.handleRemove}
+            onClick = {()=> setUser}
           />
         )
       })}
@@ -31,4 +30,4 @@ function App() {
   )
 }
 
-export default App
+export default App;
