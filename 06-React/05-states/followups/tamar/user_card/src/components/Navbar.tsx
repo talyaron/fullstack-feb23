@@ -1,6 +1,13 @@
+import { FC } from "react";
 
-export default function Navbar({user}) {
+interface NavbarProp {
+  name: string;
+}
+
+const Navbar:FC<NavbarProp> = ({name}) => {
   return (
-    <div>hello {user.name}</div>
+    <div>hello {name}</div>
   )
 }
+
+export default Navbar

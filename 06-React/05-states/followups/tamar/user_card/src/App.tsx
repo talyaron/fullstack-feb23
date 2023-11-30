@@ -8,9 +8,16 @@ import { useState } from "react";
 function App() {
   const [userArr, setUserArr] = useState<any[]>(users)
   const [username, setUsername] = useState<string>("")
+
+const changNavByClick = (ev: any) => {
+  const userID = ev.target.key  //collect the user id from its key fild
+  const user = userArr.find(user => user.id === userID) || userArr[0];
+  setUsername(user.name)
+}
+
   return (
     <>
-      <Navbar user={username} />
+      <Navbar name={username} />
       {userArr.map((user) => {
         return (
           <UserCard
@@ -22,7 +29,7 @@ function App() {
             handleAdd={user.handleAdd}
             counter={user.counter}
             handleRemove={user.handleRemove}
-            onClick={() => setUsername(user.name)}
+            handleClickOnUser={changNavByClick}
           />
         )
       })}
