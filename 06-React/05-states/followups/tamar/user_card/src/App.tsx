@@ -9,10 +9,8 @@ function App() {
   const [userArr, setUserArr] = useState<any[]>(users)
   const [username, setUsername] = useState<string>("")
 
-const changNavByClick = (ev: any) => {
-  const userID = ev.target.key  //collect the user id from its key fild
-  const user = userArr.find(user => user.id === userID) || userArr[0];
-  setUsername(user.name)
+const handleClickOnUser = (usernameobg: string) => {
+  setUsername(usernameobg)
 }
 
   return (
@@ -29,7 +27,7 @@ const changNavByClick = (ev: any) => {
             handleAdd={user.handleAdd}
             counter={user.counter}
             handleRemove={user.handleRemove}
-            handleClickOnUser={changNavByClick}
+            handleClickOnUser={handleClickOnUser}
           />
         )
       })}
