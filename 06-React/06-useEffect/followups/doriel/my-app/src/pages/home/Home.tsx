@@ -8,12 +8,10 @@ import "./home.css";
 interface HomeProps {
   player?: {
     classes: string[];
-
   };
   games?: {
     title: string[];
   };
- 
 }
 
 interface Game {
@@ -36,8 +34,7 @@ function getClassImages(
   switch (className.toLowerCase()) {
     case "warrior":
       return {
-        front:
-          "https://banner2.cleanpng.com/20180506/hyq/kisspng-world-of-warcraft-legion-warrior-video-game-orc-5aefb9ea471e65.5433892715256601382913.jpg",
+        front: "https://legacy-wow.com/images/default/warrior.jpg",
         bg: "https://i.redd.it/8lgy2qp5ee1b1.jpg",
       };
     case "druid":
@@ -76,8 +73,7 @@ function getClassImages(
       };
     case "paladin":
       return {
-        front:
-          "https://classichardcore.com/wp-content/uploads/2023/06/paladin_wallpaper-1024x574.webp",
+        front: "https://i.imgur.com/f7X9r5Q.jpg",
         bg: "https://i.pinimg.com/736x/dd/ea/d1/ddead1b17ab10503d5865a9977ebdb0a.jpg",
       };
     case "priest":
@@ -93,7 +89,8 @@ function getClassImages(
       };
     case "demon hunter":
       return {
-        front: "https://vkplay.ru/hotbox/content_files/article/2021/05/31/3f746a096ecb40f09fd8f24e9c9cb2c1.jpg",
+        front:
+          "https://vkplay.ru/hotbox/content_files/article/2021/05/31/3f746a096ecb40f09fd8f24e9c9cb2c1.jpg",
         bg: "https://c4.wallpaperflare.com/wallpaper/326/202/448/world-of-warcraft-horde-undercity-hd-wallpaper-preview.jpg",
       };
     case "whizbang":
@@ -109,15 +106,13 @@ function getClassImages(
       };
     case "neutral":
       return {
-        front:
-          "https://i.ytimg.com/vi/VsqPm5nNYgo/maxresdefault.jpg",
+        front: "https://i.ytimg.com/vi/VsqPm5nNYgo/maxresdefault.jpg",
         bg: "https://cdn.wallpapersafari.com/51/97/qjzm6e.jpg",
       };
     default:
       return undefined;
   }
 }
-
 
 const Home: React.FC<HomeProps> = ({ player }) => {
   const [games, setGames] = useState<Game[] | undefined>(undefined);
@@ -178,10 +173,10 @@ const Home: React.FC<HomeProps> = ({ player }) => {
           })}
         </div>
       )}
+      <h1>Game List</h1>
       {games && (
         <div className="games-list">
           {games.map((game) => (
-            
             <div key={game.id} className="game-item">
               <img src={game.thumbnail} alt={game.title} />
               <h3>{game.title}</h3>
@@ -191,9 +186,15 @@ const Home: React.FC<HomeProps> = ({ player }) => {
               <p>Publisher: {game.publisher}</p>
               <p>Developer: {game.developer}</p>
               <p>Release Date: {game.release_date}</p>
-              <a href={game.game_url} target="_blank" rel="noopener noreferrer">
-                Play Now
-              </a>
+              <div className="boxPlay">
+                <a
+                  href={game.game_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Play Now
+                </a>
+              </div>
             </div>
           ))}
         </div>
