@@ -5,9 +5,6 @@ export default function CountdownTimer() {
     const [timedown, setTimedown] = useState(10)
 
     useEffect(() => {
-        if (timedown <= 0) {
-            return
-        }
         const timeInterval = setInterval(() => {
             if (timedown > 0) {
                 setTimedown((prev) => prev - 1)
@@ -16,11 +13,11 @@ export default function CountdownTimer() {
         return () => {
             clearInterval(timeInterval)
         }
-    }, [])
+    }, [timedown])
 
   return (
     <div>
-      <p>{timedown}</p>
+      <p>Time Remaining: {timedown}</p>
     </div>
   )
 }
