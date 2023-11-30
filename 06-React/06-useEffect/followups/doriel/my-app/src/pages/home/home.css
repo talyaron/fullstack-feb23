@@ -14,6 +14,10 @@
   perspective: 1000px;
 }
 
+.class-item:active{
+  border: 5px dotted red;
+}
+
 .front-image,
 .bg-image {
   max-width: 100%;
