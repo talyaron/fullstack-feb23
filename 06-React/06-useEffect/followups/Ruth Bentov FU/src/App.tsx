@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
+// import reactLogo from "./assets/react.svg";
+// import viteLogo from "/vite.svg";
 import "./App.css";
 import Timer from "./component/Timer";
 import UsersCards from "./component/UsersCards";
+import React from "react";
+import { getAllUsers } from "./api/getsMethod";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -11,9 +13,11 @@ function App() {
     width: window.innerWidth,
     height: window.innerHeight,
   });
+
   useEffect(() => {
     document.title = `clicked ${count} times`;
   }, [count]);
+
   useEffect(() => {
     document.title = "Welcome";
   }, []);
@@ -30,6 +34,7 @@ function App() {
     };
   }, [screenSize]);
 
+
   return (
     <>
       <p>
@@ -39,7 +44,8 @@ function App() {
         count is {count}
       </button>
       <Timer timeOut={30} />
-      <UsersCards/>
+
+    <UsersCards/>
     </>
   );
 }
