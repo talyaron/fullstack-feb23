@@ -1,16 +1,28 @@
 import './App.css'
-import { useEffect} from "react";
+import { useEffect, useState} from "react";
+import CountdownTimer from './component/CountdownTimer';
 
 function App() {
- 
-  useEffect(() => {
-    document.head.title = "Tamar";
-  },[])
+ const [count, setCount] = useState(0);
 
+  const handleAdd = () => {
+    setCount((prevState) => prevState + 1)
+  }
+
+  useEffect(() => {
+    document.title = `${count}`;
+  }, [count])
+
+  useEffect(() => {
+    document.title = "Tamar";
+  },[])
 
   return (
     <>
       hello
+      <button onClick={handleAdd}>
+        ADD</button>
+      <CountdownTimer/>
     </>
   )
 }
