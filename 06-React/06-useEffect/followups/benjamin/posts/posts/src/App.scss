@@ -1,0 +1,33 @@
+
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.usersWrapper{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 columns of equal width */
+  grid-gap: 10px; /* space between grid items */
+  max-width: 600px; /* or any other max width */
+  margin: auto; /* centering the grid */
+  &__user{
+    color: rgb(47, 101, 163)(0, 60, 255);
+
+  }
+  &__phrase{
+    font-style: italic;
+    font-size: 14px;
+    font-weight: 100;
+    color: black;
+
+  }
+}
+
+.active-user {
+  border: blue solid;
+  background-color: rgb(145, 145, 185); 
+  transform: scale(1.2);
+  transition: all 200ms ease-in-out;
+}
