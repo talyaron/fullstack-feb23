@@ -13,3 +13,5 @@ export const getAllUsers = async () => {
     console.error(error);
   }
 };
+
+export default getAllUsers;
