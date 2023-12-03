@@ -2,7 +2,7 @@
 export {};
 
 declare global {
-    interface Window {
-      color2: any;
-    }
+  interface Window {
+    color2: any;
   }
+}

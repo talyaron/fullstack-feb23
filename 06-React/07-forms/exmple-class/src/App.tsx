@@ -4,13 +4,15 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import ColorChanger from './components/ColorChanger'
 import { Password } from './components/Password'
+import Debouncing from './components/Debouncing'
 
 function App() {
 
   return (
     <>
-     <ColorChanger/>
-     <Password/>
+    <Debouncing/>
+     {/* <ColorChanger/> */}
+     {/* <Password/> */}
     </>
   )
 }
