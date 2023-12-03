@@ -14,6 +14,7 @@ const [userClickedState , setUserClickedState] = useState(users[0])
     const user = users.find(user => user.id === userId) ||users[0] ;
     setUserClickedState(user)
   }
+  
   const handleClickOnUser = (userObj:UserType) => {
     setUserClickedState(userObj)
   }

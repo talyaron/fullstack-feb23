@@ -5,7 +5,7 @@ import { choosePastelColor } from '../Util/functions'
 
 interface UserProps{
     user: UserType
-    handleClickOnUser: (ev:any) => void
+    handleClickOnUser: (user:any) => void
 }
 
 const User:FC<UserProps> = ({user , handleClickOnUser}) => {
