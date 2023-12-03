@@ -3,10 +3,12 @@ import reactLogo from './assets/react.svg';
 import viteLogo from '/vite.svg';
 import CountdownTimer from './components/CountdownTimer';
 import WindowSize from './components/WindowSize';
+import { getAllUsers } from './api/UserCard'
 import './App.css';
 
 function App() {
   const [clickCount, setClickCount] = useState(0);
+  const [users, setUsers] = useState<User[]>([]);
 
   useEffect(() => {
     document.title = `Clicked ${clickCount} times`;
@@ -14,6 +16,19 @@ function App() {
 
   useEffect(() => {
     document.title = 'nave vered';
+  }, []);
+  const handleGetUsers = async () => {
+    try {
+      const response = await getAllUsers();
+      console.log(response);
+      setUsers(response);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    handleGetUsers();
   }, []);
 
   return (
@@ -40,6 +55,12 @@ function App() {
       </p>
       <CountdownTimer initialTime={60} /> {}
       <WindowSize />
+      <div>
+        {users.length > 0 &&
+          users.map((user) => {
+            return <div key={user.id}>{user.email}  ||  {user.name}</div>;
+          })}
+      </div>
 
     </>
   );
