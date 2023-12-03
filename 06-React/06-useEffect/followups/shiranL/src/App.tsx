@@ -2,35 +2,37 @@ import { useEffect, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import CountdownTimer from './components/CountdownTimer/CountdownTimer'
+import { parse } from '@babel/core'
+import WindowSize from './components/WindowSize/WindowSize'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(1)
   const [initialTitle, setInitialTitle] = useState('shiran');
-
+  const [initialTimer, setInitialTimer] = useState(60);
   const handleAdd = () => {
-    setCount(count + 1);
-    setInitialTitle(`Clicked ${count + 1} times`);
-    // setCount((prevState) => prevState + 1)
+    setCount((prevState) => prevState + 1)
+    setInitialTitle(`Shiran Clicked ${count} times`);
   };
- // Effect to change the document title once on component mount
- useEffect(() => {
-  console.log('Component mounted');
-  document.title = 'Your Name'; // Replace 'Your Name' with your actual name
-}, []); // Empty dependency array means this effect runs only once on mount
-
-// Effect to update the document title when count changes
-useEffect(() => {
-  console.log('on Count Change');
-
-}, [count]);
+ 
 
   return (
     <>
      <>
       <div className='main'>
-      <p id='count-display'>{initialTitle}</p>
-        <button onClick={handleAdd}>Click me</button>
+        <div className='userClick'>     
+          <p id='count-display'>{initialTitle}</p>
+          <button onClick={handleAdd}>Click me</button>
+        </div>
+ 
       </div>
+      <div className='CountdownTimer'>
+        <CountdownTimer initialTimer={initialTimer} />
+      </div>
+      <div className='resize'>
+      <WindowSize  />
+      </div>
+    
     </>
     
 
