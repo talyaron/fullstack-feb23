@@ -3,10 +3,11 @@ import "./App.css";
 import { users } from "./util/users";
 import UserCard from "./components/UserCard";
 import NavBar from "./components/NavBar";
+import { User } from "./types/types";
 
 function App() {
   const [usersArr, setUsers] = useState<any[]>(users);
-
+  const [selectedUser, setSelectedUser] = useState<User | null>(null);
   const addOne = (userId: number) => {
     setUsers((prevUsers) =>
       prevUsers.map((user) => {
@@ -32,17 +33,21 @@ function App() {
   };
 
   return (
-    <div>
-     
+    <> 
+         <NavBar user={selectedUser} />
+
+             
+
       {usersArr.map((user) => (
         <UserCard
           key={user.id}
           user={user}
           addOne={() => addOne(user.id)}
           removeOne={() => removeOne(user.id)}
-        />
+          onSelect={() => setSelectedUser(user)}
+          />
       ))}
-    </div>
+    </>
   );
 }
 

@@ -2,16 +2,17 @@ import { FC } from "react";
 import { User } from "../types/types";
 
 interface NavBarProps {
-  user: User;
-//   addOne: (userId: number) => void;
-//   removeOne: (userId: number) => void;
+  user: User | null;
 }
 
-const NavBar: FC<NavBarProps> = ({ user, }) => {
+const NavBar: FC<NavBarProps> = ({ user }) => {
   return (
-    <div key={user.id}>
-      <h1>{user.name}</h1>
-     
+    <div>
+      {user ? (
+        <h1>{user.name}</h1>
+      ) : (
+        <h1>No user selected</h1>
+      )}
     </div>
   );
 };
