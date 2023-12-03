@@ -396,7 +396,7 @@ const  products= [
     },
     {
       id: 21,
-      title: "- Daal Masoor 500 grams",
+      title: "Daal Masoor 500 grams",
       description: "Fine quality Branded Product Keep in a cool and dry place",
       price: 20,
       discountPercentage: 4.81,
@@ -531,7 +531,7 @@ const  products= [
     },
     {
       id: 28,
-      title: "3D Embellishment Art Lamp",
+      title: "Embellishment  3D Art Lamp",
       description:
         "3D led lamp sticker Wall sticker 3d wall art light on/off button  cell operated (included)",
       price: 20,
@@ -551,7 +551,7 @@ const  products= [
     },
     {
       id: 29,
-      title: "Handcraft Chinese style",
+      title: " A Handcraft Chinese style",
       description:
         "Handcraft Chinese style art luxury palace hotel villa mansion home decor ceramic vase with brass fruit plate",
       price: 60,

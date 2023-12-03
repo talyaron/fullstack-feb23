@@ -1,1 +1,0 @@
-export const list = ["title A", "Title B", "Title c"]

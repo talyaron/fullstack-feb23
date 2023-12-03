@@ -1,0 +1,65 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.wrapper{
+  display: flex;
+  flex-direction: row;
+  width: 80vw;
+  height: 90vh;
+  justify-content: space-around;
+}
+.first{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 30vw;
+  height: 100%;
+  border: 1px gray solid;
+  border-radius: 10px;
+  gap: 10px;
+}
+
+.form{
+  margin-top: 10px;
+  border-radius: 10px;
+  border: 1px black solid;
+  padding: 10px;
+}
+
+.second{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  padding: 20px;
+  width: 35vw;
+  height: 95vh;
+  border: 1px black solid;
+  box-shadow: 2px 2px gray;
+  border-radius: 20px;
+  background-image: url(https://images.pexels.com/photos/2310641/pexels-photo-2310641.jpeg?cs=srgb&dl=pexels-eberhard-grossgasteiger-2310641.jpg&fm=jpg);
+  background-size: cover;
+  opacity: 0.8;
+
+  
+}
+
+.post{
+  background-color: transparent;
+  backdrop-filter: blur(20px);
+  width: 20vw;
+  height: fit-content;
+}
+
+.user{
+cursor: pointer;
+transition: all 200ms ease-in-out;
+&:hover{
+  background-color: rgb(161, 223, 223);
+}
+
+}
