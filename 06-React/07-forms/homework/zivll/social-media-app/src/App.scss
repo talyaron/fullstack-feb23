@@ -18,10 +18,11 @@
       color: #6467d4;
     }
     input {
+      z-index: 0;
       padding: 10px;
       border-radius: 5px;
       border: 0.5px solid #f1f1f2;
-      color: #bec0cc;
+      color: #3e3e41;
       &::placeholder {
         color: #bec0cc;
       }
@@ -67,6 +68,34 @@
         &:hover {
           background-color: #fff;
           border: 1px #fff solid;
+        }
+      }
+      .password-wrapper {
+        position: relative;
+        max-width: 100%;
+        .password-field {
+          width: 90%;
+          position: relative;
+          // background: url(../public/Images/eye-slash-regular.svg) no-repeat scroll
+          //   7px 7px;
+          // background-position: 95% center;
+
+          // &::after {
+          //   content: url(../public/Images/eye-slash-regular.svg);
+
+          // }
+        }
+        .eye-slash {
+          position: absolute;
+          width: 20px;
+          height: 20px;
+          right: 10px;
+          top: 50%;
+          transform: translate(-20%, -50%);
+          cursor: pointer;
+
+          z-index: 1;
+          color: #4c537b;
         }
       }
     }
