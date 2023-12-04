@@ -14,6 +14,7 @@ https://dummyjson.com/docs/auth
 -- if a user has successfully logged in, save the user to a state in the App.tsx component, and the token to the session storage.
 <!-- localStorage.setItem("userID", ID)
 sessionStorage.setItem("userID", ID) -->
+-->done
 
 --------------------
 3. using conditional rendering, if the user state is filled, render a diffrent component that is called UserPosts. the component should, on Mount, get all the users posts via the user Id.
