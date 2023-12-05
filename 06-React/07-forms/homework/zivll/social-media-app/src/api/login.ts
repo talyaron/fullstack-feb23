@@ -1,7 +1,7 @@
 import axios from "axios";
 // import { setError } from "../components/Login";
 
-export const checkUserAccess = async (
+export const checkUser = async (
   userName: string,
   userPassword: number,
   setError: React.Dispatch<React.SetStateAction<string>>
@@ -15,14 +15,8 @@ export const checkUserAccess = async (
     });
 
     return response.data;
-    // else {
-    //   return response.data.message;
-    // }
   } catch (error) {
     console.error(error);
-    // return error.message;
     setError(error.message);
-
-    // return error;
   }
 };

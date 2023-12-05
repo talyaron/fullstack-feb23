@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { checkUserAccess } from '../api/login';
+import { checkUser } from '../api/login';
 // import { setUserName } from '../App';
 interface LoginProps {
     setUserName: React.Dispatch<React.SetStateAction<string>>;
@@ -12,9 +12,10 @@ const Login: React.FC<LoginProps> = ({ setUserName, error, setError }) => {
         ev.preventDefault();
         const userName = (ev.target as HTMLInputElement).userName.value;
         const userPassword = (ev.target as HTMLInputElement).userPassword.value;
-        const { token } = await checkUserAccess(userName, userPassword, setError);
+        const { token, id } = await checkUser(userName, userPassword, setError);
         if (token) {
             sessionStorage.setItem("token", token)
+            sessionStorage.setItem("userId", id)
             setUserName(userName)
             alert(`hello ${userName}, login successful`)
         }
