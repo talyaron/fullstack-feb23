@@ -1,4 +1,5 @@
 "use strict";
+// Product.tsx
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -41,10 +42,12 @@ var react_1 = require("react");
 var react_select_1 = require("react-select");
 var Api_1 = require("../Api");
 require("./product.css");
+var Colors_1 = require("../../colors/Colors");
 function Product() {
     var _a = react_1.useState([]), items = _a[0], setItems = _a[1];
     var _b = react_1.useState(null), selectedCategory = _b[0], setSelectedCategory = _b[1];
     var _c = react_1.useState([]), uniqueCategories = _c[0], setUniqueCategories = _c[1];
+    var _d = react_1.useState("black"), textColor = _d[0], setTextColor = _d[1]; // Initial color
     react_1.useEffect(function () {
         function fetchAndSetProducts() {
             return __awaiter(this, void 0, void 0, function () {
@@ -78,12 +81,16 @@ function Product() {
         value: category,
         label: category
     }); });
+    var handleColorChange = function (newColor) {
+        setTextColor(newColor);
+    };
     return (react_1["default"].createElement("div", { className: "container" },
         react_1["default"].createElement("h1", null, "Products"),
+        react_1["default"].createElement(Colors_1["default"], { onColorChange: handleColorChange }),
         react_1["default"].createElement(react_select_1["default"], { className: "quantity", id: "quantity", onChange: handleCategoryChange, options: options, placeholder: "Select a category" }),
         items.length > 0 && (react_1["default"].createElement("div", { className: "product-container" }, items
             .filter(function (item) { return !selectedCategory || item.category === selectedCategory; })
-            .map(function (item) { return (react_1["default"].createElement("div", { key: item.id, className: "product-card" },
+            .map(function (item) { return (react_1["default"].createElement("div", { key: item.id, className: "product-card", style: { color: textColor } },
             react_1["default"].createElement("h2", null, item.title),
             react_1["default"].createElement("h3", null,
                 "$",
