@@ -1,7 +1,12 @@
-import React from "react";
-import { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect, useContext } from "react";
+import AuthContext from "../context/AuthProvider";
+import axios from "../api/axios";
+import "../dist/login.css";
+
+const LOGIN_URL = "/auth";
 
 const Login = (): JSX.Element => {
+  const { setAuth } = useContext(AuthContext);
   const userRef = useRef<HTMLInputElement>(null);
   const errRef = useRef<HTMLParagraphElement>(null);
 
@@ -22,10 +27,35 @@ const Login = (): JSX.Element => {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    console.log(user, pwd);
-    setUser("");
-    setPwd("");
-    setSuccess(true);
+
+    try {
+      const response = await axios.post(
+        LOGIN_URL,
+        JSON.stringify({ user, pwd }),
+        {
+          headers: { "Content-Type": "application/json" },
+          withCredentials: true,
+        }
+      );
+      console.log(JSON.stringify(response?.data));
+      const accessToken = response?.data?.accessToken;
+      const roles = response?.data?.roles;
+      setAuth({ user, pwd, roles, accessToken });
+      setUser("");
+      setPwd("");
+      setSuccess(true);
+    } catch (err: any) {
+      if (!err?.response) {
+        setErrMsg("No Server Response");
+      } else if (err.response?.status === 400) {
+        setErrMsg("Missing Username or Password");
+      } else if (err.response?.status === 401) {
+        setErrMsg("Unauthorized");
+      } else {
+        setErrMsg("Login Failed");
+        errRef.current?.focus();
+      }
+    }
   };
 
   return (
@@ -49,7 +79,7 @@ const Login = (): JSX.Element => {
             <input
               type="text"
               id="username"
-              placeholder="Username"
+              placeholder=" Username"
               onChange={(e) => setPwd(e.target.value)}
               value={pwd}
               required
@@ -57,7 +87,7 @@ const Login = (): JSX.Element => {
             <input
               type="password"
               id="password"
-              placeholder="Password"
+              placeholder=" Password"
               ref={userRef}
               onChange={(e) => setUser(e.target.value)}
               value={user}
