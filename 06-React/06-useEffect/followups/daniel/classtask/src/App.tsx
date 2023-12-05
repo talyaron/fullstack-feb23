@@ -3,6 +3,7 @@ import './App.css'
 import WindowSize from './components/windowSize/WindowSize'
 import CountdownTimer from './components/countdownTimer/CountdownTimer'
 import TitleTask from './components/titleTask/TitleTask';
+import Practice from './components/practice/Practice';
 
 
 
@@ -11,7 +12,7 @@ function App() {
  
   return (
     <>
-    < TitleTask />
+    {/* < TitleTask />
     <br />
     <br />
     <br />
@@ -19,7 +20,9 @@ function App() {
     <br />
     <br />
     <br />
-    <WindowSize />
+    <WindowSize /> */}
+
+    <Practice/>
     </>
   )
 }

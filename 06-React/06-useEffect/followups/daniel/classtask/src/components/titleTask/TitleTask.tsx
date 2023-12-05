@@ -6,17 +6,19 @@ import { useEffect, useState } from 'react'
 const TitleTask = () => {
   const [title,setTitle] = useState("");
   const [counter, setCounter] = useState(0)
-
   
   useEffect(()=>{
     document.title = `${counter}`
   },[counter])
-  
   useEffect(()=>{
     setTitle("hello")
     setTitle(document.title = "Hello Daniel")
   },[])
+  
+  
+  
 
+  //function dosomething() {setCounter(counter + 1)  }
 
   return (
     <>
