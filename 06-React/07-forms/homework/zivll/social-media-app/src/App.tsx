@@ -3,9 +3,11 @@ import './App.scss'
 import Login from './components/Login'
 
 function App() {
+  const [error, setError] = useState("")
+  const [username, setUserName] = useState("")
   return (
     <>
-      <Login />
+      <Login setUserName={setUserName} setError={setError} error={error} />
     </>
   )
 }

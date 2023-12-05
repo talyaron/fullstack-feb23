@@ -1,22 +1,22 @@
 import React, { useState } from 'react'
 import { checkUserAccess } from '../api/login';
 // import { setUserName } from '../App';
-const Login = () => {
-    const [username, setUserName] = useState("")
+interface LoginProps {
+    setUserName: React.Dispatch<React.SetStateAction<string>>;
+    error: string
+    setError: React.Dispatch<React.SetStateAction<string>>;
+}
+const Login: React.FC<LoginProps> = ({ setUserName, error, setError }) => {
     const [visible, setVisible] = useState(false)
-    const [error, setError] = useState("")
     const handleSubmit = async (ev: React.FormEvent<HTMLFormElement>) => {
         ev.preventDefault();
         const userName = (ev.target as HTMLInputElement).userName.value;
         const userPassword = (ev.target as HTMLInputElement).userPassword.value;
-        const token = await checkUserAccess(userName, userPassword)
+        const { token } = await checkUserAccess(userName, userPassword, setError);
         if (token) {
             sessionStorage.setItem("token", token)
             setUserName(userName)
             alert(`hello ${userName}, login successful`)
-        } else {
-            setError(token.message);
-            // console.log(token.message);
         }
     };
     return (
@@ -30,9 +30,8 @@ const Login = () => {
                     <input type={visible ? "text" : "password"} name="password" id="userPassword" placeholder='Password' className='password-field' />
                 </div>
                 <input type="submit" value="Login" className='login-btn' />
-                {/* <button className='ligin-btn'>Login</button> */}
                 <button className='new-password'>forget your password?</button>
-                <p style={{ fontSize: "12px" }}>{error ? error : ""}</p>
+                <strong> <p style={{ fontSize: "12px" }}>{error ? error : ""}</p></strong>
             </form>
             <button className='signup'>Signup</button>
         </div>
