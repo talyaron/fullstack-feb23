@@ -106,4 +106,27 @@
       transform: translate(-50%);
     }
   }
+
+  .post {
+    .writer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      .writer-image {
+      }
+      .writer-name {
+      }
+      .time {
+      }
+      .more {
+      }
+    }
+
+    .post-desc {
+    }
+    .img {
+    }
+    .post-actions {
+    }
+  }
 }

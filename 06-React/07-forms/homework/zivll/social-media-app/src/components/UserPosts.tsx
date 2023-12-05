@@ -30,13 +30,24 @@ const UserPosts = () => {
     }, []);
     return (
 
-        <div>
-            <p>{post.title}</p>
-            <p>{post.body}</p>
-            <p>{post.tags.length}</p>
-            <p>{post.reactions}</p>
-            <p>{post.userId}</p>
-            <p>{post.id}</p>
+        <div className='post'>
+            <div className="writer">
+                <img className="writer-image" src="" alt="" />
+                <h3 className="writer-name">mosh</h3>
+                <p className='time'>2 huors ago</p>
+                <div className="more">...</div>
+            </div>
+            <div className="post-desc">
+                <p>{post.title}</p>
+                <p>{post.body}</p>
+            </div>
+            <div className="img">
+                <img src="" alt="" />
+            </div>
+            <div className="post-actions">
+                <p>{post.tags.length}</p>
+                <p>{post.reactions}</p>
+            </div>
         </div>
     )
 }
