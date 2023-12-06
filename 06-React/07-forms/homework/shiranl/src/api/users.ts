@@ -1,14 +1,13 @@
 import axios from "axios";
-const BASE_URL = "https://jsonplaceholder.typicode.com";
+const BASE_URL = "https://dummyjson.com/users";
 
 export const getUsers = async () => {
-  try {
-    const response = await axios.get(`${BASE_URL}/users`);
-    console.log(response.data);
-    
-    return response.data;
-    
-  } catch (error) {
-    console.error(error);
-  }
+    try {
+      const response = await axios.get(`${BASE_URL}`);
+     // console.log(response.data);  // Log the response data
+      return response.data;
+    } catch (error) {
+      console.error(error);
     }
+  };
+  
