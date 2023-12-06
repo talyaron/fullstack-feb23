@@ -1,38 +1,58 @@
-.App {
-  text-align: center;
+
+.welcome-container {
+  position: relative;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.welcome-message {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translateX(-100%);
+  animation: slideIn 1s forwards;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+@keyframes slideIn {
+  to {
+    transform: translateX(0);
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+
+body {
+  height: 100vh;
+  background: linear-gradient(90deg,#e52e71,#ff8a00);
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.slider-thumb::before {
+  position: absolute;
+  content: "";
+  left: 30%;
+  top: 20%;
+  width: 450px;
+  height: 450px;
+  background: #17141d;
+  border-radius: 62% 47% 82% 35% / 45% 45% 80% 66%;
+  will-change: border-radius, transform, opacity;
+  animation: sliderShape 5s linear infinite;
+  display: block;
+  z-index: -1;
+  -webkit-animation: sliderShape 5s linear infinite;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+@keyframes sliderShape{
+  0%,100%{
+  border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%;
+    transform: translate3d(0,0,0) rotateZ(0.01deg);
   }
-  to {
-    transform: rotate(360deg);
+  34%{
+      border-radius: 70% 30% 46% 54% / 30% 29% 71% 70%;
+    transform:  translate3d(0,5px,0) rotateZ(0.01deg);
+  }
+  50%{
+    transform: translate3d(0,0,0) rotateZ(0.01deg);
+  }
+  67%{
+    border-radius: 100% 60% 60% 100% / 100% 100% 60% 60% ;
+    transform: translate3d(0,-3px,0) rotateZ(0.01deg);
   }
 }
