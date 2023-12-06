@@ -1,3 +1,4 @@
+import React from 'react';
 import { useEffect, useState } from 'react'
 
 // 1. create an effect that run once when the component is mounting only. in that effect, change the title to your name only once.
