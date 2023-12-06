@@ -11,10 +11,13 @@ make sure it looks as similar as possible. even if there are buttons that don't 
 2. a user may enter his username and password and with a POST request check if that user can log in.
 https://dummyjson.com/docs/auth
 -- if a user has successfully logged in, save the user to a state in the App.tsx component, and the token to the session storage.
+<!-- localStorage.setItem("userID", ID)
+sessionStorage.setItem("userID", ID) -->
 
 3. using conditional rendering, if the user state is filled, render a diffrent component that is called UserPosts. the component should, on Mount, get all the users posts via the user Id.
 https://dummyjson.com/docs/posts
 (find the correct request)
+
 the posts should be mapped into UserPost component, and it should look as similar as posibble to the lower right image here:
 https://dribbble.com/shots/18578872-Talentswide-Homepage
 **note there is no image in the API, so your post should not contain an image.**
