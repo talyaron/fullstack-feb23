@@ -1,0 +1,40 @@
+.loginbody {
+  color: grey;
+  margin: 5px;
+  background-color: white;
+  display: table-caption;
+}
+
+#username {
+  border: 1px solid blue;
+}
+
+#password {
+  border: 1px solid gray;
+}
+
+#loginBTN {
+  background-color: #6322b8;
+  text-align: center;
+  color: white;
+  border-radius: 2px;
+  align-items: center;
+}
+
+.textcolorperpul {
+  color: #6322b8;
+}
+
+.btnsignin {
+  border-radius: 1px;
+}
+
+.center {
+  margin: auto;
+  width: 50%;
+  padding: 10px;
+}
+
+h2, header {
+  text-align: left;
+}
