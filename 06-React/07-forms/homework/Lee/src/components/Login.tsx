@@ -14,6 +14,7 @@ const Login = (): JSX.Element => {
   const [pwd, setPwd] = useState<string>("");
   const [errMsg, setErrMsg] = useState<string>("");
   const [success, setSuccess] = useState<boolean>(false);
+  const [showPassword, setShowPassword] = useState<boolean>(false);
 
   useEffect(() => {
     if (userRef.current) {
@@ -37,6 +38,7 @@ const Login = (): JSX.Element => {
           withCredentials: true,
         }
       );
+
       console.log(JSON.stringify(response?.data));
       const accessToken = response?.data?.accessToken;
       const roles = response?.data?.roles;
@@ -56,6 +58,10 @@ const Login = (): JSX.Element => {
         errRef.current?.focus();
       }
     }
+  };
+
+  const handleTogglePassword = () => {
+    setShowPassword(!showPassword);
   };
 
   return (
@@ -84,18 +90,27 @@ const Login = (): JSX.Element => {
               value={pwd}
               required
             />
-            <input
-              type="password"
-              id="password"
-              placeholder=" Password"
-              ref={userRef}
-              onChange={(e) => setUser(e.target.value)}
-              value={user}
-              required
-            />
+            <div className="password-input-container">
+              <input
+                type={showPassword ? "text" : "password"}
+                id="password"
+                placeholder=" Password"
+                ref={userRef}
+                onChange={(e) => setUser(e.target.value)}
+                value={user}
+                required
+              />
+              <span
+                className="material-symbols-outlined eye-icon"
+                onClick={handleTogglePassword}
+              >
+                {showPassword ? "visibility" : "visibility_off"}
+              </span>
+            </div>
             <button>Login</button>
+            <p id="reset">Forgot your password?</p>
           </form>
-          <p>Signup</p>
+          <button id="signup">Signup</button>
         </section>
       )}
     </>

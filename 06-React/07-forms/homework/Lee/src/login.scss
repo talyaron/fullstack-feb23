@@ -1,27 +1,91 @@
+$light-font-color: rgb(195, 195, 195);
+
 body {
   display: flex;
   align-items: center;
   justify-content: center;
+  color: $light-font-color;
+  font-size: 20px;
+  font-weight: bold;
+
+  #reset {
+    margin: auto;
+    padding: 7px;
+  }
 
   h1 {
-    color: #6467d4;
+    color: #6468d4df;
     font-size: 40px;
   }
 
   form {
-    width: 400px;
     display: flex;
     flex-direction: column;
     gap: 0.7rem;
 
+    .password-input-container {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
     input {
-      height: 40px;
+      position: relative;
+      height: 48px;
+      line-height: 48px;
+      width: 330px;
+      border: 2px solid rgb(211, 211, 211);
+      border-radius: 3px;
+      color: gray;
+      font-size: 18px;
+      font-weight: bold;
+
+      &:focus {
+        outline: 1px solid #6468d4db;
+      }
+
+      &::placeholder {
+        color: rgba(157, 157, 157, 0.613);
+        font-size: 18px;
+        font-weight: bold;
+      }
+    }
+    .eye-icon {
+      cursor: pointer;
+      color: $light-font-color; /* Adjust the color as needed */
+      font-size: 24px; /* Adjust the font size as needed */
+      position: absolute;
+      right: 10px;
     }
 
     button {
       color: #fff;
-      background-color: #6467d4;
-      border-radius: 5px;
+      background-color: #6468d4db;
+      border-radius: 7px;
+      height: 50px;
+
+      &:hover {
+        background-color: #3f44d1db;
+      }
+    }
+  }
+  #signup {
+    width: 330px;
+    margin-top: 12rem;
+    margin-bottom: 2.5rem;
+    color: rgba(100, 104, 212, 0.855);
+    font-weight: bold;
+    background-color: white;
+    border: 3px solid #6468d49d;
+    border-radius: 5px;
+
+    &:focus {
+      outline: none;
+    }
+
+    &:hover {
+      background-color: #6468d4db;
+      color: white;
     }
   }
 }
