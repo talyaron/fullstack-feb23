@@ -5,128 +5,210 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: left;
-  background-color: #8ba5f8;
+  // background-color: #8ba5f8;
   color: #bec0cc;
 
-  .login {
-    min-height: 500px;
-    max-height: 60%;
+  .login-body {
+    background-color: #8ba5f8;
     height: 100%;
-    max-width: fit-content;
-    position: relative;
-    h2 {
-      color: #6467d4;
-    }
-    input {
-      z-index: 0;
-      padding: 10px;
-      border-radius: 5px;
-      border: 0.5px solid #f1f1f2;
-      color: #3e3e41;
-      &::placeholder {
-        color: #bec0cc;
-      }
-      &:focus-visible {
-        border: 1px solid #6467d4;
-        outline: none;
-      }
-    }
-    .login-btn {
-      background-color: #6467d4;
-      color: #fff;
-      padding: 10px;
-      border-radius: 5px;
-      border: none;
-    }
-    .signup {
-      position: absolute;
-      bottom: 10px;
-      border: 1px solid #6467d4;
-      color: #6467d4;
-      width: 80%;
-      background-color: #fff;
-      border-radius: 5px;
-
-      &:hover {
-        background-color: #fff;
-      }
-    }
-    // flex-direction: column;
-    background-color: #fff;
-    padding: 20px;
-    form {
-      max-height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .login {
+      min-height: 500px;
+      max-height: 60%;
+      height: 100%;
+      max-width: fit-content;
       position: relative;
-      display: flex;
-      gap: 10px;
-      flex-direction: column;
-      // background-color: #fff;
-      .new-password {
-        color: #bec0cc;
+      h2 {
+        color: #6467d4;
+      }
+      input {
+        z-index: 0;
+        padding: 10px;
+        border-radius: 5px;
+        border: 0.5px solid #f1f1f2;
+        color: #3e3e41;
+        &::placeholder {
+          color: #bec0cc;
+        }
+        &:focus-visible {
+          border: 1px solid #6467d4;
+          outline: none;
+        }
+      }
+      .login-btn {
+        background-color: #6467d4;
+        color: #fff;
+        padding: 10px;
+        border-radius: 5px;
+        border: none;
+      }
+      .signup {
+        position: absolute;
+        bottom: 10px;
+        border: 1px solid #6467d4;
+        color: #6467d4;
+        width: 80%;
         background-color: #fff;
         border-radius: 5px;
+
         &:hover {
           background-color: #fff;
-          border: 1px #fff solid;
         }
       }
-      .password-wrapper {
+      // flex-direction: column;
+      background-color: #fff;
+      padding: 20px;
+      form {
+        max-height: 100%;
         position: relative;
-        max-width: 100%;
-        .password-field {
-          width: 90%;
-          position: relative;
-          // background: url(../public/Images/eye-slash-regular.svg) no-repeat scroll
-          //   7px 7px;
-          // background-position: 95% center;
-
-          // &::after {
-          //   content: url(../public/Images/eye-slash-regular.svg);
-
-          // }
+        display: flex;
+        gap: 10px;
+        flex-direction: column;
+        // background-color: #fff;
+        .new-password {
+          color: #bec0cc;
+          background-color: #fff;
+          border-radius: 5px;
+          &:hover {
+            background-color: #fff;
+            border: 1px #fff solid;
+          }
         }
-        .eye-slash {
-          position: absolute;
-          width: 20px;
-          height: 20px;
-          right: 10px;
-          top: 50%;
-          transform: translate(-20%, -50%);
-          cursor: pointer;
+        .password-wrapper {
+          position: relative;
+          max-width: 100%;
+          .password-field {
+            width: 90%;
+            position: relative;
+            // background: url(../public/Images/eye-slash-regular.svg) no-repeat scroll
+            //   7px 7px;
+            // background-position: 95% center;
 
-          z-index: 1;
-          color: #4c537b;
+            // &::after {
+            //   content: url(../public/Images/eye-slash-regular.svg);
+
+            // }
+          }
+          .eye-slash {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            right: 10px;
+            top: 50%;
+            transform: translate(-20%, -50%);
+            cursor: pointer;
+
+            z-index: 1;
+            color: #4c537b;
+          }
         }
       }
-    }
-    .signup {
-      position: absolute;
-      bottom: 10px;
-      left: 50%;
-      transform: translate(-50%);
+      .signup {
+        position: absolute;
+        bottom: 10px;
+        left: 50%;
+        transform: translate(-50%);
+      }
     }
   }
+  .post-body {
+    gap: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #333;
+    .post {
+      max-width: 60%;
+      border: 1px solid #9999997a;
+      border-radius: 20px;
+      padding: 20px 60px;
+      .writer {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        position: relative;
 
-  .post {
-    .writer {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      .writer-image {
-      }
-      .writer-name {
-      }
-      .time {
-      }
-      .more {
-      }
-    }
+        .writer-image {
+          height: 50px;
+          width: 50px;
+          border-radius: 100%;
+          margin-right: 20px;
+        }
+        .writer-name {
+          font-size: 1rem;
+          margin: 7px 0 7px 0;
+        }
+        .time {
+          font-size: 0.8rem;
+          margin: 7px 0 7px 0;
+        }
+        .more {
+          position: absolute;
+          right: 10px;
+          top: 50%;
+          transform: translate(-50%, -50%);
+          .ellipsis-horizontal {
+            width: 24px;
+            height: 24px;
 
-    .post-desc {
-    }
-    .img {
-    }
-    .post-actions {
+            cursor: pointer;
+          }
+        }
+      }
+
+      .post-desc {
+        .tags {
+          margin-bottom: 15px;
+          p {
+            display: inline;
+          }
+          .tag {
+            cursor: pointer;
+
+            &:hover {
+              text-decoration: underline;
+            }
+          }
+          color: #177edb;
+        }
+      }
+      .img {
+        img {
+          width: 100%;
+          height: auto;
+          border-radius: 20px;
+        }
+      }
+      .post-actions {
+        position: relative;
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 2%;
+        .heart {
+          cursor: pointer;
+          color: #ce3240;
+        }
+        .comment {
+          cursor: pointer;
+        }
+        .uturn {
+          cursor: pointer;
+          height: 16px;
+          width: 16px;
+        }
+        .send {
+          cursor: pointer;
+          position: absolute;
+          right: 10px;
+          top: 50%;
+          transform: translate(-50%, -50%);
+        }
+      }
     }
   }
 }
