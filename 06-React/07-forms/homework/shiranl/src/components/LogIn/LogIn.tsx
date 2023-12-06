@@ -1,13 +1,18 @@
 import React, { useState } from 'react'
 import './LogIn.scss'
 import { FaEye, FaEyeSlash } from 'react-icons/fa'; // Import eye icons from react-icons library
-import { getUsers } from '../../api/users';
+import { getUsers, signIn } from '../../api/users';
+interface UserProps {
+    username: string;
+    password: string;
+    setUser: (user: User) => void;
+}
 
-const LogIn = () => {
+const LogIn : React.FC<UserProps> = ({setUser}) => {
     const [userName, setUserName] = useState('')
     const [password, setPassword] = useState('')
     const [showPassword, setShowPassword] = useState(false);
-    const [users, setUsers] = useState([]);
+    const [users, setUsers] = useState<User[]>([]);
 
     const togglePasswordVisibility = () => {
       setShowPassword(!showPassword);
@@ -15,23 +20,25 @@ const LogIn = () => {
     const handelLogin = async (e: React.FormEvent<HTMLFormElement>) => {
         try {
             e.preventDefault();
-            const data = await getUsers();
+            // const data = await getUsers();
             
-            if (data.users) {
-              setUsers(data.users)
-              console.log(data.users);
-              console.log('userName  '+userName);
-              console.log('password  '+password);
-             const user = users.find((user) => user.username == userName && user.password == password);
+            // if (data.users) {
+            //   setUsers(data.users)
+            //   console.log(data.users);
+            //   console.log('userName  '+userName);
+            //   console.log('password  '+password);
+            //  const user = users.find((user) => user.username == userName && user.password == password);
 
-             console.log('User '+user);
+            //  console.log('User '+user);
              
-             if(user) {
-               console.log('login success')
-             } else {
-                console.log('login failed')
-             }
-            } 
+            //  if(user) {
+            //    console.log('login success')
+            //  } else {
+            //     console.log('login failed')
+            //  }
+            // } 
+            const user = await signIn(userName,password)
+            setUser(user)
         } catch (error) {
            console.error(error);
         }
