@@ -12,14 +12,16 @@ function App() {
 
   return (
     <>
-      {username ? (
-        <div className="welcome-container">
-          <h2 className="welcome-message">Welcome, {username}!</h2>
-          <Product />
-        </div>
-      ) : (
-        <Login onLogin={handleLogin} />
-      )}
+      <div className="slider-thumb">
+        {username ? (
+          <div className="welcome-container">
+            <h2 className="welcome-message">Welcome, {username}!</h2>
+            <Product />
+          </div>
+        ) : (
+          <Login onLogin={handleLogin} />
+        )}
+      </div>
     </>
   );
 }
