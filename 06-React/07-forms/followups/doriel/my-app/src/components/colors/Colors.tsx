@@ -7,7 +7,6 @@ interface ColorsProps {
 }
 
 function Colors({ onColorChange }: ColorsProps) {
-  const [color, setColor] = useState("green");
   const [text, setText] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -33,19 +32,7 @@ function Colors({ onColorChange }: ColorsProps) {
             border: "1px solid #ccc",
           }}
         />
-        <button
-          type="submit"
-          style={{
-            padding: "8px",
-            borderRadius: "4px",
-            backgroundColor: "#4CAF50",
-            color: "white",
-            border: "none",
-            cursor: "pointer",
-          }}
-        >
-          Change Color
-        </button>
+        <button type="submit">Change Color</button>
       </form>
       <hr></hr>
     </div>

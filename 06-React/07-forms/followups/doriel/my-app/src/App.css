@@ -36,3 +36,22 @@
     transform: rotate(360deg);
   }
 }
+
+
+.welcome-container {
+  position: relative;
+}
+
+.welcome-message {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translateX(-100%);
+  animation: slideIn 1s forwards;
+}
+
+@keyframes slideIn {
+  to {
+    transform: translateX(0);
+  }
+}
