@@ -22,25 +22,27 @@ export interface ProductCardPorps {
 
 const ProductCard:FC<ProductCardPorps> = ({product}) => {
   return (
-    <Paper elevation={6}
+    <Paper  elevation={23}
     sx={{display: "flex",
     flexDirection:"column",
     justifyContent:"center",
     alignItems: "center",
     padding: 5,
-    gap: 3,
-    width: "20vw"
+    gap: 4,
+    width: "50vw",
+    height: "60vh",
+    marginBottom: "20px"
     }}>
 
-        <Avatar>{product.title}</Avatar>
-        <Typography variant="h5">{product.description}</Typography>
-        <Box>
-            <Typography>{product.id}</Typography>
-            <Typography>{product.price}</Typography>
-            <Typography>{product.category}</Typography>
-            <Typography>{product.image}</Typography>
-            <Typography>{product.rating.count}</Typography>
-            <Typography>{product.rating.rate}</Typography>
+            <Avatar sx={{width: '110px', height: '130px', backgroundColor:'white'}}><img src={product.image} alt={product.title} /></Avatar>
+        <Typography variant="h6"><span>Title</span>: {product.title}</Typography>
+        <Box sx={{gap:15}}>
+            <Typography><span>ID</span>: {product.id}</Typography>
+            <Typography><span>Price</span>: {product.price}</Typography>
+            <Typography><span>Category</span>: {product.category}</Typography>
+            <Typography><span>Rating.count</span>: {product.rating.count}</Typography>
+            <Typography><span>Rating.rate</span>: {product.rating.rate}</Typography>
+            <Typography><span>Description</span>: {product.description}</Typography>
         </Box>
 
     </Paper>
