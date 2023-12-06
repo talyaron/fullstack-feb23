@@ -2,7 +2,7 @@
 1. followup the params task:
     - create a users page and a link to 5 users.
     - install react-router-dom and use your prefered method to create routes.
-    - prepare a route for /user/:id anr present UserPage element
+    - prepare a route for /user/:id and present UserPage element
     -using the params, get the user information by the user Id. use: 
     https://dummyjson.com/docs/users
 
@@ -11,7 +11,7 @@
 1. after creating a new project, install react-router-dom and create base routes. 
 -- they should include home page (that contained a homepage header and links to other routes)
 -- a route that is called "settings"
-in the setting route show a button that navigates back home, and a foum with two fields: name and last name.
+in the setting route show a button that navigates back home, and a form with two fields: name and last name.
 
 **task:**
 if the user did not write anything in the feilds, what they navigate bck home they will be allowed to do so.
