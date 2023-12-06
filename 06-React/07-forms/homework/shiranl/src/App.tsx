@@ -5,12 +5,13 @@ import './App.scss'
 import LogIn from './components/LogIn/LogIn'
 
 function App() {
-  
+  const [user, setUser] = useState()
 
   return (
     <>
       <div className='main'>
-        <LogIn />
+        
+        <LogIn setUser={setUser}/>
 
       </div>
     </>
