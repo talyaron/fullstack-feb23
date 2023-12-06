@@ -19,6 +19,7 @@ interface User {
     token: string,
 }
 const Post = () => {
+
     const userFromStorage = sessionStorage.getItem('user');
     if (!userFromStorage) throw new Error("no user at storage")
     const user: User = JSON.parse(userFromStorage)
@@ -39,6 +40,7 @@ const Post = () => {
     useEffect(() => {
         if (posts === undefined) return;
         const userPosts = posts.map((post: Post) => {
+            const image = `https://picsum.photos/id/${Math.round(Math.random() * 50)}/400/200`
             return (
                 <div className='post'>
                     <div className="writer">
@@ -62,7 +64,8 @@ const Post = () => {
                         <div className='tags'>{post.tags.map((tag: string) => { return <p className='tag'>#{tag} </p> })}</div>
                     </div>
                     <div className="img">
-                        <img src="https://picsum.photos/400/200"
+                        <img src={image}
+                            // "https://picsum.photos/id//400/200"
                             alt="post-image" />
                     </div>
                     <div className="post-actions">

@@ -114,6 +114,8 @@
     }
   }
   .post-body {
+    padding: 40px;
+    background-color: #ebecf1;
     gap: 20px;
     display: flex;
     flex-direction: column;
@@ -121,8 +123,9 @@
     justify-content: center;
     color: #333;
     .post {
+      background-color: #fff;
       max-width: 60%;
-      border: 1px solid #9999997a;
+      // border: 1px solid #9999997a;
       border-radius: 20px;
       padding: 20px 60px;
       .writer {
