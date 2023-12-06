@@ -110,6 +110,7 @@ const Login = (): JSX.Element => {
             <button>Login</button>
             <p id="reset">Forgot your password?</p>
           </form>
+          <div className="signup-stripe"></div>
           <button id="signup">Signup</button>
         </section>
       )}
