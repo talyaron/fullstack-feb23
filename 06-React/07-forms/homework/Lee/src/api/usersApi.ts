@@ -2,20 +2,26 @@ import axios, { AxiosResponse } from "axios";
 
 const API_URL = "https://dummyjson.com/auth/login";
 
-interface AuthResponse {
+export interface AuthResponse {
+  userId: string;
   accessToken: string;
-  roles: string[];
+  roles: string[]; // Assuming roles are part of the response
 }
 
 export const authenticateUser = async (
   username: string,
   password: string
-): Promise<AxiosResponse<AuthResponse>> => {
+): Promise<AuthResponse> => {
   try {
-    return await axios.post<AuthResponse>(API_URL, {
+    const response = await axios.post<AuthResponse>(API_URL, {
       username,
       password,
     });
+
+    // Assuming response.data contains userId, accessToken, and roles
+    const { userId, accessToken, roles } = response.data;
+
+    return { userId, accessToken, roles };
   } catch (error) {
     console.error(error);
     throw error;

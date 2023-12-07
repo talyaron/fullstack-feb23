@@ -23,13 +23,16 @@ const Login = (): JSX.Element => {
     try {
       const response = await authenticateUser(user, pwd);
 
-      console.log(JSON.stringify(response?.data));
-      const accessToken = response?.data?.accessToken;
-      const roles = response?.data?.roles;
+      const accessToken = response.accessToken;
+      const roles = response.roles;
+
       setAuth({ user, roles, accessToken });
       setUser("");
       setPwd("");
       setSuccess(true);
+
+      sessionStorage.setItem("userId", response.userId.toString());
+      sessionStorage.setItem("userToken", accessToken || "");
     } catch (err: any) {
       if (!err?.response) {
         setErrMsg("No Server Response");
@@ -38,7 +41,7 @@ const Login = (): JSX.Element => {
       } else if (err.response?.status === 401) {
         setErrMsg("Unauthorized");
       } else {
-        console.error("Login Error:", err); // Log the actual error
+        console.error("Login Error:", err);
         setErrMsg("Login Failed. Please try again.");
         errRef.current?.focus();
       }

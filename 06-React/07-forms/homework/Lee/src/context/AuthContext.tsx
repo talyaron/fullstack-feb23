@@ -1,10 +1,13 @@
 import React, { createContext, useContext, ReactNode, useState } from "react";
 
-interface AuthContextProps {
-  user: string;
-  roles: string[];
+interface AuthData {
+  user: string | null;
+  userId: string | null;
   accessToken: string | null;
-  setAuth: (authData: AuthContextProps) => void;
+}
+
+interface AuthContextProps extends AuthData {
+  setAuth: (authData: AuthData) => void;
 }
 
 const AuthContext = createContext<AuthContextProps | undefined>(undefined);
@@ -14,11 +17,20 @@ interface AuthProviderProps {
 }
 
 const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
-  const [auth, setAuth] = useState<AuthContextProps>({
-    user: "",
-    roles: [],
+  const [auth, setAuthState] = useState<AuthContextProps>({
+    userId: null,
+    user: null,
     accessToken: null,
-    setAuth: (authData) => setAuth(authData),
+    setAuth: (authData: AuthData) => {
+      console.log("Setting auth data:", authData);
+      setAuthState((prevAuth) => ({
+        ...prevAuth,
+        ...authData,
+      }));
+
+      sessionStorage.setItem("userDetails", JSON.stringify(authData));
+      sessionStorage.setItem("accessToken", authData.accessToken || "");
+    },
   });
 
   return <AuthContext.Provider value={auth}>{children}</AuthContext.Provider>;
