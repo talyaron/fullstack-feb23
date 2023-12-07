@@ -3,6 +3,8 @@ import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import NavBar from "./components/NavBar";
+import Login from "./pages/Login";
+import UserPage from "./pages/UserPage";
 
 function App() {
   // const router = createBrowserRouter([
@@ -30,6 +32,8 @@ function App() {
           path: "/about",
           element: <About />,
         },
+        { path: "/login", element: <Login /> },
+        { path: "/user-page/:id", element: <UserPage /> },
       ],
     },
   ]);
