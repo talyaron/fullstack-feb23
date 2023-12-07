@@ -1,12 +1,14 @@
 import React from "react";
 import Login from "./components/Login";
-import Signup from "./components/Signup";
+import { AuthProvider } from "./context/AuthContext";
 
 function App() {
   return (
-    <main className="App">
-      <Signup />
-    </main>
+    <AuthProvider>
+      <main className="App">
+        <Login />
+      </main>
+    </AuthProvider>
   );
 }
 
