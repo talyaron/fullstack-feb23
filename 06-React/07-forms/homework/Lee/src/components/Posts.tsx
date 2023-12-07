@@ -12,11 +12,9 @@ const Posts: React.FC = () => {
 
         console.log("API Response:", response);
 
-        // Ensure TypeScript recognizes response.data as an object with a 'posts' property
         if ("posts" in response.data) {
           setPosts(response.data.posts as Post[]);
 
-          // Select a random post from the fetched data
           const randomIndex = Math.floor(
             Math.random() * (response.data.posts as Post[]).length
           );

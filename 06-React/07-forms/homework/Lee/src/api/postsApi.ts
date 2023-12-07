@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from "axios";
 
-const API_URL = "https://dummyjson.com/posts";
+const API_URL = "https://dummyjson.com/posts/user/12";
 
 export interface Post {
   userId: string;
