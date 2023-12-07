@@ -1,11 +1,10 @@
-import axios, { AxiosResponse } from "axios";
+import axios from "axios";
 
 const API_URL = "https://dummyjson.com/auth/login";
 
 export interface AuthResponse {
   userId: string;
   accessToken: string;
-  roles: string[]; // Assuming roles are part of the response
 }
 
 export const authenticateUser = async (
@@ -18,10 +17,9 @@ export const authenticateUser = async (
       password,
     });
 
-    // Assuming response.data contains userId, accessToken, and roles
-    const { userId, accessToken, roles } = response.data;
+    const { userId, accessToken } = response.data;
 
-    return { userId, accessToken, roles };
+    return { userId, accessToken };
   } catch (error) {
     console.error(error);
     throw error;

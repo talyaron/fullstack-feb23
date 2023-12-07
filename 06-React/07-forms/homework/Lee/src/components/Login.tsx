@@ -24,9 +24,9 @@ const Login = (): JSX.Element => {
       const response = await authenticateUser(user, pwd);
 
       const accessToken = response.accessToken;
-      const roles = response.roles;
+      const userId = response.userId;
 
-      setAuth({ user, roles, accessToken });
+      setAuth({ user, userId, accessToken });
       setUser("");
       setPwd("");
       setSuccess(true);
