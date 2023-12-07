@@ -2,28 +2,17 @@ import axios from "axios";
 
 const API_URL = "https://dummyjson.com/auth/login";
 
-export interface AuthResponse {
-  userId: string;
-  accessToken: string;
-}
-
-export const authenticateUser = async (
-  username: string,
-  password: string
-): Promise<AuthResponse> => {
+export const authenticateUser = async (username: string, password: string) => {
   try {
-    const response = await axios.post<AuthResponse>(API_URL, {
+    const response = await axios.post(`${API_URL}/users`, {
       username,
       password,
     });
-
-    const { userId, accessToken } = response.data;
-
-    return { userId, accessToken };
+    console.log(response);
+    const { data } = response.data;
+    return data;
   } catch (error) {
-    console.error(error);
+    console.error("Login Error:", error);
     throw error;
   }
 };
-
-export default axios;

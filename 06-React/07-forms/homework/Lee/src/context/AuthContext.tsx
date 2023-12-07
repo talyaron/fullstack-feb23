@@ -2,8 +2,8 @@ import React, { createContext, useContext, ReactNode, useState } from "react";
 
 interface AuthData {
   user: string | null;
-  userId: string | null;
-  accessToken: string | null;
+  id: string | null;
+  token: string | null;
 }
 
 interface AuthContextProps extends AuthData {
@@ -18,9 +18,9 @@ interface AuthProviderProps {
 
 const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [auth, setAuthState] = useState<AuthContextProps>({
-    userId: null,
+    id: null,
     user: null,
-    accessToken: null,
+    token: null,
     setAuth: (authData: AuthData) => {
       console.log("Setting auth data:", authData);
       setAuthState((prevAuth) => ({

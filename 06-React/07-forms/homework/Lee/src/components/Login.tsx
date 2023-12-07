@@ -15,24 +15,24 @@ const Login = (): JSX.Element => {
 
   useEffect(() => {
     setErrMsg("");
-  }, [user, pwd]);
+  }, [user]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     try {
-      const response = await authenticateUser(user, pwd);
+      const response = await authenticateUser(user);
 
-      const accessToken = response.accessToken;
-      const userId = response.userId;
+      const token = response.accessToken;
+      const id = response.id;
 
-      setAuth({ user, userId, accessToken });
+      setAuth({ user, id, token });
       setUser("");
       setPwd("");
       setSuccess(true);
 
-      sessionStorage.setItem("userId", response.userId.toString());
-      sessionStorage.setItem("userToken", accessToken || "");
+      sessionStorage.setItem("userId", response.id.toString());
+      sessionStorage.setItem("userToken", token || "");
     } catch (err: any) {
       if (!err?.response) {
         setErrMsg("No Server Response");
