@@ -20,7 +20,6 @@ const Login:FC<LoginProps> = ({getUser}) => {
 
   const handleSubmit = (ev: React.FormEvent<HTMLFormElement>) => {
     ev.preventDefault();
-    debugger;
     if(email && password){
       getUser(email,password)
     }
