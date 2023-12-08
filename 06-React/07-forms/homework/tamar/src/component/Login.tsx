@@ -22,7 +22,7 @@ const Login: FC<LoginUserProp> = ({ handelApprovUser }) => {
             alert('NO USER FOUND!')
             throw new Error("NO USER FOUND!");
         }
-        handelApprovUser(respond)
+        handelApprovUser(respond.id)
     }
 
     return (

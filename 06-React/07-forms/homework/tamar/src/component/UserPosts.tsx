@@ -4,14 +4,15 @@ import UserType from '../types/type';
 import UserPostsType from '../types/type';
 import { FaHeart, FaRegComment } from "react-icons/fa";
 
-const UserPosts = () => {
+const UserPosts = async () => {
     const data: UserType = sessionStorage.getItem("userObj");
     console.log("at userposts the data from session storage is:", data)
     if (!data) throw new Error("no user object found on session storage");
 
-    const response: UserPostsType = getUserPosts(data.id)
+    const response: UserPostsType = await getUserPosts(data.id)
     return (
         <div>
+
             <div className='blogHeader'>
                 <img>{data.image}</img>
                 <h2>{data.username}</h2>

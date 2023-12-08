@@ -8,11 +8,11 @@ function App() {
   const [user, setUser] = useState<User>({})
   const [userOn, setUserOn] = useState(false);
 
-  const handelApprovUser = (userObj: User) => {
-    console.log("at handelApprovUser the userObj is:", userObj)
-    setUser(userObj)
+  const handelApprovUser = (userObjID: User) => {
+    console.log("at handelApprovUser the userObj.id is:", userObjID)
+    setUser(userObjID)
     setUserOn(true);
-    sessionStorage.setItem("userObj", userObj)
+    sessionStorage.setItem("userObj", userObjID)
   }
   console.log(user)
 
