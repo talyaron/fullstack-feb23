@@ -7,7 +7,6 @@ interface LoginProps {
 }
 
 const Login: React.FC<LoginProps> = ({ onSuccess }) => {
-  // const { setAuth } = useAuth();
   const errRef = useRef<HTMLParagraphElement>(null);
 
   const [user, setUser] = useState<string>("");
