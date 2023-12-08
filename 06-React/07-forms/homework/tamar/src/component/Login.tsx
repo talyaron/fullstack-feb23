@@ -1,20 +1,27 @@
 import './dist/login.css'
 import { FC, useState } from "react";
 import { getLoginUser } from '../api/userAPI';
+import User from './types/type';
+
+// "username": "atuny0",
+// "password": "9uQFF1Lh"
 
 interface LoginUserProp {
-    handelApprovUser: (ev: any) => void;
+    handelApprovUser: (ev: User) => void;
 }
 
 const Login: FC<LoginUserProp> = ({ handelApprovUser }) => {
     const [userName, setUsername] = useState<string>("")
     const [userPassword, setUserPassword] = useState<string>("")
 
-    const handleLogin = (ev: React.FormEvent<HTMLFormElement>) => {
+    const handleLogin = async (ev: React.FormEvent<HTMLFormElement>) => {
         ev.preventDefault();
-        const respond = getLoginUser(userName, userPassword)
-        console.log(respond)
-        if (!respond) throw new Error("NO USER FOUND!");
+        const respond: User = await getLoginUser(userName, userPassword)
+        console.log("at login the respond is:", respond)
+        if (!respond) {
+            alert('NO USER FOUND!')
+            throw new Error("NO USER FOUND!");
+        }
         handelApprovUser(respond)
     }
 

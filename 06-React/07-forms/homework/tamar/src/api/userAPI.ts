@@ -13,9 +13,10 @@ export const getLoginUser = async (username: string, password: string) => {
                     password: `${password}`,
                 })
             })
-                .then(res => res.json())
-                .then(console.log);
-        return response
+        // .then(res => res.json())
+        // .then(console.log)
+        console.log("at getloginuser the response is:", response)
+        return response.json()
     } catch (error) {
         console.error(error)
     }
