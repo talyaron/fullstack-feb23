@@ -1,11 +1,12 @@
 import React, { useRef, useState, useEffect } from "react";
 import { authenticateUser } from "../api/usersApi";
-// import "../dist/login.css";
 import "../login.scss";
-import { useAuth } from "../context/AuthContext";
-import { AxiosError } from "axios";
 
-const Login = (): JSX.Element => {
+interface LoginProps {
+  onSuccess: () => void;
+}
+
+const Login: React.FC<LoginProps> = ({ onSuccess }) => {
   // const { setAuth } = useAuth();
   const errRef = useRef<HTMLParagraphElement>(null);
 
@@ -24,22 +25,23 @@ const Login = (): JSX.Element => {
 
     try {
       const data = await authenticateUser(user, pwd);
-      console.log(data)
-      const {token, id} = data;
+      console.log(data);
+      const { token, id } = data;
 
-      if(!token || !id) {
-        throw new Error("no id or token received in handleSubmit at Login.tsx")
+      if (!token || !id) {
+        throw new Error("no id or token received in handleSubmit at Login.tsx");
       }
 
-      // setAuth({ user, id, token });
       setUser("");
       setPwd("");
       setSuccess(true);
 
       sessionStorage.setItem("userId", id.toString());
       sessionStorage.setItem("userToken", token);
+
+      onSuccess();
     } catch (err: any) {
-      console.log(err)
+      console.log(err);
       if (!err?.response) {
         setErrMsg("No Server Response");
       } else if (err.response?.status === 400) {

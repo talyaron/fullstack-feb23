@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from "axios";
 
-const API_URL = "https://dummyjson.com/posts/user/12";
+const API_URL = "https://dummyjson.com/posts/user";
 
 export interface Post {
   userId: string;
@@ -9,9 +9,11 @@ export interface Post {
   body: string;
 }
 
-export const getPosts = async (): Promise<AxiosResponse<Post[]>> => {
+export const getPosts = async (
+  userId: string
+): Promise<AxiosResponse<Post[]>> => {
   try {
-    const response = await axios.get<Post[]>(API_URL);
+    const response = await axios.get<Post[]>(`${API_URL}/${userId}`);
     return response;
   } catch (error) {
     console.error(error);

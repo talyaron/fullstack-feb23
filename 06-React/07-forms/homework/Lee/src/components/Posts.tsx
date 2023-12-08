@@ -4,23 +4,26 @@ import { getPosts, Post } from "../api/postsApi";
 const Posts: React.FC = () => {
   const [posts, setPosts] = useState<Post[]>([]);
   const [randomPost, setRandomPost] = useState<Post | null>(null);
+  const userId = sessionStorage.getItem("userId");
 
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const response = await getPosts();
+        if (userId) {
+          const response = await getPosts(userId);
 
-        console.log("API Response:", response);
+          console.log("API Response:", response);
 
-        if ("posts" in response.data) {
-          setPosts(response.data.posts as Post[]);
+          if ("posts" in response.data) {
+            setPosts(response.data.posts as Post[]);
 
-          const randomIndex = Math.floor(
-            Math.random() * (response.data.posts as Post[]).length
-          );
-          setRandomPost((response.data.posts as Post[])[randomIndex]);
-        } else {
-          console.error("Unexpected data structure in API response");
+            const randomIndex = Math.floor(
+              Math.random() * (response.data.posts as Post[]).length
+            );
+            setRandomPost((response.data.posts as Post[])[randomIndex]);
+          } else {
+            console.error("Unexpected data structure in API response");
+          }
         }
       } catch (error) {
         console.error("Error fetching posts:", error);
@@ -28,7 +31,7 @@ const Posts: React.FC = () => {
     };
 
     fetchPosts();
-  }, []);
+  }, [userId]);
 
   return (
     <div>

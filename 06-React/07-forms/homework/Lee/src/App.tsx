@@ -1,17 +1,14 @@
 import React from "react";
 import Login from "./components/Login";
-import { AuthProvider } from "./context/AuthContext";
-// import Posts from "./components/Posts";
+import Posts from "./components/Posts";
 
 function App() {
-  return (
-    // <AuthProvider>
-      <main className="App">
-        <Login />
-      </main>
-    // </AuthProvider>
+  const [success, setSuccess] = React.useState(false);
 
-    // <Posts />
+  return (
+    <main className="App">
+      {success ? <Posts /> : <Login onSuccess={() => setSuccess(true)} />}
+    </main>
   );
 }
 
