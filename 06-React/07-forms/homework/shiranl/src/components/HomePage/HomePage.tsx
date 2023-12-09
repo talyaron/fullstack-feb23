@@ -5,9 +5,10 @@ import { getUser } from '../../api/usersAPI';
 interface HomePageProps {
   userId:number;
   setIsposts: (isposts: boolean) => void;
+  setUserApp :React.Dispatch<React.SetStateAction<User | null>>;
 }
 
-const HomePage: React.FC<HomePageProps> =  ({userId,setIsposts}) => {
+const HomePage: React.FC<HomePageProps> =  ({userId,setIsposts,setUserApp}) => {
  
 const [user, setUser] = useState<User>()  
 const getUserById = async () => {
@@ -29,6 +30,10 @@ useEffect(() => {
 const handleShowPostsClick = () => {
     setIsposts(true)
 };
+const handleLogoutClick = () => {
+  // Clear the user by setting it to null
+  setUserApp(null);
+};
 
   return (
     <div className='home-page'>
@@ -41,7 +46,7 @@ const handleShowPostsClick = () => {
         </div>
         <div className='footer'>
             <button onClick={handleShowPostsClick}  >Show My Posts</button>
-            <a  className='logout'>Log Out</a>
+            <a onClick={handleLogoutClick} className='logout'>Log Out</a>
         </div> 
     </div>
   )

@@ -16,7 +16,7 @@ function App() {
       <div className='main'>
 
         {isposts ?<UserPosts setIsposts={setIsposts} userId={user?.id!}/> :
-        user ? <HomePage userId={user.id} setIsposts={setIsposts}/> :
+        user ? <HomePage userId={user.id} setIsposts={setIsposts} setUserApp={setUser}/> :
          <LogIn username="" password="" setUser={setUser}/>
         }
         
