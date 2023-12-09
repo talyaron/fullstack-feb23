@@ -1,12 +1,17 @@
-import { useState } from "react";
+// Colors.tsx
 
-function Colors() {
-  const [color, setColor] = useState("green");
+import React, { useState } from "react";
+
+interface ColorsProps {
+  onColorChange: (newColor: string) => void;
+}
+
+function Colors({ onColorChange }: ColorsProps) {
   const [text, setText] = useState("");
 
-  const handleSubmit = (e: { preventDefault: () => void }) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setColor(text);
+    onColorChange(text);
     setText("");
   };
 
@@ -27,29 +32,9 @@ function Colors() {
             border: "1px solid #ccc",
           }}
         />
-        <button
-          style={{
-            padding: "8px",
-            borderRadius: "4px",
-            backgroundColor: "#4CAF50",
-            color: "white",
-            border: "none",
-            cursor: "pointer",
-          }}
-        >
-          Change Color
-        </button>
+        <button type="submit">Change Color</button>
       </form>
-      <div
-        style={{
-          color: color,
-          marginTop: "20px",
-          fontSize: "20px",
-          fontWeight: "bold",
-        }}
-      >
-        Hello World
-      </div>
+      <hr></hr>
     </div>
   );
 }

@@ -1,12 +1,16 @@
+// Product.tsx
+
 import React, { useState, useEffect } from "react";
 import Select from "react-select";
 import { fetchProducts, IApi } from "../Api";
 import "./product.css";
+import Colors from "../../colors/Colors";
 
 export function Product() {
   const [items, setItems] = useState<IApi[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [uniqueCategories, setUniqueCategories] = useState<string[]>([]);
+  const [textColor, setTextColor] = useState("black"); // Initial color
 
   useEffect(() => {
     async function fetchAndSetProducts() {
@@ -35,9 +39,14 @@ export function Product() {
     label: category,
   }));
 
+  const handleColorChange = (newColor: string) => {
+    setTextColor(newColor);
+  };
+
   return (
     <div className="container">
       <h1>Products</h1>
+      <Colors onColorChange={handleColorChange} />
       <Select
         className="quantity"
         id="quantity"
@@ -52,7 +61,11 @@ export function Product() {
               (item) => !selectedCategory || item.category === selectedCategory
             )
             .map((item) => (
-              <div key={item.id} className="product-card">
+              <div
+                key={item.id}
+                className="product-card"
+                style={{ color: textColor }}
+              >
                 <h2>{item.title}</h2>
                 <h3>${item.price}</h3>
                 <p>{item.description}</p>

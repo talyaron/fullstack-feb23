@@ -1,15 +1,27 @@
+import React, { useState } from "react";
 import "./App.css";
-import Colors from "./components/colors/Colors";
 import { Product } from "./components/api/products/Product";
-
-//npm install react-select
+import Login from "./components/api/Login";
 
 function App() {
+  const [username, setUsername] = useState<string | null>(null);
+
+  const handleLogin = (newUsername: string) => {
+    setUsername(newUsername);
+  };
+
   return (
     <>
-      <Colors />
-      <hr></hr>
-      <Product />
+      <div className="slider-thumb">
+        {username ? (
+          <div className="welcome-container">
+            <h2 className="welcome-message">Welcome, {username}!</h2>
+            <Product />
+          </div>
+        ) : (
+          <Login onLogin={handleLogin} />
+        )}
+      </div>
     </>
   );
 }
