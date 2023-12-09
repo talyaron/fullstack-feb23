@@ -101,33 +101,41 @@ body {
     border: 1px solid rgb(234, 234, 234);
   }
   .post {
-    width: 600px;
+    width: 500px;
     display: flex;
     flex-direction: column;
     color: black;
-    font-family: sans-serif;
-    font-size: 12px;
+    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+    font-size: 15px;
     margin: 1rem;
     gap: 50px;
+
+    #profilePic {
+      float: left;
+      margin-right: 0.5rem;
+      margin-top: 0.9rem;
+      height: 45px;
+      width: 45px;
+      border-radius: 50px;
+    }
+
+    .userName {
+      margin-bottom: 0;
+    }
 
     #hour {
       color: rgb(108, 107, 107);
       font-size: 11px;
+      margin-top: 0;
     }
 
     #hash {
       color: rgb(25, 148, 224);
     }
 
-    #profilePic {
-      height: 50px;
-      width: 50px;
-      border-radius: 50px;
-    }
-
     img {
-      height: 400px;
-      width: 600px;
+      height: 300px;
+      width: 500px;
       border-radius: 8px;
     }
   }

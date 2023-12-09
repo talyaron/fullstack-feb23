@@ -36,7 +36,6 @@ const Posts: React.FC = () => {
 
   return (
     <div className="post">
-      <h2>Lee's Feed</h2>
       {posts.length > 0 ? (
         randomPost ? (
           <div>
@@ -44,7 +43,7 @@ const Posts: React.FC = () => {
               id="profilePic"
               src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzQ8GQresoV0UIGT4EOFQKcTXfTXk_g0OcFGBV3oK5xx3JbmYd8AvC7mZUrjJ0XjfJ3qk&usqp=CAU"
             ></img>
-            <h3>Jane Doe</h3>
+            <h3 className="userName">Jane Doe</h3>
             <p id="hour">3 hours ago</p>
             <p>
               {randomPost.title}. {randomPost.body}
