@@ -5,7 +5,6 @@ import Posts from "./components/Posts";
 function App() {
   const [success, setSuccess] = React.useState(false);
 
-  // Check for session data on each re-render
   useEffect(() => {
     const userId = sessionStorage.getItem("userId");
     const userToken = sessionStorage.getItem("userToken");
@@ -13,7 +12,7 @@ function App() {
     if (userId && userToken) {
       setSuccess(true);
     }
-  }, []); // Empty dependency array means this effect runs once on mount
+  }, []);
 
   console.log("Success state:", success);
 

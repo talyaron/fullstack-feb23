@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { getPosts, Post } from "../api/postsApi";
+import "./postsUI.scss";
 
 const Posts: React.FC = () => {
   const [posts, setPosts] = useState<Post[]>([]);
@@ -34,13 +35,18 @@ const Posts: React.FC = () => {
   }, [userId]);
 
   return (
-    <div>
+    <div className="post">
       <h2>Lee's Feed</h2>
       {posts.length > 0 ? (
         randomPost ? (
           <div>
-            <h3>{randomPost.title}</h3>
-            <p>{randomPost.body}</p>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzQ8GQresoV0UIGT4EOFQKcTXfTXk_g0OcFGBV3oK5xx3JbmYd8AvC7mZUrjJ0XjfJ3qk&usqp=CAU"></img>
+            <h3>Jane Doe</h3>
+            <p id="hour">3 hours ago</p>
+            <p>
+              {randomPost.title}. {randomPost.body}
+            </p>
+            <p id="hash">#sharing</p>
           </div>
         ) : (
           <p>Loading...</p>

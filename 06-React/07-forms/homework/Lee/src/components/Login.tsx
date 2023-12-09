@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
 import { authenticateUser } from "../api/usersApi";
-import "../login.scss";
+import "../appUI.scss";
 
 interface LoginProps {
   onSuccess: () => void;

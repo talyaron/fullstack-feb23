@@ -7,6 +7,7 @@ body {
   color: $light-font-color;
   font-size: 17px;
   font-weight: bold;
+  background-color: white;
 
   #reset {
     margin: auto;
@@ -98,5 +99,29 @@ body {
     margin-top: 12rem;
     background-color: rgb(234, 234, 234);
     border: 1px solid rgb(234, 234, 234);
+  }
+  .post {
+    display: flex;
+    flex-direction: column;
+    color: black;
+    font-family: sans-serif;
+    font-size: 12px;
+    margin: 1rem;
+    gap: 50px;
+
+    #hour {
+      color: rgb(108, 107, 107);
+      font-size: 11px;
+    }
+
+    #hash {
+      color: rgb(25, 148, 224);
+    }
+
+    img {
+      height: 50px;
+      width: 50px;
+      border-radius: 50px;
+    }
   }
 }
