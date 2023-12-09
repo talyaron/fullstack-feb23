@@ -1,0 +1,27 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  /* text-align: center; */
+  background-image: url("https://wallpapers.com/images/hd/bubbles-background-hx8e6am0x4bb5d7l.jpg");
+  width: 50%;
+}
+
+.container{
+  width: 30%;
+  padding: 20px;
+  background-color: white;
+  
+  Button{
+    padding:10px;
+    width: 100%;
+    text-transform: none;
+  }
+  input{
+    padding:10px;
+    width: 92%;
+    margin-bottom: 5px;
+  }
+}
+
+ 
