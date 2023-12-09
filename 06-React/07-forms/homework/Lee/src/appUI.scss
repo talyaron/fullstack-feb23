@@ -101,6 +101,7 @@ body {
     border: 1px solid rgb(234, 234, 234);
   }
   .post {
+    width: 600px;
     display: flex;
     flex-direction: column;
     color: black;
@@ -118,10 +119,16 @@ body {
       color: rgb(25, 148, 224);
     }
 
-    img {
+    #profilePic {
       height: 50px;
       width: 50px;
       border-radius: 50px;
+    }
+
+    img {
+      height: 400px;
+      width: 600px;
+      border-radius: 8px;
     }
   }
 }

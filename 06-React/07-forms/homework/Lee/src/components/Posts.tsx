@@ -40,13 +40,17 @@ const Posts: React.FC = () => {
       {posts.length > 0 ? (
         randomPost ? (
           <div>
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzQ8GQresoV0UIGT4EOFQKcTXfTXk_g0OcFGBV3oK5xx3JbmYd8AvC7mZUrjJ0XjfJ3qk&usqp=CAU"></img>
+            <img
+              id="profilePic"
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzQ8GQresoV0UIGT4EOFQKcTXfTXk_g0OcFGBV3oK5xx3JbmYd8AvC7mZUrjJ0XjfJ3qk&usqp=CAU"
+            ></img>
             <h3>Jane Doe</h3>
             <p id="hour">3 hours ago</p>
             <p>
               {randomPost.title}. {randomPost.body}
             </p>
             <p id="hash">#sharing</p>
+            <img src="https://picsum.photos/200/300"></img>
           </div>
         ) : (
           <p>Loading...</p>
