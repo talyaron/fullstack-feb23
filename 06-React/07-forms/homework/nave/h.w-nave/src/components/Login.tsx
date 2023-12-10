@@ -48,22 +48,23 @@ const Login: FC<LoginProps> = ({ onLogin }) => {
 
   return (
     <>
+    <div className="wrapper" >
       <div className="loginDiv">
         <p className="appName">App name</p>
         <h2 className="loginHeader">Login</h2>
         {auth ? (
           <></>
         ) : (
-          <span>user name or password are not correct</span>
+          <span className="notCorrect">user name or password are not correct</span>
         )}
-        <form
+        <form className="loginForm"
           action=""
           onSubmit={(event) => {
             checkLoginUser(event);
           }}
         >
           <input
-            className="inputEmail"
+            className="inputLogin"
             name="userName"
             type="text"
             placeholder="User-name"
@@ -78,12 +79,13 @@ const Login: FC<LoginProps> = ({ onLogin }) => {
             Login
           </button>
         </form>
-        <a href="#">forget your password?</a>
+        <a className="forgetPassword" href="#">forget your password?</a>
         <p className="decoration">
           {" "}
           -------------------- o ---------------------
         </p>
         <button className="signupBtn">Signup</button>
+      </div>
       </div>
     </>
   );

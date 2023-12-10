@@ -1,0 +1,120 @@
+$font-family: 'Poppins', sans-serif;
+$font-size-heading: 3em;
+$font-size-sub-heading: 1.3em;
+$font-size-big-heading:2.2em;
+$font-size-text: 1.0em;
+$color-site-blue: #8BA4F9; 
+$color-site-dark-blue: #6467D4;
+$color-site-black:#000000 ;
+$color-site-white: #ffff;
+.post{
+    background-color: #F8F8F9;
+    
+
+}
+.userInformation{
+    display: flex;
+  flex: 1;
+  gap: 10px;
+  height: 100px;
+  color: black;
+  flex-direction: column-reverse;
+  margin-top: 0px;
+
+  
+    .author{
+  display: flex;
+   background-color: white;
+    border-radius: 15px 15px 0px 0px;
+    margin: auto;
+    height: 20vh;
+    width: 41.5vw;
+    justify-content: center;
+    padding: 2em 1em 0em 1em;
+    }
+}
+.author-image{
+    height: 6vh;
+    width: 3vw;
+    border-radius: 100%;
+    background-color: $color-site-dark-blue;
+}
+.author-date{
+        font-family: $font-family;
+        font-size: 0.8em;
+        font-weight: 400;
+        color:gray;
+        padding: 0em 1em;
+        margin-right: 28vw;
+
+        .author-name{
+            font-weight: 500;
+            font-size: 1em;
+            color: $color-site-black;
+            margin-right: -10px;
+
+
+
+        }}
+.add{
+    width: 2vw;
+    height: 2vh;
+}
+.post-information{
+    display: flex;
+    flex-direction: column;
+    background-color:$color-site-white;
+      height: 25vh;
+      width: 40vw;
+      justify-content: center;
+      padding: 0em 0em;
+      margin: auto;
+      font-family: $font-family;
+      font-weight: 500;
+          font-size: 1em;
+          color: $color-site-black;
+          padding: 0px 30px 20px 30px;
+    
+      .post-body{
+        font-weight: 400;
+        font-size: 0.9em;
+        font-family: $font-family;
+
+      }
+}
+.img{
+    display: flex;
+    margin: auto;
+    justify-content: center;
+    background-color:$color-site-white;
+      height: 25vh;
+      width: 44vw;
+      .image{
+        width: 620px;
+        border-radius: 20px;
+
+      }
+      
+}
+.post-comment{
+    display: flex;
+    margin: auto;
+    justify-content: left;
+    align-items: center;
+    gap: 5px;
+    background-color:$color-site-white;
+      height: 10vh;
+      width: 44vw;
+      font-family: $font-family;
+      font-weight: 500;
+          font-size: 1em;
+          color: $color-site-black;
+          padding-top: 20px;
+          .material-icons {
+            margin-left: 20px;
+          }
+          .send{
+            margin-left: 29.5vw;
+
+          }
+}

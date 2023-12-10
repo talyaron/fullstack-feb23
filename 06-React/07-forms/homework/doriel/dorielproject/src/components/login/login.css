@@ -1,0 +1,64 @@
+*{
+    padding: 5px;
+    margin: 5px;
+}
+
+body{
+    background-color: white;
+    padding: 10px;
+    margin: 10px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+::placeholder{
+    color: gray;
+}
+h3{
+    color: blueviolet;
+    font-weight: 900;
+    font-size: xx-large;
+    display: flex;
+}
+form{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 400px;
+    flex-direction: column;
+}
+
+input{
+    position: relative;
+    top: 0;
+    color: black;
+    background-color: white;
+}
+
+#root > div > div{
+    border-top: 1px solid gray;
+    width: 100vh;
+}
+
+#root > div > form > button{
+    color: white;
+    background-color: blueviolet;
+}
+
+#root > div > button:nth-child(4){
+    background-color: white;
+    color: gray;
+}
+
+#root > div > button:nth-child(6){
+    background-color: white;
+    color: blueviolet;
+}
+
+button:hover{
+    border: 1px solid blue;
+}
