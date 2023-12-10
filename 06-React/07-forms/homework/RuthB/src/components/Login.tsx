@@ -33,9 +33,8 @@ const Login: FC<LoginProps> = ({ onLogin }) => {
   };
 
   useEffect(() => {
-    if (auth) {
-    }
-  }, [auth]);
+    sessionStorage.setItem("user","");
+  }, []);
 
   return (
     <>
