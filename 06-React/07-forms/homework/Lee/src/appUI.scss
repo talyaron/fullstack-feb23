@@ -52,6 +52,7 @@ body {
         font-weight: bold;
       }
     }
+
     .eye-icon {
       cursor: pointer;
       color: #3f44d1db;
@@ -100,28 +101,92 @@ body {
     background-color: rgb(234, 234, 234);
     border: 1px solid rgb(234, 234, 234);
   }
-  .post {
-    display: flex;
-    flex-direction: column;
-    color: black;
-    font-family: sans-serif;
-    font-size: 12px;
-    margin: 1rem;
-    gap: 50px;
 
-    #hour {
-      color: rgb(108, 107, 107);
-      font-size: 11px;
-    }
+  .posts {
+    width: 535px;
+    height: 600px;
+    box-shadow: 10px 10px 20px #8888887b;
+    border-radius: 10px;
+    padding: 0.1rem;
 
-    #hash {
-      color: rgb(25, 148, 224);
-    }
+    .post {
+      width: 500px;
+      display: flex;
+      flex-direction: column;
+      color: black;
+      font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+      font-size: 15px;
+      margin: 1rem;
+      gap: 50px;
 
-    img {
-      height: 50px;
-      width: 50px;
-      border-radius: 50px;
+      #profilePic {
+        float: left;
+        margin-right: 0.5rem;
+        margin-top: 0.9rem;
+        height: 45px;
+        width: 45px;
+        border-radius: 50px;
+      }
+
+      .userName {
+        margin-bottom: 0;
+      }
+
+      #hour {
+        color: rgb(108, 107, 107);
+        font-size: 11px;
+        margin-top: 0;
+      }
+
+      .content {
+        height: 170px;
+      }
+
+      #hash {
+        color: #0d78da;
+        display: flex;
+        align-items: center;
+
+        .pen-icon {
+          margin-left: 5px;
+          color: rgb(232, 182, 19);
+        }
+      }
+
+      img {
+        height: 270px;
+        width: 500px;
+        border-radius: 8px;
+      }
+
+      .icons-section {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 10px;
+
+        .left-icons {
+          display: flex;
+          align-items: center;
+
+          .icon {
+            margin-right: 8px;
+            font-size: 20px;
+            cursor: pointer;
+            color: black;
+            text-shadow: 2px 2px rgb(10, 9, 9);
+          }
+        }
+
+        .right-icons {
+          .icon {
+            font-size: 20px;
+            cursor: pointer;
+            color: black;
+            text-shadow: 2px 2px rgb(10, 9, 9);
+          }
+        }
+      }
     }
   }
 }
