@@ -104,7 +104,7 @@ body {
 
   .posts {
     width: 535px;
-    max-height: 580px;
+    height: 600px;
     box-shadow: 10px 10px 20px #8888887b;
     border-radius: 10px;
     padding: 0.1rem;
@@ -138,9 +138,9 @@ body {
         margin-top: 0;
       }
 
-      // .content {
-      //   height: 130px;
-      // }
+      .content {
+        height: 170px;
+      }
 
       #hash {
         color: #0d78da;

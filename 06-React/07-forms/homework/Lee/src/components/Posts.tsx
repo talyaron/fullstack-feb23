@@ -56,10 +56,10 @@ const Posts: React.FC = () => {
               <p id="hour">3 hours ago</p>
               <p className="content">
                 {randomPost.title}. {randomPost.body}
-              </p>
-              <p id="hash">
-                #sharing
-                <FaPen className="pen-icon" />
+                <p id="hash">
+                  #sharing
+                  <FaPen className="pen-icon" />
+                </p>
               </p>
               <img src="https://picsum.photos/200/300" alt="Post"></img>
 
