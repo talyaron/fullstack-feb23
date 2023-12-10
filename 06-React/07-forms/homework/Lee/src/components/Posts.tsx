@@ -1,5 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { getPosts, Post } from "../api/postsApi";
+import {
+  FaRegHeart,
+  FaRegComment,
+  FaReply,
+  FaShareAlt,
+  FaPen,
+} from "react-icons/fa";
 import "./postsUI.scss";
 
 const Posts: React.FC = () => {
@@ -43,14 +50,30 @@ const Posts: React.FC = () => {
               <img
                 id="profilePic"
                 src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzQ8GQresoV0UIGT4EOFQKcTXfTXk_g0OcFGBV3oK5xx3JbmYd8AvC7mZUrjJ0XjfJ3qk&usqp=CAU"
+                alt="Profile"
               ></img>
               <h3 className="userName">Jane Doe</h3>
               <p id="hour">3 hours ago</p>
-              <p>
+              <p className="content">
                 {randomPost.title}. {randomPost.body}
               </p>
-              <p id="hash">#sharing</p>
-              <img src="https://picsum.photos/200/300"></img>
+              <p id="hash">
+                #sharing
+                <FaPen className="pen-icon" />
+              </p>
+              <img src="https://picsum.photos/200/300" alt="Post"></img>
+
+              <div className="icons-section">
+                <div className="left-icons">
+                  <FaRegHeart className="icon" />
+                  <FaRegComment className="icon" />
+                  <FaReply className="icon" />
+                </div>
+
+                <div className="right-icons">
+                  <FaShareAlt className="icon" />
+                </div>
+              </div>
             </div>
           ) : (
             <p>Loading...</p>

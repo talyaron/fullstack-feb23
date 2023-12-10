@@ -1,32 +1,38 @@
 {
-  "hash": "a4f1c1f1",
-  "browserHash": "0f873d7d",
+  "hash": "d0754933",
+  "browserHash": "0442adaa",
   "optimized": {
     "axios": {
       "src": "../../node_modules/axios/index.js",
       "file": "axios.js",
-      "fileHash": "d3fccb10",
+      "fileHash": "bde640f0",
       "needsInterop": false
     },
     "react": {
       "src": "../../node_modules/react/index.js",
       "file": "react.js",
-      "fileHash": "631fa87e",
+      "fileHash": "7fabdd41",
       "needsInterop": true
     },
     "react-dom": {
       "src": "../../node_modules/react-dom/index.js",
       "file": "react-dom.js",
-      "fileHash": "f1cd62b7",
+      "fileHash": "98bbdf7c",
       "needsInterop": true
+    },
+    "react-icons/fa": {
+      "src": "../../node_modules/react-icons/fa/index.esm.js",
+      "file": "react-icons_fa.js",
+      "fileHash": "a3e8872f",
+      "needsInterop": false
     }
   },
   "chunks": {
-    "chunk-7VNOU2QA": {
-      "file": "chunk-7VNOU2QA.js"
+    "chunk-FQO5W7GE": {
+      "file": "chunk-FQO5W7GE.js"
     },
-    "chunk-P2LSHJDD": {
-      "file": "chunk-P2LSHJDD.js"
+    "chunk-ZS7NZCD4": {
+      "file": "chunk-ZS7NZCD4.js"
     }
   }
 }
