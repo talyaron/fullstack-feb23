@@ -10,7 +10,7 @@
 
 # easy
 
-1. create a custom hook that is calles useDocumentTitle - it should return the document title. create two components that shows the title, using this hook.
+1. create a custom hook that is called useDocumentTitle - it should return the document title. create two components that shows the title, using this hook.
 
 # medium
 
