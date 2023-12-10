@@ -8,11 +8,12 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 import React, { FC } from "react";
+import "./post.scss"
 
 interface PostPrompt {
   post: Post;
-  user: User;
-  comments: CommentType[];
+  user: User|null;
+  comments ?: CommentType[];
 }
 
 const Post: FC<PostPrompt> = ({ post, user, comments }) => {
@@ -22,27 +23,28 @@ const Post: FC<PostPrompt> = ({ post, user, comments }) => {
         <div className="userInfo">
           <img
             className="profileImg"
-            src="https://picsum.photos/200/300"
+            src="https://picsum.photos/100/100"
             alt="randomPic"
           />
-          <div className="userName&time">
-            <h3 className="userName">{user.firstName + " " + user.lastName}</h3>
-            <span className="publishedTime"> 2 hours ago </span>
+          <div className="userNameEndTime">
+            <h3 className="userName">{user?.firstName + " " + user?.lastName}</h3>
+            <span className="publishedTime">2 hours ago </span>
           </div>
         </div>
         <div className="3PointsIcon">
           <FontAwesomeIcon icon={faEllipsis} />
         </div>
       </div>
-      <div className="postImg">
+      <div className="postBody">
+        <p className="title">{post.title} {post.tags.map(tag => <a href="#">#{tag} </a>)}</p>
         <img src="https://picsum.photos/200/300" alt="randomPic" />
       </div>
       <div className="bottomPost">
         <div className="leftSide">
-          <FontAwesomeIcon icon={faHeart} />
+          <FontAwesomeIcon icon={faHeart} style={{color: 'red'}}/>
           <span>{post.reactions}</span>
           <FontAwesomeIcon icon={faComment} />
-          <span>{comments.length}</span>
+          {/* <span>{comments?.length}</span> */}
           <FontAwesomeIcon icon={faShare} />
         </div>
         <div className="rightSide">

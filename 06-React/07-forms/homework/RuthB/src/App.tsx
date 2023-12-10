@@ -8,9 +8,11 @@ import PostsList from "./components/PostsList";
 
 function App() {
   const [userId, setUserId] = useState(-1);
+  const [user, setUser] = useState<User|null>(null)
 
-  const handleLoginData = (userdata: User) => {
-    setUserId(userdata.id);
+  const handleLoginData = (userData: User) => {
+    setUser(userData)
+    setUserId(userData.id);
   };
 
   useEffect(() => {
@@ -18,7 +20,7 @@ function App() {
     if (userId) setUserId(parseInt(userId.toString()));
   }, []);
   return (
-    <>{userId == -1 ? <Login onLogin={handleLoginData} /> : <PostsList />}</>
+    <>{userId == -1 ? <Login onLogin={handleLoginData} /> : <PostsList userId={userId} />}</>
   );
 }
 
