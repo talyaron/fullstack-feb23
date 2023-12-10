@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { checkUser } from '../api/login';
+// import { setUserName } from '../App';
 interface LoginProps {
     setUserName: React.Dispatch<React.SetStateAction<string>>;
     error: string
