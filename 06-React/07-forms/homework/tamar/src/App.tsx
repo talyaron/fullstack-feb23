@@ -2,7 +2,7 @@ import './App.css'
 import Login from './component/Login';
 import User from './types/type';
 import { useState } from "react";
-import UserPosts from './component/UserPosts';
+//import UserPosts from './component/UserPosts';
 
 function App() {
   const [user, setUser] = useState<User>({})
@@ -18,10 +18,13 @@ function App() {
 
   return (
     <>
-      {(userOn == true) ? <UserPosts /> :
+      {/* {(userOn == true) ? <UserPosts /> :
         <Login
           handelApprovUser={handelApprovUser}
-        />}
+        />} */}
+      <Login
+        handelApprovUser={handelApprovUser}
+      />
     </>
   )
 }

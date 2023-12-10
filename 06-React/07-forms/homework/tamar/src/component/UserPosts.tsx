@@ -9,7 +9,9 @@ const UserPosts = async () => {
     console.log("at userposts the data from session storage is:", data)
     if (!data) throw new Error("no user object found on session storage");
 
-    const response: UserPostsType = await getUserPosts(data.id)
+    const response = await getUserPosts(data)
+    console.log("At userposts the response after getuserposts is:", response)
+
     return (
         <div>
 
