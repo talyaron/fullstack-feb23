@@ -2,16 +2,16 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
-const Contact = () => {
+const Home = () => {
   const navigate = useNavigate();
 
   return (
     <div>
-      <h1>Contact</h1>
-      <Link to="/">to home</Link>
+      <h1>Home</h1>
+      <Link to="/about">To About</Link>
       <button
         onClick={() => {
-          navigate("/HomePage", { state: { key: 3, id: "test" } });
+          navigate("/about", { state: { key: 3, id: "test" } });
         }}
       >
         To About Navigate

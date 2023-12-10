@@ -1,13 +1,13 @@
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
+import { router } from "./routes/routes";
 
 function App() {
  
 
   return (
     <>
-      
+      return <RouterProvider router={router} />;
     </>
   )
 }
