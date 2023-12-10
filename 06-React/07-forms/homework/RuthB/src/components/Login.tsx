@@ -10,14 +10,15 @@ const Login: FC<LoginProps> = ({ onLogin }) => {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [auth, setAuth] = useState(true);
+  
   const setPasswordOnInput = (passwordValue: string) => {
     setPassword(passwordValue);
   };
 
   const checkLoginUser = async (ev: React.FormEvent<HTMLFormElement>) => {
     ev.preventDefault();
-    const userName = ev.target.userName.value;
-    const password = ev.target.password.value;
+    // const userName = ev.target.userName.value;
+    // const password = ev.target.password.value;
     const user = await loginUser(userName, password);
     if (user) {
       onLogin(user);
@@ -55,7 +56,7 @@ const Login: FC<LoginProps> = ({ onLogin }) => {
             placeholder="User-name"
             value={userName}
             onInput={(ev) => {
-              setUserName(ev.target.value);
+              setUserName((ev.target as HTMLInputElement).value);
             }}
           />
           <Password
