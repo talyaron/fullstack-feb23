@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import "./App.css";
 import Login from './components/Login';
-import PostsList from './components/PostList';
+import UserPosts from './components/UserPosts';
 
 
 const App = () => {
@@ -23,7 +23,7 @@ const App = () => {
       {!userId ? (
         <Login onLogin={handleLoginData} />
       ) : (
-        <PostsList />
+        <UserPosts />
       )}
     </>
   );

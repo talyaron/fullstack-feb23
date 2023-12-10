@@ -24,25 +24,35 @@ const Password: React.FC<PasswordProps> = ({ password, setPasswordOnInput }) => 
 
   return (
     <div>
-      <input
-        type={visible ? "text" : "password"}
-        id="password"
-        value={password}
-        onInput={(ev) => {
-          setPasswordOnInput((ev.target as HTMLInputElement).value);
-        }}
-      />
-      <button onClick={() => setVisbile(!visible)}>SEE</button>
-      <input
-        type="text"
-        id="confirmPassword"
-        value={confirmPassword}
-        onInput={(ev) => {
-          setConfirmPassword((ev.target as HTMLInputElement).value);
-        }}
-      />
-      <p>{match ? "passwords match!" : "passwords do not match!"}</p>
-    </div>
+  <input
+    className="inputPassword"
+    type={visible ? "text" : "password"}
+    id="password"
+    placeholder="password"
+    value={password}
+    onInput={(ev) => {
+      setPasswordOnInput((ev.target as HTMLInputElement).value);
+    }}
+  />
+  <button className="viewPassword" onClick={() => setVisbile(!visible)}>
+    {visible ? (
+      <span className="material-icons"style={{ color: '#6467D4', fontSize: '20px', margin: '0 0px',padding:"0px",backgroundColor:"white" }}>visibility</span>
+    ) : (
+      <span className="material-icons"style={{ color: '#6467D4', fontSize: '20px', margin: '0 0px',padding:"0px",backgroundColor:"white" }}>visibility_off</span>
+    )}
+  </button>
+  <input
+    className="inputLogin"
+    type="text"
+    id="confirmPassword"
+    placeholder="confirm password"
+    value={confirmPassword}
+    onInput={(ev) => {
+      setConfirmPassword((ev.target as HTMLInputElement).value);
+    }}
+  />
+  <p className="match">{match ? "passwords match!" : "passwords do not match!"}</p>
+</div>
   );
 };
 
