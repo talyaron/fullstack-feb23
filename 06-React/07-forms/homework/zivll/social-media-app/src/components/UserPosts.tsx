@@ -42,7 +42,7 @@ const Post = () => {
         const userPosts = posts.map((post: Post) => {
             const image = `https://picsum.photos/id/${Math.round(Math.random() * 50)}/400/200`
             return (
-                <div className='post'>
+                <div className='post' key={post.id}>
                     <div className="writer">
                         <img className="writer-image" src={user.image} alt="" />
                         <div className="writer-name-and-time">
@@ -61,7 +61,7 @@ const Post = () => {
                     <div className="post-desc">
                         <p>{post.title}</p>
                         <p>{post.body}</p>
-                        <div className='tags'>{post.tags.map((tag: string) => { return <p className='tag'>#{tag} </p> })}</div>
+                        <div className='tags'>{post.tags.map((tag: string, i) => { return <p className='tag' key={post.tags[i]}>#{tag} </p> })}</div>
                     </div>
                     <div className="img">
                         <img src={image}
