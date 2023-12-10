@@ -1,0 +1,52 @@
+* {
+  margin: 5px;
+}
+body {
+    background-color:  rgb(107, 100, 227);
+  div {
+    background-color: white;
+    width: 220px;
+    padding: 10px;
+    margin: auto;
+    p {
+      color: rgb(178, 177, 177);
+    }
+
+    h2 {
+      color: rgb(107, 100, 227);
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      margin: auto;
+      
+      .Login {
+        background-color: rgb(107, 100, 227);
+        text-align: center;
+        color: white;
+        border-radius: 3px;
+      }
+      .FYP {
+        text-align: center;
+        color: rgb(178, 177, 177);
+        border-radius: 3px;
+        margin-bottom: 80px;
+      }
+      .SU {
+        margin: auto;
+        border: 1.5px solid rgb(107, 100, 227);
+        border-radius: 3px;
+        background-color: white;
+        text-align: center;
+        color: rgb(107, 100, 227);
+        width: 210px;
+      }
+    }
+
+  }
+}
+
+::placeholder {
+  color: rgb(178, 177, 177);
+}
