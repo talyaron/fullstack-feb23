@@ -1,14 +1,14 @@
 import React, { useState } from 'react'
 import './LogIn.scss'
 import { FaEye, FaEyeSlash } from 'react-icons/fa'; // Import eye icons from react-icons library
-import { getUsers, signIn } from '../../api/users';
-interface UserProps {
+import { getUsers, signIn } from '../../api/usersAPI';
+interface LogInProps {
     username: string;
     password: string;
     setUser: (user: User) => void;
 }
 
-const LogIn : React.FC<UserProps> = ({setUser}) => {
+const LogIn : React.FC<LogInProps> = ({setUser}) => {
     const [userName, setUserName] = useState('')
     const [password, setPassword] = useState('')
     const [showPassword, setShowPassword] = useState(false);
@@ -20,6 +20,19 @@ const LogIn : React.FC<UserProps> = ({setUser}) => {
     const handelLogin = async (e: React.FormEvent<HTMLFormElement>) => {
         try {
             e.preventDefault();
+            const user:User = await signIn(userName,password)
+            debugger;
+            if(user){
+              console.log('login success');
+              console.log('user id :'+user.id);
+              
+              
+              setUser(user)
+            }
+            else{
+              console.log('login failed');
+            }
+            
             // const data = await getUsers();
             
             // if (data.users) {
@@ -37,8 +50,7 @@ const LogIn : React.FC<UserProps> = ({setUser}) => {
             //     console.log('login failed')
             //  }
             // } 
-            const user = await signIn(userName,password)
-            setUser(user)
+          
         } catch (error) {
            console.error(error);
         }

@@ -1,0 +1,45 @@
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  font-weight: bold;
+  color: rgb(195, 195, 195);
+  background-image: url("https://img.freepik.com/premium-vector/young-people-characters-relaxing-city-park-area_81522-1562.jpg?size=626&ext=jpg");
+  background-size: 600px 500px;
+  background-position: center;
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-color: white;
+
+  p {
+    text-align: center;
+  }
+
+  h1 {
+    margin-bottom: 50vh;
+    color: #6468d4df;
+    font-size: 32px;
+  }
+
+  button {
+    width: 330px;
+    color: #fff;
+    background-color: #6468d4db;
+    border-radius: 7px;
+    height: 50px;
+    font-size: 18px;
+
+    &:hover {
+      background-color: #3f44d1db;
+    }
+
+    &:focus {
+      outline: 1px solid #6468d4db;
+    }
+  }
+  #lee {
+    text-align: left;
+  }
+}

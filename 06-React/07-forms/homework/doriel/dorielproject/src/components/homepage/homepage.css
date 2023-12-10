@@ -1,0 +1,9 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.homepage-container {
+    background-color: blueviolet;
+    padding: 20px;
+}

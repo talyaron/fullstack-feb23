@@ -1,0 +1,127 @@
+$light-font-color: rgb(195, 195, 195);
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $light-font-color;
+  font-size: 17px;
+  font-weight: bold;
+  background-color: white;
+
+  #reset {
+    margin: auto;
+    padding: 7px;
+  }
+
+  h1 {
+    color: #6468d4df;
+    font-size: 32px;
+    margin-bottom: 3rem;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+
+    .password-input-container {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    input {
+      position: relative;
+      height: 45px;
+      line-height: 48px;
+      width: 330px;
+      border: 2px solid rgb(211, 211, 211);
+      border-radius: 3px;
+      color: gray;
+      font-size: 18px;
+      font-weight: bold;
+
+      &:focus {
+        outline: 1px solid #6468d4db;
+      }
+
+      &::placeholder {
+        color: rgba(157, 157, 157, 0.613);
+        font-size: 18px;
+        font-weight: bold;
+      }
+    }
+    .eye-icon {
+      cursor: pointer;
+      color: #3f44d1db;
+      font-size: 24px;
+      position: absolute;
+      right: 10px;
+    }
+
+    button {
+      color: #fff;
+      background-color: #6468d4db;
+      border-radius: 7px;
+      height: 50px;
+
+      &:hover {
+        background-color: #3f44d1db;
+      }
+    }
+  }
+
+  #signup {
+    width: 330px;
+    height: 55px;
+    margin-top: 2.2rem;
+    margin-bottom: 2.5rem;
+    color: rgba(100, 104, 212, 0.855);
+    font-weight: bold;
+    background-color: white;
+    border: 3px solid #6468d49d;
+    border-radius: 5px;
+
+    &:focus {
+      outline: none;
+    }
+
+    &:hover {
+      background-color: #6468d4db;
+      color: white;
+    }
+  }
+
+  .signup-stripe {
+    height: 1px;
+    width: 320px;
+    margin-top: 12rem;
+    background-color: rgb(234, 234, 234);
+    border: 1px solid rgb(234, 234, 234);
+  }
+  .post {
+    display: flex;
+    flex-direction: column;
+    color: black;
+    font-family: sans-serif;
+    font-size: 12px;
+    margin: 1rem;
+    gap: 50px;
+
+    #hour {
+      color: rgb(108, 107, 107);
+      font-size: 11px;
+    }
+
+    #hash {
+      color: rgb(25, 148, 224);
+    }
+
+    img {
+      height: 50px;
+      width: 50px;
+      border-radius: 50px;
+    }
+  }
+}
