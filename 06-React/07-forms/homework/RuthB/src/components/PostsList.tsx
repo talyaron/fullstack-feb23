@@ -1,8 +1,23 @@
-import React from 'react'
+import React, { useState , FC} from 'react'
+import { handlePostByUSer } from '../api/posts';
 
-const PostsList = () => {
+interface PostsListProps{
+  userId:number;
+}
+
+const  PostsList:FC<PostsListProps> = ({userId}) => {
+  const getPosts:[] =async()=>{
+    return await handlePostByUSer(userId)
+  }
+
+  const [posts, setPosts] = useState(getPosts())
+
   return (
-    <div>PostsList</div>
+    <div>
+      {
+        posts.map
+      }
+    </div>
   )
 }
 
