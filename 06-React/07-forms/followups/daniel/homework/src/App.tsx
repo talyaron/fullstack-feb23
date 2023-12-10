@@ -4,8 +4,9 @@ import Login from './components/login/Login'
 import {UserData} from './api/UserApi'
 
 
+
 function App() {
-  const [user, setUser] = useState<UserData | null>(null)
+  const [user, setUser] = useState<UserData | null>(null);
 
   const handleLoginSuccess = (userData:UserData)=>{
     setUser(userData)
@@ -22,7 +23,9 @@ function App() {
      <h1>{user ? `Welcome, ${user.username}!` : ""}</h1>
 
      {user ? (
+      <>
       <button onClick={handleLogout}>Logout</button>
+      </>
      ): (
       <Login onLoginSuccess={handleLoginSuccess} />
      )}

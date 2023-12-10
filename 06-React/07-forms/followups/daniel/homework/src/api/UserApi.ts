@@ -1,6 +1,7 @@
 import axios from 'axios'
 
 export interface UserData{
+  id?:number,
   username:string,
   password:string
 }
@@ -16,6 +17,8 @@ const userLogin = async(username:string,password:string) => {
     
     if(data){
         sessionStorage.setItem("token", data.token)
+        sessionStorage.setItem("User", data.username)
+        return {id:data.id, username:data.username,password:data.password}
     }
     return data
   } catch (error) {
