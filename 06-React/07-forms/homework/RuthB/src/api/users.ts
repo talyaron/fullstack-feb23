@@ -12,3 +12,13 @@ export const loginUser = async ( username:string , password:string ) => {
     console.error(error);
   }
 };
+
+export const getUserById = async (id:number) => {
+  try {
+    const {data} = await axios.get(`https://dummyjson.com/users/${id}`)
+    if (data) return data;
+    else return;
+  } catch (error) {
+    console.error(error);
+  }
+}

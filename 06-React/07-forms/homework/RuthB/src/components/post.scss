@@ -1,0 +1,54 @@
+body{
+    background-color: #e4e4e4
+    ;
+}
+
+.postDiv {
+  background-color: rgb(255, 255, 255);
+//   border: 1px solid black;
+  margin: 10px;
+  padding: 15px;
+  border-radius: 15px;
+  .headPost {
+    display: flex;
+    justify-content: space-between;
+    .userInfo {
+      display: flex;
+      .profileImg {
+        width: 50px;
+        height: 50px;
+        object-fit: cover;
+        border-radius: 100%;
+      }
+      .userNameEndTime {
+        text-align: left;
+        margin: 0px 10px;
+        .userName {
+          margin: 2px;
+          padding: 0;
+          font-size: medium;
+        }
+        .publishedTime {
+          font-size: 10px;
+        }
+      }
+    }
+  }
+  .postBody {
+    .title{
+
+        text-align: left;
+    }
+    img {
+    width: 360px;
+      max-height: 300px;
+      object-fit: cover;
+      border-radius: 20px;
+    }
+  }
+  .bottomPost{
+    display: flex;
+    justify-content: space-between;
+    *{padding: 3px;}
+  }
+}
