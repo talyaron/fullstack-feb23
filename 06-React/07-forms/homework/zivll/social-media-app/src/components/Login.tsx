@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { checkUser } from '../api/login';
+// import { setUserName } from '../App';
 interface LoginProps {
     setUserName: React.Dispatch<React.SetStateAction<string>>;
     error: string
@@ -11,16 +12,14 @@ const Login: React.FC<LoginProps> = ({ setUserName, error, setError }) => {
         ev.preventDefault();
         const userName = (ev.target as HTMLInputElement).userName.value;
         const userPassword = (ev.target as HTMLInputElement).userPassword.value;
-
         const data = await checkUser(userName, userPassword, setError);
-
         if (data) {
             const strinifyData = JSON.stringify(data);
             sessionStorage.setItem("token", data.token)
             sessionStorage.setItem("user", strinifyData)
 
             setUserName(data.firstName)
-            alert(`hello ${data.firstName}, login successful`)
+            // alert(`hello ${data.firstName}, login successful`)
         }
     };
     return (
@@ -36,7 +35,7 @@ const Login: React.FC<LoginProps> = ({ setUserName, error, setError }) => {
                     </div>
                     <input type="submit" value="Login" className='login-btn' />
                     <button className='new-password'>forget your password?</button>
-                    <strong> <p style={{ fontSize: "12px" }}>{error ? error : ""}</p></strong>
+                    <strong> <p style={{ fontSize: "12px", color: 'black' }}>{error ? error : ""}</p></strong>
                 </form>
                 <button className='signup'>Signup</button>
             </div>
