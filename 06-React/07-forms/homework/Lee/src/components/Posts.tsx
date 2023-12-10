@@ -35,28 +35,30 @@ const Posts: React.FC = () => {
   }, [userId]);
 
   return (
-    <div className="post">
-      {posts.length > 0 ? (
-        randomPost ? (
-          <div>
-            <img
-              id="profilePic"
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzQ8GQresoV0UIGT4EOFQKcTXfTXk_g0OcFGBV3oK5xx3JbmYd8AvC7mZUrjJ0XjfJ3qk&usqp=CAU"
-            ></img>
-            <h3 className="userName">Jane Doe</h3>
-            <p id="hour">3 hours ago</p>
-            <p>
-              {randomPost.title}. {randomPost.body}
-            </p>
-            <p id="hash">#sharing</p>
-            <img src="https://picsum.photos/200/300"></img>
-          </div>
+    <div className="posts">
+      <div className="post">
+        {posts.length > 0 ? (
+          randomPost ? (
+            <div>
+              <img
+                id="profilePic"
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzQ8GQresoV0UIGT4EOFQKcTXfTXk_g0OcFGBV3oK5xx3JbmYd8AvC7mZUrjJ0XjfJ3qk&usqp=CAU"
+              ></img>
+              <h3 className="userName">Jane Doe</h3>
+              <p id="hour">3 hours ago</p>
+              <p>
+                {randomPost.title}. {randomPost.body}
+              </p>
+              <p id="hash">#sharing</p>
+              <img src="https://picsum.photos/200/300"></img>
+            </div>
+          ) : (
+            <p>Loading...</p>
+          )
         ) : (
-          <p>Loading...</p>
-        )
-      ) : (
-        <p>No user's posts found</p>
-      )}
+          <p>No user's posts found</p>
+        )}
+      </div>
     </div>
   );
 };
