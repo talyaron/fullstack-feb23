@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import useCounter from '../../hooks/useCounter';
 import useDebouncing from '../../hooks/useDebouncing';
+import { NavLink } from "react-router-dom";
 
 const People = () => {
     const {counter, handleAddOne} = useCounter();
@@ -18,9 +19,9 @@ const People = () => {
         onChange={(e) => setSearchTerm(e.target.value)}
         placeholder="Search..."
       />
-      <h1>Debounced Search Term: {debouncedSearchTerm}</h1>
+      {debouncedSearchTerm? <h1>Debounced Search Term: {debouncedSearchTerm}</h1> : null}
     </div>
-      
+      <NavLink to="/Money">to Money</NavLink>
     </div>
   )
 }
