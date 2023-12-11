@@ -19,5 +19,5 @@
 
 # advanced
 
-3. create a custom hook called useDebouncing. the debouncing custom hook takes in the search term and the time the user wants it to be deleyed in miliseconds, and only allow a command to run if the deouncing time ends.
+3. create a custom hook called useDebouncing. the debouncing custom hook takes in the search term and the time the user wants it to be deleyed in miliseconds, and only allow a command to run if the debouncing time ends.
    **notice: do not pass a the command into the hook, it should return only a string**
