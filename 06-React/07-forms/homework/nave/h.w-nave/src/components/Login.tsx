@@ -67,7 +67,7 @@ const Login: FC<LoginProps> = ({ onLogin }) => {
             className="inputLogin"
             name="userName"
             type="text"
-            placeholder="User-name"
+            placeholder="User name"
             value={userName}
             onInput={(ev: React.ChangeEvent<HTMLInputElement>) => {
               setUserName(ev.target.value);
