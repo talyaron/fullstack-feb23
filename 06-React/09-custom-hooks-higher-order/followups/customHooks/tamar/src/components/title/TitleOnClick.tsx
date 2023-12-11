@@ -1,10 +1,11 @@
 import useDocumentTitle from "../../hooks/useDocumentTitle"
 
 function TitleOnClick() {
-    const { title, handleAddTitle } = useDocumentTitle()
+    const { onOff, title, handleAddTitle } = useDocumentTitle()
 
     return (
-        <div>{title}
+        <div>
+            {onOff ? <h1>{title}</h1> : null}
             <button onClick={handleAddTitle}>titleOnClick</button>
         </div>
     )
