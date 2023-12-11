@@ -5,7 +5,7 @@ import Counter2OnHover from './components/counter/Counter2OnHover';
 import TitleOnClick from './components/title/TitleOnClick';
 import TitleOnHover from './components/title/TitleOnHover';
 import TimerOnClick from './components/timer/TimerOnClick';
-import TimerOnMount from './components/timer/TimerOn mount';
+import TimerOnMount from './components/timer/TimerOnMount';
 
 function App() {
 
