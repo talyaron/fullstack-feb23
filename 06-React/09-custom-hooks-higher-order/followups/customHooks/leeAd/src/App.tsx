@@ -1,24 +1,11 @@
-import { useState } from "react";
-import "./App.css";
+// App.tsx
 import React from "react";
+import "./App.css";
+import useTimer from "./hooks/useTimer";
 
-function App() {
-  const [time, setTime] = useState(0);
-  const [timerOn, setTimerOn] = useState(false);
-
-  React.useEffect(() => {
-    let interval: number | null = null;
-
-    if (timerOn) {
-      interval = setInterval(() => {
-        setTime((prevTime) => prevTime + 10);
-      }, 10);
-    } else {
-      clearInterval(interval!);
-    }
-
-    return () => clearInterval(interval!);
-  }, [timerOn]);
+const App: React.FC = () => {
+  const { time, timerOn, startTimer, stopTimer, resumeTimer, resetTimer } =
+    useTimer();
 
   return (
     <div className="App">
@@ -28,20 +15,52 @@ function App() {
         <span>{("0" + ((time / 10) % 100)).slice(-2)}</span>
       </div>
       <div>
-        {!timerOn && time == 0 && (
-          <button onClick={() => setTimerOn(true)}>Start</button>
+        {!timerOn && time === 0 && (
+          <button
+            className="start"
+            onClick={() => {
+              startTimer();
+            }}
+          >
+            Start
+          </button>
         )}
-        {timerOn && <button onClick={() => setTimerOn(false)}>Stop</button>}
+
+        {timerOn && (
+          <button
+            className="stop"
+            onClick={() => {
+              stopTimer();
+            }}
+          >
+            Stop
+          </button>
+        )}
 
         {!timerOn && time !== 0 && (
-          <button onClick={() => setTimerOn(true)}>Resume</button>
+          <button
+            className="resume"
+            onClick={() => {
+              resumeTimer();
+            }}
+          >
+            Resume
+          </button>
         )}
+
         {!timerOn && time > 0 && (
-          <button onClick={() => setTime(0)}>Reset</button>
+          <button
+            className="reset"
+            onClick={() => {
+              resetTimer();
+            }}
+          >
+            Reset
+          </button>
         )}
       </div>
     </div>
   );
-}
+};
 
 export default App;
