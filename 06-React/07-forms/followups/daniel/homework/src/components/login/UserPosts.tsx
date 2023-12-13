@@ -1,49 +1,65 @@
-// import { FC, useEffect, useState } from 'react'
-// import { getPost } from '../../api/PostApi'
+import { FC, useEffect, useState } from 'react'
+import { getPost } from '../../api/PostApi'
+import { UserData } from '../../api/UserApi'
 
-// interface PostProps{
-//       id: number,
-//       title: string,
-//       body: string,
-//       userId: number,
-//       tags: string[],
-//       reactions: number,
-   
-// }
+interface Post{
+      id: number,
+      title: string,
+      body: string,
+      userId: number,
+      tags: string[],
+      reactions: number,
+}
 
-// const UserPosts:FC<PostProps> = ({userId,id,title,body,tags,reactions}) => {
-//   const [post,setPosts] = useState([])
+interface UserPostProps{
+    user:UserData
+}
 
-//   const handleGetPosts = async ()=>{
-//     try {
-//       const data = await getPost()
-//       if(data.length >0){
-//         setPosts(data)
-//       }
-//     } catch (error) {
-//       console.error(error)
-//     }
-//   }
+const UserPosts:FC<UserPostProps> = ({user}) => {
+  const [posts,setPosts] = useState<Post[]>([])
 
-//   useEffect(()=>{
-//     handleGetPosts()
-//   },[userId])
-
-//   return (
-//     <div >
+  const handleGetPosts = async ()=>{
+    try {
+      const data = await getPost()
+      console.log('user id:', user.id);
       
-//         <div key={userId}>
-//           <h1>{id}</h1>
-//           <h3>{title}</h3>
-//           <p>{body}</p>
-//           <p>{userId}</p>
-//           <p>{tags}</p>
-//           <p>{reactions}</p>
-    
-//         </div>
+      console.log('Received Data:',data);
       
-//     </div>
-//   )
-// }
+      if( data.posts && data.posts.length >0){
+        const userPosts = data.posts.filter((post:Post)=> post.userId === Number(user.id))
+        console.log('the userpost is',userPosts);
+        
+        setPosts(userPosts)
+      }
+    } catch (error) {
+      console.error(error)
+    }
+  }
 
-// export default UserPosts
+  useEffect(()=>{
+    handleGetPosts()
+  },[user.id])
+
+  return (
+    <div >
+      
+       
+          <h2>User Posts</h2>
+          <ul>{
+            posts.map((post) =>(
+                
+                <div key={post.id}>
+                    <p>{post.body}</p>
+
+                <p>{post.reactions}</p>
+                </div>
+                
+            ))
+            }</ul>
+       
+      
+    </div>
+  )
+}
+
+export default UserPosts

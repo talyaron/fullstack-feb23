@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 export interface UserData{
-  id?:number,
+  id:number,
   username:string,
   password:string
 }
@@ -9,18 +9,18 @@ export interface UserData{
 
 const LoginAPI = "https://dummyjson.com/auth/login"
 
-const userLogin = async(username:string,password:string) => {
+const userLogin = async(username:string,password:string,id:number) => {
   try {
-    const {data} = await axios.post(`${LoginAPI}`,{username,password})
+    const {data} = await axios.post(LoginAPI,{username,password,id})
     console.log('Data:', data);
-    console.log(username,password);
     
-    if(data){
-        sessionStorage.setItem("token", data.token)
-        sessionStorage.setItem("User", data.username)
-        return {id:data.id, username:data.username,password:data.password}
+    if(!data || typeof data.id === 'undefined'){
+      throw new Error("No data or id found")
+   
     }
-    return data
+    sessionStorage.setItem("token", data.token)
+    return {id:data.id, username:data.username}
+    
   } catch (error) {
     console.error(error)
   }

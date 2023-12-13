@@ -21,8 +21,8 @@ export const InputPassword = ({ onInput }: InputPasswordProps) => {
 
     return (
         <div>
-            <FormControl variant="outlined" fullWidth size="small" margin="dense">
-                <OutlinedInput placeholder="Password" type={showPassword ? 'text' : 'password'} endAdornment={<InputAdornment position="end"><IconButton onClick={handleClickShowPassword} onMouseDown={handleMouseDownPassword} edge="end" disableFocusRipple
+            <FormControl color='secondary' variant="outlined" fullWidth size="small" margin="dense">
+                <OutlinedInput placeholder="Password" type={showPassword ? 'text' : 'password'} endAdornment={<InputAdornment position="end"><IconButton sx={{color:'#635858'}} onClick={handleClickShowPassword} onMouseDown={handleMouseDownPassword} 
                     disableRipple>{showPassword ? <VisibilityOutlined /> : <VisibilityOffOutlined />}</IconButton></InputAdornment>} onInput={onInput} />
             </FormControl>
         </div>
