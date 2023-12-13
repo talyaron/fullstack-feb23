@@ -24,7 +24,15 @@ mongoose
   });
 
 app.use(express.json());
-app.use(cookieParser()); 
+app.use(cookieParser());
+
+app.get("/check", async (req, res) => {
+  try {
+    res.send({ ok: true, message: "hello" });
+  } catch (error) {
+    res.send({ error });
+  }
+});
 
 import usersRoutes from "./API/users/usersRoutes";
 app.use("/api/users", usersRoutes);
