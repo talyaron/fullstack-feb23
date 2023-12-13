@@ -1,41 +1,43 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react'
-import { getUser } from '../../api/userApi';
-import Card from '../card/Card';
+
+import { useEffect, useState } from 'react'
+import { getUserdb } from '../../api/userApi';
 import { UserContext } from '../../context/userContext';
+import Card from '../card/Card';
+import MiniCard from '../minicard/MiniCard';
 import { NavLink } from 'react-router-dom';
 
+
+
 const Home = () => {
-    const [user, setUser] = useState();
+    const [user, setUser] = useState<User | null>();
 
     // happens in api folder, under userApi.ts file
     async function getUser() {
         try {
-          const { data } = await axios.get(
-            "https://jsonplaceholder.typicode.com/users/10"
-          );
-          setUser(data);
-          console.log(data);
+            const data: User = await getUserdb();
+
+            setUser(data);
+            console.log(data);
         } catch (error) {
-          console.error(error);
+            console.error(error);
         }
-      }
-  
-    useEffect (  () => {
-      getUser();
     }
-    , []);
+    useEffect(() => {
+        getUser();
+    }
+        , []);
 
-  return (
+
+    return (
     <div>
-      <h1>Home</h1>
-      <UserContext.Provider value={{ user, setUser }}>
-       <NavLink to="/card"> To Card </NavLink>
-       <NavLink to="/MiniCard"> To Card </NavLink>
-    </UserContext.Provider>
-
+        <h1>Home</h1>
+        <NavLink to="/card">Card   ***  </NavLink>
+        <NavLink to="/minicard">Mini Card</NavLink>
+        <Card />
+        <MiniCard />
     </div>
-  )
+
+    )
 }
 
 export default Home

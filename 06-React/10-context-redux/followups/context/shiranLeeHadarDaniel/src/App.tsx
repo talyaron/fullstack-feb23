@@ -4,6 +4,7 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import Home from './components/home/Home';
 import Card from './components/card/Card';
 import MiniCard from './components/minicard/MiniCard';
+import { UserProvider } from './context/userContext';
 
 function App() {
  const router = createBrowserRouter([
@@ -13,7 +14,12 @@ function App() {
     { path: "*", element: <p>Page 404</p> },
   ]);
 
-  return <RouterProvider router={router} />;
+  
+  return(
+  <UserProvider>
+   <RouterProvider router={router} />;
+  </UserProvider>)
+  
 }
 
 export default App
