@@ -49,7 +49,7 @@ $color-site-white: #ffff;
   }
   }
   .inputPassword{
-width: 100%;
+    width: 96%;
 margin-bottom: 2%;
 padding: 12px 5px;
 border: 1px solid lightgray;
@@ -62,7 +62,7 @@ color: #6467D4;
 
   }
   .inputLogin {
-    width: 100%;
+    width: 96%;
     margin-bottom: 2%;
     padding: 12px 5px;
     border: 1px solid lightgray;
@@ -103,6 +103,8 @@ color: #6467D4;
     border-radius: 5px;
     padding: 10px ;
     font-weight: 600;
+    cursor: pointer;
+    
   }
   .signupBtn{
     background-color: $color-site-white;
@@ -113,8 +115,10 @@ color: #6467D4;
     border-radius: 5px;
     padding: 10px ;
     font-weight: 600;
+    cursor: pointer;
+
   }
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 800px) {
     .loginDiv {
         width: 70vw;
     }

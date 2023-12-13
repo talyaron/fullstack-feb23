@@ -55,8 +55,9 @@ const Post = () => {
     </div>
     <div className="post-information">
                         <p className='post-title'>{post.title}</p>
-                        <p className='post-body'>{post.body}</p>
-                        <div className='tags'>{post.tags.map((tag: string) => { return <p className='tag'>#{tag} </p> })}</div>
+                        <p className='post-body'>
+                          {post.body}<br></br>{post.tags.map((tag: string) => { return <a href="#" className='tag'>#{tag} </a> })}</p>
+                        {/* <div className='tags'></div> */}
                         
                     </div>
                     <div className="img">
