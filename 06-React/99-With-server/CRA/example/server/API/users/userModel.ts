@@ -29,10 +29,10 @@ password: joiPassword
     .string()
     .min(6)
     .max(16)
-    // .minOfSpecialCharacters(1)
-    // .minOfLowercase(1)
-    // .minOfUppercase(1)
-    // .minOfNumeric(1)
-    // .noWhiteSpaces()
+    .minOfSpecialCharacters(1)
+    .minOfLowercase(1)
+    .minOfUppercase(1)
+    .minOfNumeric(1)
+    .noWhiteSpaces()
     .required(),
 repeatPassword: Joi.ref('password')});

@@ -1,17 +1,18 @@
 import axios from "axios";
-import { FC, useEffect, useState } from "react";
+import { FC, useContext, useEffect, useState } from "react";
 import Paragraph from './../paragraph/Paragraph';
+import { UserContext } from "../../contexts/userContext";
 
-interface HeaderProps {
-  user?: string
-}
 
-const Header:FC<HeaderProps> = ({user}) => {
+
+const Header = () => {
+
+  const {user} = useContext(UserContext)
  
   return (
     <div className="header">
-      <h3>hello from header to user {user}</h3>
-      <Paragraph user={user}/>
+      <h3>hello from header to user {user ? user.name :  null}</h3>
+      <Paragraph />
     </div>
   );
 };

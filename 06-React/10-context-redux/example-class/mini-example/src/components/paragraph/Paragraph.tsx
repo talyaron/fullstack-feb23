@@ -1,31 +1,12 @@
-import React, { FC, useEffect, useState } from "react";
-import axios from "axios";
+import { useContext } from "react";
+import { UserContext } from "../../contexts/userContext";
 
-interface ParagraphProps {
-  user?: string
-}
-
-const Paragraph:FC<ParagraphProps> = ({user}) => {
-  //   const [userEmail, setUserEmail] = useState();
-  //   useEffect(() => {
-  //     getUser();
-  //   }, []);
-
-  //   async function getUser() {
-  //     try {
-  //       const { data } = await axios.get(
-  //         "https://jsonplaceholder.typicode.com/users/1"
-  //       );
-  //       setUserEmail(data.email);
-  //     } catch (error) {
-  //       console.error(error);
-  //     }
-  //   }
+const Paragraph = () => {
+  const { user } = useContext(UserContext);
 
   return (
     <div>
-      {/* {userEmail} */}
-      <p>hello from Paragraph {user}</p>
+      <p>hello from Paragraph {user ? user.name :  null}</p>
     </div>
   );
 };
