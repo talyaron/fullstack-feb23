@@ -2,7 +2,8 @@ import { useEffect, useState } from "react"
 
 
 const useDocumentTitle = () => {
-    const [title,setTitle] = useState("NEW TITLE")
+    const [title,setTitle] = useState("")
+    const [newTitle, setNewTitle] = useState("")
 
     useEffect(()=>{
         handleTitle();
