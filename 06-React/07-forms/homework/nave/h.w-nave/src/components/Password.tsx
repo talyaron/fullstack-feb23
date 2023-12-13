@@ -36,9 +36,9 @@ const Password: React.FC<PasswordProps> = ({ password, setPasswordOnInput }) => 
   />
   <button type="button"  className="viewPassword" onClick={() => setVisbile(!visible)}>
     {visible ? (
-      <span className="material-icons"style={{ color: '#6467D4', fontSize: '20px', margin: '0 0px',padding:"0px",backgroundColor:"white" }}>visibility</span>
+      <span className="material-icons" style={{ color: '#6467D4', fontSize: '20px', margin: '0 0px',padding:"0px",backgroundColor:"white" }}>visibility</span>
     ) : (
-      <span className="material-icons"style={{ color: '#6467D4', fontSize: '20px', margin: '0 0px',padding:"0px",backgroundColor:"white" }}>visibility_off</span>
+      <span className="material-icons" style={{ color: '#6467D4', fontSize: '20px', margin: '0 0px',padding:"0px",backgroundColor:"white" }}>visibility_off</span>
     )}
   </button>
   <input
