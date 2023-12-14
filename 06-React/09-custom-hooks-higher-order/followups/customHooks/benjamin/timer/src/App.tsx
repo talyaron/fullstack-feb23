@@ -3,13 +3,20 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import Timer from './components/Timer'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import Homepage from './views/Homepage'
+import OnMountTimer from './views/OnMountTimer'
 
 function App() {
-  const [count, setCount] = useState(0)
+
+  const router = createBrowserRouter([
+    {path:"/" , element: <Homepage/>},
+    {path:"/omr", element: <OnMountTimer></OnMountTimer>}
+  ])
 
   return (
     <>
-     <Timer></Timer>
+    <RouterProvider router={router}></RouterProvider>
     </>
   )
 }
