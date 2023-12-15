@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { getAllProducts } from "../../api/productsApi";
+import ProductItem from "../../components/productItem/ProductItem";
 
 const ProductsPage = () => {
   const [products, setProducts] = useState([]);
@@ -17,12 +18,12 @@ const ProductsPage = () => {
   useEffect(() => {
     handleGetAllProducts();
   }, []);
-  
+
   return (
     <div>
       {products && products.length > 0 ? (
         products.map((product) => {
-          return <p>{JSON.stringify(product)}</p>;
+          return <ProductItem product={product} />;
         })
       ) : (
         <p>no products</p>
