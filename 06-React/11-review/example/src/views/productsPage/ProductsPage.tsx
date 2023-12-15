@@ -20,7 +20,7 @@ const ProductsPage = () => {
   }, []);
 
   return (
-    <div>
+    <div className="products-container">
       {products && products.length > 0 ? (
         products.map((product) => {
           return <ProductItem product={product} />;
