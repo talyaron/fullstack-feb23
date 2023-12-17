@@ -1,0 +1,44 @@
+/* Dog.css */
+.dog-details-container {
+  text-align: center;
+  padding: 20px;
+}
+
+.dog-details-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.dog-details-image {
+  width: 100%;
+  max-width: 600px;
+  margin-bottom: 20px;
+}
+
+.suggested-dogs-container {
+  margin-top: 20px;
+}
+
+.suggested-dogs-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.suggested-dog {
+  text-decoration: none;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px;
+}
+
+.suggested-dog img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 8px;
+}
