@@ -5,8 +5,6 @@ import { UserContext } from "../../context/userContext";
 
 const Card = () => {
     const user = useContext(UserContext);
-
-
     return (
         <div>
             <h1>Card</h1>
