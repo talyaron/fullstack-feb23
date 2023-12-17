@@ -1,5 +1,4 @@
-import React from 'react'
-import { useState, useEffect,useRef } from 'react';
+import { useState,useRef } from 'react';
 
 const useTimer = (autoStart = false) => {
     const [time, setTime] = useState({ minutes: 0, seconds: 0, milliseconds: 0 });
