@@ -1,0 +1,32 @@
+.product-card {
+  border-radius: 15px;
+  border: 1px solid rgb(182, 182, 182);
+  box-shadow: 8px 8px 43px -17px rgba(0, 0, 0, 0.32);
+  -webkit-box-shadow: 8px 8px 43px -17px rgba(0, 0, 0, 0.32);
+  -moz-box-shadow: 8px 8px 43px -17px rgba(0, 0, 0, 0.32);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px;
+
+  &_image {
+    width: 50%;
+    border-radius: 15px;
+    margin: auto;
+  }
+
+  .tag-conatiner {
+    display: flex;
+    gap: 15px;
+    .tag {
+      background-color: rgb(255, 221, 29);
+      padding: 10px 15px;
+      border-radius: 15px;
+    }
+  }
+
+  .ratings-container {
+    display: flex;
+    color: rgb(221, 192, 0);
+  }
+}
