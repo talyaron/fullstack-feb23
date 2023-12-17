@@ -5,16 +5,9 @@ import CounterOnHover from './components/counter/CounterOnHover'
 import TitleOne from './components/counter/title/TitleOne'
 import TitleTwo from './components/counter/title/TitleTwo'
 import Homepage from "./components/counter/home/Homepage"
+import OnMount from "./components/counter/timer/OnMount"
+import OnDependence from "./components/counter/timer/OnDependence"
 
-// # followup
-
-// 1. create a custom hook that has a counter function to add 2. it should also contain the counter state.
-// 2. create two components, one should count clicks on a button, one should count clicks on hover.
-// 3. use the use Hook function to add logic to your components.
-
-// # easy
-
-// 1. create a custom hook that is calles useDocumentTitle - it should return the document title. create two components that shows the title, using this hook.
 
 
 function App() {
@@ -24,20 +17,13 @@ function App() {
     { path: "/counter-on-hover", element: <CounterOnHover />},
     { path: "/title-one", element: <TitleOne />},
     { path: "/title-two", element: <TitleTwo />},
+    { path: "/on-mount", element: <OnMount />},
+    { path: "/on-dependecy", element: <OnDependence />}
   ]);
 
   return <RouterProvider router={router} />
 }
  
 
-//   return (
-//     <>
-//       <Counter/>
-//       <CounterOnHover />
-//       <TitleOne />
-//       <TitleTwo />
-//     </>
-//   )
-// }
 
 export default App
