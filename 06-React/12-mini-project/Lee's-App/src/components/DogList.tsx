@@ -1,9 +1,13 @@
-// Gallery.tsx
+// DogList.tsx
 import React, { useEffect, useState } from "react";
-import { getDogBreeds } from "../api/breedApi";
-import DogCard from "../components/DogCard";
+import {
+  getDogBreeds,
+  getBreedImage,
+  DogBreedsResponse,
+} from "../api/breedApi";
+import DogCard from "./DogCard"; // Make sure to import the DogCard component
 
-const Gallery: React.FC = () => {
+const DogList: React.FC = () => {
   const [dogBreeds, setDogBreeds] = useState<string[]>([]);
 
   useEffect(() => {
@@ -21,21 +25,18 @@ const Gallery: React.FC = () => {
   }, []);
 
   return (
-    <div>
-      <h2>Dog Breeds</h2>
-      <div
-        style={{
-          display: "flex",
-          flexWrap: "wrap",
-          justifyContent: "space-around",
-        }}
-      >
-        {dogBreeds.map((breed) => (
-          <DogCard key={breed} breed={breed} />
-        ))}
-      </div>
+    <div
+      style={{
+        display: "flex",
+        flexWrap: "wrap",
+        justifyContent: "space-around",
+      }}
+    >
+      {dogBreeds.map((breed) => (
+        <DogCard key={breed} breed={breed} />
+      ))}
     </div>
   );
 };
 
-export default Gallery;
+export default DogList;

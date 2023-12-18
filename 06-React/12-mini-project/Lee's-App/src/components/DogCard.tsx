@@ -1,13 +1,25 @@
-// DogCard.tsx
 import React, { useEffect, useState } from "react";
+import { getBreedImage } from "../api/breedApi";
 
 interface DogCardProps {
   breed: string;
-  description: string;
 }
 
-const DogCard: React.FC<DogCardProps> = ({ breed, description }) => {
-  const imageUrl = `https://dog.ceo/api/breed/${breed}/images/random`;
+const DogCard: React.FC<DogCardProps> = ({ breed }) => {
+  const [dogImage, setDogImage] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchImage = async () => {
+      try {
+        const { src } = await getBreedImage(breed);
+        setDogImage(src);
+      } catch (error) {
+        console.error("Error fetching breed image:", error);
+      }
+    };
+
+    fetchImage();
+  }, [breed]);
 
   return (
     <div
@@ -20,9 +32,8 @@ const DogCard: React.FC<DogCardProps> = ({ breed, description }) => {
       }}
     >
       <h3>{breed}</h3>
-      <p>{description}</p>
       <img
-        src={imageUrl}
+        src={dogImage || "placeholder_url_for_error"}
         alt={breed}
         style={{
           maxWidth: "100%",
