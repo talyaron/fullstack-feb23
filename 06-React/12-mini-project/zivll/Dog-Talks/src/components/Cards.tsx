@@ -1,18 +1,11 @@
-import { useState } from 'react'
 import Card from './Card'
-import { getAllDogsBreeds } from '../api/getDogs'
 interface Breed {
     name: string
 }
-const Cards = () => {
-    const [allBreeds, setAllBreeds] = useState([])
-    getAllDogsBreeds(allBreeds, setAllBreeds)
-    // console.log(allBreeds)
+const Cards = ({ allBreedsToShow }: { allBreedsToShow: Breed[] | undefined }) => {
     return (
         <div className='cards'>
-            {allBreeds ? allBreeds.map((breed: Breed) => { return (<Card title={breed.name} />) }) : <p>notging here</p>}
-
-            hi
+            {allBreedsToShow ? allBreedsToShow.map((breed: Breed) => { return (<Card key={breed.name} title={breed.name} />) }) : <p>nothing here</p>}
         </div>
     )
 }

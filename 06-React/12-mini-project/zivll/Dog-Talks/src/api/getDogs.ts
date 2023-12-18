@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const getAllDogsBreeds = async (allbreeds, setAllBreeds) => {
+export const getAllDogsBreeds = async () => {
   try {
     const allDogsBreeds = await axios.get(
       "https://dog.ceo/api/breeds/list/all"
@@ -8,10 +8,11 @@ export const getAllDogsBreeds = async (allbreeds, setAllBreeds) => {
     const allBreedsFromDB = Object.keys(allDogsBreeds.data.message).map(
       (breed) => ({ name: breed })
     );
+
     console.log(allBreedsFromDB);
     console.log(allDogsBreeds);
-    setAllBreeds(allBreedsFromDB);
-    return allDogsBreeds.data.message;
+    // setAllBreeds(allBreedsFromDB);
+    return allBreedsFromDB;
   } catch (error) {
     console.error(error);
   }

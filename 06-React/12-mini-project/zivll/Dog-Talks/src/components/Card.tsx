@@ -18,15 +18,15 @@ const Card = ({ title }) => {
     }, [title]);
 
     return (
-        <div className='card'>
+        <a href={`/${title}`} className='card' >
             {imageUrl ? (
                 <img src={imageUrl} alt="" className='card_img' />
             ) : (
-                <p>Loading...</p>
+                <img src="https://dog.ceo/api/breeds/image/random" alt="" className='card_img' />
             )}
             <h2 className='card_title'>{title}</h2>
             <p className='card_desc'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos facilis sit minus, autem ducimus eveniet, possimus suscipit dignissimos, sint deserunt illo quia veritatis sequi ut qui esse et. Eaque, nulla.</p>
-        </div>
+        </a>
     );
 };
 
