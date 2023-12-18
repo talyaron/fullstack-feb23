@@ -21,10 +21,11 @@ const Login = () => {
   const navigate = useNavigate();
 
 
-  const handleLogin = (ev: React.FormEvent<HTMLInputElement>) => {
+  const handleLogin = (ev:React.FormEvent<HTMLFormElement>) => {
     try {
       ev.preventDefault();
       if(name){
+        console.log(name)
         navigate("/homePage")
       }
     } catch (error) {}
@@ -55,7 +56,7 @@ const Login = () => {
         >
           <CardHeader>Log in With Your name</CardHeader>
           <CardBody>
-            <form action="">
+            <form onSubmit={handleLogin}>
               {" "}
               <Input
                 onInput={(ev) => {
@@ -109,7 +110,7 @@ const Login = () => {
                   </ModalContent>
                 </Modal>
               </div>
-              <Button color="secondary" type="submit" onClick={() => {handleLogin}}>
+              <Button color="secondary" type="submit">
                 submit
               </Button>
             </form>
