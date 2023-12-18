@@ -1,19 +1,10 @@
 import './App.css'
+import Debouncing from './component/Debouncing';
 
 function App() {
-
-  const dogBreeds: string[] = [
-    "dachshund",
-    "dachshund",
-    "redbone",
-    "shiba",
-    "stbernard"
-  ]
-
-
   return (
     <>
-
+      <Debouncing />
     </>
   )
 }

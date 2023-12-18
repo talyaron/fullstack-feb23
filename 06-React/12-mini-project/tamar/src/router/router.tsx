@@ -1,11 +1,6 @@
+import { createBrowserRouter } from "react-router-dom"
+import DogsPage from "../component/DogsPage"
 
-const router = () => {
-
-    return (
-        <div>
-
-        </div>
-    )
-}
-
-export default router
+export const router = createBrowserRouter([
+    { path: "/", element: <DogsPage /> }
+]) 

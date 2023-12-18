@@ -1,27 +1,28 @@
 import { FC } from "react";
-import { getDogBreed } from './../api/dogsApi';
 
 interface DogCardProps {
     dog: Dog;
 }
 
 export interface Dog {
-    img: string,
-    name: string,
-    description: string,
+    message: string,
+    status: string,
+    breed: string,
 }
 
-const DogCard: FC<DogCardProps> = async (dogBreed) => {
 
-    const dog = await getDogBreed(`${dogBreed}`)
-    console.log(dog)
-    if (!dog) throw new Error("no dog found");
-
-    //!11-review example 
+const DogCard: FC<DogCardProps> = ({ dog }) => {
 
     return (
-        <div className="dog-card">
-            <img className="dogImg" src={dog.massage[0]} alt="" />
-        </div>
+        <>
+            <div className="dog-card">
+                <img className="dogImg" src={dog.message} alt={dog.breed} />
+                <h1>{dog.breed}</h1>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eum, in dicta ipsum fuga sint, eos excepturi nostrum velit dolorem non dolore illum delectus. Repellat, minus nihil. Sit vitae suscipit quia.</p>
+            </div>
+
+        </>
     )
 }
+
+export default DogCard;
