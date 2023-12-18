@@ -52,9 +52,9 @@ const Login = () => {
           radius="lg"
           isHoverable={true}
           isBlurred={true}
-          className=" w-96 h-52"
+          className=" w-96 h-fit"
         >
-          <CardHeader>Log in With Your name</CardHeader>
+          <CardHeader>Log in With Your username</CardHeader>
           <CardBody>
             <form onSubmit={handleLogin}>
               {" "}
@@ -67,7 +67,7 @@ const Login = () => {
                 placeholder="Enter your full name"
               />
               <div>
-                <Button onPress={onOpen} color="secondary">
+                <Button className=" mt-2" onPress={onOpen} color="secondary">
                   Why username?
                 </Button>
                 <Modal
@@ -92,8 +92,8 @@ const Login = () => {
                         </ModalHeader>
                         <ModalBody>
                           <p>
-                            We need your username for you to write comments on
-                            dogs breeds.
+                            If you ever used this username, you will find your messages and comments by it. <br />
+                            if you never used a username, you will login with it.
                           </p>
                         </ModalBody>
                         <ModalFooter>
@@ -110,7 +110,7 @@ const Login = () => {
                   </ModalContent>
                 </Modal>
               </div>
-              <Button color="secondary" type="submit">
+              <Button className=" mt-2" color="secondary" type="submit">
                 submit
               </Button>
             </form>
