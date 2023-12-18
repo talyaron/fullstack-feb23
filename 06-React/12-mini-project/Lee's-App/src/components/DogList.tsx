@@ -1,11 +1,7 @@
 // DogList.tsx
 import React, { useEffect, useState } from "react";
-import {
-  getDogBreeds,
-  getBreedImage,
-  DogBreedsResponse,
-} from "../api/breedApi";
-import DogCard from "./DogCard"; // Make sure to import the DogCard component
+import { getDogBreeds } from "../api/breedApi";
+import DogCard from "./DogCard";
 
 const DogList: React.FC = () => {
   const [dogBreeds, setDogBreeds] = useState<string[]>([]);

@@ -29,6 +29,8 @@ const DogCard: React.FC<DogCardProps> = ({ breed }) => {
         margin: "10px",
         borderRadius: "8px",
         textAlign: "center",
+        width: "270px",
+        height: "230px",
       }}
     >
       <h3>{breed}</h3>
