@@ -1,17 +1,18 @@
 import { useEffect, useState } from 'react'
-import './App.scss'
-import Cards from './components/Cards'
-import Search from './components/Search'
-import { getAllDogsBreeds } from './api/getDogs'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import './App.scss'
+import { getAllDogsBreeds } from './api/getDogs'
 import Home from './pages/Home'
 import SingleDog from './pages/SingleDog'
-
+interface Breed {
+  name: string
+}
 function App() {
-  const [allBreeds, setAllBreeds] = useState([])
-  const [allBreedsToShow, setAllBreedsToShow] = useState([...allBreeds])
+  const [allBreeds, setAllBreeds] = useState<Breed[]>([])
+  const [allBreedsToShow, setAllBreedsToShow] = useState<Breed[]>([...allBreeds])
   const getAllBreeds = async () => {
     const result = await getAllDogsBreeds()
+    if (result === undefined) throw new Error("get method not implemented")
     setAllBreeds(result)
     setAllBreedsToShow(result)
   }
@@ -30,10 +31,5 @@ function App() {
     </BrowserRouter>
   )
 }
-
-{/* // <>
-    //   {allBreeds ? <Search allBreeds={allBreeds} setAllBreedsToShow={setAllBreedsToShow} /> : <p>nothing here</p>}
-    //   {allBreedsToShow ? <Cards allBreedsToShow={allBreedsToShow} /> : <p>nothing here</p>}
-    // </> */}
 
 export default App

@@ -2,7 +2,26 @@
   max-width: 1500px;
   margin: 0 auto;
   padding: 2rem;
-  text-align: center;
+  text-align: left;
+
+  .search-bar {
+    position: relative;
+    // position: fixed;
+    .search-icon {
+      width: 18px;
+      height: 18px;
+      position: absolute;
+      left: 20px;
+      transform: translate(-50%, 50%);
+    }
+  }
+
+  #search {
+    width: 100%;
+    border-radius: 20px;
+    border: 1px solid;
+    padding: 10px 10px 10px 30px;
+  }
   a {
     font-weight: normal;
     color: #444;
@@ -27,10 +46,10 @@
         max-width: 100%;
         height: auto;
       }
-      &_title {
-      }
-      &_desc {
-      }
+      // &_title {
+      // }
+      // &_desc {
+      // }
     }
   }
 
@@ -53,7 +72,7 @@
     .chat {
       border: 1px solid #222222;
       border-radius: 20px;
-      min-width: 260px;
+      min-width: 280px;
       display: flex;
       justify-content: space-between;
       flex-direction: column;
@@ -79,6 +98,12 @@
         flex-wrap: wrap;
         gap: 10px;
         padding: 10px;
+        #chat_text {
+          padding: 10px;
+          max-width: fit-content;
+          border-radius: 5px;
+          border: 1px solid;
+        }
       }
     }
   }

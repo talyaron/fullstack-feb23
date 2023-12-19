@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const Card = ({ title }) => {
+const Card = ({ title }: { title: string }) => {
     const [imageUrl, setImageUrl] = useState('');
 
     useEffect(() => {

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 
-const SingleDog = ({ breedName }) => {
+const SingleDog = ({ breedName }: { breedName: string }) => {
     const [imageUrl, setImageUrl] = useState('');
     useEffect(() => {
         const fetchImage = async () => {
@@ -18,7 +18,8 @@ const SingleDog = ({ breedName }) => {
     const handleSubmit = (ev: React.FormEvent<HTMLFormElement>) => {
         ev.preventDefault();
         const chatBody = document.querySelector("#chat_body")
-        chatBody.innerHTML += `<div className='user-message'><strong>me: </strong>${(ev.target as HTMLInputElement).chat_text.value}</div>`
+        if (!chatBody) throw new Error("No chat body");
+        chatBody.innerHTML += `<div className='user-message'><strong>me: </strong>${(ev.target as HTMLInputElement).chat_text.value}</div>`;
         document.userText.reset();
     }
     return (
