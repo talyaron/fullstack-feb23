@@ -15,7 +15,12 @@ const SingleDog = ({ breedName }) => {
 
         fetchImage();
     }, []);
-    const handleSubmit = () => { }
+    const handleSubmit = (ev: React.FormEvent<HTMLFormElement>) => {
+        ev.preventDefault();
+        const chatBody = document.querySelector("#chat_body")
+        chatBody.innerHTML += `<div className='user-message'><strong>me: </strong>${(ev.target as HTMLInputElement).chat_text.value}</div>`
+        document.userText.reset();
+    }
     return (
         <div className='single-dog'>
 
@@ -28,8 +33,9 @@ const SingleDog = ({ breedName }) => {
 
             <div className='chat'>
                 <header>    &nbsp;&nbsp;&nbsp;Chat</header>
-                <form onSubmit={handleSubmit}>
-                    <input type="text" name="text" id="chat-text" placeholder='type your message here' />
+                <div className="chat_body" id='chat_body'></div>
+                <form name='userText' onSubmit={handleSubmit}>
+                    <input type="text" name="text" id="chat_text" placeholder='type your message here' />
                     <input type="submit" value="SEND" style={{ backgroundColor: "#1B70D5", color: "#fff", borderRadius: "5px", border: "none", padding: "5px 10px" }} />
                 </form>
             </div>
