@@ -1,0 +1,51 @@
+// DogBreedsGallery.scss
+.dog-breeds-gallery {
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+
+
+    }
+  
+    .breed-cards {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        width: 90%;
+        margin: auto;
+
+      
+        .breed-card {
+          text-align: center;
+          margin-bottom: 20px;
+          width: calc(25% - 20px);  
+          box-sizing: border-box; 
+          border: 1px solid lightgray;
+          box-shadow: inset;
+      
+          p {
+            font-size: 20px;
+            text-align: left;
+            font-weight: bold;
+            padding-left: 30px;
+            color: black;
+            
+          }
+          h4{
+            font-size: 15px;
+            text-align: left;
+            font-weight: bold;
+            padding-left: 30px;
+            color: black;
+          }
+      
+          img {
+            width: 300px;
+            height: 300px;
+            margin-top: 10px;
+          }
+        }
+      }
+      
+  }
+  

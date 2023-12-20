@@ -1,0 +1,30 @@
+
+.searchBox {
+    width: 90vw;
+    display: flex;
+    margin: auto;
+    justify-content: center;
+    padding: 10px;
+    border-radius: 100px;
+margin: auto;
+margin-bottom: 2%;
+  
+    input {
+      width: 80%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+      outline: none;
+    }
+  
+    .search-icon {
+      position: absolute;
+      top: 50%;
+      right: 10px;
+      transform: translateY(-50%);
+      color: #666;
+      cursor: pointer;
+    }
+  }
+  
