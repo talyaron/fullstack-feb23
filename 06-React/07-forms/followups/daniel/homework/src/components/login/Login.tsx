@@ -47,12 +47,12 @@ const Login: FC<LoginProps> = ({ onLoginSuccess }) => {
           <h2 style={{ color: '#6467d4',marginBottom:'35px',fontSize: '25px' }}>Login</h2>
         <Box sx={{ width: '100%' }}>
           <form onSubmit={handleSubmit}>
-            <Typography >
+          
               <TextField variant='outlined' className="textField" fullWidth type="text" size="small" value={data.username} placeholder="Username" onInput={(ev) => { setData((prevData) => ({ ...prevData, username: (ev.target as HTMLInputElement).value })) }} />
-            </Typography>
-            <Typography>
+           
+        
               <InputPassword onInput={(ev) => { setData((prevData) => ({ ...prevData, password: (ev.target as HTMLInputElement).value })) }} />
-            </Typography>
+            
             <Button size='small' type='submit' variant='contained' sx={{ backgroundColor: '#6467d4', color: 'white' }}>Login</Button>
             <p style={{ paddingBottom: '150px', textAlign: 'center', color: 'gray' }}>Forget your password?</p>
             <div style={{ padding: '3px 2px', border: "1px solid gray", margin: 'auto', width: '1px', borderRadius: "12px", textAlign: 'center' }}></div>
