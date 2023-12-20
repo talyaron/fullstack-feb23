@@ -1,0 +1,32 @@
+body{ 
+    margin: 5px;
+    padding: 5px;
+    background: black;
+}
+
+h1{
+    color: white;
+}
+
+#showBtn{
+    margin-right: 20px;
+    color: black;
+    background: white;
+    border: gray solid 2px;
+    transition: 0.3s ease-out;
+}
+#showBtn:hover{
+    background: rgba(0, 0, 0, 0.5);
+    color: white
+}
+#hideBtn{
+    margin-right: 20px;
+    color: black;
+    background: white;
+    border: gray solid 2px;
+    transition: 0.3s ease-out;
+}
+#hideBtn:hover{
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+}
