@@ -1,0 +1,110 @@
+#root {
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: left;
+
+  .search-bar {
+    position: relative;
+    // position: fixed;
+    .search-icon {
+      width: 18px;
+      height: 18px;
+      position: absolute;
+      left: 20px;
+      transform: translate(-50%, 50%);
+    }
+  }
+
+  #search {
+    width: 100%;
+    border-radius: 20px;
+    border: 1px solid;
+    padding: 10px 10px 10px 30px;
+  }
+  a {
+    font-weight: normal;
+    color: #444;
+    text-decoration: none;
+  }
+  .cards {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 2%;
+    .card {
+      max-width: 20%;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 1px 2px 2px -2px gray;
+      &:hover {
+        transition: 0.3s;
+        box-shadow: 2px 4px 4px -2px gray;
+      }
+      &_img {
+        max-width: 100%;
+        height: auto;
+      }
+      // &_title {
+      // }
+      // &_desc {
+      // }
+    }
+  }
+
+  .single-dog {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: 70% 30%;
+    width: 100%;
+    min-width: 650px;
+    .single-dog_title {
+      grid-area: 1;
+      text-align: left;
+    }
+    .single-dog_img {
+      grid-area: 2;
+      width: 100%;
+      height: auto;
+    }
+
+    .chat {
+      border: 1px solid #222222;
+      border-radius: 20px;
+      min-width: 280px;
+      display: flex;
+      justify-content: space-between;
+      flex-direction: column;
+
+      header {
+        background-color: #eeeeee;
+        border-top-right-radius: 20px;
+        border-top-left-radius: 20px;
+        text-align: left;
+      }
+      .chat_body {
+        padding: 10px;
+        text-align: left;
+        height: 100%;
+        .user-message {
+          text-align: left;
+        }
+      }
+      grid-area: 2;
+      form {
+        max-width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        padding: 10px;
+        #chat_text {
+          padding: 10px;
+          max-width: fit-content;
+          border-radius: 5px;
+          border: 1px solid;
+        }
+      }
+    }
+  }
+}
