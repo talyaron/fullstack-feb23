@@ -7,32 +7,53 @@ import { useEffect, useState } from "react"
 
 
 
-const useTimer = (dependency:any) => {
-    const [count, setCount] = useState(0);
-    const [onBtnClick, setOnBtnClick] = useState(false);
+const useTimer = () => {
+  const [count, setCount] = useState(0);
+  const [isRunning, setIsRunning] = useState(false);
 
-    const handleBtnClick =()=>{
-        setOnBtnClick(prevBtnClick => !prevBtnClick)
+
+
+  useEffect(() => {
+
+    let interval: number | undefined = undefined;
+
+    if (isRunning) {
+      interval = setInterval(() => {
+        setCount(prevCount => prevCount + 10)
+      }, 10)
+    } else {
+      clearInterval(interval);
     }
 
-    useEffect(()=>{
-        const handleCount = setInterval(()=>{
-            setCount(prevCount => prevCount + 1000);
-        },1000)
-        return()=> clearInterval(handleCount)
-    },[dependency,setOnBtnClick])
+    return () => clearInterval(interval);
+
+  }, [isRunning])
 
 
-  return (
-    <>
-    <button onClick={handleBtnClick}>{onBtnClick ? 'Pause' : 'Start'}</button>
-    {onBtnClick && (<>
-    <p>Time in minutes: {Math.floor(count / 60000)}</p>
-    <p>Time in seconds: {Math.floor(count / 10000)} </p>
-    <p>Time in miliseconds: {count}</p></>)}
-    </>
-  )
-}
+  const startTimer = () => {
+    setIsRunning(true)
+  }
+
+  const stopTimer = () => {
+    setIsRunning(false)
+  }
+
+  const resetTimer = () => {
+    setCount(0)
+  }
+
+  return {
+    startTimer,
+    stopTimer,
+    resetTimer,
+    time: {
+      minutes: Math.floor(count / 60000),
+      seconds: Math.floor((count % 60000) / 1000),
+      miliseconds: count % 1000,
+    },
+  };
+
+};
 
 export default useTimer
 
