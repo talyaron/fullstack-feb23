@@ -1,20 +1,29 @@
-import { useEffect, useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import Timer from './components/Timer'
-import useTimer from './hooks/useTimer'
+import { useEffect, useState } from 'react';
+import './App.css';
+import Timer from './components/Timer';
+import useTimer from './hooks/useTimer';
 
 function App() {
-  const { minutes, seconds, decrement } = useTimer()
+  const defaultTime = 10 * 60;
+  const { decrement } = useTimer();
+  const [timerInSeconds, setTimerInSeconds] = useState(defaultTime);
+
   useEffect(() => {
-    setInterval(() => { decrement() }, 1000)
-  }, [])
+    const interval = setInterval(() => {
+      decrement(setTimerInSeconds);
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [decrement]);
+
+  const minutes = Math.floor(timerInSeconds / 60);
+  const seconds = timerInSeconds % 60;
+
   return (
     <>
-      <Timer />
+      <Timer minutes={minutes} seconds={seconds} />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
