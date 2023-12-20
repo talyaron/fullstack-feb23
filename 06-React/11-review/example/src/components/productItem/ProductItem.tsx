@@ -1,5 +1,6 @@
 import { FC } from "react";
 import useRatings from "../../hooks/useRatings";
+import { useNavigate } from "react-router-dom";
 
 interface ProductItemProps {
   product: Product;
@@ -21,6 +22,7 @@ export interface Product {
 
 const ProductItem: FC<ProductItemProps> = ({ product }) => {
   const { state } = useRatings(product.rating);
+  const navigate = useNavigate()
   return (
     <div className="product-card">
       <img
@@ -46,6 +48,7 @@ const ProductItem: FC<ProductItemProps> = ({ product }) => {
       </div>
       <h3 className="title">{product.title}</h3>
       <p className="price">Only for: {product.price}$ !</p>
+      <button onClick={() => { navigate(`/product/${product.id}`) }}>SEE MORE</button>
     </div>
   );
 };
