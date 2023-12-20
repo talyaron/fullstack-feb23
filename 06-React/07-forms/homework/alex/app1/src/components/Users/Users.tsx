@@ -98,7 +98,12 @@ const Login = () => {
                             flexDirection: "row",
                             textAlign:"center",
                             height: "14px"}}>
+<<<<<<< Updated upstream
                     <div style={{height: "6px",
+=======
+                    <div style={{
+                      height: "14px",
+>>>>>>> Stashed changes
                              width: "80px", 
                              borderBottom: "0.1px solid grey",
                              margin:"0px 10px 10px 10px" }}></div>
@@ -109,7 +114,11 @@ const Login = () => {
                      <div style={{height: "6px",
                              width: "80px", 
                              borderBottom: "0.1px solid grey",
+<<<<<<< Updated upstream
                              margin:"0px 10px 30px 10px" }}></div>
+=======
+                             margin:"0px 10px 60px 20px" }}></div>
+>>>>>>> Stashed changes
                              
                 </div>
                 {/* <a href='https://ide.geeksforgeeks.org/' >  */}
