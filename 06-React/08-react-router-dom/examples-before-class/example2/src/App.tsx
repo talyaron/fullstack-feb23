@@ -1,8 +1,8 @@
+import { Outlet, RouterProvider, createBrowserRouter } from "react-router-dom";
 import "./App.css";
-import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
-import Home from "./pages/Home";
-import About from "./pages/About";
 import NavBar from "./components/NavBar";
+import About from "./pages/About";
+import Home from "./pages/Home";
 import Login from "./pages/Login";
 import UserPage from "./pages/UserPage";
 
@@ -51,3 +51,5 @@ function App() {
 }
 
 export default App;
+
+

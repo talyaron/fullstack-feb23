@@ -1,11 +1,10 @@
-import React from 'react'
 import { useLocation, useParams } from 'react-router-dom'
 
 const UserPage = () => {
-    const {id} = useParams()
-    const {state} = useLocation()
-    console.log(id)
-    console.log(state)
+  const { id } = useParams()
+  const { state } = useLocation()
+  console.log(id)
+  console.log(state)
 
   return (
     <div>UserPage</div>
