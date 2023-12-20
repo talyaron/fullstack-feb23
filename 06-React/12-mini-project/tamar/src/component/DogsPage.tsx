@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { getDogBreed } from "../api/dogsApi"
 import DogCard from "./DogCard";
 
-const dogBreeds: string[] = [
+export const dogBreeds: string[] = [
     "affenpinscher",
     "dachshund",
     "redbone",

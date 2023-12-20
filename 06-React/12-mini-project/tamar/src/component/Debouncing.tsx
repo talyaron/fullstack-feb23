@@ -27,15 +27,18 @@ const Debouncing = () => {
 
     return (
         <div>
-            <input type="text" value={text} onInput={(ev) => setText((ev.target as HTMLInputElement).value)} />
-            {text != '' ?
-                <div>
-                    {filterDogs.map((dog) => {
-                        return <DogCard key={dog.breed} dog={dog} />
-                    })}
-                </div> :
-                <RouterProvider router={router} />}
-        </div>
+            <input type="text" value={text} onInput={(ev) => setText((ev.target as HTMLInputElement).value)} placeholder="search by breed" />
+            <br></br>
+            {
+                text != '' ?
+                    <div>
+                        {filterDogs.map((dog) => {
+                            return <DogCard key={dog.breed} dog={dog} />
+                        })}
+                    </div> :
+                    <RouterProvider router={router} />
+            }
+        </div >
     )
 }
 
