@@ -15,7 +15,6 @@ const DogCard: React.FC<DogCardProps> = ({ breed }) => {
         setDogImage(src);
       } catch (error) {
         console.error("Error fetching breed image:", error);
-        // Set the path to your placeholder image
         setDogImage("/imgs/placeholder.jpg");
       }
     };
@@ -37,8 +36,8 @@ const DogCard: React.FC<DogCardProps> = ({ breed }) => {
       }}
     >
       <img
-        src={dogImage || "src/imgs/placeholder.jpg"} // Use placeholder image on null or error
-        onError={() => setDogImage("src/imgs/placeholder.jpg")} // Set placeholder image on image load error
+        src={dogImage || "src/imgs/placeholder.jpg"}
+        onError={() => setDogImage("src/imgs/placeholder.jpg")}
         style={{
           maxWidth: "100%",
           maxHeight: "150px",
