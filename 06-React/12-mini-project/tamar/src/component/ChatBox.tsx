@@ -1,49 +1,41 @@
-import { StreamChat, User } from 'stream-chat';
-import {
-    Chat,
-    Channel,
-    ChannelHeader,
-    MessageInput,
-    MessageList,
-    Thread,
-    Window,
-} from 'stream-chat-react';
+import { useState } from 'react';
+interface Message {
+    text: string;
+    user: string;
+}
+const ChatBox = () => {
+    const [messages, setMessages] = useState<Message[]>([]);
+    const [newMessage, setNewMessage] = useState<string>('');
 
-import 'stream-chat-react/dist/css/v2/index.css';
+    const handleSendMessage = () => {
+        if (newMessage.trim() !== '') {
+            setMessages((prevMessages) => [
+                ...prevMessages,
+                { text: newMessage, user: 'user' },
+            ]);
+            setNewMessage('');
+        }
+    };
 
-const userId = 'broken-lake-3';
-const userName = 'broken';
-
-const user: User = {
-    id: userId,
-    name: userName,
-    image: `https://getstream.io/random_png/?id=${userId}&name=${userName}`,
+    return (
+        <div className="chat-interface">
+            <div className="message-container">
+                {messages.map((message, index) => (
+                    <div key={index}>{`${message.user}: ${message.text}`}</div>
+                ))}
+            </div>
+            <div className="input-container">
+                <input
+                    type="text"
+                    value={newMessage}
+                    onChange={(e) => setNewMessage(e.target.value)}
+                    placeholder="Type your message..."
+                    style={{ flex: 1, marginRight: '10px' }}
+                />
+                <button onClick={handleSendMessage}>Send</button>
+            </div>
+        </div>
+    );
 };
-
-const apiKey = 'dz5f4d5kzrue';
-const userToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiYnJva2VuLWxha2UtMyIsImV4cCI6MTcwMzAxMTE3Mn0.w8zCUbImKzFHDBn8svDAt-1U3Y2YQbzyISS9DUSEtNQ';
-
-const chatClient = new StreamChat(apiKey);
-chatClient.connectUser(user, userToken);
-
-const channel = chatClient.channel('messaging', 'custom_channel_id', {
-    // add as many custom fields as you'd like
-    image: 'https://www.drupal.org/files/project-images/react.png',
-    name: 'Talk about React',
-    members: [userId],
-});
-
-const ChatBox = () => (
-    <Chat client={chatClient} theme='str-chat__theme-light'>
-        <Channel channel={channel}>
-            <Window>
-                <ChannelHeader />
-                <MessageList />
-                <MessageInput />
-            </Window>
-            <Thread />
-        </Channel>
-    </Chat>
-);
 
 export default ChatBox;
