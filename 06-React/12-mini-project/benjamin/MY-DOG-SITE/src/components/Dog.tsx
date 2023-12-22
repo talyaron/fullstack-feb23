@@ -13,7 +13,7 @@ const Dog: FC<DogProps> = ({ name, img, dogPage }) => {
       <Card
         isBlurred
         isHoverable
-        className="cursor-pointer w-96 h-80 hover:bg-slate-400 transition-all ease-in-out"
+        className="cursor-pointer sm:w-64 lg:w-80 h-80 hover:bg-slate-400 transition-all ease-in-out"
       >
         <CardHeader>
           <p className="text-xl font-semibold">{name}</p>

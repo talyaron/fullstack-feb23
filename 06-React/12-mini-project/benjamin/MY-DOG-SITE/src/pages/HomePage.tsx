@@ -56,7 +56,7 @@ const HomePage = () => {
         animate={{ opacity: 1, y: 0, marginBottom: 0, marginTop: 0 }}
         transition={{ duration: 1 }}
       >
-        <div className="grid grid-cols-5 gap-4 mt-20 overflow-hidden">
+        <div className="grid sm:grid-cols-3 lg:grid-cols-5 lg:gap-4 mt-20 sm:gap-8 overflow-hidden">
           {dogData.map((dog, index) => (
             <motion.div
             variants={{

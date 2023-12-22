@@ -9,6 +9,26 @@ const DogPage = () => {
   const [img, setImg] = useState();
   const [socket, setSocket] = useState(null);
   const [messages, setMessages] = useState<string[]>([]);
+  const [user, setUser] = useState<string>("");
+
+  const getUserFromCookie = async () => {
+    try {
+      console.log("getting your name");
+      const response = await fetch("http://localhost:3001/getUsername", { credentials: 'include' });
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const data = await response.json();
+      const {username} = data
+      setUser(username);
+    } catch (error) {
+      console.error("Error during fetching username:", error);
+    }
+};
+
+  useEffect(() => {
+    getUserFromCookie();
+  }, []);
 
   useEffect(() => {
     console.log(messages);
@@ -26,7 +46,7 @@ const DogPage = () => {
   }, []);
 
   useEffect(() => {
-    const newSocket = io("http://localhost:3000");
+    const newSocket = io("http://localhost:3001");
     setSocket(newSocket);
     newSocket.on("received message", (message) => {
       if (message.name === dog.name) {
@@ -83,6 +103,7 @@ const DogPage = () => {
               whileInView="view"
             >
               <Card className=" text-2xl">
+                <p className=" text-sm text-green-500">{user}</p>
                 <li>{message.text}</li>
               </Card>
             </motion.div>

@@ -20,26 +20,39 @@ const Login = () => {
   const [name, setName] = useState<string | null>(null);
   const navigate = useNavigate();
 
-
-  const handleLogin = (ev:React.FormEvent<HTMLFormElement>) => {
+  const handleLogin = async (ev: any) => {
     try {
       ev.preventDefault();
-      if(name){
-        console.log(name)
-        navigate("/homePage")
+      if (name) {
+        console.log(name);
+        const response = await fetch("http://localhost:3001/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+          body: JSON.stringify({ username: name }),
+        });
+        if (response.ok) {
+          console.log("Logged in successfully");
+          navigate("/homePage");
+        } else {
+          console.error("Failed to log in");
+        }
       }
-    } catch (error) {}
+    } catch (error) {
+      console.error("Error during login:", error);
+    }
   };
-
   return (
     <div className=" h-screen w-screen bg-gradient-to-r from-cyan-500 to-blue-500 flex flex-col justify-center items-center">
       <motion.div
         initial={{ opacity: 0, y: 200 }}
         animate={{ opacity: 1, y: 0 }}
       >
-        <h1 className=" text-zinc-300 font-extrabold text-8xl mt-8 mb-14">
+        <h1 className=" text-zinc-300 font-extrabold text-8xl mt-8 mb-14 text-center">
           Welcome to the best dogs lover's site{" "}
-          <span className=" text-sky-900">out there!</span>
+          <span className=" text-sky-900">out there</span>!
         </h1>
       </motion.div>
       <motion.div
@@ -92,8 +105,10 @@ const Login = () => {
                         </ModalHeader>
                         <ModalBody>
                           <p>
-                            If you ever used this username, you will find your messages and comments by it. <br />
-                            if you never used a username, you will login with it.
+                            If you ever used this username, you will find your
+                            messages and comments by it. <br />
+                            if you never used a username, you will login with
+                            it.
                           </p>
                         </ModalBody>
                         <ModalFooter>
