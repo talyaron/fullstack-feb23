@@ -49,11 +49,12 @@ function App() {
           {loading ? (
             <p>Loading...</p>
           ) : (
-            <ul>
-              {filteredBreeds.map((breed) => (
-                <li key={breed}>{breed}</li>
-              ))}
-            </ul>
+            <></>
+            // <ul>
+            //   {filteredBreeds.map((breed) => (
+            //     <li key={breed}>{breed}</li>
+            //   ))}
+            // </ul>
           )}
         </>
       )}

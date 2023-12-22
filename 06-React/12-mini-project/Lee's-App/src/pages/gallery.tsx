@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { getDogBreeds } from "../api/breedApi";
 import DogCard from "../components/DogCard";
 import SearchBar from "../components/SearchBar"; // Import the SearchBar component
+import DogList from "../components/DogList";
 
 const Gallery: React.FC = () => {
   const [dogBreeds, setDogBreeds] = useState<string[]>([]);
@@ -24,7 +25,7 @@ const Gallery: React.FC = () => {
   return (
     <div>
       {/* Place the SearchBar component here */}
-      <SearchBar onSearchChange={(search) => console.log(search)} />
+      {/* <SearchBar onSearchChange={(search) => console.log(search)} /> */}
       <h2>Dog Breeds</h2>
       <div
         style={{
@@ -33,9 +34,10 @@ const Gallery: React.FC = () => {
           justifyContent: "space-around",
         }}
       >
-        {dogBreeds.map((breed) => (
+        {/* {dogBreeds.map((breed) => (
           <DogCard key={breed} breed={breed} />
-        ))}
+        ))} */}
+        <DogList />
       </div>
     </div>
   );
