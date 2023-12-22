@@ -3,7 +3,8 @@ import "./App.css";
 import AppRouter from "./routers/AppRouter";
 
 function App() {
-  const [notices, setNotices] = useState();
+  const [dogBreeds, setDogBreeds] = useState<string[]>([]);
+  const [filteredBreeds, setFilteredBreeds] = useState<string[]>([]);
   const [search, setSearch] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
@@ -11,23 +12,51 @@ function App() {
     async function fetchData() {
       setLoading(true);
 
-      const data = await fetch(`https://dog.ceo/api/breeds/image/random`).then(
+      const data = await fetch("https://dog.ceo/api/breeds/list/all").then(
         (res) => res.json()
       );
-      setNotices(data._embedded.notices);
+
+      const breeds = Object.keys(data.message);
+      setDogBreeds(breeds);
       setLoading(false);
     }
-  }, [search]);
+
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    // Filter dog breeds based on the search term
+    const filtered =
+      search && search.trim() !== ""
+        ? dogBreeds.filter((breed) =>
+            breed.toLowerCase().includes(search.toLowerCase())
+          )
+        : dogBreeds;
+
+    setFilteredBreeds(filtered);
+  }, [search, dogBreeds]);
 
   return (
     <div className="App">
       <AppRouter />
-      <input
-        type="search"
-        placeholder="Search"
-        onChange={(e) => setSearch(e.target.value)}
-      />
-      {JSON.stringify(notices)}
+      {window.location.pathname === "/gallery" && (
+        <>
+          <input
+            type="search"
+            placeholder="Search"
+            onChange={(e) => setSearch(e.target.value)}
+          />
+          {loading ? (
+            <p>Loading...</p>
+          ) : (
+            <ul>
+              {filteredBreeds.map((breed) => (
+                <li key={breed}>{breed}</li>
+              ))}
+            </ul>
+          )}
+        </>
+      )}
     </div>
   );
 }

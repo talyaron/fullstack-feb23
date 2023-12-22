@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { getDogBreeds } from "../api/breedApi";
 import DogCard from "../components/DogCard";
+import SearchBar from "../components/SearchBar"; // Import the SearchBar component
 
 const Gallery: React.FC = () => {
   const [dogBreeds, setDogBreeds] = useState<string[]>([]);
@@ -22,6 +23,8 @@ const Gallery: React.FC = () => {
 
   return (
     <div>
+      {/* Place the SearchBar component here */}
+      <SearchBar onSearchChange={(search) => console.log(search)} />
       <h2>Dog Breeds</h2>
       <div
         style={{
