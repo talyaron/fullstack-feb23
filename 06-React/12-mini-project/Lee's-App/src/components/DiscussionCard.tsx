@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { getBreedImage } from "../api/breedApi";
+import "../scss/discussion.scss";
 
 interface DiscussionCardProps {
   breed: string;
@@ -24,16 +25,12 @@ const DogCard: React.FC<DiscussionCardProps> = ({ breed }) => {
 
   return (
     <div>
+      <h2>{breed}</h2>
       <img
         src={dogImage || "src/imgs/placeholder.jpg"}
         onError={() => setDogImage("src/imgs/placeholder.jpg")}
         alt={breed}
       />
-      <h3>{breed}</h3>
-      <p>
-        The term 'a dog is a man's best friend' was first used way back in 1789
-        by King Frederick of Prussia..
-      </p>
     </div>
   );
 };

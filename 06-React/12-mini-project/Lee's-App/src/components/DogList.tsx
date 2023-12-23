@@ -28,10 +28,8 @@ const DogList: React.FC = () => {
     setSearchTerm(search);
   };
 
-  // Use the useDebounce hook to debounce the search input
   const debouncedSearch = useDebounce(searchTerm, 300);
 
-  // Update filtered breeds when the debounced search term changes
   useEffect(() => {
     const filtered = dogBreeds.filter((breed) =>
       breed.toLowerCase().includes(debouncedSearch.toLowerCase())

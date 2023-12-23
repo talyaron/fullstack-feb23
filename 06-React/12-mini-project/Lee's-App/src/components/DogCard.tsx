@@ -44,7 +44,6 @@ const DogCard: React.FC<DogCardProps> = ({ breed }) => {
           objectFit: "cover",
           borderRadius: "4px",
         }}
-        // alt={breed}
       />
       <h3>{breed}</h3>
       <p>

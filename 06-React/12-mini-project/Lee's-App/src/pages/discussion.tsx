@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { getDogBreeds } from "../api/breedApi";
-import DogCard from "../components/DogCard";
+import DiscussionCard from "../components/DiscussionCard";
 import Chatbox from "../components/Chatbox";
+import "../scss/discussion.scss";
 
-const DiscussionPage: React.FC = () => {
+const Discussion: React.FC = () => {
   const [randomBreed, setRandomBreed] = useState<string | null>(null);
 
   useEffect(() => {
@@ -23,16 +24,19 @@ const DiscussionPage: React.FC = () => {
   }, []);
 
   return (
-    <div>
+    <div className="discussion-container">
       {randomBreed && (
         <>
-          <DogCard breed={randomBreed} />
-          <Chatbox breed={randomBreed} />
+          <div className="discussion-dog-card">
+            <DiscussionCard breed={randomBreed} />
+          </div>
+          <div className="discussion-chatbox">
+            <Chatbox breed={randomBreed} />
+          </div>
         </>
       )}
-      <div>About the Breeds</div>
     </div>
   );
 };
 
-export default DiscussionPage;
+export default Discussion;
