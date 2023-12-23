@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { getBreedImage } from "../api/breedApi";
 
-interface DogCardProps {
+interface DiscussionCardProps {
   breed: string;
 }
 
-const DogCard: React.FC<DogCardProps> = ({ breed }) => {
+const DogCard: React.FC<DiscussionCardProps> = ({ breed }) => {
   const [dogImage, setDogImage] = useState<string | null>(null);
 
   useEffect(() => {
@@ -23,28 +23,11 @@ const DogCard: React.FC<DogCardProps> = ({ breed }) => {
   }, [breed]);
 
   return (
-    <div
-      style={{
-        border: "1px solid #ccc",
-        padding: "10px",
-        margin: "8px",
-        borderRadius: "8px",
-        textAlign: "center",
-        width: "250px",
-        height: "300px",
-        boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
-      }}
-    >
+    <div>
       <img
         src={dogImage || "src/imgs/placeholder.jpg"}
         onError={() => setDogImage("src/imgs/placeholder.jpg")}
-        style={{
-          maxWidth: "100%",
-          maxHeight: "150px",
-          objectFit: "cover",
-          borderRadius: "4px",
-        }}
-        // alt={breed}
+        alt={breed}
       />
       <h3>{breed}</h3>
       <p>

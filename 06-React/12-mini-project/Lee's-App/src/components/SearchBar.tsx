@@ -20,10 +20,10 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearchChange }) => {
   };
 
   return (
-    <form>
+    <form style={{ marginBottom: "25px" }}>
       <input
         type="search"
-        placeholder="Search"
+        placeholder=" Search Breed"
         value={search}
         onChange={handleChange}
       />
