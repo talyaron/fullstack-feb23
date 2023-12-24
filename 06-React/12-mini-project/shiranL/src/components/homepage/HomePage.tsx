@@ -1,7 +1,6 @@
 //homepage.tsx
 
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { getAllBreeds } from "../../api/dogApi";
 import BreedCard from "../breedcard/BreedCard";
 import "./homepage.scss";

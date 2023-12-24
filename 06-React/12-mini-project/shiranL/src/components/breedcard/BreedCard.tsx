@@ -13,7 +13,7 @@ const BreedCard : React.FC<BreedCardProps> = ({ breed }) => {
   const [image, setImage] = useState("");
   const fetchBreedImage = async () => {
     try {
-        const data = await getBreedImages(breed);
+        const data = await getBreedImages(breed,1);
 
       if (data.status === "success") {
         setImage(data.message);
@@ -31,7 +31,7 @@ const BreedCard : React.FC<BreedCardProps> = ({ breed }) => {
   return (
     <div className="breed-card" >
       {image && <img src={image} alt={breed} />}
-      <p>{breed}</p>
+      <h2>{breed}</h2>
         <Link to={`/breeds/${breed}`}>View {breed}</Link>   
       
     </div>

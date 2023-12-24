@@ -9,21 +9,16 @@ export const getAllBreeds = async () => {
   try {
     
     const {data} = await axios.get(`${API_URL}/breeds/list/all`);
-    console.log(data);
-    
     return data;
   } catch (error) {
     console.error(error);
   }
 };
-
-export const getBreedImages = async (breed: string) => {
+export const getBreedImages = async (breed: string, count: number) => {
   try {
-    
-    const {data} = await axios.get(`${API_URL}/breed/hound/images/random`);
-
+    const { data } = await axios.get(`${API_URL}/breed/${breed}/images/random/${count}`);
     return data;
   } catch (error) {
     console.error(error);
   }
-}
+};
