@@ -1,35 +1,39 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, {useState} from 'react';
+import './App.scss';
+import BreedCard from './components/breedCard/breedCard';
 
-function App() {
-  const [count, setCount] = useState(0)
 
+export const breeds: string[] = ['affenpinscher', 'african', 'airedale','akita','appenzeller'];
+
+const App: React.FC = () => {
+  const [searchTerm, setSearchTerm] = useState<string>('');
+  const [filteredBreeds, setFilteredBreeds] = useState<string[]>(breeds);
+
+  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const term = event.target.value.toLowerCase();
+    setSearchTerm(term);
+
+    const filtered = breeds.filter(breed => breed.toLowerCase().includes(term));
+    setFilteredBreeds(filtered);
+  };
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="App">
+      <p className="top">Art Talks</p>
+      <div className="search">
+        <input type="text" id="search" placeholder="What are tou looking for" value={searchTerm} onChange={handleSearchChange}/>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
+      <div id="breed-gallery">
+        {filteredBreeds.map(breed => (
+          <BreedCard key={breed} breed={breed} />
+        ))}
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+      <div className="gallery" id="breed-gallery">
+        {breeds.map(breed => (
+          <BreedCard key={breed} breed={breed} />
+        ))}
+      </div>
+    </div>
+  );
+};
 
-export default App
+export default App;
