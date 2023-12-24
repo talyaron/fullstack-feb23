@@ -1,11 +1,23 @@
 import './App.css'
-import DogsGallery from './Gallery/DogsGallery'
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import DogsGallery from './pages/Gallery/DogsGallery';
+import DogDiscussion from './pages/DogDiscussion/DogDiscussion';
+import NavbarWrapper from './views/layouts/NavbarWrapper';
+
+
 
 function App() {
 
   return (
     <>
-      <DogsGallery />
+      <Router>
+      <NavbarWrapper />
+      <Routes>
+        <Route path="dogs-gallery" element={<DogsGallery />} />
+        <Route path="dog-discussion/:breedName" element={<DogDiscussion />} />
+      </Routes>
+    </Router>
     </>
   )
 }

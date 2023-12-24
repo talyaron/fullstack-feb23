@@ -5,11 +5,12 @@ import { Grid } from "@mui/material";
 
 interface CardProps {
     breedName: string;
+    onClick?: ()=> void
 }
 
 
 
-const CardProp: FC<CardProps> = ({ breedName }) => {
+const CardProp: FC<CardProps> = ({ breedName,onClick }) => {
     const [imgSrc, setImgSrc] = useState<string>("");
     const [paragraph, setParagraph] = useState<string>("");
 
@@ -45,8 +46,8 @@ const CardProp: FC<CardProps> = ({ breedName }) => {
 
     return (
         <>
-            <Grid item xs={1} >
-                <DogCard imgSrc={imgSrc} alt={breedName} breedName={breedName} paragraph={paragraph} />
+            <Grid item xs={1}  onClick={onClick}>
+                <DogCard imgSrc={imgSrc} alt={breedName} breedName={breedName} paragraph={paragraph}/>
             </Grid>
 
         </>
