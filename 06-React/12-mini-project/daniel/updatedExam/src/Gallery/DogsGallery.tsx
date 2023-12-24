@@ -2,6 +2,8 @@ import { FC, useEffect, useState } from "react";
 import { Box, Grid } from "@mui/material";
 import getDog from "../api/dogApi";
 import CardProp from "../components/card/Card";
+import TopBar from "../components/appBar/TopBar";
+import SearchBtn from "../components/search/SearchBtn";
 
 const BreedList = ["affenpinscher", "akita", "beagle", "boxer", "chihuahua", "dachshund", "husky", "pug"];
 
@@ -27,6 +29,8 @@ const DogsGallery: FC = () => {
 
     return (
         <>
+        <TopBar />
+        <SearchBtn />
             <Box >
                 <Grid container rowSpacing={4} columnSpacing={{ md: 5 }} columns={4}>
                     {BreedList.map((breedName) => (
