@@ -32,9 +32,9 @@ const DogsGallery = () => {
     const filteredBreedList = BreedList.filter((breed) =>
         breed.toLowerCase().startsWith(searchTerm.toLowerCase()));
 
-        const navigareToDiscussion = (breedName:string) =>{
-            navigate(`/dog-discussion/${breedName}`)
-        }
+    const navigareToDiscussion = (breedName: string) => {
+        navigate(`/dog-discussion/${breedName}`)
+    }
 
     return (
         <>
@@ -42,11 +42,10 @@ const DogsGallery = () => {
             <SearchBtn setSearchTerm={setSearchTerm} />
             <Box >
                 <Grid container rowSpacing={4} columnSpacing={{ md: 5 }} columns={4}>
-                    {filteredBreedList.map((breedName) => 
-              <CardProp breedName={breedName} key={breedName} onClick={()=> navigareToDiscussion(breedName)}/>)}
+                    {filteredBreedList.map((breedName) =>
+                        <CardProp breedName={breedName} key={breedName} onClick={() => navigareToDiscussion(breedName)} />)}
                 </Grid>
             </Box>
-            {/* {dog && dog.length > 0 && dog.map((breed)=> {return <>{JSON.stringify(breed)}</>})} */}
         </>
     )
 }

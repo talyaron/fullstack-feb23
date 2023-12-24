@@ -6,22 +6,22 @@ import Toolbar from '@mui/material/Toolbar';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import Typography from '@mui/material/Typography';
 
-interface TopBarProps{
-    children?: React.ReactNode
+interface TopBarProps {
+  children?: React.ReactNode
 }
 
 
-const TopBar:FC<TopBarProps> =({children})=> {
- 
+const TopBar: FC<TopBarProps> = ({ children }) => {
+
 
   return (
-    <Box sx={{ display: 'flex'}}>
+    <Box sx={{ display: 'flex' }}>
       <AppBar component="nav">
-        <Toolbar sx={{backgroundColor:'#333333'}}>
-            <MoreHorizIcon sx={{fontSize:'60px', color:'gray'}}/>
-            <Typography variant="h6" component="div">
-              {children}
-            </Typography>
+        <Toolbar sx={{ backgroundColor: '#333333' }}>
+          <MoreHorizIcon sx={{ fontSize: '60px', color: 'gray' }} />
+          <Typography variant="h6" component="div">
+            {children}
+          </Typography>
         </Toolbar>
       </AppBar>
     </Box>

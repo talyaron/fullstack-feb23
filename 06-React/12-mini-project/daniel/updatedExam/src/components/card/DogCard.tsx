@@ -1,14 +1,12 @@
 import { Card, CardContent, CardMedia, Typography } from "@mui/material"
 import { FC } from "react"
 
-
 interface CardProps {
   imgSrc: string,
   alt: string,
   breedName: string,
   paragraph: string
 }
-
 
 const DogCard: FC<CardProps> = ({ imgSrc, alt, breedName, paragraph }) => {
 

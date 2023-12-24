@@ -5,12 +5,12 @@ import NavbarWrapper from "../views/layouts/NavbarWrapper";
 
 
 export const router = createBrowserRouter([
-    {
-      path: "/",
-      element: <NavbarWrapper />,
-      children: [
-        { path: "dogs-gallery", element: <DogsGallery /> },
-        { path: "dog-discussion/:breedName", element: <DogDiscussion /> }
-      ]
-    }
-  ]);
+  {
+    path: "/",
+    element: <NavbarWrapper />,
+    children: [
+      { path: "dogs-gallery", element: <DogsGallery /> },
+      { path: "dog-discussion/:breedName", element: <DogDiscussion /> }
+    ]
+  }
+]);
