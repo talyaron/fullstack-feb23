@@ -1,22 +1,9 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import DogBreedsGallery from './components/dogsGallery/DogBreedsGallery';
-import DogBreedRouter from './routes/router';
-import './App.css'; 
-
+import "./App.css";
+import { RouterProvider } from "react-router-dom";
+import { router } from "./routes/router";
 
 function App() {
-  return (
-    <Router>
-      <>
-        {/* כל דבר שכאן יוצג בכל עמוד */}
-        <Routes>
-          <Route path="/" element={<DogBreedsGallery />} />
-          <Route path="/breeds/*" element={<DogBreedRouter />} />
-        </Routes>
-      </>
-    </Router>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;

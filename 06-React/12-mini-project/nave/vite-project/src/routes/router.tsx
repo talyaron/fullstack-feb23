@@ -1,15 +1,24 @@
-import React from 'react';
-import { Route, Routes } from 'react-router-dom';
-import DogBreedDiscussion from '../components/DogBreedDiscussion/DogBreedDiscussion';
-import BreedPage from '../view/BreedPage/BreedPage';
+// import React from 'react';
+// import { Route, Routes } from 'react-router-dom';
+// import BreedPage from '../view/BreedPage/BreedsPage';
 
-const DogBreedRouter: React.FC = () => {
-  return (
-    <Routes>
-      <Route path="/breeds" element={<DogBreedDiscussion />} />
-      <Route path="/breeds/:breed" element={<BreedPage />} />
-    </Routes>
-  );
-};
+// const DogBreedRouter: React.FC = () => {
+//   return (
+//     <Routes>
+//       <Route path="/breeds" element={<BreedPage />} />
+//       <Route path="/breeds/:breed" element={<BreedPage />} />
+//     </Routes>
+//   );
+// };
 
-export default DogBreedRouter;
+
+import BreedItem from '../components/BreedsItem/BreedItem';
+import BreedPage from '../view/BreedPage/BreedsPage';
+import { createBrowserRouter } from "react-router-dom";
+
+
+
+export const router = createBrowserRouter([
+  { path: "/", element: <BreedPage /> },
+  { path: "/breeds/:id", element: <BreedItem/> },
+]);
