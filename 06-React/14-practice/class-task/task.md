@@ -24,6 +24,7 @@ This project is meant to summarize React.js and MySQL. You will begin working on
 4. The application must include elements of CRUD - creation, reading, updating and deletion, of one of the schemes, through the client side (for example, in the friends scheme - creation of a new member, reading of all my friends, deletion of the member. An update can be an update of an alias to a member, or adding to favorites...) - it is possible for some changes to exist only in one scheme, and other changes in another scheme (for example, you cannot edit members, but a user can edit his details).
 
 5. Show the user information when nessesry, like password requiremnts, before they make a mistake, and show errors clearly (as a text that appears below the input or using a third-party library like toast)
+// 98-mini-Examples
 
 *Design:*
 
@@ -35,7 +36,7 @@ This project is meant to summarize React.js and MySQL. You will begin working on
 
 2. Do not use a basic design that comes with the HTML (for example: there should be no floating inputs at the top of the screen), or if using a component library, customize it so that it will not appear "factory made"
 
-3. A score will be given for responsiveness in WEB sizes only (there is no need to adapt to a phone or tablet, only that it responds to different computer screen sizes)
+3. A score will be given for responsiveness in WEB sizes only (there is no need to adapt to a phone or tablet, only that it responds to different computer screen sizes) 768px? >
 
 4. It is necessary to maintain order in your class names.
 
