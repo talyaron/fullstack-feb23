@@ -29,7 +29,7 @@ const Debouncing = () => {
         <div>
             <input type="text" value={text} onInput={(ev) => setText((ev.target as HTMLInputElement).value)} placeholder="search by breed" />
             <br></br>
-            {
+            {/* {
                 text != '' ?
                     <div>
                         {filterDogs.map((dog) => {
@@ -37,7 +37,7 @@ const Debouncing = () => {
                         })}
                     </div> :
                     <RouterProvider router={router} />
-            }
+            } */}
         </div >
     )
 }

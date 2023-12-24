@@ -3,6 +3,7 @@ import { getDogBreed } from "../api/dogsApi"
 import DogCard from "./DogCard";
 import { useNavigate } from 'react-router-dom';
 import '../style/dogsPage.css'
+import Debouncing from "./Debouncing";
 
 export const dogBreeds: string[] = [
     "affenpinscher",
@@ -22,6 +23,7 @@ export const dogArr: Dog[] = []
 
 const DogsPage = () => {
     const [dogs, setDogs] = useState<Dog[]>([])
+    const [filterDogs, setFilterDogs] = useState(dogs)
     const navigate = useNavigate()
 
     const handleGetAllDogs = async () => {
@@ -42,6 +44,8 @@ const DogsPage = () => {
 
     return (
         <div className="dog-container">
+            {/* in props:  setFilteredDogs */}
+            <Debouncing />
             {dogs && dogs.length > 0 ?
                 (dogs.map((dog) => {
                     return (

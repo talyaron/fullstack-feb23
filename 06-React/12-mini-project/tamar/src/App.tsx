@@ -1,10 +1,13 @@
+import { RouterProvider } from 'react-router-dom';
 import './App.css'
 import Debouncing from './component/Debouncing';
+import { router } from './router/router';
 
 function App() {
   return (
     <>
-      <Debouncing />
+      {/* <Debouncing /> */}
+      <RouterProvider router={router} />
     </>
   )
 }
