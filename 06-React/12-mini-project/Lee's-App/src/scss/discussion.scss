@@ -1,0 +1,25 @@
+.discussion-container {
+  display: flex;
+  height: 800px;
+  width: 800px;
+}
+
+.discussion-dog-card {
+  flex: 1;
+  text-align: center;
+
+  img {
+    max-height: 400px;
+    max-width: 100%;
+  }
+}
+
+.discussion-chatbox {
+  width: 200px;
+  margin-left: 20px;
+  height: 400px;
+  margin-top: 5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
