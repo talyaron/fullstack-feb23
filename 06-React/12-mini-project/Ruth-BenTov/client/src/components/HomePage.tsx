@@ -39,7 +39,7 @@ const homePage = () => {
 
   return (
     <div>
-      <h1>Dogs</h1>
+      {/* <h1>Dogs</h1> */}
       <div className="searchBar">
         <input
           type="text"

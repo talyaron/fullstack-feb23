@@ -19,7 +19,7 @@ const DogCard: FC<DogCardProps> = ({ breed }) => {
   };
 
   function dogsClicked() {
-    navigate(`/dog/:${breed}`, {state: {imgUrl}})
+    navigate(`/dog/${breed}`, {state: {imgUrl}})
   }
 
   useEffect(() => {
