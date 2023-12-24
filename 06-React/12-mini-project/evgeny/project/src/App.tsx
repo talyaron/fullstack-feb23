@@ -1,21 +1,20 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+
 import './App.scss'
-import axios from 'axios'
-import Dog from '../components/DogCard';
-import Alldogs from './../components/Alldogs';
+import Alldogs from '../pages/Alldogs';
+import { useNavigate } from 'react-router-dom';
+
+
+
 
 function App() {
-  const [dogList, setDogList] = useState<string[]>()
-
+  const navigate = useNavigate
+;
 
 
 
   return (
-    <>
-      <Alldogs />
-    </>
+   
+    <Alldogs/>
   )
 }
 
