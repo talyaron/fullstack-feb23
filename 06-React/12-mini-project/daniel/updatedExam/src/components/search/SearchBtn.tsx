@@ -1,38 +1,18 @@
-import { styled} from '@mui/material/styles';
-import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 import { Box } from '@mui/material';
+import { FC} from "react";
+import { Search, SearchIconWrapper, StyledInputBase } from './SearchStyles';
 
-const Search = styled('div')(() => ({
-  position: 'relative',
-  borderRadius: '16px',
-  border: '1px solid black',
-  backgroundColor: 'white',
-  '&:hover': {
-    backgroundColor: '#DCDCDC',
-  },
-  marginLeft: 0,
-  width: '100%',
-}));
+interface SearchBtnProps{
+  setSearchTerm: React.Dispatch<React.SetStateAction<string>>;
+}
 
-const SearchIconWrapper = styled('div')(({ theme }) => ({
-  padding: theme.spacing(0, 2),
-  height: '100%',
-  position: 'absolute',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-}));
+const SearchBtn:FC<SearchBtnProps> = ({ setSearchTerm }) => {
 
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  '& .MuiInputBase-input': {
-    padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-  },
-}));
-
-const SearchBtn = () => {
+  const handleSearchChange = (ev:React.ChangeEvent<HTMLInputElement>)=>{
+    setSearchTerm(ev.target.value)
+  }
+  
     return ( 
          <Box sx={{mb:4}}>
               <Search >
@@ -41,6 +21,7 @@ const SearchBtn = () => {
                 </SearchIconWrapper>
                 <StyledInputBase
                   placeholder="What are you looking for?"
+                  onChange={handleSearchChange}
                 />
               </Search> 
          </Box>

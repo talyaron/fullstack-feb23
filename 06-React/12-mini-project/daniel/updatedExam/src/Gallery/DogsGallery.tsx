@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Box, Grid } from "@mui/material";
 import getDog from "../api/dogApi";
 import CardProp from "../components/card/Card";
@@ -8,8 +8,9 @@ import SearchBtn from "../components/search/SearchBtn";
 const BreedList = ["affenpinscher", "akita", "beagle", "boxer", "chihuahua", "dachshund", "husky", "pug"];
 
 
-const DogsGallery: FC = () => {
-    const [dog, setDog] = useState<String[]>()
+const DogsGallery = () => {
+    const [dog, setDog] = useState<string[]>();
+    const [searchTerm, setSearchTerm] = useState<string>("")
 
     const handleGetDog = async () => {
         try {
@@ -27,13 +28,16 @@ const DogsGallery: FC = () => {
         handleGetDog()
     }, [])
 
+    const filteredBreedList = BreedList.filter((breed)=>
+    breed.toLowerCase().startsWith(searchTerm.toLowerCase()));
+
     return (
         <>
         <TopBar />
-        <SearchBtn />
+        <SearchBtn setSearchTerm={setSearchTerm} />
             <Box >
                 <Grid container rowSpacing={4} columnSpacing={{ md: 5 }} columns={4}>
-                    {BreedList.map((breedName) => (
+                    {filteredBreedList.map((breedName) => (
                         <CardProp key={breedName} breedName={breedName} />
                     ))}
                 </Grid>
