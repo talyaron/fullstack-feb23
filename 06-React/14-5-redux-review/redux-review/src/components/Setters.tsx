@@ -20,8 +20,8 @@ const Setters = () => {
             <label htmlFor="night">night:</label>
             <input type='radio' name='day-night' id='night' onChange={() => { dispatch(setNight()) }} />
 
-            
-        
+
+
         </div>
     )
 }

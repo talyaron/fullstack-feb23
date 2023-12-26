@@ -15,7 +15,6 @@ export interface DayNightState {
 const initialState: DayNightState = {
   value: true,
 };
-
 // const [dayNight, setDayNight] = useState({value: false})
 export const dayNightSlice = createSlice({
   name: "dayNight",
