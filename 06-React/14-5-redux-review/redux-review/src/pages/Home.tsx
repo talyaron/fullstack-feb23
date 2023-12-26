@@ -7,6 +7,7 @@ const Home = () => {
     const dayNight = useAppSelector(dayNightSelector)
     return (
         <div>
+
             {dayNight}
             <p>{dayNight ? <>☀️</> : <>🌚</>}</p>
             <Setters />
