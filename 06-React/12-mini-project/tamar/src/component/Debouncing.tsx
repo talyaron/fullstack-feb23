@@ -1,8 +1,4 @@
 import { useEffect, useState } from "react";
-import { dogArr } from "./DogsPage";
-import DogCard from "./DogCard";
-import { RouterProvider } from 'react-router-dom';
-import { router } from '../router/router'
 
 export interface Dog {
     message: string,
@@ -10,11 +6,8 @@ export interface Dog {
     breed: string,
 }
 
-
 const Debouncing = ({ setFilterDogs, dogs }: any) => {
     const [text, setText] = useState('')
-    // const [dogs, setDogs] = useState(dogArr)
-    // const [filterDogs, setFilterDogs] = useState(dogs)
 
     const handleFilterArr = () => {
         if (!text) {
