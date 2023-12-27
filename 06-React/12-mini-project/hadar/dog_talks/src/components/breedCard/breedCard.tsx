@@ -5,7 +5,7 @@ interface BreedCardProps {
   breed: string;
 }
 
-const BreedCard: React.FC<BreedCardProps> = ({ breed }) => {
+export const BreedCard: React.FC<BreedCardProps> = ({ breed }) => {
   const [imageUrl, setImageUrl] = useState<string>('');
   const [description, setDescription] = useState<string>('Lorem ipsum dolor sit amet, consectetur adipiscing elit.');
 
