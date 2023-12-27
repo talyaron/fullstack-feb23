@@ -11,13 +11,18 @@ export interface Dog {
 }
 
 
-const Debouncing = () => {
+const Debouncing = ({ setFilterDogs, dogs }: any) => {
     const [text, setText] = useState('')
-    const [dogs, setDogs] = useState(dogArr)
-    const [filterDogs, setFilterDogs] = useState(dogs)
+    // const [dogs, setDogs] = useState(dogArr)
+    // const [filterDogs, setFilterDogs] = useState(dogs)
 
     const handleFilterArr = () => {
-        setFilterDogs(dogs.filter((dog) => dog.breed.includes(text)))  //the search engin in the dogsBreeds 
+        if (!text) {
+            setFilterDogs(dogs)
+        } else {
+
+            setFilterDogs(dogs.filter((dog) => dog.breed.includes(text)))  //the search engin in the dogsBreeds 
+        }
     }
 
     useEffect(() => {
@@ -36,7 +41,7 @@ const Debouncing = () => {
                             return <DogCard key={dog.breed} dog={dog} />
                         })}
                     </div> :
-                    <RouterProvider router={router} />
+                    null
             } */}
         </div >
     )

@@ -23,7 +23,7 @@ export const dogArr: Dog[] = []
 
 const DogsPage = () => {
     const [dogs, setDogs] = useState<Dog[]>([])
-    const [filterDogs, setFilterDogs] = useState(dogs)
+    const [filterDogs, setFilterDogs] = useState<Dog[]>([])
     const navigate = useNavigate()
 
     const handleGetAllDogs = async () => {
@@ -33,6 +33,7 @@ const DogsPage = () => {
                 dogArr[i].breed = dogBreeds[i]
             }
             setDogs(dogArr)
+            setFilterDogs(dogArr)
         } catch (error) {
             console.error(error)
         }
@@ -44,10 +45,10 @@ const DogsPage = () => {
 
     return (
         <div className="dog-container">
-            {/* in props:  setFilteredDogs */}
-            <Debouncing />
+            {/* in props: setFilteredDogs */}
+            <Debouncing setFilterDogs={setFilterDogs} dogs={dogs} />
             {dogs && dogs.length > 0 ?
-                (dogs.map((dog) => {
+                (filterDogs.map((dog) => {
                     return (
                         <div key={dog.breed}>
                             <DogCard dog={dog} />
