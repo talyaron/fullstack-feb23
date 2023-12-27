@@ -8,14 +8,8 @@ export const breeds: string[] = ['affenpinscher', 'african', 'airedale','akita',
 const App: React.FC = () => {
 
   return (
-    <div className="App">
-      <p className="top">Art Talks</p>
-     
-      <div className="gallery" id="breed-gallery">
-        {breeds.map(breed => (
-          <BreedCard key={breed} breed={breed} />
-        ))}
-      </div>
+    <div>
+
     </div>
   );
 };
