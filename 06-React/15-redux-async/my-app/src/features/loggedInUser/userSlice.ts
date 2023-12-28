@@ -1,34 +1,35 @@
+/* eslint-disable prettier/prettier */
 import { createSlice } from "@reduxjs/toolkit"
 import { RootState } from "../../app/store"
-import { getUserFakeApi } from "./userAPI"
+import { getUserFakeApi, loginUser } from "./userAPI"
 
 enum Status {
     IDLE = "idle",
     LOADING = "loading",
-    FAILED = "failed"
+    FAILED = "failed",
 }
 
 export interface User {
-    "id": number,
-    "name": string,
-    "username": string,
-    "email": string,
-    "address": {
-        "street": string,
-        "suite": string,
-        "city": string,
-        "zipcode": string,
-        "geo": {
-            "lat": string,
-            "lng": string
+    id: number
+    name: string
+    username: string
+    email: string
+    address: {
+        street: string
+        suite: string
+        city: string
+        zipcode: string
+        geo: {
+            lat: string
+            lng: string
         }
-    },
-    "phone": string,
-    "website": string,
-    "company": {
-        "name": string,
-        "catchPhrase": string,
-        "bs": string
+    }
+    phone: string
+    website: string
+    company: {
+        name: string
+        catchPhrase: string
+        bs: string
     }
 }
 
@@ -40,7 +41,7 @@ interface UserState {
 
 const initialState: UserState = {
     value: null,
-    status: Status.IDLE
+    status: Status.IDLE,
 }
 
 export const userSlice = createSlice({
@@ -49,21 +50,32 @@ export const userSlice = createSlice({
     reducers: {
         logoutUser: (state) => {
             state.value = initialState.value
-        }
+        },
     },
     extraReducers: (builder) => {
         builder
-        .addCase(getUserFakeApi.pending, (state) => {
-            state.status = Status.LOADING
-        })
-        .addCase(getUserFakeApi.fulfilled, (state, action) => {
-            state.status = Status.IDLE;
-            state.value = action.payload
-        })
-        .addCase(getUserFakeApi.rejected, (state) => {
-            state.status = Status.FAILED
-        })
-    }
+            .addCase(getUserFakeApi.pending, (state) => {
+                state.status = Status.LOADING
+            })
+            .addCase(getUserFakeApi.fulfilled, (state, action) => {
+                state.status = Status.IDLE
+                state.value = action.payload
+            })
+            .addCase(getUserFakeApi.rejected, (state) => {
+                state.status = Status.FAILED
+            })
+            .addCase(loginUser.pending, (state) => {
+                state.status = Status.LOADING
+            })
+            .addCase(loginUser.fulfilled, (state, action) => {
+                state.value = action.payload;
+                state.status = Status.IDLE
+
+            })
+            .addCase(loginUser.rejected, (state, action) => {
+                state.status = Status.FAILED
+            })
+    },
 })
 
 export const userSelector = (state: RootState) => state.user.value
