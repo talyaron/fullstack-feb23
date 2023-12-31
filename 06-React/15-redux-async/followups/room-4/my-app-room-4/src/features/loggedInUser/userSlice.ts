@@ -53,6 +53,7 @@ export const userSlice = createSlice({
         })
         .addCase(getUserFakeApi.fulfilled, (state, action) => {
             state.status = Status.IDLE;
+            debugger
             state.value = action.payload
         })
         .addCase(getUserFakeApi.rejected, (state) => {
