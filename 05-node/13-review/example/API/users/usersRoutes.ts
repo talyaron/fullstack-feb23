@@ -13,7 +13,8 @@ router
 // .get("/:id") <-- to get a specific user by the id
 // .post("") <-- create a user
 // .patch("/:id") <-- update a specific field ot information in a user 
-// .put("") <-- update entire user
+// .put("/:id") <-- update entire user
+// .delete(/:id) <-- delete by id
 
 
 export default router;

@@ -1,8 +1,6 @@
 import mysql from "mysql2";
 
-require("dotenv").config();
-
-const sqlPassword = process.env.SQLPASSWORD; // root password
+const sqlPassword = process.env.SQLPASSWORD;
 
 //@ts-ignore
 const connection = mysql.createConnection({
@@ -10,18 +8,16 @@ const connection = mysql.createConnection({
   port: "3306",
   user: "root",
   password: sqlPassword,
-  database: "blockbuster_feb",
-  // multipleStatements: true -- multiple querys with each connect
-});
+  database: "blockbuster_feb"
+})
 
 connection.connect((err) => {
   try {
     if (err) throw err;
-
-    console.info("🔥 MySQL is connected 🛢 ");
+    console.log("connected to MySQL 🎬")
   } catch (error) {
-    console.error(error);
+    console.error(error)
   }
-});
+})
 
-export default connection;
+export default connection
