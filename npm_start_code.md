@@ -11,3 +11,5 @@ initials:
 1) bcrypt: npm i bcrypt
 
 2) jwt: npm i jwt-simple
+
+3) npm install @types/react --save-dev   //for typescript 
