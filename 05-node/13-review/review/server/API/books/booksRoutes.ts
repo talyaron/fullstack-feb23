@@ -4,7 +4,7 @@ import { getAllBooks } from "./booksControl"
 const router = express.Router()
 
 router
-.get("", getAllBooks) // <-- ALL
+    .get("", getAllBooks) // <-- ALL
 
 // .post("", () => {}) // <-- add object
 // .put("/:id", () => {}) // <-- update more than one field by ID
