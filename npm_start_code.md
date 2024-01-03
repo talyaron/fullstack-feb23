@@ -15,3 +15,4 @@ initials:
 2) jwt: npm i jwt-simple
 
 3) npm install @types/react --save-dev   //for typescript 
+
