@@ -1,8 +1,9 @@
-
+require("dotenv").config()
+import connection from './DB/database';
 import express from 'express';
 // import dotenv from "dotenv"
 // dotenv.config()
-require("dotenv").config()
+
 
 const app = express()
 
@@ -12,26 +13,25 @@ app.use(express.json())
 
 // app.use(express.static('public'))
 import booksRoutes from "./API/books/booksRoutes"
-import connection from './DB/database';
 app.use("/api/v1/books", booksRoutes)
 
 app.post("/api/create-database", async (req, res) => {
     try {
-        const {adminPassword} = req.body;
+        const { adminPassword } = req.body;
         if (!adminPassword) throw new Error("no password")
         if (adminPassword === "123456") {
             const query = "CREATE DATABASE library"
             connection.query(query, (err, results) => {
                 try {
-                    if(err) throw err;
-                    res.send({ok: true, message: "DB was created!"})
+                    if (err) throw err;
+                    res.send({ ok: true, message: "DB was created!" })
                 } catch (error) {
-                    res.status(500).send({ok:false, error})
+                    res.status(500).send({ ok: false, error })
                 }
             })
         }
     } catch (error) {
-        res.status(500).send({ok:false, error})
+        res.status(500).send({ ok: false, error })
     }
 })
 
