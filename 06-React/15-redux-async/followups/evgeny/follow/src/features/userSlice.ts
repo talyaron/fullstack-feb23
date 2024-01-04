@@ -1,12 +1,12 @@
 
 import { createSlice } from "@reduxjs/toolkit"
-import { RootState } from "../../app/store"
+import { RootState } from "../app/store"
 import { getUserFakeApi } from "./userAPI"
 
 enum Status {
     IDLE="idle",
     LOADING="loading",
-    FIELD="failed"
+    FAILED="failed"
 }
 
 export interface User{
@@ -34,7 +34,7 @@ export interface User{
 }
 
 interface UserState{
-    Value:User | null
+    value:User | null
     status: Status
 }
 
@@ -48,7 +48,7 @@ export const userSlice=createSlice({
     initialState,
     reducers:{
         logoutUser: (state)=>{
-            state.value=initialState.Value
+            state.value=initialState.value
         }
     },
     extraReducers:(builder)=>{
@@ -58,7 +58,7 @@ export const userSlice=createSlice({
         })
         .addCase(getUserFakeApi.fulfilled,(state,action)=>{
             state.status=Status.IDLE,
-            state.Value=action.payload
+            state.value=action.payload
         })
         .addCase(getUserFakeApi.rejected, (state) => {
             state.status = Status.FAILED
