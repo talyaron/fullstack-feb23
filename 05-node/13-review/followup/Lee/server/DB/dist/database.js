@@ -6,6 +6,18 @@ var sqlPassword = process.env.SQLPASSWORD;
 var connection = mysql2_1["default"].createConnection({
     host: "localhost",
     port: "3306",
-    user: "root"
+    user: "root",
+    password: sqlPassword,
+    database: "users"
+});
+connection.connect(function (err) {
+    try {
+        if (err)
+            throw err;
+        console.log("mySQL sever is connected :-)");
+    }
+    catch (error) {
+        console.error(error);
+    }
 });
 exports["default"] = connection;
