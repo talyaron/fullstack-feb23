@@ -70,7 +70,7 @@ function renderLoggedUser(worker, rootElement) {
         if (!rootElement)
             throw new Error("no root element");
         rootElement.innerHTML = html;
-        renderHandleTimeClock(document.querySelector("#register"));
+        renderHandleTimeClock(document.querySelector("#logged"));
     }
     catch (error) {
         console.error(error);
@@ -78,7 +78,7 @@ function renderLoggedUser(worker, rootElement) {
 }
 function renderHandleTimeClock(rootElement) {
     try {
-        var html = "\n        <form onsubmit=\"handletimeclock(event)\">\n            <h2>your time cloke for today:</h2>\n            <label for=\"entary\">start time</label>\n            <input type=\"datetime-local\" name=\"entary\" id=\"entary\">\n            <label for=\"exit\">exit time</label>\n            <input type=\"datetime-local\" name=\"exit\" id=\"exit\">\n            <input type=\"submit\" value=\"Add\">\n        </form>";
+        var html = "\n        <form id=\"timeClockForm\" onsubmit=\"handletimeclock(event)\">\n            <h2>your time cloke for today:</h2>\n            <div class=\"entary\">\n                <label for=\"entary\">start time</label>\n                <input type=\"datetime-local\" name=\"entary\" id=\"entary\">\n            </div>\n            <div class=\"exit\">\n                <label for=\"exit\">exit time</label>\n                <input type=\"datetime-local\" name=\"exit\" id=\"exit\">\n            </div>\n            <input type=\"submit\" value=\"Add\">\n            <input type=\"reset\" value=\"Reset\">\n        </form>";
         if (!rootElement)
             throw new Error("no root elemant");
         rootElement.innerHTML = html;
@@ -96,10 +96,10 @@ function handletimeclock(ev) {
         var entaryTime = ev.target.entary.value;
         //get exit time
         var exitTime = ev.target.exit.value;
-        console.log(entaryTime, exitTime);
+        // console.log(entaryTime, exitTime);
         var timeCloceWorker = new TimeClock(entaryTime, exitTime);
         timeCloceArr.push(timeCloceWorker);
-        console.log(timeCloceArr);
+        // console.log(timeCloceArr);
         renderTimeClock(timeCloceArr, timeCloceWorker, document.querySelector("#timeClock"));
     }
     catch (error) {
@@ -108,10 +108,10 @@ function handletimeclock(ev) {
 }
 function renderTimeClock(timeCloceArr, timeClockWorker, rootElement) {
     try {
-        var html_1 = "\n        <table id=\"timeTable\">\n            <tr> <!--row-->\n                <th>entary time</th>  <!--colum-->\n                <th>exit time</th>\n                <th>total hours</th>\n            </tr";
+        var html_1 = "\n        <table id=\"timeTable\">\n            <tr> <!--row-->\n                <th>entary time</th>  <!--colum-->\n                <th>exit time</th>\n                <th>total hours</th>\n            </tr>";
         timeCloceArr.forEach(function (element) {
             console.log(element);
-            html_1 += "\n           <tr>\n            <td>" + element.entaryTime + "</td>\n            <td>" + element.exitTime + "</td>\n            <td>" + calculatHours(timeClockWorker) + "</td>\n            <td>\n                <button onclick=\"editTimeClock('" + element.id + ", " + timeClockWorker + ", " + document.querySelector("#editTime") + "')\">Edit</button>\n                <button onclick=\"deleteTimeClock('" + element.id + ", " + timeClockWorker + "')\">Delete</button>\n            </td>\n           </tr>";
+            html_1 += "\n           <tr>\n            <td>" + element.entaryTime + "</td>\n            <td>" + element.exitTime + "</td>\n            <td>" + calculatHours(element.entaryTime, element.exitTime) + "</td>\n            <td>\n                <button onclick=editTimeClock(" + element.id + ", " + timeClockWorker + ", " + document.querySelector("#editTime") + ")>Edit</button>\n                <button onclick=deleteTimeClock(" + element.id + ", " + timeClockWorker + ")>Delete</button>\n            </td>\n           </tr>";
         });
         html_1 += "</table>";
         if (!rootElement)
@@ -122,13 +122,13 @@ function renderTimeClock(timeCloceArr, timeClockWorker, rootElement) {
         console.error(error);
     }
 }
-function calculatHours(timeClockWorker) {
+function calculatHours(entaryTime, exitTime) {
     try {
-        var start = Date.parse((timeClockWorker.entaryTime).valueOf()); //get tomestamp of entary time
-        var end = Date.parse((timeClockWorker.exitTime).valueOf()); //get tomestamp of entary time
+        var start = Date.parse((entaryTime).valueOf()); //get timestamp of entary time
+        var end = Date.parse((exitTime).valueOf()); //get timestamp of entary time
         var totalHours = NaN;
         if (start < end) {
-            totalHours = Math.floor((end - start) / 1000 / 60 / 60); //mikkisecound
+            totalHours = Math.floor((end - start) / 1000 / 60 / 60); //millisecound
         }
         return totalHours;
     }
@@ -139,9 +139,10 @@ function calculatHours(timeClockWorker) {
 //-------------edit and delete
 function editTimeClock(id, timeClockWorker, rootElement) {
     try {
+        console.log("at editTimeClock the element.id is:", id);
         var timeClockEntry = timeCloceArr.find(function (entry) { return entry.id === id; });
         if (timeClockEntry) {
-            var htmlModel = "\n        <h3>Edit Time Clock Entry</h3>\n        <label for=\"entryInput\">Entry Time:</label>\n        <input type=\"datetime-local\" id=\"entryInput\" value=\"" + timeClockEntry.entaryTime + "\">\n        <label for=\"exitInput\">Exit Time:</label>\n        <input type=\"datetime-local\" id=\"exitInput\" value=\"" + timeClockEntry.exitTime + "\">\n        <button onclick=\"updateTimeClock('" + timeClockEntry.id + "," + timeClockWorker + "')\">Update</button>\n        <button onclick=\"cancelEdit()\">Cancel</button>\n      ";
+            var htmlModel = "\n        <h3>Edit Time Clock Entry</h3>\n        <label for=\"entryInput\">Entry Time:</label>\n        <input type=\"datetime-local\" id=\"entryInput\" value=\"" + timeClockEntry.entaryTime + "\">\n        <label for=\"exitInput\">Exit Time:</label>\n        <input type=\"datetime-local\" id=\"exitInput\" value=\"" + timeClockEntry.exitTime + "\">\n        <button onclick=updateTimeClock(" + timeClockEntry.id + "," + timeClockWorker + ")>Update</button>\n        <button onclick=cancelEdit()>Cancel</button>\n      ";
             if (!rootElement)
                 throw new Error("no root elemant");
             rootElement.innerHTML = htmlModel;
@@ -151,6 +152,7 @@ function editTimeClock(id, timeClockWorker, rootElement) {
         console.log(error);
     }
 }
+//!to correct this two
 function updateTimeClock(entryId, timeClockWorker) {
     try {
         var updatedEntry = document.querySelector("#entryInput").value;
@@ -183,5 +185,4 @@ function deleteTimeClock(id, timeClockWorker) {
         // Render the updated time clock table
         renderTimeClock(timeCloceArr, timeClockWorker, document.querySelector("#timeClock"));
     }
-    rootElement.innerHTML = htmlModel;
 }
