@@ -1,4 +1,5 @@
 import express from "express";
+import { getAllUsers } from "./usersCont";
 
 const router = express.Router();
 
