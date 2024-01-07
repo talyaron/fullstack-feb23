@@ -1,5 +1,12 @@
 import express from "express"
-import { createBook, deleteBook, getAllBooks, updateBook } from "./booksControl"
+import {
+    createBook,
+    deleteBook,
+    findBookByName,
+    // deleteBook,
+    getAllBooks,
+    updateBook
+} from "./booksControl"
 
 const router = express.Router()
 
@@ -7,10 +14,10 @@ const router = express.Router()
 // /api/v1/books
 router
     .get("", getAllBooks) // <-- ALL
-    .get("/filter", getAllBooks) // <-- ALL
+    .get("/filter", findBookByName) // <-- ALL
     .post("", createBook)
-    .patch("/:bookId", updateBook)
-    .delete("/:bookId", deleteBook)
+    .patch("/:breed", updateBook)
+.delete("/:bookId", deleteBook)
 
 // .post("", () => {}) // <-- add object
 // .put("/:id", () => {}) // <-- update more than one field by ID
