@@ -3,6 +3,7 @@ import connection from './DB/database';
 import express from 'express';
 // import dotenv from "dotenv"
 // dotenv.config()
+import cookieParser from 'cookie-parser';
 
 
 const app = express()
@@ -10,10 +11,15 @@ const app = express()
 const PORT = process.env.PORT || 4000
 
 app.use(express.json())
+app.use(cookieParser())
 
 // app.use(express.static('public'))
 import booksRoutes from "./API/books/booksRoutes"
 app.use("/api/v1/books", booksRoutes)
+
+import userRoutes from "./API/users/userRoutes"
+
+app.use("/api/v1/users", userRoutes)
 
 app.post("/api/create-database", async (req, res) => {
     try {
