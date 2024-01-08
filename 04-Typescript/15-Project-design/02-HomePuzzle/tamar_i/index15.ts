@@ -166,8 +166,8 @@ function renderTimeClock(timeCloceArr: TimeClock[], timeClockWorker: TimeClock, 
             <td>${element.exitTime}</td>
             <td>${calculatHours(element.entaryTime,element.exitTime)}</td>
             <td>
-                <button onclick=editTimeClock(${element.id}, ${timeClockWorker}, ${document.querySelector("#editTime")})>Edit</button>
-                <button onclick=deleteTimeClock(${element.id}, ${timeClockWorker})>Delete</button>
+                <button onclick="editTimeClock('${element.id}', ${timeClockWorker}, document.querySelector("#editTime"))">Edit</button>
+                <button onclick="deleteTimeClock('${element.id}', ${timeClockWorker})">Delete</button>
             </td>
            </tr>`
         });
@@ -198,13 +198,18 @@ function calculatHours(entaryTime,exitTime) {
 }
 
 //-------------edit and delete
+
+let htmlModel;
+
 function editTimeClock(id: any, timeClockWorker: TimeClock, rootElement: HTMLElement) {
     try {
-            console.log("at editTimeClock the element.id is:", id)
+        if(!rootElement) throw new Error("At editTimeClock no rootElement");
+        
+        console.log("at editTimeClock the element.id is:", id)
         const timeClockEntry = timeCloceArr.find(entry => entry.id === id);
 
         if (timeClockEntry) {
-            const htmlModel = `
+            htmlModel = `
         <h3>Edit Time Clock Entry</h3>
         <label for="entryInput">Entry Time:</label>
         <input type="datetime-local" id="entryInput" value="${timeClockEntry.entaryTime}">
@@ -214,8 +219,7 @@ function editTimeClock(id: any, timeClockWorker: TimeClock, rootElement: HTMLEle
         <button onclick=cancelEdit()>Cancel</button>
       `;
 
-            if (!rootElement) throw new Error("no root elemant");
-            rootElement.innerHTML = htmlModel;
+          rootElement.innerHTML = htmlModel;
         }
     } catch (error) {
         console.log(error);
@@ -225,8 +229,9 @@ function editTimeClock(id: any, timeClockWorker: TimeClock, rootElement: HTMLEle
 //!to correct this two
 function updateTimeClock(entryId: any, timeClockWorker: TimeClock) {
     try {
-
+        //@ts-ignore
         const updatedEntry = document.querySelector("#entryInput").value;
+        //@ts-ignore
         const updatedExit = document.querySelector("#exitInput").value;
 
         // Perform the necessary update based on the user input
