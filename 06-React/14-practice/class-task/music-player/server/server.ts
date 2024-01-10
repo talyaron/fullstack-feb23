@@ -1,5 +1,6 @@
 import express from "express";
 import connection from "./DB/database";
+// import song from "../client/src/music/Lazarus.mp3";
 require("dotenv").config();
 const app = express();
 // import connection from "./DB/database";
@@ -8,7 +9,7 @@ const port = process.env.PORT;
 app.use(express.static("client"));
 app.use(express.json());
 
-app.post("/api/music/add-song", (req, res) => {
+app.post("/api/add-song", (req, res) => {
   const { title, artist, img_src, src } = req.body;
   console.log(title, artist, img_src);
   const query = `INSERT INTO \`multi musix\`.\`songs\` (\`title\`, \`artist\`, \`img_src\`, \`src\`) VALUES ('${title}', '${artist}', '${img_src}', '${src}');`;

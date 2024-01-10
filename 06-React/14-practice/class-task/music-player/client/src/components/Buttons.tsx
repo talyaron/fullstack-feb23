@@ -9,6 +9,7 @@ const audio = Audio({
 })
 
 const play = () => {
+    debugger
     audio.play()
 }
 
@@ -29,6 +30,7 @@ const Buttons = () => {
             <button onClick={play}>Play</button>
             <button onClick={pause}>Pause</button>
             <button onClick={stop}>Stop</button>
+            <p>{Sia}</p>
         </div>
     )
 }
