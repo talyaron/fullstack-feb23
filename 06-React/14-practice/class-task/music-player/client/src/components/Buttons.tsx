@@ -1,5 +1,5 @@
 import React from 'react'
-import Audio from 'ts-audio';
+import { Audio } from 'ts-audio';
 import Sia from "../music/Sia - Bird Set Free.mp3"
 
 const audio = Audio({
