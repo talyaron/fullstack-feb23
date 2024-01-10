@@ -1,13 +1,8 @@
 import mysql from "mysql2";
-// import "dotenv/config";
-// import dotenv from "dotenv";
-// dotenv.config();
-// console.log(process.env.SQL_PASSWORD);
-// console.log(process.env);
+require("dotenv").config();
 
 const sqlPassword = process.env.SQL_PASSWORD;
 const sqlPort: number = Number(process.env.SQL_PORT);
-console.log(sqlPassword, sqlPort);
 const connection = mysql.createConnection({
   host: "localhost",
   port: sqlPort,

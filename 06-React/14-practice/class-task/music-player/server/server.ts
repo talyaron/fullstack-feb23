@@ -1,13 +1,29 @@
 import express from "express";
-const app = express();
-// console.log(require("dotenv").config());
-require("dotenv").config();
 import connection from "./DB/database";
+require("dotenv").config();
+const app = express();
+// import connection from "./DB/database";
 const port = process.env.PORT;
 
 app.use(express.static("client"));
+app.use(express.json());
 
-console.log(connection);
+app.post("/api/music/add-song", (req, res) => {
+  const { title, artist, img_src, src } = req.body;
+  console.log(title, artist, img_src);
+  const query = `INSERT INTO \`multi musix\`.\`songs\` (\`title\`, \`artist\`, \`img_src\`, \`src\`) VALUES ('${title}', '${artist}', '${img_src}', '${src}');`;
+
+  connection.query(query, (err, results) => {
+    try {
+      if (err) throw err;
+      res.send({ results, ok: true });
+    } catch (error) {
+      console.log(error);
+      res.send({ ok: false, error: error.message });
+    }
+  });
+});
+
 app.listen(port, () => {
   console.log(`server is running on port ${port}`);
 });
