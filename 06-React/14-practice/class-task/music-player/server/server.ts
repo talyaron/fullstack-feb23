@@ -8,7 +8,19 @@ const port = process.env.PORT;
 
 app.use(express.static("client"));
 app.use(express.json());
-
+app.get("/api/get-song/:id", (req, res) => {
+  const song_id = req.params.id;
+  const query = `SELECT * FROM \`multi musix\`.\`songs\` WHERE song_id = ${song_id} `;
+  connection.query(query, (err, results) => {
+    try {
+      if (err) throw err;
+      res.send({ results, ok: true });
+    } catch (error) {
+      console.log(error);
+      res.send({ ok: false, error: error.message });
+    }
+  });
+});
 app.post("/api/add-song", (req, res) => {
   const { title, artist, img_src, src } = req.body;
   console.log(title, artist, img_src);

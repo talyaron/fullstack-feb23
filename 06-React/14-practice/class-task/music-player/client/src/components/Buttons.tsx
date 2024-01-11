@@ -9,7 +9,6 @@ const audio = Audio({
 })
 
 const play = () => {
-    debugger
     audio.play()
 }
 
