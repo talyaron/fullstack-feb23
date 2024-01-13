@@ -1,7 +1,7 @@
 // Password.tsx
 import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { setPassword, resetRegistration } from "../app/store"
+import { useDispatch } from "react-redux";
+import { setPassword } from "../app/store"
 const Password: React.FC = () => {
     const dispatch = useDispatch();
     const [password, setPasswordValue] = useState<string>("");

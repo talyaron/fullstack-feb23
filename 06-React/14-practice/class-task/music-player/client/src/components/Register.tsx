@@ -1,19 +1,22 @@
-// Register.tsx
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setUsername, setEmail, resetRegistration, RootState } from "../app/store";
+import { setUsername, setEmail, resetRegistration, RootState } from "../features/user/userRegisterSlice";
 import Password from "./Password";
+import { registerUser } from "../API/registerApi/registerApi";
 
-const Register: React.FC = () => {
+const RegisterForm: React.FC = () => {
   const dispatch = useDispatch();
-  const { username, email } = useSelector((state: RootState) => state.userRegistration);
+  const { username, email, password } = useSelector((state: RootState) => state.userRegistration);
 
-  const handleRegistration = () => {
-    // Handle registration logic using the values from the Redux store
-    console.log("User Registration:", { username, email });
+  const handleRegistration = async () => {
+    const success = await registerUser({ username, email, password });
 
-    // Optionally, reset the registration form after submission
-    dispatch(resetRegistration());
+    if (success) {
+      console.log("Registration successful!");
+      dispatch(resetRegistration());
+    } else {
+      console.error("Registration failed.");
+    }
   };
 
   return (
@@ -38,4 +41,4 @@ const Register: React.FC = () => {
   );
 };
 
-export default Register;
+export default RegisterForm;
