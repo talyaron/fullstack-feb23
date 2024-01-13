@@ -1,10 +1,14 @@
 
 import "./App.scss"
 import RegisterPage from "./pages/RegisterPage"
+import Buttons from "./components/Buttons"
 
 function App() {
   return (
-    <RegisterPage></RegisterPage>
+    <div >
+          <RegisterPage></RegisterPage>
+      <Buttons />
+    </div>
   )
 }
 
