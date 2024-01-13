@@ -1,32 +1,41 @@
-import { useEffect, useState } from 'react'
-import './App.css'
-import  register  from './API/registerApi'
+// Register.tsx
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setUsername, setEmail, resetRegistration, RootState } from "../app/store";
+import Password from "./Password";
 
-function App() {
-  const [email, setEmail] = useState<string>("")
-  const [password, setPassword] = useState<string>("")
+const Register: React.FC = () => {
+  const dispatch = useDispatch();
+  const { username, email } = useSelector((state: RootState) => state.userRegistration);
 
-  // This is redux
-  const [user, setUser] = useState(null)
+  const handleRegistration = () => {
+    // Handle registration logic using the values from the Redux store
+    console.log("User Registration:", { username, email });
 
-  const handleSubmit = async (ev: React.FormEvent<HTMLFormElement>) => {
-    try {
-      ev.preventDefault()
-      const response = await register(email, password)
-      console.log(response)
+    // Optionally, reset the registration form after submission
+    dispatch(resetRegistration());
+  };
 
-      setUser(response?.data.results[0])
-      // if (data.ok) {
-      //   navigate("/home")
-      // }
-    } catch (error) {
-      console.error(error)
-    }
-  }
-  // getUser
-  // go to server, look for user with the id in cookie
-  // if user return = set State and add user
-  // is no user navigate to login
-  useEffect(() => {
-    // getUser()
-  },[])}
+  return (
+    <div>
+      <input
+        type="text"
+        placeholder="username"
+        value={username}
+        onChange={(e) => dispatch(setUsername(e.target.value))}
+      />
+      <input
+        type="text"
+        placeholder="email"
+        value={email}
+        onChange={(e) => dispatch(setEmail(e.target.value))}
+      />
+      <Password />
+      <button type="button" onClick={handleRegistration}>
+        Register
+      </button>
+    </div>
+  );
+};
+
+export default Register;
