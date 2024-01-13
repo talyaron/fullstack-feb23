@@ -1,9 +1,9 @@
-import { register } from "module"
-import { useState } from "react"
+import { useEffect, useState } from 'react'
+import './App.css'
+import  register  from './API/registerApi'
 
-
-
-const [email, setEmail] = useState<string>("")
+function App() {
+  const [email, setEmail] = useState<string>("")
   const [password, setPassword] = useState<string>("")
 
   // This is redux
@@ -29,4 +29,4 @@ const [email, setEmail] = useState<string>("")
   // is no user navigate to login
   useEffect(() => {
     // getUser()
-  },[])
+  },[])}
