@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { useAppSelector } from "../app/hooks";
 import { userSelector } from "../features/user/userSlice";
 import Password from "./Password";
+import { registerUser } from "../API/registerApi/registerApi";
 
 const RegisterForm: React.FC = () => {
   const dispatch = useDispatch();
@@ -16,19 +17,16 @@ const RegisterForm: React.FC = () => {
     console.log(password)
     console.log(match)
       if (match) {
+const success = await registerUser({username, password});
 
-      } else {
-        return
-      }
-    // const success = await registerUser({});
-
-    // if (success) {
-    //   console.log("Registration successful!");
-    //   dispatch(resetRegistration());
-    // } else {
-    //   console.error("Registration failed.");
-    // }
-  };
+    if (success) {
+      console.log("Registration successful!");
+    } else {
+      console.error("Registration failed.");
+    }
+  }}
+    
+    
 
   return (
     <div>

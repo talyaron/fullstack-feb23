@@ -1,20 +1,19 @@
 import axios from "axios";
 
-export const BASE_URL = "/api";
+export const BASE_URL = "/API/users";
 
 interface RegistrationData {
-  username: string;
-  email: string;
+  user_name: string;
   password: string;
 }
 
 export const registerUser = async (registrationData: RegistrationData): Promise<boolean> => {
   try {
-    const response = await axios.post(`${BASE_URL}/register`, registrationData);
+    const response = await axios.post(`${BASE_URL}/add-user`, registrationData);
     console.log("Registration response:", response.data);
     return true;
   } catch (error) {
     console.error("Error during user registration:", error);
-    return false;
+    
   }
 };

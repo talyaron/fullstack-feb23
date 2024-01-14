@@ -22,11 +22,10 @@ export async function getAllUsers(req: express.Request, res: express.Response) {
 
 export async function createUser(req: express.Request, res: express.Response) {
     try {
+        const { username, password } = req.body
+        if (!username || !password) throw new Error("no data in FUNCTION createUser in FILE usersCtrl.ts")
 
-        const { username, email, password } = req.body
-        if (!username || !email || !password) throw new Error("no data in FUNCTION createUser in FILE usersCtrl.ts")
-
-        const query = `INSERT INTO users (username, email, password) VALUES ("${username}", '${email}', '${password}');`;
+        const query = `INSERT INTO users (user_name, password) VALUES ("${username}", '${password}');`;
         connection.query(query, (err, results) => {
             try {
                 if (err) throw err;

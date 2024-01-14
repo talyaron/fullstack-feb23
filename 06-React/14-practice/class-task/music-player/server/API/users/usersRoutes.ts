@@ -5,7 +5,7 @@ const usersRouter = express.Router()
 
 usersRouter
     .get("", getAllUsers) 
-    .post("", createUser)
+    .post("/add-user", createUser)
 
 
 
