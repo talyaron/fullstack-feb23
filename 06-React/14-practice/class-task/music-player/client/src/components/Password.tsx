@@ -1,13 +1,20 @@
 // Password.tsx
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Dispatch, SetStateAction } from "react";
 import { useDispatch } from "react-redux";
 import { setPassword } from "../app/store"
-const Password: React.FC = () => {
+
+interface Props {
+  password: string,
+  setPassword: Dispatch<SetStateAction<string>>,
+  match: boolean,
+  setMatch: Dispatch<SetStateAction<boolean>>
+}
+const Password = ({password, setPassword, match, setMatch}:Props) => {
     const dispatch = useDispatch();
-    const [password, setPasswordValue] = useState<string>("");
+    // const [password, setPasswordValue] = useState<string>("");
     const [confirmPassword, setConfirmPassword] = useState<string>("");
     const [visible, setVisbile] = useState(false);
-    const [match, setMatch] = useState(false);
+    // const [match, setMatch] = useState(false);
   
     const validate = () => {
       if (password === confirmPassword) {
@@ -22,8 +29,8 @@ const Password: React.FC = () => {
     }, [confirmPassword, password]);
   
     const handlePasswordInput = (value: string) => {
-      setPasswordValue(value);
-      dispatch(setPassword(value));
+      setPassword(value);
+      // dispatch(setPassword(value));
     };
   
     const handleVisibilityToggle = () => {

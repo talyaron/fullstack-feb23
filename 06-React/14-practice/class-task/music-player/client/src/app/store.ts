@@ -1,13 +1,12 @@
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit"
 import userReducer from "../features/user/userSlice"
 import songReducer from "../features/song/songSlice"
-import  { userRegistrationReducer, setPassword } from "../features/user/userRegisterSlice"
+import setPassword from "../components/Password"
 
 export const store = configureStore({
   reducer: {
     user: userReducer,
     song: songReducer,
-    userRegister: userRegistrationReducer
   },
 })
 

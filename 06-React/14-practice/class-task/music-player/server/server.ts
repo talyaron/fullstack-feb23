@@ -1,3 +1,46 @@
+// import express from "express";
+// import connection from "./DB/database";
+// import usersRoutes from "./API/users/usersRoutes";
+// import songsRoutes from "./API/songs/songsRoutes";
+
+
+
+// // import song from "../client/src/music/Lazarus.mp3";
+// require("dotenv").config();
+// const app = express();
+// const port = process.env.PORT;
+
+// app.use(express.static("client"));
+// app.use(express.json());
+
+// app.use("/API/users", usersRoutes);
+// app.use("/API/songs", songsRoutes);
+// app.post("/API/create-database", async (req, res) => {
+//   try {
+//       const { adminPassword } = req.body;
+//       if (!adminPassword) throw new Error("no password")
+//       if (adminPassword === "123456") {
+//           const query = "CREATE DATABASE library"
+//           connection.query(query, (err, results) => {
+//               try {
+//                   if (err) throw err;
+//                   res.send({ ok: true, message: "DB was created!" })
+//               } catch (error) {
+//                   res.status(500).send({ ok: false, error })
+//               }
+//           })
+//       }
+//   } catch (error) {
+//       res.status(500).send({ ok: false, error })
+//   }
+// })
+
+// app.listen(port, () => {
+// console.log(`server is running on port ${port}`);
+// });
+
+
+
 
 
 import express from "express";
@@ -5,6 +48,7 @@ import connection from "./DB/database";
 // import song from "../client/src/music/Lazarus.mp3";
 require("dotenv").config();
 const app = express();
+// import connection from "./DB/database";
 const port = process.env.PORT;
 
 app.use(express.static("client"));
@@ -36,20 +80,6 @@ app.post("/api/add-song", (req, res) => {
       res.send({ ok: false, error: error.message });
     }
   });
-});
-app.post("/api/register", async (req, res) => {
-  try {
-    const { username, email, password } = req.body;
-
-    // Perform relevant actions for user registration, e.g., insert user into the database
-    const query = `INSERT INTO users (username, email, password) VALUES (?, ?, ?)`;
-    await connection.query(query, [username, email, password]);
-
-    res.json({ success: true, message: "User registered successfully" });
-  } catch (error) {
-    console.error("Error during user registration:", error);
-    res.status(500).json({ success: false, message: "Internal Server Error" });
-  }
 });
 
 app.listen(port, () => {

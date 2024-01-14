@@ -6,7 +6,7 @@ import Buttons from "./components/Buttons"
 function App() {
   return (
     <div >
-          <RegisterPage></RegisterPage>
+          <RegisterPage/>
       <Buttons />
     </div>
   )

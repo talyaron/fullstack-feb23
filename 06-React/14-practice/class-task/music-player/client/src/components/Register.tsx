@@ -1,22 +1,33 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { setUsername, setEmail, resetRegistration, RootState } from "../features/user/userRegisterSlice";
+import { useDispatch } from "react-redux";
+import { useAppSelector } from "../app/hooks";
+import { userSelector } from "../features/user/userSlice";
 import Password from "./Password";
-import { registerUser } from "../API/registerApi/registerApi";
 
 const RegisterForm: React.FC = () => {
   const dispatch = useDispatch();
-  const { username, email, password } = useSelector((state: RootState) => state.userRegistration);
+  const user = useAppSelector(userSelector)
+  const [username, setUsername] = useState("")
+  const [password, setPassword] = useState("")
+  const [match, setMatch] = useState(false);
 
-  const handleRegistration = async () => {
-    const success = await registerUser({ username, email, password });
+  const handleSubmit = async () => {
+    console.log(username)
+    console.log(password)
+    console.log(match)
+      if (match) {
 
-    if (success) {
-      console.log("Registration successful!");
-      dispatch(resetRegistration());
-    } else {
-      console.error("Registration failed.");
-    }
+      } else {
+        return
+      }
+    // const success = await registerUser({});
+
+    // if (success) {
+    //   console.log("Registration successful!");
+    //   dispatch(resetRegistration());
+    // } else {
+    //   console.error("Registration failed.");
+    // }
   };
 
   return (
@@ -25,16 +36,13 @@ const RegisterForm: React.FC = () => {
         type="text"
         placeholder="username"
         value={username}
-        onChange={(e) => dispatch(setUsername(e.target.value))}
+        onInput={(ev) => setUsername((ev.target as HTMLInputElement).value)}
+      // value={user?.username}
+      // onChange={(e) => dispatch(setUser(e.target.value))}
       />
-      <input
-        type="text"
-        placeholder="email"
-        value={email}
-        onChange={(e) => dispatch(setEmail(e.target.value))}
-      />
-      <Password />
-      <button type="button" onClick={handleRegistration}>
+
+      <Password password={password} setPassword={setPassword} setMatch={setMatch} match={match} />
+      <button type="button" onClick={handleSubmit}>
         Register
       </button>
     </div>

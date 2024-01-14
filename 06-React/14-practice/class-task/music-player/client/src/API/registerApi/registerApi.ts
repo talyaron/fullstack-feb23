@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "/api/register";
+export const BASE_URL = "/api";
 
 interface RegistrationData {
   username: string;
@@ -10,7 +10,7 @@ interface RegistrationData {
 
 export const registerUser = async (registrationData: RegistrationData): Promise<boolean> => {
   try {
-    const response = await axios.post(BASE_URL, registrationData);
+    const response = await axios.post(`${BASE_URL}/register`, registrationData);
     console.log("Registration response:", response.data);
     return true;
   } catch (error) {
