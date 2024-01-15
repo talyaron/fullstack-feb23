@@ -40,16 +40,16 @@ const Password = ({password, setPassword, match, setMatch}:Props) => {
     return (
       <div>
         <input
-          type={visible ? "text" : "password"}
+          type={visible ? "text" : "password"} className="inputPassword"
           placeholder="password"
           value={password}
           onChange={(e) => handlePasswordInput(e.target.value)}
         />
-        <button type="button" onClick={handleVisibilityToggle}>
+        <button type="button" className="showBtn" onClick={handleVisibilityToggle}>
           {visible ? "Hide" : "Show"} Password
         </button>
         <input
-          type="password"
+          type="password" className="inputPassword"
           placeholder="confirm password"
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}

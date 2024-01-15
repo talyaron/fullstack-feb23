@@ -4,6 +4,7 @@ import { useAppSelector } from "../app/hooks";
 import { userSelector } from "../features/user/userSlice";
 import Password from "./Password";
 import { registerUser } from "../API/registerApi/registerApi";
+import myImg from "../images/Happy girl wearing headphones.jpg"
 
 const RegisterForm: React.FC = () => {
   const dispatch = useDispatch();
@@ -29,39 +30,41 @@ const success = await registerUser({user_name, password});
     
 
   return (
-    <div className="registerDiv">
-    <p className="appName">Multi Musix</p>
-    <h2 className="loginHeader">Login</h2>
-    <form
-  action=""
-  onSubmit={(event) => {
-    handleSubmit();
-  }}
->
-     
-      <input
-        type="text"
-        placeholder="username"
-        value={user_name}
-        onInput={(ev) => setUsername((ev.target as HTMLInputElement).value)}
-      // value={user?.username}
-      // onChange={(e) => dispatch(setUser(e.target.value))}
-      />
+  
 
-      <Password password={password} setPassword={setPassword} setMatch={setMatch} match={match} />
-      <button className="registerBtn" type="submit">
-    Register
-  </button>
-    </form>
-    <p className="decoration">
-  {" "}
-  -------------------- o ---------------------
-</p>
-<button className="signupBtn">Signup</button>
-</div>
-    
+
+<div className="registerDiv">
+      <div className="formContainer">
+        <p className="appName">Multi Musix</p>
+        <h2 className="loginHeader">Login</h2>
+        <form
+          className="registerForm"
+          action=""
+          onSubmit={(event) => {
+            event.preventDefault();
+            handleSubmit();
+          }}
+        >
+          <input
+            type="text"
+            className="inputUserName"
+            placeholder="username"
+            value={user_name}
+            onInput={(ev) => setUsername((ev.target as HTMLInputElement).value)}
+          />
+          <Password password={password} setPassword={setPassword} setMatch={setMatch} match={match} />
+          <button className="registerBtn" type="submit">
+            Register
+          </button>
+        </form>
+        <p className="decoration">-------------------- o ---------------------</p>
+        <button className="signupBtn">Signup</button>
+      </div>
+      <div className="imageContainer">
+        <img src={myImg} className="imgRegister" alt="My Image" />
+      </div>
+    </div>
   );
 };
 
 export default RegisterForm;
-
