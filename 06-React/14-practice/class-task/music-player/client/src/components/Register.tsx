@@ -8,16 +8,16 @@ import { registerUser } from "../API/registerApi/registerApi";
 const RegisterForm: React.FC = () => {
   const dispatch = useDispatch();
   const user = useAppSelector(userSelector)
-  const [username, setUsername] = useState("")
+  const [user_name, setUsername] = useState("")
   const [password, setPassword] = useState("")
   const [match, setMatch] = useState(false);
 
   const handleSubmit = async () => {
-    console.log(username)
+    console.log(user_name)
     console.log(password)
     console.log(match)
       if (match) {
-const success = await registerUser({username, password});
+const success = await registerUser({user_name, password});
 
     if (success) {
       console.log("Registration successful!");
@@ -29,22 +29,39 @@ const success = await registerUser({username, password});
     
 
   return (
-    <div>
+    <div className="registerDiv">
+    <p className="appName">Multi Musix</p>
+    <h2 className="loginHeader">Login</h2>
+    <form
+  action=""
+  onSubmit={(event) => {
+    handleSubmit();
+  }}
+>
+     
       <input
         type="text"
         placeholder="username"
-        value={username}
+        value={user_name}
         onInput={(ev) => setUsername((ev.target as HTMLInputElement).value)}
       // value={user?.username}
       // onChange={(e) => dispatch(setUser(e.target.value))}
       />
 
       <Password password={password} setPassword={setPassword} setMatch={setMatch} match={match} />
-      <button type="button" onClick={handleSubmit}>
-        Register
-      </button>
-    </div>
+      <button className="registerBtn" type="submit">
+    Register
+  </button>
+    </form>
+    <p className="decoration">
+  {" "}
+  -------------------- o ---------------------
+</p>
+<button className="signupBtn">Signup</button>
+</div>
+    
   );
 };
 
 export default RegisterForm;
+

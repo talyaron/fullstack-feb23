@@ -14,6 +14,6 @@ export const registerUser = async (registrationData: RegistrationData): Promise<
     return true;
   } catch (error) {
     console.error("Error during user registration:", error);
-    
+    return false;
   }
 };
