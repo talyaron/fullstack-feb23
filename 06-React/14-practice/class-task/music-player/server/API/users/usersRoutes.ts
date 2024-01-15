@@ -1,11 +1,11 @@
 import express from "express"
-import { createUser, getAllUsers } from "./usersControl"
+import { getAllUsers, registerUser } from "./usersControl"
 
 const usersRouter = express.Router()
 
 usersRouter
     .get("", getAllUsers) 
-    .post("/add-user", createUser)
+    .post("/register-user", registerUser)
 
 
 
