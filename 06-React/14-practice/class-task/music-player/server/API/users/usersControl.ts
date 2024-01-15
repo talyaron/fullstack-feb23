@@ -1,5 +1,5 @@
 
-import express, { query } from 'express';
+import express from 'express';
 import connection from '../../DB/database';
 import bcrypt from 'bcrypt';
 import jwt from 'jwt-simple';
