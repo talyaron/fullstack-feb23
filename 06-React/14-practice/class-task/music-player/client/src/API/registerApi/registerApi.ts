@@ -9,7 +9,7 @@ interface RegistrationData {
 
 export const registerUser = async (registrationData: RegistrationData): Promise<boolean> => {
   try {
-    const response = await axios.post(`${BASE_URL}/add-user`, registrationData);
+    const response = await axios.post(`${BASE_URL}/register-user`, registrationData);
     console.log("Registration response:", response.data);
     return true;
   } catch (error) {

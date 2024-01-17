@@ -1,5 +1,5 @@
 
-import express, { query } from 'express';
+import express from 'express';
 import connection from '../../DB/database';
 import bcrypt from 'bcrypt';
 import jwt from 'jwt-simple';
@@ -42,7 +42,7 @@ export async function registerUser(req: express.Request, res: express.Response) 
                 connection.query(queryUser, (err2, results) => {
                     if (err2) throw err2;
                     //@ts-ignore
-                    const cookie = {userID: resultsAdd.insertId}
+                    const cookie = {user_id: resultsAdd.insertId}
                     const token = jwt.encode(cookie, secret)
 
                     res.cookie("user", token, {httpOnly: true, maxAge: 1000 * 60 * 60})
@@ -58,7 +58,7 @@ export async function registerUser(req: express.Request, res: express.Response) 
         res.status(500).send({ok: false, error})
     }
 }
-export async function getUserByCookie(req, res) {
+export async function userByCookie(req, res) {
     try {
         const {user} = req.cookies;
 
