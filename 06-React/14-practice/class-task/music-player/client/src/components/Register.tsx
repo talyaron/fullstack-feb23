@@ -27,9 +27,6 @@ const RegisterForm: React.FC = () => {
     setLoading(false)
   }
   const handleSubmit = async () => {
-    console.log(user_name)
-    console.log(password)
-    console.log(match)
     if (match) {
       const success = await registerUser({ user_name, password })
 
