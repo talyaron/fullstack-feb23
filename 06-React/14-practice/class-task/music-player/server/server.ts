@@ -3,8 +3,6 @@
 // import usersRoutes from "./API/users/usersRoutes";
 // import songsRoutes from "./API/songs/songsRoutes";
 
-
-
 // // import song from "../client/src/music/Lazarus.mp3";
 // require("dotenv").config();
 // const app = express();
@@ -38,10 +36,6 @@
 // app.listen(port, () => {
 // console.log(`server is running on port ${port}`);
 // });
-
-
-
-
 
 import express from "express";
 import connection from "./DB/database";

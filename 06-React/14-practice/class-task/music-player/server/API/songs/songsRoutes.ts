@@ -1,12 +1,8 @@
-import express from "express"
-import { addSong, getSongById } from "./songsControler"
+import express from "express";
+import { addSong, getSongById } from "./songsControler";
 
-const songRouter = express.Router()
+const songRouter = express.Router();
 
-songRouter
-    .get("", getSongById) 
-    .post("", addSong)
+songRouter.get("/get-song/:id", getSongById).post("", addSong);
 
-
-
-export default songRouter
+export default songRouter;
