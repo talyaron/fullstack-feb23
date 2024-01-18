@@ -6,6 +6,7 @@ import Password from "./Password";
 import { registerUser } from "../API/registerApi/registerApi";
 import myImg from "../images/Happy girl wearing headphones.jpg"
 
+
 const RegisterForm: React.FC = () => {
   const dispatch = useDispatch();
   const user = useAppSelector(userSelector)
@@ -17,23 +18,24 @@ const RegisterForm: React.FC = () => {
     console.log(user_name)
     console.log(password)
     console.log(match)
-      if (match) {
-const success = await registerUser({user_name, password});
+    if (match) {
+      const success = await registerUser({ user_name, password });
 
-    if (success) {
-      console.log("Registration successful!");
-    } else {
-      console.error("Registration failed.");
+      if (success) {
+        console.log("Registration successful!");
+      } else {
+        console.error("Registration failed.");
+      }
     }
-  }}
-    
-    
+  }
+
+
 
   return (
-  
 
 
-<div className="registerDiv">
+
+    <div className="registerDiv">
       <div className="formContainer">
         <p className="appName">Multi Musix</p>
         <h2 className="loginHeader">Login</h2>

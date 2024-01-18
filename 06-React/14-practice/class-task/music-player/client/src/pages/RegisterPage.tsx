@@ -4,7 +4,7 @@ import Password from '../components/Password';
 
 const RegisterPage = () => {
     return (
-       <Register></Register>
+        <Register></Register>
     )
 }
 
