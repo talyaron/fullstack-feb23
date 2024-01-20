@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import "./App.css"
 import { useAppDispatch, useAppSelector } from "./app/hooks"
 import Header from "./components/header/Header"
@@ -12,6 +12,7 @@ import {
 
 function App() {
   const dispatch = useAppDispatch()
+  const [counter, setCounter] = useState(10)
 
   const user = useAppSelector(userSelector)
   const status = useAppSelector(userStatusSelector)
