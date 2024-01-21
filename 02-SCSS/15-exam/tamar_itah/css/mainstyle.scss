@@ -3,62 +3,26 @@ $t_color: lightgray;
 $s_color: rgb(99, 248, 119);
 $b_color: white;
 
-
 body {
     background-color: beige;
-    font-family: 'Lalezar';
+    font-family: "Lalezar";
 }
 
 .wrapper {
-    width: 90vw;
+    width: 34rem;
     height: 100%;
     background-color: $b_color;
     margin: auto;
     // border: 1px solid none;
     border-radius: 1.2rem;
     padding: 20px;
-
 }
 
 .conteiner {
     background-image: linear-gradient(to right, $h_color, $s_color);
-    width: 90vw;
+    width: 34rem;
     border-radius: 10px;
     margin-left: -20px;
-}
-
-@media only screen and (min-width: 1024px) {
-    .categories {
-        &__links {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            align-items: center;
-        }
-    }
-}
-
-@media only screen and (max-width: 1024px) {
-    .categories {
-        &__links {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            align-items: center;
-        }
-    }
-}
-
-@media only screen and (max-width: 600px) {
-    .categories {
-        &__links {
-            display: grid;
-            grid-template-columns: 1fr;
-            align-items: center;
-        }
-    }
-
-    .wrapper {
-        flex-direction: column;
-    }
 }
 
 .header {
@@ -66,7 +30,6 @@ body {
     align-items: center;
     grid-template-rows: 1fr 1fr;
     padding: 17px;
-
 
     grid-template-areas:
         "first-row"
@@ -77,7 +40,7 @@ body {
         display: flex;
         margin-top: 0;
         padding-top: 0;
-        width: 80vw;
+        width: 23rem;
         color: $b_color;
 
         &__icons {
@@ -96,7 +59,7 @@ body {
         grid-area: secend-row;
         margin-top: 0;
         padding-top: 0;
-        width: 70vw;
+        width: 9rem;
         display: flex;
         white-space: nowrap;
 
@@ -124,7 +87,6 @@ body {
                 border-radius: 100%;
             }
         }
-
     }
 }
 
@@ -149,6 +111,7 @@ body {
     border: 1px solid $b_color;
     border-radius: 10px;
     margin-left: 30px;
+    padding: 10px;
 
     &__h4 {
         color: $h_color;
@@ -156,6 +119,7 @@ body {
 
     &__p {
         color: $t_color;
+        font-size: 20px;
     }
 }
 
@@ -164,11 +128,7 @@ body {
         margin-left: 0px;
     }
 
-    30% {
-        margin-left: -728px;
-    }
-
-    50% {
+    40% {
         margin-left: -728px;
     }
 
@@ -176,15 +136,7 @@ body {
         margin-left: -1456px;
     }
 
-    70% {
-        margin-left: -1456px;
-    }
-
     80% {
-        margin-left: -2184px;
-    }
-
-    90% {
         margin-left: -2184px;
     }
 }
@@ -197,7 +149,7 @@ body {
     padding: 17px;
     color: $b_color;
     background-color: $b_color;
-    width: 80vw;
+    width: 30rem;
     margin-left: 5%;
     border-radius: 10px;
     position: relative;
@@ -226,28 +178,27 @@ body {
         grid-area: p;
         color: $t_color;
     }
-
 }
 
 .categories {
     margin-top: 100px;
 
     &__header {
-
-        &__services{
-            border: 1px solid gray;
-            border-radius: 20px; 
-            width: 200px;
-        }
-
-        &__Doctors{
+        &__services {
             border: 1px solid gray;
             border-radius: 20px;
-            width: 200px;
-            position: absolute;
-            left: 190px;
+            width: 8rem;
+            left: 7rem;
+            position: relative;
         }
 
+        &__Doctors {
+            border: 1px solid gray;
+            border-radius: 20px;
+            width: 8rem;
+            position: relative;
+            left: -8rem;
+        }
 
         &__services:focus {
             border: 1px solid $h_color;
@@ -266,11 +217,9 @@ body {
             position: absolute;
             z-index: 1;
         }
-
     }
 
     &__links {
-
         display: grid;
 
         &__block {
@@ -279,26 +228,100 @@ body {
             grid-template-rows: 1fr 1fr;
             grid-template-columns: 1fr 6fr;
             padding: 17px;
-
         }
     }
 }
 
 .footer {
     display: grid;
-    position: fixed;
+    position: sticky;
     bottom: 0;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr;
-    grid-template-areas: 
-    "i1 i2 i3 i4 i5"
-    "text1 text2 text3 text4 text5";
+    grid-template-areas:
+        "i1 i2 i3 i4 i5"
+        "text1 text2 text3 text4 text5";
 
-    .i1{
+    .i1 {
         grid-area: i1;
     }
 
-    .text1{
+    .text1 {
         grid-area: text1;
+    }
+}
+
+@media only screen and (min-width: 1024px) {
+    //! to fix the doctor btn dissapir???
+    .categories {
+        &__links {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            align-items: center;
+        }
+
+        &__header {
+            &__services {
+                border: 1px solid gray;
+                border-radius: 20px;
+                width: 8rem;
+                left: 7rem;
+                position: relative;
+            }
+
+            &__Doctors {
+                border: 1px solid gray;
+                border-radius: 20px;
+                width: 8rem;
+                position: relative;
+                left: -8rem;
+            }
+        }
+    }
+
+    .wrapper {
+        width: 100%;
+    }
+
+    .conteiner {
+        width: 100%;
+    }
+
+    .header {
+        &__1st {
+            width: 90%;
+        }
+
+        &__2nd {
+            width: 100%;
+        }
+    }
+
+    .post {
+        width: 90%;
+    }
+}
+
+@media only screen and (max-width: 1024px) {
+    .categories {
+        &__links {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+        }
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .categories {
+        &__links {
+            display: grid;
+            grid-template-columns: 1fr;
+            align-items: center;
+        }
+    }
+
+    .wrapper {
+        flex-direction: column;
     }
 }
