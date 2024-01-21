@@ -1,15 +1,11 @@
-
-import "./App.scss"
-import RegisterPage from "./pages/RegisterPage"
-import Buttons from "./components/Buttons"
+import {  RouterProvider } from 'react-router-dom';
+import { router } from './routes/routes';
+import "./App.scss";
+ 
 
 function App() {
-  return (
-    <div >
-          <RegisterPage/>
-      <Buttons />
-    </div>
-  )
+  return <RouterProvider router={router} />;
+
 }
 
-export default App
+export default App;
