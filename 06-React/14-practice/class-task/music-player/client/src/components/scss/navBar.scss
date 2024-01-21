@@ -1,0 +1,39 @@
+
+$font-family: 'Montserrat', sans-serif;
+$color-site-black:#222;
+$color-site-purple: #6467d4;
+$color-site-white:#fff;
+
+  
+// Navbar.scss
+
+.allheader {
+    background-color: #222; // צבע רקע כל ההדר
+    padding: 10px;
+  }
+  
+  nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .logo {
+    max-width: 200px; // הגבלת רוחב הלוגו
+  }
+  
+  nav a {
+    color: #fff; // צבע הטקסט בלינקים
+    margin: 0 10px; // מרווח בין הלינקים
+    text-decoration: none;
+    font-size: 16px;
+  }
+  
+  .user {
+    width: 20px; // גודל התמונה של המשתמש
+    margin-left: 5px; // מרווח בין הלינק לתמונה
+  }
+  
+ 
+  

@@ -11,11 +11,8 @@ interface Props {
 }
 const Password = ({password, setPassword, match, setMatch}:Props) => {
     const dispatch = useDispatch();
-    // const [password, setPasswordValue] = useState<string>("");
     const [confirmPassword, setConfirmPassword] = useState<string>("");
     const [visible, setVisbile] = useState(false);
-    // const [match, setMatch] = useState(false);
-  
     const validate = () => {
       if (password === confirmPassword) {
         setMatch(true);
@@ -39,15 +36,24 @@ const Password = ({password, setPassword, match, setMatch}:Props) => {
   
     return (
       <div>
+          <div className="password-input-container">
         <input
-          type={visible ? "text" : "password"} className="inputPassword"
-          placeholder="password"
+          className="inputPassword"
+          type={visible ? "text" : "password"}
+          id="password"
+          placeholder="Password"
           value={password}
-          onChange={(e) => handlePasswordInput(e.target.value)}
+          onChange={(ev) => handlePasswordInput(ev.target.value)}
         />
-        <button type="button" className="showBtn" onClick={handleVisibilityToggle}>
-          {visible ? "Hide" : "Show"} Password
-        </button>
+        <span
+          className="material-icons password-icon"
+          onClick={handleVisibilityToggle}
+        >
+          {visible ? "visibility" : "visibility_off"}
+        </span>
+      </div>
+      <div className="password-input-container">
+
         <input
           type="password" className="inputPassword"
           placeholder="confirm password"
@@ -56,6 +62,8 @@ const Password = ({password, setPassword, match, setMatch}:Props) => {
         />
         <p className="match">{match ? "Passwords match!" : "Passwords do not match!"}</p>
       </div>
+      </div>
+
     );
   };
   

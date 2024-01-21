@@ -4,7 +4,7 @@ import userImage from '../images/user.svg';
 import logo from '../images/multi-musix-high-resolution-logo-transparent.png';
 
 
-const Navbar = () => {
+const LogIn = () => {
   return (
     <div className='allheader'> 
     <nav>
@@ -22,5 +22,5 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default LogIn;
 

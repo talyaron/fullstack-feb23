@@ -1,9 +1,10 @@
 import React from "react"
 import { createBrowserRouter } from "react-router-dom"
-import HomePage from "../views/pages/HomePage"
-import RegisterPage from "../views/pages/RegisterPage"
+import HomePage from "../views/pages/home-page"
+import RegisterPage from "../views/pages/register-page"
 import Navbar from "../components/NavBar"
 import Layout from "../views/layouts/Layout"
+import AboutUs from "../components/AboutUs"
 
 export const router = createBrowserRouter([
   {
@@ -12,7 +13,10 @@ export const router = createBrowserRouter([
     children: [
       { path: "/", element: <RegisterPage /> },
       { path: "/home-page", element: <HomePage /> },
-      { path: "/register-page", element: <RegisterPage /> },
+      { path: "/about-us", element: <AboutUs /> },
+      { path: "/genres", element: <RegisterPage /> },
+      { path: "/contact", element: <RegisterPage /> },
+      { path: "/login-page", element: <RegisterPage /> },
     ],
   },
 ])

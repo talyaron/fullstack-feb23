@@ -1,0 +1,82 @@
+
+$font-family: 'Montserrat', sans-serif;
+$color-site-black:#222;
+$color-site-purple: #6467d4;
+$color-site-white:#fff;
+  
+  .video-background {
+  
+    width: 100%;
+    height: 90vh;
+    overflow: hidden;
+    z-index: -1; 
+  }
+  video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .overlay {
+    position: absolute;
+    width: 100%;
+    height: 90vh;
+    background-color: rgba(0, 0, 0, 0.5); 
+  }
+  
+
+  
+  .content-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: $color-site-white;
+    z-index: 1; 
+    font-family: $font-family;
+  }
+  .heading{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+  }
+  .half-width-text{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .signup-container {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .signup-heading {
+    font-size: 24px;
+    margin-bottom: 10px;
+    font-family: $font-family;
+  }
+  
+  .signup-button {
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 100px;
+    background-color:$color-site-purple ;
+    color: #fff;
+    font-family: $font-family;
+    
+
+    
+  }
+  .signup-button:hover{
+    background-color: $color-site-white; 
+    color: #000; 
+    font-weight: 800;
+
+
+}
+  

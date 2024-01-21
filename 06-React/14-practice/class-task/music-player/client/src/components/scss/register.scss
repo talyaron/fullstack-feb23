@@ -1,3 +1,4 @@
+$font-family: 'Montserrat', sans-serif;
 .registerDiv {
     display: flex;
     flex-wrap: wrap;
@@ -19,9 +20,15 @@
       .loginHeader {
         color: #000000;
       }
-  
+      .password-icon {
+        color: #6467D4;
+        font-size: 20px;
+        margin: 0 5px;  /* הפרדה מהטקסט */
+        cursor: pointer;  /* סמן שהאלמנט ניתן ללחיצה */
+      }
       .inputPassword,
       .inputUserName {
+        font-family: $font-family;
         padding: 0px 10px;
         display: block;
         height: 40px;
@@ -32,10 +39,18 @@
         color: gray;
       }
   
-      .inputPassword {
-        margin: 0px 0px;
-      }
-  
+    
+  .material-icons{
+    position: absolute;
+    top: 40vh;
+    right: 65vw;
+    transform: translateY(-50%);
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    outline: none;
+}
+  }
       .password-input-wrapper {
         height: 40px;
         width: 98%;
@@ -90,7 +105,7 @@
       max-width: 100%; // נעשה שינוי כדי שהתמונה תמלא את רוחב הקונטיינר
       max-height: 80%; // נעשה שינוי כדי שהתמונה תמלא את גובה הקונטיינר
     }
-  }
+  
   @media (max-width: 768px) {
     .registerDiv {
         flex-direction: column;
@@ -98,6 +113,16 @@
 
   .formContainer {
     margin: 20px 30px 20px 20px;
-
+    
+    .material-icons{
+      position: absolute;
+      top: 37vh;
+      right:17vw;
+      transform: translateY(-50%);
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+      outline: none;
+  }
 
 }}}
