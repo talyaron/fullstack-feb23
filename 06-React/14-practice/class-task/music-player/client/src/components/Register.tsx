@@ -7,6 +7,7 @@ import { getUser, registerUser } from "../API/userApi/registerApi"
 import myImg from "../images/Happy girl wearing headphones.jpg"
 import { useNavigate } from "react-router-dom"
 
+
 const RegisterForm: React.FC = () => {
   const dispatch = useDispatch()
   const user = useAppSelector(userSelector)

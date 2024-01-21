@@ -1,5 +1,6 @@
+
+
 import express from "express";
-import connection from "./DB/database";
 import usersRoutes from "./API/users/usersRoutes";
 import songsRoutes from "./API/songs/songsRoutes";
 import cookieParser from "cookie-parser";
