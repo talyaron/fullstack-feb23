@@ -13,7 +13,7 @@ export const getPlaylist = createAsyncThunk(
         throw new Error(`Could not get playlist from db`)
       console.log(data)
       debugger
-      return data
+      return data.result
     } catch (error: any) {
       console.error(error)
       return thunkApi.rejectWithValue({

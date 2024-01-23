@@ -13,6 +13,7 @@ const Navbar = () => {
         <NavLink to="/home-page">Home</NavLink>
         <NavLink to="/about-us">About Us</NavLink>
         <NavLink to="/genres">Genres</NavLink>
+        <NavLink to="/playlist">playlist</NavLink>
         <NavLink to="/contact">Contact Us </NavLink>
         <NavLink to="/login-page">
           <img className="user" src={userImage} alt="" />   </NavLink>

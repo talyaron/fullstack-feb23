@@ -4,10 +4,9 @@ import songsRoutes from "./API/songs/songsRoutes";
 require("dotenv").config();
 const app = express();
 const port = process.env.PORT;
-
-app.use(cookieParser());
 app.use(express.json());
 app.use("/API/users", usersRoutes);
+app.use("/API/songs", songsRoutes);
 app.use("/API/songs", songsRoutes);
 
 app.listen(port, () => {
