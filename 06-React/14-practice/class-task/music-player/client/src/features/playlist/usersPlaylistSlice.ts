@@ -114,7 +114,7 @@ export const usersPlaylistSlice = createSlice({
 
 export const { addSong, removeSong } = usersPlaylistSlice.actions
 
-export const playlistSelector = (state: RootState) => state.playlist
+export const playlistSelector = (state: RootState) => state.playlist.playlist
 export const playlistStatusSelector = (state: RootState) =>
   state.playlist.status
 

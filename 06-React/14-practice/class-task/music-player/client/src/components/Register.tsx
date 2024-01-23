@@ -81,6 +81,7 @@ const RegisterForm: React.FC = () => {
         </button>
 
       </div>
+      <p>{playlistStatus}</p>
       <div className="imageContainer">
         <img src={myImg} className="imgRegister" alt="My Image" />
       </div>

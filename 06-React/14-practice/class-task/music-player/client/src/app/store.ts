@@ -1,14 +1,14 @@
-import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit"
-import userReducer from "../features/user/userSlice"
-import songReducer from "../features/song/songSlice"
+import { Action, ThunkAction, configureStore } from "@reduxjs/toolkit"
 import setPassword from "../components/Password"
-import usersPlaylistReducer from "../features/playlist/usersPlaylistSlice"
+import usersPlaylistSlice from "../features/playlist/usersPlaylistSlice"
+import songReducer from "../features/song/songSlice"
+import userReducer from "../features/user/userSlice"
 
 export const store = configureStore({
   reducer: {
     user: userReducer,
     song: songReducer,
-    playlist: usersPlaylistReducer,
+    playlist: usersPlaylistSlice,
   },
 })
 
