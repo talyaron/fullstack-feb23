@@ -6,7 +6,10 @@ interface RegistrationData {
   user_name: string
   password: string
 }
-
+interface LoginData {
+  user_name: string
+  password: string
+}
 export const registerUser = async (
   registrationData: RegistrationData,
 ): Promise<boolean> => {
@@ -19,6 +22,16 @@ export const registerUser = async (
     return true
   } catch (error) {
     console.error("Error during user registration:", error)
+    return false
+  }
+}
+export const loginUser = async (loginData: LoginData): Promise<boolean> => {
+  try {
+    const response = await axios.post(` ${BASE_URL}/login-user`, loginData)
+    console.log("Login response:", response.data)
+    return true
+  } catch (error) {
+    console.error("Error during user login:", error)
     return false
   }
 }

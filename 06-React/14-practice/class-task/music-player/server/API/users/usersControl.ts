@@ -67,7 +67,7 @@ export async function registerUser(
 export async function userByCookie(req, res) {
   try {
     const { user } = req.cookies;
-    console.log(user)
+    console.log(user);
     if (!user || user == undefined) {
       res.status(401).send({ ok: false, msg: "no cookie" });
     }
@@ -76,8 +76,8 @@ export async function userByCookie(req, res) {
     if (!secret) throw new Error("no secret");
     // if ()
     const decodedId = jwt.decode(user, secret);
-    const userID  = decodedId.user_id;
-    if (!userID) throw new Error("Could not decode userID")
+    const userID = decodedId.user_id;
+    if (!userID) throw new Error("Could not decode userID");
     // if ()
 
     const query = `SELECT * FROM users WHERE user_id = ${userID}`;
