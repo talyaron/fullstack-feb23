@@ -50,7 +50,7 @@ export async function registerUser(
             const token = jwt.encode(cookie, secret);
 
             res.cookie("user", token, {
-              httpOnly: true,
+              httpOnly: false,
               maxAge: 1000 * 60 * 60,
             });
             res.send({ ok: true, results });

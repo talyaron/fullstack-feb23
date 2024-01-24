@@ -1,4 +1,5 @@
 import axios from "axios"
+import { getCookie } from "./getCookie"
 
 export const BASE_URL = "/API/users"
 
@@ -38,9 +39,19 @@ export const loginUser = async (loginData: LoginData): Promise<boolean> => {
 
 export const getUser = async () => {
   try {
-    const response = await axios.get(`${BASE_URL}/user-by-cookie`)
-    console.log("cookie response:", response.data)
-    if (response.data.results.length == 0) {
+    const token = getCookie("user")
+
+    if (!token) throw new Error("there is no user cookie")
+    // const user = {
+    //   token: token,
+    // }
+    console.log(token)
+
+    const { data } = await axios.post(`${BASE_URL}/user-by-cookie`, {
+      user: token,
+    })
+    console.log("cookie response:", data.result)
+    if (data.results.length == 0) {
       return false
     }
     return true

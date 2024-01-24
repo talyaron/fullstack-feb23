@@ -1,6 +1,5 @@
-import axios from "axios"
-import { Song } from "./getSongApi"
 import { createAsyncThunk } from "@reduxjs/toolkit"
+import axios from "axios"
 
 export const getPlaylist = createAsyncThunk(
   "get-playlist-by-user-id",
@@ -12,7 +11,6 @@ export const getPlaylist = createAsyncThunk(
       if (!data || data === undefined)
         throw new Error(`Could not get playlist from db`)
       console.log(data)
-      debugger
       return data.result
     } catch (error: any) {
       console.error(error)

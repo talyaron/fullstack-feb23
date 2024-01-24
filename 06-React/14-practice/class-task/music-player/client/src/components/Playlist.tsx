@@ -3,10 +3,13 @@ import { getPlaylist } from '../API/songsApi/getPlaylistApi'
 import { useDispatch } from 'react-redux'
 import { useAppSelector } from '../app/hooks'
 import { playlistSelector } from '../features/playlist/usersPlaylistSlice'
+import { getUser } from '../API/userApi/registerApi'
 
-const Playlist = () => {
+const Playlist = async () => {
 
     const dispatch = useDispatch()
+    const user_id = await getUser();
+    console.log(user_id)
     useEffect(() => { dispatch(getPlaylist(1)) }, [])
     const playlist = useAppSelector(playlistSelector)
     return (
