@@ -1,8 +1,11 @@
 import express from "express";
 import usersRoutes from "./API/users/usersRoutes";
 import songsRoutes from "./API/songs/songsRoutes";
+import cookieParser from "cookie-parser";
 require("dotenv").config();
 const app = express();
+app.use(cookieParser());
+
 const port = process.env.PORT;
 app.use(express.json());
 app.use("/API/users", usersRoutes);

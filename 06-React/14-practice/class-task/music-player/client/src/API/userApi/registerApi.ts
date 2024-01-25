@@ -39,24 +39,12 @@ export const loginUser = async (loginData: LoginData): Promise<boolean> => {
 
 export const getUser = async () => {
   try {
-    const token = getCookie("user")
+    const { data } = await axios.get(`${BASE_URL}/user-by-cookie`)
+    // console.log("cookie response:", data)
+    if (data.results.length == 0) throw new Error("ther is no cookie")
 
-    if (!token) throw new Error("there is no user cookie")
-    // const user = {
-    //   token: token,
-    // }
-    console.log(token)
-
-    const { data } = await axios.post(`${BASE_URL}/user-by-cookie`, {
-      user: token,
-    })
-    console.log("cookie response:", data.result)
-    if (data.results.length == 0) {
-      return false
-    }
-    return true
+    return data
   } catch (error) {
     console.error("Error during user test:", error)
-    return false
   }
 }
