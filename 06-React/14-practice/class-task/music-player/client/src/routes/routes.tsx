@@ -6,6 +6,7 @@ import AboutUs from "../components/AboutUs"
 import Login from "../components/Login"
 import RegisterPage from "../views/pages/register-page"
 import HomePage from "../views/pages/home-page"
+import PlaylistPage from "../views/pages/playlist"
 
 export const router = createBrowserRouter([
   {
@@ -18,6 +19,7 @@ export const router = createBrowserRouter([
       { path: "/genres", element: <RegisterPage /> },
       { path: "/contact", element: <RegisterPage /> },
       { path: "/login-page", element: <Login /> },
+      { path: "/playlist", element: <PlaylistPage /> },
     ],
   },
 ])

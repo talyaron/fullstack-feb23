@@ -2,6 +2,9 @@ import express from "express";
 import connection from "../../DB/database";
 import bcrypt from "bcrypt";
 import jwt from "jwt-simple";
+import cookieParser from "cookie-parser";
+const app = express();
+app.use(cookieParser());
 
 export async function getAllUsers(req: express.Request, res: express.Response) {
   try {
@@ -50,7 +53,7 @@ export async function registerUser(
             const token = jwt.encode(cookie, secret);
 
             res.cookie("user", token, {
-              httpOnly: true,
+              httpOnly: false,
               maxAge: 1000 * 60 * 60,
             });
             res.send({ ok: true, results });
@@ -74,11 +77,9 @@ export async function userByCookie(req, res) {
 
     const secret = process.env.SECRET;
     if (!secret) throw new Error("no secret");
-    // if ()
     const decodedId = jwt.decode(user, secret);
     const userID = decodedId.user_id;
     if (!userID) throw new Error("Could not decode userID");
-    // if ()
 
     const query = `SELECT * FROM users WHERE user_id = ${userID}`;
 

@@ -1,8 +1,7 @@
 import axios from "axios"
-// import BASE_URL from "./getSongApi"
 
-interface Song {
-  song_id: number
+export interface Song {
+  song_id: number | null
   title: string
   artist: string
   img_src: string

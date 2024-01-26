@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
+import { Link, useNavigate } from "react-router-dom"
+import { getUser, registerUser } from "../API/userApi/registerApi"
 import { useAppSelector } from "../app/hooks"
 import { userSelector } from "../features/user/userSlice"
-import Password from "./Password"
-import { getUser, registerUser } from "../API/userApi/registerApi"
 import myImg from "../images/Happy girl wearing headphones.jpg"
-import { Link, Navigate, useNavigate } from "react-router-dom"
+import Password from "./Password"
 
 
 const RegisterForm: React.FC = () => {
-  const dispatch = useDispatch()
-  const user = useAppSelector(userSelector)
+  // const dispatch = useDispatch()
+  // const user = useAppSelector(userSelector)
   const [user_name, setUsername] = useState("")
   const [password, setPassword] = useState("")
   const [match, setMatch] = useState(false)
@@ -21,15 +21,13 @@ const RegisterForm: React.FC = () => {
     setLoading(true)
     const data = await getUser()
     if (data) {
+      console.log(data)
       setLoading(false)
       navigate("/home-page")
     }
     setLoading(false)
   }
   const handleSubmit = async () => {
-    console.log(user_name)
-    console.log(password)
-    console.log(match)
     if (match) {
       const success = await registerUser({ user_name, password })
 

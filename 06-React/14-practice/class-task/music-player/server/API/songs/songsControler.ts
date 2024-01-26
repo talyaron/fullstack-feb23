@@ -21,6 +21,31 @@ export async function getSongById(req: express.Request, res: express.Response) {
   }
 }
 
+export async function getPlaylist(req: express.Request, res: express.Response) {
+  try {
+    const user_id = req.params.id;
+
+    const query = `SELECT *
+    FROM multi_musix.users_playlists
+    RIGHT JOIN multi_musix.songs ON multi_musix.users_playlists.song_id = multi_musix.songs.song_id
+    where multi_musix.users_playlists.user_id = ${user_id};`;
+
+    // `SELECT * FROM multi_musix.users_playlists where user_id =${user_id};`;
+    connection.query(query, (err, result) => {
+      try {
+        if (err) throw err;
+        res.send({ ok: true, result });
+      } catch (error) {
+        console.error(error);
+        res.status(500).send({ ok: false, error });
+      }
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send({ ok: false, error });
+  }
+}
+
 export async function addSong(req: express.Request, res: express.Response) {
   try {
     const { title, artist, img_src, src } = req.body;
