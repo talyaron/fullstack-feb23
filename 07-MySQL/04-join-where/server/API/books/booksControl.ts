@@ -81,7 +81,7 @@ export async function updateBook(req, res) {
 
 export async function findBookByName(req, res) {
     try {
-        const {title} = req.query;
+        const { title } = req.query;
         if (!title) throw new Error("no title");
 
         // const query = `SELECT * FROM books WHERE title = "${title}";`;
@@ -91,7 +91,7 @@ export async function findBookByName(req, res) {
         connection.query(query, (err, results) => {
             try {
                 if (err) throw err
-                res.send({ok: true, results})
+                res.send({ ok: true, results })
             } catch (error) {
                 console.log(error)
                 res.status(500).send({ ok: false, error })
@@ -106,7 +106,7 @@ export async function findBookByName(req, res) {
 
 export async function deleteBook(req, res) {
     try {
-        const {bookId} = req.params;
+        const { bookId } = req.params;
         if (!bookId) throw new Error("no Id")
 
         const query = `DELETE FROM books WHERE (book_id = ${bookId});`;
@@ -116,22 +116,43 @@ export async function deleteBook(req, res) {
                 if (err) throw err;
                 //@ts-ignore
                 if (results.affectedRows) {
-                    res.send({ok: true, results})
+                    res.send({ ok: true, results })
                 } else {
-                    res.send({ok: true, results: "No rows were deleted"})
+                    res.send({ ok: true, results: "No rows were deleted" })
                 }
             } catch (error) {
                 console.log(error)
-                res.status(500).send({ ok: false, error }) 
+                res.status(500).send({ ok: false, error })
             }
         })
     } catch (error) {
         console.log(error)
-        res.status(500).send({ ok: false, error }) 
+        res.status(500).send({ ok: false, error })
     }
 }
 
+export async function getAllLoanedBooks(req, res) {
+    try {
+        const query = `select *
+        from library.users as a
+        inner join library.loaned_books as b
+        on a.user_id = b.user_id
+        inner join library.books as c on c.book_id = b.book_id;`;
 
+        connection.query(query, (err, results) => {
+            try {
+                if (err) throw err
+                res.send({ ok: true, results })
+            } catch (error) {
+                console.log(error)
+                res.status(500).send({ ok: false, error })
+            }
+        })
+    } catch (error) {
+        console.log(error)
+        res.status(500).send({ ok: false, error })
+    }
+}
 
 
 

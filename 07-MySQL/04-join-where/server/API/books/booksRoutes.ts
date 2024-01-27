@@ -5,6 +5,7 @@ import {
     findBookByName,
     // deleteBook,
     getAllBooks,
+    getAllLoanedBooks,
     updateBook
 } from "./booksControl"
 
@@ -15,9 +16,10 @@ const router = express.Router()
 router
     .get("", getAllBooks) // <-- ALL
     .get("/filter", findBookByName) // <-- ALL
+    .get("/all-loaned-books", getAllLoanedBooks)
     .post("", createBook)
     .patch("/:breed", updateBook)
-.delete("/:bookId", deleteBook)
+    .delete("/:bookId", deleteBook)
 
 // .post("", () => {}) // <-- add object
 // .put("/:id", () => {}) // <-- update more than one field by ID
