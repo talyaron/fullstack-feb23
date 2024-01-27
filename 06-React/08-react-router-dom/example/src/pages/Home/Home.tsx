@@ -1,9 +1,20 @@
+import axios from "axios";
 import React from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 const Home = () => {
   const navigate = useNavigate();
+
+  const handleGetUsers = async () => {
+    try {
+      const { data } = await axios.get("http://localhost:8000/api/users", { headers: { "Content-Type": "application/json" } })
+      const {data} = await axios.post("http://localhost:8000/api/users",{}, { headers: { "Content-Type": "multipart/form-data" } })
+      
+    } catch (error) {
+      console.error(error)
+    }
+  }
 
   return (
     <div>
