@@ -3,6 +3,7 @@ import Password from "./Password"
 import { getUser, registerUser } from "../API/userApi/registerApi"
 import myImg from "../images/Happy girl wearing headphones.jpg"
 import { useNavigate } from "react-router-dom"
+import { loginUser } from "../API/userApi/loginApi"
 
 
 const LoginForm: React.FC = () => {
@@ -15,6 +16,7 @@ const LoginForm: React.FC = () => {
     const handleGetUser = async () => {
         setLoading(true)
         const data = await getUser()
+
         if (data) {
             setLoading(false)
             navigate("/home-page")
@@ -22,12 +24,8 @@ const LoginForm: React.FC = () => {
         setLoading(false)
     }
     const handleLogin = async () => {
-        console.log(user_name)
-        console.log(password)
-        console.log(match)
         if (match) {
-            const success = await registerUser({ user_name, password })
-
+            const success = await loginUser({ user_name, password })
             if (success) {
                 console.log("Login successful!")
             } else {
