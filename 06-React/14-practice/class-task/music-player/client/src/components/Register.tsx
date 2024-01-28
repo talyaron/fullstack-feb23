@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from "react"
-import { useDispatch } from "react-redux"
 import { Link, useNavigate } from "react-router-dom"
 import { getUser, registerUser } from "../API/userApi/registerApi"
-import { useAppSelector } from "../app/hooks"
-import { userSelector } from "../features/user/userSlice"
 import myImg from "../images/Happy girl wearing headphones.jpg"
 import Password from "./Password"
 
@@ -21,7 +18,6 @@ const RegisterForm: React.FC = () => {
     setLoading(true)
     const data = await getUser()
     if (data) {
-      console.log(data)
       setLoading(false)
       navigate("/home-page")
     }
