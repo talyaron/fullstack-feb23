@@ -10,7 +10,7 @@ export interface playlistState {
 
 const initialState: playlistState = {
   playlist: [
-    { song_id: null, title: "", artist: "", img_src: "", src: "", genre: "" },
+    { song_id: 0, title: "", artist: "", img_src: "", src: "", genre: "" },
   ],
   status: "idle",
 }
@@ -19,10 +19,10 @@ export const usersPlaylistSlice = createSlice({
   name: "usersPlaylist",
   initialState,
   reducers: {
-    addSong: (state, action: PayloadAction<Song>) => {
+    addNewSong: (state, action: PayloadAction<Song>) => {
       state.playlist.push(action.payload)
     },
-    removeSong: (state, action: PayloadAction<Song>) => {
+    removeSongFromState: (state, action: PayloadAction<Song>) => {
       state.playlist = state.playlist.filter(
         (song) => song.song_id !== action.payload.song_id,
       )
@@ -43,7 +43,7 @@ export const usersPlaylistSlice = createSlice({
   },
 })
 
-export const { addSong, removeSong } = usersPlaylistSlice.actions
+export const { addNewSong, removeSongFromState } = usersPlaylistSlice.actions
 
 export const playlistSelector = (state: RootState) => state.playlist.playlist
 export const playlistStatusSelector = (state: RootState) =>
