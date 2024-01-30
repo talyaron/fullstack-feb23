@@ -1,7 +1,7 @@
 import axios from "axios"
+import { useNavigate } from "react-router-dom"
 
 export const BASE_URL = "/API/users"
-
 interface RegistrationData {
   user_name: string
   password: string
@@ -26,7 +26,8 @@ export const registerUser = async (
 export const getUser = async () => {
   try {
     const { data } = await axios.get(`${BASE_URL}/user-by-cookie`)
-    if (data.results.length == 0) throw new Error("there is no cookie")
+
+    if (data.message === "no cookie") throw new Error("there is no cookie")
     return data
   } catch (error) {
     console.error("Error during user test:", error)

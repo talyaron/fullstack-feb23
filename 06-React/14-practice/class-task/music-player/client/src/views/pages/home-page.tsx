@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react'
-import { Song, getAllSong } from '../../API/songsApi/getSongApi'
-import Buttons from '../../components/Buttons'
-import { addSong, removeSong } from '../../API/songsApi/addSongApi'
+import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { addNewSong } from '../../features/playlist/usersPlaylistSlice'
-import { getUser } from '../../API/userApi/registerApi'
 import { useNavigate } from 'react-router-dom'
+import { addSong, removeSong } from '../../API/songsApi/addSongApi'
+import { Song, getAllSong } from '../../API/songsApi/getSongApi'
+import { getUser } from '../../API/userApi/registerApi'
+import Buttons from '../../components/Buttons'
+import { addNewSong, removeSongFromState } from '../../features/playlist/usersPlaylistSlice'
 
 const HomePage = () => {
     const dispatch = useDispatch()
@@ -26,8 +26,8 @@ const HomePage = () => {
     }
     const handleAddSong = async (song_id: number, title: string, artist: string, img_src: string, src: string, genre: string) => {
         try {
+
             const songToPlaylist = await addSong(user_id, song_id)
-            console.log(songToPlaylist)
             dispatch(addNewSong({
                 song_id: song_id,
                 title: title,
@@ -42,9 +42,8 @@ const HomePage = () => {
     }
     const handleRemoveSong = async (song_id: number, title: string, artist: string, img_src: string, src: string, genre: string) => {
         try {
-            const removeSongFromPlaylist = await removeSong(user_id, song_id)
-            console.log(removeSongFromPlaylist)
-            dispatch(addNewSong({
+            await removeSong(user_id, song_id)
+            dispatch(removeSongFromState({
                 song_id: song_id,
                 title: title,
                 artist: artist,
@@ -69,8 +68,8 @@ const HomePage = () => {
     }, []);
     return (
         <div>
-            {allSongs.map((song) => {
-                return <div className='button-card' key={song.song_id}>
+            {allSongs.map((song, i) => {
+                return <div className='button-card' key={i}>
                     <img src={song.img_src} alt="" />
                     <Buttons key={song.song_id} src={song.src} artist={song.artist} title={song.title} genre={song.genre} song_id={song.song_id} img_src={song.img_src} />
                     <button onClick={() => handleAddSong(song.song_id, song.title, song.artist, song.img_src, song.src, song.genre)}>add Song</button>

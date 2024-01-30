@@ -1,16 +1,12 @@
-import React from 'react'
 import { Audio } from 'ts-audio';
 import { Song } from '../API/songsApi/getSongApi';
-// import Sia from "../music/Sia - Bird Set Free.mp3"
-
-
-
-
-const Buttons = ({ src, artist, title, genre }: Song) => {
+const Buttons = ({ song_id, title, artist, img_src, src, genre }: Song) => {
     const audio = Audio({
         file: src,
         loop: true,
         volume: 0.2,
+        autoPlay: false,
+        preload: true,
     })
 
     const play = () => {

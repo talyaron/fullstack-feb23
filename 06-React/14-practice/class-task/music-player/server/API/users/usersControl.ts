@@ -72,9 +72,8 @@ export async function registerUser(
 export async function userByCookie(req, res) {
   try {
     const { user } = req.cookies;
-    if (!user || user == undefined) {
-      return { ok: false, msg: "no cookie" };
-    }
+    if (!user || user === undefined)
+      res.status(500).send({ ok: false, error: "no cookie" });
 
     const secret = process.env.SECRET;
     if (!secret) throw new Error("no secret");
