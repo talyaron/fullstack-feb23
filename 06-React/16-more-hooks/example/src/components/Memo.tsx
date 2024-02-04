@@ -4,9 +4,11 @@ export default function Memo() {
   const [number, setNumber] = useState(0);
   const [dark, setDark] = useState(false);
 
-  const doubleNumber: number = useMemo(() => {
-    return slowFunction(number);
-  }, [number]);
+  // const doubleNumber: number = useMemo(() => {
+  //   return slowFunction(number);
+  // }, [number]);
+  const doubleNumber: number = slowFunction(number);
+
 
   const themeStyles = useMemo(() => {
     return {

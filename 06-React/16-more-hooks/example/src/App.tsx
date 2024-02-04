@@ -5,6 +5,7 @@ import { useRef } from "react";
 import Stopwatch from "./components/StopWatch";
 import CallBack from "./components/CallBack";
 import Memo from "./components/Memo";
+import Reducer from "./components/Reducer";
 
 function App() {
   const countRef = useRef(0);
@@ -36,7 +37,7 @@ function App() {
 
   return (
     <div className="App">
-      <div>Hello</div>
+      {/* <div>Hello</div>
       <button onClick={handleClickState}>Click state {clickCounter}</button>
       <button onClick={handleClickRef}>Click ref {countRef.current}</button>
       <input
@@ -55,7 +56,8 @@ function App() {
       >
         Send
       </button>
-      <CallBack/>
+      <CallBack/> */}
+      <Reducer />
       {/* <Memo/> */}
       {/* <Stopwatch /> */}
       {/* <div

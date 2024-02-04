@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react'
 import './App.css'
 import { getAllRecipesAxios, getAllRecipesFetch } from './api/allApi'
+import Register from './components/Register'
 
 function App() {
   const [recipes, setRecpies] = useState([])
@@ -25,7 +26,8 @@ function App() {
 
   return (
     <>
-      {JSON.stringify(recipes)}
+      {/* {JSON.stringify(recipes)} */}
+      <Register />
     </>
   )
 }
