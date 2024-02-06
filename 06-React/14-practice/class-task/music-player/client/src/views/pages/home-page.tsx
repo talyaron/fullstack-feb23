@@ -6,6 +6,7 @@ import { Song, getAllSong } from '../../API/songsApi/getSongApi'
 import { getUser } from '../../API/userApi/registerApi'
 import Buttons from '../../components/Buttons'
 import { addNewSong, removeSongFromState } from '../../features/playlist/usersPlaylistSlice'
+import { Button } from '@mui/material'
 
 const HomePage = () => {
     const dispatch = useDispatch()
@@ -72,8 +73,8 @@ const HomePage = () => {
                 return <div className='button-card' key={i}>
                     <img src={song.img_src} alt="" />
                     <Buttons key={song.song_id} src={song.src} artist={song.artist} title={song.title} genre={song.genre} song_id={song.song_id} img_src={song.img_src} />
-                    <button onClick={() => handleAddSong(song.song_id, song.title, song.artist, song.img_src, song.src, song.genre)}>add Song</button>
-                    <button onClick={() => handleRemoveSong(song.song_id, song.title, song.artist, song.img_src, song.src, song.genre)}>remove Song</button>
+                    <Button variant="contained" color="primary" onClick={() => handleAddSong(song.song_id, song.title, song.artist, song.img_src, song.src, song.genre)}>add Song</Button>
+                    <Button variant="contained" color="primary" onClick={() => handleRemoveSong(song.song_id, song.title, song.artist, song.img_src, song.src, song.genre)}>remove Song</Button>
                 </div>
             })}
         </div>

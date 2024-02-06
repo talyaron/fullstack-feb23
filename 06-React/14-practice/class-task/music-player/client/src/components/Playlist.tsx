@@ -1,14 +1,17 @@
-import { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
-import { removeSong } from '../API/songsApi/addSongApi'
-import { getPlaylist } from '../API/songsApi/getPlaylistApi'
-import { getUser } from '../API/userApi/registerApi'
-import { useAppSelector } from '../app/hooks'
-import { playlistSelector, removeSongFromState } from '../features/playlist/usersPlaylistSlice'
-import Buttons from './Buttons'
+import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+
+import { useNavigate } from 'react-router-dom';
+import { removeSong } from '../API/songsApi/addSongApi';
+import { getPlaylist } from '../API/songsApi/getPlaylistApi';
+import { getUser } from '../API/userApi/registerApi';
+import { useAppSelector } from '../app/hooks';
+import { playlistSelector, removeSongFromState } from '../features/playlist/usersPlaylistSlice';
+import Buttons from './Buttons';
+import { Button } from '@mui/material';
 const Playlist = () => {
     const [user_id, setUserId] = useState(0)
+
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const getUserID = async () => {
@@ -50,7 +53,7 @@ const Playlist = () => {
                 return <div className='button-card' key={i}>
                     <img src={song.img_src} alt="" />
                     <Buttons src={song.src} artist={song.artist} title={song.title} genre={song.genre} song_id={song.song_id} img_src={song.img_src} />
-                    <button onClick={() => handleRemoveSong(song.song_id, song.title, song.artist, song.img_src, song.src, song.genre)}>remove Song</button>
+                    <Button variant="contained" color="primary" onClick={() => handleRemoveSong(song.song_id, song.title, song.artist, song.img_src, song.src, song.genre)}>remove Song</Button>
                 </div>
             })}
         </div>
