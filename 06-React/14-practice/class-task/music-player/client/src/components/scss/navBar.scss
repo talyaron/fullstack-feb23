@@ -4,7 +4,8 @@ $color-site-purple: #6467d4;
 $color-site-white: #fff;
 
 // Navbar.scss
-
+// footer {
+// }
 .allheader {
   background-color: #222; // צבע רקע כל ההדר
   padding: 10px;
@@ -33,6 +34,12 @@ nav a {
   margin-left: 5px; // מרווח בין הלינק לתמונה
 }
 .songs-wrapper {
+  h2 {
+    text-align: center;
+  }
+  justify-content: center;
+  align-items: center;
+  min-height: 75vh;
   padding: 50px;
   display: flex;
   flex-wrap: wrap;
@@ -58,10 +65,13 @@ nav a {
 }
 .footer_container {
   background-color: #222;
+  position: sticky;
+  width: 100%;
+  bottom: 0;
 }
 .MuiTypography-root {
   color: #fff;
 }
-.height{
+.height {
   min-height: 85vh;
 }

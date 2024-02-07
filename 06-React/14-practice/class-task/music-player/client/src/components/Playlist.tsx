@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
 
+import { Button } from "@mui/material"
 import { useNavigate } from "react-router-dom"
 import { removeSong } from "../API/songsApi/addSongApi"
 import { getPlaylist } from "../API/songsApi/getPlaylistApi"
@@ -11,7 +12,6 @@ import {
     removeSongFromState,
 } from "../features/playlist/usersPlaylistSlice"
 import Buttons from "./Buttons"
-import { Button } from "@mui/material"
 const Playlist = () => {
     const [user_id, setUserId] = useState(0)
 
@@ -62,7 +62,7 @@ const Playlist = () => {
     return (
         <div className="songs-wrapper">
 
-            {playlist.map((song, i) => {
+            {playlist.length === 0 ? <h2>there is no liked songs yet</h2> : playlist.map((song, i) => {
                 return (
                     <div className="card" key={i}>
                         <img className="img-card" src={song.img_src} alt="" />

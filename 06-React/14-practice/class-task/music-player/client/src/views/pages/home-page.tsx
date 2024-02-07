@@ -74,7 +74,7 @@ const HomePage = () => {
                     <img src={song.img_src} alt="" />
                     <Buttons key={song.song_id} src={song.src} artist={song.artist} title={song.title} genre={song.genre} song_id={song.song_id} img_src={song.img_src} />
                     <Button variant="contained" color="primary" onClick={() => handleAddSong(song.song_id, song.title, song.artist, song.img_src, song.src, song.genre)}>add Song</Button>
-                    <Button variant="contained" color="primary" onClick={() => handleRemoveSong(song.song_id, song.title, song.artist, song.img_src, song.src, song.genre)}>remove Song</Button>
+                    {/* <Button variant="contained" color="primary" onClick={() => handleRemoveSong(song.song_id, song.title, song.artist, song.img_src, song.src, song.genre)}>remove Song</Button> */}
                 </div>
             })}
         </div>
