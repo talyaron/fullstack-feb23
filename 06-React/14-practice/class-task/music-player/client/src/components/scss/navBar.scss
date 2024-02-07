@@ -32,3 +32,28 @@ nav a {
   width: 20px; // גודל התמונה של המשתמש
   margin-left: 5px; // מרווח בין הלינק לתמונה
 }
+
+
+
+.button-card {
+  display: flex;
+  margin: auto;
+  align-content: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  flex-direction: column-reverse;
+}
+
+
+.css-satg6q-MuiButtonBase-root-MuiButton-root{
+  margin: 10px !important;
+}
+.nav_footer a{
+  color: #fff;
+}
+.footer_container{
+  background-color: #222;
+}
+.MuiTypography-root {
+  color: #fff;
+}

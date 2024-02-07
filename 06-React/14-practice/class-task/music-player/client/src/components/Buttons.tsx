@@ -9,6 +9,7 @@ const Buttons = ({ song_id, title, artist, img_src, src, genre }: Song) => {
         volume: 0.2,
         autoPlay: false,
         preload: true,
+        
     })
 
     const play = () => {
