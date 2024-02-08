@@ -65,7 +65,7 @@ const LoginForm: React.FC = () => {
                         match={match}
                     />
                     <button className="registerBtn" type="submit">
-                        Register
+                        Login
                     </button>
                 </form>
                 <p className="decoration">

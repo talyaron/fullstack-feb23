@@ -2,6 +2,7 @@ $font-family: "Montserrat", sans-serif;
 .registerDiv {
   display: flex;
   flex-wrap: wrap;
+  min-height: 75vh;
 
   .formContainer {
     flex: 1;
