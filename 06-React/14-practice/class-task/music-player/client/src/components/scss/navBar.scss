@@ -1,0 +1,77 @@
+$font-family: "Montserrat", sans-serif;
+$color-site-black: #222;
+$color-site-purple: #6467d4;
+$color-site-white: #fff;
+
+// Navbar.scss
+// footer {
+// }
+.allheader {
+  background-color: #222; // צבע רקע כל ההדר
+  padding: 10px;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.logo {
+  max-width: 200px; // הגבלת רוחב הלוגו
+}
+
+nav a {
+  color: #fff; // צבע הטקסט בלינקים
+  margin: 0 10px; // מרווח בין הלינקים
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.user {
+  width: 20px; // גודל התמונה של המשתמש
+  margin-left: 5px; // מרווח בין הלינק לתמונה
+}
+.songs-wrapper {
+  h2 {
+    text-align: center;
+  }
+  justify-content: center;
+  align-items: center;
+  min-height: 75vh;
+  padding: 50px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2%;
+  .card {
+    padding: 2%;
+    display: flex;
+    margin: auto;
+    align-content: center;
+    justify-content: center;
+    flex-direction: column;
+    img {
+      border-radius: 10px;
+    }
+  }
+}
+
+.css-satg6q-MuiButtonBase-root-MuiButton-root {
+  margin: 10px !important;
+}
+.nav_footer a {
+  color: #fff;
+}
+.footer_container {
+  background-color: #222;
+  position: sticky;
+  width: 100%;
+  bottom: 0;
+}
+.MuiTypography-root {
+  color: #fff;
+}
+.height {
+  min-height: 85vh;
+}

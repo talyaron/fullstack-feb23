@@ -1,103 +1,126 @@
+$font-family: "Montserrat", sans-serif;
 .registerDiv {
-    display: flex;
-    flex-wrap: wrap;
-  
-    .formContainer {
-      flex: 1;
-      text-align: center;
-      align-content: center;
-      margin: 70px 120px 0px 120px ;
-  
-      .appName,
-      .loginHeader {
-        padding: 0px 0px 5px 0px;
-        margin: 0px;
-        font-size: 1.2em;
-        color: #6467d4;
-      }
-  
-      .loginHeader {
-        color: #000000;
-      }
-  
-      .inputPassword,
-      .inputUserName {
-        padding: 0px 10px;
-        display: block;
-        height: 40px;
-        margin: 10px 0px;
-        width: 97%; // נעשה שינוי כדי שהתיבות יתמלאו את רוחב הקונטיינר
-        border: 1px solid #c3c3c3;
-        border-radius: 2px;
-        color: gray;
-      }
-  
-      .inputPassword {
-        margin: 0px 0px;
-      }
-  
-      .password-input-wrapper {
-        height: 40px;
-        width: 98%;
-      }
-  
-      .inputPassword:focus,
-      .inputEmail:focus {
-        border: none;
-        border-color: none;
-      }
-  
-      .inputPassword::placeholder,
-      .inputEmail::placeholder {
-        color: #aeacac;
-      }
-  
-      .registerBtn, .signupBtn {
-        width: 100%;
-        background-color: #6467d4;
-        border-radius: 2px;
-        color: white;
-        padding: 15px;
-        border: none;
-      }
-  
-      .signupBtn{
-        background-color: white;
-        color: #6467d4;
-        border: solid 1px #6467d4;
-
-
-      }
-    }
-    
-    .showBtn{
-        width: 40%;
-        background-color: #6467d4;
-        color: white;
-        margin: 5px 0px;
-        border: none;
-        padding: 5px;
-    }
-    .imageContainer {
-      flex: 2;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-     
-    }
-  
-    .imgRegister {
-      max-width: 100%; // נעשה שינוי כדי שהתמונה תמלא את רוחב הקונטיינר
-      max-height: 80%; // נעשה שינוי כדי שהתמונה תמלא את גובה הקונטיינר
-    }
-  }
-  @media (max-width: 768px) {
-    .registerDiv {
-        flex-direction: column;
-
+  display: flex;
+  flex-wrap: wrap;
+  min-height: 75vh;
 
   .formContainer {
-    margin: 20px 30px 20px 20px;
+    flex: 1;
+    text-align: center;
+    align-content: center;
+    margin: 70px 120px 0px 120px;
 
+    .appName,
+    .loginHeader {
+      padding: 0px 0px 5px 0px;
+      margin: 0px;
+      font-size: 1.2em;
+      color: #6467d4;
+    }
 
-}}}
+    .loginHeader {
+      color: #000000;
+    }
+    .password-icon {
+      color: #6467d4;
+      font-size: 20px;
+      margin: 0 5px; /* הפרדה מהטקסט */
+      cursor: pointer; /* סמן שהאלמנט ניתן ללחיצה */
+    }
+    .inputPassword,
+    .inputUserName {
+      font-family: $font-family;
+      padding: 0px 10px;
+      display: block;
+      height: 40px;
+      margin: 10px 0px;
+      width: 97%; // נעשה שינוי כדי שהתיבות יתמלאו את רוחב הקונטיינר
+      border: 1px solid #c3c3c3;
+      border-radius: 2px;
+      color: gray;
+    }
+
+    .material-icons {
+      position: absolute;
+      top: 40vh;
+      right: 65vw;
+      transform: translateY(-50%);
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+      outline: none;
+    }
+  }
+  .password-input-wrapper {
+    height: 40px;
+    width: 98%;
+  }
+
+  .inputPassword:focus,
+  .inputEmail:focus {
+    border: none;
+    border-color: none;
+  }
+
+  .inputPassword::placeholder,
+  .inputEmail::placeholder {
+    color: #aeacac;
+  }
+
+  .registerBtn,
+  .signupBtn {
+    width: 100%;
+    background-color: #6467d4;
+    border-radius: 2px;
+    color: white;
+    padding: 15px;
+    border: none;
+  }
+
+  .signupBtn {
+    background-color: white;
+    color: #6467d4;
+    border: solid 1px #6467d4;
+  }
+}
+
+.showBtn {
+  width: 40%;
+  background-color: #6467d4;
+  color: white;
+  margin: 5px 0px;
+  border: none;
+  padding: 5px;
+}
+.imageContainer {
+  flex: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.imgRegister {
+  max-width: 100%; // נעשה שינוי כדי שהתמונה תמלא את רוחב הקונטיינר
+  max-height: 80%; // נעשה שינוי כדי שהתמונה תמלא את גובה הקונטיינר
+}
+
+@media (max-width: 768px) {
+  .registerDiv {
+    flex-direction: column;
+
+    .formContainer {
+      margin: 20px 30px 20px 20px;
+
+      .material-icons {
+        position: absolute;
+        top: 37vh;
+        right: 17vw;
+        transform: translateY(-50%);
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        outline: none;
+      }
+    }
+  }
+}

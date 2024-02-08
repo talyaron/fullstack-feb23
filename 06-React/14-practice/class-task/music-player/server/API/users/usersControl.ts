@@ -1,7 +1,12 @@
-import express from "express";
-import connection from "../../DB/database";
 import bcrypt from "bcrypt";
+import cookieParser from "cookie-parser";
+import express from "express";
 import jwt from "jwt-simple";
+import connection from "../../DB/database";
+
+const app = express();
+app.use(cookieParser());
+app.use(express.json());
 
 export async function getAllUsers(req: express.Request, res: express.Response) {
   try {
@@ -50,7 +55,7 @@ export async function registerUser(
             const token = jwt.encode(cookie, secret);
 
             res.cookie("user", token, {
-              httpOnly: true,
+              httpOnly: false,
               maxAge: 1000 * 60 * 60,
             });
             res.send({ ok: true, results });
@@ -67,18 +72,14 @@ export async function registerUser(
 export async function userByCookie(req, res) {
   try {
     const { user } = req.cookies;
-    console.log(user)
-    if (!user || user == undefined) {
-      res.status(401).send({ ok: false, msg: "no cookie" });
-    }
+    if (!user || user === undefined)
+      res.status(500).send({ ok: false, error: "no cookie" });
 
     const secret = process.env.SECRET;
     if (!secret) throw new Error("no secret");
-    // if ()
     const decodedId = jwt.decode(user, secret);
-    const userID  = decodedId.user_id;
-    if (!userID) throw new Error("Could not decode userID")
-    // if ()
+    const userID = decodedId.user_id;
+    if (!userID) throw new Error("Could not decode userID");
 
     const query = `SELECT * FROM users WHERE user_id = ${userID}`;
 
@@ -94,5 +95,39 @@ export async function userByCookie(req, res) {
   } catch (error) {
     console.log(error);
     res.status(500).send({ ok: false, error });
+  }
+}
+
+export async function loginUser(req: express.Request, res: express.Response) {
+  try {
+    const user = req.body;
+    const secret = process.env.SECRET;
+    const query = `SELECT * FROM multi_musix.users where user_name='${user.user_name}';`;
+    if (!user) {
+      return res.status(401).json({ ok: false, msg: "Invalid credentials" });
+    }
+
+    connection.query(query, async (err, results) => {
+      try {
+        if (err) throw err;
+        const match = await bcrypt.compare(user.password, results[0].password);
+
+        if (!match) {
+          res.status(500).send({ ok: false, error: "password dont match" });
+        }
+        const cookie = { user_id: results[0].user_id };
+        const token = jwt.encode(cookie, secret);
+        res.cookie("user", token, {
+          httpOnly: false,
+          maxAge: 1000 * 60 * 60,
+        });
+        res.send({ ok: true, results: results[0] });
+      } catch (error) {
+        res.status(500).send({ ok: false, error });
+      }
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ ok: false, error: error.message });
   }
 }

@@ -16,14 +16,17 @@
   "dependencies": {
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
-    "@mui/material": "^5.15.3",
+    "@mui/material": "^5.15.7",
+    "@mui/system": "^5.15.7",
     "@reduxjs/toolkit": "^1.8.1",
     "axios": "^1.6.5",
+    "material-icons": "^1.13.12",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-redux": "^8.0.1",
     "react-router-dom": "^6.21.1",
     "sass": "^1.69.7",
+    "styled": "^1.0.0",
     "ts-audio": "^0.7.4"
   },
   "devDependencies": {

@@ -1,7 +1,7 @@
 import axios from "axios"
+import { useNavigate } from "react-router-dom"
 
 export const BASE_URL = "/API/users"
-
 interface RegistrationData {
   user_name: string
   password: string
@@ -25,14 +25,11 @@ export const registerUser = async (
 
 export const getUser = async () => {
   try {
-    const response = await axios.get(`${BASE_URL}/user-by-cookie`)
-    console.log("cookie response:", response.data)
-    if (response.data.results.length == 0) {
-      return false
-    }
-    return true
+    const { data } = await axios.get(`${BASE_URL}/user-by-cookie`)
+
+    if (data.message === "no cookie") throw new Error("there is no cookie")
+    return data
   } catch (error) {
     console.error("Error during user test:", error)
-    return false
   }
 }

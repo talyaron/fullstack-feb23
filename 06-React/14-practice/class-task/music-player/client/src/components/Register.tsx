@@ -1,16 +1,13 @@
 import React, { useEffect, useState } from "react"
-import { useDispatch } from "react-redux"
-import { useAppSelector } from "../app/hooks"
-import { userSelector } from "../features/user/userSlice"
-import Password from "./Password"
+import { Link, useNavigate } from "react-router-dom"
 import { getUser, registerUser } from "../API/userApi/registerApi"
 import myImg from "../images/Happy girl wearing headphones.jpg"
-import { useNavigate } from "react-router-dom"
+import Password from "./Password"
 
 
 const RegisterForm: React.FC = () => {
-  const dispatch = useDispatch()
-  const user = useAppSelector(userSelector)
+  // const dispatch = useDispatch()
+  // const user = useAppSelector(userSelector)
   const [user_name, setUsername] = useState("")
   const [password, setPassword] = useState("")
   const [match, setMatch] = useState(false)
@@ -27,13 +24,11 @@ const RegisterForm: React.FC = () => {
     setLoading(false)
   }
   const handleSubmit = async () => {
-    console.log(user_name)
-    console.log(password)
-    console.log(match)
     if (match) {
       const success = await registerUser({ user_name, password })
 
       if (success) {
+        navigate("/home-page")
         console.log("Registration successful!")
       } else {
         console.error("Registration failed.")
@@ -49,7 +44,7 @@ const RegisterForm: React.FC = () => {
       {loading ? <>Loading</> : null}
       <div className="formContainer">
         <p className="appName">Multi Musix</p>
-        <h2 className="loginHeader">Login</h2>
+        <h2 className="loginHeader">Register</h2>
         <form
           className="registerForm"
           action=""
@@ -78,7 +73,10 @@ const RegisterForm: React.FC = () => {
         <p className="decoration">
           -------------------- o ---------------------
         </p>
-        <button className="signupBtn">Signup</button>
+        <button className="signupBtn">
+          <Link to="/login-page" >Login</Link>
+        </button>
+
       </div>
       <div className="imageContainer">
         <img src={myImg} className="imgRegister" alt="My Image" />
