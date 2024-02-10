@@ -4,20 +4,21 @@ export default function Memo() {
   const [number, setNumber] = useState(0);
   const [dark, setDark] = useState(false);
 
-  const doubleNumber: number = useMemo(() => {
-    return slowFunction(number);
-  }, [number]);
+  const doubleNumber: number = slowFunction(number);
+  // const doubleNumber: number = useMemo(() => {
+  //   return slowFunction(number)
+  // },[number])
 
-  const themeStyles = useMemo(() => {
+  const themeStyles = () => {
     return {
       backgroundColor: dark ? "black" : "white",
       color: dark ? "white" : "black",
     };
-  }, [dark]);
+  };
 
   useEffect(() => {
-    console.log("themeStyles changed");
-  }, [themeStyles]);
+    console.log("style changes")
+  },[themeStyles])
 
   return (
     <>
@@ -29,7 +30,7 @@ export default function Memo() {
       <button onClick={() => setDark((prevDark) => !prevDark)}>
         Change Theme
       </button>{" "}
-      <div style={themeStyles}>{doubleNumber}</div>
+      <div style={themeStyles()}>{doubleNumber}</div>
     </>
   );
 }
@@ -55,3 +56,11 @@ function slowFunction(num: number) {
 //   useEffect(() => {
 //     console.log("ThemeChanged");
 //   }, [themeStyles]); // not the same as before!
+
+
+  // const themeStyles = useMemo(() => {
+  //   return {
+  //     backgroundColor: dark ? "black" : "white",
+  //     color: dark ? "white" : "black",
+  //   };
+  // }, [dark]);
