@@ -6,6 +6,7 @@ import Stopwatch from "./components/StopWatch";
 import CallBack from "./components/CallBack";
 import Memo from "./components/Memo";
 import Reducer from "./components/Reducer";
+import ReducerExample from "./components/reducerExample/ReducerExample";
 
 function App() {
   const countRef = useRef(0);
@@ -55,9 +56,10 @@ function App() {
         }}
       >
         Send
-      </button>
-      <CallBack/> */}
-      <Reducer />
+      </button> */}
+      {/* <CallBack/> */}
+      <ReducerExample/>
+      {/* <Reducer /> */}
       {/* <Memo/> */}
       {/* <Stopwatch /> */}
       {/* <div
