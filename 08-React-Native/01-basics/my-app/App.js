@@ -12,12 +12,12 @@ import {
 export default function App() {
   return (
     <SafeAreaView style={styles.container}>
+      <StatusBar style="auto" />
       <Text style={styles.header}>Checkout</Text>
       <Image
         style={styles.image}
         source={require("./assets/images/goal.png")}
       />
-      {/* <StatusBar style="auto" /> */}
       <View style={styles.content}>
         <View style={styles.wrapper}>
           <Text style={styles.subtitle}>Delivery</Text>
