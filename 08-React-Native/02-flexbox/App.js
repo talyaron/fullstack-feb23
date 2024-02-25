@@ -44,6 +44,10 @@ export default function App() {
       <Image style={{ width: 100, height: 100 }} source={Logo} />
       <Image
         style={{ width: 100, height: 100 }}
+        source={require("./assets/adaptive-icon.png")}
+      />
+      <Image
+        style={{ width: 100, height: 100 }}
         source={{
           uri: "https://www.1800flowers.com/blog/wp-content/uploads/2021/05/Birthday-Flowers-Colors.jpg",
         }}
