@@ -15,10 +15,10 @@ interface UserProps {
 const User: FC<UserProps> = ({ id, name, username, email, phone, website, age }) => {
     return (
 
-        <div style={{border:"1px solid black"}}>
-            <h1>{name ? name : "no name"}</h1>
+        <div style={{ border: "1px solid black", width: "250px" }}>
+            <h2>{name ? name : "no name"}</h2>
             <p>id:{id}</p>
-            <h2>{username}</h2>
+            <h3>{username}</h3>
             <h3>{age} years old</h3>
             <p>phone number:{phone}</p>
             <p>email adress:{email}</p>
