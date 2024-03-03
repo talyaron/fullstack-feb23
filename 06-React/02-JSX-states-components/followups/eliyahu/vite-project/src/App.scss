@@ -1,0 +1,40 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+body {
+  background-color: black;
+  color: white;
+}
+
+.box {
+  background-color: rgb(28, 28, 28);
+  border: 1px solid rgb(68, 67, 67);
+  border-radius: 20px;
+  text-align: left;
+  padding: 20px;
+  width: 25ch;
+}
+.dscrpt{
+  color: gray;
+}
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 100,
+  'GRAD' 0,
+  'opsz' 24
+}
+
+.icon{
+  background-color: rgb(40, 40, 40);
+  border: 2px solid rgb(71, 70, 70);
+border-radius: 50%;
+padding: 1px;
+margin-bottom: 0px;
+margin-left: 10px;
+}
