@@ -3,8 +3,8 @@ import { Product } from '../../types/types'
 
 interface ProductProps {
   product: Product
-  handleRemove: (ev: any) => void
-  handleUpdate: (ev: any) => void
+  handleRemove: (ev: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
+  handleUpdate: (ev: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
 }
 
 

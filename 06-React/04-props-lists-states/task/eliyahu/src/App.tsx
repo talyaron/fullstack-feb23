@@ -2,9 +2,10 @@ import { useState } from 'react'
 import './App.css'
 import ProductCard from './components/Product/Product'
 import { products } from './util/products'
+import { Product } from './types/types'
 
 function App() {
-  const [productsArr, setProducts] = useState(products)
+  const [productsArr, setProducts] = useState<Product[]>(products)
 
   const handleRemove = (ev: any) => {
     const newArrProducts = productsArr.filter((product) => {
@@ -40,14 +41,14 @@ function App() {
     <>
       <button className="fa fa-star" onClick={handleHighRating}>4.5+</button>
       <button onClick={handleShowAll}>SHOW ALL</button>
-
       <div style={{ display: "flex", gap: "10px", flexWrap: "wrap", }}>
-
-
-
         {productsArr.map((product) => {
           return (
-            <ProductCard key={product.id} product={product} handleRemove={handleRemove} handleUpdate={handleUpdate} />
+            <ProductCard
+              key={product.id}
+              product={product}
+              handleRemove={handleRemove}
+              handleUpdate={handleUpdate} />
           )
         })}
       </div>
