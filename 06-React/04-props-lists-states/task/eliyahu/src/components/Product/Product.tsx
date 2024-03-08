@@ -1,5 +1,6 @@
 import { FC } from 'react'
 import { Product } from '../../types/types'
+import { categoriesColors } from '../../constants/constants'
 
 interface ProductProps {
   product: Product
@@ -29,7 +30,8 @@ const ProductCard: FC<ProductProps> = ({ product, handleRemove, handleUpdate }) 
 
   return (
 
-    <div key={product.id} style={{ border: "2px solid gray", borderRadius: "20px", maxWidth: "500px", backgroundColor: categoryColor(product.category) }}>
+    // <div key={product.id} style={{ border: "2px solid gray", borderRadius: "20px", maxWidth: "500px", backgroundColor: categoryColor(product.category) }}>
+    <div key={product.id} style={{ border: "2px solid gray", borderRadius: "20px", maxWidth: "500px", backgroundColor: categoriesColors[product.category] }}>
       <h4>{product.title}</h4>
       <h5>{product.description}</h5>
       <div>
