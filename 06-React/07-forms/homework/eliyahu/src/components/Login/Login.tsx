@@ -1,7 +1,11 @@
-import { useState } from 'react'
-import { logIn } from '../../api/api'
+import { FC, useState } from 'react'
+import { logIn } from '../../api/usersApi'
 
-const Login = () => {
+interface LoginProps {
+    onLogin: (userData: any) => void
+}
+
+const Login: FC<LoginProps> = ({onLogin}) => {
     const [name, setName] = useState("")
     const [pass, setPass] = useState("")
     const [visible, setVisible] = useState(false)
@@ -14,10 +18,10 @@ const Login = () => {
     const handleLogIn = async (ev: React.FormEvent<HTMLFormElement>) => {
         try {
             ev.preventDefault()
-            const username = ev.target.username.value
-            const password = ev.target.password.value
-            const user = await logIn(username, password)
-            console.log(user)
+            const user = await logIn(name, pass)
+            if (user) {
+                onLogin(user)
+            }
         } catch (error) {
             console.error(error)
         }

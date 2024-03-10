@@ -1,13 +1,20 @@
 import { useState } from 'react'
 import './App.scss'
 import Login from './components/Login/Login'
+import UserPost from './components/UserPost/UserPost'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [user, setUser] = useState()
 
+
+  const setlogUser = (user: any) => {
+    setUser(user)
+    sessionStorage.setItem("token", user.token)
+  }
   return (
     <>
-      <Login/>
+      <Login  onLogin={setlogUser} />
+      {user ? <UserPost user={user} /> : null}
     </>
   )
 }
