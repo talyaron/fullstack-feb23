@@ -21,6 +21,8 @@ const UserPost: FC<UserPostProps> = ({ user }) => {
         userPosts(user.id)
     }, [])
 
+    const imgUrl = "https://picsum.photos/600/200"
+
     return (
         <>
             {posts.length > 0 ? (
@@ -30,9 +32,14 @@ const UserPost: FC<UserPostProps> = ({ user }) => {
                         <div style={{ border: "1px solid black" }}>
                             <h1>{post.title}</h1>
                             <p>{post.body}</p>
-                            {post.tags.map((tag: string) => {
-                                <p>{`#${tag}`}</p>
-                            })}
+                            <div style={{ display: "flex" }}>
+                                {post.tags.map((tag: string) => {
+                                    return (
+                                        <p>{`#${tag}`}</p>
+                                    )
+                                })}
+                            </div>
+                            <img src={imgUrl} alt="random image" />
                             <p>{post.reactions}</p>
                         </div>
                     )
