@@ -1,6 +1,4 @@
-import { useEffect } from 'react'
 import useTimer from '../hooks/useTimer'
-import useTime from '../hooks/useTime'
 
 const Timer = () => {
     const { miliSeconds, seconds, minutes, start, stop,reset } = useTimer()
