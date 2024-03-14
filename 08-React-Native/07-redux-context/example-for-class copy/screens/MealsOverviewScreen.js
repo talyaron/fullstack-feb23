@@ -1,9 +1,8 @@
-import { useLayoutEffect } from "react";
-import { View, FlatList, StyleSheet, Text } from "react-native";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import MealItem from "../components/MealItem";
-import { MEALS, CATEGORIES } from "../data/dummy-data";
-import { Button } from "react-native";
+import { useLayoutEffect } from 'react';
+import { View, FlatList, StyleSheet } from 'react-native';
+
+import MealItem from '../components/MealItem';
+import { MEALS, CATEGORIES } from '../data/dummy-data';
 
 function MealsOverviewScreen({ route, navigation }) {
   const catId = route.params.categoryId;
@@ -36,23 +35,8 @@ function MealsOverviewScreen({ route, navigation }) {
     return <MealItem {...mealItemProps} />;
   }
 
-  const storeData = async (information) => {
-    try {
-      const jsonValue = JSON.stringify(information);
-      await AsyncStorage.setItem("info", jsonValue);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   return (
     <View style={styles.container}>
-      <Button
-        onPress={() => {
-          storeData({ text: "my name is gili" });
-        }}
-        title="Add to storage"
-      />
       <FlatList
         data={displayedMeals}
         keyExtractor={(item) => item.id}
