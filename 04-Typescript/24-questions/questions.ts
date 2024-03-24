@@ -1,13 +1,3 @@
-// [...] => { 15: [...], 21: [...] }
-type Person = {
-    name: string,
-    age: number
-};
-
-function groupByAge(people: Person[]): Record<number, Person[]> {
-    return {};
-}
-
 
 //1. Write a JavaScript function to check if a given string is a palindrome (reads the same forwards and backwards). 
 
@@ -33,10 +23,29 @@ function filterEvenNumbers(numbers: number[]): number[] {
 }
 
 // 4. Write a JavaScript program to find the largest element in a nested array. 
+// const arrNumbers = [
+//     [0,1,5],
+//     [3,5,6]
+// ] 
 function findLargestElement(nestedArray) {
 
     let largest = nestedArray[0][0];
 
     return largest;
 
-} 
+}
+
+// https://leetcode.com/problems/two-sum/description/
+
+// 5. regroup the objects by age 
+// [...] => { 15: [...], 21: [...] }
+type Person = {
+    name: string,
+    age: number
+};
+
+function groupByAge(people: Person[]): Record<number, Person[]> {
+    // const arr = [{ age: 15, name: "gili" }, { age: 15, name: "gili" }, { age: 21, name: "gili" }]
+    // const filterd = { 15: [{ age: 15, name: "gili" }, { age: 15, name: "gili" }], 21: [{ age: 21, name: "gili" }] }
+    return {};
+}
