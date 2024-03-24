@@ -49,3 +49,8 @@ function groupByAge(people: Person[]): Record<number, Person[]> {
     // const filterd = { 15: [{ age: 15, name: "gili" }, { age: 15, name: "gili" }], 21: [{ age: 21, name: "gili" }] }
     return {};
 }
+
+// 6. return unique items only from array
+// example [0,0,1,2,3,3,3] => [0,1,2,3]
+
+
